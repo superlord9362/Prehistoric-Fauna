@@ -1,7 +1,11 @@
 package com.superlord.prehistoricfauna.proxy;
 
+import com.superlord.prehistoricfauna.entity.EntityGallimimus;
 import com.superlord.prehistoricfauna.entity.EntityTriceratops;
+import com.superlord.prehistoricfauna.entity.EntityVelociraptor;
+import com.superlord.prehistoricfauna.entity.renderers.GallimimusRenderer;
 import com.superlord.prehistoricfauna.entity.renderers.TriceratopsRenderer;
+import com.superlord.prehistoricfauna.entity.renderers.VelociraptorRenderer;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -17,9 +21,13 @@ public class ClientProxy extends CommonProxy {
 		super.preInit(event);
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityTriceratops.class, TriceratopsRenderer.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(EntityVelociraptor.class, VelociraptorRenderer.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(EntityGallimimus.class, GallimimusRenderer.FACTORY);
 	}
 	
 	public void registerItemRenderer(Item item, int meta, String id) {
 		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), id));
 	}
+	
+	
 }

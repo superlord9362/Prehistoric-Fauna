@@ -4,3 +4,6 @@ item.gallimimus_skull.name=Gallimimus Skull
 item.velociraptor_claw.name=Velociraptor Claw
 item.tyrannosaurus_tooth.name=Tyrannosaurus Tooth
 item.triceratops_dna.name=Triceratops DNA
+entity.velociraptor.name=Velociraptor
+itemGroup.tab_prehistoric=Prehistoric Fauna
+entity.gallimimus.name=Gallimimus

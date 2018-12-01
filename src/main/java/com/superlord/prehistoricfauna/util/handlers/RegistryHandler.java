@@ -1,7 +1,9 @@
 package com.superlord.prehistoricfauna.util.handlers;
 
 import com.superlord.prehistoricfauna.Main;
+import com.superlord.prehistoricfauna.entity.EntityGallimimus;
 import com.superlord.prehistoricfauna.entity.EntityTriceratops;
+import com.superlord.prehistoricfauna.entity.EntityVelociraptor;
 import com.superlord.prehistoricfauna.init.ModItems;
 import com.superlord.prehistoricfauna.util.IHasModel;
 import com.superlord.prehistoricfauna.util.Reference;
@@ -26,6 +28,8 @@ public class RegistryHandler {
 
     public static void registerEntities(RegistryEvent.Register<EntityEntry> event) {
 		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "triceratops"), EntityTriceratops.class, "triceratops", entityId++, Main.instance, 64, 3, true, 12871971, 10507067);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "velociraptor"), EntityVelociraptor.class, "velociraptor", entityId++, Main.instance, 64, 3, true, 0x404040, 0x000000);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "gallimimus"), EntityGallimimus.class, "gallimimus", entityId++, Main.instance, 64, 3, true, 0x808080, 0x000000);
 	}
 	
 	@SubscribeEvent
@@ -41,6 +45,8 @@ public class RegistryHandler {
 			}
 		}
 	}
+	
+	
 	
 	public static void initRegistries() {
 

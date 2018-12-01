@@ -1,9 +1,12 @@
 package com.superlord.prehistoricfauna;
 
+import com.superlord.prehistoricfauna.init.ModItems;
 import com.superlord.prehistoricfauna.proxy.CommonProxy;
 import com.superlord.prehistoricfauna.util.Reference;
 import com.superlord.prehistoricfauna.util.handlers.RegistryHandler;
 
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -35,5 +38,12 @@ public class Main {
 	public static void postInit(FMLPostInitializationEvent event) {
 		
 	}
+	
+	public static CreativeTabs tabPrehistoric = new CreativeTabs("tab_prehistoric") {
+		@Override
+		public ItemStack getTabIconItem() {
+			return new ItemStack(ModItems.VELOCIRAPTOR_CLAW);
+		}
+	};
 	
 }

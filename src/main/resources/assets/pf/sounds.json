@@ -1,0 +1,31 @@
+{
+    "triceratops_idle": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/triceratops_idle1",
+                "name": "pf:prehistoric/triceratops_idle2",
+                "stream": true
+            }
+        ]
+    },
+   "triceratops_hurt": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/triceratops_hurt",
+                "stream": true
+            }
+        ]
+    },
+    "velociraptor_idle": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/velociraptor_idle1",
+                "name": "pf:prehistoric/velociraptor_idle2",
+                "stream": true
+            }
+        ]
+    }
+}
