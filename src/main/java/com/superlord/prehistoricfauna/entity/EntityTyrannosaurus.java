@@ -61,15 +61,15 @@ import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class EntityVelociraptor extends EntityTameable
+public class EntityTyrannosaurus extends EntityTameable
 {
-    private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.<Float>createKey(EntityVelociraptor.class, DataSerializers.FLOAT);
-
-
-    public EntityVelociraptor(World worldIn)
+    private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.<Float>createKey(EntityTyrannosaurus.class, DataSerializers.FLOAT);
+    private static final DataParameter<Integer> DATA_STRENGTH_ID = EntityDataManager.<Integer>createKey(EntityLlama.class, DataSerializers.VARINT);
+    
+    public EntityTyrannosaurus(World worldIn)
     {
         super(worldIn);
-        this.setSize(0.6F, 0.85F);
+        this.setSize(3.0F, 4.0F);
         this.setTamed(false);
     }
 
@@ -77,8 +77,6 @@ public class EntityVelociraptor extends EntityTameable
     {
         this.aiSit = new EntityAISit(this);
         this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(2, this.aiSit);
-        this.tasks.addTask(3, new EntityVelociraptor.AIAvoidEntity(this, EntityLlama.class, 24.0F, 1.5D, 1.5D));
         this.tasks.addTask(4, new EntityAILeapAtTarget(this, 0.4F));
         this.tasks.addTask(5, new EntityAIAttackMelee(this, 1.0D, true));
         this.tasks.addTask(6, new EntityAIFollowOwner(this, 1.0D, 10.0F, 2.0F));
@@ -93,27 +91,22 @@ public class EntityVelociraptor extends EntityTameable
         {
             public boolean apply(@Nullable Entity p_apply_1_)
             {
-                return p_apply_1_ instanceof EntitySheep || p_apply_1_ instanceof EntityRabbit;
+                return p_apply_1_ instanceof EntityGallimimus || p_apply_1_ instanceof EntityTriceratops;
             }
         }));
-        this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, AbstractSkeleton.class, false));
     }
 
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30000001192092896D);
-
-        if (this.isTamed())
-        {
-            this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
-        }
-        else
-        {
-            this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
-        }
-
-        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(190.0D);
+        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(10.0D);
+    }
+    
+    public int getStrength()
+    {
+        return ((Integer)this.dataManager.get(DATA_STRENGTH_ID)).intValue();
     }
 
     /**
@@ -151,7 +144,7 @@ public class EntityVelociraptor extends EntityTameable
 
     public static void registerFixesWolf(DataFixer fixer)
     {
-        EntityLiving.registerFixesMob(fixer, EntityVelociraptor.class);
+        EntityLiving.registerFixesMob(fixer, EntityTyrannosaurus.class);
     }
 
     /**
@@ -170,6 +163,8 @@ public class EntityVelociraptor extends EntityTameable
     {
         super.readEntityFromNBT(compound);
         this.setAngry(compound.getBoolean("Angry"));
+
+        
     }
 
     protected SoundEvent getAmbientSound()
@@ -178,20 +173,20 @@ public class EntityVelociraptor extends EntityTameable
         {
             return SoundEvents.ENTITY_WOLF_GROWL;
         }
-        else
+        else 
         {
-            return Sounds.VELOCIRAPTOR_IDLE;
+            return Sounds.TYRANNOSAURUS_IDLE;
         }
     }
 
     protected SoundEvent getHurtSound(DamageSource p_184601_1_)
     {
-        return Sounds.VELOCIRAPTOR_HURT;
+        return SoundEvents.ENTITY_WOLF_HURT;
     }
 
     protected SoundEvent getDeathSound()
     {
-        return Sounds.VELOCIRAPTOR_HURT;
+        return SoundEvents.ENTITY_WOLF_DEATH;
     }
 
     /**
@@ -205,7 +200,7 @@ public class EntityVelociraptor extends EntityTameable
     @Nullable
     protected ResourceLocation getLootTable()
     {
-        return LootTableHandler.VELOCIRAPTOR;
+        return LootTableHandler.TYRANNOSAURUS;
     }
 
     /**
@@ -216,7 +211,7 @@ public class EntityVelociraptor extends EntityTameable
     {
         super.onLivingUpdate();
 
-       
+        
 
         if (!this.world.isRemote && this.getAttackTarget() == null && this.isAngry())
         {
@@ -230,17 +225,10 @@ public class EntityVelociraptor extends EntityTameable
     public void onUpdate()
     {
         super.onUpdate();
+       
     }
 
-    /**
-     * True if the wolf is wet
-     */
- 
-
-    /**
-     * Used when calculating the amount of shading to apply while the wolf is wet.
-     */
-
+   
     public float getEyeHeight()
     {
         return this.height * 0.8F;
@@ -333,20 +321,7 @@ public class EntityVelociraptor extends EntityTameable
                         return true;
                     }
                 }
-                else if (itemstack.getItem() == Items.DYE)
-                {
-                    EnumDyeColor enumdyecolor = EnumDyeColor.byDyeDamage(itemstack.getMetadata());
-
-                    {
-
-                        if (!player.capabilities.isCreativeMode)
-                        {
-                            itemstack.shrink(1);
-                        }
-
-                        return true;
-                    }
-                }
+              
             }
 
             if (this.isOwner(player) && !this.world.isRemote && !this.isBreedingItem(itemstack))
@@ -392,20 +367,15 @@ public class EntityVelociraptor extends EntityTameable
     /**
      * Handler for {@link World#setEntityState}
      */
-  
-
     @SideOnly(Side.CLIENT)
-    public float getTailRotation()
+    public void handleStatusUpdate(byte id)
     {
-        if (this.isAngry())
-        {
-            return 1.5393804F;
-        }
-        else
-        {
-            return this.isTamed() ? (0.55F - (this.getMaxHealth() - ((Float)this.dataManager.get(DATA_HEALTH_ID)).floatValue()) * 0.02F) * (float)Math.PI : ((float)Math.PI / 5F);
-        }
+        
+            super.handleStatusUpdate(id);
+        
     }
+
+   
 
     /**
      * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
@@ -449,13 +419,11 @@ public class EntityVelociraptor extends EntityTameable
         }
     }
 
-    
+   
 
-    
-
-    public EntityVelociraptor createChild(EntityAgeable ageable)
+    public EntityTyrannosaurus createChild(EntityAgeable ageable)
     {
-        EntityVelociraptor entitywolf = new EntityVelociraptor(this.world);
+        EntityTyrannosaurus entitywolf = new EntityTyrannosaurus(this.world);
         UUID uuid = this.getOwnerId();
 
         if (uuid != null)
@@ -467,7 +435,7 @@ public class EntityVelociraptor extends EntityTameable
         return entitywolf;
     }
 
-  
+    
     /**
      * Returns true if the mob is currently able to mate with the specified mob.
      */
@@ -481,13 +449,13 @@ public class EntityVelociraptor extends EntityTameable
         {
             return false;
         }
-        else if (!(otherAnimal instanceof EntityVelociraptor))
+        else if (!(otherAnimal instanceof EntityTyrannosaurus))
         {
             return false;
         }
         else
         {
-            EntityVelociraptor entitywolf = (EntityVelociraptor)otherAnimal;
+            EntityTyrannosaurus entitywolf = (EntityTyrannosaurus)otherAnimal;
 
             if (!entitywolf.isTamed())
             {
@@ -509,9 +477,9 @@ public class EntityVelociraptor extends EntityTameable
     {
         if (!(target instanceof EntityCreeper) && !(target instanceof EntityGhast))
         {
-            if (target instanceof EntityVelociraptor)
+            if (target instanceof EntityTyrannosaurus)
             {
-                EntityVelociraptor entitywolf = (EntityVelociraptor)target;
+                EntityTyrannosaurus entitywolf = (EntityTyrannosaurus)target;
 
                 if (entitywolf.isTamed() && entitywolf.getOwner() == owner)
                 {
@@ -539,52 +507,5 @@ public class EntityVelociraptor extends EntityTameable
         return !this.isAngry() && super.canBeLeashedTo(player);
     }
 
-    class AIAvoidEntity<T extends Entity> extends EntityAIAvoidEntity<T>
-    {
-        private final EntityVelociraptor wolf;
-
-        public AIAvoidEntity(EntityVelociraptor wolfIn, Class<T> p_i47251_3_, float p_i47251_4_, double p_i47251_5_, double p_i47251_7_)
-        {
-            super(wolfIn, p_i47251_3_, p_i47251_4_, p_i47251_5_, p_i47251_7_);
-            this.wolf = wolfIn;
-        }
-
-        /**
-         * Returns whether the EntityAIBase should begin execution.
-         */
-        public boolean shouldExecute()
-        {
-            if (super.shouldExecute() && this.closestLivingEntity instanceof EntityLlama)
-            {
-                return !this.wolf.isTamed() && this.avoidLlama((EntityLlama)this.closestLivingEntity);
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        private boolean avoidLlama(EntityLlama p_190854_1_)
-        {
-            return p_190854_1_.getStrength() >= EntityVelociraptor.this.rand.nextInt(5);
-        }
-
-        /**
-         * Execute a one shot task or start executing a continuous task
-         */
-        public void startExecuting()
-        {
-            EntityVelociraptor.this.setAttackTarget((EntityLivingBase)null);
-            super.startExecuting();
-        }
-
-        /**
-         * Keep ticking a continuous task that has already been started
-         */
-        public void updateTask()
-        {
-            EntityVelociraptor.this.setAttackTarget((EntityLivingBase)null);
-            super.updateTask();
-        }
-    }
+    
 }

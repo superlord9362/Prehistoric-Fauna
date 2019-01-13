@@ -27,5 +27,51 @@
                 "stream": true
             }
         ]
+    },
+     "velociraptor_hurt": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/velociraptor_hurt",
+                "stream": true
+            }
+        ]
+    },
+    "gallimimus_idle": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/gallimimus_idle",
+                "stream": true
+            }
+        ]
+    },
+     "gallimimus_hurt": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/gallimimus_hurt",
+                "stream": true
+            }
+        ]
+    },
+    "tyrannosaurus_idle": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/tyrannosarus_idle1",
+                "name": "pf:prehistoric/tyrannosaurus_idle2",
+                "stream": true
+            }
+        ]
+    },
+    "triceratops_angry": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/triceratops_angry",
+                "stream": true
+            }
+        ]
     }
 }

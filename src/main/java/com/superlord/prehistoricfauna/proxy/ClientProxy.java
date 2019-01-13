@@ -2,9 +2,11 @@ package com.superlord.prehistoricfauna.proxy;
 
 import com.superlord.prehistoricfauna.entity.EntityGallimimus;
 import com.superlord.prehistoricfauna.entity.EntityTriceratops;
+import com.superlord.prehistoricfauna.entity.EntityTyrannosaurus;
 import com.superlord.prehistoricfauna.entity.EntityVelociraptor;
 import com.superlord.prehistoricfauna.entity.renderers.GallimimusRenderer;
 import com.superlord.prehistoricfauna.entity.renderers.TriceratopsRenderer;
+import com.superlord.prehistoricfauna.entity.renderers.TyrannosaurusRenderer;
 import com.superlord.prehistoricfauna.entity.renderers.VelociraptorRenderer;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -23,6 +25,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityTriceratops.class, TriceratopsRenderer.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(EntityVelociraptor.class, VelociraptorRenderer.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(EntityGallimimus.class, GallimimusRenderer.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(EntityTyrannosaurus.class, TyrannosaurusRenderer.FACTORY);
 	}
 	
 	public void registerItemRenderer(Item item, int meta, String id) {

@@ -1,6 +1,7 @@
 package com.superlord.prehistoricfauna.entity;
 
 import com.google.common.base.Predicate;
+import com.superlord.prehistoricfauna.util.handlers.LootTableHandler;
 import com.superlord.prehistoricfauna.util.handlers.Sounds;
 
 import javax.annotation.Nullable;
@@ -25,6 +26,7 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -45,13 +47,47 @@ public class EntityTriceratops extends EntityAnimal
     private float clientSideStandAnimation0;
     private float clientSideStandAnimation;
     private int warningSoundTicks;
+	public int genetic;
 
     public EntityTriceratops(World worldIn)
     {
         super(worldIn);
         this.setSize(2.0F, 3.0F);
+        this.genetic = rand.nextInt(100);
+    }
+    
+    /**
+     * (abstract) Protected helper method to write subclass entity data to NBT.
+     */
+    public void writeEntityToNBT(NBTTagCompound compound)
+    {
+        compound.setInteger("Variant", this.genetic);
     }
 
+    /**
+     * (abstract) Protected helper method to read subclass entity data from NBT.
+     */
+    public void readEntityFromNBT(NBTTagCompound compound)
+    {
+    this.genetic=compound.getInteger("Variant");
+    }
+    
+    public boolean isMelanistic() {
+    	if(genetic == 99 || genetic == 98) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+    
+    public boolean isAlbino() {
+    	if(genetic == 97) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+    
     public EntityAgeable createChild(EntityAgeable ageable)
     {
         return new EntityTriceratops(this.world);
@@ -135,7 +171,7 @@ public class EntityTriceratops extends EntityAnimal
     {
         if (this.warningSoundTicks <= 0)
         {
-            this.playSound(Sounds.TRICERATOPS_HURT, 1.0F, 1.0F);
+            this.playSound(Sounds.TRICERATOPS_ANGRY, 1.0F, 1.0F);
             this.warningSoundTicks = 40;
         }
     }
@@ -143,7 +179,7 @@ public class EntityTriceratops extends EntityAnimal
     @Nullable
     protected ResourceLocation getLootTable()
     {
-        return LootTableList.ENTITIES_POLAR_BEAR;
+        return LootTableHandler.TRICERATOPS;
     }
 
     protected void entityInit()

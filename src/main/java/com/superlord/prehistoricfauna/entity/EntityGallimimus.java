@@ -1,6 +1,9 @@
 package com.superlord.prehistoricfauna.entity;
 
 import com.google.common.base.Predicate;
+import com.superlord.prehistoricfauna.util.handlers.LootTableHandler;
+import com.superlord.prehistoricfauna.util.handlers.Sounds;
+
 import javax.annotation.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -8,6 +11,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
@@ -24,7 +28,9 @@ import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityLlama;
 import net.minecraft.entity.passive.EntityTameable;
+import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -48,6 +54,7 @@ import net.minecraft.world.storage.loot.LootTableList;
 public class EntityGallimimus extends EntityTameable
 {
     private EntityAIAvoidEntity<EntityPlayer> avoidEntity;
+    private EntityAIAvoidEntity<EntityTyrannosaurus> avoidEntity1;
     /** The tempt AI task for this mob, used to prevent taming while it is fleeing. */
     private EntityAITempt aiTempt;
 
@@ -69,6 +76,7 @@ public class EntityGallimimus extends EntityTameable
         this.tasks.addTask(9, new EntityAIMate(this, 0.8D));
         this.tasks.addTask(10, new EntityAIWanderAvoidWater(this, 0.8D, 1.0000001E-5F));
         this.tasks.addTask(11, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
+        this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityTyrannosaurus.class, 24.0F, 1.5D, 1.5D));
     }
 
     protected void entityInit()
@@ -150,31 +158,17 @@ public class EntityGallimimus extends EntityTameable
     @Nullable
     protected SoundEvent getAmbientSound()
     {
-        if (this.isTamed())
-        {
-            if (this.isInLove())
-            {
-                return SoundEvents.ENTITY_CAT_PURR;
-            }
-            else
-            {
-                return this.rand.nextInt(4) == 0 ? SoundEvents.ENTITY_CAT_PURREOW : SoundEvents.ENTITY_CAT_AMBIENT;
-            }
-        }
-        else
-        {
-            return null;
-        }
+       return Sounds.GALLIMIMUS_IDLE;
     }
 
     protected SoundEvent getHurtSound(DamageSource p_184601_1_)
     {
-        return SoundEvents.ENTITY_CAT_HURT;
+        return Sounds.GALLIMIMUS_HURT;
     }
 
     protected SoundEvent getDeathSound()
     {
-        return SoundEvents.ENTITY_CAT_DEATH;
+        return Sounds.GALLIMIMUS_HURT;
     }
 
     /**
@@ -213,7 +207,7 @@ public class EntityGallimimus extends EntityTameable
     @Nullable
     protected ResourceLocation getLootTable()
     {
-        return LootTableList.ENTITIES_OCELOT;
+        return LootTableHandler.GALLIMIMUS;
     }
 
     public boolean processInteract(EntityPlayer player, EnumHand hand)
@@ -368,6 +362,10 @@ public class EntityGallimimus extends EntityTameable
             this.avoidEntity = new EntityAIAvoidEntity<EntityPlayer>(this, EntityPlayer.class, 16.0F, 0.8D, 1.33D);
         }
 
+        if (this.avoidEntity1 == null)
+        {
+            this.avoidEntity1 = new EntityAIAvoidEntity<EntityTyrannosaurus>(this, EntityTyrannosaurus.class, 350.0F, 0.8D, 1.33D);
+        }
         this.tasks.removeTask(this.avoidEntity);
 
         if (!this.isTamed())
