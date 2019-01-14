@@ -1,5 +1,5 @@
 entity.triceratops.name=Triceratops
-item.triceratops_horn.name=Triceratops Horn
+item.triceratops_horn.name=Triceratops Skull
 item.gallimimus_skull.name=Gallimimus Skull
 item.velociraptor_claw.name=Velociraptor Claw
 item.tyrannosaurus_tooth.name=Tyrannosaurus Tooth
@@ -8,3 +8,5 @@ entity.velociraptor.name=Velociraptor
 itemGroup.tab_prehistoric=Prehistoric Fauna
 entity.gallimimus.name=Gallimimus
 entity.tyrannosaurus.name=Tyrannosaurus
+tile.cretaceous_fossil.name=Cretaceous Fossil
+tile.dna_extractor.name=DNA Extractor
