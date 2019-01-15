@@ -17,7 +17,10 @@ public class ModItems {
 	public static final Item TYRANNOSAURUS_TOOTH = new ItemBase("tyrannosaurus_tooth");
 	public static final Item VELOCIRAPTOR_CLAW = new ItemBase("velociraptor_claw");
 	public static final Item TRICERATOPS_DNA = new ItemBase("triceratops_dna");
-	
+	public static final Item GALLIMIMUS_DNA = new ItemBase("gallimimus_dna");
+	public static final Item TYRANNOSAURUS_DNA = new ItemBase("tyrannosaurus_dna");
+	public static final Item VELOCIRAPTOR_DNA = new ItemBase("velociraptor_dna");
+
 	
 	
 }
