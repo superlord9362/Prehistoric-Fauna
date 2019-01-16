@@ -1,6 +1,7 @@
 package com.superlord.prehistoricfauna.entity;
 
 import com.google.common.base.Predicate;
+import com.superlord.prehistoricfauna.init.ModItems;
 import com.superlord.prehistoricfauna.util.handlers.LootTableHandler;
 import com.superlord.prehistoricfauna.util.handlers.Sounds;
 
@@ -24,6 +25,7 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -47,46 +49,16 @@ public class EntityTriceratops extends EntityAnimal
     private float clientSideStandAnimation0;
     private float clientSideStandAnimation;
     private int warningSoundTicks;
-	public int genetic;
+    public int timeUntilNextEgg;
+
 
     public EntityTriceratops(World worldIn)
     {
         super(worldIn);
+        this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
         this.setSize(2.0F, 3.0F);
-        this.genetic = rand.nextInt(100);
-    }
-    
-    /**
-     * (abstract) Protected helper method to write subclass entity data to NBT.
-     */
-    public void writeEntityToNBT(NBTTagCompound compound)
-    {
-        compound.setInteger("Variant", this.genetic);
     }
 
-    /**
-     * (abstract) Protected helper method to read subclass entity data from NBT.
-     */
-    public void readEntityFromNBT(NBTTagCompound compound)
-    {
-    this.genetic=compound.getInteger("Variant");
-    }
-    
-    public boolean isMelanistic() {
-    	if(genetic == 99 || genetic == 98) {
-    		return true;
-    	} else {
-    		return false;
-    	}
-    }
-    
-    public boolean isAlbino() {
-    	if(genetic == 97) {
-    		return true;
-    	} else {
-    		return false;
-    	}
-    }
     
     public EntityAgeable createChild(EntityAgeable ageable)
     {
@@ -126,6 +98,12 @@ public class EntityTriceratops extends EntityAnimal
         if (this.world.isRemote)
         {
             this.sheepTimer = Math.max(0, this.sheepTimer - 1);
+        }
+        if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextEgg <= 0)
+        {
+            this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+            this.dropItem(ModItems.TRICERATOPS_EGG, 1);
+            this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
         }
 
         super.onLivingUpdate();

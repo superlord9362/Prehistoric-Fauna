@@ -1,6 +1,7 @@
 package com.superlord.prehistoricfauna.entity;
 
 import com.google.common.base.Predicate;
+import com.superlord.prehistoricfauna.init.ModItems;
 import com.superlord.prehistoricfauna.util.handlers.LootTableHandler;
 import com.superlord.prehistoricfauna.util.handlers.Sounds;
 
@@ -65,11 +66,13 @@ public class EntityTyrannosaurus extends EntityTameable
 {
     private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.<Float>createKey(EntityTyrannosaurus.class, DataSerializers.FLOAT);
     private static final DataParameter<Integer> DATA_STRENGTH_ID = EntityDataManager.<Integer>createKey(EntityLlama.class, DataSerializers.VARINT);
-    
+    public int timeUntilNextEgg;
+
     public EntityTyrannosaurus(World worldIn)
     {
         super(worldIn);
         this.setSize(3.0F, 4.0F);
+        this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
         this.setTamed(false);
     }
 
@@ -210,7 +213,12 @@ public class EntityTyrannosaurus extends EntityTameable
     {
         super.onLivingUpdate();
 
-        
+        if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextEgg <= 0)
+        {
+            this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+            this.dropItem(ModItems.TYRANNOSAURUS_EGG, 1);
+            this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
+        }
 
         if (!this.world.isRemote && this.getAttackTarget() == null && this.isAngry())
         {

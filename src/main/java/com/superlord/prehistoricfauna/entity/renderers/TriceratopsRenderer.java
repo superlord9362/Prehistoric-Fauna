@@ -42,24 +42,9 @@ public class TriceratopsRenderer extends RenderLiving<EntityTriceratops> {
 
 	protected ResourceLocation getEntityTexture(EntityTriceratops entity) {
 		if (entity.isChild()) {
-			if( entity.isAlbino()) {
-				return new ResourceLocation(Reference.MOD_ID, "textures/entities/triceratopschild_albino.png");
-			} else {
-				if (entity.isMelanistic()) {
-					return new ResourceLocation(Reference.MOD_ID, "textures/entities/triceratopschild_melanistic.png");
-				} else {
-					return new ResourceLocation(Reference.MOD_ID, "textures/entities/triceratopschild.png");
-				}
-			} 
-		}else {
-			if (entity.isMelanistic()) {
-				return new ResourceLocation(Reference.MOD_ID, "textures/entities/triceratops_melanistic.png");
-			} else {
-				if (entity.isAlbino()) {
-					return new ResourceLocation(Reference.MOD_ID, "textures/entities/triceratops_albino.png");
-				}
-			} 
-				return new ResourceLocation(Reference.MOD_ID, "textures/entities/triceratops.png");
+			return new ResourceLocation(Reference.MOD_ID, "textures/entities/triceratopschild.png");
+		}else { 
+			return new ResourceLocation(Reference.MOD_ID, "textures/entities/triceratops.png");
 		}
 	}
 

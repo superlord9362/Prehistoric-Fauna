@@ -1,6 +1,7 @@
 package com.superlord.prehistoricfauna.entity;
 
 import com.google.common.base.Predicate;
+import com.superlord.prehistoricfauna.init.ModItems;
 import com.superlord.prehistoricfauna.util.handlers.LootTableHandler;
 import com.superlord.prehistoricfauna.util.handlers.Sounds;
 
@@ -64,12 +65,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class EntityVelociraptor extends EntityTameable
 {
     private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.<Float>createKey(EntityVelociraptor.class, DataSerializers.FLOAT);
+    public int timeUntilNextEgg;
 
 
     public EntityVelociraptor(World worldIn)
     {
         super(worldIn);
         this.setSize(0.6F, 0.85F);
+        this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
         this.setTamed(false);
     }
 
@@ -216,7 +219,12 @@ public class EntityVelociraptor extends EntityTameable
     {
         super.onLivingUpdate();
 
-       
+        if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextEgg <= 0)
+        {
+            this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+            this.dropItem(ModItems.VELOCIRAPTOR_EGG, 1);
+            this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
+        }
 
         if (!this.world.isRemote && this.getAttackTarget() == null && this.isAngry())
         {

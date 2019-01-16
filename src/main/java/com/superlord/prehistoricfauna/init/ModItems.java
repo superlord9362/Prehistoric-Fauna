@@ -5,6 +5,9 @@ import java.util.List;
 import com.superlord.prehistoricfauna.items.ItemBase;
 import com.superlord.prehistoricfauna.items.ItemDinoEgg;
 import com.superlord.prehistoricfauna.items.ItemGallimimusEgg;
+import com.superlord.prehistoricfauna.items.ItemIncGallimimus;
+import com.superlord.prehistoricfauna.items.ItemIncTyrannosaurus;
+import com.superlord.prehistoricfauna.items.ItemIncVelociraptor;
 import com.superlord.prehistoricfauna.items.ItemIncubatedTriceratopsEgg;
 import com.superlord.prehistoricfauna.items.ItemTyrannosaurusEgg;
 import com.superlord.prehistoricfauna.items.ItemVelociraptorEgg;
@@ -30,5 +33,8 @@ public class ModItems {
 	public static final Item GALLIMIMUS_EGG = new ItemGallimimusEgg("gallimimus_egg");
 	public static final Item VELOCIRAPTOR_EGG = new ItemVelociraptorEgg("velociraptor_egg");
 	public static final Item TYRANNOSAURUS_EGG = new ItemTyrannosaurusEgg("tyrannosaurus_egg");
+	public static final Item INCUBATED_GALLIMIMUS = new ItemIncGallimimus("incubated_gallimimus");
+	public static final Item INCUBATED_VELOCIRATPOR = new ItemIncVelociraptor("incubated_velociraptor");
+	public static final Item INCUBATED_TYRANNOSAURUS = new ItemIncTyrannosaurus("inc_tyrannosaurus");
 
 }

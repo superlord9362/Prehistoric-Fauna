@@ -1,6 +1,7 @@
 package com.superlord.prehistoricfauna.entity;
 
 import com.google.common.base.Predicate;
+import com.superlord.prehistoricfauna.init.ModItems;
 import com.superlord.prehistoricfauna.util.handlers.LootTableHandler;
 import com.superlord.prehistoricfauna.util.handlers.Sounds;
 
@@ -57,11 +58,13 @@ public class EntityGallimimus extends EntityTameable
     private EntityAIAvoidEntity<EntityTyrannosaurus> avoidEntity1;
     /** The tempt AI task for this mob, used to prevent taming while it is fleeing. */
     private EntityAITempt aiTempt;
+    public int timeUntilNextEgg;
 
     public EntityGallimimus(World worldIn)
     {
         super(worldIn);
         this.setSize(1.0F, 2.7F);
+        this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
     }
 
     @Override
@@ -374,6 +377,17 @@ public class EntityGallimimus extends EntityTameable
         }
     }
 
+    public void onLivingUpdate() {
+    	super.onLivingUpdate();
+    	
+    	if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextEgg <= 0)
+        {
+            this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+            this.dropItem(ModItems.GALLIMIMUS_EGG, 1);
+            this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
+        }
+    }
+    
     /**
      * Called only once on an entity when first time spawned, via egg, mob spawner, natural spawning etc, but not called
      * when entity is reloaded from nbt. Mainly used for initializing attributes and inventory
