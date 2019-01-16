@@ -45,7 +45,7 @@ public class ItemIncGallimimus extends ItemBase
         if (!worldIn.isRemote)
         {
             EntityIncGallimimus entityegg = new EntityIncGallimimus(worldIn, playerIn);
-            entityegg.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
+            entityegg.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
             worldIn.spawnEntity(entityegg);
         }
 

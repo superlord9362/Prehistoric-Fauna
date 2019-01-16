@@ -43,7 +43,7 @@ public class ItemVelociraptorEgg extends ItemBase
         if (!worldIn.isRemote)
         {
             EntityVelociraptorEgg entityegg = new EntityVelociraptorEgg(worldIn, playerIn);
-            entityegg.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
+            entityegg.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
             worldIn.spawnEntity(entityegg);
         }
 
