@@ -19,3 +19,6 @@ item.incubated_triceratops.name=Incubated Triceratops Egg
 item.velociraptor_egg.name=Velociraptor Egg
 item.tyrannosaurus_egg.name=Tyrannosaurus Egg
 item.gallimimus_egg.name=Gallimimus Egg
+item.incubated_gallimimus.name=Incubated Gallimimus Egg
+item.incubated_velociraptor.name=Incubated Velociraptor Egg
+item.inc_tyrannosaurus.name=Incubated Tyrannosaurus Egg

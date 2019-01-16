@@ -1,0 +1,22 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+
+    "ingredients": 
+    [
+
+    {
+      "item": "minecraft:egg"
+    },
+
+    {
+      "item": "pf:gallimimus_dna"
+    }
+    
+    ],
+
+    "result": 
+    {
+        "item": "pf:gallimimus_egg",
+        "count": 1
+    }
+}
