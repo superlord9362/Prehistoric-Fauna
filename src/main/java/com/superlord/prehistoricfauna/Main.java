@@ -2,7 +2,6 @@ package com.superlord.prehistoricfauna;
 
 import com.superlord.prehistoricfauna.init.ModItems;
 import com.superlord.prehistoricfauna.proxy.IProxy;
-import com.superlord.prehistoricfauna.util.handlers.RegistryHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
@@ -15,7 +14,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import static com.superlord.prehistoricfauna.util.Reference.*;
 
-@Mod(modid = MOD_ID, name = NAME, version = VERSION)
+@Mod(modid = MOD_ID, name = NAME, version = VERSION, acceptedMinecraftVersions = MC_ACCEPT, dependencies = DEPENDENCY)
 public class Main {
 
     @Instance
@@ -31,7 +30,6 @@ public class Main {
 
     @EventHandler
     public static void init(FMLInitializationEvent event) {
-        RegistryHandler.initRegistries();
     }
 
     @EventHandler
