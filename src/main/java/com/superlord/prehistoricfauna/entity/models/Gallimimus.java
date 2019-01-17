@@ -2,10 +2,9 @@ package com.superlord.prehistoricfauna.entity.models;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.client.renderer.GlStateManager;
-import org.lwjgl.opengl.GL11;
 
 /**
  * Gallimimus - superlord9362
@@ -197,52 +196,45 @@ public class Gallimimus extends ModelBase {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
-    	 if (this.isChild)
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+        if (this.isChild) {
 
-         {
+            float f6 = 2.0F;
 
-             float f6 = 2.0F;
+            GlStateManager.pushMatrix();
 
-             GlStateManager.pushMatrix();
+            GlStateManager.translate(0.0F, this.childYOffset * f5, this.childZOffset * f5);
 
-             GlStateManager.translate(0.0F, this.childYOffset * f5, this.childZOffset * f5);
+            GlStateManager.popMatrix();
 
-             GlStateManager.popMatrix();
+            GlStateManager.pushMatrix();
 
-             GlStateManager.pushMatrix();
+            GlStateManager.scale(0.2F, 0.2F, 0.2F);
 
-             GlStateManager.scale(0.2F, 0.2F, 0.2F);
+            GlStateManager.translate(0.0F, 100.0F * f5, 0.0F);
 
-             GlStateManager.translate(0.0F, 100.0F * f5, 0.0F);
+            this.Body.render(f5);
 
-             this.Body.render(f5);
-
-             GlStateManager.popMatrix();
-
-         }
-
-         else
-
-         {
-        GlStateManager.pushMatrix();
-        GlStateManager.translate(this.Body.offsetX, this.Body.offsetY, this.Body.offsetZ);
-        GlStateManager.translate(this.Body.rotationPointX * f5, this.Body.rotationPointY * f5, this.Body.rotationPointZ * f5);
-        GlStateManager.scale(1.0D, 1.3D, 1.15D);
-        GlStateManager.translate(-this.Body.offsetX, -this.Body.offsetY, -this.Body.offsetZ);
-        GlStateManager.translate(-this.Body.rotationPointX * f5, -this.Body.rotationPointY * f5, -this.Body.rotationPointZ * f5);
-        this.Body.render(f5);
-        GlStateManager.popMatrix();
+            GlStateManager.popMatrix();
+        } else {
+            GlStateManager.pushMatrix();
+            GlStateManager.translate(this.Body.offsetX, this.Body.offsetY, this.Body.offsetZ);
+            GlStateManager.translate(this.Body.rotationPointX * f5, this.Body.rotationPointY * f5, this.Body.rotationPointZ * f5);
+            GlStateManager.scale(1.0D, 1.3D, 1.15D);
+            GlStateManager.translate(-this.Body.offsetX, -this.Body.offsetY, -this.Body.offsetZ);
+            GlStateManager.translate(-this.Body.rotationPointX * f5, -this.Body.rotationPointY * f5, -this.Body.rotationPointZ * f5);
+            this.Body.render(f5);
+            GlStateManager.popMatrix();
+        }
     }
-    }
-    
+
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
-    	float XAngle = headPitch / 57.29578F;
-    	float YAngle = netHeadYaw / 57.29578F;
-    	this.Head.rotateAngleX= (0.2617794F + XAngle);
-    	this.Head.rotateAngleY= YAngle;
-    	this.RLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-    	this.LLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+        float XAngle = headPitch / 57.29578F;
+        float YAngle = netHeadYaw / 57.29578F;
+        this.Head.rotateAngleX = (0.2617794F + XAngle);
+        this.Head.rotateAngleY = YAngle;
+        this.RLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.LLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
     }
 
     /**

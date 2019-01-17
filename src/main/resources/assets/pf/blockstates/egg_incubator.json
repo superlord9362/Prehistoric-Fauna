@@ -1,5 +1,15 @@
 {
-    "variants": {
-        "normal": { "model": "pf:egg_incubator" }
+  "forge_marker": 1,
+  "defaults": {
+    "model": "pf:egg_incubator"
+  },
+  "variants": {
+    "normal": [{}],
+    "facing": {
+      "north": {},
+      "south": {"y": 180},
+      "west": {"y": 270},
+      "east": {"y": 90}
     }
+  }
 }

@@ -4,8 +4,6 @@ import com.google.common.base.Predicate;
 import com.superlord.prehistoricfauna.init.ModItems;
 import com.superlord.prehistoricfauna.util.handlers.LootTableHandler;
 import com.superlord.prehistoricfauna.util.handlers.Sounds;
-
-import javax.annotation.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
@@ -25,7 +23,6 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -39,29 +36,27 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class EntityTriceratops extends EntityAnimal
-{
-    private static final DataParameter<Boolean> IS_STANDING = EntityDataManager.<Boolean>createKey(EntityTriceratops.class, DataSerializers.BOOLEAN);
+import javax.annotation.Nullable;
+
+public class EntityTriceratops extends EntityAnimal {
+    private static final DataParameter<Boolean> IS_STANDING = EntityDataManager.createKey(EntityTriceratops.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Integer> MODEL_TYPE = EntityDataManager.createKey(EntityTriceratops.class, DataSerializers.VARINT);
     private float clientSideStandAnimation0;
     private float clientSideStandAnimation;
     private int warningSoundTicks;
     public int timeUntilNextEgg;
 
-
-    public EntityTriceratops(World worldIn)
-    {
+    public EntityTriceratops(World worldIn) {
         super(worldIn);
         this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
         this.setSize(2.0F, 3.0F);
     }
 
-    
-    public EntityAgeable createChild(EntityAgeable ageable)
-    {
+    @Override
+    public EntityAgeable createChild(EntityAgeable ageable) {
         return new EntityTriceratops(this.world);
     }
 
@@ -69,16 +64,16 @@ public class EntityTriceratops extends EntityAnimal
      * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
      * the animal type)
      */
-    public boolean isBreedingItem(ItemStack stack)
-    {
+    @Override
+    public boolean isBreedingItem(ItemStack stack) {
         return false;
     }
-    
+
     private int sheepTimer;
     private EntityAIEatGrass entityAIEatGrass;
 
-    protected void initEntityAI()
-    {
+    @Override
+    protected void initEntityAI() {
         super.initEntityAI();
         this.entityAIEatGrass = new EntityAIEatGrass(this);
         this.tasks.addTask(5, this.entityAIEatGrass);
@@ -92,15 +87,13 @@ public class EntityTriceratops extends EntityAnimal
         this.targetTasks.addTask(1, new EntityTriceratops.AIHurtByTarget());
         this.targetTasks.addTask(2, new EntityTriceratops.AIAttackPlayer());
     }
-    
-    public void onLivingUpdate()
-    {
-        if (this.world.isRemote)
-        {
+
+    @Override
+    public void onLivingUpdate() {
+        if (this.world.isRemote) {
             this.sheepTimer = Math.max(0, this.sheepTimer - 1);
         }
-        if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextEgg <= 0)
-        {
+        if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextEgg <= 0) {
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
             this.dropItem(ModItems.TRICERATOPS_EGG, 1);
             this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
@@ -108,15 +101,15 @@ public class EntityTriceratops extends EntityAnimal
 
         super.onLivingUpdate();
     }
-    
-    protected void updateAITasks()
-    {
+
+    @Override
+    protected void updateAITasks() {
         this.sheepTimer = this.entityAIEatGrass.getEatingGrassTimer();
         super.updateAITasks();
     }
 
-    protected void applyEntityAttributes()
-    {
+    @Override
+    protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(165.0D);
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20.0D);
@@ -125,104 +118,116 @@ public class EntityTriceratops extends EntityAnimal
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
     }
 
-    protected SoundEvent getAmbientSound()
-    {
-    	return Sounds.TRICERATOPS_IDLE;
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return Sounds.TRICERATOPS_IDLE;
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
-    {
+    @Override
+    protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
         return Sounds.TRICERATOPS_HURT;
     }
 
-    protected SoundEvent getDeathSound()
-    {
+    @Override
+    protected SoundEvent getDeathSound() {
         return Sounds.TRICERATOPS_HURT;
     }
 
-    protected void playStepSound(BlockPos pos, Block blockIn)
-    {
+    @Override
+    protected void playStepSound(BlockPos pos, Block blockIn) {
         this.playSound(SoundEvents.ENTITY_COW_STEP, 0.15F, 1.0F);
     }
 
-    protected void playWarningSound()
-    {
-        if (this.warningSoundTicks <= 0)
-        {
+    protected void playWarningSound() {
+        if (this.warningSoundTicks <= 0) {
             this.playSound(Sounds.TRICERATOPS_ANGRY, 1.0F, 1.0F);
             this.warningSoundTicks = 40;
         }
     }
 
+    @Override
     @Nullable
-    protected ResourceLocation getLootTable()
-    {
+    protected ResourceLocation getLootTable() {
         return LootTableHandler.TRICERATOPS;
     }
 
-    protected void entityInit()
-    {
+    @Override
+    protected void entityInit() {
         super.entityInit();
-        this.dataManager.register(IS_STANDING, Boolean.valueOf(false));
+        dataManager.register(IS_STANDING, false);
+        dataManager.register(MODEL_TYPE, 0);
+    }
+
+    public int getModelType() {
+        return dataManager.get(MODEL_TYPE);
+    }
+
+    public void setModelType(int modelType) {
+        dataManager.set(MODEL_TYPE, modelType);
+    }
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
+        dataManager.set(IS_STANDING, compound.getBoolean("isStanding"));
+        dataManager.set(MODEL_TYPE, compound.getInteger("modelType"));
+    }
+
+    @Override
+    public void writeEntityToNBT(NBTTagCompound compound) {
+        super.writeEntityToNBT(compound);
+        compound.setBoolean("isStanding", dataManager.get(IS_STANDING));
+        compound.setInteger("modelType", dataManager.get(MODEL_TYPE));
     }
 
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate()
-    {
+    @Override
+    public void onUpdate() {
         super.onUpdate();
 
-        if (this.world.isRemote)
-        {
+        if (this.world.isRemote) {
             this.clientSideStandAnimation0 = this.clientSideStandAnimation;
 
-            if (this.isStanding())
-            {
+            if (this.isStanding()) {
                 this.clientSideStandAnimation = MathHelper.clamp(this.clientSideStandAnimation + 1.0F, 0.0F, 6.0F);
-            }
-            else
-            {
+            } else {
                 this.clientSideStandAnimation = MathHelper.clamp(this.clientSideStandAnimation - 1.0F, 0.0F, 6.0F);
             }
         }
 
-        if (this.warningSoundTicks > 0)
-        {
+        if (this.warningSoundTicks > 0) {
             --this.warningSoundTicks;
         }
     }
 
-    public boolean attackEntityAsMob(Entity entityIn)
-    {
-        boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue()));
+    @Override
+    public boolean attackEntityAsMob(Entity entityIn) {
+        boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float) ((int) this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue()));
 
-        if (flag)
-        {
+        if (flag) {
             this.applyEnchantments(this, entityIn);
         }
 
         return flag;
     }
 
-    public boolean isStanding()
-    {
-        return ((Boolean)this.dataManager.get(IS_STANDING)).booleanValue();
+    public boolean isStanding() {
+        return this.dataManager.get(IS_STANDING);
     }
 
-    public void setStanding(boolean standing)
-    {
-        this.dataManager.set(IS_STANDING, Boolean.valueOf(standing));
+    public void setStanding(boolean standing) {
+        this.dataManager.set(IS_STANDING, standing);
     }
 
     @SideOnly(Side.CLIENT)
-    public float getStandingAnimationScale(float p_189795_1_)
-    {
+    public float getStandingAnimationScale(float p_189795_1_) {
         return (this.clientSideStandAnimation0 + (this.clientSideStandAnimation - this.clientSideStandAnimation0) * p_189795_1_) / 6.0F;
     }
 
-    protected float getWaterSlowDown()
-    {
+    @Override
+    protected float getWaterSlowDown() {
         return 0.98F;
     }
 
@@ -230,128 +235,100 @@ public class EntityTriceratops extends EntityAnimal
      * Called only once on an entity when first time spawned, via egg, mob spawner, natural spawning etc, but not called
      * when entity is reloaded from nbt. Mainly used for initializing attributes and inventory
      */
-    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingdata)
-    {
-        if (livingdata instanceof EntityTriceratops.GroupData)
-        {
-            if (((EntityTriceratops.GroupData)livingdata).madeParent)
-            {
+    @Override
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingdata) {
+        if (livingdata instanceof EntityTriceratops.GroupData) {
+            if (((EntityTriceratops.GroupData) livingdata).madeParent) {
                 this.setGrowingAge(-24000);
             }
-        }
-        else
-        {
+        } else {
             EntityTriceratops.GroupData entitypolarbear$groupdata = new EntityTriceratops.GroupData();
             entitypolarbear$groupdata.madeParent = true;
             livingdata = entitypolarbear$groupdata;
         }
+        // the 1% of chance to have the model
+        setModelType(world.rand.nextInt(99) == 0 ? 1 : 0);
 
         return livingdata;
     }
 
-    class AIAttackPlayer extends EntityAINearestAttackableTarget<EntityPlayer>
-    {
-        public AIAttackPlayer()
-        {
-            super(EntityTriceratops.this, EntityPlayer.class, 20, true, true, (Predicate)null);
+    class AIAttackPlayer extends EntityAINearestAttackableTarget<EntityPlayer> {
+        public AIAttackPlayer() {
+            super(EntityTriceratops.this, EntityPlayer.class, 20, true, true, (Predicate) null);
         }
 
         /**
          * Returns whether the EntityAIBase should begin execution.
          */
-        public boolean shouldExecute()
-        {
-            if (EntityTriceratops.this.isChild())
-            {
+        public boolean shouldExecute() {
+            if (EntityTriceratops.this.isChild()) {
                 return false;
-            }
-            else
-            {
-                if (super.shouldExecute())
-                {
-                    for (EntityTriceratops entitypolarbear : EntityTriceratops.this.world.getEntitiesWithinAABB(EntityTriceratops.class, EntityTriceratops.this.getEntityBoundingBox().grow(8.0D, 4.0D, 8.0D)))
-                    {
-                        if (entitypolarbear.isChild())
-                        {
+            } else {
+                if (super.shouldExecute()) {
+                    for (EntityTriceratops entitypolarbear : EntityTriceratops.this.world.getEntitiesWithinAABB(EntityTriceratops.class, EntityTriceratops.this.getEntityBoundingBox().grow(8.0D, 4.0D, 8.0D))) {
+                        if (entitypolarbear.isChild()) {
                             return true;
                         }
                     }
                 }
 
-                EntityTriceratops.this.setAttackTarget((EntityLivingBase)null);
+                EntityTriceratops.this.setAttackTarget((EntityLivingBase) null);
                 return false;
             }
         }
 
-        protected double getTargetDistance()
-        {
+        protected double getTargetDistance() {
             return super.getTargetDistance() * 0.5D;
         }
     }
 
-    class AIHurtByTarget extends EntityAIHurtByTarget
-    {
-        public AIHurtByTarget()
-        {
+    class AIHurtByTarget extends EntityAIHurtByTarget {
+        public AIHurtByTarget() {
             super(EntityTriceratops.this, false);
         }
 
         /**
          * Execute a one shot task or start executing a continuous task
          */
-        public void startExecuting()
-        {
+        public void startExecuting() {
             super.startExecuting();
 
-            if (EntityTriceratops.this.isChild())
-            {
+            if (EntityTriceratops.this.isChild()) {
                 this.alertOthers();
                 this.resetTask();
             }
         }
 
-        protected void setEntityAttackTarget(EntityCreature creatureIn, EntityLivingBase entityLivingBaseIn)
-        {
-            if (creatureIn instanceof EntityTriceratops && !creatureIn.isChild())
-            {
+        protected void setEntityAttackTarget(EntityCreature creatureIn, EntityLivingBase entityLivingBaseIn) {
+            if (creatureIn instanceof EntityTriceratops && !creatureIn.isChild()) {
                 super.setEntityAttackTarget(creatureIn, entityLivingBaseIn);
             }
         }
     }
 
-    class AIMeleeAttack extends EntityAIAttackMelee
-    {
-        public AIMeleeAttack()
-        {
+    class AIMeleeAttack extends EntityAIAttackMelee {
+        public AIMeleeAttack() {
             super(EntityTriceratops.this, 1.25D, true);
         }
 
-        protected void checkAndPerformAttack(EntityLivingBase p_190102_1_, double p_190102_2_)
-        {
+        protected void checkAndPerformAttack(EntityLivingBase p_190102_1_, double p_190102_2_) {
             double d0 = this.getAttackReachSqr(p_190102_1_);
 
-            if (p_190102_2_ <= d0 && this.attackTick <= 0)
-            {
+            if (p_190102_2_ <= d0 && this.attackTick <= 0) {
                 this.attackTick = 20;
                 this.attacker.attackEntityAsMob(p_190102_1_);
                 EntityTriceratops.this.setStanding(false);
-            }
-            else if (p_190102_2_ <= d0 * 2.0D)
-            {
-                if (this.attackTick <= 0)
-                {
+            } else if (p_190102_2_ <= d0 * 2.0D) {
+                if (this.attackTick <= 0) {
                     EntityTriceratops.this.setStanding(false);
                     this.attackTick = 20;
                 }
 
-                if (this.attackTick <= 10)
-                {
+                if (this.attackTick <= 10) {
                     EntityTriceratops.this.setStanding(true);
                     EntityTriceratops.this.playWarningSound();
                 }
-            }
-            else
-            {
+            } else {
                 this.attackTick = 20;
                 EntityTriceratops.this.setStanding(false);
             }
@@ -360,40 +337,33 @@ public class EntityTriceratops extends EntityAnimal
         /**
          * Reset the task's internal state. Called when this task is interrupted by another one
          */
-        public void resetTask()
-        {
+        public void resetTask() {
             EntityTriceratops.this.setStanding(false);
             super.resetTask();
         }
 
-        protected double getAttackReachSqr(EntityLivingBase attackTarget)
-        {
-            return (double)(4.0F + attackTarget.width);
+        protected double getAttackReachSqr(EntityLivingBase attackTarget) {
+            return (double) (4.0F + attackTarget.width);
         }
     }
 
-    class AIPanic extends EntityAIPanic
-    {
-        public AIPanic()
-        {
+    class AIPanic extends EntityAIPanic {
+        public AIPanic() {
             super(EntityTriceratops.this, 2.0D);
         }
 
         /**
          * Returns whether the EntityAIBase should begin execution.
          */
-        public boolean shouldExecute()
-        {
-            return !EntityTriceratops.this.isChild() && !EntityTriceratops.this.isBurning() ? false : super.shouldExecute();
+        public boolean shouldExecute() {
+            return (EntityTriceratops.this.isChild() || EntityTriceratops.this.isBurning()) && super.shouldExecute();
         }
     }
 
-    static class GroupData implements IEntityLivingData
-        {
-            public boolean madeParent;
+    static class GroupData implements IEntityLivingData {
+        public boolean madeParent;
 
-            private GroupData()
-            {
-            }
+        private GroupData() {
         }
+    }
 }

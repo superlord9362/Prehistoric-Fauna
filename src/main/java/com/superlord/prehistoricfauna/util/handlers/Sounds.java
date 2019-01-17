@@ -1,7 +1,6 @@
 package com.superlord.prehistoricfauna.util.handlers;
 
 import com.superlord.prehistoricfauna.util.Reference;
-
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -9,14 +8,14 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class Sounds {
 
-	public static final SoundEvent TRICERATOPS_IDLE;
-	public static final SoundEvent TRICERATOPS_HURT;
-	public static final SoundEvent VELOCIRAPTOR_IDLE;
-	public static final SoundEvent TRICERATOPS_ANGRY;
-	public static final SoundEvent VELOCIRAPTOR_HURT;
-	public static final SoundEvent GALLIMIMUS_IDLE;
-	public static final SoundEvent GALLIMIMUS_HURT;
-	public static final SoundEvent TYRANNOSAURUS_IDLE;
+    public static final SoundEvent TRICERATOPS_IDLE;
+    public static final SoundEvent TRICERATOPS_HURT;
+    public static final SoundEvent VELOCIRAPTOR_IDLE;
+    public static final SoundEvent TRICERATOPS_ANGRY;
+    public static final SoundEvent VELOCIRAPTOR_HURT;
+    public static final SoundEvent GALLIMIMUS_IDLE;
+    public static final SoundEvent GALLIMIMUS_HURT;
+    public static final SoundEvent TYRANNOSAURUS_IDLE;
 
     @SubscribeEvent
     public static void registerSounds(final RegistryEvent.Register<SoundEvent> evt) {
@@ -45,5 +44,4 @@ public class Sounds {
         GALLIMIMUS_HURT = createEvent("gallimimus_hurt");
         TYRANNOSAURUS_IDLE = createEvent("tyrannosaurus_idle");
     }
-	
 }
