@@ -5,11 +5,9 @@ import com.superlord.prehistoricfauna.entity.EntityGallimimus;
 import com.superlord.prehistoricfauna.entity.EntityTriceratops;
 import com.superlord.prehistoricfauna.entity.EntityTyrannosaurus;
 import com.superlord.prehistoricfauna.entity.EntityVelociraptor;
-import com.superlord.prehistoricfauna.init.ModBlocks;
 import com.superlord.prehistoricfauna.init.ModItems;
 import com.superlord.prehistoricfauna.util.IHasModel;
 import com.superlord.prehistoricfauna.util.Reference;
-import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -37,21 +35,10 @@ public class RegistryHandler {
     }
 
     @SubscribeEvent
-    public static void onBlockRegister(RegistryEvent.Register<Block> event) {
-        event.getRegistry().registerAll(ModBlocks.BLOCKS.toArray(new Block[0]));
-    }
-
-    @SubscribeEvent
     public static void onModelRegister(ModelRegistryEvent event) {
         for (Item item : ModItems.ITEMS) {
             if (item instanceof IHasModel) {
                 ((IHasModel) item).registerModels();
-            }
-        }
-
-        for (Block block : ModBlocks.BLOCKS) {
-            if (block instanceof IHasModel) {
-                ((IHasModel) block).registerModels();
             }
         }
     }

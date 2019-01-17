@@ -16,7 +16,7 @@ import java.util.List;
 
 public class ModItems {
 
-    public static final List<Item> ITEMS = new ArrayList<Item>();
+    public static final List<Item> ITEMS = new ArrayList<>();
 
     public static final Item TRICERATOPS_HORN = new ItemBase("triceratops_horn");
     public static final Item GALLIMIMUS_SKULL = new ItemBase("gallimimus_skull");

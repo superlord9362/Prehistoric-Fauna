@@ -1,13 +1,10 @@
 package com.superlord.prehistoricfauna.blocks;
 
 import com.superlord.prehistoricfauna.Main;
-import com.superlord.prehistoricfauna.init.ModBlocks;
-import com.superlord.prehistoricfauna.init.ModItems;
 import com.superlord.prehistoricfauna.util.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 
 public class BlockBase extends Block implements IHasModel {
 
@@ -16,9 +13,6 @@ public class BlockBase extends Block implements IHasModel {
         setTranslationKey(name);
         setRegistryName(name);
         setCreativeTab(Main.tabPrehistoric);
-
-        ModBlocks.BLOCKS.add(this);
-        ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(getRegistryName()));
     }
 
     @Override

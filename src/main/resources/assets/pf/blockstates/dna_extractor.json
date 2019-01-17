@@ -1,5 +1,15 @@
 {
-    "variants": {
-        "normal": { "model": "pf:dna_extractor" }
+  "forge_marker": 1,
+  "defaults": {
+    "model": "pf:dna_extractor"
+  },
+  "variants": {
+    "normal": [{}],
+    "facing": {
+      "north": {},
+      "south": {"y": 180},
+      "west": {"y": 270},
+      "east": {"y": 90}
     }
+  }
 }

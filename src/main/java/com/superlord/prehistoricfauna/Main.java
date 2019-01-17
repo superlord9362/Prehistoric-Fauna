@@ -1,6 +1,7 @@
 package com.superlord.prehistoricfauna;
 
 import com.superlord.prehistoricfauna.init.ModItems;
+import com.superlord.prehistoricfauna.network.GuiHandler;
 import com.superlord.prehistoricfauna.proxy.IProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -11,6 +12,9 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static com.superlord.prehistoricfauna.util.Reference.*;
 
@@ -19,6 +23,8 @@ public class Main {
 
     @Instance
     public static Main instance;
+
+    public static final Logger LOGGER = LogManager.getLogger(NAME);
 
     @SidedProxy(clientSide = CLIENT_PROXY, serverSide = COMMON_PROXY)
     public static IProxy proxy;
@@ -30,6 +36,7 @@ public class Main {
 
     @EventHandler
     public static void init(FMLInitializationEvent event) {
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
     }
 
     @EventHandler
