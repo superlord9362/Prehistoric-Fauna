@@ -2,10 +2,9 @@ package com.superlord.prehistoricfauna.entity.models;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.client.renderer.GlStateManager;
-import org.lwjgl.opengl.GL11;
 
 /**
  * VelociraptorV2 - superlord9362
@@ -244,10 +243,8 @@ public class Velociraptor extends ModelBase {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
-    	if (this.isChild)
-
-        {
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+        if (this.isChild) {
 
             float f6 = 2.0F;
 
@@ -266,30 +263,25 @@ public class Velociraptor extends ModelBase {
             this.shape1.render(f5);
 
             GlStateManager.popMatrix();
-
+        } else {
+            GlStateManager.pushMatrix();
+            GlStateManager.translate(this.shape1.offsetX, this.shape1.offsetY, this.shape1.offsetZ);
+            GlStateManager.translate(this.shape1.rotationPointX * f5, this.shape1.rotationPointY * f5, this.shape1.rotationPointZ * f5);
+            GlStateManager.scale(0.35D, 0.37D, 0.32D);
+            GlStateManager.translate(-this.shape1.offsetX, -this.shape1.offsetY, -this.shape1.offsetZ);
+            GlStateManager.translate(-this.shape1.rotationPointX * f5, -this.shape1.rotationPointY * f5, -this.shape1.rotationPointZ * f5);
+            this.shape1.render(f5);
+            GlStateManager.popMatrix();
         }
-
-        else
-
-        {
-        GlStateManager.pushMatrix();
-        GlStateManager.translate(this.shape1.offsetX, this.shape1.offsetY, this.shape1.offsetZ);
-        GlStateManager.translate(this.shape1.rotationPointX * f5, this.shape1.rotationPointY * f5, this.shape1.rotationPointZ * f5);
-        GlStateManager.scale(0.35D, 0.37D, 0.32D);
-        GlStateManager.translate(-this.shape1.offsetX, -this.shape1.offsetY, -this.shape1.offsetZ);
-        GlStateManager.translate(-this.shape1.rotationPointX * f5, -this.shape1.rotationPointY * f5, -this.shape1.rotationPointZ * f5);
-        this.shape1.render(f5);
-        GlStateManager.popMatrix();
     }
-    }
-    
+
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
-    	float XAngle = headPitch / 57.29578F;
-    	float YAngle = netHeadYaw / 57.29578F;
-    	this.Head.rotateAngleX= (0.2617794F + XAngle);
-    	this.Head.rotateAngleY= YAngle;
-    	this.RLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-    	this.LLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+        float XAngle = headPitch / 57.29578F;
+        float YAngle = netHeadYaw / 57.29578F;
+        this.Head.rotateAngleX = (0.2617794F + XAngle);
+        this.Head.rotateAngleY = YAngle;
+        this.RLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.LLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
     }
 
     /**

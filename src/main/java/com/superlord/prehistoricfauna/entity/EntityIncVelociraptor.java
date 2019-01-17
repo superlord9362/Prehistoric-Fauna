@@ -1,7 +1,6 @@
 package com.superlord.prehistoricfauna.entity;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -13,25 +12,20 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class EntityIncVelociraptor extends EntityThrowable
-{
-    public EntityIncVelociraptor(World worldIn)
-    {
+public class EntityIncVelociraptor extends EntityThrowable {
+    public EntityIncVelociraptor(World worldIn) {
         super(worldIn);
     }
 
-    public EntityIncVelociraptor(World worldIn, EntityLivingBase throwerIn)
-    {
+    public EntityIncVelociraptor(World worldIn, EntityLivingBase throwerIn) {
         super(worldIn, throwerIn);
     }
 
-    public EntityIncVelociraptor(World worldIn, double x, double y, double z)
-    {
+    public EntityIncVelociraptor(World worldIn, double x, double y, double z) {
         super(worldIn, x, y, z);
     }
 
-    public static void registerFixesEgg(DataFixer fixer)
-    {
+    public static void registerFixesEgg(DataFixer fixer) {
         EntityThrowable.registerFixesThrowable(fixer, "ThrownEgg");
     }
 
@@ -39,15 +33,11 @@ public class EntityIncVelociraptor extends EntityThrowable
      * Handler for {@link World#setEntityState}
      */
     @SideOnly(Side.CLIENT)
-    public void handleStatusUpdate(byte id)
-    {
-        if (id == 3)
-        {
+    public void handleStatusUpdate(byte id) {
+        if (id == 3) {
             double d0 = 0.08D;
-
-            for (int i = 0; i < 8; ++i)
-            {
-                this.world.spawnParticle(EnumParticleTypes.ITEM_CRACK, this.posX, this.posY, this.posZ, ((double)this.rand.nextFloat() - 0.5D) * 0.08D, ((double)this.rand.nextFloat() - 0.5D) * 0.08D, ((double)this.rand.nextFloat() - 0.5D) * 0.08D, Item.getIdFromItem(Items.EGG));
+            for (int i = 0; i < 8; ++i) {
+                this.world.spawnParticle(EnumParticleTypes.ITEM_CRACK, this.posX, this.posY, this.posZ, ((double) this.rand.nextFloat() - 0.5D) * 0.08D, ((double) this.rand.nextFloat() - 0.5D) * 0.08D, ((double) this.rand.nextFloat() - 0.5D) * 0.08D, Item.getIdFromItem(Items.EGG));
             }
         }
     }
@@ -55,23 +45,16 @@ public class EntityIncVelociraptor extends EntityThrowable
     /**
      * Called when this EntityThrowable hits a block or entity.
      */
-    protected void onImpact(RayTraceResult result)
-    {
-        if (result.entityHit != null)
-        {
+    protected void onImpact(RayTraceResult result) {
+        if (result.entityHit != null) {
             result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 0.0F);
         }
-
-        if (!this.world.isRemote)
-        {
-          
-                    EntityVelociraptor entitychicken = new EntityVelociraptor(this.world);
-                    entitychicken.setGrowingAge(-24000);
-         entitychicken.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-         this.world.spawnEntity(entitychicken);
-            
-
-            this.world.setEntityState(this, (byte)3);
+        if (!this.world.isRemote) {
+            EntityVelociraptor entitychicken = new EntityVelociraptor(this.world);
+            entitychicken.setGrowingAge(-24000);
+            entitychicken.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
+            this.world.spawnEntity(entitychicken);
+            this.world.setEntityState(this, (byte) 3);
             this.setDead();
         }
     }
