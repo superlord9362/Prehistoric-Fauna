@@ -25,6 +25,7 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -41,7 +42,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 
 public class EntityTriceratops extends EntityAnimal {
-    private static final DataParameter<Boolean> IS_STANDING = EntityDataManager.<Boolean>createKey(EntityTriceratops.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> IS_STANDING = EntityDataManager.createKey(EntityTriceratops.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Integer> MODEL_TYPE = EntityDataManager.createKey(EntityTriceratops.class, DataSerializers.VARINT);
     private float clientSideStandAnimation0;
     private float clientSideStandAnimation;
     private int warningSoundTicks;
@@ -53,6 +55,7 @@ public class EntityTriceratops extends EntityAnimal {
         this.setSize(2.0F, 3.0F);
     }
 
+    @Override
     public EntityAgeable createChild(EntityAgeable ageable) {
         return new EntityTriceratops(this.world);
     }
@@ -61,6 +64,7 @@ public class EntityTriceratops extends EntityAnimal {
      * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
      * the animal type)
      */
+    @Override
     public boolean isBreedingItem(ItemStack stack) {
         return false;
     }
@@ -68,6 +72,7 @@ public class EntityTriceratops extends EntityAnimal {
     private int sheepTimer;
     private EntityAIEatGrass entityAIEatGrass;
 
+    @Override
     protected void initEntityAI() {
         super.initEntityAI();
         this.entityAIEatGrass = new EntityAIEatGrass(this);
@@ -83,6 +88,7 @@ public class EntityTriceratops extends EntityAnimal {
         this.targetTasks.addTask(2, new EntityTriceratops.AIAttackPlayer());
     }
 
+    @Override
     public void onLivingUpdate() {
         if (this.world.isRemote) {
             this.sheepTimer = Math.max(0, this.sheepTimer - 1);
@@ -96,11 +102,13 @@ public class EntityTriceratops extends EntityAnimal {
         super.onLivingUpdate();
     }
 
+    @Override
     protected void updateAITasks() {
         this.sheepTimer = this.entityAIEatGrass.getEatingGrassTimer();
         super.updateAITasks();
     }
 
+    @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(165.0D);
@@ -110,18 +118,22 @@ public class EntityTriceratops extends EntityAnimal {
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
     }
 
+    @Override
     protected SoundEvent getAmbientSound() {
         return Sounds.TRICERATOPS_IDLE;
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
         return Sounds.TRICERATOPS_HURT;
     }
 
+    @Override
     protected SoundEvent getDeathSound() {
         return Sounds.TRICERATOPS_HURT;
     }
 
+    @Override
     protected void playStepSound(BlockPos pos, Block blockIn) {
         this.playSound(SoundEvents.ENTITY_COW_STEP, 0.15F, 1.0F);
     }
@@ -133,19 +145,45 @@ public class EntityTriceratops extends EntityAnimal {
         }
     }
 
+    @Override
     @Nullable
     protected ResourceLocation getLootTable() {
         return LootTableHandler.TRICERATOPS;
     }
 
+    @Override
     protected void entityInit() {
         super.entityInit();
-        this.dataManager.register(IS_STANDING, Boolean.FALSE);
+        dataManager.register(IS_STANDING, false);
+        dataManager.register(MODEL_TYPE, 0);
+    }
+
+    public int getModelType() {
+        return dataManager.get(MODEL_TYPE);
+    }
+
+    public void setModelType(int modelType) {
+        dataManager.set(MODEL_TYPE, modelType);
+    }
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
+        dataManager.set(IS_STANDING, compound.getBoolean("isStanding"));
+        dataManager.set(MODEL_TYPE, compound.getInteger("modelType"));
+    }
+
+    @Override
+    public void writeEntityToNBT(NBTTagCompound compound) {
+        super.writeEntityToNBT(compound);
+        compound.setBoolean("isStanding", dataManager.get(IS_STANDING));
+        compound.setInteger("modelType", dataManager.get(MODEL_TYPE));
     }
 
     /**
      * Called to update the entity's position/logic.
      */
+    @Override
     public void onUpdate() {
         super.onUpdate();
 
@@ -164,6 +202,7 @@ public class EntityTriceratops extends EntityAnimal {
         }
     }
 
+    @Override
     public boolean attackEntityAsMob(Entity entityIn) {
         boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float) ((int) this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue()));
 
@@ -187,6 +226,7 @@ public class EntityTriceratops extends EntityAnimal {
         return (this.clientSideStandAnimation0 + (this.clientSideStandAnimation - this.clientSideStandAnimation0) * p_189795_1_) / 6.0F;
     }
 
+    @Override
     protected float getWaterSlowDown() {
         return 0.98F;
     }
@@ -195,6 +235,7 @@ public class EntityTriceratops extends EntityAnimal {
      * Called only once on an entity when first time spawned, via egg, mob spawner, natural spawning etc, but not called
      * when entity is reloaded from nbt. Mainly used for initializing attributes and inventory
      */
+    @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingdata) {
         if (livingdata instanceof EntityTriceratops.GroupData) {
             if (((EntityTriceratops.GroupData) livingdata).madeParent) {
@@ -205,6 +246,8 @@ public class EntityTriceratops extends EntityAnimal {
             entitypolarbear$groupdata.madeParent = true;
             livingdata = entitypolarbear$groupdata;
         }
+        // the 1% of chance to have the model
+        setModelType(world.rand.nextInt(99) == 0 ? 1 : 0);
 
         return livingdata;
     }

@@ -1,8 +1,8 @@
 package com.superlord.prehistoricfauna.init;
 
+import com.superlord.prehistoricfauna.blocks.BlockCretaceousFossil;
+import com.superlord.prehistoricfauna.blocks.BlockDNAExtractor;
 import com.superlord.prehistoricfauna.blocks.BlockEggIncubator;
-import com.superlord.prehistoricfauna.blocks.CretaceousFossil;
-import com.superlord.prehistoricfauna.blocks.DNAExtractor;
 import com.superlord.prehistoricfauna.blocks.tile.TileEntityEggIncubator;
 import com.superlord.prehistoricfauna.util.IHasModel;
 import net.minecraft.block.Block;
@@ -20,8 +20,8 @@ import static com.superlord.prehistoricfauna.util.Reference.MOD_ID;
 
 @Mod.EventBusSubscriber
 public class ModBlocks {
-    public static final Block CRETACEOUS_FOSSIL = new CretaceousFossil("cretaceous_fossil", Material.ROCK);
-    public static final Block DNA_EXTRACTOR = new DNAExtractor("dna_extractor", Material.IRON);
+    public static final Block CRETACEOUS_FOSSIL = new BlockCretaceousFossil("cretaceous_fossil", Material.ROCK);
+    public static final Block DNA_EXTRACTOR = new BlockDNAExtractor("dna_extractor", Material.IRON);
     public static final Block EGG_INCUBATOR = new BlockEggIncubator("egg_incubator", Material.IRON);
 
     @SubscribeEvent
