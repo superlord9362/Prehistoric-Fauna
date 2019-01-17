@@ -22,10 +22,10 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class DNAExtractor extends BlockBase implements IHasModel, ITileEntityProvider {
+public class BlockDNAExtractor extends BlockBase implements IHasModel, ITileEntityProvider {
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
-    public DNAExtractor(String name, Material material) {
+    public BlockDNAExtractor(String name, Material material) {
         super(name, material);
         setHardness(3.0F);
         setSoundType(SoundType.METAL);

@@ -16,9 +16,9 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class CretaceousFossil extends BlockBase implements IHasModel {
+public class BlockCretaceousFossil extends BlockBase implements IHasModel {
 
-    public CretaceousFossil(String name, Material material) {
+    public BlockCretaceousFossil(String name, Material material) {
         super(name, material);
         setHardness(3f);
         setResistance(5f);
