@@ -1,8 +1,10 @@
 package com.superlord.prehistoricfauna.init;
 
 import com.superlord.prehistoricfauna.items.ItemBase;
+import com.superlord.prehistoricfauna.items.ItemCamarasaurusEgg;
 import com.superlord.prehistoricfauna.items.ItemDinoEgg;
 import com.superlord.prehistoricfauna.items.ItemGallimimusEgg;
+import com.superlord.prehistoricfauna.items.ItemIncCamarasaurus;
 import com.superlord.prehistoricfauna.items.ItemIncGallimimus;
 import com.superlord.prehistoricfauna.items.ItemIncTyrannosaurus;
 import com.superlord.prehistoricfauna.items.ItemIncVelociraptor;
@@ -34,4 +36,13 @@ public class ModItems {
     public static final Item INCUBATED_GALLIMIMUS = new ItemIncGallimimus("incubated_gallimimus");
     public static final Item INCUBATED_VELOCIRATPOR = new ItemIncVelociraptor("incubated_velociraptor");
     public static final Item INCUBATED_TYRANNOSAURUS = new ItemIncTyrannosaurus("inc_tyrannosaurus");
+    public static final Item CAMARASAURUS_SKULL = new ItemBase("camarasaurus_skull");
+    public static final Item STEGOSAURUS_THAGOMIZER = new ItemBase("stegosaurus_thagomizer");
+    public static final Item DRYOSAURUS_SKULL = new ItemBase("dryosaurus_skull");
+    public static final Item ALLOSAURUS_SKULL = new ItemBase("allosaurus_skull");
+    public static final Item CAMARASAURUS_EGG = new ItemCamarasaurusEgg("camarasaurus_egg");
+    public static final Item INC_CAMARASAURUS = new ItemIncCamarasaurus("incubated_camarasaurus");
+    public static final Item STEGOSAURUS_DNA = new ItemBase("stegosaurus_dna");
+    public static final Item CAMARASAURUS_DNA = new ItemBase("camarasaurus_dna");
+    public static final Item DRYOSAURUS_DNA = new ItemBase("dryosaurus_dna");
 }

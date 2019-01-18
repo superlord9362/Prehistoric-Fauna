@@ -23,7 +23,7 @@ public class BlockCretaceousFossil extends BlockBase implements IHasModel {
         setHardness(3f);
         setResistance(5f);
         setSoundType(SoundType.STONE);
-        setTranslationKey(name);
+        setUnlocalizedName(name);
         setHarvestLevel("pickaxe", 2);
     }
 

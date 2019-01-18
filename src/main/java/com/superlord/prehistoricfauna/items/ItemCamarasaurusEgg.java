@@ -1,6 +1,7 @@
 package com.superlord.prehistoricfauna.items;
 
 import com.superlord.prehistoricfauna.Main;
+import com.superlord.prehistoricfauna.entity.egg.EntityCamarasaurusEgg;
 import com.superlord.prehistoricfauna.entity.egg.EntityDinoEgg;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,8 +14,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
-public class ItemDinoEgg extends ItemBase {
-    public ItemDinoEgg(String name) {
+public class ItemCamarasaurusEgg extends ItemBase {
+    public ItemCamarasaurusEgg(String name) {
         super(name);
         this.maxStackSize = 16;
         this.setCreativeTab(Main.tabPrehistoric);
@@ -33,7 +34,7 @@ public class ItemDinoEgg extends ItemBase {
         worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_EGG_THROW, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
         if (!worldIn.isRemote) {
-            EntityDinoEgg entityegg = new EntityDinoEgg(worldIn, playerIn);
+            EntityCamarasaurusEgg entityegg = new EntityCamarasaurusEgg(worldIn, playerIn);
             entityegg.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
             worldIn.spawnEntity(entityegg);
         }

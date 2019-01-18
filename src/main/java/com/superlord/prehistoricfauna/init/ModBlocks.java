@@ -3,6 +3,8 @@ package com.superlord.prehistoricfauna.init;
 import com.superlord.prehistoricfauna.blocks.BlockCretaceousFossil;
 import com.superlord.prehistoricfauna.blocks.BlockDNAExtractor;
 import com.superlord.prehistoricfauna.blocks.BlockEggIncubator;
+import com.superlord.prehistoricfauna.blocks.BlockJurassicFossil;
+import com.superlord.prehistoricfauna.blocks.tile.TileEntityDNAExtractor;
 import com.superlord.prehistoricfauna.blocks.tile.TileEntityEggIncubator;
 import com.superlord.prehistoricfauna.util.IHasModel;
 import net.minecraft.block.Block;
@@ -23,15 +25,18 @@ public class ModBlocks {
     public static final Block CRETACEOUS_FOSSIL = new BlockCretaceousFossil("cretaceous_fossil", Material.ROCK);
     public static final Block DNA_EXTRACTOR = new BlockDNAExtractor("dna_extractor", Material.IRON);
     public static final Block EGG_INCUBATOR = new BlockEggIncubator("egg_incubator", Material.IRON);
+    public static final Block JURASSIC_FOSSIL = new BlockJurassicFossil("jurassic_fossil", Material.ROCK);
 
     @SubscribeEvent
     public static void onBlockRegister(RegistryEvent.Register<Block> event) {
         event.getRegistry().registerAll(
                 CRETACEOUS_FOSSIL,
                 DNA_EXTRACTOR,
-                EGG_INCUBATOR
+                EGG_INCUBATOR,
+                JURASSIC_FOSSIL
         );
         GameRegistry.registerTileEntity(TileEntityEggIncubator.class, new ResourceLocation(MOD_ID, "tile_egg_incubator"));
+        GameRegistry.registerTileEntity(TileEntityDNAExtractor.class, new ResourceLocation(MOD_ID, "tile_dna_extractor"));
     }
 
     @SubscribeEvent
@@ -39,7 +44,8 @@ public class ModBlocks {
         event.getRegistry().registerAll(
                 new ItemBlock(CRETACEOUS_FOSSIL).setRegistryName(CRETACEOUS_FOSSIL.getRegistryName()),
                 new ItemBlock(DNA_EXTRACTOR).setRegistryName(DNA_EXTRACTOR.getRegistryName()),
-                new ItemBlock(EGG_INCUBATOR).setRegistryName(EGG_INCUBATOR.getRegistryName())
+                new ItemBlock(EGG_INCUBATOR).setRegistryName(EGG_INCUBATOR.getRegistryName()),
+                new ItemBlock(JURASSIC_FOSSIL).setRegistryName(JURASSIC_FOSSIL.getRegistryName())
         );
     }
 
@@ -48,6 +54,7 @@ public class ModBlocks {
         registerModel(CRETACEOUS_FOSSIL);
         registerModel(DNA_EXTRACTOR);
         registerModel(EGG_INCUBATOR);
+        registerModel(JURASSIC_FOSSIL);
     }
 
     private static void registerModel(Block block) {
