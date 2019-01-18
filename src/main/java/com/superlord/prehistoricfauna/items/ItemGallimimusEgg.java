@@ -1,7 +1,8 @@
 package com.superlord.prehistoricfauna.items;
 
 import com.superlord.prehistoricfauna.Main;
-import com.superlord.prehistoricfauna.entity.EntityGallimimusEgg;
+import com.superlord.prehistoricfauna.entity.egg.EntityGallimimusEgg;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;

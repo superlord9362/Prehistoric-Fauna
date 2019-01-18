@@ -1,7 +1,10 @@
 package com.superlord.prehistoricfauna.util.handlers;
 
 import com.superlord.prehistoricfauna.Main;
+import com.superlord.prehistoricfauna.entity.EntityCamarasaurus;
+import com.superlord.prehistoricfauna.entity.EntityDryosaurus;
 import com.superlord.prehistoricfauna.entity.EntityGallimimus;
+import com.superlord.prehistoricfauna.entity.EntityStegosaurus;
 import com.superlord.prehistoricfauna.entity.EntityTriceratops;
 import com.superlord.prehistoricfauna.entity.EntityTyrannosaurus;
 import com.superlord.prehistoricfauna.entity.EntityVelociraptor;
@@ -27,7 +30,10 @@ public class RegistryHandler {
         EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "velociraptor"), EntityVelociraptor.class, "velociraptor", entityId++, Main.instance, 64, 3, true, 0x404040, 0x000000);
         EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "gallimimus"), EntityGallimimus.class, "gallimimus", entityId++, Main.instance, 64, 3, true, 0x808080, 0x000000);
         EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "tyrannosaurus"), EntityTyrannosaurus.class, "tyrannosaurus", entityId++, Main.instance, 64, 3, true, 0x3A1E0C, 0x000000);
-    }
+        EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "camarasaurus"), EntityCamarasaurus.class, "camarasaurus", entityId++, Main.instance, 64, 3, true, 0x3C3825, 0x000000);
+        EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "stegosaurus"), EntityStegosaurus.class, "stegosaurus", entityId++, Main.instance, 64, 3, true, 0x5C4823, 0x000000);
+        EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "dryosaurus"), EntityDryosaurus.class, "dryosaurus", entityId++, Main.instance, 64, 3, true, 0x412E23, 0x000000);
+ }
 
     @SubscribeEvent
     public static void onItemRegister(RegistryEvent.Register<Item> event) {

@@ -1,7 +1,7 @@
 package com.superlord.prehistoricfauna.items;
 
 import com.superlord.prehistoricfauna.Main;
-import com.superlord.prehistoricfauna.entity.EntityTyrannosaurusEgg;
+import com.superlord.prehistoricfauna.entity.egg.EntityTyrannosaurusEgg;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;

@@ -44,9 +44,9 @@ public class Main {
     }
 
     public static CreativeTabs tabPrehistoric = new CreativeTabs("tab_prehistoric") {
-        @Override
-        public ItemStack createIcon() {
+		@Override
+		public ItemStack getTabIconItem() {
             return new ItemStack(ModItems.VELOCIRAPTOR_CLAW);
-        }
+		}
     };
 }

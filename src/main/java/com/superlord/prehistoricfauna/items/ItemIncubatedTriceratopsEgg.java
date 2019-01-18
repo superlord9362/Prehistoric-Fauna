@@ -1,7 +1,8 @@
 package com.superlord.prehistoricfauna.items;
 
 import com.superlord.prehistoricfauna.Main;
-import com.superlord.prehistoricfauna.entity.EntityIncubatedTriceratopsEgg;
+import com.superlord.prehistoricfauna.entity.egg.EntityIncubatedTriceratopsEgg;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;

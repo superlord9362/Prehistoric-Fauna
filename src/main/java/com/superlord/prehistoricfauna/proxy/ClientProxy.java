@@ -1,10 +1,16 @@
 package com.superlord.prehistoricfauna.proxy;
 
+import com.superlord.prehistoricfauna.entity.EntityCamarasaurus;
+import com.superlord.prehistoricfauna.entity.EntityDryosaurus;
 import com.superlord.prehistoricfauna.entity.EntityGallimimus;
+import com.superlord.prehistoricfauna.entity.EntityStegosaurus;
 import com.superlord.prehistoricfauna.entity.EntityTriceratops;
 import com.superlord.prehistoricfauna.entity.EntityTyrannosaurus;
 import com.superlord.prehistoricfauna.entity.EntityVelociraptor;
+import com.superlord.prehistoricfauna.entity.renderers.CamarasaurusRenderer;
+import com.superlord.prehistoricfauna.entity.renderers.DryosaurusRenderer;
 import com.superlord.prehistoricfauna.entity.renderers.GallimimusRenderer;
+import com.superlord.prehistoricfauna.entity.renderers.RenderStegosaurus;
 import com.superlord.prehistoricfauna.entity.renderers.TriceratopsRenderer;
 import com.superlord.prehistoricfauna.entity.renderers.TyrannosaurusRenderer;
 import com.superlord.prehistoricfauna.entity.renderers.VelociraptorRenderer;
@@ -26,6 +32,9 @@ public class ClientProxy implements IProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityVelociraptor.class, VelociraptorRenderer.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityGallimimus.class, GallimimusRenderer.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTyrannosaurus.class, TyrannosaurusRenderer.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityCamarasaurus.class, CamarasaurusRenderer.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityStegosaurus.class, RenderStegosaurus.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityDryosaurus.class, DryosaurusRenderer.FACTORY);
         GameRegistry.registerWorldGenerator(new ModWorldGen(), 3);
     }
 
