@@ -1,12 +1,12 @@
 {
     "pools": [
         {
-            "name": "triceratops",
+            "name": "camarasaurus",
             "rolls": 1,
             "entries": [
                 {
                     "type": "item",
-                    "name": "pf:triceratops_horn",
+                    "name": "pf:camarasaurus_skull",
                     "weight": 1,
                     "functions": [
                         {
