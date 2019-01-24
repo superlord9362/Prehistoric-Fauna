@@ -1,0 +1,16 @@
+{
+
+    "parent": "block/orientable",
+
+	   "textures": 
+		{
+		
+        "top": "pf:blocks/dna_extractor_top",
+
+		        "front": "pf:blocks/dna_extractor_front",
+
+		        "side": "pf:blocks/dna_extractor_side"
+
+	    }
+
+}

@@ -1,0 +1,25 @@
+{
+
+    "variants": 
+
+    {
+
+        "burning=false,facing=north": { "model": "pf:dna_extractor" },
+
+        "burning=false,facing=east": { "model": "pf:dna_extractor", "y": 90 },
+
+        "burning=false,facing=south": { "model": "pf:dna_extractor", "y": 180 },
+
+        "burning=false,facing=west": { "model": "pf:dna_extractor", "y": 270 },
+
+        "burning=true,facing=north": { "model": "pf:dna_extractor_on"},
+
+        "burning=true,facing=east": { "model": "pf:dna_extractor_on", "y": 90 },
+
+        "burning=true,facing=south": { "model": "pf:dna_extractor_on", "y": 180 },
+
+        "burning=true,facing=west": { "model": "pf:dna_extractor_on", "y":270  }
+
+    }
+
+}
