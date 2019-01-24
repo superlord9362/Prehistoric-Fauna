@@ -1,0 +1,28 @@
+{
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "G",
+        "C"
+    ],
+    
+    "key":
+    {
+        "G":
+        {
+            "item": "minecraft:gravel",
+	    "data": 0
+        },
+	"C":
+	{
+		"item": "minecraft:cobblestone"
+	}
+    },
+    
+    "result":
+    {
+        "item": "pf:gravel_path",
+        "count": 1
+    }
+}

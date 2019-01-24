@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "BBB",
+        "BBB"
+    ],
+    
+    "key":
+    {
+        "B":
+        {
+            "item": "minecraft:stonebrick",
+	    "data": 0
+        }
+    },
+    
+    "result":
+    {
+        "item": "pf:stone_brick_wall",
+        "count": 6
+    }
+}

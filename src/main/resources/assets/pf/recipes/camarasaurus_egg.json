@@ -9,14 +9,14 @@
     },
 
     {
-      "item": "pf:dryosaurus_dna"
+      "item": "pf:camarasaurus_dna"
     }
     
     ],
 
     "result": 
     {
-        "item": "pf:dryosaurus_egg",
+        "item": "pf:camarasaurus_egg",
         "count": 1
     }
 }

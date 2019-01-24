@@ -9,14 +9,14 @@
     },
 
     {
-      "item": "pf:dryosaurus_dna"
+      "item": "pf:stegosaurus_dna"
     }
     
     ],
 
     "result": 
     {
-        "item": "pf:dryosaurus_egg",
+        "item": "pf:stegosaurus_egg",
         "count": 1
     }
 }

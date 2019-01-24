@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "BB",
+        "BB"
+    ],
+    
+    "key":
+    {
+        "B":
+        {
+            "item": "pf:cobble_brick"
+        }
+    },
+    
+    "result":
+    {
+        "item": "pf:cobble_bricks",
+        "count": 4
+    }
+}

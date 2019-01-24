@@ -5,18 +5,14 @@
     [
 
     {
-      "item": "minecraft:egg"
-    },
-
-    {
-      "item": "pf:dryosaurus_dna"
+      "item": "minecraft:cobblestone"
     }
     
     ],
 
     "result": 
     {
-        "item": "pf:dryosaurus_egg",
-        "count": 1
+        "item": "pf:cobble_brick",
+        "count": 4
     }
 }
