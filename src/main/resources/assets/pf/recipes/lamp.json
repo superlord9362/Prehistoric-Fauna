@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "GG",
+        "BB"
+    ],
+    
+    "key":
+    {
+        "B":
+        {
+            "item": "pf:cobble_brick"
+        },
+	"G":
+	{
+		"item": "minecraft:glowstone_dust"
+	}
+    },
+    
+    "result":
+    {
+        "item": "pf:lamp",
+        "count": 1
+    }
+}
