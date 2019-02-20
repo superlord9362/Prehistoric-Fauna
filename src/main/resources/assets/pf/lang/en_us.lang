@@ -52,3 +52,7 @@ item.cobble_brick.name=Cobble Brick
 item.allosaurus_dna.name=Allosaurus DNA
 item.allosaurus_egg.name=Allosaurus Egg
 item.incubated_allosaurus.name=Incubated Allosaurus Egg
+item.incubated_chicken.name=Incubated Chicken Egg
+tile.mud.name=Mud
+tile.mesh.name=Mesh
+tile.lamp.name=Glowstone Lamp
