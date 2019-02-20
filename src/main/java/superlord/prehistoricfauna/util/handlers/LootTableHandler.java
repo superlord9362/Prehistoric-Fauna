@@ -13,5 +13,6 @@ public class LootTableHandler {
     public static final ResourceLocation CAMARASAURUS = LootTableList.register(new ResourceLocation(Reference.MOD_ID, "camarasaurus"));
     public static final ResourceLocation STEGOSAURUS = LootTableList.register(new ResourceLocation(Reference.MOD_ID, "stegosaurus"));
     public static final ResourceLocation DRYOSAURUS = LootTableList.register(new ResourceLocation(Reference.MOD_ID, "dryosaurus"));
+    public static final ResourceLocation ALLOSAURUS = LootTableList.register(new ResourceLocation(Reference.MOD_ID, "allosaurus"));
 
 }

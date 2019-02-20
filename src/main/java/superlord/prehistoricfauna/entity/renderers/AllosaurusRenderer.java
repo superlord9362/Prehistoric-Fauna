@@ -4,9 +4,8 @@ import superlord.prehistoricfauna.entity.EntityAllosaurus;
 import superlord.prehistoricfauna.entity.EntityCamarasaurus;
 import superlord.prehistoricfauna.entity.EntityGallimimus;
 import superlord.prehistoricfauna.entity.EntityTriceratops;
-import superlord.prehistoricfauna.entity.models.Allosaurus;
-import superlord.prehistoricfauna.entity.models.Camarasaurus;
 import superlord.prehistoricfauna.entity.models.Gallimimus;
+import superlord.prehistoricfauna.entity.models.ModelAllosaurus;
 import superlord.prehistoricfauna.entity.models.Triceratops;
 import superlord.prehistoricfauna.util.Reference;
 import net.minecraft.client.Minecraft;
@@ -20,7 +19,7 @@ public class AllosaurusRenderer extends RenderLiving<EntityAllosaurus> {
 	public static final Factory FACTORY = new Factory();
 
 	public AllosaurusRenderer(RenderManager manager) {
-		super(manager, new Allosaurus(), 0.2F);
+		super(manager, new ModelAllosaurus(), 0.2F);
 	}
 
 	@Override

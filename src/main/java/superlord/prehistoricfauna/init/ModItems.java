@@ -8,6 +8,7 @@ import superlord.prehistoricfauna.items.ItemDryosaurusEgg;
 import superlord.prehistoricfauna.items.ItemGallimimusEgg;
 import superlord.prehistoricfauna.items.ItemIncAllosaurus;
 import superlord.prehistoricfauna.items.ItemIncCamarasaurus;
+import superlord.prehistoricfauna.items.ItemIncChicken;
 import superlord.prehistoricfauna.items.ItemIncDryosaurus;
 import superlord.prehistoricfauna.items.ItemIncGallimimus;
 import superlord.prehistoricfauna.items.ItemIncStegosaurus;
@@ -59,4 +60,5 @@ public class ModItems {
     public static final Item ALLOSAURUS_DNA = new ItemBase("allosaurus_dna");
     public static final Item ALLOSAURUS_EGG = new ItemAllosaurusEgg("allosaurus_egg");
     public static final Item INCUBATED_ALLOSAURUS = new ItemIncAllosaurus("incubated_allosaurus");
+    public static final Item INCUBATED_CHICKEN = new ItemIncChicken("incubated_chicken");
 }

@@ -164,7 +164,7 @@ public class EntityAllosaurus extends EntityTameable {
 
     @Nullable
     protected ResourceLocation getLootTable() {
-        return LootTableHandler.TYRANNOSAURUS;
+        return LootTableHandler.ALLOSAURUS;
     }
 
     /**

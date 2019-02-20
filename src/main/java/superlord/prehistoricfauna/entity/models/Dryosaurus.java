@@ -4,6 +4,8 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
+import superlord.prehistoricfauna.entity.EntityDryosaurus;
+import superlord.prehistoricfauna.entity.ai.EntityExtinct;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.opengl.GL11;
 
@@ -162,7 +164,8 @@ public class Dryosaurus extends ModelBase {
         this.Body1.render(f5);
         GlStateManager.popMatrix();
         }
-    }
+        }
+    
     
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
         float XAngle = headPitch / 57.29578F;

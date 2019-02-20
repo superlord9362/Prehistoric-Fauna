@@ -1,5 +1,6 @@
 package superlord.prehistoricfauna.entity;
 
+import superlord.prehistoricfauna.entity.ai.EntityExtinct;
 import superlord.prehistoricfauna.init.ModItems;
 import superlord.prehistoricfauna.util.handlers.LootTableHandler;
 import superlord.prehistoricfauna.util.handlers.Sounds;
@@ -39,7 +40,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class EntityDryosaurus extends EntityTameable {
+public class EntityDryosaurus extends EntityExtinct {
     private EntityAIAvoidEntity<EntityPlayer> avoidEntity;
     private EntityAIAvoidEntity<EntityTyrannosaurus> avoidEntity1;
     /**
@@ -52,6 +53,10 @@ public class EntityDryosaurus extends EntityTameable {
         super(worldIn);
         this.setSize(1.0F, 1.2F);
         this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
+        this.hasFeatherToggle = false;
+        hasTeenTexture = false;
+        minSize = 0.2F;
+        maxSize= 1.2F;
     }
 
     @Override
@@ -132,15 +137,15 @@ public class EntityDryosaurus extends EntityTameable {
 
     @Nullable
     protected SoundEvent getAmbientSound() {
-        return Sounds.GALLIMIMUS_IDLE;
+        return Sounds.DRYOSAURUS_IDLE;
     }
 
     protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
-        return Sounds.GALLIMIMUS_HURT;
+        return Sounds.DRYOSAURUS_HURT;
     }
 
     protected SoundEvent getDeathSound() {
-        return Sounds.GALLIMIMUS_HURT;
+        return Sounds.DRYOSAURUS_HURT;
     }
 
     /**
@@ -161,9 +166,7 @@ public class EntityDryosaurus extends EntityTameable {
         if (this.isEntityInvulnerable(source)) {
             return false;
         } else {
-            if (this.aiSit != null) {
-                this.aiSit.setSitting(false);
-            }
+           
 
             return super.attackEntityFrom(source, amount);
         }
@@ -177,26 +180,12 @@ public class EntityDryosaurus extends EntityTameable {
     public boolean processInteract(EntityPlayer player, EnumHand hand) {
         ItemStack itemstack = player.getHeldItem(hand);
 
-        if (this.isTamed()) {
-            if (this.isOwner(player) && !this.world.isRemote && !this.isBreedingItem(itemstack)) {
-                this.aiSit.setSitting(!this.isSitting());
-            }
-        } else if ((this.aiTempt == null || this.aiTempt.isRunning()) && itemstack.getItem() == Items.FISH && player.getDistance(this) < 9.0D) {
+        if ((this.aiTempt == null || this.aiTempt.isRunning()) && itemstack.getItem() == Items.FISH && player.getDistance(this) < 9.0D) {
             if (!player.capabilities.isCreativeMode) {
                 itemstack.shrink(1);
             }
 
-            if (!this.world.isRemote) {
-                if (this.rand.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
-                    this.setTamedBy(player);
-                    this.playTameEffect(true);
-                    this.aiSit.setSitting(true);
-                    this.world.setEntityState(this, (byte) 7);
-                } else {
-                    this.playTameEffect(false);
-                    this.world.setEntityState(this, (byte) 6);
-                }
-            }
+            
 
             return true;
         }
@@ -207,10 +196,7 @@ public class EntityDryosaurus extends EntityTameable {
     public EntityDryosaurus createChild(EntityAgeable ageable) {
         EntityDryosaurus entityocelot = new EntityDryosaurus(this.world);
 
-        if (this.isTamed()) {
-            entityocelot.setOwnerId(this.getOwnerId());
-            entityocelot.setTamed(true);
-        }
+        
 
         return entityocelot;
     }
@@ -225,24 +211,7 @@ public class EntityDryosaurus extends EntityTameable {
 
     /**
      * Returns true if the mob is currently able to mate with the specified mob.
-     */
-    public boolean canMateWith(EntityAnimal otherAnimal) {
-        if (otherAnimal == this) {
-            return false;
-        } else if (!this.isTamed()) {
-            return false;
-        } else if (!(otherAnimal instanceof EntityDryosaurus)) {
-            return false;
-        } else {
-            EntityDryosaurus entityocelot = (EntityDryosaurus) otherAnimal;
-
-            if (!entityocelot.isTamed()) {
-                return false;
-            } else {
-                return this.isInLove() && entityocelot.isInLove();
-            }
-        }
-    }
+ 
 
     /**
      * Checks if the entity's current position is a valid location to spawn this entity.
@@ -277,11 +246,8 @@ public class EntityDryosaurus extends EntityTameable {
      * Get the name of this object. For players this returns their username
      */
     public String getName() {
-        if (this.hasCustomName()) {
             return this.getCustomNameTag();
-        } else {
-            return this.isTamed() ? I18n.translateToLocal("entity.Cat.name") : super.getName();
-        }
+       
     }
 
     protected void setupTamedAI() {
@@ -294,9 +260,6 @@ public class EntityDryosaurus extends EntityTameable {
         }
         this.tasks.removeTask(this.avoidEntity);
 
-        if (!this.isTamed()) {
-            this.tasks.addTask(4, this.avoidEntity);
-        }
     }
 
     public void onLivingUpdate() {
@@ -319,4 +282,14 @@ public class EntityDryosaurus extends EntityTameable {
 
         return livingdata;
     }
+
+	@Override
+	public int getAdultAge() {
+		return 8;
+	}
+
+	@Override
+	public boolean doesFlock() {
+		return true;
+	}
 }

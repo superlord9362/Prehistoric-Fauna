@@ -16,6 +16,10 @@ public class Sounds {
     public static final SoundEvent GALLIMIMUS_IDLE;
     public static final SoundEvent GALLIMIMUS_HURT;
     public static final SoundEvent TYRANNOSAURUS_IDLE;
+    public static final SoundEvent TYRANNOSAURUS_HURT;
+    public static final SoundEvent DRYOSAURUS_IDLE;
+    public static final SoundEvent DRYOSAURUS_HURT;
+    public static final SoundEvent VELOCIRAPTOR_ANGRY;
 
     @SubscribeEvent
     public static void registerSounds(final RegistryEvent.Register<SoundEvent> evt) {
@@ -27,6 +31,10 @@ public class Sounds {
         evt.getRegistry().register(Sounds.GALLIMIMUS_HURT);
         evt.getRegistry().register(Sounds.GALLIMIMUS_IDLE);
         evt.getRegistry().register(Sounds.TYRANNOSAURUS_IDLE);
+        evt.getRegistry().register(Sounds.TYRANNOSAURUS_HURT);
+        evt.getRegistry().register(Sounds.DRYOSAURUS_IDLE);
+        evt.getRegistry().register(Sounds.DRYOSAURUS_HURT);
+        evt.getRegistry().register(Sounds.VELOCIRAPTOR_ANGRY);
     }
 
     private static SoundEvent createEvent(final String soundName) {
@@ -43,5 +51,9 @@ public class Sounds {
         GALLIMIMUS_IDLE = createEvent("gallimimus_idle");
         GALLIMIMUS_HURT = createEvent("gallimimus_hurt");
         TYRANNOSAURUS_IDLE = createEvent("tyrannosaurus_idle");
+        TYRANNOSAURUS_HURT = createEvent("tyrannosaurus_hurt");
+        DRYOSAURUS_IDLE = createEvent("dryosaurus_idle");
+        DRYOSAURUS_HURT = createEvent("dryosaurus_hurt");
+        VELOCIRAPTOR_ANGRY = createEvent("velociraptor_angry");
     }
 }

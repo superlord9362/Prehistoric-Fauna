@@ -148,11 +148,11 @@ public class EntityTyrannosaurus extends EntityTameable {
     }
 
     protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
-        return SoundEvents.ENTITY_WOLF_HURT;
+        return Sounds.TYRANNOSAURUS_HURT;
     }
 
     protected SoundEvent getDeathSound() {
-        return SoundEvents.ENTITY_WOLF_DEATH;
+        return Sounds.TYRANNOSAURUS_HURT;
     }
 
     /**

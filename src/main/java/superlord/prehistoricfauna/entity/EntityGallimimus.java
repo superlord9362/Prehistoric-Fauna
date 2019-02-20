@@ -1,5 +1,6 @@
 package superlord.prehistoricfauna.entity;
 
+import superlord.prehistoricfauna.entity.ai.EntityExtinct;
 import superlord.prehistoricfauna.init.ModItems;
 import superlord.prehistoricfauna.util.handlers.LootTableHandler;
 import superlord.prehistoricfauna.util.handlers.Sounds;
@@ -39,7 +40,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class EntityGallimimus extends EntityTameable {
+public class EntityGallimimus extends EntityExtinct {
     private EntityAIAvoidEntity<EntityPlayer> avoidEntity;
     private EntityAIAvoidEntity<EntityTyrannosaurus> avoidEntity1;
     /**
@@ -159,10 +160,7 @@ public class EntityGallimimus extends EntityTameable {
         if (this.isEntityInvulnerable(source)) {
             return false;
         } else {
-            if (this.aiSit != null) {
-                this.aiSit.setSitting(false);
-            }
-
+            
             return super.attackEntityFrom(source, amount);
         }
     }
@@ -175,29 +173,7 @@ public class EntityGallimimus extends EntityTameable {
     public boolean processInteract(EntityPlayer player, EnumHand hand) {
         ItemStack itemstack = player.getHeldItem(hand);
 
-        if (this.isTamed()) {
-            if (this.isOwner(player) && !this.world.isRemote && !this.isBreedingItem(itemstack)) {
-                this.aiSit.setSitting(!this.isSitting());
-            }
-        } else if ((this.aiTempt == null || this.aiTempt.isRunning()) && itemstack.getItem() == Items.FISH && player.getDistance(this) < 9.0D) {
-            if (!player.capabilities.isCreativeMode) {
-                itemstack.shrink(1);
-            }
-
-            if (!this.world.isRemote) {
-                if (this.rand.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
-                    this.setTamedBy(player);
-                    this.playTameEffect(true);
-                    this.aiSit.setSitting(true);
-                    this.world.setEntityState(this, (byte) 7);
-                } else {
-                    this.playTameEffect(false);
-                    this.world.setEntityState(this, (byte) 6);
-                }
-            }
-
-            return true;
-        }
+        
 
         return super.processInteract(player, hand);
     }
@@ -205,10 +181,7 @@ public class EntityGallimimus extends EntityTameable {
     public EntityGallimimus createChild(EntityAgeable ageable) {
         EntityGallimimus entityocelot = new EntityGallimimus(this.world);
 
-        if (this.isTamed()) {
-            entityocelot.setOwnerId(this.getOwnerId());
-            entityocelot.setTamed(true);
-        }
+       
 
         return entityocelot;
     }
@@ -224,23 +197,7 @@ public class EntityGallimimus extends EntityTameable {
     /**
      * Returns true if the mob is currently able to mate with the specified mob.
      */
-    public boolean canMateWith(EntityAnimal otherAnimal) {
-        if (otherAnimal == this) {
-            return false;
-        } else if (!this.isTamed()) {
-            return false;
-        } else if (!(otherAnimal instanceof EntityGallimimus)) {
-            return false;
-        } else {
-            EntityGallimimus entityocelot = (EntityGallimimus) otherAnimal;
 
-            if (!entityocelot.isTamed()) {
-                return false;
-            } else {
-                return this.isInLove() && entityocelot.isInLove();
-            }
-        }
-    }
 
     /**
      * Checks if the entity's current position is a valid location to spawn this entity.
@@ -275,11 +232,7 @@ public class EntityGallimimus extends EntityTameable {
      * Get the name of this object. For players this returns their username
      */
     public String getName() {
-        if (this.hasCustomName()) {
             return this.getCustomNameTag();
-        } else {
-            return this.isTamed() ? I18n.translateToLocal("entity.Cat.name") : super.getName();
-        }
     }
 
     protected void setupTamedAI() {
@@ -291,10 +244,6 @@ public class EntityGallimimus extends EntityTameable {
             this.avoidEntity1 = new EntityAIAvoidEntity<EntityTyrannosaurus>(this, EntityTyrannosaurus.class, 350.0F, 0.8D, 1.33D);
         }
         this.tasks.removeTask(this.avoidEntity);
-
-        if (!this.isTamed()) {
-            this.tasks.addTask(4, this.avoidEntity);
-        }
     }
 
     public void onLivingUpdate() {
@@ -317,4 +266,14 @@ public class EntityGallimimus extends EntityTameable {
 
         return livingdata;
     }
+
+	@Override
+	public int getAdultAge() {
+		return 10;
+	}
+
+	@Override
+	public boolean doesFlock() {
+		return true;
+	}
 }

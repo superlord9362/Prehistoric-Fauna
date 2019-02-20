@@ -1,6 +1,8 @@
 package superlord.prehistoricfauna.entity;
 
 import com.google.common.base.Predicate;
+
+import superlord.prehistoricfauna.entity.ai.EntityExtinct;
 import superlord.prehistoricfauna.init.ModItems;
 import superlord.prehistoricfauna.util.handlers.LootTableHandler;
 import superlord.prehistoricfauna.util.handlers.Sounds;
@@ -41,7 +43,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public class EntityCamarasaurus extends EntityAnimal {
+public class EntityCamarasaurus extends EntityExtinct {
     private static final DataParameter<Boolean> IS_STANDING = EntityDataManager.createKey(EntityCamarasaurus.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> MODEL_TYPE = EntityDataManager.createKey(EntityCamarasaurus.class, DataSerializers.VARINT);
     private float clientSideStandAnimation0;
@@ -368,4 +370,14 @@ public class EntityCamarasaurus extends EntityAnimal {
         private GroupData() {
         }
     }
+
+	@Override
+	public int getAdultAge() {
+		return 13;
+	}
+
+	@Override
+	public boolean doesFlock() {
+		return true;
+	}
 }

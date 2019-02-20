@@ -148,7 +148,7 @@ public class EntityVelociraptor extends EntityTameable {
 
     protected SoundEvent getAmbientSound() {
         if (this.isAngry()) {
-            return SoundEvents.ENTITY_WOLF_GROWL;
+            return Sounds.VELOCIRAPTOR_ANGRY;
         } else {
             return Sounds.VELOCIRAPTOR_IDLE;
         }
