@@ -73,5 +73,42 @@
                 "stream": true
             }
         ]
+    },
+    "tyrannosaurus_hurt": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/tyrannosaurus_hurt",
+                "stream": true
+            }
+        ]
+    },
+    "dryosaurus_idle": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/dryosaurus_idle1",
+                "name": "pf:prehistoric/dryosaurus_idle2",
+                "stream": true
+            }
+        ]
+    },
+    "dryosaurus_hurt": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/dryosaurus_hurt",
+                "stream": true
+            }
+        ]
+    },
+    "velociraptor_angry": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/velociraptor_angry",
+                "stream": true
+            }
+        ]
     }
 }
