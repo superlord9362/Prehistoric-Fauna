@@ -1,0 +1,22 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+
+    "ingredients": 
+    [
+
+    {
+      "item": "minecraft:egg"
+    },
+
+    {
+      "item": "pf:ankylosaurus_dna"
+    }
+    
+    ],
+
+    "result": 
+    {
+        "item": "pf:ankylosaurus_egg",
+        "count": 1
+    }
+}

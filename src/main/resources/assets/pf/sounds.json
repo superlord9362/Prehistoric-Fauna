@@ -110,5 +110,118 @@
                 "stream": true
             }
         ]
+    },
+    "tyrannosaurus_angry": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/tyrannosaurus_angry",
+                "stream": true
+            }
+        ]
+    },
+    "stegosaurus_idle": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/stegosaurus_idle1",
+                "name": "pf:prehistoric/stegosaurus_idle2",
+                "stream": true
+            }
+        ]
+    },
+    "stegosaurus_angry": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/stegosaurus_angry",
+                "stream": true
+            }
+        ]
+    },
+    "stegosaurus_hurt": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/stegosaurus_hurt",
+                "stream": true
+            }
+        ]
+    },
+    "camarasaurus_hurt": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/camarasaurus_hurt",
+                "stream": true
+            }
+        ]
+    },
+    "camarasaurus_idle": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/camarasaurus_idle1",
+                "name": "pf:prehistoric/camarasaurus_idle2",
+                "stream": true
+            }
+        ]
+    },
+    "camarasaurus_angry": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/camarasaurus_angry",
+                "stream": true
+            }
+        ]
+    },
+    "allosaurus_idle": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/allosaurus_idle1",
+                "name": "pf:prehistoric/allosaurus_idle2",
+                "stream": true
+            }
+        ]
+    },
+    "allosaurus_hurt": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/allosaurus_hurt",
+                "stream": true
+            }
+        ]
+    },
+    "parasaurolophus_idle": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/parasaurolophus_idle1",
+                "name": "pf:prehistoric/parasaurolophus_idle2",
+                "stream": true
+            }
+        ]
+    },
+    "parasaurolophus_hurt": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/parasaurolophus_hurt",
+                "stream": true
+            }
+        ]
+    },
+    "ankylosaurus_idle": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/ankylosaurus_idle1",
+                "name": "pf:prehistoric/ankylosaurus_idle2",
+                "stream": true
+            }
+        ]
     }
 }
