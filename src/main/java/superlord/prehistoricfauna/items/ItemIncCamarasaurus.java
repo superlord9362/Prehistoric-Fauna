@@ -19,7 +19,7 @@ public class ItemIncCamarasaurus extends ItemBase {
     public ItemIncCamarasaurus(String name) {
         super(name);
         this.maxStackSize = 16;
-        this.setCreativeTab(Main.tabPrehistoric);
+        this.setCreativeTab(Main.tabEgg);
     }
 
     /**

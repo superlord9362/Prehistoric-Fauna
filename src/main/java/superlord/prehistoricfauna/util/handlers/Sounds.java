@@ -20,6 +20,18 @@ public class Sounds {
     public static final SoundEvent DRYOSAURUS_IDLE;
     public static final SoundEvent DRYOSAURUS_HURT;
     public static final SoundEvent VELOCIRAPTOR_ANGRY;
+    public static final SoundEvent TYRANNOSAURUS_ANGRY;
+    public static final SoundEvent STEGOSAURUS_IDLE;
+    public static final SoundEvent STEGOSAURUS_ANGRY;
+    public static final SoundEvent STEGOSAURUS_HURT;
+    public static final SoundEvent CAMARASAURUS_IDLE;
+    public static final SoundEvent CAMARASAURUS_HURT;
+    public static final SoundEvent CAMARASAURUS_ANGRY;
+    public static final SoundEvent ALLOSAURUS_IDLE;
+    public static final SoundEvent ALLOSAURUS_HURT;
+    public static final SoundEvent PARASAUROLOPHUS_IDLE;
+    public static final SoundEvent PARASAUROLOPHUS_HURT;
+    public static final SoundEvent ANKYLOSAURUS_IDLE;
 
     @SubscribeEvent
     public static void registerSounds(final RegistryEvent.Register<SoundEvent> evt) {
@@ -35,6 +47,18 @@ public class Sounds {
         evt.getRegistry().register(Sounds.DRYOSAURUS_IDLE);
         evt.getRegistry().register(Sounds.DRYOSAURUS_HURT);
         evt.getRegistry().register(Sounds.VELOCIRAPTOR_ANGRY);
+        evt.getRegistry().register(Sounds.TYRANNOSAURUS_ANGRY);
+        evt.getRegistry().register(Sounds.STEGOSAURUS_IDLE);
+        evt.getRegistry().register(Sounds.STEGOSAURUS_HURT);
+        evt.getRegistry().register(Sounds.STEGOSAURUS_ANGRY);
+        evt.getRegistry().register(Sounds.CAMARASAURUS_HURT);
+        evt.getRegistry().register(Sounds.CAMARASAURUS_IDLE);
+        evt.getRegistry().register(Sounds.CAMARASAURUS_ANGRY);
+        evt.getRegistry().register(Sounds.ALLOSAURUS_HURT);
+        evt.getRegistry().register(Sounds.ALLOSAURUS_IDLE);
+        evt.getRegistry().register(Sounds.PARASAUROLOPHUS_IDLE);
+        evt.getRegistry().register(Sounds.PARASAUROLOPHUS_HURT);
+        evt.getRegistry().register(Sounds.ANKYLOSAURUS_IDLE);
     }
 
     private static SoundEvent createEvent(final String soundName) {
@@ -55,5 +79,17 @@ public class Sounds {
         DRYOSAURUS_IDLE = createEvent("dryosaurus_idle");
         DRYOSAURUS_HURT = createEvent("dryosaurus_hurt");
         VELOCIRAPTOR_ANGRY = createEvent("velociraptor_angry");
+        TYRANNOSAURUS_ANGRY = createEvent("tyrannosaurus_angry");
+        STEGOSAURUS_IDLE = createEvent("stegosaurus_idle");
+        STEGOSAURUS_ANGRY = createEvent("stegosaurus_angry");
+        STEGOSAURUS_HURT = createEvent("stegosaurus_hurt");
+        CAMARASAURUS_IDLE = createEvent ("camarasaurus_idle");
+        CAMARASAURUS_HURT = createEvent("camarasaurus_hurt");
+        CAMARASAURUS_ANGRY = createEvent("camarasaurus_angry");
+        ALLOSAURUS_IDLE = createEvent("allosaurus_idle");
+        ALLOSAURUS_HURT = createEvent("allosaurus_hurt");
+        PARASAUROLOPHUS_IDLE = createEvent("parasaurolophus_idle");
+        PARASAUROLOPHUS_HURT = createEvent("parasaurolophus_hurt");
+        ANKYLOSAURUS_IDLE = createEvent("ankylosaurus_idle");
     }
 }

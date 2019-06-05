@@ -1,9 +1,13 @@
 package superlord.prehistoricfauna.proxy;
 
 import superlord.prehistoricfauna.entity.EntityAllosaurus;
+import superlord.prehistoricfauna.entity.EntityAnkylosaurus;
+import superlord.prehistoricfauna.entity.EntityBaryonyx;
 import superlord.prehistoricfauna.entity.EntityCamarasaurus;
 import superlord.prehistoricfauna.entity.EntityDryosaurus;
 import superlord.prehistoricfauna.entity.EntityGallimimus;
+import superlord.prehistoricfauna.entity.EntityParasaurolophus;
+import superlord.prehistoricfauna.entity.EntityPrenocephale;
 import superlord.prehistoricfauna.entity.EntityStegosaurus;
 import superlord.prehistoricfauna.entity.EntityTriceratops;
 import superlord.prehistoricfauna.entity.EntityTyrannosaurus;
@@ -12,7 +16,11 @@ import superlord.prehistoricfauna.entity.models.Dryosaurus;
 import superlord.prehistoricfauna.entity.renderers.AllosaurusRenderer;
 import superlord.prehistoricfauna.entity.renderers.CamarasaurusRenderer;
 import superlord.prehistoricfauna.entity.renderers.GallimimusRenderer;
+import superlord.prehistoricfauna.entity.renderers.RenderAnkylosaurus;
+import superlord.prehistoricfauna.entity.renderers.RenderBaryonyx;
 import superlord.prehistoricfauna.entity.renderers.RenderExtinct;
+import superlord.prehistoricfauna.entity.renderers.RenderParasaurolophus;
+import superlord.prehistoricfauna.entity.renderers.RenderPrenocephale;
 import superlord.prehistoricfauna.entity.renderers.RenderStegosaurus;
 import superlord.prehistoricfauna.entity.renderers.TriceratopsRenderer;
 import superlord.prehistoricfauna.entity.renderers.TyrannosaurusRenderer;
@@ -39,6 +47,10 @@ public class ClientProxy implements IProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityStegosaurus.class, RenderStegosaurus.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityAllosaurus.class, AllosaurusRenderer.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityDryosaurus.class, RenderExtinct.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityAnkylosaurus.class, RenderAnkylosaurus.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityPrenocephale.class, RenderPrenocephale.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityParasaurolophus.class, RenderParasaurolophus.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityBaryonyx.class, RenderBaryonyx.FACTORY);
         GameRegistry.registerWorldGenerator(new ModWorldGen(), 3);
     }
 

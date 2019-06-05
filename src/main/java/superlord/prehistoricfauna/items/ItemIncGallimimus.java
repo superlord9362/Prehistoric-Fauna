@@ -17,7 +17,7 @@ public class ItemIncGallimimus extends ItemBase {
     public ItemIncGallimimus(String name) {
         super(name);
         this.maxStackSize = 16;
-        this.setCreativeTab(Main.tabPrehistoric);
+        this.setCreativeTab(Main.tabEgg);
     }
 
     /**

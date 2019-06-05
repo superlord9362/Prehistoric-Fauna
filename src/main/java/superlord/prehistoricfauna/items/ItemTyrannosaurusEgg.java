@@ -16,7 +16,7 @@ public class ItemTyrannosaurusEgg extends ItemBase {
     public ItemTyrannosaurusEgg(String name) {
         super(name);
         this.maxStackSize = 16;
-        this.setCreativeTab(Main.tabPrehistoric);
+        this.setCreativeTab(Main.tabEgg);
     }
 
     /**

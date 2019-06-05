@@ -21,7 +21,7 @@ import org.apache.logging.log4j.Logger;
 
 import static superlord.prehistoricfauna.util.Reference.*;
 
-@Mod(modid = MOD_ID, name = NAME, version = VERSION, acceptedMinecraftVersions = MC_ACCEPT, dependencies = DEPENDENCY)
+@Mod(modid = MOD_ID, name = NAME, version = VERSION)
 public class Main {
 
     @Instance
@@ -54,5 +54,12 @@ public class Main {
 		public ItemStack getTabIconItem() {
             return new ItemStack(ModItems.VELOCIRAPTOR_CLAW);
 		}
+    };
+    
+    public static CreativeTabs tabEgg = new CreativeTabs("tab_egg") {
+    	@Override
+    	public ItemStack getTabIconItem() {
+    		return new ItemStack(ModItems.ALLOSAURUS_EGG);
+    	}
     };
 }

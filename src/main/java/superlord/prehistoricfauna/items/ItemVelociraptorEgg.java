@@ -16,7 +16,7 @@ public class ItemVelociraptorEgg extends ItemBase {
     public ItemVelociraptorEgg(String name) {
         super(name);
         this.maxStackSize = 16;
-        this.setCreativeTab(Main.tabPrehistoric);
+        this.setCreativeTab(Main.tabEgg);
     }
 
     /**

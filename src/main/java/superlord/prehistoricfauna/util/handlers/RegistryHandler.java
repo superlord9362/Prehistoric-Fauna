@@ -2,9 +2,13 @@ package superlord.prehistoricfauna.util.handlers;
 
 import superlord.prehistoricfauna.Main;
 import superlord.prehistoricfauna.entity.EntityAllosaurus;
+import superlord.prehistoricfauna.entity.EntityAnkylosaurus;
+import superlord.prehistoricfauna.entity.EntityBaryonyx;
 import superlord.prehistoricfauna.entity.EntityCamarasaurus;
 import superlord.prehistoricfauna.entity.EntityDryosaurus;
 import superlord.prehistoricfauna.entity.EntityGallimimus;
+import superlord.prehistoricfauna.entity.EntityParasaurolophus;
+import superlord.prehistoricfauna.entity.EntityPrenocephale;
 import superlord.prehistoricfauna.entity.EntityStegosaurus;
 import superlord.prehistoricfauna.entity.EntityTriceratops;
 import superlord.prehistoricfauna.entity.EntityTyrannosaurus;
@@ -35,6 +39,11 @@ public class RegistryHandler {
         EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "stegosaurus"), EntityStegosaurus.class, "stegosaurus", entityId++, Main.instance, 64, 3, true, 0x5C4823, 0x000000);
         EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "dryosaurus"), EntityDryosaurus.class, "dryosaurus", entityId++, Main.instance, 64, 3, true, 0x412E23, 0x000000);
         EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "allosaurus"), EntityAllosaurus.class, "allosaurus", entityId++, Main.instance, 64, 3, true, 0x302726, 0x000000);
+        EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "ankylosaurus"), EntityAnkylosaurus.class, "ankylosaurus", entityId++, Main.instance, 64, 3, true, 0x5E2801, 0x000000);
+        EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "prenocephale"), EntityPrenocephale.class, "prenocephale", entityId++, Main.instance, 64, 3, true, 0xAA9A8D, 0x000000);
+        EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "parasaurolophus"), EntityParasaurolophus.class, "parasaurolophus", entityId++, Main.instance, 64, 3, true, 0x1B2A26, 0x000000);
+        EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "baryonyx"), EntityBaryonyx.class, "baryonyx", entityId++, Main.instance, 64, 3, true, 0xB0AF93, 0x000000);
+
     }
 
     @SubscribeEvent

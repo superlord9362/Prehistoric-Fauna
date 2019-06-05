@@ -1,8 +1,7 @@
 package superlord.prehistoricfauna.items;
 
 import superlord.prehistoricfauna.Main;
-import superlord.prehistoricfauna.entity.egg.EntityIncubatedTriceratopsEgg;
-
+import superlord.prehistoricfauna.entity.egg.EntityPrenocephaleEgg;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -13,8 +12,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
-public class ItemIncubatedTriceratopsEgg extends ItemBase {
-    public ItemIncubatedTriceratopsEgg(String name) {
+public class ItemPrenocephaleEgg extends ItemBase {
+    public ItemPrenocephaleEgg(String name) {
         super(name);
         this.maxStackSize = 16;
         this.setCreativeTab(Main.tabEgg);
@@ -33,12 +32,12 @@ public class ItemIncubatedTriceratopsEgg extends ItemBase {
         worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_EGG_THROW, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
         if (!worldIn.isRemote) {
-            EntityIncubatedTriceratopsEgg entityegg = new EntityIncubatedTriceratopsEgg(worldIn, playerIn);
+        	EntityPrenocephaleEgg entityegg = new EntityPrenocephaleEgg(worldIn, playerIn);
             entityegg.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
             worldIn.spawnEntity(entityegg);
         }
 
         playerIn.addStat(StatList.getObjectUseStats(this));
-        return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
+        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
     }
 }

@@ -18,7 +18,7 @@ public class ItemStegosaurusEgg extends ItemBase {
     public ItemStegosaurusEgg(String name) {
         super(name);
         this.maxStackSize = 16;
-        this.setCreativeTab(Main.tabPrehistoric);
+        this.setCreativeTab(Main.tabEgg);
     }
 
     /**
