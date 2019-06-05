@@ -102,7 +102,6 @@ public class EntityStegosaurus extends EntityAnimal
         if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextEgg <= 0)
         {
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-            this.dropItem(ModItems.STEGOSAURUS_EGG, 1);
             this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
         }
 

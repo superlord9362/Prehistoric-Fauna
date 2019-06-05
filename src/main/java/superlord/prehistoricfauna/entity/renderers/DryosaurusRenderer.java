@@ -10,6 +10,7 @@ import superlord.prehistoricfauna.entity.models.Gallimimus;
 import superlord.prehistoricfauna.entity.models.Triceratops;
 import superlord.prehistoricfauna.util.Reference;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -38,5 +39,9 @@ public class DryosaurusRenderer extends RenderLiving<EntityDryosaurus> {
         public Render<? super EntityDryosaurus> createRenderFor(RenderManager manager) {
             return new DryosaurusRenderer(manager);
         }
+    }
+	
+	protected void preRenderCallback(EntityDryosaurus entity, float f) {
+        this.shadowSize = entity.width * 0.45F;
     }
 }

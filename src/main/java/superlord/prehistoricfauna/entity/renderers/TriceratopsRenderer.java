@@ -23,11 +23,22 @@ public class TriceratopsRenderer extends RenderLiving<EntityTriceratops> {
     @Override
     protected ResourceLocation getEntityTexture(EntityTriceratops entity) {
         // TODO you can now select your texture based on the modelType
-        int modelType = entity.getModelType();
         if (entity.isChild()) {
-            return new ResourceLocation(Reference.MOD_ID, "textures/entities/triceratopschild.png");
+        	if (entity.isAlbino()) {
+        		return new ResourceLocation(Reference.MOD_ID, "textures/entities/triceratopschild_albino.png");
+        	} else if (entity.isMelanistic()) {
+        		return new ResourceLocation(Reference.MOD_ID, "textures/entities/triceratopschild_melanistic.png");
+        	} else {
+        		return new ResourceLocation(Reference.MOD_ID, "textures/entities/triceratopschild.png");
+        	}
         } else {
+        	if (entity.isAlbino()) {
+        		return new ResourceLocation(Reference.MOD_ID, "textures/entities/triceratops_albino.png");
+        	} else if (entity.isMelanistic()) {
+        		return new ResourceLocation(Reference.MOD_ID, "textures/entities/triceratops_melanistic.png");
+        	} else {
             return new ResourceLocation(Reference.MOD_ID, "textures/entities/triceratops.png");
+        	}
         }
     }
 

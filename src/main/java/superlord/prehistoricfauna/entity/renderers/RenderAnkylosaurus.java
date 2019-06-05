@@ -20,7 +20,9 @@ public class RenderAnkylosaurus extends RenderLiving<EntityAnkylosaurus> {
 
 	@Override
 	protected ResourceLocation getEntityTexture(EntityAnkylosaurus entity) {
-		if(entity.isChild()) {
+		if (entity.female) {
+			return new ResourceLocation(Reference.MOD_ID, "textures/entities/triceratops.png");
+		} else if(entity.isChild()) {
 			return new ResourceLocation(Reference.MOD_ID, "textures/entities/ankylosaurus_baby.png");
 		} else {
 		return new ResourceLocation(Reference.MOD_ID, "textures/entities/ankylosaurus.png");

@@ -40,7 +40,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class EntityPrenocephale extends EntityExtinct {
+public class EntityPrenocephale extends EntityTameable {
     private EntityAIAvoidEntity<EntityPlayer> avoidEntity;
     private EntityAIAvoidEntity<EntityTyrannosaurus> avoidEntity1;
     /**
@@ -53,8 +53,6 @@ public class EntityPrenocephale extends EntityExtinct {
         super(worldIn);
         this.setSize(1.0F, 1.2F);
         this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
-        this.hasFeatherToggle = false;
-        hasTeenTexture = false;
     }
 
     @Override
@@ -265,7 +263,6 @@ public class EntityPrenocephale extends EntityExtinct {
 
         if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextEgg <= 0) {
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-            this.dropItem(ModItems.DRYOSAURUS_EGG, 1);
             this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
         }
     }
@@ -281,13 +278,4 @@ public class EntityPrenocephale extends EntityExtinct {
         return livingdata;
     }
 
-	@Override
-	public int getAdultAge() {
-		return 8;
-	}
-
-	@Override
-	public boolean doesFlock() {
-		return false;
-	}
 }

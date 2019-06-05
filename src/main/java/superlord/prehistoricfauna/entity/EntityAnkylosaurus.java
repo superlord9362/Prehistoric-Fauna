@@ -1,6 +1,8 @@
 package superlord.prehistoricfauna.entity;
 
 import com.google.common.base.Predicate;
+
+import io.netty.buffer.ByteBuf;
 import superlord.prehistoricfauna.init.ModItems;
 import superlord.prehistoricfauna.util.handlers.LootTableHandler;
 import superlord.prehistoricfauna.util.handlers.Sounds;
@@ -37,12 +39,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public class EntityAnkylosaurus extends EntityAnimal {
+public class EntityAnkylosaurus extends EntityAnimal implements IEntityAdditionalSpawnData {
     private static final DataParameter<Boolean> IS_STANDING = EntityDataManager.createKey(EntityAnkylosaurus.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> MODEL_TYPE = EntityDataManager.createKey(EntityAnkylosaurus.class, DataSerializers.VARINT);
     private float clientSideStandAnimation0;
@@ -97,7 +100,6 @@ public class EntityAnkylosaurus extends EntityAnimal {
         }
         if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextEgg <= 0) {
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-            this.dropItem(ModItems.TRICERATOPS_EGG, 1);
             this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
         }
 
@@ -142,7 +144,7 @@ public class EntityAnkylosaurus extends EntityAnimal {
 
     protected void playWarningSound() {
         if (this.warningSoundTicks <= 0) {
-            this.playSound(Sounds.TRICERATOPS_ANGRY, 1.0F, 1.0F);
+            this.playSound(Sounds.ANKYLOSAURUS_ANGRY, 1.0F, 1.0F);
             this.warningSoundTicks = 40;
         }
     }
@@ -171,16 +173,14 @@ public class EntityAnkylosaurus extends EntityAnimal {
     @Override
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
-        dataManager.set(IS_STANDING, compound.getBoolean("isStanding"));
-        dataManager.set(MODEL_TYPE, compound.getInteger("modelType"));
+        compound.getBoolean("Female");
     }
 
-    @Override
-    public void writeEntityToNBT(NBTTagCompound compound) {
+    public void writeEntityToNBT(NBTTagCompound compound)
+    {
         super.writeEntityToNBT(compound);
-        compound.setBoolean("isStanding", dataManager.get(IS_STANDING));
-        compound.setInteger("modelType", dataManager.get(MODEL_TYPE));
-    }
+    compound.setBoolean("Female", this.female);
+}
 
     /**
      * Called to update the entity's position/logic.
@@ -237,22 +237,16 @@ public class EntityAnkylosaurus extends EntityAnimal {
      * Called only once on an entity when first time spawned, via egg, mob spawner, natural spawning etc, but not called
      * when entity is reloaded from nbt. Mainly used for initializing attributes and inventory
      */
-    @Override
-    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingdata) {
-        if (livingdata instanceof EntityAnkylosaurus.GroupData) {
-            if (((EntityAnkylosaurus.GroupData) livingdata).madeParent) {
-                this.setGrowingAge(-24000);
-            }
-        } else {
-            EntityAnkylosaurus.GroupData entitypolarbear$groupdata = new EntityAnkylosaurus.GroupData();
-            entitypolarbear$groupdata.madeParent = true;
-            livingdata = entitypolarbear$groupdata;
-        }
-        // the 1% of chance to have the model
-        setModelType(world.rand.nextInt(99) == 0 ? 1 : 0);
+    public boolean female;
+    
+    
 
-        return livingdata;
+    @Override
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+        female = rand.nextBoolean();
+		return livingdata;
     }
+
 
     class AIAttackPlayer extends EntityAINearestAttackableTarget<EntityPlayer> {
         public AIAttackPlayer() {
@@ -368,4 +362,16 @@ public class EntityAnkylosaurus extends EntityAnimal {
         private GroupData() {
         }
     }
+    
+    
+
+	@Override
+	public void writeSpawnData(ByteBuf buffer) {
+		buffer.writeBoolean(female);
+	}
+
+	@Override
+	public void readSpawnData(ByteBuf additionalData) {
+		female = additionalData.readBoolean();
+	}
 }

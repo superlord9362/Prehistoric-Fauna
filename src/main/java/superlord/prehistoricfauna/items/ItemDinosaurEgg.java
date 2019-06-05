@@ -4,7 +4,7 @@ package superlord.prehistoricfauna.items;
 
 
 import net.minecraft.entity.Entity;
-
+import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 
 import net.minecraft.util.EnumActionResult;
@@ -17,7 +17,6 @@ import net.minecraft.util.math.BlockPos;
 
 import net.minecraft.world.World;
 import superlord.prehistoricfauna.Main;
-import superlord.prehistoricfauna.entity.EntityCamarasaurus;
 import superlord.prehistoricfauna.entity.EntityDinosaurEgg;
 import superlord.prehistoricfauna.entity.EntityDryosaurus;
 import superlord.prehistoricfauna.entity.EntityType;
@@ -28,11 +27,11 @@ import superlord.prehistoricfauna.entity.ai.*;
 
 
 
-public class ItemCamarasaurusEgg extends PrehistoricEntityItem {
+public class ItemDinosaurEgg extends PrehistoricEntityItem {
 
-    public ItemCamarasaurusEgg(EntityType type) {
+    public ItemDinosaurEgg(EntityType type) {
 
-        super("camarasaurus_egg", type);
+        super("dryosaurus_egg", type);
 
         this.setHasSubtypes(true);
 
@@ -118,7 +117,7 @@ public class ItemCamarasaurusEgg extends PrehistoricEntityItem {
 
                     prehistoric.setAgeInDays(0);
 
-                    EntityCamarasaurus entitychicken = new EntityCamarasaurus(world);
+                    EntityDryosaurus entitychicken = new EntityDryosaurus(world);
                     entitychicken.setGrowingAge(-24000);
 
                 }

@@ -2,5 +2,11 @@ package superlord.prehistoricfauna.entity;
 
 public enum MobType {
 	DINOSAUR,
-	EURYPTERIDA
+	EURYPTERIDA,
+	MAMMAL,
+	BIRD,
+	DINOSAUR_AQUATIC,
+	VANILLA,
+	CHICKEN,
+	FISH
 }

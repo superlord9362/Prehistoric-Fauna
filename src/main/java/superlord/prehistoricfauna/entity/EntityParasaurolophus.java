@@ -24,6 +24,7 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -44,7 +45,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public class EntityParasaurolophus extends EntityExtinct {
+public class EntityParasaurolophus extends EntityTameable {
     private static final DataParameter<Boolean> IS_STANDING = EntityDataManager.createKey(EntityParasaurolophus.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> MODEL_TYPE = EntityDataManager.createKey(EntityParasaurolophus.class, DataSerializers.VARINT);
     private float clientSideStandAnimation0;
@@ -372,13 +373,5 @@ public class EntityParasaurolophus extends EntityExtinct {
         }
     }
 
-	@Override
-	public int getAdultAge() {
-		return 13;
-	}
-
-	@Override
-	public boolean doesFlock() {
-		return false;
-	}
+	
 }
