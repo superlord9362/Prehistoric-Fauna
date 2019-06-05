@@ -29,7 +29,7 @@ public class BlockJurassicFossil extends BlockBase implements IHasModel {
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        int i = rand.nextInt(1100);
+        int i = rand.nextInt(1800);
         if (i < 150) {
             return ModItems.CAMARASAURUS_SKULL;
         } else if (i < 350) {

@@ -47,6 +47,8 @@ public class BlockEggIncubator extends BlockBase
 
 		super(name, Material.IRON);
 
+        setHardness(3f);
+        setResistance(5f);
 		setSoundType(SoundType.METAL);
 
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(BURNING, false));

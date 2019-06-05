@@ -17,6 +17,9 @@ public class BlockMesh extends BlockBreakable implements IHasModel {
 		setRegistryName(name);
 		setUnlocalizedName(name);
 		setCreativeTab(Main.tabPrehistoric);
+
+        setHardness(3f);
+        setResistance(5f);
 	}
 	
 	public boolean isFullCube(IBlockState state) {

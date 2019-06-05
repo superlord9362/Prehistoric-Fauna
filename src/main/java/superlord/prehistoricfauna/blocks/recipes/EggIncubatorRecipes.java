@@ -43,6 +43,10 @@ public class EggIncubatorRecipes {
 		this.addSmelting(ModItems.DRYOSAURUS_EGG, new ItemStack(ModItems.INCUBATED_DRYOSAURUS), 0.35F);
 		this.addSmelting(ModItems.STEGOSAURUS_EGG, new ItemStack(ModItems.INCUBATED_STEGOSAURUS), 0.35F);
 		this.addSmelting(ModItems.STEGOSAURUS_EGG, new ItemStack(ModItems.INCUBATED_ALLOSAURUS), 0.35F);
+		this.addSmelting(ModItems.ANKYLOSAURUS_EGG, new ItemStack(ModItems.INC_ANKYLOSAURUS), 0.35F);
+		this.addSmelting(ModItems.BARYONYX_EGG, new ItemStack(ModItems.INC_BARYONYX), 0.35F);
+		this.addSmelting(ModItems.PARASAUROLOPHUS_EGG, new ItemStack(ModItems.INC_PARASAUROLOPHUS), 0.35F);
+		this.addSmelting(ModItems.PRENOCEPHALE_EGG, new ItemStack(ModItems.INC_PRENOCEPHALE), 0.35F);
 		this.addSmelting(Items.EGG, new ItemStack(ModItems.INCUBATED_CHICKEN), 0.35F);
 	}
 

@@ -1,5 +1,6 @@
 package superlord.prehistoricfauna.entity;
 
 public enum TimePeriod {
-	MESOZOIC
+	MESOZOIC,
+	PALEOZOIC
 }

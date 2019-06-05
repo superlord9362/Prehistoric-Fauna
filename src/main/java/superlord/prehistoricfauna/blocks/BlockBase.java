@@ -10,8 +10,11 @@ public class BlockBase extends Block implements IHasModel {
 
     public BlockBase(String name, Material material) {
         super(material);
-        setUnlocalizedName(name);
+
+        setHardness(3f);
+        setResistance(5f);
         setRegistryName(name);
+        setUnlocalizedName(name);
         setCreativeTab(Main.tabPrehistoric);
     }
 

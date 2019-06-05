@@ -191,7 +191,7 @@ public class EntityGallimimus extends EntityExtinct {
      * the animal type)
      */
     public boolean isBreedingItem(ItemStack stack) {
-        return stack.getItem() == Items.FISH;
+        return stack.getItem() == Items.WHEAT_SEEDS;
     }
 
     /**

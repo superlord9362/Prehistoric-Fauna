@@ -2,6 +2,7 @@ package superlord.prehistoricfauna.entity.renderers;
 
 import superlord.prehistoricfauna.entity.EntityAllosaurus;
 import superlord.prehistoricfauna.entity.EntityCamarasaurus;
+import superlord.prehistoricfauna.entity.EntityDryosaurus;
 import superlord.prehistoricfauna.entity.EntityGallimimus;
 import superlord.prehistoricfauna.entity.EntityTriceratops;
 import superlord.prehistoricfauna.entity.models.Gallimimus;
@@ -37,5 +38,10 @@ public class AllosaurusRenderer extends RenderLiving<EntityAllosaurus> {
         public Render<? super EntityAllosaurus> createRenderFor(RenderManager manager) {
             return new AllosaurusRenderer(manager);
         }
+    }
+	
+	@Override
+    protected void preRenderCallback(EntityAllosaurus entity, float f) {
+        this.shadowSize = entity.width * 0.45F;
     }
 }

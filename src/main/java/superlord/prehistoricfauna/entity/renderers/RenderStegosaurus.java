@@ -1,6 +1,7 @@
 package superlord.prehistoricfauna.entity.renderers;
 
 import superlord.prehistoricfauna.entity.EntityCamarasaurus;
+import superlord.prehistoricfauna.entity.EntityDryosaurus;
 import superlord.prehistoricfauna.entity.EntityGallimimus;
 import superlord.prehistoricfauna.entity.EntityStegosaurus;
 import superlord.prehistoricfauna.entity.EntityTriceratops;
@@ -37,5 +38,10 @@ public class RenderStegosaurus extends RenderLiving<EntityStegosaurus> {
         public Render<? super EntityStegosaurus> createRenderFor(RenderManager manager) {
             return new RenderStegosaurus(manager);
         }
+    }
+	
+	@Override
+    protected void preRenderCallback(EntityStegosaurus entity, float f) {
+        this.shadowSize = entity.width * 0.45F;
     }
 }

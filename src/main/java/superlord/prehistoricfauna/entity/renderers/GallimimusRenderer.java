@@ -1,5 +1,6 @@
 package superlord.prehistoricfauna.entity.renderers;
 
+import superlord.prehistoricfauna.entity.EntityDryosaurus;
 import superlord.prehistoricfauna.entity.EntityGallimimus;
 import superlord.prehistoricfauna.entity.models.Gallimimus;
 import superlord.prehistoricfauna.util.Reference;
@@ -34,5 +35,10 @@ public class GallimimusRenderer extends RenderLiving<EntityGallimimus> {
 
             return new GallimimusRenderer(manager);
         }
+    }
+    
+    @Override
+    protected void preRenderCallback(EntityGallimimus entity, float f) {
+        this.shadowSize = entity.width * 0.45F;
     }
 }

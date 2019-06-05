@@ -51,12 +51,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class EntityAllosaurus extends EntityTameable {
-    private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.<Float>createKey(EntityAllosaurus.class, DataSerializers.FLOAT);
+public class EntityBaryonyx extends EntityTameable {
+    private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.<Float>createKey(EntityBaryonyx.class, DataSerializers.FLOAT);
     private static final DataParameter<Integer> DATA_STRENGTH_ID = EntityDataManager.<Integer>createKey(EntityLlama.class, DataSerializers.VARINT);
     public int timeUntilNextEgg;
 
-    public EntityAllosaurus(World worldIn) {
+    public EntityBaryonyx(World worldIn) {
         super(worldIn);
         this.setSize(1.3F, 3.0F);
         this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
@@ -120,7 +120,7 @@ public class EntityAllosaurus extends EntityTameable {
     }
 
     public static void registerFixesWolf(DataFixer fixer) {
-        EntityLiving.registerFixesMob(fixer, EntityAllosaurus.class);
+        EntityLiving.registerFixesMob(fixer, EntityBaryonyx.class);
     }
 
     /**
@@ -164,7 +164,7 @@ public class EntityAllosaurus extends EntityTameable {
 
     @Nullable
     protected ResourceLocation getLootTable() {
-        return LootTableHandler.ALLOSAURUS;
+        return LootTableHandler.BARYONYX;
     }
 
     /**
@@ -342,8 +342,8 @@ public class EntityAllosaurus extends EntityTameable {
         }
     }
 
-    public EntityAllosaurus createChild(EntityAgeable ageable) {
-        EntityAllosaurus entitywolf = new EntityAllosaurus(this.world);
+    public EntityBaryonyx createChild(EntityAgeable ageable) {
+        EntityBaryonyx entitywolf = new EntityBaryonyx(this.world);
         UUID uuid = this.getOwnerId();
 
         if (uuid != null) {
@@ -362,10 +362,10 @@ public class EntityAllosaurus extends EntityTameable {
             return false;
         } else if (!this.isTamed()) {
             return false;
-        } else if (!(otherAnimal instanceof EntityAllosaurus)) {
+        } else if (!(otherAnimal instanceof EntityBaryonyx)) {
             return false;
         } else {
-            EntityAllosaurus entitywolf = (EntityAllosaurus) otherAnimal;
+            EntityBaryonyx entitywolf = (EntityBaryonyx) otherAnimal;
 
             if (!entitywolf.isTamed()) {
                 return false;
@@ -379,8 +379,8 @@ public class EntityAllosaurus extends EntityTameable {
 
     public boolean shouldAttackEntity(EntityLivingBase target, EntityLivingBase owner) {
         if (!(target instanceof EntityCreeper) && !(target instanceof EntityGhast)) {
-            if (target instanceof EntityAllosaurus) {
-                EntityAllosaurus entitywolf = (EntityAllosaurus) target;
+            if (target instanceof EntityBaryonyx) {
+                EntityBaryonyx entitywolf = (EntityBaryonyx) target;
 
                 if (entitywolf.isTamed() && entitywolf.getOwner() == owner) {
                     return false;

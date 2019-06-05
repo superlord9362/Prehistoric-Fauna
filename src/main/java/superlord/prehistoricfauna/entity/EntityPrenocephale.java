@@ -40,7 +40,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class EntityDryosaurus extends EntityExtinct {
+public class EntityPrenocephale extends EntityExtinct {
     private EntityAIAvoidEntity<EntityPlayer> avoidEntity;
     private EntityAIAvoidEntity<EntityTyrannosaurus> avoidEntity1;
     /**
@@ -49,7 +49,7 @@ public class EntityDryosaurus extends EntityExtinct {
     private EntityAITempt aiTempt;
     public int timeUntilNextEgg;
 
-    public EntityDryosaurus(World worldIn) {
+    public EntityPrenocephale(World worldIn) {
         super(worldIn);
         this.setSize(1.0F, 1.2F);
         this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
@@ -116,7 +116,7 @@ public class EntityDryosaurus extends EntityExtinct {
     }
 
     public static void registerFixesOcelot(DataFixer fixer) {
-        EntityLiving.registerFixesMob(fixer, EntityDryosaurus.class);
+        EntityLiving.registerFixesMob(fixer, EntityPrenocephale.class);
     }
 
     /**
@@ -172,7 +172,7 @@ public class EntityDryosaurus extends EntityExtinct {
 
     @Nullable
     protected ResourceLocation getLootTable() {
-        return LootTableHandler.DRYOSAURUS;
+        return LootTableHandler.PRENOCEPHALE;
     }
 
     public boolean processInteract(EntityPlayer player, EnumHand hand) {
@@ -191,8 +191,8 @@ public class EntityDryosaurus extends EntityExtinct {
         return super.processInteract(player, hand);
     }
 
-    public EntityDryosaurus createChild(EntityAgeable ageable) {
-        EntityDryosaurus entityocelot = new EntityDryosaurus(this.world);
+    public EntityPrenocephale createChild(EntityAgeable ageable) {
+        EntityPrenocephale entityocelot = new EntityPrenocephale(this.world);
 
         
 
@@ -288,6 +288,6 @@ public class EntityDryosaurus extends EntityExtinct {
 
 	@Override
 	public boolean doesFlock() {
-		return true;
+		return false;
 	}
 }

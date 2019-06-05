@@ -44,8 +44,6 @@ public class RenderExtinct extends RenderLiving<EntityDryosaurus> {
 	
 	@Override
     protected void preRenderCallback(EntityDryosaurus entity, float f) {
-        float scale =  1 * entity.getAgeScale();
-        GlStateManager.scale(scale, scale, scale);
         this.shadowSize = entity.width * 0.45F;
     }
 }

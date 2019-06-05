@@ -1,6 +1,7 @@
 package superlord.prehistoricfauna.entity.renderers;
 
 import superlord.prehistoricfauna.entity.EntityCamarasaurus;
+import superlord.prehistoricfauna.entity.EntityDryosaurus;
 import superlord.prehistoricfauna.entity.EntityGallimimus;
 import superlord.prehistoricfauna.entity.EntityTriceratops;
 import superlord.prehistoricfauna.entity.models.Gallimimus;
@@ -36,5 +37,10 @@ public class CamarasaurusRenderer extends RenderLiving<EntityCamarasaurus> {
         public Render<? super EntityCamarasaurus> createRenderFor(RenderManager manager) {
             return new CamarasaurusRenderer(manager);
         }
+    }
+	
+	@Override
+    protected void preRenderCallback(EntityCamarasaurus entity, float f) {
+        this.shadowSize = entity.width * 0.45F;
     }
 }

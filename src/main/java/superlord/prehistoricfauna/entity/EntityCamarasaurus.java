@@ -25,6 +25,7 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -70,7 +71,7 @@ public class EntityCamarasaurus extends EntityExtinct {
      */
     @Override
     public boolean isBreedingItem(ItemStack stack) {
-        return false;
+        return stack.getItem() == Items.WHEAT;
     }
 
     private int sheepTimer;
@@ -124,17 +125,17 @@ public class EntityCamarasaurus extends EntityExtinct {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return Sounds.TRICERATOPS_IDLE;
+        return Sounds.CAMARASAURUS_IDLE;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
-        return Sounds.TRICERATOPS_HURT;
+        return Sounds.CAMARASAURUS_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return Sounds.TRICERATOPS_HURT;
+        return Sounds.CAMARASAURUS_HURT;
     }
 
     @Override
@@ -144,7 +145,7 @@ public class EntityCamarasaurus extends EntityExtinct {
 
     protected void playWarningSound() {
         if (this.warningSoundTicks <= 0) {
-            this.playSound(Sounds.TRICERATOPS_ANGRY, 1.0F, 1.0F);
+            this.playSound(Sounds.CAMARASAURUS_ANGRY, 1.0F, 1.0F);
             this.warningSoundTicks = 40;
         }
     }

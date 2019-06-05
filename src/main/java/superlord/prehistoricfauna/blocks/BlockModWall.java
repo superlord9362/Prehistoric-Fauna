@@ -65,6 +65,8 @@ public class BlockModWall extends BlockBase implements IHasModel {
         super(name, material);
 
 
+        setHardness(3f);
+        setResistance(5f);
 
         setDefaultState(blockState.getBaseState().withProperty(UP, Boolean.FALSE).withProperty(NORTH, Boolean.FALSE).withProperty(EAST, Boolean.FALSE).withProperty(SOUTH, Boolean.FALSE).withProperty(WEST, Boolean.FALSE));
 

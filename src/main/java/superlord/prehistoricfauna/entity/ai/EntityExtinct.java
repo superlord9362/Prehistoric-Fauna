@@ -33,19 +33,11 @@ public abstract class EntityExtinct extends EntityAnimal{
     private static final DataParameter<Integer> AGETICK = EntityDataManager.<Integer>createKey(EntityExtinct.class, DataSerializers.VARINT);
     public abstract int getAdultAge();
     public int teenAge;
-    public float actualWidth;
-    public float minSize;
-    public float maxSize;
     public boolean hasBabyTexture;
     public boolean hasTeenTexture = false;
     public boolean hasFeatherToggle = false;
     public boolean featherToggle;
 
-    public void setActualSize(float width, float height) {
-        this.actualWidth = width;
-        this.setSize(width, height);
-    }
-    
 
 	public EntityExtinct(World worldIn) {
 		super(worldIn);
@@ -73,73 +65,24 @@ public abstract class EntityExtinct extends EntityAnimal{
 	@Override
 	protected void entityInit() {
 		super.entityInit();
-		this.dataManager.register(AGETICK, 0);
 	}
 	
 	@Override
 	public void writeEntityToNBT(NBTTagCompound compound) {
 		super.writeEntityToNBT(compound);
-		compound.setInteger("AgeTick", this.getAgeInTicks());
 	}
 	
 	@Override
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
-		this.setAgeinTicks(compound.getInteger("AgeTick"));
 	}
 	
-	@Override
-	public boolean processInteract(EntityPlayer player, EnumHand hand) {
-		ItemStack itemStack = player.getHeldItem(hand);
-		if (itemStack.getItem() == ModItems.COBBLE_BRICK && !player.world.isRemote) {
-            if (this.getAgeInDays() < this.getAdultAge()) {
-                    itemStack.shrink(1);
-                    if (!player.capabilities.isCreativeMode) {
-                        player.inventory.addItemStackToInventory(new ItemStack(Items.GLASS_BOTTLE, 1));
-                    }
-                    Main.NETWORK_WRAPPER.sendToAll(new MessageFoodParticles(getEntityId(), Item.getIdFromItem(ModItems.COBBLE_BRICK)));
-                    this.grow(1);
-                    return true;
-                }
-            }
-
-            if (!this.world.isRemote) {
-                player.sendStatusMessage(new TextComponentTranslation("prehistoric.essencefail"), true);
-            }
-
-            return false;
-        }
+	
 
 	
 	
-	 public void grow(int ageInDays) {
-	        this.setAgeInDays(this.getAgeInDays() + ageInDays);
-	        this.setScaleForAge(false);
-	        if (this.getAgeInDays() % 25 == 0) {
-	            for (int i = 0; i < this.getAgeScale() * 4; i++) {
-	                double motionX = getRNG().nextGaussian() * 0.07D;
-	                double motionY = getRNG().nextGaussian() * 0.07D;
-	                double motionZ = getRNG().nextGaussian() * 0.07D;
-	                float f = (float) (getRNG().nextFloat() * (this.getEntityBoundingBox().maxX - this.getEntityBoundingBox().minX) + this.getEntityBoundingBox().minX);
-	                float f1 = (float) (getRNG().nextFloat() * (this.getEntityBoundingBox().maxY - this.getEntityBoundingBox().minY) + this.getEntityBoundingBox().minY);
-	                float f2 = (float) (getRNG().nextFloat() * (this.getEntityBoundingBox().maxZ - this.getEntityBoundingBox().minZ) + this.getEntityBoundingBox().minZ);
-	                if (world.isRemote) {
-	                    this.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, f, f1, f2, motionX, motionY, motionZ, new int[]{});
-	                }
-	            }
-	        }
-	    }
 	
-	@Override
-	public void onUpdate() {
-		super.onUpdate();
-		if(this.getGrowingAge() < 0) {
-			this.setGrowingAge(0);
-		}
-		if (world.isRemote) {
-			this.setScaleForAge(true);
-		}
-	}
+	
 	 
 	    public boolean isMovementBlocked() {
 	        return this.getHealth() <= 0.0F;
@@ -214,13 +157,7 @@ public abstract class EntityExtinct extends EntityAnimal{
 	        return  this.dataManager.get(AGETICK);
 	    }
 	    
-	    public float getAgeScale() {
-	        float step = (this.maxSize - this.minSize) / ((this.getAdultAge() * 24000) + 1);
-	        if (this.getAgeInTicks() > this.getAdultAge() * 24000) {
-	            return this.minSize + ((step) * this.getAdultAge() * 24000);
-	        }
-	        return this.minSize + ((step * this.getAgeInTicks()));
-	    }
+	    
 
 	
 	

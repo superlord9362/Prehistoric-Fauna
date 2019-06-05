@@ -1,5 +1,6 @@
 package superlord.prehistoricfauna.entity.renderers;
 
+import superlord.prehistoricfauna.entity.EntityDryosaurus;
 import superlord.prehistoricfauna.entity.EntityTyrannosaurus;
 import superlord.prehistoricfauna.entity.models.Tyrannosaurus;
 import superlord.prehistoricfauna.util.Reference;
@@ -33,5 +34,10 @@ public class TyrannosaurusRenderer extends RenderLiving<EntityTyrannosaurus> {
         public Render<? super EntityTyrannosaurus> createRenderFor(RenderManager manager) {
             return new TyrannosaurusRenderer(manager);
         }
+    }
+    
+    @Override
+    protected void preRenderCallback(EntityTyrannosaurus entity, float f) {
+        this.shadowSize = entity.width * 0.45F;
     }
 }

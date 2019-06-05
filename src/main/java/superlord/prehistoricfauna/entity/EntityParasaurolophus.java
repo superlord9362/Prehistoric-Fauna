@@ -1,6 +1,8 @@
 package superlord.prehistoricfauna.entity;
 
 import com.google.common.base.Predicate;
+
+import superlord.prehistoricfauna.entity.ai.EntityExtinct;
 import superlord.prehistoricfauna.init.ModItems;
 import superlord.prehistoricfauna.util.handlers.LootTableHandler;
 import superlord.prehistoricfauna.util.handlers.Sounds;
@@ -42,23 +44,25 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public class EntityTriceratops extends EntityAnimal {
-    private static final DataParameter<Boolean> IS_STANDING = EntityDataManager.createKey(EntityTriceratops.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Integer> MODEL_TYPE = EntityDataManager.createKey(EntityTriceratops.class, DataSerializers.VARINT);
+public class EntityParasaurolophus extends EntityExtinct {
+    private static final DataParameter<Boolean> IS_STANDING = EntityDataManager.createKey(EntityParasaurolophus.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Integer> MODEL_TYPE = EntityDataManager.createKey(EntityParasaurolophus.class, DataSerializers.VARINT);
     private float clientSideStandAnimation0;
     private float clientSideStandAnimation;
     private int warningSoundTicks;
     public int timeUntilNextEgg;
+    public int result;
 
-    public EntityTriceratops(World worldIn) {
+    public EntityParasaurolophus(World worldIn) {
         super(worldIn);
         this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
         this.setSize(2.0F, 3.0F);
+        this.result = rand.nextInt(100);
     }
 
     @Override
     public EntityAgeable createChild(EntityAgeable ageable) {
-        return new EntityTriceratops(this.world);
+        return new EntityParasaurolophus(this.world);
     }
 
     /**
@@ -68,7 +72,6 @@ public class EntityTriceratops extends EntityAnimal {
     @Override
     public boolean isBreedingItem(ItemStack stack) {
         return stack.getItem() == Items.WHEAT;
-
     }
 
     private int sheepTimer;
@@ -80,14 +83,14 @@ public class EntityTriceratops extends EntityAnimal {
         this.entityAIEatGrass = new EntityAIEatGrass(this);
         this.tasks.addTask(5, this.entityAIEatGrass);
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityTriceratops.AIMeleeAttack());
-        this.tasks.addTask(1, new EntityTriceratops.AIPanic());
+        this.tasks.addTask(1, new EntityParasaurolophus.AIMeleeAttack());
+        this.tasks.addTask(1, new EntityParasaurolophus.AIPanic());
         this.tasks.addTask(4, new EntityAIFollowParent(this, 1.25D));
         this.tasks.addTask(5, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(7, new EntityAILookIdle(this));
-        this.targetTasks.addTask(1, new EntityTriceratops.AIHurtByTarget());
-        this.targetTasks.addTask(2, new EntityTriceratops.AIAttackPlayer());
+        this.targetTasks.addTask(1, new EntityParasaurolophus.AIHurtByTarget());
+        this.targetTasks.addTask(2, new EntityParasaurolophus.AIAttackPlayer());
     }
 
     @Override
@@ -97,7 +100,7 @@ public class EntityTriceratops extends EntityAnimal {
         }
         if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextEgg <= 0) {
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-            this.dropItem(ModItems.TRICERATOPS_EGG, 1);
+            //this.dropItem(ModItems.CAMARASAURUS_EGG, 1);
             this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
         }
 
@@ -113,7 +116,7 @@ public class EntityTriceratops extends EntityAnimal {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(165.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(600.0D);
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
@@ -122,17 +125,17 @@ public class EntityTriceratops extends EntityAnimal {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return Sounds.TRICERATOPS_IDLE;
+        return Sounds.PARASAUROLOPHUS_IDLE;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
-        return Sounds.TRICERATOPS_HURT;
+        return Sounds.PARASAUROLOPHUS_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return Sounds.TRICERATOPS_HURT;
+        return Sounds.PARASAUROLOPHUS_HURT;
     }
 
     @Override
@@ -142,7 +145,7 @@ public class EntityTriceratops extends EntityAnimal {
 
     protected void playWarningSound() {
         if (this.warningSoundTicks <= 0) {
-            this.playSound(Sounds.TRICERATOPS_ANGRY, 1.0F, 1.0F);
+            this.playSound(Sounds.CAMARASAURUS_ANGRY, 1.0F, 1.0F);
             this.warningSoundTicks = 40;
         }
     }
@@ -150,7 +153,7 @@ public class EntityTriceratops extends EntityAnimal {
     @Override
     @Nullable
     protected ResourceLocation getLootTable() {
-        return LootTableHandler.TRICERATOPS;
+        return LootTableHandler.PARASAUROLOPHUS;
     }
 
     @Override
@@ -239,12 +242,12 @@ public class EntityTriceratops extends EntityAnimal {
      */
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingdata) {
-        if (livingdata instanceof EntityTriceratops.GroupData) {
-            if (((EntityTriceratops.GroupData) livingdata).madeParent) {
+        if (livingdata instanceof EntityParasaurolophus.GroupData) {
+            if (((EntityParasaurolophus.GroupData) livingdata).madeParent) {
                 this.setGrowingAge(-24000);
             }
         } else {
-            EntityTriceratops.GroupData entitypolarbear$groupdata = new EntityTriceratops.GroupData();
+            EntityParasaurolophus.GroupData entitypolarbear$groupdata = new EntityParasaurolophus.GroupData();
             entitypolarbear$groupdata.madeParent = true;
             livingdata = entitypolarbear$groupdata;
         }
@@ -256,25 +259,25 @@ public class EntityTriceratops extends EntityAnimal {
 
     class AIAttackPlayer extends EntityAINearestAttackableTarget<EntityPlayer> {
         public AIAttackPlayer() {
-            super(EntityTriceratops.this, EntityPlayer.class, 20, true, true, (Predicate) null);
+            super(EntityParasaurolophus.this, EntityPlayer.class, 20, true, true, (Predicate) null);
         }
 
         /**
          * Returns whether the EntityAIBase should begin execution.
          */
         public boolean shouldExecute() {
-            if (EntityTriceratops.this.isChild()) {
+            if (EntityParasaurolophus.this.isChild()) {
                 return false;
             } else {
                 if (super.shouldExecute()) {
-                    for (EntityTriceratops entitypolarbear : EntityTriceratops.this.world.getEntitiesWithinAABB(EntityTriceratops.class, EntityTriceratops.this.getEntityBoundingBox().grow(8.0D, 4.0D, 8.0D))) {
+                    for (EntityParasaurolophus entitypolarbear : EntityParasaurolophus.this.world.getEntitiesWithinAABB(EntityParasaurolophus.class, EntityParasaurolophus.this.getEntityBoundingBox().grow(8.0D, 4.0D, 8.0D))) {
                         if (entitypolarbear.isChild()) {
                             return true;
                         }
                     }
                 }
 
-                EntityTriceratops.this.setAttackTarget((EntityLivingBase) null);
+                EntityParasaurolophus.this.setAttackTarget((EntityLivingBase) null);
                 return false;
             }
         }
@@ -286,7 +289,7 @@ public class EntityTriceratops extends EntityAnimal {
 
     class AIHurtByTarget extends EntityAIHurtByTarget {
         public AIHurtByTarget() {
-            super(EntityTriceratops.this, false);
+            super(EntityParasaurolophus.this, false);
         }
 
         /**
@@ -295,14 +298,14 @@ public class EntityTriceratops extends EntityAnimal {
         public void startExecuting() {
             super.startExecuting();
 
-            if (EntityTriceratops.this.isChild()) {
+            if (EntityParasaurolophus.this.isChild()) {
                 this.alertOthers();
                 this.resetTask();
             }
         }
 
         protected void setEntityAttackTarget(EntityCreature creatureIn, EntityLivingBase entityLivingBaseIn) {
-            if (creatureIn instanceof EntityTriceratops && !creatureIn.isChild()) {
+            if (creatureIn instanceof EntityParasaurolophus && !creatureIn.isChild()) {
                 super.setEntityAttackTarget(creatureIn, entityLivingBaseIn);
             }
         }
@@ -310,7 +313,7 @@ public class EntityTriceratops extends EntityAnimal {
 
     class AIMeleeAttack extends EntityAIAttackMelee {
         public AIMeleeAttack() {
-            super(EntityTriceratops.this, 1.25D, true);
+            super(EntityParasaurolophus.this, 1.25D, true);
         }
 
         protected void checkAndPerformAttack(EntityLivingBase p_190102_1_, double p_190102_2_) {
@@ -319,20 +322,20 @@ public class EntityTriceratops extends EntityAnimal {
             if (p_190102_2_ <= d0 && this.attackTick <= 0) {
                 this.attackTick = 20;
                 this.attacker.attackEntityAsMob(p_190102_1_);
-                EntityTriceratops.this.setStanding(false);
+                EntityParasaurolophus.this.setStanding(false);
             } else if (p_190102_2_ <= d0 * 2.0D) {
                 if (this.attackTick <= 0) {
-                    EntityTriceratops.this.setStanding(false);
+                    EntityParasaurolophus.this.setStanding(false);
                     this.attackTick = 20;
                 }
 
                 if (this.attackTick <= 10) {
-                    EntityTriceratops.this.setStanding(true);
-                    EntityTriceratops.this.playWarningSound();
+                    EntityParasaurolophus.this.setStanding(true);
+                    EntityParasaurolophus.this.playWarningSound();
                 }
             } else {
                 this.attackTick = 20;
-                EntityTriceratops.this.setStanding(false);
+                EntityParasaurolophus.this.setStanding(false);
             }
         }
 
@@ -340,7 +343,7 @@ public class EntityTriceratops extends EntityAnimal {
          * Reset the task's internal state. Called when this task is interrupted by another one
          */
         public void resetTask() {
-            EntityTriceratops.this.setStanding(false);
+            EntityParasaurolophus.this.setStanding(false);
             super.resetTask();
         }
 
@@ -351,14 +354,14 @@ public class EntityTriceratops extends EntityAnimal {
 
     class AIPanic extends EntityAIPanic {
         public AIPanic() {
-            super(EntityTriceratops.this, 2.0D);
+            super(EntityParasaurolophus.this, 2.0D);
         }
 
         /**
          * Returns whether the EntityAIBase should begin execution.
          */
         public boolean shouldExecute() {
-            return (EntityTriceratops.this.isChild() || EntityTriceratops.this.isBurning()) && super.shouldExecute();
+            return (EntityParasaurolophus.this.isChild() || EntityParasaurolophus.this.isBurning()) && super.shouldExecute();
         }
     }
 
@@ -368,4 +371,14 @@ public class EntityTriceratops extends EntityAnimal {
         private GroupData() {
         }
     }
+
+	@Override
+	public int getAdultAge() {
+		return 13;
+	}
+
+	@Override
+	public boolean doesFlock() {
+		return false;
+	}
 }

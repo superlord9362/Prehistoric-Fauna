@@ -1,5 +1,6 @@
 package superlord.prehistoricfauna.entity.renderers;
 
+import superlord.prehistoricfauna.entity.EntityDryosaurus;
 import superlord.prehistoricfauna.entity.EntityVelociraptor;
 import superlord.prehistoricfauna.entity.models.Velociraptor;
 import superlord.prehistoricfauna.util.Reference;
@@ -33,5 +34,10 @@ public class VelociraptorRenderer extends RenderLiving<EntityVelociraptor> {
         public Render<? super EntityVelociraptor> createRenderFor(RenderManager manager) {
             return new VelociraptorRenderer(manager);
         }
+    }
+    
+    @Override
+    protected void preRenderCallback(EntityVelociraptor entity, float f) {
+        this.shadowSize = entity.width * 0.45F;
     }
 }

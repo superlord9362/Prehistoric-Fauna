@@ -141,7 +141,7 @@ public class EntityTyrannosaurus extends EntityTameable {
 
     protected SoundEvent getAmbientSound() {
         if (this.isAngry()) {
-            return SoundEvents.ENTITY_WOLF_GROWL;
+            return Sounds.TYRANNOSAURUS_ANGRY;
         } else {
             return Sounds.TYRANNOSAURUS_IDLE;
         }

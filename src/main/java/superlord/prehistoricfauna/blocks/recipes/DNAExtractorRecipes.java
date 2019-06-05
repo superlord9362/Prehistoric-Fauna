@@ -42,6 +42,10 @@ public class DNAExtractorRecipes
         this.addSmelting(ModItems.TYRANNOSAURUS_TOOTH, new ItemStack(ModItems.TYRANNOSAURUS_DNA), 0.35F);
         this.addSmelting(ModItems.VELOCIRAPTOR_CLAW, new ItemStack(ModItems.VELOCIRAPTOR_DNA), 0.35F);
         this.addSmelting(ModItems.ALLOSAURUS_SKULL, new ItemStack(ModItems.ALLOSAURUS_DNA), 0.35F);
+        this.addSmelting(ModItems.ANKYLOSAURUS_TAIL, new ItemStack(ModItems.ANKYLOSAURUS_DNA), 0.35F);
+        this.addSmelting(ModItems.BARYONYX_CLAW, new ItemStack(ModItems.BARYONYX_DNA), 0.35F);
+        this.addSmelting(ModItems.PARASAUROLOPHUS_SKULL, new ItemStack(ModItems.PARASAUROLOPHUS_DNA), 0.35F);
+        this.addSmelting(ModItems.PRENOCEPHALE_SKULL, new ItemStack(ModItems.PRENOCEPHALE_DNA), 0.35F);
     }
     
     /**

@@ -1,5 +1,6 @@
 package superlord.prehistoricfauna.entity.renderers;
 
+import superlord.prehistoricfauna.entity.EntityDryosaurus;
 import superlord.prehistoricfauna.entity.EntityTriceratops;
 import superlord.prehistoricfauna.entity.models.Triceratops;
 import superlord.prehistoricfauna.util.Reference;
@@ -35,5 +36,10 @@ public class TriceratopsRenderer extends RenderLiving<EntityTriceratops> {
         public Render<? super EntityTriceratops> createRenderFor(RenderManager manager) {
             return new TriceratopsRenderer(manager);
         }
+    }
+    
+    @Override
+    protected void preRenderCallback(EntityTriceratops entity, float f) {
+        this.shadowSize = entity.width * 0.45F;
     }
 }

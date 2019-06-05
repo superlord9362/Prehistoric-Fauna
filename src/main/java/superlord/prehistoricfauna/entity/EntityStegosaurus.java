@@ -70,7 +70,8 @@ public class EntityStegosaurus extends EntityAnimal
      */
     public boolean isBreedingItem(ItemStack stack)
     {
-        return false;
+        return stack.getItem() == Items.WHEAT;
+
     }
     
     private int sheepTimer;
@@ -126,17 +127,17 @@ public class EntityStegosaurus extends EntityAnimal
 
     protected SoundEvent getAmbientSound()
     {
-    	return Sounds.TRICERATOPS_IDLE;
+    	return Sounds.STEGOSAURUS_IDLE;
     }
 
     protected SoundEvent getHurtSound(DamageSource p_184601_1_)
     {
-        return Sounds.TRICERATOPS_HURT;
+        return Sounds.STEGOSAURUS_HURT;
     }
 
     protected SoundEvent getDeathSound()
     {
-        return Sounds.TRICERATOPS_HURT;
+        return Sounds.STEGOSAURUS_HURT;
     }
 
     protected void playStepSound(BlockPos pos, Block blockIn)
