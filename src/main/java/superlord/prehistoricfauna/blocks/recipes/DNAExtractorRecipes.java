@@ -46,14 +46,31 @@ public class DNAExtractorRecipes {
 
     public static void init() {
 
-        
+        RecipeAnalyzer plantFossil = new RecipeAnalyzer(ModItems.ALLOSAURUS_SKULL)
 
-        RecipeAnalyzer bioFossil = new RecipeAnalyzer(ModItems.VELOCIRAPTOR_CLAW)
+                .addOutput(new ItemStack(Blocks.SAND, 2), 50F)
+
+                .addOutput(new ItemStack(Items.DYE, 1, 2), 35F)
+
+                .addOutput(new ItemStack(ModItems.ALLOSAURUS_DNA, 1), 15F);
+
+        registerAnalyzer(plantFossil);
+
+        RecipeAnalyzer bioFossil = new RecipeAnalyzer(ModItems.ANKYLOSAURUS_TAIL)
 
                 .addOutput(new ItemStack(Items.DYE, 1, 15), 50F)
 
-                .addOutput(new ItemStack(Blocks.SAND, 2), 35F)
-        		.addOutput(new ItemStack(ModItems.VELOCIRAPTOR_DNA), 15F);
+                .addOutput(new ItemStack(Blocks.SAND, 2), 35F);
+
+        List<EntityType> bioFossilEntityList = EntityType.getTimePeriodList(TimePeriod.MESOZOIC, TimePeriod.PALEOZOIC);
+
+        float bioFossilDNAChance = 15F / (float) bioFossilEntityList.size();
+
+        for (int i = 0; i < bioFossilEntityList.size(); i++) {
+
+            bioFossil.addOutput(new ItemStack(bioFossilEntityList.get(i).dnaItem), bioFossilDNAChance);
+
+        }
 
         registerAnalyzer(bioFossil);
 

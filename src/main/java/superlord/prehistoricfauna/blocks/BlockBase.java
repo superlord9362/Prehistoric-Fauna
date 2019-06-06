@@ -11,9 +11,9 @@ public class BlockBase extends Block implements IHasModel {
 
     public BlockBase(String name, Material material) {
         super(material);
-
         setHardness(3f);
         setResistance(5f);
+        setTranslationKey(name);
         setRegistryName(name);
         setCreativeTab(PFTabRegistry.NORMAL);
     }

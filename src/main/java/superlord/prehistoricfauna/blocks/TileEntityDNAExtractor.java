@@ -2,7 +2,6 @@ package superlord.prehistoricfauna.blocks;
 
 
 
-
 import net.minecraft.entity.player.EntityPlayer;
 
 import net.minecraft.inventory.IInventory;
@@ -248,6 +247,7 @@ public class TileEntityDNAExtractor extends TileEntity implements IInventory, IS
 
 					if (!stack.isEmpty()) {
 
+						
 
 					}
 
@@ -541,6 +541,7 @@ public class TileEntityDNAExtractor extends TileEntity implements IInventory, IS
 
 			if (!this.stacks.get(slots).isEmpty()) {
 
+				
 
 			}
 
