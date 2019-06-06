@@ -1,296 +1,406 @@
 package superlord.prehistoricfauna.blocks;
 
 
+import net.minecraft.block.BlockContainer;
 
-import java.util.Random;
 import net.minecraft.block.BlockHorizontal;
+
 import net.minecraft.block.SoundType;
+
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyBool;
+
 import net.minecraft.block.properties.PropertyDirection;
+
 import net.minecraft.block.state.BlockStateContainer;
+
 import net.minecraft.block.state.IBlockState;
+
 import net.minecraft.entity.EntityLivingBase;
+
 import net.minecraft.entity.player.EntityPlayer;
+
+import net.minecraft.inventory.Container;
+
+import net.minecraft.inventory.IInventory;
+
+import net.minecraft.inventory.InventoryHelper;
+
 import net.minecraft.item.Item;
+
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
+
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityFurnace;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
+
+import net.minecraft.util.*;
+
 import net.minecraft.util.math.BlockPos;
+
+import net.minecraft.util.math.RayTraceResult;
+
 import net.minecraft.world.World;
+
+import net.minecraftforge.fml.relauncher.Side;
+
+import net.minecraftforge.fml.relauncher.SideOnly;
 import superlord.prehistoricfauna.Main;
 import superlord.prehistoricfauna.init.ModBlocks;
-import superlord.prehistoricfauna.util.Reference;
+import superlord.prehistoricfauna.tab.PFTabRegistry;
+import superlord.prehistoricfauna.util.BlockEntity;
+import superlord.prehistoricfauna.util.DefaultRenderedItem;
+
+import java.util.Random;
 
 
 
-public class BlockDNAExtractor2 extends BlockBase
-
-{
+public class BlockDNAExtractor2 extends BlockContainer implements DefaultRenderedItem, BlockEntity {
 
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
-	public static final PropertyBool BURNING = PropertyBool.create("burning");
 
-	
 
-	public BlockDNAExtractor2(String name) 
+	private static boolean keepInventory = false;
 
-	{
 
-		super(name, Material.IRON);
 
-        setHardness(3f);
-        setResistance(5f);
-		setSoundType(SoundType.METAL);
+	public BlockDNAExtractor2(boolean isActive) {
 
-		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(BURNING, false));
+		super(Material.IRON);
 
-	}
+		this.setHardness(3.0F);
 
-	
+		this.setSoundType(SoundType.METAL);
 
-	@Override
+		if (isActive) {
 
-	public Item getItemDropped(IBlockState state, Random rand, int fortune) 
+			this.setLightLevel(0.9375F);
+			setRegistryName("dna_extractor2_on");
 
-	{
 
-		return Item.getItemFromBlock(ModBlocks.DNA_EXTRACTOR2);
+		} else {
 
-	}
 
-	
+			this.setCreativeTab(PFTabRegistry.NORMAL);
+			setRegistryName("dna_extractor2");
 
-	@Override
+		}
 
-	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
-
-	{
-
-		return new ItemStack(ModBlocks.DNA_EXTRACTOR2);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 
 	}
 
-	
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    {
-        if (worldIn.isRemote)
-        {
-            return true;
-        }
-        else
-        {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
-
-            if (tileentity instanceof TileEntityDNAExtractor)
-            {
-                playerIn.displayGUIChest((TileEntityDNAExtractor)tileentity);
-                playerIn.addStat(StatList.FURNACE_INTERACTION);
-            }
-
-            return true;
-        }
-    }
-
-	
-
-	@Override
-
-	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) 
-
-	{
-
-		if (!worldIn.isRemote) 
-
-        {
-
-            IBlockState north = worldIn.getBlockState(pos.north());
-
-            IBlockState south = worldIn.getBlockState(pos.south());
-
-            IBlockState west = worldIn.getBlockState(pos.west());
-
-            IBlockState east = worldIn.getBlockState(pos.east());
-
-            EnumFacing face = (EnumFacing)state.getValue(FACING);
 
 
+	public static void setState(boolean isActive, World world, BlockPos pos) {
 
-            if (face == EnumFacing.NORTH && north.isFullBlock() && !south.isFullBlock()) face = EnumFacing.SOUTH;
+		TileEntity tile = world.getTileEntity(pos);
 
-            else if (face == EnumFacing.SOUTH && south.isFullBlock() && !north.isFullBlock()) face = EnumFacing.NORTH;
+		EnumFacing facing = EnumFacing.NORTH;
 
-            else if (face == EnumFacing.WEST && west.isFullBlock() && !east.isFullBlock()) face = EnumFacing.EAST;
+		if(world.getBlockState(pos).getBlock() instanceof BlockDNAExtractor2){
 
-            else if (face == EnumFacing.EAST && east.isFullBlock() && !west.isFullBlock()) face = EnumFacing.WEST;
+			facing = world.getBlockState(pos).getValue(FACING);
 
-            worldIn.setBlockState(pos, state.withProperty(FACING, face), 2);
+		}
 
-        }
+		keepInventory = true;
 
-	}
+		if (isActive) {
 
-	
+			world.setBlockState(pos, ModBlocks.ANALYZER_ACTIVE.getDefaultState().withProperty(FACING, facing));
 
-	public static void setState(boolean active, World worldIn, BlockPos pos) 
+		} else {
 
-	{
+			world.setBlockState(pos, ModBlocks.ANALYZER.getDefaultState().withProperty(FACING, facing));
 
-		IBlockState state = worldIn.getBlockState(pos);
+		}
 
-		TileEntity tileentity = worldIn.getTileEntity(pos);
+		keepInventory = false;
 
-		
+		if (tile != null) {
 
-		//if(active) worldIn.setBlockState(pos, BlockInit.SINTERING_FURNACE.getDefaultState().withProperty(FACING, state.getValue(FACING)).withProperty(BURNING, true), 3);
+			tile.validate();
 
-		//else worldIn.setBlockState(pos, BlockInit.SINTERING_FURNACE.getDefaultState().withProperty(FACING, state.getValue(FACING)).withProperty(BURNING, false), 3);
-
-		
-
-		if(tileentity != null) 
-
-		{
-
-			tileentity.validate();
-
-			worldIn.setTileEntity(pos, tileentity);
+			world.setTileEntity(pos, tile);
 
 		}
 
 	}
 
-	
+
+
+	@SuppressWarnings("deprecation")
 
 	@Override
 
-	public boolean hasTileEntity(IBlockState state) 
-
-	{
-
-		return true;
-
-	}
-
-	
-
-	@Override
-
-	public TileEntity createTileEntity(World world, IBlockState state) 
-
-	{
-
-		return new TileEntityDNAExtractor();
-
-	}
-
-	
-
-	@Override
-
-	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) 
-
-	{
-
-		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
-
-	}
-
-	
-
-	@Override
-
-	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) 
-
-	{
-
-		worldIn.setBlockState(pos, this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
-
-	}
-
-	
-
-	@Override
-
-	public EnumBlockRenderType getRenderType(IBlockState state) 
-
-	{
+	public EnumBlockRenderType getRenderType(IBlockState state) {
 
 		return EnumBlockRenderType.MODEL;
 
 	}
 
-	
+
 
 	@Override
 
-	public IBlockState withRotation(IBlockState state, Rotation rot)
+	public Item getItemDropped(IBlockState state, Random random, int fortune) {
 
-	{
-
-		return state.withProperty(FACING, rot.rotate((EnumFacing)state.getValue(FACING)));
+		return Item.getItemFromBlock(ModBlocks.ANALYZER);
 
 	}
 
-	
 
-	@Override
 
-	public IBlockState withMirror(IBlockState state, Mirror mirrorIn) 
+	@SuppressWarnings("deprecation")
 
-	{
+	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
 
-		return state.withRotation(mirrorIn.toRotation((EnumFacing)state.getValue(FACING)));
+		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
 
 	}
 
-	
 
-	@Override
 
-	protected BlockStateContainer createBlockState() 
+	private void setDefaultFacing(World world, BlockPos pos, IBlockState state) {
 
-	{
+		if (!world.isRemote) {
 
-		return new BlockStateContainer(this, new IProperty[] {BURNING,FACING});
+			IBlockState north = world.getBlockState(pos.north());
+
+			IBlockState south = world.getBlockState(pos.south());
+
+			IBlockState west = world.getBlockState(pos.west());
+
+			IBlockState east = world.getBlockState(pos.east());
+
+			EnumFacing facing = state.getValue(FACING);
+
+			if (facing == EnumFacing.NORTH && north.isFullBlock() && !south.isFullBlock()) {
+
+				facing = EnumFacing.SOUTH;
+
+			} else if (facing == EnumFacing.SOUTH && south.isFullBlock() && !north.isFullBlock()) {
+
+				facing = EnumFacing.NORTH;
+
+			} else if (facing == EnumFacing.WEST && west.isFullBlock() && !east.isFullBlock()) {
+
+				facing = EnumFacing.EAST;
+
+			} else if (facing == EnumFacing.EAST && east.isFullBlock() && !west.isFullBlock()) {
+
+				facing = EnumFacing.WEST;
+
+			}
+
+			world.setBlockState(pos, state.withProperty(FACING, facing), 2);
+
+		}
 
 	}
 
-	
+
 
 	@Override
 
-	public IBlockState getStateFromMeta(int meta) 
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
 
-	{
+		if (!world.isRemote) {
 
-		EnumFacing facing = EnumFacing.getFront(meta);
+			player.openGui(Main.instance, Main.PROXY.GUI_ANALYZER, world, pos.getX(), pos.getY(), pos.getZ());
 
-		if(facing.getAxis() == EnumFacing.Axis.Y) facing = EnumFacing.NORTH;
+		}
+
+		return true;
+
+	}
+
+
+
+	@Override
+
+	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+
+		world.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
+
+		if (stack.hasDisplayName()) {
+
+			TileEntity tile = world.getTileEntity(pos);
+
+			if (tile instanceof TileEntityDNAExtractor) {
+
+				((TileEntityDNAExtractor) tile).setCustomName(stack.getDisplayName());
+
+			}
+
+		}
+
+	}
+
+
+
+	@Override
+
+	public void breakBlock(World world, BlockPos pos, IBlockState state) {
+
+		this.dropInventory(world, pos);
+
+		super.breakBlock(world, pos, state);
+
+	}
+
+
+
+	private void dropInventory(World world, BlockPos pos) {
+
+		if (!keepInventory  || !(world.getBlockState(pos).getBlock() instanceof BlockDNAExtractor2)) {
+
+			TileEntity entity = world.getTileEntity(pos);
+
+			if (entity == null) {
+
+				return;
+
+			}
+
+			if (entity instanceof TileEntityDNAExtractor) {
+
+				TileEntityDNAExtractor analyzer = (TileEntityDNAExtractor)entity;
+
+				for (int i = 0; i < analyzer.getSizeInventory(); i++) {
+
+					ItemStack stack = analyzer.getStackInSlot(i);
+
+					if (!stack.isEmpty()) {
+
+						InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), stack);
+
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+
+
+	@Override
+
+	public TileEntity createNewTileEntity(World world, int metadata) {
+
+		return new TileEntityDNAExtractor();
+
+	}
+
+
+
+	@SuppressWarnings("deprecation")
+
+	@Override
+
+	public boolean hasComparatorInputOverride(IBlockState state) {
+
+		return true;
+
+	}
+
+
+
+	@SuppressWarnings("deprecation")
+
+	@Override
+
+	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos) {
+
+		return Container.calcRedstoneFromInventory((IInventory) world.getTileEntity(pos));
+
+	}
+
+
+
+	@Override
+
+	@SideOnly(Side.CLIENT)
+
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+
+		return new ItemStack(ModBlocks.ANALYZER);
+
+	}
+
+
+
+	@SuppressWarnings("deprecation")
+
+	@Override
+
+	public IBlockState getStateFromMeta(int meta) {
+
+		EnumFacing facing = EnumFacing.byIndex(meta);
+
+		if (facing.getAxis() == EnumFacing.Axis.Y) {
+
+			facing = EnumFacing.NORTH;
+
+		}
 
 		return this.getDefaultState().withProperty(FACING, facing);
 
 	}
 
-	
+
 
 	@Override
 
-	public int getMetaFromState(IBlockState state) 
+	public int getMetaFromState(IBlockState state) {
 
-	{
+		return state.getValue(FACING).getIndex();
 
-		return ((EnumFacing)state.getValue(FACING)).getIndex();
+	}
 
-	}	
 
+
+	@SuppressWarnings("deprecation")
+
+	@Override
+
+	public IBlockState withRotation(IBlockState state, Rotation rotation) {
+
+		return state.withProperty(FACING, rotation.rotate(state.getValue(FACING)));
+
+	}
+
+
+
+	@SuppressWarnings("deprecation")
+
+	@Override
+
+	public IBlockState withMirror(IBlockState state, Mirror mirror) {
+
+		return state.withRotation(mirror.toRotation(state.getValue(FACING)));
+
+	}
+
+
+
+	@Override
+
+	protected BlockStateContainer createBlockState() {
+
+		return new BlockStateContainer(this, FACING);
+
+	}
+
+
+
+	@Override
+
+	public Class<? extends TileEntity> getEntity() {
+
+		return TileEntityDNAExtractor.class;
+
+	}
 }

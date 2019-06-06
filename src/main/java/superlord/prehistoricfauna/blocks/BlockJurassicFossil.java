@@ -23,7 +23,6 @@ public class BlockJurassicFossil extends BlockBase implements IHasModel {
         setHardness(3f);
         setResistance(5f);
         setSoundType(SoundType.STONE);
-        setUnlocalizedName(name);
         setHarvestLevel("pickaxe", 2);
     }
 

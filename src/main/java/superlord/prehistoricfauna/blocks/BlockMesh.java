@@ -8,6 +8,7 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import superlord.prehistoricfauna.Main;
+import superlord.prehistoricfauna.tab.PFTabRegistry;
 import superlord.prehistoricfauna.util.IHasModel;
 
 public class BlockMesh extends BlockBreakable implements IHasModel {
@@ -15,8 +16,7 @@ public class BlockMesh extends BlockBreakable implements IHasModel {
 	public BlockMesh(Material materialIn, boolean ignoreSimilarityIn, String name) {
 		super(materialIn, ignoreSimilarityIn);
 		setRegistryName(name);
-		setUnlocalizedName(name);
-		setCreativeTab(Main.tabPrehistoric);
+		setCreativeTab(PFTabRegistry.NORMAL);
 
         setHardness(3f);
         setResistance(5f);

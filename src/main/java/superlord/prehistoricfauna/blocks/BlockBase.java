@@ -1,6 +1,7 @@
 package superlord.prehistoricfauna.blocks;
 
 import superlord.prehistoricfauna.Main;
+import superlord.prehistoricfauna.tab.PFTabRegistry;
 import superlord.prehistoricfauna.util.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -14,8 +15,7 @@ public class BlockBase extends Block implements IHasModel {
         setHardness(3f);
         setResistance(5f);
         setRegistryName(name);
-        setUnlocalizedName(name);
-        setCreativeTab(Main.tabPrehistoric);
+        setCreativeTab(PFTabRegistry.NORMAL);
     }
 
     @Override

@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Random;
 import superlord.prehistoricfauna.Main;
 import superlord.prehistoricfauna.init.ModItems;
+import superlord.prehistoricfauna.tab.PFTabRegistry;
 import superlord.prehistoricfauna.util.IHasModel;
 
 public class CretaceousFossil extends BlockBase implements IHasModel {
@@ -30,8 +31,7 @@ public class CretaceousFossil extends BlockBase implements IHasModel {
         this.setHardness(3.0F);
         this.setResistance(5.0F);
         this.setSoundType(SoundType.STONE);
-        this.setUnlocalizedName(name);
-        this.setCreativeTab(Main.tabPrehistoric);
+        this.setCreativeTab(PFTabRegistry.NORMAL);
         this.setHarvestLevel("pickaxe", 2);
         this.randomMeta = 0;
     }
