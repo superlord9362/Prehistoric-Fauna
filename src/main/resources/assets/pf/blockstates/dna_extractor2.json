@@ -1,25 +1,37 @@
 {
 
-    "variants": 
+  "variants": {
 
-    {
+    "facing=south": {
 
-        "burning=false,facing=north": { "model": "pf:dna_extractor" },
+      "model": "pf:dna_extractor2",
 
-        "burning=false,facing=east": { "model": "pf:dna_extractor", "y": 90 },
+      "y": 180
 
-        "burning=false,facing=south": { "model": "pf:dna_extractor", "y": 180 },
+    },
 
-        "burning=false,facing=west": { "model": "pf:dna_extractor", "y": 270 },
+    "facing=north": {
 
-        "burning=true,facing=north": { "model": "pf:dna_extractor_on"},
+      "model": "pf:dna_extractor2"
 
-        "burning=true,facing=east": { "model": "pf:dna_extractor_on", "y": 90 },
+    },
 
-        "burning=true,facing=south": { "model": "pf:dna_extractor_on", "y": 180 },
+    "facing=east": {
 
-        "burning=true,facing=west": { "model": "pf:dna_extractor_on", "y":270  }
+      "model": "pf:dna_extractor2",
+
+      "y": 90
+
+    },
+
+    "facing=west": {
+
+      "model": "pf:dna_extractor2",
+
+      "y": 270
 
     }
+
+  }
 
 }

@@ -223,5 +223,14 @@
                 "stream": true
             }
         ]
+    },
+    "ankylosaurus_angry": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/ankylosaurus_angry",
+                "stream": true
+            }
+        ]
     }
 }
