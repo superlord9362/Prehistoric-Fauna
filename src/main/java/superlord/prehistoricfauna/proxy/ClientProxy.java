@@ -28,6 +28,7 @@ import superlord.prehistoricfauna.entity.renderers.RenderStegosaurus;
 import superlord.prehistoricfauna.entity.renderers.TriceratopsRenderer;
 import superlord.prehistoricfauna.entity.renderers.TyrannosaurusRenderer;
 import superlord.prehistoricfauna.entity.renderers.VelociraptorRenderer;
+import superlord.prehistoricfauna.util.handlers.GUIHandler;
 import superlord.prehistoricfauna.world.gen.ModWorldGen;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,6 +38,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -59,8 +61,12 @@ public class ClientProxy extends CommonProxy implements IProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityPrenocephale.class, RenderPrenocephale.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityParasaurolophus.class, RenderParasaurolophus.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityBaryonyx.class, RenderBaryonyx.FACTORY);
-        NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, this);
         GameRegistry.registerWorldGenerator(new ModWorldGen(), 3);
+    }
+    
+    @Override
+    public void init(FMLInitializationEvent event) {
+    	NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, new GUIHandler());
     }
 
     @Override
@@ -68,22 +74,4 @@ public class ClientProxy extends CommonProxy implements IProxy {
         ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), id));
     }
     
-    @Override
-
-    @SideOnly(Side.CLIENT)
-
-    public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
-
-        BlockPos pos = new BlockPos(x, y, z);
-
-        TileEntity entity = world.getTileEntity(pos);
-
-        if (id == GUI_ANALYZER && entity instanceof TileEntityDNAExtractor) {
-
-            return new GUIDecoder(player.inventory, (TileEntityDNAExtractor) entity);
-
-        }
-
-        return null;
-    }
 }

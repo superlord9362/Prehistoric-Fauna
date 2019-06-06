@@ -43,7 +43,7 @@ public class Main {
 
     @EventHandler
     public static void init(FMLInitializationEvent event) {
-        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+    	proxy.init(event);
     }
 
     @EventHandler

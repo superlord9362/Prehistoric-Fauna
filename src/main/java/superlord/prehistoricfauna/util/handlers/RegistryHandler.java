@@ -16,6 +16,7 @@ import superlord.prehistoricfauna.entity.EntityVelociraptor;
 import superlord.prehistoricfauna.init.ModItems;
 import superlord.prehistoricfauna.util.IHasModel;
 import superlord.prehistoricfauna.util.Reference;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -49,6 +50,10 @@ public class RegistryHandler {
     @SubscribeEvent
     public static void onItemRegister(RegistryEvent.Register<Item> event) {
         event.getRegistry().registerAll(ModItems.ITEMS.toArray(new Item[0]));
+    }
+    
+    @SubscribeEvent
+    public static void onBlockRegister(RegistryEvent.Register<Block> event) {
     }
 
     @SubscribeEvent
