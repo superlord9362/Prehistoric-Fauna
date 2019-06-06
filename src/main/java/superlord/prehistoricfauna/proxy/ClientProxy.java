@@ -1,5 +1,8 @@
 package superlord.prehistoricfauna.proxy;
 
+import superlord.prehistoricfauna.Main;
+import superlord.prehistoricfauna.blocks.TileEntityDNAExtractor;
+import superlord.prehistoricfauna.client.gui.GUIDecoder;
 import superlord.prehistoricfauna.entity.EntityAllosaurus;
 import superlord.prehistoricfauna.entity.EntityAnkylosaurus;
 import superlord.prehistoricfauna.entity.EntityBaryonyx;
@@ -27,16 +30,21 @@ import superlord.prehistoricfauna.entity.renderers.TyrannosaurusRenderer;
 import superlord.prehistoricfauna.entity.renderers.VelociraptorRenderer;
 import superlord.prehistoricfauna.world.gen.ModWorldGen;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class ClientProxy implements IProxy {
+public class ClientProxy extends CommonProxy implements IProxy {
     @Override
     public void preInit(FMLPreInitializationEvent event) {
         RenderingRegistry.registerEntityRenderingHandler(EntityTriceratops.class, TriceratopsRenderer.FACTORY);
@@ -51,11 +59,31 @@ public class ClientProxy implements IProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityPrenocephale.class, RenderPrenocephale.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityParasaurolophus.class, RenderParasaurolophus.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityBaryonyx.class, RenderBaryonyx.FACTORY);
+        NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, this);
         GameRegistry.registerWorldGenerator(new ModWorldGen(), 3);
     }
 
     @Override
     public void registerItemRenderer(Item item, int meta, String id) {
         ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), id));
+    }
+    
+    @Override
+
+    @SideOnly(Side.CLIENT)
+
+    public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
+
+        BlockPos pos = new BlockPos(x, y, z);
+
+        TileEntity entity = world.getTileEntity(pos);
+
+        if (id == GUI_ANALYZER && entity instanceof TileEntityDNAExtractor) {
+
+            return new GUIDecoder(player.inventory, (TileEntityDNAExtractor) entity);
+
+        }
+
+        return null;
     }
 }

@@ -6,6 +6,7 @@ import superlord.prehistoricfauna.util.IHasModel;
 import superlord.prehistoricfauna.Main;
 import superlord.prehistoricfauna.entity.*;
 import superlord.prehistoricfauna.init.ModItems;
+import superlord.prehistoricfauna.tab.PFTabRegistry;
 
 public class PrehistoricEntityItem extends Item implements IHasModel {
 
@@ -20,12 +21,11 @@ public class PrehistoricEntityItem extends Item implements IHasModel {
 		super();
 
 		this.type = type;
-		setUnlocalizedName(name);
 
 		this.resourceName = type.resourceName + "_" + name;
 		setRegistryName(name);
 		
-		this.setCreativeTab(Main.tabEgg);
+		this.setCreativeTab(PFTabRegistry.EGG);
 		ModItems.ITEMS.add(this);
 
 	}

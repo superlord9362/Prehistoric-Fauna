@@ -4,6 +4,7 @@ import superlord.prehistoricfauna.init.ModItems;
 import superlord.prehistoricfauna.network.GuiHandler;
 import superlord.prehistoricfauna.proxy.CommonProxy;
 import superlord.prehistoricfauna.proxy.IProxy;
+import superlord.prehistoricfauna.util.ReleaseType;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
@@ -29,7 +30,7 @@ public class Main {
     
     public static SimpleNetworkWrapper NETWORK_WRAPPER;
     public static CommonProxy PROXY;
-
+	public static final ReleaseType RELEASE_TYPE = ReleaseType.parseVersion(VERSION);
     public static final Logger LOGGER = LogManager.getLogger(NAME);
 
     @SidedProxy(clientSide = CLIENT_PROXY, serverSide = COMMON_PROXY)
@@ -49,17 +50,5 @@ public class Main {
     public static void postInit(FMLPostInitializationEvent event) {
     }
 
-    public static CreativeTabs tabPrehistoric = new CreativeTabs("tab_prehistoric") {
-		@Override
-		public ItemStack getTabIconItem() {
-            return new ItemStack(ModItems.VELOCIRAPTOR_CLAW);
-		}
-    };
     
-    public static CreativeTabs tabEgg = new CreativeTabs("tab_egg") {
-    	@Override
-    	public ItemStack getTabIconItem() {
-    		return new ItemStack(ModItems.ALLOSAURUS_EGG);
-    	}
-    };
 }
