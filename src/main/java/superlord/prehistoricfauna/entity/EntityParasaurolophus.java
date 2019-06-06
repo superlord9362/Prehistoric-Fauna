@@ -2,7 +2,6 @@ package superlord.prehistoricfauna.entity;
 
 import com.google.common.base.Predicate;
 
-import superlord.prehistoricfauna.entity.ai.EntityExtinct;
 import superlord.prehistoricfauna.init.ModItems;
 import superlord.prehistoricfauna.util.handlers.LootTableHandler;
 import superlord.prehistoricfauna.util.handlers.Sounds;

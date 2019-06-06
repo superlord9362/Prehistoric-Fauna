@@ -41,7 +41,13 @@ public class DryosaurusRenderer extends RenderLiving<EntityDryosaurus> {
         }
     }
 	
-	protected void preRenderCallback(EntityDryosaurus entity, float f) {
+	@Override
+
+    protected void preRenderCallback(EntityDryosaurus entity, float f) {
+
+
+
         this.shadowSize = entity.width * 0.45F;
+
     }
 }

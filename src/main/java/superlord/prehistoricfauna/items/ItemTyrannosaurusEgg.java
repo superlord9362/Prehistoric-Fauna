@@ -1,43 +1,139 @@
 package superlord.prehistoricfauna.items;
 
-import superlord.prehistoricfauna.Main;
-import superlord.prehistoricfauna.entity.egg.EntityTyrannosaurusEgg;
+
+
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
-import net.minecraft.util.ActionResult;
+
 import net.minecraft.util.EnumActionResult;
+
+import net.minecraft.util.EnumFacing;
+
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+
+import net.minecraft.util.math.BlockPos;
+
 import net.minecraft.world.World;
+import superlord.prehistoricfauna.Main;
+import superlord.prehistoricfauna.entity.EntityDinosaurEgg;
+import superlord.prehistoricfauna.entity.EntityDryosaurus;
+import superlord.prehistoricfauna.entity.EntityPrehistoric;
+import superlord.prehistoricfauna.entity.EntityType;
+import superlord.prehistoricfauna.entity.OrderType;
+import superlord.prehistoricfauna.message.MessageUpdateEgg;
+import superlord.prehistoricfauna.entity.ai.*;
 
-public class ItemTyrannosaurusEgg extends ItemBase {
-    public ItemTyrannosaurusEgg(String name) {
-        super(name);
-        this.maxStackSize = 16;
-        this.setCreativeTab(Main.tabEgg);
+
+
+public class ItemTyrannosaurusEgg extends PrehistoricEntityItem {
+
+    public ItemTyrannosaurusEgg(EntityType type) {
+
+        super("tyrannosaurus_egg", type);
+
+        this.setHasSubtypes(true);
+
+        this.setMaxDamage(0);
+
+        this.maxStackSize = 1;
+
     }
 
-    /**
-     * Called when the equipped item is right clicked.
-     */
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-        ItemStack itemstack = playerIn.getHeldItem(handIn);
 
-        if (!playerIn.capabilities.isCreativeMode) {
-            itemstack.shrink(1);
+
+    @Override
+
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+
+        BlockPos blockpos1 = pos.up();
+
+        boolean flag1 = !world.isAirBlock(blockpos1) && !world.getBlockState(blockpos1).getBlock().isReplaceable(world, blockpos1);
+
+        if (flag1) {
+
+            return EnumActionResult.FAIL;
+
         }
 
-        worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_EGG_THROW, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+        BlockPos offset = pos.offset(facing);
 
-        if (!worldIn.isRemote) {
-            EntityTyrannosaurusEgg entityegg = new EntityTyrannosaurusEgg(worldIn, playerIn);
-            entityegg.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-            worldIn.spawnEntity(entityegg);
+        boolean success = this.spawnEgg(world, player, this.type, offset.getX() + 0.5F, offset.getY() + 0.5F, offset.getZ() + 0.5F);
+
+        if (success && !player.capabilities.isCreativeMode) {
+
+            player.getHeldItem(hand).shrink(1);
+
         }
 
-        playerIn.addStat(StatList.getObjectUseStats(this));
-        return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
+        return success ? EnumActionResult.SUCCESS : EnumActionResult.FAIL;
+
     }
+
+
+
+    private boolean spawnEgg(World world, EntityPlayer player, EntityType type, double x, double y, double z) {
+
+        Entity egg;
+
+        if (!type.isVivariousAquatic()) {
+
+            egg = new EntityDinosaurEgg(world, type);
+
+            egg.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360.0F, 0.0F);
+
+            if (!world.isRemote) {
+
+                world.spawnEntity(egg);
+
+            }
+
+            ((EntityDinosaurEgg) egg).selfType = type;
+
+            if (!world.isRemote) {
+
+                Main.NETWORK_WRAPPER.sendToAll(new MessageUpdateEgg(egg.getEntityId(), type.ordinal()));
+
+            }
+
+            return true;
+
+        } else {
+
+            egg = type.invokeClass(world);
+
+            if (egg != null) {
+
+                egg.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360.0F, 0.0F);
+
+
+
+                if (egg instanceof EntityPrehistoric) {
+
+                	EntityPrehistoric prehistoric = (EntityPrehistoric) egg;
+
+                    prehistoric.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(prehistoric)), null);
+
+                    prehistoric.setAgeInDays(0);
+
+                    EntityDryosaurus entitychicken = new EntityDryosaurus(world);
+                    entitychicken.setGrowingAge(-24000);
+
+                }
+
+                if (!world.isRemote) {
+
+                    world.spawnEntity(egg);
+
+                }
+
+            }
+
+        }
+
+        return egg != null;
+
+    }
+
 }

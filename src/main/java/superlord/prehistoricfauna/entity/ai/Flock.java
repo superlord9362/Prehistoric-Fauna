@@ -6,6 +6,7 @@ import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import superlord.prehistoricfauna.entity.EntityPrehistoric;
 import superlord.prehistoricfauna.entity.EntityType;
 
 import java.util.ArrayList;
@@ -14,8 +15,8 @@ import java.util.Random;
 
 public class Flock {
     public float flockYaw;
-    public List<EntityExtinct> flockMembers = new ArrayList<EntityExtinct>();
-    public EntityExtinct flockLeader;
+    public List<EntityPrehistoric> flockMembers = new ArrayList<EntityPrehistoric>();
+    public EntityPrehistoric flockLeader;
     public EntityType type;
     private double flockPosX;
     private double flockPosY;
@@ -33,7 +34,7 @@ public class Flock {
         return new Random().nextInt(max - min) + min;
     }
 
-    public void createFlock(EntityExtinct creator) {
+    public void createFlock(EntityPrehistoric creator) {
         flockMembers.add(creator);
         flockLeader = creator;
         flockPosX = creator.posX;
@@ -46,7 +47,7 @@ public class Flock {
         if (flockLeader == null || flockLeader.isDead) {
             setNewLeader();
         }
-        for (EntityExtinct member : flockMembers) {
+        for (EntityPrehistoric member : flockMembers) {
             if (member != null && flockLeader != null && this.flockPathNavigate != null && this.flockPathNavigate.getPath() != null) {
                 if (member.getNavigator().noPath() && member != this.flockLeader) {
                     Path path = this.flockLeader.getNavigator().getPath();
@@ -71,13 +72,13 @@ public class Flock {
         }
     }
 
-    public EntityExtinct findNewMember(World world, AxisAlignedBB bb, EntityExtinct leader) {
-        List list = world.getEntitiesWithinAABB(EntityExtinct.class, bb);
-        EntityExtinct entity1 = null;
+    public EntityPrehistoric findNewMember(World world, AxisAlignedBB bb, EntityPrehistoric leader) {
+        List list = world.getEntitiesWithinAABB(EntityPrehistoric.class, bb);
+        EntityPrehistoric entity1 = null;
         double d0 = Double.MAX_VALUE;
 
         for (int i = 0; i < list.size(); ++i) {
-        	EntityExtinct entity2 = (EntityExtinct) list.get(i);
+        	EntityPrehistoric entity2 = (EntityPrehistoric) list.get(i);
 
             if (entity2 != leader && !this.flockMembers.contains(entity2) && entity2.type == leader.type) {
                 double d1 = leader.getDistance(entity2);

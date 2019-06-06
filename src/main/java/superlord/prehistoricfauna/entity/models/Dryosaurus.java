@@ -5,7 +5,6 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 import superlord.prehistoricfauna.entity.EntityDryosaurus;
-import superlord.prehistoricfauna.entity.ai.EntityExtinct;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.opengl.GL11;
 

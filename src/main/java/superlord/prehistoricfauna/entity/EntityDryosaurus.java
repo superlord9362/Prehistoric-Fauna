@@ -2,8 +2,18 @@ package superlord.prehistoricfauna.entity;
 
 
 
-import superlord.prehistoricfauna.entity.ai.EntityExtinct;
-
+import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI;
+import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Activity;
+import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Attacking;
+import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Climbing;
+import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Following;
+import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Jumping;
+import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Moving;
+import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Response;
+import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Stalking;
+import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Taming;
+import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Untaming;
+import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.WaterAbility;
 import superlord.prehistoricfauna.init.ModItems;
 
 import superlord.prehistoricfauna.util.handlers.LootTableHandler;
@@ -82,7 +92,7 @@ import javax.annotation.Nullable;
 
 
 
-public class EntityDryosaurus extends EntityExtinct {
+public class EntityDryosaurus extends EntityTameable {
 
     private EntityAIAvoidEntity<EntityPlayer> avoidEntity;
 
@@ -108,9 +118,6 @@ public class EntityDryosaurus extends EntityExtinct {
 
         this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
 
-        this.hasFeatherToggle = false;
-
-        hasTeenTexture = false;
 
     }
 
@@ -562,22 +569,9 @@ public class EntityDryosaurus extends EntityExtinct {
 
 
 
-	@Override
-
-	public int getAdultAge() {
-
-		return 8;
-
-	}
+	
 
 
 
-	@Override
-
-	public boolean doesFlock() {
-
-		return true;
-
-	}
-
+	
 }

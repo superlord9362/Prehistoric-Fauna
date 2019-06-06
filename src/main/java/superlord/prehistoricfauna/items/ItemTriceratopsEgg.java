@@ -27,11 +27,11 @@ import superlord.prehistoricfauna.entity.ai.*;
 
 
 
-public class ItemDinosaurEgg extends PrehistoricEntityItem {
+public class ItemTriceratopsEgg extends PrehistoricEntityItem {
 
-    public ItemDinosaurEgg(EntityType type) {
+    public ItemTriceratopsEgg(EntityType type) {
 
-        super("dryosaurus_egg", type);
+        super("triceratops_egg", type);
 
         this.setHasSubtypes(true);
 

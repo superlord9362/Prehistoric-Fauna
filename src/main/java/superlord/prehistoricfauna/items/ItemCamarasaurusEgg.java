@@ -20,9 +20,9 @@ import superlord.prehistoricfauna.Main;
 import superlord.prehistoricfauna.entity.EntityCamarasaurus;
 import superlord.prehistoricfauna.entity.EntityDinosaurEgg;
 import superlord.prehistoricfauna.entity.EntityDryosaurus;
+import superlord.prehistoricfauna.entity.EntityPrehistoric;
 import superlord.prehistoricfauna.entity.EntityType;
 import superlord.prehistoricfauna.entity.OrderType;
-import superlord.prehistoricfauna.entity.ai.EntityExtinct;
 import superlord.prehistoricfauna.message.MessageUpdateEgg;
 import superlord.prehistoricfauna.entity.ai.*;
 
@@ -110,9 +110,9 @@ public class ItemCamarasaurusEgg extends PrehistoricEntityItem {
 
 
 
-                if (egg instanceof EntityExtinct) {
+                if (egg instanceof EntityPrehistoric) {
 
-                	EntityExtinct prehistoric = (EntityExtinct) egg;
+                	EntityPrehistoric prehistoric = (EntityPrehistoric) egg;
 
                     prehistoric.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(prehistoric)), null);
 

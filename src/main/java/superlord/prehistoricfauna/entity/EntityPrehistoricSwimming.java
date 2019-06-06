@@ -34,13 +34,12 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 
 import net.minecraft.world.World;
-import superlord.prehistoricfauna.entity.ai.EntityExtinct;
 import superlord.prehistoricfauna.entity.ai.LargeSwimNodeProcessor;
 import superlord.prehistoricfauna.entity.ai.PathNavigateAmphibious;
 
 
 
-public abstract class EntityPrehistoricSwimming extends EntityExtinct {
+public abstract class EntityPrehistoricSwimming extends EntityPrehistoric {
 
     public boolean movesOnLand;
 
@@ -66,7 +65,7 @@ public abstract class EntityPrehistoricSwimming extends EntityExtinct {
 
     public EntityPrehistoricSwimming(World world, EntityType type, double baseDamage, double maxDamage, double baseHealth, double maxHealth, double baseSpeed, double maxSpeed, double baseArmor, double maxArmor) {
 
-        super(world);
+        super(world, type, maxArmor, maxArmor, maxArmor, maxArmor, maxArmor, maxArmor, maxArmor, maxArmor);
 
         this.switchNavigator(true);
 

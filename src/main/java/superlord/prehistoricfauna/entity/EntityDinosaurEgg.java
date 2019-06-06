@@ -1,6 +1,11 @@
 package superlord.prehistoricfauna.entity;
 
+
+
 import io.netty.buffer.ByteBuf;
+
+
+
 import net.minecraft.entity.Entity;
 
 import net.minecraft.entity.EntityLiving;
@@ -45,8 +50,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import superlord.prehistoricfauna.Main;
-import superlord.prehistoricfauna.entity.ai.EntityExtinct;
-import superlord.prehistoricfauna.entity.ai.*;
+import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI;
 
 
 
@@ -87,24 +91,18 @@ public class EntityDinosaurEgg extends EntityLiving implements IEntityAdditional
         lastBirthTick = 0;
 
     }
-    
-    public String getTexture() {
-
-        return "pf:textures/model/egg/" + selfType.friendlyName + "_Egg.png";
-
-    }
 
 
 
     public EntityDinosaurEgg(World world) {
 
-        this(world, EntityType.DRYOSAURUS);
+        this(world, EntityType.TRICERATOPS);
 
     }
 
 
 
-    public EntityDinosaurEgg(World world, EntityType prehistoric, EntityExtinct entity) {
+    public EntityDinosaurEgg(World world, EntityType prehistoric, EntityPrehistoric entity) {
 
         this(world, prehistoric);
 
@@ -176,7 +174,15 @@ public class EntityDinosaurEgg extends EntityLiving implements IEntityAdditional
 
 
 
+    public String getTexture() {
 
+        return "pf:textures/model/egg/" + selfType.friendlyName + "_Egg.png";
+
+    }
+
+
+
+   
 
 
 
@@ -302,19 +308,37 @@ public class EntityDinosaurEgg extends EntityLiving implements IEntityAdditional
 
             if (entity != null) {
 
-                if (entity instanceof EntityExtinct) {
+                if (entity instanceof EntityPrehistoric) {
 
-                	EntityExtinct prehistoricEntity = (EntityExtinct) entity;
+                    EntityPrehistoric prehistoricEntity = (EntityPrehistoric) entity;
 
                     if (prehistoricEntity.type.isTameable() && player != null) {
 
-                        
+                        if (prehistoricEntity.aiTameType() == PrehistoricEntityTypeAI.Taming.IMPRINTING) {
+
+                            prehistoricEntity.setTamed(true);
+
+                            prehistoricEntity.setOwnerId(player.getUniqueID());
+
+                            
+
+                            prehistoricEntity.setOwnerDisplayName(player.getName());
+
+                            prehistoricEntity.currentOrder = OrderType.WANDER;
+
+                            prehistoricEntity.setHealth((float) prehistoricEntity.baseHealth);
+
+                        }
 
                     }
 
                     prehistoricEntity.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(prehistoricEntity)), null);
 
                     prehistoricEntity.setAgeInDays(0);
+
+                    prehistoricEntity.grow(0);
+
+                    prehistoricEntity.updateAbilities();
 
                     prehistoricEntity.setNoAI(false);
 
@@ -453,7 +477,7 @@ public class EntityDinosaurEgg extends EntityLiving implements IEntityAdditional
             return true;
 
         } 
-        
+
         return false;
 
     }

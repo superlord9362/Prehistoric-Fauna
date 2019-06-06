@@ -4,7 +4,6 @@ import superlord.prehistoricfauna.entity.EntityCamarasaurus;
 import superlord.prehistoricfauna.entity.EntityDryosaurus;
 import superlord.prehistoricfauna.entity.EntityGallimimus;
 import superlord.prehistoricfauna.entity.EntityTriceratops;
-import superlord.prehistoricfauna.entity.ai.EntityExtinct;
 import superlord.prehistoricfauna.entity.models.Gallimimus;
 import superlord.prehistoricfauna.entity.models.ModelCamarasaurus;
 import superlord.prehistoricfauna.entity.models.Triceratops;

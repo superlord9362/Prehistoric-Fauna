@@ -19,7 +19,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootTableList;
 
 import net.minecraftforge.event.RegistryEvent;
-import superlord.prehistoricfauna.entity.ai.EntityExtinct;
 
 import java.util.ArrayList;
 
@@ -37,7 +36,13 @@ public enum EntityType {
 	STEGOSAURUS(EntityStegosaurus.class, MobType.DINOSAUR, TimePeriod.MESOZOIC, Diet.HERBIVORE, Parameter.HERBIVORE, 0x5C4823, 0x000000, 1.0F),
 	ALLOSAURUS(EntityAllosaurus.class, MobType.DINOSAUR, TimePeriod.MESOZOIC, Diet.CARNIVORE, Parameter.CARNIVORE, 0x000000, 0x000000, 0.9F),
 	TYRANNOSAURUS(EntityTyrannosaurus.class, MobType.DINOSAUR, TimePeriod.MESOZOIC, Diet.CARNIVORE, Parameter.CARNIVORE, 0x000000, 0x000000, 1.2F),
-	VELOCIRAPTOR(EntityVelociraptor.class, MobType.DINOSAUR, TimePeriod.MESOZOIC, Diet.CARNIVORE, Parameter.CARNIVORE, 0x000000, 0x000000, 0.6F);
+	VELOCIRAPTOR(EntityVelociraptor.class, MobType.DINOSAUR, TimePeriod.MESOZOIC, Diet.CARNIVORE, Parameter.CARNIVORE, 0x000000, 0x000000, 0.6F),
+	TRICERATOPS(EntityTriceratops.class, MobType.DINOSAUR, TimePeriod.MESOZOIC, Diet.HERBIVORE, Parameter.HERBIVORE, 0x000000, 0x0000000, 0.8F),
+	GALLIMIMUS(EntityGallimimus.class, MobType.DINOSAUR, TimePeriod.MESOZOIC, Diet.OMNIVORE, Parameter.NOTHING, 0x000000, 0x000000, 0.9F),
+	PARASAUROLOPHUS(EntityParasaurolophus.class, MobType.DINOSAUR, TimePeriod.MESOZOIC, Diet.HERBIVORE, Parameter.HERBIVORE, 0x000000, 0x000000, 1.1F),
+	PRENOCEPHALE(EntityPrenocephale.class, MobType.DINOSAUR, TimePeriod.MESOZOIC, Diet.HERBIVORE, Parameter.HERBIVORE, 0x000000, 0x000000, 0.6F),
+	BARYONYX(EntityBaryonyx.class, MobType.DINOSAUR, TimePeriod.MESOZOIC, Diet.PISCCARNIVORE, Parameter.CARNIVORE, 0x000000, 0x000000, 1F),
+	ANKYLOSAURUS(EntityAnkylosaurus.class, MobType.DINOSAUR, TimePeriod.MESOZOIC, Diet.HERBIVORE, Parameter.HERBIVORE, 0x000000, 0x000000, 1.1F);
 	
 
 
@@ -520,7 +525,7 @@ public enum EntityType {
 
 				if (tar) {
 
-					if (type.timePeriod == TimePeriod.CENOZOIC && EntityExtinct.class.isAssignableFrom(type.entity)) {
+					if (type.timePeriod == TimePeriod.CENOZOIC && EntityPrehistoric.class.isAssignableFrom(type.entity)) {
 
 						entities.add(type);
 
@@ -818,7 +823,7 @@ public enum EntityType {
 
 		return entity instanceof AbstractHorse || entity instanceof EntityCow || entity instanceof EntityPig || entity instanceof EntitySheep
 
-				|| entity instanceof EntityRabbit || entity instanceof EntityExtinct && ((EntityExtinct) entity).type.mobType == MobType.MAMMAL
+				|| entity instanceof EntityRabbit || entity instanceof EntityPrehistoric && ((EntityPrehistoric) entity).type.mobType == MobType.MAMMAL
 
 				|| entity instanceof EntityPolarBear || entity instanceof EntityWolf || entity instanceof EntityOcelot || entity instanceof EntityBat
 
