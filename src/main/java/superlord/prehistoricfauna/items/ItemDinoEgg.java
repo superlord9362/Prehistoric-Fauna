@@ -1,8 +1,7 @@
 package superlord.prehistoricfauna.items;
 
-import superlord.prehistoricfauna.Main;
 import superlord.prehistoricfauna.entity.egg.EntityDinoEgg;
-
+import superlord.prehistoricfauna.tab.PFTabRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -17,7 +16,7 @@ public class ItemDinoEgg extends ItemBase {
     public ItemDinoEgg(String name) {
         super(name);
         this.maxStackSize = 16;
-        this.setCreativeTab(Main.tabEgg);
+        this.setCreativeTab(PFTabRegistry.EGG);
     }
 
     /**

@@ -4,7 +4,7 @@ import superlord.prehistoricfauna.Main;
 import superlord.prehistoricfauna.entity.egg.EntityCamarasaurusEgg;
 import superlord.prehistoricfauna.entity.egg.EntityDinoEgg;
 import superlord.prehistoricfauna.entity.egg.EntityIncCamarasaurus;
-
+import superlord.prehistoricfauna.tab.PFTabRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -19,7 +19,7 @@ public class ItemIncCamarasaurus extends ItemBase {
     public ItemIncCamarasaurus(String name) {
         super(name);
         this.maxStackSize = 16;
-        this.setCreativeTab(Main.tabEgg);
+        this.setCreativeTab(PFTabRegistry.EGG);
     }
 
     /**

@@ -1,7 +1,7 @@
 package superlord.prehistoricfauna.items;
 
-import superlord.prehistoricfauna.Main;
 import superlord.prehistoricfauna.entity.egg.EntityIncAnkylosaurus;
+import superlord.prehistoricfauna.tab.PFTabRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -16,7 +16,7 @@ public class ItemIncAnkylosaurus extends ItemBase {
     public ItemIncAnkylosaurus(String name) {
         super(name);
         this.maxStackSize = 16;
-        this.setCreativeTab(Main.tabEgg);
+        this.setCreativeTab(PFTabRegistry.EGG);
     }
 
     /**
