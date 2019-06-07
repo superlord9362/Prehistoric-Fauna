@@ -1,5 +1,7 @@
 package superlord.prehistoricfauna.entity.models;
 
+import java.util.Random;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -58,9 +60,7 @@ public class Triceratops extends ModelBase {
     public ModelRenderer FLLeg1;
     public ModelRenderer FRLeg2;
     public ModelRenderer FLLeg2;
-
     protected float childYOffset = 8.0F;
-
     protected float childZOffset = 4.0F;
 
     public Triceratops() {
@@ -318,7 +318,7 @@ public class Triceratops extends ModelBase {
             this.Body.render(scale);
 
             GlStateManager.popMatrix();
-        } else {
+        } else {        	
             GlStateManager.pushMatrix();
             GlStateManager.translate(this.Body.offsetX, this.Body.offsetY, this.Body.offsetZ);
             GlStateManager.translate(this.Body.rotationPointX * scale, this.Body.rotationPointY * scale, this.Body.rotationPointZ * scale);

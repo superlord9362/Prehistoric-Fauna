@@ -1,11 +1,8 @@
 package superlord.prehistoricfauna.entity.renderers;
 
 import superlord.prehistoricfauna.entity.EntityBaryonyx;
-import superlord.prehistoricfauna.entity.models.Baryonyx;
 import superlord.prehistoricfauna.entity.models.Baryonyxv2;
 import superlord.prehistoricfauna.util.Reference;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;

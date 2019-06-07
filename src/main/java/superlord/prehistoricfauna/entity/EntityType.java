@@ -12,13 +12,7 @@ import net.minecraft.entity.passive.*;
 
 import net.minecraft.item.Item;
 
-import net.minecraft.util.ResourceLocation;
-
 import net.minecraft.world.World;
-
-import net.minecraft.world.storage.loot.LootTableList;
-
-import net.minecraftforge.event.RegistryEvent;
 
 import java.util.ArrayList;
 
@@ -525,7 +519,7 @@ public enum EntityType {
 
 				if (tar) {
 
-					if (type.timePeriod == TimePeriod.CENOZOIC && EntityPrehistoric.class.isAssignableFrom(type.entity)) {
+					if (type.timePeriod == TimePeriod.CENOZOIC && EntityExtinct.class.isAssignableFrom(type.entity)) {
 
 						entities.add(type);
 
@@ -823,7 +817,7 @@ public enum EntityType {
 
 		return entity instanceof AbstractHorse || entity instanceof EntityCow || entity instanceof EntityPig || entity instanceof EntitySheep
 
-				|| entity instanceof EntityRabbit || entity instanceof EntityPrehistoric && ((EntityPrehistoric) entity).type.mobType == MobType.MAMMAL
+				|| entity instanceof EntityRabbit || entity instanceof EntityExtinct && ((EntityExtinct) entity).type.mobType == MobType.MAMMAL
 
 				|| entity instanceof EntityPolarBear || entity instanceof EntityWolf || entity instanceof EntityOcelot || entity instanceof EntityBat
 

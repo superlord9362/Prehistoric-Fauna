@@ -2,20 +2,6 @@ package superlord.prehistoricfauna.entity;
 
 
 
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI;
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Activity;
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Attacking;
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Climbing;
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Following;
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Jumping;
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Moving;
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Response;
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Stalking;
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Taming;
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Untaming;
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.WaterAbility;
-import superlord.prehistoricfauna.init.ModItems;
-
 import superlord.prehistoricfauna.util.handlers.LootTableHandler;
 
 import superlord.prehistoricfauna.util.handlers.Sounds;
@@ -52,10 +38,6 @@ import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
 
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 
-import net.minecraft.entity.passive.EntityAnimal;
-
-import net.minecraft.entity.passive.EntityTameable;
-
 import net.minecraft.entity.player.EntityPlayer;
 
 import net.minecraft.init.Blocks;
@@ -80,8 +62,6 @@ import net.minecraft.util.datafix.DataFixer;
 
 import net.minecraft.util.math.BlockPos;
 
-import net.minecraft.util.text.translation.I18n;
-
 import net.minecraft.world.DifficultyInstance;
 
 import net.minecraft.world.World;
@@ -92,7 +72,7 @@ import javax.annotation.Nullable;
 
 
 
-public class EntityDryosaurus extends EntityTameable {
+public class EntityDryosaurus extends EntityExtinct {
 
     private EntityAIAvoidEntity<EntityPlayer> avoidEntity;
 
@@ -566,6 +546,20 @@ public class EntityDryosaurus extends EntityTameable {
         return livingdata;
 
     }
+
+
+
+	@Override
+	public int getAdultAge() {
+		return 1;
+	}
+
+
+
+	@Override
+	public boolean doesFlock() {
+		return true;
+	}
 
 
 

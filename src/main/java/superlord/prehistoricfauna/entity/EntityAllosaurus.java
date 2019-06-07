@@ -1,7 +1,6 @@
 package superlord.prehistoricfauna.entity;
 
 import com.google.common.base.Predicate;
-import superlord.prehistoricfauna.init.ModItems;
 import superlord.prehistoricfauna.util.handlers.LootTableHandler;
 import superlord.prehistoricfauna.util.handlers.Sounds;
 import net.minecraft.block.Block;
@@ -27,7 +26,6 @@ import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.passive.AbstractHorse;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityLlama;
-import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
@@ -51,7 +49,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class EntityAllosaurus extends EntityTameable {
+public class EntityAllosaurus extends EntityExtinct {
     private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.<Float>createKey(EntityAllosaurus.class, DataSerializers.FLOAT);
     private static final DataParameter<Integer> DATA_STRENGTH_ID = EntityDataManager.<Integer>createKey(EntityLlama.class, DataSerializers.VARINT);
     public int timeUntilNextEgg;
@@ -399,4 +397,14 @@ public class EntityAllosaurus extends EntityTameable {
     public boolean canBeLeashedTo(EntityPlayer player) {
         return !this.isAngry() && super.canBeLeashedTo(player);
     }
+
+	@Override
+	public int getAdultAge() {
+		return 1;
+	}
+
+	@Override
+	public boolean doesFlock() {
+		return false;
+	}
 }

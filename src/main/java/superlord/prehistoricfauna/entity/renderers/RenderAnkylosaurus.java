@@ -3,8 +3,6 @@ package superlord.prehistoricfauna.entity.renderers;
 import superlord.prehistoricfauna.entity.EntityAnkylosaurus;
 import superlord.prehistoricfauna.entity.models.Ankylosaurus;
 import superlord.prehistoricfauna.util.Reference;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -20,9 +18,7 @@ public class RenderAnkylosaurus extends RenderLiving<EntityAnkylosaurus> {
 
 	@Override
 	protected ResourceLocation getEntityTexture(EntityAnkylosaurus entity) {
-		if (entity.female) {
-			return new ResourceLocation(Reference.MOD_ID, "textures/entities/triceratops.png");
-		} else if(entity.isChild()) {
+		 if(entity.isChild()) {
 			return new ResourceLocation(Reference.MOD_ID, "textures/entities/ankylosaurus_baby.png");
 		} else {
 		return new ResourceLocation(Reference.MOD_ID, "textures/entities/ankylosaurus.png");

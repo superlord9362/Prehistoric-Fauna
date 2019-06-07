@@ -1,7 +1,6 @@
 package superlord.prehistoricfauna.entity;
 
 import com.google.common.base.Predicate;
-import superlord.prehistoricfauna.init.ModItems;
 import superlord.prehistoricfauna.util.handlers.LootTableHandler;
 import superlord.prehistoricfauna.util.handlers.Sounds;
 
@@ -23,12 +22,10 @@ import net.minecraft.entity.ai.EntityAIPanic;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -39,12 +36,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootTableList;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class EntityStegosaurus extends EntityAnimal
+public class EntityStegosaurus extends EntityExtinct
 {
     private static final DataParameter<Boolean> IS_STANDING = EntityDataManager.<Boolean>createKey(EntityStegosaurus.class, DataSerializers.BOOLEAN);
     private float clientSideStandAnimation0;
@@ -395,4 +390,14 @@ public class EntityStegosaurus extends EntityAnimal
             {
             }
         }
+
+	@Override
+	public int getAdultAge() {
+		return 1;
+	}
+
+	@Override
+	public boolean doesFlock() {
+		return false;
+	}
 }

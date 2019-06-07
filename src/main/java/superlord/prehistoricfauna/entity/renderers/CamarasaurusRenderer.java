@@ -1,15 +1,8 @@
 package superlord.prehistoricfauna.entity.renderers;
 
 import superlord.prehistoricfauna.entity.EntityCamarasaurus;
-import superlord.prehistoricfauna.entity.EntityDryosaurus;
-import superlord.prehistoricfauna.entity.EntityGallimimus;
-import superlord.prehistoricfauna.entity.EntityTriceratops;
-import superlord.prehistoricfauna.entity.models.Gallimimus;
 import superlord.prehistoricfauna.entity.models.ModelCamarasaurus;
-import superlord.prehistoricfauna.entity.models.Triceratops;
 import superlord.prehistoricfauna.util.Reference;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -41,9 +34,6 @@ public class CamarasaurusRenderer extends RenderLiving<EntityCamarasaurus> {
     }
 	
 	protected void preRenderCallback(EntityCamarasaurus entity, float f) {
-
-
-
         this.shadowSize = entity.width * 0.45F;
 
     }
