@@ -22,7 +22,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 import net.minecraftforge.fml.relauncher.SideOnly;
 import superlord.prehistoricfauna.Main;
-import superlord.prehistoricfauna.entity.EntityPrehistoric;
+import superlord.prehistoricfauna.entity.EntityExtinct;
 
 import java.util.Random;
 
@@ -66,7 +66,7 @@ public class MessageHappyParticles implements IMessage {
 
 		float f2 = (float) (rand.nextFloat() * (entity.getEntityBoundingBox().maxZ - entity.getEntityBoundingBox().minZ) + entity.getEntityBoundingBox().minZ);
 
-		Main.proxy.spawnPacketHeartParticles(entity.world, f, f1, f2, motionX, motionY, motionZ);
+		Main.PROXY.spawnPacketHeartParticles(entity.world, f, f1, f2, motionX, motionY, motionZ);
 
 
 
@@ -82,9 +82,10 @@ public class MessageHappyParticles implements IMessage {
 
 
 
-		if (entity instanceof EntityPrehistoric) {
+		if (entity instanceof EntityExtinct) {
 
-			EntityPrehistoric prehistoric = (EntityPrehistoric) entity;
+			@SuppressWarnings("unused")
+			EntityExtinct prehistoric = (EntityExtinct) entity;
 
 
 

@@ -4,26 +4,20 @@ buildscript {
         maven { url = "https://files.minecraftforge.net/maven" }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
     }
 }
-apply plugin: 'net.minecraftforge.gradle.forge'
-//Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
-
-
-version = "1.0.0"
-group = "com.superlord.prehistoricfauna" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+apply plugin: "net.minecraftforge.gradle.forge"
+def mod_file = getModFile()
+version = getModField("VERSION", mod_file)
+def llibrary_version = getModField("LLIBRARY_VERSION", mod_file)
+group = "prehistoricfauna"
 archivesBaseName = "prehistoricfauna"
-
-sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
-compileJava {
-    sourceCompatibility = targetCompatibility = '1.8'
-}
-
+sourceCompatibility = targetCompatibility = "1.8"
 minecraft {
     version = "1.12.2-14.23.5.2838"
     runDir = "run"
-    
+
     // the mappings can be changed at any time, and must be in the following format.
     // snapshot_YYYYMMDD   snapshot are built nightly.
     // stable_#            stables are built at the discretion of the MCP team.
@@ -32,46 +26,73 @@ minecraft {
     mappings = "snapshot_20171003"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
+ repositories {
+    mavenCentral()
+    maven {
+        url = "https://maven.mcmoddev.com"
+    }
 
-dependencies {
-    // you may put jars on which you depend on in ./libs
-    // or you may define them like so..
-    //compile "some.group:artifact:version:classifier"
-    //compile "some.group:artifact:version"
-      
-    // real examples
-    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
-    //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
-
-    // the 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
-    //provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-    // the deobf configurations:  'deobfCompile' and 'deobfProvided' are the same as the normal compile and provided,
-    // except that these dependencies get remapped to your current MCP mappings
-    //deobfCompile 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-    //deobfProvided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-    // for more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
+    maven {
+        url = "https://minecraft.curseforge.com/api/maven/"
+    }
 
 }
-
+dependencies {
+    deobfCompile "net.ilexiconn:llibrary:1.7.17-1.12.2"
+}
 processResources {
-    // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
-
-    // replace stuff in mcmod.info, nothing else
+    inputs.property "llibrary_version", llibrary_version
     from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-                
-        // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        include "mcmod.info"
+        expand "version": project.version, "mcversion": project.minecraft.version, "llibrary_version": llibrary_version
     }
-        
-    // copy everything else except the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
+        exclude "mcmod.info"
     }
+}
+jar {
+    manifest {
+        attributes "FMLAT": "pf_at.cfg"
+    }
+}
+task devJar(type: Jar) {
+    classifier = "dev"
+    from sourceSets.main.output
+    manifest {
+        attributes "FMLAT": "pf_at.cfg"
+    }
+}
+String getModFile() {
+    String path = ""
+    FileTree tree = fileTree(dir: 'src/main/java')
+    tree.include '**/*.java'
+    tree.visit { element ->
+        if (element.file.isFile()) {
+            element.file.eachLine { String s ->
+                s = s.trim()
+                if (s.matches("@Mod\\s*\\(.*")) {
+                    path = "src/main/java/$element.relativePath"
+                }
+            }
+        }
+    }
+    return path
+}
+String getModField(String type, String mod_file) {
+    if (mod_file.length() == 0) {
+        return ""
+    }
+    String field = ""
+    String prefix = "public static final String $type = \""
+    File file = file(mod_file)
+    file.eachLine { String s ->
+        s = s.trim()
+        if (s.startsWith(prefix)) {
+            s = s.substring(prefix.length(), s.length() - 2)
+            field = s
+        }
+    }
+    return field
 }

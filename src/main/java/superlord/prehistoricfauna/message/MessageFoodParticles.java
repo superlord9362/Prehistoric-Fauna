@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import superlord.prehistoricfauna.Main;
-import superlord.prehistoricfauna.entity.EntityPrehistoric;
+import superlord.prehistoricfauna.entity.EntityExtinct;
 
 public class MessageFoodParticles implements IMessage {
 	   public int dinosaurID;
@@ -44,8 +44,8 @@ public class MessageFoodParticles implements IMessage {
 	    public void onClientReceived(Minecraft client, MessageFoodParticles message, EntityPlayer player, MessageContext messageContext) {
 	        Entity entity = player.world.getEntityByID(message.dinosaurID);
 
-	        if (entity instanceof EntityPrehistoric) {
-	        	EntityPrehistoric prehistoric = (EntityPrehistoric) entity;
+	        if (entity instanceof EntityExtinct) {
+	        	EntityExtinct prehistoric = (EntityExtinct) entity;
 	            if (message.foodItemID == 0 && message.blockItemID == 0) {
 	                switch (prehistoric.type.diet) {
 	                    case HERBIVORE:

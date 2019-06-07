@@ -1,17 +1,10 @@
 package superlord.prehistoricfauna.proxy;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.IGuiHandler;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-import superlord.prehistoricfauna.Main;
-import superlord.prehistoricfauna.blocks.DecoderContainer;
 
 public class CommonProxy implements IProxy {
 	
@@ -40,5 +33,7 @@ public class CommonProxy implements IProxy {
 	public void init(FMLInitializationEvent event) {
 		
 	}
+	
+	 
 
 }
