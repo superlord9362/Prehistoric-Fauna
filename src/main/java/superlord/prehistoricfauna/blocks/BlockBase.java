@@ -13,8 +13,8 @@ public class BlockBase extends Block implements IHasModel {
         super(material);
         setHardness(3f);
         setResistance(5f);
-        setTranslationKey(name);
         setRegistryName(name);
+        setTranslationKey(name);
         setCreativeTab(PFTabRegistry.NORMAL);
     }
 

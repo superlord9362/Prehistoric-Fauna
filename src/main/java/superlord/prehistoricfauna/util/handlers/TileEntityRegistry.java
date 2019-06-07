@@ -5,6 +5,7 @@ import superlord.prehistoricfauna.blocks.TileEntityDNAExtractor;
 
 public class TileEntityRegistry {
 
+	@SuppressWarnings("deprecation")
 	public static void registerTileEntities() {
 		GameRegistry.registerTileEntity(TileEntityDNAExtractor.class, "dna_decoder");
 	}

@@ -1,12 +1,11 @@
 package superlord.prehistoricfauna.proxy;
 
 import superlord.prehistoricfauna.Main;
-import superlord.prehistoricfauna.blocks.TileEntityDNAExtractor;
-import superlord.prehistoricfauna.client.gui.GUIDecoder;
 import superlord.prehistoricfauna.entity.EntityAllosaurus;
 import superlord.prehistoricfauna.entity.EntityAnkylosaurus;
 import superlord.prehistoricfauna.entity.EntityBaryonyx;
 import superlord.prehistoricfauna.entity.EntityCamarasaurus;
+import superlord.prehistoricfauna.entity.EntityDinosaurEgg;
 import superlord.prehistoricfauna.entity.EntityDryosaurus;
 import superlord.prehistoricfauna.entity.EntityGallimimus;
 import superlord.prehistoricfauna.entity.EntityParasaurolophus;
@@ -15,12 +14,12 @@ import superlord.prehistoricfauna.entity.EntityStegosaurus;
 import superlord.prehistoricfauna.entity.EntityTriceratops;
 import superlord.prehistoricfauna.entity.EntityTyrannosaurus;
 import superlord.prehistoricfauna.entity.EntityVelociraptor;
-import superlord.prehistoricfauna.entity.models.Dryosaurus;
 import superlord.prehistoricfauna.entity.renderers.AllosaurusRenderer;
 import superlord.prehistoricfauna.entity.renderers.CamarasaurusRenderer;
 import superlord.prehistoricfauna.entity.renderers.GallimimusRenderer;
 import superlord.prehistoricfauna.entity.renderers.RenderAnkylosaurus;
 import superlord.prehistoricfauna.entity.renderers.RenderBaryonyx;
+import superlord.prehistoricfauna.entity.renderers.RenderDinoEgg;
 import superlord.prehistoricfauna.entity.renderers.RenderExtinct;
 import superlord.prehistoricfauna.entity.renderers.RenderParasaurolophus;
 import superlord.prehistoricfauna.entity.renderers.RenderPrenocephale;
@@ -31,11 +30,7 @@ import superlord.prehistoricfauna.entity.renderers.VelociraptorRenderer;
 import superlord.prehistoricfauna.util.handlers.GUIHandler;
 import superlord.prehistoricfauna.world.gen.ModWorldGen;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -61,6 +56,7 @@ public class ClientProxy extends CommonProxy implements IProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityPrenocephale.class, RenderPrenocephale.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityParasaurolophus.class, RenderParasaurolophus.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityBaryonyx.class, RenderBaryonyx.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityDinosaurEgg.class, RenderDinoEgg::new);
         GameRegistry.registerWorldGenerator(new ModWorldGen(), 3);
     }
     

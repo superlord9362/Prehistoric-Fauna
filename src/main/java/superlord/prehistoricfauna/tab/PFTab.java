@@ -9,7 +9,7 @@ import superlord.prehistoricfauna.init.ModItems;
 public class PFTab extends CreativeTabs {
 
 	public PFTab() {
-		super("Prehistoric Fauna");
+		super("tab_prehistoric");
 	}
 
 	@Override

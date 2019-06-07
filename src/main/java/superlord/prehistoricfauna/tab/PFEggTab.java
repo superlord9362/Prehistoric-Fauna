@@ -9,7 +9,7 @@ import superlord.prehistoricfauna.init.ModItems;
 public class PFEggTab extends CreativeTabs {
 
 	public PFEggTab() {
-		super("Prehistoric Fauna Eggs");
+		super("tab_egg");
 	}
 
 	@Override
