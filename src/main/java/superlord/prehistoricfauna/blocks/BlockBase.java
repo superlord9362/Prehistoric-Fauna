@@ -14,7 +14,7 @@ public class BlockBase extends Block implements IHasModel {
         setHardness(3f);
         setResistance(5f);
         setRegistryName(name);
-        setTranslationKey(name);
+        setUnlocalizedName(name);
         setCreativeTab(PFTabRegistry.NORMAL);
     }
 

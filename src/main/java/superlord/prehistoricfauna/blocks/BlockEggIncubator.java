@@ -60,11 +60,8 @@ public class BlockEggIncubator extends BlockBase
 	@Override
 
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) 
-
 	{
-
 		return Item.getItemFromBlock(ModBlocks.EGG_INCUBATOR);
-
 	}
 
 	
