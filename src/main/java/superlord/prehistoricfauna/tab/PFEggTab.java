@@ -14,7 +14,7 @@ public class PFEggTab extends CreativeTabs {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public ItemStack createIcon() {
+	public ItemStack getTabIconItem() {
 		return new ItemStack(ModItems.DRYOSAURUS_EGG_ENTITY);
 	}
 
