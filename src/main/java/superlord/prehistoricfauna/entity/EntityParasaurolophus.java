@@ -44,7 +44,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public class EntityParasaurolophus extends EntityTameable {
+public class EntityParasaurolophus extends EntityExtinct {
     private static final DataParameter<Boolean> IS_STANDING = EntityDataManager.createKey(EntityParasaurolophus.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> MODEL_TYPE = EntityDataManager.createKey(EntityParasaurolophus.class, DataSerializers.VARINT);
     private float clientSideStandAnimation0;
@@ -371,6 +371,16 @@ public class EntityParasaurolophus extends EntityTameable {
         private GroupData() {
         }
     }
+
+	@Override
+	public int getAdultAge() {
+		return 0;
+	}
+
+	@Override
+	public boolean doesFlock() {
+		return false;
+	}
 
 	
 }

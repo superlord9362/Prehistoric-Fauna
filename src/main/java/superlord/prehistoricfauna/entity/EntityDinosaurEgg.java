@@ -11,7 +11,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 
 import net.minecraft.entity.item.EntityItem;
-
 import net.minecraft.entity.player.EntityPlayer;
 
 import net.minecraft.init.SoundEvents;
@@ -46,11 +45,8 @@ import net.minecraft.world.World;
 
 import net.minecraft.world.biome.Biome;
 
-import net.minecraftforge.fml.common.FMLCommonHandler;
-
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import superlord.prehistoricfauna.Main;
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI;
 
 
 
@@ -102,7 +98,7 @@ public class EntityDinosaurEgg extends EntityLiving implements IEntityAdditional
 
 
 
-    public EntityDinosaurEgg(World world, EntityType prehistoric, EntityPrehistoric entity) {
+    public EntityDinosaurEgg(World world, EntityType prehistoric, EntityExtinct entity) {
 
         this(world, prehistoric);
 
@@ -308,37 +304,16 @@ public class EntityDinosaurEgg extends EntityLiving implements IEntityAdditional
 
             if (entity != null) {
 
-                if (entity instanceof EntityPrehistoric) {
+                if (entity instanceof EntityExtinct) {
 
-                    EntityPrehistoric prehistoricEntity = (EntityPrehistoric) entity;
+                	EntityExtinct prehistoricEntity = (EntityExtinct) entity;
 
-                    if (prehistoricEntity.type.isTameable() && player != null) {
-
-                        if (prehistoricEntity.aiTameType() == PrehistoricEntityTypeAI.Taming.IMPRINTING) {
-
-                            prehistoricEntity.setTamed(true);
-
-                            prehistoricEntity.setOwnerId(player.getUniqueID());
-
-                            
-
-                            prehistoricEntity.setOwnerDisplayName(player.getName());
-
-                            prehistoricEntity.currentOrder = OrderType.WANDER;
-
-                            prehistoricEntity.setHealth((float) prehistoricEntity.baseHealth);
-
-                        }
-
-                    }
 
                     prehistoricEntity.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(prehistoricEntity)), null);
 
-                    prehistoricEntity.setAgeInDays(0);
+                    ;
+                    prehistoricEntity.setGrowingAge(-24000);
 
-                    prehistoricEntity.grow(0);
-
-                    prehistoricEntity.updateAbilities();
 
                     prehistoricEntity.setNoAI(false);
 

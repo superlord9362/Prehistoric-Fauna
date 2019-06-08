@@ -1,5 +1,8 @@
 package superlord.prehistoricfauna.entity.models;
 
+import net.ilexiconn.llibrary.client.model.ModelAnimator;
+import net.ilexiconn.llibrary.client.model.tools.AdvancedModelRenderer;
+import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -140,7 +143,7 @@ public class Dryosaurus extends ModelBase {
         this.Body1.addChild(this.Neck1);
         this.LLeg1.addChild(this.LLeg2);
     }
-
+    
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
     	if (this.isChild) {
@@ -165,15 +168,15 @@ public class Dryosaurus extends ModelBase {
         }
         }
     
-    
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
-        float XAngle = headPitch / 57.29578F;
-        float YAngle = netHeadYaw / 57.29578F;
-        this.Head.rotateAngleX = (0.2617794F + XAngle);
-        this.Head.rotateAngleY = YAngle;
-        this.RLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.LLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+    	float XAngle = headPitch / 57.29578F;
+    	float YAngle = netHeadYaw / 57.29578F;
+    	this.Head.rotateAngleX= (0.2617794F + XAngle);
+    	this.Head.rotateAngleY= YAngle;
+    	this.LLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+    	this.RLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
     }
+
 
     /**
      * This is a helper function from Tabula to set the rotation of model parts

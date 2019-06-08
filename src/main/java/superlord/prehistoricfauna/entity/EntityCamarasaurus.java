@@ -6,20 +6,6 @@ import com.google.common.base.Predicate;
 
 
 
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI;
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Activity;
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Attacking;
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Climbing;
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Following;
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Jumping;
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Moving;
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Response;
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Stalking;
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Taming;
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.Untaming;
-import superlord.prehistoricfauna.entity.ai.PrehistoricEntityTypeAI.WaterAbility;
-import superlord.prehistoricfauna.init.ModItems;
-
 import superlord.prehistoricfauna.util.handlers.LootTableHandler;
 
 import superlord.prehistoricfauna.util.handlers.Sounds;
@@ -58,14 +44,11 @@ import net.minecraft.entity.ai.EntityAIWander;
 
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 
 import net.minecraft.init.Items;
 
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import net.minecraft.nbt.NBTTagCompound;
@@ -100,7 +83,7 @@ import javax.annotation.Nullable;
 
 
 
-public class EntityCamarasaurus extends EntityTameable {
+public class EntityCamarasaurus extends EntityExtinct {
 
     private static final DataParameter<Boolean> IS_STANDING = EntityDataManager.createKey(EntityCamarasaurus.class, DataSerializers.BOOLEAN);
 
@@ -750,6 +733,20 @@ public class EntityCamarasaurus extends EntityTameable {
         }
 
     }
+
+
+
+	@Override
+	public int getAdultAge() {
+		return 1;
+	}
+
+
+
+	@Override
+	public boolean doesFlock() {
+		return true;
+	}
 
 
 

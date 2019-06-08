@@ -51,7 +51,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class EntityBaryonyx extends EntityTameable {
+public class EntityBaryonyx extends EntityExtinct {
     private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.<Float>createKey(EntityBaryonyx.class, DataSerializers.FLOAT);
     private static final DataParameter<Integer> DATA_STRENGTH_ID = EntityDataManager.<Integer>createKey(EntityLlama.class, DataSerializers.VARINT);
     public int timeUntilNextEgg;
@@ -399,4 +399,14 @@ public class EntityBaryonyx extends EntityTameable {
     public boolean canBeLeashedTo(EntityPlayer player) {
         return !this.isAngry() && super.canBeLeashedTo(player);
     }
+
+	@Override
+	public int getAdultAge() {
+		return 1;
+	}
+
+	@Override
+	public boolean doesFlock() {
+		return false;
+	}
 }

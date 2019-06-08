@@ -3,7 +3,6 @@ package superlord.prehistoricfauna.entity;
 import com.google.common.base.Predicate;
 
 import io.netty.buffer.ByteBuf;
-import superlord.prehistoricfauna.init.ModItems;
 import superlord.prehistoricfauna.util.handlers.LootTableHandler;
 import superlord.prehistoricfauna.util.handlers.Sounds;
 import net.minecraft.block.Block;
@@ -23,7 +22,7 @@ import net.minecraft.entity.ai.EntityAIPanic;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -43,16 +42,19 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Random;
+
 import javax.annotation.Nullable;
 
-public class EntityTriceratops extends EntityAnimal implements IEntityAdditionalSpawnData {
-    private static final DataParameter<Boolean> IS_STANDING = EntityDataManager.createKey(EntityTriceratops.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Integer> MODEL_TYPE = EntityDataManager.createKey(EntityTriceratops.class, DataSerializers.VARINT);
+public class EntityTriceratops extends EntityExtinct implements IEntityAdditionalSpawnData {
+    private static final DataParameter<Integer> TRICERATOPS_VARIANT = EntityDataManager.<Integer>createKey(EntityTriceratops.class, DataSerializers.VARINT);
     private float clientSideStandAnimation0;
     private float clientSideStandAnimation;
     private int warningSoundTicks;
     public int timeUntilNextEgg;
-
+    public double randomScale;
+    private int texture_index;
+    
     public EntityTriceratops(World worldIn) {
         super(worldIn);
         this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
@@ -63,6 +65,8 @@ public class EntityTriceratops extends EntityAnimal implements IEntityAdditional
     public EntityAgeable createChild(EntityAgeable ageable) {
         return new EntityTriceratops(this.world);
     }
+    
+    
 
     /**
      * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
@@ -158,33 +162,34 @@ public class EntityTriceratops extends EntityAnimal implements IEntityAdditional
     @Override
     protected void entityInit() {
         super.entityInit();
-        dataManager.register(IS_STANDING, false);
-        dataManager.register(MODEL_TYPE, 0);
+        this.dataManager.register(TRICERATOPS_VARIANT, Integer.valueOf(0));
     }
 
-    public int getModelType() {
-        return dataManager.get(MODEL_TYPE);
-    }
-
-    public void setModelType(int modelType) {
-        dataManager.set(MODEL_TYPE, modelType);
-    }
+    
+    
 
     @Override
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
-        compound.getInteger("Genetics");
-        compound.getBoolean("Albino");
-        compound.getBoolean("Melanistic");
-    }
-
+        this.setTriceratopsSkin(compound.getInteger("SapperVariant"));    }
+    
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
-    compound.setInteger("Genetics", this.genetics);
-    compound.setBoolean("Albino", this.isAlbino);
-    compound.setBoolean("Melanistic", this.isMelanistic);
-}
+        compound.setInteger("SapperVariant", this.getTriceratopsSkin());
+        }
+    
+    public int getTriceratopsSkin()
+    {
+        return ((Integer)this.dataManager.get(TRICERATOPS_VARIANT)).intValue();
+    }
+
+    public void setTriceratopsSkin(int skinId)
+    {
+        this.dataManager.set(TRICERATOPS_VARIANT, Integer.valueOf(skinId));
+    }
+
+    
 
     /**
      * Called to update the entity's position/logic.
@@ -193,19 +198,13 @@ public class EntityTriceratops extends EntityAnimal implements IEntityAdditional
     public void onUpdate() {
         super.onUpdate();
 
-        if (this.world.isRemote) {
-            this.clientSideStandAnimation0 = this.clientSideStandAnimation;
-
-            if (this.isStanding()) {
-                this.clientSideStandAnimation = MathHelper.clamp(this.clientSideStandAnimation + 1.0F, 0.0F, 6.0F);
-            } else {
-                this.clientSideStandAnimation = MathHelper.clamp(this.clientSideStandAnimation - 1.0F, 0.0F, 6.0F);
-            }
-        }
-
         if (this.warningSoundTicks > 0) {
             --this.warningSoundTicks;
         }
+    }
+    
+    public int setTextureIndex() {
+    	return texture_index;
     }
 
     @Override
@@ -219,13 +218,7 @@ public class EntityTriceratops extends EntityAnimal implements IEntityAdditional
         return flag;
     }
 
-    public boolean isStanding() {
-        return this.dataManager.get(IS_STANDING);
-    }
-
-    public void setStanding(boolean standing) {
-        this.dataManager.set(IS_STANDING, standing);
-    }
+    
 
     @SideOnly(Side.CLIENT)
     public float getStandingAnimationScale(float p_189795_1_) {
@@ -246,20 +239,15 @@ public class EntityTriceratops extends EntityAnimal implements IEntityAdditional
     public int genetics;
     
     
+    public int getTextureIndex() {
+    	return this.texture_index;
+    }
+    
 
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
-    	genetics = rand.nextInt(100);
-        if(genetics == 99) {
-        	this.isAlbino = true;
-        	this.isMelanistic = false;
-        } else if(genetics == 98 || genetics == 97) {
-        	this.isAlbino = false;
-        	this.isMelanistic = true;
-        } else {
-        	this.isAlbino = false;
-        	this.isMelanistic = false;
-        }
+    	Random rand = new Random();
+        setTriceratopsSkin(rand.nextInt(100));
 		return livingdata;
     }
 
@@ -329,20 +317,16 @@ public class EntityTriceratops extends EntityAnimal implements IEntityAdditional
             if (p_190102_2_ <= d0 && this.attackTick <= 0) {
                 this.attackTick = 20;
                 this.attacker.attackEntityAsMob(p_190102_1_);
-                EntityTriceratops.this.setStanding(false);
             } else if (p_190102_2_ <= d0 * 2.0D) {
                 if (this.attackTick <= 0) {
-                    EntityTriceratops.this.setStanding(false);
                     this.attackTick = 20;
                 }
 
                 if (this.attackTick <= 10) {
-                    EntityTriceratops.this.setStanding(true);
                     EntityTriceratops.this.playWarningSound();
                 }
             } else {
                 this.attackTick = 20;
-                EntityTriceratops.this.setStanding(false);
             }
         }
 
@@ -350,7 +334,6 @@ public class EntityTriceratops extends EntityAnimal implements IEntityAdditional
          * Reset the task's internal state. Called when this task is interrupted by another one
          */
         public void resetTask() {
-            EntityTriceratops.this.setStanding(false);
             super.resetTask();
         }
 
@@ -385,11 +368,23 @@ public class EntityTriceratops extends EntityAnimal implements IEntityAdditional
 	public void writeSpawnData(ByteBuf buffer) {
 		buffer.writeBoolean(isAlbino);
 		buffer.writeBoolean(isMelanistic);
+		buffer.writeInt(texture_index);
 	}
 
 	@Override
 	public void readSpawnData(ByteBuf additionalData) {
 		isAlbino = additionalData.readBoolean();
 		isMelanistic = additionalData.readBoolean();
+		texture_index = additionalData.readInt();
+	}
+
+	@Override
+	public int getAdultAge() {
+		return 1;
+	}
+
+	@Override
+	public boolean doesFlock() {
+		return false;
 	}
 }
