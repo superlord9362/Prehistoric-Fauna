@@ -119,16 +119,6 @@ public class TileEntityDNAExtractor extends TileEntity implements IInventory, IS
 
 	@Override
 	public void update() {
-		for (EntityPlayer player : this.world.playerEntities) {
-			if (this.getDistanceSq(player.posX, player.posY, player.posZ) < 40) {
-				for (int slot = 12; slot > 8; --slot) {
-					ItemStack stack = this.stacks.get(slot);
-					if (!stack.isEmpty()) {
-						
-					}
-				}
-			}
-		}
 		boolean fueled = this.analyzeFuelTime > 0;
 		boolean dirty = false;
 		if (this.analyzeFuelTime > 0) {

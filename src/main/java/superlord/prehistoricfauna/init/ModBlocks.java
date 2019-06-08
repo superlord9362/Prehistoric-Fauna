@@ -10,7 +10,6 @@ import superlord.prehistoricfauna.blocks.BlockModWall;
 import superlord.prehistoricfauna.blocks.BlockMud;
 import superlord.prehistoricfauna.blocks.Mud;
 import superlord.prehistoricfauna.blocks.TileEntityDNAExtractor;
-import superlord.prehistoricfauna.blocks.tile.TileEntityEggIncubator;
 import superlord.prehistoricfauna.util.IHasModel;
 import superlord.prehistoricfauna.util.Reference;
 import net.minecraft.block.Block;
@@ -68,7 +67,6 @@ public class ModBlocks {
                 MESH,
                 LAMP
         );
-        GameRegistry.registerTileEntity(TileEntityEggIncubator.class, new ResourceLocation(MOD_ID, "tile_egg_incubator"));
         GameRegistry.registerTileEntity(TileEntityDNAExtractor.class, new ResourceLocation(MOD_ID, "tile_dna_extractor"));
     }
 
