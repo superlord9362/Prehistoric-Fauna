@@ -4,7 +4,6 @@ package superlord.prehistoricfauna.items;
 
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 
 import net.minecraft.util.EnumActionResult;
@@ -19,11 +18,9 @@ import net.minecraft.world.World;
 import superlord.prehistoricfauna.Main;
 import superlord.prehistoricfauna.entity.EntityDinosaurEgg;
 import superlord.prehistoricfauna.entity.EntityDryosaurus;
-import superlord.prehistoricfauna.entity.EntityPrehistoric;
+import superlord.prehistoricfauna.entity.EntityExtinct;
 import superlord.prehistoricfauna.entity.EntityType;
-import superlord.prehistoricfauna.entity.OrderType;
 import superlord.prehistoricfauna.message.MessageUpdateEgg;
-import superlord.prehistoricfauna.entity.ai.*;
 
 
 
@@ -109,9 +106,9 @@ public class ItemAllosaurusEgg extends PrehistoricEntityItem {
 
 
 
-                if (egg instanceof EntityPrehistoric) {
+                if (egg instanceof EntityExtinct) {
 
-                	EntityPrehistoric prehistoric = (EntityPrehistoric) egg;
+                	EntityExtinct prehistoric = (EntityExtinct) egg;
 
                     prehistoric.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(prehistoric)), null);
 
