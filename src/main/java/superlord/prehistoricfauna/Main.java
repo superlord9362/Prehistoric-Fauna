@@ -1,5 +1,6 @@
 package superlord.prehistoricfauna;
 
+import superlord.prehistoricfauna.init.ModItems;
 import superlord.prehistoricfauna.proxy.CommonProxy;
 import superlord.prehistoricfauna.proxy.IProxy;
 import superlord.prehistoricfauna.util.ReleaseType;
