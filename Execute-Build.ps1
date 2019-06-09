@@ -15,41 +15,54 @@ Function Clean-ForgeBuild([string]$BuildLocation) {
 $Output = [Environment]::NewLine + "JAVA_HOME set to: ${Env:JAVA_HOME}" + [Environment]::NewLine
 Write-Host $Output -ForegroundColor Green
 
-$ModVersion = "0.1.1";
+$PreFaunaVersion = "0.1.1";
 $MinecraftVersion = "1.12.2";
+$LLibraryVersion = "1.7.19";
+
 $PreFaunaBuildLocation = "${PSScriptRoot}";
+$LLibraryBuildLocation = "${PSScriptRoot}/lib/llibrary";
 
 # Assume things are in a successful state until a failure is detected
 $BuildSuccess = $True;
 
 If ($Init) {
+    Set-Location $LLibraryBuildLocation
+    $InitProcess = Start-Process -PassThru -NoNewWindow .\gradlew setupDecompWorkspace
+    $InitProcess.WaitForExit()
+    $InitProcess = Start-Process -PassThru -NoNewWindow .\gradlew eclipse
+    $InitProcess.WaitForExit()
+
     Set-Location $PreFaunaBuildLocation
     $InitProcess = Start-Process -PassThru -NoNewWindow .\gradlew setupDecompWorkspace
     $InitProcess.WaitForExit()
     $InitProcess = Start-Process -PassThru -NoNewWindow .\gradlew eclipse
     $InitProcess.WaitForExit()
-    Set-Location ".."
 
     Write-Host "Finished Init" -ForegroundColor Green
 } Else {
-    Clean-ForgeBuild "${PreFaunaBuildLocation}\build\libs\prehistoricfauna-${ModVersion}.jar"
+    Clean-ForgeBuild "${LLibraryBuildLocation}\build\libs\llibrary.jar"
+    Set-Location -Path $LLibraryBuildLocation
+    $BuildLLibrary = Start-Process -PassThru -NoNewWindow .\gradlew build
+    Set-Location -Path $PreFaunaBuildLocation
+
+    Clean-ForgeBuild "${PreFaunaBuildLocation}\build\libs\prehistoricfauna.jar"
     Set-Location -Path $PreFaunaBuildLocation
     $BuildPreFauna = Start-Process -PassThru -NoNewWindow .\gradlew build
-    Set-Location -Path ".."
 
+    $BuildLLibrary.WaitForExit();
     $BuildPreFauna.WaitForExit();
 
-    If (-Not (Test-Path "${PreFaunaBuildLocation}\build\libs\prehistoricfauna-${ModVersion}.jar")) {
+    If (-Not (Test-Path "${PreFaunaBuildLocation}\build\libs\prehistoricfauna.jar")) {
         Write-Host "ERROR: ${PreFaunaBuildLocation} was not built!" -ForegroundColor Red
         $BuildSuccess = $False
     }
 
     If ($BuildSuccess) {
         If ($Deploy) {
-            Copy-Item "${PreFaunaBuildLocation}\build\libs\prehistoricfauna-${ModVersion}.jar" "${Env:APPDATA}\.minecraft\mods\prehistoricfauna-${MinecraftVersion}-${ModVersion}.jar"
+            Copy-Item "${PreFaunaBuildLocation}\build\libs\prehistoricfauna.jar" "${Env:APPDATA}\.minecraft\mods\prehistoricfauna-${MinecraftVersion}-${PreFaunaVersion}.jar"
             Write-Host "Builds Were Deployed!" -ForegroundColor Green
         } Else {
-            Copy-Item "${PreFaunaBuildLocation}\build\libs\prehistoricfauna-${ModVersion}.jar" ".\prehistoricfauna-${MinecraftVersion}-${ModVersion}.jar"
+            Copy-Item "${PreFaunaBuildLocation}\build\libs\prehistoricfauna.jar" ".\prehistoricfauna-${MinecraftVersion}-${PreFaunaVersion}.jar"
         }
 
         $Output = [Environment]::NewLine + "Builds Completed Successfully" + [Environment]::NewLine
