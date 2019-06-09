@@ -1,20 +1,13 @@
 package superlord.prehistoricfauna.entity.renderers;
 
-import superlord.prehistoricfauna.entity.EntityCamarasaurus;
-import superlord.prehistoricfauna.entity.EntityDryosaurus;
-import superlord.prehistoricfauna.entity.EntityGallimimus;
-import superlord.prehistoricfauna.entity.EntityStegosaurus;
-import superlord.prehistoricfauna.entity.EntityTriceratops;
-import superlord.prehistoricfauna.entity.models.Gallimimus;
-import superlord.prehistoricfauna.entity.models.Stegosaurus;
-import superlord.prehistoricfauna.entity.models.Triceratops;
-import superlord.prehistoricfauna.util.Reference;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
+import superlord.prehistoricfauna.entity.EntityStegosaurus;
+import superlord.prehistoricfauna.entity.models.Stegosaurus;
+import superlord.prehistoricfauna.util.Reference;
 
 public class RenderStegosaurus extends RenderLiving<EntityStegosaurus> {
 	public static final Factory FACTORY = new Factory();
