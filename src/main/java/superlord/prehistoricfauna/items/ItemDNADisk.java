@@ -23,7 +23,7 @@ public class ItemDNADisk extends ItemBase {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
 		if (stack.hasTagCompound()) {
-			tooltip.add("DNA Purity: " + stack.getTagCompound().getFloat("DNA Purity"));
+			tooltip.add("DNA Purity: " + stack.getTagCompound().getFloat("DNA Purity") + "%");
 		}
     }
 
