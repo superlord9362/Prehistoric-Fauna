@@ -34,11 +34,11 @@ public class Eusthenopteron extends ModelBase {
         this.shape2.setRotationPoint(1.0F, 0.0F, 3.0F);
         this.shape2.addBox(-2.0F, -2.5F, 0.0F, 4, 4, 10, 0.0F);
         this.shape4 = new ModelRenderer(this, 141, 0);
-        this.shape4.setRotationPoint(0.5F, -2.0F, 2.0F);
+        this.shape4.setRotationPoint(-0.5F, -2.0F, 2.0F);
         this.shape4.addBox(0.0F, -6.0F, 0.0F, 1, 6, 3, 0.0F);
         this.setRotateAngle(shape4, -0.5009094953223726F, 0.0F, 0.0F);
         this.shape5 = new ModelRenderer(this, 0, 0);
-        this.shape5.setRotationPoint(0.5F, 0.5F, 5.0F);
+        this.shape5.setRotationPoint(-0.5F, 0.5F, 5.0F);
         this.shape5.addBox(0.0F, 0.0F, -1.0F, 1, 4, 2, 0.0F);
         this.setRotateAngle(shape5, 0.4553564018453205F, 0.0F, 0.0F);
         this.shape7_1 = new ModelRenderer(this, 0, 0);

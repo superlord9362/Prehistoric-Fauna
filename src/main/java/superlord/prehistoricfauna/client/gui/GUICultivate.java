@@ -9,7 +9,7 @@ import superlord.prehistoricfauna.blocks.TileEntityCultureVat;
 import superlord.prehistoricfauna.util.Reference;
 
 public class GUICultivate extends GuiContainer {
-	public static final ResourceLocation TEXTURE = new ResourceLocation(Reference.MOD_ID, "textures/gui/cultivate.png");
+	public static final ResourceLocation TEXTURE = new ResourceLocation(Reference.MOD_ID, "textures/gui/egg_incubator.png");
 	private final TileEntityCultureVat entity;
 	private final ContainerCultureVat container;
 
