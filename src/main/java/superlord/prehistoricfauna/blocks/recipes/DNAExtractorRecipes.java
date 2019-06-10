@@ -94,13 +94,14 @@ public class DNAExtractorRecipes {
             entry = (Entry)iterator.next();
         } while (!areItemStacksEqual(parItemStack, (ItemStack)entry.getKey()));
         
-        ItemStack output = (ItemStack)entry.getValue();
+        ItemStack output;
         
 		if (random.nextInt(3) == 1) { // 30% chance of bone meal
 			output = new ItemStack(Items.DYE, 1, 15);
 		} else if (random.nextInt(4) == 1) { // 25% chance of sand
 			output = new ItemStack(Blocks.SAND, 2);
 		} else { // Otherwise, assign DNA Purity
+			output = ((ItemStack)entry.getValue()).copy();
 			UUID uuid = UUID.randomUUID();
 			NBTTagCompound nbt = new NBTTagCompound();
 			nbt.setLong("globalIDLeast", uuid.getLeastSignificantBits());

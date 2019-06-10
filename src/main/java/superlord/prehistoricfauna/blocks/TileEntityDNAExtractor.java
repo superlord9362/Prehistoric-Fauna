@@ -190,33 +190,33 @@ public class TileEntityDNAExtractor extends TileEntityLockable implements IInven
 		if (this.canAnalyze()) {
 			ItemStack input = this.stacks.get(rawIndex);
 			ItemStack output = DNAExtractorRecipes.instance().getRecipeResult(input, new Random());
-			int slotIndex = 0, emptySlot = 0;
+			int slotIndex = 0, emptySlot = -1;
 			
-			if(output.getCount() > 1){
-				int maxCount = output.getCount() - 1;
-				output.setCount(1 + this.world.rand.nextInt(maxCount));
-			}
-			
-			if (!output.isEmpty()) {
-				while (slotIndex < 3 && !this.stacks.get(SLOTS_OUT.get(slotIndex++)).isItemEqual(output)) {
-					if (this.stacks.get(SLOTS_OUT.get(slotIndex)).isItemEqual(output) && this.stacks.get(SLOTS_OUT.get(slotIndex)).getCount() + output.getCount() < 64) {
-						this.stacks.get(SLOTS_OUT.get(slotIndex)).setCount(this.stacks.get(SLOTS_OUT.get(slotIndex)).getCount() + output.getCount());
+			if (output != null && !output.isEmpty()) {
+				if(output.getCount() > 1){
+					int maxCount = output.getCount() - 1;
+					output.setCount(1 + this.world.rand.nextInt(maxCount));
+				}
+				
+				for (slotIndex = 0; slotIndex < 3; slotIndex++) {
+					if (this.stacks.get(SLOTS_OUT.get(slotIndex)).isItemEqual(output) && this.stacks.get(SLOTS_OUT.get(slotIndex)).getCount() < 64) {
+						this.stacks.get(SLOTS_OUT.get(slotIndex)).setCount(this.stacks.get(SLOTS_OUT.get(slotIndex)).getCount() + 1);
 						this.stacks.get(this.rawIndex).shrink(1);
 						return this;
 					}
-					if (this.stacks.get(SLOTS_OUT.get(slotIndex)).isEmpty() && emptySlot == 0) {
+					if (this.stacks.get(SLOTS_OUT.get(slotIndex)).isEmpty() && emptySlot == -1) {
 						emptySlot = SLOTS_OUT.get(slotIndex);
 					}
 				}
-				if (emptySlot != 0) {
+				if (emptySlot != -1) {
 					if (this.stacks.get(SLOTS_OUT.get(0)).isEmpty()) { this.stacks.set(SLOTS_OUT.get(0), output); }
 					else { this.stacks.set(emptySlot, output); }
 					this.stacks.get(this.rawIndex).shrink(1);
 					return this;
 				}
+			} else {
+				analyzeItem();
 			}
-		} else {
-			
 		}
 		return null;
 	}
