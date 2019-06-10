@@ -68,7 +68,7 @@ public class ClientProxy extends CommonProxy implements IProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityCladocyclus.class, RenderCladocyclus.FACTORY);
         GameRegistry.registerWorldGenerator(new ModWorldGen(), 3);
     }
-    
+
     @Override
     public void init(FMLInitializationEvent event) {
     	NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, new GUIHandler());
@@ -78,5 +78,5 @@ public class ClientProxy extends CommonProxy implements IProxy {
     public void registerItemRenderer(Item item, int meta, String id) {
         ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), id));
     }
-    
+
 }

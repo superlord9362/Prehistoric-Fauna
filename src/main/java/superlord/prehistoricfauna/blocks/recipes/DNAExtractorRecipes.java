@@ -1,45 +1,98 @@
 package superlord.prehistoricfauna.blocks.recipes;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 import superlord.prehistoricfauna.init.ModItems;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import com.google.common.collect.Maps;
 
 public class DNAExtractorRecipes {
-    public static List<RecipeAnalyzer> analyzerRecipes = new ArrayList<>();
-
-
-    public static void init() {
-    	RecipeAnalyzer allosaurus = new RecipeAnalyzer(ModItems.ALLOSAURUS_SKULL)
-                .addOutput(new ItemStack(Items.DYE, 1, 15), 50F)
-                .addOutput(new ItemStack(Blocks.SAND, 2), 35F)
-        		.addOutput(new ItemStack(ModItems.ALLOSAURUS_DNA, 1), 15F);
-        registerAnalyzer(allosaurus);
-        RecipeAnalyzer velociraptor = new RecipeAnalyzer(ModItems.VELOCIRAPTOR_CLAW)
-                .addOutput(new ItemStack(Items.DYE, 1, 15), 50F)
-                .addOutput(new ItemStack(Blocks.SAND, 2), 35F)
-        		.addOutput(new ItemStack(ModItems.VELOCIRAPTOR_DNA, 1), 15F);
-        
-        registerAnalyzer(velociraptor);
-        
+    private static final DNAExtractorRecipes dnaExtractorRecipes = new DNAExtractorRecipes();
+    
+    private final Map extractionList = Maps.newHashMap();
+    private final Map experienceList = Maps.newHashMap();
+    
+    /**
+     * Returns the privately-held instance of DNAExtractorRecipes.
+     * @return
+     */
+	public static DNAExtractorRecipes instance()
+    {
+        return dnaExtractorRecipes;
+    }
+	
+	private DNAExtractorRecipes() {
+		addRecipe(new ItemStack(ModItems.ALLOSAURUS_SKULL), 
+	              new ItemStack(ModItems.ALLOSAURUS_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.ANKYLOSAURUS_TAIL), 
+	              new ItemStack(ModItems.ANKYLOSAURUS_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.BARYONYX_CLAW), 
+	              new ItemStack(ModItems.BARYONYX_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.CAMARASAURUS_SKULL), 
+	              new ItemStack(ModItems.CAMARASAURUS_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.DRYOSAURUS_SKULL), 
+	              new ItemStack(ModItems.DRYOSAURUS_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.VELOCIRAPTOR_CLAW), 
+	              new ItemStack(ModItems.VELOCIRAPTOR_DNA), 0.0F);
     }
 
-    private static void registerAnalyzer(RecipeAnalyzer recipe) {
-        analyzerRecipes.add(recipe);
+	public void addRecipe(ItemStack parItemStackIn, ItemStack parItemStackOut, float parExperience)
+    {
+        extractionList.put(parItemStackIn, parItemStackOut);
+        experienceList.put(parItemStackOut, Float.valueOf(parExperience));
     }
+	
+	public ItemStack getRecipeResult(ItemStack parItemStack)
+    {
+        Iterator iterator = extractionList.entrySet().iterator();
+        Entry entry;
 
-
-    public static RecipeAnalyzer getAnalyzerRecipeForItem(ItemStack stack) {
-        for (RecipeAnalyzer recipe : analyzerRecipes) {
-            if (OreDictionary.itemMatches(recipe.getInput(), stack, false)) {
-                return recipe;
+        do
+        {
+            if (!iterator.hasNext())
+            {
+                return null;
             }
-        }
-        return null;
+
+            entry = (Entry)iterator.next();
+        } while (!areItemStacksEqual(parItemStack, (ItemStack)entry.getKey()));
+        return (ItemStack)entry.getValue();
+    }
+	
+	private boolean areItemStacksEqual(ItemStack parItemStack1, ItemStack parItemStack2)
+    {
+        return parItemStack2.getItem() == parItemStack1.getItem() 
+
+              && (parItemStack2.getMetadata() == 32767 
+
+              || parItemStack2.getMetadata() == parItemStack1
+
+              .getMetadata());
+    }
+
+    public Map getRecipeList()
+    {
+        return extractionList;
+    }
+    
+    public float getResultantExperience(ItemStack parItemStack)
+    {
+        Iterator iterator = experienceList.entrySet().iterator();
+        Entry entry;
+
+        do
+        {
+            if (!iterator.hasNext())
+            {
+                return 0.0F;
+            }
+
+            entry = (Entry)iterator.next();
+        } while (!areItemStacksEqual(parItemStack, (ItemStack)entry.getKey()));
+        return ((Float)entry.getValue()).floatValue();
     }
 
    

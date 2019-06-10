@@ -23,7 +23,7 @@ public class Main {
 
     @Instance
     public static Main instance;
-    
+
     public static SimpleNetworkWrapper NETWORK_WRAPPER;
     public static CommonProxy PROXY;
 	public static final ReleaseType RELEASE_TYPE = ReleaseType.parseVersion(VERSION);
@@ -47,5 +47,5 @@ public class Main {
     public static void postInit(FMLPostInitializationEvent event) {
     }
 
-    
+
 }

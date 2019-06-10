@@ -1,6 +1,10 @@
 package superlord.prehistoricfauna.blocks;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -9,6 +13,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
@@ -18,7 +23,7 @@ import superlord.prehistoricfauna.blocks.recipes.DNAExtractorRecipes;
 import java.util.Random;
 
 @SuppressWarnings("deprecation")
-public class TileEntityDNAExtractor extends TileEntity implements IInventory, ISidedInventory, ITickable {
+public class TileEntityDNAExtractor extends TileEntityLockable implements IInventory, ISidedInventory, ITickable {
 	@SuppressWarnings("unused")
 	private static final int[] SLOTS_TOP = new int[]{};
 	private static final int[] SLOTS_BOTTOM = new int[]{9, 10, 11, 12};
@@ -177,20 +182,29 @@ public class TileEntityDNAExtractor extends TileEntity implements IInventory, IS
 		}
 	}
 
-	public static boolean isAnalyzable(ItemStack stack){
-		return DNAExtractorRecipes.getAnalyzerRecipeForItem(stack) != null;
-		}
+	public boolean isAnalyzable(ItemStack stack){
+		return DNAExtractorRecipes.instance().getRecipeResult(stack) != null;
+	}
 
 	public void analyzeItem() {
 		if (this.canAnalyze()) {
 			ItemStack output = ItemStack.EMPTY;
 			Random random = this.world.rand;
 			ItemStack input = this.stacks.get(rawIndex);
-			output = DNAExtractorRecipes.getAnalyzerRecipeForItem(input).generateOutput(random);
+			
+			output = DNAExtractorRecipes.instance().getRecipeResult(input);
+			
+			if (random.nextInt(2) == 1) { // 50% chance of bone meal
+				output = new ItemStack(Items.DYE, 1, 15);
+			} else if (random.nextInt(3) == 1) { // 30% chance of sand
+				output = new ItemStack(Blocks.SAND, 2);
+			}
+			
 			if(output.getCount() > 1){
 				int maxCount = output.getCount() - 1;
 				output.setCount(1 + random.nextInt(maxCount));
 			}
+			
 			if (!output.isEmpty()) {
 				for (int slot = 9; slot < 13; slot++) {
 					ItemStack stack = this.stacks.get(slot);
@@ -207,6 +221,7 @@ public class TileEntityDNAExtractor extends TileEntity implements IInventory, IS
 					}
 				}
 			}
+			
 		}
 	}
 
@@ -223,29 +238,29 @@ public class TileEntityDNAExtractor extends TileEntity implements IInventory, IS
 	@Override
 	public int getField(int id) {
 		switch (id) {
-			case 0:
-				return this.analyzeFuelTime;
-			case 1:
-				return this.currentFuelTime;
-			case 2:
-				return this.analyzeTime;
-			default:
-				return 0;
+		case 0:
+			return this.analyzeFuelTime;
+		case 1:
+			return this.currentFuelTime;
+		case 2:
+			return this.analyzeTime;
+		default:
+			return 0;
 		}
 	}
 
 	@Override
 	public void setField(int id, int value) {
 		switch (id) {
-			case 0:
-				this.analyzeFuelTime = value;
-				break;
-			case 1:
-				this.currentFuelTime = value;
-				break;
-			case 2:
-				this.analyzeTime = value;
-				break;
+		case 0:
+			this.analyzeFuelTime = value;
+			break;
+		case 1:
+			this.currentFuelTime = value;
+			break;
+		case 2:
+			this.analyzeTime = value;
+			break;
 		}
 	}
 
@@ -263,7 +278,7 @@ public class TileEntityDNAExtractor extends TileEntity implements IInventory, IS
 	public void openInventory(EntityPlayer player) {
 		for (int slots = 12; slots > 8; --slots) {
 			if (!this.stacks.get(slots).isEmpty()) {
-				
+
 			}
 		}
 	}
@@ -323,5 +338,17 @@ public class TileEntityDNAExtractor extends TileEntity implements IInventory, IS
 			else
 				return (T) handlerTop;
 		return super.getCapability(capability, facing);
+	}
+
+	@Override
+	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getGuiID() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -1,18 +1,7 @@
 package superlord.prehistoricfauna.init;
 
-import superlord.prehistoricfauna.blocks.BlockBase;
-import superlord.prehistoricfauna.blocks.BlockCretaceousFossil;
-import superlord.prehistoricfauna.blocks.BlockCultureVat;
-import superlord.prehistoricfauna.blocks.BlockDNAExtractor2;
-import superlord.prehistoricfauna.blocks.BlockJurassicFossil;
-import superlord.prehistoricfauna.blocks.BlockLamp;
-import superlord.prehistoricfauna.blocks.BlockMesh;
-import superlord.prehistoricfauna.blocks.BlockModWall;
-import superlord.prehistoricfauna.blocks.BlockMud;
-import superlord.prehistoricfauna.blocks.BlockPaleozoicFossil;
-import superlord.prehistoricfauna.blocks.BlockPrehistoricPlant;
-import superlord.prehistoricfauna.blocks.TileEntityDNAExtractor;
-import superlord.prehistoricfauna.util.IHasModel;
+import static superlord.prehistoricfauna.util.Reference.MOD_ID;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
@@ -23,8 +12,21 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-
-import static superlord.prehistoricfauna.util.Reference.MOD_ID;
+import superlord.prehistoricfauna.blocks.BlockBase;
+import superlord.prehistoricfauna.blocks.BlockCretaceousFossil;
+import superlord.prehistoricfauna.blocks.BlockCultureVat;
+import superlord.prehistoricfauna.blocks.BlockDNAExtractor2;
+import superlord.prehistoricfauna.blocks.BlockEggIncubator;
+import superlord.prehistoricfauna.blocks.BlockJurassicFossil;
+import superlord.prehistoricfauna.blocks.BlockLamp;
+import superlord.prehistoricfauna.blocks.BlockMesh;
+import superlord.prehistoricfauna.blocks.BlockModWall;
+import superlord.prehistoricfauna.blocks.BlockMud;
+import superlord.prehistoricfauna.blocks.BlockPaleozoicFossil;
+import superlord.prehistoricfauna.blocks.BlockPrehistoricPlant;
+import superlord.prehistoricfauna.blocks.TileEntityDNAExtractor;
+import superlord.prehistoricfauna.util.IHasModel;
+import superlord.prehistoricfauna.util.Reference;
 
 @Mod.EventBusSubscriber
 public class ModBlocks {
@@ -33,6 +35,7 @@ public class ModBlocks {
     public static final Block JURASSIC_FOSSIL = new BlockJurassicFossil("jurassic_fossil", Material.ROCK);
 	public static final BlockDNAExtractor2 ANALYZER = new BlockDNAExtractor2(false);
 	public static final BlockDNAExtractor2 ANALYZER_ACTIVE = new BlockDNAExtractor2(true);
+	public static final BlockEggIncubator EGG_INCUBATOR = new BlockEggIncubator("egg_incubator");
     public static final Block GRAVEL_PATH = new BlockBase("gravel_path", Material.GROUND);
     public static final Block RED_GRAVEL_PATH = new BlockBase("red_gravel_path", Material.SAND);
     public static final Block HERRINGBONE_PATH = new BlockBase("herringbone", Material.ROCK);
@@ -103,7 +106,7 @@ public class ModBlocks {
                 new ItemBlock(CULTURE_VAT_ACTIVE).setRegistryName(CULTURE_VAT_ACTIVE.getRegistryName())
                 );
     }
-    
+
 
     @SubscribeEvent
     public static void onModelRegister(ModelRegistryEvent event) {
