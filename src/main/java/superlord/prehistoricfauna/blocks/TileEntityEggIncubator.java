@@ -22,6 +22,8 @@ public class TileEntityEggIncubator extends TileEntity implements IInventory, IS
 	private static final int[] SLOTS_BOTTOM = new int[]{9, 10, 11, 12};
 	private static final int[] SLOTS_SIDES = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8};
 
+	private static Random random = new Random();
+	
 	public int analyzeFuelTime = 0;
 	public int currentFuelTime = 100;
 	public int analyzeTime = 0;
@@ -176,7 +178,7 @@ public class TileEntityEggIncubator extends TileEntity implements IInventory, IS
 	}
 
 	public static boolean isAnalyzable(ItemStack stack){
-		return DNAExtractorRecipes.instance().getRecipeResult(stack) != null;
+		return DNAExtractorRecipes.instance().getRecipeResult(stack, random) != null;
 		}
 
 	public void analyzeItem() {
@@ -184,7 +186,7 @@ public class TileEntityEggIncubator extends TileEntity implements IInventory, IS
 			ItemStack output = ItemStack.EMPTY;
 			Random random = this.world.rand;
 			ItemStack input = this.stacks.get(rawIndex);
-			output = DNAExtractorRecipes.instance().getRecipeResult(input); // .generateOutput(random);
+			output = DNAExtractorRecipes.instance().getRecipeResult(input, this.world.rand); // .generateOutput(random);
 			if(output.getCount() > 1){
 				int maxCount = output.getCount() - 1;
 				output.setCount(1 + random.nextInt(maxCount));

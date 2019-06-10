@@ -1,11 +1,18 @@
 package superlord.prehistoricfauna.blocks.recipes;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import superlord.prehistoricfauna.init.ModItems;
 
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.Map.Entry;
+import java.util.Random;
 
 import com.google.common.collect.Maps;
 
@@ -14,6 +21,9 @@ public class DNAExtractorRecipes {
     
     private final Map extractionList = Maps.newHashMap();
     private final Map experienceList = Maps.newHashMap();
+    
+	private final List<Integer> dnaPuritiesList = Arrays.asList(25, 50, 75, 100);
+
     
     /**
      * Returns the privately-held instance of DNAExtractorRecipes.
@@ -45,7 +55,7 @@ public class DNAExtractorRecipes {
         experienceList.put(parItemStackOut, Float.valueOf(parExperience));
     }
 	
-	public ItemStack getRecipeResult(ItemStack parItemStack)
+	public ItemStack getRecipeResult(ItemStack parItemStack, Random random)
     {
         Iterator iterator = extractionList.entrySet().iterator();
         Entry entry;
@@ -59,7 +69,23 @@ public class DNAExtractorRecipes {
 
             entry = (Entry)iterator.next();
         } while (!areItemStacksEqual(parItemStack, (ItemStack)entry.getKey()));
-        return (ItemStack)entry.getValue();
+        
+        ItemStack output = (ItemStack)entry.getValue();
+        
+		if (random.nextInt(3) == 1) { // 30% chance of bone meal
+			output = new ItemStack(Items.DYE, 1, 15);
+		} else if (random.nextInt(4) == 1) { // 25% chance of sand
+			output = new ItemStack(Blocks.SAND, 2);
+		} else { // Otherwise, assign DNA Purity
+			UUID uuid = UUID.randomUUID();
+			NBTTagCompound nbt = new NBTTagCompound();
+			nbt.setLong("globalIDLeast", uuid.getLeastSignificantBits());
+			nbt.setLong("globalIDMost", uuid.getMostSignificantBits());
+			nbt.setFloat("DNA Purity", dnaPuritiesList.get(random.nextInt(dnaPuritiesList.size())));
+			output.setTagCompound(nbt);
+		}
+        
+        return output;
     }
 	
 	private boolean areItemStacksEqual(ItemStack parItemStack1, ItemStack parItemStack2)

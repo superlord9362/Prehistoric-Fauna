@@ -20,7 +20,10 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.translation.I18n;
 import superlord.prehistoricfauna.blocks.recipes.DNAExtractorRecipes;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 @SuppressWarnings("deprecation")
 public class TileEntityDNAExtractor extends TileEntityLockable implements IInventory, ISidedInventory, ITickable {
@@ -35,7 +38,7 @@ public class TileEntityDNAExtractor extends TileEntityLockable implements IInven
 	private String customName;
 	private NonNullList<ItemStack> stacks = NonNullList.withSize(13, ItemStack.EMPTY);
 	private int rawIndex = -1;
-
+	
 	private static int getFuelTime(ItemStack stack) {
 		return 100;
 	}
@@ -183,28 +186,14 @@ public class TileEntityDNAExtractor extends TileEntityLockable implements IInven
 	}
 
 	public boolean isAnalyzable(ItemStack stack){
-		return DNAExtractorRecipes.instance().getRecipeResult(stack) != null;
+		return DNAExtractorRecipes.instance().getRecipeResult(stack, this.world.rand) != null;
 	}
 
 	public void analyzeItem() {
 		if (this.canAnalyze()) {
-			ItemStack output = ItemStack.EMPTY;
-			Random random = this.world.rand;
 			ItemStack input = this.stacks.get(rawIndex);
-			
-			output = DNAExtractorRecipes.instance().getRecipeResult(input);
-			
-			if (random.nextInt(2) == 1) { // 50% chance of bone meal
-				output = new ItemStack(Items.DYE, 1, 15);
-			} else if (random.nextInt(3) == 1) { // 30% chance of sand
-				output = new ItemStack(Blocks.SAND, 2);
-			}
-			
-			if(output.getCount() > 1){
-				int maxCount = output.getCount() - 1;
-				output.setCount(1 + random.nextInt(maxCount));
-			}
-			
+			ItemStack output = DNAExtractorRecipes.instance().getRecipeResult(input, new Random());
+
 			if (!output.isEmpty()) {
 				for (int slot = 9; slot < 13; slot++) {
 					ItemStack stack = this.stacks.get(slot);
