@@ -7,6 +7,6 @@ public class ItemFossil extends ItemBase {
 	public ItemFossil(String name) {
 		super(name);
         setCreativeTab(PFTabRegistry.NORMAL);
-	}
+	}	
 
 }
