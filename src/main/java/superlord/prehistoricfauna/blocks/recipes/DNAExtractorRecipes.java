@@ -18,16 +18,23 @@ public class DNAExtractorRecipes {
 
 
     public static void init() {
+    	
     	RecipeAnalyzer allosaurus = new RecipeAnalyzer(ModItems.ALLOSAURUS_SKULL)
                 .addOutput(new ItemStack(Items.DYE, 1, 15), 50F)
                 .addOutput(new ItemStack(Blocks.SAND, 2), 35F)
         		.addOutput(new ItemStack(ModItems.ALLOSAURUS_DNA, 1), 15F);
         registerAnalyzer(allosaurus);
+        
+        RecipeAnalyzer ankylosaurus = new RecipeAnalyzer(ModItems.ANKYLOSAURUS_TAIL)
+                .addOutput(new ItemStack(Items.DYE, 1, 15), 50F)
+                .addOutput(new ItemStack(Blocks.SAND, 2), 35F)
+        		.addOutput(new ItemStack(ModItems.ANKYLOSAURUS_DNA, 1), 15F);
+        registerAnalyzer(ankylosaurus);
+        
         RecipeAnalyzer velociraptor = new RecipeAnalyzer(ModItems.VELOCIRAPTOR_CLAW)
                 .addOutput(new ItemStack(Items.DYE, 1, 15), 50F)
                 .addOutput(new ItemStack(Blocks.SAND, 2), 35F)
         		.addOutput(new ItemStack(ModItems.VELOCIRAPTOR_DNA, 1), 15F);
-        
         registerAnalyzer(velociraptor);
         
     }
