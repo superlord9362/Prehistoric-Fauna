@@ -13,7 +13,7 @@ version = getModField("VERSION", mod_file)
 def llibrary_version = getModField("LLIBRARY_VERSION", mod_file)
 group = "prehistoricfauna"
 archivesBaseName = "prehistoricfauna"
-sourceCompatibility = targetCompatibility = "1.8"
+
 minecraft {
     version = "1.12.2-14.23.5.2838"
     runDir = "run"
@@ -23,7 +23,7 @@ minecraft {
     // stable_#            stables are built at the discretion of the MCP team.
     // Use non-default mappings at your own risk. they may not always work.
     // simply re-run your setup task after changing the mappings to update your workspace.
-    mappings = "snapshot_20171003"
+    mappings = "stable_39"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
  repositories {

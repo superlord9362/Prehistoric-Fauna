@@ -10,7 +10,7 @@ public class ItemBase extends Item implements IHasModel {
 
     public ItemBase(String name) {
         setRegistryName(name);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         setCreativeTab(PFTabRegistry.NORMAL);
         ModItems.ITEMS.add(this);
     }

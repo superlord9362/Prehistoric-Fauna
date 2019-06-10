@@ -270,7 +270,7 @@ public class BlockEggIncubator extends BlockBase
 
 	{
 
-		EnumFacing facing = EnumFacing.getFront(meta);
+		EnumFacing facing = EnumFacing.byIndex(meta);
 
 		if(facing.getAxis() == EnumFacing.Axis.Y) facing = EnumFacing.NORTH;
 

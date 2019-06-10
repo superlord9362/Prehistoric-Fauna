@@ -14,7 +14,7 @@ public class PFTab extends CreativeTabs {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public ItemStack getTabIconItem() {
+	public ItemStack createIcon() {
 		return new ItemStack(ModItems.VELOCIRAPTOR_CLAW);
 	}
 

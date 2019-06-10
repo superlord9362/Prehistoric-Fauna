@@ -24,7 +24,7 @@ public class PrehistoricEntityItem extends Item implements IHasModel {
 
 		this.resourceName = type.resourceName + "_" + name;
 		setRegistryName(name);
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		this.setCreativeTab(PFTabRegistry.EGG);
 		ModItems.ITEMS.add(this);
 

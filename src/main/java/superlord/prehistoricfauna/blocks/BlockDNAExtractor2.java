@@ -74,14 +74,14 @@ public class BlockDNAExtractor2 extends BlockContainer implements DefaultRendere
 
 			this.setLightLevel(0.9375F);
 			setRegistryName("dna_extractor2_on");
-			setUnlocalizedName("dna_extractor2_on");
+			setTranslationKey("dna_extractor2_on");
 
 		} else {
 
 
 			this.setCreativeTab(PFTabRegistry.NORMAL);
 			setRegistryName("dna_extractor2");
-			setUnlocalizedName("dna_extractor2");
+			setTranslationKey("dna_extractor2");
 
 		}
 
@@ -332,12 +332,10 @@ public class BlockDNAExtractor2 extends BlockContainer implements DefaultRendere
 	}
 
 
-
-	@SuppressWarnings("deprecation")
 	@Override
 	public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing enumfacing = EnumFacing.getFront(meta);
+        EnumFacing enumfacing = EnumFacing.byIndex(meta);
 
         if (enumfacing.getAxis() == EnumFacing.Axis.Y)
         {
