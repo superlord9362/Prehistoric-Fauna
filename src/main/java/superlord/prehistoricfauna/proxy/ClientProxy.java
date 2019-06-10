@@ -5,9 +5,12 @@ import superlord.prehistoricfauna.entity.EntityAllosaurus;
 import superlord.prehistoricfauna.entity.EntityAnkylosaurus;
 import superlord.prehistoricfauna.entity.EntityBaryonyx;
 import superlord.prehistoricfauna.entity.EntityCamarasaurus;
+import superlord.prehistoricfauna.entity.EntityCladocyclus;
 import superlord.prehistoricfauna.entity.EntityDinosaurEgg;
 import superlord.prehistoricfauna.entity.EntityDryosaurus;
+import superlord.prehistoricfauna.entity.EntityEusthenopteron;
 import superlord.prehistoricfauna.entity.EntityGallimimus;
+import superlord.prehistoricfauna.entity.EntityParadoxides;
 import superlord.prehistoricfauna.entity.EntityParasaurolophus;
 import superlord.prehistoricfauna.entity.EntityPrenocephale;
 import superlord.prehistoricfauna.entity.EntityStegosaurus;
@@ -19,8 +22,11 @@ import superlord.prehistoricfauna.entity.renderers.CamarasaurusRenderer;
 import superlord.prehistoricfauna.entity.renderers.GallimimusRenderer;
 import superlord.prehistoricfauna.entity.renderers.RenderAnkylosaurus;
 import superlord.prehistoricfauna.entity.renderers.RenderBaryonyx;
+import superlord.prehistoricfauna.entity.renderers.RenderCladocyclus;
 import superlord.prehistoricfauna.entity.renderers.RenderDinoEgg;
+import superlord.prehistoricfauna.entity.renderers.RenderEusthenopteron;
 import superlord.prehistoricfauna.entity.renderers.RenderExtinct;
+import superlord.prehistoricfauna.entity.renderers.RenderParadoxides;
 import superlord.prehistoricfauna.entity.renderers.RenderParasaurolophus;
 import superlord.prehistoricfauna.entity.renderers.RenderPrenocephale;
 import superlord.prehistoricfauna.entity.renderers.RenderStegosaurus;
@@ -57,6 +63,9 @@ public class ClientProxy extends CommonProxy implements IProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityParasaurolophus.class, RenderParasaurolophus.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityBaryonyx.class, RenderBaryonyx.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityDinosaurEgg.class, RenderDinoEgg::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityParadoxides.class, RenderParadoxides.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityEusthenopteron.class, RenderEusthenopteron.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityCladocyclus.class, RenderCladocyclus.FACTORY);
         GameRegistry.registerWorldGenerator(new ModWorldGen(), 3);
     }
     

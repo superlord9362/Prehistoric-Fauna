@@ -2,19 +2,19 @@ package superlord.prehistoricfauna.init;
 
 import superlord.prehistoricfauna.blocks.BlockBase;
 import superlord.prehistoricfauna.blocks.BlockCretaceousFossil;
+import superlord.prehistoricfauna.blocks.BlockCultureVat;
 import superlord.prehistoricfauna.blocks.BlockDNAExtractor2;
 import superlord.prehistoricfauna.blocks.BlockJurassicFossil;
 import superlord.prehistoricfauna.blocks.BlockLamp;
 import superlord.prehistoricfauna.blocks.BlockMesh;
 import superlord.prehistoricfauna.blocks.BlockModWall;
 import superlord.prehistoricfauna.blocks.BlockMud;
-import superlord.prehistoricfauna.blocks.Mud;
+import superlord.prehistoricfauna.blocks.BlockPaleozoicFossil;
+import superlord.prehistoricfauna.blocks.BlockPrehistoricPlant;
 import superlord.prehistoricfauna.blocks.TileEntityDNAExtractor;
 import superlord.prehistoricfauna.util.IHasModel;
-import superlord.prehistoricfauna.util.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
@@ -31,9 +31,7 @@ public class ModBlocks {
 
     public static final Block CRETACEOUS_FOSSIL = new BlockCretaceousFossil("cretaceous_fossil", Material.ROCK);
     public static final Block JURASSIC_FOSSIL = new BlockJurassicFossil("jurassic_fossil", Material.ROCK);
-    @GameRegistry.ObjectHolder(Reference.MOD_ID + ":analyzer_idle")
 	public static final BlockDNAExtractor2 ANALYZER = new BlockDNAExtractor2(false);
-	@GameRegistry.ObjectHolder(Reference.MOD_ID + ":analyzer_active")
 	public static final BlockDNAExtractor2 ANALYZER_ACTIVE = new BlockDNAExtractor2(true);
     public static final Block GRAVEL_PATH = new BlockBase("gravel_path", Material.GROUND);
     public static final Block RED_GRAVEL_PATH = new BlockBase("red_gravel_path", Material.SAND);
@@ -46,7 +44,12 @@ public class ModBlocks {
     public static final Block MUD = new BlockMud("mud", Material.GROUND);
     public static final Block MESH = new BlockMesh(Material.GLASS, true, "mesh");
     public static final Block LAMP = new BlockLamp("lamp", Material.GLASS);
-    
+    public static final Block COOKSONIA = new BlockPrehistoricPlant("cooksonia", Material.PLANTS);
+    public static final Block ARCHAEAMPHORA = new BlockPrehistoricPlant("archaeamphora", Material.PLANTS);
+    public static final Block PALEOZOIC_FOSSIL = new BlockPaleozoicFossil("paleozoic_fossil", Material.ROCK);
+    public static final Block CULTURE_VAT_IDLE = new BlockCultureVat(false);
+    public static final Block CULTURE_VAT_ACTIVE = new BlockCultureVat(true);
+
 
     @SubscribeEvent
     public static void onBlockRegister(RegistryEvent.Register<Block> event) {
@@ -65,7 +68,12 @@ public class ModBlocks {
                 STONE_BRICK_WALL,
                 MUD,
                 MESH,
-                LAMP
+                LAMP,
+                COOKSONIA,
+                ARCHAEAMPHORA,
+                PALEOZOIC_FOSSIL,
+                CULTURE_VAT_IDLE,
+                CULTURE_VAT_ACTIVE
         );
         GameRegistry.registerTileEntity(TileEntityDNAExtractor.class, new ResourceLocation(MOD_ID, "tile_dna_extractor"));
     }
@@ -87,8 +95,13 @@ public class ModBlocks {
                 new ItemBlock(STONE_BRICK_WALL).setRegistryName(STONE_BRICK_WALL.getRegistryName()),
                 new ItemBlock(MUD).setRegistryName(MUD.getRegistryName()),
                 new ItemBlock(MESH).setRegistryName(MESH.getRegistryName()),
-                new ItemBlock(LAMP).setRegistryName(LAMP.getRegistryName())
-        );
+                new ItemBlock(LAMP).setRegistryName(LAMP.getRegistryName()),
+                new ItemBlock(COOKSONIA).setRegistryName(COOKSONIA.getRegistryName()),
+                new ItemBlock(ARCHAEAMPHORA).setRegistryName(ARCHAEAMPHORA.getRegistryName()),
+                new ItemBlock(PALEOZOIC_FOSSIL).setRegistryName(PALEOZOIC_FOSSIL.getRegistryName()),
+                new ItemBlock(CULTURE_VAT_IDLE).setRegistryName(CULTURE_VAT_IDLE.getRegistryName()),
+                new ItemBlock(CULTURE_VAT_ACTIVE).setRegistryName(CULTURE_VAT_ACTIVE.getRegistryName())
+                );
     }
     
 
@@ -109,6 +122,11 @@ public class ModBlocks {
         registerModel(MUD);
         registerModel(MESH);
         registerModel(LAMP);
+        registerModel(COOKSONIA);
+        registerModel(ARCHAEAMPHORA);
+        registerModel(PALEOZOIC_FOSSIL);
+        registerModel(CULTURE_VAT_IDLE);
+        registerModel(CULTURE_VAT_ACTIVE);
     }
 
     private static void registerModel(Block block) {

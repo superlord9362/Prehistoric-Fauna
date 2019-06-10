@@ -1,6 +1,5 @@
 package superlord.prehistoricfauna.entity.renderers;
 
-import superlord.prehistoricfauna.entity.EntityDryosaurus;
 import superlord.prehistoricfauna.entity.EntityTyrannosaurus;
 import superlord.prehistoricfauna.entity.models.Tyrannosaurus;
 import superlord.prehistoricfauna.util.Reference;
@@ -23,10 +22,18 @@ public class TyrannosaurusRenderer extends RenderLiving<EntityTyrannosaurus> {
     @Override
     protected ResourceLocation getEntityTexture(EntityTyrannosaurus entity) {
         if (entity.isChild()) {
-            return new ResourceLocation(Reference.MOD_ID, "textures/entities/tyrannosaurusj.png");
+            return new ResourceLocation(Reference.MOD_ID, "textures/entities/tyrannosaurus/tyrannosaurusj.png");
         } else {
-            return new ResourceLocation(Reference.MOD_ID, "textures/entities/tyrannosaurusa.png");
-        }
+        	switch(entity.getTyrannosaurusSkin()) {
+			case 0:
+				return new ResourceLocation(Reference.MOD_ID, "textures/entities/tyrannosaurus/tyrannosaurusa_albino.png");
+			case 1:
+				return new ResourceLocation(Reference.MOD_ID, "textures/entities/tyrannosaurus/tyrannosaurusa_melanistic.png");
+			case 2:
+				return new ResourceLocation(Reference.MOD_ID, "textures/entities/tyrannosaurus/tyrannosaurusa_melanistic.png");
+			default:
+				return new ResourceLocation(Reference.MOD_ID, "textures/entities/tyrannosaurus/tyrannosaurusa.png");
+			}         }
     }
 
     public static class Factory implements IRenderFactory<EntityTyrannosaurus> {

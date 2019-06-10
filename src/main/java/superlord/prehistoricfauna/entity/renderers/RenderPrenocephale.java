@@ -3,8 +3,6 @@ package superlord.prehistoricfauna.entity.renderers;
 import superlord.prehistoricfauna.entity.EntityPrenocephale;
 import superlord.prehistoricfauna.entity.models.Prenocephale;
 import superlord.prehistoricfauna.util.Reference;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -20,7 +18,7 @@ public class RenderPrenocephale extends RenderLiving<EntityPrenocephale> {
 
 	@Override
 	protected ResourceLocation getEntityTexture(EntityPrenocephale entity) {
-		return new ResourceLocation(Reference.MOD_ID, "textures/entities/prenocephale.png");
+		return new ResourceLocation(Reference.MOD_ID, "textures/entities/prenocephale/prenocephale.png");
 	}
 
 	public static class Factory implements IRenderFactory<EntityPrenocephale> {

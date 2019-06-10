@@ -3,6 +3,7 @@ package superlord.prehistoricfauna.entity;
 import com.google.common.base.Predicate;
 
 import io.netty.buffer.ByteBuf;
+import superlord.prehistoricfauna.init.ModItems;
 import superlord.prehistoricfauna.util.handlers.LootTableHandler;
 import superlord.prehistoricfauna.util.handlers.Sounds;
 import net.minecraft.block.Block;
@@ -22,7 +23,6 @@ import net.minecraft.entity.ai.EntityAIPanic;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -35,7 +35,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
@@ -48,6 +47,8 @@ import javax.annotation.Nullable;
 
 public class EntityTriceratops extends EntityExtinct implements IEntityAdditionalSpawnData {
     private static final DataParameter<Integer> TRICERATOPS_VARIANT = EntityDataManager.<Integer>createKey(EntityTriceratops.class, DataSerializers.VARINT);
+
+    
     private float clientSideStandAnimation0;
     private float clientSideStandAnimation;
     private int warningSoundTicks;
@@ -83,18 +84,18 @@ public class EntityTriceratops extends EntityExtinct implements IEntityAdditiona
 
     @Override
     protected void initEntityAI() {
-        super.initEntityAI();
-        this.entityAIEatGrass = new EntityAIEatGrass(this);
-        this.tasks.addTask(5, this.entityAIEatGrass);
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityTriceratops.AIMeleeAttack());
-        this.tasks.addTask(1, new EntityTriceratops.AIPanic());
-        this.tasks.addTask(4, new EntityAIFollowParent(this, 1.25D));
-        this.tasks.addTask(5, new EntityAIWander(this, 1.0D));
-        this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
-        this.tasks.addTask(7, new EntityAILookIdle(this));
-        this.targetTasks.addTask(1, new EntityTriceratops.AIHurtByTarget());
-        this.targetTasks.addTask(2, new EntityTriceratops.AIAttackPlayer());
+    		super.initEntityAI();
+    		this.entityAIEatGrass = new EntityAIEatGrass(this);
+    		this.tasks.addTask(5, this.entityAIEatGrass);
+    		this.tasks.addTask(0, new EntityAISwimming(this));
+    		this.tasks.addTask(1, new EntityTriceratops.AIMeleeAttack());
+    		this.tasks.addTask(1, new EntityTriceratops.AIPanic());
+    		this.tasks.addTask(4, new EntityAIFollowParent(this, 1.25D));
+    		this.tasks.addTask(5, new EntityAIWander(this, 1.0D));
+    		this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+    		this.tasks.addTask(7, new EntityAILookIdle(this));
+    		this.targetTasks.addTask(1, new EntityTriceratops.AIHurtByTarget());
+    		this.targetTasks.addTask(2, new EntityTriceratops.AIAttackPlayer());
     }
 
     @Override
@@ -103,6 +104,7 @@ public class EntityTriceratops extends EntityExtinct implements IEntityAdditiona
             this.sheepTimer = Math.max(0, this.sheepTimer - 1);
         }
         if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextEgg <= 0) {
+            this.dropItem(ModItems.TRICERATOPS_EGG_ENTITY, 1);
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
             this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
         }
@@ -164,6 +166,7 @@ public class EntityTriceratops extends EntityExtinct implements IEntityAdditiona
         super.entityInit();
         this.dataManager.register(TRICERATOPS_VARIANT, Integer.valueOf(0));
     }
+    public double size;
 
     
     
@@ -171,7 +174,8 @@ public class EntityTriceratops extends EntityExtinct implements IEntityAdditiona
     @Override
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
-        this.setTriceratopsSkin(compound.getInteger("SapperVariant"));    }
+        this.setTriceratopsSkin(compound.getInteger("SapperVariant"));
+        }
     
     public void writeEntityToNBT(NBTTagCompound compound)
     {
@@ -190,7 +194,7 @@ public class EntityTriceratops extends EntityExtinct implements IEntityAdditiona
     }
 
     
-
+    
     /**
      * Called to update the entity's position/logic.
      */
@@ -253,7 +257,8 @@ public class EntityTriceratops extends EntityExtinct implements IEntityAdditiona
 
 
     class AIAttackPlayer extends EntityAINearestAttackableTarget<EntityPlayer> {
-        public AIAttackPlayer() {
+        @SuppressWarnings({ "rawtypes", "unchecked" })
+		public AIAttackPlayer() {
             super(EntityTriceratops.this, EntityPlayer.class, 20, true, true, (Predicate) null);
         }
 

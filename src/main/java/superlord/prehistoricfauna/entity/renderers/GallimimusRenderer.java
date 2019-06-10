@@ -1,6 +1,5 @@
 package superlord.prehistoricfauna.entity.renderers;
 
-import superlord.prehistoricfauna.entity.EntityDryosaurus;
 import superlord.prehistoricfauna.entity.EntityGallimimus;
 import superlord.prehistoricfauna.entity.models.Gallimimus;
 import superlord.prehistoricfauna.util.Reference;
@@ -23,9 +22,18 @@ public class GallimimusRenderer extends RenderLiving<EntityGallimimus> {
     @Override
     protected ResourceLocation getEntityTexture(EntityGallimimus entity) {
         if (entity.isChild()) {
-            return new ResourceLocation(Reference.MOD_ID, "textures/entities/gallimimuschild.png");
+            return new ResourceLocation(Reference.MOD_ID, "textures/entities/gallimimus/gallimimuschild.png");
         } else {
-            return new ResourceLocation(Reference.MOD_ID, "textures/entities/gallimimus.png");
+        	switch(entity.getGallimimusSkin()) {
+        	case 0:
+        		return new ResourceLocation(Reference.MOD_ID, "textures/entities/gallimimus/gallimimus_albino.png");
+        	case 1:
+        		return new ResourceLocation(Reference.MOD_ID, "textures/entities/gallimimus/gallimimus_melanistic.png");
+        	case 2:
+        		return new ResourceLocation(Reference.MOD_ID, "textures/entities/gallimimus/gallimimus_melanistic.png");
+        	default:
+        		return new ResourceLocation(Reference.MOD_ID, "textures/entities/gallimimus/gallimimus.png");
+        	}
         }
     }
 

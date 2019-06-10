@@ -17,25 +17,13 @@ public enum FoodMappings {
     private Map<ItemStack, Integer> carnivoreItemDiet;
     private Map<ItemStack, Integer> herbivoreItemDiet;
     private Map<ItemStack, Integer> omnivoreItemDiet;
-    private Map<ItemStack, Integer> piscivoreItemDiet;
     private Map<ItemStack, Integer> carnivoreEggItemDiet;
-    private Map<ItemStack, Integer> insectivoreItemDiet;
-    private Map<ItemStack, Integer> pisccarnivoreItemDiet;
     private Map<Block, Integer> carnivoreBlockDiet;
     private Map<Block, Integer> herbivoreBlockDiet;
     private Map<Block, Integer> omnivoreBlockDiet;
-    private Map<Block, Integer> piscivoreBlockDiet;
-    private Map<Block, Integer> carnivoreEggBlockDiet;
-    private Map<Block, Integer> insectivoreBlockDiet;
-    private Map<Block, Integer> pisccarnivoreBlockDiet;
     private Map<Class<? extends Entity>, Integer> carnivoreEntityDiet;
     private Map<Class<? extends Entity>, Integer> herbivoreEntityDiet;
     private Map<Class<? extends Entity>, Integer> omnivoreEntityDiet;
-    private Map<Class<? extends Entity>, Integer> piscivoreEntityDiet;
-    private Map<Class<? extends Entity>, Integer> carnivore_eggEntityDiet;
-    private Map<Class<? extends Entity>, Integer> insectivoreEntityDiet;
-    private Map<Class<? extends Entity>, Integer> pisccarnivoreEntityDiet;
-
     /**
      * Add an item to a specific diet.
      *

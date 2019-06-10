@@ -2,16 +2,12 @@ package superlord.prehistoricfauna.blocks.recipes;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
 import superlord.prehistoricfauna.init.ModItems;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class DNAExtractorRecipes {
     public static List<RecipeAnalyzer> analyzerRecipes = new ArrayList<>();

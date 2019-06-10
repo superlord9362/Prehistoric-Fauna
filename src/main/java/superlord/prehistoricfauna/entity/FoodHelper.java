@@ -7,8 +7,6 @@ import net.minecraft.entity.EntityLiving;
 
 import net.minecraft.entity.EntityLivingBase;
 
-import net.minecraft.entity.passive.EntityAnimal;
-
 import net.minecraft.entity.passive.EntityWaterMob;
 
 import net.minecraft.pathfinding.PathNavigateSwimmer;

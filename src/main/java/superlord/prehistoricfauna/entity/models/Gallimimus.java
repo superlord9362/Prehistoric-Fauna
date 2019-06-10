@@ -199,7 +199,6 @@ public class Gallimimus extends ModelBase {
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         if (this.isChild) {
 
-            float f6 = 2.0F;
 
             GlStateManager.pushMatrix();
 

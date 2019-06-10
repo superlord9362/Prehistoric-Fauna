@@ -199,7 +199,8 @@ public class BlockModWall extends BlockBase implements IHasModel {
 
 
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
 
     @SideOnly(Side.CLIENT)
 

@@ -1,5 +1,6 @@
 package superlord.prehistoricfauna.entity;
 
+import superlord.prehistoricfauna.init.ModItems;
 import superlord.prehistoricfauna.util.handlers.LootTableHandler;
 import superlord.prehistoricfauna.util.handlers.Sounds;
 import net.minecraft.block.Block;
@@ -7,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
@@ -27,12 +29,10 @@ import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.passive.AbstractHorse;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityLlama;
-import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -45,14 +45,18 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+
+import java.util.Random;
 import java.util.UUID;
 
 public class EntityVelociraptor extends EntityExtinct {
+    private static final DataParameter<Integer> VELOCIRAPTOR_VARIANT = EntityDataManager.<Integer>createKey(EntityVelociraptor.class, DataSerializers.VARINT);
     private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.<Float>createKey(EntityVelociraptor.class, DataSerializers.FLOAT);
     public int timeUntilNextEgg;
 
@@ -63,7 +67,8 @@ public class EntityVelociraptor extends EntityExtinct {
         this.setTamed(false);
     }
 
-    protected void initEntityAI() {
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	protected void initEntityAI() {
         this.aiSit = new EntityAISit(this);
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(2, this.aiSit);
@@ -114,6 +119,17 @@ public class EntityVelociraptor extends EntityExtinct {
     protected void entityInit() {
         super.entityInit();
         this.dataManager.register(DATA_HEALTH_ID, Float.valueOf(this.getHealth()));
+        this.dataManager.register(VELOCIRAPTOR_VARIANT, Integer.valueOf(0));
+    }
+    
+    public int getVelociraptorSkin()
+    {
+        return ((Integer)this.dataManager.get(VELOCIRAPTOR_VARIANT)).intValue();
+    }
+
+    public void setVelociraptorSkin(int skinId)
+    {
+        this.dataManager.set(VELOCIRAPTOR_VARIANT, Integer.valueOf(skinId));
     }
 
     protected void playStepSound(BlockPos pos, Block blockIn) {
@@ -130,6 +146,7 @@ public class EntityVelociraptor extends EntityExtinct {
     public void writeEntityToNBT(NBTTagCompound compound) {
         super.writeEntityToNBT(compound);
         compound.setBoolean("Angry", this.isAngry());
+        compound.setInteger("VelociraptorVariant", this.getVelociraptorSkin());
     }
 
     /**
@@ -138,6 +155,7 @@ public class EntityVelociraptor extends EntityExtinct {
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
         this.setAngry(compound.getBoolean("Angry"));
+        this.setVelociraptorSkin(compound.getInteger("VelociraptorVariant"));
     }
 
     protected SoundEvent getAmbientSound() {
@@ -176,6 +194,7 @@ public class EntityVelociraptor extends EntityExtinct {
         super.onLivingUpdate();
 
         if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextEgg <= 0) {
+            this.dropItem(ModItems.VELOCIRAPTOR_EGG_ENTITY, 1);
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
             this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
         }
@@ -272,8 +291,6 @@ public class EntityVelociraptor extends EntityExtinct {
                         return true;
                     }
                 } else if (itemstack.getItem() == Items.DYE) {
-                    EnumDyeColor enumdyecolor = EnumDyeColor.byDyeDamage(itemstack.getMetadata());
-
                     {
 
                         if (!player.capabilities.isCreativeMode) {
@@ -473,4 +490,12 @@ public class EntityVelociraptor extends EntityExtinct {
 	public boolean doesFlock() {
 		return false;
 	}
+	
+	@Nullable
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+        livingdata = super.onInitialSpawn(difficulty, livingdata);
+        Random rand = new Random();
+        setVelociraptorSkin(rand.nextInt(100));
+        return livingdata;
+    }
 }

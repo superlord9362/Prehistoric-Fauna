@@ -39,11 +39,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Random;
+
 import javax.annotation.Nullable;
 
 public class EntityAnkylosaurus extends EntityExtinct {
     private static final DataParameter<Boolean> IS_STANDING = EntityDataManager.createKey(EntityAnkylosaurus.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> MODEL_TYPE = EntityDataManager.createKey(EntityAnkylosaurus.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> ANKYLOSAURUS_VARIANT = EntityDataManager.<Integer>createKey(EntityAnkylosaurus.class, DataSerializers.VARINT);
     private float clientSideStandAnimation0;
     private float clientSideStandAnimation;
     private int warningSoundTicks;
@@ -117,6 +120,16 @@ public class EntityAnkylosaurus extends EntityExtinct {
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
     }
+    
+    public int getAnkylosaurusSkin()
+    {
+        return ((Integer)this.dataManager.get(ANKYLOSAURUS_VARIANT)).intValue();
+    }
+
+    public void setAnkylosaurusSkin(int skinId)
+    {
+        this.dataManager.set(ANKYLOSAURUS_VARIANT, Integer.valueOf(skinId));
+    }
 
     @Override
     protected SoundEvent getAmbientSound() {
@@ -156,6 +169,7 @@ public class EntityAnkylosaurus extends EntityExtinct {
         super.entityInit();
         dataManager.register(IS_STANDING, false);
         dataManager.register(MODEL_TYPE, 0);
+        this.dataManager.register(ANKYLOSAURUS_VARIANT, Integer.valueOf(0));
     }
 
     public int getModelType() {
@@ -169,11 +183,13 @@ public class EntityAnkylosaurus extends EntityExtinct {
     @Override
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
+        this.setAnkylosaurusSkin(compound.getInteger("AnkylosaurusVariant"));
     }
 
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
+        compound.setInteger("AnkylosaurusVariant", this.getAnkylosaurusSkin());
 }
 
     /**
@@ -236,7 +252,9 @@ public class EntityAnkylosaurus extends EntityExtinct {
 
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
-		return livingdata;
+		Random rand = new Random();
+        setAnkylosaurusSkin(rand.nextInt(100));
+        return livingdata;
     }
 
 

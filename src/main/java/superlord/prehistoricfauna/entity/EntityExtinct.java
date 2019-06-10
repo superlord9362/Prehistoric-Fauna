@@ -12,7 +12,6 @@ import java.util.Random;
 
 
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 
 import net.minecraft.entity.passive.EntityTameable;
@@ -230,8 +229,6 @@ public abstract class EntityExtinct extends EntityTameable{
 	    
 
 	    public boolean isThereNearbyTypes() {
-
-	        Entity targetEntity;
 
 	        EntityAINearestAttackableTarget.Sorter theNearestAttackableTargetSorter = new EntityAINearestAttackableTarget.Sorter(this);
 

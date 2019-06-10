@@ -1,0 +1,23 @@
+{
+
+  "parent": "block/cube",
+
+  "textures": {
+
+    "north": "pf:blocks/culture_vat_side",
+
+    "south": "pf:blocks/culture_vat_side",
+
+    "east": "pf:blocks/culture_vat_side",
+
+    "west": "pf:blocks/culture_vat_side",
+
+    "up": "pf:blocks/culture_vat_bottom",
+
+    "down": "pf:blocks/culture_vat_top",
+
+    "particle": "pf:blocks/culture_vat_side"
+
+  }
+
+}

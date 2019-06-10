@@ -47,6 +47,7 @@ import superlord.prehistoricfauna.init.ModBlocks;
 import superlord.prehistoricfauna.tab.PFTabRegistry;
 import superlord.prehistoricfauna.util.BlockEntity;
 import superlord.prehistoricfauna.util.DefaultRenderedItem;
+import superlord.prehistoricfauna.util.Reference;
 
 import java.util.Random;
 
@@ -129,8 +130,6 @@ public class BlockDNAExtractor2 extends BlockContainer implements DefaultRendere
 
 
 
-	@SuppressWarnings("deprecation")
-
 	@Override
 
 	public EnumBlockRenderType getRenderType(IBlockState state) {
@@ -151,8 +150,6 @@ public class BlockDNAExtractor2 extends BlockContainer implements DefaultRendere
 
 
 
-	@SuppressWarnings("deprecation")
-
 	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
 
 		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
@@ -161,6 +158,7 @@ public class BlockDNAExtractor2 extends BlockContainer implements DefaultRendere
 
 
 
+	@SuppressWarnings("unused")
 	private void setDefaultFacing(World world, BlockPos pos, IBlockState state) {
 
 		if (!world.isRemote) {
@@ -207,7 +205,7 @@ public class BlockDNAExtractor2 extends BlockContainer implements DefaultRendere
 
 		if (!world.isRemote) {
 
-			player.openGui(Main.instance, Main.PROXY.GUI_ANALYZER, world, pos.getX(), pos.getY(), pos.getZ());
+			player.openGui(Main.instance, Reference.GUI_DNA_EXTRACTOR, world, pos.getX(), pos.getY(), pos.getZ());
 
 		}
 
@@ -297,8 +295,6 @@ public class BlockDNAExtractor2 extends BlockContainer implements DefaultRendere
 
 
 
-	@SuppressWarnings("deprecation")
-
 	@Override
 
 	public boolean hasComparatorInputOverride(IBlockState state) {
@@ -308,8 +304,6 @@ public class BlockDNAExtractor2 extends BlockContainer implements DefaultRendere
 	}
 
 
-
-	@SuppressWarnings("deprecation")
 
 	@Override
 
@@ -333,7 +327,6 @@ public class BlockDNAExtractor2 extends BlockContainer implements DefaultRendere
 
 
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public IBlockState getStateFromMeta(int meta)
     {
@@ -359,8 +352,6 @@ public class BlockDNAExtractor2 extends BlockContainer implements DefaultRendere
 
 
 
-	@SuppressWarnings("deprecation")
-
 	@Override
 
 	public IBlockState withRotation(IBlockState state, Rotation rotation) {
@@ -370,8 +361,6 @@ public class BlockDNAExtractor2 extends BlockContainer implements DefaultRendere
 	}
 
 
-
-	@SuppressWarnings("deprecation")
 
 	@Override
 

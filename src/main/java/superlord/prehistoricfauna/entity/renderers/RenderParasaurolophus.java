@@ -3,8 +3,6 @@ package superlord.prehistoricfauna.entity.renderers;
 import superlord.prehistoricfauna.entity.EntityParasaurolophus;
 import superlord.prehistoricfauna.entity.models.Parasaurolophus;
 import superlord.prehistoricfauna.util.Reference;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -21,9 +19,9 @@ public class RenderParasaurolophus extends RenderLiving<EntityParasaurolophus> {
 	@Override
 	protected ResourceLocation getEntityTexture(EntityParasaurolophus entity) {
 		if(entity.isChild()) {
-			return new ResourceLocation(Reference.MOD_ID, "textures/entities/parasaurolophus_baby.png");
+			return new ResourceLocation(Reference.MOD_ID, "textures/entities/parasaurolophus/parasaurolophus_baby.png");
 		} else {
-		return new ResourceLocation(Reference.MOD_ID, "textures/entities/parasaurolophus.png");
+		return new ResourceLocation(Reference.MOD_ID, "textures/entities/parasaurolophus/parasaurolophus.png");
 		}
 	}
 
