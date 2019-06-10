@@ -176,7 +176,7 @@ public class TileEntityEggIncubator extends TileEntity implements IInventory, IS
 	}
 
 	public static boolean isAnalyzable(ItemStack stack){
-		return DNAExtractorRecipes.getAnalyzerRecipeForItem(stack) != null;
+		return DNAExtractorRecipes.instance().getRecipeResult(stack) != null;
 		}
 
 	public void analyzeItem() {
@@ -184,7 +184,7 @@ public class TileEntityEggIncubator extends TileEntity implements IInventory, IS
 			ItemStack output = ItemStack.EMPTY;
 			Random random = this.world.rand;
 			ItemStack input = this.stacks.get(rawIndex);
-			output = DNAExtractorRecipes.getAnalyzerRecipeForItem(input).generateOutput(random);
+			output = DNAExtractorRecipes.instance().getRecipeResult(input); // .generateOutput(random);
 			if(output.getCount() > 1){
 				int maxCount = output.getCount() - 1;
 				output.setCount(1 + random.nextInt(maxCount));

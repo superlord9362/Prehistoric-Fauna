@@ -22,6 +22,8 @@ import superlord.prehistoricfauna.blocks.BlockLamp;
 import superlord.prehistoricfauna.blocks.BlockMesh;
 import superlord.prehistoricfauna.blocks.BlockModWall;
 import superlord.prehistoricfauna.blocks.BlockMud;
+import superlord.prehistoricfauna.blocks.BlockPaleozoicFossil;
+import superlord.prehistoricfauna.blocks.BlockPrehistoricPlant;
 import superlord.prehistoricfauna.blocks.TileEntityDNAExtractor;
 import superlord.prehistoricfauna.util.IHasModel;
 import superlord.prehistoricfauna.util.Reference;
