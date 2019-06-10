@@ -54,10 +54,29 @@ public class DNAExtractorRecipes {
 		addRecipe(new ItemStack(ModItems.TYRANNOSAURUS_TOOTH), new ItemStack(ModItems.TYRANNOSAURUS_DNA), 0.0F);
     }
 
+	@SuppressWarnings("unchecked")
 	public void addRecipe(ItemStack parItemStackIn, ItemStack parItemStackOut, float parExperience)
     {
         extractionList.put(parItemStackIn, parItemStackOut);
         experienceList.put(parItemStackOut, Float.valueOf(parExperience));
+    }
+	
+	public ItemStack getDefinedRecipeResult(ItemStack parItemStack)
+    {
+        Iterator iterator = extractionList.entrySet().iterator();
+        Entry entry;
+
+        do
+        {
+            if (!iterator.hasNext())
+            {
+                return null;
+            }
+
+            entry = (Entry)iterator.next();
+        } while (!areItemStacksEqual(parItemStack, (ItemStack)entry.getKey()));
+
+        return (ItemStack)entry.getValue();
     }
 	
 	public ItemStack getRecipeResult(ItemStack parItemStack, Random random)
@@ -75,13 +94,14 @@ public class DNAExtractorRecipes {
             entry = (Entry)iterator.next();
         } while (!areItemStacksEqual(parItemStack, (ItemStack)entry.getKey()));
         
-        ItemStack output = (ItemStack)entry.getValue();
+        ItemStack output;
         
 		if (random.nextInt(3) == 1) { // 30% chance of bone meal
 			output = new ItemStack(Items.DYE, 1, 15);
 		} else if (random.nextInt(4) == 1) { // 25% chance of sand
 			output = new ItemStack(Blocks.SAND, 2);
 		} else { // Otherwise, assign DNA Purity
+			output = ((ItemStack)entry.getValue()).copy();
 			UUID uuid = UUID.randomUUID();
 			NBTTagCompound nbt = new NBTTagCompound();
 			nbt.setLong("globalIDLeast", uuid.getLeastSignificantBits());
@@ -95,13 +115,7 @@ public class DNAExtractorRecipes {
 	
 	private boolean areItemStacksEqual(ItemStack parItemStack1, ItemStack parItemStack2)
     {
-        return parItemStack2.getItem() == parItemStack1.getItem() 
-
-              && (parItemStack2.getMetadata() == 32767 
-
-              || parItemStack2.getMetadata() == parItemStack1
-
-              .getMetadata());
+        return parItemStack2.getItem() == parItemStack1.getItem();
     }
 
     public Map getRecipeList()

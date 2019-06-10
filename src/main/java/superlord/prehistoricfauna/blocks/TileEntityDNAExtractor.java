@@ -1,9 +1,11 @@
 package superlord.prehistoricfauna.blocks;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -12,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -20,17 +21,13 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.translation.I18n;
 import superlord.prehistoricfauna.blocks.recipes.DNAExtractorRecipes;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
-
 @SuppressWarnings("deprecation")
 public class TileEntityDNAExtractor extends TileEntityLockable implements IInventory, ISidedInventory, ITickable {
 	@SuppressWarnings("unused")
 	private static final int[] SLOTS_TOP = new int[]{};
 	private static final int[] SLOTS_BOTTOM = new int[]{9, 10, 11, 12};
 	private static final int[] SLOTS_SIDES = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8};
+	private static final List<Integer> SLOTS_OUT = Arrays.asList(9, 10, 11, 12);
 
 	public int analyzeFuelTime = 0;
 	public int currentFuelTime = 100;
@@ -186,32 +183,42 @@ public class TileEntityDNAExtractor extends TileEntityLockable implements IInven
 	}
 
 	public boolean isAnalyzable(ItemStack stack){
-		return DNAExtractorRecipes.instance().getRecipeResult(stack, this.world.rand) != null;
+		return DNAExtractorRecipes.instance().getDefinedRecipeResult(stack) != null;
 	}
 
-	public void analyzeItem() {
+	public TileEntityDNAExtractor analyzeItem() {
 		if (this.canAnalyze()) {
 			ItemStack input = this.stacks.get(rawIndex);
 			ItemStack output = DNAExtractorRecipes.instance().getRecipeResult(input, new Random());
-
-			if (!output.isEmpty()) {
-				for (int slot = 9; slot < 13; slot++) {
-					ItemStack stack = this.stacks.get(slot);
-					if (!stack.isEmpty()) {
-						if (stack.isItemEqual(output) && stack.getCount() + output.getCount() < 64) {
-							stack.setCount(stack.getCount() + output.getCount());
-							this.stacks.get(this.rawIndex).shrink(1);
-							break;
-						}
-					} else {
-						this.stacks.set(slot, output);
+			int slotIndex = 0, emptySlot = -1;
+			
+			if (output != null && !output.isEmpty()) {
+				if(output.getCount() > 1){
+					int maxCount = output.getCount() - 1;
+					output.setCount(1 + this.world.rand.nextInt(maxCount));
+				}
+				
+				for (slotIndex = 0; slotIndex < 3; slotIndex++) {
+					if (this.stacks.get(SLOTS_OUT.get(slotIndex)).isItemEqual(output) && this.stacks.get(SLOTS_OUT.get(slotIndex)).getCount() < 64) {
+						this.stacks.get(SLOTS_OUT.get(slotIndex)).setCount(this.stacks.get(SLOTS_OUT.get(slotIndex)).getCount() + 1);
 						this.stacks.get(this.rawIndex).shrink(1);
-						break;
+						return this;
+					}
+					if (this.stacks.get(SLOTS_OUT.get(slotIndex)).isEmpty() && emptySlot == -1) {
+						emptySlot = SLOTS_OUT.get(slotIndex);
 					}
 				}
+				if (emptySlot != -1) {
+					if (this.stacks.get(SLOTS_OUT.get(0)).isEmpty()) { this.stacks.set(SLOTS_OUT.get(0), output); }
+					else { this.stacks.set(emptySlot, output); }
+					this.stacks.get(this.rawIndex).shrink(1);
+					return this;
+				}
+			} else {
+				analyzeItem();
 			}
-			
 		}
+		return null;
 	}
 
 	@Override
