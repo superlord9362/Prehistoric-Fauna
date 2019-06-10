@@ -31,6 +31,24 @@ public class DNAExtractorRecipes {
         		.addOutput(new ItemStack(ModItems.ANKYLOSAURUS_DNA, 1), 15F);
         registerAnalyzer(ankylosaurus);
         
+        RecipeAnalyzer baryonyx = new RecipeAnalyzer(ModItems.BARYONYX_CLAW)
+                .addOutput(new ItemStack(Items.DYE, 1, 15), 50F)
+                .addOutput(new ItemStack(Blocks.SAND, 2), 35F)
+        		.addOutput(new ItemStack(ModItems.BARYONYX_DNA, 1), 15F);
+        registerAnalyzer(baryonyx);
+        
+        RecipeAnalyzer camarasaurus = new RecipeAnalyzer(ModItems.CAMARASAURUS_SKULL)
+                .addOutput(new ItemStack(Items.DYE, 1, 15), 50F)
+                .addOutput(new ItemStack(Blocks.SAND, 2), 35F)
+        		.addOutput(new ItemStack(ModItems.CAMARASAURUS_DNA, 1), 15F);
+        registerAnalyzer(camarasaurus);
+        
+        RecipeAnalyzer dryosaurus = new RecipeAnalyzer(ModItems.DRYOSAURUS_SKULL)
+                .addOutput(new ItemStack(Items.DYE, 1, 15), 50F)
+                .addOutput(new ItemStack(Blocks.SAND, 2), 35F)
+        		.addOutput(new ItemStack(ModItems.DRYOSAURUS_DNA, 1), 15F);
+        registerAnalyzer(dryosaurus);
+        
         RecipeAnalyzer velociraptor = new RecipeAnalyzer(ModItems.VELOCIRAPTOR_CLAW)
                 .addOutput(new ItemStack(Items.DYE, 1, 15), 50F)
                 .addOutput(new ItemStack(Blocks.SAND, 2), 35F)
