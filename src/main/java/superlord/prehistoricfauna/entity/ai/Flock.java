@@ -18,13 +18,6 @@ public class Flock {
     public List<EntityExtinct> flockMembers = new ArrayList<EntityExtinct>();
     public EntityExtinct flockLeader;
     public EntityType type;
-    private double flockPosX;
-    private double flockPosY;
-    private double flockPosZ;
-    /**
-     * The PathEntity of our entity
-     */
-    private Path flockPathEntity;
     /**
      * The PathNavigate of our entity
      */
@@ -37,9 +30,6 @@ public class Flock {
     public void createFlock(EntityExtinct creator) {
         flockMembers.add(creator);
         flockLeader = creator;
-        flockPosX = creator.posX;
-        flockPosY = creator.posY;
-        flockPosZ = creator.posZ;
 
     }
 
@@ -73,7 +63,8 @@ public class Flock {
     }
 
     public EntityExtinct findNewMember(World world, AxisAlignedBB bb, EntityExtinct leader) {
-        List list = world.getEntitiesWithinAABB(EntityExtinct.class, bb);
+        @SuppressWarnings("rawtypes")
+		List list = world.getEntitiesWithinAABB(EntityExtinct.class, bb);
         EntityExtinct entity1 = null;
         double d0 = Double.MAX_VALUE;
 

@@ -17,7 +17,9 @@ import superlord.prehistoricfauna.blocks.recipes.DNAExtractorRecipes;
 
 import java.util.Random;
 
+@SuppressWarnings("deprecation")
 public class TileEntityDNAExtractor extends TileEntity implements IInventory, ISidedInventory, ITickable {
+	@SuppressWarnings("unused")
 	private static final int[] SLOTS_TOP = new int[]{};
 	private static final int[] SLOTS_BOTTOM = new int[]{9, 10, 11, 12};
 	private static final int[] SLOTS_SIDES = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8};
@@ -285,7 +287,6 @@ public class TileEntityDNAExtractor extends TileEntity implements IInventory, IS
 		return direction != EnumFacing.DOWN || index != 1;
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public String getName() {
 		return this.hasCustomName() ? this.customName : I18n.translateToLocal("tile.decoder.name");

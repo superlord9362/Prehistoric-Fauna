@@ -2,7 +2,6 @@ package superlord.prehistoricfauna.entity;
 
 import com.google.common.base.Predicate;
 
-import superlord.prehistoricfauna.init.ModItems;
 import superlord.prehistoricfauna.util.handlers.LootTableHandler;
 import superlord.prehistoricfauna.util.handlers.Sounds;
 import net.minecraft.block.Block;
@@ -22,8 +21,6 @@ import net.minecraft.entity.ai.EntityAIPanic;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -258,7 +255,8 @@ public class EntityParasaurolophus extends EntityExtinct {
     }
 
     class AIAttackPlayer extends EntityAINearestAttackableTarget<EntityPlayer> {
-        public AIAttackPlayer() {
+        @SuppressWarnings({ "rawtypes", "unchecked" })
+		public AIAttackPlayer() {
             super(EntityParasaurolophus.this, EntityPlayer.class, 20, true, true, (Predicate) null);
         }
 

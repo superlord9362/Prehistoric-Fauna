@@ -2,6 +2,7 @@ package superlord.prehistoricfauna.entity;
 
 
 
+import superlord.prehistoricfauna.init.ModItems;
 import superlord.prehistoricfauna.util.handlers.LootTableHandler;
 
 import superlord.prehistoricfauna.util.handlers.Sounds;
@@ -49,7 +50,9 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 
 import net.minecraft.nbt.NBTTagCompound;
-
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 
 import net.minecraft.util.EnumHand;
@@ -66,7 +69,7 @@ import net.minecraft.world.DifficultyInstance;
 
 import net.minecraft.world.World;
 
-
+import java.util.Random;
 
 import javax.annotation.Nullable;
 
@@ -75,7 +78,7 @@ import javax.annotation.Nullable;
 public class EntityDryosaurus extends EntityExtinct {
 
     private EntityAIAvoidEntity<EntityPlayer> avoidEntity;
-
+    private static final DataParameter<Integer> DRYOSAURUS_VARIANT = EntityDataManager.<Integer>createKey(EntityDryosaurus.class, DataSerializers.VARINT);
     private EntityAIAvoidEntity<EntityTyrannosaurus> avoidEntity1;
 
     /**
@@ -136,9 +139,19 @@ public class EntityDryosaurus extends EntityExtinct {
 
 
     protected void entityInit() {
-
+        this.dataManager.register(DRYOSAURUS_VARIANT, Integer.valueOf(0));
         super.entityInit();
 
+    }
+    
+    public int getDryosaurusSkin()
+    {
+        return ((Integer)this.dataManager.get(DRYOSAURUS_VARIANT)).intValue();
+    }
+
+    public void setDryosaurusSkin(int skinId)
+    {
+        this.dataManager.set(DRYOSAURUS_VARIANT, Integer.valueOf(skinId));
     }
 
 
@@ -211,14 +224,6 @@ public class EntityDryosaurus extends EntityExtinct {
 
     }
 
-
-
-    public void fall(float distance, float damageMultiplier) {
-
-    }
-
-
-
     public static void registerFixesOcelot(DataFixer fixer) {
 
         EntityLiving.registerFixesMob(fixer, EntityDryosaurus.class);
@@ -234,7 +239,7 @@ public class EntityDryosaurus extends EntityExtinct {
      */
 
     public void writeEntityToNBT(NBTTagCompound compound) {
-
+        compound.setInteger("DryosaurusVariant", this.getDryosaurusSkin());
 
 
     }
@@ -250,6 +255,7 @@ public class EntityDryosaurus extends EntityExtinct {
     public void readEntityFromNBT(NBTTagCompound compound) {
 
         super.readEntityFromNBT(compound);
+        this.setDryosaurusSkin(compound.getInteger("DryosaurusVariant"));
 
     }
 
@@ -516,6 +522,7 @@ public class EntityDryosaurus extends EntityExtinct {
 
 
         if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextEgg <= 0) {
+            this.dropItem(ModItems.DRYOSAURUS_EGG_ENTITY, 1);
 
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
 
@@ -540,7 +547,8 @@ public class EntityDryosaurus extends EntityExtinct {
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
 
         livingdata = super.onInitialSpawn(difficulty, livingdata);
-
+        Random rand = new Random();
+        setDryosaurusSkin(rand.nextInt(100));
 
 
         return livingdata;

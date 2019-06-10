@@ -19,9 +19,18 @@ public class RenderExtinct extends RenderLiving<EntityDryosaurus> {
 	@Override
 	protected ResourceLocation getEntityTexture(EntityDryosaurus entity) {
 		if(entity.isChild()) {
-			return new ResourceLocation(Reference.MOD_ID, "textures/entities/dryosaurus_baby.png");
+			return new ResourceLocation(Reference.MOD_ID, "textures/entities/dryosaurus/dryosaurus_baby.png");
 		} else {
-		return new ResourceLocation(Reference.MOD_ID, "textures/entities/dryosaurus.png");
+			switch(entity.getDryosaurusSkin()) {
+			case 0:
+				return new ResourceLocation(Reference.MOD_ID, "textures/entities/dryosaurus/dryosaurus_albino.png");
+			case 1:
+				return new ResourceLocation(Reference.MOD_ID, "textures/entities/dryosaurus/dryosaurus_melanistic.png");
+			case 2:
+				return new ResourceLocation(Reference.MOD_ID, "textures/entities/dryosaurus/dryosaurus_melanistic.png");
+			default:
+				return new ResourceLocation(Reference.MOD_ID, "textures/entities/dryosaurus/dryosaurus.png");
+			}
 		}
 	}
 

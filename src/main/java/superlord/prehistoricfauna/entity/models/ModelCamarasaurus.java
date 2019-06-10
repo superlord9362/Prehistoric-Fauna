@@ -5,7 +5,6 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.client.renderer.GlStateManager;
-import org.lwjgl.opengl.GL11;
 
 /**
  * Camarasaurus - superlord9362
@@ -169,7 +168,6 @@ public class ModelCamarasaurus extends ModelBase {
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float scale) { 
     	if (this.isChild)
         {
-            float f6 = 2.0F;
             GlStateManager.pushMatrix();
             GlStateManager.translate(0.0F, this.childYOffset * scale, this.childZOffset * scale);
             GlStateManager.popMatrix();

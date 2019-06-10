@@ -5,9 +5,12 @@ import superlord.prehistoricfauna.entity.EntityAllosaurus;
 import superlord.prehistoricfauna.entity.EntityAnkylosaurus;
 import superlord.prehistoricfauna.entity.EntityBaryonyx;
 import superlord.prehistoricfauna.entity.EntityCamarasaurus;
+import superlord.prehistoricfauna.entity.EntityCladocyclus;
 import superlord.prehistoricfauna.entity.EntityDinosaurEgg;
 import superlord.prehistoricfauna.entity.EntityDryosaurus;
+import superlord.prehistoricfauna.entity.EntityEusthenopteron;
 import superlord.prehistoricfauna.entity.EntityGallimimus;
+import superlord.prehistoricfauna.entity.EntityParadoxides;
 import superlord.prehistoricfauna.entity.EntityParasaurolophus;
 import superlord.prehistoricfauna.entity.EntityPrenocephale;
 import superlord.prehistoricfauna.entity.EntityStegosaurus;
@@ -46,6 +49,9 @@ public class RegistryHandler {
         EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "parasaurolophus"), EntityParasaurolophus.class, "parasaurolophus", entityId++, Main.instance, 64, 3, true, 0x1B2A26, 0x000000);
         EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "baryonyx"), EntityBaryonyx.class, "baryonyx", entityId++, Main.instance, 64, 3, true, 0xB0AF93, 0x000000);
         EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "dinoegg"), EntityDinosaurEgg.class, "dinoegg", entityId++, Main.instance, 64, 3, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "paradoxides"), EntityParadoxides.class, "paradoxides", entityId++, Main.instance, 64, 3, true, 0x7E3200, 0x000000);
+        EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "eusthenopteron"), EntityEusthenopteron.class, "eusthenopteron", entityId++, Main.instance, 64, 3, true, 0x515352, 0x000000);
+        EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "cladocyclus"), EntityCladocyclus.class, "cladocyclus", entityId++, Main.instance, 64, 3, true, 0x002844, 0x000000);
 
     }
 

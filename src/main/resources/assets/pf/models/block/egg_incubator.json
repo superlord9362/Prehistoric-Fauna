@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "pf:blocks/egg_incubator_side",
-        "front": "pf:blocks/egg_incubator_front",
-        "side": "pf:blocks/egg_incubator_side"
-    }
-}

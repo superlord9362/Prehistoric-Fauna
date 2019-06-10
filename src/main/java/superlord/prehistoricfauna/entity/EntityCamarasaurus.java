@@ -4,8 +4,7 @@ package superlord.prehistoricfauna.entity;
 
 import com.google.common.base.Predicate;
 
-
-
+import superlord.prehistoricfauna.init.ModItems;
 import superlord.prehistoricfauna.util.handlers.LootTableHandler;
 
 import superlord.prehistoricfauna.util.handlers.Sounds;
@@ -77,7 +76,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-
+import java.util.Random;
 
 import javax.annotation.Nullable;
 
@@ -86,6 +85,7 @@ import javax.annotation.Nullable;
 public class EntityCamarasaurus extends EntityExtinct {
 
     private static final DataParameter<Boolean> IS_STANDING = EntityDataManager.createKey(EntityCamarasaurus.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Integer> CAMARASAURUS_VARIANT = EntityDataManager.<Integer>createKey(EntityCamarasaurus.class, DataSerializers.VARINT);
 
     private static final DataParameter<Integer> MODEL_TYPE = EntityDataManager.createKey(EntityCamarasaurus.class, DataSerializers.VARINT);
 
@@ -192,7 +192,7 @@ public class EntityCamarasaurus extends EntityExtinct {
         }
 
         if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextEgg <= 0) {
-
+            this.dropItem(ModItems.CAMARASAURUS_EGG_ENTITY, 1);
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
             this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
 
@@ -311,12 +311,21 @@ public class EntityCamarasaurus extends EntityExtinct {
         super.entityInit();
 
         dataManager.register(IS_STANDING, false);
-
+        this.dataManager.register(CAMARASAURUS_VARIANT, Integer.valueOf(0));
         dataManager.register(MODEL_TYPE, 0);
 
     }
 
 
+    public int getCamarasaurusSkin()
+    {
+        return ((Integer)this.dataManager.get(CAMARASAURUS_VARIANT)).intValue();
+    }
+
+    public void setCamarasaurusSkin(int skinId)
+    {
+        this.dataManager.set(CAMARASAURUS_VARIANT, Integer.valueOf(skinId));
+    }
 
     public int getModelType() {
 
@@ -341,7 +350,7 @@ public class EntityCamarasaurus extends EntityExtinct {
         super.readEntityFromNBT(compound);
 
         dataManager.set(IS_STANDING, compound.getBoolean("isStanding"));
-
+        this.setCamarasaurusSkin(compound.getInteger("CamarasaurusVariant"));
         dataManager.set(MODEL_TYPE, compound.getInteger("modelType"));
 
     }
@@ -353,7 +362,7 @@ public class EntityCamarasaurus extends EntityExtinct {
     public void writeEntityToNBT(NBTTagCompound compound) {
 
         super.writeEntityToNBT(compound);
-
+        compound.setInteger("CamarasaurusVariant", this.getCamarasaurusSkin());
         compound.setBoolean("isStanding", dataManager.get(IS_STANDING));
 
         compound.setInteger("modelType", dataManager.get(MODEL_TYPE));
@@ -475,7 +484,8 @@ public class EntityCamarasaurus extends EntityExtinct {
     @Override
 
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingdata) {
-
+    	Random rand = new Random();
+        setCamarasaurusSkin(rand.nextInt(100));
         if (livingdata instanceof EntityCamarasaurus.GroupData) {
 
             if (((EntityCamarasaurus.GroupData) livingdata).madeParent) {
@@ -508,7 +518,8 @@ public class EntityCamarasaurus extends EntityExtinct {
 
     class AIAttackPlayer extends EntityAINearestAttackableTarget<EntityPlayer> {
 
-        public AIAttackPlayer() {
+        @SuppressWarnings({ "rawtypes", "unchecked" })
+		public AIAttackPlayer() {
 
             super(EntityCamarasaurus.this, EntityPlayer.class, 20, true, true, (Predicate) null);
 

@@ -18,10 +18,32 @@ public class AllosaurusRenderer extends RenderLiving<EntityAllosaurus> {
 
 	@Override
 	protected ResourceLocation getEntityTexture(EntityAllosaurus entity) {
-		if(entity.isChild()) {
-			return new ResourceLocation(Reference.MOD_ID, "textures/entities/allosauruschild.png");
-		} else {
-		return new ResourceLocation(Reference.MOD_ID, "textures/entities/allosaurus.png");
+		if (entity.isChild()) {
+            switch(entity.getAllosaurusSkin()) {
+        	case 0:
+        		return new ResourceLocation(Reference.MOD_ID, "textures/entities/allosaurus/allosauruschild.png");
+        	case 1:
+        		return new ResourceLocation(Reference.MOD_ID, "textures/entities/allosaurus/allosauruschild_melanistic.png");
+        	case 2:
+        		return new ResourceLocation(Reference.MOD_ID, "textures/entities/allosaurus/allosauruschild_albino.png");
+        	case 3:
+        		return new ResourceLocation(Reference.MOD_ID, "textures/entities/allosaurus/allosauruschild_melanistic.png");
+        	default:
+        		return new ResourceLocation(Reference.MOD_ID, "textures/entities/allosaurus/allosauruschild.png");
+            }
+            } else {
+            	switch(entity.getAllosaurusSkin()) {
+            	case 0:
+            		return new ResourceLocation(Reference.MOD_ID, "textures/entities/allosaurus/allosaurus.png");
+            	case 1: 
+            		return new ResourceLocation(Reference.MOD_ID, "textures/entities/allosaurus/allosaurus_melanistic.png");
+            	case 2:
+            		return new ResourceLocation(Reference.MOD_ID, "textures/entities/allosaurus/allosaurus_albino.png");
+            	case 3:
+            		return new ResourceLocation(Reference.MOD_ID, "textures/entities/allosaurus/allosaurus_melanistic.png");
+            	default:
+            		return new ResourceLocation(Reference.MOD_ID, "textures/entities/allosaurus/allosaurus.png");
+            	}
 		}
 	}
 

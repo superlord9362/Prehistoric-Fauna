@@ -1,6 +1,8 @@
 package superlord.prehistoricfauna.entity;
 
 import com.google.common.base.Predicate;
+
+import superlord.prehistoricfauna.init.ModItems;
 import superlord.prehistoricfauna.util.handlers.LootTableHandler;
 import superlord.prehistoricfauna.util.handlers.Sounds;
 import net.minecraft.block.Block;
@@ -8,6 +10,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAIFollowOwner;
@@ -42,14 +45,18 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+
+import java.util.Random;
 import java.util.UUID;
 
 public class EntityAllosaurus extends EntityExtinct {
+    private static final DataParameter<Integer> ALLOSAURUS_VARIANT = EntityDataManager.<Integer>createKey(EntityAllosaurus.class, DataSerializers.VARINT);
     private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.<Float>createKey(EntityAllosaurus.class, DataSerializers.FLOAT);
     private static final DataParameter<Integer> DATA_STRENGTH_ID = EntityDataManager.<Integer>createKey(EntityLlama.class, DataSerializers.VARINT);
     public int timeUntilNextEgg;
@@ -111,6 +118,7 @@ public class EntityAllosaurus extends EntityExtinct {
     protected void entityInit() {
         super.entityInit();
         this.dataManager.register(DATA_HEALTH_ID, getHealth());
+        this.dataManager.register(ALLOSAURUS_VARIANT, Integer.valueOf(0));
     }
 
     protected void playStepSound(BlockPos pos, Block blockIn) {
@@ -127,6 +135,7 @@ public class EntityAllosaurus extends EntityExtinct {
     public void writeEntityToNBT(NBTTagCompound compound) {
         super.writeEntityToNBT(compound);
         compound.setBoolean("Angry", this.isAngry());
+        compound.setInteger("AllosaurusVariant", this.getAllosaurusSkin());
     }
 
     /**
@@ -135,6 +144,7 @@ public class EntityAllosaurus extends EntityExtinct {
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
         this.setAngry(compound.getBoolean("Angry"));
+        this.setAllosaurusSkin(compound.getInteger("AllosaurusVariant"));
     }
 
     protected SoundEvent getAmbientSound() {
@@ -151,6 +161,23 @@ public class EntityAllosaurus extends EntityExtinct {
 
     protected SoundEvent getDeathSound() {
         return Sounds.ALLOSAURUS_HURT;
+    }
+    
+    public int getAllosaurusSkin()
+    {
+        return ((Integer)this.dataManager.get(ALLOSAURUS_VARIANT)).intValue();
+    }
+
+    public void setAllosaurusSkin(int skinId)
+    {
+        this.dataManager.set(ALLOSAURUS_VARIANT, Integer.valueOf(skinId));
+    }
+    
+    @Override
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+    	Random rand = new Random();
+        setAllosaurusSkin(rand.nextInt(100));
+		return livingdata;
     }
 
     /**
@@ -173,6 +200,7 @@ public class EntityAllosaurus extends EntityExtinct {
         super.onLivingUpdate();
 
         if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextEgg <= 0) {
+            this.dropItem(ModItems.ALLOSAURUS_EGG_ENTITY, 1);
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
             this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
         }

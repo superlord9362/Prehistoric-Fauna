@@ -19,9 +19,18 @@ public class CamarasaurusRenderer extends RenderLiving<EntityCamarasaurus> {
 	@Override
 	protected ResourceLocation getEntityTexture(EntityCamarasaurus entity) {
 		if(entity.isChild()) {
-			return new ResourceLocation(Reference.MOD_ID, "textures/entities/camarasauruschild.png");
+			return new ResourceLocation(Reference.MOD_ID, "textures/entities/camarasaurus/camarasauruschild.png");
 		} else {
-		return new ResourceLocation(Reference.MOD_ID, "textures/entities/camarasaurus.png");
+			switch(entity.getCamarasaurusSkin()) {
+			case 0:
+				return new ResourceLocation(Reference.MOD_ID, "textures/entities/camarasaurus/camarasaurus_albino.png");
+			case 1:
+				return new ResourceLocation(Reference.MOD_ID, "textures/entities/camarasaurus/camarasaurus_melanistic.png");
+			case 2:
+				return new ResourceLocation(Reference.MOD_ID, "textures/entities/camarasaurus/camarasaurus_melanistic.png");
+			default:
+				return new ResourceLocation(Reference.MOD_ID, "textures/entities/camarasaurus/camarasaurus.png");
+			}
 		}
 	}
 

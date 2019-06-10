@@ -1,5 +1,6 @@
 package superlord.prehistoricfauna.entity;
 
+import superlord.prehistoricfauna.init.ModItems;
 import superlord.prehistoricfauna.util.handlers.LootTableHandler;
 import superlord.prehistoricfauna.util.handlers.Sounds;
 import net.minecraft.block.Block;
@@ -18,13 +19,15 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
@@ -34,9 +37,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 import javax.annotation.Nullable;
 
 public class EntityGallimimus extends EntityExtinct {
+    private static final DataParameter<Integer> GALLIMIMUS_VARIANT = EntityDataManager.<Integer>createKey(EntityGallimimus.class, DataSerializers.VARINT);
     private EntityAIAvoidEntity<EntityPlayer> avoidEntity;
     private EntityAIAvoidEntity<EntityTyrannosaurus> avoidEntity1;
     /**
@@ -67,6 +73,17 @@ public class EntityGallimimus extends EntityExtinct {
 
     protected void entityInit() {
         super.entityInit();
+        this.dataManager.register(GALLIMIMUS_VARIANT, Integer.valueOf(0));
+    }
+    
+    public int getGallimimusSkin()
+    {
+        return ((Integer)this.dataManager.get(GALLIMIMUS_VARIANT)).intValue();
+    }
+
+    public void setGallimimusSkin(int skinId)
+    {
+        this.dataManager.set(GALLIMIMUS_VARIANT, Integer.valueOf(skinId));
     }
 
     @Override
@@ -115,7 +132,7 @@ public class EntityGallimimus extends EntityExtinct {
      * (abstract) Protected helper method to write subclass entity data to NBT.
      */
     public void writeEntityToNBT(NBTTagCompound compound) {
-
+        compound.setInteger("GallimimusVariant", this.getGallimimusSkin());
     }
 
     /**
@@ -123,6 +140,7 @@ public class EntityGallimimus extends EntityExtinct {
      */
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
+        this.setGallimimusSkin(compound.getInteger("GallimimusVariant"));
     }
 
     @Nullable
@@ -167,10 +185,6 @@ public class EntityGallimimus extends EntityExtinct {
     }
 
     public boolean processInteract(EntityPlayer player, EnumHand hand) {
-        ItemStack itemstack = player.getHeldItem(hand);
-
-        
-
         return super.processInteract(player, hand);
     }
 
@@ -246,6 +260,7 @@ public class EntityGallimimus extends EntityExtinct {
         super.onLivingUpdate();
 
         if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextEgg <= 0) {
+            this.dropItem(ModItems.GALLIMIMUS_EGG_ENTITY, 1);
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
             this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
         }
@@ -258,7 +273,8 @@ public class EntityGallimimus extends EntityExtinct {
     @Nullable
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
         livingdata = super.onInitialSpawn(difficulty, livingdata);
-
+        Random rand = new Random();
+        setGallimimusSkin(rand.nextInt(100));
         return livingdata;
     }
 

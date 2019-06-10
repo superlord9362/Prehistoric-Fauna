@@ -172,6 +172,7 @@ public class PathNavigateAmphibious extends PathNavigate {
 
 	 */
 
+	@SuppressWarnings("unused")
 	private int getPathablePosY() {
 
 		if (false) {

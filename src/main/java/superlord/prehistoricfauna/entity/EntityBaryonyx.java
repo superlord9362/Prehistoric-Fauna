@@ -1,7 +1,6 @@
 package superlord.prehistoricfauna.entity;
 
 import com.google.common.base.Predicate;
-import superlord.prehistoricfauna.init.ModItems;
 import superlord.prehistoricfauna.util.handlers.LootTableHandler;
 import superlord.prehistoricfauna.util.handlers.Sounds;
 import net.minecraft.block.Block;
@@ -9,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAIFollowOwner;
@@ -27,7 +27,6 @@ import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.passive.AbstractHorse;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityLlama;
-import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
@@ -44,16 +43,20 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+
+import java.util.Random;
 import java.util.UUID;
 
 public class EntityBaryonyx extends EntityExtinct {
     private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.<Float>createKey(EntityBaryonyx.class, DataSerializers.FLOAT);
     private static final DataParameter<Integer> DATA_STRENGTH_ID = EntityDataManager.<Integer>createKey(EntityLlama.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> BARYONYX_VARIANT = EntityDataManager.<Integer>createKey(EntityBaryonyx.class, DataSerializers.VARINT);
     public int timeUntilNextEgg;
 
     public EntityBaryonyx(World worldIn) {
@@ -113,7 +116,19 @@ public class EntityBaryonyx extends EntityExtinct {
     protected void entityInit() {
         super.entityInit();
         this.dataManager.register(DATA_HEALTH_ID, getHealth());
+        this.dataManager.register(BARYONYX_VARIANT, Integer.valueOf(0));
     }
+    
+    public int getBaryonyxSkin()
+    {
+        return ((Integer)this.dataManager.get(BARYONYX_VARIANT)).intValue();
+    }
+
+    public void setBaryonyxSkin(int skinId)
+    {
+        this.dataManager.set(BARYONYX_VARIANT, Integer.valueOf(skinId));
+    }
+
 
     protected void playStepSound(BlockPos pos, Block blockIn) {
         this.playSound(SoundEvents.ENTITY_WOLF_STEP, 0.15F, 1.0F);
@@ -129,6 +144,7 @@ public class EntityBaryonyx extends EntityExtinct {
     public void writeEntityToNBT(NBTTagCompound compound) {
         super.writeEntityToNBT(compound);
         compound.setBoolean("Angry", this.isAngry());
+        compound.setInteger("BaryonyxVariant", this.getBaryonyxSkin());
     }
 
     /**
@@ -137,6 +153,7 @@ public class EntityBaryonyx extends EntityExtinct {
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
         this.setAngry(compound.getBoolean("Angry"));
+        this.setBaryonyxSkin(compound.getInteger("BaryonyxVariant"));
     }
 
     protected SoundEvent getAmbientSound() {
@@ -201,6 +218,13 @@ public class EntityBaryonyx extends EntityExtinct {
      */
     public int getVerticalFaceSpeed() {
         return this.isSitting() ? 20 : super.getVerticalFaceSpeed();
+    }
+    
+    @Override
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+		Random rand = new Random();
+        setBaryonyxSkin(rand.nextInt(100));
+        return livingdata;
     }
 
     /**

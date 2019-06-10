@@ -1,6 +1,5 @@
 package superlord.prehistoricfauna.entity.renderers;
 
-import superlord.prehistoricfauna.entity.EntityDryosaurus;
 import superlord.prehistoricfauna.entity.EntityVelociraptor;
 import superlord.prehistoricfauna.entity.models.Velociraptor;
 import superlord.prehistoricfauna.util.Reference;
@@ -23,9 +22,18 @@ public class VelociraptorRenderer extends RenderLiving<EntityVelociraptor> {
     @Override
     protected ResourceLocation getEntityTexture(EntityVelociraptor entity) {
         if (entity.isChild()) {
-            return new ResourceLocation(Reference.MOD_ID, "textures/entities/velociraptorchild.png");
+            return new ResourceLocation(Reference.MOD_ID, "textures/entities/velociraptor/velociraptorchild.png");
         } else {
-            return new ResourceLocation(Reference.MOD_ID, "textures/entities/velociraptormale.png");
+        	switch(entity.getVelociraptorSkin()) {
+			case 0:
+				return new ResourceLocation(Reference.MOD_ID, "textures/entities/velociraptor/velociraptormale_albino.png");
+			case 1:
+				return new ResourceLocation(Reference.MOD_ID, "textures/entities/velociraptor/velociraptormale_melanistic.png");
+			case 2:
+				return new ResourceLocation(Reference.MOD_ID, "textures/entities/velociraptor/velociraptormale_melanistic.png");
+			default:
+				return new ResourceLocation(Reference.MOD_ID, "textures/entities/velociraptor/velociraptormale.png");
+			} 
         }
     }
 

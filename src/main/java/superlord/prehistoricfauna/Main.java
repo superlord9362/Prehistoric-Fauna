@@ -1,9 +1,9 @@
 package superlord.prehistoricfauna;
 
-import superlord.prehistoricfauna.init.ModItems;
 import superlord.prehistoricfauna.proxy.CommonProxy;
 import superlord.prehistoricfauna.proxy.IProxy;
 import superlord.prehistoricfauna.util.ReleaseType;
+import superlord.prehistoricfauna.util.handlers.TileEntityRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -23,7 +23,7 @@ public class Main {
 
     @Instance
     public static Main instance;
-    
+
     public static SimpleNetworkWrapper NETWORK_WRAPPER;
     public static CommonProxy PROXY;
 	public static final ReleaseType RELEASE_TYPE = ReleaseType.parseVersion(VERSION);
@@ -35,6 +35,7 @@ public class Main {
     @EventHandler
     public static void preInit(FMLPreInitializationEvent event) {
         proxy.preInit(event);
+        TileEntityRegistry.registerTileEntities();
     }
 
     @EventHandler
@@ -46,5 +47,5 @@ public class Main {
     public static void postInit(FMLPostInitializationEvent event) {
     }
 
-    
+
 }

@@ -1,8 +1,12 @@
 package superlord.prehistoricfauna.entity;
 
 import com.google.common.base.Predicate;
+
+import superlord.prehistoricfauna.init.ModItems;
 import superlord.prehistoricfauna.util.handlers.LootTableHandler;
 import superlord.prehistoricfauna.util.handlers.Sounds;
+
+import java.util.Random;
 
 import javax.annotation.Nullable;
 import net.minecraft.block.Block;
@@ -26,6 +30,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -41,6 +46,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityStegosaurus extends EntityExtinct
 {
+    private static final DataParameter<Integer> STEGOSAURUS_VARIANT = EntityDataManager.<Integer>createKey(EntityStegosaurus.class, DataSerializers.VARINT);
     private static final DataParameter<Boolean> IS_STANDING = EntityDataManager.<Boolean>createKey(EntityStegosaurus.class, DataSerializers.BOOLEAN);
     private float clientSideStandAnimation0;
     private float clientSideStandAnimation;
@@ -96,6 +102,7 @@ public class EntityStegosaurus extends EntityExtinct
         }
         if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextEgg <= 0)
         {
+            this.dropItem(ModItems.STEGOSAURUS_EGG_ENTITY, 1);
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
             this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
         }
@@ -158,6 +165,17 @@ public class EntityStegosaurus extends EntityExtinct
     {
         super.entityInit();
         this.dataManager.register(IS_STANDING, Boolean.valueOf(false));
+        this.dataManager.register(STEGOSAURUS_VARIANT, Integer.valueOf(0));
+    }
+    
+    public int getStegosaurusSkin()
+    {
+        return ((Integer)this.dataManager.get(STEGOSAURUS_VARIANT)).intValue();
+    }
+
+    public void setStegosaurusSkin(int skinId)
+    {
+        this.dataManager.set(STEGOSAURUS_VARIANT, Integer.valueOf(skinId));
     }
 
     /**
@@ -219,6 +237,18 @@ public class EntityStegosaurus extends EntityExtinct
     {
         return 0.98F;
     }
+    
+    public void writeEntityToNBT(NBTTagCompound compound) {
+        compound.setInteger("StegosaurusVariant", this.getStegosaurusSkin());
+    }
+
+    /**
+     * (abstract) Protected helper method to read subclass entity data from NBT.
+     */
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
+        this.setStegosaurusSkin(compound.getInteger("StegosaurusVariant"));
+    }
 
     /**
      * Called only once on an entity when first time spawned, via egg, mob spawner, natural spawning etc, but not called
@@ -226,6 +256,8 @@ public class EntityStegosaurus extends EntityExtinct
      */
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingdata)
     {
+    	Random rand = new Random();
+        setStegosaurusSkin(rand.nextInt(100));
         if (livingdata instanceof EntityStegosaurus.GroupData)
         {
             if (((EntityStegosaurus.GroupData)livingdata).madeParent)
@@ -245,7 +277,8 @@ public class EntityStegosaurus extends EntityExtinct
 
     class AIAttackPlayer extends EntityAINearestAttackableTarget<EntityPlayer>
     {
-        public AIAttackPlayer()
+        @SuppressWarnings({ "rawtypes", "unchecked" })
+		public AIAttackPlayer()
         {
             super(EntityStegosaurus.this, EntityPlayer.class, 20, true, true, (Predicate)null);
         }
