@@ -35,18 +35,23 @@ public class DNAExtractorRecipes {
     }
 	
 	private DNAExtractorRecipes() {
-		addRecipe(new ItemStack(ModItems.ALLOSAURUS_SKULL), 
-	              new ItemStack(ModItems.ALLOSAURUS_DNA), 0.0F);
-		addRecipe(new ItemStack(ModItems.ANKYLOSAURUS_TAIL), 
-	              new ItemStack(ModItems.ANKYLOSAURUS_DNA), 0.0F);
-		addRecipe(new ItemStack(ModItems.BARYONYX_CLAW), 
-	              new ItemStack(ModItems.BARYONYX_DNA), 0.0F);
-		addRecipe(new ItemStack(ModItems.CAMARASAURUS_SKULL), 
-	              new ItemStack(ModItems.CAMARASAURUS_DNA), 0.0F);
-		addRecipe(new ItemStack(ModItems.DRYOSAURUS_SKULL), 
-	              new ItemStack(ModItems.DRYOSAURUS_DNA), 0.0F);
-		addRecipe(new ItemStack(ModItems.VELOCIRAPTOR_CLAW), 
-	              new ItemStack(ModItems.VELOCIRAPTOR_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.ALLOSAURUS_SKULL), new ItemStack(ModItems.ALLOSAURUS_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.ANKYLOSAURUS_TAIL), new ItemStack(ModItems.ANKYLOSAURUS_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.BARYONYX_CLAW), new ItemStack(ModItems.BARYONYX_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.CAMARASAURUS_SKULL), new ItemStack(ModItems.CAMARASAURUS_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.DRYOSAURUS_SKULL), new ItemStack(ModItems.DRYOSAURUS_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.VELOCIRAPTOR_CLAW), new ItemStack(ModItems.VELOCIRAPTOR_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.ARCHAEAMPHORA_FOSSIL), new ItemStack(ModItems.ARCHAEAMPHORA_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.CLADOCYCLUS_FOSSIL), new ItemStack(ModItems.CLADOCYCLUS_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.COOKSONIA_FOSSIL), new ItemStack(ModItems.COOKSONIA_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.EUTHENOPTERON_FOSSIL), new ItemStack(ModItems.EUSTHENOPTERON_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.GALLIMIMUS_SKULL), new ItemStack(ModItems.GALLIMIMUS_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.PARADOXIDES_FOSSIL), new ItemStack(ModItems.PARADOXIDES_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.PARASAUROLOPHUS_SKULL), new ItemStack(ModItems.PARASAUROLOPHUS_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.PRENOCEPHALE_SKULL), new ItemStack(ModItems.PRENOCEPHALE_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.STEGOSAURUS_THAGOMIZER), new ItemStack(ModItems.STEGOSAURUS_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.TRICERATOPS_HORN), new ItemStack(ModItems.TRICERATOPS_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.TYRANNOSAURUS_TOOTH), new ItemStack(ModItems.TYRANNOSAURUS_DNA), 0.0F);
     }
 
 	public void addRecipe(ItemStack parItemStackIn, ItemStack parItemStackOut, float parExperience)
