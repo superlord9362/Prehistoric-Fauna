@@ -49,10 +49,29 @@ public class DNAExtractorRecipes {
 	              new ItemStack(ModItems.VELOCIRAPTOR_DNA), 0.0F);
     }
 
+	@SuppressWarnings("unchecked")
 	public void addRecipe(ItemStack parItemStackIn, ItemStack parItemStackOut, float parExperience)
     {
         extractionList.put(parItemStackIn, parItemStackOut);
         experienceList.put(parItemStackOut, Float.valueOf(parExperience));
+    }
+	
+	public ItemStack getDefinedRecipeResult(ItemStack parItemStack)
+    {
+        Iterator iterator = extractionList.entrySet().iterator();
+        Entry entry;
+
+        do
+        {
+            if (!iterator.hasNext())
+            {
+                return null;
+            }
+
+            entry = (Entry)iterator.next();
+        } while (!areItemStacksEqual(parItemStack, (ItemStack)entry.getKey()));
+
+        return (ItemStack)entry.getValue();
     }
 	
 	public ItemStack getRecipeResult(ItemStack parItemStack, Random random)
@@ -90,13 +109,7 @@ public class DNAExtractorRecipes {
 	
 	private boolean areItemStacksEqual(ItemStack parItemStack1, ItemStack parItemStack2)
     {
-        return parItemStack2.getItem() == parItemStack1.getItem() 
-
-              && (parItemStack2.getMetadata() == 32767 
-
-              || parItemStack2.getMetadata() == parItemStack1
-
-              .getMetadata());
+        return parItemStack2.getItem() == parItemStack1.getItem();
     }
 
     public Map getRecipeList()
