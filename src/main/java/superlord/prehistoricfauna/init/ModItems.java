@@ -61,10 +61,10 @@ public class ModItems {
 	public static final Item CAMARASAURUS_DNA = new ItemDNADisk("camarasaurus_dna");
 	public static final Item DRYOSAURUS_DNA = new ItemDNADisk("dryosaurus_dna");
 	public static final Item ALLOSAURUS_DNA = new ItemDNADisk("allosaurus_dna");
-	public static final Item ANKYLOSAURUS_DNA = new ItemBase("ankylosaurus_dna");
-	public static final Item BARYONYX_DNA = new ItemBase("baryonyx_dna");
-	public static final Item PARASAUROLOPHUS_DNA = new ItemBase("parasaurolophus_dna");
-	public static final Item PRENOCEPHALE_DNA = new ItemBase("prenocephale_dna");
+	public static final Item ANKYLOSAURUS_DNA = new ItemDNADisk("ankylosaurus_dna");
+	public static final Item BARYONYX_DNA = new ItemDNADisk("baryonyx_dna");
+	public static final Item PARASAUROLOPHUS_DNA = new ItemDNADisk("parasaurolophus_dna");
+	public static final Item PRENOCEPHALE_DNA = new ItemDNADisk("prenocephale_dna");
 	public static final Item PARADOXIDES_DNA = new ItemDNADisk("paradoxides_dna");
 	public static final Item CLADOCYCLUS_DNA = new ItemDNADisk("cladocyclus_dna");
 	public static final Item EUSTHENOPTERON_DNA = new ItemDNADisk("eusthenopteron_dna");

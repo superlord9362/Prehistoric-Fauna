@@ -22,7 +22,13 @@ public class DNAExtractorRecipes {
     private final Map extractionList = Maps.newHashMap();
     private final Map experienceList = Maps.newHashMap();
     
-	private final List<Integer> dnaPuritiesList = Arrays.asList(25, 50, 75, 100);
+    // To-Do: Replace this list with a weighted system in combination with getRecipeResult()
+	private final List<Integer> dnaPuritiesList = Arrays.asList(
+				25, 25, 25,
+				50, 50,
+				75, 75,
+				100
+			);
 
     
     /**
@@ -83,6 +89,7 @@ public class DNAExtractorRecipes {
     {
         Iterator iterator = extractionList.entrySet().iterator();
         Entry entry;
+        ItemStack output;
 
         do
         {
@@ -93,9 +100,7 @@ public class DNAExtractorRecipes {
 
             entry = (Entry)iterator.next();
         } while (!areItemStacksEqual(parItemStack, (ItemStack)entry.getKey()));
-        
-        ItemStack output;
-        
+       
 		if (random.nextInt(3) == 1) { // 30% chance of bone meal
 			output = new ItemStack(Items.DYE, 1, 15);
 		} else if (random.nextInt(4) == 1) { // 25% chance of sand
@@ -106,7 +111,7 @@ public class DNAExtractorRecipes {
 			NBTTagCompound nbt = new NBTTagCompound();
 			nbt.setLong("globalIDLeast", uuid.getLeastSignificantBits());
 			nbt.setLong("globalIDMost", uuid.getMostSignificantBits());
-			nbt.setFloat("DNA Purity", dnaPuritiesList.get(random.nextInt(dnaPuritiesList.size())));
+			nbt.setFloat("dna_purity", dnaPuritiesList.get(random.nextInt(dnaPuritiesList.size() + 1)));
 			output.setTagCompound(nbt);
 		}
         
