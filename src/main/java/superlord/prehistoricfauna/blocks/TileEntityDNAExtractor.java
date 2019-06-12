@@ -25,15 +25,15 @@ import superlord.prehistoricfauna.blocks.recipes.DNAExtractorRecipes;
 public class TileEntityDNAExtractor extends TileEntityLockable implements IInventory, ISidedInventory, ITickable {
 	@SuppressWarnings("unused")
 	private static final int[] SLOTS_TOP = new int[]{};
-	private static final int[] SLOTS_BOTTOM = new int[]{9, 10, 11, 12};
+	private static final int[] SLOTS_BOTTOM = new int[]{9, 10, 11, 12, 13, 14, 15, 16, 17};
 	private static final int[] SLOTS_SIDES = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8};
-	private static final List<Integer> SLOTS_OUT = Arrays.asList(9, 10, 11, 12);
+	private static final List<Integer> SLOTS_OUT = Arrays.asList(9, 10, 11, 12, 13, 14, 15, 16, 17);
 
 	public int analyzeFuelTime = 0;
 	public int currentFuelTime = 100;
 	public int analyzeTime = 0;
 	private String customName;
-	private NonNullList<ItemStack> stacks = NonNullList.withSize(13, ItemStack.EMPTY);
+	private NonNullList<ItemStack> stacks = NonNullList.withSize(18 + 27 + 9, ItemStack.EMPTY);
 	private int rawIndex = -1;
 	
 	private static int getFuelTime(ItemStack stack) {
@@ -172,7 +172,7 @@ public class TileEntityDNAExtractor extends TileEntityLockable implements IInven
 		if (this.rawIndex == -1 || !flag) {
 			return false;
 		} else {
-			for (int slot = 12; slot > 8; --slot) {
+			for (int slot = 17; slot > 8; --slot) {
 				if (this.stacks.get(slot).isEmpty()) {
 					spaceIndex = slot;
 					break;
@@ -189,7 +189,7 @@ public class TileEntityDNAExtractor extends TileEntityLockable implements IInven
 	public TileEntityDNAExtractor analyzeItem() {
 		if (this.canAnalyze()) {
 			ItemStack input = this.stacks.get(rawIndex);
-			ItemStack output = DNAExtractorRecipes.instance().getRecipeResult(input, new Random());
+			ItemStack output = DNAExtractorRecipes.instance().getRecipeResult(input, this.world.rand);
 			int slotIndex = 0, emptySlot = -1;
 			
 			if (output != null && !output.isEmpty()) {
@@ -198,13 +198,20 @@ public class TileEntityDNAExtractor extends TileEntityLockable implements IInven
 					output.setCount(1 + this.world.rand.nextInt(maxCount));
 				}
 				
-				for (slotIndex = 0; slotIndex < 3; slotIndex++) {
-					if (this.stacks.get(SLOTS_OUT.get(slotIndex)).isItemEqual(output) && this.stacks.get(SLOTS_OUT.get(slotIndex)).getCount() < 64) {
-						this.stacks.get(SLOTS_OUT.get(slotIndex)).setCount(this.stacks.get(SLOTS_OUT.get(slotIndex)).getCount() + 1);
-						this.stacks.get(this.rawIndex).shrink(1);
-						return this;
+				for (slotIndex = 0; slotIndex < 9; slotIndex++) {
+					ItemStack operatingSlot = this.stacks.get(SLOTS_OUT.get(slotIndex));
+					if (operatingSlot.isItemEqual(output) && operatingSlot.getCount() < 64) {
+						if (operatingSlot.hasTagCompound() && operatingSlot.getTagCompound().hasKey("dna_purity") && dnaPuritiesOfDisksAreEqual(operatingSlot, output)) {
+							operatingSlot.setCount(operatingSlot.getCount() + 1);
+							this.stacks.get(this.rawIndex).shrink(1);
+							return this;
+						} else if (!operatingSlot.hasTagCompound()) {
+							operatingSlot.setCount(operatingSlot.getCount() + 1);
+							this.stacks.get(this.rawIndex).shrink(1);
+							return this;
+						}	
 					}
-					if (this.stacks.get(SLOTS_OUT.get(slotIndex)).isEmpty() && emptySlot == -1) {
+					if (operatingSlot.isEmpty() && emptySlot == -1) {
 						emptySlot = SLOTS_OUT.get(slotIndex);
 					}
 				}
@@ -221,6 +228,10 @@ public class TileEntityDNAExtractor extends TileEntityLockable implements IInven
 		return null;
 	}
 
+	public boolean dnaPuritiesOfDisksAreEqual(ItemStack disk_a, ItemStack disk_b) {
+		return disk_a.getTagCompound().getInteger("dna_purity") == disk_b.getTagCompound().getInteger("dna_purity");
+	}
+	
 	@Override
 	public boolean isUsableByPlayer(EntityPlayer player) {
 		return this.world.getTileEntity(this.pos) == this && player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;

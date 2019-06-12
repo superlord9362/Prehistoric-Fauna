@@ -1,6 +1,5 @@
 package superlord.prehistoricfauna.blocks;
 
-
 import net.minecraft.block.BlockContainer;
 
 import net.minecraft.block.BlockHorizontal;
@@ -51,17 +50,11 @@ import superlord.prehistoricfauna.util.Reference;
 
 import java.util.Random;
 
-
-
 public class BlockDNAExtractor2 extends BlockContainer implements DefaultRenderedItem, BlockEntity {
 
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
-
-
 	private static boolean keepInventory = false;
-
-
 
 	public BlockDNAExtractor2(boolean isActive) {
 
@@ -72,14 +65,11 @@ public class BlockDNAExtractor2 extends BlockContainer implements DefaultRendere
 		this.setSoundType(SoundType.METAL);
 
 		if (isActive) {
-
 			this.setLightLevel(0.9375F);
 			setRegistryName("dna_extractor2_on");
 			setTranslationKey("dna_extractor2_on");
 
 		} else {
-
-
 			this.setCreativeTab(PFTabRegistry.NORMAL);
 			setRegistryName("dna_extractor2");
 			setTranslationKey("dna_extractor2");
@@ -87,76 +77,46 @@ public class BlockDNAExtractor2 extends BlockContainer implements DefaultRendere
 		}
 
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-
 	}
-
-
 
 	public static void setState(boolean isActive, World world, BlockPos pos) {
 
 		TileEntity tile = world.getTileEntity(pos);
-
 		EnumFacing facing = EnumFacing.NORTH;
 
-		if(world.getBlockState(pos).getBlock() instanceof BlockDNAExtractor2){
-
+		if (world.getBlockState(pos).getBlock() instanceof BlockDNAExtractor2) {
 			facing = world.getBlockState(pos).getValue(FACING);
-
 		}
 
 		keepInventory = true;
 
 		if (isActive) {
-
 			world.setBlockState(pos, ModBlocks.ANALYZER_ACTIVE.getDefaultState().withProperty(FACING, facing));
-
 		} else {
-
 			world.setBlockState(pos, ModBlocks.ANALYZER.getDefaultState().withProperty(FACING, facing));
-
 		}
 
 		keepInventory = false;
-
 		if (tile != null) {
-
 			tile.validate();
-
 			world.setTileEntity(pos, tile);
-
 		}
-
 	}
 
-
-
 	@Override
-
 	public EnumBlockRenderType getRenderType(IBlockState state) {
-
 		return EnumBlockRenderType.MODEL;
-
 	}
-
-
 
 	@Override
-
 	public Item getItemDropped(IBlockState state, Random random, int fortune) {
-
 		return Item.getItemFromBlock(ModBlocks.ANALYZER);
-
 	}
 
-
-
-	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-
+	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY,
+			float hitZ, int meta, EntityLivingBase placer) {
 		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
-
 	}
-
-
 
 	@SuppressWarnings("unused")
 	private void setDefaultFacing(World world, BlockPos pos, IBlockState state) {
@@ -197,11 +157,9 @@ public class BlockDNAExtractor2 extends BlockContainer implements DefaultRendere
 
 	}
 
-
-
 	@Override
-
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
+			EnumFacing side, float hitX, float hitY, float hitZ) {
 
 		if (!world.isRemote) {
 
@@ -213,11 +171,9 @@ public class BlockDNAExtractor2 extends BlockContainer implements DefaultRendere
 
 	}
 
-
-
 	@Override
-
-	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer,
+			ItemStack stack) {
 
 		world.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
 
@@ -235,10 +191,7 @@ public class BlockDNAExtractor2 extends BlockContainer implements DefaultRendere
 
 	}
 
-
-
 	@Override
-
 	public void breakBlock(World world, BlockPos pos, IBlockState state) {
 
 		this.dropInventory(world, pos);
@@ -247,11 +200,9 @@ public class BlockDNAExtractor2 extends BlockContainer implements DefaultRendere
 
 	}
 
-
-
 	private void dropInventory(World world, BlockPos pos) {
 
-		if (!keepInventory  || !(world.getBlockState(pos).getBlock() instanceof BlockDNAExtractor2)) {
+		if (!keepInventory || !(world.getBlockState(pos).getBlock() instanceof BlockDNAExtractor2)) {
 
 			TileEntity entity = world.getTileEntity(pos);
 
@@ -263,7 +214,7 @@ public class BlockDNAExtractor2 extends BlockContainer implements DefaultRendere
 
 			if (entity instanceof TileEntityDNAExtractor) {
 
-				TileEntityDNAExtractor analyzer = (TileEntityDNAExtractor)entity;
+				TileEntityDNAExtractor analyzer = (TileEntityDNAExtractor) entity;
 
 				for (int i = 0; i < analyzer.getSizeInventory(); i++) {
 
@@ -283,64 +234,46 @@ public class BlockDNAExtractor2 extends BlockContainer implements DefaultRendere
 
 	}
 
-
-
 	@Override
-
 	public TileEntity createNewTileEntity(World world, int metadata) {
 
 		return new TileEntityDNAExtractor();
 
 	}
 
-
-
 	@Override
-
 	public boolean hasComparatorInputOverride(IBlockState state) {
 
 		return true;
 
 	}
 
-
-
 	@Override
-
 	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos) {
 
 		return Container.calcRedstoneFromInventory((IInventory) world.getTileEntity(pos));
 
 	}
 
-
-
 	@Override
-
 	@SideOnly(Side.CLIENT)
-
-	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos,
+			EntityPlayer player) {
 
 		return new ItemStack(ModBlocks.ANALYZER);
 
 	}
 
-
-
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-    {
-        EnumFacing enumfacing = EnumFacing.byIndex(meta);
+	public IBlockState getStateFromMeta(int meta) {
+		EnumFacing enumfacing = EnumFacing.byIndex(meta);
 
-        if (enumfacing.getAxis() == EnumFacing.Axis.Y)
-        {
-            enumfacing = EnumFacing.NORTH;
-        }
+		if (enumfacing.getAxis() == EnumFacing.Axis.Y) {
+			enumfacing = EnumFacing.NORTH;
+		}
 
-        return this.getDefaultState().withProperty(FACING, enumfacing);
-    }
-
-
+		return this.getDefaultState().withProperty(FACING, enumfacing);
+	}
 
 	@Override
 
@@ -350,8 +283,6 @@ public class BlockDNAExtractor2 extends BlockContainer implements DefaultRendere
 
 	}
 
-
-
 	@Override
 
 	public IBlockState withRotation(IBlockState state, Rotation rotation) {
@@ -359,8 +290,6 @@ public class BlockDNAExtractor2 extends BlockContainer implements DefaultRendere
 		return state.withProperty(FACING, rotation.rotate(state.getValue(FACING)));
 
 	}
-
-
 
 	@Override
 
@@ -370,8 +299,6 @@ public class BlockDNAExtractor2 extends BlockContainer implements DefaultRendere
 
 	}
 
-
-
 	@Override
 
 	protected BlockStateContainer createBlockState() {
@@ -379,8 +306,6 @@ public class BlockDNAExtractor2 extends BlockContainer implements DefaultRendere
 		return new BlockStateContainer(this, FACING);
 
 	}
-
-
 
 	@Override
 
