@@ -111,7 +111,7 @@ public class DNAExtractorRecipes {
 			NBTTagCompound nbt = new NBTTagCompound();
 			nbt.setLong("globalIDLeast", uuid.getLeastSignificantBits());
 			nbt.setLong("globalIDMost", uuid.getMostSignificantBits());
-			nbt.setFloat("dna_purity", dnaPuritiesList.get(random.nextInt(dnaPuritiesList.size() + 1)));
+			nbt.setFloat("dna_purity", dnaPuritiesList.get(random.nextInt(dnaPuritiesList.size())));
 			output.setTagCompound(nbt);
 		}
         
