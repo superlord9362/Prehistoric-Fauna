@@ -50,26 +50,20 @@ import superlord.prehistoricfauna.util.Reference;
 
 import java.util.Random;
 
-public class BlockDNAExtractor extends BlockContainer implements DefaultRenderedItem, BlockEntity {
+public class BlockDNAExtractor extends BlockBase implements DefaultRenderedItem, BlockEntity {
 
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
 	private static boolean keepInventory = false;
 
 	public BlockDNAExtractor(boolean isActive) {
-		super(Material.IRON);
+		super((isActive) ? "dna_extractor_on" : "dna_extractor", Material.IRON);
 
 		this.setHardness(3.0F);
 		this.setSoundType(SoundType.METAL);
 
 		if (isActive) {
 			this.setLightLevel(0.9375F);
-			setRegistryName("dna_extractor_on");
-			setTranslationKey("dna_extractor_on");
-		} else {
-			this.setCreativeTab(PFTabRegistry.NORMAL);
-			setRegistryName("dna_extractor");
-			setTranslationKey("dna_extractor");
 		}
 
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
@@ -98,6 +92,11 @@ public class BlockDNAExtractor extends BlockContainer implements DefaultRendered
 			world.setTileEntity(pos, tile);
 		}
 	}
+	
+    @Override
+    public void registerModels() {
+        Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
+    }
 
 	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state) {

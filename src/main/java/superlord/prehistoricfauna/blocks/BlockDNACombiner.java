@@ -1,79 +1,51 @@
 package superlord.prehistoricfauna.blocks;
 
-import net.minecraft.block.BlockContainer;
+import java.util.Random;
 
 import net.minecraft.block.BlockHorizontal;
-
 import net.minecraft.block.SoundType;
-
 import net.minecraft.block.material.Material;
-
 import net.minecraft.block.properties.PropertyDirection;
-
 import net.minecraft.block.state.BlockStateContainer;
-
 import net.minecraft.block.state.IBlockState;
-
 import net.minecraft.entity.EntityLivingBase;
-
 import net.minecraft.entity.player.EntityPlayer;
-
 import net.minecraft.inventory.Container;
-
 import net.minecraft.inventory.IInventory;
-
 import net.minecraft.inventory.InventoryHelper;
-
 import net.minecraft.item.Item;
-
 import net.minecraft.item.ItemStack;
-
 import net.minecraft.tileentity.TileEntity;
-
-import net.minecraft.util.*;
-
+import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
-
 import net.minecraft.util.math.RayTraceResult;
-
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
-
 import net.minecraftforge.fml.relauncher.SideOnly;
 import superlord.prehistoricfauna.Main;
 import superlord.prehistoricfauna.init.ModBlocks;
-import superlord.prehistoricfauna.tab.PFTabRegistry;
 import superlord.prehistoricfauna.util.BlockEntity;
 import superlord.prehistoricfauna.util.DefaultRenderedItem;
 import superlord.prehistoricfauna.util.Reference;
 
-import java.util.Random;
-
-public class BlockDNACombiner extends BlockContainer implements DefaultRenderedItem, BlockEntity {
+public class BlockDNACombiner extends BlockBase implements DefaultRenderedItem, BlockEntity {
 
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
 	private static boolean keepInventory = false;
 
 	public BlockDNACombiner(boolean isActive) {
-
-		super(Material.IRON);
+		super((isActive) ? "dna_combiner_on" : "dna_combiner", Material.IRON);
 
 		this.setHardness(3.0F);
-
 		this.setSoundType(SoundType.METAL);
 
 		if (isActive) {
 			this.setLightLevel(0.9375F);
-			setRegistryName("dna_combiner_on");
-			setTranslationKey("dna_combiner_on");
-
-		} else {
-			this.setCreativeTab(PFTabRegistry.NORMAL);
-			setRegistryName("dna_combiner");
-			setTranslationKey("dna_combiner");
-
 		}
 
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));

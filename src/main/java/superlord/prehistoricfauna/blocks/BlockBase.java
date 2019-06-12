@@ -4,10 +4,13 @@ import superlord.prehistoricfauna.Main;
 import superlord.prehistoricfauna.tab.PFTabRegistry;
 import superlord.prehistoricfauna.util.IHasModel;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
-public class BlockBase extends Block implements IHasModel {
+public class BlockBase extends BlockContainer implements IHasModel {
 
     public BlockBase(String name, Material material) {
         super(material);
@@ -22,4 +25,10 @@ public class BlockBase extends Block implements IHasModel {
     public void registerModels() {
         Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
     }
+
+	@Override
+	public TileEntity createNewTileEntity(World worldIn, int meta) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
