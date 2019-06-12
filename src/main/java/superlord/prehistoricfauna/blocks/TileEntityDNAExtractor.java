@@ -148,7 +148,7 @@ public class TileEntityDNAExtractor extends TileEntityLockable implements IInven
 			}
 			if (fueled != this.analyzeFuelTime > 0) {
 				dirty = true;
-				BlockDNAExtractor2.setState(this.analyzeFuelTime > 0, this.world, this.pos);
+				BlockDNAExtractor.setState(this.analyzeFuelTime > 0, this.world, this.pos);
 			}
 		}
 		if (dirty) {
@@ -160,7 +160,7 @@ public class TileEntityDNAExtractor extends TileEntityLockable implements IInven
 		int spaceIndex = -1;
 		this.rawIndex = -1;
 		boolean flag = false;
-		for (int slot = 0; slot < 9; ++slot) {
+		for (int slot = 0; slot < 8; ++slot) {
 			if (!this.stacks.get(slot).isEmpty()) {
 				if (isAnalyzable(this.stacks.get(slot))){
 					this.rawIndex = slot;
@@ -311,7 +311,7 @@ public class TileEntityDNAExtractor extends TileEntityLockable implements IInven
 
 	@Override
 	public String getName() {
-		return this.hasCustomName() ? this.customName : I18n.translateToLocal("tile.decoder.name");
+		return this.hasCustomName() ? this.customName : I18n.translateToLocal("tile.dna_extractor.name");
 	}
 
 	@Override

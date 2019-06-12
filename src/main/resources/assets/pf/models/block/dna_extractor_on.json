@@ -1,24 +1,23 @@
-
 {
 
-    "parent": "block/orientable",
+  "parent": "block/cube",
 
-    "textures": {
+  "textures": {
 
-        "particle": "pf:blocks/dna_extractor_side",
+    "north": "pf:blocks/dna_extractor_front",
 
-        "up": "pf:blocks/dna_extractor_top_lit",
+    "south": "pf:blocks/dna_extractor_side",
 
-        "down": "pf:blocks/dna_extractor_bottom",
+    "east": "pf:blocks/dna_extractor_side",
 
-        "north": "pf:blocks/dna_extractor_front",
+    "west": "pf:blocks/dna_extractor_side",
 
-        "east": "pf:blocks/dna_extractor_side",
+    "up": "pf:blocks/dna_extractor_top_lit",
 
-        "south": "pf:blocks/dna_extractor_side",
+    "down": "pf:blocks/dna_extractor_top",
 
-        "west": "pf:blocks/dna_extractor_side"
+    "particle": "pf:blocks/dna_extractor_side"
 
-    }
+  }
 
 }

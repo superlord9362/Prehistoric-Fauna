@@ -1,0 +1,41 @@
+{
+	"defaults": {
+		"textures": {
+			"all": "pf:blocks/dna_extractor_side"
+		}
+	},
+	"variants": {
+		"normal": { "model": "pf:dna_extractor" },
+	  "facing=south": {
+  
+		"model": "pf:dna_extractor_on",
+  
+		"y": 180
+  
+	  },
+  
+	  "facing=north": {
+  
+		"model": "pf:dna_extractor_on"
+  
+	  },
+  
+	  "facing=east": {
+  
+		"model": "pf:dna_extractor_on",
+  
+		"y": 90
+  
+	  },
+  
+	  "facing=west": {
+  
+		"model": "pf:dna_extractor_on",
+  
+		"y": 270
+  
+	  }
+  
+	}
+  
+  }
