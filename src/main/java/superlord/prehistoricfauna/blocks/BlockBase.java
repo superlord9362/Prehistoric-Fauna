@@ -20,6 +20,15 @@ public class BlockBase extends BlockContainer implements IHasModel {
         setTranslationKey(name);
         setCreativeTab(PFTabRegistry.NORMAL);
     }
+    
+    public BlockBase(String name, Material material, boolean inCreativeTab) {
+        super(material);
+        setHardness(3f);
+        setResistance(5f);
+        setRegistryName(name);
+        setTranslationKey(name);
+        if (inCreativeTab) setCreativeTab(PFTabRegistry.NORMAL); 
+    }
 
     @Override
     public void registerModels() {

@@ -1,54 +1,36 @@
 package superlord.prehistoricfauna.blocks;
 
-import net.minecraft.block.BlockContainer;
-import net.minecraft.block.BlockDirectional;
+import java.util.Random;
+
 import net.minecraft.block.BlockHorizontal;
-
 import net.minecraft.block.SoundType;
-
 import net.minecraft.block.material.Material;
-
 import net.minecraft.block.properties.PropertyDirection;
-
 import net.minecraft.block.state.BlockStateContainer;
-
 import net.minecraft.block.state.IBlockState;
-
 import net.minecraft.entity.EntityLivingBase;
-
 import net.minecraft.entity.player.EntityPlayer;
-
 import net.minecraft.inventory.Container;
-
 import net.minecraft.inventory.IInventory;
-
 import net.minecraft.inventory.InventoryHelper;
-
 import net.minecraft.item.Item;
-
 import net.minecraft.item.ItemStack;
-
 import net.minecraft.tileentity.TileEntity;
-
-import net.minecraft.util.*;
-
+import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
-
 import net.minecraft.util.math.RayTraceResult;
-
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
-
 import net.minecraftforge.fml.relauncher.SideOnly;
 import superlord.prehistoricfauna.Main;
 import superlord.prehistoricfauna.init.ModBlocks;
-import superlord.prehistoricfauna.tab.PFTabRegistry;
 import superlord.prehistoricfauna.util.BlockEntity;
 import superlord.prehistoricfauna.util.DefaultRenderedItem;
 import superlord.prehistoricfauna.util.Reference;
-
-import java.util.Random;
 
 public class BlockDNAExtractor extends BlockBase implements DefaultRenderedItem, BlockEntity {
 
@@ -57,7 +39,7 @@ public class BlockDNAExtractor extends BlockBase implements DefaultRenderedItem,
 	private static boolean keepInventory = false;
 
 	public BlockDNAExtractor(boolean isActive) {
-		super((isActive) ? "dna_extractor_on" : "dna_extractor", Material.IRON);
+		super((isActive) ? "dna_extractor_on" : "dna_extractor", Material.IRON, !isActive);
 
 		this.setHardness(3.0F);
 		this.setSoundType(SoundType.METAL);

@@ -39,7 +39,7 @@ public class BlockDNACombiner extends BlockBase implements DefaultRenderedItem, 
 	private static boolean keepInventory = false;
 
 	public BlockDNACombiner(boolean isActive) {
-		super((isActive) ? "dna_combiner_on" : "dna_combiner", Material.IRON);
+		super((isActive) ? "dna_combiner_on" : "dna_combiner", Material.IRON, !isActive);
 
 		this.setHardness(3.0F);
 		this.setSoundType(SoundType.METAL);
