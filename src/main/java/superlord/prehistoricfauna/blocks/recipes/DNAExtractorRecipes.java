@@ -22,6 +22,7 @@ public class DNAExtractorRecipes {
     private final Map extractionList = Maps.newHashMap();
     private final Map experienceList = Maps.newHashMap();
     
+    // To-Do: Replace this list with a weighted system in combination with getRecipeResult()
 	private final List<Integer> dnaPuritiesList = Arrays.asList(
 				25, 25, 25,
 				50, 50,
