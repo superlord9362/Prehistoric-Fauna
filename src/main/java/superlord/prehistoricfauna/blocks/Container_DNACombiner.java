@@ -1,11 +1,9 @@
-package superlord.prehistoricfauna.client.gui;
+package superlord.prehistoricfauna.blocks;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnaceOutput;
-import superlord.prehistoricfauna.blocks.SyncedFieldContainer;
-import superlord.prehistoricfauna.blocks.TileEntityDNACombiner;
 
 public class Container_DNACombiner extends SyncedFieldContainer {
 	private final TileEntityDNACombiner analyzer;
@@ -16,22 +14,12 @@ public class Container_DNACombiner extends SyncedFieldContainer {
 
 		int slotIndex = -1;
 		
-		for (int column = 0; column < 3; ++column) {
-			for (int row = 0; row < 3; ++row) {
-				this.addSlotToContainer(new Slot(this.analyzer, ++slotIndex,
-						20 + row * 18,
-						17 + column * 18));
-			}
+		for (int row = 1; row < 3; row++) {
+			this.addSlotToContainer(new Slot_DNACombiner(this.analyzer, ++slotIndex, 36, (row<2) ? row*15 : row*27));
+			this.addSlotToContainer(new Slot_DNACombiner(this.analyzer, ++slotIndex, 64, (row<2) ? row*15 : row*27));
 		}
 
-		for (int column = 0; column < 3; ++column) {
-			for (int row = 0; row < 3; ++row) {
-				this.addSlotToContainer(
-						new SlotFurnaceOutput(playerInventory.player, this.analyzer, ++slotIndex,
-								111 + row * 18,
-								17 + column * 18));
-			}
-		}
+		this.addSlotToContainer(new SlotFurnaceOutput(playerInventory.player, this.analyzer, ++slotIndex, 122, 34));
 		
 		for (int column = 0; column < 3; ++column) {
 			for (int row = 0; row < 9; ++row) {
