@@ -37,6 +37,9 @@ public class RecipeInstance_DNACombiner {
 				}
 			}
 		}
+		
+		if (disksFound <= 1) return null;
+		
 		return (queuedDisks.get(0) == null) ? null : new ItemStack(queuedDisks.get(0).getItem());
     }
 	
@@ -54,10 +57,15 @@ public class RecipeInstance_DNACombiner {
 			}
 		}
 		
+		if (disksFound <= 1) return null;
+		
 		float dnaPurity = 0;
         for (ItemStack disk : queuedDisks.values()) {
 			dnaPurity += disk.getTagCompound().getFloat("dna_purity");
         }
+        
+        if (dnaPurity > 100) { dnaPurity = 100; }
+        
         ItemStack resultItemStack = new ItemStack(queuedDisks.get(0).getItem());
 		
 		NBTTagCompound nbt = new NBTTagCompound();
