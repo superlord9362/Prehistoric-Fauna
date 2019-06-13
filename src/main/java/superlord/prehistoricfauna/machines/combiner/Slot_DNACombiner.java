@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.blocks;
+package superlord.prehistoricfauna.machines.combiner;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -11,9 +11,16 @@ public class Slot_DNACombiner extends Slot {
 		super(inventoryIn, index, xPosition, yPosition);
 	}
 	
+	@Override
     public boolean isItemValid(ItemStack stack)
     {
         return stack.getItem() instanceof ItemDNADisk;
+    }
+    
+	@Override
+    public int getSlotStackLimit()
+    {
+        return 1;
     }
 
 }

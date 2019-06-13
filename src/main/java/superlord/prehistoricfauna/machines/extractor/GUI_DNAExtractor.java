@@ -1,20 +1,18 @@
-package superlord.prehistoricfauna.client.gui;
+package superlord.prehistoricfauna.machines.extractor;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import superlord.prehistoricfauna.blocks.Container_DNACombiner;
-import superlord.prehistoricfauna.blocks.TileEntityDNACombiner;
 import superlord.prehistoricfauna.util.Reference;
 
-public class GUI_DNACombiner extends GuiContainer {
-	public static final ResourceLocation TEXTURE = new ResourceLocation(Reference.MOD_ID, "textures/gui/dna_combiner.png");
-	private final TileEntityDNACombiner analyzer;
+public class GUI_DNAExtractor extends GuiContainer {
+	public static final ResourceLocation TEXTURE = new ResourceLocation(Reference.MOD_ID, "textures/gui/dna_extractor.png");
+	private final TileEntity_DNAExtractor analyzer;
 
-	public GUI_DNACombiner(InventoryPlayer playerInventory, TileEntityDNACombiner analyzer) {
-		super(new Container_DNACombiner(playerInventory, analyzer));
+	public GUI_DNAExtractor(InventoryPlayer playerInventory, TileEntity_DNAExtractor analyzer) {
+		super(new Container_DNAExtractor(playerInventory, analyzer));
 		this.analyzer = analyzer;
 	}
 

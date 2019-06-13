@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.blocks;
+package superlord.prehistoricfauna.machines.combiner;
 
 import java.util.Random;
 
@@ -27,19 +27,20 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import superlord.prehistoricfauna.Main;
+import superlord.prehistoricfauna.blocks.BlockBase;
 import superlord.prehistoricfauna.init.ModBlocks;
 import superlord.prehistoricfauna.util.BlockEntity;
 import superlord.prehistoricfauna.util.DefaultRenderedItem;
 import superlord.prehistoricfauna.util.Reference;
 
-public class BlockDNAExtractor extends BlockBase implements DefaultRenderedItem, BlockEntity {
+public class Block_DNACombiner extends BlockBase implements DefaultRenderedItem, BlockEntity {
 
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
 	private static boolean keepInventory = false;
 
-	public BlockDNAExtractor(boolean isActive) {
-		super((isActive) ? "dna_extractor_on" : "dna_extractor", Material.IRON, !isActive);
+	public Block_DNACombiner(boolean isActive) {
+		super((isActive) ? "dna_combiner_on" : "dna_combiner", Material.IRON, !isActive);
 
 		this.setHardness(3.0F);
 		this.setSoundType(SoundType.METAL);
@@ -56,16 +57,16 @@ public class BlockDNAExtractor extends BlockBase implements DefaultRenderedItem,
 		TileEntity tile = world.getTileEntity(pos);
 		EnumFacing facing = EnumFacing.NORTH;
 
-		if (world.getBlockState(pos).getBlock() instanceof BlockDNAExtractor) {
+		if (world.getBlockState(pos).getBlock() instanceof Block_DNACombiner) {
 			facing = world.getBlockState(pos).getValue(FACING);
 		}
 
 		keepInventory = true;
 
 		if (isActive) {
-			world.setBlockState(pos, ModBlocks.ANALYZER_ACTIVE.getDefaultState().withProperty(FACING, facing));
+			world.setBlockState(pos, ModBlocks.COMBINER_ACTIVE.getDefaultState().withProperty(FACING, facing));
 		} else {
-			world.setBlockState(pos, ModBlocks.ANALYZER.getDefaultState().withProperty(FACING, facing));
+			world.setBlockState(pos, ModBlocks.COMBINER.getDefaultState().withProperty(FACING, facing));
 		}
 
 		keepInventory = false;
@@ -74,11 +75,6 @@ public class BlockDNAExtractor extends BlockBase implements DefaultRenderedItem,
 			world.setTileEntity(pos, tile);
 		}
 	}
-	
-    @Override
-    public void registerModels() {
-        Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
-    }
 
 	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state) {
@@ -87,7 +83,7 @@ public class BlockDNAExtractor extends BlockBase implements DefaultRenderedItem,
 
 	@Override
 	public Item getItemDropped(IBlockState state, Random random, int fortune) {
-		return Item.getItemFromBlock(ModBlocks.ANALYZER);
+		return Item.getItemFromBlock(ModBlocks.COMBINER);
 	}
 
 	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY,
@@ -140,7 +136,7 @@ public class BlockDNAExtractor extends BlockBase implements DefaultRenderedItem,
 
 		if (!world.isRemote) {
 
-			player.openGui(Main.instance, Reference.GUI_DNA_EXTRACTOR, world, pos.getX(), pos.getY(), pos.getZ());
+			player.openGui(Main.instance, Reference.GUI_DNA_COMBINER, world, pos.getX(), pos.getY(), pos.getZ());
 
 		}
 
@@ -158,9 +154,9 @@ public class BlockDNAExtractor extends BlockBase implements DefaultRenderedItem,
 
 			TileEntity tile = world.getTileEntity(pos);
 
-			if (tile instanceof TileEntityDNAExtractor) {
+			if (tile instanceof TileEntity_DNACombiner) {
 
-				((TileEntityDNAExtractor) tile).setCustomName(stack.getDisplayName());
+				((TileEntity_DNACombiner) tile).setCustomName(stack.getDisplayName());
 
 			}
 
@@ -179,7 +175,7 @@ public class BlockDNAExtractor extends BlockBase implements DefaultRenderedItem,
 
 	private void dropInventory(World world, BlockPos pos) {
 
-		if (!keepInventory || !(world.getBlockState(pos).getBlock() instanceof BlockDNAExtractor)) {
+		if (!keepInventory || !(world.getBlockState(pos).getBlock() instanceof Block_DNACombiner)) {
 
 			TileEntity entity = world.getTileEntity(pos);
 
@@ -189,9 +185,9 @@ public class BlockDNAExtractor extends BlockBase implements DefaultRenderedItem,
 
 			}
 
-			if (entity instanceof TileEntityDNAExtractor) {
+			if (entity instanceof TileEntity_DNACombiner) {
 
-				TileEntityDNAExtractor analyzer = (TileEntityDNAExtractor) entity;
+				TileEntity_DNACombiner analyzer = (TileEntity_DNACombiner) entity;
 
 				for (int i = 0; i < analyzer.getSizeInventory(); i++) {
 
@@ -214,7 +210,7 @@ public class BlockDNAExtractor extends BlockBase implements DefaultRenderedItem,
 	@Override
 	public TileEntity createNewTileEntity(World world, int metadata) {
 
-		return new TileEntityDNAExtractor();
+		return new TileEntity_DNACombiner();
 
 	}
 
@@ -237,7 +233,7 @@ public class BlockDNAExtractor extends BlockBase implements DefaultRenderedItem,
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos,
 			EntityPlayer player) {
 
-		return new ItemStack(ModBlocks.ANALYZER);
+		return new ItemStack(ModBlocks.COMBINER);
 
 	}
 
@@ -253,7 +249,6 @@ public class BlockDNAExtractor extends BlockBase implements DefaultRenderedItem,
 	}
 
 	@Override
-
 	public int getMetaFromState(IBlockState state) {
 
 		return state.getValue(FACING).getIndex();
@@ -261,7 +256,6 @@ public class BlockDNAExtractor extends BlockBase implements DefaultRenderedItem,
 	}
 
 	@Override
-
 	public IBlockState withRotation(IBlockState state, Rotation rotation) {
 
 		return state.withProperty(FACING, rotation.rotate(state.getValue(FACING)));
@@ -269,7 +263,6 @@ public class BlockDNAExtractor extends BlockBase implements DefaultRenderedItem,
 	}
 
 	@Override
-
 	public IBlockState withMirror(IBlockState state, Mirror mirror) {
 
 		return state.withRotation(mirror.toRotation(state.getValue(FACING)));
@@ -277,7 +270,6 @@ public class BlockDNAExtractor extends BlockBase implements DefaultRenderedItem,
 	}
 
 	@Override
-
 	protected BlockStateContainer createBlockState() {
 
 		return new BlockStateContainer(this, FACING);
@@ -285,10 +277,9 @@ public class BlockDNAExtractor extends BlockBase implements DefaultRenderedItem,
 	}
 
 	@Override
-
 	public Class<? extends TileEntity> getEntity() {
 
-		return TileEntityDNAExtractor.class;
+		return TileEntity_DNACombiner.class;
 
 	}
 }
