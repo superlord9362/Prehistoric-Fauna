@@ -12,8 +12,7 @@ import superlord.prehistoricfauna.items.ItemDNADisk;
 
 public class RecipeInstance_DNACombiner {
     private static final RecipeInstance_DNACombiner dnaCombinerRecipes = new RecipeInstance_DNACombiner();
-    
-	private Map<Integer, ItemStack> acceptedDisks = Maps.newHashMap();
+
 	private Map<Integer, ItemStack> queuedDisks = Maps.newHashMap();
 	
     /**
@@ -23,17 +22,6 @@ public class RecipeInstance_DNACombiner {
 	public static RecipeInstance_DNACombiner instance()
     {
         return dnaCombinerRecipes;
-    }
-	
-	private RecipeInstance_DNACombiner() {
-		addRecipe(0, new ItemStack(ModItems.ALLOSAURUS_DNA));
-		addRecipe(1, new ItemStack(ModItems.ANKYLOSAURUS_TAIL));
-
-    }
-
-	public void addRecipe(int i, ItemStack itemStack)
-    {
-		acceptedDisks.put(i, itemStack);
     }
 	
 	public ItemStack getDefinedRecipeResult(ItemStack[] diskStacks)
