@@ -47,11 +47,9 @@ public class RecipeInstance_DNACombiner {
 				} else {
 					queuedDisks.put(disksFound++, inputDisk);
 				}
-			} else {
-				return null;
 			}
 		}
-		return queuedDisks.get(0);
+		return (queuedDisks.get(0) == null) ? null : new ItemStack(queuedDisks.get(0).getItem());
     }
 	
 	public ItemStack getRecipeResult(ItemStack[] diskStacks)
@@ -65,8 +63,6 @@ public class RecipeInstance_DNACombiner {
 				} else {
 					queuedDisks.put(disksFound++, inputDisk);
 				}
-			} else {
-				return null;
 			}
 		}
 		

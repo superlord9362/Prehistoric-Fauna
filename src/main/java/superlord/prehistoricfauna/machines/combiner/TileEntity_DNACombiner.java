@@ -32,7 +32,7 @@ public class TileEntity_DNACombiner extends TileEntityLockable implements IInven
 	public int currentFuelTime = 100;
 	public int analyzeTime = 0;
 	private String customName;
-	private NonNullList<ItemStack> stacks = NonNullList.withSize(18 + 27 + 9, ItemStack.EMPTY);
+	private NonNullList<ItemStack> stacks = NonNullList.withSize(5 + 27, ItemStack.EMPTY);
 	private int rawIndex = -1;
 	
 	private static int getFuelTime(ItemStack stack) {
@@ -163,16 +163,13 @@ public class TileEntity_DNACombiner extends TileEntityLockable implements IInven
 				this.stacks.get(3) 
 			};
 		
-		int spaceIndex = -1;
 		this.rawIndex = -1;
-
-		if (!canCombine(disks)) {
-			return false;
-		}
+		
 		if (this.stacks.get(4) != null && !this.stacks.get(4).isEmpty()) {
 			return false;
 		}
-		return true;
+		
+		return canCombine(disks);
 	}
 
 	public boolean canCombine(ItemStack[] stacks){
@@ -189,46 +186,22 @@ public class TileEntity_DNACombiner extends TileEntityLockable implements IInven
 		
 		if (this.canCombine(disks)) {
 			ItemStack output = RecipeInstance_DNACombiner.instance().getRecipeResult(disks);
-			int slotIndex = 0, emptySlot = -1;
 			
 			if (output != null && !output.isEmpty()) {
-				if(output.getCount() > 1){
-					int maxCount = output.getCount() - 1;
-					output.setCount(1 + this.world.rand.nextInt(maxCount));
-				}
 				
-				for (slotIndex = 0; slotIndex < 9; slotIndex++) {
-					ItemStack operatingSlot = this.stacks.get(SLOTS_OUT.get(slotIndex));
-					if (operatingSlot.isItemEqual(output) && operatingSlot.getCount() < 64) {
-						if (operatingSlot.hasTagCompound() && operatingSlot.getTagCompound().hasKey("dna_purity") && dnaPuritiesOfDisksAreEqual(operatingSlot, output)) {
-							operatingSlot.setCount(operatingSlot.getCount() + 1);
-							this.stacks.get(this.rawIndex).shrink(1);
-							return this;
-						} else if (!operatingSlot.hasTagCompound()) {
-							operatingSlot.setCount(operatingSlot.getCount() + 1);
-							this.stacks.get(this.rawIndex).shrink(1);
-							return this;
-						}	
-					}
-					if (operatingSlot.isEmpty() && emptySlot == -1) {
-						emptySlot = SLOTS_OUT.get(slotIndex);
-					}
-				}
-				if (emptySlot != -1) {
-					if (this.stacks.get(SLOTS_OUT.get(0)).isEmpty()) { this.stacks.set(SLOTS_OUT.get(0), output); }
-					else { this.stacks.set(emptySlot, output); }
-					this.stacks.get(this.rawIndex).shrink(1);
+				if (this.stacks.get(4) == null || this.stacks.get(4) == ItemStack.EMPTY) {
+					this.stacks.set(4, output);
+	
+					this.stacks.get(0).shrink(1);
+					this.stacks.get(1).shrink(1);
+					this.stacks.get(2).shrink(1);
+					this.stacks.get(3).shrink(1);
 					return this;
 				}
-			} else {
-				combineDisks();
 			}
 		}
+		
 		return null;
-	}
-
-	public boolean dnaPuritiesOfDisksAreEqual(ItemStack disk_a, ItemStack disk_b) {
-		return disk_a.getTagCompound().getInteger("dna_purity") == disk_b.getTagCompound().getInteger("dna_purity");
 	}
 	
 	@Override
