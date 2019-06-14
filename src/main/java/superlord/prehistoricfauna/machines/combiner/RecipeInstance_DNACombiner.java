@@ -30,18 +30,26 @@ public class RecipeInstance_DNACombiner {
 		int disksFound = 0;
 		for (ItemStack inputDisk : diskStacks) {
 			if (ItemDNADisk.class.isInstance(((Object)inputDisk.getItem())) ) {
-				if (disksFound > 0 && queuedDisks.containsKey(disksFound-1) && queuedDisks.get(disksFound-1).getItem().equals(inputDisk.getItem())) {
+				if (disksFound > 0 && queuedDisks.containsKey(disksFound-1) && queuedDisks.get(disksFound-1).getItem().equals(inputDisk.getItem()) && disksOfEqualSpecies(queuedDisks.get(disksFound-1), inputDisk)) {
 					queuedDisks.put(disksFound++, inputDisk);
-				} else {
+				} else if (disksFound == 0) { 
 					queuedDisks.put(disksFound++, inputDisk);
 				}
 			}
 		}
 		
-		if (disksFound <= 1) return null;
+		if (disksFound <= 1) {
+			return null;
+		} else {
+			
+		}
 		
 		return (queuedDisks.get(0) == null) ? null : new ItemStack(queuedDisks.get(0).getItem());
     }
+	
+	public boolean disksOfEqualSpecies(ItemStack disk_a, ItemStack disk_b) {
+		return disk_a.getTagCompound().getFloat("species") == disk_b.getTagCompound().getFloat("species");
+	}
 	
 	public ItemStack getRecipeResult(ItemStack[] diskStacks)
     {
@@ -49,9 +57,9 @@ public class RecipeInstance_DNACombiner {
 		int disksFound = 0;
 		for (ItemStack inputDisk : diskStacks) {
 			if (ItemDNADisk.class.isInstance(((Object)inputDisk.getItem())) ) {
-				if (disksFound > 0 && queuedDisks.containsKey(disksFound-1) && queuedDisks.get(disksFound-1).getItem().equals(inputDisk.getItem())) {
+				if (disksFound > 0 && queuedDisks.containsKey(disksFound-1) && queuedDisks.get(disksFound-1).getItem().equals(inputDisk.getItem()) && disksOfEqualSpecies(queuedDisks.get(disksFound-1), inputDisk)) {
 					queuedDisks.put(disksFound++, inputDisk);
-				} else {
+				} else if (disksFound == 0) { 
 					queuedDisks.put(disksFound++, inputDisk);
 				}
 			}

@@ -53,23 +53,23 @@ public class ModItems {
 	/*
 	 * DNA Disks
 	 */
-	public static final Item TRICERATOPS_DNA = new ItemDNADisk("triceratops_dna");
-	public static final Item GALLIMIMUS_DNA = new ItemDNADisk("gallimimus_dna");
-	public static final Item TYRANNOSAURUS_DNA = new ItemDNADisk("tyrannosaurus_dna");
-	public static final Item VELOCIRAPTOR_DNA = new ItemDNADisk("velociraptor_dna");
-	public static final Item STEGOSAURUS_DNA = new ItemDNADisk("stegosaurus_dna");
-	public static final Item CAMARASAURUS_DNA = new ItemDNADisk("camarasaurus_dna");
-	public static final Item DRYOSAURUS_DNA = new ItemDNADisk("dryosaurus_dna");
-	public static final Item ALLOSAURUS_DNA = new ItemDNADisk("allosaurus_dna");
-	public static final Item ANKYLOSAURUS_DNA = new ItemDNADisk("ankylosaurus_dna");
-	public static final Item BARYONYX_DNA = new ItemDNADisk("baryonyx_dna");
-	public static final Item PARASAUROLOPHUS_DNA = new ItemDNADisk("parasaurolophus_dna");
-	public static final Item PRENOCEPHALE_DNA = new ItemDNADisk("prenocephale_dna");
-	public static final Item PARADOXIDES_DNA = new ItemDNADisk("paradoxides_dna");
-	public static final Item CLADOCYCLUS_DNA = new ItemDNADisk("cladocyclus_dna");
-	public static final Item EUSTHENOPTERON_DNA = new ItemDNADisk("eusthenopteron_dna");
-	public static final Item COOKSONIA_DNA = new ItemDNADisk("cooksonia_dna");
-	public static final Item ARCHAEAMPHORA_DNA = new ItemDNADisk("archaeamphora_dna");
+	public static final Item TRICERATOPS_DNA = new ItemDNADisk(0);
+	public static final Item GALLIMIMUS_DNA = new ItemDNADisk(1);
+	public static final Item TYRANNOSAURUS_DNA = new ItemDNADisk(2);
+	public static final Item VELOCIRAPTOR_DNA = new ItemDNADisk(3);
+	public static final Item STEGOSAURUS_DNA = new ItemDNADisk(4);
+	public static final Item CAMARASAURUS_DNA = new ItemDNADisk(5);
+	public static final Item DRYOSAURUS_DNA = new ItemDNADisk(6);
+	public static final Item ALLOSAURUS_DNA = new ItemDNADisk(7);
+	public static final Item ANKYLOSAURUS_DNA = new ItemDNADisk(8);
+	public static final Item BARYONYX_DNA = new ItemDNADisk(9);
+	public static final Item PARASAUROLOPHUS_DNA = new ItemDNADisk(10);
+	public static final Item PRENOCEPHALE_DNA = new ItemDNADisk(11);
+	public static final Item PARADOXIDES_DNA = new ItemDNADisk(12);
+	public static final Item CLADOCYCLUS_DNA = new ItemDNADisk(13);
+	public static final Item EUSTHENOPTERON_DNA = new ItemDNADisk(14);
+	public static final Item COOKSONIA_DNA = new ItemDNADisk(15);
+	public static final Item ARCHAEAMPHORA_DNA = new ItemDNADisk(16);
 
 	/*
 	 * Eggs

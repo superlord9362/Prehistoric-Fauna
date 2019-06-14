@@ -5,6 +5,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import superlord.prehistoricfauna.init.ModItems;
+import superlord.prehistoricfauna.items.ItemDNADisk;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -107,10 +108,8 @@ public class RecipeInstance_DNAExtractor {
 			output = new ItemStack(Blocks.SAND, 2);
 		} else { // Otherwise, assign DNA Purity
 			output = ((ItemStack)entry.getValue()).copy();
-			UUID uuid = UUID.randomUUID();
 			NBTTagCompound nbt = new NBTTagCompound();
-			nbt.setLong("globalIDLeast", uuid.getLeastSignificantBits());
-			nbt.setLong("globalIDMost", uuid.getMostSignificantBits());
+			nbt.setFloat("species", ((ItemDNADisk)output.getItem()).speciesIdentifier);
 			nbt.setFloat("dna_purity", dnaPuritiesList.get(random.nextInt(dnaPuritiesList.size())));
 			output.setTagCompound(nbt);
 		}
