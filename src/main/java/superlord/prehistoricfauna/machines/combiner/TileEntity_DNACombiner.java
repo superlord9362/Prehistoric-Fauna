@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.blocks;
+package superlord.prehistoricfauna.machines.combiner;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,10 +19,9 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.translation.I18n;
-import superlord.prehistoricfauna.blocks.recipes.DNAExtractorRecipes;
 
 @SuppressWarnings("deprecation")
-public class TileEntityDNACombiner extends TileEntityLockable implements IInventory, ISidedInventory, ITickable {
+public class TileEntity_DNACombiner extends TileEntityLockable implements IInventory, ISidedInventory, ITickable {
 	@SuppressWarnings("unused")
 	private static final int[] SLOTS_TOP = new int[]{};
 	private static final int[] SLOTS_BOTTOM = new int[]{9, 10, 11, 12, 13, 14, 15, 16, 17};
@@ -33,7 +32,7 @@ public class TileEntityDNACombiner extends TileEntityLockable implements IInvent
 	public int currentFuelTime = 100;
 	public int analyzeTime = 0;
 	private String customName;
-	private NonNullList<ItemStack> stacks = NonNullList.withSize(18 + 27 + 9, ItemStack.EMPTY);
+	private NonNullList<ItemStack> stacks = NonNullList.withSize(5 + 27, ItemStack.EMPTY);
 	private int rawIndex = -1;
 	
 	private static int getFuelTime(ItemStack stack) {
@@ -132,15 +131,15 @@ public class TileEntityDNACombiner extends TileEntityLockable implements IInvent
 			--this.analyzeFuelTime;
 		}
 		if (!this.world.isRemote) {
-			if (this.analyzeFuelTime == 0 && this.canAnalyze()) {
+			if (this.analyzeFuelTime == 0 && canCombine()) {
 				this.currentFuelTime = this.analyzeFuelTime = 100;
 				dirty = true;
 			}
-			if (this.isAnalyzing() && this.canAnalyze()) {
+			if (this.isAnalyzing() && canCombine()) {
 				++this.analyzeTime;
 				if (this.analyzeTime == 200) {
 					this.analyzeTime = 0;
-					this.analyzeItem();
+					this.combineDisks();
 					dirty = true;
 				}
 			} else {
@@ -148,88 +147,61 @@ public class TileEntityDNACombiner extends TileEntityLockable implements IInvent
 			}
 			if (fueled != this.analyzeFuelTime > 0) {
 				dirty = true;
-				BlockDNAExtractor.setState(this.analyzeFuelTime > 0, this.world, this.pos);
+				Block_DNACombiner.setState(this.analyzeFuelTime > 0, this.world, this.pos);
 			}
 		}
 		if (dirty) {
 			this.markDirty();
 		}
 	}
-
-	private boolean canAnalyze() {
-		int spaceIndex = -1;
+	
+	private boolean canCombine() {
+		ItemStack[] disks = {
+				this.stacks.get(0),
+				this.stacks.get(1),
+				this.stacks.get(2),
+				this.stacks.get(3) 
+			};
+		
 		this.rawIndex = -1;
-		boolean flag = false;
-		for (int slot = 0; slot < 9; ++slot) {
-			if (!this.stacks.get(slot).isEmpty()) {
-				if (isAnalyzable(this.stacks.get(slot))){
-					this.rawIndex = slot;
-					flag = true;
-					break;
-				}
-			}
-		}
-		if (this.rawIndex == -1 || !flag) {
+		
+		if (this.stacks.get(4) != null && !this.stacks.get(4).isEmpty()) {
 			return false;
-		} else {
-			for (int slot = 17; slot > 8; --slot) {
-				if (this.stacks.get(slot).isEmpty()) {
-					spaceIndex = slot;
-					break;
-				}
-			}
-			return spaceIndex != -1 && this.rawIndex != -1;
 		}
+		
+		return canCombine(disks);
 	}
 
-	public boolean isAnalyzable(ItemStack stack){
-		return DNAExtractorRecipes.instance().getDefinedRecipeResult(stack) != null;
+	public boolean canCombine(ItemStack[] stacks){
+		return RecipeInstance_DNACombiner.instance().getDefinedRecipeResult(stacks) != null;
 	}
 
-	public TileEntityDNACombiner analyzeItem() {
-		if (this.canAnalyze()) {
-			ItemStack input = this.stacks.get(rawIndex);
-			ItemStack output = DNAExtractorRecipes.instance().getRecipeResult(input, this.world.rand);
-			int slotIndex = 0, emptySlot = -1;
+	public TileEntity_DNACombiner combineDisks() {
+		ItemStack[] disks = {
+					this.stacks.get(0),
+					this.stacks.get(1),
+					this.stacks.get(2),
+					this.stacks.get(3) 
+				};
+		
+		if (this.canCombine(disks)) {
+			ItemStack output = RecipeInstance_DNACombiner.instance().getRecipeResult(disks);
 			
 			if (output != null && !output.isEmpty()) {
-				if(output.getCount() > 1){
-					int maxCount = output.getCount() - 1;
-					output.setCount(1 + this.world.rand.nextInt(maxCount));
-				}
 				
-				for (slotIndex = 0; slotIndex < 9; slotIndex++) {
-					ItemStack operatingSlot = this.stacks.get(SLOTS_OUT.get(slotIndex));
-					if (operatingSlot.isItemEqual(output) && operatingSlot.getCount() < 64) {
-						if (operatingSlot.hasTagCompound() && operatingSlot.getTagCompound().hasKey("dna_purity") && dnaPuritiesOfDisksAreEqual(operatingSlot, output)) {
-							operatingSlot.setCount(operatingSlot.getCount() + 1);
-							this.stacks.get(this.rawIndex).shrink(1);
-							return this;
-						} else if (!operatingSlot.hasTagCompound()) {
-							operatingSlot.setCount(operatingSlot.getCount() + 1);
-							this.stacks.get(this.rawIndex).shrink(1);
-							return this;
-						}	
-					}
-					if (operatingSlot.isEmpty() && emptySlot == -1) {
-						emptySlot = SLOTS_OUT.get(slotIndex);
-					}
-				}
-				if (emptySlot != -1) {
-					if (this.stacks.get(SLOTS_OUT.get(0)).isEmpty()) { this.stacks.set(SLOTS_OUT.get(0), output); }
-					else { this.stacks.set(emptySlot, output); }
-					this.stacks.get(this.rawIndex).shrink(1);
+				if (this.stacks.get(4) == null || this.stacks.get(4) == ItemStack.EMPTY) {
+					this.stacks.set(4, output);
+	
+					this.stacks.get(0).shrink(1);
+					this.stacks.get(1).shrink(1);
+					this.stacks.get(2).shrink(1);
+					this.stacks.get(3).shrink(1);
 					return this;
 				}
-			} else {
-				analyzeItem();
 			}
 		}
+		
 		return null;
-	}
-
-	public boolean dnaPuritiesOfDisksAreEqual(ItemStack disk_a, ItemStack disk_b) {
-		return disk_a.getTagCompound().getInteger("dna_purity") == disk_b.getTagCompound().getInteger("dna_purity");
 	}
 	
 	@Override

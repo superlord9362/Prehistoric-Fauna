@@ -1,14 +1,15 @@
-package superlord.prehistoricfauna.blocks;
+package superlord.prehistoricfauna.machines.extractor;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnaceOutput;
+import superlord.prehistoricfauna.blocks.SyncedFieldContainer;
 
 public class Container_DNAExtractor extends SyncedFieldContainer {
-	private final TileEntityDNAExtractor analyzer;
+	private final TileEntity_DNAExtractor analyzer;
 
-	public Container_DNAExtractor(InventoryPlayer playerInventory, TileEntityDNAExtractor tile) {
+	public Container_DNAExtractor(InventoryPlayer playerInventory, TileEntity_DNAExtractor tile) {
 		super(tile);
 		this.analyzer = tile;
 

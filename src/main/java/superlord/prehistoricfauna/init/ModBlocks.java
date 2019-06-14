@@ -15,8 +15,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import superlord.prehistoricfauna.blocks.BlockBase;
 import superlord.prehistoricfauna.blocks.BlockCretaceousFossil;
 import superlord.prehistoricfauna.blocks.BlockCultureVat;
-import superlord.prehistoricfauna.blocks.BlockDNACombiner;
-import superlord.prehistoricfauna.blocks.BlockDNAExtractor;
 import superlord.prehistoricfauna.blocks.BlockJurassicFossil;
 import superlord.prehistoricfauna.blocks.BlockLamp;
 import superlord.prehistoricfauna.blocks.BlockMesh;
@@ -24,8 +22,10 @@ import superlord.prehistoricfauna.blocks.BlockModWall;
 import superlord.prehistoricfauna.blocks.BlockMud;
 import superlord.prehistoricfauna.blocks.BlockPaleozoicFossil;
 import superlord.prehistoricfauna.blocks.BlockPrehistoricPlant;
-import superlord.prehistoricfauna.blocks.TileEntityDNACombiner;
-import superlord.prehistoricfauna.blocks.TileEntityDNAExtractor;
+import superlord.prehistoricfauna.machines.combiner.Block_DNACombiner;
+import superlord.prehistoricfauna.machines.combiner.TileEntity_DNACombiner;
+import superlord.prehistoricfauna.machines.extractor.Block_DNAExtractor;
+import superlord.prehistoricfauna.machines.extractor.TileEntity_DNAExtractor;
 import superlord.prehistoricfauna.util.IHasModel;
 import superlord.prehistoricfauna.util.Reference;
 
@@ -34,10 +34,10 @@ public class ModBlocks {
 
     public static final Block CRETACEOUS_FOSSIL = new BlockCretaceousFossil("cretaceous_fossil", Material.ROCK);
     public static final Block JURASSIC_FOSSIL = new BlockJurassicFossil("jurassic_fossil", Material.ROCK);
-	public static final BlockDNAExtractor ANALYZER = new BlockDNAExtractor(false);
-	public static final BlockDNAExtractor ANALYZER_ACTIVE = new BlockDNAExtractor(true);
-	public static final BlockDNACombiner COMBINER = new BlockDNACombiner(false);
-	public static final BlockDNACombiner COMBINER_ACTIVE = new BlockDNACombiner(true);
+	public static final Block_DNAExtractor ANALYZER = new Block_DNAExtractor(false);
+	public static final Block_DNAExtractor ANALYZER_ACTIVE = new Block_DNAExtractor(true);
+	public static final Block_DNACombiner COMBINER = new Block_DNACombiner(false);
+	public static final Block_DNACombiner COMBINER_ACTIVE = new Block_DNACombiner(true);
     public static final Block GRAVEL_PATH = new BlockBase("gravel_path", Material.GROUND);
     public static final Block RED_GRAVEL_PATH = new BlockBase("red_gravel_path", Material.SAND);
     public static final Block HERRINGBONE_PATH = new BlockBase("herringbone", Material.ROCK);
@@ -82,8 +82,8 @@ public class ModBlocks {
                 CULTURE_VAT_IDLE,
                 CULTURE_VAT_ACTIVE
         );
-        GameRegistry.registerTileEntity(TileEntityDNAExtractor.class, new ResourceLocation(MOD_ID, "tile_dna_extractor"));
-        GameRegistry.registerTileEntity(TileEntityDNACombiner.class, new ResourceLocation(MOD_ID, "tile_dna_combiner"));
+        GameRegistry.registerTileEntity(TileEntity_DNAExtractor.class, new ResourceLocation(MOD_ID, "tile_dna_extractor"));
+        GameRegistry.registerTileEntity(TileEntity_DNACombiner.class, new ResourceLocation(MOD_ID, "tile_dna_combiner"));
     }
 
     @SubscribeEvent

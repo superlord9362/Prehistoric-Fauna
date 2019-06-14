@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.blocks;
+package superlord.prehistoricfauna.machines.extractor;
 
 import java.util.Random;
 
@@ -27,19 +27,20 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import superlord.prehistoricfauna.Main;
+import superlord.prehistoricfauna.blocks.BlockBase;
 import superlord.prehistoricfauna.init.ModBlocks;
 import superlord.prehistoricfauna.util.BlockEntity;
 import superlord.prehistoricfauna.util.DefaultRenderedItem;
 import superlord.prehistoricfauna.util.Reference;
 
-public class BlockDNACombiner extends BlockBase implements DefaultRenderedItem, BlockEntity {
+public class Block_DNAExtractor extends BlockBase implements DefaultRenderedItem, BlockEntity {
 
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
 	private static boolean keepInventory = false;
 
-	public BlockDNACombiner(boolean isActive) {
-		super((isActive) ? "dna_combiner_on" : "dna_combiner", Material.IRON, !isActive);
+	public Block_DNAExtractor(boolean isActive) {
+		super((isActive) ? "dna_extractor_on" : "dna_extractor", Material.IRON, !isActive);
 
 		this.setHardness(3.0F);
 		this.setSoundType(SoundType.METAL);
@@ -56,7 +57,7 @@ public class BlockDNACombiner extends BlockBase implements DefaultRenderedItem, 
 		TileEntity tile = world.getTileEntity(pos);
 		EnumFacing facing = EnumFacing.NORTH;
 
-		if (world.getBlockState(pos).getBlock() instanceof BlockDNACombiner) {
+		if (world.getBlockState(pos).getBlock() instanceof Block_DNAExtractor) {
 			facing = world.getBlockState(pos).getValue(FACING);
 		}
 
@@ -74,6 +75,11 @@ public class BlockDNACombiner extends BlockBase implements DefaultRenderedItem, 
 			world.setTileEntity(pos, tile);
 		}
 	}
+	
+    @Override
+    public void registerModels() {
+        Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
+    }
 
 	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state) {
@@ -135,7 +141,7 @@ public class BlockDNACombiner extends BlockBase implements DefaultRenderedItem, 
 
 		if (!world.isRemote) {
 
-			player.openGui(Main.instance, Reference.GUI_DNA_COMBINER, world, pos.getX(), pos.getY(), pos.getZ());
+			player.openGui(Main.instance, Reference.GUI_DNA_EXTRACTOR, world, pos.getX(), pos.getY(), pos.getZ());
 
 		}
 
@@ -153,9 +159,9 @@ public class BlockDNACombiner extends BlockBase implements DefaultRenderedItem, 
 
 			TileEntity tile = world.getTileEntity(pos);
 
-			if (tile instanceof TileEntityDNACombiner) {
+			if (tile instanceof TileEntity_DNAExtractor) {
 
-				((TileEntityDNACombiner) tile).setCustomName(stack.getDisplayName());
+				((TileEntity_DNAExtractor) tile).setCustomName(stack.getDisplayName());
 
 			}
 
@@ -174,7 +180,7 @@ public class BlockDNACombiner extends BlockBase implements DefaultRenderedItem, 
 
 	private void dropInventory(World world, BlockPos pos) {
 
-		if (!keepInventory || !(world.getBlockState(pos).getBlock() instanceof BlockDNACombiner)) {
+		if (!keepInventory || !(world.getBlockState(pos).getBlock() instanceof Block_DNAExtractor)) {
 
 			TileEntity entity = world.getTileEntity(pos);
 
@@ -184,9 +190,9 @@ public class BlockDNACombiner extends BlockBase implements DefaultRenderedItem, 
 
 			}
 
-			if (entity instanceof TileEntityDNACombiner) {
+			if (entity instanceof TileEntity_DNAExtractor) {
 
-				TileEntityDNACombiner analyzer = (TileEntityDNACombiner) entity;
+				TileEntity_DNAExtractor analyzer = (TileEntity_DNAExtractor) entity;
 
 				for (int i = 0; i < analyzer.getSizeInventory(); i++) {
 
@@ -209,7 +215,7 @@ public class BlockDNACombiner extends BlockBase implements DefaultRenderedItem, 
 	@Override
 	public TileEntity createNewTileEntity(World world, int metadata) {
 
-		return new TileEntityDNACombiner();
+		return new TileEntity_DNAExtractor();
 
 	}
 
@@ -248,6 +254,7 @@ public class BlockDNACombiner extends BlockBase implements DefaultRenderedItem, 
 	}
 
 	@Override
+
 	public int getMetaFromState(IBlockState state) {
 
 		return state.getValue(FACING).getIndex();
@@ -255,6 +262,7 @@ public class BlockDNACombiner extends BlockBase implements DefaultRenderedItem, 
 	}
 
 	@Override
+
 	public IBlockState withRotation(IBlockState state, Rotation rotation) {
 
 		return state.withProperty(FACING, rotation.rotate(state.getValue(FACING)));
@@ -262,6 +270,7 @@ public class BlockDNACombiner extends BlockBase implements DefaultRenderedItem, 
 	}
 
 	@Override
+
 	public IBlockState withMirror(IBlockState state, Mirror mirror) {
 
 		return state.withRotation(mirror.toRotation(state.getValue(FACING)));
@@ -269,6 +278,7 @@ public class BlockDNACombiner extends BlockBase implements DefaultRenderedItem, 
 	}
 
 	@Override
+
 	protected BlockStateContainer createBlockState() {
 
 		return new BlockStateContainer(this, FACING);
@@ -276,9 +286,10 @@ public class BlockDNACombiner extends BlockBase implements DefaultRenderedItem, 
 	}
 
 	@Override
+
 	public Class<? extends TileEntity> getEntity() {
 
-		return TileEntityDNACombiner.class;
+		return TileEntity_DNAExtractor.class;
 
 	}
 }
