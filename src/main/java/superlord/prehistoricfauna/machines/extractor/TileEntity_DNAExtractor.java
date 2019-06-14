@@ -2,7 +2,6 @@ package superlord.prehistoricfauna.machines.extractor;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
