@@ -60,6 +60,7 @@ public class DNAExtractorRecipes {
 		addRecipe(new ItemStack(ModItems.STEGOSAURUS_THAGOMIZER), new ItemStack(ModItems.STEGOSAURUS_DNA), 0.0F);
 		addRecipe(new ItemStack(ModItems.TRICERATOPS_HORN), new ItemStack(ModItems.TRICERATOPS_DNA), 0.0F);
 		addRecipe(new ItemStack(ModItems.TYRANNOSAURUS_TOOTH), new ItemStack(ModItems.TYRANNOSAURUS_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.CYCADEOIDEA_FOSSIL), new ItemStack(ModItems.CYCADEOIDEA_DNA), 0.0F);
     }
 
 	@SuppressWarnings("unchecked")

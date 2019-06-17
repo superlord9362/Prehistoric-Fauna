@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class BlockJurassicFossil extends BlockBase implements IHasModel {
+public class BlockJurassicFossil extends BlockBase {
 
     public BlockJurassicFossil(String name, Material material) {
         super(name, material);

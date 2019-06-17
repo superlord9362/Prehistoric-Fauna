@@ -128,7 +128,7 @@ public class EntityPrenocephale extends EntityExtinct {
 
     @Nullable
     protected SoundEvent getAmbientSound() {
-        return Sounds.DRYOSAURUS_IDLE;
+        return Sounds.PRENOCEPHALE_IDLE;
     }
 
     protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
