@@ -2,11 +2,6 @@ package superlord.prehistoricfauna.machines.combiner;
 
 import java.util.Arrays;
 import java.util.List;
-<<<<<<< HEAD
-=======
-import java.util.Random;
-
->>>>>>> 9a835b4958cbfb1fef99a4142b035427c5a6fb4d
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -25,16 +20,9 @@ import net.minecraft.util.text.translation.I18n;
 
 @SuppressWarnings("deprecation")
 public class TileEntity_DNACombiner extends TileEntityLockable implements IInventory, ISidedInventory, ITickable {
-<<<<<<< HEAD
 	private static final int[] SLOTS_BOTTOM = new int[]{9, 10, 11, 12, 13, 14, 15, 16, 17};
 	private static final int[] SLOTS_SIDES = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8};
 	@SuppressWarnings("unused")
-=======
-	@SuppressWarnings("unused")
-	private static final int[] SLOTS_TOP = new int[]{};
-	private static final int[] SLOTS_BOTTOM = new int[]{9, 10, 11, 12, 13, 14, 15, 16, 17};
-	private static final int[] SLOTS_SIDES = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8};
->>>>>>> 9a835b4958cbfb1fef99a4142b035427c5a6fb4d
 	private static final List<Integer> SLOTS_OUT = Arrays.asList(9, 10, 11, 12, 13, 14, 15, 16, 17);
 
 	public int analyzeFuelTime = 0;
@@ -42,11 +30,6 @@ public class TileEntity_DNACombiner extends TileEntityLockable implements IInven
 	public int analyzeTime = 0;
 	private String customName;
 	private NonNullList<ItemStack> stacks = NonNullList.withSize(5 + 27, ItemStack.EMPTY);
-<<<<<<< HEAD
-=======
-	private int rawIndex = -1;
-	
->>>>>>> 9a835b4958cbfb1fef99a4142b035427c5a6fb4d
 	private static int getFuelTime(ItemStack stack) {
 		return 100;
 	}
@@ -175,11 +158,6 @@ public class TileEntity_DNACombiner extends TileEntityLockable implements IInven
 				this.stacks.get(3) 
 			};
 		
-<<<<<<< HEAD
-=======
-		this.rawIndex = -1;
-		
->>>>>>> 9a835b4958cbfb1fef99a4142b035427c5a6fb4d
 		if (this.stacks.get(4) != null && !this.stacks.get(4).isEmpty()) {
 			return false;
 		}

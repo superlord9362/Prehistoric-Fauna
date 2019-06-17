@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.machines.extractor;
+package superlord.prehistoricfauna.blocks;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,9 +17,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.translation.I18n;
+import superlord.prehistoricfauna.blocks.recipes.DNAExtractorRecipes;
 
 @SuppressWarnings("deprecation")
-public class TileEntity_DNAExtractor extends TileEntityLockable implements IInventory, ISidedInventory, ITickable {
+public class TileEntityDNAExtractor extends TileEntityLockable implements IInventory, ISidedInventory, ITickable {
 	@SuppressWarnings("unused")
 	private static final int[] SLOTS_TOP = new int[]{};
 	private static final int[] SLOTS_BOTTOM = new int[]{9, 10, 11, 12, 13, 14, 15, 16, 17};
@@ -145,7 +146,7 @@ public class TileEntity_DNAExtractor extends TileEntityLockable implements IInve
 			}
 			if (fueled != this.analyzeFuelTime > 0) {
 				dirty = true;
-				Block_DNAExtractor.setState(this.analyzeFuelTime > 0, this.world, this.pos);
+				BlockDNAExtractor.setState(this.analyzeFuelTime > 0, this.world, this.pos);
 			}
 		}
 		if (dirty) {
@@ -180,13 +181,13 @@ public class TileEntity_DNAExtractor extends TileEntityLockable implements IInve
 	}
 
 	public boolean isAnalyzable(ItemStack stack){
-		return RecipeInstance_DNAExtractor.instance().getDefinedRecipeResult(stack) != null;
+		return DNAExtractorRecipes.instance().getDefinedRecipeResult(stack) != null;
 	}
 
-	public TileEntity_DNAExtractor analyzeItem() {
+	public TileEntityDNAExtractor analyzeItem() {
 		if (this.canAnalyze()) {
 			ItemStack input = this.stacks.get(rawIndex);
-			ItemStack output = RecipeInstance_DNAExtractor.instance().getRecipeResult(input, this.world.rand);
+			ItemStack output = DNAExtractorRecipes.instance().getRecipeResult(input, this.world.rand);
 			int slotIndex = 0, emptySlot = -1;
 			
 			if (output != null && !output.isEmpty()) {
