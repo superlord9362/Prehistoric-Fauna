@@ -1,0 +1,14 @@
+{
+
+  "parent": "block/cube",
+
+  "textures": {
+    "down": "pf:blocks/dna_combiner_top",
+    "east": "pf:blocks/dna_combiner_side",
+    "north": "pf:blocks/dna_combiner_front",
+    "south": "pf:blocks/dna_combiner_side",
+    "west": "pf:blocks/dna_combiner_side",
+    "up": "pf:blocks/dna_combiner_top"
+  }
+
+}

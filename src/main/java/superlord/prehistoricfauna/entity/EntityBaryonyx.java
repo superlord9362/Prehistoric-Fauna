@@ -158,18 +158,18 @@ public class EntityBaryonyx extends EntityExtinct {
 
     protected SoundEvent getAmbientSound() {
         if (this.isAngry()) {
-            return Sounds.TYRANNOSAURUS_ANGRY;
+            return Sounds.BARYONYX_ANGRY;
         } else {
-            return Sounds.ALLOSAURUS_IDLE;
+            return Sounds.BARYONYX_IDLE;
         }
     }
 
     protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
-        return Sounds.ALLOSAURUS_HURT;
+        return Sounds.BARYONYX_HURT;
     }
 
     protected SoundEvent getDeathSound() {
-        return Sounds.ALLOSAURUS_HURT;
+        return Sounds.BARYONYX_HURT;
     }
 
     /**

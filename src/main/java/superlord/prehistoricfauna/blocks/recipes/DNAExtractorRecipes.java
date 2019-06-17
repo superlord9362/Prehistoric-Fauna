@@ -19,10 +19,18 @@ import com.google.common.collect.Maps;
 public class DNAExtractorRecipes {
     private static final DNAExtractorRecipes dnaExtractorRecipes = new DNAExtractorRecipes();
     
-    private final Map extractionList = Maps.newHashMap();
-    private final Map experienceList = Maps.newHashMap();
+    @SuppressWarnings("rawtypes")
+	private final Map extractionList = Maps.newHashMap();
+    @SuppressWarnings("rawtypes")
+	private final Map experienceList = Maps.newHashMap();
     
-	private final List<Integer> dnaPuritiesList = Arrays.asList(25, 50, 75, 100);
+    // To-Do: Replace this list with a weighted system in combination with getRecipeResult()
+	private final List<Integer> dnaPuritiesList = Arrays.asList(
+				25, 25, 25,
+				50, 50,
+				75, 75,
+				100
+			);
 
     
     /**
@@ -54,15 +62,17 @@ public class DNAExtractorRecipes {
 		addRecipe(new ItemStack(ModItems.TYRANNOSAURUS_TOOTH), new ItemStack(ModItems.TYRANNOSAURUS_DNA), 0.0F);
     }
 
+	@SuppressWarnings("unchecked")
 	public void addRecipe(ItemStack parItemStackIn, ItemStack parItemStackOut, float parExperience)
     {
         extractionList.put(parItemStackIn, parItemStackOut);
         experienceList.put(parItemStackOut, Float.valueOf(parExperience));
     }
 	
-	public ItemStack getRecipeResult(ItemStack parItemStack, Random random)
+	@SuppressWarnings("rawtypes")
+	public ItemStack getDefinedRecipeResult(ItemStack parItemStack)
     {
-        Iterator iterator = extractionList.entrySet().iterator();
+		Iterator iterator = extractionList.entrySet().iterator();
         Entry entry;
 
         do
@@ -74,19 +84,38 @@ public class DNAExtractorRecipes {
 
             entry = (Entry)iterator.next();
         } while (!areItemStacksEqual(parItemStack, (ItemStack)entry.getKey()));
-        
-        ItemStack output = (ItemStack)entry.getValue();
-        
+
+        return (ItemStack)entry.getValue();
+    }
+	
+	@SuppressWarnings("rawtypes")
+	public ItemStack getRecipeResult(ItemStack parItemStack, Random random)
+    {
+        Iterator iterator = extractionList.entrySet().iterator();
+        Entry entry;
+        ItemStack output;
+
+        do
+        {
+            if (!iterator.hasNext())
+            {
+                return null;
+            }
+
+            entry = (Entry)iterator.next();
+        } while (!areItemStacksEqual(parItemStack, (ItemStack)entry.getKey()));
+       
 		if (random.nextInt(3) == 1) { // 30% chance of bone meal
 			output = new ItemStack(Items.DYE, 1, 15);
 		} else if (random.nextInt(4) == 1) { // 25% chance of sand
 			output = new ItemStack(Blocks.SAND, 2);
 		} else { // Otherwise, assign DNA Purity
+			output = ((ItemStack)entry.getValue()).copy();
 			UUID uuid = UUID.randomUUID();
 			NBTTagCompound nbt = new NBTTagCompound();
 			nbt.setLong("globalIDLeast", uuid.getLeastSignificantBits());
 			nbt.setLong("globalIDMost", uuid.getMostSignificantBits());
-			nbt.setFloat("DNA Purity", dnaPuritiesList.get(random.nextInt(dnaPuritiesList.size())));
+			nbt.setFloat("dna_purity", dnaPuritiesList.get(random.nextInt(dnaPuritiesList.size())));
 			output.setTagCompound(nbt);
 		}
         
@@ -95,21 +124,17 @@ public class DNAExtractorRecipes {
 	
 	private boolean areItemStacksEqual(ItemStack parItemStack1, ItemStack parItemStack2)
     {
-        return parItemStack2.getItem() == parItemStack1.getItem() 
-
-              && (parItemStack2.getMetadata() == 32767 
-
-              || parItemStack2.getMetadata() == parItemStack1
-
-              .getMetadata());
+        return parItemStack2.getItem() == parItemStack1.getItem();
     }
 
-    public Map getRecipeList()
+    @SuppressWarnings("rawtypes")
+	public Map getRecipeList()
     {
         return extractionList;
     }
     
-    public float getResultantExperience(ItemStack parItemStack)
+    @SuppressWarnings("rawtypes")
+	public float getResultantExperience(ItemStack parItemStack)
     {
         Iterator iterator = experienceList.entrySet().iterator();
         Entry entry;

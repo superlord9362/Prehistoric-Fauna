@@ -1,15 +1,22 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "pf:dna_extractor"
-  },
-  "variants": {
-    "normal": [{}],
-    "facing": {
-      "north": {},
-      "south": {"y": 180},
-      "west": {"y": 270},
-      "east": {"y": 90}
-    }
+	"variants": {
+	  "facing=south": {
+		"model": "pf:dna_extractor",
+		"y": 180
+	  },
+	  "facing=north": {
+		"model": "pf:dna_extractor"
+	  },
+	  "facing=east": {
+		"model": "pf:dna_extractor",
+		"y": 90
+	  },
+	  "facing=west": {
+		"model": "pf:dna_extractor",
+		"y": 270
+	  },
+	  "inventory": { "model": "pf:dna_extractor" },
+	  "normal": { "model": "pf:dna_extractor" }
+	}
+  
   }
-}

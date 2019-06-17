@@ -12,9 +12,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import superlord.prehistoricfauna.tab.PFTabRegistry;
 
 public class ItemDNADisk extends ItemBase {
+	
+	private static String[] speciesList = { "triceratops_dna", "gallimimus_dna", "tyrannosaurus_dna", "velociraptor_dna", "stegosaurus_dna",
+			"camarasaurus_dna", "dryosaurus_dna", "allosaurus_dna","ankylosaurus_dna", "baryonyx_dna", "parasaurolophus_dna",
+			"prenocephale_dna", "paradoxides_dna", "cladocyclus_dna", "eusthenopteron_dna", "cooksonia_dna", "archaeamphora_dna", "cycadeoidea_dna" };
 
-	public ItemDNADisk(String name) {
-		super(name);
+	public int speciesIdentifier;
+	
+	public ItemDNADisk(int identifier) {
+		super(speciesList[identifier]);
+		speciesIdentifier = identifier;
 		setCreativeTab(PFTabRegistry.NORMAL);
 	}
 	
@@ -23,8 +30,7 @@ public class ItemDNADisk extends ItemBase {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
 		if (stack.hasTagCompound()) {
-			tooltip.add("DNA Purity: " + stack.getTagCompound().getFloat("DNA Purity"));
+			tooltip.add("DNA Purity: " + stack.getTagCompound().getFloat("dna_purity") + "%");
 		}
     }
-
 }

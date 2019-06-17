@@ -9,4 +9,5 @@ public class Reference {
     
     public static final int GUI_DNA_EXTRACTOR = 0;
     public static final int GUI_CULTIVATE = 1;
+    public static final int GUI_DNA_COMBINER = 2;
 }
