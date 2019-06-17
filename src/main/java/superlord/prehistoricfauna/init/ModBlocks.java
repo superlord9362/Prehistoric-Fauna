@@ -15,7 +15,10 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import superlord.prehistoricfauna.blocks.BlockBase;
 import superlord.prehistoricfauna.blocks.BlockCretaceousFossil;
 import superlord.prehistoricfauna.blocks.BlockCultureVat;
+<<<<<<< HEAD
 import superlord.prehistoricfauna.blocks.BlockCycadeoidea;
+=======
+>>>>>>> 9a835b4958cbfb1fef99a4142b035427c5a6fb4d
 import superlord.prehistoricfauna.blocks.BlockJurassicFossil;
 import superlord.prehistoricfauna.blocks.BlockLamp;
 import superlord.prehistoricfauna.blocks.BlockMesh;

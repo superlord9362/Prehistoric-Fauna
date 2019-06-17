@@ -1,6 +1,7 @@
 Param(
     [switch]$Init,
-    [switch]$Deploy
+    [switch]$Deploy,
+    [switch]$RunLauncher
 );
 
 Function Clean-ForgeBuild([string]$BuildLocation) {
@@ -15,7 +16,7 @@ Function Clean-ForgeBuild([string]$BuildLocation) {
 $Output = [Environment]::NewLine + "JAVA_HOME set to: ${Env:JAVA_HOME}" + [Environment]::NewLine
 Write-Host $Output -ForegroundColor Green
 
-$PreFaunaVersion = "0.1.1";
+$PreFaunaVersion = "1.1.1-dev";
 $MinecraftVersion = "1.12.2";
 $LLibraryVersion = "1.7.19";
 
@@ -26,11 +27,11 @@ $LLibraryBuildLocation = "${PSScriptRoot}/lib/llibrary";
 $BuildSuccess = $True;
 
 If ($Init) {
-    Set-Location $LLibraryBuildLocation
-    $InitProcess = Start-Process -PassThru -NoNewWindow .\gradlew setupDecompWorkspace
-    $InitProcess.WaitForExit()
-    $InitProcess = Start-Process -PassThru -NoNewWindow .\gradlew eclipse
-    $InitProcess.WaitForExit()
+    # Set-Location $LLibraryBuildLocation
+    # $InitProcess = Start-Process -PassThru -NoNewWindow .\gradlew setupDecompWorkspace
+    # $InitProcess.WaitForExit()
+    # $InitProcess = Start-Process -PassThru -NoNewWindow .\gradlew eclipse
+    # $InitProcess.WaitForExit()
 
     Set-Location $PreFaunaBuildLocation
     $InitProcess = Start-Process -PassThru -NoNewWindow .\gradlew setupDecompWorkspace
@@ -40,17 +41,22 @@ If ($Init) {
 
     Write-Host "Finished Init" -ForegroundColor Green
 } Else {
-    Clean-ForgeBuild "${LLibraryBuildLocation}\build\libs\llibrary.jar"
-    Set-Location -Path $LLibraryBuildLocation
-    $BuildLLibrary = Start-Process -PassThru -NoNewWindow .\gradlew build
-    Set-Location -Path $PreFaunaBuildLocation
+    # Clean-ForgeBuild "${LLibraryBuildLocation}\build\libs\llibrary.jar"
+    # Set-Location -Path $LLibraryBuildLocation
+    # $BuildLLibrary = Start-Process -PassThru -NoNewWindow .\gradlew build
+    # Set-Location -Path $PreFaunaBuildLocation
 
     Clean-ForgeBuild "${PreFaunaBuildLocation}\build\libs\prehistoricfauna.jar"
     Set-Location -Path $PreFaunaBuildLocation
     $BuildPreFauna = Start-Process -PassThru -NoNewWindow .\gradlew build
 
-    $BuildLLibrary.WaitForExit();
+    # $BuildLLibrary.WaitForExit();
     $BuildPreFauna.WaitForExit();
+
+    # If (-Not (Test-Path "${LLibraryBuildLocation}\build\libs\llibrary.jar")) {
+    #     Write-Host "ERROR: ${PreFaunaBuildLocation} was not built!" -ForegroundColor Red
+    #     $BuildSuccess = $False
+    # }
 
     If (-Not (Test-Path "${PreFaunaBuildLocation}\build\libs\prehistoricfauna.jar")) {
         Write-Host "ERROR: ${PreFaunaBuildLocation} was not built!" -ForegroundColor Red
@@ -59,8 +65,17 @@ If ($Init) {
 
     If ($BuildSuccess) {
         If ($Deploy) {
+            If (Test-Path "${Env:APPDATA}\.minecraft\mods\prehistoricfauna-${MinecraftVersion}-${PreFaunaVersion}.jar") {
+                Remove-Item "${Env:APPDATA}\.minecraft\mods\prehistoricfauna-${MinecraftVersion}-${PreFaunaVersion}.jar";
+            }
             Copy-Item "${PreFaunaBuildLocation}\build\libs\prehistoricfauna.jar" "${Env:APPDATA}\.minecraft\mods\prehistoricfauna-${MinecraftVersion}-${PreFaunaVersion}.jar"
+            
+            If ($RunLauncher) {
+                & 'C:\Program Files (x86)\Minecraft\MinecraftLauncher.exe'
+            }
+
             Write-Host "Builds Were Deployed!" -ForegroundColor Green
+
         } Else {
             Copy-Item "${PreFaunaBuildLocation}\build\libs\prehistoricfauna.jar" ".\prehistoricfauna-${MinecraftVersion}-${PreFaunaVersion}.jar"
         }

@@ -3,6 +3,10 @@ package superlord.prehistoricfauna.blocks;
 import superlord.prehistoricfauna.Main;
 import superlord.prehistoricfauna.tab.PFTabRegistry;
 import superlord.prehistoricfauna.util.IHasModel;
+<<<<<<< HEAD
+=======
+import net.minecraft.block.Block;
+>>>>>>> 9a835b4958cbfb1fef99a4142b035427c5a6fb4d
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;

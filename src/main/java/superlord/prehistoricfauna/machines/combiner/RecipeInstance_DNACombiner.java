@@ -7,6 +7,10 @@ import com.google.common.collect.Maps;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+<<<<<<< HEAD
+=======
+import superlord.prehistoricfauna.init.ModItems;
+>>>>>>> 9a835b4958cbfb1fef99a4142b035427c5a6fb4d
 import superlord.prehistoricfauna.items.ItemDNADisk;
 
 public class RecipeInstance_DNACombiner {

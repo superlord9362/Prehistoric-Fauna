@@ -70,7 +70,10 @@ public class ModItems {
 	public static final Item EUSTHENOPTERON_DNA = new ItemDNADisk(14);
 	public static final Item COOKSONIA_DNA = new ItemDNADisk(15);
 	public static final Item ARCHAEAMPHORA_DNA = new ItemDNADisk(16);
+<<<<<<< HEAD
 	public static final Item CYCADEOIDEA_DNA = new ItemDNADisk(17);
+=======
+>>>>>>> 9a835b4958cbfb1fef99a4142b035427c5a6fb4d
 
 	/*
 	 * Eggs
