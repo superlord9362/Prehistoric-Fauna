@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.blocks;
+package superlord.prehistoricfauna.machines.culturevat;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;

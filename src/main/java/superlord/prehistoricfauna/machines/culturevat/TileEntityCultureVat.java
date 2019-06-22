@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.blocks;
+package superlord.prehistoricfauna.machines.culturevat;
 
 import com.google.common.base.Strings;
 import net.minecraft.init.Items;
@@ -17,7 +17,8 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.CombinedInvWrapper;
-import superlord.prehistoricfauna.blocks.recipes.CultureVatRecipes;
+import superlord.prehistoricfauna.blocks.DirectionalInvWrapper;
+import superlord.prehistoricfauna.blocks.DirectionalInvWrapper.Mode;
 import superlord.prehistoricfauna.init.ModItems;
 
 import javax.annotation.Nullable;

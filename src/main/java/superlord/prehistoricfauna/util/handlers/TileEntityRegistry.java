@@ -1,7 +1,7 @@
 package superlord.prehistoricfauna.util.handlers;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import superlord.prehistoricfauna.blocks.TileEntityCultureVat;
+import superlord.prehistoricfauna.machines.culturevat.TileEntityCultureVat;
 
 public class TileEntityRegistry {
 
