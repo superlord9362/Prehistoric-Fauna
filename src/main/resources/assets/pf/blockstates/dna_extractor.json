@@ -1,22 +1,25 @@
 {
 	"variants": {
-	  "facing=south": {
-		"model": "pf:dna_extractor",
-		"y": 180
-	  },
-	  "facing=north": {
-		"model": "pf:dna_extractor"
-	  },
-	  "facing=east": {
-		"model": "pf:dna_extractor",
-		"y": 90
-	  },
-	  "facing=west": {
-		"model": "pf:dna_extractor",
-		"y": 270
-	  },
-	  "inventory": { "model": "pf:dna_extractor" },
-	  "normal": { "model": "pf:dna_extractor" }
+		"facing=south": {
+			"model": "pf:dna_extractor",
+			"y": 180
+		},
+		"facing=north": {
+			"model": "pf:dna_extractor"
+		},
+		"facing=east": {
+			"model": "pf:dna_extractor",
+			"y": 90
+		},
+		"facing=west": {
+			"model": "pf:dna_extractor",
+			"y": 270
+		},
+		"inventory": {
+			"model": "pf:dna_extractor"
+		},
+		"normal": {
+			"model": "pf:dna_extractor"
+		}
 	}
-  
-  }
+}

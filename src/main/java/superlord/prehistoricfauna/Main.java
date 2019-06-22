@@ -3,7 +3,6 @@ package superlord.prehistoricfauna;
 import superlord.prehistoricfauna.proxy.CommonProxy;
 import superlord.prehistoricfauna.proxy.IProxy;
 import superlord.prehistoricfauna.util.ReleaseType;
-import superlord.prehistoricfauna.util.handlers.TileEntityRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -35,7 +34,6 @@ public class Main {
     @EventHandler
     public static void preInit(FMLPreInitializationEvent event) {
         proxy.preInit(event);
-        TileEntityRegistry.registerTileEntities();
     }
 
     @EventHandler

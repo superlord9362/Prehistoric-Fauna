@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "facing=south": {
+      "model": "pf:cultivate_active",
+      "y": 180
+    },
+    "facing=north": {
+      "model": "pf:cultivate_active"
+    },
+    "facing=east": {
+      "model": "pf:cultivate_active",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "pf:cultivate_active",
+      "y": 270
+    },
+    "inventory": {
+      "model": "pf:cultivate_active"
+    },
+    "normal": {
+      "model": "pf:cultivate_active"
+    }
+  }
+}

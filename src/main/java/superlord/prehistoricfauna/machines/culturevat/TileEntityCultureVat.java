@@ -169,7 +169,7 @@ public class TileEntityCultureVat extends TileEntity implements ITickable, IWorl
 
             if (wasActive != this.cultivationTime > 0) {
                 dirty = true;
-                BlockCultureVat.setState(this.cultivationTime > 0, this.world, this.pos);
+                Block_CultureVat.setState(this.cultivationTime > 0, this.world, this.pos);
             }
         }
 
@@ -247,7 +247,7 @@ public class TileEntityCultureVat extends TileEntity implements ITickable, IWorl
 
     @Override
     public String getName() {
-        return this.hasCustomName() ? this.customName : "tile.culture_vat.name";
+        return this.hasCustomName() ? this.customName : "tile.cultivate.name";
     }
 
     @Override
