@@ -1,23 +1,23 @@
-package superlord.prehistoricfauna.machines.extractor;
+package superlord.prehistoricfauna.blocks.recipes;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import superlord.prehistoricfauna.init.ModItems;
-import superlord.prehistoricfauna.items.ItemDNADisk;
 
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.Map.Entry;
 import java.util.Random;
 
 import com.google.common.collect.Maps;
 
-public class RecipeInstance_DNAExtractor {
-    private static final RecipeInstance_DNAExtractor dnaExtractorRecipes = new RecipeInstance_DNAExtractor();
+public class DNAExtractorRecipes {
+    private static final DNAExtractorRecipes dnaExtractorRecipes = new DNAExtractorRecipes();
     
     @SuppressWarnings("rawtypes")
 	private final Map extractionList = Maps.newHashMap();
@@ -37,12 +37,12 @@ public class RecipeInstance_DNAExtractor {
      * Returns the privately-held instance of DNAExtractorRecipes.
      * @return
      */
-	public static RecipeInstance_DNAExtractor instance()
+	public static DNAExtractorRecipes instance()
     {
         return dnaExtractorRecipes;
     }
 	
-	private RecipeInstance_DNAExtractor() {
+	private DNAExtractorRecipes() {
 		addRecipe(new ItemStack(ModItems.ALLOSAURUS_SKULL), new ItemStack(ModItems.ALLOSAURUS_DNA), 0.0F);
 		addRecipe(new ItemStack(ModItems.ANKYLOSAURUS_TAIL), new ItemStack(ModItems.ANKYLOSAURUS_DNA), 0.0F);
 		addRecipe(new ItemStack(ModItems.BARYONYX_CLAW), new ItemStack(ModItems.BARYONYX_DNA), 0.0F);
@@ -60,6 +60,7 @@ public class RecipeInstance_DNAExtractor {
 		addRecipe(new ItemStack(ModItems.STEGOSAURUS_THAGOMIZER), new ItemStack(ModItems.STEGOSAURUS_DNA), 0.0F);
 		addRecipe(new ItemStack(ModItems.TRICERATOPS_HORN), new ItemStack(ModItems.TRICERATOPS_DNA), 0.0F);
 		addRecipe(new ItemStack(ModItems.TYRANNOSAURUS_TOOTH), new ItemStack(ModItems.TYRANNOSAURUS_DNA), 0.0F);
+		addRecipe(new ItemStack(ModItems.CYCADEOIDEA_FOSSIL), new ItemStack(ModItems.CYCADEOIDEA_DNA), 0.0F);
     }
 
 	@SuppressWarnings("unchecked")
@@ -72,7 +73,7 @@ public class RecipeInstance_DNAExtractor {
 	@SuppressWarnings("rawtypes")
 	public ItemStack getDefinedRecipeResult(ItemStack parItemStack)
     {
-        Iterator iterator = extractionList.entrySet().iterator();
+		Iterator iterator = extractionList.entrySet().iterator();
         Entry entry;
 
         do
@@ -111,8 +112,10 @@ public class RecipeInstance_DNAExtractor {
 			output = new ItemStack(Blocks.SAND, 2);
 		} else { // Otherwise, assign DNA Purity
 			output = ((ItemStack)entry.getValue()).copy();
+			UUID uuid = UUID.randomUUID();
 			NBTTagCompound nbt = new NBTTagCompound();
-			nbt.setFloat("species", ((ItemDNADisk)output.getItem()).speciesIdentifier);
+			nbt.setLong("globalIDLeast", uuid.getLeastSignificantBits());
+			nbt.setLong("globalIDMost", uuid.getMostSignificantBits());
 			nbt.setFloat("dna_purity", dnaPuritiesList.get(random.nextInt(dnaPuritiesList.size())));
 			output.setTagCompound(nbt);
 		}

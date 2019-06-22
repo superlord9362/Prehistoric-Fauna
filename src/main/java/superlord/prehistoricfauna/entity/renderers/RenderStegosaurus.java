@@ -8,9 +8,6 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
-import superlord.prehistoricfauna.entity.EntityStegosaurus;
-import superlord.prehistoricfauna.entity.models.Stegosaurus;
-import superlord.prehistoricfauna.util.Reference;
 
 public class RenderStegosaurus extends RenderLiving<EntityStegosaurus> {
 	public static final Factory FACTORY = new Factory();

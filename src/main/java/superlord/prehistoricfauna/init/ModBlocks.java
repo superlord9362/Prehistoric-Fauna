@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import superlord.prehistoricfauna.blocks.BlockBase;
 import superlord.prehistoricfauna.blocks.BlockCretaceousFossil;
+import superlord.prehistoricfauna.blocks.BlockCycadeoidea;
 import superlord.prehistoricfauna.blocks.BlockJurassicFossil;
 import superlord.prehistoricfauna.blocks.BlockLamp;
 import superlord.prehistoricfauna.blocks.BlockMesh;
@@ -28,7 +29,6 @@ import superlord.prehistoricfauna.machines.culturevat.TileEntityCultureVat;
 import superlord.prehistoricfauna.machines.extractor.Block_DNAExtractor;
 import superlord.prehistoricfauna.machines.extractor.TileEntity_DNAExtractor;
 import superlord.prehistoricfauna.util.IHasModel;
-import superlord.prehistoricfauna.util.Reference;
 
 @Mod.EventBusSubscriber
 public class ModBlocks {
@@ -60,9 +60,6 @@ public class ModBlocks {
     public static final BlockPrehistoricPlant COOKSONIA = new BlockPrehistoricPlant("cooksonia", Material.PLANTS);
     public static final BlockPrehistoricPlant ARCHAEAMPHORA = new BlockPrehistoricPlant("archaeamphora", Material.PLANTS);
 
-
-
-
     @SubscribeEvent
     public static void onBlockRegister(RegistryEvent.Register<Block> event) {
         event.getRegistry().registerAll(
@@ -88,6 +85,7 @@ public class ModBlocks {
                 PALEOZOIC_FOSSIL,
                 CULTURE_VAT,
                 CULTURE_VAT_ACTIVE
+
         );
         GameRegistry.registerTileEntity(TileEntity_DNAExtractor.class, new ResourceLocation(MOD_ID, "tile_dna_extractor"));
         GameRegistry.registerTileEntity(TileEntity_DNACombiner.class, new ResourceLocation(MOD_ID, "tile_dna_combiner"));
@@ -119,6 +117,8 @@ public class ModBlocks {
                 new ItemBlock(PALEOZOIC_FOSSIL).setRegistryName(PALEOZOIC_FOSSIL.getRegistryName()),
                 new ItemBlock(CULTURE_VAT).setRegistryName(CULTURE_VAT.getRegistryName()),
                 new ItemBlock(CULTURE_VAT_ACTIVE).setRegistryName(CULTURE_VAT_ACTIVE.getRegistryName())
+                new ItemBlock(CYCADEOIDEA).setRegistryName(CYCADEOIDEA.getRegistryName())
+
                 );
     }
 
@@ -147,6 +147,7 @@ public class ModBlocks {
         registerModel(PALEOZOIC_FOSSIL);
         registerModel(CULTURE_VAT);
         registerModel(CULTURE_VAT_ACTIVE);
+        registerModel(CYCADEOIDEA);
     }
 
     private static void registerModel(Block block) {

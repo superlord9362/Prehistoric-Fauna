@@ -33,6 +33,10 @@ public class Sounds {
     public static final SoundEvent PARASAUROLOPHUS_HURT;
     public static final SoundEvent ANKYLOSAURUS_IDLE;
     public static final SoundEvent ANKYLOSAURUS_ANGRY;
+    public static final SoundEvent BARYONYX_IDLE;
+    public static final SoundEvent BARYONYX_HURT;
+    public static final SoundEvent BARYONYX_ANGRY;
+    public static final SoundEvent PRENOCEPHALE_IDLE;
 
     @SubscribeEvent
     public static void registerSounds(final RegistryEvent.Register<SoundEvent> evt) {
@@ -61,6 +65,10 @@ public class Sounds {
         evt.getRegistry().register(Sounds.PARASAUROLOPHUS_HURT);
         evt.getRegistry().register(Sounds.ANKYLOSAURUS_IDLE);
         evt.getRegistry().register(Sounds.ANKYLOSAURUS_ANGRY);
+        evt.getRegistry().register(Sounds.BARYONYX_IDLE);
+        evt.getRegistry().register(Sounds.BARYONYX_HURT);
+        evt.getRegistry().register(Sounds.BARYONYX_ANGRY);
+        evt.getRegistry().register(Sounds.PRENOCEPHALE_IDLE);
     }
 
     private static SoundEvent createEvent(final String soundName) {
@@ -94,5 +102,9 @@ public class Sounds {
         PARASAUROLOPHUS_HURT = createEvent("parasaurolophus_hurt");
         ANKYLOSAURUS_IDLE = createEvent("ankylosaurus_idle");
         ANKYLOSAURUS_ANGRY = createEvent("ankylosaurus_angry");
+        BARYONYX_IDLE = createEvent("baryonyx_idle");
+        BARYONYX_HURT = createEvent("baryonyx_hurt");
+        BARYONYX_ANGRY = createEvent("baryonyx_angry");
+        PRENOCEPHALE_IDLE = createEvent("prenocephale_idle");
     }
 }

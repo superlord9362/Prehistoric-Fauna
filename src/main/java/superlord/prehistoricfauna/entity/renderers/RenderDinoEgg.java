@@ -21,7 +21,8 @@ public class RenderDinoEgg extends RenderLiving<EntityDinosaurEgg> {
 
 	public static class Factory implements IRenderFactory<Entity> {
 
-        @Override
+        @SuppressWarnings({ "unchecked", "rawtypes" })
+		@Override
         public Render<? super Entity> createRenderFor(RenderManager manager) {
             return (Render)new RenderDinoEgg(manager);
         }

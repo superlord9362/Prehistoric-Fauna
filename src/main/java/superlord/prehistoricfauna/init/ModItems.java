@@ -4,7 +4,6 @@ import superlord.prehistoricfauna.entity.EntityType;
 import superlord.prehistoricfauna.items.ItemAllosaurusEgg;
 import superlord.prehistoricfauna.items.ItemAnkylosaurusEgg;
 import superlord.prehistoricfauna.items.ItemBaryonyxEgg;
-import superlord.prehistoricfauna.items.ItemBase;
 import superlord.prehistoricfauna.items.ItemCamarasaurusEgg;
 import superlord.prehistoricfauna.items.ItemCladocyclusEgg;
 import superlord.prehistoricfauna.items.ItemCobbleBrick;
@@ -49,6 +48,7 @@ public class ModItems {
 	public static final Item PARADOXIDES_FOSSIL = new ItemFossil("paradoxides_fossil");
 	public static final Item CLADOCYCLUS_FOSSIL = new ItemFossil("cladocyclus_fossil");
 	public static final Item EUTHENOPTERON_FOSSIL = new ItemFossil("eusthenopteron_fossil");
+	public static final Item CYCADEOIDEA_FOSSIL = new ItemFossil("cycadeoidea_fossil");
 
 	/*
 	 * DNA Disks
@@ -70,6 +70,7 @@ public class ModItems {
 	public static final Item EUSTHENOPTERON_DNA = new ItemDNADisk(14);
 	public static final Item COOKSONIA_DNA = new ItemDNADisk(15);
 	public static final Item ARCHAEAMPHORA_DNA = new ItemDNADisk(16);
+	public static final Item CYCADEOIDEA_DNA = new ItemDNADisk(17);
 
 	/*
 	 * Eggs

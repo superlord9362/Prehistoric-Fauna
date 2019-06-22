@@ -232,5 +232,43 @@
                 "stream": true
             }
         ]
+    },
+    "baryonyx_idle": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/baryonyx_idle1",
+                "name": "pf:prehistoric/baryonyx_idle2",
+                "stream": true
+            }
+        ]
+    },
+    "baryonyx_angry": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/baryonyx_angry",
+                "stream": true
+            }
+        ]
+    },
+    "baryonyx_hurt": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/baryonyx_hurt",
+                "stream": true
+            }
+        ]
+    },
+    "prenocephale_idle": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "pf:prehistoric/prenocephale_idle1",
+                "name": "pf:prehistoric/prenocephale_idle2",
+                "stream": true
+            }
+        ]
     }
 }
