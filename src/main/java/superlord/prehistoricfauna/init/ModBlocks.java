@@ -14,7 +14,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import superlord.prehistoricfauna.blocks.BlockBase;
 import superlord.prehistoricfauna.blocks.BlockCretaceousFossil;
-import superlord.prehistoricfauna.blocks.BlockCultureVat;
 import superlord.prehistoricfauna.blocks.BlockCycadeoidea;
 import superlord.prehistoricfauna.blocks.BlockJurassicFossil;
 import superlord.prehistoricfauna.blocks.BlockLamp;
@@ -25,6 +24,8 @@ import superlord.prehistoricfauna.blocks.BlockPaleozoicFossil;
 import superlord.prehistoricfauna.blocks.BlockPrehistoricPlant;
 import superlord.prehistoricfauna.machines.combiner.Block_DNACombiner;
 import superlord.prehistoricfauna.machines.combiner.TileEntity_DNACombiner;
+import superlord.prehistoricfauna.machines.culturevat.Block_CultureVat;
+import superlord.prehistoricfauna.machines.culturevat.TileEntityCultureVat;
 import superlord.prehistoricfauna.machines.extractor.Block_DNAExtractor;
 import superlord.prehistoricfauna.machines.extractor.TileEntity_DNAExtractor;
 import superlord.prehistoricfauna.util.IHasModel;
@@ -32,30 +33,32 @@ import superlord.prehistoricfauna.util.IHasModel;
 @Mod.EventBusSubscriber
 public class ModBlocks {
 
-    public static final Block CRETACEOUS_FOSSIL = new BlockCretaceousFossil("cretaceous_fossil", Material.ROCK);
-    public static final Block JURASSIC_FOSSIL = new BlockJurassicFossil("jurassic_fossil", Material.ROCK);
+	//Machines
 	public static final Block_DNAExtractor ANALYZER = new Block_DNAExtractor(false);
 	public static final Block_DNAExtractor ANALYZER_ACTIVE = new Block_DNAExtractor(true);
 	public static final Block_DNACombiner COMBINER = new Block_DNACombiner(false);
 	public static final Block_DNACombiner COMBINER_ACTIVE = new Block_DNACombiner(true);
-    public static final Block GRAVEL_PATH = new BlockBase("gravel_path", Material.GROUND);
-    public static final Block RED_GRAVEL_PATH = new BlockBase("red_gravel_path", Material.SAND);
-    public static final Block HERRINGBONE_PATH = new BlockBase("herringbone", Material.ROCK);
-    public static final Block RED_HERRINGBONE_PATH = new BlockBase("red_herringbone", Material.ROCK);
-    public static final Block COBBLESTONE_BRICKS = new BlockBase("cobble_bricks", Material.ROCK);
-    public static final Block RED_COBBLESTONE_BRICKS = new BlockBase("red_cobble_bricks", Material.ROCK);
-    public static final Block BRICK_WALL = new BlockModWall("brick_wall", Material.ROCK);
-    public static final Block STONE_BRICK_WALL = new BlockModWall("stone_brick_wall", Material.ROCK);
-    public static final Block MUD = new BlockMud("mud", Material.GROUND);
-    public static final Block MESH = new BlockMesh(Material.GLASS, true, "mesh");
-    public static final Block LAMP = new BlockLamp("lamp", Material.GLASS);
-    public static final Block COOKSONIA = new BlockPrehistoricPlant("cooksonia", Material.PLANTS);
-    public static final Block ARCHAEAMPHORA = new BlockPrehistoricPlant("archaeamphora", Material.PLANTS);
-    public static final Block PALEOZOIC_FOSSIL = new BlockPaleozoicFossil("paleozoic_fossil", Material.ROCK);
-    public static final Block CULTURE_VAT_IDLE = new BlockCultureVat(false);
-    public static final Block CULTURE_VAT_ACTIVE = new BlockCultureVat(true);
-    public static final Block CYCADEOIDEA = new BlockCycadeoidea("cycadeoidea", Material.PLANTS);
-
+    public static final Block_CultureVat CULTURE_VAT = new Block_CultureVat(false);
+    public static final Block_CultureVat CULTURE_VAT_ACTIVE = new Block_CultureVat(true);
+    
+    //Fossils
+    public static final BlockCretaceousFossil CRETACEOUS_FOSSIL = new BlockCretaceousFossil("cretaceous_fossil", Material.ROCK);
+    public static final BlockJurassicFossil JURASSIC_FOSSIL = new BlockJurassicFossil("jurassic_fossil", Material.ROCK);
+    public static final BlockPaleozoicFossil PALEOZOIC_FOSSIL = new BlockPaleozoicFossil("paleozoic_fossil", Material.ROCK);
+    
+    public static final BlockBase GRAVEL_PATH = new BlockBase("gravel_path", Material.GROUND);
+    public static final BlockBase RED_GRAVEL_PATH = new BlockBase("red_gravel_path", Material.SAND);
+    public static final BlockBase HERRINGBONE_PATH = new BlockBase("herringbone", Material.ROCK);
+    public static final BlockBase RED_HERRINGBONE_PATH = new BlockBase("red_herringbone", Material.ROCK);
+    public static final BlockBase COBBLESTONE_BRICKS = new BlockBase("cobble_bricks", Material.ROCK);
+    public static final BlockBase RED_COBBLESTONE_BRICKS = new BlockBase("red_cobble_bricks", Material.ROCK);
+    public static final BlockModWall BRICK_WALL = new BlockModWall("brick_wall", Material.ROCK);
+    public static final BlockModWall STONE_BRICK_WALL = new BlockModWall("stone_brick_wall", Material.ROCK);
+    public static final BlockMud MUD = new BlockMud("mud", Material.GROUND);
+    public static final BlockMesh MESH = new BlockMesh(Material.GLASS, true, "mesh");
+    public static final BlockLamp LAMP = new BlockLamp("lamp", Material.GLASS);
+    public static final BlockPrehistoricPlant COOKSONIA = new BlockPrehistoricPlant("cooksonia", Material.PLANTS);
+    public static final BlockPrehistoricPlant ARCHAEAMPHORA = new BlockPrehistoricPlant("archaeamphora", Material.PLANTS);
 
     @SubscribeEvent
     public static void onBlockRegister(RegistryEvent.Register<Block> event) {
@@ -80,12 +83,13 @@ public class ModBlocks {
                 COOKSONIA,
                 ARCHAEAMPHORA,
                 PALEOZOIC_FOSSIL,
-                CULTURE_VAT_IDLE,
-                CULTURE_VAT_ACTIVE,
-                CYCADEOIDEA
+                CULTURE_VAT,
+                CULTURE_VAT_ACTIVE
+
         );
         GameRegistry.registerTileEntity(TileEntity_DNAExtractor.class, new ResourceLocation(MOD_ID, "tile_dna_extractor"));
         GameRegistry.registerTileEntity(TileEntity_DNACombiner.class, new ResourceLocation(MOD_ID, "tile_dna_combiner"));
+        GameRegistry.registerTileEntity(TileEntityCultureVat.class, new ResourceLocation(MOD_ID, "tile_cultivate"));
     }
 
     @SubscribeEvent
@@ -111,9 +115,10 @@ public class ModBlocks {
                 new ItemBlock(COOKSONIA).setRegistryName(COOKSONIA.getRegistryName()),
                 new ItemBlock(ARCHAEAMPHORA).setRegistryName(ARCHAEAMPHORA.getRegistryName()),
                 new ItemBlock(PALEOZOIC_FOSSIL).setRegistryName(PALEOZOIC_FOSSIL.getRegistryName()),
-                new ItemBlock(CULTURE_VAT_IDLE).setRegistryName(CULTURE_VAT_IDLE.getRegistryName()),
-                new ItemBlock(CULTURE_VAT_ACTIVE).setRegistryName(CULTURE_VAT_ACTIVE.getRegistryName()),
+                new ItemBlock(CULTURE_VAT).setRegistryName(CULTURE_VAT.getRegistryName()),
+                new ItemBlock(CULTURE_VAT_ACTIVE).setRegistryName(CULTURE_VAT_ACTIVE.getRegistryName())
                 new ItemBlock(CYCADEOIDEA).setRegistryName(CYCADEOIDEA.getRegistryName())
+
                 );
     }
 
@@ -140,7 +145,7 @@ public class ModBlocks {
         registerModel(COOKSONIA);
         registerModel(ARCHAEAMPHORA);
         registerModel(PALEOZOIC_FOSSIL);
-        registerModel(CULTURE_VAT_IDLE);
+        registerModel(CULTURE_VAT);
         registerModel(CULTURE_VAT_ACTIVE);
         registerModel(CYCADEOIDEA);
     }

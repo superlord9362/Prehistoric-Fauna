@@ -4,8 +4,8 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
-import superlord.prehistoricfauna.blocks.ContainerCultureVat;
-import superlord.prehistoricfauna.blocks.TileEntityCultureVat;
+import superlord.prehistoricfauna.machines.culturevat.ContainerCultureVat;
+import superlord.prehistoricfauna.machines.culturevat.TileEntityCultureVat;
 import superlord.prehistoricfauna.util.Reference;
 
 public class GUICultivate extends GuiContainer {

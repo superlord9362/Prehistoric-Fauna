@@ -1,6 +1,5 @@
-package superlord.prehistoricfauna.blocks;
+package superlord.prehistoricfauna.machines.culturevat;
 
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -25,8 +24,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import superlord.prehistoricfauna.Main;
+import superlord.prehistoricfauna.blocks.BlockBase;
 import superlord.prehistoricfauna.init.ModBlocks;
-import superlord.prehistoricfauna.tab.PFTabRegistry;
 import superlord.prehistoricfauna.util.BlockEntity;
 import superlord.prehistoricfauna.util.DefaultRenderedItem;
 import superlord.prehistoricfauna.util.Reference;
@@ -34,40 +33,43 @@ import superlord.prehistoricfauna.util.Reference;
 import java.util.List;
 import java.util.Random;
 
-public class BlockCultureVat extends BlockContainer implements DefaultRenderedItem, BlockEntity {
+public class Block_CultureVat extends BlockBase implements DefaultRenderedItem, BlockEntity {
 
     private static boolean keepInventory = false;
 
-    public BlockCultureVat(boolean isActive) {
-        super(Material.IRON);
-        this.setHardness(0.3F);
+    public Block_CultureVat(boolean isActive) {
+    	super((isActive) ? "cultivate_active" : "cultivate", Material.IRON, !isActive);
         this.setSoundType(SoundType.GLASS);
-        if (isActive) {
-            this.setLightLevel(0.9375F);
-            this.setTranslationKey("cultivate_active");
-            this.setRegistryName("culture_vat_active");
-        } else {
-            this.setTranslationKey("cultivate");
-            this.setCreativeTab(PFTabRegistry.NORMAL);
-            this.setRegistryName("culture_vat_idle");
-        }
+        
+		if (isActive) {
+			this.setLightLevel(0.9375F);
+		}
     }
 
-    public static void setState(boolean isActive, World world, BlockPos pos) {
-        TileEntity tile = world.getTileEntity(pos);
-        keepInventory = true;
-        if (isActive) {
-            world.setBlockState(pos, ModBlocks.CULTURE_VAT_ACTIVE.getDefaultState());
-        } else {
-            world.setBlockState(pos, ModBlocks.CULTURE_VAT_IDLE.getDefaultState());
-        }
-        keepInventory = false;
-        if (tile != null) {
-            tile.validate();
-            world.setTileEntity(pos, tile);
-        }
-    }
+	public static void setState(boolean isActive, World world, BlockPos pos) {
 
+		TileEntity tile = world.getTileEntity(pos);
+		EnumFacing facing = EnumFacing.NORTH;
+
+		if (world.getBlockState(pos).getBlock() instanceof Block_CultureVat) {
+			facing = world.getBlockState(pos).getValue(FACING);
+		}
+
+		keepInventory = true;
+
+		if (isActive) {
+			world.setBlockState(pos, ModBlocks.CULTURE_VAT_ACTIVE.getDefaultState().withProperty(FACING, facing));
+		} else {
+			world.setBlockState(pos, ModBlocks.CULTURE_VAT.getDefaultState().withProperty(FACING, facing));
+		}
+
+		keepInventory = false;
+		if (tile != null) {
+			tile.validate();
+			world.setTileEntity(pos, tile);
+		}
+	}
+	
     public void onBlockRemovalLost(World world, BlockPos pos, boolean isActive) {
         keepInventory = false;
 
@@ -95,13 +97,8 @@ public class BlockCultureVat extends BlockContainer implements DefaultRenderedIt
     }
 
     @Override
-    public EnumBlockRenderType getRenderType(IBlockState state) {
-        return EnumBlockRenderType.MODEL;
-    }
-
-    @Override
     public Item getItemDropped(IBlockState state, Random random, int fortune) {
-        return Item.getItemFromBlock(ModBlocks.CULTURE_VAT_IDLE);
+        return Item.getItemFromBlock(ModBlocks.CULTURE_VAT);
     }
 
     @Override
@@ -167,7 +164,7 @@ public class BlockCultureVat extends BlockContainer implements DefaultRenderedIt
     @Override
     @SideOnly(Side.CLIENT)
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-        return new ItemStack(ModBlocks.CULTURE_VAT_IDLE);
+        return new ItemStack(ModBlocks.CULTURE_VAT);
     }
 
     @Override

@@ -1,9 +1,11 @@
-package superlord.prehistoricfauna.blocks;
+package superlord.prehistoricfauna.machines.culturevat;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import superlord.prehistoricfauna.blocks.BlockEntityContainer;
+import superlord.prehistoricfauna.blocks.SlotItemHandlerPredicate;
 
 public class ContainerCultureVat extends BlockEntityContainer {
     private static final int FUEL_TIME_ID = 0;

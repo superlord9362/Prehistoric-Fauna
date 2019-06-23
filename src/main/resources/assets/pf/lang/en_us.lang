@@ -5,14 +5,14 @@ dinoegg.hatched=An egg has hatched!
 tile.dna_extractor.name=DNA Extractor
 tile.dna_combiner.name=DNA Combiner
 tile.egg_incubator.name=Egg Incubator
-tile.culture_vat.name=Culture Vat
+tile.cultivate.name=Culture Vat
 
 tile.cretaceous_fossil.name=Cretaceous Fossil
 tile.jurassic_fossil.name=Jurassic Fossil
 tile.paleozoic_fossil.name=Paleozoic Fossil
 
 tile.cooksonia.name=Cooksonia
-tile.cultivate.name=Culture Vat
+
 tile.archaeamphora.name=Archaeamphora
 tile.gravel_path.name=Gravel Path
 tile.red_gravel_path.name=Orange Gravel Path

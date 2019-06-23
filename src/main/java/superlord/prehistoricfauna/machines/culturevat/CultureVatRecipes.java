@@ -1,7 +1,9 @@
-package superlord.prehistoricfauna.blocks.recipes;
+package superlord.prehistoricfauna.machines.culturevat;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import superlord.prehistoricfauna.blocks.recipes.RecipeAnalyzer;
+import superlord.prehistoricfauna.blocks.recipes.RecipeWorktable;
 import superlord.prehistoricfauna.init.ModItems;
 
 import java.util.ArrayList;

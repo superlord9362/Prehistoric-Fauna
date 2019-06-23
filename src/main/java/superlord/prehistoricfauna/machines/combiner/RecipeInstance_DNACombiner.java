@@ -8,6 +8,7 @@ import com.google.common.collect.Maps;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import superlord.prehistoricfauna.items.ItemDNADisk;
+import superlord.prehistoricfauna.items.ItemFossil;
 
 public class RecipeInstance_DNACombiner {
     private static final RecipeInstance_DNACombiner dnaCombinerRecipes = new RecipeInstance_DNACombiner();
@@ -77,8 +78,7 @@ public class RecipeInstance_DNACombiner {
 		
 		NBTTagCompound nbt = new NBTTagCompound();
 		UUID uuid = UUID.randomUUID();
-		nbt.setLong("globalIDLeast", uuid.getLeastSignificantBits());
-		nbt.setLong("globalIDMost", uuid.getMostSignificantBits());
+		nbt.setFloat("species", ((ItemDNADisk)queuedDisks.get(0).getItem()).speciesIdentifier);
 		nbt.setFloat("dna_purity", dnaPurity);
 		resultItemStack.setTagCompound(nbt);
 		return resultItemStack;

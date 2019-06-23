@@ -1,9 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "pf:blocks/culture_vat_top",
-        "front": "pf:blocks/culture_vat_side",
-        "side": "pf:blocks/culture_vat_side",
-        "bottom": "pf:blocks/culture_vat_bottom"
-    }
-}
