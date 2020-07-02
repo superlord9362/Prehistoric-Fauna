@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "prehistoricfauna:araucaria_fence",
+    "prehistoricfauna:metasequoia_fence",
+	"prehistoricfauna:cypress_fence"
+  ]
+}

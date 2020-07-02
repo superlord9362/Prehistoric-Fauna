@@ -1,0 +1,77 @@
+{
+    "triceratops_idle": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/triceratops_idle1",
+                "name": "prehistoricfauna:prehistoric/triceratops_idle2",
+                "stream": true
+            }
+        ]
+    },
+   "triceratops_hurt": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/triceratops_hurt",
+                "stream": true
+            }
+        ]
+    },
+    "triceratops_warn": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/triceratops_angry",
+                "stream": true
+            }
+        ]
+    },
+	"tyrannosaurus_idle": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/tyrannosarus_idle1",
+                "name": "prehistoricfauna:prehistoric/tyrannosaurus_idle2",
+                "stream": true
+            }
+        ]
+    },
+	"tyrannosaurus_hurt": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/tyrannosaurus_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"tyrannosaurus_angry": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/tyrannosaurus_angry",
+                "stream": true
+            }
+        ]
+    },
+	"ankylosaurus_idle": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/ankylosaurus_idle1",
+                "name": "prehistoricfauna:prehistoric/ankylosaurus_idle2",
+                "stream": true
+            }
+        ]
+    },
+    "ankylosaurus_angry": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/ankylosaurus_angry",
+                "stream": true
+            }
+        ]
+    }
+}

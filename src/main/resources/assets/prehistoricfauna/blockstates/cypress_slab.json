@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "prehistoricfauna:block/cypress_slab" },
+        "type=top": { "model": "prehistoricfauna:block/cypress_slab_top" },
+        "type=double": { "model": "prehistoricfauna:block/cypress_planks" }
+    }
+}

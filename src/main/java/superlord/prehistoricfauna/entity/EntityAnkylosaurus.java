@@ -1,387 +1,404 @@
 package superlord.prehistoricfauna.entity;
 
-import com.google.common.base.Predicate;
+import java.util.Random;
+import java.util.function.Predicate;
 
-import superlord.prehistoricfauna.util.handlers.LootTableHandler;
-import superlord.prehistoricfauna.util.handlers.Sounds;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackMelee;
-import net.minecraft.entity.ai.EntityAIEatGrass;
-import net.minecraft.entity.ai.EntityAIFollowParent;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIPanic;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.init.SoundEvents;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.goal.BreedGoal;
+import net.minecraft.entity.ai.goal.FollowParentGoal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.MoveToBlockGoal;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
+import net.minecraft.entity.item.ExperienceOrbEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.stats.Stats;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.GameRules;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import superlord.prehistoricfauna.block.AnkylosaurusEggBlock;
+import superlord.prehistoricfauna.init.BlockInit;
+import superlord.prehistoricfauna.init.ModEntityTypes;
+import superlord.prehistoricfauna.util.SoundHandler;
 
-import java.util.Random;
+public class EntityAnkylosaurus extends EntityPrehistoric {
+	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(EntityAnkylosaurus.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(EntityAnkylosaurus.class, DataSerializers.BOOLEAN);
+   private int warningSoundTicks;
+   private int isDigging;
 
-import javax.annotation.Nullable;
+   public EntityAnkylosaurus(EntityType<? extends EntityAnkylosaurus> type, World worldIn) {
+      super(type, worldIn);
+   }
 
-public class EntityAnkylosaurus extends EntityExtinct {
-    private static final DataParameter<Boolean> IS_STANDING = EntityDataManager.createKey(EntityAnkylosaurus.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Integer> MODEL_TYPE = EntityDataManager.createKey(EntityAnkylosaurus.class, DataSerializers.VARINT);
-    private static final DataParameter<Integer> ANKYLOSAURUS_VARIANT = EntityDataManager.<Integer>createKey(EntityAnkylosaurus.class, DataSerializers.VARINT);
-    private float clientSideStandAnimation0;
-    private float clientSideStandAnimation;
-    private int warningSoundTicks;
-    public int timeUntilNextEgg;
-
-    public EntityAnkylosaurus(World worldIn) {
-        super(worldIn);
-        this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
-        this.setSize(2.0F, 1.7F);
-    }
-
-    @Override
-    public EntityAgeable createChild(EntityAgeable ageable) {
-        return new EntityAnkylosaurus(this.world);
-    }
-
-    /**
-     * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
-     * the animal type)
-     */
-    @Override
-    public boolean isBreedingItem(ItemStack stack) {
-        return stack.getItem() == Items.WHEAT;
-
-    }
-
-    private int sheepTimer;
-    private EntityAIEatGrass entityAIEatGrass;
-
-    @Override
-    protected void initEntityAI() {
-        super.initEntityAI();
-        this.entityAIEatGrass = new EntityAIEatGrass(this);
-        this.tasks.addTask(5, this.entityAIEatGrass);
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAnkylosaurus.AIMeleeAttack());
-        this.tasks.addTask(1, new EntityAnkylosaurus.AIPanic());
-        this.tasks.addTask(4, new EntityAIFollowParent(this, 1.25D));
-        this.tasks.addTask(5, new EntityAIWander(this, 1.0D));
-        this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
-        this.tasks.addTask(7, new EntityAILookIdle(this));
-        this.targetTasks.addTask(1, new EntityAnkylosaurus.AIHurtByTarget());
-        this.targetTasks.addTask(2, new EntityAnkylosaurus.AIAttackPlayer());
-    }
-
-    @Override
-    public void onLivingUpdate() {
-        if (this.world.isRemote) {
-            this.sheepTimer = Math.max(0, this.sheepTimer - 1);
-        }
-        if (!this.world.isRemote && !this.isChild() && --this.timeUntilNextEgg <= 0) {
-            this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-            this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
-        }
-
-        super.onLivingUpdate();
-    }
-
-    @Override
-    protected void updateAITasks() {
-        this.sheepTimer = this.entityAIEatGrass.getEatingGrassTimer();
-        super.updateAITasks();
-    }
-
-    @Override
-    protected void applyEntityAttributes() {
-        super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(165.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
-    }
-    
-    public int getAnkylosaurusSkin()
-    {
-        return ((Integer)this.dataManager.get(ANKYLOSAURUS_VARIANT)).intValue();
-    }
-
-    public void setAnkylosaurusSkin(int skinId)
-    {
-        this.dataManager.set(ANKYLOSAURUS_VARIANT, Integer.valueOf(skinId));
-    }
-
-    @Override
-    protected SoundEvent getAmbientSound() {
-        return Sounds.ANKYLOSAURUS_IDLE;
-    }
-
-    @Override
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
-        return Sounds.TRICERATOPS_HURT;
-    }
-
-    @Override
-    protected SoundEvent getDeathSound() {
-        return Sounds.TRICERATOPS_HURT;
-    }
-
-    @Override
-    protected void playStepSound(BlockPos pos, Block blockIn) {
-        this.playSound(SoundEvents.ENTITY_COW_STEP, 0.15F, 1.0F);
-    }
-
-    protected void playWarningSound() {
-        if (this.warningSoundTicks <= 0) {
-            this.playSound(Sounds.ANKYLOSAURUS_ANGRY, 1.0F, 1.0F);
-            this.warningSoundTicks = 40;
-        }
-    }
-
-    @Override
-    @Nullable
-    protected ResourceLocation getLootTable() {
-        return LootTableHandler.ANKYLOSAURUS;
-    }
-
-    @Override
-    protected void entityInit() {
-        super.entityInit();
-        dataManager.register(IS_STANDING, false);
-        dataManager.register(MODEL_TYPE, 0);
-        this.dataManager.register(ANKYLOSAURUS_VARIANT, Integer.valueOf(0));
-    }
-
-    public int getModelType() {
-        return dataManager.get(MODEL_TYPE);
-    }
-
-    public void setModelType(int modelType) {
-        dataManager.set(MODEL_TYPE, modelType);
-    }
-
-    @Override
-    public void readEntityFromNBT(NBTTagCompound compound) {
-        super.readEntityFromNBT(compound);
-        this.setAnkylosaurusSkin(compound.getInteger("AnkylosaurusVariant"));
-    }
-
-    public void writeEntityToNBT(NBTTagCompound compound)
-    {
-        super.writeEntityToNBT(compound);
-        compound.setInteger("AnkylosaurusVariant", this.getAnkylosaurusSkin());
-}
-
-    /**
-     * Called to update the entity's position/logic.
-     */
-    @Override
-    public void onUpdate() {
-        super.onUpdate();
-
-        if (this.world.isRemote) {
-            this.clientSideStandAnimation0 = this.clientSideStandAnimation;
-
-            if (this.isStanding()) {
-                this.clientSideStandAnimation = MathHelper.clamp(this.clientSideStandAnimation + 1.0F, 0.0F, 6.0F);
-            } else {
-                this.clientSideStandAnimation = MathHelper.clamp(this.clientSideStandAnimation - 1.0F, 0.0F, 6.0F);
-            }
-        }
-
-        if (this.warningSoundTicks > 0) {
-            --this.warningSoundTicks;
-        }
-    }
-
-    @Override
-    public boolean attackEntityAsMob(Entity entityIn) {
-        boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float) ((int) this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue()));
-
-        if (flag) {
-            this.applyEnchantments(this, entityIn);
-        }
-
-        return flag;
-    }
-
-    public boolean isStanding() {
-        return this.dataManager.get(IS_STANDING);
-    }
-
-    public void setStanding(boolean standing) {
-        this.dataManager.set(IS_STANDING, standing);
-    }
-
-    @SideOnly(Side.CLIENT)
-    public float getStandingAnimationScale(float p_189795_1_) {
-        return (this.clientSideStandAnimation0 + (this.clientSideStandAnimation - this.clientSideStandAnimation0) * p_189795_1_) / 6.0F;
-    }
-
-    @Override
-    protected float getWaterSlowDown() {
-        return 0.98F;
-    }
-
-    /**
-     * Called only once on an entity when first time spawned, via egg, mob spawner, natural spawning etc, but not called
-     * when entity is reloaded from nbt. Mainly used for initializing attributes and inventory
-     */
-    
-    
-
-    @Override
-    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
-		Random rand = new Random();
-        setAnkylosaurusSkin(rand.nextInt(100));
-        return livingdata;
-    }
-
-
-    class AIAttackPlayer extends EntityAINearestAttackableTarget<EntityPlayer> {
-        @SuppressWarnings({ "rawtypes", "unchecked" })
-		public AIAttackPlayer() {
-            super(EntityAnkylosaurus.this, EntityPlayer.class, 20, true, true, (Predicate) null);
-        }
-
-        /**
-         * Returns whether the EntityAIBase should begin execution.
-         */
-        public boolean shouldExecute() {
-            if (EntityAnkylosaurus.this.isChild()) {
-                return false;
-            } else {
-                if (super.shouldExecute()) {
-                    for (EntityAnkylosaurus entitypolarbear : EntityAnkylosaurus.this.world.getEntitiesWithinAABB(EntityAnkylosaurus.class, EntityAnkylosaurus.this.getEntityBoundingBox().grow(8.0D, 4.0D, 8.0D))) {
-                        if (entitypolarbear.isChild()) {
-                            return true;
-                        }
-                    }
-                }
-
-                EntityAnkylosaurus.this.setAttackTarget((EntityLivingBase) null);
-                return false;
-            }
-        }
-
-        protected double getTargetDistance() {
-            return super.getTargetDistance() * 0.5D;
-        }
-    }
-
-    class AIHurtByTarget extends EntityAIHurtByTarget {
-        public AIHurtByTarget() {
-            super(EntityAnkylosaurus.this, false);
-        }
-
-        /**
-         * Execute a one shot task or start executing a continuous task
-         */
-        public void startExecuting() {
-            super.startExecuting();
-
-            if (EntityAnkylosaurus.this.isChild()) {
-                this.alertOthers();
-                this.resetTask();
-            }
-        }
-
-        protected void setEntityAttackTarget(EntityCreature creatureIn, EntityLivingBase entityLivingBaseIn) {
-            if (creatureIn instanceof EntityAnkylosaurus && !creatureIn.isChild()) {
-                super.setEntityAttackTarget(creatureIn, entityLivingBaseIn);
-            }
-        }
-    }
-
-    class AIMeleeAttack extends EntityAIAttackMelee {
-        public AIMeleeAttack() {
-            super(EntityAnkylosaurus.this, 1.25D, true);
-        }
-
-        protected void checkAndPerformAttack(EntityLivingBase p_190102_1_, double p_190102_2_) {
-            double d0 = this.getAttackReachSqr(p_190102_1_);
-
-            if (p_190102_2_ <= d0 && this.attackTick <= 0) {
-                this.attackTick = 20;
-                this.attacker.attackEntityAsMob(p_190102_1_);
-                EntityAnkylosaurus.this.setStanding(false);
-            } else if (p_190102_2_ <= d0 * 2.0D) {
-                if (this.attackTick <= 0) {
-                    EntityAnkylosaurus.this.setStanding(false);
-                    this.attackTick = 20;
-                }
-
-                if (this.attackTick <= 10) {
-                    EntityAnkylosaurus.this.setStanding(true);
-                    EntityAnkylosaurus.this.playWarningSound();
-                }
-            } else {
-                this.attackTick = 20;
-                EntityAnkylosaurus.this.setStanding(false);
-            }
-        }
-
-        /**
-         * Reset the task's internal state. Called when this task is interrupted by another one
-         */
-        public void resetTask() {
-            EntityAnkylosaurus.this.setStanding(false);
-            super.resetTask();
-        }
-
-        protected double getAttackReachSqr(EntityLivingBase attackTarget) {
-            return (double) (4.0F + attackTarget.width);
-        }
-    }
-
-    class AIPanic extends EntityAIPanic {
-        public AIPanic() {
-            super(EntityAnkylosaurus.this, 2.0D);
-        }
-
-        /**
-         * Returns whether the EntityAIBase should begin execution.
-         */
-        public boolean shouldExecute() {
-            return (EntityAnkylosaurus.this.isChild() || EntityAnkylosaurus.this.isBurning()) && super.shouldExecute();
-        }
-    }
-
-    static class GroupData implements IEntityLivingData {
-        public boolean madeParent;
-
-        private GroupData() {
-        }
-    }
-    
-
-	@Override
-	public int getAdultAge() {
-		return 1;
+   public AgeableEntity createChild(AgeableEntity ageable) {
+	   EntityAnkylosaurus entity = new EntityAnkylosaurus(ModEntityTypes.ENTITY_ANKYLOSAURUS, this.world);
+		entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
+		return entity;
+	}
+   
+	public boolean isDigging() {
+		return this.dataManager.get(IS_DIGGING);
+	}
+	
+	private void setDigging(boolean isDigging) {
+		this.isDigging = isDigging ? 1 : 0;
+		this.dataManager.set(IS_DIGGING, isDigging);
+	}
+	
+	public boolean hasEgg() {
+		return this.dataManager.get(HAS_EGG);
 	}
 
-	@Override
-	public boolean doesFlock() {
-		return false;
+	private void setHasEgg(boolean hasEgg) {
+		this.dataManager.set(HAS_EGG, hasEgg);
 	}
+
+   public boolean isBreedingItem(ItemStack stack) {
+	   return stack.getItem() == BlockInit.CLUBMOSS.asItem();
+   }
+
+   protected void registerGoals() {
+      super.registerGoals();
+      this.goalSelector.addGoal(0, new SwimGoal(this));
+      this.goalSelector.addGoal(1, new EntityAnkylosaurus.MeleeAttackGoal());
+      this.goalSelector.addGoal(1, new EntityAnkylosaurus.PanicGoal());
+      this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
+      this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+      this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+      this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
+      this.targetSelector.addGoal(1, new EntityAnkylosaurus.HurtByTargetGoal());
+      this.targetSelector.addGoal(2, new EntityAnkylosaurus.AttackPlayerGoal());
+      this.targetSelector.addGoal(3, new EntityAnkylosaurus.ProtectBabyGoal());
+      this.goalSelector.addGoal(8, new EntityAnkylosaurus.LayEggGoal(this, 1.0D));
+      this.goalSelector.addGoal(2, new EntityAnkylosaurus.MateGoal(this, 1.0D));
+   }
+
+   protected void registerAttributes() {
+      super.registerAttributes();
+      this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
+      this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20.0D);
+      this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2D);
+      this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(10.0D);
+      this.getAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).setBaseValue(0.0F);
+      this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
+      this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(12.0D);
+   }
+   
+   protected SoundEvent getAmbientSound() {
+	   return SoundHandler.ANKYLOSAURUS_IDLE;
+   }
+
+   protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+	   return null;
+   }
+
+   protected SoundEvent getDeathSound() {
+	   return null;
+   }
+
+   protected void playStepSound(BlockPos pos, BlockState blockIn) {
+	   this.playSound(SoundEvents.ENTITY_COW_STEP, 0.15F, 1.0F);
+   }
+
+   protected void playWarningSound() {
+	   if (this.warningSoundTicks <= 0) {
+		   this.playSound(SoundHandler.ANKYLOSAURUS_WARN, 1.0F, this.getSoundPitch());
+		   this.warningSoundTicks = 40;
+	   }
+   }
+
+   protected void registerData() {
+      super.registerData();
+      this.dataManager.register(HAS_EGG, false);
+      this.dataManager.register(IS_DIGGING, false);
+   }
+   
+   public void writeAdditional(CompoundNBT compound) {
+	   super.writeAdditional(compound);
+	   compound.putBoolean("HasEgg", this.hasEgg());
+   }
+   
+   public void readAdditional(CompoundNBT compound) {
+	   super.readAdditional(compound);
+	   this.setHasEgg(compound.getBoolean("HasEgg"));
+   }
+
+   /**
+    * Called to update the entity's position/logic.
+    */
+   public void tick() {
+      super.tick();
+      if (this.warningSoundTicks > 0) {
+         --this.warningSoundTicks;
+      }
+   }
+
+   public boolean attackEntityAsMob(Entity entityIn) {
+      boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getValue()));
+      if (flag) {
+         this.applyEnchantments(this, entityIn);
+      }
+
+      return flag;
+   }	
+
+   class AttackPlayerGoal extends NearestAttackableTargetGoal<PlayerEntity> {
+      public AttackPlayerGoal() {
+         super(EntityAnkylosaurus.this, PlayerEntity.class, 20, true, true, (Predicate<LivingEntity>)null);
+      }
+
+      /**
+       * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+       * method as well.
+       */
+      public boolean shouldExecute() {
+         if (EntityAnkylosaurus.this.isChild()) {
+            return false;
+         } else {
+            if (super.shouldExecute()) {
+               for(@SuppressWarnings("unused") EntityAnkylosaurus ankylosaurus : EntityAnkylosaurus.this.world.getEntitiesWithinAABB(EntityAnkylosaurus.class, EntityAnkylosaurus.this.getBoundingBox().grow(8.0D, 4.0D, 8.0D))) {
+            	   return true;
+               }
+            }
+
+            return false;
+         }
+      }
+
+      protected double getTargetDistance() {
+         return super.getTargetDistance() * 0.5D;
+      }
+   }
+
+   class HurtByTargetGoal extends net.minecraft.entity.ai.goal.HurtByTargetGoal {
+      public HurtByTargetGoal() {
+         super(EntityAnkylosaurus.this);
+      }
+
+      /**
+       * Execute a one shot task or start executing a continuous task
+       */
+      public void startExecuting() {
+         super.startExecuting();
+         if (EntityAnkylosaurus.this.isChild()) {
+            this.alertOthers();
+            this.resetTask();
+         }
+
+      }
+
+      protected void setAttackTarget(MobEntity mobIn, LivingEntity targetIn) {
+         if (mobIn instanceof EntityAnkylosaurus && !mobIn.isChild()) {
+            super.setAttackTarget(mobIn, targetIn);
+         }
+
+      }
+   }
+
+   class MeleeAttackGoal extends net.minecraft.entity.ai.goal.MeleeAttackGoal {
+      public MeleeAttackGoal() {
+         super(EntityAnkylosaurus.this, 1.25D, true);
+      }
+
+      protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
+         double d0 = this.getAttackReachSqr(enemy);
+         if (distToEnemySqr <= d0 && this.attackTick <= 0) {
+            this.attackTick = 20;
+            this.attacker.attackEntityAsMob(enemy);
+         } else if (distToEnemySqr <= d0 * 2.0D) {
+            if (this.attackTick <= 0) {
+               this.attackTick = 20;
+            }
+
+            if (this.attackTick <= 10) {
+            }
+         } else {
+            this.attackTick = 20;
+         }
+
+      }
+
+      /**
+       * Reset the task's internal state. Called when this task is interrupted by another one
+       */
+      public void resetTask() {
+         super.resetTask();
+      }
+
+      protected double getAttackReachSqr(LivingEntity attackTarget) {
+         return (double)(4.0F + attackTarget.getWidth());
+      }
+   }
+
+   class PanicGoal extends net.minecraft.entity.ai.goal.PanicGoal {
+      public PanicGoal() {
+         super(EntityAnkylosaurus.this, 2.0D);
+      }
+
+      /**
+       * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+       * method as well.
+       */
+      public boolean shouldExecute() {
+         return !EntityAnkylosaurus.this.isChild() && !EntityAnkylosaurus.this.isBurning() ? false : super.shouldExecute();
+      }
+   }
+   
+   class ProtectBabyGoal extends NearestAttackableTargetGoal<PlayerEntity> {
+	      public ProtectBabyGoal() {
+	         super(EntityAnkylosaurus.this, PlayerEntity.class, 20, true, true, (Predicate<LivingEntity>)null);
+	      }
+
+	      /**
+	       * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+	       * method as well.
+	       */
+	      public boolean shouldExecute() {
+	         if (EntityAnkylosaurus.this.isChild()) {
+	            return false;
+	         } else {
+	            if (super.shouldExecute()) {
+	               for(EntityAnkylosaurus ankylosaurus : EntityAnkylosaurus.this.world.getEntitiesWithinAABB(EntityAnkylosaurus.class, EntityAnkylosaurus.this.getBoundingBox().grow(8.0D, 4.0D, 8.0D))) {
+	                  if (ankylosaurus.isChild()) {
+	                     return true;
+	                  }
+	               }
+	            }
+
+	            return false;
+	         }
+	      }
+
+	      protected double getTargetDistance() {
+	         return super.getTargetDistance() * 0.5D;
+	      }
+	   }
+   
+   static class LayEggGoal extends MoveToBlockGoal {
+	      private final EntityAnkylosaurus ankylosaurus;
+
+	      LayEggGoal(EntityAnkylosaurus ankylosaurus, double speedIn) {
+	         super(ankylosaurus, speedIn, 16);
+	         this.ankylosaurus = ankylosaurus;
+	      }
+
+	      /**
+	       * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+	       * method as well.
+	       */
+	      public boolean shouldExecute() {
+	         return this.ankylosaurus.hasEgg() ? super.shouldExecute() : false;
+	      }
+
+	      /**
+	       * Returns whether an in-progress EntityAIBase should continue executing
+	       */
+	      public boolean shouldContinueExecuting() {
+	         return super.shouldContinueExecuting() && this.ankylosaurus.hasEgg();
+	      }
+
+	      /**
+	       * Keep ticking a continuous task that has already been started
+	       */
+	      public void tick() {
+	         super.tick();
+	         BlockPos blockpos = new BlockPos(this.ankylosaurus);
+	         if (!this.ankylosaurus.isInWater() && this.getIsAboveDestination()) {
+	            if (this.ankylosaurus.isDigging < 1) {
+	               this.ankylosaurus.setDigging(true);
+	            } else if (this.ankylosaurus.isDigging > 200) {
+	               World world = this.ankylosaurus.world;
+	               world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
+	               world.setBlockState(this.destinationBlock.up(), BlockInit.ANKYLOSAURUS_EGG.getDefaultState().with(AnkylosaurusEggBlock.EGGS, Integer.valueOf(this.ankylosaurus.rand.nextInt(4) + 1)), 3);
+	               this.ankylosaurus.setHasEgg(false);
+	               this.ankylosaurus.setDigging(false);
+	               this.ankylosaurus.setInLove(600);
+	            }
+
+	            if (this.ankylosaurus.isDigging()) {
+	               this.ankylosaurus.isDigging++;
+	            }
+	         }
+
+	      }
+
+	      /**
+	       * Return true to set given position as destination
+	       */
+	      protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
+	         if (!worldIn.isAirBlock(pos.up())) {
+	            return false;
+	         } else {
+	            Block block = worldIn.getBlockState(pos).getBlock();
+	            return block == Blocks.COARSE_DIRT;
+	         }
+	      }
+	   }
+
+	static class MateGoal extends BreedGoal {
+	      private final EntityAnkylosaurus ankylosaurus;
+
+	      MateGoal(EntityAnkylosaurus ankylosaurus, double speedIn) {
+	         super(ankylosaurus, speedIn);
+	         this.ankylosaurus = ankylosaurus;
+	      }
+
+	      /**
+	       * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+	       * method as well.
+	       */
+	      public boolean shouldExecute() {
+	         return super.shouldExecute() && !this.ankylosaurus.hasEgg();
+	      }
+
+	      /**
+	       * Spawns a baby animal of the same type.
+	       */
+	      protected void spawnBaby() {
+	         ServerPlayerEntity serverplayerentity = this.animal.getLoveCause();
+	         if (serverplayerentity == null && this.targetMate.getLoveCause() != null) {
+	            serverplayerentity = this.targetMate.getLoveCause();
+	         }
+
+	         if (serverplayerentity != null) {
+	            serverplayerentity.addStat(Stats.ANIMALS_BRED);
+	            CriteriaTriggers.BRED_ANIMALS.trigger(serverplayerentity, this.animal, this.targetMate, (AgeableEntity)null);
+	         }
+
+	         this.ankylosaurus.setHasEgg(true);
+	         this.animal.resetInLove();
+	         this.targetMate.resetInLove();
+	         Random random = this.animal.getRNG();
+	         if (this.world.getGameRules().getBoolean(GameRules.DO_MOB_LOOT)) {
+	            this.world.addEntity(new ExperienceOrbEntity(this.world, this.animal.getPosX(), this.animal.getPosY(), this.animal.getPosZ(), random.nextInt(7) + 1));
+	         }
+
+	      }
+	   }
+	
 }

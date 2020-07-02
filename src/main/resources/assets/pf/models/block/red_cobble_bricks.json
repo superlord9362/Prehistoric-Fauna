@@ -1,6 +1,0 @@
-{
-   "parent": "block/cube_all",
-   "textures": {
-       "all": "pf:blocks/square_pavement_red"
-   }
-}

@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "prehistoricfauna:araucaria_pressure_plate",
+    "prehistoricfauna:metasequoia_pressure_plate",
+	"prehistoricfauna:cypress_pressure_plate"
+  ]
+}

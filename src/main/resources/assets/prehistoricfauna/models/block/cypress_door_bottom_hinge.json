@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_bottom_rh",
+    "textures": {
+        "bottom": "prehistoricfauna:blocks/cypress_door_bottom",
+        "top": "prehistoricfauna:blocks/cypress_door_top"
+    }
+}
