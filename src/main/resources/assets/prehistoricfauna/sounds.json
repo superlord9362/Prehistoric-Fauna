@@ -46,7 +46,7 @@
             }
         ]
     },
-	"tyrannosaurus_angry": {
+	"tyrannosaurus_warm": {
         "category": "neutral",
         "sounds": [
             {
@@ -55,7 +55,7 @@
             }
         ]
     },
-	"ankylosaurus_idle": {
+	"anklyosaurus_idle": {
         "category": "neutral",
         "sounds": [
             {
@@ -65,7 +65,7 @@
             }
         ]
     },
-    "ankylosaurus_angry": {
+    "ankylosaurus_warn": {
         "category": "neutral",
         "sounds": [
             {

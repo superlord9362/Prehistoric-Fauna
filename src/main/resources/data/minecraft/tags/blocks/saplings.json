@@ -2,7 +2,6 @@
   "replace": false,
   "values": [
     "prehistoricfauna:araucaria_sapling",
-    "prehistoricfauna:metasequoia_sapling",
-	"prehistoricfauna:cypress_sapling"
+    "prehistoricfauna:metasequoia_sapling"
   ]
 }

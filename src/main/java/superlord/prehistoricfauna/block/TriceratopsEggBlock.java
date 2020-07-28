@@ -1,6 +1,7 @@
 package superlord.prehistoricfauna.block;
 
 import java.util.Random;
+
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
@@ -23,7 +24,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import superlord.prehistoricfauna.entity.EntityTriceratops;
+import superlord.prehistoricfauna.entity.TriceratopsEntity;
 import superlord.prehistoricfauna.init.ModEntityTypes;
 
 public class TriceratopsEggBlock extends Block {
@@ -87,7 +88,7 @@ public class TriceratopsEggBlock extends Block {
 
             for(int j = 0; j < state.get(EGGS); ++j) {
                worldIn.playEvent(2001, pos, Block.getStateId(state));
-               EntityTriceratops triceratopsentity = ModEntityTypes.ENTITY_TRICERATOPS.create(worldIn);
+               TriceratopsEntity triceratopsentity = ModEntityTypes.TRICERATOPS_ENTITY.create(worldIn);
                triceratopsentity.setGrowingAge(-24000);
                triceratopsentity.setLocationAndAngles((double)pos.getX() + 0.3D + (double)j * 0.2D, (double)pos.getY(), (double)pos.getZ() + 0.3D, 0.0F, 0.0F);
                worldIn.addEntity(triceratopsentity);
@@ -146,7 +147,7 @@ public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
    }
 
    private boolean canTrample(World worldIn, Entity trampler) {
-      if (trampler instanceof EntityTriceratops) {
+      if (trampler instanceof TriceratopsEntity) {
          return false;
       } else {
          return trampler instanceof LivingEntity && !(trampler instanceof PlayerEntity) ? net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(worldIn, trampler) : true;

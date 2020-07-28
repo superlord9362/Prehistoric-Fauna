@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=lower": { "model": "prehistoricfauna:block/osmundacaulis_bottom" },
+        "half=upper":    { "model": "prehistoricfauna:block/osmundacaulis_top" }
+    }
+}

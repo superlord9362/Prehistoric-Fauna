@@ -2,7 +2,6 @@
 	"replace": false,
 	"values": [
 		"prehistoricfauna:metasequoia_log",
-		"prehistoricfauna:araucaria_log",
-		"prehistoricfauna:cypress_log"
+		"prehistoricfauna:araucaria_log"
 	]
 }

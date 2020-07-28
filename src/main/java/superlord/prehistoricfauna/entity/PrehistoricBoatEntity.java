@@ -1,3 +1,4 @@
+/**
 package superlord.prehistoricfauna.entity;
 
 import java.util.List;
@@ -110,45 +111,24 @@ public PrehistoricBoatEntity(EntityType boat, World p_i50129_2_) {
       this.dataManager.register(ROCKING_TICKS, 0);
    }
 
-   /**
-    * Returns a boundingBox used to collide the entity with other entities and blocks. This enables the entity to be
-    * pushable on contact, like boats or minecarts.
-    */
    @Nullable
    public AxisAlignedBB getCollisionBox(Entity entityIn) {
       return entityIn.canBePushed() ? entityIn.getBoundingBox() : null;
    }
 
-   /**
-    * Returns the <b>solid</b> collision bounding box for this entity. Used to make (e.g.) boats solid. Return null if
-    * this entity is not solid.
-    *  
-    * For general purposes, use {@link #width} and {@link #height}.
-    *  
-    * @see getEntityBoundingBox
-    */
    @Nullable
    public AxisAlignedBB getCollisionBoundingBox() {
       return this.getBoundingBox();
    }
 
-   /**
-    * Returns true if this entity should push and be pushed by other entities when colliding.
-    */
    public boolean canBePushed() {
       return true;
    }
 
-   /**
-    * Returns the Y offset from the entity's position for any entity riding this one.
-    */
    public double getMountedYOffset() {
       return -0.1D;
    }
 
-   /**
-    * Called when the entity is attacked.
-    */
    @SuppressWarnings("deprecation")
 public boolean attackEntityFrom(DamageSource source, float amount) {
       if (this.isInvulnerableTo(source)) {
@@ -193,9 +173,6 @@ public boolean attackEntityFrom(DamageSource source, float amount) {
 
    }
 
-   /**
-    * Applies a velocity to the entities, to push them away from eachother.
-    */
    public void applyEntityCollision(Entity entityIn) {
       if (entityIn instanceof PrehistoricBoatEntity) {
          if (entityIn.getBoundingBox().minY < this.getBoundingBox().maxY) {
@@ -217,9 +194,6 @@ public boolean attackEntityFrom(DamageSource source, float amount) {
       }
    }
 
-   /**
-    * Setups the entity to do the hurt animation. Only used by packets in multiplayer.
-    */
    @OnlyIn(Dist.CLIENT)
    public void performHurtAnimation() {
       this.setForwardDirection(-this.getForwardDirection());
@@ -227,17 +201,11 @@ public boolean attackEntityFrom(DamageSource source, float amount) {
       this.setDamageTaken(this.getDamageTaken() * 11.0F);
    }
 
-   /**
-    * Returns true if other Entities should be prevented from moving through this Entity.
-    */
    @SuppressWarnings("deprecation")
 public boolean canBeCollidedWith() {
       return !this.removed;
    }
 
-   /**
-    * Sets a target for the client to interpolate towards over the next few ticks
-    */
    @OnlyIn(Dist.CLIENT)
    public void setPositionAndRotationDirect(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean teleport) {
       this.lerpX = x;
@@ -248,16 +216,10 @@ public boolean canBeCollidedWith() {
       this.lerpSteps = 10;
    }
 
-   /**
-    * Gets the horizontal facing direction of this Entity, adjusted to take specially-treated entity types into account.
-    */
    public Direction getAdjustedHorizontalFacing() {
       return this.getHorizontalFacing().rotateY();
    }
 
-   /**
-    * Called to update the entity's position/logic.
-    */
    public void tick() {
       this.previousStatus = this.status;
       this.status = this.getBoatStatus();
@@ -419,9 +381,6 @@ public boolean canBeCollidedWith() {
       return this.getPaddleState(side) ? (float)MathHelper.clampedLerp((double)this.paddlePositions[side] - (double)((float)Math.PI / 8F), (double)this.paddlePositions[side], (double)limbSwing) : 0.0F;
    }
 
-   /**
-    * Determines whether the boat is in water, gliding on land, or in air
-    */
    private PrehistoricBoatEntity.Status getBoatStatus() {
       PrehistoricBoatEntity.Status boatentity$status = this.getUnderwaterStatus();
       if (boatentity$status != null) {
@@ -479,9 +438,6 @@ public boolean canBeCollidedWith() {
       }
    }
 
-   /**
-    * Decides how much the boat should be gliding on the land (based on any slippery blocks)
-    */
    public float getBoatGlide() {
       AxisAlignedBB axisalignedbb = this.getBoundingBox();
       AxisAlignedBB axisalignedbb1 = new AxisAlignedBB(axisalignedbb.minX, axisalignedbb.minY - 0.001D, axisalignedbb.minZ, axisalignedbb.maxX, axisalignedbb.minY, axisalignedbb.maxZ);
@@ -548,9 +504,6 @@ public boolean canBeCollidedWith() {
       return flag;
    }
 
-   /**
-    * Decides whether the boat is currently underwater.
-    */
    @Nullable
    private PrehistoricBoatEntity.Status getUnderwaterStatus() {
       AxisAlignedBB axisalignedbb = this.getBoundingBox();
@@ -585,9 +538,6 @@ public boolean canBeCollidedWith() {
       return flag ? PrehistoricBoatEntity.Status.UNDER_WATER : null;
    }
 
-   /**
-    * Update the boat's speed, based on momentum.
-    */
    private void updateMotion() {
       @SuppressWarnings("unused")
 	double d0 = (double)-0.04F;
@@ -691,9 +641,6 @@ public boolean canBeCollidedWith() {
       }
    }
 
-   /**
-    * Applies this boat's yaw to the given entity. Used to update the orientation of its passenger.
-    */
    protected void applyYawToEntity(Entity entityToUpdate) {
       entityToUpdate.setRenderYawOffset(this.rotationYaw);
       float f = MathHelper.wrapDegrees(entityToUpdate.rotationYaw - this.rotationYaw);
@@ -703,9 +650,6 @@ public boolean canBeCollidedWith() {
       entityToUpdate.setRotationYawHead(entityToUpdate.rotationYaw);
    }
 
-   /**
-    * Applies this entity's orientation (pitch/yaw) to another entity. Used to update passenger orientation.
-    */
    @OnlyIn(Dist.CLIENT)
    public void applyOrientationToEntity(Entity entityToUpdate) {
       this.applyYawToEntity(entityToUpdate);
@@ -715,9 +659,6 @@ public boolean canBeCollidedWith() {
       compound.putString("Type", this.getBoatType().getName());
    }
 
-   /**
-    * (abstract) Protected helper method to read subclass entity data from NBT.
-    */
    protected void readAdditional(CompoundNBT compound) {
       if (compound.contains("Type", 8)) {
          this.setBoatType(PrehistoricBoatEntity.Type.getTypeFromString(compound.getString("Type")));
@@ -734,7 +675,7 @@ public boolean canBeCollidedWith() {
    }
 
    @SuppressWarnings("deprecation")
-protected void updateFallState(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
+   protected void updateFallState(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
       this.lastYd = this.getMotion().y;
       if (!this.isPassenger()) {
          if (onGroundIn) {
@@ -771,30 +712,18 @@ protected void updateFallState(double y, boolean onGroundIn, BlockState state, B
       return this.dataManager.<Boolean>get(side == 0 ? field_199704_e : field_199705_f) && this.getControllingPassenger() != null;
    }
 
-   /**
-    * Sets the damage taken from the last hit.
-    */
    public void setDamageTaken(float damageTaken) {
       this.dataManager.set(DAMAGE_TAKEN, damageTaken);
    }
 
-   /**
-    * Gets the damage taken from the last hit.
-    */
    public float getDamageTaken() {
       return this.dataManager.get(DAMAGE_TAKEN);
    }
 
-   /**
-    * Sets the time to count down from since the last time entity was hit.
-    */
    public void setTimeSinceHit(int timeSinceHit) {
       this.dataManager.set(TIME_SINCE_HIT, timeSinceHit);
    }
 
-   /**
-    * Gets the time since the last hit.
-    */
    public int getTimeSinceHit() {
       return this.dataManager.get(TIME_SINCE_HIT);
    }
@@ -812,16 +741,10 @@ protected void updateFallState(double y, boolean onGroundIn, BlockState state, B
       return MathHelper.lerp(partialTicks, this.prevRockingAngle, this.rockingAngle);
    }
 
-   /**
-    * Sets the forward direction of the entity.
-    */
    public void setForwardDirection(int forwardDirection) {
       this.dataManager.set(FORWARD_DIRECTION, forwardDirection);
    }
 
-   /**
-    * Gets the forward direction of the entity.
-    */
    public int getForwardDirection() {
       return this.dataManager.get(FORWARD_DIRECTION);
    }
@@ -838,10 +761,6 @@ protected void updateFallState(double y, boolean onGroundIn, BlockState state, B
       return this.getPassengers().size() < 2 && !this.areEyesInFluid(FluidTags.WATER);
    }
 
-   /**
-    * For vehicles, the first passenger is generally considered the controller and "drives" the vehicle. For example,
-    * Pigs, Horses, and Boats are generally "steered" by the controlling passenger.
-    */
    @Nullable
    public Entity getControllingPassenger() {
       List<Entity> list = this.getPassengers();
@@ -902,9 +821,6 @@ protected void updateFallState(double y, boolean onGroundIn, BlockState state, B
          return this.name;
       }
 
-      /**
-       * Get a boat type by it's enum ordinal
-       */
       public static PrehistoricBoatEntity.Type byId(int id) {
          PrehistoricBoatEntity.Type[] aboatentity$type = values();
          if (id < 0 || id >= aboatentity$type.length) {
@@ -926,4 +842,4 @@ protected void updateFallState(double y, boolean onGroundIn, BlockState state, B
          return aboatentity$type[0];
       }
    }
-}
+}*/

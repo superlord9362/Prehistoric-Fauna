@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S S",
+    "SSS",
+	"SSS"
+  ],
+  "key": {
+    "S": {
+      "item": "prehistoricfauna:ankylosaurus_scute"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:ankylosaurus_chestplate",
+    "count": 1
+  }
+}

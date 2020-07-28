@@ -33,8 +33,8 @@ public class CommonEvents {
 		BLOCK_STRIPPING_MAP.put(BlockInit.METASEQUOIA_WOOD, BlockInit.STRIPPED_METASEQUOIA_WOOD);
 		BLOCK_STRIPPING_MAP.put(BlockInit.ARAUCARIA_LOG, BlockInit.STRIPPED_ARAUCARIA_LOG);
 		BLOCK_STRIPPING_MAP.put(BlockInit.ARAUCARIA_WOOD, BlockInit.STRIPPED_ARAUCARIA_WOOD);
-		BLOCK_STRIPPING_MAP.put(BlockInit.CYPRESS_LOG, BlockInit.STRIPPED_CYPRESS_LOG);
-		BLOCK_STRIPPING_MAP.put(BlockInit.CYPRESS_WOOD, BlockInit.STRIPPED_CYPRESS_WOOD);
+		//BLOCK_STRIPPING_MAP.put(BlockInit.CYPRESS_LOG, BlockInit.STRIPPED_CYPRESS_LOG);
+		//BLOCK_STRIPPING_MAP.put(BlockInit.CYPRESS_WOOD, BlockInit.STRIPPED_CYPRESS_WOOD);
 	}
 	
 	public static void setup() {
@@ -48,11 +48,11 @@ public class CommonEvents {
 		registerFlammable(BlockInit.METASEQUOIA_FENCE_GATE, 5, 20);
 		registerFlammable(BlockInit.ARAUCARIA_STAIRS, 5, 20);
 		registerFlammable(BlockInit.METASEQUOIA_STAIRS, 5, 20);
-		registerFlammable(BlockInit.CYPRESS_PLANKS, 5, 20);
-		registerFlammable(BlockInit.CYPRESS_SLAB, 5, 20);
-		registerFlammable(BlockInit.CYPRESS_FENCE, 5, 20);
-		registerFlammable(BlockInit.CYPRESS_FENCE_GATE, 5, 20);
-		registerFlammable(BlockInit.CYPRESS_STAIRS, 5, 20);
+		//registerFlammable(BlockInit.CYPRESS_PLANKS, 5, 20);
+		//registerFlammable(BlockInit.CYPRESS_SLAB, 5, 20);
+		//registerFlammable(BlockInit.CYPRESS_FENCE, 5, 20);
+		//registerFlammable(BlockInit.CYPRESS_FENCE_GATE, 5, 20);
+		//registerFlammable(BlockInit.CYPRESS_STAIRS, 5, 20);
 		registerFlammable(BlockInit.ARAUCARIA_LOG, 5, 5);
 		registerFlammable(BlockInit.METASEQUOIA_LOG, 5, 5);
 		registerFlammable(BlockInit.METASEQUOIA_WOOD, 5, 5);
@@ -62,13 +62,13 @@ public class CommonEvents {
 		registerFlammable(BlockInit.METASEQUOIA_WOOD, 5, 5);
 		registerFlammable(BlockInit.STRIPPED_ARAUCARIA_WOOD, 5, 5);
 		registerFlammable(BlockInit.STRIPPED_METASEQUOIA_WOOD, 5, 5);
-		registerFlammable(BlockInit.CYPRESS_LOG, 5, 5);
-		registerFlammable(BlockInit.STRIPPED_CYPRESS_LOG, 5, 5);
-		registerFlammable(BlockInit.CYPRESS_WOOD, 5, 5);
-		registerFlammable(BlockInit.STRIPPED_CYPRESS_WOOD, 5, 5);
+		//registerFlammable(BlockInit.CYPRESS_LOG, 5, 5);
+		//registerFlammable(BlockInit.STRIPPED_CYPRESS_LOG, 5, 5);
+		//registerFlammable(BlockInit.CYPRESS_WOOD, 5, 5);
+		//registerFlammable(BlockInit.STRIPPED_CYPRESS_WOOD, 5, 5);
 		registerFlammable(BlockInit.ARAUCARIA_LEAVES, 30, 60);
 		registerFlammable(BlockInit.METASEQUOIA_LEAVES, 30, 60);
-		registerFlammable(BlockInit.CYPRESS_LEAVES, 30, 60);
+		//registerFlammable(BlockInit.CYPRESS_LEAVES, 30, 60);
 		registerFlammable(BlockInit.CLUBMOSS, 60, 100);
 		registerFlammable(BlockInit.HORSETAIL, 60, 100);
 		registerFlammable(BlockInit.OSMUNDA, 60, 100);
@@ -78,10 +78,10 @@ public class CommonEvents {
 		registerFlammable(BlockInit.MOSS, 60, 20);
 		registerCompostable(0.3F, BlockInit.ARAUCARIA_LEAVES);
 		registerCompostable(0.3F, BlockInit.METASEQUOIA_LEAVES);
-		registerCompostable(0.3F, BlockInit.CYPRESS_LEAVES);
+		//registerCompostable(0.3F, BlockInit.CYPRESS_LEAVES);
 		registerCompostable(0.3F, BlockInit.ARAUCARIA_SAPLING);
 		registerCompostable(0.3F, BlockInit.METASEQUOIA_SAPLING);
-		registerCompostable(0.3F, BlockInit.CYPRESS_SAPLING);
+		//registerCompostable(0.3F, BlockInit.CYPRESS_SAPLING);
 		registerCompostable(0.3F, BlockInit.HORSETAIL);
 		registerCompostable(0.3F, BlockInit.OSMUNDA);
 		registerCompostable(0.5F, BlockInit.DOUBLE_HORSETAIL);

@@ -2,7 +2,6 @@
   "replace": false,
   "values": [
     "prehistoricfauna:araucaria_trapdoor",
-    "prehistoricfauna:metasequoia_trapdoor",
-	"prehistoricfauna:cypress_trapdoor"
+    "prehistoricfauna:metasequoia_trapdoor"
   ]
 }

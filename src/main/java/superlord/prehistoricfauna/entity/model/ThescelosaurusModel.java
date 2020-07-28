@@ -7,13 +7,13 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
-import superlord.prehistoricfauna.entity.EntityThescelosaurus;
+import superlord.prehistoricfauna.entity.ThescelosaurusEntity;
 
 /**
  * Thescelosaurus - Weastian
  * Created using Tabula 7.0.1
  */
-public class ThescelosaurusModel extends EntityModel<EntityThescelosaurus> {
+public class ThescelosaurusModel extends EntityModel<ThescelosaurusEntity> {
     public ModelRenderer Body;
     public ModelRenderer RightLeg1;
     public ModelRenderer LeftLeg1;
@@ -86,7 +86,7 @@ public class ThescelosaurusModel extends EntityModel<EntityThescelosaurus> {
     }
 
 	@Override
-	public void setRotationAngles(EntityThescelosaurus entityIn, float limbSwing, float limbSwingAmount,
+	public void setRotationAngles(ThescelosaurusEntity entityIn, float limbSwing, float limbSwingAmount,
 			float ageInTicks, float netHeadYaw, float headPitch) {
 		      this.Head.rotateAngleX = headPitch * ((float)Math.PI / 180F);
 		      this.Head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);

@@ -1,6 +1,7 @@
 package superlord.prehistoricfauna.block;
 
 import java.util.Random;
+
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
@@ -23,7 +24,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import superlord.prehistoricfauna.entity.EntityTyrannosaurus;
+import superlord.prehistoricfauna.entity.TyrannosaurusEntity;
 import superlord.prehistoricfauna.init.ModEntityTypes;
 
 public class TyrannosaurusEggBlock extends Block {
@@ -91,7 +92,7 @@ public class TyrannosaurusEggBlock extends Block {
 
 				for (int j = 0; j < state.get(EGGS); ++j) {
 					worldIn.playEvent(2001, pos, Block.getStateId(state));
-					EntityTyrannosaurus tyrannosaurusentity = ModEntityTypes.ENTITY_TYRANNOSAURUS.create(worldIn);
+					TyrannosaurusEntity tyrannosaurusentity = ModEntityTypes.TYRANNOSAURUS_ENTITY.create(worldIn);
 					tyrannosaurusentity.setGrowingAge(-24000);
 					tyrannosaurusentity.setLocationAndAngles((double) pos.getX() + 0.3D + (double) j * 0.2D,
 							(double) pos.getY(), (double) pos.getZ() + 0.3D, 0.0F, 0.0F);
@@ -156,7 +157,7 @@ public class TyrannosaurusEggBlock extends Block {
 	}
 
 	private boolean canTrample(World worldIn, Entity trampler) {
-		if (trampler instanceof EntityTyrannosaurus) {
+		if (trampler instanceof TyrannosaurusEntity) {
 			return false;
 		} else {
 			return trampler instanceof LivingEntity && !(trampler instanceof PlayerEntity)

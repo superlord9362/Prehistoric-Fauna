@@ -9,14 +9,14 @@ import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.entity.EntityAnkylosaurus;
+import superlord.prehistoricfauna.entity.AnkylosaurusEntity;
 
 /**
  * Ankylosaurus - Weastian
  * Created using Tabula 8.0.0
  */
 @OnlyIn(Dist.CLIENT)
-public class Ankylosaurus extends EntityModel<EntityAnkylosaurus> {
+public class Ankylosaurus extends EntityModel<AnkylosaurusEntity> {
     public ModelRenderer Body;
     public ModelRenderer LeftFrontLeg;
     public ModelRenderer RightFrontLeg;
@@ -130,7 +130,7 @@ public class Ankylosaurus extends EntityModel<EntityAnkylosaurus> {
     }
 
     @Override
-    public void setRotationAngles(EntityAnkylosaurus entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setRotationAngles(AnkylosaurusEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 	      this.Neck.rotateAngleX = headPitch * ((float)Math.PI / 180F);
 	      this.Neck.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
 	      this.RightHindLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;

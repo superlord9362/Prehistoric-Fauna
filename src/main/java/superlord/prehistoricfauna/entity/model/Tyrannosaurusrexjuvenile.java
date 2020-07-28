@@ -9,14 +9,14 @@ import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.entity.EntityTyrannosaurus;
+import superlord.prehistoricfauna.entity.TyrannosaurusEntity;
 
 /**
  * Tyrannosaurus rex juvenile - Weastian
  * Created using Tabula 8.0.0
  */
 @OnlyIn(Dist.CLIENT)
-public class Tyrannosaurusrexjuvenile extends EntityModel<EntityTyrannosaurus> {
+public class Tyrannosaurusrexjuvenile extends EntityModel<TyrannosaurusEntity> {
     public ModelRenderer Body1;
     public ModelRenderer LeftLeg1;
     public ModelRenderer RightLeg1;
@@ -110,7 +110,7 @@ public class Tyrannosaurusrexjuvenile extends EntityModel<EntityTyrannosaurus> {
     }
 
     @Override
-    public void setRotationAngles(EntityTyrannosaurus entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setRotationAngles(TyrannosaurusEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     	this.Neck.rotateAngleX = headPitch * ((float)Math.PI / 180F);
     	this.Neck.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
     	this.RightLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;

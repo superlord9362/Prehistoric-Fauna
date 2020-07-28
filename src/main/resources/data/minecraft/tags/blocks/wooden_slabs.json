@@ -2,7 +2,6 @@
   "replace": false,
   "values": [
     "prehistoricfauna:araucaria_slab",
-    "prehistoricfauna:metasequoia_slab",
-	"prehistoricfauna:cypress_slab"
+    "prehistoricfauna:metasequoia_slab"
   ]
 }

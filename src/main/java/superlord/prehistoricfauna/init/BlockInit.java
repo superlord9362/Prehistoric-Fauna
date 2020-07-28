@@ -27,6 +27,8 @@ import superlord.prehistoricfauna.PrehistoricFauna.PFEntities;
 import superlord.prehistoricfauna.PrehistoricFauna.PFPlants;
 import superlord.prehistoricfauna.PrehistoricFauna.PFWood;
 import superlord.prehistoricfauna.block.AnkylosaurusEggBlock;
+import superlord.prehistoricfauna.block.BasilemysEggBlock;
+import superlord.prehistoricfauna.block.DakotaraptorEggBlock;
 import superlord.prehistoricfauna.block.MossBlock;
 import superlord.prehistoricfauna.block.MossyDirtBlock;
 import superlord.prehistoricfauna.block.PrehistoricButtonBlock;
@@ -41,7 +43,7 @@ import superlord.prehistoricfauna.block.ThescelosaurusEggBlock;
 import superlord.prehistoricfauna.block.TriceratopsEggBlock;
 import superlord.prehistoricfauna.block.TyrannosaurusEggBlock;
 import superlord.prehistoricfauna.world.feature.AraucariaTree;
-import superlord.prehistoricfauna.world.feature.CypressTree;
+//import superlord.prehistoricfauna.world.feature.CypressTree;
 import superlord.prehistoricfauna.world.feature.MetasequoiaTree;
 
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Bus.MOD)
@@ -101,7 +103,9 @@ public class BlockInit {
 	public static final Block TRICERATOPS_EGG = new TriceratopsEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("triceratops_egg");
 	public static final Block ANKYLOSAURUS_EGG = new AnkylosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("ankylosaurus_egg");
 	public static final Block TYRANNOSAURUS_EGG = new TyrannosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("tyrannosaurus_egg");
-	public static final Block CYPRESS_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("cypress_log");
+	public static final Block DAKOTARAPTOR_EGG = new DakotaraptorEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("dakotaraptor_egg");
+	public static final Block BASILEMYS_EGG = new BasilemysEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("basilemys_egg");
+/**	public static final Block CYPRESS_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("cypress_log");
 	public static final Block CYPRESS_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("cypress_planks");
 	public static final Block STRIPPED_CYPRESS_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_cypress_log");
 	public static final Block CYPRESS_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("cypress_wood");
@@ -118,6 +122,9 @@ public class BlockInit {
 	public static final Block CYPRESS_SAPLING = new PrehistoricSaplingBlock(new CypressTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("cypress_sapling");
 	@SuppressWarnings("deprecation")
 	public static final Block POTTED_CYPRESS_SAPLING = new FlowerPotBlock(CYPRESS_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_cypress_sapling");
+*/	public static final Block MOSS_BLOCK = new Block(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.2F).sound(SoundType.PLANT)).setRegistryName("moss_block");
+	public static final Block CONIOPTERIS = new PrehistoricPlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("coniopteris");
+	public static final Block OSMUNDACAULIS = new DoublePlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).doesNotBlockMovement().sound(SoundType.PLANT)).setRegistryName("osmundacaulis");
 	
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
@@ -169,7 +176,9 @@ public class BlockInit {
 		event.getRegistry().register(TRICERATOPS_EGG);
 		event.getRegistry().register(TYRANNOSAURUS_EGG);
 		event.getRegistry().register(ANKYLOSAURUS_EGG);
-		event.getRegistry().register(CYPRESS_LOG);
+		event.getRegistry().register(DAKOTARAPTOR_EGG);
+		event.getRegistry().register(BASILEMYS_EGG);
+		/**event.getRegistry().register(CYPRESS_LOG);
 		event.getRegistry().register(CYPRESS_BUTTON);
 		event.getRegistry().register(CYPRESS_DOOR);
 		event.getRegistry().register(CYPRESS_FENCE);
@@ -185,7 +194,10 @@ public class BlockInit {
 		event.getRegistry().register(STRIPPED_CYPRESS_LOG);
 		event.getRegistry().register(STRIPPED_CYPRESS_WOOD);
 		event.getRegistry().register(POTTED_CYPRESS_SAPLING);
-		if (FMLEnvironment.dist == Dist.CLIENT) {
+		*/event.getRegistry().register(MOSS_BLOCK);
+		event.getRegistry().register(CONIOPTERIS);
+		event.getRegistry().register(OSMUNDACAULIS);
+			if (FMLEnvironment.dist == Dist.CLIENT) {
 			RenderType cutoutRenderType = RenderType.getCutout();
 			RenderType mippedRenderType = RenderType.getCutoutMipped();
 			
@@ -193,8 +205,10 @@ public class BlockInit {
 			RenderTypeLookup.setRenderLayer(OSMUNDA, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(DOUBLE_HORSETAIL, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(DOUBLE_OSMUNDA, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(OSMUNDACAULIS, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(CLUBMOSS, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(MARCHANTIA, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(CONIOPTERIS, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(METASEQUOIA_SAPLING, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(METASEQUOIA_LEAVES, mippedRenderType);
 			RenderTypeLookup.setRenderLayer(ARAUCARIA_SAPLING, cutoutRenderType);
@@ -209,11 +223,11 @@ public class BlockInit {
 			RenderTypeLookup.setRenderLayer(METASEQUOIA_DOOR, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(ARAUCARIA_TRAPDOOR, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(METASEQUOIA_TRAPDOOR, cutoutRenderType);
-			RenderTypeLookup.setRenderLayer(CYPRESS_SAPLING, cutoutRenderType);
+			/**RenderTypeLookup.setRenderLayer(CYPRESS_SAPLING, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(CYPRESS_LEAVES, mippedRenderType);
 			RenderTypeLookup.setRenderLayer(POTTED_CYPRESS_SAPLING, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(CYPRESS_DOOR, cutoutRenderType);
-			RenderTypeLookup.setRenderLayer(CYPRESS_TRAPDOOR, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(CYPRESS_TRAPDOOR, cutoutRenderType);*/
 		}
 	}
 	
@@ -267,7 +281,9 @@ public class BlockInit {
 		event.getRegistry().register(new BlockItem(TRICERATOPS_EGG, new Item.Properties().group(PFEntities.instance)).setRegistryName("triceratops_egg"));
 		event.getRegistry().register(new BlockItem(ANKYLOSAURUS_EGG, new Item.Properties().group(PFEntities.instance)).setRegistryName("ankylosaurus_egg"));
 		event.getRegistry().register(new BlockItem(TYRANNOSAURUS_EGG, new Item.Properties().group(PFEntities.instance)).setRegistryName("tyrannosaurus_egg"));
-		event.getRegistry().register(new BlockItem(CYPRESS_LEAVES, new Item.Properties().group(PFPlants.instance)).setRegistryName("cypress_leaves"));
+		event.getRegistry().register(new BlockItem(DAKOTARAPTOR_EGG, new Item.Properties().group(PFEntities.instance)).setRegistryName("dakotaraptor_egg"));
+		event.getRegistry().register(new BlockItem(BASILEMYS_EGG, new Item.Properties().group(PFEntities.instance)).setRegistryName("basilemys_egg"));
+		/**event.getRegistry().register(new BlockItem(CYPRESS_LEAVES, new Item.Properties().group(PFPlants.instance)).setRegistryName("cypress_leaves"));
 		event.getRegistry().register(new BlockItem(CYPRESS_LOG, new Item.Properties().group(PFWood.instance)).setRegistryName("cypress_log"));
 		event.getRegistry().register(new BlockItem(CYPRESS_PLANKS, new Item.Properties().group(PFWood.instance)).setRegistryName("cypress_planks"));
 		event.getRegistry().register(new BlockItem(CYPRESS_SAPLING, new Item.Properties().group(PFPlants.instance)).setRegistryName("cypress_sapling"));
@@ -283,6 +299,9 @@ public class BlockInit {
 		event.getRegistry().register(new BlockItem(CYPRESS_STAIRS, new Item.Properties().group(PFWood.instance)).setRegistryName("cypress_stairs"));
 		event.getRegistry().register(new BlockItem(CYPRESS_TRAPDOOR, new Item.Properties().group(PFWood.instance)).setRegistryName("cypress_trapdoor"));
 		event.getRegistry().register(new BlockItem(POTTED_CYPRESS_SAPLING, new Item.Properties()).setRegistryName("potted_cypress_sapling"));
+		*/event.getRegistry().register(new BlockItem(MOSS_BLOCK, new Item.Properties().group(PFPlants.instance)).setRegistryName("moss_block"));
+		event.getRegistry().register(new BlockItem(CONIOPTERIS, new Item.Properties().group(PFPlants.instance)).setRegistryName("coniopteris"));
+		event.getRegistry().register(new BlockItem(OSMUNDACAULIS, new Item.Properties().group(PFPlants.instance)).setRegistryName("osmundacaulis"));
 	}
 	
 }

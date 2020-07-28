@@ -1,8 +1,7 @@
 {
-  "replace": false,
-  "values": [
-    "prehistoricfauna:araucaria_leaves",
-    "prehistoricfauna:metasequoia_leaves",
-	"prehistoricfauna:cypress_leaves"
-  ]
+	"replace": false,
+	"values": [
+		"prehistoricfauna:metasequoia_leaves",
+		"prehistoricfauna:araucaria_leaves"
+	]
 }

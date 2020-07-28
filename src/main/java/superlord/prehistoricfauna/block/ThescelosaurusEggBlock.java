@@ -1,6 +1,7 @@
 package superlord.prehistoricfauna.block;
 
 import java.util.Random;
+
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
@@ -23,7 +24,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import superlord.prehistoricfauna.entity.EntityThescelosaurus;
+import superlord.prehistoricfauna.entity.ThescelosaurusEntity;
 import superlord.prehistoricfauna.init.ModEntityTypes;
 
 public class ThescelosaurusEggBlock extends Block {
@@ -87,7 +88,7 @@ public class ThescelosaurusEggBlock extends Block {
 
             for(int j = 0; j < state.get(EGGS); ++j) {
                worldIn.playEvent(2001, pos, Block.getStateId(state));
-               EntityThescelosaurus thescelosaurusentity = ModEntityTypes.ENTITY_THESCELOSAURUS.create(worldIn);
+               ThescelosaurusEntity thescelosaurusentity = ModEntityTypes.THESCELOSAURUS_ENTITY.create(worldIn);
                thescelosaurusentity.setGrowingAge(-24000);
                thescelosaurusentity.setHome(pos);
                thescelosaurusentity.setLocationAndAngles((double)pos.getX() + 0.3D + (double)j * 0.2D, (double)pos.getY(), (double)pos.getZ() + 0.3D, 0.0F, 0.0F);
@@ -147,7 +148,7 @@ public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
    }
 
    private boolean canTrample(World worldIn, Entity trampler) {
-      if (trampler instanceof EntityThescelosaurus) {
+      if (trampler instanceof ThescelosaurusEntity) {
          return false;
       } else {
          return trampler instanceof LivingEntity && !(trampler instanceof PlayerEntity) ? net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(worldIn, trampler) : true;

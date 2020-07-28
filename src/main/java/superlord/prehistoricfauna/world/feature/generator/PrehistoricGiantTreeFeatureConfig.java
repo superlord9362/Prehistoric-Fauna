@@ -47,9 +47,9 @@ public class PrehistoricGiantTreeFeatureConfig extends BaseTreeFeatureConfig {
 		   return func_227277_a_(data).setSapling((net.minecraftforge.common.IPlantable)BlockInit.ARAUCARIA_SAPLING);
 	   }
 	   
-	   public static <T> PrehistoricGiantTreeFeatureConfig deserializeCypress(Dynamic<T> data) {
-		   return func_227277_a_(data).setSapling((net.minecraftforge.common.IPlantable)BlockInit.CYPRESS_SAPLING);
-	   }
+	   //public static <T> PrehistoricGiantTreeFeatureConfig deserializeCypress(Dynamic<T> data) {
+		 //  return func_227277_a_(data).setSapling((net.minecraftforge.common.IPlantable)BlockInit.CYPRESS_SAPLING);
+	   //}
 
 	   public static class Builder extends BaseTreeFeatureConfig.Builder {
 	      private List<TreeDecorator> decorators = ImmutableList.of();

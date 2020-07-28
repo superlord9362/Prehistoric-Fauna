@@ -2,7 +2,7 @@
     "textures": {
         "particle": "block/dirt",
         "bottom": "block/dirt",
-        "top": "prehistoricfauna:blocks/moss",
+        "top": "prehistoricfauna:blocks/dirt_moss_top",
         "side": "prehistoricfauna:blocks/dirt_moss"
     },
     "elements": [

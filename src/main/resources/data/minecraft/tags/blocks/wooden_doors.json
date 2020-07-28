@@ -2,7 +2,6 @@
   "replace": false,
   "values": [
     "prehistoricfauna:araucaria_door",
-    "prehistoricfauna:metasequoia_door",
-	"prehistoricfauna:cypress_door"
+    "prehistoricfauna:metasequoia_door"
   ]
 }
