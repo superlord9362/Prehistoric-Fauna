@@ -23,7 +23,7 @@ public class TriceratopsRenderer extends MobRenderer<TriceratopsEntity, EntityMo
 	private static final TriceratopsJuvenile BABY_TRICERATOPS_MODEL = new TriceratopsJuvenile();
 	
 	public TriceratopsRenderer() {
-		super(Minecraft.getInstance().getRenderManager(), TRICERATOPS_MODEL, 0.5F);
+		super(Minecraft.getInstance().getRenderManager(), TRICERATOPS_MODEL, 2F);
 	}
 	
 	public void render(TriceratopsEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {

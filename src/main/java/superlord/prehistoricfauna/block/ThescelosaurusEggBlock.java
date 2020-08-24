@@ -90,7 +90,6 @@ public class ThescelosaurusEggBlock extends Block {
                worldIn.playEvent(2001, pos, Block.getStateId(state));
                ThescelosaurusEntity thescelosaurusentity = ModEntityTypes.THESCELOSAURUS_ENTITY.create(worldIn);
                thescelosaurusentity.setGrowingAge(-24000);
-               thescelosaurusentity.setHome(pos);
                thescelosaurusentity.setLocationAndAngles((double)pos.getX() + 0.3D + (double)j * 0.2D, (double)pos.getY(), (double)pos.getZ() + 0.3D, 0.0F, 0.0F);
                worldIn.addEntity(thescelosaurusentity);
             }

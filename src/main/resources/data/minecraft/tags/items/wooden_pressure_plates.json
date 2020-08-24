@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "prehistoricfauna:araucaria_pressure_plate",
-    "prehistoricfauna:metasequoia_pressure_plate"
+    "prehistoricfauna:metasequoia_pressure_plate",
+	"prehistoricfauna:protopiceoxylon_pressure_plate"
   ]
 }

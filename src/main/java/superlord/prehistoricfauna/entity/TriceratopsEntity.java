@@ -104,7 +104,9 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 		this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
 		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, AnkylosaurusEntity.class, 7F, 1.25D, 1.25D));
 		this.targetSelector.addGoal(1, new TriceratopsEntity.HurtByTargetGoal());
-		this.targetSelector.addGoal(2, new TriceratopsEntity.AttackPlayerGoal());
+		if(!this.isTame()) {
+			this.targetSelector.addGoal(2, new TriceratopsEntity.AttackPlayerGoal());
+		}
 		this.goalSelector.addGoal(8, new TriceratopsEntity.LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(2, new TriceratopsEntity.MateGoal(this, 1.0D));
 	}

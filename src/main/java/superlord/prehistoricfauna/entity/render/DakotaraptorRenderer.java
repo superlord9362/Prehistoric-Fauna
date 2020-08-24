@@ -26,7 +26,7 @@ public class DakotaraptorRenderer extends MobRenderer<DakotaraptorEntity, Entity
 	private static final DakotaraptorCrouching DAKOTARAPTOR_CROUCHING_MODEL = new DakotaraptorCrouching();
 	
 	public DakotaraptorRenderer() {
-		super(Minecraft.getInstance().getRenderManager(), DAKOTARAPTOR_MODEL, 0.5F);
+		super(Minecraft.getInstance().getRenderManager(), DAKOTARAPTOR_MODEL, 0.875F);
 	}
 	
 	 protected void preRenderCallback(DakotaraptorEntity entity, MatrixStack matrixStackIn, float partialTickTime) {

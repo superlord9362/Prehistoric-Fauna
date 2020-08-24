@@ -23,14 +23,17 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.PrehistoricFauna.PFBook;
 import superlord.prehistoricfauna.PrehistoricFauna.PFEntities;
 import superlord.prehistoricfauna.PrehistoricFauna.PFPlants;
 import superlord.prehistoricfauna.PrehistoricFauna.PFWood;
 import superlord.prehistoricfauna.block.AnkylosaurusEggBlock;
 import superlord.prehistoricfauna.block.BasilemysEggBlock;
+import superlord.prehistoricfauna.block.CamarasaurusEggBlock;
 import superlord.prehistoricfauna.block.DakotaraptorEggBlock;
 import superlord.prehistoricfauna.block.MossBlock;
 import superlord.prehistoricfauna.block.MossyDirtBlock;
+import superlord.prehistoricfauna.block.PaleoscribeBlock;
 import superlord.prehistoricfauna.block.PrehistoricButtonBlock;
 import superlord.prehistoricfauna.block.PrehistoricDoorBlock;
 import superlord.prehistoricfauna.block.PrehistoricPlant;
@@ -39,12 +42,17 @@ import superlord.prehistoricfauna.block.PrehistoricPressurePlateBlock;
 import superlord.prehistoricfauna.block.PrehistoricSaplingBlock;
 import superlord.prehistoricfauna.block.PrehistoricStairsBlock;
 import superlord.prehistoricfauna.block.PrehistoricTrapDoorBlock;
+import superlord.prehistoricfauna.block.PtilophyllumBaseBlock;
+import superlord.prehistoricfauna.block.PtilophyllumBlock;
 import superlord.prehistoricfauna.block.ThescelosaurusEggBlock;
 import superlord.prehistoricfauna.block.TriceratopsEggBlock;
 import superlord.prehistoricfauna.block.TyrannosaurusEggBlock;
+import superlord.prehistoricfauna.block.ZamitesTopBlock;
 import superlord.prehistoricfauna.world.feature.AraucariaTree;
 //import superlord.prehistoricfauna.world.feature.CypressTree;
 import superlord.prehistoricfauna.world.feature.MetasequoiaTree;
+import superlord.prehistoricfauna.world.feature.ProtopiceoxylonTree;
+import superlord.prehistoricfauna.world.feature.ZamitesBush;
 
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Bus.MOD)
 public class BlockInit {
@@ -99,12 +107,14 @@ public class BlockInit {
 	@SuppressWarnings("deprecation")
 	public static final Block POTTED_MARCHANTIA = new FlowerPotBlock(MARCHANTIA, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_marchantia");
 	public static final Block MOSSY_DIRT = new MossyDirtBlock(Block.Properties.create(Material.ORGANIC).hardnessAndResistance(0.6F).sound(SoundType.PLANT)).setRegistryName("mossy_dirt");
+	public static final Block LOAM = new MossyDirtBlock(Block.Properties.create(Material.ORGANIC).hardnessAndResistance(0.6F).sound(SoundType.GROUND)).setRegistryName("loam");
 	public static final Block THESCELOSAURUS_EGG = new ThescelosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("thescelosaurus_egg");
 	public static final Block TRICERATOPS_EGG = new TriceratopsEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("triceratops_egg");
 	public static final Block ANKYLOSAURUS_EGG = new AnkylosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("ankylosaurus_egg");
 	public static final Block TYRANNOSAURUS_EGG = new TyrannosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("tyrannosaurus_egg");
 	public static final Block DAKOTARAPTOR_EGG = new DakotaraptorEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("dakotaraptor_egg");
 	public static final Block BASILEMYS_EGG = new BasilemysEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("basilemys_egg");
+	public static final Block CAMARASAURUS_EGG = new CamarasaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("camarasaurus_egg");
 /**	public static final Block CYPRESS_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("cypress_log");
 	public static final Block CYPRESS_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("cypress_planks");
 	public static final Block STRIPPED_CYPRESS_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_cypress_log");
@@ -125,6 +135,31 @@ public class BlockInit {
 */	public static final Block MOSS_BLOCK = new Block(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.2F).sound(SoundType.PLANT)).setRegistryName("moss_block");
 	public static final Block CONIOPTERIS = new PrehistoricPlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("coniopteris");
 	public static final Block OSMUNDACAULIS = new DoublePlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).doesNotBlockMovement().sound(SoundType.PLANT)).setRegistryName("osmundacaulis");
+	public static final Block PALEOSCRIBE = new PaleoscribeBlock().setRegistryName("paleoscribe");
+	public static final Block PROTOPICEOXYLON_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_log");
+	public static final Block PROTOPICEOXYLON_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_planks");
+	public static final Block STRIPPED_PROTOPICEOXYLON_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_protopiceoxylon_log");
+	public static final Block PROTOPICEOXYLON_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_wood");
+	public static final Block STRIPPED_PROTOPICEOXYLON_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_protopiceoxylon_wood");
+	public static final Block PROTOPICEOXYLON_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()).setRegistryName("protopiceoxylon_leaves");
+	public static final Block PROTOPICEOXYLON_STAIRS = new PrehistoricStairsBlock(PROTOPICEOXYLON_PLANKS.getDefaultState(), Block.Properties.from(PROTOPICEOXYLON_PLANKS)).setRegistryName("protopiceoxylon_stairs");
+	public static final Block PROTOPICEOXYLON_DOOR = new PrehistoricDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("protopiceoxylon_door");
+	public static final Block PROTOPICEOXYLON_PRESSURE_PLATE = new PrehistoricPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_pressure_plate");
+	public static final Block PROTOPICEOXYLON_FENCE = new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_fence");
+	public static final Block PROTOPICEOXYLON_TRAPDOOR = new PrehistoricTrapDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("protopiceoxylon_trapdoor");
+	public static final Block PROTOPICEOXYLON_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_fence_gate");
+	public static final Block PROTOPICEOXYLON_BUTTON = new PrehistoricButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_button");
+	public static final Block PROTOPICEOXYLON_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_slab");
+	public static final Block PROTOPICEOXYLON_SAPLING = new PrehistoricSaplingBlock(new ProtopiceoxylonTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("protopiceoxylon_sapling");
+	@SuppressWarnings("deprecation")
+	public static final Block POTTED_PROTOPICEOXYLON_SAPLING = new FlowerPotBlock(PROTOPICEOXYLON_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_protopiceoxylon_sapling");	
+	public static final Block PTILOPHYLLUM_WOOD = new PtilophyllumBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(0.4F).sound(SoundType.WOOD).notSolid()).setRegistryName("ptilophyllum_wood");
+	public static final Block PTILOPHYLLUM_BASE = new PtilophyllumBaseBlock((PtilophyllumBlock)PTILOPHYLLUM_WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).tickRandomly().hardnessAndResistance(0.4F).sound(SoundType.WOOD).notSolid()).setRegistryName("ptilophyllum_base");
+	public static final Block ZAMITES_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("zamites_log");
+	public static final Block ZAMITES_LEAVES = new ZamitesTopBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0).doesNotBlockMovement().sound(SoundType.PLANT)).setRegistryName("zamites_leaves");
+	public static final Block ZAMITES_SAPLING = new PrehistoricSaplingBlock(new ZamitesBush(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("zamites_sapling");
+	@SuppressWarnings("deprecation")
+	public static final Block POTTED_ZAMITES_SAPLING = new FlowerPotBlock(ZAMITES_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_zamites_sapling");
 	
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
@@ -178,6 +213,8 @@ public class BlockInit {
 		event.getRegistry().register(ANKYLOSAURUS_EGG);
 		event.getRegistry().register(DAKOTARAPTOR_EGG);
 		event.getRegistry().register(BASILEMYS_EGG);
+		event.getRegistry().register(LOAM);
+		event.getRegistry().register(CAMARASAURUS_EGG);
 		/**event.getRegistry().register(CYPRESS_LOG);
 		event.getRegistry().register(CYPRESS_BUTTON);
 		event.getRegistry().register(CYPRESS_DOOR);
@@ -197,6 +234,29 @@ public class BlockInit {
 		*/event.getRegistry().register(MOSS_BLOCK);
 		event.getRegistry().register(CONIOPTERIS);
 		event.getRegistry().register(OSMUNDACAULIS);
+		event.getRegistry().register(PROTOPICEOXYLON_LOG);
+		event.getRegistry().register(PROTOPICEOXYLON_BUTTON);
+		event.getRegistry().register(PROTOPICEOXYLON_DOOR);
+		event.getRegistry().register(PROTOPICEOXYLON_FENCE);
+		event.getRegistry().register(PROTOPICEOXYLON_FENCE_GATE);
+		event.getRegistry().register(PROTOPICEOXYLON_LEAVES);
+		event.getRegistry().register(PROTOPICEOXYLON_PLANKS);
+		event.getRegistry().register(PROTOPICEOXYLON_PRESSURE_PLATE);
+		event.getRegistry().register(PROTOPICEOXYLON_SAPLING);
+		event.getRegistry().register(PROTOPICEOXYLON_SLAB);
+		event.getRegistry().register(PROTOPICEOXYLON_STAIRS);
+		event.getRegistry().register(PROTOPICEOXYLON_TRAPDOOR);
+		event.getRegistry().register(PROTOPICEOXYLON_WOOD);
+		event.getRegistry().register(STRIPPED_PROTOPICEOXYLON_LOG);
+		event.getRegistry().register(STRIPPED_PROTOPICEOXYLON_WOOD);
+		event.getRegistry().register(PTILOPHYLLUM_WOOD);
+		event.getRegistry().register(PTILOPHYLLUM_BASE);
+		event.getRegistry().register(POTTED_PROTOPICEOXYLON_SAPLING);
+		event.getRegistry().register(PALEOSCRIBE);
+		event.getRegistry().register(ZAMITES_LOG);
+		event.getRegistry().register(ZAMITES_LEAVES);
+		event.getRegistry().register(ZAMITES_SAPLING);
+		event.getRegistry().register(POTTED_ZAMITES_SAPLING);
 			if (FMLEnvironment.dist == Dist.CLIENT) {
 			RenderType cutoutRenderType = RenderType.getCutout();
 			RenderType mippedRenderType = RenderType.getCutoutMipped();
@@ -215,6 +275,7 @@ public class BlockInit {
 			RenderTypeLookup.setRenderLayer(ARAUCARIA_LEAVES, mippedRenderType);
 			RenderTypeLookup.setRenderLayer(POTTED_ARAUCARIA_SAPLING, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(POTTED_METASEQUOIA_SAPLING, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(POTTED_PROTOPICEOXYLON_SAPLING, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(POTTED_CLUBMOSS, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(POTTED_HORSETAIL, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(POTTED_MARCHANTIA, cutoutRenderType);
@@ -228,6 +289,15 @@ public class BlockInit {
 			RenderTypeLookup.setRenderLayer(POTTED_CYPRESS_SAPLING, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(CYPRESS_DOOR, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(CYPRESS_TRAPDOOR, cutoutRenderType);*/
+			RenderTypeLookup.setRenderLayer(PROTOPICEOXYLON_SAPLING, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(PROTOPICEOXYLON_LEAVES, mippedRenderType);
+			RenderTypeLookup.setRenderLayer(POTTED_PROTOPICEOXYLON_SAPLING, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(PROTOPICEOXYLON_DOOR, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(PROTOPICEOXYLON_TRAPDOOR, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(PTILOPHYLLUM_BASE, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(ZAMITES_LEAVES, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(POTTED_ZAMITES_SAPLING, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(ZAMITES_SAPLING, cutoutRenderType);
 		}
 	}
 	
@@ -302,6 +372,31 @@ public class BlockInit {
 		*/event.getRegistry().register(new BlockItem(MOSS_BLOCK, new Item.Properties().group(PFPlants.instance)).setRegistryName("moss_block"));
 		event.getRegistry().register(new BlockItem(CONIOPTERIS, new Item.Properties().group(PFPlants.instance)).setRegistryName("coniopteris"));
 		event.getRegistry().register(new BlockItem(OSMUNDACAULIS, new Item.Properties().group(PFPlants.instance)).setRegistryName("osmundacaulis"));
+		event.getRegistry().register(new BlockItem(PALEOSCRIBE, new Item.Properties().group(PFBook.instance)).setRegistryName("paleoscribe"));
+		event.getRegistry().register(new BlockItem(PROTOPICEOXYLON_LEAVES, new Item.Properties().group(PFPlants.instance)).setRegistryName("protopiceoxylon_leaves"));
+		event.getRegistry().register(new BlockItem(PROTOPICEOXYLON_LOG, new Item.Properties().group(PFWood.instance)).setRegistryName("protopiceoxylon_log"));
+		event.getRegistry().register(new BlockItem(PROTOPICEOXYLON_PLANKS, new Item.Properties().group(PFWood.instance)).setRegistryName("protopiceoxylon_planks"));
+		event.getRegistry().register(new BlockItem(PROTOPICEOXYLON_SAPLING, new Item.Properties().group(PFPlants.instance)).setRegistryName("protopiceoxylon_sapling"));
+		event.getRegistry().register(new BlockItem(STRIPPED_PROTOPICEOXYLON_LOG, new Item.Properties().group(PFWood.instance)).setRegistryName("stripped_protopiceoxylon_log"));
+		event.getRegistry().register(new BlockItem(PROTOPICEOXYLON_WOOD, new Item.Properties().group(PFWood.instance)).setRegistryName("protopiceoxylon_wood"));
+		event.getRegistry().register(new BlockItem(STRIPPED_PROTOPICEOXYLON_WOOD, new Item.Properties().group(PFWood.instance)).setRegistryName("stripped_protopiceoxylon_wood"));
+		event.getRegistry().register(new BlockItem(PROTOPICEOXYLON_BUTTON, new Item.Properties().group(PFWood.instance)).setRegistryName("protopiceoxylon_button"));
+		event.getRegistry().register(new BlockItem(PROTOPICEOXYLON_DOOR, new Item.Properties().group(PFWood.instance)).setRegistryName("protopiceoxylon_door"));
+		event.getRegistry().register(new BlockItem(PROTOPICEOXYLON_FENCE, new Item.Properties().group(PFWood.instance)).setRegistryName("protopiceoxylon_fence"));
+		event.getRegistry().register(new BlockItem(PROTOPICEOXYLON_FENCE_GATE, new Item.Properties().group(PFWood.instance)).setRegistryName("protopiceoxylon_fence_gate"));
+		event.getRegistry().register(new BlockItem(PROTOPICEOXYLON_PRESSURE_PLATE, new Item.Properties().group(PFWood.instance)).setRegistryName("protopiceoxylon_pressure_plate"));
+		event.getRegistry().register(new BlockItem(PROTOPICEOXYLON_SLAB, new Item.Properties().group(PFWood.instance)).setRegistryName("protopiceoxylon_slab"));
+		event.getRegistry().register(new BlockItem(PROTOPICEOXYLON_STAIRS, new Item.Properties().group(PFWood.instance)).setRegistryName("protopiceoxylon_stairs"));
+		event.getRegistry().register(new BlockItem(PROTOPICEOXYLON_TRAPDOOR, new Item.Properties().group(PFWood.instance)).setRegistryName("protopiceoxylon_trapdoor"));
+		event.getRegistry().register(new BlockItem(POTTED_PROTOPICEOXYLON_SAPLING, new Item.Properties()).setRegistryName("potted_protopiceoxylon_sapling"));
+		event.getRegistry().register(new BlockItem(LOAM, new Item.Properties().group(PFPlants.instance)).setRegistryName("loam"));
+		event.getRegistry().register(new BlockItem(PTILOPHYLLUM_WOOD, new Item.Properties().group(PFWood.instance)).setRegistryName("ptilophyllum_wood"));
+		event.getRegistry().register(new BlockItem(PTILOPHYLLUM_BASE, new Item.Properties().group(PFWood.instance)).setRegistryName("ptilophyllum_base"));
+		event.getRegistry().register(new BlockItem(ZAMITES_LOG, new Item.Properties().group(PFWood.instance)).setRegistryName("zamites_log"));
+		event.getRegistry().register(new BlockItem(ZAMITES_LEAVES, new Item.Properties().group(PFWood.instance)).setRegistryName("zamites_leaves"));
+		event.getRegistry().register(new BlockItem(CAMARASAURUS_EGG, new Item.Properties().group(PFEntities.instance)).setRegistryName("camarasaurus_egg"));
+		event.getRegistry().register(new BlockItem(ZAMITES_SAPLING, new Item.Properties().group(PFPlants.instance)).setRegistryName("zamites_sapling"));
+		event.getRegistry().register(new BlockItem(POTTED_ZAMITES_SAPLING, new Item.Properties()).setRegistryName("potted_zamites_sapling"));
 	}
 	
 }

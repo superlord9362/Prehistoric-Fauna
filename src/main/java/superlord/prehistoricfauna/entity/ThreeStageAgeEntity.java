@@ -82,11 +82,6 @@ public abstract class ThreeStageAgeEntity extends CreatureEntity {
       this.dataManager.register(BABY, false);
    }
 
-   /**
-    * The age value may be negative or positive or zero. If it's negative, it get's incremented on each tick, if it's
-    * positive, it get's decremented each tick. Don't confuse this with EntityLiving.getAge. With a negative value the
-    * Entity is considered a child.
-    */
    public int getGrowingAge() {
       if (this.world.isRemote) {
          return this.dataManager.get(BABY) ? -1 : 1;
@@ -95,10 +90,6 @@ public abstract class ThreeStageAgeEntity extends CreatureEntity {
       }
    }
 
-   /**
-    * Increases this entity's age, optionally updating {@link #forcedAge}. If the entity is an adult (if the entity's
-    * age is greater than or equal to 0) then the entity's age will be set to {@link #forcedAge}.
-    */
    public void ageUp(int growthSeconds, boolean updateForcedAge) {
       int i = this.getGrowingAge();
       i = i + growthSeconds * 20;
@@ -121,18 +112,10 @@ public abstract class ThreeStageAgeEntity extends CreatureEntity {
 
    }
 
-   /**
-    * Increases this entity's age. If the entity is an adult (if the entity's age is greater than or equal to 0) then
-    * the entity's age will be set to {@link #forcedAge}. This method does not update {@link #forcedAge}.
-    */
    public void addGrowth(int growth) {
       this.ageUp(growth, false);
    }
 
-   /**
-    * The age value may be negative or positive or zero. If it's negative, it get's incremented on each tick, if it's
-    * positive, it get's decremented each tick. With a negative value the Entity is considered a child.
-    */
    public void setGrowingAge(int age) {
       int i = this.growingAge;
       this.growingAge = age;
@@ -149,9 +132,6 @@ public abstract class ThreeStageAgeEntity extends CreatureEntity {
       compound.putInt("ForcedAge", this.forcedAge);
    }
 
-   /**
-    * (abstract) Protected helper method to read subclass entity data from NBT.
-    */
    public void readAdditional(CompoundNBT compound) {
       super.readAdditional(compound);
       this.setGrowingAge(compound.getInt("Age"));
@@ -166,10 +146,6 @@ public abstract class ThreeStageAgeEntity extends CreatureEntity {
       super.notifyDataManagerChange(key);
    }
 
-   /**
-    * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-    * use this to react to sunlight and start to burn.
-    */
    public void livingTick() {
       super.livingTick();
       if (this.world.isRemote) {
@@ -193,16 +169,9 @@ public abstract class ThreeStageAgeEntity extends CreatureEntity {
 
    }
 
-   /**
-    * This is called when Entity's growing age timer reaches 0 (negative values are considered as a child, positive as
-    * an adult)
-    */
    protected void onGrowingAdult() {
    }
 
-   /**
-    * If Animal, checks if the age timer is negative
-    */
    public boolean isChild() {
       return this.getGrowingAge() < 0 && this.getGrowingAge() >= -12000;
    }

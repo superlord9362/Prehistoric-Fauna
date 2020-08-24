@@ -19,11 +19,11 @@ public class BasilemysRenderer extends MobRenderer<BasilemysEntity,  EntityModel
 	private static final BasilemysHiding BASILEMYS_HIDING_MODEL = new BasilemysHiding();
 	
 	public BasilemysRenderer() {
-		super(Minecraft.getInstance().getRenderManager(), BASILEMYS_MODEL, 0.5F);
+		super(Minecraft.getInstance().getRenderManager(), BASILEMYS_MODEL, 0.75F);
 	}
 	
 	public void render(BasilemysEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-    	if (entityIn.isBasilemysPanicing()) {
+    	if (entityIn.isPanicing()) {
     		entityModel = BASILEMYS_HIDING_MODEL;
     	} else {
             entityModel = BASILEMYS_MODEL;

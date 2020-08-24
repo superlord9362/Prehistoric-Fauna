@@ -65,6 +65,14 @@
             }
         ]
     },
+	"ankylosaurus_hurt": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/ankylosaurus_hurt"
+			}
+		]
+	},
     "ankylosaurus_warn": {
         "category": "neutral",
         "sounds": [
@@ -73,5 +81,221 @@
                 "stream": true
             }
         ]
-    }
+    },
+    "allosaurus_idle": {
+    	"category": "neutral",
+    	"sounds": [
+    		{
+    			"name": "prehistoricfauna:prehistoric/allosaurus_idle1",
+				"name": "prehistoricfauna:prehistoric/allosaurus_idle2",
+    			"stream": true
+    		}
+    	]
+    },
+    "allosaurus_hurt": {
+    	"category": "neutral",
+    	"sounds": [
+    		{
+    			"name": "prehistoricfauna:prehistoric/allosaurus_hurt",
+    			"stream": true
+    		}
+    	]
+    },
+    "allosaurus_warn": {
+    	"category": "neutral",
+    	"sounds": [
+    		{
+    			"name": "prehistoricfauna:prehistoric/allosaurus_warn",
+    			"stream": true
+    		}
+    	]
+    },
+	"stegosaurus_idle": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/stegosaurus_idle1",
+				"name": "prehistoricfauna:prehistoric/stegosaurus_idle2",
+				"stream": true
+			}
+		]
+	},
+	"stegosaurus_hurt": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/stegosaurus_hurt",
+				"stream": true
+			}
+		]
+	},
+	"stegosaurus_warn": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/stegosaurus_angry",
+				"stream": true
+			}
+		]
+	},
+	"ceratosaurus_idle": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/ceratosaurus_idle1",
+				"name": "prehistoricfauna:prehistoric/ceratosaurus_idle2",
+				"stream": true
+			}
+		]
+	},
+	"ceratosaurus_hurt": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/ceratosaurus_hurt",
+				"stream": true
+			}
+		]
+	},
+	"ceratosaurus_warn": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/ceratosaurus_warning",
+				"stream": true
+			}
+		]
+	},
+	"dakotaraptor_idle": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/dakotaraptor_idle1",
+				"name": "prehistoricfauna:prehistoric/dakotaraptor_idle2",
+				"stream": true
+			}
+		]
+	},
+	"dakotaraptor_hurt": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/dakotaraptor_hurt",
+				"stream": true
+			}
+		]
+	},
+	"dakotaraptor_warn": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/dakotaraptor_warning",
+				"stream": true
+			}
+		]
+	},
+	"thescelosaurus_idle": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/thescelosaurus_idle1",
+				"name": "prehistoricfauna:prehistoric/thescelosaurus_idle2",
+				"stream": true
+			}
+		]
+	},
+	"thescelosaurus_hurt": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/thescelosaurus_hurt",
+				"stream": true
+			}
+		]
+	},
+	"dryosaurus_idle": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/dryosaurus_idle1",
+				"name": "prehistoricfauna:prehistoric/dryosaurus_idle2",
+				"stream": true
+			}
+		]
+	},
+	"dryosaurus_hurt": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/dryosaurus_hurt",
+				"stream": true
+			}
+		]
+	},
+	"hesperornithoides_idle": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/hesperornithoides_idle1",
+				"name": "prehistoricfauna:prehistoric/hesperornithoides_idle2",
+				"stream": true
+			}
+		]
+	},
+	"hesperornithoides_hurt": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/hesperornithoides_hurt",
+				"stream": true
+			}
+		]
+	},
+	"camarasaurus_idle": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/camarasaurus_idle1",
+				"name": "prehistoricfauna:prehistoric/camarasaurus_idle2",
+				"stream": true
+			}
+		]
+	},
+	"camarasaurus_hurt": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/camarasaurus_hurt",
+				"stream": true
+			}
+		]
+	},
+	"camarasaurus_warn": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/camarasaurus_warn",
+				"stream": true
+			}
+		]
+	},
+	"eilenodon_idle": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/eilenodon_idle1",
+				"name": "prehistoricfauna:prehistoric/eilenodon_idle2",
+				"stream": true
+			}
+		]
+	},
+	"eilenodon_hurt": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/eilenodon_hurt",
+				"stream": true
+			}
+		]
+	}
 }

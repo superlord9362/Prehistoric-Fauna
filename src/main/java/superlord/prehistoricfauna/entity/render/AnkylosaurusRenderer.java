@@ -12,7 +12,7 @@ public class AnkylosaurusRenderer extends MobRenderer<AnkylosaurusEntity, Ankylo
 	private static final ResourceLocation ANKYLOSAURUS = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/ankylosaurus.png");
 	
 	public AnkylosaurusRenderer(EntityRendererManager rm) {
-		super(rm, new Ankylosaurus(), 0.5F);
+		super(rm, new Ankylosaurus(), 2F);
 	}
 	
 	@Override

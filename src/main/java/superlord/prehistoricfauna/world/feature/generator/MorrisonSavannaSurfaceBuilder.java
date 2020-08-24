@@ -24,7 +24,7 @@ public class MorrisonSavannaSurfaceBuilder extends SurfaceBuilder<SurfaceBuilder
 		} else if (noise > -0.95D) {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, PrehistoricFeature.COARSEDIRT_COARSEDIRT_CLAY_CONFIG);
 		} else {
-			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, PrehistoricFeature.COARSEDIRT_COARSEDIRT_CLAY_CONFIG);
+			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, PrehistoricFeature.LOAM_LOAM_COARSEDIRT_CONFIG);
 		}
 	}
 }

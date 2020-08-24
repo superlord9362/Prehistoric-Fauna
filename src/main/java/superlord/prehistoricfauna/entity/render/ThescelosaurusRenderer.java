@@ -13,7 +13,7 @@ public class ThescelosaurusRenderer extends MobRenderer<ThescelosaurusEntity, Th
     private static final ResourceLocation BABY = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/thescelosaurus_baby.png");
 
     public ThescelosaurusRenderer(EntityRendererManager rm) {
-        super(rm, new ThescelosaurusModel(), 0.4f);
+        super(rm, new ThescelosaurusModel(), 0.55f);
     }
 
     @Override

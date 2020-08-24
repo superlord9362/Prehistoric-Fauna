@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "age=0": { "model": "prehistoricfauna:block/ptilophyllum_base" },
+        "age=1": { "model": "prehistoricfauna:block/ptilophyllum_base" },
+        "age=2": { "model": "prehistoricfauna:block/ptilophyllum_base" },
+        "age=3": { "model": "prehistoricfauna:block/ptilophyllum_base" },
+        "age=4": { "model": "prehistoricfauna:block/ptilophyllum_base" },
+        "age=5": { "model": "prehistoricfauna:block/ptilophyllum_base" }
+    }
+}

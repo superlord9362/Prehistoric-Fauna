@@ -23,7 +23,7 @@ public class TyrannosaurusRenderer extends MobRenderer<TyrannosaurusEntity, Enti
     private static final ResourceLocation REX_TEXTURE = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/tyrannosaurusrex.png");
 
     public TyrannosaurusRenderer() {
-        super(Minecraft.getInstance().getRenderManager(), REX_MODEL, 0.15F);
+        super(Minecraft.getInstance().getRenderManager(), REX_MODEL, 2F);
     }
 
     public void render(TyrannosaurusEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {

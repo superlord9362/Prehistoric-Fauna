@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "ingredient": {
+    "item": "prehistoricfauna:raw_hesperornithoides_meat"
+  },
+  "result": "prehistoricfauna:cooked_hesperornithoides_meat",
+  "experience": 0.35,
+  "cookingtime": 600
+}
