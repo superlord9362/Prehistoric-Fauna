@@ -31,6 +31,8 @@ import superlord.prehistoricfauna.block.AnkylosaurusEggBlock;
 import superlord.prehistoricfauna.block.BasilemysEggBlock;
 import superlord.prehistoricfauna.block.CamarasaurusEggBlock;
 import superlord.prehistoricfauna.block.DakotaraptorEggBlock;
+import superlord.prehistoricfauna.block.DicroidiumBlock;
+import superlord.prehistoricfauna.block.JohnstoniaBlock;
 import superlord.prehistoricfauna.block.MossBlock;
 import superlord.prehistoricfauna.block.MossyDirtBlock;
 import superlord.prehistoricfauna.block.PaleoscribeBlock;
@@ -51,6 +53,7 @@ import superlord.prehistoricfauna.block.ZamitesTopBlock;
 import superlord.prehistoricfauna.world.feature.AraucariaTree;
 //import superlord.prehistoricfauna.world.feature.CypressTree;
 import superlord.prehistoricfauna.world.feature.MetasequoiaTree;
+import superlord.prehistoricfauna.world.feature.ProtojuniperTree;
 import superlord.prehistoricfauna.world.feature.ProtopiceoxylonTree;
 import superlord.prehistoricfauna.world.feature.ZamitesBush;
 
@@ -156,11 +159,49 @@ public class BlockInit {
 	public static final Block PTILOPHYLLUM_WOOD = new PtilophyllumBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(0.4F).sound(SoundType.WOOD).notSolid()).setRegistryName("ptilophyllum_wood");
 	public static final Block PTILOPHYLLUM_BASE = new PtilophyllumBaseBlock((PtilophyllumBlock)PTILOPHYLLUM_WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).tickRandomly().hardnessAndResistance(0.4F).sound(SoundType.WOOD).notSolid()).setRegistryName("ptilophyllum_base");
 	public static final Block ZAMITES_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("zamites_log");
+	public static final Block ZAMITES_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("zamites_planks");
+	public static final Block STRIPPED_ZAMITES_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_zamites_log");
+	public static final Block ZAMITES_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("zamites_wood");
+	public static final Block STRIPPED_ZAMITES_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_zamites_wood");
 	public static final Block ZAMITES_LEAVES = new ZamitesTopBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0).doesNotBlockMovement().sound(SoundType.PLANT)).setRegistryName("zamites_leaves");
+	public static final Block ZAMITES_STAIRS = new PrehistoricStairsBlock(ZAMITES_PLANKS.getDefaultState(), Block.Properties.from(ZAMITES_PLANKS)).setRegistryName("zamites_stairs");
+	public static final Block ZAMITES_DOOR = new PrehistoricDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("zamites_door");
+	public static final Block ZAMITES_PRESSURE_PLATE = new PrehistoricPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("zamites_pressure_plate");
+	public static final Block ZAMITES_FENCE = new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("zamites_fence");
+	public static final Block ZAMITES_TRAPDOOR = new PrehistoricTrapDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("zamites_trapdoor");
+	public static final Block ZAMITES_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("zamites_fence_gate");
+	public static final Block ZAMITES_BUTTON = new PrehistoricButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("zamites_button");
+	public static final Block ZAMITES_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("zamites_slab");
 	public static final Block ZAMITES_SAPLING = new PrehistoricSaplingBlock(new ZamitesBush(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("zamites_sapling");
 	@SuppressWarnings("deprecation")
 	public static final Block POTTED_ZAMITES_SAPLING = new FlowerPotBlock(ZAMITES_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_zamites_sapling");
-	
+	public static final Block PROTOJUNIPER_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("protojuniper_log");
+	public static final Block PROTOJUNIPER_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protojuniper_planks");
+	public static final Block STRIPPED_PROTOJUNIPER_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_protojuniper_log");
+	public static final Block PROTOJUNIPER_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("protojuniper_wood");
+	public static final Block STRIPPED_PROTOJUNIPER_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_protojuniper_wood");
+	public static final Block PROTOJUNIPER_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()).setRegistryName("protojuniper_leaves");
+	public static final Block PROTOJUNIPER_STAIRS = new PrehistoricStairsBlock(PROTOJUNIPER_PLANKS.getDefaultState(), Block.Properties.from(PROTOJUNIPER_PLANKS)).setRegistryName("protojuniper_stairs");
+	public static final Block PROTOJUNIPER_DOOR = new PrehistoricDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("protojuniper_door");
+	public static final Block PROTOJUNIPER_PRESSURE_PLATE = new PrehistoricPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("protojuniper_pressure_plate");
+	public static final Block PROTOJUNIPER_FENCE = new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protojuniper_fence");
+	public static final Block PROTOJUNIPER_TRAPDOOR = new PrehistoricTrapDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("protojuniper_trapdoor");
+	public static final Block PROTOJUNIPER_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protojuniper_fence_gate");
+	public static final Block PROTOJUNIPER_BUTTON = new PrehistoricButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("protojuniper_button");
+	public static final Block PROTOJUNIPER_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protojuniper_slab");
+	public static final Block PROTOJUNIPER_SAPLING = new PrehistoricSaplingBlock(new ProtojuniperTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("protojuniper_sapling");
+	@SuppressWarnings("deprecation")
+	public static final Block POTTED_PROTOJUNIPER_SAPLING = new FlowerPotBlock(PROTOJUNIPER_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_protojuniper_sapling");
+	public static final Block DICROIDIUM = new DicroidiumBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.5F).doesNotBlockMovement().sound(SoundType.PLANT)).setRegistryName("dicroidium");
+	public static final Block JOHNSTONIA = new JohnstoniaBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.5F).doesNotBlockMovement().sound(SoundType.PLANT)).setRegistryName("johnstonia");
+	public static final Block SCYTOPHYLLUM = new DoublePlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("scytophyllum");
+	public static final Block CLADOPHLEBIS = new PrehistoricPlant(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("cladophlebis");
+	public static final Block MICHELILLOA = new PrehistoricPlant(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("michelilloa");
+	@SuppressWarnings("deprecation")
+	public static final Block POTTED_CLADOPHLEBIS = new FlowerPotBlock(CLADOPHLEBIS, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_cladophlebis");
+	@SuppressWarnings("deprecation")
+	public static final Block POTTED_MICHELILLOA = new FlowerPotBlock(MICHELILLOA, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_michelilloa");
+
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 		event.getRegistry().register(HORSETAIL);
@@ -254,9 +295,44 @@ public class BlockInit {
 		event.getRegistry().register(POTTED_PROTOPICEOXYLON_SAPLING);
 		event.getRegistry().register(PALEOSCRIBE);
 		event.getRegistry().register(ZAMITES_LOG);
+		event.getRegistry().register(ZAMITES_BUTTON);
+		event.getRegistry().register(ZAMITES_DOOR);
+		event.getRegistry().register(ZAMITES_FENCE);
+		event.getRegistry().register(ZAMITES_FENCE_GATE);
+		event.getRegistry().register(ZAMITES_PLANKS);
+		event.getRegistry().register(ZAMITES_PRESSURE_PLATE);
+		event.getRegistry().register(ZAMITES_SLAB);
+		event.getRegistry().register(ZAMITES_STAIRS);
+		event.getRegistry().register(ZAMITES_TRAPDOOR);
+		event.getRegistry().register(ZAMITES_WOOD);
+		event.getRegistry().register(STRIPPED_ZAMITES_LOG);
+		event.getRegistry().register(STRIPPED_ZAMITES_WOOD);
 		event.getRegistry().register(ZAMITES_LEAVES);
 		event.getRegistry().register(ZAMITES_SAPLING);
 		event.getRegistry().register(POTTED_ZAMITES_SAPLING);
+		event.getRegistry().register(PROTOJUNIPER_LOG);
+		event.getRegistry().register(PROTOJUNIPER_BUTTON);
+		event.getRegistry().register(PROTOJUNIPER_DOOR);
+		event.getRegistry().register(PROTOJUNIPER_FENCE);
+		event.getRegistry().register(PROTOJUNIPER_FENCE_GATE);
+		event.getRegistry().register(PROTOJUNIPER_PLANKS);
+		event.getRegistry().register(PROTOJUNIPER_PRESSURE_PLATE);
+		event.getRegistry().register(PROTOJUNIPER_SLAB);
+		event.getRegistry().register(PROTOJUNIPER_STAIRS);
+		event.getRegistry().register(PROTOJUNIPER_TRAPDOOR);
+		event.getRegistry().register(PROTOJUNIPER_WOOD);
+		event.getRegistry().register(STRIPPED_PROTOJUNIPER_LOG);
+		event.getRegistry().register(STRIPPED_PROTOJUNIPER_WOOD);
+		event.getRegistry().register(PROTOJUNIPER_LEAVES);
+		event.getRegistry().register(PROTOJUNIPER_SAPLING);
+		event.getRegistry().register(POTTED_PROTOJUNIPER_SAPLING);
+		event.getRegistry().register(DICROIDIUM);
+		event.getRegistry().register(JOHNSTONIA);
+		event.getRegistry().register(CLADOPHLEBIS);
+		event.getRegistry().register(SCYTOPHYLLUM);
+		event.getRegistry().register(MICHELILLOA);
+		event.getRegistry().register(POTTED_CLADOPHLEBIS);
+		event.getRegistry().register(POTTED_MICHELILLOA);
 			if (FMLEnvironment.dist == Dist.CLIENT) {
 			RenderType cutoutRenderType = RenderType.getCutout();
 			RenderType mippedRenderType = RenderType.getCutoutMipped();
@@ -298,6 +374,20 @@ public class BlockInit {
 			RenderTypeLookup.setRenderLayer(ZAMITES_LEAVES, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(POTTED_ZAMITES_SAPLING, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(ZAMITES_SAPLING, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(ZAMITES_DOOR, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(ZAMITES_TRAPDOOR, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(PROTOJUNIPER_LEAVES, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(POTTED_PROTOJUNIPER_SAPLING, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(PROTOJUNIPER_SAPLING, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(PROTOJUNIPER_DOOR, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(PROTOJUNIPER_TRAPDOOR, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(DICROIDIUM, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(JOHNSTONIA, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(SCYTOPHYLLUM, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(CLADOPHLEBIS, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(MICHELILLOA, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(POTTED_CLADOPHLEBIS, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(POTTED_MICHELILLOA, cutoutRenderType);
 		}
 	}
 	
@@ -397,6 +487,39 @@ public class BlockInit {
 		event.getRegistry().register(new BlockItem(CAMARASAURUS_EGG, new Item.Properties().group(PFEntities.instance)).setRegistryName("camarasaurus_egg"));
 		event.getRegistry().register(new BlockItem(ZAMITES_SAPLING, new Item.Properties().group(PFPlants.instance)).setRegistryName("zamites_sapling"));
 		event.getRegistry().register(new BlockItem(POTTED_ZAMITES_SAPLING, new Item.Properties()).setRegistryName("potted_zamites_sapling"));
+		event.getRegistry().register(new BlockItem(ZAMITES_PLANKS, new Item.Properties().group(PFWood.instance)).setRegistryName("zamites_planks"));
+		event.getRegistry().register(new BlockItem(STRIPPED_ZAMITES_LOG, new Item.Properties().group(PFWood.instance)).setRegistryName("stripped_zamites_log"));
+		event.getRegistry().register(new BlockItem(ZAMITES_WOOD, new Item.Properties().group(PFWood.instance)).setRegistryName("zamites_wood"));
+		event.getRegistry().register(new BlockItem(STRIPPED_ZAMITES_WOOD, new Item.Properties().group(PFWood.instance)).setRegistryName("stripped_zamites_wood"));
+		event.getRegistry().register(new BlockItem(ZAMITES_BUTTON, new Item.Properties().group(PFWood.instance)).setRegistryName("zamites_button"));
+		event.getRegistry().register(new BlockItem(ZAMITES_DOOR, new Item.Properties().group(PFWood.instance)).setRegistryName("zamites_door"));
+		event.getRegistry().register(new BlockItem(ZAMITES_FENCE, new Item.Properties().group(PFWood.instance)).setRegistryName("zamites_fence"));
+		event.getRegistry().register(new BlockItem(ZAMITES_FENCE_GATE, new Item.Properties().group(PFWood.instance)).setRegistryName("zamites_fence_gate"));
+		event.getRegistry().register(new BlockItem(ZAMITES_PRESSURE_PLATE, new Item.Properties().group(PFWood.instance)).setRegistryName("zamites_pressure_plate"));
+		event.getRegistry().register(new BlockItem(ZAMITES_SLAB, new Item.Properties().group(PFWood.instance)).setRegistryName("zamites_slab"));
+		event.getRegistry().register(new BlockItem(ZAMITES_STAIRS, new Item.Properties().group(PFWood.instance)).setRegistryName("zamites_stairs"));
+		event.getRegistry().register(new BlockItem(ZAMITES_TRAPDOOR, new Item.Properties().group(PFWood.instance)).setRegistryName("zamites_trapdoor"));
+		event.getRegistry().register(new BlockItem(PROTOJUNIPER_LOG, new Item.Properties().group(PFWood.instance)).setRegistryName("protojuniper_log"));
+		event.getRegistry().register(new BlockItem(PROTOJUNIPER_LEAVES, new Item.Properties().group(PFWood.instance)).setRegistryName("protojuniper_leaves"));
+		event.getRegistry().register(new BlockItem(PROTOJUNIPER_SAPLING, new Item.Properties().group(PFPlants.instance)).setRegistryName("protojuniper_sapling"));
+		event.getRegistry().register(new BlockItem(POTTED_PROTOJUNIPER_SAPLING, new Item.Properties()).setRegistryName("potted_protojuniper_sapling"));
+		event.getRegistry().register(new BlockItem(PROTOJUNIPER_PLANKS, new Item.Properties().group(PFWood.instance)).setRegistryName("protojuniper_planks"));
+		event.getRegistry().register(new BlockItem(STRIPPED_PROTOJUNIPER_LOG, new Item.Properties().group(PFWood.instance)).setRegistryName("stripped_protojuniper_log"));
+		event.getRegistry().register(new BlockItem(PROTOJUNIPER_WOOD, new Item.Properties().group(PFWood.instance)).setRegistryName("protojuniper_wood"));
+		event.getRegistry().register(new BlockItem(STRIPPED_PROTOJUNIPER_WOOD, new Item.Properties().group(PFWood.instance)).setRegistryName("stripped_protojuniper_wood"));
+		event.getRegistry().register(new BlockItem(PROTOJUNIPER_BUTTON, new Item.Properties().group(PFWood.instance)).setRegistryName("protojuniper_button"));
+		event.getRegistry().register(new BlockItem(PROTOJUNIPER_DOOR, new Item.Properties().group(PFWood.instance)).setRegistryName("protojuniper_door"));
+		event.getRegistry().register(new BlockItem(PROTOJUNIPER_FENCE, new Item.Properties().group(PFWood.instance)).setRegistryName("protojuniper_fence"));
+		event.getRegistry().register(new BlockItem(PROTOJUNIPER_FENCE_GATE, new Item.Properties().group(PFWood.instance)).setRegistryName("protojuniper_fence_gate"));
+		event.getRegistry().register(new BlockItem(PROTOJUNIPER_PRESSURE_PLATE, new Item.Properties().group(PFWood.instance)).setRegistryName("protojuniper_pressure_plate"));
+		event.getRegistry().register(new BlockItem(PROTOJUNIPER_SLAB, new Item.Properties().group(PFWood.instance)).setRegistryName("protojuniper_slab"));
+		event.getRegistry().register(new BlockItem(PROTOJUNIPER_STAIRS, new Item.Properties().group(PFWood.instance)).setRegistryName("protojuniper_stairs"));
+		event.getRegistry().register(new BlockItem(PROTOJUNIPER_TRAPDOOR, new Item.Properties().group(PFWood.instance)).setRegistryName("protojuniper_trapdoor"));
+		event.getRegistry().register(new BlockItem(DICROIDIUM, new Item.Properties().group(PFPlants.instance)).setRegistryName("dicroidium"));
+		event.getRegistry().register(new BlockItem(JOHNSTONIA, new Item.Properties().group(PFPlants.instance)).setRegistryName("johnstonia"));
+		event.getRegistry().register(new BlockItem(CLADOPHLEBIS, new Item.Properties().group(PFPlants.instance)).setRegistryName("cladophlebis"));
+		event.getRegistry().register(new BlockItem(SCYTOPHYLLUM, new Item.Properties().group(PFPlants.instance)).setRegistryName("scytophyllum"));
+		event.getRegistry().register(new BlockItem(MICHELILLOA, new Item.Properties().group(PFPlants.instance)).setRegistryName("michelilloa"));
 	}
 	
 }

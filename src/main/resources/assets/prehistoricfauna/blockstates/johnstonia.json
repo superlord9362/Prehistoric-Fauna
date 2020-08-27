@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "layer=0": { "model": "prehistoricfauna:block/johnstonia_0" },
+		"layer=1": { "model": "prehistoricfauna:block/johnstonia_1" },
+		"layer=2": { "model": "prehistoricfauna:block/johnstonia_2" }
+    }
+}

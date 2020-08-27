@@ -9,6 +9,9 @@ import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.MainMenuScreen;
@@ -55,6 +58,7 @@ import superlord.prehistoricfauna.entity.render.DidelphodonRenderer;
 import superlord.prehistoricfauna.entity.render.DryosaurusRenderer;
 import superlord.prehistoricfauna.entity.render.EilenodonRenderer;
 import superlord.prehistoricfauna.entity.render.HesperornithoidesRenderer;
+import superlord.prehistoricfauna.entity.render.PrehistoricBoatRenderer;
 import superlord.prehistoricfauna.entity.render.StegosaurusRenderer;
 import superlord.prehistoricfauna.entity.render.ThescelosaurusRenderer;
 import superlord.prehistoricfauna.entity.render.TriceratopsRenderer;
@@ -74,6 +78,7 @@ public class PrehistoricFauna {
 	public final static String MODID = "prehistoricfauna";
 	public static final SimpleChannel NETWORK_WRAPPER;
 	private static final String PROTOCOL_VERSION = Integer.toString(1);
+	public static Logger LOGGER = LogManager.getLogger();
 	public static PrehistoricFauna instance;
 	
 	static {
@@ -111,17 +116,17 @@ public class PrehistoricFauna {
 		ItemColors itemcolors = Minecraft.getInstance().getItemColors();
 		blockcolors.register((p_228064_0_, p_228064_1_, p_228064_2_, p_228064_3_) -> {
 			return p_228064_1_ != null && p_228064_2_ != null ? BiomeColors.getGrassColor(p_228064_1_, p_228064_2_) : GrassColors.get(0.5D, 1.0D);
-		}, BlockInit.CONIOPTERIS);
+		}, BlockInit.CONIOPTERIS, BlockInit.CLADOPHLEBIS, BlockInit.POTTED_CLADOPHLEBIS);
 		blockcolors.register((p_228061_0_, p_228061_1_, p_228061_2_, p_228061_3_) -> {
 	         return p_228061_1_ != null && p_228061_2_ != null ? BiomeColors.getFoliageColor(p_228061_1_, p_228061_2_) : FoliageColors.getDefault();
-		}, BlockInit.METASEQUOIA_LEAVES, BlockInit.PROTOPICEOXYLON_LEAVES);
+		}, BlockInit.METASEQUOIA_LEAVES, BlockInit.PROTOPICEOXYLON_LEAVES, BlockInit.PROTOJUNIPER_LEAVES);
 		blockcolors.register((p_228063_0_, p_228063_1_, p_228063_2_, p_228063_3_) -> {
 			return PrehistoricColors.getAraucaria();
 		}, BlockInit.ARAUCARIA_LEAVES);
 		itemcolors.register((p_210235_1_, p_210235_2_) -> {
 	         BlockState blockstate = ((BlockItem)p_210235_1_.getItem()).getBlock().getDefaultState();
 	         return blockcolors.getColor(blockstate, (ILightReader)null, (BlockPos)null, p_210235_2_);
-	      }, BlockInit.ARAUCARIA_LEAVES, BlockInit.METASEQUOIA_LEAVES, BlockInit.CONIOPTERIS, BlockInit.PROTOPICEOXYLON_LEAVES);
+	      }, BlockInit.ARAUCARIA_LEAVES, BlockInit.METASEQUOIA_LEAVES, BlockInit.CONIOPTERIS, BlockInit.PROTOPICEOXYLON_LEAVES, BlockInit.PROTOJUNIPER_LEAVES, BlockInit.CLADOPHLEBIS);
 		RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.THESCELOSAURUS_ENTITY, ThescelosaurusRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.TRICERATOPS_ENTITY, manager -> new TriceratopsRenderer());
 		RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ANKYLOSAURUS_ENTITY, AnkylosaurusRenderer::new);
@@ -136,6 +141,7 @@ public class PrehistoricFauna {
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.EILENODON_ENTITY, manager -> new EilenodonRenderer());
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.CAMARASAURUS_ENTITY, manager -> new CamarasaurusRenderer());
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DIDELPHODON_ENTITY, manager -> new DidelphodonRenderer());
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BOAT, PrehistoricBoatRenderer::new);
 	}
 	
 	@SubscribeEvent
