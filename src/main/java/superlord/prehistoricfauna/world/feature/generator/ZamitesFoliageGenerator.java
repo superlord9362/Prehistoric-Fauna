@@ -22,10 +22,11 @@ public class ZamitesFoliageGenerator extends FoliagePlacer {
 
 	//generates leaves
 	public void func_225571_a_(IWorldGenerationReader world, Random random, TreeFeatureConfig treeConfig, int height, int trunkHeight, int radius, BlockPos pos, Set<BlockPos> leavesPos) {
-		for(int i = height; i >= trunkHeight; --i) {
-			int j = 0;
-			this.func_227384_a_(world, random, treeConfig, height, pos, i, j, leavesPos);
-		}
+//		for(int i = height; i >= trunkHeight; --i) {
+//			int j = 0;
+//			this.func_227384_a_(world, random, treeConfig, height, pos, i, j, leavesPos);
+//		}
+		this.func_227385_a_(world, random, pos, treeConfig, leavesPos);
 	}
 		   
 	//gets radius of the tree
