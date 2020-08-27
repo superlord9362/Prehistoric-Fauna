@@ -20,9 +20,9 @@ public class MetasequoiaTree extends PrehistoricHugeTree {
 	public static final PrehistoricGiantTreeFeatureConfig METASEQUOIA_TREE_CONFIG = (new PrehistoricGiantTreeFeatureConfig.Builder(new SimpleBlockStateProvider(METASEQUOIA_LOG), new SimpleBlockStateProvider(METASEQUOIA_LEAVES)).baseHeight(43).heightInterval(2).crownHeight(38)).setSapling((IPlantable)BlockInit.METASEQUOIA_SAPLING).build();
 
 	@Override
-	   protected ConfiguredFeature<PrehistoricGiantTreeFeatureConfig, ?> getHugeTreeFeature(Random p_225547_1_) {
-	      return PrehistoricFeature.METASEQUOIA_TREE.withConfiguration(METASEQUOIA_TREE_CONFIG);
-	   }
+	protected ConfiguredFeature<PrehistoricGiantTreeFeatureConfig, ?> getHugeTreeFeature(Random p_225547_1_) {
+		return PrehistoricFeature.METASEQUOIA_TREE.withConfiguration(METASEQUOIA_TREE_CONFIG);
+	}
 
 	@Override
 	protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {

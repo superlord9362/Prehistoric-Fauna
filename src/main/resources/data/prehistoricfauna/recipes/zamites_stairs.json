@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_stairs",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:zamites_planks"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:zamites_stairs",
+    "count": 4
+  }
+}

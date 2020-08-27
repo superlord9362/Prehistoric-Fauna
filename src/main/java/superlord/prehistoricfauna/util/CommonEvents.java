@@ -35,6 +35,10 @@ public class CommonEvents {
 		BLOCK_STRIPPING_MAP.put(BlockInit.ARAUCARIA_WOOD, BlockInit.STRIPPED_ARAUCARIA_WOOD);
 		BLOCK_STRIPPING_MAP.put(BlockInit.PROTOPICEOXYLON_LOG, BlockInit.STRIPPED_PROTOPICEOXYLON_LOG);
 		BLOCK_STRIPPING_MAP.put(BlockInit.PROTOPICEOXYLON_WOOD, BlockInit.STRIPPED_PROTOPICEOXYLON_WOOD);
+		BLOCK_STRIPPING_MAP.put(BlockInit.ZAMITES_LOG, BlockInit.STRIPPED_ZAMITES_LOG);
+		BLOCK_STRIPPING_MAP.put(BlockInit.ZAMITES_WOOD, BlockInit.STRIPPED_ZAMITES_WOOD);
+		BLOCK_STRIPPING_MAP.put(BlockInit.PROTOJUNIPER_LOG, BlockInit.STRIPPED_PROTOJUNIPER_LOG);
+		BLOCK_STRIPPING_MAP.put(BlockInit.PROTOJUNIPER_WOOD, BlockInit.STRIPPED_PROTOJUNIPER_WOOD);
 		//BLOCK_STRIPPING_MAP.put(BlockInit.CYPRESS_LOG, BlockInit.STRIPPED_CYPRESS_LOG);
 		//BLOCK_STRIPPING_MAP.put(BlockInit.CYPRESS_WOOD, BlockInit.STRIPPED_CYPRESS_WOOD);
 	}
@@ -55,6 +59,16 @@ public class CommonEvents {
 		registerFlammable(BlockInit.PROTOPICEOXYLON_FENCE, 5, 20);
 		registerFlammable(BlockInit.PROTOPICEOXYLON_FENCE_GATE, 5, 20);
 		registerFlammable(BlockInit.PROTOPICEOXYLON_STAIRS, 5, 20);
+		registerFlammable(BlockInit.ZAMITES_PLANKS, 5, 20);
+		registerFlammable(BlockInit.ZAMITES_SLAB, 5, 20);
+		registerFlammable(BlockInit.ZAMITES_FENCE, 5, 20);
+		registerFlammable(BlockInit.ZAMITES_FENCE_GATE, 5, 20);
+		registerFlammable(BlockInit.ZAMITES_STAIRS, 5, 20);
+		registerFlammable(BlockInit.PROTOJUNIPER_PLANKS, 5, 20);
+		registerFlammable(BlockInit.PROTOJUNIPER_SLAB, 5, 20);
+		registerFlammable(BlockInit.PROTOJUNIPER_FENCE, 5, 20);
+		registerFlammable(BlockInit.PROTOJUNIPER_FENCE_GATE, 5, 20);
+		registerFlammable(BlockInit.PROTOJUNIPER_STAIRS, 5, 20);
 		//registerFlammable(BlockInit.CYPRESS_PLANKS, 5, 20);
 		//registerFlammable(BlockInit.CYPRESS_SLAB, 5, 20);
 		//registerFlammable(BlockInit.CYPRESS_FENCE, 5, 20);
@@ -73,6 +87,14 @@ public class CommonEvents {
 		registerFlammable(BlockInit.STRIPPED_PROTOPICEOXYLON_LOG, 5, 5);
 		registerFlammable(BlockInit.PROTOPICEOXYLON_WOOD, 5, 5);
 		registerFlammable(BlockInit.STRIPPED_PROTOPICEOXYLON_WOOD, 5, 5);
+		registerFlammable(BlockInit.ZAMITES_LOG, 5, 5);
+		registerFlammable(BlockInit.STRIPPED_ZAMITES_LOG, 5, 5);
+		registerFlammable(BlockInit.ZAMITES_WOOD, 5, 5);
+		registerFlammable(BlockInit.STRIPPED_ZAMITES_WOOD, 5, 5);
+		registerFlammable(BlockInit.PROTOJUNIPER_LOG, 5, 5);
+		registerFlammable(BlockInit.STRIPPED_PROTOJUNIPER_LOG, 5, 5);
+		registerFlammable(BlockInit.PROTOJUNIPER_WOOD, 5, 5);
+		registerFlammable(BlockInit.STRIPPED_PROTOJUNIPER_WOOD, 5, 5);
 		//registerFlammable(BlockInit.CYPRESS_LOG, 5, 5);
 		//registerFlammable(BlockInit.STRIPPED_CYPRESS_LOG, 5, 5);
 		//registerFlammable(BlockInit.CYPRESS_WOOD, 5, 5);
@@ -80,6 +102,8 @@ public class CommonEvents {
 		registerFlammable(BlockInit.ARAUCARIA_LEAVES, 30, 60);
 		registerFlammable(BlockInit.METASEQUOIA_LEAVES, 30, 60);
 		registerFlammable(BlockInit.PROTOPICEOXYLON_LEAVES, 30, 60);
+		registerFlammable(BlockInit.ZAMITES_LEAVES, 30, 60);
+		registerFlammable(BlockInit.PROTOJUNIPER_LEAVES, 30, 60);
 		//registerFlammable(BlockInit.CYPRESS_LEAVES, 30, 60);
 		registerFlammable(BlockInit.CLUBMOSS, 60, 100);
 		registerFlammable(BlockInit.HORSETAIL, 60, 100);
@@ -94,10 +118,14 @@ public class CommonEvents {
 		registerCompostable(0.3F, BlockInit.ARAUCARIA_LEAVES);
 		registerCompostable(0.3F, BlockInit.METASEQUOIA_LEAVES);
 		registerCompostable(0.3F, BlockInit.PROTOPICEOXYLON_LEAVES);
+		registerCompostable(0.3F, BlockInit.ZAMITES_LEAVES);
+		registerCompostable(0.3F, BlockInit.PROTOJUNIPER_LEAVES);
 		//registerCompostable(0.3F, BlockInit.CYPRESS_LEAVES);
 		registerCompostable(0.3F, BlockInit.ARAUCARIA_SAPLING);
 		registerCompostable(0.3F, BlockInit.METASEQUOIA_SAPLING);
 		registerCompostable(0.3F, BlockInit.PROTOPICEOXYLON_SAPLING);
+		registerCompostable(0.3F, BlockInit.ZAMITES_SAPLING);
+		registerCompostable(0.3F, BlockInit.PROTOJUNIPER_SAPLING);
 		//registerCompostable(0.3F, BlockInit.CYPRESS_SAPLING);
 		registerCompostable(0.3F, BlockInit.HORSETAIL);
 		registerCompostable(0.3F, BlockInit.OSMUNDA);

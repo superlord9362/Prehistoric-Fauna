@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=lower": { "model": "prehistoricfauna:block/scytophyllum_bottom" },
+        "half=upper":    { "model": "prehistoricfauna:block/scytophyllum_top" }
+    }
+}

@@ -13,11 +13,10 @@ import superlord.prehistoricfauna.PrehistoricFauna.PFBook;
 import superlord.prehistoricfauna.PrehistoricFauna.PFEggs;
 import superlord.prehistoricfauna.PrehistoricFauna.PFEntities;
 import superlord.prehistoricfauna.PrehistoricFauna.PFPlants;
-//import superlord.prehistoricfauna.PrehistoricFauna.PFWood;
-//import superlord.prehistoricfauna.entity.PrehistoricBoatEntity;
+import superlord.prehistoricfauna.entity.PrehistoricBoatEntity;
 import superlord.prehistoricfauna.item.CustomArmorItem;
 import superlord.prehistoricfauna.item.PaleopediaItem;
-//import superlord.prehistoricfauna.item.PrehistoricBoatItem;
+import superlord.prehistoricfauna.item.PrehistoricBoatItem;
 import superlord.prehistoricfauna.util.ArmorMaterialInit;;
 
 public class ItemInit {
@@ -77,5 +76,11 @@ public class ItemInit {
 	//Paleopedia
 	public static final RegistryObject<PaleopediaItem> PALEOPEDIA = ITEMS.register("paleopedia", () -> new PaleopediaItem());
 	public static final RegistryObject<Item> PALEOPAGE = ITEMS.register("paleopage", () -> new Item(new Item.Properties().group(PFBook.instance)));
+	//Boats
+	public static final RegistryObject<PrehistoricBoatItem> ARAUCARIA_BOAT = ITEMS.register("araucaria_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.ARAUCARIA, (new Item.Properties().maxStackSize(1).group(PFBook.instance))));
+	public static final RegistryObject<PrehistoricBoatItem> METASEQUOIA_BOAT = ITEMS.register("metasequoia_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.METASEQUOIA, (new Item.Properties().maxStackSize(1).group(PFBook.instance))));
+	public static final RegistryObject<PrehistoricBoatItem> PROTOPICEOXYLON_BOAT = ITEMS.register("protopiceoxylon_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.PROTOPICEOXYLON, (new Item.Properties().maxStackSize(1).group(PFBook.instance))));
+	public static final RegistryObject<PrehistoricBoatItem> ZAMITES_BOAT = ITEMS.register("zamites_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.ZAMITES, (new Item.Properties().maxStackSize(1).group(PFBook.instance))));
+	public static final RegistryObject<PrehistoricBoatItem> PROTOJUNIPER_BOAT = ITEMS.register("protojuniper_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.PROTOJUNIPER, (new Item.Properties().maxStackSize(1).group(PFBook.instance))));
 	
 }
