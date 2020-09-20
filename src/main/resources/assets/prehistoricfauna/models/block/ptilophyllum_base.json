@@ -4,7 +4,8 @@
 	"texture_size": [32, 32],
 	"textures": {
 		"0": "prehistoricfauna:blocks/ptilophyllum_fronds",
-		"1": "prehistoricfauna:blocks/ptilophyllum_base"
+		"1": "prehistoricfauna:blocks/ptilophyllum_base",
+		"particle": "prehistoricfauna:blocks/ptilophyllum_base"
 	},
 	"elements": [
 		{

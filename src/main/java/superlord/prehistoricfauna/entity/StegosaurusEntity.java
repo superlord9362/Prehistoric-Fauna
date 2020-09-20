@@ -40,7 +40,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import superlord.prehistoricfauna.block.AnkylosaurusEggBlock;
+import superlord.prehistoricfauna.block.StegosaurusEggBlock;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
 import superlord.prehistoricfauna.util.SoundHandler;
@@ -334,7 +334,7 @@ public class StegosaurusEntity extends PrehistoricEntity {
 	            } else if (this.stegosaurus.isDigging > 200) {
 	               World world = this.stegosaurus.world;
 	               world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-	               world.setBlockState(this.destinationBlock.up(), BlockInit.ANKYLOSAURUS_EGG.getDefaultState().with(AnkylosaurusEggBlock.EGGS, Integer.valueOf(this.stegosaurus.rand.nextInt(4) + 1)), 3);
+	               world.setBlockState(this.destinationBlock.up(), BlockInit.STEGOSAURUS_EGG.getDefaultState().with(StegosaurusEggBlock.EGGS, Integer.valueOf(this.stegosaurus.rand.nextInt(4) + 1)), 3);
 	               this.stegosaurus.setHasEgg(false);
 	               this.stegosaurus.setDigging(false);
 	               this.stegosaurus.setInLove(600);

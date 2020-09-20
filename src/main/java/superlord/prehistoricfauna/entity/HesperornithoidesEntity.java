@@ -41,7 +41,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import superlord.prehistoricfauna.block.DakotaraptorEggBlock;
+import superlord.prehistoricfauna.block.HesperornithoidesEggBlock;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
@@ -82,7 +82,7 @@ public class HesperornithoidesEntity extends PrehistoricEntity {
 	}
 	
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == ItemInit.ANKYLOSAURUS_SCUTE.get();
+		return stack.getItem() == ItemInit.RAW_EILENODON_MEAT.get();
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -108,6 +108,9 @@ public class HesperornithoidesEntity extends PrehistoricEntity {
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, TriceratopsEntity.class, 10F, 2D, 2D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, AnkylosaurusEntity.class, 10F, 2D, 2D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, DakotaraptorEntity.class, 10F, 2D, 2D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, HerrerasaurusEntity.class, 10F, 2D, 2D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, ExaeretodonEntity.class, 10F, 2D, 2D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, HyperodapedonEntity.class, 10F, 2D, 2D));
 		this.goalSelector.addGoal(8, new HesperornithoidesEntity.LayEggGoal(this, 1.0D));
 	}
 	
@@ -219,7 +222,7 @@ public class HesperornithoidesEntity extends PrehistoricEntity {
 				} else if (this.hesperornithoides.isDigging > 200) {
 					World world = this.hesperornithoides.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.DAKOTARAPTOR_EGG.getDefaultState().with(DakotaraptorEggBlock.EGGS, Integer.valueOf(this.hesperornithoides.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), BlockInit.HESPERORNITHOIDES_EGG.getDefaultState().with(HesperornithoidesEggBlock.EGGS, Integer.valueOf(this.hesperornithoides.rand.nextInt(4) + 1)), 3);
 					this.hesperornithoides.setHasEgg(false);
 					this.hesperornithoides.setDigging(false);
 					this.hesperornithoides.setInLove(600);

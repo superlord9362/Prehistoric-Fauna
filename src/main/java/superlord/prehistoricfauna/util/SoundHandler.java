@@ -47,6 +47,26 @@ public class SoundHandler {
 	public static final SoundEvent CAMARASAURUS_WARN;
 	public static final SoundEvent EILENODON_IDLE;
 	public static final SoundEvent EILENODON_HURT;
+	//Ischigualasto
+	public static final SoundEvent EXAERETODON_IDLE;
+	public static final SoundEvent EXAERETODON_HURT;
+	public static final SoundEvent EXAERETODON_WARN;
+	public static final SoundEvent CHROMOGISAURUS_IDLE;
+	public static final SoundEvent CHROMOGISAURUS_HURT;
+	public static final SoundEvent HERRERASAURUS_IDLE;
+	public static final SoundEvent HERRERASAURUS_HURT;
+	public static final SoundEvent HERRERASAURUS_WARN;
+	public static final SoundEvent HYPERODAPEDON_IDLE;
+	public static final SoundEvent HYPERODAPEDON_HURT;
+	public static final SoundEvent SILLOSUCHUS_IDLE;
+	public static final SoundEvent SILLOSUCHUS_HURT;
+	public static final SoundEvent SILLOSUCHUS_WARN;
+	public static final SoundEvent SAUROSUCHUS_IDLE;
+	public static final SoundEvent SAUROSUCHUS_HURT;
+	public static final SoundEvent SAUROSUCHUS_WARN;
+	public static final SoundEvent ISCHIGUALASTIA_IDLE;
+	public static final SoundEvent ISCHIGUALASTIA_HURT;
+	public static final SoundEvent ISCHIGUALASTIA_WARN;
 	
 	@SubscribeEvent
 	public static void registerSounds(final RegistryEvent.Register<SoundEvent> evt) {
@@ -86,6 +106,26 @@ public class SoundHandler {
 		evt.getRegistry().register(CAMARASAURUS_WARN);
 		evt.getRegistry().register(EILENODON_IDLE);
 		evt.getRegistry().register(EILENODON_HURT);
+		//Ischigualasto
+		evt.getRegistry().register(EXAERETODON_IDLE);
+		evt.getRegistry().register(EXAERETODON_HURT);
+		evt.getRegistry().register(EXAERETODON_WARN);
+		evt.getRegistry().register(CHROMOGISAURUS_IDLE);
+		evt.getRegistry().register(CHROMOGISAURUS_HURT);
+		evt.getRegistry().register(HERRERASAURUS_IDLE);
+		evt.getRegistry().register(HERRERASAURUS_HURT);
+		evt.getRegistry().register(HERRERASAURUS_WARN);
+		evt.getRegistry().register(HYPERODAPEDON_IDLE);
+		evt.getRegistry().register(HYPERODAPEDON_HURT);
+		evt.getRegistry().register(SILLOSUCHUS_IDLE);
+		evt.getRegistry().register(SILLOSUCHUS_HURT);
+		evt.getRegistry().register(SILLOSUCHUS_WARN);
+		evt.getRegistry().register(SAUROSUCHUS_IDLE);
+		evt.getRegistry().register(SAUROSUCHUS_HURT);
+		evt.getRegistry().register(SAUROSUCHUS_WARN);
+		evt.getRegistry().register(ISCHIGUALASTIA_IDLE);
+		evt.getRegistry().register(ISCHIGUALASTIA_HURT);
+		evt.getRegistry().register(ISCHIGUALASTIA_WARN);
 	}
 	
 	private static SoundEvent createEvent(final String soundName) {
@@ -130,6 +170,26 @@ public class SoundHandler {
 		CAMARASAURUS_WARN = createEvent("camarasaurus_warn");
 		EILENODON_IDLE = createEvent("eilenodon_idle");
 		EILENODON_HURT = createEvent("eilenodon_hurt");
+		//Ischigualasto
+		EXAERETODON_IDLE = createEvent("exaeretodon_idle");
+		EXAERETODON_HURT = createEvent("exaeretodon_hurt");
+		EXAERETODON_WARN = createEvent("exaeretodon_warn");
+		CHROMOGISAURUS_IDLE = createEvent("chromogisaurus_idle");
+		CHROMOGISAURUS_HURT = createEvent("chromogisaurus_hurt");
+		HERRERASAURUS_IDLE = createEvent("herrerasaurus_idle");
+		HERRERASAURUS_HURT = createEvent("herrerasaurus_hurt");
+		HERRERASAURUS_WARN = createEvent("herrerasaurus_warn");
+		HYPERODAPEDON_IDLE = createEvent("hyperodapedon_idle");
+		HYPERODAPEDON_HURT = createEvent("hyperodapedon_hurt");
+		SILLOSUCHUS_IDLE = createEvent("sillosuchus_idle");
+		SILLOSUCHUS_HURT = createEvent("sillosuchus_hurt");
+		SILLOSUCHUS_WARN = createEvent("sillosuchus_warn");
+		SAUROSUCHUS_IDLE = createEvent("saurosuchus_idle");
+		SAUROSUCHUS_HURT = createEvent("saurosuchus_hurt");
+		SAUROSUCHUS_WARN = createEvent("saurosuchus_warn");
+		ISCHIGUALASTIA_IDLE = createEvent("ischigualastia_idle");
+		ISCHIGUALASTIA_HURT = createEvent("ischigualastia_hurt");
+		ISCHIGUALASTIA_WARN = createEvent("ischigualastia_warn");
 	}
 
 }

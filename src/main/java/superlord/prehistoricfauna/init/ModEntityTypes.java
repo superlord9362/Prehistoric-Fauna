@@ -13,12 +13,17 @@ import superlord.prehistoricfauna.entity.AnkylosaurusEntity;
 import superlord.prehistoricfauna.entity.BasilemysEntity;
 import superlord.prehistoricfauna.entity.CamarasaurusEntity;
 import superlord.prehistoricfauna.entity.CeratosaurusEntity;
+import superlord.prehistoricfauna.entity.ChromogisaurusEntity;
 import superlord.prehistoricfauna.entity.DakotaraptorEntity;
 import superlord.prehistoricfauna.entity.DidelphodonEntity;
 import superlord.prehistoricfauna.entity.DryosaurusEntity;
 import superlord.prehistoricfauna.entity.EilenodonEntity;
+import superlord.prehistoricfauna.entity.ExaeretodonEntity;
+import superlord.prehistoricfauna.entity.HerrerasaurusEntity;
 import superlord.prehistoricfauna.entity.HesperornithoidesEntity;
+import superlord.prehistoricfauna.entity.HyperodapedonEntity;
 import superlord.prehistoricfauna.entity.PrehistoricBoatEntity;
+import superlord.prehistoricfauna.entity.SillosuchusEntity;
 import superlord.prehistoricfauna.entity.StegosaurusEntity;
 //import superlord.prehistoricfauna.entity.PrehistoricBoatEntity;
 import superlord.prehistoricfauna.entity.ThescelosaurusEntity;
@@ -56,6 +61,16 @@ public class ModEntityTypes {
     public static final EntityType<CamarasaurusEntity> CAMARASAURUS_ENTITY = registerEntity(EntityType.Builder.create(CamarasaurusEntity::new, EntityClassification.CREATURE).size(3.125F, 5.3125F), "camarasaurus");
     @SuppressWarnings("unchecked")
     public static final EntityType<DidelphodonEntity> DIDELPHODON_ENTITY = registerEntity(EntityType.Builder.create(DidelphodonEntity::new, EntityClassification.CREATURE).size(0.25F, 0.25F), "didelphodon");
+    @SuppressWarnings("unchecked")
+    public static final EntityType<ExaeretodonEntity> EXAERETODON_ENTITY = registerEntity(EntityType.Builder.create(ExaeretodonEntity::new, EntityClassification.CREATURE).size(0.75F, 0.5625F), "exaerertodon");
+    @SuppressWarnings("unchecked")
+    public static final EntityType<ChromogisaurusEntity> CHROMOGISAURUS_ENTITY = registerEntity(EntityType.Builder.create(ChromogisaurusEntity::new, EntityClassification.CREATURE).size(0.375F, 0.625F), "chromogisaurus");
+    @SuppressWarnings("unchecked")
+    public static final EntityType<HerrerasaurusEntity> HERRERASAURUS_ENTITY = registerEntity(EntityType.Builder.create(HerrerasaurusEntity::new, EntityClassification.CREATURE).size(0.625F, 1.375F), "herrerasaurus");
+    @SuppressWarnings("unchecked")
+    public static final EntityType<HyperodapedonEntity> HYPERODAPEDON_ENTITY = registerEntity(EntityType.Builder.create(HyperodapedonEntity::new, EntityClassification.CREATURE).size(0.375F, 0.3125F), "hyperodapedon");
+    @SuppressWarnings("unchecked")
+    public static final EntityType<SillosuchusEntity> SILLOSUCHUS_ENTITY = registerEntity(EntityType.Builder.create(SillosuchusEntity::new, EntityClassification.CREATURE).size(1.0F, 2.3125F), "sillosuchus");
     
     @SuppressWarnings("rawtypes")
 	private static final EntityType registerEntity(EntityType.Builder builder, String entityName){

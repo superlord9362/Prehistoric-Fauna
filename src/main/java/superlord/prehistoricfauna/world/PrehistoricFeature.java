@@ -1,5 +1,7 @@
 package superlord.prehistoricfauna.world;
 
+import java.util.Locale;
+
 import com.google.common.collect.Lists;
 
 import net.minecraft.block.BlockState;
@@ -10,14 +12,24 @@ import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.blockplacer.DoublePlantBlockPlacer;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
-import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.BlockClusterFeatureConfig;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.gen.feature.SphereReplaceConfig;
+import net.minecraft.world.gen.feature.TreeFeature;
+import net.minecraft.world.gen.feature.TreeFeatureConfig;
+import net.minecraft.world.gen.feature.structure.IStructurePieceType;
+import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.placement.FrequencyConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilderConfig;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import net.minecraftforge.event.RegistryEvent.Register;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.IForgeRegistry;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.world.feature.JohnstoniaFeature;
@@ -30,9 +42,17 @@ import superlord.prehistoricfauna.world.feature.generator.MetasequoiaTreeGenerat
 import superlord.prehistoricfauna.world.feature.generator.MorrisonSavannaSurfaceBuilder;
 import superlord.prehistoricfauna.world.feature.generator.PrehistoricGiantTreeFeatureConfig;
 import superlord.prehistoricfauna.world.placement.DicroidiumBlockPlacer;
+import superlord.prehistoricfauna.world.placement.HellCreekHutPieces;
+import superlord.prehistoricfauna.world.placement.IschigualastoHutPieces;
+import superlord.prehistoricfauna.world.placement.MorrisonHutPieces;
+import superlord.prehistoricfauna.world.structures.HCHutStructure;
+import superlord.prehistoricfauna.world.structures.IschigualastoStructure;
+import superlord.prehistoricfauna.world.structures.MorrisonHutStructure;
 
-@Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Bus.FORGE)
 public class PrehistoricFeature {
+	
+	@SuppressWarnings("deprecation")
+	public static final DeferredRegister<Feature<?>> FEATURES = new DeferredRegister<Feature<?>>(ForgeRegistries.FEATURES, PrehistoricFauna.MODID);
 	
 	public static final BlockState HORSETAIL = BlockInit.HORSETAIL.getDefaultState();
 	public static final BlockState OSMUNDA = BlockInit.OSMUNDA.getDefaultState();
@@ -55,6 +75,8 @@ public class PrehistoricFeature {
 	public static final BlockState SCYTOPHYLLUM = BlockInit.SCYTOPHYLLUM.getDefaultState();
 	public static final BlockState MICHELILLOA = BlockInit.MICHELILLOA.getDefaultState();
 	public static final BlockState CLADOPHLEBIS = BlockInit.CLADOPHLEBIS.getDefaultState();
+	public static final BlockState SHORT_OSMUNDACAULIS = BlockInit.SHORT_OSMUNDACAULIS.getDefaultState();
+	public static final BlockState DEAD_OSMUNDACAULIS = BlockInit.DEAD_OSMUNDACAULIS.getDefaultState();
 	
 	public static final BlockClusterFeatureConfig HORSETAIL_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(HORSETAIL), new SimpleBlockPlacer())).tries(64).func_227317_b_().build();
 	public static final BlockClusterFeatureConfig OSMUNDA_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(OSMUNDA), new SimpleBlockPlacer())).tries(64).func_227317_b_().build();
@@ -71,6 +93,8 @@ public class PrehistoricFeature {
 	public static final BlockClusterFeatureConfig DICROIDIUN_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(DICROIDIUM), new DicroidiumBlockPlacer())).tries(64).func_227317_b_().build();
 	public static final BlockClusterFeatureConfig HORSETAIL_WATER_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(HORSETAIL), new SimpleBlockPlacer())).tries(64).func_227317_b_().requiresWater().build();
 	public static final BlockClusterFeatureConfig LARGE_HORSETAIL_WATER_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(TALL_HORSETAIL), new DoublePlantBlockPlacer())).tries(64).func_227317_b_().requiresWater().build();
+	public static final BlockClusterFeatureConfig DEAD_OSMUNDACAULIS_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(DEAD_OSMUNDACAULIS), new SimpleBlockPlacer())).tries(4).build();
+	public static final BlockClusterFeatureConfig SHORT_OSMUNDACAULIS_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(SHORT_OSMUNDACAULIS), new SimpleBlockPlacer())).tries(64).func_227317_b_().build();
 	public static final SurfaceBuilderConfig PODZOL_COARSEDIRT_GRAVEL_CONFIG = new SurfaceBuilderConfig(PODZOL, COARSEDIRT, GRAVEL);
 	public static final SurfaceBuilderConfig MOSSYDIRT_COARSEDIRT_COARSEDIRT_CONFIG = new SurfaceBuilderConfig(MOSSYDIRT, COARSEDIRT, COARSEDIRT);
 	public static final SurfaceBuilderConfig COARSEDIRT_COARSEDIRT_CLAY_CONFIG = new SurfaceBuilderConfig(COARSEDIRT, COARSEDIRT, CLAY);
@@ -82,12 +106,33 @@ public class PrehistoricFeature {
 	public static final Feature<PrehistoricGiantTreeFeatureConfig> ARAUCARIA_TREE = register("araucaria_tree", new AraucariaTreeGenerator(PrehistoricGiantTreeFeatureConfig::deserializeAraucaria));
 	public static final Feature<TreeFeatureConfig> YOUNG_ARAUCARIA_TREE = register("young_araucaria_tree", new TreeFeature(TreeFeatureConfig::func_227338_a_));
 	public static final Feature<TreeFeatureConfig> PROTOPICEOXYLON_TREE = register("protopiceoxylon_tree", new TreeFeature(TreeFeatureConfig::func_227338_a_));
+	public static final Feature<TreeFeatureConfig> HEIDIPHYLLUM_TREE = register("heidiphyllum_tree", new TreeFeature(TreeFeatureConfig::func_227338_a_));
 	public static final Feature<NoFeatureConfig> PTILOPHYLLUM_TREE = register("ptilophyllum_tree", new PtilophyllumFeature(NoFeatureConfig::deserialize));
 
 	public static final Feature<TreeFeatureConfig> ZAMITES_BUSH = register("zamites_bush", new ZamitesBushFeature(TreeFeatureConfig::func_227338_a_));
-	public static final Feature<TreeFeatureConfig> ZAMITES_BUSH = register("zamites_bush", new TreeFeature(TreeFeatureConfig::func_227338_a_));
 	public static final Feature<NoFeatureConfig> JOHNSTONIA_CONFIG = register("johnstonia_config", new JohnstoniaFeature(NoFeatureConfig::deserialize));
 
+	public static Structure<NoFeatureConfig> HELL_CREEK_HUT = new HCHutStructure(NoFeatureConfig::deserialize);
+	public static Structure<NoFeatureConfig> MORRISON_HUT = new MorrisonHutStructure(NoFeatureConfig::deserialize);
+	public static Structure<NoFeatureConfig> ISCHIGUALASTO_HUT = new IschigualastoStructure(NoFeatureConfig::deserialize);
+	public static IStructurePieceType HCHUT_PIECE = HellCreekHutPieces.Piece::new;
+	public static IStructurePieceType MORRISON_HUT_PIECE = MorrisonHutPieces.Piece::new;
+	public static IStructurePieceType ISCHIGUALASTO_HUT_PIECE = IschigualastoHutPieces.Piece::new;
+	
+	public static void registerFeatures(Register<Feature<?>> event) {
+		IForgeRegistry<Feature<?>> registry = event.getRegistry();
+		PrehistoricFauna.register(registry, HELL_CREEK_HUT, "hell_creek_hut");
+		PrehistoricFauna.register(registry, MORRISON_HUT, "morrison_hut");
+		PrehistoricFauna.register(registry, ISCHIGUALASTO_HUT, "ischigualasto_hut");
+		register(HCHUT_PIECE, "HCHUT_PIECE");
+		register(MORRISON_HUT_PIECE, "MORRISON_HUT_PIECE");
+		register(ISCHIGUALASTO_HUT_PIECE, "ISCHIGUALASTO_HUT_PIECE");
+	}
+	
+	static IStructurePieceType register(IStructurePieceType structurePiece, String key) {
+		return Registry.register(Registry.STRUCTURE_PIECE, key.toLowerCase(Locale.ROOT), structurePiece);
+	}
+	
 	//public static final Feature<PrehistoricGiantTreeFeatureConfig> CYPRESS_TREE = register("cypress_tree", new CypressTreeGenerator(PrehistoricGiantTreeFeatureConfig::deserializeCypress));
 	public static final SurfaceBuilder<SurfaceBuilderConfig> HELL_CREEK = register("hell_creek", new HellCreekSurfaceBuilder(SurfaceBuilderConfig::deserialize));
 	public static final SurfaceBuilder<SurfaceBuilderConfig> MORRISON_SAVANNA = register("morrison", new MorrisonSavannaSurfaceBuilder(SurfaceBuilderConfig::deserialize));

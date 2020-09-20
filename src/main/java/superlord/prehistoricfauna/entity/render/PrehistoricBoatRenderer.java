@@ -26,7 +26,9 @@ public class PrehistoricBoatRenderer extends EntityRenderer<PrehistoricBoatEntit
             new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/boat/metasequoia.png"),
             new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/boat/protopiceoxylon.png"),
             new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/boat/zamites.png"),
-            new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/boat/protojuniper.png")
+            new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/boat/protojuniper.png"),
+            new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/boat/heidiphyllum.png"),
+            new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/boat/liriodendrites.png")
     };
     protected final BoatModel modelBoat = new BoatModel();
 

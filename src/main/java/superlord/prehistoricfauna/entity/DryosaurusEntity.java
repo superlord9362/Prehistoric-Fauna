@@ -38,7 +38,7 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.block.ThescelosaurusEggBlock;
+import superlord.prehistoricfauna.block.DryosaurusEggBlock;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
 import superlord.prehistoricfauna.util.SoundHandler;
@@ -114,6 +114,7 @@ public class DryosaurusEntity extends PrehistoricEntity {
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, CamarasaurusEntity.class, 10F, 2D, 2D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, DakotaraptorEntity.class, 10F, 2D, 2D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, TyrannosaurusEntity.class, 10F, 2D, 2D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, HerrerasaurusEntity.class, 10F, 2D, 2D));
 		this.goalSelector.addGoal(8, new DryosaurusEntity.LayEggGoal(this, 1.0D));
 	}
 	
@@ -181,7 +182,7 @@ public class DryosaurusEntity extends PrehistoricEntity {
 				} else if (this.dryosaurus.isDigging > 200) {
 					World world = this.dryosaurus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.THESCELOSAURUS_EGG.getDefaultState().with(ThescelosaurusEggBlock.EGGS, Integer.valueOf(this.dryosaurus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), BlockInit.DRYOSAURUS_EGG.getDefaultState().with(DryosaurusEggBlock.EGGS, Integer.valueOf(this.dryosaurus.rand.nextInt(4) + 1)), 3);
 					this.dryosaurus.setHasEgg(false);
 					this.dryosaurus.setDigging(false);
 					this.dryosaurus.setInLove(600);

@@ -41,6 +41,7 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import superlord.prehistoricfauna.block.CamarasaurusEggBlock;
 import superlord.prehistoricfauna.init.BlockInit;
+import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
 import superlord.prehistoricfauna.util.SoundHandler;
 
@@ -80,10 +81,9 @@ public class CamarasaurusEntity extends PrehistoricEntity {
 	
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.ARAUCARIA_LEAVES.asItem();
+		return stack.getItem() == ItemInit.PTILOPHYLLUM_FRONDS.get();
 	}
 	
-	@SuppressWarnings({ })
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();

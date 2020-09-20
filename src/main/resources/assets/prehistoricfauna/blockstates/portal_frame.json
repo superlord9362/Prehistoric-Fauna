@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "facing=up": { "model": "prehistoricfauna:block/portal_frame" },
+        "facing=down": { "model": "prehistoricfauna:block/portal_frame", "x": 180 },
+        "facing=east": { "model": "prehistoricfauna:block/portal_frame", "y": 90, "x": 90 },
+        "facing=south": { "model": "prehistoricfauna:block/portal_frame", "y": 180, "x": 90 },
+        "facing=west": { "model": "prehistoricfauna:block/portal_frame", "y": 270, "x": 90 },
+        "facing=north": { "model": "prehistoricfauna:block/portal_frame", "y": 0, "x": 90 }
+    }
+}

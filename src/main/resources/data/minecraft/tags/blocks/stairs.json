@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "prehistoricfauna:araucaria_stairs",
+    "prehistoricfauna:metasequoia_stairs",
+	"prehistoricfauna:protopiceoxylon_stairs",
+	"prehistoricfauna:zamites_stairs",
+	"prehistoricfauna:protojuniper_stairs",
+	"prehistoricfauna:heidiphyllum_stairs",
+	"prehistoricfauna:liriodendrites_stairs",
+	"prehistoricfauna:triassic_sandstone_stairs",
+	"prehistoricfauna:triassic_sandstone_brick_stairs",
+	"prehistoricfauna:polished_triassic_sandstone_stairs",
+	"prehistoricfauna:jurassic_siltstone_stairs",
+	"prehistoricfauna:jurassic_siltstone_brick_stairs",
+	"prehistoricfauna:polished_jurassic_siltstone_stairs",
+	"prehistoricfauna:cretaceous_chalk_stairs",
+	"prehistoricfauna:cretaceous_chalk_brick_stairs",
+	"prehistoricfauna:polished_cretaceous_chalk_stairs"
+  ]
+}

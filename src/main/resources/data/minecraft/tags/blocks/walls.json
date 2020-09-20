@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+	"prehistoricfauna:jurassic_siltstone_wall",
+	"prehistoricfauna:triassic_sandstone_wall",
+	"prehistoricfauna:cretaceous_chalk_wall"
+  ]
+}

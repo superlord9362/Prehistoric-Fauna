@@ -62,7 +62,7 @@ public class DakotaraptorEntity extends PrehistoricEntity {
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(DakotaraptorEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Byte> DAKOTARAPTOR_FLAGS = EntityDataManager.createKey(DakotaraptorEntity.class, DataSerializers.BYTE);
 	private static final Predicate<Entity> IS_PREY = (p_213498_0_) -> {
-		return p_213498_0_ instanceof BasilemysEntity || p_213498_0_ instanceof ThescelosaurusEntity || p_213498_0_ instanceof DryosaurusEntity || p_213498_0_ instanceof HesperornithoidesEntity || p_213498_0_ instanceof EilenodonEntity;
+		return p_213498_0_ instanceof BasilemysEntity || p_213498_0_ instanceof ThescelosaurusEntity || p_213498_0_ instanceof DryosaurusEntity || p_213498_0_ instanceof HesperornithoidesEntity || p_213498_0_ instanceof EilenodonEntity || p_213498_0_ instanceof ChromogisaurusEntity || p_213498_0_ instanceof HyperodapedonEntity;
 	};
 	private int warningSoundTicks;
 	private int isDigging;

@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "prehistoricfauna:blocks/cretaceous_chalk_bricks",
+        "top": "prehistoricfauna:blocks/cretaceous_chalk_bricks",
+        "side": "prehistoricfauna:blocks/cretaceous_chalk_bricks"
+    }
+}

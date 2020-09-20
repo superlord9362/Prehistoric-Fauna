@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "prehistoricfauna:blocks/triassic_sandstone",
+        "top": "prehistoricfauna:blocks/triassic_sandstone",
+        "side": "prehistoricfauna:blocks/triassic_sandstone"
+    }
+}

@@ -43,7 +43,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import superlord.prehistoricfauna.block.TyrannosaurusEggBlock;
+import superlord.prehistoricfauna.block.AllosaurusEggBlock;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
@@ -315,7 +315,7 @@ public class AllosaurusEntity extends PrehistoricEntity {
 	            } else if (this.allosaurus.isDigging > 200) {
 	               World world = this.allosaurus.world;
 	               world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-	               world.setBlockState(this.destinationBlock.up(), BlockInit.TYRANNOSAURUS_EGG.getDefaultState().with(TyrannosaurusEggBlock.EGGS, Integer.valueOf(this.allosaurus.rand.nextInt(4) + 1)), 3);
+	               world.setBlockState(this.destinationBlock.up(), BlockInit.ALLOSAURUS_EGG.getDefaultState().with(AllosaurusEggBlock.EGGS, Integer.valueOf(this.allosaurus.rand.nextInt(4) + 1)), 3);
 	               this.allosaurus.setHasEgg(false);
 	               this.allosaurus.setDigging(false);
 	               this.allosaurus.setInLove(600);

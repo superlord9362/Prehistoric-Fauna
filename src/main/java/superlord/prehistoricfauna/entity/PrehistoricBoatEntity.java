@@ -65,6 +65,10 @@ public class PrehistoricBoatEntity extends BoatEntity {
                 return ItemInit.ZAMITES_BOAT.get();
             case PROTOJUNIPER:
             	return ItemInit.PROTOJUNIPER_BOAT.get();
+            case HEIDIPHYLLUM:
+            	return ItemInit.HEIDIPHYLLUM_BOAT.get();
+            case LIRIODENDRITES:
+            	return ItemInit.LIRIODENDRITES_BOAT.get();
         }
     }
 
@@ -80,6 +84,10 @@ public class PrehistoricBoatEntity extends BoatEntity {
                 return BlockInit.ZAMITES_PLANKS;
             case PROTOJUNIPER:
             	return BlockInit.PROTOJUNIPER_PLANKS;
+            case HEIDIPHYLLUM:
+            	return BlockInit.HEIDIPHYLLUM_PLANKS;
+            case LIRIODENDRITES:
+            	return BlockInit.LIRIODENDRITES_PLANKS;
         }
     }
 
@@ -195,7 +203,9 @@ public class PrehistoricBoatEntity extends BoatEntity {
         METASEQUOIA("metasequoia"),
         PROTOPICEOXYLON("protopiceoxylon"),
         ZAMITES("zamites"),
-        PROTOJUNIPER("protojuniper");
+        PROTOJUNIPER("protojuniper"),
+        HEIDIPHYLLUM("heidiphyllum"),
+        LIRIODENDRITES("liriodendrites");
 
 
         private final String name;

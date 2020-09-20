@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "axis=z": { "model": "prehistoricfauna:block/portal_ew" },
+		"axis=x": { "model": "prehistoricfauna:block/portal_ns"}
+    }
+}

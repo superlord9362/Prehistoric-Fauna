@@ -46,7 +46,7 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.block.ThescelosaurusEggBlock;
+import superlord.prehistoricfauna.block.EilenodonEggBlock;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
 import superlord.prehistoricfauna.util.SoundHandler;
@@ -160,6 +160,8 @@ public class EilenodonEntity extends PrehistoricEntity {
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, AnkylosaurusEntity.class, 10F, 2D, 2D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, ThescelosaurusEntity.class, 10F, 2D, 2D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, DakotaraptorEntity.class, 10F, 2D, 2D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, HerrerasaurusEntity.class, 10F, 2D, 2D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, ExaeretodonEntity.class, 10F, 2D, 2D));
 		this.goalSelector.addGoal(8, new EilenodonEntity.LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(9, new EilenodonEntity.SitAndLookGoal());
 	}
@@ -218,7 +220,7 @@ public class EilenodonEntity extends PrehistoricEntity {
 				} else if (this.eilenodon.isDigging > 200) {
 					World world = this.eilenodon.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.THESCELOSAURUS_EGG.getDefaultState().with(ThescelosaurusEggBlock.EGGS, Integer.valueOf(this.eilenodon.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), BlockInit.EILENODON_EGG.getDefaultState().with(EilenodonEggBlock.EGGS, Integer.valueOf(this.eilenodon.rand.nextInt(4) + 1)), 3);
 					this.eilenodon.setHasEgg(false);
 					this.eilenodon.setDigging(false);
 					this.eilenodon.setInLove(600);

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:heidiphyllum_log"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:heidiphyllum_wood",
+    "count": 3
+  }
+}
