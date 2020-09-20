@@ -35,6 +35,7 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue morrisonHutMaxDistance;
 	public final ForgeConfigSpec.IntValue ischigualastoHutMinDistance;
 	public final ForgeConfigSpec.IntValue ischigualastoHutMaxDistance;
+	public final ForgeConfigSpec.BooleanValue spaceTimeContinuumWarping;
 	
 	public ServerConfig(final ForgeConfigSpec.Builder builder) {
 		builder.push("general");
@@ -69,6 +70,7 @@ public class ServerConfig {
 		this.morrisonHutMaxDistance = buildInt(builder, "Morrison Ruined Time Traveller's Hut Max Distance", "all", 12, 1, 300, "The farthest two Morrison Ruined Time Traveller's Huts can spawn from eachother. Keep this value higher than the min");
 		this.ischigualastoHutMinDistance = buildInt(builder, "Ischigualasto Ruined Time Traveller's Hut Min Distance", "all", 7, 1, 300, "The closest two Ischigualasto Ruined Time Traveller's Huts can spawn from eachother. Keep this value lower than the max");
 		this.ischigualastoHutMaxDistance = buildInt(builder, "Ischigualasto Ruined Time Traveller's Hut Max Distance", "all", 12, 1, 300, "The farthest two Ischigualasto Ruined Time Traveller's Huts can spawn from eachother. Keep this value higher than the min");
+		this.spaceTimeContinuumWarping = buildBoolean(builder, "Space Time Continuum Warping", "all", true, "Warning: Messing with the time space continuum may lead to unforseen consequences. Recommended to keep false for servers.");
 	}
 	
 	private static ForgeConfigSpec.BooleanValue buildBoolean(ForgeConfigSpec.Builder builder, String name, String catagory, boolean defaultValue, String comment){
@@ -79,6 +81,7 @@ public class ServerConfig {
 		return builder.comment(comment).translation(name).defineInRange(name, defaultValue, min, max);
 	}
 
+	@SuppressWarnings("unused")
 	private static ForgeConfigSpec.DoubleValue buildDouble(ForgeConfigSpec.Builder builder, String name, String catagory, double defaultValue, double min, double max, String comment){
 		return builder.comment(comment).translation(name).defineInRange(name, defaultValue, min, max);
 	}

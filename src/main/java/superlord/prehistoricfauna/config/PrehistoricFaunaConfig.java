@@ -36,6 +36,7 @@ public class PrehistoricFaunaConfig {
 	public static int morrisonHutMaxDistance = 12;
 	public static int ischigualastoHutMinDistance = 7;
 	public static int ischigualastoHutMaxDistance = 12;
+	public static boolean spaceTimeContinuumWarping = true;
 	
 	public static void bakeClient(final ModConfig config) {
 
@@ -74,6 +75,7 @@ public class PrehistoricFaunaConfig {
 			morrisonHutMaxDistance = PrehistoricConfigHolder.SERVER.morrisonHutMaxDistance.get();
 			ischigualastoHutMinDistance = PrehistoricConfigHolder.SERVER.ischigualastoHutMinDistance.get();
 			ischigualastoHutMaxDistance = PrehistoricConfigHolder.SERVER.ischigualastoHutMaxDistance.get();
+			spaceTimeContinuumWarping = PrehistoricConfigHolder.SERVER.spaceTimeContinuumWarping.get();
 		} catch (Exception e) {
 			PrehistoricFauna.LOGGER.warn("An exception was caused trying to load the config for Prehistoric Fauna");
 			e.printStackTrace();
