@@ -31,16 +31,16 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.util.ITeleporter;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.DimensionTypeInit;
-import superlord.prehistoricfauna.util.TeleporterCretaceous;
+import superlord.prehistoricfauna.util.TeleporterTriassic;
 
-public class CretaceousPortalBlock extends Block {
+public class TriassicPortalBlock extends Block {
 
 	public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 	protected static final VoxelShape X_AABB = Block.makeCuboidShape(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
 	protected static final VoxelShape Z_AABB = Block.makeCuboidShape(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
 
 	
-	public CretaceousPortalBlock(Properties builder) {
+	public TriassicPortalBlock(Properties builder) {
 		super(builder);
 		this.setDefaultState(this.stateContainer.getBaseState().with(AXIS, Direction.Axis.X));
 	}
@@ -60,13 +60,13 @@ public class CretaceousPortalBlock extends Block {
 	}
 	
 	 public boolean trySpawnPortal(World world, BlockPos pos) {
-		 CretaceousPortalBlock.Size size = new CretaceousPortalBlock.Size(world, pos);
+		 TriassicPortalBlock.Size size = new TriassicPortalBlock.Size(world, pos);
 		 if (size.isValid()) {
 			 size.placePortalBlocks();
 			 world.playSound(null, pos, SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.BLOCKS, 0.7F, 1.0F);
 			 return true;
 		 } else {
-			 CretaceousPortalBlock.Size size1 = new CretaceousPortalBlock.Size(world, pos);
+			 TriassicPortalBlock.Size size1 = new TriassicPortalBlock.Size(world, pos);
 			 if (size1.isValid()) {
 				 size1.placePortalBlocks();
 				 world.playSound(null, pos, SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.BLOCKS, 1.0F, 1.0F);
@@ -91,8 +91,8 @@ public class CretaceousPortalBlock extends Block {
 	 public void onEntityCollision(@Nonnull BlockState state, @Nonnull World world, @Nonnull BlockPos pos, Entity entity) {
 		 if (!entity.isOnePlayerRiding() && !entity.isBeingRidden() && entity instanceof ServerPlayerEntity && entity.timeUntilPortal <= 0) {
 			 ServerPlayerEntity player = (ServerPlayerEntity) entity;
-			 final DimensionType dimension = player.dimension == DimensionTypeInit.CRETACEOUS_DIMENSION_TYPE ? DimensionType.OVERWORLD : DimensionTypeInit.CRETACEOUS_DIMENSION_TYPE;
-			 changeDimension(world, (ServerPlayerEntity) entity, dimension, new TeleporterCretaceous());
+			 final DimensionType dimension = player.dimension == DimensionTypeInit.TRIASSIC_DIMENSION_TYPE ? DimensionType.OVERWORLD : DimensionTypeInit.TRIASSIC_DIMENSION_TYPE;
+			 changeDimension(world, (ServerPlayerEntity) entity, dimension, new TeleporterTriassic());
 		 }
 	 }
 
@@ -100,10 +100,10 @@ public class CretaceousPortalBlock extends Block {
 		 if (!world.isRemote) {
 			 player.changeDimension(dimension, teleporter);
 			 player.timeUntilPortal = 300;
-			 if (player.dimension == DimensionTypeInit.CRETACEOUS_DIMENSION_TYPE) {
+			 if (player.dimension == DimensionTypeInit.TRIASSIC_DIMENSION_TYPE) {
 				 BlockPos playerPos = new BlockPos(player);
 				 if (world.isAirBlock(playerPos) && world.getBlockState(playerPos).isSolidSide(world, playerPos, Direction.UP)) {
-					 player.setSpawnPoint(playerPos, true, false, DimensionTypeInit.CRETACEOUS_DIMENSION_TYPE);
+					 player.setSpawnPoint(playerPos, true, false, DimensionTypeInit.TRIASSIC_DIMENSION_TYPE);
 				 }
 			 }
 		 }
@@ -226,7 +226,7 @@ public class CretaceousPortalBlock extends Block {
 
         void placePortalBlocks() {
             for (BlockPos portalPos : BlockPos.Mutable.getAllInBoxMutable(nw, se)) {
-                this.world.setBlockState(portalPos, BlockInit.CRETACEOUS_PORTAL.getDefaultState(), 2);
+                this.world.setBlockState(portalPos, BlockInit.TRIASSIC_PORTAL.getDefaultState(), 2);
             }
         }
     }

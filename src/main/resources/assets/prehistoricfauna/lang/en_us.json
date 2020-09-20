@@ -327,5 +327,11 @@
 	"block.prehistoricfauna.portal_projector": "Time Machine Projector",
 	"block.prehistoricfauna.cretaceous_time_block": "Cretaceous Warp Block",
 	"item.prehistoricfauna.time_totem": "Totem of Time",
-	"item.prehistoricfauna.cretaceous_time_totem": "Totem of the Cretaceous"
+	"item.prehistoricfauna.cretaceous_time_totem": "Totem of the Cretaceous",
+	"item.prehistoricfauna.jurassic_time_totem": "Totem of the Jurassic",
+	"item.prehistoricfauna.triassic_time_totem": "Totem of the Triassic",
+	"block.prehistoricfauna.jurassic_portal": "Jurassic Warp Block",
+	"block.prehistoricfauna.jurassic_time_block": "Jurassic Warp Block",
+	"block.prehistoricfauna.triassic_time_block": "Triassic Warp Block",
+	"block.prehistoricfauna.triassic_portal": "Triassic Warp Block"
 }

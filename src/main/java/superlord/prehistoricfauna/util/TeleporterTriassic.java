@@ -1,12 +1,13 @@
 package superlord.prehistoricfauna.util;
 
-import java.util.function.Function;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.block.pattern.BlockPattern;
@@ -23,11 +24,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.server.TicketType;
 import net.minecraftforge.common.util.ITeleporter;
-import superlord.prehistoricfauna.block.CretaceousPortalBlock;
 import superlord.prehistoricfauna.block.PortalFrameBlock;
+import superlord.prehistoricfauna.block.TriassicPortalBlock;
 import superlord.prehistoricfauna.init.BlockInit;
 
-public class TeleporterCretaceous implements ITeleporter {
+public class TeleporterTriassic implements ITeleporter {
 
 	@Override
     public Entity placeEntity(Entity entity, ServerWorld currentWorld, ServerWorld destWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
@@ -61,12 +62,12 @@ public class TeleporterCretaceous implements ITeleporter {
     public static BlockPattern.PortalInfo placeInExistingPortal(ServerWorld world, @Nonnull BlockPos pos, @Nonnull Vec3d portalPos, @Nonnull Direction direction, double d, double d1, boolean b) {
         PointOfInterestManager poiManager = world.getPointOfInterestManager();
         poiManager.ensureLoadedAndValid(world, pos, 128);
-        List<PointOfInterest> list = poiManager.getInSquare((poi) -> poi == CretaceousPointOfInterest.PORTAL, pos, 128, PointOfInterestManager.Status.ANY).collect(Collectors.toList());
+        List<PointOfInterest> list = poiManager.getInSquare((poi) -> poi == TriassicPointOfInterest.TRIASSIC_PORTAL, pos, 128, PointOfInterestManager.Status.ANY).collect(Collectors.toList());
         Optional<PointOfInterest> optional = list.stream().min(Comparator.<PointOfInterest>comparingDouble((poi) -> poi.getPos().distanceSq(pos)).thenComparingInt((poi) -> poi.getPos().getY()));
         return optional.map((poi) -> {
             BlockPos posPos = poi.getPos();
             world.getChunkProvider().registerTicket(TicketType.PORTAL, new ChunkPos(posPos), 3, posPos);
-            BlockPattern.PatternHelper patternHelper = CretaceousPortalBlock.createPatternHelper(world, posPos);
+            BlockPattern.PatternHelper patternHelper = TriassicPortalBlock.createPatternHelper(world, posPos);
             return patternHelper.getPortalInfo(direction, posPos, d1, portalPos, d);
         }).orElse(null);
     }
@@ -103,15 +104,15 @@ public class TeleporterCretaceous implements ITeleporter {
         world.setBlockState(pos.west(1).up(4), BlockInit.PORTAL_FRAME.getDefaultState().with(PortalFrameBlock.FACING, Direction.DOWN));
         
         //Portal blocks
-        world.setBlockState(pos.up(), BlockInit.CRETACEOUS_PORTAL.getDefaultState());
-		world.setBlockState(pos.up(2), BlockInit.CRETACEOUS_PORTAL.getDefaultState());
-		world.setBlockState(pos.up(3), BlockInit.CRETACEOUS_PORTAL.getDefaultState());
-		world.setBlockState(pos.east().up(), BlockInit.CRETACEOUS_PORTAL.getDefaultState());
-		world.setBlockState(pos.east().up(2), BlockInit.CRETACEOUS_PORTAL.getDefaultState());
-		world.setBlockState(pos.east().up(3), BlockInit.CRETACEOUS_PORTAL.getDefaultState());
-		world.setBlockState(pos.west().up(), BlockInit.CRETACEOUS_PORTAL.getDefaultState());
-		world.setBlockState(pos.west().up(2), BlockInit.CRETACEOUS_PORTAL.getDefaultState());
-		world.setBlockState(pos.west().up(3), BlockInit.CRETACEOUS_PORTAL.getDefaultState());
+        world.setBlockState(pos.up(), BlockInit.TRIASSIC_PORTAL.getDefaultState());
+		world.setBlockState(pos.up(2), BlockInit.TRIASSIC_PORTAL.getDefaultState());
+		world.setBlockState(pos.up(3), BlockInit.TRIASSIC_PORTAL.getDefaultState());
+		world.setBlockState(pos.east().up(), BlockInit.TRIASSIC_PORTAL.getDefaultState());
+		world.setBlockState(pos.east().up(2), BlockInit.TRIASSIC_PORTAL.getDefaultState());
+		world.setBlockState(pos.east().up(3), BlockInit.TRIASSIC_PORTAL.getDefaultState());
+		world.setBlockState(pos.west().up(), BlockInit.TRIASSIC_PORTAL.getDefaultState());
+		world.setBlockState(pos.west().up(2), BlockInit.TRIASSIC_PORTAL.getDefaultState());
+		world.setBlockState(pos.west().up(3), BlockInit.TRIASSIC_PORTAL.getDefaultState());
     }
 	
 }

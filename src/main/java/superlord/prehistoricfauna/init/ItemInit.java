@@ -16,8 +16,10 @@ import superlord.prehistoricfauna.PrehistoricFauna.PFPlants;
 import superlord.prehistoricfauna.entity.PrehistoricBoatEntity;
 import superlord.prehistoricfauna.item.CretaceousTimeTotemItem;
 import superlord.prehistoricfauna.item.CustomArmorItem;
+import superlord.prehistoricfauna.item.JurassicTimeTotemItem;
 import superlord.prehistoricfauna.item.PaleopediaItem;
 import superlord.prehistoricfauna.item.PrehistoricBoatItem;
+import superlord.prehistoricfauna.item.TriassicTimeTotemItem;
 import superlord.prehistoricfauna.util.ArmorMaterialInit;;
 
 public class ItemInit {
@@ -105,4 +107,6 @@ public class ItemInit {
 	//Misc
 	public static final RegistryObject<Item> TIME_TOTEM = ITEMS.register("time_totem", () -> new Item(new Item.Properties().group(PFBook.instance)));
 	public static final RegistryObject<CretaceousTimeTotemItem> CRETACEOUS_TIME_TOTEM = ITEMS.register("cretaceous_time_totem", () -> new CretaceousTimeTotemItem(new Item.Properties().group(PFBook.instance).maxDamage(8)));
+	public static final RegistryObject<JurassicTimeTotemItem> JURASIC_TIME_TOTEM = ITEMS.register("jurassic_time_totem", () -> new JurassicTimeTotemItem(new Item.Properties().group(PFBook.instance).maxDamage(8)));
+	public static final RegistryObject<TriassicTimeTotemItem> TRIASSIC_TIME_TOTEM = ITEMS.register("triassic_time_totem", () -> new TriassicTimeTotemItem(new Item.Properties().group(PFBook.instance).maxDamage(8)));
 }

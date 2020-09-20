@@ -21,6 +21,7 @@ import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.world.placement.MorrisonHutPieces;
 
 public class MorrisonHutStructure  extends Structure<NoFeatureConfig>{
@@ -58,8 +59,8 @@ public class MorrisonHutStructure  extends Structure<NoFeatureConfig>{
 	
 	@Override
 	protected ChunkPos getStartPositionForPosition(ChunkGenerator<?> chunkGenerator, Random random, int x, int z, int spacingOffsetsX, int spacingOffsetsZ) {
-		int maxDistance = 12;
-		int minDistance = 7;
+		int maxDistance = PrehistoricFaunaConfig.morrisonHutMaxDistance;
+		int minDistance = PrehistoricFaunaConfig.morrisonHutMinDistance;
 
 		int xTemp = x + maxDistance * spacingOffsetsX;
 		int ztemp = z + maxDistance * spacingOffsetsZ;

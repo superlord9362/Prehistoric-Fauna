@@ -13,12 +13,12 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
-import superlord.prehistoricfauna.block.CretaceousTimeBlock;
+import superlord.prehistoricfauna.block.TriassicTimeBlock;
 import superlord.prehistoricfauna.init.BlockInit;
 
-public class CretaceousTimeTotemItem extends Item {
+public class TriassicTimeTotemItem extends Item {
 
-	public CretaceousTimeTotemItem(Properties properties) {
+	public TriassicTimeTotemItem(Properties properties) {
 		super(properties);
 	}
 	
@@ -29,7 +29,7 @@ public class CretaceousTimeTotemItem extends Item {
 		BlockPos blockpos1 = blockpos.offset(context.getFace());
         if (canOpenPortal(iworld.getBlockState(blockpos1), iworld, blockpos1)) {
            iworld.playSound(playerentity, blockpos1, SoundEvents.ITEM_TOTEM_USE, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
-           BlockState blockstate1 = ((CretaceousTimeBlock)BlockInit.CRETACEOUS_TIME_BLOCK).getDefaultState();
+           BlockState blockstate1 = ((TriassicTimeBlock)BlockInit.TRIASSIC_TIME_BLOCK).getDefaultState();
            iworld.setBlockState(blockpos1, blockstate1, 11);
            ItemStack itemstack = context.getItem();
            if (playerentity instanceof ServerPlayerEntity) {
@@ -46,7 +46,7 @@ public class CretaceousTimeTotemItem extends Item {
 
 	@SuppressWarnings("deprecation")
 	public static boolean canOpenPortal(BlockState existingState, IWorld worldIn, BlockPos posIn) {
-		BlockState blockstate = ((CretaceousTimeBlock)BlockInit.CRETACEOUS_TIME_BLOCK).getDefaultState();
+		BlockState blockstate = ((TriassicTimeBlock)BlockInit.TRIASSIC_TIME_BLOCK).getDefaultState();
 		boolean flag = false;
 		if (worldIn.getBlockState(posIn.down()).getBlock() == BlockInit.PORTAL_FRAME && worldIn.getBlockState(posIn).getBlock() == Blocks.AIR || worldIn.getBlockState(posIn.down()).getBlock() == BlockInit.PORTAL_PROJECTOR && worldIn.getBlockState(posIn).getBlock() == Blocks.AIR) {
 			flag = true;
