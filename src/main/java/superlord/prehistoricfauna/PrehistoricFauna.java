@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna;
+	package superlord.prehistoricfauna;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,6 +19,8 @@ import net.minecraft.client.gui.screen.MainMenuScreen;
 import net.minecraft.client.renderer.RenderSkyboxCube;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
+import net.minecraft.entity.passive.ChickenEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
@@ -40,6 +42,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
+import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -65,6 +70,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import superlord.prehistoricfauna.config.PrehistoricConfigHolder;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
+import superlord.prehistoricfauna.entity.HesperornithoidesEntity;
 import superlord.prehistoricfauna.entity.render.AllosaurusRenderer;
 import superlord.prehistoricfauna.entity.render.AnkylosaurusRenderer;
 import superlord.prehistoricfauna.entity.render.BasilemysRenderer;
@@ -126,6 +133,8 @@ public class PrehistoricFauna {
 		final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		modEventBus.addListener(this::setup);
 		modEventBus.addListener(this::doClientStuff);
+		modEventBus.addListener(this::spaceTimeContinuumWarping);
+		modEventBus.addListener(this::chickenExtinction	);
 		ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, PrehistoricConfigHolder.SERVER_SPEC);
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, PrehistoricConfigHolder.CLIENT_SPEC);
 		BiomeInit.BIOMES.register(modEventBus);
@@ -135,6 +144,30 @@ public class PrehistoricFauna {
 		PROXY.init();
 		instance = this;
 		MinecraftForge.EVENT_BUS.register(this);
+	}
+
+	private boolean setIsKilled(boolean isKilled) {
+		return isKilled;
+	}
+	
+	public void spaceTimeContinuumWarping(LivingDeathEvent event) {
+		if (PrehistoricFaunaConfig.spaceTimeContinuumWarping) {
+			if (event.getEntity() instanceof HesperornithoidesEntity) {
+				if (event.getSource().getTrueSource() instanceof PlayerEntity) {
+					this.setIsKilled(true);
+				}
+			}
+		}
+		this.setIsKilled(false);
+	}
+	
+	public void chickenExtinction(CheckSpawn event) {
+		if (this.setIsKilled(true)) {
+			if (event.getEntity() instanceof ChickenEntity) {
+				event.getEntity().remove();
+				event.setResult(Result.DENY);
+			}
+		}
 	}
 	
 	private void setup(final FMLCommonSetupEvent event) {

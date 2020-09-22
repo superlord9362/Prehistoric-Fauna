@@ -35,6 +35,7 @@ import superlord.prehistoricfauna.block.BasilemysEggBlock;
 import superlord.prehistoricfauna.block.CamarasaurusEggBlock;
 import superlord.prehistoricfauna.block.CeratosaurusEggBlock;
 import superlord.prehistoricfauna.block.ChromogisaurusEggBlock;
+import superlord.prehistoricfauna.block.CrassostreaOysterBlock;
 import superlord.prehistoricfauna.block.CretaceousPortalBlock;
 import superlord.prehistoricfauna.block.CretaceousTimeBlock;
 import superlord.prehistoricfauna.block.DakotaraptorEggBlock;
@@ -318,6 +319,8 @@ public class BlockInit {
 	public static final Block JURASSIC_TIME_BLOCK = new JurassicTimeBlock();
 	public static final Block TRIASSIC_PORTAL = new TriassicPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).lightValue(11).noDrops()).setRegistryName("triassic_portal");
 	public static final Block TRIASSIC_TIME_BLOCK = new TriassicTimeBlock();
+	public static final Block CRASSOSTREA_BLOCK = new CrassostreaOysterBlock(Block.Properties.create(Material.ROCK).doesNotBlockMovement().hardnessAndResistance(0.5F).tickRandomly().sound(SoundType.STONE)).setRegistryName("crassostrea_oysters");
+	public static final Block DIDELPHODON_BURROW = new DidelphodonBurrowBlock(Block.Properties.create(Material.EARTH).hardnessAndResistance(0.5F).sound(SoundType.GROUND)).setRegistryName("didelphodon_burrow");
 	
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
@@ -542,6 +545,8 @@ public class BlockInit {
 		event.getRegistry().register(JURASSIC_TIME_BLOCK);
 		event.getRegistry().register(TRIASSIC_PORTAL);
 		event.getRegistry().register(TRIASSIC_TIME_BLOCK);
+		event.getRegistry().register(CRASSOSTREA_BLOCK);
+		event.getRegistry().register(DIDELPHODON_BURROW);
 			if (FMLEnvironment.dist == Dist.CLIENT) {
 			RenderType cutoutRenderType = RenderType.getCutout();
 			RenderType mippedRenderType = RenderType.getCutoutMipped();
@@ -611,6 +616,7 @@ public class BlockInit {
 			RenderTypeLookup.setRenderLayer(LIRIODENDRITES_DOOR, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(LIRIODENDRITES_TRAPDOOR, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(LIRIODENDRITES_LEAVES_FLOWER, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(CRASSOSTREA_BLOCK, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(CRETACEOUS_PORTAL, translucentRenderType);
 			RenderTypeLookup.setRenderLayer(CRETACEOUS_TIME_BLOCK, translucentRenderType);
 			RenderTypeLookup.setRenderLayer(JURASSIC_PORTAL, translucentRenderType);
@@ -835,6 +841,8 @@ public class BlockInit {
 		event.getRegistry().register(new BlockItem(SILLOSUCHUS_EGG, new Item.Properties().group(PFEntities.instance)).setRegistryName("sillosuchus_egg"));
 		event.getRegistry().register(new BlockItem(PORTAL_FRAME, new Item.Properties().group(PFBook.instance)).setRegistryName("portal_frame"));
 		event.getRegistry().register(new BlockItem(PORTAL_PROJECTOR, new Item.Properties().group(PFBook.instance)).setRegistryName("portal_projector"));
+		event.getRegistry().register(new BlockItem(CRASSOSTREA_BLOCK, new Item.Properties().group(PFEntities.instance)).setRegistryName("crassostrea_oysters"));
+		event.getRegistry().register(new BlockItem(DIDELPHODON_BURROW, new Item.Properties().group(PFBook.instance)).setRegistryName("didelphodon_burrow"));
 	}
 	
 }

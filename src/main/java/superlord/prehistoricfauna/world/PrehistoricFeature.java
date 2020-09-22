@@ -32,6 +32,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.init.BlockInit;
+import superlord.prehistoricfauna.world.feature.CrassostreaOystersConfig;
+import superlord.prehistoricfauna.world.feature.CrassostreaOystersFeature;
 import superlord.prehistoricfauna.world.feature.JohnstoniaFeature;
 import superlord.prehistoricfauna.world.feature.PtilophyllumFeature;
 import superlord.prehistoricfauna.world.feature.ZamitesBushFeature;
@@ -77,6 +79,7 @@ public class PrehistoricFeature {
 	public static final BlockState CLADOPHLEBIS = BlockInit.CLADOPHLEBIS.getDefaultState();
 	public static final BlockState SHORT_OSMUNDACAULIS = BlockInit.SHORT_OSMUNDACAULIS.getDefaultState();
 	public static final BlockState DEAD_OSMUNDACAULIS = BlockInit.DEAD_OSMUNDACAULIS.getDefaultState();
+	public static final BlockState CRASSOSTREA_OYSTERS = BlockInit.CRASSOSTREA_BLOCK.getDefaultState();
 	
 	public static final BlockClusterFeatureConfig HORSETAIL_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(HORSETAIL), new SimpleBlockPlacer())).tries(64).func_227317_b_().build();
 	public static final BlockClusterFeatureConfig OSMUNDA_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(OSMUNDA), new SimpleBlockPlacer())).tries(64).func_227317_b_().build();
@@ -109,6 +112,8 @@ public class PrehistoricFeature {
 	public static final Feature<TreeFeatureConfig> HEIDIPHYLLUM_TREE = register("heidiphyllum_tree", new TreeFeature(TreeFeatureConfig::func_227338_a_));
 	public static final Feature<NoFeatureConfig> PTILOPHYLLUM_TREE = register("ptilophyllum_tree", new PtilophyllumFeature(NoFeatureConfig::deserialize));
 
+	public static final Feature<CrassostreaOystersConfig> CRASSOSTREA_OYSTERS_FEATURE = register("crassostrea_oysters", new CrassostreaOystersFeature(CrassostreaOystersConfig::deserialize));
+	
 	public static final Feature<TreeFeatureConfig> ZAMITES_BUSH = register("zamites_bush", new ZamitesBushFeature(TreeFeatureConfig::func_227338_a_));
 	public static final Feature<NoFeatureConfig> JOHNSTONIA_CONFIG = register("johnstonia_config", new JohnstoniaFeature(NoFeatureConfig::deserialize));
 

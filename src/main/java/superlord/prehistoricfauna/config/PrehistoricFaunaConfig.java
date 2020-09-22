@@ -36,7 +36,7 @@ public class PrehistoricFaunaConfig {
 	public static int morrisonHutMaxDistance = 12;
 	public static int ischigualastoHutMinDistance = 7;
 	public static int ischigualastoHutMaxDistance = 12;
-	public static boolean spaceTimeContinuumWarping = true;
+	public static boolean spaceTimeContinuumWarping = false;
 	
 	public static void bakeClient(final ModConfig config) {
 

@@ -333,5 +333,7 @@
 	"block.prehistoricfauna.jurassic_portal": "Jurassic Warp Block",
 	"block.prehistoricfauna.jurassic_time_block": "Jurassic Warp Block",
 	"block.prehistoricfauna.triassic_time_block": "Triassic Warp Block",
-	"block.prehistoricfauna.triassic_portal": "Triassic Warp Block"
+	"block.prehistoricfauna.triassic_portal": "Triassic Warp Block",
+	"block.prehistoricfauna.crassostrea_oysters": "Crassostrea Oysters",
+	"item.prehistoricfauna.crassostrea_oyster_soup": "Crassostrea Oyster Stew"
 }

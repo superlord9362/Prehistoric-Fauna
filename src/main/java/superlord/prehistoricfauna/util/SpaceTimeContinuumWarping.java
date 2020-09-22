@@ -3,7 +3,8 @@ package superlord.prehistoricfauna.util;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
+import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import superlord.prehistoricfauna.PrehistoricFauna;
@@ -29,10 +30,11 @@ public class SpaceTimeContinuumWarping {
 	}
 	
 	@SubscribeEvent
-	public void chickenExtinction(LivingSpawnEvent event) {
+	public void chickenExtinction(CheckSpawn event) {
 		if (this.setIsKilled(true)) {
 			if (event.getEntity() instanceof ChickenEntity) {
-				event.isCanceled();
+				event.getEntity().remove();
+				event.setResult(Result.DENY);
 			}
 		}
 	}

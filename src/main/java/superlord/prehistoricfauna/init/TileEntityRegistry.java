@@ -8,6 +8,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.entity.tile.DidelphodonBurrowTileEntity;
 import superlord.prehistoricfauna.entity.tile.TileEntityPaleoscribe;
 
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -15,6 +16,8 @@ public class TileEntityRegistry {
 	
 	@SuppressWarnings("unchecked")
 	public static final TileEntityType<TileEntityPaleoscribe> PALEOSCRIBE = registerTileEntity(TileEntityType.Builder.create(TileEntityPaleoscribe::new, BlockInit.PALEOSCRIBE), "paleoscribe");
+	@SuppressWarnings("unchecked")
+	public static final TileEntityType<DidelphodonBurrowTileEntity> DIDELPHODON_BURROW = registerTileEntity(TileEntityType.Builder.create(DidelphodonBurrowTileEntity::new, BlockInit.DIDELPHODON_BURROW), "didelphodon_burrow");
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static TileEntityType registerTileEntity(TileEntityType.Builder builder, String entityName) {
