@@ -36,7 +36,8 @@ public class ChangePageButton extends Button {
 				j += 13;
 			}
 			j += color * 23;
-			this.blit(this.x, this.y, i, j, width, height);
+			int k = (int) (this.x / 0.98F);
+			this.blit(k - 1, this.y, i, j, width, height);
 		}
 	}
 	

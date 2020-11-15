@@ -111,6 +111,7 @@ public class HesperornithoidesEntity extends PrehistoricEntity {
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, HerrerasaurusEntity.class, 10F, 2D, 2D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, ExaeretodonEntity.class, 10F, 2D, 2D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, HyperodapedonEntity.class, 10F, 2D, 2D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<SaurosuchusEntity>(this, SaurosuchusEntity.class, 10F, 2D, 2D));
 		this.goalSelector.addGoal(8, new HesperornithoidesEntity.LayEggGoal(this, 1.0D));
 	}
 	

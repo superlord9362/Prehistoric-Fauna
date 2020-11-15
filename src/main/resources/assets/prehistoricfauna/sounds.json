@@ -297,5 +297,202 @@
 				"stream": true
 			}
 		]
+	},
+	"didelphodon_idle": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/didelphodon_idle1",
+				"name": "prehistoricfauna:prehistoric/didelphodon_idle2",
+				"stream": true
+			}
+		]
+	},
+	"didelphodon_hurt": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/didelphodon_hurt",
+				"stream": true
+			}
+		]
+	},
+	"exaeretodon_idle": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/exaeretodon_idle1",
+				"name": "prehistoricfauna:prehistoric/exaeretodon_idle2",
+				"stream": true
+			}
+		]
+	},
+	"exaeretodon_hurt": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/exaeretodon_hurt",
+				"stream": true
+			}
+		]
+	},
+	"exaeretodon_warn": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/exaeretodon_warn",
+				"stream": true
+			}
+		]
+	},
+	"herrerasaurus_idle": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/herrerasaurus_idle1",
+				"name": "prehistoricfauna:prehistoric/herrerasaurus_idle2",
+				"stream": true
+			}
+		]
+	},
+	"herrerasaurus_hurt": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/herrerasaurus_hurt",
+				"stream": true
+			}
+		]
+	},
+	"herrerasaurus_warn": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/herrerasaurus_warn",
+				"stream": true
+			}
+		]
+	},
+	"sillosuchus_idle": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/sillosuchus_idle1",
+				"name": "prehistoricfauna:prehistoric/sillosuchus_idle2",
+				"stream": true
+			}
+		]
+	},
+	"sillosuchus_hurt": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/sillosuchus_hurt",
+				"stream": true
+			}
+		]
+	},
+	"sillosuchus_warn": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/sillosuchus_warn",
+				"stream": true
+			}
+		]
+	},
+	"saurosuchus_idle": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/saurosuchus_idle1",
+				"name": "prehistoricfauna:prehistoric/saurosuchus_idle2",
+				"stream": true
+			}
+		]
+	},
+	"saurosuchus_hurt": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/saurosuchus_hurt",
+				"stream": true
+			}
+		]
+	},
+	"saurosuchus_warn": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/saurosuchus_warn",
+				"stream": true
+			}
+		]
+	},
+	"ischigualastia_idle": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/ischigualastia_idle1",
+				"name": "prehistoricfauna:prehistoric/ischigualastia_idle2",
+				"stream": true
+			}
+		]
+	},
+	"ischigualastia_hurt": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/ischigualastia_hurt",
+				"stream": true
+			}
+		]
+	},
+	"ischigualastia_warn": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/ischigualastia_warn",
+				"stream": true
+			}
+		]
+	},
+	"chromogisaurus_idle": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/chromogisaurus_idle1",
+				"name": "prehistoricfauna:prehistoric/chromogisaurus_idle2",
+				"stream": true
+			}
+		]
+	},
+	"chromogisaurus_hurt": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/chromogisaurus_hurt",
+				"stream": true
+			}
+		]
+	},
+	"hyperodapedon_idle": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/hyperodapedon_idle1",
+				"name": "prehistoricfauna:prehistoric/hyperodapedon_idle2",
+				"stream": true
+			}
+		]
+	},
+	"hyperodapedon_hurt": {
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/hyperodapedon_hurt",
+				"stream": true
+			}
+		]
 	}
 }

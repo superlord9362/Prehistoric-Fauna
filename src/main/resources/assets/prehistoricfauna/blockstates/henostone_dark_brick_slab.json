@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "prehistoricfauna:block/henostone_dark_brick_slab" },
+        "type=top": { "model": "prehistoricfauna:block/henostone_dark_brick_slab_top" },
+        "type=double": { "model": "prehistoricfauna:block/henostone_bricks_dark" }
+    }
+}

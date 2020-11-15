@@ -29,5 +29,4 @@ public class MetasequoiaTree extends PrehistoricHugeTree {
 		return null;
 	}
 	
-	
 }

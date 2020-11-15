@@ -11,7 +11,7 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.entity.HerrerasaurusEntity;
 import superlord.prehistoricfauna.entity.model.Herrerasaurus;
 
-public class HerrerasaurusRenderer extends MobRenderer<HerrerasaurusEntity, EntityModel<HerrerasaurusEntity>>{
+public class HerrerasaurusRenderer extends MobRenderer<HerrerasaurusEntity, EntityModel<HerrerasaurusEntity>> {
 	
 	private static final ResourceLocation HERRERASAURUS = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/herrerasaurus.png");
 	private static final Herrerasaurus HERRERASAURUS_MODEL = new Herrerasaurus();
@@ -20,12 +20,12 @@ public class HerrerasaurusRenderer extends MobRenderer<HerrerasaurusEntity, Enti
 		super(Minecraft.getInstance().getRenderManager(), HERRERASAURUS_MODEL, 0.625F);
 	}
 	
-	public void render (HerrerasaurusEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
+	public void render(HerrerasaurusEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
 		entityModel = HERRERASAURUS_MODEL;
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
 	
-	protected void preRenderCallBack(HerrerasaurusEntity herrerasaurus, MatrixStack matrixStackIn, float partialTickTime) {
+	protected void preRenderCallback(HerrerasaurusEntity herrerasaurus, MatrixStack matrixStackIn, float partialTickTime) {
 		if (herrerasaurus.isChild()) {
 			matrixStackIn.scale(0.5F, 0.5F, 0.5F);
 		}

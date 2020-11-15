@@ -30,7 +30,7 @@
             { "model": "prehistoricfauna:block/two_slightly_cracked_dryosaurus_eggs", "y": 180 },
             { "model": "prehistoricfauna:block/two_slightly_cracked_dryosaurus_eggs", "y": 270 }
         ],
-        "eggs=2,hatch=2": [	
+        "eggs=2,hatch=2": [
             { "model": "prehistoricfauna:block/two_very_cracked_dryosaurus_eggs" },
             { "model": "prehistoricfauna:block/two_very_cracked_dryosaurus_eggs", "y": 90 },
             { "model": "prehistoricfauna:block/two_very_cracked_dryosaurus_eggs", "y": 180 },

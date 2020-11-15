@@ -128,7 +128,6 @@ public class CommonEvents {
 		registerFlammable(BlockInit.PROTOJUNIPER_LEAVES, 30, 60);
 		registerFlammable(BlockInit.HEIDIPHYLLUM_LEAVES, 30, 60);
 		registerFlammable(BlockInit.LIRIODENDRITES_LEAVES, 30, 60);;
-		registerFlammable(BlockInit.LIRIODENDRITES_LEAVES_FLOWER, 30, 60);
 		//registerFlammable(BlockInit.CYPRESS_LEAVES, 30, 60);
 		registerFlammable(BlockInit.CLUBMOSS, 60, 100);
 		registerFlammable(BlockInit.HORSETAIL, 60, 100);

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iri",
+    "igi",
+	"iii"
+  ],
+  "key": {
+    "i": {
+      "item": "minecraft:iron_ingot",
+    },
+	"r": {
+		"item": "minecraft:redstone"
+	},
+	"c": {
+		"item": "minecraft:glowstone"
+	}
+  },
+  "result": {
+    "item": "prehistoricfauna:portal_frame",
+    "count": 1
+  }
+}

@@ -99,7 +99,7 @@ public class JurassicPortalBlock extends Block {
 	 public static void changeDimension(World world, ServerPlayerEntity player, DimensionType dimension, ITeleporter teleporter) {
 		 if (!world.isRemote) {
 			 player.changeDimension(dimension, teleporter);
-			 player.timeUntilPortal = 300;
+			 player.timeUntilPortal = player.getPortalCooldown();
 			 if (player.dimension == DimensionTypeInit.JURASSIC_DIMENSION_TYPE) {
 				 BlockPos playerPos = new BlockPos(player);
 				 if (world.isAirBlock(playerPos) && world.getBlockState(playerPos).isSolidSide(world, playerPos, Direction.UP)) {

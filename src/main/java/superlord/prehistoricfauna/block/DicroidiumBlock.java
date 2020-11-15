@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.BushBlock;
 import net.minecraft.block.IGrowable;
 import net.minecraft.entity.LivingEntity;
@@ -54,15 +55,45 @@ public class DicroidiumBlock extends BushBlock implements IGrowable {
 
     @Override
     public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
-        spawnAsEntity(worldIn, pos, new ItemStack(this));
+    	if (worldIn.getBlockState(pos.up()).getBlock() == Blocks.AIR && worldIn.getBlockState(pos.up(2)).getBlock() == Blocks.AIR && worldIn.getBlockState(pos.up(3)).getBlock() == Blocks.AIR && worldIn.getBlockState(pos.up(4)).getBlock() == Blocks.AIR && worldIn.getBlockState(pos.down()).getBlock() != this) {
+            worldIn.setBlockState(pos.up(), this.getDefaultState().with(LAYER, 1));
+            worldIn.setBlockState(pos.up(2), this.getDefaultState().with(LAYER, 2));
+            worldIn.setBlockState(pos.up(3), this.getDefaultState().with(LAYER, 3));
+            worldIn.setBlockState(pos.up(4), this.getDefaultState().with(LAYER, 4));
+    	} else if (worldIn.getBlockState(pos.up()).getBlock() == Blocks.AIR && worldIn.getBlockState(pos.up(2)).getBlock() == Blocks.AIR && worldIn.getBlockState(pos.up(3)).getBlock() == Blocks.AIR && worldIn.getBlockState(pos.down()).getBlock() == this && worldIn.getBlockState(pos.down(2)).getBlock() != this) {
+            worldIn.setBlockState(pos.up(), this.getDefaultState().with(LAYER, 2));
+            worldIn.setBlockState(pos.up(2), this.getDefaultState().with(LAYER, 3));
+            worldIn.setBlockState(pos.up(3), this.getDefaultState().with(LAYER, 4));
+    	} else if (worldIn.getBlockState(pos.up()).getBlock() == Blocks.AIR && worldIn.getBlockState(pos.up(2)).getBlock() == Blocks.AIR && worldIn.getBlockState(pos.down()).getBlock() == this && worldIn.getBlockState(pos.down(2)).getBlock() == this && worldIn.getBlockState(pos.down(3)).getBlock() != this) {
+            worldIn.setBlockState(pos.up(), this.getDefaultState().with(LAYER, 3));
+            worldIn.setBlockState(pos.up(2), this.getDefaultState().with(LAYER, 4));
+    	} else if (worldIn.getBlockState(pos.up()).getBlock() == Blocks.AIR && worldIn.getBlockState(pos.down()).getBlock() == this && worldIn.getBlockState(pos.down(2)).getBlock() == this && worldIn.getBlockState(pos.down(3)).getBlock() == this && worldIn.getBlockState(pos.down(4)).getBlock() != this) {
+            worldIn.setBlockState(pos.up(), this.getDefaultState().with(LAYER, 4));
+    	} else if (worldIn.getBlockState(pos.up()).getBlock() == this && worldIn.getBlockState(pos.up(2)).getBlock() == Blocks.AIR && worldIn.getBlockState(pos.up(3)).getBlock() == Blocks.AIR && worldIn.getBlockState(pos.up(4)).getBlock() == Blocks.AIR && worldIn.getBlockState(pos.down()).getBlock() != this) {
+            worldIn.setBlockState(pos.up(2), this.getDefaultState().with(LAYER, 2));
+            worldIn.setBlockState(pos.up(3), this.getDefaultState().with(LAYER, 3));
+            worldIn.setBlockState(pos.up(4), this.getDefaultState().with(LAYER, 4));
+    	} else if (worldIn.getBlockState(pos.up()).getBlock() == this && worldIn.getBlockState(pos.up(2)).getBlock() == this && worldIn.getBlockState(pos.up(3)).getBlock() == Blocks.AIR && worldIn.getBlockState(pos.up(4)).getBlock() == Blocks.AIR && worldIn.getBlockState(pos.down()).getBlock() != this) {
+            worldIn.setBlockState(pos.up(3), this.getDefaultState().with(LAYER, 3));
+            worldIn.setBlockState(pos.up(4), this.getDefaultState().with(LAYER, 4));
+    	} else if (worldIn.getBlockState(pos.up()).getBlock() == this && worldIn.getBlockState(pos.up(2)).getBlock() == this && worldIn.getBlockState(pos.up(3)).getBlock() == this && worldIn.getBlockState(pos.up(4)).getBlock() == Blocks.AIR && worldIn.getBlockState(pos.down()).getBlock() != this) {
+            worldIn.setBlockState(pos.up(4), this.getDefaultState().with(LAYER, 4));
+    	} else if (worldIn.getBlockState(pos.up()).getBlock() == this && worldIn.getBlockState(pos.down()).getBlock() == this && worldIn.getBlockState(pos.down(2)).getBlock() != this && worldIn.getBlockState(pos.up(2)).getBlock() == Blocks.AIR && worldIn.getBlockState(pos.up(3)).getBlock() == Blocks.AIR) {
+    		worldIn.setBlockState(pos.up(2), this.getDefaultState().with(LAYER, 3));
+            worldIn.setBlockState(pos.up(3), this.getDefaultState().with(LAYER, 4));
+    	} else if (worldIn.getBlockState(pos.up()).getBlock() == this && worldIn.getBlockState(pos.down()).getBlock() == this && worldIn.getBlockState(pos.down(2)).getBlock() != this && worldIn.getBlockState(pos.up(2)).getBlock() == this && worldIn.getBlockState(pos.up(3)).getBlock() == Blocks.AIR) {
+            worldIn.setBlockState(pos.up(3), this.getDefaultState().with(LAYER, 4));
+    	} else if (worldIn.getBlockState(pos.up()).getBlock() == this && worldIn.getBlockState(pos.down()).getBlock() == this && worldIn.getBlockState(pos.down(2)).getBlock() == this && worldIn.getBlockState(pos.down(3)).getBlock() != this && worldIn.getBlockState(pos.up(2)).getBlock() == Blocks.AIR) {
+            worldIn.setBlockState(pos.up(2), this.getDefaultState().with(LAYER, 4));
+    	}
     }
 
     public void placeAt(IWorld worldIn, BlockPos pos, int flags) {
         worldIn.setBlockState(pos, this.getDefaultState().with(LAYER, 0), flags);
         worldIn.setBlockState(pos.up(), this.getDefaultState().with(LAYER, 1), flags);
-        worldIn.setBlockState(pos.up(), this.getDefaultState().with(LAYER, 2), flags);
-        worldIn.setBlockState(pos.up(), this.getDefaultState().with(LAYER, 3), flags);
-        worldIn.setBlockState(pos.up(), this.getDefaultState().with(LAYER, 4), flags);
+        worldIn.setBlockState(pos.up(2), this.getDefaultState().with(LAYER, 2), flags);
+        worldIn.setBlockState(pos.up(3), this.getDefaultState().with(LAYER, 3), flags);
+        worldIn.setBlockState(pos.up(4), this.getDefaultState().with(LAYER, 4), flags);
     }
 
     @Override

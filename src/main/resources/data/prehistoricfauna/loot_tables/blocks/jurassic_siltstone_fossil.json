@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "prehistoricfauna:jurassic_siltstone_fossil"
+          "name": "prehistoricfauna:jurassic_fossil"
         }
       ],
       "conditions": [

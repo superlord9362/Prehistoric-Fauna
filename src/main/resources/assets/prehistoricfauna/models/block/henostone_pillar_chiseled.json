@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "bottom": "prehistoricfauna:blocks/henostone_pillar_chiseled_top",
+        "top": "prehistoricfauna:blocks/henostone_pillar_chiseled_top",
+        "side": "prehistoricfauna:blocks/henostone_pillar_chiseled"
+    }
+}

@@ -12,6 +12,7 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.PrehistoricFauna.PFBook;
 import superlord.prehistoricfauna.PrehistoricFauna.PFEggs;
 import superlord.prehistoricfauna.PrehistoricFauna.PFEntities;
+import superlord.prehistoricfauna.PrehistoricFauna.PFFossil;
 import superlord.prehistoricfauna.PrehistoricFauna.PFPlants;
 import superlord.prehistoricfauna.entity.PrehistoricBoatEntity;
 import superlord.prehistoricfauna.item.CretaceousTimeTotemItem;
@@ -19,6 +20,7 @@ import superlord.prehistoricfauna.item.CustomArmorItem;
 import superlord.prehistoricfauna.item.JurassicTimeTotemItem;
 import superlord.prehistoricfauna.item.PaleopediaItem;
 import superlord.prehistoricfauna.item.PrehistoricBoatItem;
+import superlord.prehistoricfauna.item.SpawnSkeletonItem;
 import superlord.prehistoricfauna.item.TriassicTimeTotemItem;
 import superlord.prehistoricfauna.util.ArmorMaterialInit;;
 
@@ -46,6 +48,11 @@ public class ItemInit {
 	public static final RegistryObject<SpawnEggItem> HERRERASAURUS_SPAWN_EGG = ITEMS.register("herrerasaurus_spawn_egg", () -> new SpawnEggItem(ModEntityTypes.HERRERASAURUS_ENTITY, 0x372721, 0xE7E0C9, new Item.Properties().group(PFEggs.instance)));
 	public static final RegistryObject<SpawnEggItem> HYPERODAPEDON_SPAWN_EGG = ITEMS.register("hyperodapedon_spawn_egg", () -> new SpawnEggItem(ModEntityTypes.HYPERODAPEDON_ENTITY, 0x3A1F18, 0xAF9586, new Item.Properties().group(PFEggs.instance)));
 	public static final RegistryObject<SpawnEggItem> SILLOSUCHUS_SPAWN_EGG = ITEMS.register("sillosuchus_spawn_egg", () -> new SpawnEggItem(ModEntityTypes.SILLOSUCHUS_ENTITY, 0x2F2E27, 0x58301B, new Item.Properties().group(PFEggs.instance)));
+	public static final RegistryObject<SpawnEggItem> SAUROSUCHUS_SPAWN_EGG = ITEMS.register("saurosuchus_spawn_egg", () -> new SpawnEggItem(ModEntityTypes.SAUROSUCHUS_ENTITY, 0x4F2622, 0x8E4F34, new Item.Properties().group(PFEggs.instance)));
+	public static final RegistryObject<SpawnEggItem> ISCHIGUALASTIA_SPAWN_EGG = ITEMS.register("ischigualastia_spawn_egg", () -> new SpawnEggItem(ModEntityTypes.ISCHIGUALASTIA_ENTITY, 0x242820, 0x808776, new Item.Properties().group(PFEggs.instance)));
+	public static final RegistryObject<SpawnEggItem> TIME_GUARDIAN_SPAWN_EGG = ITEMS.register("time_guardian_spawn_egg", () -> new SpawnEggItem(ModEntityTypes.TIME_GUARDIAN_ENTITY, 0x2F2E27, 0x58301B, new Item.Properties().group(PFEggs.instance)));
+	public static final RegistryObject<SpawnSkeletonItem> TYRANNOSAURUS_SKULL = ITEMS.register("tyrannosaurus_skull", () -> new SpawnSkeletonItem(ModEntityTypes.TYRANNOSAURUS_SKULL, new Item.Properties().group(PFFossil.instance)));
+	public static final RegistryObject<SpawnSkeletonItem> TYRANNOSAURUS_SKELETON = ITEMS.register("tyrannosaurus_skeleton", () -> new SpawnSkeletonItem(ModEntityTypes.TYRANNOSAURUS_SKELETON, new Item.Properties().group(PFFossil.instance)));
 	//Drops
 	public static final RegistryObject<Item> TYRANNOSAURUS_TOOTH = ITEMS.register("tyrannosaurus_tooth", () -> new Item(new Item.Properties().group(PFEntities.instance)));
 	public static final RegistryObject<Item> TAIL_CLUB = ITEMS.register("tail_club", () -> new Item(new Item.Properties().group(PFEntities.instance)));
@@ -90,6 +97,10 @@ public class ItemInit {
 	public static final RegistryObject<Item> COOKED_EXAERETODON_MEAT = ITEMS.register("cooked_exaeretodon_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(5).saturation(0.6F).meat().build())));
 	public static final RegistryObject<Item> RAW_SILLOSUCHUS_MEAT = ITEMS.register("raw_sillosuchus_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(4).saturation(0.3F).meat().build())));
 	public static final RegistryObject<Item> COOKED_SILLOSUCHUS_MEAT = ITEMS.register("cooked_sillosuchus_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(8).saturation(0.6F).meat().build())));
+	public static final RegistryObject<Item> RAW_SAUROSUCHUS_MEAT = ITEMS.register("raw_saurosuchus_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(3).saturation(0.3F).meat().build())));
+	public static final RegistryObject<Item> COOKED_SAUROSUCHUS_MEAT = ITEMS.register("cooked_saurosuchus_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(5).saturation(0.6F).meat().build())));
+	public static final RegistryObject<Item> RAW_ISCHIGUALASTIA_MEAT = ITEMS.register("raw_ischigualastia_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(5).saturation(0.4F).meat().build())));
+	public static final RegistryObject<Item> COOKED_ISCHIGUALASTIA_MEAT = ITEMS.register("cooked_ischigualastia_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(7).saturation(0.6F).meat().build())));
 	public static final RegistryObject<Item> CRASSOSTREA_OYSTER_SOUP = ITEMS.register("crassostrea_oyster_soup", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(8).saturation(0.6F).build())));
 	//Armor
 	public static final RegistryObject<CustomArmorItem> ANKYLOSAURUS_HELMET = ITEMS.register("ankylosaurus_helmet", () -> new CustomArmorItem(ArmorMaterialInit.ANKYLOSAURUS, EquipmentSlotType.HEAD, new Item.Properties().group(PFEntities.instance)));
@@ -110,4 +121,8 @@ public class ItemInit {
 	public static final RegistryObject<CretaceousTimeTotemItem> CRETACEOUS_TIME_TOTEM = ITEMS.register("cretaceous_time_totem", () -> new CretaceousTimeTotemItem(new Item.Properties().group(PFBook.instance).maxDamage(8)));
 	public static final RegistryObject<JurassicTimeTotemItem> JURASIC_TIME_TOTEM = ITEMS.register("jurassic_time_totem", () -> new JurassicTimeTotemItem(new Item.Properties().group(PFBook.instance).maxDamage(8)));
 	public static final RegistryObject<TriassicTimeTotemItem> TRIASSIC_TIME_TOTEM = ITEMS.register("triassic_time_totem", () -> new TriassicTimeTotemItem(new Item.Properties().group(PFBook.instance).maxDamage(8)));
+	public static final RegistryObject<Item> TRIASSIC_FOSSIL = ITEMS.register("triassic_fossil", () -> new Item(new Item.Properties().group(PFBook.instance)));
+	public static final RegistryObject<Item> JURASSIC_FOSSIL = ITEMS.register("jurassic_fossil", () -> new Item(new Item.Properties().group(PFBook.instance)));
+	public static final RegistryObject<Item> CRETACEOUS_FOSSIL = ITEMS.register("cretaceous_fossil", () -> new Item(new Item.Properties().group(PFBook.instance)));
+	
 }

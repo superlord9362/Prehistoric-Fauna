@@ -12,18 +12,18 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 public class SoundHandler {
 	
 	//Hell Creek
-	public static final SoundEvent TRICERATOPS_IDLE;
-	public static final SoundEvent TRICERATOPS_HURT;
-	public static final SoundEvent TRICERATOPS_WARN;
-	public static final SoundEvent TYRANNOSAURUS_IDLE;
-	public static final SoundEvent TYRANNOSAURUS_HURT;
-	public static final SoundEvent TYRANNOSAURUS_WARN;
-	public static final SoundEvent ANKYLOSAURUS_IDLE;
-	public static final SoundEvent ANKYLOSAURUS_HURT;
-	public static final SoundEvent ANKYLOSAURUS_WARN;
-	public static final SoundEvent DAKOTARAPTOR_IDLE;
-	public static final SoundEvent DAKOTARAPTOR_HURT;
-	public static final SoundEvent DAKOTARAPTOR_WARN;
+	public static final SoundEvent TRICERATOPS_IDLE; //Done
+	public static final SoundEvent TRICERATOPS_HURT; //Done
+	public static final SoundEvent TRICERATOPS_WARN; //Done
+	public static final SoundEvent TYRANNOSAURUS_IDLE; //Done
+	public static final SoundEvent TYRANNOSAURUS_HURT; //Done
+	public static final SoundEvent TYRANNOSAURUS_WARN; //Done
+	public static final SoundEvent ANKYLOSAURUS_IDLE; //Done
+	public static final SoundEvent ANKYLOSAURUS_HURT; //Done
+	public static final SoundEvent ANKYLOSAURUS_WARN; //Done
+	public static final SoundEvent DAKOTARAPTOR_IDLE; //Done
+	public static final SoundEvent DAKOTARAPTOR_HURT; //Done
+	public static final SoundEvent DAKOTARAPTOR_WARN; //Done
 	public static final SoundEvent THESCELOSAURUS_IDLE;
 	public static final SoundEvent THESCELOSAURUS_HURT;
 	public static final SoundEvent DIDELPHODON_IDLE;
@@ -32,19 +32,19 @@ public class SoundHandler {
 	public static final SoundEvent ALLOSAURUS_IDLE;
 	public static final SoundEvent ALLOSAURUS_HURT;
 	public static final SoundEvent ALLOSAURUS_WARN;
-	public static final SoundEvent STEGOSAURUS_IDLE;
-	public static final SoundEvent STEGOSAURUS_HURT;
-	public static final SoundEvent STEGOSAURUS_WARN;
-	public static final SoundEvent CERATOSAURUS_IDLE;
-	public static final SoundEvent CERATOSAURUS_HURT;
-	public static final SoundEvent CERATOSAURUS_WARN;
-	public static final SoundEvent DRYOSAURUS_IDLE;
-	public static final SoundEvent DRYOSAURUS_HURT;
+	public static final SoundEvent STEGOSAURUS_IDLE; //Done
+	public static final SoundEvent STEGOSAURUS_HURT; //Done
+	public static final SoundEvent STEGOSAURUS_WARN; //Done
+	public static final SoundEvent CERATOSAURUS_IDLE; //Done
+	public static final SoundEvent CERATOSAURUS_HURT; //Done
+	public static final SoundEvent CERATOSAURUS_WARN; //Done
+	public static final SoundEvent DRYOSAURUS_IDLE; //Done
+	public static final SoundEvent DRYOSAURUS_HURT; //Done
 	public static final SoundEvent HESPERORNITHOIDES_IDLE;
 	public static final SoundEvent HESPERORNITHOIDES_HURT;
-	public static final SoundEvent CAMARASAURUS_IDLE;
-	public static final SoundEvent CAMARASAURUS_HURT;
-	public static final SoundEvent CAMARASAURUS_WARN;
+	public static final SoundEvent CAMARASAURUS_IDLE; //Done
+	public static final SoundEvent CAMARASAURUS_HURT; //Done
+	public static final SoundEvent CAMARASAURUS_WARN; //Done
 	public static final SoundEvent EILENODON_IDLE;
 	public static final SoundEvent EILENODON_HURT;
 	//Ischigualasto

@@ -1,5 +1,7 @@
 {
     "variants": {
-        "": { "model": "prehistoricfauna:block/liriodendrites_leaves" }
+        "age=0": { "model": "prehistoricfauna:block/liriodendrites_leaves" },
+		"age=1": { "model": "prehistoricfauna:block/liriodendrites_leaves_flower" },
+		"age=2": { "model": "prehistoricfauna:block/liriodendrites_leaves_flower" }
     }
 }

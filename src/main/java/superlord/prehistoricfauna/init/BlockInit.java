@@ -8,6 +8,7 @@ import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.LogBlock;
 import net.minecraft.block.PressurePlateBlock;
+import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.WallBlock;
@@ -17,6 +18,9 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.Tag;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -26,11 +30,17 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.PrehistoricFauna.PFBook;
 import superlord.prehistoricfauna.PrehistoricFauna.PFEntities;
+import superlord.prehistoricfauna.PrehistoricFauna.PFFossil;
 import superlord.prehistoricfauna.PrehistoricFauna.PFPlants;
 import superlord.prehistoricfauna.PrehistoricFauna.PFStone;
 import superlord.prehistoricfauna.PrehistoricFauna.PFWood;
 import superlord.prehistoricfauna.block.AllosaurusEggBlock;
+import superlord.prehistoricfauna.block.AmmoniteGiantShellBlock;
+import superlord.prehistoricfauna.block.AmmoniteLargeShellBlock;
+import superlord.prehistoricfauna.block.AmmoniteMediumShellBlock;
+import superlord.prehistoricfauna.block.AmmoniteSmallShellBlock;
 import superlord.prehistoricfauna.block.AnkylosaurusEggBlock;
+import superlord.prehistoricfauna.block.AraucariaSaplingBlock;
 import superlord.prehistoricfauna.block.BasilemysEggBlock;
 import superlord.prehistoricfauna.block.CamarasaurusEggBlock;
 import superlord.prehistoricfauna.block.CeratosaurusEggBlock;
@@ -41,16 +51,21 @@ import superlord.prehistoricfauna.block.CretaceousTimeBlock;
 import superlord.prehistoricfauna.block.DakotaraptorEggBlock;
 import superlord.prehistoricfauna.block.DeadConiopterisBlock;
 import superlord.prehistoricfauna.block.DicroidiumBlock;
+import superlord.prehistoricfauna.block.DidelphodonBurrowBlock;
 import superlord.prehistoricfauna.block.DryosaurusEggBlock;
 import superlord.prehistoricfauna.block.EilenodonEggBlock;
+import superlord.prehistoricfauna.block.ExaeretodonEggBlock;
 import superlord.prehistoricfauna.block.HerrerasaurusEggBlock;
 import superlord.prehistoricfauna.block.HesperornithoidesEggBlock;
 import superlord.prehistoricfauna.block.HyperodapedonEggBlock;
+import superlord.prehistoricfauna.block.IschigualastiaEggBlock;
 import superlord.prehistoricfauna.block.JohnstoniaBlock;
 import superlord.prehistoricfauna.block.JurassicPortalBlock;
 import superlord.prehistoricfauna.block.JurassicTimeBlock;
+import superlord.prehistoricfauna.block.LiriodendritesLeavesBlock;
 import superlord.prehistoricfauna.block.MossBlock;
 import superlord.prehistoricfauna.block.MossyDirtBlock;
+import superlord.prehistoricfauna.block.PaleontologyTableBlock;
 import superlord.prehistoricfauna.block.PaleoscribeBlock;
 import superlord.prehistoricfauna.block.PortalFrameBlock;
 import superlord.prehistoricfauna.block.PrehistoricButtonBlock;
@@ -63,94 +78,95 @@ import superlord.prehistoricfauna.block.PrehistoricStairsBlock;
 import superlord.prehistoricfauna.block.PrehistoricTrapDoorBlock;
 import superlord.prehistoricfauna.block.PtilophyllumBaseBlock;
 import superlord.prehistoricfauna.block.PtilophyllumBlock;
+import superlord.prehistoricfauna.block.SaurosuchusEggBlock;
 import superlord.prehistoricfauna.block.ShortOsmundacaulisBlock;
 import superlord.prehistoricfauna.block.SillosuchusEggBlock;
 import superlord.prehistoricfauna.block.StegosaurusEggBlock;
 import superlord.prehistoricfauna.block.ThescelosaurusEggBlock;
+import superlord.prehistoricfauna.block.TrapBlock;
 import superlord.prehistoricfauna.block.TriassicPortalBlock;
 import superlord.prehistoricfauna.block.TriassicTimeBlock;
 import superlord.prehistoricfauna.block.TriceratopsEggBlock;
 import superlord.prehistoricfauna.block.TyrannosaurusEggBlock;
+import superlord.prehistoricfauna.block.ZamitesSaplingBlock;
 import superlord.prehistoricfauna.block.ZamitesTopBlock;
-import superlord.prehistoricfauna.world.feature.AraucariaTree;
 import superlord.prehistoricfauna.world.feature.HeidiphyllumTree;
 import superlord.prehistoricfauna.world.feature.LiriodendritesTree;
 //import superlord.prehistoricfauna.world.feature.CypressTree;
 import superlord.prehistoricfauna.world.feature.MetasequoiaTree;
 import superlord.prehistoricfauna.world.feature.ProtojuniperTree;
 import superlord.prehistoricfauna.world.feature.ProtopiceoxylonTree;
-import superlord.prehistoricfauna.world.feature.ZamitesBush;
 
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Bus.MOD)
 public class BlockInit {
 	
-	public static final Block HORSETAIL = new PrehistoricPlant(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("horsetail");
-	public static final Block OSMUNDA = new PrehistoricPlant(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("osmunda");
-	public static final Block DOUBLE_HORSETAIL = new DoublePlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("double_horsetail");
-	public static final Block DOUBLE_OSMUNDA = new DoublePlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("double_osmunda");
-	public static final Block CLUBMOSS = new PrehistoricPlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("clubmoss");
-	public static final Block MARCHANTIA = new PrehistoricPlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("marchantia");
-	public static final Block MOSS = new MossBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.2F).sound(SoundType.PLANT)).setRegistryName("moss");
-	public static final Block METASEQUOIA_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("metasequoia_planks");
-	public static final Block METASEQUOIA_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("metasequoia_log");
-	public static final Block METASEQUOIA_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()).setRegistryName("metasequoia_leaves");
-	public static final Block METASEQUOIA_SAPLING = new PrehistoricSaplingBlock(new MetasequoiaTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("metasequoia_sapling");
-	public static final Block METASEQUOIA_LOG_STRIPPED = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("metasequoia_log_stripped");
-	public static final Block METASEQUOIA_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("metasequoia_wood");
-	public static final Block STRIPPED_METASEQUOIA_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_metasequoia_wood");
-	public static final Block ARAUCARIA_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("araucaria_planks");
-	public static final Block ARAUCARIA_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("araucaria_log");
-	public static final Block ARAUCARIA_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()).setRegistryName("araucaria_leaves");
-	public static final Block ARAUCARIA_SAPLING = new PrehistoricSaplingBlock(new AraucariaTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("araucaria_sapling");
-	public static final Block STRIPPED_ARAUCARIA_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_araucaria_log");
-	public static final Block ARAUCARIA_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("araucaria_wood");
-	public static final Block STRIPPED_ARAUCARIA_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_araucaria_wood");
-	public static final Block METASEQUOIA_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("metasequoia_slab");
-	public static final Block ARAUCARIA_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("araucaria_slab");
-	public static final Block METASEQUOIA_STAIRS = new PrehistoricStairsBlock(METASEQUOIA_PLANKS.getDefaultState(), Block.Properties.from(METASEQUOIA_PLANKS)).setRegistryName("metasequoia_stairs");
-	public static final Block ARAUCARIA_STAIRS = new PrehistoricStairsBlock(ARAUCARIA_PLANKS.getDefaultState(), Block.Properties.from(ARAUCARIA_PLANKS)).setRegistryName("araucaria_stairs");
-	public static final Block METASEQUOIA_FENCE = new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("metasequoia_fence");
-	public static final Block ARAUCARIA_FENCE = new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("araucaria_fence");
-	public static final Block METASEQUOIA_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("metasequoia_fence_gate");
-	public static final Block ARAUCARIA_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("araucaria_fence_gate");
-	public static final Block METASEQUOIA_BUTTON = new PrehistoricButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("metasequoia_button");
-	public static final Block ARAUCARIA_BUTTON = new PrehistoricButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("araucaria_button");
-	public static final Block METASEQUOIA_DOOR = new PrehistoricDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("metasequoia_door");
-	public static final Block ARAUCARIA_DOOR = new PrehistoricDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("araucaria_door");
-	public static final Block METASEQUOIA_PRESSURE_PLATE = new PrehistoricPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("metasequoia_pressure_plate");
-	public static final Block ARAUCARIA_PRESSURE_PLATE = new PrehistoricPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("araucaria_pressure_plate");
-	public static final Block METASEQUOIA_TRAPDOOR = new PrehistoricTrapDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("metasequoia_trapdoor");
-	public static final Block ARAUCARIA_TRAPDOOR = new PrehistoricTrapDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("araucaria_trapdoor");
+	public static final Block HORSETAIL = new PrehistoricPlant(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("horsetail"); //Loot Table done
+	public static final Block OSMUNDA = new PrehistoricPlant(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("osmunda"); //Loot table done
+	public static final Block DOUBLE_HORSETAIL = new DoublePlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("double_horsetail"); //Loot Table done
+	public static final Block DOUBLE_OSMUNDA = new DoublePlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("double_osmunda"); //Loot Table done
+	public static final Block CLUBMOSS = new PrehistoricPlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("clubmoss"); //Loot Table done
+	public static final Block MARCHANTIA = new PrehistoricPlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("marchantia"); //Loot Table done
+	public static final Block MOSS = new MossBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.2F).sound(SoundType.PLANT)).setRegistryName("moss"); //Loot Table done
+	public static final Block METASEQUOIA_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("metasequoia_planks"); //Loot Table done
+	public static final Block METASEQUOIA_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("metasequoia_log"); //Loot Table done
+	public static final Block METASEQUOIA_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()).setRegistryName("metasequoia_leaves"); //Loot Table done
+	public static final Block METASEQUOIA_SAPLING = new PrehistoricSaplingBlock(new MetasequoiaTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("metasequoia_sapling"); //Loot Table done
+	public static final Block METASEQUOIA_LOG_STRIPPED = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("metasequoia_log_stripped");//Loot Table done
+	public static final Block METASEQUOIA_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("metasequoia_wood");//Loot Table done
+	public static final Block STRIPPED_METASEQUOIA_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_metasequoia_wood");//Loot Table done
+	public static final Block ARAUCARIA_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("araucaria_planks");//Loot Table done
+	public static final Block ARAUCARIA_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("araucaria_log");//Loot Table done
+	public static final Block ARAUCARIA_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()).setRegistryName("araucaria_leaves");//Loot Table done
+	public static final Block ARAUCARIA_SAPLING = new AraucariaSaplingBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("araucaria_sapling");//Loot Table done
+	public static final Block STRIPPED_ARAUCARIA_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_araucaria_log");//Loot Table done
+	public static final Block ARAUCARIA_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("araucaria_wood");//Loot Table done
+	public static final Block STRIPPED_ARAUCARIA_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_araucaria_wood");//Loot Table done
+	public static final Block METASEQUOIA_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("metasequoia_slab");//Loot Table done
+	public static final Block ARAUCARIA_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("araucaria_slab");//Loot Table done
+	public static final Block METASEQUOIA_STAIRS = new PrehistoricStairsBlock(METASEQUOIA_PLANKS.getDefaultState(), Block.Properties.from(METASEQUOIA_PLANKS)).setRegistryName("metasequoia_stairs");//Loot Table done
+	public static final Block ARAUCARIA_STAIRS = new PrehistoricStairsBlock(ARAUCARIA_PLANKS.getDefaultState(), Block.Properties.from(ARAUCARIA_PLANKS)).setRegistryName("araucaria_stairs");//Loot Table done
+	public static final Block METASEQUOIA_FENCE = new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("metasequoia_fence");//Loot Table done
+	public static final Block ARAUCARIA_FENCE = new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("araucaria_fence");//Loot Table done
+	public static final Block METASEQUOIA_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("metasequoia_fence_gate");//Loot Table done
+	public static final Block ARAUCARIA_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("araucaria_fence_gate");//Loot Table done
+	public static final Block METASEQUOIA_BUTTON = new PrehistoricButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("metasequoia_button");//Loot Table done
+	public static final Block ARAUCARIA_BUTTON = new PrehistoricButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("araucaria_button");//Loot Table done
+	public static final Block METASEQUOIA_DOOR = new PrehistoricDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("metasequoia_door");//Loot Table done
+	public static final Block ARAUCARIA_DOOR = new PrehistoricDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("araucaria_door");//Loot Table done
+	public static final Block METASEQUOIA_PRESSURE_PLATE = new PrehistoricPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("metasequoia_pressure_plate");//Loot Table done
+	public static final Block ARAUCARIA_PRESSURE_PLATE = new PrehistoricPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("araucaria_pressure_plate");//Loot Table done
+	public static final Block METASEQUOIA_TRAPDOOR = new PrehistoricTrapDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("metasequoia_trapdoor");//Loot Table done
+	public static final Block ARAUCARIA_TRAPDOOR = new PrehistoricTrapDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("araucaria_trapdoor");//Loot Table done
 	@SuppressWarnings("deprecation")
-	public static final Block POTTED_METASEQUOIA_SAPLING = new FlowerPotBlock(METASEQUOIA_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_metasequoia_sapling");
+	public static final Block POTTED_METASEQUOIA_SAPLING = new FlowerPotBlock(METASEQUOIA_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_metasequoia_sapling");//Loot Table done
 	@SuppressWarnings("deprecation")
-	public static final Block POTTED_ARAUCARIA_SAPLING = new FlowerPotBlock(ARAUCARIA_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_araucaria_sapling");
+	public static final Block POTTED_ARAUCARIA_SAPLING = new FlowerPotBlock(ARAUCARIA_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_araucaria_sapling");//Loot Table done
 	@SuppressWarnings("deprecation")
-	public static final Block POTTED_HORSETAIL = new FlowerPotBlock(HORSETAIL, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_horsetail");
+	public static final Block POTTED_HORSETAIL = new FlowerPotBlock(HORSETAIL, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_horsetail"); //Loot Table done
 	@SuppressWarnings("deprecation")
-	public static final Block POTTED_OSMUNDA = new FlowerPotBlock(OSMUNDA, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_osmunda");
+	public static final Block POTTED_OSMUNDA = new FlowerPotBlock(OSMUNDA, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_osmunda");//Loot Table done
 	@SuppressWarnings("deprecation")
-	public static final Block POTTED_CLUBMOSS = new FlowerPotBlock(CLUBMOSS, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_clubmoss");
+	public static final Block POTTED_CLUBMOSS = new FlowerPotBlock(CLUBMOSS, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_clubmoss"); //Loot Table done
 	@SuppressWarnings("deprecation")
-	public static final Block POTTED_MARCHANTIA = new FlowerPotBlock(MARCHANTIA, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_marchantia");
-	public static final Block MOSSY_DIRT = new MossyDirtBlock(Block.Properties.create(Material.ORGANIC).hardnessAndResistance(0.6F).sound(SoundType.PLANT)).setRegistryName("mossy_dirt");
-	public static final Block LOAM = new MossyDirtBlock(Block.Properties.create(Material.ORGANIC).hardnessAndResistance(0.6F).sound(SoundType.GROUND)).setRegistryName("loam");
-	public static final Block THESCELOSAURUS_EGG = new ThescelosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("thescelosaurus_egg");
-	public static final Block TRICERATOPS_EGG = new TriceratopsEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("triceratops_egg");
-	public static final Block ANKYLOSAURUS_EGG = new AnkylosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("ankylosaurus_egg");
-	public static final Block TYRANNOSAURUS_EGG = new TyrannosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("tyrannosaurus_egg");
-	public static final Block DAKOTARAPTOR_EGG = new DakotaraptorEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("dakotaraptor_egg");
-	public static final Block BASILEMYS_EGG = new BasilemysEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("basilemys_egg");
-	public static final Block CAMARASAURUS_EGG = new CamarasaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("camarasaurus_egg");
-	public static final Block ALLOSAURUS_EGG = new AllosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("allosaurus_egg");
-	public static final Block CERATOSAURUS_EGG = new CeratosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("ceratosaurus_egg");
-	public static final Block CHROMOGISAURUS_EGG = new ChromogisaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("chromogisaurus_egg");
-	public static final Block DRYOSAURUS_EGG = new DryosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("dryosaurus_egg");
-	public static final Block EILENODON_EGG = new EilenodonEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("eilenodon_egg");
-	public static final Block HERRERASAURUS_EGG = new HerrerasaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("herrerasaurus_egg");
-	public static final Block HESPERORNITHOIDES_EGG = new HesperornithoidesEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("hesperornithoides_egg");
-	public static final Block HYPERODAPEDON_EGG = new HyperodapedonEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("hyperodapedon_egg");
-	public static final Block STEGOSAURUS_EGG = new StegosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("stegosaurus_egg");
+	public static final Block POTTED_MARCHANTIA = new FlowerPotBlock(MARCHANTIA, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_marchantia"); //Loot Table done
+	public static final Block MOSSY_DIRT = new MossyDirtBlock(Block.Properties.create(Material.ORGANIC).hardnessAndResistance(0.6F).sound(SoundType.PLANT)).setRegistryName("mossy_dirt"); //Loot Table done
+	public static final Block LOAM = new MossyDirtBlock(Block.Properties.create(Material.ORGANIC, MaterialColor.BROWN).hardnessAndResistance(0.6F).sound(SoundType.GROUND)).setRegistryName("loam");//Loot Table done
+	public static final Block THESCELOSAURUS_EGG = new ThescelosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("thescelosaurus_egg");//Loot Table done
+	public static final Block TRICERATOPS_EGG = new TriceratopsEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("triceratops_egg");//Loot Table done
+	public static final Block ANKYLOSAURUS_EGG = new AnkylosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("ankylosaurus_egg");//Loot Table done
+	public static final Block TYRANNOSAURUS_EGG = new TyrannosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("tyrannosaurus_egg");//Loot Table done
+	public static final Block DAKOTARAPTOR_EGG = new DakotaraptorEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("dakotaraptor_egg");//Loot Table done
+	public static final Block BASILEMYS_EGG = new BasilemysEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("basilemys_egg");//Loot Table done
+	public static final Block CAMARASAURUS_EGG = new CamarasaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("camarasaurus_egg");//Loot Table done
+	public static final Block ALLOSAURUS_EGG = new AllosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("allosaurus_egg");//Loot Table done
+	public static final Block CERATOSAURUS_EGG = new CeratosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("ceratosaurus_egg");//Loot Table done
+	public static final Block CHROMOGISAURUS_EGG = new ChromogisaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("chromogisaurus_egg");//Loot Table done
+	public static final Block DRYOSAURUS_EGG = new DryosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("dryosaurus_egg");//Loot Table done
+	public static final Block EILENODON_EGG = new EilenodonEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("eilenodon_egg");//Loot Table done
+	public static final Block HERRERASAURUS_EGG = new HerrerasaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("herrerasaurus_egg");//Loot Table done
+	public static final Block HESPERORNITHOIDES_EGG = new HesperornithoidesEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("hesperornithoides_egg");//Loot Table done
+	public static final Block HYPERODAPEDON_EGG = new HyperodapedonEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("hyperodapedon_egg");//Loot Table done
+	public static final Block STEGOSAURUS_EGG = new StegosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("stegosaurus_egg");//Loot Table done
 	/**	public static final Block CYPRESS_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("cypress_log");
 	public static final Block CYPRESS_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("cypress_planks");
 	public static final Block STRIPPED_CYPRESS_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_cypress_log");
@@ -168,159 +184,188 @@ public class BlockInit {
 	public static final Block CYPRESS_SAPLING = new PrehistoricSaplingBlock(new CypressTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("cypress_sapling");
 	@SuppressWarnings("deprecation")
 	public static final Block POTTED_CYPRESS_SAPLING = new FlowerPotBlock(CYPRESS_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_cypress_sapling");
-*/	public static final Block MOSS_BLOCK = new Block(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.2F).sound(SoundType.PLANT)).setRegistryName("moss_block");
-	public static final Block CONIOPTERIS = new PrehistoricPlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("coniopteris");
-	public static final Block OSMUNDACAULIS = new DoublePlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).doesNotBlockMovement().sound(SoundType.PLANT)).setRegistryName("osmundacaulis");
+*/	public static final Block MOSS_BLOCK = new Block(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.2F).sound(SoundType.PLANT)).setRegistryName("moss_block"); //Loot Table done
+	public static final Block CONIOPTERIS = new PrehistoricPlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("coniopteris");//Loot Table done
+	public static final Block OSMUNDACAULIS = new DoublePlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).doesNotBlockMovement().sound(SoundType.PLANT)).setRegistryName("osmundacaulis"); //Loot Table done
 	public static final Block PALEOSCRIBE = new PaleoscribeBlock().setRegistryName("paleoscribe");
-	public static final Block PROTOPICEOXYLON_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_log");
-	public static final Block PROTOPICEOXYLON_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_planks");
-	public static final Block STRIPPED_PROTOPICEOXYLON_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_protopiceoxylon_log");
-	public static final Block PROTOPICEOXYLON_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_wood");
-	public static final Block STRIPPED_PROTOPICEOXYLON_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_protopiceoxylon_wood");
-	public static final Block PROTOPICEOXYLON_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()).setRegistryName("protopiceoxylon_leaves");
-	public static final Block PROTOPICEOXYLON_STAIRS = new PrehistoricStairsBlock(PROTOPICEOXYLON_PLANKS.getDefaultState(), Block.Properties.from(PROTOPICEOXYLON_PLANKS)).setRegistryName("protopiceoxylon_stairs");
-	public static final Block PROTOPICEOXYLON_DOOR = new PrehistoricDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("protopiceoxylon_door");
-	public static final Block PROTOPICEOXYLON_PRESSURE_PLATE = new PrehistoricPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_pressure_plate");
-	public static final Block PROTOPICEOXYLON_FENCE = new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_fence");
-	public static final Block PROTOPICEOXYLON_TRAPDOOR = new PrehistoricTrapDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("protopiceoxylon_trapdoor");
-	public static final Block PROTOPICEOXYLON_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_fence_gate");
-	public static final Block PROTOPICEOXYLON_BUTTON = new PrehistoricButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_button");
-	public static final Block PROTOPICEOXYLON_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_slab");
-	public static final Block PROTOPICEOXYLON_SAPLING = new PrehistoricSaplingBlock(new ProtopiceoxylonTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("protopiceoxylon_sapling");
+	public static final Block PROTOPICEOXYLON_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_log");//Loot Table done
+	public static final Block PROTOPICEOXYLON_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_planks");//Loot Table done
+	public static final Block STRIPPED_PROTOPICEOXYLON_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_protopiceoxylon_log");//Loot Table done
+	public static final Block PROTOPICEOXYLON_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_wood");//Loot Table done
+	public static final Block STRIPPED_PROTOPICEOXYLON_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_protopiceoxylon_wood");//Loot Table done
+	public static final Block PROTOPICEOXYLON_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()).setRegistryName("protopiceoxylon_leaves");//Loot Table done
+	public static final Block PROTOPICEOXYLON_STAIRS = new PrehistoricStairsBlock(PROTOPICEOXYLON_PLANKS.getDefaultState(), Block.Properties.from(PROTOPICEOXYLON_PLANKS)).setRegistryName("protopiceoxylon_stairs");//Loot Table done
+	public static final Block PROTOPICEOXYLON_DOOR = new PrehistoricDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("protopiceoxylon_door");//Loot Table done
+	public static final Block PROTOPICEOXYLON_PRESSURE_PLATE = new PrehistoricPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_pressure_plate");//Loot Table done
+	public static final Block PROTOPICEOXYLON_FENCE = new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_fence");//Loot Table done
+	public static final Block PROTOPICEOXYLON_TRAPDOOR = new PrehistoricTrapDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("protopiceoxylon_trapdoor");//Loot Table done
+	public static final Block PROTOPICEOXYLON_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_fence_gate");//Loot Table done
+	public static final Block PROTOPICEOXYLON_BUTTON = new PrehistoricButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_button");//Loot Table done
+	public static final Block PROTOPICEOXYLON_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_slab");//Loot Table done
+	public static final Block PROTOPICEOXYLON_SAPLING = new PrehistoricSaplingBlock(new ProtopiceoxylonTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("protopiceoxylon_sapling");//Loot Table done
 	@SuppressWarnings("deprecation")
-	public static final Block POTTED_PROTOPICEOXYLON_SAPLING = new FlowerPotBlock(PROTOPICEOXYLON_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_protopiceoxylon_sapling");	
-	public static final Block PTILOPHYLLUM_WOOD = new PtilophyllumBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(0.4F).sound(SoundType.WOOD).notSolid()).setRegistryName("ptilophyllum_wood");
-	public static final Block PTILOPHYLLUM_BASE = new PtilophyllumBaseBlock((PtilophyllumBlock)PTILOPHYLLUM_WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).tickRandomly().hardnessAndResistance(0.4F).sound(SoundType.WOOD).notSolid()).setRegistryName("ptilophyllum_base");
-	public static final Block ZAMITES_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("zamites_log");
-	public static final Block ZAMITES_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("zamites_planks");
-	public static final Block STRIPPED_ZAMITES_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_zamites_log");
-	public static final Block ZAMITES_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("zamites_wood");
-	public static final Block STRIPPED_ZAMITES_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_zamites_wood");
-	public static final Block ZAMITES_LEAVES = new ZamitesTopBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0).doesNotBlockMovement().sound(SoundType.PLANT)).setRegistryName("zamites_leaves");
-	public static final Block ZAMITES_STAIRS = new PrehistoricStairsBlock(ZAMITES_PLANKS.getDefaultState(), Block.Properties.from(ZAMITES_PLANKS)).setRegistryName("zamites_stairs");
-	public static final Block ZAMITES_DOOR = new PrehistoricDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("zamites_door");
-	public static final Block ZAMITES_PRESSURE_PLATE = new PrehistoricPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("zamites_pressure_plate");
-	public static final Block ZAMITES_FENCE = new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("zamites_fence");
-	public static final Block ZAMITES_TRAPDOOR = new PrehistoricTrapDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("zamites_trapdoor");
-	public static final Block ZAMITES_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("zamites_fence_gate");
-	public static final Block ZAMITES_BUTTON = new PrehistoricButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("zamites_button");
-	public static final Block ZAMITES_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("zamites_slab");
-	public static final Block ZAMITES_SAPLING = new PrehistoricSaplingBlock(new ZamitesBush(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("zamites_sapling");
+	public static final Block POTTED_PROTOPICEOXYLON_SAPLING = new FlowerPotBlock(PROTOPICEOXYLON_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_protopiceoxylon_sapling");//Loot Table done
+	public static final Block PTILOPHYLLUM_WOOD = new PtilophyllumBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(0.4F).sound(SoundType.WOOD).notSolid()).setRegistryName("ptilophyllum_wood");//Loot Table done
+	public static final Block PTILOPHYLLUM_BASE = new PtilophyllumBaseBlock((PtilophyllumBlock)PTILOPHYLLUM_WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).tickRandomly().hardnessAndResistance(0.4F).sound(SoundType.WOOD).notSolid()).setRegistryName("ptilophyllum_base");//Loot Table done
+	public static final Block ZAMITES_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("zamites_log");//Loot Table done
+	public static final Block ZAMITES_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("zamites_planks");//Loot Table done
+	public static final Block STRIPPED_ZAMITES_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_zamites_log");//Loot Table done
+	public static final Block ZAMITES_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("zamites_wood");//Loot Table done
+	public static final Block STRIPPED_ZAMITES_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_zamites_wood");//Loot Table done
+	public static final Block ZAMITES_LEAVES = new ZamitesTopBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0).doesNotBlockMovement().sound(SoundType.PLANT)).setRegistryName("zamites_leaves");//Loot Table done
+	public static final Block ZAMITES_STAIRS = new PrehistoricStairsBlock(ZAMITES_PLANKS.getDefaultState(), Block.Properties.from(ZAMITES_PLANKS)).setRegistryName("zamites_stairs");//Loot Table done
+	public static final Block ZAMITES_DOOR = new PrehistoricDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("zamites_door");//Loot Table done
+	public static final Block ZAMITES_PRESSURE_PLATE = new PrehistoricPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("zamites_pressure_plate");//Loot Table done
+	public static final Block ZAMITES_FENCE = new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("zamites_fence");//Loot Table done
+	public static final Block ZAMITES_TRAPDOOR = new PrehistoricTrapDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("zamites_trapdoor");//Loot Table done
+	public static final Block ZAMITES_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("zamites_fence_gate");//Loot Table done
+	public static final Block ZAMITES_BUTTON = new PrehistoricButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("zamites_button");//Loot Table done
+	public static final Block ZAMITES_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("zamites_slab");//Loot Table done
+	public static final Block ZAMITES_SAPLING = new ZamitesSaplingBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("zamites_sapling");//Loot Table done
 	@SuppressWarnings("deprecation")
-	public static final Block POTTED_ZAMITES_SAPLING = new FlowerPotBlock(ZAMITES_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_zamites_sapling");
-	public static final Block PROTOJUNIPER_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("protojuniper_log");
-	public static final Block PROTOJUNIPER_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protojuniper_planks");
-	public static final Block STRIPPED_PROTOJUNIPER_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_protojuniper_log");
-	public static final Block PROTOJUNIPER_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("protojuniper_wood");
-	public static final Block STRIPPED_PROTOJUNIPER_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_protojuniper_wood");
-	public static final Block PROTOJUNIPER_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()).setRegistryName("protojuniper_leaves");
-	public static final Block PROTOJUNIPER_STAIRS = new PrehistoricStairsBlock(PROTOJUNIPER_PLANKS.getDefaultState(), Block.Properties.from(PROTOJUNIPER_PLANKS)).setRegistryName("protojuniper_stairs");
-	public static final Block PROTOJUNIPER_DOOR = new PrehistoricDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("protojuniper_door");
-	public static final Block PROTOJUNIPER_PRESSURE_PLATE = new PrehistoricPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("protojuniper_pressure_plate");
-	public static final Block PROTOJUNIPER_FENCE = new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protojuniper_fence");
-	public static final Block PROTOJUNIPER_TRAPDOOR = new PrehistoricTrapDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("protojuniper_trapdoor");
-	public static final Block PROTOJUNIPER_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protojuniper_fence_gate");
-	public static final Block PROTOJUNIPER_BUTTON = new PrehistoricButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("protojuniper_button");
-	public static final Block PROTOJUNIPER_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protojuniper_slab");
-	public static final Block PROTOJUNIPER_SAPLING = new PrehistoricSaplingBlock(new ProtojuniperTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("protojuniper_sapling");
+	public static final Block POTTED_ZAMITES_SAPLING = new FlowerPotBlock(ZAMITES_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_zamites_sapling");//Loot Table done
+	public static final Block PROTOJUNIPER_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("protojuniper_log");//Loot Table done
+	public static final Block PROTOJUNIPER_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protojuniper_planks");//Loot Table done
+	public static final Block STRIPPED_PROTOJUNIPER_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_protojuniper_log");//Loot Table done
+	public static final Block PROTOJUNIPER_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("protojuniper_wood");//Loot Table done
+	public static final Block STRIPPED_PROTOJUNIPER_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_protojuniper_wood");//Loot Table done
+	public static final Block PROTOJUNIPER_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()).setRegistryName("protojuniper_leaves");//Loot Table done
+	public static final Block PROTOJUNIPER_STAIRS = new PrehistoricStairsBlock(PROTOJUNIPER_PLANKS.getDefaultState(), Block.Properties.from(PROTOJUNIPER_PLANKS)).setRegistryName("protojuniper_stairs");//Loot Table done
+	public static final Block PROTOJUNIPER_DOOR = new PrehistoricDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("protojuniper_door");//Loot Table done
+	public static final Block PROTOJUNIPER_PRESSURE_PLATE = new PrehistoricPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("protojuniper_pressure_plate");//Loot Table done
+	public static final Block PROTOJUNIPER_FENCE = new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protojuniper_fence");//Loot Table done
+	public static final Block PROTOJUNIPER_TRAPDOOR = new PrehistoricTrapDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("protojuniper_trapdoor");//Loot Table done
+	public static final Block PROTOJUNIPER_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protojuniper_fence_gate");//Loot Table done
+	public static final Block PROTOJUNIPER_BUTTON = new PrehistoricButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("protojuniper_button");//Loot Table done
+	public static final Block PROTOJUNIPER_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protojuniper_slab");//Loot Table done
+	public static final Block PROTOJUNIPER_SAPLING = new PrehistoricSaplingBlock(new ProtojuniperTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("protojuniper_sapling");//Loot Table done
 	@SuppressWarnings("deprecation")
-	public static final Block POTTED_PROTOJUNIPER_SAPLING = new FlowerPotBlock(PROTOJUNIPER_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_protojuniper_sapling");
-	public static final Block DICROIDIUM = new DicroidiumBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.5F).doesNotBlockMovement().sound(SoundType.PLANT)).setRegistryName("dicroidium");
-	public static final Block JOHNSTONIA = new JohnstoniaBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.5F).doesNotBlockMovement().sound(SoundType.PLANT)).setRegistryName("johnstonia");
-	public static final Block SCYTOPHYLLUM = new DoublePlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("scytophyllum");
-	public static final Block CLADOPHLEBIS = new PrehistoricPlant(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("cladophlebis");
-	public static final Block MICHELILLOA = new PrehistoricPlant(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("michelilloa");
+	public static final Block POTTED_PROTOJUNIPER_SAPLING = new FlowerPotBlock(PROTOJUNIPER_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_protojuniper_sapling");//Loot Table done
+	public static final Block DICROIDIUM = new DicroidiumBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.5F).doesNotBlockMovement().sound(SoundType.PLANT)).setRegistryName("dicroidium");//Loot Table done
+	public static final Block JOHNSTONIA = new JohnstoniaBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.5F).doesNotBlockMovement().sound(SoundType.PLANT)).setRegistryName("johnstonia");//Loot Table done
+	public static final Block SCYTOPHYLLUM = new DoublePlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("scytophyllum");//Loot Table done
+	public static final Block CLADOPHLEBIS = new PrehistoricPlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("cladophlebis");//Loot Table done
+	public static final Block MICHELILLOA = new PrehistoricPlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("michelilloa");
 	@SuppressWarnings("deprecation")
-	public static final Block POTTED_CLADOPHLEBIS = new FlowerPotBlock(CLADOPHLEBIS, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_cladophlebis");
+	public static final Block POTTED_CLADOPHLEBIS = new FlowerPotBlock(CLADOPHLEBIS, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_cladophlebis");//Loot Table done
 	@SuppressWarnings("deprecation")
-	public static final Block POTTED_MICHELILLOA = new FlowerPotBlock(MICHELILLOA, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_michelilloa");
-	public static final Block HEIDIPHYLLUM_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("heidiphyllum_log");
-	public static final Block HEIDIPHYLLUM_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("heidiphyllum_planks");
-	public static final Block STRIPPED_HEIDIPHYLLUM_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_heidiphyllum_log");
-	public static final Block HEIDIPHYLLUM_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("heidiphyllum_wood");
-	public static final Block STRIPPED_HEIDIPHYLLUM_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_heidiphyllum_wood");
-	public static final Block HEIDIPHYLLUM_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()).setRegistryName("heidiphyllum_leaves");
-	public static final Block HEIDIPHYLLUM_STAIRS = new PrehistoricStairsBlock(HEIDIPHYLLUM_PLANKS.getDefaultState(), Block.Properties.from(HEIDIPHYLLUM_PLANKS)).setRegistryName("heidiphyllum_stairs");
-	public static final Block HEIDIPHYLLUM_DOOR = new PrehistoricDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("heidiphyllum_door");
-	public static final Block HEIDIPHYLLUM_PRESSURE_PLATE = new PrehistoricPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("heidiphyllum_pressure_plate");
-	public static final Block HEIDIPHYLLUM_FENCE = new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("heidiphyllum_fence");
-	public static final Block HEIDIPHYLLUM_TRAPDOOR = new PrehistoricTrapDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("heidiphyllum_trapdoor");
-	public static final Block HEIDIPHYLLUM_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("heidiphyllum_fence_gate");
-	public static final Block HEIDIPHYLLUM_BUTTON = new PrehistoricButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("heidiphyllum_button");
-	public static final Block HEIDIPHYLLUM_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("heidiphyllum_slab");
-	public static final Block HEIDIPHYLLUM_SAPLING = new PrehistoricSaplingBlock(new HeidiphyllumTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("heidiphyllum_sapling");
+	public static final Block POTTED_MICHELILLOA = new FlowerPotBlock(MICHELILLOA, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_michelilloa");//Loot Table done
+	public static final Block HEIDIPHYLLUM_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("heidiphyllum_log");//Loot Table done
+	public static final Block HEIDIPHYLLUM_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("heidiphyllum_planks");//Loot Table done
+	public static final Block STRIPPED_HEIDIPHYLLUM_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_heidiphyllum_log");//Loot Table done
+	public static final Block HEIDIPHYLLUM_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("heidiphyllum_wood");//Loot Table done
+	public static final Block STRIPPED_HEIDIPHYLLUM_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_heidiphyllum_wood");//Loot Table done
+	public static final Block HEIDIPHYLLUM_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()).setRegistryName("heidiphyllum_leaves");//Loot Table done
+	public static final Block HEIDIPHYLLUM_STAIRS = new PrehistoricStairsBlock(HEIDIPHYLLUM_PLANKS.getDefaultState(), Block.Properties.from(HEIDIPHYLLUM_PLANKS)).setRegistryName("heidiphyllum_stairs");//Loot Table done
+	public static final Block HEIDIPHYLLUM_DOOR = new PrehistoricDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("heidiphyllum_door");//Loot Table done
+	public static final Block HEIDIPHYLLUM_PRESSURE_PLATE = new PrehistoricPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("heidiphyllum_pressure_plate");//Loot Table done
+	public static final Block HEIDIPHYLLUM_FENCE = new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("heidiphyllum_fence");//Loot Table done
+	public static final Block HEIDIPHYLLUM_TRAPDOOR = new PrehistoricTrapDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("heidiphyllum_trapdoor");//Loot Table done
+	public static final Block HEIDIPHYLLUM_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("heidiphyllum_fence_gate");//Loot Table done
+	public static final Block HEIDIPHYLLUM_BUTTON = new PrehistoricButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("heidiphyllum_button");//Loot Table done
+	public static final Block HEIDIPHYLLUM_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("heidiphyllum_slab");//Loot Table done
+	public static final Block HEIDIPHYLLUM_SAPLING = new PrehistoricSaplingBlock(new HeidiphyllumTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("heidiphyllum_sapling");//Loot Table done
 	@SuppressWarnings("deprecation")
-	public static final Block POTTED_HEIDIPHYLLUM_SAPLING = new FlowerPotBlock(HEIDIPHYLLUM_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_heidiphyllum_sapling");
-	public static final Block SHORT_OSMUNDACAULIS = new ShortOsmundacaulisBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("short_osmundacaulis");
-	public static final Block DEAD_OSMUNDACAULIS = new DeadConiopterisBlock(Block.Properties.create(Material.TALL_PLANTS, MaterialColor.WOOD).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("dead_osmundacaulis");
-	public static final Block LIRIODENDRITES_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("liriodendrites_log");
-	public static final Block LIRIODENDRITES_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("liriodendrites_planks");
-	public static final Block STRIPPED_LIRIODENDRITES_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_liriodendrites_log");
-	public static final Block LIRIODENDRITES_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("liriodendrites_wood");
-	public static final Block STRIPPED_LIRIODENDRITES_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_liriodendrites_wood");
-	public static final Block LIRIODENDRITES_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()).setRegistryName("liriodendrites_leaves");
-	public static final Block LIRIODENDRITES_LEAVES_FLOWER = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()).setRegistryName("liriodendrites_leaves_flower");
-	public static final Block LIRIODENDRITES_STAIRS = new PrehistoricStairsBlock(LIRIODENDRITES_PLANKS.getDefaultState(), Block.Properties.from(LIRIODENDRITES_PLANKS)).setRegistryName("liriodendrites_stairs");
-	public static final Block LIRIODENDRITES_DOOR = new PrehistoricDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("liriodendrites_door");
-	public static final Block LIRIODENDRITES_PRESSURE_PLATE = new PrehistoricPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("liriodendrites_pressure_plate");
-	public static final Block LIRIODENDRITES_FENCE = new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("liriodendrites_fence");
-	public static final Block LIRIODENDRITES_TRAPDOOR = new PrehistoricTrapDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("liriodendrites_trapdoor");
-	public static final Block LIRIODENDRITES_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("liriodendrites_fence_gate");
-	public static final Block LIRIODENDRITES_BUTTON = new PrehistoricButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("liriodendrites_button");
-	public static final Block LIRIODENDRITES_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("liriodendrites_slab");
-	public static final Block LIRIODENDRITES_SAPLING = new PrehistoricSaplingBlock(new LiriodendritesTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("liriodendrites_sapling");
+	public static final Block POTTED_HEIDIPHYLLUM_SAPLING = new FlowerPotBlock(HEIDIPHYLLUM_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_heidiphyllum_sapling");//Loot Table done
+	public static final Block SHORT_OSMUNDACAULIS = new ShortOsmundacaulisBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("short_osmundacaulis"); //Loot Table done
+	public static final Block DEAD_OSMUNDACAULIS = new DeadConiopterisBlock(Block.Properties.create(Material.TALL_PLANTS, MaterialColor.WOOD).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("dead_osmundacaulis"); //Loot Table done
+	public static final Block LIRIODENDRITES_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("liriodendrites_log");//Loot Table done
+	public static final Block LIRIODENDRITES_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("liriodendrites_planks");//Loot Table done
+	public static final Block STRIPPED_LIRIODENDRITES_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_liriodendrites_log");//Loot Table done
+	public static final Block LIRIODENDRITES_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("liriodendrites_wood");//Loot Table done
+	public static final Block STRIPPED_LIRIODENDRITES_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_liriodendrites_wood");//Loot Table done
+	public static final Block LIRIODENDRITES_LEAVES = new LiriodendritesLeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()).setRegistryName("liriodendrites_leaves");//Loot Table done
+	public static final Block LIRIODENDRITES_STAIRS = new PrehistoricStairsBlock(LIRIODENDRITES_PLANKS.getDefaultState(), Block.Properties.from(LIRIODENDRITES_PLANKS)).setRegistryName("liriodendrites_stairs");//Loot Table done
+	public static final Block LIRIODENDRITES_DOOR = new PrehistoricDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("liriodendrites_door");//Loot Table done
+	public static final Block LIRIODENDRITES_PRESSURE_PLATE = new PrehistoricPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("liriodendrites_pressure_plate");//Loot Table done
+	public static final Block LIRIODENDRITES_FENCE = new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("liriodendrites_fence");//Loot Table done
+	public static final Block LIRIODENDRITES_TRAPDOOR = new PrehistoricTrapDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("liriodendrites_trapdoor");//Loot Table done
+	public static final Block LIRIODENDRITES_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("liriodendrites_fence_gate");//Loot Table done
+	public static final Block LIRIODENDRITES_BUTTON = new PrehistoricButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("liriodendrites_button");//Loot Table done
+	public static final Block LIRIODENDRITES_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("liriodendrites_slab");//Loot Table done
+	public static final Block LIRIODENDRITES_SAPLING = new PrehistoricSaplingBlock(new LiriodendritesTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("liriodendrites_sapling");//Loot Table done
 	@SuppressWarnings("deprecation")
-	public static final Block POTTED_LIRIODENDRITES_SAPLING = new FlowerPotBlock(LIRIODENDRITES_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_liriodendrites_sapling");
-	public static final Block CRETACEOUS_PORTAL = new CretaceousPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).lightValue(11).noDrops()).setRegistryName("cretaceous_portal");
-	public static final Block TRIASSIC_SANDSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("triassic_sandstone");
-	public static final Block TRIASSIC_SANDSTONE_FOSSIL = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("triassic_sandstone_fossil");
-	public static final Block SMOOTH_TRIASSIC_SANDSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("smooth_triassic_sandstone");
-	public static final Block POLISHED_TRIASSIC_SANDSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_triassic_sandstone");
-	public static final Block POLISHED_TRIASSIC_SANDSTONE_BRICKS = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_triassic_sandstone_bricks");
-	public static final Block CHISELED_POLISHED_TRIASSIC_SANDSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("chiseled_polished_triassic_sandstone");
-	public static final Block TRIASSIC_SANDSTONE_WALL = new WallBlock(Block.Properties.from(TRIASSIC_SANDSTONE)).setRegistryName("triassic_sandstone_wall");
-	public static final Block TRIASSIC_SANDSTONE_STAIRS = new PrehistoricStairsBlock(TRIASSIC_SANDSTONE.getDefaultState(), Block.Properties.from(TRIASSIC_SANDSTONE)).setRegistryName("triassic_sandstone_stairs");
-	public static final Block TRIASSIC_SANDSTONE_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("triassic_sandstone_slab");
-	public static final Block POLISHED_TRIASSIC_SANDSTONE_STAIRS = new PrehistoricStairsBlock(POLISHED_TRIASSIC_SANDSTONE.getDefaultState(), Block.Properties.from(POLISHED_TRIASSIC_SANDSTONE)).setRegistryName("polished_triassic_sandstone_stairs");
-	public static final Block POLISHED_TRIASSIC_SANDSTONE_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_triassic_sandstone_slab");
-	public static final Block TRIASSIC_SANDSTONE_BRICK_STAIRS = new PrehistoricStairsBlock(POLISHED_TRIASSIC_SANDSTONE_BRICKS.getDefaultState(), Block.Properties.from(POLISHED_TRIASSIC_SANDSTONE_BRICKS)).setRegistryName("triassic_sandstone_brick_stairs");
-	public static final Block TRIASSIC_SANDSTONE_BRICK_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("triassic_sandstone_brick_slab");
-	public static final Block JURASSIC_SILTSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("jurassic_siltstone");
-	public static final Block JURASSIC_SILTSTONE_FOSSIL = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("jurassic_siltstone_fossil");
-	public static final Block SMOOTH_JURASSIC_SILTSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("smooth_jurassic_siltstone");
-	public static final Block POLISHED_JURASSIC_SILTSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_jurassic_siltstone");
-	public static final Block POLISHED_JURASSIC_SILTSTONE_BRICKS = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_jurassic_siltstone_bricks");
-	public static final Block CHISELED_POLISHED_JURASSIC_SILTSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("chiseled_polished_jurassic_siltstone");
-	public static final Block JURASSIC_SILTSTONE_WALL = new WallBlock(Block.Properties.from(JURASSIC_SILTSTONE)).setRegistryName("jurassic_siltstone_wall");
-	public static final Block JURASSIC_SILTSTONE_STAIRS = new PrehistoricStairsBlock(JURASSIC_SILTSTONE.getDefaultState(), Block.Properties.from(JURASSIC_SILTSTONE)).setRegistryName("jurassic_siltstone_stairs");
-	public static final Block JURASSIC_SILTSTONE_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("jurassic_siltstone_slab");
-	public static final Block JURASSIC_SILTSTONE_BRICK_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("jurassic_siltstone_brick_slab");
-	public static final Block JURASSIC_SILTSTONE_BRICK_STAIRS = new PrehistoricStairsBlock(POLISHED_JURASSIC_SILTSTONE_BRICKS.getDefaultState(), Block.Properties.from(POLISHED_JURASSIC_SILTSTONE_BRICKS)).setRegistryName("jurassic_siltstone_brick_stairs");
-	public static final Block POLISHED_JURASSIC_SILTSTONE_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_jurassic_siltstone_slab");
-	public static final Block POLISHED_JURASSIC_SILTSTONE_STAIRS = new PrehistoricStairsBlock(POLISHED_JURASSIC_SILTSTONE.getDefaultState(), Block.Properties.from(POLISHED_JURASSIC_SILTSTONE)).setRegistryName("polished_jurassic_siltstone_stairs");
-	public static final Block CRETACEOUS_CHALK = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("cretaceous_chalk");
-	public static final Block CRETACEOUS_CHALK_FOSSIL = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("cretaceous_chalk_fossil");
-	public static final Block SMOOTH_CRETACEOUS_CHALK = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("smooth_cretaceous_chalk");
-	public static final Block POLISHED_CRETACEOUS_CHALK = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_cretaceous_chalk");
-	public static final Block POLISHED_CRETACEOUS_CHALK_BRICKS = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_cretaceous_chalk_bricks");
-	public static final Block CHISELED_POLISHED_CRETACEOUS_CHALK = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("chiseled_polished_cretaceous_chalk");
-	public static final Block CRETACEOUS_CHALK_WALL = new WallBlock(Block.Properties.from(CRETACEOUS_CHALK)).setRegistryName("cretaceous_chalk_wall");
-	public static final Block CRETACEOUS_CHALK_STAIRS = new PrehistoricStairsBlock(CRETACEOUS_CHALK.getDefaultState(), Block.Properties.from(CRETACEOUS_CHALK)).setRegistryName("cretaceous_chalk_stairs");
-	public static final Block CRETACEOUS_CHALK_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("cretaceous_chalk_slab");
-	public static final Block CRETACEOUS_CHALK_BRICK_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("cretaceous_chalk_brick_slab");
-	public static final Block CRETACEOUS_CHALK_BRICK_STAIRS = new PrehistoricStairsBlock(POLISHED_CRETACEOUS_CHALK_BRICKS.getDefaultState(), Block.Properties.from(POLISHED_CRETACEOUS_CHALK_BRICKS)).setRegistryName("cretaceous_chalk_brick_stairs");
-	public static final Block POLISHED_CRETACEOUS_CHALK_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_cretaceous_chalk_slab");
-	public static final Block POLISHED_CRETACEOUS_CHALK_STAIRS = new PrehistoricStairsBlock(POLISHED_CRETACEOUS_CHALK.getDefaultState(), Block.Properties.from(POLISHED_CRETACEOUS_CHALK)).setRegistryName("polished_cretaceous_chalk_stairs");
-	public static final Block SILLOSUCHUS_EGG = new SillosuchusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("sillosuchus_egg");
-	public static final Block PORTAL_FRAME = new PortalFrameBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).lightValue(9)).setRegistryName("portal_frame");
-	public static final Block PORTAL_PROJECTOR = new PortalFrameBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).lightValue(9)).setRegistryName("portal_projector");
-	public static final Block CRETACEOUS_TIME_BLOCK = new CretaceousTimeBlock();
-	public static final Block JURASSIC_PORTAL = new JurassicPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).lightValue(11).noDrops()).setRegistryName("jurassic_portal");
-	public static final Block JURASSIC_TIME_BLOCK = new JurassicTimeBlock();
-	public static final Block TRIASSIC_PORTAL = new TriassicPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).lightValue(11).noDrops()).setRegistryName("triassic_portal");
-	public static final Block TRIASSIC_TIME_BLOCK = new TriassicTimeBlock();
-	public static final Block CRASSOSTREA_BLOCK = new CrassostreaOysterBlock(Block.Properties.create(Material.ROCK).doesNotBlockMovement().hardnessAndResistance(0.5F).tickRandomly().sound(SoundType.STONE)).setRegistryName("crassostrea_oysters");
+	public static final Block POTTED_LIRIODENDRITES_SAPLING = new FlowerPotBlock(LIRIODENDRITES_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_liriodendrites_sapling");//Loot Table done
+	public static final Block CRETACEOUS_PORTAL = new CretaceousPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).lightValue(11).noDrops()).setRegistryName("cretaceous_portal");//Loot Table done
+	public static final Block TRIASSIC_SANDSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("triassic_sandstone");//Loot Table done
+	public static final Block TRIASSIC_SANDSTONE_FOSSIL = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("triassic_sandstone_fossil");//Loot Table done
+	public static final Block SMOOTH_TRIASSIC_SANDSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("smooth_triassic_sandstone");//Loot Table done
+	public static final Block POLISHED_TRIASSIC_SANDSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_triassic_sandstone");//Loot Table done
+	public static final Block POLISHED_TRIASSIC_SANDSTONE_BRICKS = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_triassic_sandstone_bricks");//Loot Table done
+	public static final Block CHISELED_POLISHED_TRIASSIC_SANDSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("chiseled_polished_triassic_sandstone");//Loot Table done
+	public static final Block TRIASSIC_SANDSTONE_WALL = new WallBlock(Block.Properties.from(TRIASSIC_SANDSTONE)).setRegistryName("triassic_sandstone_wall");//Loot Table done
+	public static final Block TRIASSIC_SANDSTONE_STAIRS = new PrehistoricStairsBlock(TRIASSIC_SANDSTONE.getDefaultState(), Block.Properties.from(TRIASSIC_SANDSTONE)).setRegistryName("triassic_sandstone_stairs");//Loot Table done
+	public static final Block TRIASSIC_SANDSTONE_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("triassic_sandstone_slab");//Loot Table done
+	public static final Block POLISHED_TRIASSIC_SANDSTONE_STAIRS = new PrehistoricStairsBlock(POLISHED_TRIASSIC_SANDSTONE.getDefaultState(), Block.Properties.from(POLISHED_TRIASSIC_SANDSTONE)).setRegistryName("polished_triassic_sandstone_stairs");//Loot Table done
+	public static final Block POLISHED_TRIASSIC_SANDSTONE_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_triassic_sandstone_slab");//Loot Table done
+	public static final Block TRIASSIC_SANDSTONE_BRICK_STAIRS = new PrehistoricStairsBlock(POLISHED_TRIASSIC_SANDSTONE_BRICKS.getDefaultState(), Block.Properties.from(POLISHED_TRIASSIC_SANDSTONE_BRICKS)).setRegistryName("triassic_sandstone_brick_stairs");//Loot Table done
+	public static final Block TRIASSIC_SANDSTONE_BRICK_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("triassic_sandstone_brick_slab");//Loot Table done
+	public static final Block JURASSIC_SILTSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("jurassic_siltstone");//Loot Table done
+	public static final Block JURASSIC_SILTSTONE_FOSSIL = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("jurassic_siltstone_fossil");//Loot Table done
+	public static final Block SMOOTH_JURASSIC_SILTSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("smooth_jurassic_siltstone");//Loot Table done
+	public static final Block POLISHED_JURASSIC_SILTSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_jurassic_siltstone");//Loot Table done
+	public static final Block POLISHED_JURASSIC_SILTSTONE_BRICKS = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_jurassic_siltstone_bricks");//Loot Table done
+	public static final Block CHISELED_POLISHED_JURASSIC_SILTSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("chiseled_polished_jurassic_siltstone");//Loot Table done
+	public static final Block JURASSIC_SILTSTONE_WALL = new WallBlock(Block.Properties.from(JURASSIC_SILTSTONE)).setRegistryName("jurassic_siltstone_wall");//Loot Table done
+	public static final Block JURASSIC_SILTSTONE_STAIRS = new PrehistoricStairsBlock(JURASSIC_SILTSTONE.getDefaultState(), Block.Properties.from(JURASSIC_SILTSTONE)).setRegistryName("jurassic_siltstone_stairs");//Loot Table done
+	public static final Block JURASSIC_SILTSTONE_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("jurassic_siltstone_slab");//Loot Table done
+	public static final Block JURASSIC_SILTSTONE_BRICK_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("jurassic_siltstone_brick_slab");//Loot Table done
+	public static final Block JURASSIC_SILTSTONE_BRICK_STAIRS = new PrehistoricStairsBlock(POLISHED_JURASSIC_SILTSTONE_BRICKS.getDefaultState(), Block.Properties.from(POLISHED_JURASSIC_SILTSTONE_BRICKS)).setRegistryName("jurassic_siltstone_brick_stairs");//Loot Table done
+	public static final Block POLISHED_JURASSIC_SILTSTONE_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_jurassic_siltstone_slab");//Loot Table done
+	public static final Block POLISHED_JURASSIC_SILTSTONE_STAIRS = new PrehistoricStairsBlock(POLISHED_JURASSIC_SILTSTONE.getDefaultState(), Block.Properties.from(POLISHED_JURASSIC_SILTSTONE)).setRegistryName("polished_jurassic_siltstone_stairs");//Loot Table done
+	public static final Block CRETACEOUS_CHALK = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("cretaceous_chalk");//Loot Table done
+	public static final Block CRETACEOUS_CHALK_FOSSIL = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("cretaceous_chalk_fossil");//Loot Table done
+	public static final Block SMOOTH_CRETACEOUS_CHALK = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("smooth_cretaceous_chalk");//Loot Table done
+	public static final Block POLISHED_CRETACEOUS_CHALK = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_cretaceous_chalk");//Loot Table done
+	public static final Block POLISHED_CRETACEOUS_CHALK_BRICKS = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_cretaceous_chalk_bricks");//Loot Table done
+	public static final Block CHISELED_POLISHED_CRETACEOUS_CHALK = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("chiseled_polished_cretaceous_chalk");//Loot Table done
+	public static final Block CRETACEOUS_CHALK_WALL = new WallBlock(Block.Properties.from(CRETACEOUS_CHALK)).setRegistryName("cretaceous_chalk_wall");//Loot Table done
+	public static final Block CRETACEOUS_CHALK_STAIRS = new PrehistoricStairsBlock(CRETACEOUS_CHALK.getDefaultState(), Block.Properties.from(CRETACEOUS_CHALK)).setRegistryName("cretaceous_chalk_stairs");//Loot Table done
+	public static final Block CRETACEOUS_CHALK_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("cretaceous_chalk_slab");//Loot Table done
+	public static final Block CRETACEOUS_CHALK_BRICK_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("cretaceous_chalk_brick_slab");//Loot Table done
+	public static final Block CRETACEOUS_CHALK_BRICK_STAIRS = new PrehistoricStairsBlock(POLISHED_CRETACEOUS_CHALK_BRICKS.getDefaultState(), Block.Properties.from(POLISHED_CRETACEOUS_CHALK_BRICKS)).setRegistryName("cretaceous_chalk_brick_stairs");//Loot Table done
+	public static final Block POLISHED_CRETACEOUS_CHALK_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_cretaceous_chalk_slab");//Loot Table done
+	public static final Block POLISHED_CRETACEOUS_CHALK_STAIRS = new PrehistoricStairsBlock(POLISHED_CRETACEOUS_CHALK.getDefaultState(), Block.Properties.from(POLISHED_CRETACEOUS_CHALK)).setRegistryName("polished_cretaceous_chalk_stairs");//Loot Table done
+	public static final Block SILLOSUCHUS_EGG = new SillosuchusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("sillosuchus_egg");//Loot Table done
+	public static final Block PORTAL_FRAME = new PortalFrameBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).lightValue(9)).setRegistryName("portal_frame");//Loot Table done
+	public static final Block PORTAL_PROJECTOR = new PortalFrameBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).lightValue(9)).setRegistryName("portal_projector");//Loot Table done
+	public static final Block CRETACEOUS_TIME_BLOCK = new CretaceousTimeBlock();//Loot Table done
+	public static final Block JURASSIC_PORTAL = new JurassicPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).lightValue(11).noDrops()).setRegistryName("jurassic_portal");//Loot Table done
+	public static final Block JURASSIC_TIME_BLOCK = new JurassicTimeBlock();//Loot Table done
+	public static final Block TRIASSIC_PORTAL = new TriassicPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).lightValue(11).noDrops()).setRegistryName("triassic_portal");//Loot Table done
+	public static final Block TRIASSIC_TIME_BLOCK = new TriassicTimeBlock();//Loot Table done
+	public static final Block CRASSOSTREA_BLOCK = new CrassostreaOysterBlock(Block.Properties.create(Material.CORAL).doesNotBlockMovement().hardnessAndResistance(0.5F).tickRandomly().sound(SoundType.STONE).harvestLevel(0)).setRegistryName("crassostrea_oysters");
 	public static final Block DIDELPHODON_BURROW = new DidelphodonBurrowBlock(Block.Properties.create(Material.EARTH).hardnessAndResistance(0.5F).sound(SoundType.GROUND)).setRegistryName("didelphodon_burrow");
+	public static final Block HENOSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone");
+	public static final Block HENOSTONE_CARVED = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone_carved");
+	public static final Block HENOSTONE_BRICKS = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone_bricks");
+	public static final Block HENOSTONE_BRICKS_DARK = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone_bricks_dark");
+	public static final Block HENOSTONE_PILLAR = new RotatedPillarBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone_pillar");
+	public static final Block HENOSTONE_PILLAR_CHISELED = new RotatedPillarBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone_pillar_chiseled");
+	public static final Block HENOSTONE_STAIRS = new PrehistoricStairsBlock(HENOSTONE.getDefaultState(), Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone_stairs");
+	public static final Block HENOSTONE_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone_slab");
+	public static final Block HENOSTONE_WALL = new WallBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone_wall");
+	public static final Block HENOSTONE_BRICK_STAIRS = new PrehistoricStairsBlock(HENOSTONE_BRICKS.getDefaultState(), Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone_brick_stairs");
+	public static final Block HENOSTONE_BRICK_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone_brick_slab");
+	public static final Block HENOSTONE_BRICK_WALL = new WallBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone_brick_wall");
+	public static final Block HENOSTONE_DARK_BRICK_STAIRS = new PrehistoricStairsBlock(HENOSTONE_BRICKS_DARK.getDefaultState(), Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone_dark_brick_stairs");
+	public static final Block HENOSTONE_DARK_BRICK_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone_dark_brick_slab");
+	public static final Block HENOSTONE_DARK_BRICK_WALL = new WallBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone_dark_brick_wall");
+	public static final Block HENOSTONE_TRAP = new TrapBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone_trap");
+	public static final Block LARGE_AMMONITE_SHELL = new AmmoniteLargeShellBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("large_shell");
+	public static final Block MEDIUM_AMMONITE_SHELL = new AmmoniteMediumShellBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("medium_shell");
+	public static final Block SMALL_AMMONITE_SHELL = new AmmoniteSmallShellBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("small_shell");
+	public static final Block GIANT_AMMONITE_SHELL_BF = new AmmoniteGiantShellBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("giant_shell_bf");
+	public static final Block GIANT_AMMONITE_SHELL_BB = new AmmoniteGiantShellBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("giant_shell_bb");
+	public static final Block GIANT_AMMONITE_SHELL_TF = new AmmoniteGiantShellBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("giant_shell_tf");
+	public static final Block GIANT_AMMONITE_SHELL_TB = new AmmoniteGiantShellBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("giant_shell_tb");
+	public static final Block AMMONITE_BLOCK = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("ammonite_block");
+	public static final Block PETRIFIED_WOOD = new LogBlock(MaterialColor.PINK, Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("petrified_wood");
+	public static final Block POLISHED_PETRIFIED_WOOD = new LogBlock(MaterialColor.PINK, Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_petrified_wood");
+	public static final Block SAUROSUCHUS_EGG = new SaurosuchusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("saurosuchus_egg");//Loot Table done
+	public static final Block ISCHIGUALASTIA_EGG = new IschigualastiaEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("ischigualastia_egg");
+	public static final Block EXAERETODON_EGG = new ExaeretodonEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("exaeretodon_egg");//Loot Table done
+	public static final Block PALEONTOLOGY_TABLE = new PaleontologyTableBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.5F).sound(SoundType.WOOD)).setRegistryName("paleontology_table");
 	
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
@@ -494,7 +539,6 @@ public class BlockInit {
 		event.getRegistry().register(STRIPPED_LIRIODENDRITES_LOG);
 		event.getRegistry().register(STRIPPED_LIRIODENDRITES_WOOD);
 		event.getRegistry().register(LIRIODENDRITES_LEAVES);
-		event.getRegistry().register(LIRIODENDRITES_LEAVES_FLOWER);
 		event.getRegistry().register(LIRIODENDRITES_SAPLING);
 		event.getRegistry().register(POTTED_LIRIODENDRITES_SAPLING);
 		event.getRegistry().register(CRETACEOUS_PORTAL);
@@ -547,7 +591,37 @@ public class BlockInit {
 		event.getRegistry().register(TRIASSIC_TIME_BLOCK);
 		event.getRegistry().register(CRASSOSTREA_BLOCK);
 		event.getRegistry().register(DIDELPHODON_BURROW);
-			if (FMLEnvironment.dist == Dist.CLIENT) {
+		event.getRegistry().register(HENOSTONE);
+		event.getRegistry().register(HENOSTONE_CARVED);
+		event.getRegistry().register(HENOSTONE_BRICKS);
+		event.getRegistry().register(HENOSTONE_BRICKS_DARK);
+		event.getRegistry().register(HENOSTONE_PILLAR);
+		event.getRegistry().register(HENOSTONE_PILLAR_CHISELED);
+		event.getRegistry().register(HENOSTONE_SLAB);
+		event.getRegistry().register(HENOSTONE_STAIRS);
+		event.getRegistry().register(HENOSTONE_WALL);
+		event.getRegistry().register(HENOSTONE_BRICK_SLAB);
+		event.getRegistry().register(HENOSTONE_BRICK_STAIRS);
+		event.getRegistry().register(HENOSTONE_BRICK_WALL);
+		event.getRegistry().register(HENOSTONE_DARK_BRICK_SLAB);
+		event.getRegistry().register(HENOSTONE_DARK_BRICK_STAIRS);
+		event.getRegistry().register(HENOSTONE_DARK_BRICK_WALL);
+		event.getRegistry().register(HENOSTONE_TRAP);
+		event.getRegistry().register(LARGE_AMMONITE_SHELL);
+		event.getRegistry().register(MEDIUM_AMMONITE_SHELL);
+		event.getRegistry().register(SMALL_AMMONITE_SHELL);
+		event.getRegistry().register(GIANT_AMMONITE_SHELL_BB);
+		event.getRegistry().register(GIANT_AMMONITE_SHELL_BF);
+		event.getRegistry().register(GIANT_AMMONITE_SHELL_TB);
+		event.getRegistry().register(GIANT_AMMONITE_SHELL_TF);
+		event.getRegistry().register(AMMONITE_BLOCK);
+		event.getRegistry().register(PETRIFIED_WOOD);
+		event.getRegistry().register(POLISHED_PETRIFIED_WOOD);
+		event.getRegistry().register(SAUROSUCHUS_EGG);
+		event.getRegistry().register(ISCHIGUALASTIA_EGG);
+		event.getRegistry().register(EXAERETODON_EGG);
+		event.getRegistry().register(PALEONTOLOGY_TABLE);
+		if (FMLEnvironment.dist == Dist.CLIENT) {
 			RenderType cutoutRenderType = RenderType.getCutout();
 			RenderType mippedRenderType = RenderType.getCutoutMipped();
 			RenderType translucentRenderType = RenderType.getTranslucent();
@@ -615,7 +689,6 @@ public class BlockInit {
 			RenderTypeLookup.setRenderLayer(LIRIODENDRITES_SAPLING, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(LIRIODENDRITES_DOOR, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(LIRIODENDRITES_TRAPDOOR, cutoutRenderType);
-			RenderTypeLookup.setRenderLayer(LIRIODENDRITES_LEAVES_FLOWER, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(CRASSOSTREA_BLOCK, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(CRETACEOUS_PORTAL, translucentRenderType);
 			RenderTypeLookup.setRenderLayer(CRETACEOUS_TIME_BLOCK, translucentRenderType);
@@ -623,6 +696,7 @@ public class BlockInit {
 			RenderTypeLookup.setRenderLayer(JURASSIC_TIME_BLOCK, translucentRenderType);
 			RenderTypeLookup.setRenderLayer(TRIASSIC_PORTAL, translucentRenderType);
 			RenderTypeLookup.setRenderLayer(TRIASSIC_TIME_BLOCK, translucentRenderType);
+			RenderTypeLookup.setRenderLayer(HENOSTONE_TRAP, cutoutRenderType);
 		}
 	}
 	
@@ -784,7 +858,6 @@ public class BlockInit {
 		event.getRegistry().register(new BlockItem(CHROMOGISAURUS_EGG, new Item.Properties().group(PFEntities.instance)).setRegistryName("chromogisaurus_egg"));
 		event.getRegistry().register(new BlockItem(LIRIODENDRITES_LOG, new Item.Properties().group(PFWood.instance)).setRegistryName("liriodendrites_log"));
 		event.getRegistry().register(new BlockItem(LIRIODENDRITES_LEAVES, new Item.Properties().group(PFPlants.instance)).setRegistryName("liriodendrites_leaves"));
-		event.getRegistry().register(new BlockItem(LIRIODENDRITES_LEAVES_FLOWER, new Item.Properties().group(PFPlants.instance)).setRegistryName("liriodendrites_leaves_flower"));
 		event.getRegistry().register(new BlockItem(LIRIODENDRITES_SAPLING, new Item.Properties().group(PFPlants.instance)).setRegistryName("liriodendrites_sapling"));
 		event.getRegistry().register(new BlockItem(POTTED_LIRIODENDRITES_SAPLING, new Item.Properties()).setRegistryName("potted_liriodendrites_sapling"));
 		event.getRegistry().register(new BlockItem(LIRIODENDRITES_PLANKS, new Item.Properties().group(PFWood.instance)).setRegistryName("liriodendrites_planks"));
@@ -843,6 +916,42 @@ public class BlockInit {
 		event.getRegistry().register(new BlockItem(PORTAL_PROJECTOR, new Item.Properties().group(PFBook.instance)).setRegistryName("portal_projector"));
 		event.getRegistry().register(new BlockItem(CRASSOSTREA_BLOCK, new Item.Properties().group(PFEntities.instance)).setRegistryName("crassostrea_oysters"));
 		event.getRegistry().register(new BlockItem(DIDELPHODON_BURROW, new Item.Properties().group(PFBook.instance)).setRegistryName("didelphodon_burrow"));
+		event.getRegistry().register(new BlockItem(HENOSTONE, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone"));
+		event.getRegistry().register(new BlockItem(HENOSTONE_CARVED, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone_carved"));
+		event.getRegistry().register(new BlockItem(HENOSTONE_BRICKS, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone_bricks"));
+		event.getRegistry().register(new BlockItem(HENOSTONE_BRICKS_DARK, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone_bricks_dark"));
+		event.getRegistry().register(new BlockItem(HENOSTONE_PILLAR, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone_pillar"));
+		event.getRegistry().register(new BlockItem(HENOSTONE_PILLAR_CHISELED, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone_pillar_chiseled"));
+		event.getRegistry().register(new BlockItem(HENOSTONE_SLAB, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone_slab"));
+		event.getRegistry().register(new BlockItem(HENOSTONE_STAIRS, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone_stairs"));
+		event.getRegistry().register(new BlockItem(HENOSTONE_WALL, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone_wall"));
+		event.getRegistry().register(new BlockItem(HENOSTONE_BRICK_SLAB, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone_brick_slab"));
+		event.getRegistry().register(new BlockItem(HENOSTONE_BRICK_STAIRS, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone_brick_stairs"));
+		event.getRegistry().register(new BlockItem(HENOSTONE_BRICK_WALL, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone_brick_wall"));
+		event.getRegistry().register(new BlockItem(HENOSTONE_DARK_BRICK_SLAB, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone_dark_brick_slab"));
+		event.getRegistry().register(new BlockItem(HENOSTONE_DARK_BRICK_STAIRS, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone_dark_brick_stairs"));
+		event.getRegistry().register(new BlockItem(HENOSTONE_DARK_BRICK_WALL, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone_dark_brick_wall"));
+		event.getRegistry().register(new BlockItem(HENOSTONE_TRAP, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone_trap"));
+		event.getRegistry().register(new BlockItem(LARGE_AMMONITE_SHELL, new Item.Properties().group(PFFossil.instance)).setRegistryName("large_shell"));
+		event.getRegistry().register(new BlockItem(MEDIUM_AMMONITE_SHELL, new Item.Properties().group(PFFossil.instance)).setRegistryName("medium_shell"));
+		event.getRegistry().register(new BlockItem(SMALL_AMMONITE_SHELL, new Item.Properties().group(PFFossil.instance)).setRegistryName("small_shell"));
+		event.getRegistry().register(new BlockItem(GIANT_AMMONITE_SHELL_BB, new Item.Properties().group(PFFossil.instance)).setRegistryName("giant_shell_bb"));
+		event.getRegistry().register(new BlockItem(GIANT_AMMONITE_SHELL_BF, new Item.Properties().group(PFFossil.instance)).setRegistryName("giant_shell_bf"));
+		event.getRegistry().register(new BlockItem(GIANT_AMMONITE_SHELL_TB, new Item.Properties().group(PFFossil.instance)).setRegistryName("giant_shell_tb"));
+		event.getRegistry().register(new BlockItem(GIANT_AMMONITE_SHELL_TF, new Item.Properties().group(PFFossil.instance)).setRegistryName("giant_shell_tf"));
+		event.getRegistry().register(new BlockItem(AMMONITE_BLOCK, new Item.Properties().group(PFFossil.instance)).setRegistryName("ammonite_block"));
+		event.getRegistry().register(new BlockItem(PETRIFIED_WOOD, new Item.Properties().group(PFFossil.instance)).setRegistryName("petrified_wood"));
+		event.getRegistry().register(new BlockItem(POLISHED_PETRIFIED_WOOD, new Item.Properties().group(PFFossil.instance)).setRegistryName("polished_petrified_wood"));
+		event.getRegistry().register(new BlockItem(SAUROSUCHUS_EGG, new Item.Properties().group(PFEntities.instance)).setRegistryName("saurosuchus_egg"));
+		event.getRegistry().register(new BlockItem(ISCHIGUALASTIA_EGG, new Item.Properties().group(PFEntities.instance)).setRegistryName("ischigualastia_egg"));
+		event.getRegistry().register(new BlockItem(EXAERETODON_EGG, new Item.Properties().group(PFEntities.instance)).setRegistryName("exaeretodon_egg"));
+		event.getRegistry().register(new BlockItem(PALEONTOLOGY_TABLE, new Item.Properties().group(PFBook.instance)).setRegistryName("paleontology_table"));
+	}
+	
+	public static final Tag<Block> BURROWS = makeWrapperTag("burrows");
+
+	private static Tag<Block> makeWrapperTag(String id) {
+		return new BlockTags.Wrapper(new ResourceLocation(id));
 	}
 	
 }

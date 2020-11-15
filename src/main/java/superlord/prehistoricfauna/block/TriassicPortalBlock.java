@@ -7,6 +7,7 @@ import com.google.common.cache.LoadingCache;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.BreakableBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
@@ -33,12 +34,11 @@ import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.DimensionTypeInit;
 import superlord.prehistoricfauna.util.TeleporterTriassic;
 
-public class TriassicPortalBlock extends Block {
+public class TriassicPortalBlock extends BreakableBlock {
 
 	public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 	protected static final VoxelShape X_AABB = Block.makeCuboidShape(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
 	protected static final VoxelShape Z_AABB = Block.makeCuboidShape(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
-
 	
 	public TriassicPortalBlock(Properties builder) {
 		super(builder);
@@ -58,24 +58,26 @@ public class TriassicPortalBlock extends Block {
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(AXIS);
 	}
-	
-	 public boolean trySpawnPortal(World world, BlockPos pos) {
-		 TriassicPortalBlock.Size size = new TriassicPortalBlock.Size(world, pos);
-		 if (size.isValid()) {
-			 size.placePortalBlocks();
-			 world.playSound(null, pos, SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.BLOCKS, 0.7F, 1.0F);
-			 return true;
-		 } else {
-			 TriassicPortalBlock.Size size1 = new TriassicPortalBlock.Size(world, pos);
-			 if (size1.isValid()) {
-				 size1.placePortalBlocks();
-				 world.playSound(null, pos, SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.BLOCKS, 1.0F, 1.0F);
-				 return true;
-			 } else {
-				 return false;
-			 }
-		 }
-	 }
+
+    public boolean trySpawnPortal(World world, BlockPos pos) {
+    	TriassicPortalBlock.Size size = new TriassicPortalBlock.Size(world, pos);
+
+        if (size.isValid()) {
+            size.placePortalBlocks();
+            world.playSound(null, pos, SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.BLOCKS, 0.7F, 1.0F);
+            return true;
+        } else {
+        	TriassicPortalBlock.Size size1 = new TriassicPortalBlock.Size(world, pos);
+
+            if (size1.isValid()) {
+                size1.placePortalBlocks();
+                world.playSound(null, pos, SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
 
 	 @Override
 	 public void neighborChanged(@Nonnull BlockState state, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Block neighborBlock, @Nonnull BlockPos neighborPos, boolean isMoving) {
@@ -87,46 +89,47 @@ public class TriassicPortalBlock extends Block {
 		 }
 	 }
 
-	 @Override
-	 public void onEntityCollision(@Nonnull BlockState state, @Nonnull World world, @Nonnull BlockPos pos, Entity entity) {
-		 if (!entity.isOnePlayerRiding() && !entity.isBeingRidden() && entity instanceof ServerPlayerEntity && entity.timeUntilPortal <= 0) {
-			 ServerPlayerEntity player = (ServerPlayerEntity) entity;
-			 final DimensionType dimension = player.dimension == DimensionTypeInit.TRIASSIC_DIMENSION_TYPE ? DimensionType.OVERWORLD : DimensionTypeInit.TRIASSIC_DIMENSION_TYPE;
-			 changeDimension(world, (ServerPlayerEntity) entity, dimension, new TeleporterTriassic());
-		 }
-	 }
+    @Override
+    public void onEntityCollision(@Nonnull BlockState state, @Nonnull World world, @Nonnull BlockPos pos, Entity entity) {
+        if (!entity.isOnePlayerRiding() && !entity.isBeingRidden() && entity instanceof ServerPlayerEntity && entity.timeUntilPortal <= 0) {
+            ServerPlayerEntity player = (ServerPlayerEntity) entity;
+            final DimensionType dimension = player.dimension == DimensionTypeInit.TRIASSIC_DIMENSION_TYPE ? DimensionType.OVERWORLD : DimensionTypeInit.TRIASSIC_DIMENSION_TYPE;
+            changeDimension(world, (ServerPlayerEntity) entity, dimension, new TeleporterTriassic());
+        }
+    }
 
-	 public static void changeDimension(World world, ServerPlayerEntity player, DimensionType dimension, ITeleporter teleporter) {
-		 if (!world.isRemote) {
-			 player.changeDimension(dimension, teleporter);
-			 player.timeUntilPortal = 300;
-			 if (player.dimension == DimensionTypeInit.TRIASSIC_DIMENSION_TYPE) {
-				 BlockPos playerPos = new BlockPos(player);
-				 if (world.isAirBlock(playerPos) && world.getBlockState(playerPos).isSolidSide(world, playerPos, Direction.UP)) {
-					 player.setSpawnPoint(playerPos, true, false, DimensionTypeInit.TRIASSIC_DIMENSION_TYPE);
-				 }
-			 }
-		 }
-	 }
-	
-	 @Override
-	 public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos, PlayerEntity player) {
-		 return ItemStack.EMPTY;
-	 }
-	
-	 public static BlockPattern.PatternHelper createPatternHelper(IWorld world, BlockPos pos) {
-		 Size size = new Size(world, pos);
-		 LoadingCache<BlockPos, CachedBlockInfo> cache = BlockPattern.createLoadingCache(world, true);
-		 if (!size.isValid()) {
-			 size = new Size(world, pos);
-		 }
-		 if (!size.isValid()) {
-			 return new BlockPattern.PatternHelper(pos, Direction.NORTH, Direction.SOUTH, cache, 1, 1, 1);
-		 } else {
-			 return new BlockPattern.PatternHelper(pos, Direction.NORTH, Direction.EAST, cache, size.width, 4, size.length);
-		 }
-	 }
-	
+    public static void changeDimension(World world, ServerPlayerEntity player, DimensionType dimension, ITeleporter teleporter) {
+        if (!world.isRemote) {
+            player.changeDimension(dimension, teleporter);
+            player.timeUntilPortal = player.getPortalCooldown();
+            if (player.dimension == DimensionTypeInit.TRIASSIC_DIMENSION_TYPE) {
+                BlockPos playerPos = new BlockPos(player);
+                if (world.isAirBlock(playerPos) && world.getBlockState(playerPos).isSolidSide(world, playerPos, Direction.UP)) {
+                    player.setSpawnPoint(playerPos, true, false, DimensionTypeInit.TRIASSIC_DIMENSION_TYPE);
+                }
+            }
+        }
+    }
+
+    @Override
+    public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos, PlayerEntity player) {
+        return ItemStack.EMPTY;
+    }
+
+    public static BlockPattern.PatternHelper createPatternHelper(IWorld world, BlockPos pos) {
+        Size size = new Size(world, pos);
+        LoadingCache<BlockPos, CachedBlockInfo> cache = BlockPattern.createLoadingCache(world, true);
+        if (!size.isValid()) {
+            size = new Size(world, pos);
+        }
+
+        if (!size.isValid()) {
+            return new BlockPattern.PatternHelper(pos, Direction.NORTH, Direction.SOUTH, cache, 1, 1, 1);
+        } else {
+            return new BlockPattern.PatternHelper(pos, Direction.NORTH, Direction.EAST, cache, size.width, 4, size.length);
+        }
+    }
+
     public static class Size {
         private static final int MAX_SIZE = 5;
         private static final int MIN_SIZE = 5;
@@ -230,5 +233,4 @@ public class TriassicPortalBlock extends Block {
             }
         }
     }
-
 }

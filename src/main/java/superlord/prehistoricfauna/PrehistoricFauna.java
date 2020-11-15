@@ -15,6 +15,7 @@ import org.apache.logging.log4j.Logger;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.gui.screen.MainMenuScreen;
 import net.minecraft.client.renderer.RenderSkyboxCube;
 import net.minecraft.client.renderer.color.BlockColors;
@@ -32,6 +33,7 @@ import net.minecraft.world.GrassColors;
 import net.minecraft.world.ILightReader;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeColors;
+import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.GenerationStage.Decoration;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
@@ -75,6 +77,7 @@ import superlord.prehistoricfauna.entity.HesperornithoidesEntity;
 import superlord.prehistoricfauna.entity.render.AllosaurusRenderer;
 import superlord.prehistoricfauna.entity.render.AnkylosaurusRenderer;
 import superlord.prehistoricfauna.entity.render.BasilemysRenderer;
+import superlord.prehistoricfauna.entity.render.BossRenderer;
 import superlord.prehistoricfauna.entity.render.CamarasaurusRenderer;
 import superlord.prehistoricfauna.entity.render.CeratosaurusRenderer;
 import superlord.prehistoricfauna.entity.render.ChromogisaurusRenderer;
@@ -86,17 +89,24 @@ import superlord.prehistoricfauna.entity.render.ExaeretodonRenderer;
 import superlord.prehistoricfauna.entity.render.HerrerasaurusRenderer;
 import superlord.prehistoricfauna.entity.render.HesperornithoidesRenderer;
 import superlord.prehistoricfauna.entity.render.HyperodapedonRenderer;
+import superlord.prehistoricfauna.entity.render.IschigualastiaRenderer;
+import superlord.prehistoricfauna.entity.render.PaleontologyTableScreen;
 import superlord.prehistoricfauna.entity.render.PrehistoricBoatRenderer;
+import superlord.prehistoricfauna.entity.render.SaurosuchusRenderer;
 import superlord.prehistoricfauna.entity.render.SillosuchusRenderer;
 import superlord.prehistoricfauna.entity.render.StegosaurusRenderer;
 import superlord.prehistoricfauna.entity.render.ThescelosaurusRenderer;
 import superlord.prehistoricfauna.entity.render.TriceratopsRenderer;
 import superlord.prehistoricfauna.entity.render.TyrannosaurusRenderer;
+import superlord.prehistoricfauna.entity.render.TyrannosaurusSkeletonRenderer;
+import superlord.prehistoricfauna.entity.render.TyrannosaurusSkullRenderer;
 import superlord.prehistoricfauna.init.BiomeInit;
 import superlord.prehistoricfauna.init.BlockInit;
+import superlord.prehistoricfauna.init.ContainerRegistry;
 import superlord.prehistoricfauna.init.DimensionInit;
 import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
+import superlord.prehistoricfauna.init.TileEntityRegistry;
 import superlord.prehistoricfauna.util.ClientProxy;
 import superlord.prehistoricfauna.util.CommonEvents;
 import superlord.prehistoricfauna.util.CommonProxy;
@@ -141,6 +151,8 @@ public class PrehistoricFauna {
 		DimensionInit.MOD_DIMENSIONS.register(modEventBus);
 		ItemInit.ITEMS.register(modEventBus);
 		PrehistoricFeature.FEATURES.register(modEventBus);
+		TileEntityRegistry.TILE_ENTITY_TYPES.register(modEventBus);
+		ContainerRegistry.CONTAINER_TYPES.register(modEventBus);
 		PROXY.init();
 		instance = this;
 		MinecraftForge.EVENT_BUS.register(this);
@@ -189,9 +201,13 @@ public class PrehistoricFauna {
 						biome.addStructure(PrehistoricFeature.ISCHIGUALASTO_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
 					}
 				}
+				if (biome != BiomeInit.HELL_CREEK_BIOME.get() && biome != BiomeInit.ISCHIGUALASTO_BIOME.get() && biome != BiomeInit.MORRISON_BIOME.get() && biome != Biomes.COLD_OCEAN && biome != Biomes.DEEP_COLD_OCEAN && biome != Biomes.DEEP_FROZEN_OCEAN && biome != Biomes.DEEP_LUKEWARM_OCEAN && biome != Biomes.DEEP_OCEAN && biome != Biomes.DEEP_WARM_OCEAN && biome != Biomes.FROZEN_OCEAN && biome != Biomes.LUKEWARM_OCEAN && biome != Biomes.OCEAN && biome != Biomes.WARM_OCEAN && biome != Biomes.FROZEN_RIVER && biome != Biomes.RIVER && biome != Biomes.BEACH && biome != Biomes.SNOWY_BEACH && biome != Biomes.END_BARRENS && biome != Biomes.END_HIGHLANDS && biome != Biomes.END_MIDLANDS && biome != Biomes.SMALL_END_ISLANDS && biome != Biomes.THE_END && biome != Biomes.NETHER && biome != Biomes.STONE_SHORE && biome != Biomes.THE_VOID) {
+					biome.addStructure(PrehistoricFeature.TIME_TEMPLE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+				}
 				biome.addFeature(Decoration.SURFACE_STRUCTURES, PrehistoricFeature.HELL_CREEK_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 				biome.addFeature(Decoration.SURFACE_STRUCTURES, PrehistoricFeature.MORRISON_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 				biome.addFeature(Decoration.SURFACE_STRUCTURES, PrehistoricFeature.ISCHIGUALASTO_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+				biome.addFeature(Decoration.SURFACE_STRUCTURES, PrehistoricFeature.TIME_TEMPLE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 			}
 		}
 	}
@@ -251,6 +267,13 @@ public class PrehistoricFauna {
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.HERRERASAURUS_ENTITY, manager -> new HerrerasaurusRenderer());
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.HYPERODAPEDON_ENTITY, manager -> new HyperodapedonRenderer());
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.SILLOSUCHUS_ENTITY, manager -> new SillosuchusRenderer());
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.TIME_GUARDIAN_ENTITY, BossRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.SAUROSUCHUS_ENTITY, manager -> new SaurosuchusRenderer());
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ISCHIGUALASTIA_ENTITY, manager -> new IschigualastiaRenderer());
+        //RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.WALL_FOSSIL, WallFossilRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.TYRANNOSAURUS_SKULL, TyrannosaurusSkullRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.TYRANNOSAURUS_SKELETON, TyrannosaurusSkeletonRenderer::new);
+        ScreenManager.registerFactory(ContainerRegistry.PALEONTOLOGY_TABLE.get(), PaleontologyTableScreen::new);
 	}
 	
 	@SubscribeEvent
@@ -352,6 +375,20 @@ public class PrehistoricFauna {
 		@Override
 		public ItemStack createIcon() {
 			return new ItemStack(BlockInit.CHISELED_POLISHED_TRIASSIC_SANDSTONE);
+		}
+		
+	}
+	
+	public static class PFFossil extends ItemGroup {
+		public static final PFFossil instance = new PFFossil(ItemGroup.GROUPS.length, "prehistoric_fossil_tab");
+		
+		private PFFossil(int index, String label) {
+			super(index, label);
+		}
+		
+		@Override
+		public ItemStack createIcon() {
+			return new ItemStack(BlockInit.LARGE_AMMONITE_SHELL);
 		}
 		
 	}

@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "bottom": "minecraft:block/coarse_dirt",
+        "top": "prehistoricfauna:blocks/burrow",
+        "side": "minecraft:block/coarse_dirt"
+    }
+}

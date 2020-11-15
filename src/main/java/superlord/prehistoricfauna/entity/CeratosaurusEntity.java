@@ -186,13 +186,12 @@ public class CeratosaurusEntity extends PrehistoricEntity {
 			super(CeratosaurusEntity.this, PlayerEntity.class, 20, true, true, (Predicate<LivingEntity>)null);
 		}
 		
-		@SuppressWarnings("unused")
 		public boolean shouldExecute() {
 			if (CeratosaurusEntity.this.isChild()) {
 				return false;
 			} else {
 				if (super.shouldExecute()) {
-					for (CeratosaurusEntity ceratosaurus : CeratosaurusEntity.this.world.getEntitiesWithinAABB(CeratosaurusEntity.class, CeratosaurusEntity.this.getBoundingBox().grow(8.0D, 4.0D, 8.0D))) {	
+					for (@SuppressWarnings("unused") CeratosaurusEntity ceratosaurus : CeratosaurusEntity.this.world.getEntitiesWithinAABB(CeratosaurusEntity.class, CeratosaurusEntity.this.getBoundingBox().grow(8.0D, 4.0D, 8.0D))) {	
 						if (CeratosaurusEntity.this.isChild()) {
 							return true;
 						}

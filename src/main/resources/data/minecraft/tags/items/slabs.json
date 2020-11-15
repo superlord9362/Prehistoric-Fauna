@@ -16,6 +16,9 @@
 	"prehistoricfauna:polished_jurassic_siltstone_slab",
 	"prehistoricfauna:cretaceous_chalk_slab",
 	"prehistoricfauna:cretaceous_chalk_brick_slab",
-	"prehistoricfauna:polished_cretaceous_chalk_slab"
+	"prehistoricfauna:polished_cretaceous_chalk_slab",
+	"prehistoricfauna:henostone_slab",
+	"prehistoricfauna:henostone_brick_slab",
+	"prehistoricfauna:henostone_dark_brick_slab"
   ]
 }

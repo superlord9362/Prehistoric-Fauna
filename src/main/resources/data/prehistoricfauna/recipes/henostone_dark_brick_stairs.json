@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_stairs",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:henostone_bricks_dark"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:henostone_dark_brick_stairs",
+    "count": 4
+  }
+}

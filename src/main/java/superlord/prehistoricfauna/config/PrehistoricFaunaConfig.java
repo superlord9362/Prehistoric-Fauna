@@ -30,12 +30,12 @@ public class PrehistoricFaunaConfig {
 	public static int jurassicDimensionID = 8;
 	public static int triassicDimensionID = 7;
 	public static boolean superSecretSetting = false;
-	public static int hellCreekHutMinDistance = 7;
-	public static int hellCreekHutMaxDistance = 12;
-	public static int morrisonHutMinDistance = 7;
-	public static int morrisonHutMaxDistance = 12;
-	public static int ischigualastoHutMinDistance = 7;
-	public static int ischigualastoHutMaxDistance = 12;
+	public static int hellCreekHutMinDistance = 75;
+	public static int hellCreekHutMaxDistance = 100;
+	public static int morrisonHutMinDistance = 75;
+	public static int morrisonHutMaxDistance = 100;
+	public static int ischigualastoHutMinDistance = 75;
+	public static int ischigualastoHutMaxDistance = 100;
 	public static boolean spaceTimeContinuumWarping = false;
 	
 	public static void bakeClient(final ModConfig config) {

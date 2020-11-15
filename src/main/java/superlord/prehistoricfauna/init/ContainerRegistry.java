@@ -3,19 +3,26 @@ package superlord.prehistoricfauna.init;
 import java.lang.reflect.Field;
 
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.entity.tile.PaleontologyTableContainer;
 import superlord.prehistoricfauna.inventory.ContainerPaleoscribe;
 
-@EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ContainerRegistry {
+	
+	@SuppressWarnings("deprecation")
+	public static final DeferredRegister<ContainerType<?>> CONTAINER_TYPES = new DeferredRegister<>(ForgeRegistries.CONTAINERS, PrehistoricFauna.MODID);
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static final ContainerType PALEOSCRIBE_CONTAINER = register(new ContainerType(ContainerPaleoscribe::new), "paleoscribe");
 	
+	public static final RegistryObject<ContainerType<PaleontologyTableContainer>> PALEONTOLOGY_TABLE = CONTAINER_TYPES.register("paleontology_table_container", () -> IForgeContainerType.create(PaleontologyTableContainer::new));
+		
 	@SuppressWarnings("rawtypes")
 	public static ContainerType register(ContainerType type, String name) {
 		type.setRegistryName(name);

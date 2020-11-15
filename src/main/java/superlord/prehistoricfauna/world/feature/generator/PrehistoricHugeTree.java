@@ -27,12 +27,9 @@ public abstract class PrehistoricHugeTree extends Tree {
 		      return super.place(worldIn, chunkGeneratorIn, blockPosIn, blockStateIn, randomIn);
 		   }
 
-		   /**
-		    * Get a {@link net.minecraft.world.gen.feature.ConfiguredFeature} of the huge variant of this tree
-		    */
 		   @Nullable
 		   protected abstract ConfiguredFeature<PrehistoricGiantTreeFeatureConfig, ?> getHugeTreeFeature(Random p_225547_1_);
-
+		   
 		   public boolean func_227017_a_(IWorld p_227017_1_, ChunkGenerator<?> p_227017_2_, BlockPos p_227017_3_, BlockState p_227017_4_, Random p_227017_5_, int p_227017_6_, int p_227017_7_) {
 		      ConfiguredFeature<PrehistoricGiantTreeFeatureConfig, ?> configuredfeature = this.getHugeTreeFeature(p_227017_5_);
 		      if (configuredfeature == null) {

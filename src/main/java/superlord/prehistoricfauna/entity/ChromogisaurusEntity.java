@@ -120,6 +120,7 @@ public class ChromogisaurusEntity extends PrehistoricEntity {
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<ThescelosaurusEntity>(this, ThescelosaurusEntity.class, 10F, 2D, 2D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<ExaeretodonEntity>(this, ExaeretodonEntity.class, 10F, 2D, 2D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<HerrerasaurusEntity>(this, HerrerasaurusEntity.class, 10F, 2D, 2D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<SaurosuchusEntity>(this, SaurosuchusEntity.class, 10F, 2D, 2D));
 		this.goalSelector.addGoal(8, new ChromogisaurusEntity.LayEggGoal(this, 1.0D));
 	}
 	

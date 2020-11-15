@@ -1,0 +1,7 @@
+{
+    "parent": "prehistoricfauna:block/saurosuchus_egg",
+    "textures": {
+        "particle": "prehistoricfauna:blocks/saurosuchus_egg_slightly_cracked",
+        "all": "prehistoricfauna:blocks/saurosuchus_egg_slightly_cracked"
+    }
+}

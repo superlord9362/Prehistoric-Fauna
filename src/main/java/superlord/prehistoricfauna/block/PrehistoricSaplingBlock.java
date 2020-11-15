@@ -3,6 +3,7 @@ package superlord.prehistoricfauna.block;
 import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.BushBlock;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.trees.Tree;
@@ -27,6 +28,11 @@ public class PrehistoricSaplingBlock extends BushBlock implements IGrowable {
 		super(properties);
 		this.tree = treeIn;
 	}
+	
+	 protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
+		 Block block = state.getBlock();
+return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.FARMLAND;
+	   }
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "prehistoricfauna:block/paleontology_table" },
+        "facing=south": { "model": "prehistoricfauna:block/paleontology_table", "y": 180 },
+        "facing=west":  { "model": "prehistoricfauna:block/paleontology_table", "y": 270 },
+        "facing=east":  { "model": "prehistoricfauna:block/paleontology_table", "y": 90 }
+    }
+}
