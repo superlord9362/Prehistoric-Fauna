@@ -1,6 +1,7 @@
 {
     "triceratops_idle": {
         "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.triceratopsIdle",
         "sounds": [
             {
                 "name": "prehistoricfauna:prehistoric/triceratops_idle1",
@@ -11,6 +12,7 @@
     },
    "triceratops_hurt": {
         "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.triceratopsHurt",
         "sounds": [
             {
                 "name": "prehistoricfauna:prehistoric/triceratops_hurt",
@@ -20,6 +22,7 @@
     },
     "triceratops_warn": {
         "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.triceratopsWarning",
         "sounds": [
             {
                 "name": "prehistoricfauna:prehistoric/triceratops_angry",
@@ -29,6 +32,7 @@
     },
 	"tyrannosaurus_idle": {
         "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.tyrannosaurusIdle",
         "sounds": [
             {
                 "name": "prehistoricfauna:prehistoric/tyrannosarus_idle1",
@@ -39,6 +43,7 @@
     },
 	"tyrannosaurus_hurt": {
         "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.tyrannosaurusHurt",
         "sounds": [
             {
                 "name": "prehistoricfauna:prehistoric/tyrannosaurus_hurt",
@@ -48,6 +53,7 @@
     },
 	"tyrannosaurus_warm": {
         "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.tyrannosaurusWarning",
         "sounds": [
             {
                 "name": "prehistoricfauna:prehistoric/tyrannosaurus_angry",
@@ -57,6 +63,7 @@
     },
 	"anklyosaurus_idle": {
         "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.ankylosaurusIdle",
         "sounds": [
             {
                 "name": "prehistoricfauna:prehistoric/ankylosaurus_idle1",
@@ -67,6 +74,7 @@
     },
 	"ankylosaurus_hurt": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.ankylosaurusHurt",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/ankylosaurus_hurt"
@@ -75,6 +83,7 @@
 	},
     "ankylosaurus_warn": {
         "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.ankylosaurusWarning",
         "sounds": [
             {
                 "name": "prehistoricfauna:prehistoric/ankylosaurus_angry",
@@ -84,6 +93,7 @@
     },
     "allosaurus_idle": {
     	"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.allosaurusIdle",
     	"sounds": [
     		{
     			"name": "prehistoricfauna:prehistoric/allosaurus_idle1",
@@ -94,6 +104,7 @@
     },
     "allosaurus_hurt": {
     	"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.allosaurusHurt",
     	"sounds": [
     		{
     			"name": "prehistoricfauna:prehistoric/allosaurus_hurt",
@@ -103,6 +114,7 @@
     },
     "allosaurus_warn": {
     	"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.allosaurusWarning",
     	"sounds": [
     		{
     			"name": "prehistoricfauna:prehistoric/allosaurus_warn",
@@ -112,6 +124,7 @@
     },
 	"stegosaurus_idle": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.stegosaurusIdle",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/stegosaurus_idle1",
@@ -122,6 +135,7 @@
 	},
 	"stegosaurus_hurt": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.stegosaurusHurt",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/stegosaurus_hurt",
@@ -131,6 +145,7 @@
 	},
 	"stegosaurus_warn": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.stegosaurusWarning",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/stegosaurus_angry",
@@ -140,6 +155,7 @@
 	},
 	"ceratosaurus_idle": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.ceratosaurusIdle",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/ceratosaurus_idle1",
@@ -150,6 +166,7 @@
 	},
 	"ceratosaurus_hurt": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.ceratosaurusHurt",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/ceratosaurus_hurt",
@@ -159,6 +176,7 @@
 	},
 	"ceratosaurus_warn": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.ceratosaurusWarn",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/ceratosaurus_warning",
@@ -168,6 +186,7 @@
 	},
 	"dakotaraptor_idle": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.dakotaraptorIdle",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/dakotaraptor_idle1",
@@ -178,6 +197,7 @@
 	},
 	"dakotaraptor_hurt": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.dakotaraptorHurt",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/dakotaraptor_hurt",
@@ -187,6 +207,7 @@
 	},
 	"dakotaraptor_warn": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.dakotaraptorWarn",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/dakotaraptor_warning",
@@ -196,6 +217,7 @@
 	},
 	"thescelosaurus_idle": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.thescelosaurusIdle",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/thescelosaurus_idle1",
@@ -206,6 +228,7 @@
 	},
 	"thescelosaurus_hurt": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.thescelosaurusHurt",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/thescelosaurus_hurt",
@@ -215,6 +238,7 @@
 	},
 	"dryosaurus_idle": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.dryosaurusIdle",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/dryosaurus_idle1",
@@ -225,6 +249,7 @@
 	},
 	"dryosaurus_hurt": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.dryosaurusHurt",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/dryosaurus_hurt",
@@ -234,6 +259,7 @@
 	},
 	"hesperornithoides_idle": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.hesperornithoidesIdle",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/hesperornithoides_idle1",
@@ -244,6 +270,7 @@
 	},
 	"hesperornithoides_hurt": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.hesperornithoidesHurt",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/hesperornithoides_hurt",
@@ -253,6 +280,7 @@
 	},
 	"camarasaurus_idle": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.camarasaurusIdle",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/camarasaurus_idle1",
@@ -263,6 +291,7 @@
 	},
 	"camarasaurus_hurt": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.camarasaurusHurt",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/camarasaurus_hurt",
@@ -272,6 +301,7 @@
 	},
 	"camarasaurus_warn": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.camarasaurusWarning",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/camarasaurus_warn",
@@ -281,6 +311,7 @@
 	},
 	"eilenodon_idle": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.eilenodonIdle",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/eilenodon_idle1",
@@ -291,6 +322,7 @@
 	},
 	"eilenodon_hurt": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.eilenodonHurt",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/eilenodon_hurt",
@@ -300,6 +332,7 @@
 	},
 	"didelphodon_idle": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.didelphodonIdle",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/didelphodon_idle1",
@@ -310,6 +343,7 @@
 	},
 	"didelphodon_hurt": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.didelphodonHurt",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/didelphodon_hurt",
@@ -319,6 +353,7 @@
 	},
 	"exaeretodon_idle": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.exaeretodonIdle",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/exaeretodon_idle1",
@@ -329,6 +364,7 @@
 	},
 	"exaeretodon_hurt": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.exaeretodonHurt",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/exaeretodon_hurt",
@@ -338,6 +374,7 @@
 	},
 	"exaeretodon_warn": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.exaeretodonWarning",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/exaeretodon_warn",
@@ -347,6 +384,7 @@
 	},
 	"herrerasaurus_idle": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.herrerasaurusIdle",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/herrerasaurus_idle1",
@@ -357,6 +395,7 @@
 	},
 	"herrerasaurus_hurt": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.herrerasaurusHurt",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/herrerasaurus_hurt",
@@ -366,6 +405,7 @@
 	},
 	"herrerasaurus_warn": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.herrerasaurusWarning",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/herrerasaurus_warn",
@@ -375,6 +415,7 @@
 	},
 	"sillosuchus_idle": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.sillosuchusIdle",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/sillosuchus_idle1",
@@ -385,6 +426,7 @@
 	},
 	"sillosuchus_hurt": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.sillosuchusHurt",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/sillosuchus_hurt",
@@ -394,6 +436,7 @@
 	},
 	"sillosuchus_warn": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.sillosuchusWarning",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/sillosuchus_warn",
@@ -403,6 +446,7 @@
 	},
 	"saurosuchus_idle": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.saurosuchusIdle",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/saurosuchus_idle1",
@@ -413,6 +457,7 @@
 	},
 	"saurosuchus_hurt": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.saurosuchusHurt",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/saurosuchus_hurt",
@@ -422,6 +467,7 @@
 	},
 	"saurosuchus_warn": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.saurosuchusWarning",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/saurosuchus_warn",
@@ -431,6 +477,7 @@
 	},
 	"ischigualastia_idle": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.ishigualastiaIdle",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/ischigualastia_idle1",
@@ -441,6 +488,7 @@
 	},
 	"ischigualastia_hurt": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.ischigualastiaHurt",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/ischigualastia_hurt",
@@ -450,6 +498,7 @@
 	},
 	"ischigualastia_warn": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.ischigualastiaWarning",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/ischigualastia_warn",
@@ -459,6 +508,7 @@
 	},
 	"chromogisaurus_idle": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.chromogisaurusIdle",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/chromogisaurus_idle1",
@@ -469,6 +519,7 @@
 	},
 	"chromogisaurus_hurt": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.chromogisaurusHurt",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/chromogisaurus_hurt",
@@ -478,6 +529,7 @@
 	},
 	"hyperodapedon_idle": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.hyperodapedonIdle",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/hyperodapedon_idle1",
@@ -488,6 +540,7 @@
 	},
 	"hyperodapedon_hurt": {
 		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.hyperodapedonHurt",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/hyperodapedon_hurt",

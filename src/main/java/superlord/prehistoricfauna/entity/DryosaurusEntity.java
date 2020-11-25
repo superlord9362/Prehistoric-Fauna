@@ -29,6 +29,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -123,7 +124,7 @@ public class DryosaurusEntity extends PrehistoricEntity {
 		return SoundHandler.DRYOSAURUS_IDLE;
 	}
 	
-	protected SoundEvent getHurtSound() {
+	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
 		return SoundHandler.DRYOSAURUS_HURT;
 	}
 	

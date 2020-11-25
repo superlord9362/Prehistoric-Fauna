@@ -93,6 +93,7 @@ public class JurassicPortalBlock extends Block {
 			 ServerPlayerEntity player = (ServerPlayerEntity) entity;
 			 final DimensionType dimension = player.dimension == DimensionTypeInit.JURASSIC_DIMENSION_TYPE ? DimensionType.OVERWORLD : DimensionTypeInit.JURASSIC_DIMENSION_TYPE;
 			 changeDimension(world, (ServerPlayerEntity) entity, dimension, new TeleporterJurassic());
+			 player.timeUntilPortal = 10;
 		 }
 	 }
 

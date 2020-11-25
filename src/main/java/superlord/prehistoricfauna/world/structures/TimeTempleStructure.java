@@ -65,8 +65,8 @@ public class TimeTempleStructure  extends Structure<NoFeatureConfig>{
 	
 	@Override
 	protected ChunkPos getStartPositionForPosition(ChunkGenerator<?> chunkGenerator, Random random, int x, int z, int spacingOffsetsX, int spacingOffsetsZ) {
-		int maxDistance = 14;
-		int minDistance = 6;
+		int maxDistance = 100;
+		int minDistance = 70;
 
 		int xTemp = x + maxDistance * spacingOffsetsX;
 		int ztemp = z + maxDistance * spacingOffsetsZ;

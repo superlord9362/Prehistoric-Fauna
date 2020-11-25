@@ -92,7 +92,7 @@ public class AraucariaSaplingBlock extends Block implements IPlantable, IGrowabl
 	public void growBig(ServerWorld world, Random rand, BlockPos pos) {
 		BlockState logX = BlockInit.ARAUCARIA_LOG.getDefaultState().with(LogBlock.AXIS, Direction.Axis.X);
 		BlockState logZ = BlockInit.ARAUCARIA_LOG.getDefaultState().with(LogBlock.AXIS, Direction.Axis.Z);
-		BlockState leaves = BlockInit.ARAUCARIA_LEAVES.getDefaultState().with(LeavesBlock.PERSISTENT, true);
+		BlockState leaves = BlockInit.ARAUCARIA_LEAVES.getDefaultState().with(LeavesBlock.PERSISTENT, false);
 		int j1 = rand.nextInt(5);
 		for (BlockPos basePos : BlockPos.Mutable.getAllInBoxMutable(pos.add(-1, 0, 0), pos.add(0, 35 + j1, 1))) {
 			for(BlockPos airPos : BlockPos.Mutable.getAllInBoxMutable(pos.add(-1, 0, -1), pos.add(1, 0, 1))) {
@@ -1110,7 +1110,7 @@ public class AraucariaSaplingBlock extends Block implements IPlantable, IGrowabl
 	public void growSmall(IWorld world, Random rand, BlockPos pos) {
 		int j1 = rand.nextInt(4);
 		BlockState log = BlockInit.ARAUCARIA_LOG.getDefaultState();
-		BlockState leaves = BlockInit.ARAUCARIA_LEAVES.getDefaultState().with(LeavesBlock.PERSISTENT, true);
+		BlockState leaves = BlockInit.ARAUCARIA_LEAVES.getDefaultState().with(LeavesBlock.PERSISTENT, false);
 		int k1 = rand.nextInt(3);
 		if (j1 == 0) {
 			for (BlockPos basePos : BlockPos.Mutable.getAllInBoxMutable(pos.add(0, 0, 0), pos.add(0, 7 + k1, 0))) {

@@ -33,7 +33,7 @@ public class AraucariaSmallTreeGenerator extends Feature<AraucariaSmallConfig> {
 			BlockPos blockpos = new BlockPos(pos.getX() + k, i1, pos.getZ() + l);
 			if (world.getBlockState(blockpos).getBlock() == Blocks.AIR && world.getBlockState(blockpos.down()).getBlock() == Blocks.COARSE_DIRT || world.getBlockState(blockpos).getBlock() == Blocks.AIR && world.getBlockState(blockpos.down()).getBlock() == Blocks.PODZOL || world.getBlockState(blockpos).getBlock() == Blocks.AIR && world.getBlockState(blockpos.down()).getBlock() == BlockInit.MOSSY_DIRT) {	
 				BlockState log = BlockInit.ARAUCARIA_LOG.getDefaultState();
-				BlockState leaves = BlockInit.ARAUCARIA_LEAVES.getDefaultState().with(LeavesBlock.PERSISTENT, true);
+				BlockState leaves = BlockInit.ARAUCARIA_LEAVES.getDefaultState().with(LeavesBlock.PERSISTENT, false);
 				int k1 = rand.nextInt(3);
 				if (j1 == 0) {
 					for (BlockPos basePos : BlockPos.Mutable.getAllInBoxMutable(pos.add(0, 0, 0), pos.add(0, 7 + k1, 0))) {

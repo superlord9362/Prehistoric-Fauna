@@ -13,14 +13,14 @@ import superlord.prehistoricfauna.item.PaleopediaItem;
 
 public enum EnumPaleoPages {
 	
-	INTRODUCTION(2),
+	INTRODUCTION(0),
 	TRICERATOPS(4),
 	ANKYLOSAURUS(1),
 	TYRANNOSAURUS(4),
 	THESCELOSAURUS(1),
 	BASILEMYS(3),
 	DAKOTARAPTOR(2),
-	DIDELPHODON(1),
+	DIDELPHODON(0),
 	ALLOSAURUS(1),
 	CAMARASAURUS(3),
 	CERATOSAURUS(0),
@@ -34,7 +34,10 @@ public enum EnumPaleoPages {
 	SILLOSUCHUS(2),
 	CHROMOGISAURUS(1),
 	EXAERETODON(2),
-	HERRERASAURUS(0);
+	HERRERASAURUS(0),
+	ISCHIGUALASTO(0),
+	HELL_CREEK(0),
+	MORRISON(0);
 	
 	public int pages;
 	

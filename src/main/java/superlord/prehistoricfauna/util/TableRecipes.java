@@ -29,6 +29,7 @@ public class TableRecipes {
 	public static PaleontologyRecipes getCleaningRecipeForItem(ItemStack stack) {
 		for(PaleontologyRecipes recipe : cleaningRecipes) {
 			if (stack.getItem() == recipe.getInput().getItem()) {
+				System.out.println("Cleaning");
 				return recipe;
 			}
 		}

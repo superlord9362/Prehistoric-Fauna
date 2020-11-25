@@ -19,17 +19,17 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.entity.TimeGuardianEntity;
-import superlord.prehistoricfauna.entity.model.BossModel;
+import superlord.prehistoricfauna.entity.model.Henos;
 
 @OnlyIn(Dist.CLIENT)
-public class BossRenderer extends MobRenderer<TimeGuardianEntity, BossModel> {
+public class BossRenderer extends MobRenderer<TimeGuardianEntity, Henos> {
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/didelphodon.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/henos.png");
 	private static final ResourceLocation BEAM_TEXTURE = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/beam.png");
 	private static final RenderType field_229107_h_ = RenderType.getEntityCutoutNoCull(BEAM_TEXTURE);
 
 	public BossRenderer(EntityRendererManager rm) {
-		super(rm, new BossModel(), 1.0F);
+		super(rm, new Henos(), 1.0F);
 	}
 
 	public void render(TimeGuardianEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {

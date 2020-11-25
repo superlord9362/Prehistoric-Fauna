@@ -1,0 +1,7 @@
+{
+    "parent": "prehistoricfauna:block/four_chromogisaurus_eggs",
+    "textures": {
+        "particle": "prehistoricfauna:blocks/chromogisaurus_eggs_slightly_cracked",
+        "all": "prehistoricfauna:blocks/chromogisaurus_eggs_slightly_cracked"
+    }
+}

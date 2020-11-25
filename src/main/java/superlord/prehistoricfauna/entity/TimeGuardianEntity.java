@@ -98,7 +98,7 @@ public class TimeGuardianEntity extends MonsterEntity {
 				return super.attackEntityFrom(source, amount);
 			}
 		} else if (source.canHarmInCreative()) {
-			return super.attackEntityFrom(source, amount);
+			return true;
 		}
 		return false;
 	}
@@ -117,7 +117,7 @@ public class TimeGuardianEntity extends MonsterEntity {
 					if (getAttackTarget() == null && moveForward == 0 && isAtRestPos()) {
 						setActive(false);
 					}
-				} else if (getAttackTarget() != null && targetDistance <= 4.5) {
+				} else if (getAttackTarget() != null && targetDistance <= 16) {
 					setActive(true);
 				}
 			}
@@ -448,7 +448,7 @@ public class TimeGuardianEntity extends MonsterEntity {
 
 					if (base != null) {
 						base.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this.timeGuardian, this.timeGuardian), f);
-						base.attackEntityFrom(DamageSource.causeMobDamage(this.timeGuardian), (float) this.timeGuardian.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getValue());
+						base.attackEntityFrom(DamageSource.causeMobDamage(this.timeGuardian), (float) this.timeGuardian.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getValue() / 2);
 						((LivingEntity)base).addPotionEffect(new EffectInstance(Effects.SLOWNESS, 140 * (int)f, 2));
 						((LivingEntity)base).addPotionEffect(new EffectInstance(Effects.WEAKNESS, 140 * (int)f, 2));
 					}
@@ -613,76 +613,80 @@ public class TimeGuardianEntity extends MonsterEntity {
 	}
 
 	public class AttackAI extends Goal {
-		private final TimeGuardianEntity timeGuardian;
+	    private final TimeGuardianEntity henos;
 
-		private int repath;
-		private double targetX, targetY, targetZ;
+	    private int repath;
+	    private double targetX;
+	    private double targetY;
+	    private double targetZ;
 
-		private int attacksSinceBeam, timeSinceSlam;
+	    private int attacksSinceBeam;
+	    private int timeSinceSlam;
 
-		public AttackAI(TimeGuardianEntity timeGuardian) {
-			this.timeGuardian = timeGuardian;
-			this.setMutexFlags(EnumSet.of(Flag.MOVE, Flag.JUMP, Flag.LOOK));
-		}
+	    public AttackAI(TimeGuardianEntity henos) {
+	        this.henos = henos;
+	        this.setMutexFlags(EnumSet.of(Flag.MOVE, Flag.JUMP, Flag.LOOK));
+	    }
 
-		@Override
-		public boolean shouldExecute() {
-			LivingEntity target = this.timeGuardian.getAttackTarget();
-			return target != null && target.isAlive() && this.timeGuardian.isActive();
-		}
+	    @Override
+	    public boolean shouldExecute() {
+	        LivingEntity target = this.henos.getAttackTarget();
+	        return target != null && target.isAlive() && this.henos.isActive() && !this.henos.isSlamming() && !this.henos.isUsingBeamAttack() && !this.henos.isUsingRegularAttack();
+	    }
 
-		@Override
-		public void startExecuting() {
-			this.repath = 0;
-			this.timeSinceSlam = 0;
-		}
+	    @Override
+	    public void startExecuting() {
+	        this.repath = 0;
+	    }
 
-		@Override
-		public void resetTask() {
-			this.timeGuardian.getNavigator().clearPath();
-		}
+	    @Override
+	    public void resetTask() {
+	        this.henos.getNavigator().clearPath();
+	    }
 
-		@Override
-		public void tick() {
-			LivingEntity target = this.timeGuardian.getAttackTarget();
-			if (target == null) {
-				return;
-			}
-			double dist = this.timeGuardian.getDistanceSq(this.targetX, this.targetY, this.targetZ);
-			if (--this.repath <= 0 && (this.targetX == 0.0D && this.targetY == 0.0D && this.targetZ == 0.0D || target.getDistanceSq(this.targetX, this.targetY, this.targetZ) >= 1.0D) || this.timeGuardian.getNavigator().noPath()) {
-				this.targetX = target.getPosX();
-				this.targetY = target.getPosY();
-				this.targetZ = target.getPosZ();
-				this.repath = 4 + this.timeGuardian.getRNG().nextInt(7);
-				if (dist > 32.0D * 32.0D) {
-					this.repath += 10;
-				} else if (dist > 16.0D * 16.0D) {
-					this.repath += 5;
-				}
-				if (this.timeGuardian.getNavigator().tryMoveToEntityLiving(target, 0.2D)) {
-					this.repath += 15;
-				}
-			}
-			dist = this.timeGuardian.getDistanceSq(this.targetX, this.targetY, this.targetZ);
-			if(target.getPosY() - this.timeGuardian.getPosY() >= -1 && target.getPosY() - this.timeGuardian.getPosY() <= 3) {
-				boolean couldSlam = dist < 6.0D * 6.0D && this.timeSinceSlam > 200;
-				if(dist < 3.5D * 3.5D && Math.abs(MathHelper.wrapDegrees(this.timeGuardian.getAngleBetweenEntities(target, this.timeGuardian) - this.timeGuardian.rotationYaw)) < 35.0D && (!couldSlam || this.timeGuardian.getRNG().nextFloat() < 0.667F)) {
-					if(this.attacksSinceBeam > 3 + 2 * (1 - timeGuardian.getHealthRatio()) || this.timeGuardian.getRNG().nextFloat() < 0.18F) {
-						timeGuardian.useBeam(true);
-						this.attacksSinceBeam = 0;
-					} else if(couldSlam) {
-						timeGuardian.useSlam(true);
-						this.timeSinceSlam = 0;
-						this.attacksSinceBeam++;
-					} 
-				} 
-			} else {
-				timeGuardian.useRegularAttack(true);
-				this.attacksSinceBeam++;
-			}
-			this.timeSinceSlam++;
-		}
-
+	    @Override
+	    public void tick() {
+	        LivingEntity target = this.henos.getAttackTarget();
+	        if (target == null) return;
+	        double dist = this.henos.getDistanceSq(this.targetX, this.targetY, this.targetZ);
+	        this.henos.getLookController().setLookPositionWithEntity(target, 30.0F, 30.0F);
+	        if (--this.repath <= 0 && (
+	            this.targetX == 0.0D && this.targetY == 0.0D && this.targetZ == 0.0D ||
+	            target.getDistanceSq(this.targetX, this.targetY, this.targetZ) >= 1.0D) ||
+	            this.henos.getNavigator().noPath()
+	        ) {
+	            this.targetX = target.getPosX();
+	            this.targetY = target.getPosY();
+	            this.targetZ = target.getPosZ();
+	            this.repath = 4 + this.henos.getRNG().nextInt(7);
+	            if (dist > 32.0D * 32.0D) {
+	                this.repath += 10;
+	            } else if (dist > 16.0D * 16.0D) {
+	                this.repath += 5;
+	            }
+	            if (!this.henos.getNavigator().tryMoveToEntityLiving(target, 0.2D)) {
+	                this.repath += 15;
+	            }
+	        }
+	        dist = this.henos.getDistanceSq(this.targetX, this.targetY, this.targetZ);
+	        if (target.getPosY() - this.henos.getPosY() >= -1 && target.getPosY() - this.henos.getPosY() <= 3) {
+	            boolean couldSlam = dist < 6.0D * 6.0D && this.timeSinceSlam > 200;
+	            if (dist < 3.5D * 3.5D && Math.abs(MathHelper.wrapDegrees(this.henos.getAngleBetweenEntities(target, this.henos) - this.henos.rotationYaw)) < 35.0D && (!couldSlam || this.henos.getRNG().nextFloat() < 0.667F)) {
+	                if (this.attacksSinceBeam > 3 + 2 * (1 - henos.getHealthRatio()) || this.henos.getRNG().nextFloat() < 0.18F) {
+	                    this.henos.useBeam(true);	
+	                    this.attacksSinceBeam = 0;
+	                } else {
+	                    this.henos.useRegularAttack(true);
+	                    this.attacksSinceBeam++;
+	                }
+	            } else if (couldSlam) {
+	                this.henos.useSlam(true);
+	                this.timeSinceSlam = 0;
+	                this.attacksSinceBeam++;
+	            }
+	        }
+	        this.timeSinceSlam++;
+	    }
 	}
 
 }

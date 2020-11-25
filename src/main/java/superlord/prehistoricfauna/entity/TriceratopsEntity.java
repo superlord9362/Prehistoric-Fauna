@@ -28,11 +28,13 @@ import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.passive.horse.AbstractChestedHorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effects;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.DamageSource;
@@ -96,16 +98,16 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new SwimGoal(this));
-		this.goalSelector.addGoal(1, new TriceratopsEntity.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new TriceratopsEntity.PanicGoal());
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
 		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, AnkylosaurusEntity.class, 7F, 1.25D, 1.25D));
-		this.targetSelector.addGoal(1, new TriceratopsEntity.HurtByTargetGoal());
 		if(!this.isTame()) {
+			this.targetSelector.addGoal(1, new TriceratopsEntity.HurtByTargetGoal());
 			this.targetSelector.addGoal(2, new TriceratopsEntity.AttackPlayerGoal());
+			this.goalSelector.addGoal(1, new TriceratopsEntity.MeleeAttackGoal());
 		}
 		this.goalSelector.addGoal(8, new TriceratopsEntity.LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(2, new TriceratopsEntity.MateGoal(this, 1.0D));
@@ -116,7 +118,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 		super.registerAttributes();
 		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
 		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20.0D);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
+		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2D);
 		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
 		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
 	}
@@ -338,10 +340,10 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 
       protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
          double d0 = this.getAttackReachSqr(enemy);
-         if (distToEnemySqr <= d0 && this.attackTick <= 0) {
+         if (distToEnemySqr <= d0 && this.attackTick <= 0 && !TriceratopsEntity.this.isTame()) {
             this.attackTick = 20;
             this.attacker.attackEntityAsMob(enemy);
-         } else if (distToEnemySqr <= d0 * 2.0D) {
+         } else if (distToEnemySqr <= d0 * 2.0D && !TriceratopsEntity.this.isTame()) {
             if (this.attackTick <= 0) {
                this.attackTick = 20;
             }
@@ -481,6 +483,53 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 	         }
 
 	      }
+	   }
+	
+	@Override
+	protected boolean handleEating(PlayerEntity player, ItemStack stack) {
+	      boolean flag = false;
+	      float f = 0.0F;
+	      int i = 0;
+	      Item item = stack.getItem();
+	      if (item == BlockInit.HORSETAIL.asItem()) {
+	         f = 2.0F;
+	         i = 20;
+	      } else if (item == BlockInit.DOUBLE_HORSETAIL.asItem()) {
+	         f = 1.0F;
+	         i = 30;
+	      } else if (item == BlockInit.OSMUNDA.asItem()) {
+	         f = 20.0F;
+	         i = 180;
+	      } else if (item == BlockInit.DOUBLE_OSMUNDA.asItem()) {
+	         f = 3.0F;
+	         i = 60;
+	      } else if (item == BlockInit.CLUBMOSS.asItem()) {
+	         f = 4.0F;
+	         i = 60;
+	         if (this.getGrowingAge() == 0 && !this.isInLove()) {
+	            flag = true;
+	            this.setInLove(player);
+	         }
+	      } else if (item == BlockInit.MARCHANTIA.asItem()) {
+	    	  f = 3.0F;
+	    	  i = 80;
+	      }
+
+	      if (this.getHealth() < this.getMaxHealth() && f > 0.0F) {
+	         this.heal(f);
+	         flag = true;
+	      }
+
+	      if (this.isChild() && i > 0) {
+	         this.world.addParticle(ParticleTypes.HAPPY_VILLAGER, this.getPosXRandom(1.0D), this.getPosYRandom() + 0.5D, this.getPosZRandom(1.0D), 0.0D, 0.0D, 0.0D);
+	         if (!this.world.isRemote) {
+	            this.addGrowth(i);
+	         }
+
+	         flag = true;
+	      }
+
+	      return flag;
 	   }
 	
 }

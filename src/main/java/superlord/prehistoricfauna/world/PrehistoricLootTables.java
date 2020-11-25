@@ -12,7 +12,7 @@ public class PrehistoricLootTables {
 	private static final Set<ResourceLocation> READ_ONLY_LOOT_TABLES = Collections.unmodifiableSet(LOOT_TABLES);
 
 	public static final ResourceLocation HELL_CREEK_LOOT_TABLE = register("prehistoricfauna:chests/hell_creek_loot_table");
-
+	public static final ResourceLocation TIME_TEMPLE_LOOT_TABLE = register("prehistoricfauna:chests/time_temple");
 	
 	private static ResourceLocation register(String id) {
 		return register(new ResourceLocation(id));

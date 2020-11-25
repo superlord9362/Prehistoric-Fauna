@@ -9,7 +9,6 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
@@ -24,7 +23,6 @@ import net.minecraft.world.gen.feature.template.BlockIgnoreStructureProcessor;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
-import net.minecraft.world.storage.loot.LootTables;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.entity.TimeGuardianEntity;
 import superlord.prehistoricfauna.init.ModEntityTypes;
@@ -99,7 +97,6 @@ public class TimeTemplePieces {
 			if (function.startsWith("chest")) {
 	            BlockPos blockpos = pos.down();
 	            if (sbb.isVecInside(blockpos)) {
-	               LockableLootTileEntity.setLootTable(worldIn, rand, blockpos, LootTables.CHESTS_DESERT_PYRAMID);
 	            }
 	         }
 		}

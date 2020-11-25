@@ -95,6 +95,7 @@ public class TriassicPortalBlock extends BreakableBlock {
             ServerPlayerEntity player = (ServerPlayerEntity) entity;
             final DimensionType dimension = player.dimension == DimensionTypeInit.TRIASSIC_DIMENSION_TYPE ? DimensionType.OVERWORLD : DimensionTypeInit.TRIASSIC_DIMENSION_TYPE;
             changeDimension(world, (ServerPlayerEntity) entity, dimension, new TeleporterTriassic());
+            player.timeUntilPortal = 10;
         }
     }
 

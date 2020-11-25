@@ -93,6 +93,7 @@ public class CretaceousPortalBlock extends Block {
 			 ServerPlayerEntity player = (ServerPlayerEntity) entity;
 			 final DimensionType dimension = player.dimension == DimensionTypeInit.CRETACEOUS_DIMENSION_TYPE ? DimensionType.OVERWORLD : DimensionTypeInit.CRETACEOUS_DIMENSION_TYPE;
 			 changeDimension(world, (ServerPlayerEntity) entity, dimension, new TeleporterCretaceous());
+			 player.timeUntilPortal = 10;
 		 }
 	 }
 

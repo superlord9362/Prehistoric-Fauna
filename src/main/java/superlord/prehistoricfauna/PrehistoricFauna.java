@@ -145,8 +145,9 @@ public class PrehistoricFauna {
 		modEventBus.addListener(this::doClientStuff);
 		modEventBus.addListener(this::spaceTimeContinuumWarping);
 		modEventBus.addListener(this::chickenExtinction	);
-		ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, PrehistoricConfigHolder.SERVER_SPEC);
-		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, PrehistoricConfigHolder.CLIENT_SPEC);
+		final ModLoadingContext modLoadingContext = ModLoadingContext.get();
+		modLoadingContext.registerConfig(ModConfig.Type.CLIENT, PrehistoricConfigHolder.CLIENT_SPEC);
+		modLoadingContext.registerConfig(ModConfig.Type.COMMON, PrehistoricConfigHolder.SERVER_SPEC);
 		BiomeInit.BIOMES.register(modEventBus);
 		DimensionInit.MOD_DIMENSIONS.register(modEventBus);
 		ItemInit.ITEMS.register(modEventBus);

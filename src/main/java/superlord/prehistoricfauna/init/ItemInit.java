@@ -4,6 +4,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
+import net.minecraft.item.SoupItem;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -101,7 +102,7 @@ public class ItemInit {
 	public static final RegistryObject<Item> COOKED_SAUROSUCHUS_MEAT = ITEMS.register("cooked_saurosuchus_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(5).saturation(0.6F).meat().build())));
 	public static final RegistryObject<Item> RAW_ISCHIGUALASTIA_MEAT = ITEMS.register("raw_ischigualastia_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(5).saturation(0.4F).meat().build())));
 	public static final RegistryObject<Item> COOKED_ISCHIGUALASTIA_MEAT = ITEMS.register("cooked_ischigualastia_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(7).saturation(0.6F).meat().build())));
-	public static final RegistryObject<Item> CRASSOSTREA_OYSTER_SOUP = ITEMS.register("crassostrea_oyster_soup", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(8).saturation(0.6F).build())));
+	public static final RegistryObject<SoupItem> CRASSOSTREA_OYSTER_SOUP = ITEMS.register("crassostrea_oyster_soup", () -> new SoupItem(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(8).saturation(0.6F).build())));
 	//Armor
 	public static final RegistryObject<CustomArmorItem> ANKYLOSAURUS_HELMET = ITEMS.register("ankylosaurus_helmet", () -> new CustomArmorItem(ArmorMaterialInit.ANKYLOSAURUS, EquipmentSlotType.HEAD, new Item.Properties().group(PFEntities.instance)));
 	public static final RegistryObject<ArmorItem> ANKYLOSAURUS_CHESTPLATE = ITEMS.register("ankylosaurus_chestplate", () -> new ArmorItem(ArmorMaterialInit.ANKYLOSAURUS, EquipmentSlotType.CHEST, new Item.Properties().group(PFEntities.instance)));
@@ -124,5 +125,6 @@ public class ItemInit {
 	public static final RegistryObject<Item> TRIASSIC_FOSSIL = ITEMS.register("triassic_fossil", () -> new Item(new Item.Properties().group(PFBook.instance)));
 	public static final RegistryObject<Item> JURASSIC_FOSSIL = ITEMS.register("jurassic_fossil", () -> new Item(new Item.Properties().group(PFBook.instance)));
 	public static final RegistryObject<Item> CRETACEOUS_FOSSIL = ITEMS.register("cretaceous_fossil", () -> new Item(new Item.Properties().group(PFBook.instance)));
+	public static final RegistryObject<Item> CLADOPHEBLIS_STICK = ITEMS.register("cladopheblis_stick", () -> new Item(new Item.Properties().group(PFBook.instance).maxStackSize(1)));
 	
 }

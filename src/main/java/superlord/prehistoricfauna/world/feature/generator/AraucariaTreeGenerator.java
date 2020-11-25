@@ -36,7 +36,7 @@ public class AraucariaTreeGenerator extends Feature<AraucariaConfig> {
 				if (world.getBlockState(pos.down()).getBlock() == BlockInit.MOSSY_DIRT && world.getBlockState(pos.down().south()).getBlock() == BlockInit.MOSSY_DIRT && world.getBlockState(pos.down().south().east()).getBlock() == BlockInit.MOSSY_DIRT || world.getBlockState(pos.down().east()).getBlock() == BlockInit.MOSSY_DIRT) {
 					BlockState logX = BlockInit.ARAUCARIA_LOG.getDefaultState().with(LogBlock.AXIS, Direction.Axis.X);
 					BlockState logZ = BlockInit.ARAUCARIA_LOG.getDefaultState().with(LogBlock.AXIS, Direction.Axis.Z);
-					BlockState leaves = BlockInit.ARAUCARIA_LEAVES.getDefaultState().with(LeavesBlock.PERSISTENT, true);
+					BlockState leaves = BlockInit.ARAUCARIA_LEAVES.getDefaultState().with(LeavesBlock.PERSISTENT, false);
 					int j1 = rand.nextInt(5);
 					for (BlockPos basePos : BlockPos.Mutable.getAllInBoxMutable(pos.add(-1, 0, 0), pos.add(0, 35 + j1, 1))) {
 						world.setBlockState(basePos, BlockInit.ARAUCARIA_LOG.getDefaultState(), 2);
