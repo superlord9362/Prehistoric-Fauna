@@ -24,6 +24,8 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.world.placement.HellCreekHutPieces;
 
+import net.minecraft.world.gen.feature.structure.Structure.IStartFactory;
+
 public class HCHutStructure  extends Structure<NoFeatureConfig>{
 
 	public HCHutStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> configFactoryIn) {
@@ -31,7 +33,7 @@ public class HCHutStructure  extends Structure<NoFeatureConfig>{
 	}
 
 	@Override
-	public boolean canBeGenerated(BiomeManager p_225558_1_, ChunkGenerator<?> chunkGen, Random rand, int chunkPosX, int chunkPosZ, Biome biome)
+	public boolean canBeGenerated(BiomeManager biomeManagerIn, ChunkGenerator<?> chunkGen, Random rand, int chunkPosX, int chunkPosZ, Biome biome)
 	{
 		ChunkPos chunkpos = this.getStartPositionForPosition(chunkGen, rand, chunkPosX, chunkPosZ, 0, 0);
 		if (chunkPosX == chunkpos.x && chunkPosZ == chunkpos.z) {
@@ -99,7 +101,7 @@ public class HCHutStructure  extends Structure<NoFeatureConfig>{
 			Rotation rotation = Rotation.values()[this.rand.nextInt(Rotation.values().length)];
 			int x = (chunkX << 4) + 7;
 			int z = (chunkZ << 4) + 7;
-			int surfaceY = generator.func_222531_c(x, z, Heightmap.Type.WORLD_SURFACE_WG);
+			int surfaceY = generator.getNoiseHeightMinusOne(x, z, Heightmap.Type.WORLD_SURFACE_WG);
 			BlockPos blockpos = new BlockPos(x, surfaceY, z);
 			HellCreekHutPieces.start(templateManagerIn, blockpos, rotation, this.components, this.rand);
 			this.recalculateStructureSize();

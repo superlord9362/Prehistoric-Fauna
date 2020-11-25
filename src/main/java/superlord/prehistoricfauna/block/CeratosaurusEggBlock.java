@@ -103,9 +103,9 @@ public class CeratosaurusEggBlock extends Block {
 
 	}
 
-	private boolean hasProperHabitat(IBlockReader p_203168_1_, BlockPos p_203168_2_) {
-		return p_203168_1_.getBlockState(p_203168_2_.down()).getBlock() == Blocks.SAND
-				|| p_203168_1_.getBlockState(p_203168_2_.down()).getBlock() == Blocks.COARSE_DIRT;
+	private boolean hasProperHabitat(IBlockReader blockReader, BlockPos pos) {
+		return blockReader.getBlockState(pos.down()).getBlock() == Blocks.SAND
+				|| blockReader.getBlockState(pos.down()).getBlock() == Blocks.COARSE_DIRT;
 	}
 
 	public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {

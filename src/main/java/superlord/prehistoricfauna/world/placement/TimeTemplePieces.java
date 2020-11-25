@@ -103,7 +103,7 @@ public class TimeTemplePieces {
  
 		// create
 		@Override
-		public boolean create(IWorld worldIn, ChunkGenerator<?> p_225577_2_, Random randomIn, MutableBoundingBox structureBoundingBoxIn, ChunkPos chunkPos)
+		public boolean create(IWorld worldIn, ChunkGenerator<?> chunkGeneratorIn, Random randomIn, MutableBoundingBox structureBoundingBoxIn, ChunkPos chunkPos)
 		{
 			PlacementSettings placementsettings = (new PlacementSettings()).setRotation(this.rotation).setMirror(Mirror.NONE);
 			BlockPos blockpos = TimeTemplePieces.OFFSET.get(this.resourceLocation);
@@ -123,7 +123,7 @@ public class TimeTemplePieces {
 	            }
 	         }
 			
-			return super.create(worldIn, p_225577_2_, randomIn, structureBoundingBoxIn, chunkPos);
+			return super.create(worldIn, chunkGeneratorIn, randomIn, structureBoundingBoxIn, chunkPos);
 		}
 	}
 	

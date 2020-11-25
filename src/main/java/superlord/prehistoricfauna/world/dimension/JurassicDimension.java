@@ -15,6 +15,8 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import net.minecraftforge.common.extensions.IForgeDimension.SleepResult;
+
 public class JurassicDimension extends Dimension {
 
 	private final float[] colorsSunriseSunset = new float[4];

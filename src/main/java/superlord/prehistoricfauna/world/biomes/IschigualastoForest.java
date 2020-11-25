@@ -18,6 +18,8 @@ import superlord.prehistoricfauna.world.placement.AraucariaSmallConfig;
 import superlord.prehistoricfauna.world.placement.DicroidiumConfig;
 import superlord.prehistoricfauna.world.placement.JohnstoniaConfig;
 
+import net.minecraft.world.biome.Biome.Builder;
+
 public class IschigualastoForest extends Biome {
 	
 	public IschigualastoForest(Builder biomeBuilder) {

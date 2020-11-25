@@ -33,6 +33,8 @@ import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.DimensionTypeInit;
 import superlord.prehistoricfauna.util.TeleporterJurassic;
 
+import net.minecraft.block.Block.Properties;
+
 public class JurassicPortalBlock extends Block {
 
 	public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;

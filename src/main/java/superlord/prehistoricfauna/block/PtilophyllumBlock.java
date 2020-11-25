@@ -26,13 +26,13 @@ public class PtilophyllumBlock extends SixWayBlock {
       return this.makeConnections(context.getWorld(), context.getPos());
    }
 
-   public BlockState makeConnections(IBlockReader p_196497_1_, BlockPos pos) {
-      Block block = p_196497_1_.getBlockState(pos.down()).getBlock();
-      Block block1 = p_196497_1_.getBlockState(pos.up()).getBlock();
-      Block block2 = p_196497_1_.getBlockState(pos.north()).getBlock();
-      Block block3 = p_196497_1_.getBlockState(pos.east()).getBlock();
-      Block block4 = p_196497_1_.getBlockState(pos.south()).getBlock();
-      Block block5 = p_196497_1_.getBlockState(pos.west()).getBlock();
+   public BlockState makeConnections(IBlockReader blockReader, BlockPos pos) {
+      Block block = blockReader.getBlockState(pos.down()).getBlock();
+      Block block1 = blockReader.getBlockState(pos.up()).getBlock();
+      Block block2 = blockReader.getBlockState(pos.north()).getBlock();
+      Block block3 = blockReader.getBlockState(pos.east()).getBlock();
+      Block block4 = blockReader.getBlockState(pos.south()).getBlock();
+      Block block5 = blockReader.getBlockState(pos.west()).getBlock();
       return this.getDefaultState().with(DOWN, Boolean.valueOf(block == this || block == BlockInit.PTILOPHYLLUM_BASE || block == BlockInit.LOAM)).with(UP, Boolean.valueOf(block1 == this || block1 == BlockInit.PTILOPHYLLUM_BASE)).with(NORTH, Boolean.valueOf(block2 == this || block2 == BlockInit.PTILOPHYLLUM_BASE)).with(EAST, Boolean.valueOf(block3 == this || block3 == BlockInit.PTILOPHYLLUM_BASE)).with(SOUTH, Boolean.valueOf(block4 == this || block4 == BlockInit.PTILOPHYLLUM_BASE)).with(WEST, Boolean.valueOf(block5 == this || block5 == BlockInit.PTILOPHYLLUM_BASE));
    }
 

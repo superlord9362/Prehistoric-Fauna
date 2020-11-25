@@ -23,12 +23,12 @@ import superlord.prehistoricfauna.init.BlockInit;
 
 public class PtilophyllumBaseBlock extends Block {
    public static final IntegerProperty AGE = BlockStateProperties.AGE_0_5;
-   private final PtilophyllumBlock field_196405_b;
+   private final PtilophyllumBlock plantBlock;
    private static final VoxelShape BASE_SHAPE = Block.makeCuboidShape(5D, 0D, 5D, 11D, 16D, 11D);
 
-   public PtilophyllumBaseBlock(PtilophyllumBlock p_i48429_1_, Block.Properties builder) {
+   public PtilophyllumBaseBlock(PtilophyllumBlock plantBlockIn, Block.Properties builder) {
       super(builder);
-      this.field_196405_b = p_i48429_1_;
+      this.plantBlock = plantBlockIn;
       this.setDefaultState(this.stateContainer.getBaseState().with(AGE, Integer.valueOf(0)));
    }
 
@@ -46,12 +46,12 @@ public class PtilophyllumBaseBlock extends Block {
                Block block = blockstate.getBlock();
                if (block == BlockInit.LOAM) {
                   flag = true;
-               } else if (block == this.field_196405_b) {
+               } else if (block == this.plantBlock) {
                   int j = 1;
 
                   for(int k = 0; k < 4; ++k) {
                      Block block1 = worldIn.getBlockState(pos.down(j + 1)).getBlock();
-                     if (block1 != this.field_196405_b) {
+                     if (block1 != this.plantBlock) {
                         if (block1 == BlockInit.LOAM) {
                            flag1 = true;
                         }
@@ -69,7 +69,7 @@ public class PtilophyllumBaseBlock extends Block {
                }
 
                if (flag && areAllNeighborsEmpty(worldIn, blockpos, (Direction)null) && worldIn.isAirBlock(pos.up(2))) {
-                  worldIn.setBlockState(pos, this.field_196405_b.makeConnections(worldIn, pos), 2);
+                  worldIn.setBlockState(pos, this.plantBlock.makeConnections(worldIn, pos), 2);
                   this.placeGrownFlower(worldIn, blockpos, i);
                } else if (i < 4) {
                   int l = rand.nextInt(4);
@@ -89,7 +89,7 @@ public class PtilophyllumBaseBlock extends Block {
                   }
 
                   if (flag2) {
-                     worldIn.setBlockState(pos, this.field_196405_b.makeConnections(worldIn, pos), 2);
+                     worldIn.setBlockState(pos, this.plantBlock.makeConnections(worldIn, pos), 2);
                   } else {
                      this.placeDeadFlower(worldIn, pos);
                   }
@@ -134,7 +134,7 @@ public class PtilophyllumBaseBlock extends Block {
    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
       BlockState blockstate = worldIn.getBlockState(pos.down());
       Block block = blockstate.getBlock();
-      if (block != this.field_196405_b && block != BlockInit.LOAM) {
+      if (block != this.plantBlock && block != BlockInit.LOAM) {
          if (!blockstate.isAir(worldIn, pos.down())) {
             return false;
          } else {
@@ -142,7 +142,7 @@ public class PtilophyllumBaseBlock extends Block {
 
             for(Direction direction : Direction.Plane.HORIZONTAL) {
                BlockState blockstate1 = worldIn.getBlockState(pos.offset(direction));
-               if (blockstate1.getBlock() == this.field_196405_b) {
+               if (blockstate1.getBlock() == this.plantBlock) {
                   if (flag) {
                      return false;
                   }

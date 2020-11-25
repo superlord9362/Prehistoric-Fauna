@@ -10,7 +10,7 @@ public class SlotPaleoscribe extends Slot {
 	@SuppressWarnings("unused")
 	private PlayerEntity thePlayer;
 	@SuppressWarnings("unused")
-	private int field_75228_b;
+	private int removeCount;
 	
 	public SlotPaleoscribe(PlayerEntity player, IInventory inv, int slotIndex, int xPosition, int yPosition) {
 		super(inv, slotIndex, xPosition, yPosition);
@@ -20,7 +20,7 @@ public class SlotPaleoscribe extends Slot {
 	@Override
 	public ItemStack decrStackSize(int amount) {
 		if (this.getHasStack()) {
-			this.field_75228_b += Math.min(amount, this.getStack().getCount());
+			this.removeCount += Math.min(amount, this.getStack().getCount());
 		}
 		return super.decrStackSize(amount);
 	}
@@ -33,13 +33,13 @@ public class SlotPaleoscribe extends Slot {
 	
 	@Override
 	protected void onCrafting(ItemStack stack, int amount) {
-		this.field_75228_b += amount;
+		this.removeCount += amount;
 		this.onCrafting(stack);
 	}
 	
 	@Override
 	protected void onCrafting(ItemStack stack) {
-		this.field_75228_b = 0;
+		this.removeCount = 0;
 	}
 
 }

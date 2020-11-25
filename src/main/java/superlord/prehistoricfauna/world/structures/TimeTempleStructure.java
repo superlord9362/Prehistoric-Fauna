@@ -24,6 +24,8 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.init.ModEntityTypes;
 import superlord.prehistoricfauna.world.placement.TimeTemplePieces;
 
+import net.minecraft.world.gen.feature.structure.Structure.IStartFactory;
+
 public class TimeTempleStructure  extends Structure<NoFeatureConfig>{
 
 	public TimeTempleStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> configFactoryIn) {
@@ -33,7 +35,7 @@ public class TimeTempleStructure  extends Structure<NoFeatureConfig>{
 	private static final List<Biome.SpawnListEntry> SPAWN_LIST = Lists.newArrayList(new Biome.SpawnListEntry(ModEntityTypes.TIME_GUARDIAN_ENTITY, 1, 1, 1));
 
 	@Override
-	public boolean canBeGenerated(BiomeManager p_225558_1_, ChunkGenerator<?> chunkGen, Random rand, int chunkPosX, int chunkPosZ, Biome biome) {
+	public boolean canBeGenerated(BiomeManager biomeManagerIn, ChunkGenerator<?> chunkGen, Random rand, int chunkPosX, int chunkPosZ, Biome biome) {
 		ChunkPos chunkpos = this.getStartPositionForPosition(chunkGen, rand, chunkPosX, chunkPosZ, 0, 0);
 		if (chunkPosX == chunkpos.x && chunkPosZ == chunkpos.z) {
 			if (chunkGen.hasStructure(biome, this)) {
@@ -99,7 +101,7 @@ public class TimeTempleStructure  extends Structure<NoFeatureConfig>{
 			Rotation rotation = Rotation.values()[this.rand.nextInt(Rotation.values().length)];
 			int x = (chunkX << 4) + 7;
 			int z = (chunkZ << 4) + 7;
-			int surfaceY = generator.func_222531_c(x, z, Heightmap.Type.WORLD_SURFACE_WG);
+			int surfaceY = generator.getNoiseHeightMinusOne(x, z, Heightmap.Type.WORLD_SURFACE_WG);
 			BlockPos blockpos = new BlockPos(x, surfaceY, z);
 			TimeTemplePieces.start(templateManagerIn, blockpos, rotation, this.components, this.rand);
 			this.recalculateStructureSize();

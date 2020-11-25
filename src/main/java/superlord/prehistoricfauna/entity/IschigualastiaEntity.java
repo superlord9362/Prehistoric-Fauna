@@ -233,7 +233,7 @@ public class IschigualastiaEntity extends PrehistoricEntity {
 		}
 	}
 	
-	public void travel(Vec3d p_213352_1_) {
+	public void travel(Vec3d positionIn) {
 		if (this.isAlive()) {
 			Entity entity = this.getPassengers().isEmpty() ? null : this.getPassengers().get(0);
 			if (this.isBeingRidden() && this.canBeSteered()) {
@@ -271,7 +271,7 @@ public class IschigualastiaEntity extends PrehistoricEntity {
 			} else {
 				this.stepHeight = 0.5F;
 	            this.jumpMovementFactor = 0.02F;
-	            super.travel(p_213352_1_);
+	            super.travel(positionIn);
 			}
 		}
 	}

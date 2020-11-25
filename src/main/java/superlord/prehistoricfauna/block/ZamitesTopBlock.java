@@ -13,6 +13,8 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.server.ServerWorld;
 import superlord.prehistoricfauna.init.BlockInit;
 
+import net.minecraft.block.Block.Properties;
+
 public class ZamitesTopBlock extends SixWayBlock {
 
 	public ZamitesTopBlock(Properties properties) {

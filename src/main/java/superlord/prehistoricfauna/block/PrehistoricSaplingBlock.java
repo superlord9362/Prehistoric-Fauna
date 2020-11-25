@@ -18,6 +18,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.ForgeEventFactory;
 
+import net.minecraft.block.Block.Properties;
+
 public class PrehistoricSaplingBlock extends BushBlock implements IGrowable {
 	
 	public static final IntegerProperty STAGE = BlockStateProperties.STAGE_0_1;

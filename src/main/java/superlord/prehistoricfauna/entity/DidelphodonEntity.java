@@ -359,7 +359,7 @@ public class DidelphodonEntity extends PrehistoricEntity {
 				++this.ticks;
 				if (this.ticks > 600) {
 	            	this.makeChosenHivePossibleBurrow();
-				} else if (!DidelphodonEntity.this.navigator.func_226337_n_()) {
+				} else if (!DidelphodonEntity.this.navigator.hasActivePath()) {
 					if (!DidelphodonEntity.this.isWithinDistance(DidelphodonEntity.this.burrowPos, 16)) {
 						if (DidelphodonEntity.this.isTooFar(DidelphodonEntity.this.burrowPos)) {
 							this.reset();

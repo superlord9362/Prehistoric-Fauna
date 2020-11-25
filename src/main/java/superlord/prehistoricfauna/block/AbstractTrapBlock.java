@@ -16,8 +16,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 public abstract class AbstractTrapBlock extends Block {
-	protected static final VoxelShape field_196400_b = Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 15.0D, 15.0D);
-	protected static final VoxelShape field_196401_c = Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
+	protected static final VoxelShape COLLISION_SHAPE = Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 15.0D, 15.0D);
+	protected static final VoxelShape OUTLINE_SHAPE = Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
 	protected static final AxisAlignedBB PRESSURE_AABB = new AxisAlignedBB(0.125D, 0.0D, 0.125D, 0.875D, 0.25D, 0.875D);
 
    protected AbstractTrapBlock(Block.Properties properties) {
@@ -25,11 +25,11 @@ public abstract class AbstractTrapBlock extends Block {
    }
    
    public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-	   return field_196400_b;
+	   return COLLISION_SHAPE;
    }
 
    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-	   return field_196401_c;
+	   return OUTLINE_SHAPE;
    }
 
    public int tickRate(IWorldReader worldIn) {

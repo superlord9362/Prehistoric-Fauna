@@ -75,7 +75,7 @@ public class DidelphodonBurrowTileEntity extends TileEntity implements ITickable
 		   if (flag && burrowState != DidelphodonBurrowTileEntity.State.EMERGENCY) {
 			   return false;
 		   } else {
-			   Entity entity = EntityType.func_220335_a(compound, this.world, (p_226960_0_) -> {
+			   Entity entity = EntityType.loadEntityAndExecute(compound, this.world, (p_226960_0_) -> {
 				   return p_226960_0_;
 			   });
 			   if (entity != null) {

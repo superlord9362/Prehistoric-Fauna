@@ -36,11 +36,11 @@ public abstract class ThreeStageAgeEntity extends CreatureEntity {
       }
 
       ThreeStageAgeEntity.AgeableData ageableentity$ageabledata = (ThreeStageAgeEntity.AgeableData)spawnDataIn;
-      if (ageableentity$ageabledata.func_226261_c_() && ageableentity$ageabledata.func_226257_a_() > 0 && this.rand.nextFloat() <= ageableentity$ageabledata.func_226262_d_()) {
+      if (ageableentity$ageabledata.canBabySpawn() && ageableentity$ageabledata.getIndexInGroup() > 0 && this.rand.nextFloat() <= ageableentity$ageabledata.getBabySpawnProbability()) {
          this.setGrowingAge(-24000);
       }
 
-      ageableentity$ageabledata.func_226260_b_();
+      ageableentity$ageabledata.incrementIndexInGroup();
       return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
    }
 
@@ -181,32 +181,32 @@ public abstract class ThreeStageAgeEntity extends CreatureEntity {
    }
 
    public static class AgeableData implements ILivingEntityData {
-      private int field_226254_a_;
-      private boolean field_226255_b_ = true;
-      private float field_226256_c_ = 0.05F;
+      private int indexInGroup;
+      private boolean canBabySpawn = true;
+      private float babySpawnProbability = 0.05F;
 
-      public int func_226257_a_() {
-         return this.field_226254_a_;
+      public int getIndexInGroup() {
+         return this.indexInGroup;
       }
 
-      public void func_226260_b_() {
-         ++this.field_226254_a_;
+      public void incrementIndexInGroup() {
+         ++this.indexInGroup;
       }
 
-      public boolean func_226261_c_() {
-         return this.field_226255_b_;
+      public boolean canBabySpawn() {
+         return this.canBabySpawn;
       }
 
-      public void func_226259_a_(boolean p_226259_1_) {
-         this.field_226255_b_ = p_226259_1_;
+      public void setCanBabySpawn(boolean canBabySpawnIn) {
+         this.canBabySpawn = canBabySpawnIn;
       }
 
-      public float func_226262_d_() {
-         return this.field_226256_c_;
+      public float getBabySpawnProbability() {
+         return this.babySpawnProbability;
       }
 
-      public void func_226258_a_(float p_226258_1_) {
-         this.field_226256_c_ = p_226258_1_;
+      public void setBabySpawnProbability(float babySpawnProbabilityIn) {
+         this.babySpawnProbability = babySpawnProbabilityIn;
       }
    }
 }

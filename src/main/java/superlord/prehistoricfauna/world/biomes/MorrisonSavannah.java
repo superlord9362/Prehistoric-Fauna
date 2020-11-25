@@ -21,6 +21,8 @@ import superlord.prehistoricfauna.world.feature.ProtopiceoxylonTree;
 import superlord.prehistoricfauna.world.feature.ZamitesBush;
 import superlord.prehistoricfauna.world.placement.AraucariaSmallConfig;
 
+import net.minecraft.world.biome.Biome.Builder;
+
 public class MorrisonSavannah extends Biome {
 
 	public MorrisonSavannah(Builder biomeBuilder) {

@@ -204,7 +204,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
        }
    }
    
-   public void travel(Vec3d p_213352_1_) {
+   public void travel(Vec3d positionIn) {
 	      if (this.isAlive()) {
 	         if (this.isBeingRidden() && this.canBeSteered() && this.isHorseSaddled()) {
 	            LivingEntity livingentity = (LivingEntity)this.getControllingPassenger();
@@ -253,7 +253,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 	            this.jumpMovementFactor = this.getAIMoveSpeed() * 0.1F;
 	            if (this.canPassengerSteer()) {
 	               this.setAIMoveSpeed((float)this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getValue());
-	               super.travel(new Vec3d((double)f, p_213352_1_.y, (double)f1));
+	               super.travel(new Vec3d((double)f, positionIn.y, (double)f1));
 	            } else if (livingentity instanceof PlayerEntity) {
 	               this.setMotion(Vec3d.ZERO);
 	            }
@@ -264,7 +264,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 	            }
 	         } else {
 	            this.jumpMovementFactor = 0.02F;
-	            super.travel(p_213352_1_);
+	            super.travel(positionIn);
 	         }
 	      }
 	   }

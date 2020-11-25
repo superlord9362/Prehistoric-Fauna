@@ -16,6 +16,8 @@ import net.minecraft.world.IWorld;
 import superlord.prehistoricfauna.block.JurassicTimeBlock;
 import superlord.prehistoricfauna.init.BlockInit;
 
+import net.minecraft.item.Item.Properties;
+
 public class JurassicTimeTotemItem extends Item {
 
 	public JurassicTimeTotemItem(Properties properties) {

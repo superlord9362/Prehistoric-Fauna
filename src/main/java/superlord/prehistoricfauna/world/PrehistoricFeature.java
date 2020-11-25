@@ -120,10 +120,10 @@ public class PrehistoricFeature {
 
 	public static final Feature<PrehistoricGiantTreeFeatureConfig> METASEQUOIA_TREE = register("metasequoia_tree", new MetasequoiaTreeGenerator(PrehistoricGiantTreeFeatureConfig::deserializeMetasequoia));
 	public static final Feature<PrehistoricGiantTreeFeatureConfig> PROTOJUNIPER_TREE = register("protojuniper_tree", new MetasequoiaTreeGenerator(PrehistoricGiantTreeFeatureConfig::deserializeProtojuniper));
-	public static final Feature<TreeFeatureConfig> PROTOPICEOXYLON_TREE = register("protopiceoxylon_tree", new TreeFeature(TreeFeatureConfig::func_227338_a_));
-	public static final Feature<TreeFeatureConfig> HEIDIPHYLLUM_TREE = register("heidiphyllum_tree", new TreeFeature(TreeFeatureConfig::func_227338_a_));
+	public static final Feature<TreeFeatureConfig> PROTOPICEOXYLON_TREE = register("protopiceoxylon_tree", new TreeFeature(TreeFeatureConfig::deserializeFoliage));
+	public static final Feature<TreeFeatureConfig> HEIDIPHYLLUM_TREE = register("heidiphyllum_tree", new TreeFeature(TreeFeatureConfig::deserializeFoliage));
 	public static final Feature<NoFeatureConfig> PTILOPHYLLUM_TREE = register("ptilophyllum_tree", new PtilophyllumFeature(NoFeatureConfig::deserialize));
-	public static final Feature<TreeFeatureConfig> PETRIFIED_TREE = register("petrified_tree", new TreeFeature(TreeFeatureConfig::func_227338_a_));
+	public static final Feature<TreeFeatureConfig> PETRIFIED_TREE = register("petrified_tree", new TreeFeature(TreeFeatureConfig::deserializeFoliage));
 
 	public static final Feature<CrassostreaOystersConfig> CRASSOSTREA_OYSTERS_FEATURE = register("crassostrea_oysters", new CrassostreaOystersFeature(CrassostreaOystersConfig::deserialize));
 	public static final Feature<DidelphodonBurrowConfig> DIDELPHODON_BURROW_FEATURE = register("didelphodon_burrow", new DidelphodonBurrowFeature(DidelphodonBurrowConfig::deserialize));
@@ -132,7 +132,7 @@ public class PrehistoricFeature {
 	public static final Feature<AraucariaConfig> ARAUCARIA_FEATURE = register("araucaria_feature", new AraucariaTreeGenerator(AraucariaConfig::deserialize));
 	public static final Feature<AraucariaSmallConfig> ARAUCARIA_SMALL_TREE_FEATURE = register("araucaria_small_tree_feature", new AraucariaSmallTreeGenerator(AraucariaSmallConfig::deserialize));
 
-	public static final Feature<TreeFeatureConfig> ZAMITES_BUSH = register("zamites_bush", new ZamitesBushFeature(TreeFeatureConfig::func_227338_a_));
+	public static final Feature<TreeFeatureConfig> ZAMITES_BUSH = register("zamites_bush", new ZamitesBushFeature(TreeFeatureConfig::deserializeFoliage));
 	
 	public static Structure<NoFeatureConfig> HELL_CREEK_HUT = new HCHutStructure(NoFeatureConfig::deserialize);
 	public static Structure<NoFeatureConfig> MORRISON_HUT = new MorrisonHutStructure(NoFeatureConfig::deserialize);

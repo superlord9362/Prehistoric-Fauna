@@ -19,6 +19,8 @@ import superlord.prehistoricfauna.world.placement.AraucariaConfig;
 import superlord.prehistoricfauna.world.placement.AraucariaSmallConfig;
 import superlord.prehistoricfauna.world.placement.DidelphodonBurrowConfig;
 
+import net.minecraft.world.biome.Biome.Builder;
+
 public class HellCreekBiome extends Biome {
 
 	public HellCreekBiome(Builder biomeBuilder) {

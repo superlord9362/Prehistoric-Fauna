@@ -34,7 +34,7 @@ public class CypressTreeGenerator extends PrehistoricTreeFeature<PrehistoricGian
                k = positionIn.getX() + (int)(1.5F + MathHelper.cos(f) * (float)i1);
                l = positionIn.getZ() + (int)(1.5F + MathHelper.sin(f) * (float)i1);
                BlockPos blockpos = new BlockPos(k, j - 3 + i1 / 2, l);
-               this.func_227216_a_(generationReader, rand, blockpos, p_225557_4_, boundingBoxIn, configIn);
+               this.setLog(generationReader, rand, blockpos, p_225557_4_, boundingBoxIn, configIn);
             }
 
             int l1 = 1 + rand.nextInt(2);

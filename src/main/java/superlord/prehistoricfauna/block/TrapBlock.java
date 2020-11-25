@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 public class TrapBlock extends Block {
 	private static BooleanProperty TRIGGERED = BooleanProperty.create("triggered");
-	protected static final VoxelShape field_196400_b = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+	protected static final VoxelShape COLLISION_SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 
 	public TrapBlock(Block.Properties properties) {
 		super(properties);
@@ -22,7 +22,7 @@ public class TrapBlock extends Block {
 	}
 
 	public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		return field_196400_b;
+		return COLLISION_SHAPE;
 	}
 
 	public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {

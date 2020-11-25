@@ -87,7 +87,7 @@ public abstract class PrehistoricTreeFeature<T extends BaseTreeFeatureConfig> ex
 		            int l = Math.min(Math.abs(j), Math.abs(j - 1));
 		            int i1 = Math.min(Math.abs(k), Math.abs(k - 1));
 		            if (l + i1 < 7 && l * l + i1 * i1 <= i) {
-		               this.func_227219_b_(p_227255_1_, p_227255_2_, p_227255_3_.add(j, 0, k), p_227255_5_, p_227255_6_, p_227255_7_);
+		               this.setLeaf(p_227255_1_, p_227255_2_, p_227255_3_.add(j, 0, k), p_227255_5_, p_227255_6_, p_227255_7_);
 		            }
 		         }
 		      }
@@ -100,7 +100,7 @@ public abstract class PrehistoricTreeFeature<T extends BaseTreeFeatureConfig> ex
 		      for(int j = -p_227257_4_; j <= p_227257_4_; ++j) {
 		         for(int k = -p_227257_4_; k <= p_227257_4_; ++k) {
 		            if (j * j + k * k <= i) {
-		               this.func_227219_b_(p_227257_1_, p_227257_2_, p_227257_3_.add(j, 0, k), p_227257_5_, p_227257_6_, p_227257_7_);
+		               this.setLeaf(p_227257_1_, p_227257_2_, p_227257_3_.add(j, 0, k), p_227257_5_, p_227257_6_, p_227257_7_);
 		            }
 		         }
 		      }
@@ -113,23 +113,23 @@ public abstract class PrehistoricTreeFeature<T extends BaseTreeFeatureConfig> ex
 		      for(int i = 0; i < p_227254_4_; ++i) {
 		         blockpos$mutable.setPos(p_227254_3_).move(0, i, 0);
 		         if (canBeReplacedByLogs(p_227254_1_, blockpos$mutable)) {
-		            this.func_227216_a_(p_227254_1_, p_227254_2_, blockpos$mutable, p_227254_5_, p_227254_6_, p_227254_7_);
+		            this.setLog(p_227254_1_, p_227254_2_, blockpos$mutable, p_227254_5_, p_227254_6_, p_227254_7_);
 		         }
 
 		         if (i < p_227254_4_ - 1) {
 		            blockpos$mutable.setPos(p_227254_3_).move(1, i, 0);
 		            if (canBeReplacedByLogs(p_227254_1_, blockpos$mutable)) {
-		               this.func_227216_a_(p_227254_1_, p_227254_2_, blockpos$mutable, p_227254_5_, p_227254_6_, p_227254_7_);
+		               this.setLog(p_227254_1_, p_227254_2_, blockpos$mutable, p_227254_5_, p_227254_6_, p_227254_7_);
 		            }
 
 		            blockpos$mutable.setPos(p_227254_3_).move(1, i, 1);
 		            if (canBeReplacedByLogs(p_227254_1_, blockpos$mutable)) {
-		               this.func_227216_a_(p_227254_1_, p_227254_2_, blockpos$mutable, p_227254_5_, p_227254_6_, p_227254_7_);
+		               this.setLog(p_227254_1_, p_227254_2_, blockpos$mutable, p_227254_5_, p_227254_6_, p_227254_7_);
 		            }
 
 		            blockpos$mutable.setPos(p_227254_3_).move(0, i, 1);
 		            if (canBeReplacedByLogs(p_227254_1_, blockpos$mutable)) {
-		               this.func_227216_a_(p_227254_1_, p_227254_2_, blockpos$mutable, p_227254_5_, p_227254_6_, p_227254_7_);
+		               this.setLog(p_227254_1_, p_227254_2_, blockpos$mutable, p_227254_5_, p_227254_6_, p_227254_7_);
 		            }
 		         }
 		      }

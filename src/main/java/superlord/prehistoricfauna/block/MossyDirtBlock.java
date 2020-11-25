@@ -16,6 +16,8 @@ import net.minecraft.world.gen.feature.DecoratedFeatureConfig;
 import net.minecraft.world.gen.feature.FlowersFeature;
 import net.minecraft.world.server.ServerWorld;
 
+import net.minecraft.block.Block.Properties;
+
 public class MossyDirtBlock extends Block implements IGrowable {
 
 	public MossyDirtBlock(Properties properties) {
