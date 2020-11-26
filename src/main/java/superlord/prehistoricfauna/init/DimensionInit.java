@@ -12,9 +12,9 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.world.dimension.CretaceousModDimension;
-import superlord.prehistoricfauna.world.dimension.JurassicModDimension;
-import superlord.prehistoricfauna.world.dimension.TriassicModDimension;
+import superlord.prehistoricfauna.world.dimension.cretaceous.CretaceousModDimension;
+import superlord.prehistoricfauna.world.dimension.jurassic.JurassicModDimension;
+import superlord.prehistoricfauna.world.dimension.triassic.TriassicModDimension;
 
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Bus.FORGE)
 public class DimensionInit{

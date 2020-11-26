@@ -90,12 +90,12 @@ import superlord.prehistoricfauna.block.TriceratopsEggBlock;
 import superlord.prehistoricfauna.block.TyrannosaurusEggBlock;
 import superlord.prehistoricfauna.block.ZamitesSaplingBlock;
 import superlord.prehistoricfauna.block.ZamitesTopBlock;
-import superlord.prehistoricfauna.world.feature.HeidiphyllumTree;
+import superlord.prehistoricfauna.world.feature.triassic.HeidiphyllumTree;
 import superlord.prehistoricfauna.world.feature.LiriodendritesTree;
 //import superlord.prehistoricfauna.world.feature.CypressTree;
-import superlord.prehistoricfauna.world.feature.MetasequoiaTree;
-import superlord.prehistoricfauna.world.feature.ProtojuniperTree;
-import superlord.prehistoricfauna.world.feature.ProtopiceoxylonTree;
+import superlord.prehistoricfauna.world.feature.cretaceous.MetasequoiaTree;
+import superlord.prehistoricfauna.world.feature.triassic.ProtojuniperTree;
+import superlord.prehistoricfauna.world.feature.jurassic.ProtopiceoxylonTree;
 
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Bus.MOD)
 public class BlockInit {

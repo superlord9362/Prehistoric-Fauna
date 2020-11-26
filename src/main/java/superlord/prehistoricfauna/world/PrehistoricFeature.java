@@ -36,16 +36,16 @@ import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.world.feature.CrassostreaOystersConfig;
 import superlord.prehistoricfauna.world.feature.CrassostreaOystersFeature;
 import superlord.prehistoricfauna.world.feature.DicroidiumFeature;
-import superlord.prehistoricfauna.world.feature.DidelphodonBurrowFeature;
+import superlord.prehistoricfauna.world.feature.cretaceous.DidelphodonBurrowFeature;
 import superlord.prehistoricfauna.world.feature.JohnstoniaFeature;
-import superlord.prehistoricfauna.world.feature.PtilophyllumFeature;
-import superlord.prehistoricfauna.world.feature.ZamitesBushFeature;
-import superlord.prehistoricfauna.world.feature.generator.AraucariaSmallTreeGenerator;
-import superlord.prehistoricfauna.world.feature.generator.AraucariaTreeGenerator;
-import superlord.prehistoricfauna.world.feature.generator.HellCreekSurfaceBuilder;
-import superlord.prehistoricfauna.world.feature.generator.IschigualastoSurfaceBuilder;
-import superlord.prehistoricfauna.world.feature.generator.MetasequoiaTreeGenerator;
-import superlord.prehistoricfauna.world.feature.generator.MorrisonSavannaSurfaceBuilder;
+import superlord.prehistoricfauna.world.feature.jurassic.PtilophyllumFeature;
+import superlord.prehistoricfauna.world.feature.jurassic.ZamitesBushFeature;
+import superlord.prehistoricfauna.world.feature.cretaceous.AraucariaSmallTreeGenerator;
+import superlord.prehistoricfauna.world.feature.cretaceous.AraucariaTreeGenerator;
+import superlord.prehistoricfauna.world.feature.cretaceous.HellCreekSurfaceBuilder;
+import superlord.prehistoricfauna.world.surfacebuilder.IschigualastoSB;
+import superlord.prehistoricfauna.world.feature.cretaceous.MetasequoiaTreeGenerator;
+import superlord.prehistoricfauna.world.surfacebuilder.MorrisonSavannaSB;
 import superlord.prehistoricfauna.world.feature.generator.PrehistoricGiantTreeFeatureConfig;
 import superlord.prehistoricfauna.world.placement.AraucariaConfig;
 import superlord.prehistoricfauna.world.placement.AraucariaSmallConfig;
@@ -161,8 +161,8 @@ public class PrehistoricFeature {
 
 	//public static final Feature<PrehistoricGiantTreeFeatureConfig> CYPRESS_TREE = register("cypress_tree", new CypressTreeGenerator(PrehistoricGiantTreeFeatureConfig::deserializeCypress));
 	public static final SurfaceBuilder<SurfaceBuilderConfig> HELL_CREEK = register("hell_creek", new HellCreekSurfaceBuilder(SurfaceBuilderConfig::deserialize));
-	public static final SurfaceBuilder<SurfaceBuilderConfig> MORRISON_SAVANNA = register("morrison", new MorrisonSavannaSurfaceBuilder(SurfaceBuilderConfig::deserialize));
-	public static final SurfaceBuilder<SurfaceBuilderConfig> ISCHIGUALASTO = register("ischigualasto", new IschigualastoSurfaceBuilder(SurfaceBuilderConfig::deserialize));
+	public static final SurfaceBuilder<SurfaceBuilderConfig> MORRISON_SAVANNA = register("morrison", new MorrisonSavannaSB(SurfaceBuilderConfig::deserialize));
+	public static final SurfaceBuilder<SurfaceBuilderConfig> ISCHIGUALASTO = register("ischigualasto", new IschigualastoSB(SurfaceBuilderConfig::deserialize));
 
 	public static void addSedimentDisks(Biome biomeIn) {
 		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.DISK.withConfiguration(new SphereReplaceConfig(SAND, 7, 2, Lists.newArrayList(COARSEDIRT, MOSSYDIRT, PODZOL))).withPlacement(Placement.COUNT_TOP_SOLID.configure(new FrequencyConfig(3))));

@@ -16,10 +16,10 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.world.PrehistoricFeature;
-import superlord.prehistoricfauna.world.biomes.HellCreekBiome;
-import superlord.prehistoricfauna.world.biomes.IschigualastoForest;
-import superlord.prehistoricfauna.world.biomes.MorrisonSavannah;
-import superlord.prehistoricfauna.world.biomes.PetrifiedForest;
+import superlord.prehistoricfauna.world.biomes.cretaceous.HellCreekBiome;
+import superlord.prehistoricfauna.world.biomes.triassic.IschigualastoForest;
+import superlord.prehistoricfauna.world.biomes.jurassic.MorrisonSavannah;
+import superlord.prehistoricfauna.world.biomes.overworld.PetrifiedForest;
 
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Bus.MOD)
 public class BiomeInit {
