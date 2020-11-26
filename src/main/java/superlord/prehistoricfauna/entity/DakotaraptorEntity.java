@@ -154,7 +154,7 @@ public class DakotaraptorEntity extends PrehistoricEntity {
 	}
 	
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.DAKOTARAPTOR_HURT;
+		return SoundHandler.DAKOTARAPTOR_DEATH;
 	}
 	
 	protected void playWarningSound() {

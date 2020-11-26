@@ -118,7 +118,7 @@ public class StegosaurusEntity extends PrehistoricEntity {
    }
 
    protected SoundEvent getDeathSound() {
-	   return SoundHandler.STEGOSAURUS_HURT;
+	   return SoundHandler.STEGOSAURUS_DEATH;
    }
 
    protected void playStepSound(BlockPos pos, BlockState blockIn) {

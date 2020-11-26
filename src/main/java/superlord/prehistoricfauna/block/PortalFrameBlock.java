@@ -14,8 +14,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import superlord.prehistoricfauna.init.BlockInit;
 
-import net.minecraft.block.Block.Properties;
-
 public class PortalFrameBlock extends DirectionalBlock {
 	
 	public static final BooleanProperty TRIGGERED = BlockStateProperties.TRIGGERED;

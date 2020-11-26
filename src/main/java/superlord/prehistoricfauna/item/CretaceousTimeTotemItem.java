@@ -16,8 +16,6 @@ import net.minecraft.world.IWorld;
 import superlord.prehistoricfauna.block.CretaceousTimeBlock;
 import superlord.prehistoricfauna.init.BlockInit;
 
-import net.minecraft.item.Item.Properties;
-
 public class CretaceousTimeTotemItem extends Item {
 
 	public CretaceousTimeTotemItem(Properties properties) {

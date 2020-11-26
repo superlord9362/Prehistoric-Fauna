@@ -125,7 +125,7 @@ public class ExaeretodonEntity extends PrehistoricEntity {
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.EXAERETODON_HURT;
+		return SoundHandler.EXAERETODON_DEATH;
 	}
 
 	protected void playWarningSound() {

@@ -129,7 +129,7 @@ public class AllosaurusEntity extends PrehistoricEntity {
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.ALLOSAURUS_HURT;
+		return SoundHandler.ALLOSAURUS_DEATH;
 	}
 
 	protected void playStepSound(BlockPos pos, BlockState blockIn) {

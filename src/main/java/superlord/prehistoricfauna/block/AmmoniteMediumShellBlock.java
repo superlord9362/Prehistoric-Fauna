@@ -12,8 +12,6 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 
-import net.minecraft.block.Block.Properties;
-
 public class AmmoniteMediumShellBlock extends Block {
 	
 	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;

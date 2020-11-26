@@ -24,8 +24,6 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.world.placement.IschigualastoHutPieces;
 
-import net.minecraft.world.gen.feature.structure.Structure.IStartFactory;
-
 public class IschigualastoStructure  extends Structure<NoFeatureConfig>{
 
 	public IschigualastoStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> configFactoryIn) {

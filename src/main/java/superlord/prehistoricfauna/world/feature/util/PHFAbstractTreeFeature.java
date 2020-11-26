@@ -102,7 +102,8 @@ public abstract class PHFAbstractTreeFeature<TFC extends PHFTreeConfig> extends 
      * @param pos    Position to check.
      * @return Determine whether or not the pos can support a sapling's tree.
      */
-    public boolean canSaplingGrowHere(IWorldGenerationBaseReader reader, BlockPos pos) {
+    @SuppressWarnings("deprecation")
+	public boolean canSaplingGrowHere(IWorldGenerationBaseReader reader, BlockPos pos) {
         return reader.hasBlockState(pos, (state) -> {
             Block block = state.getBlock();
             return block.isIn(BlockTags.LOGS) || block.isIn(BlockTags.LEAVES) || state.isAir() || state.getMaterial() == Material.PLANTS || state.getMaterial() == Material.TALL_PLANTS || state.getMaterial() == Material.OCEAN_PLANT || state.getMaterial() == Material.LEAVES || state.getMaterial() == Material.EARTH;
@@ -115,11 +116,13 @@ public abstract class PHFAbstractTreeFeature<TFC extends PHFTreeConfig> extends 
      * @return Determines whether or not a pos is air.
      */
 
-    public static boolean isAir(IWorldGenerationBaseReader reader, BlockPos pos) {
+    @SuppressWarnings("deprecation")
+	public static boolean isAir(IWorldGenerationBaseReader reader, BlockPos pos) {
         return reader.hasBlockState(pos, BlockState::isAir);
     }
 
-    public boolean isAirOrWater(IWorldGenerationBaseReader worldIn, BlockPos pos) {
+    @SuppressWarnings("deprecation")
+	public boolean isAirOrWater(IWorldGenerationBaseReader worldIn, BlockPos pos) {
         return worldIn.hasBlockState(pos, (state) -> state.isAir() || state.getBlock() == Blocks.WATER);
     }
 
@@ -421,7 +424,8 @@ public abstract class PHFAbstractTreeFeature<TFC extends PHFTreeConfig> extends 
     }
 
 
-    public void setDisk(IWorld world, Random random, BlockPos pos, PHFTreeConfig config) {
+    @SuppressWarnings("deprecation")
+	public void setDisk(IWorld world, Random random, BlockPos pos, PHFTreeConfig config) {
         if (config.isPlacementForced() || config.getDiskRadius() <= 0)
             return;
 

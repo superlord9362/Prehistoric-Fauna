@@ -13,8 +13,6 @@ import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.Placement;
 import superlord.prehistoricfauna.world.feature.PetrifiedTree;
 
-import net.minecraft.world.biome.Biome.Builder;
-
 public class PetrifiedForest extends Biome {
 
 	public PetrifiedForest(Builder biomeBuilder) {

@@ -27,8 +27,6 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import superlord.prehistoricfauna.entity.tile.PaleontologyTableTileEntity;
 import superlord.prehistoricfauna.init.TileEntityRegistry;
 
-import net.minecraft.block.Block.Properties;
-
 public class PaleontologyTableBlock extends Block {
 
 	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;

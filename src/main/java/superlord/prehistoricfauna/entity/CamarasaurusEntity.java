@@ -119,7 +119,7 @@ public class CamarasaurusEntity extends PrehistoricEntity {
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.CAMARASAURUS_HURT;
+		return SoundHandler.CAMARASAURUS_DEATH;
 	}
 	
 	protected void playWarningSound() {

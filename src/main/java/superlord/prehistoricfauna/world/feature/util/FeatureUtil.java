@@ -38,7 +38,8 @@ public class FeatureUtil {
         return world.hasBlockState(pos, (state) -> state.isIn(Tags.Blocks.STONE) || state.getMaterial() == Material.ROCK /*|| state.isIn(BlockTags.BASE_STONE_OVERWORLD)*/ || state.getMaterial() == Material.EARTH || state.isIn(BlockTags.SAND) || state.isIn(Tags.Blocks.SAND) || state.isIn(Tags.Blocks.SAND_COLORLESS) || state.isIn(Tags.Blocks.SAND_RED) || state.isIn(Tags.Blocks.SANDSTONE) || state.getMaterial() == Material.SAND || state.getBlock() == Blocks.GRASS_BLOCK);
     }
 
-    public static boolean isAir(IWorldGenerationBaseReader reader, BlockPos pos) {
+    @SuppressWarnings("deprecation")
+	public static boolean isAir(IWorldGenerationBaseReader reader, BlockPos pos) {
         return reader.hasBlockState(pos, BlockState::isAir);
     }
 
@@ -63,7 +64,8 @@ public class FeatureUtil {
 
 
 
-    public static void transformMutable(BlockPos.Mutable pos, Mirror mirrorIn, Rotation rotationIn)
+    @SuppressWarnings("incomplete-switch")
+	public static void transformMutable(BlockPos.Mutable pos, Mirror mirrorIn, Rotation rotationIn)
     {
         switch (mirrorIn)
         {

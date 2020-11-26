@@ -159,7 +159,7 @@ public class IschigualastiaEntity extends PrehistoricEntity {
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.ISCHIGUALASTIA_HURT;
+		return SoundHandler.ISCHIGUALASTIA_DEATH;
 	}
 	
 	protected void playWarningSound() {

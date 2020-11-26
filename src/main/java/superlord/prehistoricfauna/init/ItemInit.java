@@ -125,6 +125,6 @@ public class ItemInit {
 	public static final RegistryObject<Item> TRIASSIC_FOSSIL = ITEMS.register("triassic_fossil", () -> new Item(new Item.Properties().group(PFBook.instance)));
 	public static final RegistryObject<Item> JURASSIC_FOSSIL = ITEMS.register("jurassic_fossil", () -> new Item(new Item.Properties().group(PFBook.instance)));
 	public static final RegistryObject<Item> CRETACEOUS_FOSSIL = ITEMS.register("cretaceous_fossil", () -> new Item(new Item.Properties().group(PFBook.instance)));
-	public static final RegistryObject<Item> CLADOPHEBLIS_STICK = ITEMS.register("cladopheblis_stick", () -> new Item(new Item.Properties().group(PFBook.instance).maxStackSize(1)));
+	public static final RegistryObject<Item> CLADOPHEBLIS_STICK = ITEMS.register("cladophlebis_stick", () -> new Item(new Item.Properties().group(PFBook.instance).maxStackSize(1)));
 	
 }

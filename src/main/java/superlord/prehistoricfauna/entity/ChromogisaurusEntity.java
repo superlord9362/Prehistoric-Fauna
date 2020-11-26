@@ -133,7 +133,7 @@ public class ChromogisaurusEntity extends PrehistoricEntity {
 	}
 	
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.CHROMOGISAURUS_HURT;
+		return SoundHandler.CHROMOGISAURUS_DEATH;
 	}
 	
 	@Override

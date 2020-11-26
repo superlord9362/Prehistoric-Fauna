@@ -1,20 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "iri",
-    "ici",
-	"iii"
+    "HHH",
+    "HCH",
+	"HHH"
   ],
   "key": {
-    "i": {
-      "item": "minecraft:iron_ingot",
+    "H": {
+      "item": "prehistoricfauna:henostone"
     },
-	"r": {
-		"item": "minecraft:redstone"
-	},
-	"c": {
-		"item": "minecraft:clock"
-	}
+    "C": {
+      "item": "minecraft:clock"
+    }
   },
   "result": {
     "item": "prehistoricfauna:portal_projector",

@@ -24,8 +24,6 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.event.ForgeEventFactory;
 import superlord.prehistoricfauna.init.BlockInit;
 
-import net.minecraft.block.Block.Properties;
-
 public class AraucariaSaplingBlock extends Block implements IPlantable, IGrowable {
 
 	public static final IntegerProperty STAGE = BlockStateProperties.STAGE_0_1;

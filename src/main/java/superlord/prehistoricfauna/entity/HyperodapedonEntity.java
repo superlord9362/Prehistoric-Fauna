@@ -135,7 +135,7 @@ public class HyperodapedonEntity extends PrehistoricEntity {
 	}
 	
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.HYPERODAPEDON_HURT;
+		return SoundHandler.HYPERODAPEDON_DEATH;
 	}
 	
 	@Override

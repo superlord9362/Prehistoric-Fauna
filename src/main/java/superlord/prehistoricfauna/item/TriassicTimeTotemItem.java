@@ -16,8 +16,6 @@ import net.minecraft.world.IWorld;
 import superlord.prehistoricfauna.block.TriassicTimeBlock;
 import superlord.prehistoricfauna.init.BlockInit;
 
-import net.minecraft.item.Item.Properties;
-
 public class TriassicTimeTotemItem extends Item {
 
 	public TriassicTimeTotemItem(Properties properties) {

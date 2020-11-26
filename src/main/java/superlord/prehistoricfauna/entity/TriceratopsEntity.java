@@ -132,7 +132,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.TRICERATOPS_HURT;
+		return SoundHandler.TRICERATOPS_DEATH;
 	}
 	
 	protected SoundEvent getAngrySound() {

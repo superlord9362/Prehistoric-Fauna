@@ -1,20 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "iri",
-    "igi",
-	"iii"
+    "HHH",
+    "HGH",
+	"HHH"
   ],
   "key": {
-    "i": {
-      "item": "minecraft:iron_ingot",
+    "H": {
+      "item": "prehistoricfauna:henostone"
     },
-	"r": {
-		"item": "minecraft:redstone"
-	},
-	"c": {
-		"item": "minecraft:glowstone"
-	}
+    "G": {
+      "item": "minecraft:gold_ingot"
+    }
   },
   "result": {
     "item": "prehistoricfauna:portal_frame",
