@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.world.feature.generator;
+package superlord.prehistoricfauna.world.surfacebuilder;
 
 import java.util.Random;
 import java.util.function.Function;
@@ -12,9 +12,9 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import superlord.prehistoricfauna.world.PrehistoricFeature;
 
-public class IschigualastoSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
+public class IschigualastoSB extends SurfaceBuilder<SurfaceBuilderConfig> {
 	
-	public IschigualastoSurfaceBuilder(Function<Dynamic<?>, ? extends SurfaceBuilderConfig> p_i51312_1_) {
+	public IschigualastoSB(Function<Dynamic<?>, ? extends SurfaceBuilderConfig> p_i51312_1_) {
 		super(p_i51312_1_);
 	}
 
