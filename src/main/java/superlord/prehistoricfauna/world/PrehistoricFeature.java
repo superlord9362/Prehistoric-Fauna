@@ -36,13 +36,19 @@ import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.world.feature.CrassostreaOystersConfig;
 import superlord.prehistoricfauna.world.feature.CrassostreaOystersFeature;
 import superlord.prehistoricfauna.world.feature.DicroidiumFeature;
+import superlord.prehistoricfauna.world.feature.config.PHFTreeConfig;
 import superlord.prehistoricfauna.world.feature.cretaceous.DidelphodonBurrowFeature;
 import superlord.prehistoricfauna.world.feature.JohnstoniaFeature;
+import superlord.prehistoricfauna.world.feature.cretaceous.araucaria.AraucariaSmallTree1;
+import superlord.prehistoricfauna.world.feature.cretaceous.araucaria.AraucariaSmallTree2;
+import superlord.prehistoricfauna.world.feature.cretaceous.araucaria.AraucariaSmallTree3;
+import superlord.prehistoricfauna.world.feature.cretaceous.araucaria.AraucariaSmallTree4;
 import superlord.prehistoricfauna.world.feature.jurassic.PtilophyllumFeature;
 import superlord.prehistoricfauna.world.feature.jurassic.ZamitesBushFeature;
 import superlord.prehistoricfauna.world.feature.cretaceous.AraucariaSmallTreeGenerator;
 import superlord.prehistoricfauna.world.feature.cretaceous.AraucariaTreeGenerator;
 import superlord.prehistoricfauna.world.feature.cretaceous.HellCreekSurfaceBuilder;
+import superlord.prehistoricfauna.world.feature.util.SmallPineTree;
 import superlord.prehistoricfauna.world.surfacebuilder.IschigualastoSB;
 import superlord.prehistoricfauna.world.feature.cretaceous.MetasequoiaTreeGenerator;
 import superlord.prehistoricfauna.world.surfacebuilder.MorrisonSavannaSB;
@@ -124,6 +130,14 @@ public class PrehistoricFeature {
 	public static final Feature<TreeFeatureConfig> HEIDIPHYLLUM_TREE = register("heidiphyllum_tree", new TreeFeature(TreeFeatureConfig::deserializeFoliage));
 	public static final Feature<NoFeatureConfig> PTILOPHYLLUM_TREE = register("ptilophyllum_tree", new PtilophyllumFeature(NoFeatureConfig::deserialize));
 	public static final Feature<TreeFeatureConfig> PETRIFIED_TREE = register("petrified_tree", new TreeFeature(TreeFeatureConfig::deserializeFoliage));
+
+	public static final Feature<NoFeatureConfig> DUMMY = register("dummy", new SmallPineTree(NoFeatureConfig::deserialize));
+
+	public static final Feature<PHFTreeConfig> ARAUCARIA_SMALL_TREE1 = register("araucaria_small_tree1", new AraucariaSmallTree1(PHFTreeConfig::deserialize));
+	public static final Feature<PHFTreeConfig> ARAUCARIA_SMALL_TREE2 = register("araucaria_small_tree2", new AraucariaSmallTree2(PHFTreeConfig::deserialize));
+	public static final Feature<PHFTreeConfig> ARAUCARIA_SMALL_TREE3 = register("araucaria_small_tree3", new AraucariaSmallTree3(PHFTreeConfig::deserialize));
+	public static final Feature<PHFTreeConfig> ARAUCARIA_SMALL_TREE4 = register("araucaria_small_tree4", new AraucariaSmallTree4(PHFTreeConfig::deserialize));
+
 
 	public static final Feature<CrassostreaOystersConfig> CRASSOSTREA_OYSTERS_FEATURE = register("crassostrea_oysters", new CrassostreaOystersFeature(CrassostreaOystersConfig::deserialize));
 	public static final Feature<DidelphodonBurrowConfig> DIDELPHODON_BURROW_FEATURE = register("didelphodon_burrow", new DidelphodonBurrowFeature(DidelphodonBurrowConfig::deserialize));

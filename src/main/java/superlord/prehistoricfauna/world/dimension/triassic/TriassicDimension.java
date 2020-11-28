@@ -7,6 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.dimension.Dimension;
@@ -27,8 +28,9 @@ public class TriassicDimension extends Dimension {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public ChunkGenerator<?> createChunkGenerator() {
-		return new PFChunkGenerator(world, new TriassicBiomeProvider(), new PFGenSettings());
+		return new PFChunkGenerator(world, new TriassicBiomeProvider(Registry.BIOME, world.getSeed()), new PFGenSettings());
 	}
 	
 	@Override

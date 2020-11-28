@@ -7,7 +7,7 @@ import com.google.common.collect.ImmutableSet;
 
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
-import superlord.prehistoricfauna.init.BiomeInit;
+import superlord.prehistoricfauna.core.world.PHFBiomes;
 
 public class CretaceousBiomeProvider extends BiomeProvider {
 
@@ -19,11 +19,11 @@ public class CretaceousBiomeProvider extends BiomeProvider {
 		rand = new Random();
 	}
 	
-	private static final Set<Biome> biomeList = ImmutableSet.of(BiomeInit.HELL_CREEK_BIOME.get());
+	private static final Set<Biome> biomeList = ImmutableSet.of(PHFBiomes.HELL_CREEK);
 
 	@Override
 	public Biome getNoiseBiome(int x, int y, int z) {
-		return BiomeInit.HELL_CREEK_BIOME.get();
+		return PHFBiomes.HELL_CREEK;
 	}
 	
 	

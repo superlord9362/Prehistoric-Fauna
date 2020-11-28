@@ -3,12 +3,10 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -73,6 +71,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import superlord.prehistoricfauna.config.PrehistoricConfigHolder;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
+import superlord.prehistoricfauna.core.world.*;
 import superlord.prehistoricfauna.entity.HesperornithoidesEntity;
 import superlord.prehistoricfauna.entity.render.AllosaurusRenderer;
 import superlord.prehistoricfauna.entity.render.AnkylosaurusRenderer;
@@ -100,18 +99,19 @@ import superlord.prehistoricfauna.entity.render.TriceratopsRenderer;
 import superlord.prehistoricfauna.entity.render.TyrannosaurusRenderer;
 import superlord.prehistoricfauna.entity.render.TyrannosaurusSkeletonRenderer;
 import superlord.prehistoricfauna.entity.render.TyrannosaurusSkullRenderer;
-import superlord.prehistoricfauna.init.BiomeInit;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ContainerRegistry;
 import superlord.prehistoricfauna.init.DimensionInit;
 import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
 import superlord.prehistoricfauna.init.TileEntityRegistry;
+import superlord.prehistoricfauna.server.command.PHFCommand;
 import superlord.prehistoricfauna.util.ClientProxy;
 import superlord.prehistoricfauna.util.CommonEvents;
 import superlord.prehistoricfauna.util.CommonProxy;
 import superlord.prehistoricfauna.util.PrehistoricColors;
 import superlord.prehistoricfauna.world.PrehistoricFeature;
+import superlord.prehistoricfauna.world.dimension.triassic.TriassicBiomeProvider;
 import superlord.prehistoricfauna.world.gen.PrehistoricOreGen;
 
 @SuppressWarnings("deprecation")
@@ -148,7 +148,6 @@ public class PrehistoricFauna {
 		final ModLoadingContext modLoadingContext = ModLoadingContext.get();
 		modLoadingContext.registerConfig(ModConfig.Type.CLIENT, PrehistoricConfigHolder.CLIENT_SPEC);
 		modLoadingContext.registerConfig(ModConfig.Type.COMMON, PrehistoricConfigHolder.SERVER_SPEC);
-		BiomeInit.BIOMES.register(modEventBus);
 		DimensionInit.MOD_DIMENSIONS.register(modEventBus);
 		ItemInit.ITEMS.register(modEventBus);
 		PrehistoricFeature.FEATURES.register(modEventBus);
@@ -157,6 +156,8 @@ public class PrehistoricFauna {
 		PROXY.init();
 		instance = this;
 		MinecraftForge.EVENT_BUS.register(this);
+		MinecraftForge.EVENT_BUS.register(new ServerEvents());
+
 	}
 
 	private boolean setIsKilled(boolean isKilled) {
@@ -188,21 +189,21 @@ public class PrehistoricFauna {
 		for(ModDimension dimension : ForgeRegistries.MOD_DIMENSIONS) {
 			for(Biome biome : ForgeRegistries.BIOMES) {
 				if (dimension == DimensionInit.CRETACEOUS_DIMENSION.get()) {
-					if (biome == BiomeInit.HELL_CREEK_BIOME.get()) {
+					if (biome == PHFBiomes.HELL_CREEK) {
 						biome.addStructure(PrehistoricFeature.HELL_CREEK_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
 					}
 				}
 				if (dimension == DimensionInit.JURASSIC_DIMENSION.get()) {
-					if (biome == BiomeInit.MORRISON_BIOME.get()) {
+					if (biome == PHFBiomes.MORRISON_SAVANNAH) {
 						biome.addStructure(PrehistoricFeature.MORRISON_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
 					}
 				}
 				if (dimension == DimensionInit.TRIASSIC_DIMENSION.get()) {
-					if (biome == BiomeInit.ISCHIGUALASTO_BIOME.get()) {
+					if (biome == PHFBiomes.ISCHIGUALASTO_FOREST) {
 						biome.addStructure(PrehistoricFeature.ISCHIGUALASTO_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
 					}
 				}
-				if (biome != BiomeInit.HELL_CREEK_BIOME.get() && biome != BiomeInit.ISCHIGUALASTO_BIOME.get() && biome != BiomeInit.MORRISON_BIOME.get() && biome != Biomes.COLD_OCEAN && biome != Biomes.DEEP_COLD_OCEAN && biome != Biomes.DEEP_FROZEN_OCEAN && biome != Biomes.DEEP_LUKEWARM_OCEAN && biome != Biomes.DEEP_OCEAN && biome != Biomes.DEEP_WARM_OCEAN && biome != Biomes.FROZEN_OCEAN && biome != Biomes.LUKEWARM_OCEAN && biome != Biomes.OCEAN && biome != Biomes.WARM_OCEAN && biome != Biomes.FROZEN_RIVER && biome != Biomes.RIVER && biome != Biomes.BEACH && biome != Biomes.SNOWY_BEACH && biome != Biomes.END_BARRENS && biome != Biomes.END_HIGHLANDS && biome != Biomes.END_MIDLANDS && biome != Biomes.SMALL_END_ISLANDS && biome != Biomes.THE_END && biome != Biomes.NETHER && biome != Biomes.STONE_SHORE && biome != Biomes.THE_VOID) {
+				if (biome != PHFBiomes.HELL_CREEK && biome != PHFBiomes.ISCHIGUALASTO_FOREST && biome != PHFBiomes.MORRISON_SAVANNAH && biome != Biomes.COLD_OCEAN && biome != Biomes.DEEP_COLD_OCEAN && biome != Biomes.DEEP_FROZEN_OCEAN && biome != Biomes.DEEP_LUKEWARM_OCEAN && biome != Biomes.DEEP_OCEAN && biome != Biomes.DEEP_WARM_OCEAN && biome != Biomes.FROZEN_OCEAN && biome != Biomes.LUKEWARM_OCEAN && biome != Biomes.OCEAN && biome != Biomes.WARM_OCEAN && biome != Biomes.FROZEN_RIVER && biome != Biomes.RIVER && biome != Biomes.BEACH && biome != Biomes.SNOWY_BEACH && biome != Biomes.END_BARRENS && biome != Biomes.END_HIGHLANDS && biome != Biomes.END_MIDLANDS && biome != Biomes.SMALL_END_ISLANDS && biome != Biomes.THE_END && biome != Biomes.NETHER && biome != Biomes.STONE_SHORE && biome != Biomes.THE_VOID) {
 					biome.addStructure(PrehistoricFeature.TIME_TEMPLE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
 				}
 				biome.addFeature(Decoration.SURFACE_STRUCTURES, PrehistoricFeature.HELL_CREEK_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
@@ -426,4 +427,60 @@ public class PrehistoricFauna {
 		}
 	}
 
+
+
+	@Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+	public static class PHFWorldGenRegistries {
+
+		@SubscribeEvent
+		public static void registerBiomes(RegistryEvent.Register<Biome> event) {
+			LOGGER.debug("PHF: Registering biomes...");
+			PHFBiomes.init();
+			PHFBiomes.biomes.sort(Comparator.comparingInt(PHFBiomes.PreserveBiomeOrder::getOrderPosition));
+			PHFBiomes.biomes.forEach(preserveBiomeOrder -> event.getRegistry().register(preserveBiomeOrder.getBiome()));
+			LOGGER.info("PHF: Biomes registered!");
+		}
+
+		@SubscribeEvent
+		public static void registerDecorators(RegistryEvent.Register<Placement<?>> event) {
+			LOGGER.debug("PHF: Registering decorators...");
+			PHFDecorators.init();
+			PHFDecorators.decorators.forEach(decorator -> event.getRegistry().register(decorator));
+			LOGGER.info("PHF: Decorators registered!");
+		}
+
+		@SubscribeEvent
+		public static void registerStructures(RegistryEvent.Register<Feature<?>> event) {
+			LOGGER.debug("PHF: Registering structures...");
+			PHFStructures.init();
+//            PHFStructures.structures.forEach(structure -> event.getRegistry().register(structure));
+//            Structure.STRUCTURE_DECORATION_STAGE_MAP.forEach(((structure, decoration) -> System.out.println(Registry.STRUCTURE_FEATURE.getKey(structure).toString())));
+			LOGGER.info("PHF: Structures registered!");
+		}
+
+		@SubscribeEvent
+		public static void registerFeatures(RegistryEvent.Register<Feature<?>> event) {
+			LOGGER.debug("PHF: Registering features...");
+			PHFFeatures.init();
+			PHFFeatures.features.forEach(feature -> event.getRegistry().register(feature));
+			LOGGER.info("PHF: Features registered!");
+		}
+
+		@SubscribeEvent
+		public static void registerSurfaceBuilders(RegistryEvent.Register<SurfaceBuilder<?>> event) {
+			LOGGER.debug("PHF: Registering surface builders...");
+			PHFSurfaceBuilders.init();
+			PHFSurfaceBuilders.surfaceBuilders.forEach(surfaceBuilder -> event.getRegistry().register(surfaceBuilder));
+			LOGGER.info("PHF: Surface builders Registered!");
+		}
+	}
+
+	public static class ServerEvents {
+		@SubscribeEvent
+		public void commandRegisterEvent(FMLServerStartingEvent event) {
+			LOGGER.debug("Prehistoric Fauna: \"Server Starting\" Event Starting...");
+			PHFCommand.register(event.getCommandDispatcher());
+			LOGGER.info("Prehistoric Fauna: \"Server Starting\" Event Complete!");
+		}
+	}
 }

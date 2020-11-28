@@ -59,7 +59,7 @@ public class PHFTreeConfig implements IFeatureConfig {
         BlockStateProvider diskProvider = Registry.BLOCK_STATE_PROVIDER_TYPE.getOrDefault(new ResourceLocation(ops.get("disk_provider").get("type").asString().orElseThrow(RuntimeException::new))).func_227399_a_(ops.get("disk_provider").orElseEmptyMap());;
         int minHeight = ops.get("min_height").asInt(0);
         int maxHeight = ops.get("max_height").asInt(0);
-        int diskRadius= ops.get("disk_radius").asInt(0);
+        int diskRadius = ops.get("disk_radius").asInt(0);
         List<BlockState> whitelist = new ArrayList<>(ops.get("whitelist").asList(BlockState::deserialize));
         return new PHFTreeConfig(trunkProvider, leavesProvider, groundReplacementProvider, diskProvider, minHeight, maxHeight, diskRadius, whitelist);
     }
