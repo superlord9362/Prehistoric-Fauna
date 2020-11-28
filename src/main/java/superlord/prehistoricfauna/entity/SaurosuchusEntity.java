@@ -39,7 +39,9 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
@@ -126,6 +128,18 @@ public class SaurosuchusEntity extends PrehistoricEntity {
 
 	private void setAttackGoals() {
 		this.targetSelector.addGoal(2, attackAnimals);
+	}
+	
+	protected SoundEvent getAmbientSound() {
+		return SoundHandler.SAUROSUCHUS_IDLE;
+	}
+
+	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+		return SoundHandler.SAUROSUCHUS_HURT;
+	}
+
+	protected SoundEvent getDeathSound() {
+		return SoundHandler.SAUROSUCHUS_DEATH;
 	}
 
 	protected void playWarningSound() {

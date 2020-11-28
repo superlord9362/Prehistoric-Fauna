@@ -24,8 +24,6 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.init.ModEntityTypes;
 import superlord.prehistoricfauna.world.placement.TimeTemplePieces;
 
-import net.minecraft.world.gen.feature.structure.Structure.IStartFactory;
-
 public class TimeTempleStructure  extends Structure<NoFeatureConfig>{
 
 	public TimeTempleStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> configFactoryIn) {

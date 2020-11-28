@@ -122,7 +122,7 @@ public class SillosuchusEntity extends PrehistoricEntity {
 	}
 	
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.SILLOSUCHUS_HURT;
+		return SoundHandler.SILLOSUCHUS_DEATH;
 	}
 	
 	protected void playWarningSound() {

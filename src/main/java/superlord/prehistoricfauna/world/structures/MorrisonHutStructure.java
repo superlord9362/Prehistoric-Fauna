@@ -24,8 +24,6 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.world.placement.MorrisonHutPieces;
 
-import net.minecraft.world.gen.feature.structure.Structure.IStartFactory;
-
 public class MorrisonHutStructure  extends Structure<NoFeatureConfig>{
 
 	public MorrisonHutStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> configFactoryIn) {

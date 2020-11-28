@@ -14,8 +14,6 @@ import net.minecraft.world.World;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.init.BlockInit;
 
-import net.minecraft.block.Block.Properties;
-
 public class TriassicTimeBlock extends Block {
 	
 	private static final VoxelShape AABB = Block.makeCuboidShape(4, 4, 4, 12, 12, 12);

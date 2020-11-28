@@ -114,11 +114,11 @@ public class AnkylosaurusEntity extends PrehistoricEntity {
    }
 
    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-	   return null;
+	   return SoundHandler.ANKYLOSAURUS_HURT;
    }
 
    protected SoundEvent getDeathSound() {
-	   return null;
+	   return SoundHandler.ANKYLOSAURUS_DEATH;
    }
 
    protected void playStepSound(BlockPos pos, BlockState blockIn) {

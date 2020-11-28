@@ -49,8 +49,6 @@ import net.minecraft.world.server.ServerBossInfo;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.util.Constants.NBT;
 
-import net.minecraft.entity.ai.goal.Goal.Flag;
-
 public class TimeGuardianEntity extends MonsterEntity {
 	private static final DataParameter<Boolean> ACTIVE = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> USE_SLAM = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.BOOLEAN);

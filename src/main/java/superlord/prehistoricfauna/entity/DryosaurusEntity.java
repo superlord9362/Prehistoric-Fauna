@@ -129,7 +129,7 @@ public class DryosaurusEntity extends PrehistoricEntity {
 	}
 	
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.DRYOSAURUS_HURT;
+		return SoundHandler.DRYOSAURUS_DEATH;
 	}
 	
 	@Override

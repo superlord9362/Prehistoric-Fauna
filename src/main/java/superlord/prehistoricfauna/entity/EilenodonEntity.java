@@ -176,7 +176,7 @@ public class EilenodonEntity extends PrehistoricEntity {
 	}
 	
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.EILENODON_HURT;
+		return SoundHandler.EILENODON_DEATH;
 	}
 
 	@Override

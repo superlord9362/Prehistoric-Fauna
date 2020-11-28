@@ -137,7 +137,7 @@ public class HesperornithoidesEntity extends PrehistoricEntity {
 	}
 	
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.HESPERORNITHOIDES_HURT;
+		return SoundHandler.HESPERORNITHOIDES_DEATH;
 	}
 	
 	protected void registerData() {

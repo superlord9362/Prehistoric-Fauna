@@ -134,7 +134,7 @@ public class HerrerasaurusEntity extends PrehistoricEntity {
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.HERRERASAURUS_HURT;
+		return SoundHandler.HERRERASAURUS_DEATH;
 	}
 
 	protected void playWarningSound() {

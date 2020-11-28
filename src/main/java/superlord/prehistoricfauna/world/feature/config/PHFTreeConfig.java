@@ -52,7 +52,8 @@ public class PHFTreeConfig implements IFeatureConfig {
         return new Dynamic<>(ops, ops.createMap(builder.build()));
     }
 
-    public static <T> PHFTreeConfig deserialize(Dynamic<T> ops) {
+    @SuppressWarnings("deprecation")
+	public static <T> PHFTreeConfig deserialize(Dynamic<T> ops) {
         BlockStateProvider trunkProvider = Registry.BLOCK_STATE_PROVIDER_TYPE.getOrDefault(new ResourceLocation(ops.get("trunk_provider").get("type").asString().orElseThrow(RuntimeException::new))).func_227399_a_(ops.get("trunk_provider").orElseEmptyMap());
         BlockStateProvider leavesProvider = Registry.BLOCK_STATE_PROVIDER_TYPE.getOrDefault(new ResourceLocation(ops.get("leaves_provider").get("type").asString().orElseThrow(RuntimeException::new))).func_227399_a_(ops.get("leaves_provider").orElseEmptyMap());
         BlockStateProvider groundReplacementProvider = Registry.BLOCK_STATE_PROVIDER_TYPE.getOrDefault(new ResourceLocation(ops.get("ground_replacement_provider").get("type").asString().orElseThrow(RuntimeException::new))).func_227399_a_(ops.get("ground_replacement_provider").orElseEmptyMap());

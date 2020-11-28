@@ -24,8 +24,6 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.world.placement.HellCreekHutPieces;
 
-import net.minecraft.world.gen.feature.structure.Structure.IStartFactory;
-
 public class HCHutStructure  extends Structure<NoFeatureConfig>{
 
 	public HCHutStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> configFactoryIn) {

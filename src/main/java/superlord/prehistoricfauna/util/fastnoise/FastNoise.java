@@ -331,7 +331,8 @@ public class FastNoise {
         return hash;
     }
 
-    private static int Hash4D(int seed, int x, int y, int z, int w) {
+    @SuppressWarnings("unused")
+	private static int Hash4D(int seed, int x, int y, int z, int w) {
         int hash = seed;
         hash ^= X_PRIME * x;
         hash ^= Y_PRIME * y;

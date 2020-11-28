@@ -27,8 +27,6 @@ import net.minecraft.world.World;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.entity.tile.TileEntityPaleoscribe;
 
-import net.minecraft.block.Block.Properties;
-
 public class PaleoscribeBlock extends ContainerBlock {
 	
 	public static final DirectionProperty FACING = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);

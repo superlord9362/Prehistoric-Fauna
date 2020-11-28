@@ -34,8 +34,6 @@ import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.DimensionTypeInit;
 import superlord.prehistoricfauna.util.TeleporterTriassic;
 
-import net.minecraft.block.Block.Properties;
-
 public class TriassicPortalBlock extends BreakableBlock {
 
 	public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;

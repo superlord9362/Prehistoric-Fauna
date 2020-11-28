@@ -135,7 +135,7 @@ public class CeratosaurusEntity extends PrehistoricEntity {
 	}
 	
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.CERATOSAURUS_HURT;
+		return SoundHandler.CERATOSAURUS_DEATH;
 	}
 	
 	protected void playStepSound(BlockPos pos, BlockState state) {

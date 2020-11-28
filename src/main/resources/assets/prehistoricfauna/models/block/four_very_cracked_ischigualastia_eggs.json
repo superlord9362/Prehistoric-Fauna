@@ -1,0 +1,7 @@
+{
+    "parent": "prehistoricfauna:block/four_ischigualastia_eggs",
+    "textures": {
+        "particle": "prehistoricfauna:blocks/ischigualastia_eggs_very_cracked",
+        "all": "prehistoricfauna:blocks/ischigualastia_eggs_very_cracked"
+    }
+}

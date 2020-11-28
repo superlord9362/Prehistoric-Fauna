@@ -16,8 +16,6 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
 import superlord.prehistoricfauna.init.BlockInit;
 
-import net.minecraft.block.Block.Properties;
-
 public class PrehistoricLog extends LogBlock {
 		
 	public PrehistoricLog(MaterialColor color, Properties properties) {

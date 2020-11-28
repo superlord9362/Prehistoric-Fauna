@@ -128,7 +128,7 @@ public class ThescelosaurusEntity extends PrehistoricEntity {
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.THESCELOSAURUS_HURT;
+		return SoundHandler.THESCELOSAURUS_DEATH;
 	}
 
 	@Override

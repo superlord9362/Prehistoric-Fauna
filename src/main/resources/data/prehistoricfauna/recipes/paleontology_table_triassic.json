@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "lf",
+    "lf ",
     "ppi",
-    "pp"
+    "pp "
   ],
   "key": {
     "p": {
-      "item": "minecraft:planks"
+      "tag": "minecraft:planks"
     },
 	"l": {
 		"item": "minecraft:leather"

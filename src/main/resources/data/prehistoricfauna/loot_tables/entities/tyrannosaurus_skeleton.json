@@ -3,20 +3,17 @@
   "pools": [
     {
       "rolls": 1,
+      "bonus_rolls": 0,
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "prehistoricfauna:tyrannosaurus_skeleton",
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 1.0,
-                "type": "minecraft:uniform"
-              }
-            },
-          ],
-          "name": "prehistoricfauna:tyrannosaurus_skeleton"
+              "count": 1
+            }
+          ]
         }
       ]
     }

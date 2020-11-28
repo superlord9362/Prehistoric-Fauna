@@ -166,7 +166,7 @@ public class DidelphodonEntity extends PrehistoricEntity {
 	}
 	
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.DIDELPHODON_HURT;
+		return SoundHandler.DIDELPHODON_DEATH;
 	}
 	
 	private void startMovingTo(BlockPos pos) {
