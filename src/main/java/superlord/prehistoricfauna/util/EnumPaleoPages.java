@@ -1,15 +1,14 @@
 package superlord.prehistoricfauna.util;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
+import superlord.prehistoricfauna.item.PaleopediaItem;
+
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-
-import javax.annotation.Nullable;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import superlord.prehistoricfauna.item.PaleopediaItem;
 
 public enum EnumPaleoPages {
 	

@@ -1,14 +1,6 @@
 package superlord.prehistoricfauna.block;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ContainerBlock;
-import net.minecraft.block.FireBlock;
+import net.minecraft.block.*;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
@@ -31,6 +23,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootParameters;
 import superlord.prehistoricfauna.entity.tile.DidelphodonBurrowTileEntity;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class DidelphodonBurrowBlock extends ContainerBlock {
 	

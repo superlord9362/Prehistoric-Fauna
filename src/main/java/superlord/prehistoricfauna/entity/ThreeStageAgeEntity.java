@@ -1,7 +1,5 @@
 package superlord.prehistoricfauna.entity;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -19,6 +17,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
 
 public abstract class ThreeStageAgeEntity extends CreatureEntity {
    private static final DataParameter<Boolean> BABY = EntityDataManager.createKey(ThreeStageAgeEntity.class, DataSerializers.BOOLEAN);

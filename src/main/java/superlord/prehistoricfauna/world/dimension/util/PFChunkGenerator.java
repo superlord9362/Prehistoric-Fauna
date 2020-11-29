@@ -1,7 +1,5 @@
 package superlord.prehistoricfauna.world.dimension.util;
 
-import java.util.List;
-
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.Util;
@@ -16,6 +14,8 @@ import net.minecraft.world.gen.NoiseChunkGenerator;
 import net.minecraft.world.gen.OctavesNoiseGenerator;
 import net.minecraft.world.gen.WorldGenRegion;
 import net.minecraft.world.spawner.WorldEntitySpawner;
+
+import java.util.List;
 
 public class PFChunkGenerator extends NoiseChunkGenerator<PFGenSettings>{
 	

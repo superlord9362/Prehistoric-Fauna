@@ -1,9 +1,9 @@
 package superlord.prehistoricfauna.entity.goal;
 
-import java.util.List;
-
 import net.minecraft.entity.ai.goal.Goal;
 import superlord.prehistoricfauna.entity.PrehistoricStagedEntity;
+
+import java.util.List;
 
 public class PrehistoricFollowParentGoal extends Goal {
    private final PrehistoricStagedEntity childAnimal;

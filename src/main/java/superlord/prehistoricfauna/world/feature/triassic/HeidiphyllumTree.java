@@ -1,7 +1,5 @@
 package superlord.prehistoricfauna.world.feature.triassic;
 
-import java.util.Random;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.block.trees.Tree;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
@@ -11,6 +9,8 @@ import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.foliageplacer.SpruceFoliagePlacer;
 import net.minecraftforge.common.IPlantable;
 import superlord.prehistoricfauna.init.BlockInit;
+
+import java.util.Random;
 
 public class HeidiphyllumTree extends Tree {
 	

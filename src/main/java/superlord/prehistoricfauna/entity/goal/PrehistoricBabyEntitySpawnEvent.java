@@ -1,11 +1,11 @@
 package superlord.prehistoricfauna.entity.goal;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.eventbus.api.Cancelable;
 import superlord.prehistoricfauna.entity.PrehistoricStagedEntity;
 import superlord.prehistoricfauna.entity.ThreeStageAgeEntity;
+
+import javax.annotation.Nullable;
 
 @Cancelable
 public class PrehistoricBabyEntitySpawnEvent extends net.minecraftforge.eventbus.api.Event

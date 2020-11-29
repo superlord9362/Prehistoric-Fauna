@@ -1,12 +1,12 @@
 package superlord.prehistoricfauna.util;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import superlord.prehistoricfauna.init.ItemInit;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class TableRecipes {
 	

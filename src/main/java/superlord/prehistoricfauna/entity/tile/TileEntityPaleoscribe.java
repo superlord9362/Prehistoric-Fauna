@@ -1,12 +1,5 @@
 package superlord.prehistoricfauna.entity.tile;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -30,6 +23,12 @@ import superlord.prehistoricfauna.init.TileEntityRegistry;
 import superlord.prehistoricfauna.inventory.ContainerPaleoscribe;
 import superlord.prehistoricfauna.message.MessageUpdatePaleoscribe;
 import superlord.prehistoricfauna.util.EnumPaleoPages;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 public class TileEntityPaleoscribe extends LockableTileEntity implements ITickableTileEntity, ISidedInventory {
 	

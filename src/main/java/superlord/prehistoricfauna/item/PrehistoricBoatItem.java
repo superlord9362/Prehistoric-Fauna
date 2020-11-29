@@ -1,8 +1,5 @@
 package superlord.prehistoricfauna.item;
 
-import java.util.List;
-import java.util.function.Predicate;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -18,6 +15,9 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.entity.PrehistoricBoatEntity;
+
+import java.util.List;
+import java.util.function.Predicate;
 
 public class PrehistoricBoatItem extends Item {
     private static final Predicate<Entity> RIDERS = EntityPredicates.NOT_SPECTATING.and(Entity::canBeCollidedWith);

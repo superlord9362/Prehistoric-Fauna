@@ -194,9 +194,9 @@ public abstract class MixinTemplate {
                     BlockState state = world.getBlockState(pos);
 
                     Block blockCheck = state.getBlock();
-                    int modifiedY = featureY;
+                    int modifiedY = featureY + 32;
 
-                    int topTrunkY = 14;
+                    int topTrunkY = 38;
                     //|| featurePos.getX() == 0 && featurePos.getZ() == 1 || featurePos.getX() == 0 && featurePos.getZ() == -1 || featurePos.getX() == 1 && featurePos.getZ() == 0 || featurePos.getX() == -1 && featurePos.getZ() == 0
 
                     String flip;
@@ -207,7 +207,8 @@ public abstract class MixinTemplate {
                     else
                         flip = "randTreeHeight";
 
-                    if (blockCheck.getRegistryName().toString().contains("log") && pos.getX() == 0 && pos.getZ() == 0) {
+
+                    if (blockCheck.getRegistryName().toString().contains("log") && pos.getX() == 0 && pos.getZ() == 0 || pos.getX() == -1 && pos.getZ() == 0 || pos.getX() == -1 && pos.getZ() == -1 || pos.getX() == 0 && pos.getZ() == -1) {
                         trunkLogList.add("placeTrunk(config, rand, changedBlocks, world, mainmutable.setPos(pos).move(" + featureX + ", " + modifiedY + ", " + realZ + "), boundsIn);");
                     } else if (blockCheck.getRegistryName().toString().contains("log")) {
                         treeBranchList.add("placeBranch(config, rand, changedBlocks, world, mainmutable.setPos(pos).move(" + featureX + ", " + flip + ", " + realZ + "), boundsIn);");

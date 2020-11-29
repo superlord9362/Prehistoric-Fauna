@@ -1,15 +1,14 @@
 package superlord.prehistoricfauna.world.feature.generator;
 
-import java.util.Random;
-import java.util.Set;
-
 import com.mojang.datafixers.Dynamic;
-
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.IWorldGenerationReader;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
 import superlord.prehistoricfauna.world.placement.PrehistoricFoliagePlacerType;
+
+import java.util.Random;
+import java.util.Set;
 
 public class ZamitesFoliageGenerator extends FoliagePlacer {
 	public ZamitesFoliageGenerator(int radius, int randomRadius) {

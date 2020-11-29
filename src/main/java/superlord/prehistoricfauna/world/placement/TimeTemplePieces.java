@@ -1,11 +1,6 @@
 package superlord.prehistoricfauna.world.placement;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-
 import com.google.common.collect.ImmutableMap;
-
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.nbt.CompoundNBT;
@@ -27,6 +22,10 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.entity.TimeGuardianEntity;
 import superlord.prehistoricfauna.init.ModEntityTypes;
 import superlord.prehistoricfauna.world.PrehistoricFeature;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 public class TimeTemplePieces {
 	

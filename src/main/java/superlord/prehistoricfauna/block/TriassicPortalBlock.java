@@ -1,9 +1,6 @@
 package superlord.prehistoricfauna.block;
 
-import javax.annotation.Nonnull;
-
 import com.google.common.cache.LoadingCache;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -33,6 +30,8 @@ import net.minecraftforge.common.util.ITeleporter;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.DimensionTypeInit;
 import superlord.prehistoricfauna.util.TeleporterTriassic;
+
+import javax.annotation.Nonnull;
 
 public class TriassicPortalBlock extends BreakableBlock {
 

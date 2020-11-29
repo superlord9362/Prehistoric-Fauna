@@ -1,7 +1,5 @@
 package superlord.prehistoricfauna.message;
 
-import java.util.function.Supplier;
-
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
@@ -10,6 +8,8 @@ import net.minecraftforge.fml.network.NetworkEvent;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.entity.tile.TileEntityPaleoscribe;
 import superlord.prehistoricfauna.util.EnumPaleoPages;
+
+import java.util.function.Supplier;
 
 public class MessageUpdatePaleoscribe {
 	

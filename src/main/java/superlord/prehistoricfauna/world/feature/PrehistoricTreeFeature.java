@@ -1,11 +1,6 @@
 package superlord.prehistoricfauna.world.feature;
 
-import java.util.Random;
-import java.util.Set;
-import java.util.function.Function;
-
 import com.mojang.datafixers.Dynamic;
-
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.gen.IWorldGenerationBaseReader;
@@ -13,6 +8,10 @@ import net.minecraft.world.gen.IWorldGenerationReader;
 import net.minecraft.world.gen.feature.AbstractTreeFeature;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import superlord.prehistoricfauna.world.feature.generator.PrehistoricGiantTreeFeatureConfig;
+
+import java.util.Random;
+import java.util.Set;
+import java.util.function.Function;
 
 public abstract class PrehistoricTreeFeature<T extends BaseTreeFeatureConfig> extends AbstractTreeFeature<T> {
 	   public PrehistoricTreeFeature(Function<Dynamic<?>, ? extends T> p_i225810_1_) {

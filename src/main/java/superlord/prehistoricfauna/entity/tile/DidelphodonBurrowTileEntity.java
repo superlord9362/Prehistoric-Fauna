@@ -1,12 +1,6 @@
 package superlord.prehistoricfauna.entity.tile;
 
-import java.util.Iterator;
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import com.google.common.collect.Lists;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -20,6 +14,10 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import superlord.prehistoricfauna.entity.DidelphodonEntity;
 import superlord.prehistoricfauna.init.TileEntityRegistry;
+
+import javax.annotation.Nullable;
+import java.util.Iterator;
+import java.util.List;
 
 public class DidelphodonBurrowTileEntity extends TileEntity implements ITickableTileEntity {
    private final List<DidelphodonBurrowTileEntity.Didelphodon> didelphodon = Lists.newArrayList();

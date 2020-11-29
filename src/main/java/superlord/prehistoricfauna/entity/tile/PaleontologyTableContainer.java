@@ -1,9 +1,5 @@
 package superlord.prehistoricfauna.entity.tile;
 
-import java.util.Objects;
-
-import javax.annotation.Nonnull;
-
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -18,6 +14,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ContainerRegistry;
+
+import javax.annotation.Nonnull;
+import java.util.Objects;
 
 public class PaleontologyTableContainer extends Container {
 

@@ -3,7 +3,6 @@ package superlord.prehistoricfauna.world.feature;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.datafixers.Dynamic;
 import com.mojang.datafixers.types.DynamicOps;
-
 import net.minecraft.world.gen.feature.IFeatureConfig;
 
 public class CrassostreaOystersConfig implements IFeatureConfig {

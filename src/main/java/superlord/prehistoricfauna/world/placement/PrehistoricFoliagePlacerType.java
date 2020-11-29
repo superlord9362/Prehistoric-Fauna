@@ -1,9 +1,6 @@
 package superlord.prehistoricfauna.world.placement;
 
-import java.util.function.Function;
-
 import com.mojang.datafixers.Dynamic;
-
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacerType;
@@ -11,6 +8,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.world.feature.generator.ZamitesFoliageGenerator;
+
+import java.util.function.Function;
 
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Bus.FORGE)
 public class PrehistoricFoliagePlacerType {

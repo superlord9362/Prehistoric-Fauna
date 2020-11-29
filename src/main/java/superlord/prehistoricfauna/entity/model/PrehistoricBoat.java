@@ -1,16 +1,15 @@
 package superlord.prehistoricfauna.entity.model;
 
-import java.util.Arrays;
-
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
-
 import net.minecraft.client.renderer.entity.model.SegmentedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.entity.PrehistoricBoatEntity;
+
+import java.util.Arrays;
 
 @OnlyIn(Dist.CLIENT)
 public class PrehistoricBoat extends SegmentedModel<PrehistoricBoatEntity> {

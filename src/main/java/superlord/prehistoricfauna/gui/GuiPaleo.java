@@ -18,13 +18,12 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
-import superlord.prehistoricfauna.init.ItemInit;
-import superlord.prehistoricfauna.util.EnumPaleoPages;
-import superlord.prehistoricfauna.util.StatCollector;
-
 import org.apache.commons.io.IOUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
+import superlord.prehistoricfauna.init.ItemInit;
+import superlord.prehistoricfauna.util.EnumPaleoPages;
+import superlord.prehistoricfauna.util.StatCollector;
 
 import java.io.IOException;
 import java.util.ArrayList;

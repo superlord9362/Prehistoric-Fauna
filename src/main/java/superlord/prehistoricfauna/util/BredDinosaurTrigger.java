@@ -1,11 +1,8 @@
 package superlord.prehistoricfauna.util;
 
-import javax.annotation.Nullable;
-
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
 import net.minecraft.advancements.criterion.AbstractCriterionTrigger;
 import net.minecraft.advancements.criterion.CriterionInstance;
 import net.minecraft.advancements.criterion.EntityPredicate;
@@ -13,6 +10,8 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.entity.PrehistoricStagedEntity;
 import superlord.prehistoricfauna.entity.ThreeStageAgeEntity;
+
+import javax.annotation.Nullable;
 
 public class BredDinosaurTrigger extends AbstractCriterionTrigger<BredDinosaurTrigger.Instance> {
    private static final ResourceLocation ID = new ResourceLocation("bred_animals");

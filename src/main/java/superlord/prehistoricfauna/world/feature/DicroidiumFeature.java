@@ -1,10 +1,6 @@
 package superlord.prehistoricfauna.world.feature;
 
-import java.util.Random;
-import java.util.function.Function;
-
 import com.mojang.datafixers.Dynamic;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -16,6 +12,9 @@ import net.minecraft.world.gen.feature.Feature;
 import superlord.prehistoricfauna.block.DicroidiumBlock;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.world.placement.DicroidiumConfig;
+
+import java.util.Random;
+import java.util.function.Function;
 
 public class DicroidiumFeature extends Feature<DicroidiumConfig> {
    public DicroidiumFeature(Function<Dynamic<?>, ? extends DicroidiumConfig> func) {

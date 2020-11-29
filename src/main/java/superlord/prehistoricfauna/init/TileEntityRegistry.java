@@ -1,7 +1,5 @@
 package superlord.prehistoricfauna.init;
 
-import java.lang.reflect.Field;
-
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
@@ -14,6 +12,8 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.entity.tile.DidelphodonBurrowTileEntity;
 import superlord.prehistoricfauna.entity.tile.PaleontologyTableTileEntity;
 import superlord.prehistoricfauna.entity.tile.TileEntityPaleoscribe;
+
+import java.lang.reflect.Field;
 
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TileEntityRegistry {

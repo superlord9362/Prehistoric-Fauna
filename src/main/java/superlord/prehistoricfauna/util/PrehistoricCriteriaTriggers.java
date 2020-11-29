@@ -1,14 +1,12 @@
 package superlord.prehistoricfauna.util;
 
-import java.util.Map;
-
-import javax.annotation.Nullable;
-
 import com.google.common.collect.Maps;
-
 import net.minecraft.advancements.ICriterionInstance;
 import net.minecraft.advancements.ICriterionTrigger;
 import net.minecraft.util.ResourceLocation;
+
+import javax.annotation.Nullable;
+import java.util.Map;
 
 public class PrehistoricCriteriaTriggers {
    private static final Map<ResourceLocation, ICriterionTrigger<?>> REGISTRY = Maps.newHashMap();

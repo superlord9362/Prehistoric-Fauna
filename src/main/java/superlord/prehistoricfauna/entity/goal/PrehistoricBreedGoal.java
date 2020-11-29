@@ -1,8 +1,5 @@
 package superlord.prehistoricfauna.entity.goal;
 
-import java.util.EnumSet;
-import java.util.List;
-import javax.annotation.Nullable;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
@@ -13,6 +10,10 @@ import net.minecraft.world.World;
 import superlord.prehistoricfauna.entity.PrehistoricStagedEntity;
 import superlord.prehistoricfauna.entity.ThreeStageAgeEntity;
 import superlord.prehistoricfauna.util.PrehistoricCriteriaTriggers;
+
+import javax.annotation.Nullable;
+import java.util.EnumSet;
+import java.util.List;
 
 public class PrehistoricBreedGoal extends Goal {
    private static final EntityPredicate field_220689_d = (new EntityPredicate()).setDistance(8.0D).allowInvulnerable().allowFriendlyFire().setLineOfSiteRequired();

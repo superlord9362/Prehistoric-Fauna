@@ -1,7 +1,5 @@
 package superlord.prehistoricfauna.util;
 
-import java.util.function.Supplier;
-
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.crafting.Ingredient;
@@ -12,6 +10,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.init.ItemInit;
+
+import java.util.function.Supplier;
 
 public enum ArmorMaterialInit implements IArmorMaterial {
 	

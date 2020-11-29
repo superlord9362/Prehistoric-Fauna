@@ -1,11 +1,11 @@
 package superlord.prehistoricfauna.world.dimension.triassic;
 
-import java.util.function.BiFunction;
-
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.ModDimension;
+
+import java.util.function.BiFunction;
 
 public class TriassicModDimension extends ModDimension{
 	

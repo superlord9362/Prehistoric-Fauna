@@ -1,18 +1,18 @@
-package superlord.prehistoricfauna.world.dimension.triassic;
+package superlord.prehistoricfauna.world.dimension.cretaceous;
 
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.INoiseRandom;
 import net.minecraft.world.gen.layer.traits.IAreaTransformer0;
 import superlord.prehistoricfauna.util.fastnoise.FastNoise;
+import superlord.prehistoricfauna.world.dimension.cretaceous.CretaceousBiomeProvider;
 
-public class TriassicMasterLayer implements IAreaTransformer0 {
+public class CretaceousMasterLayer implements IAreaTransformer0 {
     private final Registry<Biome> biomeRegistry;
     private final long seed;
     private final FastNoise fastNoise;
 
-    public TriassicMasterLayer(Registry<Biome> biomeRegistry, long seed) {
+    public CretaceousMasterLayer(Registry<Biome> biomeRegistry, long seed) {
         this.biomeRegistry = biomeRegistry;
         this.seed = seed;
         fastNoise = new FastNoise((int) seed);
@@ -27,6 +27,6 @@ public class TriassicMasterLayer implements IAreaTransformer0 {
     }
 
     public static int getRandomBiomes(Registry<Biome> biomeRegistry, INoiseRandom rand) {
-        return biomeRegistry.getId(biomeRegistry.getOrDefault(TriassicBiomeProvider.BIOMES.get(rand.random(TriassicBiomeProvider.BIOMES.size()))));
+        return biomeRegistry.getId(biomeRegistry.getOrDefault(CretaceousBiomeProvider.BIOMES.get(rand.random(CretaceousBiomeProvider.BIOMES.size()))));
     }
 }

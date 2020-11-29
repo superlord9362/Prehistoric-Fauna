@@ -11,7 +11,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraftforge.fml.loading.FMLPaths;
-import superlord.prehistoricfauna.world.dimension.triassic.TriassicBiomeProvider;
+import superlord.prehistoricfauna.world.dimension.cretaceous.CretaceousBiomeProvider;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -29,7 +29,7 @@ public class GetRiverSkyView {
 
 
     public static int test(int range, long seed) {
-        TriassicBiomeProvider biomeProvider = new TriassicBiomeProvider(Registry.BIOME, seed);
+        CretaceousBiomeProvider biomeProvider = new CretaceousBiomeProvider(Registry.BIOME, seed);
         execute(biomeProvider, range);
         return 1;
     }

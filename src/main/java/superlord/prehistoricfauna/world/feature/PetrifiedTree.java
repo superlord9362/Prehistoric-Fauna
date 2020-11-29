@@ -1,7 +1,5 @@
 package superlord.prehistoricfauna.world.feature;
 
-import java.util.Random;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.trees.Tree;
@@ -11,6 +9,8 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.foliageplacer.SpruceFoliagePlacer;
 import superlord.prehistoricfauna.init.BlockInit;
+
+import java.util.Random;
 
 public class PetrifiedTree extends Tree {
 

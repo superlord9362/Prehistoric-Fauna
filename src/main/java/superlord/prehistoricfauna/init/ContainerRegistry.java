@@ -1,7 +1,5 @@
 package superlord.prehistoricfauna.init;
 
-import java.lang.reflect.Field;
-
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
@@ -12,6 +10,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.entity.tile.PaleontologyTableContainer;
 import superlord.prehistoricfauna.inventory.ContainerPaleoscribe;
+
+import java.lang.reflect.Field;
 
 public class ContainerRegistry {
 	

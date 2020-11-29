@@ -1,10 +1,6 @@
 package superlord.prehistoricfauna.world.feature.cretaceous;
 
-import java.util.Random;
-import java.util.function.Function;
-
 import com.mojang.datafixers.Dynamic;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -18,6 +14,9 @@ import superlord.prehistoricfauna.entity.tile.DidelphodonBurrowTileEntity;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
 import superlord.prehistoricfauna.world.placement.DidelphodonBurrowConfig;
+
+import java.util.Random;
+import java.util.function.Function;
 
 public class DidelphodonBurrowFeature extends Feature<DidelphodonBurrowConfig> {
    public DidelphodonBurrowFeature(Function<Dynamic<?>, ? extends DidelphodonBurrowConfig> func) {

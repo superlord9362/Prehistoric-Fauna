@@ -1,9 +1,5 @@
 package superlord.prehistoricfauna.entity.tile;
 
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -27,6 +23,9 @@ import net.minecraftforge.common.util.Constants;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.init.TileEntityRegistry;
 import superlord.prehistoricfauna.util.TableRecipes;
+
+import javax.annotation.Nullable;
+import java.util.Random;
 
 public class PaleontologyTableTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider, IInventory, ISidedInventory {
 

@@ -1,10 +1,6 @@
 package superlord.prehistoricfauna.world.feature.cretaceous;
 
-import java.util.Random;
-import java.util.function.Function;
-
 import com.mojang.datafixers.Dynamic;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LeavesBlock;
@@ -18,6 +14,9 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.world.placement.AraucariaConfig;
+
+import java.util.Random;
+import java.util.function.Function;
 
 public class AraucariaTreeGenerator extends Feature<AraucariaConfig> {
 	public AraucariaTreeGenerator(Function<Dynamic<?>, ? extends AraucariaConfig> p_i225808_1_) {

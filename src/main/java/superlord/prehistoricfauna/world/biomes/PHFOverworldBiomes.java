@@ -1,5 +1,6 @@
 package superlord.prehistoricfauna.world.biomes;
 
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
@@ -13,14 +14,17 @@ import net.minecraft.world.gen.feature.structure.MineshaftStructure;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
-import superlord.prehistoricfauna.world.PrehistoricFeature;
-import superlord.prehistoricfauna.world.feature.PetrifiedTree;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
+import superlord.prehistoricfauna.core.world.PHFFeatures;
+import superlord.prehistoricfauna.init.BlockInit;
+
+import static superlord.prehistoricfauna.core.world.PHFConfiguredFeatures.PETRIFIED_TREE;
 
 public class PHFOverworldBiomes {
 
     public static Biome petrifiedForest() {
-        Biome biome = new BiomeExtender(new Biome.Builder().precipitation(Biome.RainType.NONE).scale(0.07F).temperature(0.75F).depth(0.1F).downfall(0.4F).category(Biome.Category.FOREST).waterColor(4159204).waterFogColor(329011).surfaceBuilder(SurfaceBuilder.DEFAULT, PrehistoricFeature.SANDSTONE_SANDSTONE_STONE_CONFIG).parent(null));
-        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.NORMAL_TREE.withConfiguration(PetrifiedTree.PETRIFIED_TREE_CONFIG).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(1, 0.2F, 1))));
+        Biome biome = new BiomeExtender(new Biome.Builder().precipitation(Biome.RainType.NONE).scale(0.07F).temperature(0.75F).depth(0.1F).downfall(0.4F).category(Biome.Category.FOREST).waterColor(4159204).waterFogColor(329011).surfaceBuilder(SurfaceBuilder.DEFAULT, new SurfaceBuilderConfig(Blocks.COARSE_DIRT.getDefaultState(), BlockInit.TRIASSIC_SANDSTONE.getDefaultState(), Blocks.STONE.getDefaultState())).parent(null));
+        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PETRIFIED_TREE);
         DefaultBiomeFeatures.addCarvers(biome);
         biome.addStructure(Feature.MINESHAFT.withConfiguration(new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL)));
         biome.addStructure(Feature.STRONGHOLD.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
@@ -51,8 +55,8 @@ public class PHFOverworldBiomes {
     }
 
     public static Biome dummy() {
-        Biome biome = new BiomeExtender(new Biome.Builder().precipitation(Biome.RainType.NONE).scale(0.07F).temperature(0.75F).depth(0.1F).downfall(0.4F).category(Biome.Category.FOREST).waterColor(4159204).waterFogColor(329011).surfaceBuilder(SurfaceBuilder.DEFAULT, PrehistoricFeature.SANDSTONE_SANDSTONE_STONE_CONFIG).parent(null));
-        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PrehistoricFeature.DUMMY.withConfiguration(new NoFeatureConfig()).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(10000, 0.2F, 1))));
+        Biome biome = new BiomeExtender(new Biome.Builder().precipitation(Biome.RainType.NONE).scale(0.07F).temperature(0.75F).depth(0.1F).downfall(0.4F).category(Biome.Category.FOREST).waterColor(4159204).waterFogColor(329011).surfaceBuilder(SurfaceBuilder.DEFAULT, new SurfaceBuilderConfig(Blocks.COARSE_DIRT.getDefaultState(), BlockInit.TRIASSIC_SANDSTONE.getDefaultState(), Blocks.STONE.getDefaultState())).parent(null));
+        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PHFFeatures.DUMMY.withConfiguration(new NoFeatureConfig()).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(10000, 0.2F, 1))));
         return biome;
     }
 }

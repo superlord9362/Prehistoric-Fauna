@@ -1,9 +1,9 @@
 package superlord.prehistoricfauna.util;
 
-import java.util.Set;
-
 import it.unimi.dsi.fastutil.objects.ObjectArraySet;
 import net.minecraft.block.WoodType;
+
+import java.util.Set;
 
 public class PrehistoricWoodType extends WoodType {
 

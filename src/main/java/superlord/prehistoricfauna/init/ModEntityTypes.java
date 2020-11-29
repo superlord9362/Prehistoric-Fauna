@@ -6,31 +6,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.entity.AllosaurusEntity;
-import superlord.prehistoricfauna.entity.AnkylosaurusEntity;
-import superlord.prehistoricfauna.entity.BasilemysEntity;
-import superlord.prehistoricfauna.entity.CamarasaurusEntity;
-import superlord.prehistoricfauna.entity.CeratosaurusEntity;
-import superlord.prehistoricfauna.entity.ChromogisaurusEntity;
-import superlord.prehistoricfauna.entity.DakotaraptorEntity;
-import superlord.prehistoricfauna.entity.DidelphodonEntity;
-import superlord.prehistoricfauna.entity.DryosaurusEntity;
-import superlord.prehistoricfauna.entity.EilenodonEntity;
-import superlord.prehistoricfauna.entity.ExaeretodonEntity;
-import superlord.prehistoricfauna.entity.HerrerasaurusEntity;
-import superlord.prehistoricfauna.entity.HesperornithoidesEntity;
-import superlord.prehistoricfauna.entity.HyperodapedonEntity;
-import superlord.prehistoricfauna.entity.IschigualastiaEntity;
-import superlord.prehistoricfauna.entity.PrehistoricBoatEntity;
-import superlord.prehistoricfauna.entity.SaurosuchusEntity;
-import superlord.prehistoricfauna.entity.SillosuchusEntity;
-import superlord.prehistoricfauna.entity.StegosaurusEntity;
-import superlord.prehistoricfauna.entity.ThescelosaurusEntity;
-import superlord.prehistoricfauna.entity.TimeGuardianEntity;
-import superlord.prehistoricfauna.entity.TriceratopsEntity;
-import superlord.prehistoricfauna.entity.TyrannosaurusEntity;
-import superlord.prehistoricfauna.entity.TyrannosaurusSkeletonEntity;
-import superlord.prehistoricfauna.entity.TyrannosaurusSkullEntity;
+import superlord.prehistoricfauna.entity.*;
 
 public class ModEntityTypes {
 

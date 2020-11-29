@@ -1,7 +1,5 @@
 package superlord.prehistoricfauna.world.dimension.jurassic;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -14,9 +12,10 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
 import superlord.prehistoricfauna.world.dimension.util.PFChunkGenerator;
 import superlord.prehistoricfauna.world.dimension.util.PFGenSettings;
+
+import javax.annotation.Nullable;
 
 public class JurassicDimension extends Dimension {
 

@@ -1,12 +1,11 @@
 package superlord.prehistoricfauna.world.dimension.cretaceous;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.dimension.Dimension;
@@ -14,9 +13,10 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
 import superlord.prehistoricfauna.world.dimension.util.PFChunkGenerator;
 import superlord.prehistoricfauna.world.dimension.util.PFGenSettings;
+
+import javax.annotation.Nullable;
 
 public class CretaceousDimension extends Dimension {
 
@@ -28,7 +28,7 @@ public class CretaceousDimension extends Dimension {
 	
 	@Override
 	public ChunkGenerator<?> createChunkGenerator() {
-		return new PFChunkGenerator(world, new CretaceousBiomeProvider(), new PFGenSettings());
+		return new PFChunkGenerator(world, new CretaceousBiomeProvider(Registry.BIOME, world.getSeed()), new PFGenSettings());
 	}
 	
 	@Override

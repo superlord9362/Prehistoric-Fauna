@@ -1,13 +1,11 @@
 package superlord.prehistoricfauna.world.dimension.jurassic;
 
-import java.util.Random;
-import java.util.Set;
-
 import com.google.common.collect.ImmutableSet;
-
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import superlord.prehistoricfauna.core.world.PHFBiomes;
+
+import java.util.Set;
 
 public class JurassicBiomeProvider extends BiomeProvider {
 

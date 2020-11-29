@@ -1,11 +1,6 @@
 package superlord.prehistoricfauna.world.placement;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-
 import com.google.common.collect.ImmutableMap;
-
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.util.Mirror;
@@ -25,6 +20,10 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.world.PrehistoricFeature;
 import superlord.prehistoricfauna.world.PrehistoricLootTables;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 public class HellCreekHutPieces {
 	

@@ -2,9 +2,6 @@ package superlord.prehistoricfauna.item;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
-import java.util.Map;
-import java.util.Objects;
-import javax.annotation.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -31,6 +28,10 @@ import net.minecraft.world.World;
 import net.minecraft.world.spawner.AbstractSpawner;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import javax.annotation.Nullable;
+import java.util.Map;
+import java.util.Objects;
 
 public class SpawnSkeletonItem extends Item {
    private static final Map<EntityType<?>, SpawnSkeletonItem> EGGS = Maps.newIdentityHashMap();

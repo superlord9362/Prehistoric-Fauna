@@ -1,8 +1,5 @@
 package superlord.prehistoricfauna.block;
 
-import java.util.Random;
-import javax.annotation.Nullable;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
@@ -20,6 +17,9 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import superlord.prehistoricfauna.init.BlockInit;
+
+import javax.annotation.Nullable;
+import java.util.Random;
 
 public class PtilophyllumBaseBlock extends Block {
    public static final IntegerProperty AGE = BlockStateProperties.AGE_0_5;

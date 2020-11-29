@@ -1,9 +1,5 @@
 package superlord.prehistoricfauna.item;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,6 +20,9 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.PrehistoricFauna.PFBook;
 import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.util.EnumPaleoPages;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class PaleopediaItem extends Item {
 	

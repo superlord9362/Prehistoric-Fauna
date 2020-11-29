@@ -1,13 +1,13 @@
 package superlord.prehistoricfauna.util;
 
-import java.lang.reflect.Field;
-
 import net.minecraft.entity.EntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.init.ModEntityTypes;
+
+import java.lang.reflect.Field;
 
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ServerEvents {

@@ -1,12 +1,6 @@
 package superlord.prehistoricfauna.block;
 
-import java.util.Random;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ContainerBlock;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
@@ -26,6 +20,8 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.entity.tile.TileEntityPaleoscribe;
+
+import java.util.Random;
 
 public class PaleoscribeBlock extends ContainerBlock {
 	

@@ -1,9 +1,5 @@
 package superlord.prehistoricfauna.block;
 
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -26,6 +22,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import superlord.prehistoricfauna.entity.HesperornithoidesEntity;
 import superlord.prehistoricfauna.init.ModEntityTypes;
+
+import javax.annotation.Nullable;
+import java.util.Random;
 
 public class HesperornithoidesEggBlock extends Block {
 	private static final VoxelShape ONE_EGG_SHAPE = Block.makeCuboidShape(3.0D, 0.0D, 3.0D, 12.0D, 7.0D, 12.0D);

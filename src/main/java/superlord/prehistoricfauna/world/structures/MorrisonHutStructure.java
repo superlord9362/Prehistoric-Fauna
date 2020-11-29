@@ -1,11 +1,6 @@
 package superlord.prehistoricfauna.world.structures;
 
-import java.util.List;
-import java.util.Random;
-import java.util.function.Function;
-
 import com.mojang.datafixers.Dynamic;
-
 import net.minecraft.util.Rotation;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
@@ -23,6 +18,10 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.world.placement.MorrisonHutPieces;
+
+import java.util.List;
+import java.util.Random;
+import java.util.function.Function;
 
 public class MorrisonHutStructure  extends Structure<NoFeatureConfig>{
 

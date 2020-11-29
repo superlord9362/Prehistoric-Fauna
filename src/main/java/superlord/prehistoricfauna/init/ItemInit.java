@@ -1,29 +1,17 @@
 package superlord.prehistoricfauna.init;
 
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.Food;
-import net.minecraft.item.Item;
-import net.minecraft.item.SoupItem;
-import net.minecraft.item.SpawnEggItem;
+import net.minecraft.item.*;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.PrehistoricFauna.PFBook;
-import superlord.prehistoricfauna.PrehistoricFauna.PFEggs;
-import superlord.prehistoricfauna.PrehistoricFauna.PFEntities;
-import superlord.prehistoricfauna.PrehistoricFauna.PFFossil;
-import superlord.prehistoricfauna.PrehistoricFauna.PFPlants;
+import superlord.prehistoricfauna.PrehistoricFauna.*;
 import superlord.prehistoricfauna.entity.PrehistoricBoatEntity;
-import superlord.prehistoricfauna.item.CretaceousTimeTotemItem;
-import superlord.prehistoricfauna.item.CustomArmorItem;
-import superlord.prehistoricfauna.item.JurassicTimeTotemItem;
-import superlord.prehistoricfauna.item.PaleopediaItem;
-import superlord.prehistoricfauna.item.PrehistoricBoatItem;
-import superlord.prehistoricfauna.item.SpawnSkeletonItem;
-import superlord.prehistoricfauna.item.TriassicTimeTotemItem;
-import superlord.prehistoricfauna.util.ArmorMaterialInit;;
+import superlord.prehistoricfauna.item.*;
+import superlord.prehistoricfauna.util.ArmorMaterialInit;
+
+;
 
 public class ItemInit {
 	@SuppressWarnings("deprecation")

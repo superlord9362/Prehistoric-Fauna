@@ -1,7 +1,5 @@
 package superlord.prehistoricfauna.block;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SixWayBlock;
@@ -12,6 +10,8 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.server.ServerWorld;
 import superlord.prehistoricfauna.init.BlockInit;
+
+import java.util.Random;
 
 public class ZamitesTopBlock extends SixWayBlock {
 

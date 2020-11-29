@@ -1,8 +1,6 @@
 package superlord.prehistoricfauna.world.feature.jurassic;
 
 import com.mojang.datafixers.Dynamic;
-import java.util.Random;
-import java.util.function.Function;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
@@ -11,6 +9,9 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import superlord.prehistoricfauna.block.PtilophyllumBaseBlock;
 import superlord.prehistoricfauna.init.BlockInit;
+
+import java.util.Random;
+import java.util.function.Function;
 
 public class PtilophyllumFeature extends Feature<NoFeatureConfig> {
    public PtilophyllumFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configFactoryIn) {

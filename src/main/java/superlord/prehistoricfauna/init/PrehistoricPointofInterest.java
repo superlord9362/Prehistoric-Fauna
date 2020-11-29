@@ -1,11 +1,6 @@
 package superlord.prehistoricfauna.init;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
 import com.google.common.collect.ImmutableSet;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.ResourceLocation;
@@ -14,6 +9,10 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import superlord.prehistoricfauna.PrehistoricFauna;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class PrehistoricPointofInterest {

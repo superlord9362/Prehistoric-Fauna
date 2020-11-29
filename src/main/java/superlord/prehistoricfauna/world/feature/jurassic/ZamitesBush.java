@@ -1,7 +1,5 @@
 package superlord.prehistoricfauna.world.feature.jurassic;
 
-import java.util.Random;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.block.trees.Tree;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
@@ -9,8 +7,10 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraftforge.common.IPlantable;
+import superlord.prehistoricfauna.core.world.PHFFeatures;
 import superlord.prehistoricfauna.init.BlockInit;
-import superlord.prehistoricfauna.world.PrehistoricFeature;
+
+import java.util.Random;
 
 public class ZamitesBush extends Tree {
 	
@@ -21,7 +21,7 @@ public class ZamitesBush extends Tree {
 
 	@Override
 	protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random random, boolean p_225546_2_) {
-		return PrehistoricFeature.ZAMITES_BUSH.withConfiguration(ZAMITES_BUSH_CONFIG);
+		return PHFFeatures.ZAMITES_BUSH.withConfiguration(ZAMITES_BUSH_CONFIG);
 	}
 	
 }
