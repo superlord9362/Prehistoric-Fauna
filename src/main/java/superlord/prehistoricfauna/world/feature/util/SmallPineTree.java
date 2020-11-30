@@ -29,7 +29,7 @@ public class SmallPineTree extends Feature<NoFeatureConfig> {
     public boolean place(IWorld world, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
 
 
-        if (pos.getX() == -7 && pos.getZ() == -8) {
+        if (pos.getX() == -7 && pos.getZ() == -7) {
             for (int checkX = pos.getX() + -16; checkX <= pos.getX() + 16; checkX++) {
                 for (int checkY = pos.getY(); checkY <= 25; checkY++) {
                     for (int checkZ = pos.getZ() + -16; checkZ <= pos.getZ() + 16; checkZ++) {
@@ -41,17 +41,12 @@ public class SmallPineTree extends Feature<NoFeatureConfig> {
 
             TemplateManager templatemanager = ((ServerWorld) world.getWorld()).getSaveHandler().getStructureTemplateManager();
 
-            Template template = templatemanager.getTemplate(new ResourceLocation(PrehistoricFauna.MODID + ":features/trees/araucaria_top"));
+            Template template = templatemanager.getTemplate(new ResourceLocation(PrehistoricFauna.MODID + ":features/trees/metasequoia2b"));
+            Template template2 = templatemanager.getTemplate(new ResourceLocation(PrehistoricFauna.MODID + ":features/trees/metasequoia2b"));
             if (template == null) {
                 PrehistoricFauna.LOGGER.warn("NBT does not exist!");
                 return false;
             }
-//
-//            Template template2 = templatemanager.getTemplate(new ResourceLocation(PrehistoricFauna.MODID + ":features/trees/araucaria_2_top"));
-//            if (template2 == null) {
-//                PrehistoricFauna.LOGGER.warn("NBT does not exist!");
-//                return false;
-//            }
 
             PlacementSettings placementsettings = (new PlacementSettings()).setMirror(Mirror.NONE).setRotation(Rotation.NONE).setIgnoreEntities(false).setChunk(null);
             template.addBlocksToWorld(world, pos, placementsettings);

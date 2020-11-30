@@ -10,9 +10,9 @@ public class BiomeExtender extends Biome {
 
     public BiomeExtender(Builder biomeBuilder) {
         super(biomeBuilder);
-        this.grassColor = 0;
-        this.foliageColor = 0;
-        this.skyColor = 0;
+        this.grassColor = -1;
+        this.foliageColor = -1;
+        this.skyColor = -1;
     }
 
 
@@ -20,7 +20,7 @@ public class BiomeExtender extends Biome {
         super(biomeBuilder);
         this.grassColor = grassColor;
         this.foliageColor = foliageColor;
-        this.skyColor = 0;
+        this.skyColor = -1;
     }
 
     public BiomeExtender(Builder biomeBuilder, int grassColor, int foliageColor, int skyColor) {
@@ -30,21 +30,27 @@ public class BiomeExtender extends Biome {
         this.skyColor = skyColor;
     }
 
-    @Override
-    public int getFoliageColor() {
-        return this.foliageColor;
-    }
-
-    @Override
-    public int getGrassColor(double posX, double posZ) {
-        return this.grassColor;
-    }
-
-    @Override
-    public int getSkyColor() {
-        if (skyColor == 0)
-            return super.getSkyColor();
-        else
-            return this.skyColor;
-    }
+//    @Override
+//    public int getFoliageColor() {
+//        if (foliageColor == -1)
+//            return this.foliageColor;
+//        else
+//            return super.getFoliageColor();
+//    }
+//
+//    @Override
+//    public int getGrassColor(double posX, double posZ) {
+//        if (grassColor == -1)
+//            return this.grassColor;
+//        else
+//            return super.getGrassColor(posX, posZ);
+//    }
+//
+//    @Override
+//    public int getSkyColor() {
+//        if (skyColor == -1)
+//            return this.skyColor;
+//        else
+//            return super.getSkyColor();
+//    }
 }

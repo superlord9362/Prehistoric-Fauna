@@ -15,12 +15,10 @@ import static superlord.prehistoricfauna.core.world.PHFConfiguredFeatures.*;
 
 public class CretaceousBiomes {
 
-    public static Biome hellCreek() {
-        Biome biome = new BiomeExtender(new Biome.Builder().precipitation(Biome.RainType.RAIN).scale(0.2F).temperature(0.7f).depth(0.1f).downfall(0.8F).category(Biome.Category.TAIGA).waterColor(4159204).waterFogColor(329011).surfaceBuilder(PHFSurfaceBuilders.HELL_CREEK, new SurfaceBuilderConfig(Blocks.COARSE_DIRT.getDefaultState(), Blocks.COARSE_DIRT.getDefaultState(), Blocks.CLAY.getDefaultState())).parent(null));
+    public static Biome hellCreek(float scale, float depth, boolean isClearing) {
+        Biome biome = new BiomeExtender(new Biome.Builder().precipitation(Biome.RainType.RAIN).scale(scale).temperature(0.7f).depth(depth).downfall(0.8F).category(Biome.Category.TAIGA).waterColor(4159204).waterFogColor(329011).surfaceBuilder(PHFSurfaceBuilders.HELL_CREEK, new SurfaceBuilderConfig(Blocks.COARSE_DIRT.getDefaultState(), Blocks.COARSE_DIRT.getDefaultState(), Blocks.CLAY.getDefaultState())).parent(null));
 //        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.FANCY_TREE.withConfiguration(LiriodendritesTree.LIRIODENDRITES_TREE_CONFIG).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(1, 0.2F, 1))));
 //        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PrehistoricFeature.METASEQUOIA_TREE.withConfiguration(MetasequoiaTree.METASEQUOIA_TREE_CONFIG).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(1, 0.2F, 1))));
-        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, MOSS);
-        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, CLUBMOSS);
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, MARCHANTIA);
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, OSMUNDA);
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HORSETAIL);
@@ -28,7 +26,13 @@ public class CretaceousBiomes {
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HORSETAIL_DOUBLE);
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, CRASSOSTREA_OYSTERS);
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DIDELPHODON_BURROW);
-        PHFDefaultBiomeFeatures.addAraucariaTrees(biome);
+        if (isClearing) {
+            PHFDefaultBiomeFeatures.addSparseHellCreekVegetation(biome);
+        } else {
+            PHFDefaultBiomeFeatures.addHellCreekVegetation(biome);
+            biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, MOSS);
+            biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, CLUBMOSS);
+        }
         DefaultBiomeFeatures.addTaigaRocks(biome);
         DefaultBiomeFeatures.addStoneVariants(biome);
         DefaultBiomeFeatures.addOres(biome);

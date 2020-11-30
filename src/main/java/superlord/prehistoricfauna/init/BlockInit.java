@@ -20,10 +20,9 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.PrehistoricFauna.*;
 import superlord.prehistoricfauna.block.*;
 import superlord.prehistoricfauna.world.feature.LiriodendritesTree;
-import superlord.prehistoricfauna.world.feature.cretaceous.MetasequoiaTree;
 import superlord.prehistoricfauna.world.feature.jurassic.ProtopiceoxylonTree;
 import superlord.prehistoricfauna.world.feature.triassic.HeidiphyllumTree;
-import superlord.prehistoricfauna.world.feature.triassic.ProtojuniperTree;
+import superlord.prehistoricfauna.world.feature.util.PHFTreeSpawners;
 
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Bus.MOD)
 public class BlockInit {
@@ -38,7 +37,7 @@ public class BlockInit {
 	public static final Block METASEQUOIA_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("metasequoia_planks"); //Loot Table done
 	public static final Block METASEQUOIA_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("metasequoia_log"); //Loot Table done
 	public static final Block METASEQUOIA_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()).setRegistryName("metasequoia_leaves"); //Loot Table done
-	public static final Block METASEQUOIA_SAPLING = new PrehistoricSaplingBlock(new MetasequoiaTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("metasequoia_sapling"); //Loot Table done
+	public static final Block METASEQUOIA_SAPLING = new PHFSapling(new PHFTreeSpawners.MetaSequoia(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("metasequoia_sapling"); //Loot Table done
 	public static final Block METASEQUOIA_LOG_STRIPPED = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("metasequoia_log_stripped");//Loot Table done
 	public static final Block METASEQUOIA_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("metasequoia_wood");//Loot Table done
 	public static final Block STRIPPED_METASEQUOIA_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_metasequoia_wood");//Loot Table done
@@ -166,7 +165,7 @@ public class BlockInit {
 	public static final Block PROTOJUNIPER_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protojuniper_fence_gate");//Loot Table done
 	public static final Block PROTOJUNIPER_BUTTON = new PrehistoricButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("protojuniper_button");//Loot Table done
 	public static final Block PROTOJUNIPER_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protojuniper_slab");//Loot Table done
-	public static final Block PROTOJUNIPER_SAPLING = new PrehistoricSaplingBlock(new ProtojuniperTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("protojuniper_sapling");//Loot Table done
+	public static final Block PROTOJUNIPER_SAPLING = new PHFSapling(new PHFTreeSpawners.ProtoJuniper(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("protojuniper_sapling");//Loot Table done
 	@SuppressWarnings("deprecation")
 	public static final Block POTTED_PROTOJUNIPER_SAPLING = new FlowerPotBlock(PROTOJUNIPER_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_protojuniper_sapling");//Loot Table done
 	public static final Block DICROIDIUM = new DicroidiumBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.5F).doesNotBlockMovement().sound(SoundType.PLANT)).setRegistryName("dicroidium");//Loot Table done

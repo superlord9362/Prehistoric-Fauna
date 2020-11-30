@@ -184,7 +184,6 @@ public abstract class MixinTemplate {
                 List<String> treeLeaveList = new ArrayList<>();
                 List<String> trunkLogList = new ArrayList<>();
                 List<String> treeBranchList = new ArrayList<>();
-                final int stopppp = 1;
                 list2.forEach(o -> {
                     int featureX = o.getFirst().getX();
                     int featureY = o.getFirst().getY() - featurePos.getY();
@@ -194,9 +193,10 @@ public abstract class MixinTemplate {
                     BlockState state = world.getBlockState(pos);
 
                     Block blockCheck = state.getBlock();
+
                     int modifiedY = featureY + 32;
 
-                    int topTrunkY = 38;
+                    int topTrunkY = 45;
                     //|| featurePos.getX() == 0 && featurePos.getZ() == 1 || featurePos.getX() == 0 && featurePos.getZ() == -1 || featurePos.getX() == 1 && featurePos.getZ() == 0 || featurePos.getX() == -1 && featurePos.getZ() == 0
 
                     String flip;

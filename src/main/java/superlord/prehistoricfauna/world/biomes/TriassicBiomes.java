@@ -15,10 +15,10 @@ import static superlord.prehistoricfauna.core.world.PHFConfiguredFeatures.*;
 
 public class TriassicBiomes {
 
-    public static Biome ischigualastoForest() {
-        Biome biome = new BiomeExtender(new Biome.Builder().precipitation(Biome.RainType.RAIN).scale(0.1F).temperature(0.75F).depth(0.1F).downfall(0.9F).category(Biome.Category.FOREST).waterColor(4159204).waterFogColor(329011).surfaceBuilder(PHFSurfaceBuilders.ISCHIGUALASTO, new SurfaceBuilderConfig(Blocks.COARSE_DIRT.getDefaultState(), Blocks.COARSE_DIRT.getDefaultState(), Blocks.CLAY.getDefaultState())).parent(null));
-        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, SPARSE_PROTO_JUNIPER_TREE);
-        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ARAUCARIA_SMALL_TREE);
+    public static Biome ischigualastoForest(float scale, float depth) {
+        Biome biome = new BiomeExtender(new Biome.Builder().precipitation(Biome.RainType.RAIN).scale(scale).temperature(0.75F).depth(depth).downfall(0.9F).category(Biome.Category.FOREST).waterColor(4159204).waterFogColor(329011).surfaceBuilder(PHFSurfaceBuilders.ISCHIGUALASTO, new SurfaceBuilderConfig(Blocks.COARSE_DIRT.getDefaultState(), Blocks.COARSE_DIRT.getDefaultState(), Blocks.CLAY.getDefaultState())).parent(null));
+//        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, SPARSE_PROTO_JUNIPER_TREE);
+//        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ARAUCARIA_SMALL_TREE);
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HEIDIPHYLLUM_TREE);
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, MICHELILLOA);
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, JOHNSTONIA);

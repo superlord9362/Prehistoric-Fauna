@@ -266,7 +266,7 @@ public class PrehistoricFauna {
 	
 	@SubscribeEvent
 	public static void loadCompleteEvent(FMLLoadCompleteEvent event) {
-		PrehistoricOreGen.generateOre();
+//		PrehistoricOreGen.generateOre();
 	}
 	
 	public static class PFPlants extends ItemGroup {
