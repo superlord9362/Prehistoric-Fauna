@@ -48,4 +48,6 @@ public class CretaceousBiomes {
         biome.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(ModEntityTypes.DIDELPHODON_ENTITY, PrehistoricFaunaConfig.didelphodonSpawnWeight, 1, 3));
         return biome;
     }
+
+
 }

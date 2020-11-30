@@ -4,53 +4,52 @@ import net.minecraft.world.biome.Biome;
 
 public class BiomeExtender extends Biome {
 
-    private final int grassColor;
-    private final int foliageColor;
-    private final int skyColor;
+    private int grassColor = -1;
+    private int foliageColor = -1;
+    private int skyColor = -1;
 
     public BiomeExtender(Builder biomeBuilder) {
         super(biomeBuilder);
-        this.grassColor = -1;
-        this.foliageColor = -1;
-        this.skyColor = -1;
     }
 
-
-    public BiomeExtender(Builder biomeBuilder, int grassColor, int foliageColor) {
-        super(biomeBuilder);
-        this.grassColor = grassColor;
+    public BiomeExtender setFoliageColor(int foliageColor) {
         this.foliageColor = foliageColor;
-        this.skyColor = -1;
+        return this;
     }
 
-    public BiomeExtender(Builder biomeBuilder, int grassColor, int foliageColor, int skyColor) {
-        super(biomeBuilder);
+    public BiomeExtender setGrassColor(int grassColor) {
         this.grassColor = grassColor;
-        this.foliageColor = foliageColor;
+        return this;
+    }
+
+    public BiomeExtender setSkyColor(int skyColor) {
         this.skyColor = skyColor;
+        return this;
     }
 
-//    @Override
-//    public int getFoliageColor() {
-//        if (foliageColor == -1)
-//            return this.foliageColor;
-//        else
-//            return super.getFoliageColor();
-//    }
-//
-//    @Override
-//    public int getGrassColor(double posX, double posZ) {
-//        if (grassColor == -1)
-//            return this.grassColor;
-//        else
-//            return super.getGrassColor(posX, posZ);
-//    }
-//
-//    @Override
-//    public int getSkyColor() {
-//        if (skyColor == -1)
-//            return this.skyColor;
-//        else
-//            return super.getSkyColor();
-//    }
+    @Override
+    public int getFoliageColor() {
+        if (foliageColor == -1)
+            return super.getFoliageColor();
+        else
+            return this.foliageColor;
+    }
+
+    @Override
+    public int getGrassColor(double posX, double posZ) {
+        if (grassColor == -1)
+            return super.getGrassColor(posX, posZ);
+        else
+            return this.grassColor;
+    }
+
+    @Override
+    public int getSkyColor() {
+        if (skyColor == -1)
+            return super.getSkyColor();
+        else
+            return skyColor;
+    }
+
+
 }
