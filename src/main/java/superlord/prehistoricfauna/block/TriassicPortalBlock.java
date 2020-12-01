@@ -94,14 +94,13 @@ public class TriassicPortalBlock extends BreakableBlock {
             ServerPlayerEntity player = (ServerPlayerEntity) entity;
             final DimensionType dimension = player.dimension == DimensionTypeInit.TRIASSIC_DIMENSION_TYPE ? DimensionType.OVERWORLD : DimensionTypeInit.TRIASSIC_DIMENSION_TYPE;
             changeDimension(world, (ServerPlayerEntity) entity, dimension, new TeleporterTriassic());
-            player.timeUntilPortal = 10;
         }
     }
 
     public static void changeDimension(World world, ServerPlayerEntity player, DimensionType dimension, ITeleporter teleporter) {
         if (!world.isRemote) {
             player.changeDimension(dimension, teleporter);
-            player.timeUntilPortal = player.getPortalCooldown();
+            player.timeUntilPortal = 150;
             if (player.dimension == DimensionTypeInit.TRIASSIC_DIMENSION_TYPE) {
                 BlockPos playerPos = new BlockPos(player);
                 if (world.isAirBlock(playerPos) && world.getBlockState(playerPos).isSolidSide(world, playerPos, Direction.UP)) {

@@ -37,7 +37,7 @@ public class TeleporterTriassic implements ITeleporter {
             Vec3d motion = pattern.motion;
             entity.setMotion(motion);
             entity.rotationYaw = yaw + (float) pattern.rotation;
-            entity.setPositionAndUpdate(position.x, position.y, position.z);
+            entity.setPositionAndUpdate(position.x + 1, position.y, position.z);
             return true;
         }
     }
@@ -193,6 +193,8 @@ public class TeleporterTriassic implements ITeleporter {
         world.setBlockState(pos, BlockInit.PORTAL_PROJECTOR.getDefaultState());
         world.setBlockState(pos.east(), BlockInit.PORTAL_FRAME.getDefaultState());
         world.setBlockState(pos.west(), BlockInit.PORTAL_FRAME.getDefaultState());
+        world.setBlockState(pos.east(2), BlockInit.HENOSTONE_CARVED.getDefaultState());
+        world.setBlockState(pos.west(2), BlockInit.HENOSTONE_CARVED.getDefaultState());
 
         //Pillars
         world.setBlockState(pos.east(2).up(), BlockInit.PORTAL_FRAME.getDefaultState().with(PortalFrameBlock.FACING, Direction.WEST));
@@ -206,6 +208,8 @@ public class TeleporterTriassic implements ITeleporter {
         world.setBlockState(pos.east(1).up(4), BlockInit.PORTAL_FRAME.getDefaultState().with(PortalFrameBlock.FACING, Direction.DOWN));
         world.setBlockState(pos.up(4), BlockInit.PORTAL_PROJECTOR.getDefaultState().with(PortalFrameBlock.FACING, Direction.DOWN));
         world.setBlockState(pos.west(1).up(4), BlockInit.PORTAL_FRAME.getDefaultState().with(PortalFrameBlock.FACING, Direction.DOWN));
+        world.setBlockState(pos.west(2).up(4), BlockInit.HENOSTONE_CARVED.getDefaultState());
+        world.setBlockState(pos.east(2).up(4), BlockInit.HENOSTONE_CARVED.getDefaultState());
         
         //Portal blocks
         world.setBlockState(pos.up(), BlockInit.TRIASSIC_PORTAL.getDefaultState());
