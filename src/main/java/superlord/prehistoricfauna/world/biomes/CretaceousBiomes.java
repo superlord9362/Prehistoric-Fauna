@@ -16,7 +16,7 @@ import static superlord.prehistoricfauna.core.world.PHFConfiguredFeatures.*;
 public class CretaceousBiomes {
 
     public static Biome hellCreek(float scale, float depth, boolean isClearing) {
-        Biome biome = new BiomeExtender(new Biome.Builder().precipitation(Biome.RainType.RAIN).scale(scale).temperature(0.7f).depth(depth).downfall(0.8F).category(Biome.Category.TAIGA).waterColor(4159204).waterFogColor(329011).surfaceBuilder(PHFSurfaceBuilders.HELL_CREEK, new SurfaceBuilderConfig(Blocks.COARSE_DIRT.getDefaultState(), Blocks.COARSE_DIRT.getDefaultState(), Blocks.CLAY.getDefaultState())).parent(null));
+        Biome biome = new BiomeExtender(new Biome.Builder().precipitation(Biome.RainType.RAIN).scale(scale).temperature(0.7f).depth(depth).downfall(0.8F).category(Biome.Category.TAIGA).waterColor(4159204).waterFogColor(329011).surfaceBuilder(PHFSurfaceBuilders.HELL_CREEK, new SurfaceBuilderConfig(Blocks.COARSE_DIRT.getDefaultState(), Blocks.COARSE_DIRT.getDefaultState(), Blocks.CLAY.getDefaultState())).parent(null)).setSkyColor(0x7ebf9f).setGrassColor(0x53711f).setFoliageColor(0x53711f);
 //        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.FANCY_TREE.withConfiguration(LiriodendritesTree.LIRIODENDRITES_TREE_CONFIG).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(1, 0.2F, 1))));
 //        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PrehistoricFeature.METASEQUOIA_TREE.withConfiguration(MetasequoiaTree.METASEQUOIA_TREE_CONFIG).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(1, 0.2F, 1))));
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, MARCHANTIA);

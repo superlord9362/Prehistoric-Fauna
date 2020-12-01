@@ -51,6 +51,7 @@ public class ItemInit {
 	public static final RegistryObject<Item> MOSS_BALL = ITEMS.register("moss_ball", () -> new Item(new Item.Properties().group(PFPlants.instance)));
 	public static final RegistryObject<Item> PTILOPHYLLUM_FRONDS = ITEMS.register("ptilophyllum_fronds", () -> new Item(new Item.Properties().group(PFPlants.instance)));
 	public static final RegistryObject<Item> DIDELPHODON_HIDE = ITEMS.register("didelphodon_hide", () -> new Item(new Item.Properties().group(PFEntities.instance)));
+	public static final RegistryObject<Item> EXAERETODON_HIDE = ITEMS.register("exaeretodon_hide", () -> new Item(new Item.Properties().group(PFEntities.instance)));
 	//Meat
 	public static final RegistryObject<Item> RAW_ANKYLOSAURUS_MEAT = ITEMS.register("raw_ankylosaurus_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(4).saturation(0.3F).meat().build())));
 	public static final RegistryObject<Item> COOKED_ANKYLOSAURUS_MEAT = ITEMS.register("cooked_ankylosaurus_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(9).saturation(0.8F).meat().build())));
@@ -82,8 +83,6 @@ public class ItemInit {
 	public static final RegistryObject<Item> COOKED_CHROMOGISAURUS_MEAT = ITEMS.register("cooked_chromogisaurus_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(4).saturation(0.6F).meat().build())));
 	public static final RegistryObject<Item> RAW_HYPERODAPEDON_MEAT = ITEMS.register("raw_hyperodapedon_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(2).saturation(0.3F).meat().build())));
 	public static final RegistryObject<Item> COOKED_HYPERODAPEDON_MEAT = ITEMS.register("cooked_hyperodapedon_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(4).saturation(0.6F).meat().build())));
-	public static final RegistryObject<Item> RAW_EXAERETODON_MEAT = ITEMS.register("raw_exaeretodon_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(3).saturation(0.3F).meat().build())));
-	public static final RegistryObject<Item> COOKED_EXAERETODON_MEAT = ITEMS.register("cooked_exaeretodon_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(5).saturation(0.6F).meat().build())));
 	public static final RegistryObject<Item> RAW_SILLOSUCHUS_MEAT = ITEMS.register("raw_sillosuchus_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(4).saturation(0.3F).meat().build())));
 	public static final RegistryObject<Item> COOKED_SILLOSUCHUS_MEAT = ITEMS.register("cooked_sillosuchus_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(8).saturation(0.6F).meat().build())));
 	public static final RegistryObject<Item> RAW_SAUROSUCHUS_MEAT = ITEMS.register("raw_saurosuchus_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(3).saturation(0.3F).meat().build())));

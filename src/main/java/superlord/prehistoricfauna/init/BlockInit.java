@@ -293,6 +293,7 @@ public class BlockInit {
 	public static final Block ISCHIGUALASTIA_EGG = new IschigualastiaEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("ischigualastia_egg");
 	public static final Block EXAERETODON_EGG = new ExaeretodonEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("exaeretodon_egg");//Loot Table done
 	public static final Block PALEONTOLOGY_TABLE = new PaleontologyTableBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.5F).sound(SoundType.WOOD)).setRegistryName("paleontology_table");
+	public static final Block ALGAE = new AlgaeBlock(Block.Properties.create(Material.OCEAN_PLANT).hardnessAndResistance(0.2F).sound(SoundType.PLANT).notSolid()).setRegistryName("algae_carpet");
 	
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
@@ -548,6 +549,7 @@ public class BlockInit {
 		event.getRegistry().register(ISCHIGUALASTIA_EGG);
 		event.getRegistry().register(EXAERETODON_EGG);
 		event.getRegistry().register(PALEONTOLOGY_TABLE);
+		event.getRegistry().register(ALGAE);
 		if (FMLEnvironment.dist == Dist.CLIENT) {
 			RenderType cutoutRenderType = RenderType.getCutout();
 			RenderType mippedRenderType = RenderType.getCutoutMipped();
@@ -624,6 +626,7 @@ public class BlockInit {
 			RenderTypeLookup.setRenderLayer(TRIASSIC_PORTAL, translucentRenderType);
 			RenderTypeLookup.setRenderLayer(TRIASSIC_TIME_BLOCK, translucentRenderType);
 			RenderTypeLookup.setRenderLayer(HENOSTONE_TRAP, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(ALGAE, mippedRenderType);
 		}
 	}
 	
@@ -873,6 +876,7 @@ public class BlockInit {
 		event.getRegistry().register(new BlockItem(ISCHIGUALASTIA_EGG, new Item.Properties().group(PFEntities.instance)).setRegistryName("ischigualastia_egg"));
 		event.getRegistry().register(new BlockItem(EXAERETODON_EGG, new Item.Properties().group(PFEntities.instance)).setRegistryName("exaeretodon_egg"));
 		event.getRegistry().register(new BlockItem(PALEONTOLOGY_TABLE, new Item.Properties().group(PFBook.instance)).setRegistryName("paleontology_table"));
+		event.getRegistry().register(new BlockItem(ALGAE, new Item.Properties().group(PFPlants.instance)).setRegistryName("algae_carpet"));
 	}
 	
 	public static final Tag<Block> BURROWS = makeWrapperTag("burrows");

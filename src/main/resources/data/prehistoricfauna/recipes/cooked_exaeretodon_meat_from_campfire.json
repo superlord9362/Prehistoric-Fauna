@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:campfire_cooking",
-  "ingredient": {
-    "item": "prehistoricfauna:raw_exaeretodon_meat"
-  },
-  "result": "prehistoricfauna:cooked_exaeretodon_meat",
-  "experience": 0.35,
-  "cookingtime": 600
-}
