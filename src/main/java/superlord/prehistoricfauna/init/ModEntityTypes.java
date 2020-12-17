@@ -6,7 +6,32 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.entity.*;
+import superlord.prehistoricfauna.entity.AllosaurusEntity;
+import superlord.prehistoricfauna.entity.AnkylosaurusEntity;
+import superlord.prehistoricfauna.entity.BasilemysEntity;
+import superlord.prehistoricfauna.entity.CamarasaurusEntity;
+import superlord.prehistoricfauna.entity.CeratosaurusEntity;
+import superlord.prehistoricfauna.entity.ChromogisaurusEntity;
+import superlord.prehistoricfauna.entity.DakotaraptorEntity;
+import superlord.prehistoricfauna.entity.DidelphodonEntity;
+import superlord.prehistoricfauna.entity.DryosaurusEntity;
+import superlord.prehistoricfauna.entity.EilenodonEntity;
+import superlord.prehistoricfauna.entity.ExaeretodonEntity;
+import superlord.prehistoricfauna.entity.HerrerasaurusEntity;
+import superlord.prehistoricfauna.entity.HesperornithoidesEntity;
+import superlord.prehistoricfauna.entity.HyperodapedonEntity;
+import superlord.prehistoricfauna.entity.IschigualastiaEntity;
+import superlord.prehistoricfauna.entity.PrehistoricBoatEntity;
+import superlord.prehistoricfauna.entity.SaurosuchusEntity;
+import superlord.prehistoricfauna.entity.SillosuchusEntity;
+import superlord.prehistoricfauna.entity.StegosaurusEntity;
+import superlord.prehistoricfauna.entity.ThescelosaurusEntity;
+import superlord.prehistoricfauna.entity.TimeGuardianEntity;
+import superlord.prehistoricfauna.entity.TriceratopsEntity;
+import superlord.prehistoricfauna.entity.TyrannosaurusEntity;
+import superlord.prehistoricfauna.entity.TyrannosaurusSkeletonEntity;
+import superlord.prehistoricfauna.entity.TyrannosaurusSkullEntity;
+import superlord.prehistoricfauna.entity.tile.PaleopaintingEntity;
 
 public class ModEntityTypes {
 
@@ -35,6 +60,7 @@ public class ModEntityTypes {
 	public static final EntityType<IschigualastiaEntity> ISCHIGUALASTIA_ENTITY = registerEntity(EntityType.Builder.<IschigualastiaEntity>create(IschigualastiaEntity::new, EntityClassification.CREATURE).size(1.25F, 1.9375F), "ischigualastia");
 	public static final EntityType<TyrannosaurusSkullEntity> TYRANNOSAURUS_SKULL = registerEntity(EntityType.Builder.<TyrannosaurusSkullEntity>create(TyrannosaurusSkullEntity::new, EntityClassification.CREATURE).size(0.5F, 0.5F), "tyrannosaurus_skull");
 	public static final EntityType<TyrannosaurusSkeletonEntity> TYRANNOSAURUS_SKELETON = registerEntity(EntityType.Builder.<TyrannosaurusSkeletonEntity>create(TyrannosaurusSkeletonEntity::new, EntityClassification.CREATURE).size(2F, 3.9F), "tyrannosaurus_skeleton");
+	public static final EntityType<PaleopaintingEntity> PALEOPAINTING = registerEntity(EntityType.Builder.<PaleopaintingEntity>create(PaleopaintingEntity::new, EntityClassification.MISC).size(0.5F, 0.5F), "paleopainting");
 	
 	@SuppressWarnings("unchecked")
 	private static final <T extends Entity> EntityType<T> registerEntity(EntityType.Builder<T> builder, String entityName){

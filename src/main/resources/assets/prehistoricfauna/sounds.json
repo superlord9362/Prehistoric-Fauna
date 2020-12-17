@@ -746,5 +746,45 @@
 				"stream": true
 			}
 		]
+	},
+	"henos_idle": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.henosIdle",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/henos_step",
+				"stream": true
+			}
+		]
+	},
+	"henos_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.henosHurt",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/henos_hurt",
+				"stream": true
+			}
+		]
+	},
+	"henos_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.henosDeath",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/henos_hurt",
+				"stream": true
+			}
+		]
+	},
+	"henos_laser": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.henosLaser",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/henos_laser",
+				"stream": true
+			}
+		]
 	}
 }

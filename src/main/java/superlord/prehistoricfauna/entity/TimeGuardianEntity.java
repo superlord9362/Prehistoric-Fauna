@@ -21,6 +21,7 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.*;
 import net.minecraft.util.text.ITextComponent;
@@ -28,6 +29,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.server.ServerBossInfo;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.util.Constants.NBT;
+import superlord.prehistoricfauna.util.SoundHandler;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
@@ -53,6 +55,18 @@ public class TimeGuardianEntity extends MonsterEntity {
 
 	public TimeGuardianEntity(EntityType<? extends MonsterEntity> type, World world) {
 		super(type, world);
+	}
+	
+	protected SoundEvent getAmbientSound() {
+		return SoundHandler.HENOS_IDLE;
+	}
+
+	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+		return SoundHandler.HENOS_HURT;
+	}
+
+	protected SoundEvent getDeathSound() {
+		return SoundHandler.HENOS_DEATH;
 	}
 
 	@Override
@@ -447,6 +461,7 @@ public class TimeGuardianEntity extends MonsterEntity {
 			if (this.tickCounter == 0) {
 				this.timeGuardian.setChargingBeam(false);
 				this.timeGuardian.setUsingBeam(true);
+				this.timeGuardian.playSound(SoundHandler.HENOS_LASER, 1.0F, this.timeGuardian.getSoundPitch());
 			} else if (this.tickCounter < attackTick) {
 				this.updateLaser();
 			}

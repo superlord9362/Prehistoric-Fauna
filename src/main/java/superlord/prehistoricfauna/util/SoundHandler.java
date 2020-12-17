@@ -87,6 +87,11 @@ public class SoundHandler {
 	public static final SoundEvent ISCHIGUALASTIA_HURT;
 	public static final SoundEvent ISCHIGUALASTIA_WARN;
 	public static final SoundEvent ISCHIGUALASTIA_DEATH;
+	//Overworld
+	public static final SoundEvent HENOS_IDLE;
+	public static final SoundEvent HENOS_HURT;
+	public static final SoundEvent HENOS_DEATH;
+	public static final SoundEvent HENOS_LASER;
 	
 	@SubscribeEvent
 	public static void registerSounds(final RegistryEvent.Register<SoundEvent> evt) {
@@ -166,6 +171,11 @@ public class SoundHandler {
 		evt.getRegistry().register(ISCHIGUALASTIA_HURT);
 		evt.getRegistry().register(ISCHIGUALASTIA_WARN);
 		evt.getRegistry().register(ISCHIGUALASTIA_DEATH);
+		//Overworld
+		evt.getRegistry().register(HENOS_IDLE);
+		evt.getRegistry().register(HENOS_HURT);
+		evt.getRegistry().register(HENOS_DEATH);
+		evt.getRegistry().register(HENOS_LASER);
 	}
 	
 	private static SoundEvent createEvent(final String soundName) {
@@ -250,6 +260,11 @@ public class SoundHandler {
 		ISCHIGUALASTIA_HURT = createEvent("ischigualastia_hurt");
 		ISCHIGUALASTIA_WARN = createEvent("ischigualastia_warn");
 		ISCHIGUALASTIA_DEATH = createEvent("ischigualastia_death");
+		//Overworld
+		HENOS_IDLE = createEvent("henos_idle");
+		HENOS_HURT = createEvent("henos_hurt");
+		HENOS_DEATH = createEvent("henos_death");
+		HENOS_LASER = createEvent("henos_laser");
 	}
 
 }

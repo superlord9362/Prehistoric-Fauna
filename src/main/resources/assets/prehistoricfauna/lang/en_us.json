@@ -330,6 +330,7 @@
 	"item.prehistoricfauna.triassic_time_totem": "Totem of the Triassic",
 	"item.prehistoricfauna.crassostrea_oyster_soup": "Crassostrea Oyster Stew",
 	"item.prehistoricfauna.cladophlebis_stick": "Cladophlebis on a Stick",
+	"item.prehistoricfauna.paleopainting": "Prehistoric Painting",
 	
 	//Food
 	"item.prehistoricfauna.raw_thescelosaurus_meat": "Raw Thescelosaurus",
@@ -487,6 +488,8 @@
 	"prehistoricfauna.subtitle.exaeretodonDeath": "Exaeretodon dies",
 	"prehistoricfauna.subtitle.chromogisaurusHurt": "Chromogisaurus hurts",
 	"prehistoricfauna.subtitle.chromogisaurusDeath": "Chromogisaurus dies",
+	"prehistoricfauna.subtitle.herrerasaurusIdke": "Herrerasaurus whispers",
+	"prehistoricfauna.subtitle.herrerasaurusWarning": "Herrerasaurus squalls",
 	"prehistoricfauna.subtitle.herrerasaurusHurt": "Herrerasaurus hurts",
 	"prehistoricfauna.subtitle.herrerasaurusDeath": "Herrerasaurus dies",
 	"prehistoricfauna.subtitle.hyperodapedonHurt": "Hyperodapedon hurts",
@@ -499,6 +502,8 @@
 	"prehistoricfauna.subtitle.ischigualastiaWarning": "Ischigualastia growls",
 	"prehistoricfauna.subtitle.ischigualastiaHurt": "Ischigualastia hurts",
 	"prehistoricfauna.subtitle.ischigualastiaDeath": "Ischigualastia dies",
+	"prehistoricfauna.subtitle.henosIdle": "Henos groans",
+	"prehistoricfauna.subtitle.henosLaser": "Time laser",
 	"prehistoricfauna.subtitle.henosHurt": "Henos hurts",
 	"prehistoricfauna.subtitle.henosDeath": "Henos dies"
 }
