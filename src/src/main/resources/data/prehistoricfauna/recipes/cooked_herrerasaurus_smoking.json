@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "prehistoricfauna:raw_herrerasaurus_meat"
+  },
+  "result": "prehistoricfauna:cooked_herrerasaurus_meat",
+  "experience": 0.35,
+  "cookingtime": 100
+}

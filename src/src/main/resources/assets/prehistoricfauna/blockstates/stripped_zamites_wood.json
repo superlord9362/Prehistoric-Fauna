@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":  { "model": "prehistoricfauna:block/stripped_zamites_wood" },
+        "axis=z":   { "model": "prehistoricfauna:block/stripped_zamites_wood", "x": 90 },
+        "axis=x":   { "model": "prehistoricfauna:block/stripped_zamites_wood", "x": 90, "y": 90 }
+    }
+}

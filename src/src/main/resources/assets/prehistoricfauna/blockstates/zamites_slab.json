@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "prehistoricfauna:block/zamites_slab" },
+        "type=top": { "model": "prehistoricfauna:block/zamites_slab_top" },
+        "type=double": { "model": "prehistoricfauna:block/zamites_planks" }
+    }
+}

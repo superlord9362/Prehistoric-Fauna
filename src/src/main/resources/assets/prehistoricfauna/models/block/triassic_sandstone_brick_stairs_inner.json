@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "prehistoricfauna:blocks/triassic_sandstone_brick",
+        "top": "prehistoricfauna:blocks/triassic_sandstone_brick",
+        "side": "prehistoricfauna:blocks/triassic_sandstone_brick"
+    }
+}

@@ -1,0 +1,23 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "prehistoricfauna:blocks/fossil_ammonite_shell",
+		"particle": "prehistoricfauna:blocks/fossil_ammonite_shell"
+	},
+	"elements": [
+		{
+			"from": [4, 0, 0],
+			"to": [12, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 8, 8]},
+			"faces": {
+				"north": {"uv": [10.5, 4.75, 12.5, 8.75], "texture": "#0"},
+				"east": {"uv": [6.5, 4.75, 10.5, 8.75], "texture": "#0"},
+				"south": {"uv": [4.5, 4.75, 6.5, 8.75], "texture": "#0"},
+				"west": {"uv": [0.5, 4.75, 4.5, 8.75], "texture": "#0"},
+				"up": {"uv": [4.5, 0.75, 6.5, 4.75], "rotation": 180, "texture": "#0"},
+				"down": {"uv": [6.5, 0.75, 8.5, 4.75], "rotation": 180, "texture": "#0"}
+			}
+		}
+	]
+}

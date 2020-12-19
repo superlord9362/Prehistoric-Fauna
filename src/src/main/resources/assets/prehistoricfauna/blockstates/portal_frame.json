@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "facing=up,triggered=false": { "model": "prehistoricfauna:block/portal_frame" },
+        "facing=down,triggered=false": { "model": "prehistoricfauna:block/portal_frame", "x": 180 },
+        "facing=east,triggered=false": { "model": "prehistoricfauna:block/portal_frame", "y": 90, "x": 90 },
+        "facing=south,triggered=false": { "model": "prehistoricfauna:block/portal_frame", "y": 180, "x": 90 },
+        "facing=west,triggered=false": { "model": "prehistoricfauna:block/portal_frame", "y": 270, "x": 90 },
+        "facing=north,triggered=false": { "model": "prehistoricfauna:block/portal_frame", "y": 0, "x": 90 },
+		"facing=up,triggered=true": { "model": "prehistoricfauna:block/portal_frame_active" },
+        "facing=down,triggered=true": { "model": "prehistoricfauna:block/portal_frame_active", "x": 180 },
+        "facing=east,triggered=true": { "model": "prehistoricfauna:block/portal_frame_active", "y": 90, "x": 90 },
+        "facing=south,triggered=true": { "model": "prehistoricfauna:block/portal_frame_active", "y": 180, "x": 90 },
+        "facing=west,triggered=true": { "model": "prehistoricfauna:block/portal_frame_active", "y": 270, "x": 90 },
+        "facing=north,triggered=true": { "model": "prehistoricfauna:block/portal_frame_active", "y": 0, "x": 90 }
+    }
+}

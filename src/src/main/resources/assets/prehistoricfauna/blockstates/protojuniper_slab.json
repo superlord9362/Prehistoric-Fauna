@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "prehistoricfauna:block/protojuniper_slab" },
+        "type=top": { "model": "prehistoricfauna:block/protojuniper_slab_top" },
+        "type=double": { "model": "prehistoricfauna:block/protojuniper_planks" }
+    }
+}

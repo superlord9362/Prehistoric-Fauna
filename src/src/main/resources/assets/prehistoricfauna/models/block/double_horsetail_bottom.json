@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "prehistoricfauna:blocks/double_horsetail_bottom"
+    }
+}

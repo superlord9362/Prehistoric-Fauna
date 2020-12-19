@@ -1,0 +1,33 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/looting_like_year",
+  "display": {
+    "icon": {
+      "item": "minecraft:clock"
+    },
+    "title": {
+      "translate": "advancements.prehistoricfauna.plagiarism.title"
+    },
+    "description": {
+      "translate": "advancements.prehistoricfauna.plagiarism.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "paleopage": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:paleopage"
+          }
+        ]
+      }
+  },
+  "requirements": [
+    [
+      "paleopage"
+    ]
+  ]
+}

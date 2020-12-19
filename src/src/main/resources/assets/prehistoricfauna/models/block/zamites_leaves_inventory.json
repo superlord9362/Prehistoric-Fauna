@@ -1,0 +1,24 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/cube_column",
+	"texture_size": [48, 32],
+	"textures": {
+		"1": "prehistoricfauna:blocks/zamites_cone",
+		"particle": "prehistoricfauna:blocks/zamites_cone"
+	},
+	"elements": [
+		{
+			"from": [3, 0, 3],
+			"to": [13, 14, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [11, 8, 11]},
+			"faces": {
+				"north": {"uv": [1, 1, 4.333, 7.9995], "texture": "#1"},
+				"east": {"uv": [1, 1, 4.333, 7.9995], "texture": "#1"},
+				"south": {"uv": [1, 1, 4.333, 7.9995], "texture": "#1"},
+				"west": {"uv": [1, 1, 4.332, 7.998], "texture": "#1"},
+				"up": {"uv": [1, 1, 4.333, 5.999], "texture": "#1"},
+				"down": {"uv": [1, 1, 4.333, 5.999], "texture": "#1"}
+			}
+		}
+	]
+}

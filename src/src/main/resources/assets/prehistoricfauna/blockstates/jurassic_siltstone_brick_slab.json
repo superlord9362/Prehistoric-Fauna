@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "prehistoricfauna:block/jurassic_siltstone_brick_slab" },
+        "type=top": { "model": "prehistoricfauna:block/jurassic_siltstone_brick_slab_top" },
+        "type=double": { "model": "prehistoricfauna:block/polished_jurassic_siltstone_bricks" }
+    }
+}

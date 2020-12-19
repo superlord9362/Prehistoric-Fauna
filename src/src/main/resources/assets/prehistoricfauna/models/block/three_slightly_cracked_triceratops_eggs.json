@@ -1,0 +1,7 @@
+{
+    "parent": "prehistoricfauna:block/three_triceratops_eggs",
+    "textures": {
+        "particle": "prehistoricfauna:blocks/triceratops_egg_slightly_cracked",
+        "all": "prehistoricfauna:blocks/triceratops_egg_slightly_cracked"
+    }
+}

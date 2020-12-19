@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:time_totem"
+    },
+    {
+      "item": "prehistoricfauna:triassic_fossil"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:triassic_time_totem"
+  }
+}

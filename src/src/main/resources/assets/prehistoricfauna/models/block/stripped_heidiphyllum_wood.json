@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "prehistoricfauna:blocks/stripped_heidiphyllum_log",
+        "side": "prehistoricfauna:blocks/stripped_heidiphyllum_log"
+    }
+}

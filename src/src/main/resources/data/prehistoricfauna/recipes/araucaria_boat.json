@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:araucaria_planks"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:araucaria_boat"
+  }
+}

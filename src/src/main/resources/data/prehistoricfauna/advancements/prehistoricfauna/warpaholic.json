@@ -1,0 +1,49 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/time_machine",
+  "display": {
+    "icon": {
+      "item": "minecraft:clock"
+    },
+    "title": {
+      "translate": "advancements.prehistoricfauna.warpaholic.title"
+    },
+    "description": {
+      "translate": "advancements.prehistoricfauna.warpaholic.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "cretaceous": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "prehistoricfauna:cretaceous"
+      }
+    },
+	"jurassic": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "prehistoricfauna:jurassic"
+      }
+    },
+	"triassic": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "prehistoricfauna:triassic"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "cretaceous"
+	],
+	[
+		"jurassic"
+	],
+	[
+		"triassic"
+    ]
+  ]
+}

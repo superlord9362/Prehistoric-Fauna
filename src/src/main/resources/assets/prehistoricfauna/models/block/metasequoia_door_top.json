@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_top",
+    "textures": {
+        "bottom": "prehistoricfauna:blocks/metasequoia_door_bottom",
+        "top": "prehistoricfauna:blocks/metasequoia_door_top"
+    }
+}

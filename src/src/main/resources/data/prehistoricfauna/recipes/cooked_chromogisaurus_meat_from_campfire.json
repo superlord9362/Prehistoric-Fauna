@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "ingredient": {
+    "item": "prehistoricfauna:raw_chromogisaurus_meat"
+  },
+  "result": "prehistoricfauna:cooked_chromogisaurus_meat",
+  "experience": 0.35,
+  "cookingtime": 600
+}

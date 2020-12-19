@@ -1,0 +1,57 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/root",
+  "display": {
+    "icon": {
+      "item": "prehistoricfauna:cretaceous_fossil"
+    },
+    "title": {
+      "translate": "advancements.prehistoricfauna.digger_man.title"
+    },
+    "description": {
+      "translate": "advancements.prehistoricfauna.digger_man.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "cretaceous_fossil": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:cretaceous_fossil"
+          }
+        ]
+      }
+    },
+	"jurassic_fossil": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:jurassic_fossil"
+          }
+        ]
+      }
+    },
+	"triassic_fossil": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:triassic_fossil"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "cretaceous_fossil",
+	  "jurassic_fossil",
+	  "triassic_fossil"
+    ]
+  ]
+}

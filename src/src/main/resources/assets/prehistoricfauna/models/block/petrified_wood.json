@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "prehistoricfauna:blocks/petrified_wood_top",
+        "side": "prehistoricfauna:blocks/petrified_wood"
+    }
+}

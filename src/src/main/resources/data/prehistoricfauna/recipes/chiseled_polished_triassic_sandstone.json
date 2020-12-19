@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:triassic_sandstone_slab"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:chiseled_polished_triassic_sandstone",
+    "count": 1
+  }
+}

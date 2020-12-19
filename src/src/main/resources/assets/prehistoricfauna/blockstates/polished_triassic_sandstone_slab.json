@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "prehistoricfauna:block/polished_triassic_sandstone_slab" },
+        "type=top": { "model": "prehistoricfauna:block/polished_triassic_sandstone_slab_top" },
+        "type=double": { "model": "prehistoricfauna:block/polished_triassic_sandstone" }
+    }
+}

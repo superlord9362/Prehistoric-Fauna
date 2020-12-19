@@ -1,0 +1,7 @@
+{
+    "parent": "prehistoricfauna:block/tyrannosaurus_egg",
+    "textures": {
+        "particle": "prehistoricfauna:blocks/tyrannosaurus_egg_slightly_cracked",
+        "all": "prehistoricfauna:blocks/tyrannosaurus_egg_slightly_cracked"
+    }
+}

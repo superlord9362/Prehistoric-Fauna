@@ -1,0 +1,26 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/block",
+	"textures": {
+		"2": "prehistoricfauna:blocks/giant_shell_tb_back",
+		"3": "prehistoricfauna:blocks/giant_shell_tb_left",
+		"5": "prehistoricfauna:blocks/giant_shell_empty_down",
+		"6": "prehistoricfauna:blocks/giant_shell_tb_right",
+		"7": "prehistoricfauna:blocks/giant_shell_tb_top",
+		"particle": "prehistoricfauna:blocks/giant_shell_tb_back"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#5"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#3"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#6"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#7"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#5"}
+			}
+		}
+	]
+}

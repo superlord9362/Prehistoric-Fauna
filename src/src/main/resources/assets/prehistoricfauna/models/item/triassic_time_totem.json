@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "prehistoricfauna:items/triassic_time_totem"
+    }
+}

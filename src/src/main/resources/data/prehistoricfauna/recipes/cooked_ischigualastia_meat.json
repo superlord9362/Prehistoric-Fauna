@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "prehistoricfauna:raw_ischigualastia_meat"
+  },
+  "result": "prehistoricfauna:cooked_ischigualastia_meat",
+  "experience": 0.35,
+  "cookingtime": 200
+}

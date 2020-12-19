@@ -1,0 +1,31 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/time_machine",
+  "display": {
+    "icon": {
+      "item": "prehistoricfauna:jurassic_time_totem"
+    },
+    "title": {
+      "translate": "advancements.prehistoricfauna.jurassic_time_travel.title"
+    },
+    "description": {
+      "translate": "advancements.prehistoricfauna.jurassic_time_travel.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "jurassic": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "prehistoricfauna:jurassic"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "jurassic"
+    ]
+  ]
+}

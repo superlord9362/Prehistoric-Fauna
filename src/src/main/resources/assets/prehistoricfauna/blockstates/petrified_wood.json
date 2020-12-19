@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":  { "model": "prehistoricfauna:block/petrified_wood" },
+        "axis=z":   { "model": "prehistoricfauna:block/petrified_wood", "x": 90 },
+        "axis=x":   { "model": "prehistoricfauna:block/petrified_wood", "x": 90, "y": 90 }
+    }
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/jurassic_time_travel",
+  "display": {
+    "icon": {
+      "item": "minecraft:clock"
+    },
+    "title": {
+      "translate": "advancements.prehistoricfauna.late_thag_simmons.title"
+    },
+    "description": {
+      "translate": "advancements.prehistoricfauna.late_thag_simmons.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+     "killed_by_something": {
+      "trigger": "minecraft:entity_killed_player",
+      "conditions": {
+	"entity": {
+          "type": "prehistoricfauna:stegosaurus"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "killed_by_something"
+    ]
+  ]
+}

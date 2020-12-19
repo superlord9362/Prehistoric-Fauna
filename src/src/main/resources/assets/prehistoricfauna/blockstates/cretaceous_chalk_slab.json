@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "prehistoricfauna:block/cretaceous_chalk_slab" },
+        "type=top": { "model": "prehistoricfauna:block/cretaceous_chalk_slab_top" },
+        "type=double": { "model": "prehistoricfauna:block/cretaceous_chalk" }
+    }
+}

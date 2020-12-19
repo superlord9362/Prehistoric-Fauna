@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "prehistoricfauna:raw_ceratosaurus_meat"
+  },
+  "result": "prehistoricfauna:cooked_ceratosaurus_meat",
+  "experience": 0.35,
+  "cookingtime": 200
+}

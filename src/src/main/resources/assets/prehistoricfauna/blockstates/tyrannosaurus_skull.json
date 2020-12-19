@@ -1,0 +1,8 @@
+{
+    "variants": {
+		"facing=north": { "model": "prehistoricfauna:block/TyrannosaurusSkull.java"},
+		"facing=east": { "model": "prehistoricfauna:block/TyrannosaurusSkull.java", "y": 90 },
+		"facing=west": { "model": "prehistoricfauna:block/TyrannosaurusSkull.java", "y": 270 },
+		"facing=south": { "model": "prehistoricfauna:block/TyrannosaurusSkull.java", "y": 180 }
+	}
+}

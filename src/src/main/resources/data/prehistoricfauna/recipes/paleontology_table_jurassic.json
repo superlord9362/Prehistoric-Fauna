@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "lf ",
+    "ppi",
+    "pp "
+  ],
+  "key": {
+    "p": {
+      "tag": "minecraft:planks"
+    },
+	"l": {
+		"item": "minecraft:leather"
+	},
+	"i": {
+		"item": "minecraft:iron_ingot"
+	},
+	"f": {
+		"item": "prehistoricfauna:jurassic_fossil"
+	}
+  },
+  "result": {
+    "item": "prehistoricfauna:paleontology_table",
+    "count": 1
+  }
+}

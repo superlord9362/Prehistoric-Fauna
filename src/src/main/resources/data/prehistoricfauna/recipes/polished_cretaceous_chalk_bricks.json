@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:polished_cretaceous_chalk"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:polished_cretaceous_chalk_bricks",
+    "count": 4
+  }
+}

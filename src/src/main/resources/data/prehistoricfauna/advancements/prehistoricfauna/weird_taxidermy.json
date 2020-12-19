@@ -1,0 +1,33 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/time_machine",
+  "display": {
+    "icon": {
+      "item": "minecraft:clock"
+    },
+    "title": {
+      "translate": "advancements.prehistoricfauna.weird_taxidermy.title"
+    },
+    "description": {
+      "translate": "advancements.prehistoricfauna.weird_taxidermy.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "ankylosaurus_chestplate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:ankylosaurus_chestplate"
+          }
+        ]
+      }
+  },
+  "requirements": [
+    [
+      "ankylosaurus_chestplate"
+    ]
+  ]
+}

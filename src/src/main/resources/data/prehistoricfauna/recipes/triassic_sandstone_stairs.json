@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_stairs",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:triassic_sandstone"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:triassic_sandstone_stairs",
+    "count": 4
+  }
+}

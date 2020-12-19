@@ -1,0 +1,7 @@
+{
+    "parent": "prehistoricfauna:block/three_stegosaurus_eggs",
+    "textures": {
+        "particle": "prehistoricfauna:blocks/stegosaurus_eggs_slightly_cracked",
+        "all": "prehistoricfauna:blocks/stegosaurus_eggs_slightly_cracked"
+    }
+}

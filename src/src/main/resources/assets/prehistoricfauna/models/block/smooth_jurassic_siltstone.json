@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "bottom": "prehistoricfauna:blocks/jurassic_siltstone_smooth",
+        "top": "prehistoricfauna:blocks/jurassic_siltstone_smooth",
+        "side": "prehistoricfauna:blocks/jurassic_siltstone_smooth"
+    }
+}

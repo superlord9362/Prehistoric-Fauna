@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "prehistoricfauna:blocks/metasequoia_stripped_log",
+        "side": "prehistoricfauna:blocks/metasequoia_stripped_log"
+    }
+}
