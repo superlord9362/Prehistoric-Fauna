@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab",
-    "textures": {
-        "bottom": "prehistoricfauna:blocks/araucaria_planks",
-        "top": "prehistoricfauna:blocks/araucaria_planks",
-        "side": "prehistoricfauna:blocks/araucaria_planks"
-    }
-}

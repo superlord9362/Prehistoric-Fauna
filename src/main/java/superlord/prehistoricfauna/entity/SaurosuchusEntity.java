@@ -73,7 +73,7 @@ public class SaurosuchusEntity extends PrehistoricEntity {
 	}
 
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == ItemInit.RAW_SILLOSUCHUS_MEAT.get();
+		return stack.getItem() == ItemInit.RAW_ISCHIGUALASTIA_MEAT.get();
 	}
 
 	protected void registerGoals() {

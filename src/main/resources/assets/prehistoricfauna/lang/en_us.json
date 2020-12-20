@@ -235,6 +235,12 @@
 	"block.prehistoricfauna.polished_jurassic_siltstone": "Polished Siltstone",
 	"block.prehistoricfauna.polished_jurassic_siltstone_stairs": "Polished Siltstone Stairs",
 	"block.prehistoricfauna.polished_jurassic_siltstone_slab": "Polished Siltstone Slab",
+	"block.prehistoricfauna.smooth_jurassic_siltstone_wall": "Smooth Siltstone Wall",
+	"block.prehistoricfauna.jurassic_siltstone_brick_wall": "Siltstone Brick Wall",
+	"block.prehistoricfauna.cretaceous_chalk_brick_wall": "Chalk Brick Wall",
+	"block.prehistoricfauna.smooth_cretaceous_chalk_wall": "Smooth Chalk Wall",
+	"block.prehistoricfauna.smooth_triassic_sandstone_wall": "Smooth Sandstone Wall",
+	"block.prehistoricfauna.triassic_sandstone_brick_wall": "Sandstone Brick Wall",
 	
 	//Item Groups
 	"itemGroup.prehistoric_plants_tab": "Prehistoric Fauna Plants",
@@ -420,6 +426,15 @@
 	"item.prehistoricfauna.ankylosaurus_fossil": "Ankylosaurus Fossil",
 	"item.prehistoricfauna.tyrannosaurus_fossil": "Tyrannosaurus Fossil",
 	"item.prehistoricfauna.stegosaurus_fossil": "Stegosaurus Fossil",
+	"item.prehistoricfauna.herrerasaurus_skull": "Herrerasaurus Skull",
+	"item.prehistoricfauna.saurosuchus_skull": "Saurosuchus Skull",
+	"entity.prehistoricfauna.saurosuchus_skull": "Saurosuchus Skull",
+	"entity.prehistoricfauna.herrerasaurus_skull": "Herrerasaurus Skull",
+	"entity.prehistoricfauna.stegosaurus_skull": "Stegosaurus Skull",
+	"item.prehistoricfauna.stegosaurus_skull": "Stegosaurus Skull",
+	"entity.prehistoricfauna.ceratosaurus_skull": "Ceratosaurus Skull",
+	"item.prehistoricfauna.ceratosaurus_skull": "Ceratosaurus Skull",
+	"item.prehistoricfauna.herrerasaurus_fossil": "Herrerasaurus Fossil",
 
 	//Paleopedia
 	"paleopedia.ischigualasto": "Ischigualasto Forest",

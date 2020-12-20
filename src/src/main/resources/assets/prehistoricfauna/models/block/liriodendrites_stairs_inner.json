@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "prehistoricfauna:blocks/liriodendrites_planks",
-        "top": "prehistoricfauna:blocks/liriodendrites_planks",
-        "side": "prehistoricfauna:blocks/liriodendrites_planks"
-    }
-}

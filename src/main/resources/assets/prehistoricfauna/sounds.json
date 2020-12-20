@@ -5,9 +5,12 @@
         "sounds": [
             {
                 "name": "prehistoricfauna:prehistoric/triceratops_idle1",
-                "name": "prehistoricfauna:prehistoric/triceratops_idle2",
                 "stream": true
-            }
+            },
+			{
+                "name": "prehistoricfauna:prehistoric/triceratops_idle2",
+				"stream": true
+			}
         ]
     },
    "triceratops_hurt": {
@@ -46,9 +49,12 @@
         "sounds": [
             {
                 "name": "prehistoricfauna:prehistoric/tyrannosarus_idle1",
-                "name": "prehistoricfauna:prehistoric/tyrannosaurus_idle2",
                 "stream": true
-            }
+            },
+			{
+                "name": "prehistoricfauna:prehistoric/tyrannosaurus_idle2",
+				"stream": true
+			}
         ]
     },
 	"tyrannosaurus_hurt": {
@@ -87,9 +93,12 @@
         "sounds": [
             {
                 "name": "prehistoricfauna:prehistoric/ankylosaurus_idle1",
-                "name": "prehistoricfauna:prehistoric/ankylosaurus_idle2",
                 "stream": true
-            }
+            },
+			{
+                "name": "prehistoricfauna:prehistoric/ankylosaurus_idle2",
+				"stream": true
+			}
         ]
     },
 	"ankylosaurus_hurt": {
@@ -126,9 +135,12 @@
     	"sounds": [
     		{
     			"name": "prehistoricfauna:prehistoric/allosaurus_idle1",
-				"name": "prehistoricfauna:prehistoric/allosaurus_idle2",
     			"stream": true
-    		}
+    		},
+			{
+				"name": "prehistoricfauna:prehistoric/allosaurus_idle2",
+				"stream": true
+			}
     	]
     },
     "allosaurus_hurt": {
@@ -167,6 +179,9 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/stegosaurus_idle1",
+				"stream": true
+			},
+			{
 				"name": "prehistoricfauna:prehistoric/stegosaurus_idle2",
 				"stream": true
 			}
@@ -208,6 +223,9 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/ceratosaurus_idle1",
+				"stream": true
+			},
+			{
 				"name": "prehistoricfauna:prehistoric/ceratosaurus_idle2",
 				"stream": true
 			}
@@ -249,6 +267,9 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/dakotaraptor_idle1",
+				"stream": true
+			},
+			{
 				"name": "prehistoricfauna:prehistoric/dakotaraptor_idle2",
 				"stream": true
 			}
@@ -290,6 +311,9 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/thescelosaurus_idle1",
+				"stream": true
+			},
+			{
 				"name": "prehistoricfauna:prehistoric/thescelosaurus_idle2",
 				"stream": true
 			}
@@ -321,6 +345,9 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/dryosaurus_idle1",
+				"stream": true
+			},
+			{
 				"name": "prehistoricfauna:prehistoric/dryosaurus_idle2",
 				"stream": true
 			}
@@ -352,6 +379,9 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/hesperornithoides_idle1",
+				"stream": true
+			},
+			{
 				"name": "prehistoricfauna:prehistoric/hesperornithoides_idle2",
 				"stream": true
 			}
@@ -383,6 +413,9 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/camarasaurus_idle1",
+				"stream": true
+			},
+			{
 				"name": "prehistoricfauna:prehistoric/camarasaurus_idle2",
 				"stream": true
 			}
@@ -424,6 +457,9 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/eilenodon_idle1",
+				"stream": true
+			},
+			{
 				"name": "prehistoricfauna:prehistoric/eilenodon_idle2",
 				"stream": true
 			}
@@ -455,6 +491,9 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/didelphodon_idle1",
+				"stream": true
+			},
+			{
 				"name": "prehistoricfauna:prehistoric/didelphodon_idle2",
 				"stream": true
 			}
@@ -486,6 +525,9 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/exaeretodon_idle1",
+				"stream": true
+			},
+			{
 				"name": "prehistoricfauna:prehistoric/exaeretodon_idle2",
 				"stream": true
 			}
@@ -527,6 +569,9 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/herrerasaurus_idle1",
+				"stream": true
+			},
+			{
 				"name": "prehistoricfauna:prehistoric/herrerasaurus_idle2",
 				"stream": true
 			}
@@ -568,6 +613,9 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/sillosuchus_idle1",
+				"stream": true
+			},
+			{
 				"name": "prehistoricfauna:prehistoric/sillosuchus_idle2",
 				"stream": true
 			}
@@ -609,6 +657,9 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/saurosuchus_idle1",
+				"stream": true
+			},
+			{
 				"name": "prehistoricfauna:prehistoric/saurosuchus_idle2",
 				"stream": true
 			}
@@ -650,6 +701,9 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/ischigualastia_idle1",
+				"stream": true
+			},
+			{
 				"name": "prehistoricfauna:prehistoric/ischigualastia_idle2",
 				"stream": true
 			}
@@ -691,6 +745,9 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/chromogisaurus_idle1",
+				"stream": true
+			},
+			{
 				"name": "prehistoricfauna:prehistoric/chromogisaurus_idle2",
 				"stream": true
 			}
@@ -722,6 +779,9 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/hyperodapedon_idle1",
+				"stream": true
+			},
+			{
 				"name": "prehistoricfauna:prehistoric/hyperodapedon_idle2",
 				"stream": true
 			}

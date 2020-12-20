@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "axis=y":  { "model": "prehistoricfauna:block/stripped_liriodendrites_wood" },
-        "axis=z":   { "model": "prehistoricfauna:block/stripped_liriodendrites_wood", "x": 90 },
-        "axis=x":   { "model": "prehistoricfauna:block/stripped_liriodendrites_wood", "x": 90, "y": 90 }
-    }
-}

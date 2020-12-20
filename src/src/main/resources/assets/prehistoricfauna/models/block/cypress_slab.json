@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab",
-    "textures": {
-        "bottom": "prehistoricfauna:blocks/cypress_planks",
-        "top": "prehistoricfauna:blocks/cypress_planks",
-        "side": "prehistoricfauna:blocks/cypress_planks"
-    }
-}

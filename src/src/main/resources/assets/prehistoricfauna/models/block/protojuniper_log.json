@@ -1,7 +1,0 @@
-{
-    "parent": "block/cube_column",
-    "textures": {
-        "end": "prehistoricfauna:blocks/protojuniper_log_top",
-        "side": "prehistoricfauna:blocks/protojuniper_log"
-    }
-}

@@ -1,6 +1,0 @@
-{
-    "parent": "block/cross",
-    "textures": {
-        "cross": "prehistoricfauna:blocks/cypress_sapling"
-    }
-}

@@ -21,7 +21,7 @@
               }
             }
           ],
-          "name": "minecraft:apple"
+          "name": "prehistoricfauna:paleopage"
         },
         {
           "type": "minecraft:item",
@@ -50,7 +50,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "prehistoricfauna:paleopage"
+          "name": "minecraft:apple"
         },
         {
           "type": "minecraft:item",

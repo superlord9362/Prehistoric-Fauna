@@ -1,7 +1,0 @@
-{
-    "parent": "prehistoricfauna:block/four_ankylosaurus_eggs",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/ankylosaurus_egg_slightly_cracked",
-        "all": "prehistoricfauna:blocks/ankylosaurus_egg_slightly_cracked"
-    }
-}

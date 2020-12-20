@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "axis=y":  { "model": "prehistoricfauna:block/araucaria_wood" },
-        "axis=z":   { "model": "prehistoricfauna:block/araucaria_wood", "x": 90 },
-        "axis=x":   { "model": "prehistoricfauna:block/araucaria_wood", "x": 90, "y": 90 }
-    }
-}

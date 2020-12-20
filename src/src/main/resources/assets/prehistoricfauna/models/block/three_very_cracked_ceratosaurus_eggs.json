@@ -1,7 +1,0 @@
-{
-    "parent": "prehistoricfauna:block/three_ceratosaurus_eggs",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/ceratosaurus_egg_very_cracked",
-        "all": "prehistoricfauna:blocks/ceratosaurus_egg_very_cracked"
-    }
-}

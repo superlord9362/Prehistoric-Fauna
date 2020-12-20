@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "triggered=false": { "model": "prehistoricfauna:block/henostone_trap" },
-        "triggered=true": { "model": "prehistoricfauna:block/henostone_trap_activated" }
-    }
-}

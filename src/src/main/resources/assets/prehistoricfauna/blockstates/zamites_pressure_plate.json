@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "powered=false": { "model": "prehistoricfauna:block/zamites_pressure_plate" },
-        "powered=true": { "model": "prehistoricfauna:block/zamites_pressure_plate_down" }
-    }
-}

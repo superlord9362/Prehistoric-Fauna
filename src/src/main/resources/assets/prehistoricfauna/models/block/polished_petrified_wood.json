@@ -1,7 +1,0 @@
-{
-    "parent": "block/cube_column",
-    "textures": {
-        "end": "prehistoricfauna:blocks/polished_petrified_wood_top",
-        "side": "prehistoricfauna:blocks/polished_petrified_wood"
-    }
-}

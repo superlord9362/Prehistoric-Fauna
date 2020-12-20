@@ -1,6 +1,0 @@
-{
-    "parent": "prehistoricfauna:block/four_thescelosaurus_eggs",
-    "textures": {
-        "all": "prehistoricfauna:blocks/thescelosaurus_egg_very_cracked"
-    }
-}

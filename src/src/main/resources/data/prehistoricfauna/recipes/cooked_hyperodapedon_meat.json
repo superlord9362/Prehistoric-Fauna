@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "prehistoricfauna:raw_hyperodapedon_meat"
-  },
-  "result": "prehistoricfauna:cooked_hyperodapedon_meat",
-  "experience": 0.35,
-  "cookingtime": 200
-}

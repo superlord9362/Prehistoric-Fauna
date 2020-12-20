@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "prehistoricfauna:henostone_bricks_dark"
-  },
-  "result": "prehistoricfauna:henostone_dark_brick_wall",
-  "count": 1
-}

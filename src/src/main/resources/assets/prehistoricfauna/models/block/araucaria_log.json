@@ -1,7 +1,0 @@
-{
-    "parent": "block/cube_column",
-    "textures": {
-        "end": "prehistoricfauna:blocks/araucaria_log_top",
-        "side": "prehistoricfauna:blocks/araucaria_log"
-    }
-}

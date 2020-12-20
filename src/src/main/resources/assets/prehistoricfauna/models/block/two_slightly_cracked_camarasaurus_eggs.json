@@ -1,7 +1,0 @@
-{
-    "parent": "prehistoricfauna:block/two_camarasaurus_eggs",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/camarasaurus_eggs_slightly_cracked",
-        "all": "prehistoricfauna:blocks/camarasaurus_eggs_slightly_cracked"
-    }
-}

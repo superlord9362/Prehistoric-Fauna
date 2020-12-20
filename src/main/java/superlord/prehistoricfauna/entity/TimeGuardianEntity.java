@@ -1,13 +1,18 @@
 package superlord.prehistoricfauna.entity;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.*;
+import java.util.EnumSet;
+import java.util.Optional;
+
+import javax.annotation.Nullable;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import net.minecraft.entity.item.FallingBlockEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -16,29 +21,28 @@ import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.network.play.server.SEntityVelocityPacket;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.*;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceContext;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.*;
+import net.minecraft.world.BossInfo;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerBossInfo;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.util.Constants.NBT;
 import superlord.prehistoricfauna.util.SoundHandler;
 
-import javax.annotation.Nullable;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Optional;
-
 public class TimeGuardianEntity extends MonsterEntity {
 	private static final DataParameter<Boolean> ACTIVE = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.BOOLEAN);
-	private static final DataParameter<Boolean> USE_SLAM = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> USE_BEAM = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> USE_REGULAR_ATTACK = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Optional<BlockPos>> REST_POSITION = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.OPTIONAL_BLOCK_POS);
@@ -72,7 +76,6 @@ public class TimeGuardianEntity extends MonsterEntity {
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
-		goalSelector.addGoal(1, new TimeGuardianEntity.SlamAttackAI(this));
 		goalSelector.addGoal(1, new TimeGuardianEntity.BeamAttackAI(this));
 		goalSelector.addGoal(1, new TimeGuardianEntity.MeleeAttackGoal(this, 1.0D, false));
 		goalSelector.addGoal(2, new TimeGuardianEntity.AttackAI(this));
@@ -85,21 +88,6 @@ public class TimeGuardianEntity extends MonsterEntity {
 		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2D);
 		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(10.0D);
 		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(24.0D);
-	}
-
-
-	@Override
-	public boolean attackEntityFrom(DamageSource source, float amount) {
-		Entity entitySource = source.getTrueSource();
-		if(entitySource != null) {
-			if ((!isActive() || getAttackTarget() == null) && entitySource instanceof LivingEntity && !(entitySource instanceof PlayerEntity && ((PlayerEntity)entitySource).isCreative()) && !(entitySource instanceof TimeGuardianEntity)) setAttackTarget((LivingEntity)entitySource);
-			if(isActive()) {
-				return super.attackEntityFrom(source, amount);
-			}
-		} else if (source.canHarmInCreative()) {
-			return true;
-		}
-		return false;
 	}
 
 	@Override
@@ -174,7 +162,6 @@ public class TimeGuardianEntity extends MonsterEntity {
 		getDataManager().register(REST_POSITION, Optional.empty());
 		getDataManager().register(ACTIVE, false);
 		getDataManager().register(USE_BEAM, false);
-		getDataManager().register(USE_SLAM, false);
 		getDataManager().register(USE_REGULAR_ATTACK, false);
 		getDataManager().register(CHARGING_BEAM, false);
 		getDataManager().register(USING_BEAM, false);
@@ -200,13 +187,6 @@ public class TimeGuardianEntity extends MonsterEntity {
 		getDataManager().set(USE_BEAM, isUsingBeam);
 	}
 
-	public boolean isSlamming() {
-		return getDataManager().get(USE_SLAM);
-	}
-
-	public void useSlam(boolean isSlamming) {
-		getDataManager().set(USE_SLAM, isSlamming);
-	}
 
 	public boolean isUsingRegularAttack() {
 		return getDataManager().get(USE_REGULAR_ATTACK);
@@ -477,141 +457,6 @@ public class TimeGuardianEntity extends MonsterEntity {
 
 	}
 
-	public class SlamAttackAI extends Goal {
-
-		private TimeGuardianEntity timeGuardian;
-		private int tickCounter;
-		public SlamAttackAI(TimeGuardianEntity timeGuardian) {
-			this.timeGuardian = timeGuardian;
-		}
-
-		@Override
-		public boolean shouldExecute() {
-			return timeGuardian.isSlamming();
-		}
-
-		@Override
-		public void startExecuting() {
-			this.tickCounter = 0;
-		}
-
-		@Override
-		public void tick() {
-			if(this.tickCounter == 0) {
-				stomp();
-			}
-			++this.tickCounter;
-			super.tick();
-		}
-
-		public void stomp() {
-			timeGuardian.setMotion(0, timeGuardian.getMotion().y, 0);
-			double perpFacing = timeGuardian.renderYawOffset * (Math.PI / 180);
-			double facingAngle = perpFacing + Math.PI / 2;int hitY = MathHelper.floor(timeGuardian.getBoundingBox().minY - 0.5);
-			final int maxDistance = 6;
-			ServerWorld world = (ServerWorld) timeGuardian.world; if (tickCounter > 9 && tickCounter < 17) {
-				if (tickCounter == 10) {
-					final double infront = 1.47, side = -0.21;
-					double vx = Math.cos(facingAngle) * infront;
-					double vz = Math.sin(facingAngle) * infront;
-					double perpX = Math.cos(perpFacing);
-					double perpZ = Math.sin(perpFacing);
-					double fx = timeGuardian.getPosX() + vx + perpX * side;
-					double fy = timeGuardian.getBoundingBox().minY + 0.1;
-					double fz = timeGuardian.getPosZ() + vz + perpZ * side;
-					MathHelper.floor(fx);
-					MathHelper.floor(fz);
-					int amount = 16 + world.rand.nextInt(8);
-					while (amount-- > 0) {
-						double theta = world.rand.nextDouble() * Math.PI * 2;
-						double dist = world.rand.nextDouble() * 0.1 + 0.25;
-						double sx = Math.cos(theta);
-						double sz = Math.sin(theta);
-						double px = fx + sx * dist;
-						double py = fy + world.rand.nextDouble() * 0.1;
-						double pz = fz + sz * dist;
-						world.spawnParticle(ParticleTypes.LARGE_SMOKE, px, py, pz, 0, sx * 0.065, 0, sz * 0.065, 1);
-					}
-				} else if (tickCounter == 12) {
-					timeGuardian.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 2, 1F + timeGuardian.getRNG().nextFloat() * 0.1F);
-				}
-				if (tickCounter % 2 == 0) {
-					int distance = tickCounter / 2 - 2;
-					double spread = Math.PI * 2;
-					int arcLen = MathHelper.ceil(distance * spread);
-					double minY = timeGuardian.getBoundingBox().minY;
-					double maxY = timeGuardian.getBoundingBox().maxY;
-					for (int i = 0; i < arcLen; i++) {
-						double theta = (i / (arcLen - 1.0) - 0.5) * spread + facingAngle;
-						double vx = Math.cos(theta);
-						double vz = Math.sin(theta);
-						double px = timeGuardian.getPosX() + vx * distance;
-						double pz = timeGuardian.getPosZ() + vz * distance;
-						float factor = 1 - distance / (float) maxDistance;
-						AxisAlignedBB selection = new AxisAlignedBB(px - 1.5, minY, pz - 1.5, px + 1.5, maxY, pz + 1.5);
-						List<Entity> hit = world.getEntitiesWithinAABB(Entity.class, selection);
-						for (Entity entity : hit) {
-							if (entity == this.timeGuardian || entity instanceof FallingBlockEntity) {
-								continue;
-							}
-							float knockbackResistance = 0;
-							if (entity instanceof LivingEntity) {
-								entity.attackEntityFrom(DamageSource.causeMobDamage(this.timeGuardian), (float)timeGuardian.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getValue());
-								knockbackResistance = (float) ((LivingEntity)entity).getAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).getValue();
-							}
-							double magnitude = world.rand.nextDouble() * 0.15 + 0.1;
-							float x = 0, y = 0, z = 0;
-							x += vx * factor * magnitude * (1 - knockbackResistance);
-							if (entity.onGround) {
-								y += 0.1 * (1 - knockbackResistance) + factor * 0.15 * (1 - knockbackResistance);
-							}
-							z += vz * factor * magnitude * (1 - knockbackResistance);
-							entity.setMotion(entity.getMotion().add(x, y, z));
-							if (entity instanceof ServerPlayerEntity) {
-								((ServerPlayerEntity) entity).connection.sendPacket(new SEntityVelocityPacket(entity));
-							}
-						}
-						if (world.rand.nextBoolean()) {
-							int hitX = MathHelper.floor(px);
-							int hitZ = MathHelper.floor(pz);
-							BlockPos pos = new BlockPos(hitX, hitY, hitZ);
-							BlockPos abovePos = new BlockPos(pos).up();
-							BlockPos belowPos = new BlockPos(pos).down();
-							if (world.isAirBlock(abovePos) && !world.isAirBlock(belowPos)) {
-								BlockState block = world.getBlockState(pos);
-								if (block.getMaterial() != Material.AIR && block.isNormalCube(world, pos) && block.getBlock() != Blocks.BEDROCK && !block.getBlock().hasTileEntity(block)) {
-									FallingBlockEntity fallingBlock = new FallingBlockEntity(world, hitX + 0.5, hitY + 0.5, hitZ + 0.5, block);
-									fallingBlock.setMotion(0, 0.4 + factor * 0.2, 0);
-									fallingBlock.fallTime = 2;
-									world.addEntity(fallingBlock);
-									world.removeBlock(pos, false);
-									int amount = 6 + world.rand.nextInt(10);
-									Block.getStateId(block);
-									while (amount --> 0) {
-										double cx = px + world.rand.nextFloat() * 2 - 1;
-										double cy = timeGuardian.getBoundingBox().minY + 0.1 + world.rand.nextFloat() * 0.3;
-										double cz = pz + world.rand.nextFloat() * 2 - 1;
-										world.spawnParticle(ParticleTypes.EXPLOSION, cx, cy, cz, 0, vx, 0.4 + world.rand.nextFloat() * 0.2F, vz, 1);
-									}
-								}
-							}
-						}
-						if (world.rand.nextBoolean()) {
-							int amount = world.rand.nextInt(5);
-							while (amount-- > 0) {
-								double velX = vx * 0.075;
-								double velY = factor * 0.3 + 0.025;
-								double velZ = vz * 0.075;
-								world.spawnParticle(ParticleTypes.CLOUD, px + world.rand.nextFloat() * 2 - 1, timeGuardian.getBoundingBox().minY + 0.1 + world.rand.nextFloat() * 1.5, pz + world.rand.nextFloat() * 2 - 1, 0, velX, velY, velZ, 1);
-							}
-						}
-					}
-				}
-			}
-		}
-
-	}
-
 	public class AttackAI extends Goal {
 	    private final TimeGuardianEntity henos;
 
@@ -621,7 +466,6 @@ public class TimeGuardianEntity extends MonsterEntity {
 	    private double targetZ;
 
 	    private int attacksSinceBeam;
-	    private int timeSinceSlam;
 
 	    public AttackAI(TimeGuardianEntity henos) {
 	        this.henos = henos;
@@ -631,7 +475,7 @@ public class TimeGuardianEntity extends MonsterEntity {
 	    @Override
 	    public boolean shouldExecute() {
 	        LivingEntity target = this.henos.getAttackTarget();
-	        return target != null && target.isAlive() && this.henos.isActive() && !this.henos.isSlamming() && !this.henos.isUsingBeamAttack() && !this.henos.isUsingRegularAttack();
+	        return target != null && target.isAlive() && this.henos.isActive() && !this.henos.isUsingBeamAttack() && !this.henos.isUsingRegularAttack();
 	    }
 
 	    @Override
@@ -670,8 +514,7 @@ public class TimeGuardianEntity extends MonsterEntity {
 	        }
 	        dist = this.henos.getDistanceSq(this.targetX, this.targetY, this.targetZ);
 	        if (target.getPosY() - this.henos.getPosY() >= -1 && target.getPosY() - this.henos.getPosY() <= 3) {
-	            boolean couldSlam = dist < 6.0D * 6.0D && this.timeSinceSlam > 200;
-	            if (dist < 3.5D * 3.5D && Math.abs(MathHelper.wrapDegrees(this.henos.getAngleBetweenEntities(target, this.henos) - this.henos.rotationYaw)) < 35.0D && (!couldSlam || this.henos.getRNG().nextFloat() < 0.667F)) {
+	            if (dist < 3.5D * 3.5D && Math.abs(MathHelper.wrapDegrees(this.henos.getAngleBetweenEntities(target, this.henos) - this.henos.rotationYaw)) < 35.0D && (this.henos.getRNG().nextFloat() < 0.667F)) {
 	                if (this.attacksSinceBeam > 3 + 2 * (1 - henos.getHealthRatio()) || this.henos.getRNG().nextFloat() < 0.18F) {
 	                    this.henos.useBeam(true);	
 	                    this.attacksSinceBeam = 0;
@@ -679,13 +522,8 @@ public class TimeGuardianEntity extends MonsterEntity {
 	                    this.henos.useRegularAttack(true);
 	                    this.attacksSinceBeam++;
 	                }
-	            } else if (couldSlam) {
-	                this.henos.useSlam(true);
-	                this.timeSinceSlam = 0;
-	                this.attacksSinceBeam++;
-	            }
+	            } 
 	        }
-	        this.timeSinceSlam++;
 	    }
 	}
 

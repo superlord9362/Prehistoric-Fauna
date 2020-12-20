@@ -1,8 +1,0 @@
-{
-    "parent": "block/stairs",
-    "textures": {
-        "bottom": "prehistoricfauna:blocks/henostone",
-        "top": "prehistoricfauna:blocks/henostone",
-        "side": "prehistoricfauna:blocks/henostone"
-    }
-}

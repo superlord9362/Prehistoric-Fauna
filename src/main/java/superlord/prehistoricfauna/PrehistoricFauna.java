@@ -88,6 +88,7 @@ import superlord.prehistoricfauna.entity.render.BasilemysRenderer;
 import superlord.prehistoricfauna.entity.render.BossRenderer;
 import superlord.prehistoricfauna.entity.render.CamarasaurusRenderer;
 import superlord.prehistoricfauna.entity.render.CeratosaurusRenderer;
+import superlord.prehistoricfauna.entity.render.CeratosaurusSkullRenderer;
 import superlord.prehistoricfauna.entity.render.ChromogisaurusRenderer;
 import superlord.prehistoricfauna.entity.render.DakotaraptorRenderer;
 import superlord.prehistoricfauna.entity.render.DidelphodonRenderer;
@@ -95,14 +96,17 @@ import superlord.prehistoricfauna.entity.render.DryosaurusRenderer;
 import superlord.prehistoricfauna.entity.render.EilenodonRenderer;
 import superlord.prehistoricfauna.entity.render.ExaeretodonRenderer;
 import superlord.prehistoricfauna.entity.render.HerrerasaurusRenderer;
+import superlord.prehistoricfauna.entity.render.HerrerasaurusSkullRenderer;
 import superlord.prehistoricfauna.entity.render.HesperornithoidesRenderer;
 import superlord.prehistoricfauna.entity.render.HyperodapedonRenderer;
 import superlord.prehistoricfauna.entity.render.IschigualastiaRenderer;
 import superlord.prehistoricfauna.entity.render.PaleontologyTableScreen;
 import superlord.prehistoricfauna.entity.render.PrehistoricBoatRenderer;
 import superlord.prehistoricfauna.entity.render.SaurosuchusRenderer;
+import superlord.prehistoricfauna.entity.render.SaurosuchusSkullRenderer;
 import superlord.prehistoricfauna.entity.render.SillosuchusRenderer;
 import superlord.prehistoricfauna.entity.render.StegosaurusRenderer;
+import superlord.prehistoricfauna.entity.render.StegosaurusSkullRenderer;
 import superlord.prehistoricfauna.entity.render.ThescelosaurusRenderer;
 import superlord.prehistoricfauna.entity.render.TriceratopsRenderer;
 import superlord.prehistoricfauna.entity.render.TriceratopsSkullRenderer;
@@ -284,6 +288,10 @@ public class PrehistoricFauna {
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.TYRANNOSAURUS_SKULL, TyrannosaurusSkullRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ANKYLOSAURUS_SKULL, AnkylosaurusSkullRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.TRICERATOPS_SKULL, TriceratopsSkullRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.HERRERASAURUS_SKULL, HerrerasaurusSkullRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.SAUROSUCHUS_SKULL, SaurosuchusSkullRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.STEGOSAURUS_SKULL, StegosaurusSkullRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.CERATOSAURUS_SKULL, CeratosaurusSkullRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.TYRANNOSAURUS_SKELETON, TyrannosaurusSkeletonRenderer::new);
         //RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.PALEOPAINTING, PaleopaintingRenderer::new);
         ScreenManager.registerFactory(ContainerRegistry.PALEONTOLOGY_TABLE.get(), PaleontologyTableScreen::new);
@@ -419,7 +427,7 @@ public class PrehistoricFauna {
                 for (int i = 0; i < 6; ++i) {
                     ResourceLocationsArray[i] = new ResourceLocation(panoramaLoc.getNamespace(), panoramaLoc.getPath() + '_' + i + ".png");
                 }
-                ObfuscationReflectionHelper.setPrivateValue(RenderSkyboxCube.class, MainMenuScreen.PANORAMA_RESOURCES, ResourceLocationsArray, "locations");
+                ObfuscationReflectionHelper.setPrivateValue(RenderSkyboxCube.class, MainMenuScreen.PANORAMA_RESOURCES, ResourceLocationsArray, "field_209143_a");
             }
         }
     }

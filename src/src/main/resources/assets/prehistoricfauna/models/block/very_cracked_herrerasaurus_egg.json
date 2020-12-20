@@ -1,7 +1,0 @@
-{
-    "parent": "prehistoricfauna:block/herrerasaurus_egg",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/herrerasaurus_egg_very_cracked",
-        "all": "prehistoricfauna:blocks/herrerasaurus_egg_very_cracked"
-    }
-}

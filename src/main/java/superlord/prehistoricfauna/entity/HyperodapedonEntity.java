@@ -59,7 +59,7 @@ public class HyperodapedonEntity extends PrehistoricEntity {
 	}
 	
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.MICHELILLOA.asItem();
+		return stack.getItem() == BlockInit.SCYTOPHYLLUM.asItem();
 	}
 	
 	@Override

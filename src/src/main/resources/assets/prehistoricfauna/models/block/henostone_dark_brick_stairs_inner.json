@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "prehistoricfauna:blocks/henostone_bricks_dark",
-        "top": "prehistoricfauna:blocks/henostone_bricks_dark",
-        "side": "prehistoricfauna:blocks/henostone_bricks_dark"
-    }
-}

@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "half=lower": { "model": "prehistoricfauna:block/double_horsetail_bottom" },
-        "half=upper":    { "model": "prehistoricfauna:block/double_horsetail_top" }
-    }
-}

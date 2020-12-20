@@ -12,6 +12,7 @@ import superlord.prehistoricfauna.entity.AnkylosaurusSkullEntity;
 import superlord.prehistoricfauna.entity.BasilemysEntity;
 import superlord.prehistoricfauna.entity.CamarasaurusEntity;
 import superlord.prehistoricfauna.entity.CeratosaurusEntity;
+import superlord.prehistoricfauna.entity.CeratosaurusSkullEntity;
 import superlord.prehistoricfauna.entity.ChromogisaurusEntity;
 import superlord.prehistoricfauna.entity.DakotaraptorEntity;
 import superlord.prehistoricfauna.entity.DidelphodonEntity;
@@ -19,13 +20,16 @@ import superlord.prehistoricfauna.entity.DryosaurusEntity;
 import superlord.prehistoricfauna.entity.EilenodonEntity;
 import superlord.prehistoricfauna.entity.ExaeretodonEntity;
 import superlord.prehistoricfauna.entity.HerrerasaurusEntity;
+import superlord.prehistoricfauna.entity.HerrerasaurusSkullEntity;
 import superlord.prehistoricfauna.entity.HesperornithoidesEntity;
 import superlord.prehistoricfauna.entity.HyperodapedonEntity;
 import superlord.prehistoricfauna.entity.IschigualastiaEntity;
 import superlord.prehistoricfauna.entity.PrehistoricBoatEntity;
 import superlord.prehistoricfauna.entity.SaurosuchusEntity;
+import superlord.prehistoricfauna.entity.SaurosuchusSkullEntity;
 import superlord.prehistoricfauna.entity.SillosuchusEntity;
 import superlord.prehistoricfauna.entity.StegosaurusEntity;
+import superlord.prehistoricfauna.entity.StegosaurusSkullEntity;
 import superlord.prehistoricfauna.entity.ThescelosaurusEntity;
 import superlord.prehistoricfauna.entity.TimeGuardianEntity;
 import superlord.prehistoricfauna.entity.TriceratopsEntity;
@@ -64,6 +68,10 @@ public class ModEntityTypes {
 	//public static final EntityType<PaleopaintingEntity> PALEOPAINTING = registerEntity(EntityType.Builder.<PaleopaintingEntity>create(PaleopaintingEntity::new, EntityClassification.MISC).size(0.5F, 0.5F), "paleopainting");
 	public static final EntityType<AnkylosaurusSkullEntity> ANKYLOSAURUS_SKULL = registerEntity(EntityType.Builder.<AnkylosaurusSkullEntity>create(AnkylosaurusSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "ankylosaurus_skull");
 	public static final EntityType<TriceratopsSkullEntity> TRICERATOPS_SKULL = registerEntity (EntityType.Builder.<TriceratopsSkullEntity>create(TriceratopsSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "triceratops_skull");
+	public static final EntityType<SaurosuchusSkullEntity> SAUROSUCHUS_SKULL = registerEntity(EntityType.Builder.<SaurosuchusSkullEntity>create(SaurosuchusSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "saurosuchus_skull");
+	public static final EntityType<HerrerasaurusSkullEntity> HERRERASAURUS_SKULL = registerEntity(EntityType.Builder.<HerrerasaurusSkullEntity>create(HerrerasaurusSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "herrerasaurus_skull");
+	public static final EntityType<StegosaurusSkullEntity> STEGOSAURUS_SKULL = registerEntity(EntityType.Builder.<StegosaurusSkullEntity>create(StegosaurusSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "stegosaurus_skull");
+	public static final EntityType<CeratosaurusSkullEntity> CERATOSAURUS_SKULL = registerEntity(EntityType.Builder.<CeratosaurusSkullEntity>create(CeratosaurusSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "ceratosaurus_skull");
 	
 	@SuppressWarnings("unchecked")
 	private static final <T extends Entity> EntityType<T> registerEntity(EntityType.Builder<T> builder, String entityName){

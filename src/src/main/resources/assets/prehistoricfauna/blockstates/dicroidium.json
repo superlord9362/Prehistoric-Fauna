@@ -1,9 +1,0 @@
-{
-    "variants": {
-        "layer=0": { "model": "prehistoricfauna:block/dicroidium_1" },
-		"layer=1": { "model": "prehistoricfauna:block/dicroidium_2" },
-		"layer=2": { "model": "prehistoricfauna:block/dicroidium_3" },
-		"layer=3": { "model": "prehistoricfauna:block/dicroidium_4" },
-		"layer=4": { "model": "prehistoricfauna:block/dicroidium_5" }
-    }
-}

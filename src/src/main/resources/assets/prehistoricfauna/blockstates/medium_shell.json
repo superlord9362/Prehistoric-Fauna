@@ -1,8 +1,0 @@
-{
-    "variants": {
-		"facing=north": { "model": "prehistoricfauna:block/medium_ammonite" },
-		"facing=east": { "model": "prehistoricfauna:block/medium_ammonite_east" },
-		"facing=west": { "model": "prehistoricfauna:block/medium_ammonite_west" },
-		"facing=south": { "model": "prehistoricfauna:block/medium_ammonite_south" }
-	}
-}

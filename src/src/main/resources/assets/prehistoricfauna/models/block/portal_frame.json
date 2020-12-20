@@ -1,8 +1,0 @@
-{
-    "parent": "block/cube_bottom_top",
-    "textures": {
-        "bottom": "prehistoricfauna:blocks/henostone",
-        "top": "prehistoricfauna:blocks/portalframe_top",
-        "side": "prehistoricfauna:blocks/portalframe"
-    }
-}

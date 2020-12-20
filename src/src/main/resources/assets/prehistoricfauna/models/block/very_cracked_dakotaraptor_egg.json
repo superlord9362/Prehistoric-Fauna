@@ -1,7 +1,0 @@
-{
-    "parent": "prehistoricfauna:block/dakotaraptor_egg",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/dakotaraptor_egg_very_cracked",
-        "all": "prehistoricfauna:blocks/dakotaraptor_egg_very_cracked"
-    }
-}

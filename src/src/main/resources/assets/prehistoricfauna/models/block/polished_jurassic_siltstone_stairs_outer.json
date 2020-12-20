@@ -1,8 +1,0 @@
-{
-    "parent": "block/outer_stairs",
-    "textures": {
-        "bottom": "prehistoricfauna:blocks/jurassic_siltstone_polished",
-        "top": "prehistoricfauna:blocks/jurassic_siltstone_polished",
-        "side": "prehistoricfauna:blocks/jurassic_siltstone_polished"
-    }
-}

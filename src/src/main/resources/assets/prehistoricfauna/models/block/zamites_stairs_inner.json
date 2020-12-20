@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "prehistoricfauna:blocks/zamites_planks",
-        "top": "prehistoricfauna:blocks/zamites_planks",
-        "side": "prehistoricfauna:blocks/zamites_planks"
-    }
-}

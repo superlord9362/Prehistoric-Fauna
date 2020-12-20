@@ -1,8 +1,0 @@
-{
-    "parent": "block/cube_bottom_top",
-    "textures": {
-        "bottom": "prehistoricfauna:blocks/triassic_sandstone_fossil",
-        "top": "prehistoricfauna:blocks/triassic_sandstone_fossil",
-        "side": "prehistoricfauna:blocks/triassic_sandstone_fossil"
-    }
-}

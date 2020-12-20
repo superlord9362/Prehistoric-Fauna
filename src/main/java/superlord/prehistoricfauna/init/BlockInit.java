@@ -221,6 +221,8 @@ public class BlockInit {
 	public static final Block POLISHED_TRIASSIC_SANDSTONE_BRICKS = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_triassic_sandstone_bricks");//Loot Table done
 	public static final Block CHISELED_POLISHED_TRIASSIC_SANDSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("chiseled_polished_triassic_sandstone");//Loot Table done
 	public static final Block TRIASSIC_SANDSTONE_WALL = new WallBlock(Block.Properties.from(TRIASSIC_SANDSTONE)).setRegistryName("triassic_sandstone_wall");//Loot Table done
+	public static final Block SMOOTH_TRIASSIC_SANDSTONE_WALL = new WallBlock(Block.Properties.from(SMOOTH_TRIASSIC_SANDSTONE)).setRegistryName("smooth_triassic_sandstone_wall");//Loot Table done
+	public static final Block TRIASSIC_SANDSTONE_BRICK_WALL = new WallBlock(Block.Properties.from(POLISHED_TRIASSIC_SANDSTONE_BRICKS)).setRegistryName("triassic_sandstone_brick_wall");//Loot Table done
 	public static final Block TRIASSIC_SANDSTONE_STAIRS = new PrehistoricStairsBlock(TRIASSIC_SANDSTONE.getDefaultState(), Block.Properties.from(TRIASSIC_SANDSTONE)).setRegistryName("triassic_sandstone_stairs");//Loot Table done
 	public static final Block TRIASSIC_SANDSTONE_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("triassic_sandstone_slab");//Loot Table done
 	public static final Block POLISHED_TRIASSIC_SANDSTONE_STAIRS = new PrehistoricStairsBlock(POLISHED_TRIASSIC_SANDSTONE.getDefaultState(), Block.Properties.from(POLISHED_TRIASSIC_SANDSTONE)).setRegistryName("polished_triassic_sandstone_stairs");//Loot Table done
@@ -234,6 +236,8 @@ public class BlockInit {
 	public static final Block POLISHED_JURASSIC_SILTSTONE_BRICKS = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_jurassic_siltstone_bricks");//Loot Table done
 	public static final Block CHISELED_POLISHED_JURASSIC_SILTSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("chiseled_polished_jurassic_siltstone");//Loot Table done
 	public static final Block JURASSIC_SILTSTONE_WALL = new WallBlock(Block.Properties.from(JURASSIC_SILTSTONE)).setRegistryName("jurassic_siltstone_wall");//Loot Table done
+	public static final Block SMOOTH_JURASSIC_SILTSTONE_WALL = new WallBlock(Block.Properties.from(SMOOTH_JURASSIC_SILTSTONE)).setRegistryName("smooth_jurassic_siltstone_wall");//Loot Table done
+	public static final Block JURASSIC_SILTSTONE_BRICK_WALL = new WallBlock(Block.Properties.from(POLISHED_JURASSIC_SILTSTONE_BRICKS)).setRegistryName("jurassic_siltstone_brick_wall");//Loot Table done
 	public static final Block JURASSIC_SILTSTONE_STAIRS = new PrehistoricStairsBlock(JURASSIC_SILTSTONE.getDefaultState(), Block.Properties.from(JURASSIC_SILTSTONE)).setRegistryName("jurassic_siltstone_stairs");//Loot Table done
 	public static final Block JURASSIC_SILTSTONE_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("jurassic_siltstone_slab");//Loot Table done
 	public static final Block JURASSIC_SILTSTONE_BRICK_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("jurassic_siltstone_brick_slab");//Loot Table done
@@ -247,6 +251,8 @@ public class BlockInit {
 	public static final Block POLISHED_CRETACEOUS_CHALK_BRICKS = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_cretaceous_chalk_bricks");//Loot Table done
 	public static final Block CHISELED_POLISHED_CRETACEOUS_CHALK = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("chiseled_polished_cretaceous_chalk");//Loot Table done
 	public static final Block CRETACEOUS_CHALK_WALL = new WallBlock(Block.Properties.from(CRETACEOUS_CHALK)).setRegistryName("cretaceous_chalk_wall");//Loot Table done
+	public static final Block SMOOTH_CRETACEOUS_CHALK_WALL = new WallBlock(Block.Properties.from(SMOOTH_CRETACEOUS_CHALK)).setRegistryName("smooth_cretaceous_chalk_wall");//Loot Table done
+	public static final Block CRETACEOUS_CHALK_BRICK_WALL = new WallBlock(Block.Properties.from(POLISHED_CRETACEOUS_CHALK_BRICKS)).setRegistryName("cretaceous_chalk_brick_wall");//Loot Table done
 	public static final Block CRETACEOUS_CHALK_STAIRS = new PrehistoricStairsBlock(CRETACEOUS_CHALK.getDefaultState(), Block.Properties.from(CRETACEOUS_CHALK)).setRegistryName("cretaceous_chalk_stairs");//Loot Table done
 	public static final Block CRETACEOUS_CHALK_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("cretaceous_chalk_slab");//Loot Table done
 	public static final Block CRETACEOUS_CHALK_BRICK_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("cretaceous_chalk_brick_slab");//Loot Table done
@@ -479,6 +485,8 @@ public class BlockInit {
 		event.getRegistry().register(TRIASSIC_SANDSTONE_SLAB);
 		event.getRegistry().register(TRIASSIC_SANDSTONE_STAIRS);
 		event.getRegistry().register(TRIASSIC_SANDSTONE_WALL);
+		event.getRegistry().register(SMOOTH_TRIASSIC_SANDSTONE_WALL);
+		event.getRegistry().register(TRIASSIC_SANDSTONE_BRICK_WALL);
 		event.getRegistry().register(TRIASSIC_SANDSTONE_BRICK_SLAB);
 		event.getRegistry().register(TRIASSIC_SANDSTONE_BRICK_STAIRS);
 		event.getRegistry().register(POLISHED_TRIASSIC_SANDSTONE_SLAB);
@@ -491,6 +499,8 @@ public class BlockInit {
 		event.getRegistry().register(CHISELED_POLISHED_JURASSIC_SILTSTONE);
 		event.getRegistry().register(JURASSIC_SILTSTONE_SLAB);
 		event.getRegistry().register(JURASSIC_SILTSTONE_WALL);
+		event.getRegistry().register(SMOOTH_JURASSIC_SILTSTONE_WALL);
+		event.getRegistry().register(JURASSIC_SILTSTONE_BRICK_WALL);
 		event.getRegistry().register(JURASSIC_SILTSTONE_STAIRS);
 		event.getRegistry().register(JURASSIC_SILTSTONE_BRICK_STAIRS);
 		event.getRegistry().register(JURASSIC_SILTSTONE_BRICK_SLAB);
@@ -504,6 +514,8 @@ public class BlockInit {
 		event.getRegistry().register(CHISELED_POLISHED_CRETACEOUS_CHALK);
 		event.getRegistry().register(CRETACEOUS_CHALK_SLAB);
 		event.getRegistry().register(CRETACEOUS_CHALK_WALL);
+		event.getRegistry().register(SMOOTH_CRETACEOUS_CHALK_WALL);
+		event.getRegistry().register(CRETACEOUS_CHALK_BRICK_WALL);
 		event.getRegistry().register(CRETACEOUS_CHALK_STAIRS);
 		event.getRegistry().register(CRETACEOUS_CHALK_BRICK_STAIRS);
 		event.getRegistry().register(CRETACEOUS_CHALK_BRICK_SLAB);
@@ -811,6 +823,8 @@ public class BlockInit {
 		event.getRegistry().register(new BlockItem(TRIASSIC_SANDSTONE_SLAB, new Item.Properties().group(PFStone.instance)).setRegistryName("triassic_sandstone_slab"));
 		event.getRegistry().register(new BlockItem(TRIASSIC_SANDSTONE_STAIRS, new Item.Properties().group(PFStone.instance)).setRegistryName("triassic_sandstone_stairs"));
 		event.getRegistry().register(new BlockItem(TRIASSIC_SANDSTONE_WALL, new Item.Properties().group(PFStone.instance)).setRegistryName("triassic_sandstone_wall"));
+		event.getRegistry().register(new BlockItem(SMOOTH_TRIASSIC_SANDSTONE_WALL, new Item.Properties().group(PFStone.instance)).setRegistryName("smooth_triassic_sandstone_wall"));
+		event.getRegistry().register(new BlockItem(TRIASSIC_SANDSTONE_BRICK_WALL, new Item.Properties().group(PFStone.instance)).setRegistryName("triassic_sandstone_brick_wall"));
 		event.getRegistry().register(new BlockItem(POLISHED_TRIASSIC_SANDSTONE_SLAB, new Item.Properties().group(PFStone.instance)).setRegistryName("polished_triassic_sandstone_slab"));
 		event.getRegistry().register(new BlockItem(POLISHED_TRIASSIC_SANDSTONE_STAIRS, new Item.Properties().group(PFStone.instance)).setRegistryName("polished_triassic_sandstone_stairs"));
 		event.getRegistry().register(new BlockItem(TRIASSIC_SANDSTONE_BRICK_SLAB, new Item.Properties().group(PFStone.instance)).setRegistryName("triassic_sandstone_brick_slab"));
@@ -824,6 +838,8 @@ public class BlockInit {
 		event.getRegistry().register(new BlockItem(JURASSIC_SILTSTONE_SLAB, new Item.Properties().group(PFStone.instance)).setRegistryName("jurassic_siltstone_slab"));
 		event.getRegistry().register(new BlockItem(JURASSIC_SILTSTONE_STAIRS, new Item.Properties().group(PFStone.instance)).setRegistryName("jurassic_siltstone_stairs"));
 		event.getRegistry().register(new BlockItem(JURASSIC_SILTSTONE_WALL, new Item.Properties().group(PFStone.instance)).setRegistryName("jurassic_siltstone_wall"));
+		event.getRegistry().register(new BlockItem(SMOOTH_JURASSIC_SILTSTONE_WALL, new Item.Properties().group(PFStone.instance)).setRegistryName("smooth_jurassic_siltstone_wall"));
+		event.getRegistry().register(new BlockItem(JURASSIC_SILTSTONE_BRICK_WALL, new Item.Properties().group(PFStone.instance)).setRegistryName("jurassic_siltstone_brick_wall"));
 		event.getRegistry().register(new BlockItem(POLISHED_JURASSIC_SILTSTONE_SLAB, new Item.Properties().group(PFStone.instance)).setRegistryName("polished_jurassic_siltstone_slab"));
 		event.getRegistry().register(new BlockItem(POLISHED_JURASSIC_SILTSTONE_STAIRS, new Item.Properties().group(PFStone.instance)).setRegistryName("polished_jurassic_siltstone_stairs"));
 		event.getRegistry().register(new BlockItem(JURASSIC_SILTSTONE_BRICK_SLAB, new Item.Properties().group(PFStone.instance)).setRegistryName("jurassic_siltstone_brick_slab"));
@@ -837,6 +853,8 @@ public class BlockInit {
 		event.getRegistry().register(new BlockItem(CRETACEOUS_CHALK_SLAB, new Item.Properties().group(PFStone.instance)).setRegistryName("cretaceous_chalk_slab"));
 		event.getRegistry().register(new BlockItem(CRETACEOUS_CHALK_STAIRS, new Item.Properties().group(PFStone.instance)).setRegistryName("cretaceous_chalk_stairs"));
 		event.getRegistry().register(new BlockItem(CRETACEOUS_CHALK_WALL, new Item.Properties().group(PFStone.instance)).setRegistryName("cretaceous_chalk_wall"));
+		event.getRegistry().register(new BlockItem(SMOOTH_CRETACEOUS_CHALK_WALL, new Item.Properties().group(PFStone.instance)).setRegistryName("smooth_cretaceous_chalk_wall"));
+		event.getRegistry().register(new BlockItem(CRETACEOUS_CHALK_BRICK_WALL, new Item.Properties().group(PFStone.instance)).setRegistryName("cretaceous_chalk_brick_wall"));
 		event.getRegistry().register(new BlockItem(POLISHED_CRETACEOUS_CHALK_SLAB, new Item.Properties().group(PFStone.instance)).setRegistryName("polished_cretaceous_chalk_slab"));
 		event.getRegistry().register(new BlockItem(POLISHED_CRETACEOUS_CHALK_STAIRS, new Item.Properties().group(PFStone.instance)).setRegistryName("polished_cretaceous_chalk_stairs"));
 		event.getRegistry().register(new BlockItem(CRETACEOUS_CHALK_BRICK_SLAB, new Item.Properties().group(PFStone.instance)).setRegistryName("cretaceous_chalk_brick_slab"));

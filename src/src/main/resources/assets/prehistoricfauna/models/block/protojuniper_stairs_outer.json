@@ -1,8 +1,0 @@
-{
-    "parent": "block/outer_stairs",
-    "textures": {
-        "bottom": "prehistoricfauna:blocks/protojuniper_planks",
-        "top": "prehistoricfauna:blocks/protojuniper_planks",
-        "side": "prehistoricfauna:blocks/protojuniper_planks"
-    }
-}

@@ -1,0 +1,6 @@
+{
+    "parent": "block/wall_inventory",
+    "textures": {
+        "wall": "prehistoricfauna:blocks/triassic_sandstone_brick"
+    }
+}

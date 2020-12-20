@@ -60,7 +60,7 @@ public class ThescelosaurusEntity extends PrehistoricEntity {
 	}
 
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.HORSETAIL.asItem();
+		return stack.getItem() == BlockInit.MARCHANTIA.asItem();
 	}
 
 	@Override

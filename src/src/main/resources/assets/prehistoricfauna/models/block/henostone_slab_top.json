@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab_top",
-    "textures": {
-        "bottom": "prehistoricfauna:blocks/henostone",
-        "top": "prehistoricfauna:blocks/henostone",
-        "side": "prehistoricfauna:blocks/henostone"
-    }
-}

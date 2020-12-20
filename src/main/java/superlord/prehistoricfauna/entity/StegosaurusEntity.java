@@ -65,7 +65,7 @@ public class StegosaurusEntity extends PrehistoricEntity {
 	}
 
    public boolean isBreedingItem(ItemStack stack) {
-	   return stack.getItem() == BlockInit.CLUBMOSS.asItem();
+	   return stack.getItem() == BlockInit.ZAMITES_LEAVES.asItem();
    }
 
    protected void registerGoals() {

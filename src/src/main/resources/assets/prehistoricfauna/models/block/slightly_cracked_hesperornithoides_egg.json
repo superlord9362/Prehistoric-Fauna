@@ -1,7 +1,0 @@
-{
-    "parent": "prehistoricfauna:block/hesperornithoides_egg",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/hesperornithoides_eggs_slightly_cracked",
-        "all": "prehistoricfauna:blocks/hesperornithoides_eggs_slightly_cracked"
-    }
-}

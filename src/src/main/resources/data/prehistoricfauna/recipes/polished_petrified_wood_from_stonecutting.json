@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "prehistoricfauna:petrified_wood"
-  },
-  "result": "prehistoricfauna:polished_petrified_wood",
-  "count": 1
-}

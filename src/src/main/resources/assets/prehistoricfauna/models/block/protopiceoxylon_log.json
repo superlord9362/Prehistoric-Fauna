@@ -1,7 +1,0 @@
-{
-    "parent": "block/cube_column",
-    "textures": {
-        "end": "prehistoricfauna:blocks/protopiceoxylon_log_top",
-        "side": "prehistoricfauna:blocks/protopiceoxylon_log"
-    }
-}

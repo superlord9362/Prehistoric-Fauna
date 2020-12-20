@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "type=bottom": { "model": "prehistoricfauna:block/protopiceoxylon_slab" },
-        "type=top": { "model": "prehistoricfauna:block/protopiceoxylon_slab_top" },
-        "type=double": { "model": "prehistoricfauna:block/protopiceoxylon_planks" }
-    }
-}

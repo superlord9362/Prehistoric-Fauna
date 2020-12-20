@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "prehistoricfauna:polished_triassic_sandstone"
-  },
-  "result": "prehistoricfauna:polished_triassic_sandstone_slab",
-  "count": 1
-}

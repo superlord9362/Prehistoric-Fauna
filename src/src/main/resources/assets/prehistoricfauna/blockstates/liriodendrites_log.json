@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "axis=y":  { "model": "prehistoricfauna:block/liriodendrites_log" },
-        "axis=z":   { "model": "prehistoricfauna:block/liriodendrites_log", "x": 90 },
-        "axis=x":   { "model": "prehistoricfauna:block/liriodendrites_log", "x": 90, "y": 90 }
-    }
-}

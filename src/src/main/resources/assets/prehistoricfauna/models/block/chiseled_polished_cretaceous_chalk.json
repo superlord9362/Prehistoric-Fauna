@@ -1,8 +1,0 @@
-{
-    "parent": "block/cube_bottom_top",
-    "textures": {
-        "bottom": "prehistoricfauna:blocks/cretaceous_chalk_polished",
-        "top": "prehistoricfauna:blocks/cretaceous_chalk_polished",
-        "side": "prehistoricfauna:blocks/cretaceous_chalk_chiseled"
-    }
-}

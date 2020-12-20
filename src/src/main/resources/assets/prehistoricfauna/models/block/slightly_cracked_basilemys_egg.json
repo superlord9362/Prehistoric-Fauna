@@ -1,7 +1,0 @@
-{
-    "parent": "prehistoricfauna:block/basilemys_egg",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/basilemys_egg_slightly_cracked",
-        "all": "prehistoricfauna:blocks/basilemys_egg_slightly_cracked"
-    }
-}

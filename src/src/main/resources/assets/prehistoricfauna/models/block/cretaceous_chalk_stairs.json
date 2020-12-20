@@ -1,8 +1,0 @@
-{
-    "parent": "block/stairs",
-    "textures": {
-        "bottom": "prehistoricfauna:blocks/cretaceous_chalk",
-        "top": "prehistoricfauna:blocks/cretaceous_chalk",
-        "side": "prehistoricfauna:blocks/cretaceous_chalk"
-    }
-}
