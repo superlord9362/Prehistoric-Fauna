@@ -16,7 +16,7 @@
     "hidden": false
   },
   "criteria": {
-    "sandstone": {
+    "prehistoricfauna:sandstone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "parent": {
@@ -24,7 +24,7 @@
         }
       }
     },
-	"siltstone": {
+	"prehistoricfauna:siltstone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "parent": {
@@ -32,7 +32,7 @@
         }
       }
     },
-	"chalk": {
+	"prehistoricfauna:chalk": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "parent": {
@@ -43,13 +43,13 @@
   },
   "requirements": [
     [
-      "sandstone"
+      "prehistoricfauna:sandstone"
     ],
 	[
-      "siltstone"
+      "prehistoricfauna:siltstone"
     ],
 	[
-      "chalk"
+      "prehistoricfauna:chalk"
     ]
   ]
 }

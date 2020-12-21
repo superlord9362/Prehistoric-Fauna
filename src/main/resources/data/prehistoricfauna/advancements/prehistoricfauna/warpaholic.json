@@ -17,21 +17,21 @@
   },
   "criteria": {
     "cretaceous": {
-      "trigger": "minecraft:changed_dimension",
+      "trigger": "minecraft:enter_block",
       "conditions": {
-        "to": "prehistoricfauna:cretaceous"
+        "block": "prehistoricfauna:cretaceous_portal"
       }
-    },
+   	 },
 	"jurassic": {
-      "trigger": "minecraft:changed_dimension",
+      "trigger": "minecraft:enter_block",
       "conditions": {
-        "to": "prehistoricfauna:jurassic"
+        "block": "prehistoricfauna:jurassic_portal"
       }
     },
-	"triassic": {
-      "trigger": "minecraft:changed_dimension",
+	 "triassic": {
+      "trigger": "minecraft:enter_block",
       "conditions": {
-        "to": "prehistoricfauna:triassic"
+        "block": "prehistoricfauna:triassic_portal"
       }
     }
   },

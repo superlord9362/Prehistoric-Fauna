@@ -16,12 +16,12 @@
     "hidden": false
   },
   "criteria": {
-    "cretaceous": {
-      "trigger": "minecraft:changed_dimension",
+   "cretaceous": {
+      "trigger": "minecraft:enter_block",
       "conditions": {
-        "to": "prehistoricfauna:cretaceous"
+        "block": "prehistoricfauna:cretaceous_portal"
       }
-    }
+   	 }
   },
   "requirements": [
     [

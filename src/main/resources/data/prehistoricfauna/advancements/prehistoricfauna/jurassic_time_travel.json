@@ -17,12 +17,12 @@
   },
   "criteria": {
     "jurassic": {
-      "trigger": "minecraft:changed_dimension",
+      "trigger": "minecraft:enter_block",
       "conditions": {
-        "to": "prehistoricfauna:jurassic"
+        "block": "prehistoricfauna:jurassic_portal"
       }
-    }
-  },
+  }
+},
   "requirements": [
     [
       "jurassic"

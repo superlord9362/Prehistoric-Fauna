@@ -17,9 +17,9 @@
   },
   "criteria": {
     "triassic": {
-      "trigger": "minecraft:changed_dimension",
+      "trigger": "minecraft:enter_block",
       "conditions": {
-        "to": "prehistoricfauna:triassic"
+        "block": "prehistoricfauna:triassic_portal"
       }
     }
   },

@@ -207,39 +207,40 @@ public class AnkylosaurusEntity extends PrehistoricEntity {
    }
 
    class MeleeAttackGoal extends net.minecraft.entity.ai.goal.MeleeAttackGoal {
-      public MeleeAttackGoal() {
-         super(AnkylosaurusEntity.this, 1.25D, true);
-      }
+	      public MeleeAttackGoal() {
+	          super(AnkylosaurusEntity.this, 1.25D, true);
+	       }
 
-      protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
-         double d0 = this.getAttackReachSqr(enemy);
-         if (distToEnemySqr <= d0 && this.attackTick <= 0) {
-            this.attackTick = 20;
-            this.attacker.attackEntityAsMob(enemy);
-         } else if (distToEnemySqr <= d0 * 2.0D) {
-            if (this.attackTick <= 0) {
-               this.attackTick = 20;
-            }
+	       protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
+	          double d0 = this.getAttackReachSqr(enemy);
+	          if (distToEnemySqr <= d0 && this.attackTick <= 0) {
+	             this.attackTick = 20;
+	             this.attacker.attackEntityAsMob(enemy);
+	          } else if (distToEnemySqr <= d0 * 2.0D) {
+	             if (this.attackTick <= 0) {
+	                this.attackTick = 20;
+	             }
 
-            if (this.attackTick <= 10) {
-            }
-         } else {
-            this.attackTick = 20;
-         }
+	             if (this.attackTick <= 10) {
+	             	AnkylosaurusEntity.this.playWarningSound();
+	             }
+	          } else {
+	             this.attackTick = 20;
+	          }
 
-      }
+	       }
 
-      /**
-       * Reset the task's internal state. Called when this task is interrupted by another one
-       */
-      public void resetTask() {
-         super.resetTask();
-      }
+	       /**
+	        * Reset the task's internal state. Called when this task is interrupted by another one
+	        */
+	       public void resetTask() {
+	          super.resetTask();
+	       }
 
-      protected double getAttackReachSqr(LivingEntity attackTarget) {
-         return (double)(4.0F + attackTarget.getWidth());
-      }
-   }
+	       protected double getAttackReachSqr(LivingEntity attackTarget) {
+	          return (double)(4.0F + attackTarget.getWidth());
+	       }
+	    }
 
    class PanicGoal extends net.minecraft.entity.ai.goal.PanicGoal {
       public PanicGoal() {
