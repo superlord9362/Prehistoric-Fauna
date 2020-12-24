@@ -34,7 +34,7 @@ public class AlgaeBlock extends Block {
 	}
 	
 	protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-		return state.isSolidSide(worldIn, pos, Direction.UP) && state.getBlock() != Blocks.MAGMA_BLOCK;
+		return state.isSolidSide(worldIn, pos, Direction.UP) && state.getBlock() != Blocks.MAGMA_BLOCK && state.getBlock() != this;
 	}
 
 	@Nullable

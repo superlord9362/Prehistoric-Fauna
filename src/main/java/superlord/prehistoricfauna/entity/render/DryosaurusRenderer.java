@@ -11,6 +11,7 @@ import superlord.prehistoricfauna.entity.model.Dryosaurus;
 public class DryosaurusRenderer extends MobRenderer<DryosaurusEntity, Dryosaurus> {
 
     private static final ResourceLocation DRYOSAURUS = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/dryosaurus.png");
+    private static final ResourceLocation DRYOSAURUS_BABY = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/dryosaurus_baby.png");
 
     public DryosaurusRenderer(EntityRendererManager rm) {
         super(rm, new Dryosaurus(), 0.375F);
@@ -24,6 +25,10 @@ public class DryosaurusRenderer extends MobRenderer<DryosaurusEntity, Dryosaurus
 
     @Override
 	public ResourceLocation getEntityTexture(DryosaurusEntity entity) {
-    	return DRYOSAURUS;
+    	if(entity.isChild()) {
+    		return DRYOSAURUS_BABY;
+    	} else {
+    		return DRYOSAURUS;
+    	}
     }
 }

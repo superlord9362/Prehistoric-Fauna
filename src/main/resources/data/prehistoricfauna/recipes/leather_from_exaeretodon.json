@@ -1,16 +1,14 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "# ",
-    " #"
-  ],
-  "key": {
-    "#": {
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
       "item": "prehistoricfauna:exaeretodon_hide"
-    }
-  },
+    },
+	{
+		"item": "prehistoricfauna:exaeretodon_hide"
+	}
+  ],
   "result": {
-    "item": "minecraft:leather",
-    "count": 1
+    "item": "minecraft:leather"
   }
 }

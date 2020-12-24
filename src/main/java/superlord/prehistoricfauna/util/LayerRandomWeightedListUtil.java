@@ -10,7 +10,8 @@ public class LayerRandomWeightedListUtil {
         return pickBiome(biomeWeightedList, layerNoise);
     }
 
-    public static ResourceLocation pickBiome(WeightedList<ResourceLocation> biomeWeightedList, INoiseRandom rand) {
+    @SuppressWarnings("rawtypes")
+	public static ResourceLocation pickBiome(WeightedList<ResourceLocation> biomeWeightedList, INoiseRandom rand) {
         double total = 0;
 
         for (WeightedList.Entry biomeEntry : biomeWeightedList.field_220658_a)

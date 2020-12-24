@@ -71,12 +71,12 @@ public class PrehistoricFeature {
 		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.DISK.withConfiguration(new SphereReplaceConfig(Blocks.GRAVEL.getDefaultState(), 6, 2, Lists.newArrayList(Blocks.COARSE_DIRT.getDefaultState()))).withPlacement(Placement.COUNT_TOP_SOLID.configure(new FrequencyConfig(1))));
 	}
 
-	@SuppressWarnings({ "unchecked", "deprecation" })
+	@SuppressWarnings({ "unchecked", "deprecation", "unused" })
 	private static <C extends IFeatureConfig, F extends Feature<C>> F register(String key, F value) {
 		return (F)(Registry.<Feature<?>>register(Registry.FEATURE, key, value));
 	}
 
-	@SuppressWarnings({ "unchecked", "deprecation" })
+	@SuppressWarnings({ "unchecked", "deprecation", "unused" })
 	private static <C extends ISurfaceBuilderConfig, F extends SurfaceBuilder<C>> F register(String key, F builderIn) {
 		return (F)(Registry.<SurfaceBuilder<?>>register(Registry.SURFACE_BUILDER, key, builderIn));
 	}

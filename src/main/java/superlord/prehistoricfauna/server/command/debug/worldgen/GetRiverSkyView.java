@@ -28,7 +28,8 @@ public class GetRiverSkyView {
     }
 
 
-    public static int test(int range, long seed) {
+    @SuppressWarnings("deprecation")
+	public static int test(int range, long seed) {
         CretaceousBiomeProvider biomeProvider = new CretaceousBiomeProvider(Registry.BIOME, seed);
         execute(biomeProvider, range);
         return 1;

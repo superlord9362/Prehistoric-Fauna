@@ -114,7 +114,6 @@ public class BlockInit {
 */	public static final Block MOSS_BLOCK = new Block(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.2F).sound(SoundType.PLANT)).setRegistryName("moss_block"); //Loot Table done
 	public static final Block CONIOPTERIS = new PrehistoricPlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("coniopteris");//Loot Table done
 	public static final Block OSMUNDACAULIS = new DoublePlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).doesNotBlockMovement().sound(SoundType.PLANT)).setRegistryName("osmundacaulis"); //Loot Table done
-	public static final Block PALEOSCRIBE = new PaleoscribeBlock().setRegistryName("paleoscribe");
 	public static final Block PROTOPICEOXYLON_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_log");//Loot Table done
 	public static final Block PROTOPICEOXYLON_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_planks");//Loot Table done
 	public static final Block STRIPPED_PROTOPICEOXYLON_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_protopiceoxylon_log");//Loot Table done
@@ -392,7 +391,6 @@ public class BlockInit {
 		event.getRegistry().register(PTILOPHYLLUM_WOOD);
 		event.getRegistry().register(PTILOPHYLLUM_BASE);
 		event.getRegistry().register(POTTED_PROTOPICEOXYLON_SAPLING);
-		//event.getRegistry().register(PALEOSCRIBE);
 		event.getRegistry().register(ZAMITES_LOG);
 		event.getRegistry().register(ZAMITES_BUTTON);
 		event.getRegistry().register(ZAMITES_DOOR);
@@ -713,7 +711,6 @@ public class BlockInit {
 		*/event.getRegistry().register(new BlockItem(MOSS_BLOCK, new Item.Properties().group(PFPlants.instance)).setRegistryName("moss_block"));
 		event.getRegistry().register(new BlockItem(CONIOPTERIS, new Item.Properties().group(PFPlants.instance)).setRegistryName("coniopteris"));
 		event.getRegistry().register(new BlockItem(OSMUNDACAULIS, new Item.Properties().group(PFPlants.instance)).setRegistryName("osmundacaulis"));
-		//event.getRegistry().register(new BlockItem(PALEOSCRIBE, new Item.Properties().group(PFBook.instance)).setRegistryName("paleoscribe"));
 		event.getRegistry().register(new BlockItem(PROTOPICEOXYLON_LEAVES, new Item.Properties().group(PFPlants.instance)).setRegistryName("protopiceoxylon_leaves"));
 		event.getRegistry().register(new BlockItem(PROTOPICEOXYLON_LOG, new Item.Properties().group(PFWood.instance)).setRegistryName("protopiceoxylon_log"));
 		event.getRegistry().register(new BlockItem(PROTOPICEOXYLON_PLANKS, new Item.Properties().group(PFWood.instance)).setRegistryName("protopiceoxylon_planks"));

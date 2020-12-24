@@ -24,11 +24,11 @@ public class ChromogisaurusRenderer extends MobRenderer<ChromogisaurusEntity, En
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
 	
-	protected void preRenderCallBack(ChromogisaurusEntity chromogisaurus, MatrixStack matrixStackIn, float partialTickTime) {
-		if (chromogisaurus.isChild()) {
-			matrixStackIn.scale(0.5F, 0.5F, 0.5F);
-		}
-	}
+	protected void preRenderCallback(ChromogisaurusEntity entity, MatrixStack matrixStackIn, float partialTickTime) {
+		 if(entity.isChild()) {
+			 matrixStackIn.scale(0.5F, 0.5F, 0.5F);
+		 }
+	 }
 	
 	@Override
 	public ResourceLocation getEntityTexture(ChromogisaurusEntity entity) {

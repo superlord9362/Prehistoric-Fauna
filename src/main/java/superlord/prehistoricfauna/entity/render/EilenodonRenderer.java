@@ -38,6 +38,6 @@ public class EilenodonRenderer extends MobRenderer<EilenodonEntity, EntityModel<
 
     @Override
 	public ResourceLocation getEntityTexture(EilenodonEntity entity) {
-    	return EILENODON;
+		return EILENODON;
     }
 }

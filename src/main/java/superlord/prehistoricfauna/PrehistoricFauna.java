@@ -109,6 +109,7 @@ import superlord.prehistoricfauna.entity.render.StegosaurusRenderer;
 import superlord.prehistoricfauna.entity.render.StegosaurusSkullRenderer;
 import superlord.prehistoricfauna.entity.render.ThescelosaurusRenderer;
 import superlord.prehistoricfauna.entity.render.TriceratopsRenderer;
+import superlord.prehistoricfauna.entity.render.TriceratopsSkeletonRenderer;
 import superlord.prehistoricfauna.entity.render.TriceratopsSkullRenderer;
 import superlord.prehistoricfauna.entity.render.TyrannosaurusRenderer;
 import superlord.prehistoricfauna.entity.render.TyrannosaurusSkeletonRenderer;
@@ -293,6 +294,7 @@ public class PrehistoricFauna {
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.STEGOSAURUS_SKULL, StegosaurusSkullRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.CERATOSAURUS_SKULL, CeratosaurusSkullRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.TYRANNOSAURUS_SKELETON, TyrannosaurusSkeletonRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.TRICERATOPS_SKELETON, TriceratopsSkeletonRenderer::new);
         //RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.PALEOPAINTING, PaleopaintingRenderer::new);
         ScreenManager.registerFactory(ContainerRegistry.PALEONTOLOGY_TABLE.get(), PaleontologyTableScreen::new);
 	}
@@ -302,6 +304,10 @@ public class PrehistoricFauna {
 		
 	}
 	
+	public static <MSG> void sendMSGToServer(MSG message) {
+        NETWORK_WRAPPER.sendToServer(message);
+    }
+
 	public static <MSG> void sendMSGToAll(MSG message) {
 		for (ServerPlayerEntity player : ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayers()) {
 			sendNonLocal(message, player);
@@ -502,5 +508,7 @@ public class PrehistoricFauna {
 			LOGGER.info("Prehistoric Fauna: \"Server Starting\" Event Complete!");
 		}
 	}
+	
+	
 	
 }

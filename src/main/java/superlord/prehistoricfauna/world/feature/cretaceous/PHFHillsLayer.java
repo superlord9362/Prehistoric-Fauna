@@ -24,7 +24,8 @@ public class PHFHillsLayer implements IAreaTransformer2, IDimOffset1Transformer 
     }
 
 
-    public int apply(INoiseRandom rand, IArea area1, IArea area2, int x, int z) {
+    @SuppressWarnings("unused")
+	public int apply(INoiseRandom rand, IArea area1, IArea area2, int x, int z) {
         int i = area1.getValue(this.getOffsetX(x + 1), this.getOffsetZ(z + 1));
         int j = area2.getValue(this.getOffsetX(x + 1), this.getOffsetZ(z + 1));
 

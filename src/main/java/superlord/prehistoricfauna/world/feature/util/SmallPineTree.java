@@ -26,7 +26,8 @@ public class SmallPineTree extends Feature<NoFeatureConfig> {
         super(configIn);
     }
 
-    public boolean place(IWorld world, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+    @SuppressWarnings("unused")
+	public boolean place(IWorld world, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
 
 
         if (pos.getX() == -7 && pos.getZ() == -7) {

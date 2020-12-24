@@ -26,6 +26,7 @@ public class CretaceousDimension extends Dimension {
 		super(world, type, 0.0f);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public ChunkGenerator<?> createChunkGenerator() {
 		return new PFChunkGenerator(world, new CretaceousBiomeProvider(Registry.BIOME, world.getSeed()), new PFGenSettings());

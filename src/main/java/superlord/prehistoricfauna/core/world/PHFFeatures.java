@@ -1,5 +1,10 @@
 package superlord.prehistoricfauna.core.world;
 
+import static superlord.prehistoricfauna.core.world.util.WorldGenRegistrationHelper.createFeature;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.TreeFeature;
@@ -18,16 +23,12 @@ import superlord.prehistoricfauna.world.feature.cretaceous.araucaria.small.Arauc
 import superlord.prehistoricfauna.world.feature.cretaceous.araucaria.small.AraucariaSmallTree4;
 import superlord.prehistoricfauna.world.feature.cretaceous.metasequoia.MetaSequoiaTree1;
 import superlord.prehistoricfauna.world.feature.cretaceous.metasequoia.MetaSequoiaTree2;
-import superlord.prehistoricfauna.world.feature.generator.PrehistoricGiantTreeFeatureConfig;
 import superlord.prehistoricfauna.world.feature.jurassic.PtilophyllumFeature;
 import superlord.prehistoricfauna.world.feature.jurassic.ZamitesBushFeature;
 import superlord.prehistoricfauna.world.feature.util.SmallPineTree;
-import superlord.prehistoricfauna.world.placement.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static superlord.prehistoricfauna.core.world.util.WorldGenRegistrationHelper.createFeature;
+import superlord.prehistoricfauna.world.placement.DicroidiumConfig;
+import superlord.prehistoricfauna.world.placement.DidelphodonBurrowConfig;
+import superlord.prehistoricfauna.world.placement.JohnstoniaConfig;
 
 public class PHFFeatures {
     public static List<Feature<?>> features = new ArrayList<>();

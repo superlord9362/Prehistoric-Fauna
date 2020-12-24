@@ -9,7 +9,8 @@ import superlord.prehistoricfauna.world.dimension.cretaceous.CretaceousBiomeProv
 
 public class CretaceousMasterLayer implements IAreaTransformer0 {
     private final Registry<Biome> biomeRegistry;
-    private final long seed;
+    @SuppressWarnings("unused")
+	private final long seed;
     private final FastNoise fastNoise;
 
     public CretaceousMasterLayer(Registry<Biome> biomeRegistry, long seed) {

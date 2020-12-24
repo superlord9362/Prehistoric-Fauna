@@ -33,6 +33,7 @@ import superlord.prehistoricfauna.entity.StegosaurusSkullEntity;
 import superlord.prehistoricfauna.entity.ThescelosaurusEntity;
 import superlord.prehistoricfauna.entity.TimeGuardianEntity;
 import superlord.prehistoricfauna.entity.TriceratopsEntity;
+import superlord.prehistoricfauna.entity.TriceratopsSkeletonEntity;
 import superlord.prehistoricfauna.entity.TriceratopsSkullEntity;
 import superlord.prehistoricfauna.entity.TyrannosaurusEntity;
 import superlord.prehistoricfauna.entity.TyrannosaurusSkeletonEntity;
@@ -72,6 +73,7 @@ public class ModEntityTypes {
 	public static final EntityType<HerrerasaurusSkullEntity> HERRERASAURUS_SKULL = registerEntity(EntityType.Builder.<HerrerasaurusSkullEntity>create(HerrerasaurusSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "herrerasaurus_skull");
 	public static final EntityType<StegosaurusSkullEntity> STEGOSAURUS_SKULL = registerEntity(EntityType.Builder.<StegosaurusSkullEntity>create(StegosaurusSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "stegosaurus_skull");
 	public static final EntityType<CeratosaurusSkullEntity> CERATOSAURUS_SKULL = registerEntity(EntityType.Builder.<CeratosaurusSkullEntity>create(CeratosaurusSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "ceratosaurus_skull");
+	public static final EntityType<TriceratopsSkeletonEntity> TRICERATOPS_SKELETON = registerEntity(EntityType.Builder.<TriceratopsSkeletonEntity>create(TriceratopsSkeletonEntity::new, EntityClassification.MISC).size(1F, 1F), "triceratops_skeleton");
 	
 	@SuppressWarnings("unchecked")
 	private static final <T extends Entity> EntityType<T> registerEntity(EntityType.Builder<T> builder, String entityName){

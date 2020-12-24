@@ -37,7 +37,8 @@ public class WorldGenRegistrationHelper {
         return surfaceBuilder;
     }
 
-    public static <SC extends ISurfaceBuilderConfig, CSB extends ConfiguredSurfaceBuilder<SC>> CSB createConfiguredSurfaceBuilder(String id, CSB configuredSurfaceBuilder) {
+    @SuppressWarnings("unused")
+	public static <SC extends ISurfaceBuilderConfig, CSB extends ConfiguredSurfaceBuilder<SC>> CSB createConfiguredSurfaceBuilder(String id, CSB configuredSurfaceBuilder) {
         ResourceLocation phfID = new ResourceLocation(PrehistoricFauna.MODID, id);
 //        if (WorldGenRegistries.CONFIGURED_SURFACE_BUILDER.keySet().contains(phfID))
 //            throw new IllegalStateException("Configured Surface Builder ID: \"" + phfID.toString() + "\" already exists in the Configured Surface Builder registry!");
@@ -93,7 +94,8 @@ public class WorldGenRegistrationHelper {
         return piece;
     }
 
-    public static <FC extends IFeatureConfig, F extends Feature<FC>, CF extends ConfiguredFeature<FC, F>> CF createConfiguredFeature(String id, CF configuredFeature) {
+    @SuppressWarnings("unused")
+	public static <FC extends IFeatureConfig, F extends Feature<FC>, CF extends ConfiguredFeature<FC, F>> CF createConfiguredFeature(String id, CF configuredFeature) {
         ResourceLocation phfID = new ResourceLocation(PrehistoricFauna.MODID, id);
 //        if (WorldGenRegistries.CONFIGURED_FEATURE.keySet().contains(phfID))
 //            throw new IllegalStateException("Configured Feature ID: \"" + phfID.toString() + "\" already exists in the Configured Features registry!");

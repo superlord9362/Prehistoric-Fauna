@@ -26,7 +26,6 @@ public class TriassicDimension extends Dimension {
 	}
 	
 	@Override
-	@SuppressWarnings("deprecation")
 	public ChunkGenerator<?> createChunkGenerator() {
 		return new PFChunkGenerator(world, new TriassicBiomeProvider(), new PFGenSettings());
 	}

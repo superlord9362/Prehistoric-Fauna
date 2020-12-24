@@ -34,7 +34,8 @@ public class EmptyTree extends PHFAbstractTreeFeature<PHFTreeConfig> {
         super(configIn);
     }
 
-    protected boolean generate(Set<BlockPos> changedBlocks, IWorld world, Random rand, BlockPos pos, MutableBoundingBox boundsIn, boolean isSapling, PHFTreeConfig config) {
+    @SuppressWarnings("unused")
+	protected boolean generate(Set<BlockPos> changedBlocks, IWorld world, Random rand, BlockPos pos, MutableBoundingBox boundsIn, boolean isSapling, PHFTreeConfig config) {
 
         int randTreeHeight = config.getMinHeight() + rand.nextInt(config.getMaxPossibleHeight());
         BlockPos.Mutable mainmutable = new BlockPos.Mutable().setPos(pos);

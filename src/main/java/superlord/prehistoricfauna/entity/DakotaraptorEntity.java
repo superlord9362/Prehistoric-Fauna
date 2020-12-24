@@ -635,7 +635,6 @@ public class DakotaraptorEntity extends PrehistoricEntity {
 			DakotaraptorEntity.this.func_213461_s(false);
 		}
 
-		@SuppressWarnings("deprecation")
 		public void tick() {
 			LivingEntity livingentity = DakotaraptorEntity.this.getAttackTarget();
 			if (livingentity != null) {
