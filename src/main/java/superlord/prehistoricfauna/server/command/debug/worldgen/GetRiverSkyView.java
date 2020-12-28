@@ -11,6 +11,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraftforge.fml.loading.FMLPaths;
+import superlord.prehistoricfauna.core.world.PHFBiomes;
 import superlord.prehistoricfauna.world.dimension.cretaceous.CretaceousBiomeProvider;
 
 import javax.imageio.ImageIO;
@@ -59,7 +60,7 @@ public class GetRiverSkyView {
     }
 
     private static Color getColorFromBiome(Biome biome) {
-        if (biome == Biomes.RIVER)
+        if (biome == PHFBiomes.HELL_CREEK_RIVER)
             return new Color(0, 55, 255);//Blue
         else
             return new Color(0, 255, 0); //Green
