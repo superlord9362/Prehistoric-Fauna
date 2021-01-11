@@ -19,6 +19,7 @@ public class PHFBiomes {
     public static final Biome HELL_CREEK = WorldGenRegistrationHelper.createBiome("hell_creek", CretaceousBiomes.hellCreek(0.2F, 0.1F, false), 1);
     public static final Biome HELL_CREEK_CLEARING = WorldGenRegistrationHelper.createBiome("hell_creek_clearing", CretaceousBiomes.hellCreek(0.2F, 0.1F, true), 6);
     public static final Biome HELL_CREEK_HILLS = WorldGenRegistrationHelper.createBiome("hell_creek_hills", CretaceousBiomes.hellCreek(0.4F, 0.5F, false), 5);
+    public static final Biome HELL_CREEK_RIVER = WorldGenRegistrationHelper.createBiome("hell_creek_river", CretaceousBiomes.hellCreekRiver(0.05F, -0.6F), 7);
 
     //Jurassic Biomes
     public static final Biome MORRISON_SAVANNAH = WorldGenRegistrationHelper.createBiome("morrison_savannah", JurassicBiomes.morrisonSavannah(), 2);
