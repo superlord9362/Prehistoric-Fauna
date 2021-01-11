@@ -412,8 +412,12 @@
 	"block.prehistoricfauna.polished_petrified_wood": "Polished Petrified Wood",
 	"item.prehistoricfauna.tyrannosaurus_skeleton": "Tyrannosaurus Skeletal Mount",
 	"item.prehistoricfauna.triceratops_skeleton": "Triceratops Skeletal Mount",
+	"item.prehistoricfauna.ankylosaurus_skeleton": "Ankylosaurus Skeletal Mount",
+	"item.prehistoricfauna.herrerasaurus_skeleton": "Herrerasaurus Skeletal Mount",
 	"entity.prehistoricfauna.tyrannosaurus_skeleton": "Tyrannosaurus Skeletal Mount",
 	"entity.prehistoricfauna.triceratops_skeleton": "Triceratops Skeletal Mount",
+	"entity.prehistoricfauna.ankylosaurus_skeleton": "Ankylosaurus Skeletal Mount",
+	"entity.prehistoricfauna.herrerasaurus_skeleon": "Herrerasaurus Skeletal Mount",
 	"entity.prehistoricfauna.wall_fossil": "Wall Fossil",
 	"item.prehistoricfauna.wall_fossil": "Wall Fossil",
 	"item.prehistoricfauna.tyrannosaurus_skull": "Tyrannosaurus Skull",
@@ -438,6 +442,9 @@
 	"entity.prehistoricfauna.ceratosaurus_skull": "Ceratosaurus Skull",
 	"item.prehistoricfauna.ceratosaurus_skull": "Ceratosaurus Skull",
 	"item.prehistoricfauna.herrerasaurus_fossil": "Herrerasaurus Fossil",
+	"item.prehistoricfauna.ceratosaurus_fossil": "Ceratosaurus Fossil",
+	"item.prehistoricfauna.allosaurus_fossil": "Allosaurus Fossil",
+	"item.prehistoricfauna.saurosuchus_fossil": "Saurosuchus Fossil",
 
 	//Paleopedia
 	"paleopedia.ischigualasto": "Ischigualasto Forest",

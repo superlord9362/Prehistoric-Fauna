@@ -83,6 +83,7 @@ import superlord.prehistoricfauna.core.world.PHFSurfaceBuilders;
 import superlord.prehistoricfauna.entity.HesperornithoidesEntity;
 import superlord.prehistoricfauna.entity.render.AllosaurusRenderer;
 import superlord.prehistoricfauna.entity.render.AnkylosaurusRenderer;
+import superlord.prehistoricfauna.entity.render.AnkylosaurusSkeletonRenderer;
 import superlord.prehistoricfauna.entity.render.AnkylosaurusSkullRenderer;
 import superlord.prehistoricfauna.entity.render.BasilemysRenderer;
 import superlord.prehistoricfauna.entity.render.BossRenderer;
@@ -96,6 +97,7 @@ import superlord.prehistoricfauna.entity.render.DryosaurusRenderer;
 import superlord.prehistoricfauna.entity.render.EilenodonRenderer;
 import superlord.prehistoricfauna.entity.render.ExaeretodonRenderer;
 import superlord.prehistoricfauna.entity.render.HerrerasaurusRenderer;
+import superlord.prehistoricfauna.entity.render.HerrerasaurusSkeletonRenderer;
 import superlord.prehistoricfauna.entity.render.HerrerasaurusSkullRenderer;
 import superlord.prehistoricfauna.entity.render.HesperornithoidesRenderer;
 import superlord.prehistoricfauna.entity.render.HyperodapedonRenderer;
@@ -295,6 +297,8 @@ public class PrehistoricFauna {
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.CERATOSAURUS_SKULL, CeratosaurusSkullRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.TYRANNOSAURUS_SKELETON, TyrannosaurusSkeletonRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.TRICERATOPS_SKELETON, TriceratopsSkeletonRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ANKYLOSAURUS_SKELETON, AnkylosaurusSkeletonRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.HERRERASAURUS_SKELETON, HerrerasaurusSkeletonRenderer::new);
         //RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.PALEOPAINTING, PaleopaintingRenderer::new);
         ScreenManager.registerFactory(ContainerRegistry.PALEONTOLOGY_TABLE.get(), PaleontologyTableScreen::new);
 	}

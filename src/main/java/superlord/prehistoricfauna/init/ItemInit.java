@@ -63,6 +63,8 @@ public class ItemInit {
 	public static final RegistryObject<SpawnSkeletonItem> CERATOSAURUS_SKULL = ITEMS.register("ceratosaurus_skull", () -> new SpawnSkeletonItem(ModEntityTypes.CERATOSAURUS_SKULL, new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> TYRANNOSAURUS_SKELETON = ITEMS.register("tyrannosaurus_skeleton", () -> new SpawnSkeletonItem(ModEntityTypes.TYRANNOSAURUS_SKELETON, new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> TRICERATOPS_SKELETON = ITEMS.register("triceratops_skeleton", () -> new SpawnSkeletonItem(ModEntityTypes.TRICERATOPS_SKELETON, new Item.Properties().group(PFFossil.instance)));
+	public static final RegistryObject<SpawnSkeletonItem> ANKYLOSAURUS_SKELTON = ITEMS.register("ankylosaurus_skeleton", () -> new SpawnSkeletonItem(ModEntityTypes.ANKYLOSAURUS_SKELETON, new Item.Properties().group(PFFossil.instance)));
+	public static final RegistryObject<SpawnSkeletonItem> HERRERASAURUS_SKELETON = ITEMS.register("herrerasaurus_skeleton", () -> new SpawnSkeletonItem(ModEntityTypes.HERRERASAURUS_SKELETON, new Item.Properties().group(PFFossil.instance)));
 	//Drops
 	public static final RegistryObject<Item> TYRANNOSAURUS_TOOTH = ITEMS.register("tyrannosaurus_tooth", () -> new Item(new Item.Properties().group(PFEntities.instance)));
 	public static final RegistryObject<Item> TAIL_CLUB = ITEMS.register("tail_club", () -> new Item(new Item.Properties().group(PFEntities.instance)));
@@ -79,6 +81,9 @@ public class ItemInit {
 	public static final RegistryObject<Item> ANKYLOSAURUS_FOSSIL = ITEMS.register("ankylosaurus_fossil", () -> new Item(new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<Item> STEGOSAURUS_FOSSIL = ITEMS.register("stegosaurus_fossil", () -> new Item(new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<Item> HERRERASAURUS_FOSSIL = ITEMS.register("herrerasaurus_fossil", () -> new Item(new Item.Properties().group(PFFossil.instance)));
+	public static final RegistryObject<Item> SAUROSUCHUS_FOSSIL = ITEMS.register("saurosuchus_fossil", () -> new Item(new Item.Properties().group(PFFossil.instance)));
+	public static final RegistryObject<Item> ALLOSAURUS_FOSSIL = ITEMS.register("allosaurus_fossil", () -> new Item(new Item.Properties().group(PFFossil.instance)));
+	public static final RegistryObject<Item> CERATOSAURUS_FOSSIL = ITEMS.register("ceratosaurus_fossil", () -> new Item(new Item.Properties().group(PFFossil.instance)));
 	//Meat
 	public static final RegistryObject<Item> RAW_ANKYLOSAURUS_MEAT = ITEMS.register("raw_ankylosaurus_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(4).saturation(0.3F).meat().build())));
 	public static final RegistryObject<Item> COOKED_ANKYLOSAURUS_MEAT = ITEMS.register("cooked_ankylosaurus_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(9).saturation(0.8F).meat().build())));

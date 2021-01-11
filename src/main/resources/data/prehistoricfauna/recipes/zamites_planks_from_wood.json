@@ -1,0 +1,13 @@
+{
+  "type": "crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:zamites_wood"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:zamites_planks",
+    "count": 4
+  }
+}

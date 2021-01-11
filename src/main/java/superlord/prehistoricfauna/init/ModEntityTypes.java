@@ -8,6 +8,7 @@ import net.minecraft.util.registry.Registry;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.entity.AllosaurusEntity;
 import superlord.prehistoricfauna.entity.AnkylosaurusEntity;
+import superlord.prehistoricfauna.entity.AnkylosaurusSkeletonEntity;
 import superlord.prehistoricfauna.entity.AnkylosaurusSkullEntity;
 import superlord.prehistoricfauna.entity.BasilemysEntity;
 import superlord.prehistoricfauna.entity.CamarasaurusEntity;
@@ -20,6 +21,7 @@ import superlord.prehistoricfauna.entity.DryosaurusEntity;
 import superlord.prehistoricfauna.entity.EilenodonEntity;
 import superlord.prehistoricfauna.entity.ExaeretodonEntity;
 import superlord.prehistoricfauna.entity.HerrerasaurusEntity;
+import superlord.prehistoricfauna.entity.HerrerasaurusSkeletonEntity;
 import superlord.prehistoricfauna.entity.HerrerasaurusSkullEntity;
 import superlord.prehistoricfauna.entity.HesperornithoidesEntity;
 import superlord.prehistoricfauna.entity.HyperodapedonEntity;
@@ -74,7 +76,9 @@ public class ModEntityTypes {
 	public static final EntityType<StegosaurusSkullEntity> STEGOSAURUS_SKULL = registerEntity(EntityType.Builder.<StegosaurusSkullEntity>create(StegosaurusSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "stegosaurus_skull");
 	public static final EntityType<CeratosaurusSkullEntity> CERATOSAURUS_SKULL = registerEntity(EntityType.Builder.<CeratosaurusSkullEntity>create(CeratosaurusSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "ceratosaurus_skull");
 	public static final EntityType<TriceratopsSkeletonEntity> TRICERATOPS_SKELETON = registerEntity(EntityType.Builder.<TriceratopsSkeletonEntity>create(TriceratopsSkeletonEntity::new, EntityClassification.MISC).size(1F, 1F), "triceratops_skeleton");
-	
+	public static final EntityType<AnkylosaurusSkeletonEntity> ANKYLOSAURUS_SKELETON = registerEntity(EntityType.Builder.<AnkylosaurusSkeletonEntity>create(AnkylosaurusSkeletonEntity::new, EntityClassification.MISC).size(1F, 1F), "ankylosaurus_skeleton");
+	public static final EntityType<HerrerasaurusSkeletonEntity> HERRERASAURUS_SKELETON = registerEntity(EntityType.Builder.<HerrerasaurusSkeletonEntity>create(HerrerasaurusSkeletonEntity::new, EntityClassification.MISC).size(1F, 1F), "herrerasaurus_skeleton");
+
 	@SuppressWarnings("unchecked")
 	private static final <T extends Entity> EntityType<T> registerEntity(EntityType.Builder<T> builder, String entityName){
 		ResourceLocation nameLoc = new ResourceLocation(PrehistoricFauna.MODID, entityName);

@@ -1,0 +1,13 @@
+{
+  "type": "crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:metasequoia_wood"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:metasequoia_planks",
+    "count": 4
+  }
+}

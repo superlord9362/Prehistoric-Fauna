@@ -1,0 +1,13 @@
+{
+  "type": "crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:stripped_heidiphyllum_log"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:heidiphyllum_planks",
+    "count": 4
+  }
+}
