@@ -25,6 +25,7 @@ public class JurassicBiomes {
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, OSMUNDACAULIS_SHORT);
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ZAMITES_BUSH);
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PTILOPHYLLUM_TREE_BOOGALOO);
+        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, MORRISON_SAVANNA_VEGETATION);
 //        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ARAUCARIA_SMALL_BOOGALOO);
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PROTOPICEOXYLON_TREES);
         biome.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(ModEntityTypes.STEGOSAURUS_ENTITY, PrehistoricFaunaConfig.stegosaurusSpawnWeight, 1, 2));

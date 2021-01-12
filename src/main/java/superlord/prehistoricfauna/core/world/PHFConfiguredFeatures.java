@@ -30,6 +30,13 @@ public class PHFConfiguredFeatures {
     public static final ConfiguredFeature<PHFTreeConfig, ?> ARAUCARIA_SMALL_TREE3 = createConfiguredFeature("araucaria_small_tree3", PHFFeatures.ARAUCARIA_SMALL_TREE3.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.ARAUCARIA_LOG.getDefaultState()).setLeavesBlock(BlockInit.ARAUCARIA_LEAVES).setMinHeight(10).setMaxHeight(15).build()));
     public static final ConfiguredFeature<PHFTreeConfig, ?> ARAUCARIA_SMALL_TREE4 = createConfiguredFeature("araucaria_small_tree4", PHFFeatures.ARAUCARIA_SMALL_TREE4.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.ARAUCARIA_LOG.getDefaultState()).setLeavesBlock(BlockInit.ARAUCARIA_LEAVES).setMinHeight(14).setMaxHeight(19).build()));
 
+    public static final ConfiguredFeature<PHFTreeConfig, ?> PROTOPICEOXYLON_TREE1 = createConfiguredFeature("protopiceoxylon_tree1", PHFFeatures.PROTOPICEOXYLON_TREE1.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.PROTOPICEOXYLON_LOG.getDefaultState()).setLeavesBlock(BlockInit.PROTOPICEOXYLON_LEAVES).setMinHeight(12).setMaxHeight(20).build()));
+    public static final ConfiguredFeature<PHFTreeConfig, ?> PROTOPICEOXYLON_TREE2 = createConfiguredFeature("protopiceoxylon_tree2", PHFFeatures.PROTOPICEOXYLON_TREE2.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.PROTOPICEOXYLON_LOG.getDefaultState()).setLeavesBlock(BlockInit.PROTOPICEOXYLON_LEAVES).setMinHeight(15).setMaxHeight(25).build()));
+    public static final ConfiguredFeature<PHFTreeConfig, ?> PROTOPICEOXYLON_TREE3 = createConfiguredFeature("protopiceoxylon_tree3", PHFFeatures.PROTOPICEOXYLON_TREE3.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.PROTOPICEOXYLON_LOG.getDefaultState()).setLeavesBlock(BlockInit.PROTOPICEOXYLON_LEAVES).setMinHeight(7).setMaxHeight(15).build()));
+    public static final ConfiguredFeature<PHFTreeConfig, ?> PROTOPICEOXYLON_TREE4 = createConfiguredFeature("protopiceoxylon_tree4", PHFFeatures.PROTOPICEOXYLON_TREE4.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.PROTOPICEOXYLON_LOG.getDefaultState()).setLeavesBlock(BlockInit.PROTOPICEOXYLON_LEAVES).setMinHeight(16).setMaxHeight(25).build()));
+    public static final ConfiguredFeature<PHFTreeConfig, ?> PROTOPICEOXYLON_TREE5 = createConfiguredFeature("protopiceoxylon_tree5", PHFFeatures.PROTOPICEOXYLON_TREE5.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.PROTOPICEOXYLON_LOG.getDefaultState()).setLeavesBlock(BlockInit.PROTOPICEOXYLON_LEAVES).setMinHeight(8).setMaxHeight(15).build()));
+
+
     public static final ConfiguredFeature<PHFTreeConfig, ?> ARAUCARIA_TREE1 = createConfiguredFeature("araucaria_tree1", PHFFeatures.ARAUCARIA__TREE1.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.ARAUCARIA_LOG.getDefaultState()).setLeavesBlock(BlockInit.ARAUCARIA_LEAVES).setMinHeight(44).setMaxHeight(55).build()));
     public static final ConfiguredFeature<PHFTreeConfig, ?> ARAUCARIA_TREE2 = createConfiguredFeature("araucaria_tree2", PHFFeatures.ARAUCARIA__TREE2.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.ARAUCARIA_LOG.getDefaultState()).setLeavesBlock(BlockInit.ARAUCARIA_LEAVES).setMinHeight(44).setMaxHeight(55).build()));
 
@@ -93,4 +100,12 @@ public class PHFConfiguredFeatures {
             ARAUCARIA_TREE1.withChance(0.2F)
             ), ARAUCARIA_TREE2))
     ).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1)));
+
+    public static ConfiguredFeature<?, ?> MORRISON_SAVANNA_VEGETATION = createConfiguredFeature("morrison_savanna_vegetation", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
+            PROTOPICEOXYLON_TREE1.withChance(0.2F),
+            PROTOPICEOXYLON_TREE2.withChance(0.2F),
+            PROTOPICEOXYLON_TREE3.withChance(0.2F),
+            PROTOPICEOXYLON_TREE4.withChance(0.2F)
+            ), PROTOPICEOXYLON_TREE5))
+    ).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(1, 0.5F, 1)));
 }

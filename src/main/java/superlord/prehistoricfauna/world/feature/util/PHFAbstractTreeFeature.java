@@ -28,6 +28,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.Mutable;
 import net.minecraft.util.math.MutableBoundingBox;
@@ -41,18 +42,26 @@ import net.minecraft.world.gen.IWorldGenerationBaseReader;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraftforge.common.Tags;
+import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.util.fastnoise.FastNoise;
 import superlord.prehistoricfauna.world.feature.config.PHFTreeConfig;
 
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Function;
 
 public abstract class PHFAbstractTreeFeature<TFC extends PHFTreeConfig> extends Feature<TFC> {
 
     protected static FastNoise fastNoise;
     protected long seed;
+
+    public static final Map<Block, Block> SPREADABLE_TO_NON_SPREADABLE = Util.make(new HashMap<>(), (map) ->{
+        map.put(Blocks.GRASS_BLOCK, Blocks.DIRT);
+        map.put(Blocks.MYCELIUM, Blocks.DIRT);
+        map.put(Blocks.GRASS_PATH, Blocks.DIRT);
+        map.put(Blocks.PODZOL, Blocks.DIRT);
+    });
+
+
 
     public PHFAbstractTreeFeature(Function<Dynamic<?>, ? extends TFC> configCodec) {
         super(configCodec);
@@ -383,24 +392,28 @@ public abstract class PHFAbstractTreeFeature<TFC extends PHFTreeConfig> extends 
      * @param trunkPositions List of trunk positions where the base is built under the given position.
      */
 
-    public void buildTrunkBase(Set<BlockPos> treeBlocksSet, IWorldGenerationBaseReader reader, PHFTreeConfig config, Random rand, MutableBoundingBox boundingBox, BlockPos... trunkPositions) {
+    public void buildTrunkBase(BlockPos centerPos, Set<BlockPos> treeBlocksSet, IWorld reader, PHFTreeConfig config, Random rand, MutableBoundingBox boundingBox, BlockPos... trunkPositions) {
         if (config.isPlacementForced())
             return;
+        BlockState ground = reader.getBlockState(centerPos.offset(Direction.DOWN));
+
+        if (SPREADABLE_TO_NON_SPREADABLE.containsKey(ground.getBlock()))
+            ground = SPREADABLE_TO_NON_SPREADABLE.get(ground.getBlock()).getDefaultState();
+
 
         if (trunkPositions.length > 0) {
-            Mutable mutableTrunk = new Mutable();
+            BlockPos.Mutable mutableTrunk = new BlockPos.Mutable();
             for (BlockPos trunkPos : trunkPositions) {
                 mutableTrunk.setPos(trunkPos);
                 for (int fill = 1; fill <= 25; fill++) {
                     if (canLogPlaceHere(reader, mutableTrunk)) {
                         if (fill <= 15)
-                            setFinalBlockState(treeBlocksSet, (IWorldWriter) reader, mutableTrunk, config.getTrunkProvider().getBlockState(rand, mutableTrunk), boundingBox);
+                            setFinalBlockState(treeBlocksSet, reader, mutableTrunk, config.getTrunkProvider().getBlockState(rand, mutableTrunk), boundingBox);
                         else
-                            setFinalBlockState(treeBlocksSet, (IWorldWriter) reader, mutableTrunk, config.getGroundReplacementProvider().getBlockState(rand, mutableTrunk), boundingBox);
-                    }
-                else {
+                            setFinalBlockState(treeBlocksSet, reader, mutableTrunk, ground, boundingBox);
+                    } else {
                         if (!isDesiredGround(reader, mutableTrunk, config.getTrunkProvider().getBlockState(rand, mutableTrunk).getBlock()))
-                            setFinalBlockState(treeBlocksSet, (IWorldWriter) reader, mutableTrunk, config.getGroundReplacementProvider().getBlockState(rand, mutableTrunk), boundingBox);
+                            setFinalBlockState(treeBlocksSet, reader, mutableTrunk, ground, boundingBox);
                         fill = 25;
                     }
                     mutableTrunk.move(Direction.DOWN);
@@ -408,6 +421,8 @@ public abstract class PHFAbstractTreeFeature<TFC extends PHFTreeConfig> extends 
             }
         }
     }
+
+
 
     /**
      * Use this to set the soil under small trunked trees.

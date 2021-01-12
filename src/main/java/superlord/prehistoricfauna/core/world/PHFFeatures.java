@@ -25,6 +25,7 @@ import superlord.prehistoricfauna.world.feature.cretaceous.metasequoia.MetaSequo
 import superlord.prehistoricfauna.world.feature.cretaceous.metasequoia.MetaSequoiaTree2;
 import superlord.prehistoricfauna.world.feature.jurassic.PtilophyllumFeature;
 import superlord.prehistoricfauna.world.feature.jurassic.ZamitesBushFeature;
+import superlord.prehistoricfauna.world.feature.tree.*;
 import superlord.prehistoricfauna.world.feature.util.SmallPineTree;
 import superlord.prehistoricfauna.world.placement.DicroidiumConfig;
 import superlord.prehistoricfauna.world.placement.DidelphodonBurrowConfig;
@@ -50,6 +51,12 @@ public class PHFFeatures {
 
     public static final Feature<PHFTreeConfig> METASEQUOIA_TREE1 = createFeature("metasequoia_tree1", new MetaSequoiaTree1(PHFTreeConfig::deserialize));
     public static final Feature<PHFTreeConfig> METASEQUOIA_TREE2 = createFeature("metasequoia_tree2", new MetaSequoiaTree2(PHFTreeConfig::deserialize));
+
+    public static final Feature<PHFTreeConfig> PROTOPICEOXYLON_TREE1 = createFeature("protopiceoxylon_tree1", new Protopiceoxylon1(PHFTreeConfig::deserialize));
+    public static final Feature<PHFTreeConfig> PROTOPICEOXYLON_TREE2 = createFeature("protopiceoxylon_tree2", new Protopiceoxylon2(PHFTreeConfig::deserialize));
+    public static final Feature<PHFTreeConfig> PROTOPICEOXYLON_TREE3 = createFeature("protopiceoxylon_tree3", new Protopiceoxylon3(PHFTreeConfig::deserialize));
+    public static final Feature<PHFTreeConfig> PROTOPICEOXYLON_TREE4 = createFeature("protopiceoxylon_tree4", new Protopiceoxylon4(PHFTreeConfig::deserialize));
+    public static final Feature<PHFTreeConfig> PROTOPICEOXYLON_TREE5 = createFeature("protopiceoxylon_tree5", new Protopiceoxylon5(PHFTreeConfig::deserialize));
 
 
 
