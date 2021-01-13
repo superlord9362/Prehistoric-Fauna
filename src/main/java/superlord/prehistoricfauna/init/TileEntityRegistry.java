@@ -12,6 +12,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.entity.tile.DidelphodonBurrowTileEntity;
+import superlord.prehistoricfauna.entity.tile.PFSignTileEntity;
 import superlord.prehistoricfauna.entity.tile.PaleontologyTableTileEntity;
 
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -21,7 +22,7 @@ public class TileEntityRegistry {
 	public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES = new DeferredRegister<>(ForgeRegistries.TILE_ENTITIES, PrehistoricFauna.MODID);
 
 	public static final RegistryObject<TileEntityType<PaleontologyTableTileEntity>> PALEONTOLOGY_TABLE = TILE_ENTITY_TYPES.register("paleontology_table_tile_entity", () -> TileEntityType.Builder.create(PaleontologyTableTileEntity::new, BlockInit.PALEONTOLOGY_TABLE).build(null));
-	
+    public static final RegistryObject<TileEntityType<PFSignTileEntity>> PF_SIGNS = TileEntityRegistry.TILE_ENTITY_TYPES.register("pf_sign_tile", () -> TileEntityType.Builder.create(PFSignTileEntity::new, BlockInit.ARAUCARIA_SIGN, BlockInit.ARAUCARIA_WALL_SIGN).build(null));
 	@SuppressWarnings("unchecked")
 	public static final TileEntityType<DidelphodonBurrowTileEntity> DIDELPHODON_BURROW = registerTileEntity(TileEntityType.Builder.create(DidelphodonBurrowTileEntity::new, BlockInit.DIDELPHODON_BURROW), "didelphodon_burrow");
 

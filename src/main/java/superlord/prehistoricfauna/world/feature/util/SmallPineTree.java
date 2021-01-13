@@ -31,9 +31,9 @@ public class SmallPineTree extends Feature<NoFeatureConfig> {
         pos = new BlockPos(pos.getX(), 100, pos.getZ());
 
 
-        if (pos.getX() == -2 && pos.getZ() == -2) {
+        if (pos.getX() == -5 && pos.getZ() == -6) {
             for (int checkX = pos.getX() + -16; checkX <= pos.getX() + 16; checkX++) {
-                for (int checkY = pos.getY(); checkY <= 25; checkY++) {
+                for (int checkY = pos.getY(); checkY <= 15; checkY++) {
                     for (int checkZ = pos.getZ() + -16; checkZ <= pos.getZ() + 16; checkZ++) {
                         BlockPos.Mutable block = new BlockPos.Mutable(checkX, checkY, checkZ);
                         world.setBlockState(block, Blocks.AIR.getDefaultState(), 2);
@@ -43,7 +43,7 @@ public class SmallPineTree extends Feature<NoFeatureConfig> {
 
             TemplateManager templatemanager = ((ServerWorld) world.getWorld()).getSaveHandler().getStructureTemplateManager();
 
-            Template template = templatemanager.getTemplate(new ResourceLocation(PrehistoricFauna.MODID + ":features/trees/protopiceoxylon_5"));
+            Template template = templatemanager.getTemplate(new ResourceLocation(PrehistoricFauna.MODID + ":features/trees/liriodendrites_1"));
 //            Template template2 = templatemanager.getTemplate(new ResourceLocation(PrehistoricFauna.MODID + ":features/trees/metasequoia2b"));
 
 

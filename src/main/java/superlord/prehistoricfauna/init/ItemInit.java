@@ -15,10 +15,12 @@ import superlord.prehistoricfauna.PrehistoricFauna.PFEggs;
 import superlord.prehistoricfauna.PrehistoricFauna.PFEntities;
 import superlord.prehistoricfauna.PrehistoricFauna.PFFossil;
 import superlord.prehistoricfauna.PrehistoricFauna.PFPlants;
+import superlord.prehistoricfauna.PrehistoricFauna.PFWood;
 import superlord.prehistoricfauna.entity.PrehistoricBoatEntity;
 import superlord.prehistoricfauna.item.CretaceousTimeTotemItem;
 import superlord.prehistoricfauna.item.CustomArmorItem;
 import superlord.prehistoricfauna.item.JurassicTimeTotemItem;
+import superlord.prehistoricfauna.item.PFSignItem;
 import superlord.prehistoricfauna.item.PaleopediaItem;
 import superlord.prehistoricfauna.item.PrehistoricBoatItem;
 import superlord.prehistoricfauna.item.SpawnSkeletonItem;
@@ -147,4 +149,6 @@ public class ItemInit {
 	public static final RegistryObject<Item> CLADOPHEBLIS_STICK = ITEMS.register("cladophlebis_stick", () -> new Item(new Item.Properties().group(PFBook.instance).maxStackSize(1)));
 	//Opublic static final RegistryObject<HangingEntityItem> PALEOPAINTING = ITEMS.register("paleopainting", () -> new HangingEntityItem(ModEntityTypes.PALEOPAINTING, (new Item.Properties()).group(PFBook.instance)));
 
+	public static final RegistryObject<Item> ARAURCARIA_SIGN = ITEMS.register("araucaria_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFWood.instance), BlockInit.ARAUCARIA_SIGN, BlockInit.ARAUCARIA_WALL_SIGN));
+	
 }

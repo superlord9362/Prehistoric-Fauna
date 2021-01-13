@@ -75,6 +75,7 @@ public class CretaceousBiomes {
 //            biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, MOSS);
 //            biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, CLUBMOSS);
 //        }
+        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ALGAE);
         DefaultBiomeFeatures.addTaigaRocks(biome);
         DefaultBiomeFeatures.addStoneVariants(biome);
         DefaultBiomeFeatures.addOres(biome);

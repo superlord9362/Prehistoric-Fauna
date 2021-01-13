@@ -1,16 +1,24 @@
 package superlord.prehistoricfauna.core.world;
 
+import static superlord.prehistoricfauna.core.world.util.WorldGenRegistrationHelper.createConfiguredFeature;
+
 import com.google.common.collect.ImmutableList;
+
 import net.minecraft.world.gen.blockplacer.DoublePlantBlockPlacer;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
-import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.BlockClusterFeatureConfig;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.feature.MultipleRandomFeatureConfig;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.FrequencyConfig;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.world.PrehistoricPlacement;
+import superlord.prehistoricfauna.world.feature.AlgaeFeatureConfig;
 import superlord.prehistoricfauna.world.feature.CrassostreaOystersConfig;
 import superlord.prehistoricfauna.world.feature.PetrifiedTree;
 import superlord.prehistoricfauna.world.feature.config.PHFTreeConfig;
@@ -20,8 +28,6 @@ import superlord.prehistoricfauna.world.feature.triassic.HeidiphyllumTree;
 import superlord.prehistoricfauna.world.placement.DicroidiumConfig;
 import superlord.prehistoricfauna.world.placement.DidelphodonBurrowConfig;
 import superlord.prehistoricfauna.world.placement.JohnstoniaConfig;
-
-import static superlord.prehistoricfauna.core.world.util.WorldGenRegistrationHelper.*;
 
 public class PHFConfiguredFeatures {
 
@@ -35,8 +41,8 @@ public class PHFConfiguredFeatures {
     public static final ConfiguredFeature<PHFTreeConfig, ?> PROTOPICEOXYLON_TREE3 = createConfiguredFeature("protopiceoxylon_tree3", PHFFeatures.PROTOPICEOXYLON_TREE3.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.PROTOPICEOXYLON_LOG.getDefaultState()).setLeavesBlock(BlockInit.PROTOPICEOXYLON_LEAVES).setMinHeight(7).setMaxHeight(15).build()));
     public static final ConfiguredFeature<PHFTreeConfig, ?> PROTOPICEOXYLON_TREE4 = createConfiguredFeature("protopiceoxylon_tree4", PHFFeatures.PROTOPICEOXYLON_TREE4.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.PROTOPICEOXYLON_LOG.getDefaultState()).setLeavesBlock(BlockInit.PROTOPICEOXYLON_LEAVES).setMinHeight(16).setMaxHeight(25).build()));
     public static final ConfiguredFeature<PHFTreeConfig, ?> PROTOPICEOXYLON_TREE5 = createConfiguredFeature("protopiceoxylon_tree5", PHFFeatures.PROTOPICEOXYLON_TREE5.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.PROTOPICEOXYLON_LOG.getDefaultState()).setLeavesBlock(BlockInit.PROTOPICEOXYLON_LEAVES).setMinHeight(8).setMaxHeight(15).build()));
-
-
+    
+    
     public static final ConfiguredFeature<PHFTreeConfig, ?> ARAUCARIA_TREE1 = createConfiguredFeature("araucaria_tree1", PHFFeatures.ARAUCARIA__TREE1.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.ARAUCARIA_LOG.getDefaultState()).setLeavesBlock(BlockInit.ARAUCARIA_LEAVES).setMinHeight(44).setMaxHeight(55).build()));
     public static final ConfiguredFeature<PHFTreeConfig, ?> ARAUCARIA_TREE2 = createConfiguredFeature("araucaria_tree2", PHFFeatures.ARAUCARIA__TREE2.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.ARAUCARIA_LOG.getDefaultState()).setLeavesBlock(BlockInit.ARAUCARIA_LEAVES).setMinHeight(44).setMaxHeight(55).build()));
 
@@ -58,6 +64,7 @@ public class PHFConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> CLADOPHLEBIS = createConfiguredFeature("cladophlebis", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BlockInit.CLADOPHLEBIS.getDefaultState()), new SimpleBlockPlacer())).tries(64).func_227317_b_().build()).withPlacement(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(220))));
     public static final ConfiguredFeature<?, ?> CLUBMOSS = createConfiguredFeature("clubmoss", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BlockInit.CLUBMOSS.getDefaultState()), new SimpleBlockPlacer())).tries(64).func_227317_b_().build()).withPlacement(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(10))));
     public static final ConfiguredFeature<?, ?> CRASSOSTREA_OYSTERS = createConfiguredFeature("crassostrea_oysters", PHFFeatures.CRASSOSTREA_OYSTERS_FEATURE.withConfiguration(new CrassostreaOystersConfig(24)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+    public static final ConfiguredFeature<?, ?> ALGAE = createConfiguredFeature("algae", PHFFeatures.ALGAE_FEATURE.withConfiguration(new AlgaeFeatureConfig(24)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
     public static final ConfiguredFeature<?, ?> DEAD_OSMUNDACAULIS = createConfiguredFeature("dead_osmundacaulis", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BlockInit.DEAD_OSMUNDACAULIS.getDefaultState()), new SimpleBlockPlacer())).tries(4).build()).withPlacement(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(4))));
     public static final ConfiguredFeature<?, ?> DICROIDIUM = createConfiguredFeature("dicroidium", PHFFeatures.DICROIDIUM_FEATURE.withConfiguration(new DicroidiumConfig(6)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
     public static final ConfiguredFeature<?, ?> DIDELPHODON_BURROW = createConfiguredFeature("didelphion_burrow", PHFFeatures.DIDELPHODON_BURROW_FEATURE.withConfiguration(new DidelphodonBurrowConfig(3)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
@@ -100,7 +107,7 @@ public class PHFConfiguredFeatures {
             ARAUCARIA_TREE1.withChance(0.2F)
             ), ARAUCARIA_TREE2))
     ).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1)));
-
+    
     public static ConfiguredFeature<?, ?> MORRISON_SAVANNA_VEGETATION = createConfiguredFeature("morrison_savanna_vegetation", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
             PROTOPICEOXYLON_TREE1.withChance(0.2F),
             PROTOPICEOXYLON_TREE2.withChance(0.2F),

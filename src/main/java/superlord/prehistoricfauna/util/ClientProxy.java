@@ -16,12 +16,12 @@ import superlord.prehistoricfauna.gui.GuiPaleo;
 
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientProxy extends CommonProxy {
-	
+
 	private TileEntity referencedTE = null;
-	
+
 	@SuppressWarnings("unused")
 	private FontRenderer paleoFontRenderer;
-	
+
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void init() {
@@ -32,29 +32,29 @@ public class ClientProxy extends CommonProxy {
 			this.paleoFontRenderer = Minecraft.getInstance().fontRenderer;
 		}
 	}
-	
+
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void openPaleopediaGui(ItemStack book) {
 		Minecraft.getInstance().displayGuiScreen(new GuiPaleo(book));
 	}
-	
+
 	public boolean shouldSeePaleopediaContents() {
 		return InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), 340) || InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), 344);
 	}
-	
+
 	public Object getFontRenderer() {
 		return Minecraft.getInstance().fontRenderer;
 	}
-	
+
 	public TileEntity getReferencedTE() {
 		return referencedTE;
 	}
-	
+
 	public void setReferencedTE(TileEntity tileEntity) {
 		referencedTE = tileEntity;
 	}
-	
+
 	public PlayerEntity getClientSidePlayer() {
 		return Minecraft.getInstance().player;
 	}

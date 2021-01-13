@@ -1,8 +1,20 @@
 package superlord.prehistoricfauna.init;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.DoublePlantBlock;
+import net.minecraft.block.FenceBlock;
+import net.minecraft.block.FenceGateBlock;
+import net.minecraft.block.FlowerPotBlock;
+import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.LogBlock;
+import net.minecraft.block.PressurePlateBlock;
+import net.minecraft.block.RotatedPillarBlock;
+import net.minecraft.block.SlabBlock;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.WallBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.BlockItem;
@@ -11,14 +23,81 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.PrehistoricFauna.*;
-import superlord.prehistoricfauna.block.*;
+import superlord.prehistoricfauna.PrehistoricFauna.PFBook;
+import superlord.prehistoricfauna.PrehistoricFauna.PFEntities;
+import superlord.prehistoricfauna.PrehistoricFauna.PFFossil;
+import superlord.prehistoricfauna.PrehistoricFauna.PFPlants;
+import superlord.prehistoricfauna.PrehistoricFauna.PFStone;
+import superlord.prehistoricfauna.PrehistoricFauna.PFWood;
+import superlord.prehistoricfauna.block.AlgaeBlock;
+import superlord.prehistoricfauna.block.AllosaurusEggBlock;
+import superlord.prehistoricfauna.block.AmmoniteGiantShellBlock;
+import superlord.prehistoricfauna.block.AmmoniteLargeShellBlock;
+import superlord.prehistoricfauna.block.AmmoniteMediumShellBlock;
+import superlord.prehistoricfauna.block.AmmoniteSmallShellBlock;
+import superlord.prehistoricfauna.block.AnkylosaurusEggBlock;
+import superlord.prehistoricfauna.block.AraucariaSaplingBlock;
+import superlord.prehistoricfauna.block.BasilemysEggBlock;
+import superlord.prehistoricfauna.block.CamarasaurusEggBlock;
+import superlord.prehistoricfauna.block.CeratosaurusEggBlock;
+import superlord.prehistoricfauna.block.ChromogisaurusEggBlock;
+import superlord.prehistoricfauna.block.CrassostreaOysterBlock;
+import superlord.prehistoricfauna.block.CretaceousPortalBlock;
+import superlord.prehistoricfauna.block.CretaceousTimeBlock;
+import superlord.prehistoricfauna.block.DakotaraptorEggBlock;
+import superlord.prehistoricfauna.block.DeadConiopterisBlock;
+import superlord.prehistoricfauna.block.DicroidiumBlock;
+import superlord.prehistoricfauna.block.DidelphodonBurrowBlock;
+import superlord.prehistoricfauna.block.DryosaurusEggBlock;
+import superlord.prehistoricfauna.block.EilenodonEggBlock;
+import superlord.prehistoricfauna.block.ExaeretodonEggBlock;
+import superlord.prehistoricfauna.block.HerrerasaurusEggBlock;
+import superlord.prehistoricfauna.block.HesperornithoidesEggBlock;
+import superlord.prehistoricfauna.block.HyperodapedonEggBlock;
+import superlord.prehistoricfauna.block.IschigualastiaEggBlock;
+import superlord.prehistoricfauna.block.JohnstoniaBlock;
+import superlord.prehistoricfauna.block.JurassicPortalBlock;
+import superlord.prehistoricfauna.block.JurassicTimeBlock;
+import superlord.prehistoricfauna.block.LiriodendritesLeavesBlock;
+import superlord.prehistoricfauna.block.MossBlock;
+import superlord.prehistoricfauna.block.MossyDirtBlock;
+import superlord.prehistoricfauna.block.PFStandingSignBlock;
+import superlord.prehistoricfauna.block.PFWallSignBlock;
+import superlord.prehistoricfauna.block.PHFSapling;
+import superlord.prehistoricfauna.block.PaleontologyTableBlock;
+import superlord.prehistoricfauna.block.PortalFrameBlock;
+import superlord.prehistoricfauna.block.PrehistoricButtonBlock;
+import superlord.prehistoricfauna.block.PrehistoricDoorBlock;
+import superlord.prehistoricfauna.block.PrehistoricPlant;
+import superlord.prehistoricfauna.block.PrehistoricPlantBlock;
+import superlord.prehistoricfauna.block.PrehistoricPressurePlateBlock;
+import superlord.prehistoricfauna.block.PrehistoricSaplingBlock;
+import superlord.prehistoricfauna.block.PrehistoricStairsBlock;
+import superlord.prehistoricfauna.block.PrehistoricTrapDoorBlock;
+import superlord.prehistoricfauna.block.PtilophyllumBaseBlock;
+import superlord.prehistoricfauna.block.PtilophyllumBlock;
+import superlord.prehistoricfauna.block.SaurosuchusEggBlock;
+import superlord.prehistoricfauna.block.ShortOsmundacaulisBlock;
+import superlord.prehistoricfauna.block.SillosuchusEggBlock;
+import superlord.prehistoricfauna.block.StegosaurusEggBlock;
+import superlord.prehistoricfauna.block.ThescelosaurusEggBlock;
+import superlord.prehistoricfauna.block.TrapBlock;
+import superlord.prehistoricfauna.block.TriassicPortalBlock;
+import superlord.prehistoricfauna.block.TriassicTimeBlock;
+import superlord.prehistoricfauna.block.TriceratopsEggBlock;
+import superlord.prehistoricfauna.block.TyrannosaurusEggBlock;
+import superlord.prehistoricfauna.block.ZamitesSaplingBlock;
+import superlord.prehistoricfauna.block.ZamitesTopBlock;
+import superlord.prehistoricfauna.entity.render.PFSignTileEntityRenderer;
+import superlord.prehistoricfauna.util.PFWoodTypes;
 import superlord.prehistoricfauna.world.feature.LiriodendritesTree;
 import superlord.prehistoricfauna.world.feature.jurassic.ProtopiceoxylonTree;
 import superlord.prehistoricfauna.world.feature.triassic.HeidiphyllumTree;
@@ -299,6 +378,8 @@ public class BlockInit {
 	public static final Block EXAERETODON_EGG = new ExaeretodonEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("exaeretodon_egg");//Loot Table done
 	public static final Block PALEONTOLOGY_TABLE = new PaleontologyTableBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.5F).sound(SoundType.WOOD)).setRegistryName("paleontology_table");
 	public static final Block ALGAE = new AlgaeBlock(Block.Properties.create(Material.OCEAN_PLANT).hardnessAndResistance(0.2F).sound(SoundType.PLANT).notSolid()).setRegistryName("algae_carpet");
+	public static final Block ARAUCARIA_SIGN = new PFStandingSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.ARAUCARIA).setRegistryName("araucaria_sign");
+	public static final Block ARAUCARIA_WALL_SIGN = new PFWallSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.ARAUCARIA).setRegistryName("araucaria_wall_sign");
 	
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
@@ -560,6 +641,8 @@ public class BlockInit {
 		event.getRegistry().register(EXAERETODON_EGG);
 		event.getRegistry().register(PALEONTOLOGY_TABLE);
 		event.getRegistry().register(ALGAE);
+		event.getRegistry().register(ARAUCARIA_SIGN);
+		event.getRegistry().register(ARAUCARIA_WALL_SIGN);
 		if (FMLEnvironment.dist == Dist.CLIENT) {
 			RenderType cutoutRenderType = RenderType.getCutout();
 			RenderType mippedRenderType = RenderType.getCutoutMipped();
@@ -637,6 +720,9 @@ public class BlockInit {
 			RenderTypeLookup.setRenderLayer(TRIASSIC_TIME_BLOCK, translucentRenderType);
 			RenderTypeLookup.setRenderLayer(HENOSTONE_TRAP, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(ALGAE, mippedRenderType);
+
+			RenderTypeLookup.setRenderLayer(ARAUCARIA_SIGN, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(ARAUCARIA_WALL_SIGN, cutoutRenderType);
 		}
 	}
 	

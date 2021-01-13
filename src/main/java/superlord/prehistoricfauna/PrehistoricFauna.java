@@ -18,6 +18,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.gui.screen.MainMenuScreen;
+import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderSkyboxCube;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
@@ -43,6 +44,8 @@ import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
@@ -53,6 +56,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
@@ -102,6 +106,7 @@ import superlord.prehistoricfauna.entity.render.HerrerasaurusSkullRenderer;
 import superlord.prehistoricfauna.entity.render.HesperornithoidesRenderer;
 import superlord.prehistoricfauna.entity.render.HyperodapedonRenderer;
 import superlord.prehistoricfauna.entity.render.IschigualastiaRenderer;
+import superlord.prehistoricfauna.entity.render.PFSignTileEntityRenderer;
 import superlord.prehistoricfauna.entity.render.PaleontologyTableScreen;
 import superlord.prehistoricfauna.entity.render.PrehistoricBoatRenderer;
 import superlord.prehistoricfauna.entity.render.SaurosuchusRenderer;
@@ -126,6 +131,7 @@ import superlord.prehistoricfauna.server.command.PHFCommand;
 import superlord.prehistoricfauna.util.ClientProxy;
 import superlord.prehistoricfauna.util.CommonEvents;
 import superlord.prehistoricfauna.util.CommonProxy;
+import superlord.prehistoricfauna.util.PFWoodTypes;
 import superlord.prehistoricfauna.util.PrehistoricColors;
 import superlord.prehistoricfauna.world.PrehistoricFeature;
 
@@ -514,6 +520,20 @@ public class PrehistoricFauna {
 		}
 	}
 	
+	@SubscribeEvent
+    public static void registerModels(ModelRegistryEvent event)
+    {
+        ClientRegistry.bindTileEntityRenderer(TileEntityRegistry.PF_SIGNS.get(), PFSignTileEntityRenderer::new);
+    }
 	
+	@SubscribeEvent
+	public static void onStitchEvent(TextureStitchEvent.Pre event)
+	{
+		ResourceLocation stitching = event.getMap().getTextureLocation();
+		if (!stitching.equals(Atlases.SIGN_ATLAS))
+			return;
+
+		PFWoodTypes.getValues().forEach(woodType -> event.addSprite(new ResourceLocation(PrehistoricFauna.MODID, "entity/signs/" + woodType.getName())));
+	}
 	
 }
