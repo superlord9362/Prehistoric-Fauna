@@ -34,6 +34,18 @@
 	//Signs
 	"block.prehistoricfauna.araucaria_sign": "Araucaria Sign",
 	"block.prehistoricfauna.araucaria_wall_sign": "Araucaria Sign",
+	"block.prehistoricfauna.metasequoia_sign": "Metasequoia Sign",
+	"block.prehistoricfauna.metasequoia_wall_sign": "Metasequoia Sign",
+	"block.prehistoricfauna.heidiphyllum_sign": "Heidiphyllum Sign",
+	"block.prehistoricfauna.heidiphyllum_wall_sign": "Heidiphyllum Sign",
+	"block.prehistoricfauna.liriodendrites_sign": "Liriodendrites Sign",
+	"block.prehistoricfauna.liriodendrites_wall_sign": "Liriodendrites Sign",
+	"block.prehistoricfauna.protojuniperoxylon_sign": "Protojuniperoxylon Sign",
+	"block.prehistoricfauna.protojuniperoxylon_wall_sign": "Protojuniperoxylon Sign",
+	"block.prehistoricfauna.protopiceoxylon_sign": "Protopiceoxylon Sign",
+	"block.prehistoricfauna.protopiceoxylon_wall_sign": "Protopiceoxlyon Sign",
+	"block.prehistoricfauna.zamites_sign": "Zamites Sign",
+	"block.prehistoricfauna.zamites_wall_sign": "Zamites Sign",
 	
 	//Logs
 	"block.prehistoricfauna.stripped_liriodendrites_log": "Stripped Liriodendrites Log",

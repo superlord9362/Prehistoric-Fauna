@@ -150,5 +150,11 @@ public class ItemInit {
 	//Opublic static final RegistryObject<HangingEntityItem> PALEOPAINTING = ITEMS.register("paleopainting", () -> new HangingEntityItem(ModEntityTypes.PALEOPAINTING, (new Item.Properties()).group(PFBook.instance)));
 
 	public static final RegistryObject<Item> ARAURCARIA_SIGN = ITEMS.register("araucaria_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFWood.instance), BlockInit.ARAUCARIA_SIGN, BlockInit.ARAUCARIA_WALL_SIGN));
+	public static final RegistryObject<Item> METASEQUOIA_SIGN = ITEMS.register("metasequoia_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFWood.instance), BlockInit.METASEQUOIA_SIGN, BlockInit.METASEQUOIA_WALL_SIGN));
+	public static final RegistryObject<Item> HEIDIPHYLLUM_SIGN = ITEMS.register("heidiphyllum_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFWood.instance), BlockInit.HEIDIPHYLLUM_SIGN, BlockInit.HEIDIPHYLLUM_WALL_SIGN));
+	public static final RegistryObject<Item> LIRIODENDRITES_SIGN = ITEMS.register("liriodendrites_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFWood.instance), BlockInit.LIRIODENDRITES_SIGN, BlockInit.LIRIODENDRITES_WALL_SIGN));;
+	public static final RegistryObject<Item> PROTOJUNIPEROXYLON_SIGN = ITEMS.register("protojuniperoxylon_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFWood.instance), BlockInit.PROTOJUNIPER_SIGN, BlockInit.PROTOJUNIPER_WALL_SIGN));;
+	public static final RegistryObject<Item> PROTOPICEOXYLON_SIGN = ITEMS.register("protopiceoxylon_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFWood.instance), BlockInit.PROTOPICEOXYLON_SIGN, BlockInit.PROTOPICEOXYLON_WALL_SIGN));;
+	public static final RegistryObject<Item> ZAMITES_SIGN = ITEMS.register("zamites_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFWood.instance), BlockInit.ZAMITES_SIGN, BlockInit.ZAMITES_WALL_SIGN));
 	
 }

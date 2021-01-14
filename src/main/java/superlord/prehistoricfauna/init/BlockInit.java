@@ -14,7 +14,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.WallBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.BlockItem;
@@ -23,10 +22,8 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.loading.FMLEnvironment;
@@ -96,7 +93,6 @@ import superlord.prehistoricfauna.block.TriceratopsEggBlock;
 import superlord.prehistoricfauna.block.TyrannosaurusEggBlock;
 import superlord.prehistoricfauna.block.ZamitesSaplingBlock;
 import superlord.prehistoricfauna.block.ZamitesTopBlock;
-import superlord.prehistoricfauna.entity.render.PFSignTileEntityRenderer;
 import superlord.prehistoricfauna.util.PFWoodTypes;
 import superlord.prehistoricfauna.world.feature.LiriodendritesTree;
 import superlord.prehistoricfauna.world.feature.jurassic.ProtopiceoxylonTree;
@@ -380,6 +376,18 @@ public class BlockInit {
 	public static final Block ALGAE = new AlgaeBlock(Block.Properties.create(Material.OCEAN_PLANT).hardnessAndResistance(0.2F).sound(SoundType.PLANT).notSolid()).setRegistryName("algae_carpet");
 	public static final Block ARAUCARIA_SIGN = new PFStandingSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.ARAUCARIA).setRegistryName("araucaria_sign");
 	public static final Block ARAUCARIA_WALL_SIGN = new PFWallSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.ARAUCARIA).setRegistryName("araucaria_wall_sign");
+	public static final Block METASEQUOIA_SIGN = new PFStandingSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.METASEQUOIA).setRegistryName("metasequoia_sign");
+	public static final Block METASEQUOIA_WALL_SIGN = new PFWallSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.METASEQUOIA).setRegistryName("metasequoia_wall_sign");
+	public static final Block HEIDIPHYLLUM_SIGN = new PFStandingSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.HEIDIPHYLLUM).setRegistryName("heidiphyllum_sign");
+	public static final Block HEIDIPHYLLUM_WALL_SIGN = new PFWallSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.HEIDIPHYLLUM).setRegistryName("heidiphyllum_wall_sign");
+	public static final Block LIRIODENDRITES_SIGN = new PFStandingSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.LIRIODENDRITES).setRegistryName("liriodendrites_sign");
+	public static final Block LIRIODENDRITES_WALL_SIGN = new PFWallSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.LIRIODENDRITES).setRegistryName("liriodendrites_wall_sign");
+	public static final Block PROTOPICEOXYLON_SIGN = new PFStandingSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.PROTOPICEOXYLON).setRegistryName("protopiceoxylon_sign");
+	public static final Block PROTOPICEOXYLON_WALL_SIGN = new PFWallSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.PROTOPICEOXYLON).setRegistryName("protopiceoxylon_wall_sign");
+	public static final Block ZAMITES_SIGN = new PFStandingSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.ZAMITES).setRegistryName("zamites_sign");
+	public static final Block ZAMITES_WALL_SIGN = new PFWallSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.ZAMITES).setRegistryName("zamites_wall_sign");
+	public static final Block PROTOJUNIPER_SIGN = new PFStandingSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.PROTOJUNIPEROXYLON).setRegistryName("protojuniperoxylon_sign");
+	public static final Block PROTOJUNIPER_WALL_SIGN = new PFWallSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.PROTOJUNIPEROXYLON).setRegistryName("protojuniperoxylon_wall_sign");
 	
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
@@ -643,6 +651,18 @@ public class BlockInit {
 		event.getRegistry().register(ALGAE);
 		event.getRegistry().register(ARAUCARIA_SIGN);
 		event.getRegistry().register(ARAUCARIA_WALL_SIGN);
+		event.getRegistry().register(METASEQUOIA_SIGN);
+		event.getRegistry().register(METASEQUOIA_WALL_SIGN);
+		event.getRegistry().register(HEIDIPHYLLUM_SIGN);
+		event.getRegistry().register(HEIDIPHYLLUM_WALL_SIGN);
+		event.getRegistry().register(LIRIODENDRITES_SIGN);
+		event.getRegistry().register(LIRIODENDRITES_WALL_SIGN);
+		event.getRegistry().register(PROTOJUNIPER_SIGN);
+		event.getRegistry().register(PROTOJUNIPER_WALL_SIGN);
+		event.getRegistry().register(PROTOPICEOXYLON_SIGN);
+		event.getRegistry().register(PROTOPICEOXYLON_WALL_SIGN);
+		event.getRegistry().register(ZAMITES_SIGN);
+		event.getRegistry().register(ZAMITES_WALL_SIGN);
 		if (FMLEnvironment.dist == Dist.CLIENT) {
 			RenderType cutoutRenderType = RenderType.getCutout();
 			RenderType mippedRenderType = RenderType.getCutoutMipped();
@@ -723,6 +743,18 @@ public class BlockInit {
 
 			RenderTypeLookup.setRenderLayer(ARAUCARIA_SIGN, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(ARAUCARIA_WALL_SIGN, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(METASEQUOIA_SIGN, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(METASEQUOIA_WALL_SIGN, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(HEIDIPHYLLUM_SIGN, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(HEIDIPHYLLUM_WALL_SIGN, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(LIRIODENDRITES_SIGN, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(LIRIODENDRITES_WALL_SIGN, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(PROTOJUNIPER_SIGN, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(PROTOJUNIPER_WALL_SIGN, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(PROTOPICEOXYLON_SIGN, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(PROTOPICEOXYLON_WALL_SIGN, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(ZAMITES_SIGN, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(ZAMITES_WALL_SIGN, cutoutRenderType);
 		}
 	}
 	
