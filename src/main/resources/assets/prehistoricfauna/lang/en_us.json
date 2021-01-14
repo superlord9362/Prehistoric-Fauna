@@ -31,6 +31,10 @@
 	"block.prehistoricfauna.araucaria_planks" :"Araucaria Planks",
 	"block.prehistoricfauna.metasequoia_planks": "Metasequoia Planks",
 	
+	//Signs
+	"block.prehistoricfauna.araucaria_sign": "Araucaria Sign",
+	"block.prehistoricfauna.araucaria_wall_sign": "Araucaria Sign",
+	
 	//Logs
 	"block.prehistoricfauna.stripped_liriodendrites_log": "Stripped Liriodendrites Log",
 	"block.prehistoricfauna.liriodendrites_wood": "Liriodendrites Wood",

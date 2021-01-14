@@ -104,6 +104,6 @@ public class PFSignTileEntityRenderer extends TileEntityRenderer<PFSignTileEntit
 
 	public static Material getSignMaterial(WoodType woodtype)
 	{
-		return new Material(Atlases.SIGN_ATLAS, new ResourceLocation(PrehistoricFauna.MODID, "entity/signs/" + woodtype.getName()));
+		return new Material(Atlases.SIGN_ATLAS, new ResourceLocation(PrehistoricFauna.MODID, "entities/signs/" + woodtype.getName()));
 	}
 }

@@ -131,6 +131,7 @@ import superlord.prehistoricfauna.server.command.PHFCommand;
 import superlord.prehistoricfauna.util.ClientProxy;
 import superlord.prehistoricfauna.util.CommonEvents;
 import superlord.prehistoricfauna.util.CommonProxy;
+import superlord.prehistoricfauna.util.PFPacketHandler;
 import superlord.prehistoricfauna.util.PFWoodTypes;
 import superlord.prehistoricfauna.util.PrehistoricColors;
 import superlord.prehistoricfauna.world.PrehistoricFeature;
@@ -174,6 +175,7 @@ public class PrehistoricFauna {
 		PrehistoricFeature.FEATURES.register(modEventBus);
 		TileEntityRegistry.TILE_ENTITY_TYPES.register(modEventBus);
 		ContainerRegistry.CONTAINER_TYPES.register(modEventBus);
+        PFPacketHandler.registerPackets();
 		PROXY.init();
 		instance = this;
 		MinecraftForge.EVENT_BUS.register(this);
@@ -533,7 +535,7 @@ public class PrehistoricFauna {
 		if (!stitching.equals(Atlases.SIGN_ATLAS))
 			return;
 
-		PFWoodTypes.getValues().forEach(woodType -> event.addSprite(new ResourceLocation(PrehistoricFauna.MODID, "entity/signs/" + woodType.getName())));
+		PFWoodTypes.getValues().forEach(woodType -> event.addSprite(new ResourceLocation(PrehistoricFauna.MODID, "entities/signs/" + woodType.getName())));
 	}
 	
 }
