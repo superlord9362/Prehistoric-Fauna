@@ -127,6 +127,7 @@ import superlord.prehistoricfauna.init.DimensionInit;
 import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
 import superlord.prehistoricfauna.init.TileEntityRegistry;
+import superlord.prehistoricfauna.recipes.RecipeRegistry;
 import superlord.prehistoricfauna.server.command.PHFCommand;
 import superlord.prehistoricfauna.util.ClientProxy;
 import superlord.prehistoricfauna.util.CommonEvents;
@@ -175,6 +176,7 @@ public class PrehistoricFauna {
 		PrehistoricFeature.FEATURES.register(modEventBus);
 		TileEntityRegistry.TILE_ENTITY_TYPES.register(modEventBus);
 		ContainerRegistry.CONTAINER_TYPES.register(modEventBus);
+		RecipeRegistry.RECIPES.register(modEventBus);
         PFPacketHandler.registerPackets();
 		PROXY.init();
 		instance = this;

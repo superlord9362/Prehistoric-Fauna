@@ -1,0 +1,29 @@
+{
+  "type": "prehistoricfauna:recipe_paleontology_table",
+  "group": "prehistoricfauna",
+  "input": {
+    "item": "prehistoricfauna:cretaceous_fossil"
+  },
+  "results": [
+    {
+      "item": "minecraft:bone",
+      "count": 1,
+      "weight": 35.0
+    },
+    {
+      "item": "prehistoricfauna:triceratops_horn",
+      "count": 1,
+      "weight": 5.0
+    },
+    {
+      "item": "prehistoricfauna:ankylosaurus_scute",
+      "count": 1,
+      "weight": 2.5
+    },
+    {
+      "item": "prehistoricfauna:tyrannosaurus_tooth",
+      "count": 1,
+      "weight": 2.5
+    }
+  ]
+}

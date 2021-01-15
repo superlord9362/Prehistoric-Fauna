@@ -8,6 +8,7 @@ import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
@@ -22,22 +23,26 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.util.Constants;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.init.TileEntityRegistry;
+import superlord.prehistoricfauna.recipes.RecipePaleontologyTable;
 import superlord.prehistoricfauna.util.TableRecipes;
 
 import javax.annotation.Nullable;
-import java.util.Random;
+
+import java.util.Optional;
 
 public class PaleontologyTableTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider, IInventory, ISidedInventory {
 
 	private static final int[] SLOTS_BOTTOM = new int[]{9, 10, 11, 12};
 	private static final int[] SLOTS_SIDES = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8};
+	public static final int SLOT_INDEX_INPUT = 0; 
+	private RecipePaleontologyTable recipe = null;
+	private IInventory inventory;
     public int cleaningFuelTime = 0;
     public int currentFuelTime = 100;
     public int cleaningTime = 0;
     net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlerTop = net.minecraftforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP);
     net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlerBottom = net.minecraftforge.items.wrapper.SidedInvWrapper.create(this, Direction.DOWN);
 	 private NonNullList<ItemStack> stacks = NonNullList.withSize(13, ItemStack.EMPTY);
-    private int rawIndex = -1;
     protected final IIntArray tableData = new IIntArray() {
         public int get(int index) {
            switch(index) {
@@ -112,6 +117,39 @@ public class PaleontologyTableTileEntity extends TileEntity implements ITickable
 		return new PaleontologyTableContainer(windowID, playerInv, this);
 	}
 	
+	public Optional<IRecipe<IInventory>> getCurrentRecipe()
+	{
+		// TODO
+		return this.world.getRecipeManager().getRecipe(RecipePaleontologyTable.RECIPE_TYPE_PALEONTOLOGY_TABLE, this.inventory, this.world);
+	}
+
+	public boolean hasRecipe()
+	{
+		return this.recipe != null;
+	}
+
+	public boolean hasInput()
+	{
+		return this.recipe.matches(this.inventory, this.world);
+	}
+	
+	public void updateRecipe()
+	{
+		if (!this.hasRecipe() || !this.hasInput())
+		{
+			Optional<IRecipe<IInventory>> recipe = this.getCurrentRecipe();
+			if (recipe.isPresent() && recipe.get() instanceof RecipePaleontologyTable)
+			{
+				this.recipe = (RecipePaleontologyTable) recipe.get();
+			}
+			else
+			{
+				this.recipe = null;
+			}
+		}
+	}
+
+	
     @Override
     public void read(CompoundNBT compound) {
         super.read(compound);
@@ -152,89 +190,23 @@ public class PaleontologyTableTileEntity extends TileEntity implements ITickable
     
     @Override
     public void tick() {
-    	boolean fueled = this.cleaningFuelTime > 0;
-        boolean dirty = false;
-        if (this.cleaningFuelTime > 0) {
-            --this.cleaningFuelTime;
-        }
-        if (!this.world.isRemote) {
-            if (this.cleaningFuelTime == 0 && this.canClean()) {
-                this.currentFuelTime = this.cleaningFuelTime = 100;
-                dirty = true;
-            }
-            if (this.isCleaning() && this.canClean()) {
-                ++this.cleaningTime;
-                if (this.cleaningTime == 200) {
-                    this.cleaningTime = 0;
-                    this.cleanItem();
-                    dirty = true;
-                }
-            } else {
-                this.cleaningTime = 0;
-            }
-            if (fueled != this.cleaningFuelTime > 0) {
-                dirty = true;
-            }
-        }
-        if (dirty) {
-            this.markDirty();
-        }
+    	if (this.world != null && !this.world.isRemote)
+		{
+			// if has stacks in input slot; Add this so minecraft won't search for recipes every tick
+			// Does it break underwater? check if is not waterlogged; 
+			if (true)
+			{
+				this.updateRecipe();
+
+				if (this.hasRecipe() && this.hasInput())
+				{
+					ItemStack resultStack = this.recipe.getCraftingResult(this.inventory);
+					// DO WHATEVER
+				}
+			}
+		}
     }
     
-    private boolean canClean() {
-        int spaceIndex = -1;
-        this.rawIndex = -1;
-        boolean hasPower = true;
-        boolean flag = false;
-        for (int slot = 0; slot < 9; ++slot) {
-            if (!this.stacks.get(slot).isEmpty()) {
-                if (isCleanable(this.stacks.get(slot))) {
-                    this.rawIndex = slot;
-                    flag = true;
-                    break;
-                }
-            }
-        }
-        if (this.rawIndex == -1 || !flag) {
-            return false;
-        } else {
-            for (int slot = 12; slot > 8; --slot) {
-                if (this.stacks.get(slot).isEmpty()) {
-                    spaceIndex = slot;
-                    break;
-                }
-            }
-            return spaceIndex != -1 && this.rawIndex != -1 && hasPower;
-        }
-    }
-
-    public void cleanItem() {
-        if (this.canClean()) {
-            ItemStack output = ItemStack.EMPTY;
-            Random random = this.world.rand;
-            ItemStack input = this.stacks.get(rawIndex);
-            output = TableRecipes.getCleaningRecipeForItem(input).generateOutput(new Random());
-            if (output.getCount() > 1) {
-                int maxCount = output.getCount() - 1;
-                output.setCount(1 + random.nextInt(maxCount));
-            }
-            if (!output.isEmpty()) {
-                for (int slot = 9; slot < 13; slot++) {
-                    ItemStack stack = this.stacks.get(slot);
-                    if (stack.isEmpty()) {
-                        this.stacks.set(slot, output);
-                        break;
-                    } else {
-                        if (stack.isItemEqual(output) && stack.getCount() + output.getCount() < 64) {
-                            stack.setCount(stack.getCount() + output.getCount());
-                            break;
-                        }
-                    }
-                }
-            }
-            input.shrink(1);
-        }
-    }
     
     @Override
     public boolean isUsableByPlayer(PlayerEntity player) {
