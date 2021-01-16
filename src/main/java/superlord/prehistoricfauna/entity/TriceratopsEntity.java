@@ -75,7 +75,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.CLUBMOSS.asItem();
+		return stack.getItem() == BlockInit.OSMUNDA.asItem();
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
