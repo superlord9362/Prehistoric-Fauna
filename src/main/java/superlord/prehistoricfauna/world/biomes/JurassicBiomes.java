@@ -15,8 +15,8 @@ import static superlord.prehistoricfauna.core.world.PHFConfiguredFeatures.*;
 
 public class JurassicBiomes {
 
-    public static Biome morrisonSavannah() {
-        Biome biome = new BiomeExtender(new Biome.Builder().precipitation(Biome.RainType.NONE).scale(0.05F).temperature(1.0F).depth(0.125F).downfall(0.2F).category(Biome.Category.SAVANNA).waterColor(4159204).waterFogColor(329011).surfaceBuilder(PHFSurfaceBuilders.MORRISON_SAVANNA, new SurfaceBuilderConfig(Blocks.COARSE_DIRT.getDefaultState(), Blocks.COARSE_DIRT.getDefaultState(), Blocks.CLAY.getDefaultState())).parent(null));
+    public static Biome morrisonSavannah(float scale, float depth) {
+        Biome biome = new BiomeExtender(new Biome.Builder().precipitation(Biome.RainType.NONE).scale(scale).temperature(1.0F).depth(depth).downfall(0.2F).category(Biome.Category.SAVANNA).waterColor(4159204).waterFogColor(329011).surfaceBuilder(PHFSurfaceBuilders.MORRISON_SAVANNA, new SurfaceBuilderConfig(Blocks.COARSE_DIRT.getDefaultState(), Blocks.COARSE_DIRT.getDefaultState(), Blocks.CLAY.getDefaultState())).parent(null));
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, CONIOPTERIS);
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, OSMUNDACAULIS);
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HORSETAIL);
@@ -26,8 +26,6 @@ public class JurassicBiomes {
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ZAMITES_BUSH);
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PTILOPHYLLUM_TREE_BOOGALOO);
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, MORRISON_SAVANNA_VEGETATION);
-//        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ARAUCARIA_SMALL_BOOGALOO);
-        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PROTOPICEOXYLON_TREES);
         biome.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(ModEntityTypes.STEGOSAURUS_ENTITY, PrehistoricFaunaConfig.stegosaurusSpawnWeight, 1, 2));
         biome.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(ModEntityTypes.DRYOSAURUS_ENTITY, PrehistoricFaunaConfig.dryosaurusSpawnWeight, 2, 4));
         biome.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(ModEntityTypes.CERATOSAURUS_ENTITY, PrehistoricFaunaConfig.ceratosaurusSpawnWeight, 1, 1));

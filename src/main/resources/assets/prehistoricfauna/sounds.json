@@ -697,7 +697,7 @@
 	},
 	"ischigualastia_idle": {
 		"category": "neutral",
-		"subtitle": "prehistoricfauna.subtitle.ishigualastiaIdle",
+		"subtitle": "prehistoricfauna.subtitle.ischigualastiaIdle",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/ischigualastia_idle1",

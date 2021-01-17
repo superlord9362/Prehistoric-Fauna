@@ -29,7 +29,7 @@ public class PHFTreeSpawners {
         @Nullable
         @Override
         protected ConfiguredFeature<PHFTreeConfig, ?> getBigTreeFeature(Random random) {
-            return PHFConfiguredFeatures.PROTOJUNIPER_TREE;
+            return PHFConfiguredFeatures.PROTOJUNIPEROXYLON_TREE1;
         }
 
         @Nullable
@@ -38,4 +38,44 @@ public class PHFTreeSpawners {
             return null;
         }
     }
+    
+    public static class Araucaria extends HugeTreeSpawner {
+    	
+    	@Nullable
+        @Override
+        protected ConfiguredFeature<PHFTreeConfig, ?> getBigTreeFeature(Random random) {
+            return PHFConfiguredFeatures.ARAUCARIA_TREE1;
+        }
+    	
+    	@Nullable
+    	@Override
+    	protected ConfiguredFeature<PHFTreeConfig, ?> getTreeFeature(Random random) {
+    		return PHFConfiguredFeatures.ARAUCARIA_SMALL_TREE1;
+    	}
+    }
+    
+    public static class Liriodendrites extends TreeSpawner {
+    	@Nullable
+    	@Override
+    	protected ConfiguredFeature<PHFTreeConfig, ?> getTreeFeature(Random random) {
+    		return PHFConfiguredFeatures.LIRIODENDRITES_TREE1;
+    	}
+    }
+    
+    public static class Protopiceoxylon extends TreeSpawner {
+    	@Nullable
+    	@Override
+    	protected ConfiguredFeature<PHFTreeConfig, ?> getTreeFeature(Random random) {
+    		return PHFConfiguredFeatures.PROTOPICEOXYLON_TREE1;
+    	}
+    }
+    
+    public static class Heidiphyllum extends TreeSpawner {
+    	@Nullable
+    	@Override
+    	protected ConfiguredFeature<PHFTreeConfig, ?> getTreeFeature(Random random) {
+    		return PHFConfiguredFeatures.HEIDIPHYLLUM_TREE1;
+    	}
+    }
+    
 }

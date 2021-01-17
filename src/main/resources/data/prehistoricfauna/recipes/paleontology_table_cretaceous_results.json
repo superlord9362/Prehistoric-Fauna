@@ -1,0 +1,44 @@
+{
+  "type": "prehistoricfauna:recipe_paleontology_table",
+  "group": "prehistoricfauna",
+  "input": {
+    "item": "prehistoricfauna:cretaceous_fossil"
+  },
+  "results": [
+    {
+      "item": "minecraft:bone",
+      "count": 1,
+      "weight": 10.0
+    },
+    {
+      "item": "prehistoricfauna:triceratops_fossil",
+      "count": 1,
+      "weight": 5.0
+    },
+    {
+      "item": "prehistoricfauna:ankylosaurus_fossil",
+      "count": 1,
+      "weight": 2.5
+    },
+    {
+      "item": "prehistoricfauna:tyrannosaurus_fossil",
+      "count": 1,
+      "weight": 2.5
+    },
+	{
+		"item": "prehistoricfauna:tyrannosaurus_skull",
+		"count": 1,
+		"weight": 1.25
+	},
+	{
+		"item": "prehistoricfauna:ankylosaurus_skull",
+		"count": 1,
+		"weight": 1.25
+	},
+	{
+		"item": "prehistoricfauna:triceratops_skull",
+		"count": 1,
+		"weight": 2.5
+	}
+  ]
+}

@@ -1,126 +1,138 @@
 package superlord.prehistoricfauna.entity.tile;
 
+import java.util.Optional;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.INameable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.RangedWrapper;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.init.TileEntityRegistry;
+import superlord.prehistoricfauna.item.FossilItem;
 import superlord.prehistoricfauna.recipes.RecipePaleontologyTable;
-import superlord.prehistoricfauna.util.TableRecipes;
 
-import javax.annotation.Nullable;
+public class PaleontologyTableTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider, INameable
+{
+	public static final float RECIPE_DEFAULT_XP = 0.7F;
+	public static final int WORK_TIME_MAX = 40;
 
-import java.util.Optional;
+	public static final int SLOT_FOSSIL = 0;
+	public static final int[] SLOT_RESULTS = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
-public class PaleontologyTableTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider, IInventory, ISidedInventory {
+	private final LazyOptional<TileRecipeInventory> inventoryCapabilityExternal;
+	private final LazyOptional<RangedWrapper> inventoryCapabilityExternalUp;
+	private final LazyOptional<RangedWrapper> inventoryCapabilityExternalDown;
+	private final LazyOptional<RangedWrapper> inventoryCapabilityExternalSides;
+	private final TileRecipeInventory inventory;
 
-	private static final int[] SLOTS_BOTTOM = new int[]{9, 10, 11, 12};
-	private static final int[] SLOTS_SIDES = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8};
-	public static final int SLOT_INDEX_INPUT = 0; 
-	private RecipePaleontologyTable recipe = null;
-	private IInventory inventory;
-    public int cleaningFuelTime = 0;
-    public int currentFuelTime = 100;
-    public int cleaningTime = 0;
-    net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlerTop = net.minecraftforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP);
-    net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlerBottom = net.minecraftforge.items.wrapper.SidedInvWrapper.create(this, Direction.DOWN);
-	 private NonNullList<ItemStack> stacks = NonNullList.withSize(13, ItemStack.EMPTY);
-    protected final IIntArray tableData = new IIntArray() {
-        public int get(int index) {
-           switch(index) {
-           case 0:
-              return PaleontologyTableTileEntity.this.cleaningFuelTime;
-           case 1:
-              return PaleontologyTableTileEntity.this.currentFuelTime;
-           case 2:
-              return PaleontologyTableTileEntity.this.cleaningTime;
-           default:
-              return 0;
-           }
-        }
-
-        public void set(int index, int value) {
-           switch(index) {
-           case 0:
-        	   PaleontologyTableTileEntity.this.cleaningFuelTime = value;
-              break;
-           case 1:
-        	   PaleontologyTableTileEntity.this.currentFuelTime = value;
-              break;
-           case 2:
-        	   PaleontologyTableTileEntity.this.cleaningTime = value;
-           }
-
-        }
-
-        public int size() {
-           return 4;
-        }
-     };
+	private int workTime = 0;
+	private RecipePaleontologyTable recipe;
 	private ITextComponent customName;
 
-    public PaleontologyTableTileEntity(TileEntityType<?> tileEntityTypeIn) {
-		super(tileEntityTypeIn);
-	}
-
-	public PaleontologyTableTileEntity() {
-		this(TileEntityRegistry.PALEONTOLOGY_TABLE.get());
-	}
-	
-	private static int getFuelTime(ItemStack stack) {
-        return 100;
-    }
-
-    public static boolean isFuel(ItemStack stack) {
-        return getFuelTime(stack) > 0;
-    }
-
-    public static boolean isCleanable(ItemStack stack) {
-        return TableRecipes.getCleaningRecipeForItem(stack) != null;
-    }
-    
-    @Override
-    public int getSizeInventory() {
-        return this.stacks.size();
-    }
-
-    @Override
-    public boolean isEmpty() {
-        for (ItemStack itemstack : this.stacks) {
-            if (!itemstack.isEmpty()) {
-                return false;
-            }
-        }
-        return true;
-    }
-	
-	@Override
-	public Container createMenu(final int windowID, final PlayerInventory playerInv, final PlayerEntity playerIn) {
-		return new PaleontologyTableContainer(windowID, playerInv, this);
-	}
-	
-	public Optional<IRecipe<IInventory>> getCurrentRecipe()
+	private final IIntArray syncVariables = new IIntArray()
 	{
-		// TODO
-		return this.world.getRecipeManager().getRecipe(RecipePaleontologyTable.RECIPE_TYPE_PALEONTOLOGY_TABLE, this.inventory, this.world);
+
+		@Override
+		public int get(int index)
+		{
+			return PaleontologyTableTileEntity.this.workTime;
+		}
+
+		@Override
+		public void set(int index, int value)
+		{
+			PaleontologyTableTileEntity.this.workTime = value;
+		}
+
+		@Override
+		public int size()
+		{
+			return 1;
+		}
+	};
+
+	public PaleontologyTableTileEntity()
+	{
+		super(TileEntityRegistry.PALEONTOLOGY_TABLE.get());
+
+		this.inventory = new TileRecipeInventory(10);
+		this.inventoryCapabilityExternal = LazyOptional.of(() -> this.inventory);
+		this.inventoryCapabilityExternalUp = LazyOptional.of(() -> new RangedWrapper(this.inventory.itemStackHandler, 0, 1));
+		this.inventoryCapabilityExternalSides = LazyOptional.of(() -> new RangedWrapper(this.inventory.itemStackHandler, 0, 1));
+		this.inventoryCapabilityExternalDown = LazyOptional.of(() -> new RangedWrapper(this.inventory.itemStackHandler, 1, 10));
+	}
+
+	public int getWorkTime()
+	{
+		return this.workTime;
+	}
+
+	public void setWorkTime(int time)
+	{
+		this.workTime = time;
+	}
+
+	public boolean isWorking()
+	{
+		return this.workTime > 0;
+	}
+
+	public IIntArray getIntArray()
+	{
+		return this.syncVariables;
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	public int getWorkProgressionScaled(int size)
+	{
+		return size * this.syncVariables.get(0) / PaleontologyTableTileEntity.WORK_TIME_MAX;
+	}
+
+	public ItemStack getFossilStack()
+	{
+		return this.inventory.getStackInSlot(PaleontologyTableTileEntity.SLOT_FOSSIL);
+	}
+
+	public boolean isFossilStack(ItemStack itemStack)
+	{
+		return !itemStack.isEmpty() && itemStack.getItem() instanceof FossilItem;
+	}
+
+	public void updateRecipe()
+	{
+		if (!this.hasRecipe() || !this.hasInput())
+		{
+			Optional<IRecipe<IInventory>> recipe = this.getCurrentRecipe();
+			if (recipe.isPresent() && recipe.get() instanceof RecipePaleontologyTable)
+				this.recipe = (RecipePaleontologyTable) recipe.get();
+			else
+				this.recipe = null;
+		}
 	}
 
 	public boolean hasRecipe()
@@ -132,191 +144,343 @@ public class PaleontologyTableTileEntity extends TileEntity implements ITickable
 	{
 		return this.recipe.matches(this.inventory, this.world);
 	}
-	
-	public void updateRecipe()
+
+	@Override
+	public void tick()
 	{
-		if (!this.hasRecipe() || !this.hasInput())
+		if (this.world != null && !this.world.isRemote)
 		{
-			Optional<IRecipe<IInventory>> recipe = this.getCurrentRecipe();
-			if (recipe.isPresent() && recipe.get() instanceof RecipePaleontologyTable)
-			{
-				this.recipe = (RecipePaleontologyTable) recipe.get();
-			}
-			else
-			{
-				this.recipe = null;
-			}
-		}
-	}
+			boolean hasWorkTimeLeft = false;
 
-	
-    @Override
-    public void read(CompoundNBT compound) {
-        super.read(compound);
-        this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(compound, this.stacks);
-        this.cleaningFuelTime = compound.getShort("FuelTime");
-        this.cleaningTime = compound.getShort("CleanTime");
-        this.currentFuelTime = 100;
-        if (compound.contains("CustomName", Constants.NBT.TAG_STRING)) {
-			this.customName = ITextComponent.Serializer.fromJson(compound.getString("CustomName"));
-		}
-    }
-
-    @Override
-    public CompoundNBT write(CompoundNBT compound) {
-        compound = super.write(compound);
-        compound.putShort("FuelTime", (short) this.cleaningFuelTime);
-        compound.putShort("CleanTime", (short) this.cleaningTime);
-        ItemStackHelper.saveAllItems(compound, this.stacks);
-        if (this.customName != null) {
-			compound.putString("CustomName", ITextComponent.Serializer.toJson(this.customName));
-		}
-        return compound;
-    }
-    
-    @Override
-    public int getInventoryStackLimit() {
-        return 64;
-    }
-
-    public int getCleaningProgressScaled(int scale) {
-        return this.cleaningTime * scale / 200;
-    }
-
-    public boolean isCleaning() {
-        return this.cleaningFuelTime > 0;
-    }
-    
-    @Override
-    public void tick() {
-    	if (this.world != null && !this.world.isRemote)
-		{
-			// if has stacks in input slot; Add this so minecraft won't search for recipes every tick
-			// Does it break underwater? check if is not waterlogged; 
-			if (true)
+			if (!this.inventory.getStackInSlot(PaleontologyTableTileEntity.SLOT_FOSSIL).isEmpty())
 			{
 				this.updateRecipe();
 
-				if (this.hasRecipe() && this.hasInput())
+				if (this.hasRecipe() && this.hasInput() && this.hasFreeSlot(PaleontologyTableTileEntity.SLOT_RESULTS))
 				{
-					ItemStack resultStack = this.recipe.getCraftingResult(this.inventory);
-					// DO WHATEVER
+					hasWorkTimeLeft = true;
+					if (this.workTime++ >= PaleontologyTableTileEntity.WORK_TIME_MAX)
+					{
+						ItemStack resultStack = this.recipe.getCraftingResult(this.inventory);
+
+						boolean foundSameResult = false;
+						for (int index : PaleontologyTableTileEntity.SLOT_RESULTS)
+						{
+							ItemStack nextResultStack = this.inventory.getStackInSlot(index);
+							if (!nextResultStack.isEmpty() && ItemStack.areItemsEqual(resultStack, nextResultStack) && nextResultStack.getCount() + resultStack.getCount() < this.inventory.getSlotLimit(index))
+							{
+								nextResultStack.grow(resultStack.getCount());
+								this.getFossilStack().shrink(1);
+								foundSameResult = true;
+								break;
+							}
+						}
+
+						if (!foundSameResult)
+						{
+							this.inventory.setInventorySlotContents(this.getNextFreeSlot(PaleontologyTableTileEntity.SLOT_RESULTS), resultStack);
+							this.getFossilStack().shrink(1);
+						}
+
+						this.workTime = 0;
+					}
 				}
 			}
+
+			if (!hasWorkTimeLeft)
+				this.workTime = 0;
 		}
-    }
-    
-    
-    @Override
-    public boolean isUsableByPlayer(PlayerEntity player) {
-        return this.world.getTileEntity(this.pos) == this && player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
-    }
-    
-    @Override
-    public void clear() {
-        this.stacks.clear();
-    }
+	}
 
-    @Override
-    public int[] getSlotsForFace(Direction side) {
-        return side == Direction.DOWN ? SLOTS_BOTTOM : SLOTS_SIDES;
-    }
+	public void givePlayerXP(PlayerEntity player, int totalOrbCount)
+	{
+		float experience = totalOrbCount * PaleontologyTableTileEntity.RECIPE_DEFAULT_XP;
+		if (experience < 1.0F)
+		{
+			int i = MathHelper.floor((float) totalOrbCount * experience);
+			if (i < MathHelper.ceil((float) totalOrbCount * experience) && Math.random() < (double) ((float) totalOrbCount * experience - (float) i))
+				++i;
+			totalOrbCount = i;
+		}
 
-    @Override
-    public boolean canInsertItem(int index, ItemStack stack, Direction direction) {
-        return this.isItemValidForSlot(index, stack);
-    }
+		while (totalOrbCount > 0)
+		{
+			int orbCount = ExperienceOrbEntity.getXPSplit(totalOrbCount);
+			totalOrbCount -= orbCount;
+			player.world.addEntity(new ExperienceOrbEntity(player.world, player.getPosX(), player.getPosY() + 0.5D, player.getPosZ() + 0.5D, orbCount));
+		}
+	}
 
-    @Override
-    public boolean canExtractItem(int index, ItemStack stack, Direction direction) {
-        return direction != Direction.DOWN || index != 1;
-    }
+	public Optional<IRecipe<IInventory>> getCurrentRecipe()
+	{
+		return this.world.getRecipeManager().getRecipe(RecipePaleontologyTable.RECIPE_TYPE_PALEONTOLOGY_TABLE, this.inventory, this.world);
+	}
 
-    @Override
-    public boolean isItemValidForSlot(int slot, ItemStack stack) {
-        return (slot != 1 || isFuel(stack));
-    }
-    
-    public void setCustomName(ITextComponent name) {
+	public TileRecipeInventory getInventory()
+	{
+		return this.inventory;
+	}
+
+	public ItemStackHandler getItemStackHandler()
+	{
+		return this.inventory.itemStackHandler;
+	}
+
+	public int getInventorySize()
+	{
+		return this.inventory.getSizeInventory();
+	}
+
+	public int getNextFreeSlot(int[] indexes)
+	{
+		for (int index : indexes)
+			if (this.inventory.getStackInSlot(index).isEmpty())
+				return index;
+
+		return -1;
+	}
+
+	public int getNextFreeSlot()
+	{
+		for (int index = 0; index < this.inventory.getSizeInventory(); index++)
+			if (this.inventory.getStackInSlot(index).isEmpty())
+				return index;
+
+		return -1;
+	}
+
+	public boolean hasFreeSlot(int[] indexes)
+	{
+		for (int index : indexes)
+			if (this.inventory.getStackInSlot(index).isEmpty())
+				return true;
+
+		return false;
+	}
+
+	public boolean hasFreeSlot()
+	{
+		for (int index = 0; index < this.inventory.getSizeInventory(); index++)
+			if (this.inventory.getStackInSlot(index).isEmpty())
+				return true;
+
+		return false;
+	}
+
+	public boolean isSlotFull(int index)
+	{
+		ItemStack itemStack = this.inventory.getStackInSlot(index);
+		return itemStack.getCount() >= itemStack.getMaxStackSize() && itemStack.getCount() >= this.inventory.getSlotLimit(index);
+	}
+
+	@Nonnull
+	@Override
+	public <T> LazyOptional<T> getCapability(@Nonnull final Capability<T> capability, @Nullable final Direction side)
+	{
+		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+		{
+			if (side == null)
+				return this.inventoryCapabilityExternal.cast();
+			switch (side)
+			{
+				case DOWN:
+					return this.inventoryCapabilityExternalDown.cast();
+				case UP:
+					return this.inventoryCapabilityExternalUp.cast();
+				case NORTH:
+				case SOUTH:
+				case WEST:
+				case EAST:
+					return this.inventoryCapabilityExternalSides.cast();
+			}
+		}
+		return super.getCapability(capability, side);
+	}
+
+	public void setCustomName(ITextComponent name)
+	{
 		this.customName = name;
 	}
 
-	public ITextComponent getName() {
+	@Override
+	@Nullable
+	public ITextComponent getCustomName()
+	{
+		return this.customName;
+	}
+
+	@Override
+	public ITextComponent getName()
+	{
 		return this.customName != null ? this.customName : this.getDefaultName();
 	}
 
-	private ITextComponent getDefaultName() {
+	@Override
+	public ITextComponent getDisplayName()
+	{
+		return this.getName();
+	}
+
+	private ITextComponent getDefaultName()
+	{
 		return new TranslationTextComponent("container." + PrehistoricFauna.MODID + ".paleontology_table");
 	}
 
 	@Override
-	public ITextComponent getDisplayName() {
-		return this.getName();
-	}
-
-	@Nullable
-	public ITextComponent getCustomName() {
-		return this.customName;
-	}
-
-    @Nullable
-	@Override
-	public SUpdateTileEntityPacket getUpdatePacket() {
-		CompoundNBT nbt = new CompoundNBT();
-		this.write(nbt);
-		return new SUpdateTileEntityPacket(this.pos, 0, nbt);
+	public Container createMenu(int windowID, PlayerInventory playerInventory, PlayerEntity playerEntity)
+	{
+		return new PaleontologyTableContainer(windowID, playerInventory, this);
 	}
 
 	@Override
-	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
-		this.read(pkt.getNbtCompound());
+	public void read(CompoundNBT compound)
+	{
+		super.read(compound);
+
+		this.inventory.read(compound);
+		this.workTime = compound.getShort("WorkTime");
+		if (compound.contains("CustomName", Constants.NBT.TAG_STRING))
+			this.customName = ITextComponent.Serializer.fromJson(compound.getString("CustomName"));
 	}
 
 	@Override
-	public CompoundNBT getUpdateTag() {
-		CompoundNBT nbt = new CompoundNBT();
-		this.write(nbt);
-		return nbt;
+	public CompoundNBT write(CompoundNBT compound)
+	{
+		super.write(compound);
+
+		this.inventory.write(compound);
+		compound.putShort("WorkTime", (short) this.workTime);
+		if (this.customName != null)
+			compound.putString("CustomName", ITextComponent.Serializer.toJson(this.customName));
+
+		return compound;
 	}
 
 	@Override
-	public void handleUpdateTag(CompoundNBT nbt) {
-		this.read(nbt);
+	public void remove()
+	{
+		super.remove();
+		this.inventoryCapabilityExternal.invalidate();
+		this.inventoryCapabilityExternalUp.invalidate();
+		this.inventoryCapabilityExternalSides.invalidate();
+		this.inventoryCapabilityExternalDown.invalidate();
 	}
 
-	@Override
-	public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
-		if (!this.removed && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-			if (facing == Direction.UP)
-				return handlerTop[0].cast();
-			else
-				return handlerBottom[1].cast();
+	public class TileRecipeInventory implements IInventory
+	{
+		protected final ItemStackHandler itemStackHandler;
+
+		public TileRecipeInventory(int size)
+		{
+			this.itemStackHandler = new ItemStackHandler(size)
+			{
+
+				@Override
+				protected void onContentsChanged(int slot)
+				{
+					super.onContentsChanged(slot);
+					PaleontologyTableTileEntity.this.markDirty();
+				}
+			};
 		}
-	      return super.getCapability(capability, facing);
+
+		public ItemStackHandler getItemStackHandler()
+		{
+			return this.itemStackHandler;
+		}
+
+		@Override
+		public int getSizeInventory()
+		{
+			return this.itemStackHandler.getSlots();
+		}
+
+		@Override
+		public ItemStack getStackInSlot(int slot)
+		{
+			return this.itemStackHandler.getStackInSlot(slot);
+		}
+
+		@Override
+		public ItemStack decrStackSize(int slot, int count)
+		{
+			ItemStack stack = this.itemStackHandler.getStackInSlot(slot);
+			return stack.isEmpty() ? ItemStack.EMPTY : stack.split(count);
+		}
+
+		@Override
+		public void setInventorySlotContents(int slot, ItemStack stack)
+		{
+			this.itemStackHandler.setStackInSlot(slot, stack);
+		}
+
+		@Override
+		public ItemStack removeStackFromSlot(int index)
+		{
+			ItemStack itemStack = getStackInSlot(index);
+			if (itemStack.isEmpty())
+				return ItemStack.EMPTY;
+			setInventorySlotContents(index, ItemStack.EMPTY);
+			return itemStack;
+		}
+
+		@Override
+		public boolean isEmpty()
+		{
+			for (int i = 0; i < this.itemStackHandler.getSlots(); i++)
+			{
+				if (!this.itemStackHandler.getStackInSlot(i).isEmpty())
+					return false;
+			}
+			return true;
+		}
+
+		@Override
+		public boolean isItemValidForSlot(int slot, ItemStack stack)
+		{
+			return this.itemStackHandler.isItemValid(slot, stack);
+		}
+
+		@Override
+		public void clear()
+		{
+			for (int i = 0; i < this.itemStackHandler.getSlots(); i++)
+				this.itemStackHandler.setStackInSlot(i, ItemStack.EMPTY);
+		}
+
+		@Override
+		public int getInventoryStackLimit()
+		{
+			return this.itemStackHandler.getSlots();
+		}
+
+		public int getSlotLimit(int index)
+		{
+			return this.itemStackHandler.getSlotLimit(index);
+		}
+
+		@Override
+		public void markDirty()
+		{
+			PaleontologyTableTileEntity.this.markDirty();
+		}
+
+		@Override
+		public boolean isUsableByPlayer(PlayerEntity player)
+		{
+			BlockPos pos = PaleontologyTableTileEntity.this.getPos();
+			return player.getDistanceSq((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D) <= 64.0D;
+		}
+
+		public void read(CompoundNBT tag)
+		{
+			this.itemStackHandler.deserializeNBT(tag.getCompound("IInventory"));
+		}
+
+		public CompoundNBT write(CompoundNBT tag)
+		{
+			tag.put("IInventory", this.itemStackHandler.serializeNBT());
+			return tag;
+		}
 	}
-	
-	@Override
-    public ItemStack getStackInSlot(int slot) {
-        return this.stacks.get(slot);
-    }
-
-    @Override
-    public ItemStack decrStackSize(int slot, int amount) {
-        return ItemStackHelper.getAndSplit(this.stacks, slot, amount);
-    }
-
-    @Override
-    public ItemStack removeStackFromSlot(int index) {
-        return ItemStackHelper.getAndRemove(this.stacks, index);
-    }
-
-    @Override
-    public void setInventorySlotContents(int slot, ItemStack stack) {
-        this.stacks.set(slot, stack);
-        if (!stack.isEmpty() && stack.getCount() > this.getInventoryStackLimit()) {
-            stack.setCount(this.getInventoryStackLimit());
-        }
-    }
-
 }

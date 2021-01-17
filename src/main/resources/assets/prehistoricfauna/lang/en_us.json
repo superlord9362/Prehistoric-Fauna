@@ -268,9 +268,16 @@
 	"itemGroup.prehistoric_fossil_tab": "Prehistoric Fauna Fossils",
 	
 	//Biomes
-	"biome.prehistoricfauna.hell_creek_biome": "Hell Creek Forest",
-	"biome.prehistoricfauna.morrison_biome": "Morrison Savanna",
+	"biome.prehistoricfauna.hell_creek": "Hell Creek Forest",
+	"biome.prehistoricfauna.hell_creek_clearing": "Hell Creek Fern Prairie",
+	"biome.prehistoricfauna.hell_creek_hills": "Hell Creek Liriodendrites Forest",
+	"biome.prehistoricfauna.hell_creek_river": "Hell Creek River",
+	"biome.prehistoricfauna.morrison_savannah": "Morrison Savanna",
+	"biome.prehistoricfauna.morrison_hills": "Morrison Hills",
 	"biome.prehistoricfauna.ischigualasto_forest": "Ischigualasto Forest",
+	"biome.prehistoricfauna.ischigualasto_clearing": "Ischigualasto Clearing",	
+	"biome.prehistoricfauna.ischigualasto_hills": "Ischigualasto Hills",
+	"biome.prehistoricfauna.ischigualasto_river": "Ischigualasto River",
 	"biome.prehistoricfauna.petrified_forest": "Petrified Forest",
 	
 	//Spawn Eggs
@@ -461,6 +468,7 @@
 	"item.prehistoricfauna.ceratosaurus_fossil": "Ceratosaurus Fossil",
 	"item.prehistoricfauna.allosaurus_fossil": "Allosaurus Fossil",
 	"item.prehistoricfauna.saurosuchus_fossil": "Saurosuchus Fossil",
+	"item.prehistoricfauna.ischigualastia_fossil": "Ischigualastia Fossil",
 
 	//Paleopedia
 	"paleopedia.ischigualasto": "Ischigualasto Forest",
@@ -528,6 +536,8 @@
 	"prehistoricfauna.subtitle.thescelosaurusIdle": "Thescelosaurus chirps",
 	"prehistoricfauna.subtitle.didelphodonHurt": "Didelphodon hurts",
 	"prehistoricfauna.subtitle.didelphodonDeath": "Didelphodon dies",
+	"prehistoricfauna.subtitle.allosaurusIdle": "Allosaurus grumbles",
+	"prehistoricfauna.subtitle.allosaurusWarning": "Allosaurus roars",
 	"prehistoricfauna.subtitle.allosaurusHurt": "Allosaurus hurts",
 	"prehistoricfauna.subtitle.allosaurusDeath": "Allosaurus dies",
 	"prehistoricfauna.subtitle.hesperornithoidesHurt": "Hesperornithoides hurts",
@@ -538,12 +548,14 @@
 	"prehistoricfauna.subtitle.exaeretodonDeath": "Exaeretodon dies",
 	"prehistoricfauna.subtitle.chromogisaurusHurt": "Chromogisaurus hurts",
 	"prehistoricfauna.subtitle.chromogisaurusDeath": "Chromogisaurus dies",
-	"prehistoricfauna.subtitle.herrerasaurusIdke": "Herrerasaurus whispers",
+	"prehistoricfauna.subtitle.herrerasaurusIdle": "Herrerasaurus whispers",
 	"prehistoricfauna.subtitle.herrerasaurusWarning": "Herrerasaurus squalls",
 	"prehistoricfauna.subtitle.herrerasaurusHurt": "Herrerasaurus hurts",
 	"prehistoricfauna.subtitle.herrerasaurusDeath": "Herrerasaurus dies",
 	"prehistoricfauna.subtitle.hyperodapedonHurt": "Hyperodapedon hurts",
 	"prehistoricfauna.subtitle.hyperodapedonDeath": "Hyperodapedon dies",
+	"prehistoricfauna.subtitle.sillosuchusIdle": "Sillosuchus rerbles",
+	"prehistoricfauna.subtitle.sillosuchusWarning": "Sillosuchus growls",
 	"prehistoricfauna.subtitle.sillosuchusHurt": "Sillosuchus hurts",
 	"prehistoricfauna.subtitle.sillosuchusDeath": "Sillosuchus dies",
 	"prehistoricfauna.subtitle.saurosuchusHurt": "Saurosuchus hurts",

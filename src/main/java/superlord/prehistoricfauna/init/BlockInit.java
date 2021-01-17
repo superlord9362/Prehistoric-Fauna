@@ -41,7 +41,6 @@ import superlord.prehistoricfauna.block.AmmoniteLargeShellBlock;
 import superlord.prehistoricfauna.block.AmmoniteMediumShellBlock;
 import superlord.prehistoricfauna.block.AmmoniteSmallShellBlock;
 import superlord.prehistoricfauna.block.AnkylosaurusEggBlock;
-import superlord.prehistoricfauna.block.AraucariaSaplingBlock;
 import superlord.prehistoricfauna.block.BasilemysEggBlock;
 import superlord.prehistoricfauna.block.CamarasaurusEggBlock;
 import superlord.prehistoricfauna.block.CeratosaurusEggBlock;
@@ -94,8 +93,6 @@ import superlord.prehistoricfauna.block.TyrannosaurusEggBlock;
 import superlord.prehistoricfauna.block.ZamitesSaplingBlock;
 import superlord.prehistoricfauna.block.ZamitesTopBlock;
 import superlord.prehistoricfauna.util.PFWoodTypes;
-import superlord.prehistoricfauna.world.feature.LiriodendritesTree;
-import superlord.prehistoricfauna.world.feature.jurassic.ProtopiceoxylonTree;
 import superlord.prehistoricfauna.world.feature.triassic.HeidiphyllumTree;
 import superlord.prehistoricfauna.world.feature.util.PHFTreeSpawners;
 
@@ -119,7 +116,7 @@ public class BlockInit {
 	public static final Block ARAUCARIA_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("araucaria_planks");//Loot Table done
 	public static final Block ARAUCARIA_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("araucaria_log");//Loot Table done
 	public static final Block ARAUCARIA_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()).setRegistryName("araucaria_leaves");//Loot Table done
-	public static final Block ARAUCARIA_SAPLING = new AraucariaSaplingBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("araucaria_sapling");//Loot Table done
+	public static final Block ARAUCARIA_SAPLING = new PHFSapling(new PHFTreeSpawners.Araucaria(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("araucaria_sapling"); //Loot Table done
 	public static final Block STRIPPED_ARAUCARIA_LOG = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_araucaria_log");//Loot Table done
 	public static final Block ARAUCARIA_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("araucaria_wood");//Loot Table done
 	public static final Block STRIPPED_ARAUCARIA_WOOD = new LogBlock(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_araucaria_wood");//Loot Table done
@@ -203,7 +200,7 @@ public class BlockInit {
 	public static final Block PROTOPICEOXYLON_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_fence_gate");//Loot Table done
 	public static final Block PROTOPICEOXYLON_BUTTON = new PrehistoricButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_button");//Loot Table done
 	public static final Block PROTOPICEOXYLON_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_slab");//Loot Table done
-	public static final Block PROTOPICEOXYLON_SAPLING = new PrehistoricSaplingBlock(new ProtopiceoxylonTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("protopiceoxylon_sapling");//Loot Table done
+	public static final Block PROTOPICEOXYLON_SAPLING = new PHFSapling(new PHFTreeSpawners.Protopiceoxylon(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("protopiceoxylon_sapling"); //Loot Table done
 	@SuppressWarnings("deprecation")
 	public static final Block POTTED_PROTOPICEOXYLON_SAPLING = new FlowerPotBlock(PROTOPICEOXYLON_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_protopiceoxylon_sapling");//Loot Table done
 	public static final Block PTILOPHYLLUM_WOOD = new PtilophyllumBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(0.4F).sound(SoundType.WOOD).notSolid()).setRegistryName("ptilophyllum_wood");//Loot Table done
@@ -284,7 +281,7 @@ public class BlockInit {
 	public static final Block LIRIODENDRITES_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("liriodendrites_fence_gate");//Loot Table done
 	public static final Block LIRIODENDRITES_BUTTON = new PrehistoricButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("liriodendrites_button");//Loot Table done
 	public static final Block LIRIODENDRITES_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("liriodendrites_slab");//Loot Table done
-	public static final Block LIRIODENDRITES_SAPLING = new PrehistoricSaplingBlock(new LiriodendritesTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("liriodendrites_sapling");//Loot Table done
+	public static final Block LIRIODENDRITES_SAPLING = new PHFSapling(new PHFTreeSpawners.Liriodendrites(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("liriodendrites_sapling"); //Loot Table done
 	@SuppressWarnings("deprecation")
 	public static final Block POTTED_LIRIODENDRITES_SAPLING = new FlowerPotBlock(LIRIODENDRITES_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_liriodendrites_sapling");//Loot Table done
 	public static final Block CRETACEOUS_PORTAL = new CretaceousPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).lightValue(11).noDrops()).setRegistryName("cretaceous_portal");//Loot Table done

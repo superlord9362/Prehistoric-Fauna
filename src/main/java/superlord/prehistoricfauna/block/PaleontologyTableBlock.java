@@ -6,7 +6,6 @@ import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.BlockItemUseContext;
@@ -92,20 +91,6 @@ public class PaleontologyTableBlock extends Block {
 			}
 		}
 		return ActionResultType.SUCCESS;
-	}
-
-	@SuppressWarnings("deprecation")
-	@Override
-	public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-		if (state.getBlock() != newState.getBlock()) {
-			TileEntity tileentity = worldIn.getTileEntity(pos);
-			if (tileentity instanceof PaleontologyTableTileEntity) {
-				InventoryHelper.dropInventoryItems(worldIn, pos, (PaleontologyTableTileEntity)tileentity);
-				worldIn.updateComparatorOutputLevel(pos, this);
-			}
-
-			super.onReplaced(state, worldIn, pos, newState, isMoving);
-		}
 	}
 
 }

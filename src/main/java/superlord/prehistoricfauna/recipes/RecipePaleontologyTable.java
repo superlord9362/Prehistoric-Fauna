@@ -86,6 +86,6 @@ public class RecipePaleontologyTable implements IRecipe<IInventory>
 	@Override
 	public boolean matches(IInventory iInventory, World worldIn)
 	{
-		return this.input.isItemEqual(iInventory.getStackInSlot(PaleontologyTableTileEntity.SLOT_INDEX_INPUT));
+		return this.input.isItemEqual(iInventory.getStackInSlot(PaleontologyTableTileEntity.SLOT_FOSSIL));
 	}
 }

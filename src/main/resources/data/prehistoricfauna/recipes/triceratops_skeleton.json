@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:triceratops_skull"
+    },
+	{
+		"item": "prehistoricfauna:triceratops_fossil"
+	},
+	{
+		"item": "prehistoricfauna:triceratops_fossil"
+	}
+  ],
+  "result": {
+    "item": "prehistoricfauna:triceratops_skeleton"
+  }
+}

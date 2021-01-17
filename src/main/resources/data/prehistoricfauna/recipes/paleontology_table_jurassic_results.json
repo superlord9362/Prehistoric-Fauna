@@ -1,0 +1,39 @@
+{
+  "type": "prehistoricfauna:recipe_paleontology_table",
+  "group": "prehistoricfauna",
+  "input": {
+    "item": "prehistoricfauna:jurassic_fossil"
+  },
+  "results": [
+    {
+      "item": "minecraft:bone",
+      "count": 1,
+      "weight": 10.0
+    },
+    {
+      "item": "prehistoricfauna:stegosaurus_fossil",
+      "count": 1,
+      "weight": 5.0
+    },
+    {
+      "item": "prehistoricfauna:ceratosaurus_fossil",
+      "count": 1,
+      "weight": 2.5
+    },
+    {
+      "item": "prehistoricfauna:allosaurus_fossil",
+      "count": 1,
+      "weight": 2.5
+    },
+	{
+		"item": "prehistoricfauna:ceratosaurus_skull",
+		"count": 1,
+		"weight": 1.25
+	},
+	{
+		"item": "prehistoricfauna:stegosaurus_skull",
+		"count": 1,
+		"weight": 2.5
+	}
+  ]
+}

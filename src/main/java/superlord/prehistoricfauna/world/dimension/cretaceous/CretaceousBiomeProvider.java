@@ -1,5 +1,3 @@
-
-
 package superlord.prehistoricfauna.world.dimension.cretaceous;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
@@ -8,7 +6,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedList;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.IExtendedNoiseRandom;
 import net.minecraft.world.gen.LazyAreaLayerContext;
@@ -16,7 +13,6 @@ import net.minecraft.world.gen.area.IAreaFactory;
 import net.minecraft.world.gen.area.LazyArea;
 import net.minecraft.world.gen.layer.Layer;
 import net.minecraft.world.gen.layer.ZoomLayer;
-import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.core.world.PHFBiomes;
 import superlord.prehistoricfauna.util.fastnoise.FastNoise;
 import superlord.prehistoricfauna.world.feature.cretaceous.PHFHillsLayer;
@@ -113,7 +109,6 @@ public class CretaceousBiomeProvider extends BiomeProvider {
 	}
 
 
-	@SuppressWarnings("ConstantConditions")
 	public void fillHillsList() {
 		WeightedList<ResourceLocation> hell_creek_sub_biomes = new WeightedList<>();
 		hell_creek_sub_biomes.func_226313_a_(biomeRegistry.getKey(PHFBiomes.HELL_CREEK_CLEARING), 5);

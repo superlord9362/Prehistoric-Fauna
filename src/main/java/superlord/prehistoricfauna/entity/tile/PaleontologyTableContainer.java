@@ -1,110 +1,186 @@
 package superlord.prehistoricfauna.entity.tile;
 
+import java.util.Objects;
+
+import javax.annotation.Nonnull;
+
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.FurnaceResultSlot;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIntArray;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.init.BlockInit;
+import net.minecraftforge.items.SlotItemHandler;
+import superlord.prehistoricfauna.block.PaleontologyTableBlock;
 import superlord.prehistoricfauna.init.ContainerRegistry;
 
-import javax.annotation.Nonnull;
-import java.util.Objects;
+public class PaleontologyTableContainer extends Container
+{
+	private final IWorldPosCallable canInteractWithCallable;
+	private final PaleontologyTableTileEntity tileEntity;
 
-public class PaleontologyTableContainer extends Container {
-
-	public PaleontologyTableTileEntity tileEntity;
-	private IWorldPosCallable canInteractWithCallable;
-	private final IIntArray tableData;
-    
-	public PaleontologyTableContainer(final int windowID, final PlayerInventory playerInv, final PaleontologyTableTileEntity tile) {
+	public PaleontologyTableContainer(final int windowID, final PlayerInventory playerInventory, final PaleontologyTableTileEntity tileEntity)
+	{
 		super(ContainerRegistry.PALEONTOLOGY_TABLE.get(), windowID);
-        int var3;
-        int var4;
-		this.tileEntity = tile;
-		this.tableData = tile.tableData;
-		this.canInteractWithCallable = IWorldPosCallable.of(tile.getWorld(), tile.getPos());
-		this.addSlot(new Slot(tile, 0, 35, 41));
-        this.addSlot(new FurnaceResultSlot(playerInv.player, tile, 1, 92, 23));
-        this.addSlot(new FurnaceResultSlot(playerInv.player, tile, 2, 110, 23));
-        this.addSlot(new FurnaceResultSlot(playerInv.player, tile, 3, 128, 23));
-        this.addSlot(new FurnaceResultSlot(playerInv.player, tile, 4, 92, 41));
-        this.addSlot(new FurnaceResultSlot(playerInv.player, tile, 5, 110, 41));
-        this.addSlot(new FurnaceResultSlot(playerInv.player, tile, 6, 128, 41));
-        this.addSlot(new FurnaceResultSlot(playerInv.player, tile, 7, 92, 59));
-        this.addSlot(new FurnaceResultSlot(playerInv.player, tile, 8, 110, 59));
-        this.addSlot(new FurnaceResultSlot(playerInv.player, tile, 9, 128, 59));
-        //Player Inventory
-        for (var3 = 0; var3 < 3; ++var3) {
-            for (var4 = 0; var4 < 9; ++var4) {
-                this.addSlot(new Slot(playerInv, var4 + var3 * 9 + 9, 8 + var4 * 18, 84 + var3 * 18));
-            }
-        }
 
-        // player hotbar
-        for (var3 = 0; var3 < 9; ++var3) {
-            this.addSlot(new Slot(playerInv, var3, 8 + var3 * 18, 142));
-        }
+		this.canInteractWithCallable = IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos());
+		this.tileEntity = tileEntity;
+
+		int playerX = 8;
+		int playerY = 84;
+		for (int i = 0; i < 9; i++)
+			this.addSlot(new Slot(playerInventory, i, playerX + i * 18, playerY + 58));
+		for (int i = 0; i < 3; i++)
+			for (int k = 0; k < 9; k++)
+				this.addSlot(new Slot(playerInventory, k + i * 9 + 9, playerX + k * 18, playerY + i * 18));
+		
+		this.addSlot(new SlotItemHandler(this.tileEntity.getItemStackHandler(), PaleontologyTableTileEntity.SLOT_FOSSIL, 36, 42) {
+
+		    @Override
+		    public boolean isItemValid(@Nonnull ItemStack stack)
+		    {
+		        return super.isItemValid(stack) && tileEntity.isFossilStack(stack);
+		    }
+		});
+
+		int resultX = 92;
+		int resultY = 23;
+		for (int i = 0; i < 3; i++)
+			for (int j = 0; j < 3; j++)
+				this.addSlot(new PaleontologyTaleResultSlot(playerInventory.player, this.tileEntity.getInventory(), PaleontologyTableTileEntity.SLOT_RESULTS[0] + j * 3 + i, resultX + i * 18, resultY + j * 18));
+
+		this.trackIntArray(this.tileEntity.getIntArray());
 	}
 
-	// Client Constructor
-	public PaleontologyTableContainer(final int windowID, final PlayerInventory playerInv, final PacketBuffer data) {
-		this(windowID, playerInv, getTileEntity(playerInv, data));
+	public PaleontologyTableContainer(final int windowID, final PlayerInventory playerInventory, final PacketBuffer data)
+	{
+		this(windowID, playerInventory, PaleontologyTableContainer.getTileEntity(playerInventory, data));
 	}
-	
-	private static PaleontologyTableTileEntity getTileEntity(final PlayerInventory playerInv, final PacketBuffer data) {
-		Objects.requireNonNull(playerInv, "playerInv cannot be null");
-		Objects.requireNonNull(data, "data cannot be null");
-		final TileEntity tileAtPos = playerInv.player.world.getTileEntity(data.readBlockPos());
-		if (tileAtPos instanceof PaleontologyTableTileEntity) {
-			return (PaleontologyTableTileEntity) tileAtPos;
+
+	private static PaleontologyTableTileEntity getTileEntity(final PlayerInventory playerInventory, final PacketBuffer data)
+	{
+		Objects.requireNonNull(playerInventory, "Error: " + PaleontologyTableContainer.class.getSimpleName() + " - Player Inventory cannot be null!");
+		Objects.requireNonNull(data, "Error: " + PaleontologyTableContainer.class.getSimpleName() + " - Packer Buffer Data cannot be null!");
+
+		final TileEntity tileEntityAtPos = playerInventory.player.world.getTileEntity(data.readBlockPos());
+		if (tileEntityAtPos instanceof PaleontologyTableTileEntity)
+			return (PaleontologyTableTileEntity) tileEntityAtPos;
+
+		throw new IllegalStateException("Error: " + PaleontologyTableContainer.class.getSimpleName() + " - TileEntity is not corrent! " + tileEntityAtPos);
+	}
+
+	@Override
+	public boolean canInteractWith(PlayerEntity playerIn)
+	{
+		return this.canInteractWithCallable.applyOrElse((world, blockPos) ->
+		{
+			return world.getBlockState(blockPos).getBlock() instanceof PaleontologyTableBlock ? playerIn.getDistanceSq((double) blockPos.getX() + 0.5D, (double) blockPos.getY() + 0.5D, (double) blockPos.getZ() + 0.5D) <= 64.0D : false;
+		}, true);
+	}
+
+	@Override
+	public ItemStack transferStackInSlot(PlayerEntity playerIn, int index)
+	{
+		int playerInvSize = this.inventorySlots.size() - this.tileEntity.getInventorySize();
+
+		Slot sourceSlot = (Slot) this.inventorySlots.get(index);
+		if (sourceSlot == null || !sourceSlot.getHasStack())
+			return ItemStack.EMPTY;
+
+		ItemStack sourceStack = sourceSlot.getStack();
+		ItemStack copyOfSourceStack = sourceStack.copy();
+
+		if (index >= playerInvSize)
+		{
+			if (!this.mergeItemStack(sourceStack, 0, playerInvSize, false))
+				return ItemStack.EMPTY;
 		}
-		throw new IllegalStateException("TileEntity is not correct " + tileAtPos);
-	}
+		else
+		{
+			if (this.tileEntity.isFossilStack(sourceStack))
+			{
+				int slotIndex = PaleontologyTableTileEntity.SLOT_FOSSIL;
+				if (!this.mergeItemStack(sourceStack, playerInvSize + slotIndex, playerInvSize + slotIndex + 1, false))
+					return ItemStack.EMPTY;
+			}
+			else
+				return ItemStack.EMPTY;
+		}
 
-	@Override
-	public boolean canInteractWith(PlayerEntity playerIn) {
-		return isWithinUsableDistance(canInteractWithCallable, playerIn, BlockInit.PALEONTOLOGY_TABLE);
-	}
-	
-	@Nonnull
-	@Override
-	public ItemStack transferStackInSlot(final PlayerEntity player, final int index) {
-		ItemStack transferred = ItemStack.EMPTY;
-        Slot slot = this.inventorySlots.get(index);
-        int otherSlots = this.inventorySlots.size() - 36;
-        if (slot != null && slot.getHasStack()) {
-            ItemStack current = slot.getStack();
-            transferred = current.copy();
-            if (index < otherSlots) {
-                if (!this.mergeItemStack(current, otherSlots, this.inventorySlots.size(), true)) {
-                    return ItemStack.EMPTY;
-                }
-            } else if (!this.mergeItemStack(current, 0, otherSlots, false)) {
-                return ItemStack.EMPTY;
-            }
-            if (current.getCount() == 0) {
-                slot.putStack(ItemStack.EMPTY);
-            } else {
-                slot.onSlotChanged();
-            }
-        }
-        return transferred;
+		if (sourceStack.isEmpty())
+			sourceSlot.putStack(ItemStack.EMPTY);
+		else
+			sourceSlot.onSlotChanged();
+
+		if (sourceStack.getCount() == copyOfSourceStack.getCount())
+			return ItemStack.EMPTY;
+
+		sourceSlot.onTake(playerIn, sourceStack);
+		return copyOfSourceStack;
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public int getCookProgressionScaled() {
-		int i = this.tableData.get(2);
-		int j = this.tableData.get(3);
-		return j != 0 && i != 0 ? i * 24 / j : 0;
+	public int getWorkProgressionScaled(int size)
+	{
+		return this.tileEntity.getWorkProgressionScaled(size);
 	}
-	
-}
 
+	public class PaleontologyTaleResultSlot extends Slot
+	{
+		private final PlayerEntity player;
+		private int removeCount;
+
+		public PaleontologyTaleResultSlot(PlayerEntity player, IInventory inventoryIn, int slotIndex, int xPosition, int yPosition)
+		{
+			super(inventoryIn, slotIndex, xPosition, yPosition);
+			this.player = player;
+		}
+
+		@Override
+		public boolean isItemValid(ItemStack stack)
+		{
+			return false;
+		}
+
+		@Override
+		public ItemStack decrStackSize(int amount)
+		{
+			if (this.getHasStack())
+			{
+				this.removeCount += Math.min(amount, this.getStack().getCount());
+			}
+
+			return super.decrStackSize(amount);
+		}
+
+		@Override
+		public ItemStack onTake(PlayerEntity thePlayer, ItemStack stack)
+		{
+			this.onCrafting(stack);
+			super.onTake(thePlayer, stack);
+			return stack;
+		}
+
+		@Override
+		protected void onCrafting(ItemStack stack, int amount)
+		{
+			this.removeCount += amount;
+			this.onCrafting(stack);
+		}
+
+		@Override
+		protected void onCrafting(ItemStack stack)
+		{
+			stack.onCrafting(this.player.world, this.player, this.removeCount);
+			if (!this.player.world.isRemote && this.inventory instanceof PaleontologyTableTileEntity)
+				((PaleontologyTableTileEntity) this.inventory).givePlayerXP(player, this.removeCount);
+
+			this.removeCount = 0;
+		}
+	}
+}

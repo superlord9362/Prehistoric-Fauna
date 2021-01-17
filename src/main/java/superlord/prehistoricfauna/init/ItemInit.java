@@ -19,6 +19,7 @@ import superlord.prehistoricfauna.PrehistoricFauna.PFWood;
 import superlord.prehistoricfauna.entity.PrehistoricBoatEntity;
 import superlord.prehistoricfauna.item.CretaceousTimeTotemItem;
 import superlord.prehistoricfauna.item.CustomArmorItem;
+import superlord.prehistoricfauna.item.FossilItem;
 import superlord.prehistoricfauna.item.JurassicTimeTotemItem;
 import superlord.prehistoricfauna.item.PFSignItem;
 import superlord.prehistoricfauna.item.PaleopediaItem;
@@ -86,6 +87,7 @@ public class ItemInit {
 	public static final RegistryObject<Item> SAUROSUCHUS_FOSSIL = ITEMS.register("saurosuchus_fossil", () -> new Item(new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<Item> ALLOSAURUS_FOSSIL = ITEMS.register("allosaurus_fossil", () -> new Item(new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<Item> CERATOSAURUS_FOSSIL = ITEMS.register("ceratosaurus_fossil", () -> new Item(new Item.Properties().group(PFFossil.instance)));
+	public static final RegistryObject<Item> ISCHIGUALASTIA_FOSSIL = ITEMS.register("ischigualastia_fossil", () -> new Item(new Item.Properties().group(PFFossil.instance)));
 	//Meat
 	public static final RegistryObject<Item> RAW_ANKYLOSAURUS_MEAT = ITEMS.register("raw_ankylosaurus_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(4).saturation(0.3F).meat().build())));
 	public static final RegistryObject<Item> COOKED_ANKYLOSAURUS_MEAT = ITEMS.register("cooked_ankylosaurus_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(9).saturation(0.8F).meat().build())));
@@ -143,9 +145,9 @@ public class ItemInit {
 	public static final RegistryObject<CretaceousTimeTotemItem> CRETACEOUS_TIME_TOTEM = ITEMS.register("cretaceous_time_totem", () -> new CretaceousTimeTotemItem(new Item.Properties().group(PFBook.instance).maxDamage(8)));
 	public static final RegistryObject<JurassicTimeTotemItem> JURASIC_TIME_TOTEM = ITEMS.register("jurassic_time_totem", () -> new JurassicTimeTotemItem(new Item.Properties().group(PFBook.instance).maxDamage(8)));
 	public static final RegistryObject<TriassicTimeTotemItem> TRIASSIC_TIME_TOTEM = ITEMS.register("triassic_time_totem", () -> new TriassicTimeTotemItem(new Item.Properties().group(PFBook.instance).maxDamage(8)));
-	public static final RegistryObject<Item> TRIASSIC_FOSSIL = ITEMS.register("triassic_fossil", () -> new Item(new Item.Properties().group(PFBook.instance)));
-	public static final RegistryObject<Item> JURASSIC_FOSSIL = ITEMS.register("jurassic_fossil", () -> new Item(new Item.Properties().group(PFBook.instance)));
-	public static final RegistryObject<Item> CRETACEOUS_FOSSIL = ITEMS.register("cretaceous_fossil", () -> new Item(new Item.Properties().group(PFBook.instance)));
+	public static final RegistryObject<Item> TRIASSIC_FOSSIL = ITEMS.register("triassic_fossil", () -> new FossilItem(new Item.Properties().group(PFBook.instance)));
+	public static final RegistryObject<Item> JURASSIC_FOSSIL = ITEMS.register("jurassic_fossil", () -> new FossilItem(new Item.Properties().group(PFBook.instance)));
+	public static final RegistryObject<Item> CRETACEOUS_FOSSIL = ITEMS.register("cretaceous_fossil", () -> new FossilItem(new Item.Properties().group(PFBook.instance)));
 	public static final RegistryObject<Item> CLADOPHEBLIS_STICK = ITEMS.register("cladophlebis_stick", () -> new Item(new Item.Properties().group(PFBook.instance).maxStackSize(1)));
 	//Opublic static final RegistryObject<HangingEntityItem> PALEOPAINTING = ITEMS.register("paleopainting", () -> new HangingEntityItem(ModEntityTypes.PALEOPAINTING, (new Item.Properties()).group(PFBook.instance)));
 

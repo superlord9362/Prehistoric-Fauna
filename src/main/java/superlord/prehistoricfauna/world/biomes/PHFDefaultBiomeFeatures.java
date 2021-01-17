@@ -13,4 +13,17 @@ public class PHFDefaultBiomeFeatures {
     public static void addSparseHellCreekVegetation(Biome biome) {
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PHFConfiguredFeatures.SPARE_HELL_CREEK_VEGETATION);
     }
+    
+    public static void addLiriodendritesForestVegetation(Biome biome) {
+        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PHFConfiguredFeatures.LIRIODENDRITES_FOREST_VEGETATION);
+    }
+    
+    public static void addIschigualastoVegetation(Biome biome) {
+        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PHFConfiguredFeatures.ISCHIGUALASTO_VEGETATION);
+    }
+    
+    public static void addSparseIschigualastoVegetation(Biome biome) {
+        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PHFConfiguredFeatures.SPARSE_ISCHIGUALASTO_VEGETATION);
+    }
+    
 }
