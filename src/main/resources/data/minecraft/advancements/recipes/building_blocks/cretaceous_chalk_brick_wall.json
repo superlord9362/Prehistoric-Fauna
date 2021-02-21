@@ -1,0 +1,32 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:cretaceous_chalk_brick_wall"
+    ]
+  },
+  "criteria": {
+    "has_stone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:polished_cretaceous_chalk_bricks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:cretaceous_chalk_brick_wall"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stone",
+      "has_the_recipe"
+    ]
+  ]
+}

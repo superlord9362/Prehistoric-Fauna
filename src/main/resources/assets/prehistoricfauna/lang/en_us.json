@@ -469,6 +469,10 @@
 	"item.prehistoricfauna.allosaurus_fossil": "Allosaurus Fossil",
 	"item.prehistoricfauna.saurosuchus_fossil": "Saurosuchus Fossil",
 	"item.prehistoricfauna.ischigualastia_fossil": "Ischigualastia Fossil",
+	"item.prehistoricfauna.allosaurus_skull": "Allosaurus Skull",
+	"entity.prehistoricfauna.allosaurus_skull": "Allosaurus Skull",
+	"item.prehistoricfauna.ischigualastia_skull": "Ischigualastia Skull",
+	"entity.prehistoricfauna.ischigualastia_skull": "Ischigualastia Skull",
 
 	//Paleopedia
 	"paleopedia.ischigualasto": "Ischigualasto Forest",
@@ -570,16 +574,16 @@
 	"prehistoricfauna.subtitle.henosDeath": "Henos dies",
 	
 	//Advancements
-	"advancements.prehistoricfauna.fragile.title": "The Onceler",
-	"advancements.prehistoricfauna.fragile.description": "Collect wood from every prehistoric tree",
+	"advancements.prehistoricfauna.anti_lorax.title": "The Onceler",
+	"advancements.prehistoricfauna.anti_lorax.description": "Collect wood from every prehistoric tree",
 	"advancements.prehistoricfauna.cretaceous_time_travel.title": "There's Always a T-Rex",
 	"advancements.prehistoricfauna.cretaceous_time_travel.description": "Visit the Cretaceous",
 	"advancements.prehistoricfauna.digger_man.title": "Digger Man",
 	"advancements.prehistoricfauna.digger_man.description": "Excavate Fossils",
 	"advancements.prehistoricfauna.dinoe_exotic.title": "Dinoe Exotic",
 	"advancements.prehistoricfauna.dinoe_exotic.description": "Breed every prehistoric animal",
-	"advancements.prehistoricfauna.extintion_event.title": "You're the Extinction Event",
-	"advancements.prehistoricfauna.extintion_event.description": "Kill every prehistoric animal",
+	"advancements.prehistoricfauna.extinction_event.title": "You're the Extinction Event",
+	"advancements.prehistoricfauna.extinction_event.description": "Kill every prehistoric animal",
 	"advancements.prehistoricfauna.fragile.title": "'Fragile', Must Be Italian!",
 	"advancements.prehistoricfauna.fragile.description": "Hold every prehistoric egg",
 	"advancements.prehistoricfauna.frankenstein.title": "Frankenstein",

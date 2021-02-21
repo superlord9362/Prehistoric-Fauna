@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "prehistoricfauna:metasequoia_wood",
+	"prehistoricfauna:metasequoia_log",
+	"prehistoricfauna:metasequoia_log_stripped",
+	"prehistoricfauna:stripped_metasequoia_wood"
+  ]
+}

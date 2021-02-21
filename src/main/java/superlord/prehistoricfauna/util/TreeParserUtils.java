@@ -134,7 +134,7 @@ public class TreeParserUtils {
         treeBranchList.forEach(builder::append);
         treeLeaveList.forEach(builder::append);
 
-        generateTreeFile(builder.toString(), trunkFillerBuilder.toString().replace(", );", ");"), "Heidiphyllum2", true, featureStartPos.getY() - 100, 32, treeHeight, useRandTreeHeight);
+        generateTreeFile(builder.toString(), trunkFillerBuilder.toString().replace(", );", ");"), "Cypress3", true, featureStartPos.getY() - 100, 32, treeHeight, useRandTreeHeight);
     }
 
     static String cachePrevious = "";

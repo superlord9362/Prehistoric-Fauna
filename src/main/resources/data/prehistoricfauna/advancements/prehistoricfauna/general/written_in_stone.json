@@ -1,0 +1,61 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/general/digger_man",
+  "display": {
+    "icon": {
+      "item": "prehistoricfauna:chiseled_polished_triassic_sandstone"
+    },
+    "title": {
+      "translate": "advancements.prehistoricfauna.written_in_stone.title"
+    },
+    "description": {
+      "translate": "advancements.prehistoricfauna.written_in_stone.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+"criteria": {
+    "triassic": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:chiseled_polished_triassic_sandstone"
+          }
+        ]
+      }
+    },
+	"jurassic": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:chiseled_polished_jurassic_siltstone"
+          }
+        ]
+      }
+    },
+	"cretaceous": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:chiseled_polished_cretaceous_chalk"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "cretaceous"
+	],
+	[
+		"jurassic"
+	],
+	[
+		"triassic"
+    ]
+  ]
+}

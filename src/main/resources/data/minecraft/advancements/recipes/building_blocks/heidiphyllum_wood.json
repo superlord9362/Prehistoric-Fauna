@@ -1,0 +1,32 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:heidiphyllum_wood"
+    ]
+  },
+  "criteria": {
+    "has_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:heidiphyllum_log"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:heidiphyllum_wood"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_log",
+      "has_the_recipe"
+    ]
+  ]
+}

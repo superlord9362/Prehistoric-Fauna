@@ -1,0 +1,32 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:liriodendrites_fence"
+    ]
+  },
+  "criteria": {
+    "has_planks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:liriodendrites_planks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:liriodendrites_fence"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_planks",
+      "has_the_recipe"
+    ]
+  ]
+}

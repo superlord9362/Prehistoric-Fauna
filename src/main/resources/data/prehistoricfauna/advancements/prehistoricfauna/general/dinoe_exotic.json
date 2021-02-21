@@ -1,0 +1,256 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/general/warpaholic",
+  "display": {
+    "icon": {
+      "item": "prehistoricfauna:horsetail"
+    },
+    "title": {
+      "translate": "advancements.prehistoricfauna.dinoe_exotic.title"
+    },
+    "description": {
+      "translate": "advancements.prehistoricfauna.dinoe_exotic.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 100
+  },
+  "criteria": {
+    "prehistoricfauna:thescelosaurus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:thescelosaurus"
+        }
+      }
+    },
+    "prehistoricfauna:triceratops": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:triceratops"
+        }
+      }
+    },
+    "prehistoricfauna:ankylosaurus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:ankylosaurus"
+        }
+      }
+    },
+    "prehistoricfauna:tyrannosaurus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:tyrannosaurus"
+        }
+      }
+    },
+    "prehistoricfauna:basilemys": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:basilemys"
+        }
+      }
+    },
+    "prehistoricfauna:dakotaraptor": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:dakotaraptor"
+        }
+      }
+    },
+    "prehistoricfauna:allosaurus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:allosaurus"
+        }
+      }
+    },
+    "prehistoricfauna:stegosaurus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:stegosaurus"
+        }
+      }
+    },
+    "prehistoricfauna:ceratosaurus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:ceratosaurus"
+        }
+      }
+    },
+    "prehistoricfauna:dryosaurus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:dryosaurus"
+        }
+      }
+    },
+    "prehistoricfauna:hesperornithoides": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:hesperornithoides"
+        }
+      }
+    },
+    "prehistoricfauna:eilenodon": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:eilenodon"
+        }
+      }
+    },
+    "prehistoricfauna:camarasaurus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:camarasaurus"
+        }
+      }
+    },
+    "prehistoricfauna:didelphodon": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:didelphodon"
+        }
+      }
+    },
+    "prehistoricfauna:exaeretodon": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:exaerertodon"
+        }
+      }
+    },
+    "prehistoricfauna:chromogisaurus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:chromogisaurus"
+        }
+      }
+    },
+    "prehistoricfauna:herrerasaurus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:herrerasaurus"
+        }
+      }
+    },
+    "prehistoricfauna:hyperodapedon": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:hyperodapedon"
+        }
+      }
+    },
+    "prehistoricfauna:sillosuchus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:sillosuchus"
+        }
+      }
+    },
+    "prehistoricfauna:saurosuchus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:saurosuchus"
+        }
+      }
+    },
+    "prehistoricfauna:ischigualastia": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:ischigualastia"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "prehistoricfauna:thescelosaurus"
+    ],
+    [
+      "prehistoricfauna:triceratops"
+    ],
+    [
+      "prehistoricfauna:ankylosaurus"
+    ],
+    [
+      "prehistoricfauna:tyrannosaurus"
+    ],
+    [
+      "prehistoricfauna:basilemys"
+    ],
+    [
+      "prehistoricfauna:dakotaraptor"
+    ],
+    [
+      "prehistoricfauna:allosaurus"
+    ],
+    [
+      "prehistoricfauna:stegosaurus"
+    ],
+    [
+      "prehistoricfauna:ceratosaurus"
+    ],
+    [
+      "prehistoricfauna:dryosaurus"
+    ],
+    [
+      "prehistoricfauna:hesperornithoides"
+    ],
+    [
+      "prehistoricfauna:eilenodon"
+    ],
+    [
+      "prehistoricfauna:camarasaurus"
+    ],
+    [
+      "prehistoricfauna:didelphodon"
+    ],
+    [
+      "prehistoricfauna:exaeretodon"
+    ],
+    [
+      "prehistoricfauna:chromogisaurus"
+    ],
+    [
+      "prehistoricfauna:herrerasaurus"
+    ],
+    [
+      "prehistoricfauna:hyperodapedon"
+    ],
+    [
+      "prehistoricfauna:sillosuchus"
+    ],
+    [
+      "prehistoricfauna:saurosuchus"
+    ],
+    [
+      "prehistoricfauna:ischigualastia"
+    ]
+  ]
+}

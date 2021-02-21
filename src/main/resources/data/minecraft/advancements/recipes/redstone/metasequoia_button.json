@@ -1,0 +1,32 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:metasequoia_button"
+    ]
+  },
+  "criteria": {
+    "has_planks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:metasequoia_planks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:metasequoia_button"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_planks",
+      "has_the_recipe"
+    ]
+  ]
+}

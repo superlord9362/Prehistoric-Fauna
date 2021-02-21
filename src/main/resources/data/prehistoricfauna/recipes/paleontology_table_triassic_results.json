@@ -6,9 +6,19 @@
   },
   "results": [
     {
-      "item": "minecraft:bone",
+      "item": "prehistoricfauna:triassic_sandstone",
       "count": 1,
       "weight": 10.0
+    },
+	{
+		"item": "prehistoricfauna:small_shell",
+		"count": 1,
+		"weight": 7.5
+	},
+	{
+      "item": "prehistoricfauna:petrified_wood",
+      "count": 1,
+      "weight": 5.0
     },
     {
       "item": "prehistoricfauna:ischigualastia_fossil",
@@ -26,14 +36,19 @@
       "weight": 2.5
     },
 	{
+		"item": "prehistoricfauna:saurosuchus_skull",
+		"count": 1,
+		"weight": 1.25
+	},
+	{
 		"item": "prehistoricfauna:herrerasaurus_skull",
 		"count": 1,
 		"weight": 1.25
 	},
 	{
-		"item": "prehistoricfauna:saurosuchus_skull",
+		"item": "prehistoricfauna:ischigualastia_skull",
 		"count": 1,
-		"weight": 1.25
+		"weight": 2.5
 	}
   ]
 }

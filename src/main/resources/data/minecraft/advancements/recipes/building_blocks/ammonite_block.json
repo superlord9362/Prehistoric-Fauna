@@ -1,0 +1,31 @@
+{
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:ammonite_block"
+    ]
+  },
+  "criteria": {
+    "has_shells": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "prehistoricfauna:ammonite_shells"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:ammonite_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_shells",
+      "has_the_recipe"
+    ]
+  ]
+}

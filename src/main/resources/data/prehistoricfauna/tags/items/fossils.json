@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "prehistoricfauna:triassic_fossil",
+	"prehistoricfauna:jurassic_fossil",
+	"prehistoricfauna:cretaceous_fossil"
+  ]
+}

@@ -1,0 +1,256 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/general/warpaholic",
+  "display": {
+    "icon": {
+      "item": "prehistoricfauna:raw_herrerasaurus_meat"
+    },
+    "title": {
+      "translate": "advancements.prehistoricfauna.extinction_event.title"
+    },
+    "description": {
+      "translate": "advancements.prehistoricfauna.extinction_event.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 100
+  },
+  "criteria": {
+    "prehistoricfauna:thescelosaurus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:thescelosaurus"
+        }
+      }
+    },
+    "prehistoricfauna:triceratops": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:triceratops"
+        }
+      }
+    },
+    "prehistoricfauna:ankylosaurus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:ankylosaurus"
+        }
+      }
+    },
+    "prehistoricfauna:tyrannosaurus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:tyrannosaurus"
+        }
+      }
+    },
+    "prehistoricfauna:basilemys": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:basilemys"
+        }
+      }
+    },
+    "prehistoricfauna:dakotaraptor": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:dakotaraptor"
+        }
+      }
+    },
+    "prehistoricfauna:didelphodon": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:didelphodon"
+        }
+      }
+    },
+    "prehistoricfauna:allosaurus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:allosaurus"
+        }
+      }
+    },
+    "prehistoricfauna:stegosaurus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:stegosaurus"
+        }
+      }
+    },
+    "prehistoricfauna:ceratosaurus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:ceratosaurus"
+        }
+      }
+    },
+    "prehistoricfauna:dryosaurus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:dryosaurus"
+        }
+      }
+    },
+    "prehistoricfauna:hesperornithoides": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:hesperornithoides"
+        }
+      }
+    },
+    "prehistoricfauna:eilenodon": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:eilenodon"
+        }
+      }
+    },
+    "prehistoricfauna:camarasaurus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:camarasaurus"
+        }
+      }
+    },
+    "prehistoricfauna:exaeretodon": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:exaerertodon"
+        }
+      }
+    },
+    "prehistoricfauna:chromogisaurus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:chromogisaurus"
+        }
+      }
+    },
+    "prehistoricfauna:herrerasaurus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:herrerasaurus"
+        }
+      }
+    },
+    "prehistoricfauna:hyperodapedon": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:hyperodapedon"
+        }
+      }
+    },
+    "prehistoricfauna:sillosuchus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:sillosuchus"
+        }
+      }
+    },
+    "prehistoricfauna:saurosuchus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:saurosuchus"
+        }
+      }
+    },
+    "prehistoricfauna:ischigualastia": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:ischigualastia"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "prehistoricfauna:thescelosaurus"
+    ],
+    [
+      "prehistoricfauna:triceratops"
+    ],
+    [
+      "prehistoricfauna:ankylosaurus"
+    ],
+    [
+      "prehistoricfauna:tyrannosaurus"
+    ],
+    [
+      "prehistoricfauna:basilemys"
+    ],
+    [
+      "prehistoricfauna:dakotaraptor"
+    ],
+    [
+      "prehistoricfauna:didelphodon"
+    ],
+    [
+      "prehistoricfauna:allosaurus"
+    ],
+    [
+      "prehistoricfauna:stegosaurus"
+    ],
+    [
+      "prehistoricfauna:ceratosaurus"
+    ],
+    [
+      "prehistoricfauna:dryosaurus"
+    ],
+    [
+      "prehistoricfauna:hesperornithoides"
+    ],
+    [
+      "prehistoricfauna:eilenodon"
+    ],
+    [
+      "prehistoricfauna:camarasaurus"
+    ],
+    [
+      "prehistoricfauna:exaeretodon"
+    ],
+    [
+      "prehistoricfauna:chromogisaurus"
+    ],
+    [
+      "prehistoricfauna:herrerasaurus"
+    ],
+    [
+      "prehistoricfauna:hyperodapedon"
+    ],
+    [
+      "prehistoricfauna:sillosuchus"
+    ],
+    [
+      "prehistoricfauna:saurosuchus"
+    ],
+    [
+      "prehistoricfauna:ischigualastia"
+    ]
+  ]
+}

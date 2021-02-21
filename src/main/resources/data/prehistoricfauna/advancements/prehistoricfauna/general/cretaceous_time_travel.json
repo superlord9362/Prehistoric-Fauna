@@ -1,0 +1,31 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/general/time_machine",
+  "display": {
+    "icon": {
+      "item": "prehistoricfauna:cretaceous_time_totem"
+    },
+    "title": {
+      "translate": "advancements.prehistoricfauna.cretaceous_time_travel.title"
+    },
+    "description": {
+      "translate": "advancements.prehistoricfauna.cretaceous_time_travel.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "cretaceous": {
+      "trigger": "minecraft:enter_block",
+      "conditions": {
+        "block": "prehistoricfauna:cretaceous_portal"
+      }
+  }
+},
+  "requirements": [
+    [
+      "cretaceous"
+    ]
+  ]
+}

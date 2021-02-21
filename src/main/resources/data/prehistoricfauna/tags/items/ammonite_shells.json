@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "prehistoricfauna:large_shell",
+	"prehistoricfauna:medium_shell",
+	"prehistoricfauna:small_shell"
+  ]
+}

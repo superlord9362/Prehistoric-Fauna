@@ -86,6 +86,7 @@ import superlord.prehistoricfauna.core.world.PHFStructures;
 import superlord.prehistoricfauna.core.world.PHFSurfaceBuilders;
 import superlord.prehistoricfauna.entity.HesperornithoidesEntity;
 import superlord.prehistoricfauna.entity.render.AllosaurusRenderer;
+import superlord.prehistoricfauna.entity.render.AllosaurusSkullRenderer;
 import superlord.prehistoricfauna.entity.render.AnkylosaurusRenderer;
 import superlord.prehistoricfauna.entity.render.AnkylosaurusSkeletonRenderer;
 import superlord.prehistoricfauna.entity.render.AnkylosaurusSkullRenderer;
@@ -106,6 +107,7 @@ import superlord.prehistoricfauna.entity.render.HerrerasaurusSkullRenderer;
 import superlord.prehistoricfauna.entity.render.HesperornithoidesRenderer;
 import superlord.prehistoricfauna.entity.render.HyperodapedonRenderer;
 import superlord.prehistoricfauna.entity.render.IschigualastiaRenderer;
+import superlord.prehistoricfauna.entity.render.IschigualastiaSkullRenderer;
 import superlord.prehistoricfauna.entity.render.PFSignTileEntityRenderer;
 import superlord.prehistoricfauna.entity.render.PaleontologyTableScreen;
 import superlord.prehistoricfauna.entity.render.PrehistoricBoatRenderer;
@@ -310,6 +312,8 @@ public class PrehistoricFauna {
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.TRICERATOPS_SKELETON, TriceratopsSkeletonRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ANKYLOSAURUS_SKELETON, AnkylosaurusSkeletonRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.HERRERASAURUS_SKELETON, HerrerasaurusSkeletonRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ALLOSAURUS_SKULL, AllosaurusSkullRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ISCHIGUALASTIA_SKULL, IschigualastiaSkullRenderer::new);
         //RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.PALEOPAINTING, PaleopaintingRenderer::new);
         ScreenManager.registerFactory(ContainerRegistry.PALEONTOLOGY_TABLE.get(), PaleontologyTableScreen::new);
 	}

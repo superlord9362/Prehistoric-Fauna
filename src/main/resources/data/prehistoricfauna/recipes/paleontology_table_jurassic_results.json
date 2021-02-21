@@ -6,9 +6,49 @@
   },
   "results": [
     {
-      "item": "minecraft:bone",
+      "item": "prehistoricfauna:jurassic_siltstone",
       "count": 1,
       "weight": 10.0
+    },
+	{
+		"item": "prehistoricfauna:large_shell",
+		"count": 1,
+		"weight": 7.5
+	},
+	{
+		"item": "prehistoricfauna:medium_shell",
+		"count": 1,
+		"weight": 7.5
+	},
+	{
+		"item": "prehistoricfauna:small_shell",
+		"count": 1,
+		"weight": 7.5
+	},
+	{
+      "item": "prehistoricfauna:petrified_wood",
+      "count": 1,
+      "weight": 5.0
+    },
+	{
+      "item": "prehistoricfauna:giant_shell_bb",
+      "count": 1,
+      "weight": 1.0
+    },
+	{
+      "item": "prehistoricfauna:giant_shell_bf",
+      "count": 1,
+      "weight": 1.0
+    },
+	{
+      "item": "prehistoricfauna:giant_shell_tb",
+      "count": 1,
+      "weight": 1.0
+    },
+	{
+      "item": "prehistoricfauna:giant_shell_tf",
+      "count": 1,
+      "weight": 1.0
     },
     {
       "item": "prehistoricfauna:stegosaurus_fossil",
@@ -27,6 +67,11 @@
     },
 	{
 		"item": "prehistoricfauna:ceratosaurus_skull",
+		"count": 1,
+		"weight": 1.25
+	},
+	{
+		"item": "prehistoricfauna:allosaurus_skull",
 		"count": 1,
 		"weight": 1.25
 	},

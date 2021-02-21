@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:henostone_pillar"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:henostone_pillar_chiseled",
+	"count": 2
+  }
+}

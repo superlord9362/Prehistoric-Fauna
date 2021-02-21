@@ -16,7 +16,7 @@
 		"item": "minecraft:iron_ingot"
 	},
 	"f": {
-		"item": "prehistoricfauna:cretaceous_fossil"
+      "tag": "prehistoricfauna:fossils"
 	}
   },
   "result": {

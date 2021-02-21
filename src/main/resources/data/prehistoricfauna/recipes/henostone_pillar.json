@@ -7,10 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "prehistoricfauna:henostone_slab"
+      "item": "prehistoricfauna:henostone"
     }
   },
   "result": {
-    "item": "prehistoricfauna:henostone_pillar"
+    "item": "prehistoricfauna:henostone_pillar",
+	"count": 2
   }
 }

@@ -1,0 +1,32 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:cooked_eilenodon_meat"
+    ]
+  },
+  "criteria": {
+    "has_meat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:raw_eilenodon_meat"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:cooked_eilenodon_meat"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_meat",
+      "has_the_recipe"
+    ]
+  ]
+}

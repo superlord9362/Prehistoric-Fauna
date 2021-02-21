@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "prehistoricfauna:cretaceous_chalk"
+  },
+  "result": "prehistoricfauna:smooth_cretaceous_chalk",
+  "cookingtime": 200
+}

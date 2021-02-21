@@ -42,7 +42,6 @@ import net.minecraft.world.gen.IWorldGenerationBaseReader;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraftforge.common.Tags;
-import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.util.fastnoise.FastNoise;
 import superlord.prehistoricfauna.world.feature.config.PHFTreeConfig;
 

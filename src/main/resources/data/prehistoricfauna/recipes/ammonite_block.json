@@ -1,13 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "bark",
   "pattern": [
     "##",
     "##"
   ],
   "key": {
     "#": {
-      "item": "prehistoricfauna:small_shell"
+      "tag": "prehistoricfauna:ammonite_shells"
     }
   },
   "result": {

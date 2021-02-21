@@ -1,0 +1,32 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:ankylosaurus_chestplate"
+    ]
+  },
+  "criteria": {
+    "has_ankylosaurus_scute": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:ankylosaurus_scute"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:ankylosaurus_chestplate"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ankylosaurus_scute",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "prehistoricfauna:henostone"
+  },
+  "result": "prehistoricfauna:henostone_pillar_chiseled",
+  "count": 1
+}
