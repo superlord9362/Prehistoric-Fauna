@@ -13,15 +13,7 @@ import superlord.prehistoricfauna.PrehistoricFauna.PFFossil;
 import superlord.prehistoricfauna.PrehistoricFauna.PFPlants;
 import superlord.prehistoricfauna.PrehistoricFauna.PFWood;
 import superlord.prehistoricfauna.entity.PrehistoricBoatEntity;
-import superlord.prehistoricfauna.item.CretaceousTimeTotemItem;
-import superlord.prehistoricfauna.item.CustomArmorItem;
-import superlord.prehistoricfauna.item.FossilItem;
-import superlord.prehistoricfauna.item.JurassicTimeTotemItem;
-import superlord.prehistoricfauna.item.PFSignItem;
-import superlord.prehistoricfauna.item.PaleopediaItem;
-import superlord.prehistoricfauna.item.PrehistoricBoatItem;
-import superlord.prehistoricfauna.item.SpawnSkeletonItem;
-import superlord.prehistoricfauna.item.TriassicTimeTotemItem;
+import superlord.prehistoricfauna.item.*;
 import superlord.prehistoricfauna.util.ArmorMaterialInit;
 
 ;
@@ -148,7 +140,7 @@ public class ItemInit {
 	public static final RegistryObject<Item> CRETACEOUS_FOSSIL = ITEMS.register("cretaceous_fossil", () -> new FossilItem(new Item.Properties().group(PFBook.instance)));
 	public static final RegistryObject<Item> CLADOPHEBLIS_STICK = ITEMS.register("cladophlebis_stick", () -> new Item(new Item.Properties().group(PFBook.instance).maxStackSize(1)));
 	//Opublic static final RegistryObject<HangingEntityItem> PALEOPAINTING = ITEMS.register("paleopainting", () -> new HangingEntityItem(ModEntityTypes.PALEOPAINTING, (new Item.Properties()).group(PFBook.instance)));
-	public static final RegistryObject<HangingEntityItem> WALL_FOSSIL = ITEMS.register("wall_fossil", () -> new HangingEntityItem(ModEntityTypes.WALL_FOSSIL, new Item.Properties().group(PFBook.instance)));
+	public static final RegistryObject<WallFossilItem> WALL_FOSSIL = ITEMS.register("wall_fossil", () -> new WallFossilItem(new Item.Properties().group(PFBook.instance)));
 
 	public static final RegistryObject<Item> ARAURCARIA_SIGN = ITEMS.register("araucaria_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFWood.instance), BlockInit.ARAUCARIA_SIGN, BlockInit.ARAUCARIA_WALL_SIGN));
 	public static final RegistryObject<Item> METASEQUOIA_SIGN = ITEMS.register("metasequoia_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFWood.instance), BlockInit.METASEQUOIA_SIGN, BlockInit.METASEQUOIA_WALL_SIGN));
