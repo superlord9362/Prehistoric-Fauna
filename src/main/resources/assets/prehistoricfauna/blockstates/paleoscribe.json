@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "prehistoricfauna:block/paleoscribe" },
+        "facing=south": { "model": "prehistoricfauna:block/paleoscribe", "y": 180 },
+        "facing=west":  { "model": "prehistoricfauna:block/paleoscribe", "y": 270 },
+        "facing=east":  { "model": "prehistoricfauna:block/paleoscribe", "y": 90 }
+    }
+}

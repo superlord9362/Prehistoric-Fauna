@@ -194,6 +194,8 @@
 	"block.prehistoricfauna.didelphodon_burrow": "Didelphodon Burrow",
 	"container.prehistoricfauna.paleontology_table": "Paleontology Table",
 	"block.prehistoricfauna.paleontology_table": "Paleontology Table",
+	"block.prehistoricfauna.paleoscribe": "Paleoscribe",
+	"container.prehistoricfauna.paleoscribe": "Paleoscribe",
 	
 	//Stones
 	"block.prehistoricfauna.henostone": "Henostone",
@@ -348,8 +350,8 @@
 	"item.prehistoricfauna.ankylosaurus_chestplate": "Ankylosaurus Chestplate",
 	"item.prehistoricfauna.ankylosaurus_helmet": "Ankylosaurus Helmet",
 	"item.prehistoricfauna.moss_ball": "Moss Ball",
-	"item.prehistoricfauna.paleopedia": "PaleoJournal",
-	"item.prehistoricfauna.paleopage": "PaleJournal Page",
+	"item.prehistoricfauna.paleopedia": "Ancient Journal",
+	"item.prehistoricfauna.paleopage": "Ancient Journal Page",
 	"item.prehistoricfauna.ptilophyllum_fronds": "Ptilophyllum Fronds",
 	"item.prehistoricfauna.didelphodon_hide": "Didelphodon Hide",
 	"item.prehistoricfauna.exaeretodon_hide": "Exaeretodon Hide",
@@ -572,6 +574,11 @@
 	"prehistoricfauna.subtitle.henosLaser": "Time laser",
 	"prehistoricfauna.subtitle.henosHurt": "Henos hurts",
 	"prehistoricfauna.subtitle.henosDeath": "Henos dies",
+	
+	//Paleoscribe
+	"container.paleoscribe.no_paleojournal": "Cannot add journal pages",
+	"container.paleoscribe.costs": "Costs:",
+	"container.paleoscribe.paleopage.many": "%s Journal Pages",
 	
 	//Advancements
 	"advancements.prehistoricfauna.anti_lorax.title": "The Onceler",

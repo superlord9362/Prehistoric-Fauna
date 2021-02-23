@@ -31,55 +31,58 @@ public class PaleopediaItem extends Item {
 	}
 	
 	@Override
-	public void onCreated(ItemStack stack, World world, PlayerEntity player) {
-		stack.setTag(new CompoundNBT());
-		stack.getTag().putIntArray("Pages", new int[]{0});
-	}
-	
-	public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
-		if (this.isInGroup(group)) {
-			items.add(new ItemStack(this));
-			ItemStack stack = new ItemStack(ItemInit.PALEOPEDIA.get());
-			stack.setTag(new CompoundNBT());
-			int[] pages = new int[EnumPaleoPages.values().length];
-			for (int i = 0; i < EnumPaleoPages.values().length; i++) {
-				pages[i] = i;
-			}
-			stack.getTag().putIntArray("Pages", pages);
-			items.add(stack);
-		}
-	}
-	
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-		ItemStack itemStack = player.getHeldItem(hand);
-		if (world.isRemote) {
-			PrehistoricFauna.PROXY.openPaleopediaGui(itemStack);
-		}
-		return new ActionResult<ItemStack>(ActionResultType.PASS, itemStack);
-	}
-	
-	@Override
-	public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
-		if (stack.getTag() == null) {
-			stack.setTag(new CompoundNBT());
-			stack.getTag().putIntArray("Pages", new int[] {EnumPaleoPages.INTRODUCTION.ordinal()});
-		}
-	}
-	
-	@Override
-	public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> toolTip, ITooltipFlag flag) {
-		if (stack.getTag() != null) {
-			if (PrehistoricFauna.PROXY.shouldSeePaleopediaContents()) {
-				toolTip.add(new TranslationTextComponent("paleopedia.contains").applyTextStyle(TextFormatting.GRAY));
-				List<EnumPaleoPages> pages = EnumPaleoPages.containedPages(EnumPaleoPages.toList(stack.getTag().getIntArray("Pages")));
-				for(EnumPaleoPages page : pages) {
-					toolTip.add(new StringTextComponent(TextFormatting.WHITE + "-").appendSibling(new TranslationTextComponent("paleopedia." + EnumPaleoPages.values()[page.ordinal()].toString().toLowerCase())).applyTextStyle(TextFormatting.GRAY));
-				}
-			} else {
-				toolTip.add(new TranslationTextComponent("paleopedia.hold_shift").applyTextStyle(TextFormatting.GRAY));
-			}
-		}
-	}
+    public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+        stack.setTag(new CompoundNBT());
+        stack.getTag().putIntArray("Pages", new int[]{0});
+
+    }
+
+    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
+        if (this.isInGroup(group)) {
+            items.add(new ItemStack(this));
+            ItemStack stack = new ItemStack(ItemInit.PALEOPEDIA.get());
+            stack.setTag(new CompoundNBT());
+            int[] pages = new int[EnumPaleoPages.values().length];
+            for (int i = 0; i < EnumPaleoPages.values().length; i++) {
+                pages[i] = i;
+            }
+            stack.getTag().putIntArray("Pages", pages);
+            items.add(stack);
+        }
+    }
+
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        ItemStack itemStackIn = playerIn.getHeldItem(handIn);
+        if (worldIn.isRemote) {
+			PrehistoricFauna.PROXY.openPaleopediaGui(itemStackIn);
+        }
+        return new ActionResult<ItemStack>(ActionResultType.PASS, itemStackIn);
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+        if (stack.getTag() == null) {
+            stack.setTag(new CompoundNBT());
+            stack.getTag().putIntArray("Pages", new int[]{EnumPaleoPages.INTRODUCTION.ordinal()});
+
+        }
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        if (stack.getTag() != null) {
+        	if (PrehistoricFauna.PROXY.shouldSeePaleopediaContents()) {
+                tooltip.add(new TranslationTextComponent("paleopedia.contains").applyTextStyle(TextFormatting.GRAY));
+                List<EnumPaleoPages> pages = EnumPaleoPages.containedPages(EnumPaleoPages.toList(stack.getTag().getIntArray("Pages")));
+                for (EnumPaleoPages page : pages) {
+                    tooltip.add(new StringTextComponent(TextFormatting.WHITE + "-").appendSibling(new TranslationTextComponent("paleopedia." + EnumPaleoPages.values()[page.ordinal()].toString().toLowerCase())).applyTextStyle(TextFormatting.GRAY));
+                }
+            } else {
+                tooltip.add(new TranslationTextComponent("paleopedia.hold_shift").applyTextStyle(TextFormatting.GRAY));
+            }
+
+        }
+    }
 
 }

@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class MossBlock extends Block {
-	
+
 	public static final IntegerProperty LAYERS = BlockStateProperties.LAYERS_1_8;
 	protected static final VoxelShape[] SHAPES = new VoxelShape[] {
 			VoxelShapes.empty(),
@@ -36,12 +36,12 @@ public class MossBlock extends Block {
 			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D),
 			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)
 	};
-	
+
 	public MossBlock(Block.Properties properties) {
 		super(properties);
 		this.setDefaultState(this.stateContainer.getBaseState().with(LAYERS, Integer.valueOf(1)));
 	}
-	
+
 	public boolean allowsMovement(BlockState state, IBlockReader world, BlockPos pos, PathType type) {
 		switch(type) {
 		case LAND:
@@ -54,78 +54,78 @@ public class MossBlock extends Block {
 			return false;
 		}
 	}
-	
+
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-	      return SHAPES[state.get(LAYERS)];
-	   }
+		return SHAPES[state.get(LAYERS)];
+	}
 
-	   public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-	      return SHAPES[state.get(LAYERS) - 1];
-	   }
+	public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+		return SHAPES[state.get(LAYERS) - 1];
+	}
 
-	   public boolean isTransparent(BlockState state) {
-	      return true;
-	   }
+	public boolean isTransparent(BlockState state) {
+		return true;
+	}
 
-	   public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-	      BlockState blockstate = worldIn.getBlockState(pos.down());
-	      Block block = blockstate.getBlock();
-	      if (block != Blocks.ICE && block != Blocks.PACKED_ICE && block != Blocks.BARRIER) {
-	         if (block != Blocks.HONEY_BLOCK && block != Blocks.SOUL_SAND) {
-	            return Block.doesSideFillSquare(blockstate.getCollisionShape(worldIn, pos.down()), Direction.UP) || block == this && blockstate.get(LAYERS) == 8;
-	         } else {
-	            return true;
-	         }
-	      } else {
-	         return false;
-	      }
-	   }
+	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+		BlockState blockstate = worldIn.getBlockState(pos.down());
+		Block block = blockstate.getBlock();
+		if (block != Blocks.ICE && block != Blocks.PACKED_ICE && block != Blocks.BARRIER) {
+			if (block != Blocks.HONEY_BLOCK && block != Blocks.SOUL_SAND) {
+				return Block.doesSideFillSquare(blockstate.getCollisionShape(worldIn, pos.down()), Direction.UP) || block == this && blockstate.get(LAYERS) == 8;
+			} else {
+				return true;
+			}
+		} else {
+			return false;
+		}
+	}
 
-	   /**
-	    * Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
-	    * For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately
-	    * returns its solidified counterpart.
-	    * Note that this method should ideally consider only the specific face passed in.
-	    */
-	   @SuppressWarnings("deprecation")
+	/**
+	 * Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
+	 * For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately
+	 * returns its solidified counterpart.
+	 * Note that this method should ideally consider only the specific face passed in.
+	 */
+	@SuppressWarnings("deprecation")
 	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-	      return !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-	   }
+		return !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+	}
 
-	   public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-	      if (worldIn.getLightFor(LightType.BLOCK, pos) > 11) {
-	         spawnDrops(state, worldIn, pos);
-	         worldIn.removeBlock(pos, false);
-	      }
+	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
+		if (worldIn.getLightFor(LightType.BLOCK, pos) > 11) {
+			spawnDrops(state, worldIn, pos);
+			worldIn.removeBlock(pos, false);
+		}
 
-	   }
+	}
 
-	   public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
-	      int i = state.get(LAYERS);
-	      if (useContext.getItem().getItem() == this.asItem() && i < 8) {
-	         if (useContext.replacingClickedOnBlock()) {
-	            return useContext.getFace() == Direction.UP;
-	         } else {
-	            return true;
-	         }
-	      } else {
-	         return i == 1;
-	      }
-	   }
+	public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
+		int i = state.get(LAYERS);
+		if (useContext.getItem().getItem() == this.asItem() && i < 8) {
+			if (useContext.replacingClickedOnBlock()) {
+				return useContext.getFace() == Direction.UP;
+			} else {
+				return true;
+			}
+		} else {
+			return i == 1;
+		}
+	}
 
-	   @Nullable
-	   public BlockState getStateForPlacement(BlockItemUseContext context) {
-	      BlockState blockstate = context.getWorld().getBlockState(context.getPos());
-	      if (blockstate.getBlock() == this) {
-	         int i = blockstate.get(LAYERS);
-	         return blockstate.with(LAYERS, Integer.valueOf(Math.min(8, i + 1)));
-	      } else {
-	         return super.getStateForPlacement(context);
-	      }
-	   }
+	@Nullable
+	public BlockState getStateForPlacement(BlockItemUseContext context) {
+		BlockState blockstate = context.getWorld().getBlockState(context.getPos());
+		if (blockstate.getBlock() == this) {
+			int i = blockstate.get(LAYERS);
+			return blockstate.with(LAYERS, Integer.valueOf(Math.min(8, i + 1)));
+		} else {
+			return super.getStateForPlacement(context);
+		}
+	}
 
-	   protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-	      builder.add(LAYERS);
-	   }
+	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+		builder.add(LAYERS);
+	}
 
 }

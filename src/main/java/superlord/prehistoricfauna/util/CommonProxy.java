@@ -3,6 +3,7 @@ package superlord.prehistoricfauna.util;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -57,6 +58,8 @@ public class CommonProxy {
 		return null;
 	}
 	
-	
+    public void setup() {
+        MinecraftForge.EVENT_BUS.register(new ServerEvents());
+    }
 	
 }

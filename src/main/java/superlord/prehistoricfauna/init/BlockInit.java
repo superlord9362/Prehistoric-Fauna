@@ -69,6 +69,7 @@ import superlord.prehistoricfauna.block.PFStandingSignBlock;
 import superlord.prehistoricfauna.block.PFWallSignBlock;
 import superlord.prehistoricfauna.block.PHFSapling;
 import superlord.prehistoricfauna.block.PaleontologyTableBlock;
+import superlord.prehistoricfauna.block.PaleoscribeBlock;
 import superlord.prehistoricfauna.block.PortalFrameBlock;
 import superlord.prehistoricfauna.block.PrehistoricButtonBlock;
 import superlord.prehistoricfauna.block.PrehistoricDoorBlock;
@@ -385,6 +386,7 @@ public class BlockInit {
 	public static final Block ZAMITES_WALL_SIGN = new PFWallSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.ZAMITES).setRegistryName("zamites_wall_sign");
 	public static final Block PROTOJUNIPER_SIGN = new PFStandingSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.PROTOJUNIPEROXYLON).setRegistryName("protojuniperoxylon_sign");
 	public static final Block PROTOJUNIPER_WALL_SIGN = new PFWallSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.PROTOJUNIPEROXYLON).setRegistryName("protojuniperoxylon_wall_sign");
+	public static final Block PALEOSCRIBE = new PaleoscribeBlock(Block.Properties.create(Material.WOOD).variableOpacity().hardnessAndResistance(2.0F, 5.0F).sound(SoundType.WOOD)).setRegistryName("paleoscribe");
 	
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
@@ -660,6 +662,7 @@ public class BlockInit {
 		event.getRegistry().register(PROTOPICEOXYLON_WALL_SIGN);
 		event.getRegistry().register(ZAMITES_SIGN);
 		event.getRegistry().register(ZAMITES_WALL_SIGN);
+		event.getRegistry().register(PALEOSCRIBE);
 		if (FMLEnvironment.dist == Dist.CLIENT) {
 			RenderType cutoutRenderType = RenderType.getCutout();
 			RenderType mippedRenderType = RenderType.getCutoutMipped();
@@ -1007,6 +1010,7 @@ public class BlockInit {
 		event.getRegistry().register(new BlockItem(EXAERETODON_EGG, new Item.Properties().group(PFEntities.instance)).setRegistryName("exaeretodon_egg"));
 		event.getRegistry().register(new BlockItem(PALEONTOLOGY_TABLE, new Item.Properties().group(PFBook.instance)).setRegistryName("paleontology_table"));
 		event.getRegistry().register(new BlockItem(ALGAE, new Item.Properties().group(PFPlants.instance)).setRegistryName("algae_carpet"));
+		event.getRegistry().register(new BlockItem(PALEOSCRIBE, new Item.Properties().group(PFBook.instance)).setRegistryName("paleoscribe"));
 	}
 	
 	public static final Tag<Block> BURROWS = makeWrapperTag("burrows");
