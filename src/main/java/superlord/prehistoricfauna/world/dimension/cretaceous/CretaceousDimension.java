@@ -99,11 +99,6 @@ public class CretaceousDimension extends Dimension {
 	}
 	
 	@Override
-	public boolean canDoRainSnowIce(final Chunk chunk) {
-		return true;
-	}
-	
-	@Override
 	@OnlyIn(Dist.CLIENT)
 	public float getCloudHeight() {
 		return 200;
@@ -117,6 +112,11 @@ public class CretaceousDimension extends Dimension {
 	@Override
 	public int getActualHeight() {
 		return 256;
+	}
+	
+	@Override
+	public boolean canDoRainSnowIce(final Chunk chunk) {
+		return true;
 	}
 
 }

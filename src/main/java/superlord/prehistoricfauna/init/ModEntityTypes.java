@@ -81,7 +81,7 @@ public class ModEntityTypes {
 	public static final EntityType<AnkylosaurusSkeletonEntity> ANKYLOSAURUS_SKELETON = registerEntity(EntityType.Builder.<AnkylosaurusSkeletonEntity>create(AnkylosaurusSkeletonEntity::new, EntityClassification.MISC).size(1F, 1F), "ankylosaurus_skeleton");
 	public static final EntityType<HerrerasaurusSkeletonEntity> HERRERASAURUS_SKELETON = registerEntity(EntityType.Builder.<HerrerasaurusSkeletonEntity>create(HerrerasaurusSkeletonEntity::new, EntityClassification.MISC).size(1F, 1F), "herrerasaurus_skeleton");
 	public static final EntityType<AllosaurusSkullEntity> ALLOSAURUS_SKULL = registerEntity(EntityType.Builder.<AllosaurusSkullEntity>create(AllosaurusSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "allosaurus_skull");
-	public static final EntityType<IschigualastiaSkullEntity> ISCHIGUALASTIA_SKULL = registerEntity(EntityType.Builder.<IschigualastiaSkullEntity>create(IschigualastiaSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "ischigualastia_skulls");
+	public static final EntityType<IschigualastiaSkullEntity> ISCHIGUALASTIA_SKULL = registerEntity(EntityType.Builder.<IschigualastiaSkullEntity>create(IschigualastiaSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "ischigualastia_skull");
 
 	@SuppressWarnings("unchecked")
 	private static final <T extends Entity> EntityType<T> registerEntity(EntityType.Builder<T> builder, String entityName){

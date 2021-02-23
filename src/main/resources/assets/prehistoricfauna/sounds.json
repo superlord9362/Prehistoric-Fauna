@@ -48,7 +48,7 @@
 		"subtitle": "prehistoricfauna.subtitle.tyrannosaurusIdle",
         "sounds": [
             {
-                "name": "prehistoricfauna:prehistoric/tyrannosaurus/tyrannosarus_idle1",
+                "name": "prehistoricfauna:prehistoric/tyrannosaurus/tyrannosaurus_idle1",
                 "stream": true
             },
 			{
@@ -436,7 +436,7 @@
 		"subtitle": "prehistoricfauna.subtitle.camarasaurusWarning",
 		"sounds": [
 			{
-				"name": "prehistoricfauna:prehistoric/camarasaurus/camarasaurus_warn",
+				"name": "prehistoricfauna:prehistoric/camarasaurus/camarasaurus_angry",
 				"stream": true
 			}
 		]
@@ -564,7 +564,7 @@
 		"subtitle": "prehistoricfauna.subtitle.herrerasaurusIdle",
 		"sounds": [
 			{
-				"name": "prehistoricfauna:prehistoric/herrerasaurus/herrerasaurus_idle1",
+				"name": "prehistoricfauna:prehistoric/herrerasaurus/herrerasaurus_idle",
 				"stream": true
 			},
 			{
@@ -588,7 +588,7 @@
 		"subtitle": "prehistoricfauna.subtitle.herrerasaurusWarning",
 		"sounds": [
 			{
-				"name": "prehistoricfauna:prehistoric/herrerasaurus/herrerasaurus_warn",
+				"name": "prehistoricfauna:prehistoric/herrerasaurus/herrerasaurus_warning",
 				"stream": true
 			}
 		]
@@ -720,7 +720,7 @@
 		"subtitle": "prehistoricfauna.subtitle.ischigualastiaWarning",
 		"sounds": [
 			{
-				"name": "prehistoricfauna:prehistoric/ischigualastia/ischigualastia_warn",
+				"name": "prehistoricfauna:prehistoric/ischigualastia/ischigualastia_warning",
 				"stream": true
 			}
 		]

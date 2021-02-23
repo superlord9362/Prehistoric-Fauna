@@ -1,0 +1,32 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:paleoscribe"
+    ]
+  },
+  "criteria": {
+    "has_fossils": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:paleopedia"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:paleoscribe"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_fossils",
+      "has_the_recipe"
+    ]
+  ]
+}

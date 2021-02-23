@@ -62,17 +62,17 @@ public class MessageUpdatePaleoscribe {
                     BlockPos pos = BlockPos.fromLong(message.blockPos);
                     if (player.world.getTileEntity(pos) != null) {
                         if (player.world.getTileEntity(pos) instanceof PaleoscribeTileEntity) {
-                        	PaleoscribeTileEntity lectern = (PaleoscribeTileEntity) player.world.getTileEntity(pos);
+                        	PaleoscribeTileEntity paleoscribe = (PaleoscribeTileEntity) player.world.getTileEntity(pos);
                             if(message.updateStack){
-                                ItemStack bookStack = lectern.getStackInSlot(0);
+                                ItemStack bookStack = paleoscribe.getStackInSlot(0);
                                 if(bookStack.getItem() == ItemInit.PALEOPEDIA.get()){
                                 	EnumPaleoPages.addPage(EnumPaleoPages.fromInt(message.pageOrdinal), bookStack);
                                 }
-                                lectern.randomizePages(bookStack, lectern.getStackInSlot(1));
+                                paleoscribe.randomizePages(bookStack, paleoscribe.getStackInSlot(1));
                             }else{
-                                lectern.selectedPages[0] = EnumPaleoPages.fromInt(message.selectedPages1);
-                                lectern.selectedPages[1] = EnumPaleoPages.fromInt(message.selectedPages2);
-                                lectern.selectedPages[2] = EnumPaleoPages.fromInt(message.selectedPages3);
+                                paleoscribe.selectedPages[0] = EnumPaleoPages.fromInt(message.selectedPages1);
+                                paleoscribe.selectedPages[1] = EnumPaleoPages.fromInt(message.selectedPages2);
+                                paleoscribe.selectedPages[2] = EnumPaleoPages.fromInt(message.selectedPages3);
                             }
 
                         }

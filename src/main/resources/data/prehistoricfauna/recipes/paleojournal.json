@@ -4,12 +4,15 @@
     {
       "item": "prehistoricfauna:paleopage"
     },
-	{
-		"item": "prehistoricfauna:paleopage"
-	},
-	{
-		"item": "prehistoricfauna:paleopage"
-	}
+    {
+      "item": "prehistoricfauna:paleopage"
+    },
+    {
+      "item": "prehistoricfauna:paleopage"
+    },
+    {
+      "item": "minecraft:leather"
+    }
   ],
   "result": {
     "item": "prehistoricfauna:paleopedia"
