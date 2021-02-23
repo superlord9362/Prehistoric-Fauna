@@ -1,11 +1,7 @@
 package superlord.prehistoricfauna.init;
 
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.Food;
-import net.minecraft.item.Item;
-import net.minecraft.item.SoupItem;
-import net.minecraft.item.SpawnEggItem;
+import net.minecraft.item.*;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -152,6 +148,7 @@ public class ItemInit {
 	public static final RegistryObject<Item> CRETACEOUS_FOSSIL = ITEMS.register("cretaceous_fossil", () -> new FossilItem(new Item.Properties().group(PFBook.instance)));
 	public static final RegistryObject<Item> CLADOPHEBLIS_STICK = ITEMS.register("cladophlebis_stick", () -> new Item(new Item.Properties().group(PFBook.instance).maxStackSize(1)));
 	//Opublic static final RegistryObject<HangingEntityItem> PALEOPAINTING = ITEMS.register("paleopainting", () -> new HangingEntityItem(ModEntityTypes.PALEOPAINTING, (new Item.Properties()).group(PFBook.instance)));
+	public static final RegistryObject<HangingEntityItem> WALL_FOSSIL = ITEMS.register("wall_fossil", () -> new HangingEntityItem(ModEntityTypes.WALL_FOSSIL, new Item.Properties().group(PFBook.instance)));
 
 	public static final RegistryObject<Item> ARAURCARIA_SIGN = ITEMS.register("araucaria_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFWood.instance), BlockInit.ARAUCARIA_SIGN, BlockInit.ARAUCARIA_WALL_SIGN));
 	public static final RegistryObject<Item> METASEQUOIA_SIGN = ITEMS.register("metasequoia_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFWood.instance), BlockInit.METASEQUOIA_SIGN, BlockInit.METASEQUOIA_WALL_SIGN));

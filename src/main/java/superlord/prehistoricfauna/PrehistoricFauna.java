@@ -85,45 +85,7 @@ import superlord.prehistoricfauna.core.world.PHFFeatures;
 import superlord.prehistoricfauna.core.world.PHFStructures;
 import superlord.prehistoricfauna.core.world.PHFSurfaceBuilders;
 import superlord.prehistoricfauna.entity.HesperornithoidesEntity;
-import superlord.prehistoricfauna.entity.render.AllosaurusRenderer;
-import superlord.prehistoricfauna.entity.render.AllosaurusSkullRenderer;
-import superlord.prehistoricfauna.entity.render.AnkylosaurusRenderer;
-import superlord.prehistoricfauna.entity.render.AnkylosaurusSkeletonRenderer;
-import superlord.prehistoricfauna.entity.render.AnkylosaurusSkullRenderer;
-import superlord.prehistoricfauna.entity.render.BasilemysRenderer;
-import superlord.prehistoricfauna.entity.render.BossRenderer;
-import superlord.prehistoricfauna.entity.render.CamarasaurusRenderer;
-import superlord.prehistoricfauna.entity.render.CeratosaurusRenderer;
-import superlord.prehistoricfauna.entity.render.CeratosaurusSkullRenderer;
-import superlord.prehistoricfauna.entity.render.ChromogisaurusRenderer;
-import superlord.prehistoricfauna.entity.render.DakotaraptorRenderer;
-import superlord.prehistoricfauna.entity.render.DidelphodonRenderer;
-import superlord.prehistoricfauna.entity.render.DryosaurusRenderer;
-import superlord.prehistoricfauna.entity.render.EilenodonRenderer;
-import superlord.prehistoricfauna.entity.render.ExaeretodonRenderer;
-import superlord.prehistoricfauna.entity.render.HerrerasaurusRenderer;
-import superlord.prehistoricfauna.entity.render.HerrerasaurusSkeletonRenderer;
-import superlord.prehistoricfauna.entity.render.HerrerasaurusSkullRenderer;
-import superlord.prehistoricfauna.entity.render.HesperornithoidesRenderer;
-import superlord.prehistoricfauna.entity.render.HyperodapedonRenderer;
-import superlord.prehistoricfauna.entity.render.IschigualastiaRenderer;
-import superlord.prehistoricfauna.entity.render.IschigualastiaSkullRenderer;
-import superlord.prehistoricfauna.entity.render.PFSignTileEntityRenderer;
-import superlord.prehistoricfauna.entity.render.PaleontologyTableScreen;
-import superlord.prehistoricfauna.entity.render.PaleoscribeScreen;
-import superlord.prehistoricfauna.entity.render.PrehistoricBoatRenderer;
-import superlord.prehistoricfauna.entity.render.SaurosuchusRenderer;
-import superlord.prehistoricfauna.entity.render.SaurosuchusSkullRenderer;
-import superlord.prehistoricfauna.entity.render.SillosuchusRenderer;
-import superlord.prehistoricfauna.entity.render.StegosaurusRenderer;
-import superlord.prehistoricfauna.entity.render.StegosaurusSkullRenderer;
-import superlord.prehistoricfauna.entity.render.ThescelosaurusRenderer;
-import superlord.prehistoricfauna.entity.render.TriceratopsRenderer;
-import superlord.prehistoricfauna.entity.render.TriceratopsSkeletonRenderer;
-import superlord.prehistoricfauna.entity.render.TriceratopsSkullRenderer;
-import superlord.prehistoricfauna.entity.render.TyrannosaurusRenderer;
-import superlord.prehistoricfauna.entity.render.TyrannosaurusSkeletonRenderer;
-import superlord.prehistoricfauna.entity.render.TyrannosaurusSkullRenderer;
+import superlord.prehistoricfauna.entity.render.*;
 import superlord.prehistoricfauna.entity.tile.MessageUpdatePaleoscribe;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ContainerRegistry;
@@ -147,33 +109,25 @@ import superlord.prehistoricfauna.world.PrehistoricFeature;
 public class PrehistoricFauna {
 
 	public final static String MODID = "prehistoricfauna";
-	public static final SimpleChannel NETWORK_WRAPPER;
-	private static final String PROTOCOL_VERSION = Integer.toString(1);
+    private static final String PROTOCOL_VERSION = "1";
+    public static final SimpleChannel NETWORK_WRAPPER = NetworkRegistry.ChannelBuilder
+            .named(new ResourceLocation("prehistoricfauna", "main_channel"))
+            .clientAcceptedVersions(PROTOCOL_VERSION::equals)
+            .serverAcceptedVersions(PROTOCOL_VERSION::equals)
+            .networkProtocolVersion(() -> PROTOCOL_VERSION)
+            .simpleChannel();
 	public static Logger LOGGER = LogManager.getLogger();
-	public static PrehistoricFauna instance;
-
-	static {
-		NetworkRegistry.ChannelBuilder channel = NetworkRegistry.ChannelBuilder.named(new ResourceLocation("prehistoricfauna", "main_channel"));
-		String version = PROTOCOL_VERSION;
-		version.getClass();
-		channel = channel.clientAcceptedVersions(version::equals);
-		version = PROTOCOL_VERSION;
-		version.getClass();
-		NETWORK_WRAPPER = channel.serverAcceptedVersions(version::equals).networkProtocolVersion(() -> {
-			return PROTOCOL_VERSION;
-		}).simpleChannel();
-	}
 
 	public static CommonProxy PROXY = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 	private static int packetsRegistered = 0;
 
 	public PrehistoricFauna() {
-		final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        final ModLoadingContext modLoadingContext = ModLoadingContext.get();
+        final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		modEventBus.addListener(this::setup);
 		modEventBus.addListener(this::doClientStuff);
 		modEventBus.addListener(this::spaceTimeContinuumWarping);
 		modEventBus.addListener(this::chickenExtinction	);
-		final ModLoadingContext modLoadingContext = ModLoadingContext.get();
 		modLoadingContext.registerConfig(ModConfig.Type.CLIENT, PrehistoricConfigHolder.CLIENT_SPEC);
 		modLoadingContext.registerConfig(ModConfig.Type.COMMON, PrehistoricConfigHolder.SERVER_SPEC);
 		DimensionInit.MOD_DIMENSIONS.register(modEventBus);
@@ -182,13 +136,12 @@ public class PrehistoricFauna {
 		TileEntityRegistry.TILE_ENTITY_TYPES.register(modEventBus);
 		ContainerRegistry.CONTAINER_TYPES.register(modEventBus);
 		RecipeRegistry.RECIPES.register(modEventBus);
-		PFPacketHandler.registerPackets();
-		PROXY.init();
-		instance = this;
+		ModEntityTypes.ENTITY_TYPES.register(modEventBus);
 		MinecraftForge.EVENT_BUS.register(this);
 		MinecraftForge.EVENT_BUS.register(new ServerEvents());
-
-	}
+        PFPacketHandler.registerPackets();
+        PROXY.init();
+    }
 
 	private boolean setIsKilled(boolean isKilled) {
 		return isKilled;
@@ -321,6 +274,7 @@ public class PrehistoricFauna {
 		RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.HERRERASAURUS_SKELETON, HerrerasaurusSkeletonRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ALLOSAURUS_SKULL, AllosaurusSkullRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ISCHIGUALASTIA_SKULL, IschigualastiaSkullRenderer::new);	
+		RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.WALL_FOSSIL, WallFossilRenderer::new);
 		//RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.PALEOPAINTING, PaleopaintingRenderer::new);
 		ScreenManager.registerFactory(ContainerRegistry.PALEONTOLOGY_TABLE.get(), PaleontologyTableScreen::new);
 		ScreenManager.registerFactory(ContainerRegistry.PALEOSCRIBE_CONTAINER, PaleoscribeScreen::new);
