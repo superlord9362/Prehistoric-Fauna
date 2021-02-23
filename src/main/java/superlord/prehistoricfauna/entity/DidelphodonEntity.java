@@ -9,6 +9,7 @@ import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.datasync.DataParameter;
@@ -46,6 +47,7 @@ public class DidelphodonEntity extends PrehistoricEntity {
 	
 	private static final DataParameter<Boolean> IS_PREGNANT = EntityDataManager.createKey(DidelphodonEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_READY = EntityDataManager.createKey(DidelphodonEntity.class, DataSerializers.BOOLEAN);
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.CRASSOSTREA_BLOCK.asItem());
 	private int isReady;
 	public int stayOutOfBurrowCountdown;
 	private int remainingCooldownBeforeLocatingNewBurrow = 0;
@@ -122,6 +124,7 @@ public class DidelphodonEntity extends PrehistoricEntity {
 		this.goalSelector.addGoal(2, new DidelphodonEntity.MateGoal(this, 1.0D));
 		this.goalSelector.addGoal(3, new FollowParentGoal(this, 1.1D));
 		this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+		this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, false, TEMPTATION_ITEMS));
 		this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.addGoal(5, new DidelphodonEntity.UpdateBurrowGoal());
 		this.findBurrowGoal = new DidelphodonEntity.FindBurrowGoal();

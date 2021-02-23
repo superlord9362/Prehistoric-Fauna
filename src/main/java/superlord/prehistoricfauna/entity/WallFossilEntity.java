@@ -15,6 +15,7 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.network.NetworkHooks;
+import superlord.prehistoricfauna.init.ItemInit;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -94,7 +95,7 @@ public class WallFossilEntity extends HangingEntity implements IEntityAdditional
                 }
             }
 
-            this.entityDropItem(Items.PAINTING);
+            this.entityDropItem(ItemInit.WALL_FOSSIL.get());
         }
     }
 
@@ -134,7 +135,21 @@ public class WallFossilEntity extends HangingEntity implements IEntityAdditional
     }
 
     public enum Fossil {
-        ;
+        ARCHAEOPTERYX(32, 32),
+        CLAMS(16, 16),
+        CRAB(16, 16),
+        DINOSAUR(48, 32),
+        ICHTHYOSAUR(64, 32),
+        JAW(32, 16),
+        LEAVES(16, 32),
+        LONG_FISH(32, 16),
+        LOTS_OF_FISH(32, 32),
+        PTEROSAUR(48, 32),
+        SHELLS(48, 32),
+        SMALL_AMMONITE(16, 16),
+        SMALL_FISH(16, 16),
+        TRILOBITE(16, 16),
+        XIPHACTINUS(96, 32);
 
         public static final Fossil[] VALUES = values();
 

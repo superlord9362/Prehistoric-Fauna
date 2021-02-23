@@ -9,6 +9,7 @@ import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -35,6 +36,7 @@ public class HyperodapedonEntity extends PrehistoricEntity {
 
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(HyperodapedonEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(HyperodapedonEntity.class, DataSerializers.BOOLEAN);
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.SCYTOPHYLLUM.asItem());
 	private int isDigging;
 	
 	public HyperodapedonEntity(EntityType<? extends HyperodapedonEntity> type, World world) {
@@ -93,6 +95,7 @@ public class HyperodapedonEntity extends PrehistoricEntity {
 		this.goalSelector.addGoal(2, new HyperodapedonEntity.MateGoal(this, 1.0D));
 		this.goalSelector.addGoal(3, new FollowParentGoal(this, 1.1D));
 		this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+		this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, false, TEMPTATION_ITEMS));
 		this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<PlayerEntity>(this, PlayerEntity.class, 10F, 2D, 2D));

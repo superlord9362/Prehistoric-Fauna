@@ -40,6 +40,7 @@ public class IschigualastiaEntity extends PrehistoricEntity {
 	private static final DataParameter<Integer> BOOST_TIME = EntityDataManager.createKey(PigEntity.class, DataSerializers.VARINT);
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(IschigualastiaEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(IschigualastiaEntity.class, DataSerializers.BOOLEAN);
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.CLADOPHLEBIS.asItem());
 	private int warningSoundTicks;
 	private int isDigging;
 	private boolean boosting;
@@ -111,6 +112,7 @@ public class IschigualastiaEntity extends PrehistoricEntity {
 		this.goalSelector.addGoal(1, new IschigualastiaEntity.PanicGoal());
 		this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, Ingredient.fromItems(ItemInit.CLADOPHEBLIS_STICK.get()), false));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
+		this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, false, TEMPTATION_ITEMS));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.addGoal(7, new LookRandomlyGoal(this));

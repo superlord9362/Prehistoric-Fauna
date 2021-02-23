@@ -37,7 +37,7 @@ public class DakotaraptorRenderer extends MobRenderer<DakotaraptorEntity, Entity
 	public void render(DakotaraptorEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
     	if (entityIn.isSleeping()) {
     		entityModel = DAKOTARAPTOR_SLEEPING_MODEL;
-    	} else if (entityIn.isCrouching() && !entityIn.isDakotaraptorPouncing()) {
+    	} else if (entityIn.isCrouching()) {
     		entityModel = DAKOTARAPTOR_CROUCHING_MODEL;
     	} else if (entityIn.isSitting()) {
             entityModel = DAKOTARAPTOR_SITTING_MODEL;
