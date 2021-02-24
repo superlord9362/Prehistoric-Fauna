@@ -83,10 +83,10 @@ public class WallFossilRenderer extends EntityRenderer<WallFossilEntity> {
                 }
 
                 int light = WorldRenderer.getCombinedLight(fossil.world, new BlockPos(x, y, z));
-                float spriteMinU = 0f;//(d0 * (i - k)) / 16f;
-                float spriteMaxU = 1f;//(d0 * (i - (k + 1))) / 16f;
-                float spriteMinV = 0f;//(d1 * (j - l)) / 16f;
-                float spriteMaxV = 1f;//(d1 * (j - (l + 1))) / 16f;
+                float spriteMinU = (d0 * (i - k)) / 16f;
+                float spriteMaxU = (d0 * (i - (k + 1))) / 16f;
+                float spriteMinV = (d1 * (j - l)) / 16f;
+                float spriteMaxV = (d1 * (j - (l + 1))) / 16f;
                 IVertexBuilder fossilBuffer = vertexProvider.getBuffer(RenderType.getEntitySolid(this.getEntityTexture(fossil)));
                 this.vertex(matrix4f, matrix3f, fossilBuffer, uEnd, vStart, spriteMaxU, spriteMinV, -0.5F, 0, 0, -1, light);
                 this.vertex(matrix4f, matrix3f, fossilBuffer, uStart, vStart, spriteMinU, spriteMinV, -0.5F, 0, 0, -1, light);
