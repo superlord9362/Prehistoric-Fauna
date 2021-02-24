@@ -13,58 +13,49 @@ import net.minecraft.util.math.MathHelper;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.entity.WallFossilEntity;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Stream;
 
 public class WallFossilRenderer extends EntityRenderer<WallFossilEntity> {
-    private static FossilSpriteUploader spriteUploader;
+    private static final ResourceLocation BACK = new ResourceLocation(PrehistoricFauna.MODID, "textures/fossils/back.png");
+    private static final Map<WallFossilEntity.Fossil, ResourceLocation> FOSSILS = new HashMap<>();
 
     public WallFossilRenderer(EntityRendererManager renderManager) {
         super(renderManager);
     }
 
-    public void render(WallFossilEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer bufferIn, int packedLightIn) {
+    public void render(WallFossilEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int packedLightIn) {
         matrixStack.push();
         matrixStack.rotate(Vector3f.YP.rotationDegrees(180.0F - entityYaw));
         WallFossilEntity.Fossil fossil = entityIn.fossil;
         float f = 0.0625F;
         matrixStack.scale(f, f, f);
-        FossilSpriteUploader uploader = getSpriteUploader();
-        this.addVertices(matrixStack, bufferIn.getBuffer(RenderType.getEntitySolid(this.getEntityTexture(entityIn))), entityIn, fossil.getWidth(), fossil.getHeight(), uploader.getFossilSprite(fossil), uploader.getBackSprite());
+        this.addVertices(matrixStack, buffer, entityIn, fossil.getWidth(), fossil.getHeight());
         matrixStack.pop();
-        super.render(entityIn, entityYaw, partialTicks, matrixStack, bufferIn, packedLightIn);
+        super.render(entityIn, entityYaw, partialTicks, matrixStack, buffer, packedLightIn);
     }
 
     @Override
     public ResourceLocation getEntityTexture(WallFossilEntity entity) {
-        return getSpriteUploader().getBackSprite().getAtlasTexture().getTextureLocation();
+        return FOSSILS.computeIfAbsent(entity.fossil, k -> new ResourceLocation(PrehistoricFauna.MODID, "textures/fossils/" + k.name().toLowerCase() + ".png"));
     }
 
-    private FossilSpriteUploader getSpriteUploader() {
-        if (spriteUploader == null) {
-            spriteUploader = new FossilSpriteUploader(renderManager.textureManager);
-        }
-        return spriteUploader;
-    }
-
-    private void addVertices(MatrixStack p_229122_1_, IVertexBuilder buffer, WallFossilEntity fossil, int width, int height, TextureAtlasSprite sprite, TextureAtlasSprite back) {
+    private void addVertices(MatrixStack p_229122_1_, IRenderTypeBuffer vertexProvider, WallFossilEntity fossil, int width, int height) {
         MatrixStack.Entry matrixstack$entry = p_229122_1_.getLast();
         Matrix4f matrix4f = matrixstack$entry.getMatrix();
         Matrix3f matrix3f = matrixstack$entry.getNormal();
         float f = (float)(-width) / 2.0F;
         float f1 = (float)(-height) / 2.0F;
-        float backMinU = back.getMinU();
-        float backMaxU = back.getMaxU();
-        float backMinV = back.getMinV();
-        float backMaxV = back.getMaxV();
-        float backInterpolatedU = back.getInterpolatedU(1.0D);
-        float backInterpolatedV = back.getInterpolatedV(1.0D);
+        float backMinU = 0;
+        float backMaxU = 1;
+        float backMinV = 0;
+        float backMaxV = 1;
+        float backInterpolatedU = 0.0625f;
+        float backInterpolatedV = 0.0625f;
         int i = width / 16;
         int j = height / 16;
-        double d0 = 16.0D / (double)i;
-        double d1 = 16.0D / (double)j;
+        float d0 = 16f / i;
+        float d1 = 16f / j;
 
         for(int k = 0; k < i; ++k) {
             for(int l = 0; l < j; ++l) {
@@ -92,65 +83,41 @@ public class WallFossilRenderer extends EntityRenderer<WallFossilEntity> {
                 }
 
                 int light = WorldRenderer.getCombinedLight(fossil.world, new BlockPos(x, y, z));
-                float spriteMinU = sprite.getInterpolatedU(d0 * (double)(i - k));
-                float spriteMaxU = sprite.getInterpolatedU(d0 * (double)(i - (k + 1)));
-                float spriteMinV = sprite.getInterpolatedV(d1 * (double)(j - l));
-                float spriteMaxV = sprite.getInterpolatedV(d1 * (double)(j - (l + 1)));
-                this.vertex(matrix4f, matrix3f, buffer, uEnd, vStart, spriteMaxU, spriteMinV, -0.5F, 0, 0, -1, light);
-                this.vertex(matrix4f, matrix3f, buffer, uStart, vStart, spriteMinU, spriteMinV, -0.5F, 0, 0, -1, light);
-                this.vertex(matrix4f, matrix3f, buffer, uStart, vEnd, spriteMinU, spriteMaxV, -0.5F, 0, 0, -1, light);
-                this.vertex(matrix4f, matrix3f, buffer, uEnd, vEnd, spriteMaxU, spriteMaxV, -0.5F, 0, 0, -1, light);
-                this.vertex(matrix4f, matrix3f, buffer, uEnd, vEnd, backMinU, backMinV, 0.5F, 0, 0, 1, light);
-                this.vertex(matrix4f, matrix3f, buffer, uStart, vEnd, backMaxU, backMinV, 0.5F, 0, 0, 1, light);
-                this.vertex(matrix4f, matrix3f, buffer, uStart, vStart, backMaxU, backMaxV, 0.5F, 0, 0, 1, light);
-                this.vertex(matrix4f, matrix3f, buffer, uEnd, vStart, backMinU, backMaxV, 0.5F, 0, 0, 1, light);
-                this.vertex(matrix4f, matrix3f, buffer, uEnd, vEnd, backMinU, backMinV, -0.5F, 0, 1, 0, light);
-                this.vertex(matrix4f, matrix3f, buffer, uStart, vEnd, backMaxU, backMinV, -0.5F, 0, 1, 0, light);
-                this.vertex(matrix4f, matrix3f, buffer, uStart, vEnd, backMaxU, backInterpolatedV, 0.5F, 0, 1, 0, light);
-                this.vertex(matrix4f, matrix3f, buffer, uEnd, vEnd, backMinU, backInterpolatedV, 0.5F, 0, 1, 0, light);
-                this.vertex(matrix4f, matrix3f, buffer, uEnd, vStart, backMinU, backMinV, 0.5F, 0, -1, 0, light);
-                this.vertex(matrix4f, matrix3f, buffer, uStart, vStart, backMaxU, backMinV, 0.5F, 0, -1, 0, light);
-                this.vertex(matrix4f, matrix3f, buffer, uStart, vStart, backMaxU, backInterpolatedV, -0.5F, 0, -1, 0, light);
-                this.vertex(matrix4f, matrix3f, buffer, uEnd, vStart, backMinU, backInterpolatedV, -0.5F, 0, -1, 0, light);
-                this.vertex(matrix4f, matrix3f, buffer, uEnd, vEnd, backInterpolatedU, backMinV, 0.5F, -1, 0, 0, light);
-                this.vertex(matrix4f, matrix3f, buffer, uEnd, vStart, backInterpolatedU, backMaxV, 0.5F, -1, 0, 0, light);
-                this.vertex(matrix4f, matrix3f, buffer, uEnd, vStart, backMinU, backMaxV, -0.5F, -1, 0, 0, light);
-                this.vertex(matrix4f, matrix3f, buffer, uEnd, vEnd, backMinU, backMinV, -0.5F, -1, 0, 0, light);
-                this.vertex(matrix4f, matrix3f, buffer, uStart, vEnd, backInterpolatedU, backMinV, -0.5F, 1, 0, 0, light);
-                this.vertex(matrix4f, matrix3f, buffer, uStart, vStart, backInterpolatedU, backMaxV, -0.5F, 1, 0, 0, light);
-                this.vertex(matrix4f, matrix3f, buffer, uStart, vStart, backMinU, backMaxV, 0.5F, 1, 0, 0, light);
-                this.vertex(matrix4f, matrix3f, buffer, uStart, vEnd, backMinU, backMinV, 0.5F, 1, 0, 0, light);
+                float spriteMinU = 0f;//(d0 * (i - k)) / 16f;
+                float spriteMaxU = 1f;//(d0 * (i - (k + 1))) / 16f;
+                float spriteMinV = 0f;//(d1 * (j - l)) / 16f;
+                float spriteMaxV = 1f;//(d1 * (j - (l + 1))) / 16f;
+                IVertexBuilder fossilBuffer = vertexProvider.getBuffer(RenderType.getEntitySolid(this.getEntityTexture(fossil)));
+                this.vertex(matrix4f, matrix3f, fossilBuffer, uEnd, vStart, spriteMaxU, spriteMinV, -0.5F, 0, 0, -1, light);
+                this.vertex(matrix4f, matrix3f, fossilBuffer, uStart, vStart, spriteMinU, spriteMinV, -0.5F, 0, 0, -1, light);
+                this.vertex(matrix4f, matrix3f, fossilBuffer, uStart, vEnd, spriteMinU, spriteMaxV, -0.5F, 0, 0, -1, light);
+                this.vertex(matrix4f, matrix3f, fossilBuffer, uEnd, vEnd, spriteMaxU, spriteMaxV, -0.5F, 0, 0, -1, light);
+                IVertexBuilder backBuffer = vertexProvider.getBuffer(RenderType.getEntitySolid(BACK));
+                this.vertex(matrix4f, matrix3f, backBuffer, uEnd, vEnd, backMinU, backMinV, 0.5F, 0, 0, 1, light);
+                this.vertex(matrix4f, matrix3f, backBuffer, uStart, vEnd, backMaxU, backMinV, 0.5F, 0, 0, 1, light);
+                this.vertex(matrix4f, matrix3f, backBuffer, uStart, vStart, backMaxU, backMaxV, 0.5F, 0, 0, 1, light);
+                this.vertex(matrix4f, matrix3f, backBuffer, uEnd, vStart, backMinU, backMaxV, 0.5F, 0, 0, 1, light);
+                this.vertex(matrix4f, matrix3f, backBuffer, uEnd, vEnd, backMinU, backMinV, -0.5F, 0, 1, 0, light);
+                this.vertex(matrix4f, matrix3f, backBuffer, uStart, vEnd, backMaxU, backMinV, -0.5F, 0, 1, 0, light);
+                this.vertex(matrix4f, matrix3f, backBuffer, uStart, vEnd, backMaxU, backInterpolatedV, 0.5F, 0, 1, 0, light);
+                this.vertex(matrix4f, matrix3f, backBuffer, uEnd, vEnd, backMinU, backInterpolatedV, 0.5F, 0, 1, 0, light);
+                this.vertex(matrix4f, matrix3f, backBuffer, uEnd, vStart, backMinU, backMinV, 0.5F, 0, -1, 0, light);
+                this.vertex(matrix4f, matrix3f, backBuffer, uStart, vStart, backMaxU, backMinV, 0.5F, 0, -1, 0, light);
+                this.vertex(matrix4f, matrix3f, backBuffer, uStart, vStart, backMaxU, backInterpolatedV, -0.5F, 0, -1, 0, light);
+                this.vertex(matrix4f, matrix3f, backBuffer, uEnd, vStart, backMinU, backInterpolatedV, -0.5F, 0, -1, 0, light);
+                this.vertex(matrix4f, matrix3f, backBuffer, uEnd, vEnd, backInterpolatedU, backMinV, 0.5F, -1, 0, 0, light);
+                this.vertex(matrix4f, matrix3f, backBuffer, uEnd, vStart, backInterpolatedU, backMaxV, 0.5F, -1, 0, 0, light);
+                this.vertex(matrix4f, matrix3f, backBuffer, uEnd, vStart, backMinU, backMaxV, -0.5F, -1, 0, 0, light);
+                this.vertex(matrix4f, matrix3f, backBuffer, uEnd, vEnd, backMinU, backMinV, -0.5F, -1, 0, 0, light);
+                this.vertex(matrix4f, matrix3f, backBuffer, uStart, vEnd, backInterpolatedU, backMinV, -0.5F, 1, 0, 0, light);
+                this.vertex(matrix4f, matrix3f, backBuffer, uStart, vStart, backInterpolatedU, backMaxV, -0.5F, 1, 0, 0, light);
+                this.vertex(matrix4f, matrix3f, backBuffer, uStart, vStart, backMinU, backMaxV, 0.5F, 1, 0, 0, light);
+                this.vertex(matrix4f, matrix3f, backBuffer, uStart, vEnd, backMinU, backMinV, 0.5F, 1, 0, 0, light);
             }
         }
-
     }
 
     private void vertex(Matrix4f matrix, Matrix3f normal, IVertexBuilder buffer, float x, float y, float u, float v, float z, int normalX, int normalY, int normalZ, int light) {
         buffer.pos(matrix, x, y, z).color(255, 255, 255, 255).tex(u, v).overlay(OverlayTexture.NO_OVERLAY).lightmap(light).normal(normal, (float) normalX, (float) normalY, (float) normalZ).endVertex();
-    }
-
-    public static class FossilSpriteUploader extends SpriteUploader {
-        private static final Map<WallFossilEntity.Fossil, ResourceLocation> NAMES = new HashMap<>();
-        private static final ResourceLocation LOCATION_BACK_SPRITE = new ResourceLocation("back");
-
-        public FossilSpriteUploader(TextureManager textureManagerIn) {
-            super(textureManagerIn, new ResourceLocation("textures/atlas/paintings.png"), "fossils");
-        }
-
-        protected Stream<ResourceLocation> getResourceLocations() {
-            return Stream.concat(Arrays.stream(WallFossilEntity.Fossil.VALUES).map(this::getLocation), Stream.of(LOCATION_BACK_SPRITE));
-        }
-
-        public TextureAtlasSprite getFossilSprite(WallFossilEntity.Fossil fossil) {
-            return this.getSprite(getLocation(fossil));
-        }
-
-        public TextureAtlasSprite getBackSprite() {
-            return this.getSprite(LOCATION_BACK_SPRITE);
-        }
-
-        private ResourceLocation getLocation(WallFossilEntity.Fossil fossil) {
-            return NAMES.computeIfAbsent(fossil, k -> new ResourceLocation(PrehistoricFauna.MODID, k.name().toLowerCase()));
-        }
     }
 }

@@ -4,7 +4,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.item.HangingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.PacketBuffer;
@@ -16,6 +15,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.network.NetworkHooks;
 import superlord.prehistoricfauna.init.ItemInit;
+import superlord.prehistoricfauna.init.ModEntityTypes;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class WallFossilEntity extends HangingEntity implements IEntityAdditional
     }
 
     public WallFossilEntity(World world, BlockPos pos, Direction facing) {
-        super(EntityType.PAINTING, world, pos);
+        super(ModEntityTypes.WALL_FOSSIL, world, pos);
         List<Fossil> list = new ArrayList<>();
         int i = 0;
 
@@ -124,14 +124,21 @@ public class WallFossilEntity extends HangingEntity implements IEntityAdditional
     public void writeSpawnData(PacketBuffer buffer) {
         buffer.writeEnumValue(fossil);
         buffer.writeBlockPos(hangingPosition);
-        buffer.writeEnumValue(facingDirection);
+        if (facingDirection == null) {
+            buffer.writeBoolean(false);
+        } else {
+            buffer.writeBoolean(true);
+            buffer.writeEnumValue(facingDirection);
+        }
     }
 
     @Override
     public void readSpawnData(PacketBuffer additionalData) {
         this.fossil = additionalData.readEnumValue(Fossil.class);
         this.hangingPosition = additionalData.readBlockPos();
-        this.updateFacingWithBoundingBox(additionalData.readEnumValue(Direction.class));
+        if (additionalData.readBoolean()) {
+            this.updateFacingWithBoundingBox(additionalData.readEnumValue(Direction.class));
+        }
     }
 
     public enum Fossil {
