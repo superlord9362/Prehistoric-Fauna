@@ -13,8 +13,8 @@ import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.util.EnumPaleoPages;
 
 public class MessageUpdatePaleoscribe {
-	
-	public long blockPos;
+
+    public long blockPos;
     public int selectedPages1;
     public int selectedPages2;
     public int selectedPages3;
@@ -62,11 +62,11 @@ public class MessageUpdatePaleoscribe {
                     BlockPos pos = BlockPos.fromLong(message.blockPos);
                     if (player.world.getTileEntity(pos) != null) {
                         if (player.world.getTileEntity(pos) instanceof PaleoscribeTileEntity) {
-                        	PaleoscribeTileEntity paleoscribe = (PaleoscribeTileEntity) player.world.getTileEntity(pos);
+                            PaleoscribeTileEntity paleoscribe = (PaleoscribeTileEntity) player.world.getTileEntity(pos);
                             if(message.updateStack){
                                 ItemStack bookStack = paleoscribe.getStackInSlot(0);
                                 if(bookStack.getItem() == ItemInit.PALEOPEDIA.get()){
-                                	EnumPaleoPages.addPage(EnumPaleoPages.fromInt(message.pageOrdinal), bookStack);
+                                    EnumPaleoPages.addPage(EnumPaleoPages.fromInt(message.pageOrdinal), bookStack);
                                 }
                                 paleoscribe.randomizePages(bookStack, paleoscribe.getStackInSlot(1));
                             }else{

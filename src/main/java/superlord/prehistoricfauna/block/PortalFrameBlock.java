@@ -32,9 +32,7 @@ public class PortalFrameBlock extends DirectionalBlock {
 	}
 	
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		Direction direction = context.getFace();
-		BlockState blockstate = context.getWorld().getBlockState(context.getPos().offset(direction.getOpposite()));
-		return blockstate.getBlock() == this && blockstate.get(FACING) == direction ? this.getDefaultState().with(FACING, direction.getOpposite()) : this.getDefaultState().with(FACING, direction);
+	      return this.getDefaultState().with(FACING, context.getNearestLookingDirection().getOpposite());
 	}
 	
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {

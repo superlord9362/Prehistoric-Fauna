@@ -7,6 +7,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -92,7 +93,8 @@ public class PaleoscribeTileEntity extends LockableTileEntity implements ITickab
         return this.stacks.get(index);
     }
 
-    private boolean canAddPage() {
+    @SuppressWarnings({ "rawtypes", "unused" })
+	private boolean canAddPage() {
         if (this.stacks.get(0).isEmpty()) {
             return false;
         } else {
@@ -117,8 +119,18 @@ public class PaleoscribeTileEntity extends LockableTileEntity implements ITickab
             return result <= getInventoryStackLimit() && result <= this.stacks.get(2).getMaxStackSize();
         }
     }
+    
+    public boolean hasPaleopedia() {
+        if (this.getStackInSlot(0).getItem() == ItemInit.PALEOPEDIA.get()) {
+        	System.out.println("Paleopedia");
+        	return true;
+        } else {
+        	return false;
+        }
+    }
 
-    private ArrayList<EnumPaleoPages> getPossiblePages() {
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	private ArrayList<EnumPaleoPages> getPossiblePages() {
         List list = EnumPaleoPages.possiblePages(this.stacks.get(0));
         if (list != null && !list.isEmpty()) {
             return (ArrayList<EnumPaleoPages>) list;
@@ -173,9 +185,9 @@ public class PaleoscribeTileEntity extends LockableTileEntity implements ITickab
         }
     }
 
-    public EnumPaleoPages[] randomizePages(ItemStack bestiary, ItemStack manuscript) {
+    public EnumPaleoPages[] randomizePages(ItemStack paleopedia, ItemStack paleopage) {
         if (!world.isRemote) {
-            if (bestiary.getItem() == ItemInit.PALEOPEDIA.get()) {
+            if (paleopedia.getItem() == ItemInit.PALEOPEDIA.get()) {
                 List<EnumPaleoPages> possibleList = getPossiblePages();
                 localRand.setSeed(this.world.getGameTime());
                 Collections.shuffle(possibleList, localRand);
@@ -205,6 +217,13 @@ public class PaleoscribeTileEntity extends LockableTileEntity implements ITickab
 
     @Override
     public void read(CompoundNBT compound) {
+        super.read(compound);
+        this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(compound, this.stacks);
+
+    }
+    
+    public void read2(BlockState blockstate, CompoundNBT compound) {
         super.read(compound);
         this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(compound, this.stacks);
@@ -271,7 +290,7 @@ public class PaleoscribeTileEntity extends LockableTileEntity implements ITickab
     }
 
     public String getGuiID() {
-        return "prehistoricfauna.paleoscribe";
+        return "prehistoricfauna:paleoscribe";
     }
 
     @Override
@@ -286,7 +305,7 @@ public class PaleoscribeTileEntity extends LockableTileEntity implements ITickab
 
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket packet) {
-        read(packet.getNbtCompound());
+        read2(this.getBlockState(), packet.getNbtCompound());
     }
 
     public CompoundNBT getUpdateTag() {

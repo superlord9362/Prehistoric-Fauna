@@ -11,36 +11,36 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.entity.WallFossilEntity;
+import superlord.prehistoricfauna.entity.PaleopaintingEntity;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class WallFossilRenderer extends EntityRenderer<WallFossilEntity> {
-    private static final ResourceLocation BACK = new ResourceLocation(PrehistoricFauna.MODID, "textures/fossils/back.png");
-    private static final Map<WallFossilEntity.Fossil, ResourceLocation> FOSSILS = new HashMap<>();
+public class PaleopaintingRenderer extends EntityRenderer<PaleopaintingEntity> {
+    private static final ResourceLocation BACK = new ResourceLocation(PrehistoricFauna.MODID, "textures/painting/back.png");
+    private static final Map<PaleopaintingEntity.Paleopainting, ResourceLocation> PALEOPAINTINGS = new HashMap<>();
 
-    public WallFossilRenderer(EntityRendererManager renderManager) {
+    public PaleopaintingRenderer(EntityRendererManager renderManager) {
         super(renderManager);
     }
 
-    public void render(WallFossilEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int packedLightIn) {
+    public void render(PaleopaintingEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int packedLightIn) {
         matrixStack.push();
         matrixStack.rotate(Vector3f.YP.rotationDegrees(180.0F - entityYaw));
-        WallFossilEntity.Fossil fossil = entityIn.fossil;
+        PaleopaintingEntity.Paleopainting painting = entityIn.paleopainting;
         float f = 0.0625F;
         matrixStack.scale(f, f, f);
-        this.addVertices(matrixStack, buffer, entityIn, fossil.getWidth(), fossil.getHeight());
+        this.addVertices(matrixStack, buffer, entityIn, painting.getWidth(), painting.getHeight());
         matrixStack.pop();
         super.render(entityIn, entityYaw, partialTicks, matrixStack, buffer, packedLightIn);
     }
 
     @Override
-    public ResourceLocation getEntityTexture(WallFossilEntity entity) {
-        return FOSSILS.computeIfAbsent(entity.fossil, k -> new ResourceLocation(PrehistoricFauna.MODID, "textures/fossils/" + k.name().toLowerCase() + ".png"));
+    public ResourceLocation getEntityTexture(PaleopaintingEntity entity) {
+        return PALEOPAINTINGS.computeIfAbsent(entity.paleopainting, k -> new ResourceLocation(PrehistoricFauna.MODID, "textures/painting/" + k.name().toLowerCase() + ".png"));
     }
 
-    private void addVertices(MatrixStack p_229122_1_, IRenderTypeBuffer vertexProvider, WallFossilEntity fossil, int width, int height) {
+    private void addVertices(MatrixStack p_229122_1_, IRenderTypeBuffer vertexProvider, PaleopaintingEntity painting, int width, int height) {
         MatrixStack.Entry matrixstack$entry = p_229122_1_.getLast();
         Matrix4f matrix4f = matrixstack$entry.getMatrix();
         Matrix3f matrix3f = matrixstack$entry.getNormal();
@@ -63,38 +63,38 @@ public class WallFossilRenderer extends EntityRenderer<WallFossilEntity> {
                 float uEnd = f + (float)((k + 1) * 16);
                 float vStart = f1 + (float)(l * 16);
                 float vEnd = f1 + (float)((l + 1) * 16);
-                int x = MathHelper.floor(fossil.getPosX());
-                int y = MathHelper.floor(fossil.getPosY() + (double)((vEnd + vStart) / 2.0F / 16.0F));
-                int z = MathHelper.floor(fossil.getPosZ());
-                Direction direction = fossil.getHorizontalFacing();
+                int x = MathHelper.floor(painting.getPosX());
+                int y = MathHelper.floor(painting.getPosY() + (double)((vEnd + vStart) / 2.0F / 16.0F));
+                int z = MathHelper.floor(painting.getPosZ());
+                Direction direction = painting.getHorizontalFacing();
                 switch (direction) {
                     case NORTH:
-                        x = MathHelper.floor(fossil.getPosX() + (double) ((uEnd + uStart) / 2.0F / 16.0F));
+                        x = MathHelper.floor(painting.getPosX() + (double) ((uEnd + uStart) / 2.0F / 16.0F));
                         break;
                     case WEST:
-                        z = MathHelper.floor(fossil.getPosZ() - (double) ((uEnd + uStart) / 2.0F / 16.0F));
+                        z = MathHelper.floor(painting.getPosZ() - (double) ((uEnd + uStart) / 2.0F / 16.0F));
                         break;
                     case SOUTH:
-                        x = MathHelper.floor(fossil.getPosX() - (double) ((uEnd + uStart) / 2.0F / 16.0F));
+                        x = MathHelper.floor(painting.getPosX() - (double) ((uEnd + uStart) / 2.0F / 16.0F));
                         break;
                     case EAST:
-                        z = MathHelper.floor(fossil.getPosZ() + (double) ((uEnd + uStart) / 2.0F / 16.0F));
+                        z = MathHelper.floor(painting.getPosZ() + (double) ((uEnd + uStart) / 2.0F / 16.0F));
                         break;
 				default:
-                    x = MathHelper.floor(fossil.getPosX() + (double) ((uEnd + uStart) / 2.0F / 16.0F));
+                    x = MathHelper.floor(painting.getPosX() + (double) ((uEnd + uStart) / 2.0F / 16.0F));
 					break;
                 }
 
-                int light = WorldRenderer.getCombinedLight(fossil.world, new BlockPos(x, y, z));
+                int light = WorldRenderer.getCombinedLight(painting.world, new BlockPos(x, y, z));
                 float spriteMinU = (d0 * (i - k)) / 16f;
                 float spriteMaxU = (d0 * (i - (k + 1))) / 16f;
                 float spriteMinV = (d1 * (j - l)) / 16f;
                 float spriteMaxV = (d1 * (j - (l + 1))) / 16f;
-                IVertexBuilder fossilBuffer = vertexProvider.getBuffer(RenderType.getEntitySolid(this.getEntityTexture(fossil)));
-                this.vertex(matrix4f, matrix3f, fossilBuffer, uEnd, vStart, spriteMaxU, spriteMinV, -0.5F, 0, 0, -1, light);
-                this.vertex(matrix4f, matrix3f, fossilBuffer, uStart, vStart, spriteMinU, spriteMinV, -0.5F, 0, 0, -1, light);
-                this.vertex(matrix4f, matrix3f, fossilBuffer, uStart, vEnd, spriteMinU, spriteMaxV, -0.5F, 0, 0, -1, light);
-                this.vertex(matrix4f, matrix3f, fossilBuffer, uEnd, vEnd, spriteMaxU, spriteMaxV, -0.5F, 0, 0, -1, light);
+                IVertexBuilder paintingBuffer = vertexProvider.getBuffer(RenderType.getEntitySolid(this.getEntityTexture(painting)));
+                this.vertex(matrix4f, matrix3f, paintingBuffer, uEnd, vStart, spriteMaxU, spriteMinV, -0.5F, 0, 0, -1, light);
+                this.vertex(matrix4f, matrix3f, paintingBuffer, uStart, vStart, spriteMinU, spriteMinV, -0.5F, 0, 0, -1, light);
+                this.vertex(matrix4f, matrix3f, paintingBuffer, uStart, vEnd, spriteMinU, spriteMaxV, -0.5F, 0, 0, -1, light);
+                this.vertex(matrix4f, matrix3f, paintingBuffer, uEnd, vEnd, spriteMaxU, spriteMaxV, -0.5F, 0, 0, -1, light);
                 IVertexBuilder backBuffer = vertexProvider.getBuffer(RenderType.getEntitySolid(BACK));
                 this.vertex(matrix4f, matrix3f, backBuffer, uEnd, vEnd, backMinU, backMinV, 0.5F, 0, 0, 1, light);
                 this.vertex(matrix4f, matrix3f, backBuffer, uStart, vEnd, backMaxU, backMinV, 0.5F, 0, 0, 1, light);

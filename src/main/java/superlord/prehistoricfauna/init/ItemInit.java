@@ -44,7 +44,7 @@ public class ItemInit {
 	public static final RegistryObject<SpawnEggItem> SILLOSUCHUS_SPAWN_EGG = ITEMS.register("sillosuchus_spawn_egg", () -> new SpawnEggItem(ModEntityTypes.SILLOSUCHUS_ENTITY, 0x2F2E27, 0x58301B, new Item.Properties().group(PFEggs.instance)));
 	public static final RegistryObject<SpawnEggItem> SAUROSUCHUS_SPAWN_EGG = ITEMS.register("saurosuchus_spawn_egg", () -> new SpawnEggItem(ModEntityTypes.SAUROSUCHUS_ENTITY, 0x4F2622, 0x8E4F34, new Item.Properties().group(PFEggs.instance)));
 	public static final RegistryObject<SpawnEggItem> ISCHIGUALASTIA_SPAWN_EGG = ITEMS.register("ischigualastia_spawn_egg", () -> new SpawnEggItem(ModEntityTypes.ISCHIGUALASTIA_ENTITY, 0x242820, 0x808776, new Item.Properties().group(PFEggs.instance)));
-	public static final RegistryObject<SpawnEggItem> TIME_GUARDIAN_SPAWN_EGG = ITEMS.register("time_guardian_spawn_egg", () -> new SpawnEggItem(ModEntityTypes.TIME_GUARDIAN_ENTITY, 0x2F2E27, 0x58301B, new Item.Properties().group(PFEggs.instance)));
+	public static final RegistryObject<SpawnEggItem> TIME_GUARDIAN_SPAWN_EGG = ITEMS.register("time_guardian_spawn_egg", () -> new SpawnEggItem(ModEntityTypes.TIME_GUARDIAN_ENTITY, 0x55735F, 0x3B4B45, new Item.Properties().group(PFEggs.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> TYRANNOSAURUS_SKULL = ITEMS.register("tyrannosaurus_skull", () -> new SpawnSkeletonItem(ModEntityTypes.TYRANNOSAURUS_SKULL, new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> ANKYLOSAURUS_SKULL = ITEMS.register("ankylosaurus_skull", () -> new SpawnSkeletonItem(ModEntityTypes.ANKYLOSAURUS_SKULL, new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> TRICERATOPS_SKULL = ITEMS.register("triceratops_skull", () -> new SpawnSkeletonItem(ModEntityTypes.TRICERATOPS_SKULL, new Item.Properties().group(PFFossil.instance)));
@@ -139,8 +139,8 @@ public class ItemInit {
 	public static final RegistryObject<Item> JURASSIC_FOSSIL = ITEMS.register("jurassic_fossil", () -> new FossilItem(new Item.Properties().group(PFBook.instance)));
 	public static final RegistryObject<Item> CRETACEOUS_FOSSIL = ITEMS.register("cretaceous_fossil", () -> new FossilItem(new Item.Properties().group(PFBook.instance)));
 	public static final RegistryObject<Item> CLADOPHEBLIS_STICK = ITEMS.register("cladophlebis_stick", () -> new Item(new Item.Properties().group(PFBook.instance).maxStackSize(1)));
-	//Opublic static final RegistryObject<HangingEntityItem> PALEOPAINTING = ITEMS.register("paleopainting", () -> new HangingEntityItem(ModEntityTypes.PALEOPAINTING, (new Item.Properties()).group(PFBook.instance)));
-	public static final RegistryObject<WallFossilItem> WALL_FOSSIL = ITEMS.register("wall_fossil", () -> new WallFossilItem(new Item.Properties().group(PFBook.instance)));
+	public static final RegistryObject<PaleopaintingItem> PALEOPAINTING = ITEMS.register("paleopainting", () -> new PaleopaintingItem(new Item.Properties().group(PFBook.instance)));
+	public static final RegistryObject<WallFossilItem> WALL_FOSSIL = ITEMS.register("wall_fossil", () -> new WallFossilItem(new Item.Properties().group(PFFossil.instance)));
 
 	public static final RegistryObject<Item> ARAURCARIA_SIGN = ITEMS.register("araucaria_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFWood.instance), BlockInit.ARAUCARIA_SIGN, BlockInit.ARAUCARIA_WALL_SIGN));
 	public static final RegistryObject<Item> METASEQUOIA_SIGN = ITEMS.register("metasequoia_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFWood.instance), BlockInit.METASEQUOIA_SIGN, BlockInit.METASEQUOIA_WALL_SIGN));

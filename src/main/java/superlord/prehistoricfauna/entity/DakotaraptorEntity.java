@@ -13,14 +13,13 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityPredicate;
-import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.Pose;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.ai.controller.LookController;
 import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
@@ -124,7 +123,6 @@ public class DakotaraptorEntity extends PrehistoricEntity {
 		this.dataManager.register(DAKOTARAPTOR_FLAGS, (byte)0);
 	}
 
-
 	protected void registerGoals() {
 		this.attackAnimals = new NearestAttackableTargetGoal<>(this, AnimalEntity.class, 10, false, false, (p_213487_0_) -> {
 			return p_213487_0_ instanceof ThescelosaurusEntity || p_213487_0_ instanceof BasilemysEntity || p_213487_0_ instanceof DryosaurusEntity || p_213487_0_ instanceof HesperornithoidesEntity || p_213487_0_ instanceof EilenodonEntity || p_213487_0_ instanceof DidelphodonEntity;
@@ -140,6 +138,7 @@ public class DakotaraptorEntity extends PrehistoricEntity {
 		this.goalSelector.addGoal(7, new DakotaraptorEntity.BiteGoal((double)1.2F, true));
 		this.goalSelector.addGoal(7, new DakotaraptorEntity.SleepGoal());
 		this.goalSelector.addGoal(8, new DakotaraptorEntity.FollowGoal(this, 1.25D));
+		this.targetSelector.addGoal(1, new DakotaraptorEntity.HurtByTargetGoal());
 		this.goalSelector.addGoal(10, new LeapAtTargetGoal(this, 0.4F));
 		this.goalSelector.addGoal(11, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(12, new DakotaraptorEntity.WatchGoal(this, PlayerEntity.class, 24.0F));
@@ -162,6 +161,14 @@ public class DakotaraptorEntity extends PrehistoricEntity {
 				this.func_213502_u(false);
 			}
 		}
+		if (this.getAttackTarget() != null) {
+			if (this.getRidingEntity() != null) {
+				if (this.getRidingEntity() == this.getAttackTarget() && this.ticksExisted % 20 == 0) {
+					IAttributeInstance iattributeinstance = this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
+					this.getAttackTarget().attackEntityFrom(DamageSource.causeMobDamage(this), (float) iattributeinstance.getBaseValue());
+				}
+			}
+		}
 
 		if (this.isSleeping() || this.isMovementBlocked()) {
 			this.isJumping = false;
@@ -170,7 +177,7 @@ public class DakotaraptorEntity extends PrehistoricEntity {
 		}
 
 		super.livingTick();
-		if (this.isFoxAggroed() && this.rand.nextFloat() < 0.05F) {
+		if (this.isDakotaraptorAggroed() && this.rand.nextFloat() < 0.05F) {
 		}
 
 	}
@@ -217,6 +224,30 @@ public class DakotaraptorEntity extends PrehistoricEntity {
 		}
 
 	}
+	
+	@Override
+    public void applyEntityCollision(Entity entity) {
+        super.applyEntityCollision(entity);
+        if (this.getAttackTarget() != null) {
+             if (this.getAttackTarget() == entity && !onGround && this.getRidingEntity() != entity) {
+                this.startRiding(entity);
+            }
+        }
+    }
+	
+	 @Override
+	    public boolean attackEntityFrom(DamageSource dmg, float i) {
+	        if (this.getRidingEntity() != null) {
+	            if (this.getLastAttackedEntity() != null) {
+	                if (this.getLastAttackedEntity() == this.getRidingEntity()) {
+	                    if (this.getRNG().nextInt(2) == 0) {
+	                        this.stopRiding();
+	                    }
+	                }
+	            }
+	        }
+	        return super.attackEntityFrom(dmg, i);
+	    }
 
 	public AgeableEntity createChild(AgeableEntity ageable) {
 		DakotaraptorEntity entity = new DakotaraptorEntity(ModEntityTypes.DAKOTARAPTOR_ENTITY, this.world);
@@ -226,10 +257,6 @@ public class DakotaraptorEntity extends PrehistoricEntity {
 
 	private void setAttackGoals() {
 		this.targetSelector.addGoal(4, this.attackAnimals);
-	}
-
-	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
-		return this.isChild() ? sizeIn.height * 0.85F : 0.4F;
 	}
 
 	public void writeAdditional(CompoundNBT compound) {
@@ -253,41 +280,41 @@ public class DakotaraptorEntity extends PrehistoricEntity {
 	}
 
 	public boolean isSitting() {
-		return this.getFoxFlag(1);
+		return this.getDakotaraptorFlag(1);
 	}
 
 	public void setSitting(boolean p_213466_1_) {
-		this.setFoxFlag(1, p_213466_1_);
+		this.setDakotaraptorFlag(1, p_213466_1_);
 	}
 
 	public boolean isStuck() {
-		return this.getFoxFlag(64);
+		return this.getDakotaraptorFlag(64);
 	}
 
 	private void setStuck(boolean p_213492_1_) {
-		this.setFoxFlag(64, p_213492_1_);
+		this.setDakotaraptorFlag(64, p_213492_1_);
 	}
 
-	private boolean isFoxAggroed() {
-		return this.getFoxFlag(128);
+	private boolean isDakotaraptorAggroed() {
+		return this.getDakotaraptorFlag(128);
 	}
 
-	private void setFoxAggroed(boolean p_213482_1_) {
-		this.setFoxFlag(128, p_213482_1_);
+	private void setDakotaraptorAggroed(boolean p_213482_1_) {
+		this.setDakotaraptorFlag(128, p_213482_1_);
 	}
 
 	/**
 	 * Returns whether player is sleeping or not
 	 */
 	public boolean isSleeping() {
-		return this.getFoxFlag(32);
+		return this.getDakotaraptorFlag(32);
 	}
 
 	private void setSleeping(boolean p_213485_1_) {
-		this.setFoxFlag(32, p_213485_1_);
+		this.setDakotaraptorFlag(32, p_213485_1_);
 	}
 
-	private void setFoxFlag(int p_213505_1_, boolean p_213505_2_) {
+	private void setDakotaraptorFlag(int p_213505_1_, boolean p_213505_2_) {
 		if (p_213505_2_) {
 			this.dataManager.set(DAKOTARAPTOR_FLAGS, (byte)(this.dataManager.get(DAKOTARAPTOR_FLAGS) | p_213505_1_));
 		} else {
@@ -296,7 +323,7 @@ public class DakotaraptorEntity extends PrehistoricEntity {
 
 	}
 
-	private boolean getFoxFlag(int p_213507_1_) {
+	private boolean getDakotaraptorFlag(int p_213507_1_) {
 		return (this.dataManager.get(DAKOTARAPTOR_FLAGS) & p_213507_1_) != 0;
 	}
 
@@ -343,11 +370,11 @@ public class DakotaraptorEntity extends PrehistoricEntity {
 	}
 
 	public boolean func_213480_dY() {
-		return this.getFoxFlag(16);
+		return this.getDakotaraptorFlag(16);
 	}
 
 	public void func_213461_s(boolean p_213461_1_) {
-		this.setFoxFlag(16, p_213461_1_);
+		this.setDakotaraptorFlag(16, p_213461_1_);
 	}
 
 	public boolean func_213490_ee() {
@@ -355,19 +382,19 @@ public class DakotaraptorEntity extends PrehistoricEntity {
 	}
 
 	public void setCrouching(boolean p_213451_1_) {
-		this.setFoxFlag(4, p_213451_1_);
+		this.setDakotaraptorFlag(4, p_213451_1_);
 	}
 
 	public boolean isCrouching() {
-		return this.getFoxFlag(4);
+		return this.getDakotaraptorFlag(4);
 	}
 
 	public void func_213502_u(boolean p_213502_1_) {
-		this.setFoxFlag(8, p_213502_1_);
+		this.setDakotaraptorFlag(8, p_213502_1_);
 	}
 
 	public boolean func_213467_eg() {
-		return this.getFoxFlag(8);
+		return this.getDakotaraptorFlag(8);
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -381,8 +408,8 @@ public class DakotaraptorEntity extends PrehistoricEntity {
 	}
 
 	public void setAttackTarget(@Nullable LivingEntity entitylivingbaseIn) {
-		if (this.isFoxAggroed() && entitylivingbaseIn == null) {
-			this.setFoxAggroed(false);
+		if (this.isDakotaraptorAggroed() && entitylivingbaseIn == null) {
+			this.setDakotaraptorAggroed(false);
 		}
 
 		super.setAttackTarget(entitylivingbaseIn);
@@ -401,7 +428,7 @@ public class DakotaraptorEntity extends PrehistoricEntity {
 		this.setCrouching(false);
 		this.setSitting(false);
 		this.setSleeping(false);
-		this.setFoxAggroed(false);
+		this.setDakotaraptorAggroed(false);
 		this.setStuck(false);
 	}
 
@@ -552,11 +579,11 @@ public class DakotaraptorEntity extends PrehistoricEntity {
 		}
 
 		public boolean shouldExecute() {
-			return !this.owner.isFoxAggroed() && super.shouldExecute();
+			return !this.owner.isDakotaraptorAggroed() && super.shouldExecute();
 		}
 
 		public boolean shouldContinueExecuting() {
-			return !this.owner.isFoxAggroed() && super.shouldContinueExecuting();
+			return !this.owner.isDakotaraptorAggroed() && super.shouldContinueExecuting();
 		}
 
 		public void startExecuting() {

@@ -6,8 +6,10 @@ import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 
 public class PaleoscribeSlot extends Slot {
-    private PlayerEntity thePlayer;
-    private int field_75228_b;
+    @SuppressWarnings("unused")
+	private PlayerEntity thePlayer;
+    @SuppressWarnings("unused")
+	private int field_75228_b;
 
     public PaleoscribeSlot(PlayerEntity player, IInventory inv, int slotIndex, int xPosition, int yPosition) {
         super(inv, slotIndex, xPosition, yPosition);

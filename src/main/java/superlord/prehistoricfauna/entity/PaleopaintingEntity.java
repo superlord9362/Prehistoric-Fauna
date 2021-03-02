@@ -22,24 +22,24 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class WallFossilEntity extends HangingEntity implements IEntityAdditionalSpawnData {
-    public Fossil fossil;
+public class PaleopaintingEntity extends HangingEntity implements IEntityAdditionalSpawnData {
+    public Paleopainting paleopainting;
 
-    public WallFossilEntity(EntityType<? extends WallFossilEntity> type, World world) {
+    public PaleopaintingEntity(EntityType<? extends PaleopaintingEntity> type, World world) {
         super(type, world);
     }
 
-    public WallFossilEntity(World world, BlockPos pos, Direction facing) {
-        super(ModEntityTypes.WALL_FOSSIL, world, pos);
-        List<Fossil> list = new ArrayList<>();
+    public PaleopaintingEntity(World world, BlockPos pos, Direction facing) {
+        super(ModEntityTypes.PALEOPAINTING, world, pos);
+        List<Paleopainting> list = new ArrayList<>();
         int i = 0;
 
-        for (Fossil fossil : Fossil.VALUES) {
-            this.fossil = fossil;
+        for (Paleopainting paleopainting : Paleopainting.VALUES) {
+            this.paleopainting = paleopainting;
             this.updateFacingWithBoundingBox(facing);
             if (this.onValidSurface()) {
-                list.add(fossil);
-                int j = fossil.getWidth() * fossil.getHeight();
+                list.add(paleopainting);
+                int j = paleopainting.getWidth() * paleopainting.getHeight();
                 if (j > i) {
                     i = j;
                 }
@@ -47,16 +47,16 @@ public class WallFossilEntity extends HangingEntity implements IEntityAdditional
         }
 
         if (!list.isEmpty()) {
-            Iterator<Fossil> iterator = list.iterator();
+            Iterator<Paleopainting> iterator = list.iterator();
 
             while (iterator.hasNext()) {
-                Fossil fossil = iterator.next();
-                if (fossil.getWidth() * fossil.getHeight() < i) {
+                Paleopainting paleopainting = iterator.next();
+                if (paleopainting.getWidth() * paleopainting.getHeight() < i) {
                     iterator.remove();
                 }
             }
 
-            this.fossil = list.get(this.rand.nextInt(list.size()));
+            this.paleopainting = list.get(this.rand.nextInt(list.size()));
         }
 
         this.updateFacingWithBoundingBox(facing);
@@ -64,24 +64,24 @@ public class WallFossilEntity extends HangingEntity implements IEntityAdditional
 
     @Override
     public void writeAdditional(CompoundNBT compound) {
-        compound.putInt("Type", fossil.ordinal());
+        compound.putInt("Type", paleopainting.ordinal());
         super.writeAdditional(compound);
     }
 
     @Override
     public void readAdditional(CompoundNBT compound) {
-        fossil = Fossil.VALUES[compound.getInt("Type")];
+        paleopainting = Paleopainting.VALUES[compound.getInt("Type")];
         super.readAdditional(compound);
     }
 
     @Override
     public int getWidthPixels() {
-        return this.fossil == null ? 1 : this.fossil.getWidth();
+        return this.paleopainting == null ? 1 : this.paleopainting.getWidth();
     }
 
     @Override
     public int getHeightPixels() {
-        return this.fossil == null ? 1 : this.fossil.getHeight();
+        return this.paleopainting == null ? 1 : this.paleopainting.getHeight();
     }
 
     @Override
@@ -95,7 +95,7 @@ public class WallFossilEntity extends HangingEntity implements IEntityAdditional
                 }
             }
 
-            this.entityDropItem(ItemInit.WALL_FOSSIL.get());
+            this.entityDropItem(ItemInit.PALEOPAINTING.get());
         }
     }
 
@@ -122,7 +122,7 @@ public class WallFossilEntity extends HangingEntity implements IEntityAdditional
 
     @Override
     public void writeSpawnData(PacketBuffer buffer) {
-        buffer.writeEnumValue(fossil);
+        buffer.writeEnumValue(paleopainting);
         buffer.writeBlockPos(hangingPosition);
         if (facingDirection == null) {
             buffer.writeBoolean(false);
@@ -134,37 +134,28 @@ public class WallFossilEntity extends HangingEntity implements IEntityAdditional
 
     @Override
     public void readSpawnData(PacketBuffer additionalData) {
-        this.fossil = additionalData.readEnumValue(Fossil.class);
+        this.paleopainting = additionalData.readEnumValue(Paleopainting.class);
         this.hangingPosition = additionalData.readBlockPos();
         if (additionalData.readBoolean()) {
             this.updateFacingWithBoundingBox(additionalData.readEnumValue(Direction.class));
         }
     }
 
-    public enum Fossil {
-        ARCHAEOPTERYX(32, 32),
-        CLAMS(16, 16),
-        CRAB(16, 16),
-        DINOSAUR(48, 32),
-        ICHTHYOSAUR(64, 32),
-        JAW(32, 16),
-        LEAVES(16, 32),
-        LONG_FISH(32, 16),
-        LOTS_OF_FISH(32, 32),
-        PTEROSAUR(48, 32),
-        SHELLS(48, 32),
-        SMALL_AMMONITE(16, 16),
-        SMALL_FISH(16, 16),
-        TRILOBITE(16, 16),
-        XIPHACTINUS(96, 32),
-        HORSESHOE(32, 16);
+    public enum Paleopainting {
+        AMNIOTIC(32, 32),
+        ANNING(32, 32),
+        APPROACHER(32, 16),
+        DYNASTIC(16, 16),
+        TALL_BUSTS(16, 32),
+        CUBE(32, 32),
+        SERENITY(64, 48);
 
-        public static final Fossil[] VALUES = values();
+        public static final Paleopainting[] VALUES = values();
 
         private final int width;
         private final int height;
 
-        Fossil(int width, int height) {
+        Paleopainting(int width, int height) {
             this.width = width;
             this.height = height;
         }

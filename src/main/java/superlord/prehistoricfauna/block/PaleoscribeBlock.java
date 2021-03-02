@@ -6,11 +6,15 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.ContainerBlock;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
@@ -25,11 +29,14 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.entity.tile.PaleoscribeContainer;
 import superlord.prehistoricfauna.entity.tile.PaleoscribeTileEntity;
+import superlord.prehistoricfauna.init.ItemInit;
 
 public class PaleoscribeBlock extends ContainerBlock {
 
 	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
+	public static final BooleanProperty HAS_PALEOPEDIA = BlockStateProperties.HAS_BOOK;
 	public static final VoxelShape BASE_SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D);
 	public static final VoxelShape POST_SHAPE = Block.makeCuboidShape(4.0D, 2.0D, 4.0D, 12.0D, 14.0D, 12.0D);
 	public static final VoxelShape COMMON_SHAPE = VoxelShapes.or(BASE_SHAPE, POST_SHAPE);
@@ -39,10 +46,10 @@ public class PaleoscribeBlock extends ContainerBlock {
 	public static final VoxelShape NORTH_SHAPE = VoxelShapes.or(Block.makeCuboidShape(0.0D, 10.0D, 1.0D, 16.0D, 14.0D, 5.333333D), Block.makeCuboidShape(0.0D, 12.0D, 5.333333D, 16.0D, 16.0D, 9.666667D), Block.makeCuboidShape(0.0D, 14.0D, 9.666667D, 16.0D, 18.0D, 14.0D), COMMON_SHAPE);
 	public static final VoxelShape EAST_SHAPE = VoxelShapes.or(Block.makeCuboidShape(15.0D, 10.0D, 0.0D, 10.666667D, 14.0D, 16.0D), Block.makeCuboidShape(10.666667D, 12.0D, 0.0D, 6.333333D, 16.0D, 16.0D), Block.makeCuboidShape(6.333333D, 14.0D, 0.0D, 2.0D, 18.0D, 16.0D), COMMON_SHAPE);
 	public static final VoxelShape SOUTH_SHAPE = VoxelShapes.or(Block.makeCuboidShape(0.0D, 10.0D, 15.0D, 16.0D, 14.0D, 10.666667D), Block.makeCuboidShape(0.0D, 12.0D, 10.666667D, 16.0D, 16.0D, 6.333333D), Block.makeCuboidShape(0.0D, 14.0D, 6.333333D, 16.0D, 18.0D, 2.0D), COMMON_SHAPE);
-
-	public PaleoscribeBlock(Block.Properties properties) {
+    
+    public PaleoscribeBlock(Block.Properties properties) {
 		super(properties);
-		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH));
+		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(HAS_PALEOPEDIA, false));
 	}
 
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
@@ -72,6 +79,7 @@ public class PaleoscribeBlock extends ContainerBlock {
 		return COMMON_SHAPE;
 	}
 
+	@SuppressWarnings("deprecation")
 	public void onReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean isMoving) {
 		TileEntity tileentity = world.getTileEntity(pos);
 		if(tileentity instanceof PaleoscribeTileEntity) {
@@ -91,16 +99,42 @@ public class PaleoscribeBlock extends ContainerBlock {
 
 	public boolean canPlaceBlockAt(World world, BlockPos pos) {
 		BlockState state = world.getBlockState(pos.down());
-		Block block = state.getBlock();
 		return state.isSolidSide(world, pos, Direction.UP);
 	}
 
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		builder.add(FACING);
+		builder.add(FACING, HAS_PALEOPEDIA);
 	}
 
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;
+	}
+
+	public static boolean tryPlacePaleopedia(World worldIn, BlockPos pos, BlockState state, ItemStack stack, int i, PlayerInventory playerInventory) {
+		if (!state.get(HAS_PALEOPEDIA)) {
+			if (!worldIn.isRemote) {
+				placePaleopedia(worldIn, pos, state, stack, i, playerInventory);
+			}
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	private static void placePaleopedia(World worldIn, BlockPos pos, BlockState state, ItemStack stack, int i, PlayerInventory playerInventory) {
+		TileEntity tileentity = worldIn.getTileEntity(pos);
+		PaleoscribeContainer container = new PaleoscribeContainer(i, playerInventory);
+		if (tileentity instanceof PaleoscribeTileEntity) {
+            if (container.getSlot(0).getStack().getItem() == ItemInit.PALEOPEDIA.get()) {
+				setHasPaleopedia(worldIn, pos, state, true);
+				System.out.println("Has Ancient Journal!");
+			}
+		}
+	}
+
+	public static void setHasPaleopedia(World worldIn, BlockPos pos, BlockState state, boolean hasBook) {
+		worldIn.setBlockState(pos, state.with(HAS_PALEOPEDIA, Boolean.valueOf(hasBook)), 3);
+		System.out.println("Has Ancient Journal!");
 	}
 
 	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {

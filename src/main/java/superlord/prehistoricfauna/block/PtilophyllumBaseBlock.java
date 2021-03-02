@@ -104,12 +104,10 @@ public class PtilophyllumBaseBlock extends Block {
 
    private void placeGrownFlower(World worldIn, BlockPos pos, int age) {
       worldIn.setBlockState(pos, this.getDefaultState().with(AGE, Integer.valueOf(age)), 2);
-      worldIn.playEvent(1033, pos, 0);
    }
 
    private void placeDeadFlower(World worldIn, BlockPos pos) {
       worldIn.setBlockState(pos, this.getDefaultState().with(AGE, Integer.valueOf(5)), 2);
-      worldIn.playEvent(1034, pos, 0);
    }
 
    private static boolean areAllNeighborsEmpty(IWorldReader worldIn, BlockPos pos, @Nullable Direction excludingSide) {

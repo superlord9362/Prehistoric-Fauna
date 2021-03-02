@@ -107,7 +107,6 @@ public class PaleoscribeScreen extends ContainerScreen<PaleoscribeContainer> {
         matrixstack$entry.getMatrix().setIdentity();
         matrixstack$entry.getNormal().setIdentity();
         matrixstack.translate(0.0D, 3.3F, 1984.0D);
-        float f = 5.0F;
         matrixstack.scale(5.0F, 5.0F, 5.0F);
         matrixstack.rotate(Vector3f.ZP.rotationDegrees(180.0F));
         matrixstack.rotate(Vector3f.XP.rotationDegrees(20.0F));
@@ -149,7 +148,6 @@ public class PaleoscribeScreen extends ContainerScreen<PaleoscribeContainer> {
         RenderSystem.matrixMode(5888);
         RenderHelper.setupGui3DDiffuseLighting();
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        int l = this.container.getPaleopageAmount();
 
         for (int i1 = 0; i1 < 3; ++i1) {
             int j1 = i + 60;
@@ -174,7 +172,6 @@ public class PaleoscribeScreen extends ContainerScreen<PaleoscribeContainer> {
                 }
                 int j2 = 6839882;
                 if (PrehistoricFauna.PROXY.getReferencedTE() instanceof PaleoscribeTileEntity) {
-                    PaleoscribeTileEntity lectern = (PaleoscribeTileEntity) PrehistoricFauna.PROXY.getReferencedTE();
                     if (container.getSlot(0).getStack().getItem() == ItemInit.PALEOPEDIA.get()) { // Forge: render buttons as disabled when enchantable but enchantability not met on lower levels
                         int k2 = mouseX - (i + 60);
                         int l2 = mouseY - (j + 14 + 19 * i1);
@@ -275,7 +272,6 @@ public class PaleoscribeScreen extends ContainerScreen<PaleoscribeContainer> {
             f1 = (ticks + this.minecraft.getRenderPartialTicks()) * 0.5F;
             flapTimer--;
         }
-        float f = 0.2F;
         f1 = MathHelper.clamp(f1, -0.2F, 0.2F);
         this.flipA += (f1 - this.flipA) * 0.9F;
         this.flip += this.flipA;
