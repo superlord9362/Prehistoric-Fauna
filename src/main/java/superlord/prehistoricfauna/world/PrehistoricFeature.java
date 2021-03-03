@@ -21,14 +21,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.init.BlockInit;
-import superlord.prehistoricfauna.world.placement.HellCreekHutPieces;
-import superlord.prehistoricfauna.world.placement.IschigualastoHutPieces;
-import superlord.prehistoricfauna.world.placement.MorrisonHutPieces;
-import superlord.prehistoricfauna.world.placement.TimeTemplePieces;
-import superlord.prehistoricfauna.world.structures.HCHutStructure;
-import superlord.prehistoricfauna.world.structures.IschigualastoStructure;
-import superlord.prehistoricfauna.world.structures.MorrisonHutStructure;
-import superlord.prehistoricfauna.world.structures.TimeTempleStructure;
+import superlord.prehistoricfauna.world.placement.*;
+import superlord.prehistoricfauna.world.structures.*;
 
 import java.util.Locale;
 
@@ -42,21 +36,25 @@ public class PrehistoricFeature {
 	public static Structure<NoFeatureConfig> MORRISON_HUT = new MorrisonHutStructure(NoFeatureConfig::deserialize);
 	public static Structure<NoFeatureConfig> ISCHIGUALASTO_HUT = new IschigualastoStructure(NoFeatureConfig::deserialize);
 	public static Structure<NoFeatureConfig> TIME_TEMPLE = new TimeTempleStructure(NoFeatureConfig::deserialize);
+	public static Structure<NoFeatureConfig> PORTAL_CHAMBER = new PortalChamber(NoFeatureConfig::deserialize);
 	public static IStructurePieceType HCHUT_PIECE = HellCreekHutPieces.Piece::new;
 	public static IStructurePieceType MORRISON_HUT_PIECE = MorrisonHutPieces.Piece::new;
 	public static IStructurePieceType ISCHIGUALASTO_HUT_PIECE = IschigualastoHutPieces.Piece::new;
 	public static IStructurePieceType TIME_TEMPLE_PIECE = TimeTemplePieces.Piece::new;
-	
+	public static IStructurePieceType PORTAL_CHAMBER_PIECE = PortalChamberPieces.Piece::new;
+
 	public static void registerFeatures(Register<Feature<?>> event) {
 		IForgeRegistry<Feature<?>> registry = event.getRegistry();
 		PrehistoricFauna.register(registry, HELL_CREEK_HUT, "hell_creek_hut");
 		PrehistoricFauna.register(registry, MORRISON_HUT, "morrison_hut");
 		PrehistoricFauna.register(registry, ISCHIGUALASTO_HUT, "ischigualasto_hut");
 		PrehistoricFauna.register(registry, TIME_TEMPLE, "time_temple");
+		PrehistoricFauna.register(registry, PORTAL_CHAMBER, "portal_chamber");
 		register(HCHUT_PIECE, "HCHUT_PIECE");
 		register(MORRISON_HUT_PIECE, "MORRISON_HUT_PIECE");
 		register(ISCHIGUALASTO_HUT_PIECE, "ISCHIGUALASTO_HUT_PIECE");
 		register(TIME_TEMPLE_PIECE, "TIME_TEMPLE_PIECE");
+		register(PORTAL_CHAMBER_PIECE, "PORTAL_CHAMBER_PIECE");
 	}
 
 	static IStructurePieceType register(IStructurePieceType structurePiece, String key) {
