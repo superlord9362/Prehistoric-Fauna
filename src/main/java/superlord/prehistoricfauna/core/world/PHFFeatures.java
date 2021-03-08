@@ -36,10 +36,13 @@ import superlord.prehistoricfauna.world.feature.tree.Protopiceoxylon2;
 import superlord.prehistoricfauna.world.feature.tree.Protopiceoxylon3;
 import superlord.prehistoricfauna.world.feature.tree.Protopiceoxylon4;
 import superlord.prehistoricfauna.world.feature.tree.Protopiceoxylon5;
+import superlord.prehistoricfauna.world.feature.tree.Protopiceoxylon6;
+import superlord.prehistoricfauna.world.feature.tree.Protopiceoxylon7;
 import superlord.prehistoricfauna.world.feature.triassic.heidiphyllum.Heidiphyllum1;
 import superlord.prehistoricfauna.world.feature.triassic.heidiphyllum.Heidiphyllum2;
 import superlord.prehistoricfauna.world.feature.triassic.heidiphyllum.Heidiphyllum3;
 import superlord.prehistoricfauna.world.feature.triassic.heidiphyllum.Heidiphyllum4;
+import superlord.prehistoricfauna.world.feature.triassic.heidiphyllum.Heidiphyllum5;
 import superlord.prehistoricfauna.world.feature.util.SmallPineTree;
 import superlord.prehistoricfauna.world.placement.DicroidiumConfig;
 import superlord.prehistoricfauna.world.placement.DidelphodonBurrowConfig;
@@ -71,6 +74,8 @@ public class PHFFeatures {
     public static final Feature<PHFTreeConfig> PROTOPICEOXYLON_TREE3 = createFeature("protopiceoxylon_tree3", new Protopiceoxylon3(PHFTreeConfig::deserialize));
     public static final Feature<PHFTreeConfig> PROTOPICEOXYLON_TREE4 = createFeature("protopiceoxylon_tree4", new Protopiceoxylon4(PHFTreeConfig::deserialize));
     public static final Feature<PHFTreeConfig> PROTOPICEOXYLON_TREE5 = createFeature("protopiceoxylon_tree5", new Protopiceoxylon5(PHFTreeConfig::deserialize));
+    public static final Feature<PHFTreeConfig> PROTOPICEOXYLON_TREE6 = createFeature("protopiceoxylon_tree6", new Protopiceoxylon6(PHFTreeConfig::deserialize));
+    public static final Feature<PHFTreeConfig> PROTOPICEOXYLON_TREE7 = createFeature("protopiceoxylon_tree7", new Protopiceoxylon7(PHFTreeConfig::deserialize));
 
     public static final Feature<PHFTreeConfig> LIRIODENDRITES_TREE1 = createFeature("liriodendrites_tree1", new Liriodendrites1(PHFTreeConfig::deserialize));
     public static final Feature<PHFTreeConfig> LIRIODENDRITES_TREE2 = createFeature("liriodendrites_tree2", new Liriodendrites2(PHFTreeConfig::deserialize));
@@ -81,7 +86,8 @@ public class PHFFeatures {
     public static final Feature<PHFTreeConfig> HEIDIPHYLLUM_TREE2 = createFeature("heidiphyllum_tree2", new Heidiphyllum2(PHFTreeConfig::deserialize));
     public static final Feature<PHFTreeConfig> HEIDIPHYLLUM_TREE3 = createFeature("heidiphyllum_tree3", new Heidiphyllum3(PHFTreeConfig::deserialize));
     public static final Feature<PHFTreeConfig> HEIDIPHYLLUM_TREE4 = createFeature("heidiphyllum_tree4", new Heidiphyllum4(PHFTreeConfig::deserialize));
-    
+    public static final Feature<PHFTreeConfig> HEIDIPHYLLUM_TREE5 = createFeature("heidiphyllum_tree5", new Heidiphyllum5(PHFTreeConfig::deserialize));
+
     public static final Feature<CrassostreaOystersConfig> CRASSOSTREA_OYSTERS_FEATURE = createFeature("crassostrea_oysters", new CrassostreaOystersFeature(CrassostreaOystersConfig::deserialize));
     public static final Feature<AlgaeFeatureConfig> ALGAE_FEATURE = createFeature("algae", new AlgaeFeature(AlgaeFeatureConfig::deserialize));
     public static final Feature<DidelphodonBurrowConfig> DIDELPHODON_BURROW_FEATURE = createFeature("didelphodon_burrow", new DidelphodonBurrowFeature(DidelphodonBurrowConfig::deserialize));

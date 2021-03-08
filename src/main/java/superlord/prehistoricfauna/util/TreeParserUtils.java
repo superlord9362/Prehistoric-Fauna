@@ -19,6 +19,8 @@ public class TreeParserUtils {
 
 
     public static final String FILE_BLUEPRINT = "import com.mojang.datafixers.Dynamic;\n" +
+    		"\r\n" + 
+    		"import net.minecraft.util.Direction;\n" +
             "import net.minecraft.util.math.BlockPos;\n" +
             "import net.minecraft.util.math.MutableBoundingBox;\n" +
             "import net.minecraft.world.IWorld;\n" +
@@ -35,7 +37,6 @@ public class TreeParserUtils {
             "        super(configIn);\n" +
             "    }\n" +
             "\n" +
-            "    @SuppressWarnings(\"unused\")\n" +
             "\tprotected boolean generate(Set<BlockPos> changedBlocks, IWorld world, Random rand, BlockPos pos, MutableBoundingBox boundsIn, boolean isSapling, PHFTreeConfig config) {\n" +
             "\n" +
             "        int randTreeHeight = rth /*config.getMinHeight() + rand.nextInt(config.getMaxPossibleHeight())*/;\n" +
@@ -59,7 +60,7 @@ public class TreeParserUtils {
             "}";
 
     public static final String TRUNK_BUILDER = "            \tfor (int buildTrunk = 0; buildTrunk <= randTreeHeight; buildTrunk++) {\n" +
-            "\t\t\t\t\tplaceTrunk(config, rand, changedBlocks, worldIn, mainmutable, boundsIn);\n" +
+            "\t\t\t\t\tplaceTrunk(config, rand, changedBlocks, world, mainmutable, boundsIn);\n" +
             "\t\t\t\t\tmainmutable.move(Direction.UP);\n" +
             "\t\t\t\t}\n" +
             "\t\t\t\t\n" +
@@ -134,7 +135,7 @@ public class TreeParserUtils {
         treeBranchList.forEach(builder::append);
         treeLeaveList.forEach(builder::append);
 
-        generateTreeFile(builder.toString(), trunkFillerBuilder.toString().replace(", );", ");"), "Cypress3", true, featureStartPos.getY() - 100, 32, treeHeight, useRandTreeHeight);
+        generateTreeFile(builder.toString(), trunkFillerBuilder.toString().replace(", );", ");"), "Protopiceoxylon7", true, featureStartPos.getY() - 100, 32, treeHeight, useRandTreeHeight);
     }
 
     static String cachePrevious = "";

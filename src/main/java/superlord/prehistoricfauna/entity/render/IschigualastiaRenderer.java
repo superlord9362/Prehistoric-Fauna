@@ -11,28 +11,33 @@ import superlord.prehistoricfauna.entity.IschigualastiaEntity;
 import superlord.prehistoricfauna.entity.model.Ischigualastia;
 
 public class IschigualastiaRenderer extends MobRenderer<IschigualastiaEntity, EntityModel<IschigualastiaEntity>> {
-	
+
 	private static final ResourceLocation ISCHIGUALASTIA = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/ischigualastia.png");
+	private static final ResourceLocation ISCHIGUALASTIA_SADDLED = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/ischigualastia_saddled.png");
 	private static final Ischigualastia ISCHIGUALASTIA_MODEL = new Ischigualastia();
 
 	public IschigualastiaRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), ISCHIGUALASTIA_MODEL, 1.25F);
 	}
-	
+
 	public void render(IschigualastiaEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
 		entityModel = ISCHIGUALASTIA_MODEL;
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
-	
+
 	protected void preRenderCallback(IschigualastiaEntity ischigualastia, MatrixStack matrixStackIn, float partialTickTime) {
 		if (ischigualastia.isChild()) {
 			matrixStackIn.scale(0.5F, 0.5F, 0.5F);
 		}
 	}
-	
+
 	@Override
 	public ResourceLocation getEntityTexture(IschigualastiaEntity entity) {
-		return ISCHIGUALASTIA;
+		if(entity.getSaddled()) {
+			return ISCHIGUALASTIA_SADDLED;
+		} else {
+			return ISCHIGUALASTIA;
+		}
 	}
-	
+
 }
