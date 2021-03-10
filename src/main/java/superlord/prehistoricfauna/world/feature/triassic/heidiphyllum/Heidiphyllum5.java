@@ -21,7 +21,7 @@ public class Heidiphyllum5 extends PHFAbstractTreeFeature<PHFTreeConfig> {
 
 	protected boolean generate(Set<BlockPos> changedBlocks, IWorld world, Random rand, BlockPos pos, MutableBoundingBox boundsIn, boolean isSapling, PHFTreeConfig config) {
 
-        int randTreeHeight = 8 /*config.getMinHeight() + rand.nextInt(config.getMaxPossibleHeight())*/;
+        int randTreeHeight = config.getMinHeight() + rand.nextInt(config.getMaxPossibleHeight());
         BlockPos.Mutable mainmutable = new BlockPos.Mutable().setPos(pos);
 
         if (pos.getY() + randTreeHeight + 1 < world.getHeight()) {

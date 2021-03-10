@@ -26,13 +26,13 @@ public class SmallPineTree extends Feature<NoFeatureConfig> {
         super(configIn);
     }
 
-	public boolean place(IWorld world, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+    public boolean place(IWorld world, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
         pos = new BlockPos(pos.getX(), 100, pos.getZ());
 
 
-        if (pos.getX() == -2 && pos.getZ() == -2) {
+        if (pos.getX() == -1 && pos.getZ() == -1) {
             for (int checkX = pos.getX() + -16; checkX <= pos.getX() + 16; checkX++) {
-                for (int checkY = pos.getY(); checkY <= 50; checkY++) {
+                for (int checkY = pos.getY(); checkY <= 25; checkY++) {
                     for (int checkZ = pos.getZ() + -16; checkZ <= pos.getZ() + 16; checkZ++) {
                         BlockPos.Mutable block = new BlockPos.Mutable(checkX, checkY, checkZ);
                         world.setBlockState(block, Blocks.AIR.getDefaultState(), 2);
@@ -42,7 +42,7 @@ public class SmallPineTree extends Feature<NoFeatureConfig> {
 
             TemplateManager templatemanager = ((ServerWorld) world.getWorld()).getSaveHandler().getStructureTemplateManager();
 
-            Template template = templatemanager.getTemplate(new ResourceLocation(PrehistoricFauna.MODID + ":features/trees/protopiceoxylon_7"));
+            Template template = templatemanager.getTemplate(new ResourceLocation(PrehistoricFauna.MODID + ":features/trees/heidiphyllum_5"));
 //            Template template2 = templatemanager.getTemplate(new ResourceLocation(PrehistoricFauna.MODID + ":features/trees/metasequoia2b"));
 
 

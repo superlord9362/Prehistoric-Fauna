@@ -19,8 +19,8 @@ public class TreeParserUtils {
 
 
     public static final String FILE_BLUEPRINT = "import com.mojang.datafixers.Dynamic;\n" +
-    		"\r\n" + 
-    		"import net.minecraft.util.Direction;\n" +
+    		"\n" +
+    		"import net.minecraft.util.Direction;\r\n"+ 
             "import net.minecraft.util.math.BlockPos;\n" +
             "import net.minecraft.util.math.MutableBoundingBox;\n" +
             "import net.minecraft.world.IWorld;\n" +
@@ -39,7 +39,7 @@ public class TreeParserUtils {
             "\n" +
             "\tprotected boolean generate(Set<BlockPos> changedBlocks, IWorld world, Random rand, BlockPos pos, MutableBoundingBox boundsIn, boolean isSapling, PHFTreeConfig config) {\n" +
             "\n" +
-            "        int randTreeHeight = rth /*config.getMinHeight() + rand.nextInt(config.getMaxPossibleHeight())*/;\n" +
+            "        int randTreeHeight = config.getMinHeight() + rand.nextInt(config.getMaxPossibleHeight());\n" +
             "        BlockPos.Mutable mainmutable = new BlockPos.Mutable().setPos(pos);\n" +
             "\n" +
             "        if (pos.getY() + randTreeHeight + 1 < world.getHeight()) {\n" +
@@ -135,7 +135,7 @@ public class TreeParserUtils {
         treeBranchList.forEach(builder::append);
         treeLeaveList.forEach(builder::append);
 
-        generateTreeFile(builder.toString(), trunkFillerBuilder.toString().replace(", );", ");"), "Protopiceoxylon7", true, featureStartPos.getY() - 100, 32, treeHeight, useRandTreeHeight);
+        generateTreeFile(builder.toString(), trunkFillerBuilder.toString().replace(", );", ");"), "Heidiphyllum5", true, featureStartPos.getY() - 100, 32, treeHeight, useRandTreeHeight);
     }
 
     static String cachePrevious = "";
