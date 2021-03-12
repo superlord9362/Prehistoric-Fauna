@@ -1,5 +1,4 @@
 {
-	//Plants
 	"block.prehistoricfauna.short_osmundacaulis": "Osmundacaulis",
 	"block.prehistoricfauna.dead_osmundacaulis": "Dead Cycadeoid",
 	"block.prehistoricfauna.dicroidium": "Dicroidium",
@@ -21,7 +20,6 @@
 	"block.prehistoricfauna.mossy_dirt": "Mossy Dirt",
 	"block.prehistoricfauna.algae_carpet": "Algae Carpet",
 	
-	//Planks
 	"block.prehistoricfauna.liriodendrites_planks": "Liriodendrites Planks",
 	"block.prehistoricfauna.heidiphyllum_planks": "Heidiphyllum Planks",
 	"block.prehistoricfauna.protojuniper_planks": "Protojuniperoxylon Planks",
@@ -31,7 +29,6 @@
 	"block.prehistoricfauna.araucaria_planks" :"Araucaria Planks",
 	"block.prehistoricfauna.metasequoia_planks": "Metasequoia Planks",
 	
-	//Signs
 	"block.prehistoricfauna.araucaria_sign": "Araucaria Sign",
 	"block.prehistoricfauna.araucaria_wall_sign": "Araucaria Sign",
 	"block.prehistoricfauna.metasequoia_sign": "Metasequoia Sign",
@@ -47,7 +44,6 @@
 	"block.prehistoricfauna.zamites_sign": "Zamites Sign",
 	"block.prehistoricfauna.zamites_wall_sign": "Zamites Sign",
 	
-	//Logs
 	"block.prehistoricfauna.stripped_liriodendrites_log": "Stripped Liriodendrites Log",
 	"block.prehistoricfauna.liriodendrites_wood": "Liriodendrites Wood",
 	"block.prehistoricfauna.stripped_liriodendrites_wood": "Stripped Liriodendrites Wood",
@@ -83,7 +79,6 @@
 	"block.prehistoricfauna.cypress_wood": "Taxodium Wood",
 	"block.prehistoricfauna.stripped_cypress_wood": "Stripped Taxodium Wood",
 	
-	//Slabs
 	"block.prehistoricfauna.liriodendrites_slab": "Liriodendrites Slab",
 	"block.prehistoricfauna.heidiphyllum_slab": "Heidiphyllum Slab",
 	"block.prehistoricfauna.protojuniper_slab": "Protojuniperoxylon Slab",
@@ -93,7 +88,6 @@
 	"block.prehistoricfauna.metasequoia_slab": "Metasequoia Slab",
 	"block.prehistoricfauna.cypress_slab": "Taxodium Slab",
 	
-	//Stairs
 	"block.prehistoricfauna.liriodendrites_stairs": "Liriodendrites Stairs",
 	"block.prehistoricfauna.heidiphyllum_stairs": "Heidiphyllum Stairs",
 	"block.prehistoricfauna.protojuniper_stairs": "Protojuniperoxylon Stairs",
@@ -103,7 +97,6 @@
 	"block.prehistoricfauna.metasequoia_stairs": "Metasequoia Stairs",
 	"block.prehistoricfauna.cypress_stairs": "Taxodium Stairs",
 	
-	//Leaves
 	"block.prehistoricfauna.liriodendrites_leaves": "Liriodendrites Leaves",
 	"block.prehistoricfauna.liriodendrites_leaves_flower": "Flowering Liriodendrites Leaves",
 	"block.prehistoricfauna.heidiphyllum_leaves": "Heidiphyllum Leaves",
@@ -114,7 +107,6 @@
 	"block.prehistoricfauna.araucaria_leaves": "Araucaria Leaves",
 	"block.prehistoricfauna.cypress_leaves": "Taxodium Leaves",
 	
-	//Pressure Plates
 	"block.prehistoricfauna.liriodendrites_pressure_plate": "Liriodendrites Pressure Plate",
 	"block.prehistoricfauna.heidiphyllum_pressure_plate": "Heidiphyllum Pressure Plate",
 	"block.prehistoricfauna.protojuniper_pressure_plate": "Protojuniperoxylon Pressure Plate",
@@ -124,7 +116,6 @@
 	"block.prehistoricfauna.metasequoia_pressure_plate": "Metasequoia Pressure plate",
 	"block.prehistoricfauna.cypress_pressure_plate": "Taxodium Pressure Plate",
 	
-	//Doors
 	"block.prehistoricfauna.liriodendrites_trapdoor": "Liriodendrites Trapdoor",
 	"block.prehistoricfauna.liriodendrites_door": "Liriodendrites Door",
 	"block.prehistoricfauna.heidiphyllum_trapdoor": "Heidiphyllum Trapdoor",
@@ -142,7 +133,6 @@
 	"block.prehistoricfauna.cypress_door": "Taxodium Door",
 	"block.prehistoricfauna.cypress_trapdoor": "Taxodium Trapdoor",
 	
-	//Fences
 	"block.prehistoricfauna.liriodendrites_fence": "Liriodendrites Fence",
 	"block.prehistoricfauna.liriodendrites_fence_gate": "Liriodendrites Fence Gate",
 	"block.prehistoricfauna.heidiphyllum_fence": "Heidiphyllum Fence",
@@ -160,7 +150,6 @@
 	"block.prehistoricfauna.metasequoia_fence": "Metasequoia Fence",
 	"block.prehistoricfauna.metasequoia_fence_gate": "Metasequoia Fence Gate",
 	
-	//Saplings
 	"block.prehistoricfauna.liriodendrites_sapling": "Liriodendrites Sapling",
 	"block.prehistoricfauna.heidiphyllum_sapling": "Heidiphyllum Sapling",
 	"block.prehistoricfauna.protojuniper_sapling": "Protojuniperoxylon Sapling",
@@ -170,7 +159,6 @@
 	"block.prehistoricfauna.araucaria_sapling": "Araucaria Sapling",
 	"block.prehistoricfauna.metasequoia_sapling": "Metasequoia Sapling",
 	
-	//Buttons
 	"block.prehistoricfauna.liriodendrites_button": "Liriodendrites Button",
 	"block.prehistoricfauna.heidiphyllum_button": "Heidiphyllum Button",
 	"block.prehistoricfauna.protojuniper_button": "Protojuniperoxylon Button",
@@ -180,7 +168,6 @@
 	"block.prehistoricfauna.metasequoia_button": "Metasequoia Button",
 	"block.prehistoricfauna.cypress_button": "Taxodium Button",
 	
-	//Portal
 	"block.prehistoricfauna.cretaceous_portal": "Cretaceous Warp Block",
 	"block.prehistoricfauna.portal_frame": "Time Machine Frame",
 	"block.prehistoricfauna.portal_projector": "Time Machine Projector",
@@ -190,14 +177,12 @@
 	"block.prehistoricfauna.triassic_time_block": "Triassic Warp Block",
 	"block.prehistoricfauna.triassic_portal": "Triassic Warp Block",
 	
-	//Misc Blocks
 	"block.prehistoricfauna.didelphodon_burrow": "Didelphodon Burrow",
 	"container.prehistoricfauna.paleontology_table": "Paleontology Table",
 	"block.prehistoricfauna.paleontology_table": "Paleontology Table",
 	"block.prehistoricfauna.paleoscribe": "Paleoscribe",
 	"container.prehistoricfauna.paleoscribe": "Paleoscribe",
 	
-	//Stones
 	"block.prehistoricfauna.henostone": "Henostone",
 	"block.prehistoricfauna.henostone_carved": "Carved Henostone",
 	"block.prehistoricfauna.henostone_bricks": "Henostone Bricks",
@@ -260,7 +245,6 @@
 	"block.prehistoricfauna.smooth_triassic_sandstone_wall": "Smooth Sandstone Wall",
 	"block.prehistoricfauna.triassic_sandstone_brick_wall": "Sandstone Brick Wall",
 	
-	//Item Groups
 	"itemGroup.prehistoric_plants_tab": "Prehistoric Fauna Plants",
 	"itemGroup.prehistoric_wood_tab": "Prehistoric Fauna Woods",
 	"itemGroup.prehistoric_entities_tab": "Prehistoric Fauna Entities",
@@ -269,7 +253,6 @@
 	"itemGroup.prehistoric_stone_tab": "Prehistoric Fauna Stones",
 	"itemGroup.prehistoric_fossil_tab": "Prehistoric Fauna Fossils",
 	
-	//Biomes
 	"biome.prehistoricfauna.hell_creek": "Hell Creek Forest",
 	"biome.prehistoricfauna.hell_creek_clearing": "Hell Creek Fern Prairie",
 	"biome.prehistoricfauna.hell_creek_hills": "Hell Creek Liriodendrites Forest",
@@ -282,7 +265,6 @@
 	"biome.prehistoricfauna.ischigualasto_river": "Ischigualasto River",
 	"biome.prehistoricfauna.petrified_forest": "Petrified Forest",
 	
-	//Spawn Eggs
 	"item.prehistoricfauna.thescelosaurus_spawn_egg": "Thescelosaurus Spawn Egg",
 	"item.prehistoricfauna.triceratops_spawn_egg": "Triceratops Spawn Egg",
 	"item.prehistoricfauna.ankylosaurus_spawn_egg": "Ankylosaurus Spawn Egg",
@@ -306,7 +288,6 @@
 	"item.prehistoricfauna.saurosuchus_spawn_egg": "Saurosuchus Spawn Egg",
 	"item.prehistoricfauna.ischigualastia_spawn_egg": "Ischigualastia Spawn Egg",
 	
-	//Entities
 	"entity.prehistoricfauna.thescelosaurus": "Thescelosaurus",
 	"entity.prehistoricfauna.triceratops": "Triceratops",
 	"entity.prehistoricfauna.boat": "Boat",
@@ -332,7 +313,6 @@
 	"block.prehistoricfauna.crassostrea_oysters": "Crassostrea Oysters",
 	"entity.prehistoricfauna.ischigualastia": "Ischigualastia",
 	
-	//Boats
 	"item.prehistoricfauna.araucaria_boat": "Araucaria Boat",
 	"item.prehistoricfauna.metasequoia_boat": "Metasequoia Boat",
 	"item.prehistoricfauna.protopiceoxylon_boat": "Protopiceoxylon Boat",
@@ -340,8 +320,7 @@
 	"item.prehistoricfauna.protojuniper_boat": "Protojuniperoxylon Boat",
 	"item.prehistoricfauna.heidiphyllum_boat": "Heidiphyllum Boat",
 	"item.prehistoricfauna.liriodendrites_boat": "Liriodendrites Boat",
-	
-	//Items
+
 	"item.prehistoricfauna.tyrannosaurus_tooth": "Tyrannosaurus Tooth",
 	"item.prehistoricfauna.tail_club": "Ankylosaurus Tail Club",
 	"item.prehistoricfauna.triceratops_horn": "Triceratops Horn",
@@ -364,7 +343,6 @@
 	"item.prehistoricfauna.paleopainting": "Ancient Painting",
 	"item.prehistoricfauna.stegosaurus_thagomizer": "Stegosaurus Thagomizer",
 	
-	//Food
 	"item.prehistoricfauna.raw_thescelosaurus_meat": "Raw Thescelosaurus",
 	"item.prehistoricfauna.cooked_thescelosaurus_meat": "Cooked Thescelosaurus",
 	"item.prehistoricfauna.raw_triceratops_meat": "Raw Triceratops",
@@ -402,7 +380,6 @@
 	"item.prehistoricfauna.raw_ischigualastia_meat": "Raw Ischigualastia",
 	"item.prehistoricfauna.cooked_ischigualastia_meat": "Coooked Ischigualastia",
 	
-	//Eggs
 	"block.prehistoricfauna.triceratops_egg": "Triceratops Egg",
 	"block.prehistoricfauna.thescelosaurus_egg": "Thescelosaurus Egg",
 	"block.prehistoricfauna.ankylosaurus_egg": "Ankylosaurus Egg",
@@ -424,7 +401,6 @@
 	"block.prehistoricfauna.ischigualastia_egg": "Ischigualastia Egg",
 	"block.prehistoricfauna.exaeretodon_egg": "Exaeretodon Egg",
 	
-	//Fossils
 	"block.prehistoricfauna.small_shell": "Small Ammonite Fossil",
 	"block.prehistoricfauna.medium_shell": "Medium Ammonite Fossil",
 	"block.prehistoricfauna.large_shell": "Large Ammonite Fossil",
@@ -476,7 +452,6 @@
 	"item.prehistoricfauna.ischigualastia_skull": "Ischigualastia Skull",
 	"entity.prehistoricfauna.ischigualastia_skull": "Ischigualastia Skull",
 
-	//Paleopedia
 	"paleopedia.ischigualasto": "Ischigualasto Forest",
 	"paleopedia.hell_creek": "Hell Creek Forest",
 	"paleopedia.morrison": "Morrison Savanna",
@@ -505,7 +480,116 @@
 	"paleopedia.hyperodapedon": "Hyperodapedon",
 	"paleopedia.chromogisaurus": "Chromogisaurus",
 	
-	//Subtitles
+	"item.prehistoricfauna.banner_pattern_claw": "Banner Pattern",
+	"item.prehistoricfauna.banner_pattern_claw.desc": "Claw",
+	"item.prehistoricfauna.banner_pattern_spiral": "Banner Pattern",
+	"item.prehistoricfauna.banner_pattern_spiral.desc": "Spiral",
+	"item.prehistoricfauna.banner_pattern_oyster": "Banner Pattern",
+	"item.prehistoricfauna.banner_pattern_oyster.desc": "Oyster",
+	"item.prehistoricfauna.banner_pattern_thagomizer": "Banner Pattern",
+	"item.prehistoricfauna.banner_pattern_thagomizer.desc": "Thagomizer",
+	"item.prehistoricfauna.banner_pattern_triceratops": "Banner Pattern",
+	"item.prehistoricfauna.banner_pattern_triceratops.desc": "Triceratops",
+	"item.prehistoricfauna.banner_pattern_henos": "Banner Pattern",
+	"item.prehistoricfauna.banner_pattern_henos.desc": "Henos",
+	
+	"block.minecraft.banner.claw.black": "Black Claw",
+	"block.minecraft.banner.claw.red": "Red Claw",
+	"block.minecraft.banner.claw.green": "Green Claw",
+	"block.minecraft.banner.claw.brown": "Brown Claw",
+	"block.minecraft.banner.claw.blue": "Blue Claw",
+	"block.minecraft.banner.claw.purle": "Purple Claw",
+	"block.minecraft.banner.claw.cyan": "Cyan Claw",
+	"block.minecraft.banner.claw.silver": "Light Gray Claw",
+	"block.minecraft.banner.claw.gray": "Gray Claw",
+	"block.minecraft.banner.claw.pink": "Pink Claw",
+	"block.minecraft.banner.claw.lime": "Lime Claw",
+	"block.minecraft.banner.claw.yellow": "Yellow Claw",
+	"block.minecraft.banner.claw.light_blue": "Light Blue Claw",
+	"block.minecraft.banner.claw.magenta": "Magenta Claw",
+	"block.minecraft.banner.claw.orange": "Orange Claw",
+	"block.minecraft.banner.claw.white": "White Claw",
+	"block.minecraft.banner.oyster.black": "Black Oyster",
+	"block.minecraft.banner.oyster.red": "Red Oyster",
+	"block.minecraft.banner.oyster.green": "Green Oyster",
+	"block.minecraft.banner.oyster.brown": "Brown Oyster",
+	"block.minecraft.banner.oyster.blue": "Blue Oyster",
+	"block.minecraft.banner.oyster.purle": "Purple Oyster",
+	"block.minecraft.banner.oyster.cyan": "Cyan Oyster",
+	"block.minecraft.banner.oyster.silver": "Light Gray Oyster",
+	"block.minecraft.banner.oyster.gray": "Gray Oyster",
+	"block.minecraft.banner.oyster.pink": "Pink Oyster",
+	"block.minecraft.banner.oyster.lime": "Lime Oyster",
+	"block.minecraft.banner.oyster.yellow": "Yellow Oyster",
+	"block.minecraft.banner.oyster.light_blue": "Light Blue Oyster",
+	"block.minecraft.banner.oyster.magenta": "Magenta Oyster",
+	"block.minecraft.banner.oyster.orange": "Orange Oyster",
+	"block.minecraft.banner.oyster.white": "White Oyster",
+	"block.minecraft.banner.spiral.black": "Black Spiral",
+	"block.minecraft.banner.spiral.red": "Red Spiral",
+	"block.minecraft.banner.spiral.green": "Green Spiral",
+	"block.minecraft.banner.spiral.brown": "Brown Spiral",
+	"block.minecraft.banner.spiral.blue": "Blue Spiral",
+	"block.minecraft.banner.spiral.purle": "Purple Spiral",
+	"block.minecraft.banner.spiral.cyan": "Cyan Spiral",
+	"block.minecraft.banner.spiral.silver": "Light Gray Spiral",
+	"block.minecraft.banner.spiral.gray": "Gray Spiral",
+	"block.minecraft.banner.spiral.pink": "Pink Spiral",
+	"block.minecraft.banner.spiral.lime": "Lime Spiral",
+	"block.minecraft.banner.spiral.yellow": "Yellow Spiral",
+	"block.minecraft.banner.spiral.light_blue": "Light Blue Spiral",
+	"block.minecraft.banner.spiral.magenta": "Magenta Spiral",
+	"block.minecraft.banner.spiral.orange": "Orange Spiral",
+	"block.minecraft.banner.spiral.white": "White Spiral",
+	"block.minecraft.banner.thagomizer.black": "Black Thagomizer",
+	"block.minecraft.banner.thagomizer.red": "Red Thagomizer",
+	"block.minecraft.banner.thagomizer.green": "Green Thagomizer",
+	"block.minecraft.banner.thagomizer.brown": "Brown Thagomizer",
+	"block.minecraft.banner.thagomizer.blue": "Blue Thagomizer",
+	"block.minecraft.banner.thagomizer.purle": "Purple Thagomizer",
+	"block.minecraft.banner.thagomizer.cyan": "Cyan Thagomizer",
+	"block.minecraft.banner.thagomizer.silver": "Light Gray Thagomizer",
+	"block.minecraft.banner.thagomizer.gray": "Gray Thagomizer",
+	"block.minecraft.banner.thagomizer.pink": "Pink Thagomizer",
+	"block.minecraft.banner.thagomizer.lime": "Lime Thagomizer",
+	"block.minecraft.banner.thagomizer.yellow": "Yellow Thagomizer",
+	"block.minecraft.banner.thagomizer.light_blue": "Light Blue Thagomizer",
+	"block.minecraft.banner.thagomizer.magenta": "Magenta Thagomizer",
+	"block.minecraft.banner.thagomizer.orange": "Orange Thagomizer",
+	"block.minecraft.banner.thagomizer.white": "White Thagomizer",
+	"block.minecraft.banner.triceratops.black": "Black Triceratops",
+	"block.minecraft.banner.triceratops.red": "Red Triceratops",
+	"block.minecraft.banner.triceratops.green": "Green Triceratops",
+	"block.minecraft.banner.triceratops.brown": "Brown Triceratops",
+	"block.minecraft.banner.triceratops.blue": "Blue Triceratops",
+	"block.minecraft.banner.triceratops.purle": "Purple Triceratops",
+	"block.minecraft.banner.triceratops.cyan": "Cyan Triceratops",
+	"block.minecraft.banner.triceratops.silver": "Light Gray Triceratops",
+	"block.minecraft.banner.triceratops.gray": "Gray Triceratops",
+	"block.minecraft.banner.triceratops.pink": "Pink Triceratops",
+	"block.minecraft.banner.triceratops.lime": "Lime Triceratops",
+	"block.minecraft.banner.triceratops.yellow": "Yellow Triceratops",
+	"block.minecraft.banner.triceratops.light_blue": "Light Blue Triceratops",
+	"block.minecraft.banner.triceratops.magenta": "Magenta Triceratops",
+	"block.minecraft.banner.triceratops.orange": "Orange Triceratops",
+	"block.minecraft.banner.triceratops.white": "White Triceratops",
+	"block.minecraft.banner.henos.black": "Black Henos",
+	"block.minecraft.banner.henos.red": "Red Henos",
+	"block.minecraft.banner.henos.green": "Green Henos",
+	"block.minecraft.banner.henos.brown": "Brown Henos",
+	"block.minecraft.banner.henos.blue": "Blue Henos",
+	"block.minecraft.banner.henos.purle": "Purple Henos",
+	"block.minecraft.banner.henos.cyan": "Cyan Henos",
+	"block.minecraft.banner.henos.silver": "Light Gray Henos",
+	"block.minecraft.banner.henos.gray": "Gray Henos",
+	"block.minecraft.banner.henos.pink": "Pink Henos",
+	"block.minecraft.banner.henos.lime": "Lime Henos",
+	"block.minecraft.banner.henos.yellow": "Yellow Henos",
+	"block.minecraft.banner.henos.light_blue": "Light Blue Henos",
+	"block.minecraft.banner.henos.magenta": "Magenta Henos",
+	"block.minecraft.banner.henos.orange": "Orange Henos",
+	"block.minecraft.banner.henos.white": "White Henos",
+	
 	"prehistoricfauna.subtitle.triceratopsIdle": "Triceratops groans",
 	"prehistoricfauna.subtitle.triceratopsHurt": "Triceratops hurts",
 	"prehistoricfauna.subtitle.triceratopsWarning": "Triceratops cries",
@@ -575,12 +659,10 @@
 	"prehistoricfauna.subtitle.henosHurt": "Henos hurts",
 	"prehistoricfauna.subtitle.henosDeath": "Henos dies",
 	
-	//Paleoscribe
 	"container.paleoscribe.no_paleojournal": "Cannot add journal pages",
 	"container.paleoscribe.costs": "Costs:",
 	"container.paleoscribe.paleopage.many": "%s Journal Pages",
 	
-	//Advancements
 	"advancements.prehistoricfauna.anti_lorax.title": "The Onceler",
 	"advancements.prehistoricfauna.anti_lorax.description": "Collect wood from every prehistoric tree",
 	"advancements.prehistoricfauna.cretaceous_time_travel.title": "There's Always a T-Rex",

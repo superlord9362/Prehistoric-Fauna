@@ -2,6 +2,7 @@ package superlord.prehistoricfauna.init;
 
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
+import net.minecraft.tileentity.BannerPattern;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -11,6 +12,7 @@ import superlord.prehistoricfauna.PrehistoricFauna.PFEggs;
 import superlord.prehistoricfauna.PrehistoricFauna.PFEntities;
 import superlord.prehistoricfauna.PrehistoricFauna.PFFossil;
 import superlord.prehistoricfauna.PrehistoricFauna.PFPlants;
+import superlord.prehistoricfauna.PrehistoricFauna.PFStone;
 import superlord.prehistoricfauna.PrehistoricFauna.PFWood;
 import superlord.prehistoricfauna.entity.PrehistoricBoatEntity;
 import superlord.prehistoricfauna.item.*;
@@ -141,7 +143,18 @@ public class ItemInit {
 	public static final RegistryObject<Item> CLADOPHEBLIS_STICK = ITEMS.register("cladophlebis_stick", () -> new Item(new Item.Properties().group(PFBook.instance).maxStackSize(1)));
 	public static final RegistryObject<PaleopaintingItem> PALEOPAINTING = ITEMS.register("paleopainting", () -> new PaleopaintingItem(new Item.Properties().group(PFBook.instance)));
 	public static final RegistryObject<WallFossilItem> WALL_FOSSIL = ITEMS.register("wall_fossil", () -> new WallFossilItem(new Item.Properties().group(PFFossil.instance)));
+	public static final RegistryObject<BlockItem> MEDIUM_AMMONITE_SHELL = ITEMS.register("medium_shell", () -> new BlockItem(BlockInit.MEDIUM_AMMONITE_SHELL, new Item.Properties().group(PFFossil.instance)));
+	public static final RegistryObject<BlockItem> CRASSOSTREA_BLOCK = ITEMS.register("crassostrea_oysters", () -> new BlockItem(BlockInit.CRASSOSTREA_BLOCK, new Item.Properties().group(PFEntities.instance)));
+	public static final RegistryObject<BlockItem> HENOSTONE = ITEMS.register("henostone", () -> new BlockItem(BlockInit.HENOSTONE, new Item.Properties().group(PFStone.instance)));
+	//Banners
+	public static final RegistryObject<Item> BANNER_PATTERN_CLAW = ITEMS.register("banner_pattern_claw", () -> new BannerPatternItem(registerPattern("claw", new ItemStack(DAKOTARAPTOR_CLAW.get())), new Item.Properties().maxStackSize(1).group(PFBook.instance)));
+	public static final RegistryObject<Item> BANNER_PATTERN_OYSTER = ITEMS.register("banner_pattern_oyster", () -> new BannerPatternItem(registerPattern("oyster", new ItemStack(CRASSOSTREA_BLOCK.get())), new Item.Properties().maxStackSize(1).group(PFBook.instance)));
+	public static final RegistryObject<Item> BANNER_PATTERN_SPIRAL = ITEMS.register("banner_pattern_spiral", () -> new BannerPatternItem(registerPattern("spiral", new ItemStack(MEDIUM_AMMONITE_SHELL.get())), new Item.Properties().maxStackSize(1).group(PFBook.instance)));
+	public static final RegistryObject<Item> BANNER_PATTERN_THAGOMIZER = ITEMS.register("banner_pattern_thagomizer", () -> new BannerPatternItem(registerPattern("thagomizer", new ItemStack(STEGOSAURUS_THAGOMIZERS.get())), new Item.Properties().maxStackSize(1).group(PFBook.instance)));
+	public static final RegistryObject<Item> BANNER_PATTERN_TRICERATOPS = ITEMS.register("banner_pattern_triceratops", () -> new BannerPatternItem(registerPattern("triceratops", new ItemStack(TRICERATOPS_SKULL.get())), new Item.Properties().maxStackSize(1).group(PFBook.instance)));
+	public static final RegistryObject<Item> BANNER_PATTERN_HENOS = ITEMS.register("banner_pattern_henos", () -> new BannerPatternItem(registerPattern("henos", new ItemStack(HENOSTONE.get())), new Item.Properties().maxStackSize(1).group(PFBook.instance)));
 
+	
 	public static final RegistryObject<Item> ARAURCARIA_SIGN = ITEMS.register("araucaria_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFWood.instance), BlockInit.ARAUCARIA_SIGN, BlockInit.ARAUCARIA_WALL_SIGN));
 	public static final RegistryObject<Item> METASEQUOIA_SIGN = ITEMS.register("metasequoia_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFWood.instance), BlockInit.METASEQUOIA_SIGN, BlockInit.METASEQUOIA_WALL_SIGN));
 	public static final RegistryObject<Item> HEIDIPHYLLUM_SIGN = ITEMS.register("heidiphyllum_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFWood.instance), BlockInit.HEIDIPHYLLUM_SIGN, BlockInit.HEIDIPHYLLUM_WALL_SIGN));
@@ -149,5 +162,10 @@ public class ItemInit {
 	public static final RegistryObject<Item> PROTOJUNIPEROXYLON_SIGN = ITEMS.register("protojuniperoxylon_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFWood.instance), BlockInit.PROTOJUNIPER_SIGN, BlockInit.PROTOJUNIPER_WALL_SIGN));;
 	public static final RegistryObject<Item> PROTOPICEOXYLON_SIGN = ITEMS.register("protopiceoxylon_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFWood.instance), BlockInit.PROTOPICEOXYLON_SIGN, BlockInit.PROTOPICEOXYLON_WALL_SIGN));;
 	public static final RegistryObject<Item> ZAMITES_SIGN = ITEMS.register("zamites_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFWood.instance), BlockInit.ZAMITES_SIGN, BlockInit.ZAMITES_WALL_SIGN));
+
+	
+	private static BannerPattern registerPattern(String name, ItemStack item) {
+        return BannerPattern.create(name.toUpperCase(), name, name, item);
+    }
 	
 }
