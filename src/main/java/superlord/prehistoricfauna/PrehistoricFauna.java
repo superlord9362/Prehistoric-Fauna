@@ -3,14 +3,12 @@ package superlord.prehistoricfauna;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Optional;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
+import com.google.common.collect.ImmutableList;
 import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.feature.structure.Structure;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -164,6 +162,10 @@ public class PrehistoricFauna {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
+        List<Structure<?>> tempList = new ArrayList<>(Feature.ILLAGER_STRUCTURES);
+        tempList.add(PrehistoricFeature.TIME_TEMPLE);
+        Feature.ILLAGER_STRUCTURES = ImmutableList.copyOf(tempList);
+
         CommonEvents.setup();
         PROXY.setup();
         for (Biome biome : ForgeRegistries.BIOMES) {
