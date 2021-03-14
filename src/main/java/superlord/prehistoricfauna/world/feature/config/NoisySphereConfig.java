@@ -1,6 +1,7 @@
 package superlord.prehistoricfauna.world.feature.config;
 
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.Dynamic;
 import com.mojang.datafixers.types.DynamicOps;
 import net.minecraft.block.Block;
@@ -8,11 +9,16 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 
+import java.util.Arrays;
+import java.util.Map;
 import java.util.Random;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class NoisySphereConfig implements IFeatureConfig {
 
@@ -60,10 +66,11 @@ public class NoisySphereConfig implements IFeatureConfig {
                 .put(ops.createString("max_y_radius"), ops.createInt(this.maxYRadius))
                 .put(ops.createString("max_z_radius"), ops.createInt(this.maxZRadius))
                 .put(ops.createString("radius_divisor_per_stack"), ops.createDouble(this.radiusDivisorPerStack))
-                .put(ops.createString("noise_frequency"), ops.createDouble(this.noiseFrequency));
+                .put(ops.createString("noise_frequency"), ops.createDouble(this.noiseFrequency))
+                .put(ops.createString("dimension_whitelist"), ops.createString(this.whitelistedDimensions.stream().map(ResourceLocation::toString).collect(Collectors.joining(","))));
         return new Dynamic<>(ops, ops.createMap(builder.build()));
     }
-    
+
     @SuppressWarnings("deprecation")
     public static <T> NoisySphereConfig deserialize(Dynamic<T> ops) {
         BlockStateProvider blockProvider = Registry.BLOCK_STATE_PROVIDER_TYPE.getOrDefault(new ResourceLocation(ops.get("block_provider").get("type").asString().orElseThrow(RuntimeException::new))).func_227399_a_(ops.get("block_provider").orElseEmptyMap());
@@ -78,7 +85,8 @@ public class NoisySphereConfig implements IFeatureConfig {
         int maxZRadius = ops.get("max_z_radius").asInt(0);
         double radiusDivisorPerStack = ops.get("radius_divisor_per_stack").asDouble(1);
         double noseFreq = ops.get("noise_frequency").asDouble(1);
-        return new NoisySphereConfig(blockProvider, topBlockProvider, minHeight, maxHeight, minXRadius, maxXRadius, minYRadius, maxYRadius, minZRadius, maxZRadius, radiusDivisorPerStack, noseFreq);
+        Set<ResourceLocation> dimensionWhitelist = Arrays.stream(ops.get("dimension_whitelist").asString("minecraft:overworld").trim().replace(" ", "").split(",")).map(ResourceLocation::new).collect(Collectors.toSet());
+        return new NoisySphereConfig(blockProvider, topBlockProvider, minHeight, maxHeight, minXRadius, maxXRadius, minYRadius, maxYRadius, minZRadius, maxZRadius, radiusDivisorPerStack, noseFreq, dimensionWhitelist);
     }
 
     private final BlockStateProvider blockProvider;
@@ -93,8 +101,9 @@ public class NoisySphereConfig implements IFeatureConfig {
     private final int maxZRadius;
     private final double radiusDivisorPerStack;
     private final double noiseFrequency;
+    private final Set<ResourceLocation> whitelistedDimensions;
 
-    NoisySphereConfig(BlockStateProvider blockProvider, BlockStateProvider topBlockProvider, int minHeight, int maxHeight, int minXRadius, int maxXRadius, int minYRadius, int maxYRadius, int minZRadius, int maxZRadius, double radiusDivisorPerStack, double noiseFrequency) {
+    NoisySphereConfig(BlockStateProvider blockProvider, BlockStateProvider topBlockProvider, int minHeight, int maxHeight, int minXRadius, int maxXRadius, int minYRadius, int maxYRadius, int minZRadius, int maxZRadius, double radiusDivisorPerStack, double noiseFrequency, Set<ResourceLocation> whitelistedDimensions) {
         this.blockProvider = blockProvider;
         this.topBlockProvider = topBlockProvider;
         this.minHeight = minHeight;
@@ -107,6 +116,7 @@ public class NoisySphereConfig implements IFeatureConfig {
         this.maxZRadius = maxZRadius;
         this.radiusDivisorPerStack = radiusDivisorPerStack;
         this.noiseFrequency = noiseFrequency;
+        this.whitelistedDimensions = whitelistedDimensions;
     }
 
     public BlockStateProvider getBlockProvider() {
@@ -201,6 +211,10 @@ public class NoisySphereConfig implements IFeatureConfig {
         return noiseFrequency;
     }
 
+    public Set<ResourceLocation> getWhitelistedDimensions() {
+        return whitelistedDimensions;
+    }
+
     public static class Builder {
         private BlockStateProvider blockProvider = new SimpleBlockStateProvider(Blocks.STONE.getDefaultState());
         private BlockStateProvider topBlockProvider = new SimpleBlockStateProvider(Blocks.STONE.getDefaultState());
@@ -214,6 +228,7 @@ public class NoisySphereConfig implements IFeatureConfig {
         private int maxZRadius = maxXRadius;
         private double radiusDivisorPerStack = 1.0;
         private double noiseFrequency = 0.045;
+        private Set<ResourceLocation> whitelistedDimensions = ImmutableSet.of(new ResourceLocation("minecraft:overworld"));
 
         public Builder setBlock(Block block) {
             if (block != null)
@@ -287,6 +302,32 @@ public class NoisySphereConfig implements IFeatureConfig {
             return this;
         }
 
+        public Builder setMinRadius(int minRadius) {
+            if (minRadius <= 0) {
+                this.minXRadius = 1;
+                this.minYRadius = 1;
+                this.minZRadius = 1;
+            } else {
+                this.minXRadius = minRadius;
+                this.minYRadius = minRadius;
+                this.minZRadius = minRadius;
+            }
+            return this;
+        }
+
+        public Builder setMaxRadius(int maxRadius) {
+            if (maxRadius <= 0) {
+                this.maxXRadius = 1;
+                this.maxYRadius = 1;
+                this.maxZRadius = 1;
+            } else {
+                this.maxXRadius = maxRadius;
+                this.maxYRadius = maxRadius;
+                this.maxZRadius = maxRadius;
+            }
+            return this;
+        }
+
         public Builder setMaxXRadius(int maxXRadius) {
             if (maxXRadius <= 0)
                 this.maxXRadius = minXRadius + 1;
@@ -325,6 +366,25 @@ public class NoisySphereConfig implements IFeatureConfig {
             return this;
         }
 
+        public Set<ResourceLocation> getWhitelistedDimensions() {
+            return whitelistedDimensions;
+        }
+
+        public Builder setWhitelistedDimensions(String whitelistedDimensions) {
+            this.whitelistedDimensions = Arrays.stream(whitelistedDimensions.trim().replace(" ", "").split(",")).map(ResourceLocation::new).collect(Collectors.toSet());
+            return this;
+        }
+
+        public Builder setWhitelistedDimensions(Set<String> whitelistedDimensions) {
+            this.whitelistedDimensions = whitelistedDimensions.stream().map(ResourceLocation::new).collect(Collectors.toSet());
+            return this;
+        }
+
+        public Builder setWhitelistedDimensions(DimensionType... whitelistedDimensions) {
+            this.whitelistedDimensions = Arrays.stream(whitelistedDimensions).map(Registry.DIMENSION_TYPE::getKey).collect(Collectors.toSet());
+            return this;
+        }
+
         public Builder copy(NoisySphereConfig config) {
             this.blockProvider = config.blockProvider;
             this.topBlockProvider = config.topBlockProvider;
@@ -342,7 +402,7 @@ public class NoisySphereConfig implements IFeatureConfig {
         }
 
         public NoisySphereConfig build() {
-            return new NoisySphereConfig(this.blockProvider, this.topBlockProvider, this.minStackHeight, this.maxStackHeight, this.minXRadius / 2, this.maxXRadius / 2, minYRadius / 2, maxYRadius / 2, minZRadius / 2, maxZRadius / 2, this.radiusDivisorPerStack, this.noiseFrequency);
+            return new NoisySphereConfig(this.blockProvider, this.topBlockProvider, this.minStackHeight, this.maxStackHeight, this.minXRadius / 2, this.maxXRadius / 2, minYRadius / 2, maxYRadius / 2, minZRadius / 2, maxZRadius / 2, this.radiusDivisorPerStack, this.noiseFrequency, this.whitelistedDimensions);
         }
     }
 }

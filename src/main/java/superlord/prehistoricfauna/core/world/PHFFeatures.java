@@ -9,12 +9,8 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.TreeFeature;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
-import superlord.prehistoricfauna.world.feature.AlgaeFeature;
-import superlord.prehistoricfauna.world.feature.AlgaeFeatureConfig;
-import superlord.prehistoricfauna.world.feature.CrassostreaOystersConfig;
-import superlord.prehistoricfauna.world.feature.CrassostreaOystersFeature;
-import superlord.prehistoricfauna.world.feature.DicroidiumFeature;
-import superlord.prehistoricfauna.world.feature.JohnstoniaFeature;
+import superlord.prehistoricfauna.world.feature.*;
+import superlord.prehistoricfauna.world.feature.config.NoisySphereConfig;
 import superlord.prehistoricfauna.world.feature.config.PHFTreeConfig;
 import superlord.prehistoricfauna.world.feature.cretaceous.DidelphodonBurrowFeature;
 import superlord.prehistoricfauna.world.feature.cretaceous.araucaria.AraucariaTree1;
@@ -95,6 +91,7 @@ public class PHFFeatures {
     public static final Feature<DicroidiumConfig> DICROIDIUM_FEATURE = createFeature("dicroidium_feature", new DicroidiumFeature(DicroidiumConfig::deserialize));
 
     public static final Feature<TreeFeatureConfig> ZAMITES_BUSH = createFeature("zamites_bush", new ZamitesBushFeature(TreeFeatureConfig::deserializeFoliage));
+    public static final Feature<NoisySphereConfig> NOISY_SPHERE = createFeature("noisy_sphere", new NoisySphere(NoisySphereConfig::deserialize));
 
 
 

@@ -10,6 +10,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import net.minecraft.world.gen.GenerationStage;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -78,11 +79,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import superlord.prehistoricfauna.config.PrehistoricConfigHolder;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
-import superlord.prehistoricfauna.core.world.PHFBiomes;
-import superlord.prehistoricfauna.core.world.PHFDecorators;
-import superlord.prehistoricfauna.core.world.PHFFeatures;
-import superlord.prehistoricfauna.core.world.PHFStructures;
-import superlord.prehistoricfauna.core.world.PHFSurfaceBuilders;
+import superlord.prehistoricfauna.core.world.*;
 import superlord.prehistoricfauna.entity.HesperornithoidesEntity;
 import superlord.prehistoricfauna.entity.render.*;
 import superlord.prehistoricfauna.entity.tile.MessageUpdatePaleoscribe;
@@ -188,8 +185,10 @@ public class PrehistoricFauna {
             if (biome != PHFBiomes.DUMMY) {
                 biome.addFeature(Decoration.SURFACE_STRUCTURES, PrehistoricFeature.TIME_TEMPLE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
                 biome.addFeature(Decoration.SURFACE_STRUCTURES, PrehistoricFeature.PORTAL_CHAMBER.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+                biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, PHFConfiguredFeatures.FOSSILIZED_CRETACEOUS_CHALK);
+                biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, PHFConfiguredFeatures.FOSSILIZED_TRIASSIC_SANDSTONE);
+                biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, PHFConfiguredFeatures.FOSSILIZED_JURASSIC_SILTSTONE);
                 biome.addStructure(PrehistoricFeature.PORTAL_CHAMBER.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
-
             }
         }
         NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageUpdatePaleoscribe.class, MessageUpdatePaleoscribe::write, MessageUpdatePaleoscribe::read, MessageUpdatePaleoscribe.Handler::handle);

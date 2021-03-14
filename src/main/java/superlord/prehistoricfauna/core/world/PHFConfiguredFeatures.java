@@ -1,19 +1,21 @@
 package superlord.prehistoricfauna.core.world;
 
 import com.google.common.collect.ImmutableList;
+import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.blockplacer.DoublePlantBlockPlacer;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
+import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
-import net.minecraft.world.gen.placement.FrequencyConfig;
-import net.minecraft.world.gen.placement.IPlacementConfig;
-import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.gen.placement.*;
 import superlord.prehistoricfauna.init.BlockInit;
+import superlord.prehistoricfauna.init.DimensionTypeInit;
 import superlord.prehistoricfauna.world.PrehistoricPlacement;
 import superlord.prehistoricfauna.world.feature.AlgaeFeatureConfig;
 import superlord.prehistoricfauna.world.feature.CrassostreaOystersConfig;
 import superlord.prehistoricfauna.world.feature.PetrifiedTree;
+import superlord.prehistoricfauna.world.feature.config.NoisySphereConfig;
 import superlord.prehistoricfauna.world.feature.config.PHFTreeConfig;
 import superlord.prehistoricfauna.world.feature.jurassic.ZamitesBush;
 import superlord.prehistoricfauna.world.feature.triassic.HeidiphyllumTree;
@@ -88,6 +90,9 @@ public class PHFConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> SCYTOPHYLLUM = createConfiguredFeature("scytophllum", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BlockInit.SCYTOPHYLLUM.getDefaultState()), new DoublePlantBlockPlacer())).tries(64).func_227317_b_().build()).withPlacement(Placement.COUNT_HEIGHTMAP_32.configure(new FrequencyConfig(30))));
 
     public static final ConfiguredFeature<?, ?> ZAMITES_BUSH = createConfiguredFeature("zamites_bush", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(PHFFeatures.ZAMITES_BUSH.withConfiguration(ZamitesBush.ZAMITES_BUSH_CONFIG).withChance(1F)), PHFFeatures.ZAMITES_BUSH.withConfiguration(ZamitesBush.ZAMITES_BUSH_CONFIG))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(0, 0.2F, 1))));
+    public static final ConfiguredFeature<?, ?> FOSSILIZED_CRETACEOUS_CHALK = createConfiguredFeature("fossilized_cretaceous_chalk", PHFFeatures.NOISY_SPHERE.withConfiguration(new NoisySphereConfig.Builder().setBlock(new WeightedBlockStateProvider().addWeightedBlockstate(BlockInit.CRETACEOUS_CHALK.getDefaultState(), 6).addWeightedBlockstate(BlockInit.CRETACEOUS_CHALK_FOSSIL.getDefaultState(), 2)).setMinRadius(8).setMaxRadius(10).setMinYRadius(6).setMaxYRadius(8).build()).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(2, 42, 0, 52))));
+    public static final ConfiguredFeature<?, ?> FOSSILIZED_JURASSIC_SILTSTONE = createConfiguredFeature("fossilized_jurassic_siltstone", PHFFeatures.NOISY_SPHERE.withConfiguration(new NoisySphereConfig.Builder().setBlock(new WeightedBlockStateProvider().addWeightedBlockstate(BlockInit.JURASSIC_SILTSTONE.getDefaultState(), 6).addWeightedBlockstate(BlockInit.JURASSIC_SILTSTONE_FOSSIL.getDefaultState(), 2)).setMinRadius(8).setMaxRadius(10).setMinYRadius(6).setMaxYRadius(8).setWhitelistedDimensions(DimensionType.OVERWORLD, DimensionTypeInit.CRETACEOUS_DIMENSION_TYPE).build()).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(2, 37, 0, 42))));
+    public static final ConfiguredFeature<?, ?> FOSSILIZED_TRIASSIC_SANDSTONE = createConfiguredFeature("fossilized_triassic_sandstone", PHFFeatures.NOISY_SPHERE.withConfiguration(new NoisySphereConfig.Builder().setBlock(new WeightedBlockStateProvider().addWeightedBlockstate(BlockInit.TRIASSIC_SANDSTONE.getDefaultState(), 6).addWeightedBlockstate(BlockInit.TRIASSIC_SANDSTONE_FOSSIL.getDefaultState(), 2)).setMinRadius(8).setMaxRadius(10).setMinYRadius(6).setMaxYRadius(8).setWhitelistedDimensions(DimensionType.OVERWORLD, DimensionTypeInit.CRETACEOUS_DIMENSION_TYPE, DimensionTypeInit.JURASSIC_DIMENSION_TYPE).build()).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(2, 32, 0, 42))));
 
 
     /************************************Random Selectors************************************/
