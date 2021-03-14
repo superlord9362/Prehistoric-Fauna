@@ -53,11 +53,11 @@ public class PHFTreeConfig implements IFeatureConfig {
     }
 
     @SuppressWarnings("deprecation")
-	public static <T> PHFTreeConfig deserialize(Dynamic<T> ops) {
+    public static <T> PHFTreeConfig deserialize(Dynamic<T> ops) {
         BlockStateProvider trunkProvider = Registry.BLOCK_STATE_PROVIDER_TYPE.getOrDefault(new ResourceLocation(ops.get("trunk_provider").get("type").asString().orElseThrow(RuntimeException::new))).func_227399_a_(ops.get("trunk_provider").orElseEmptyMap());
         BlockStateProvider leavesProvider = Registry.BLOCK_STATE_PROVIDER_TYPE.getOrDefault(new ResourceLocation(ops.get("leaves_provider").get("type").asString().orElseThrow(RuntimeException::new))).func_227399_a_(ops.get("leaves_provider").orElseEmptyMap());
         BlockStateProvider groundReplacementProvider = Registry.BLOCK_STATE_PROVIDER_TYPE.getOrDefault(new ResourceLocation(ops.get("ground_replacement_provider").get("type").asString().orElseThrow(RuntimeException::new))).func_227399_a_(ops.get("ground_replacement_provider").orElseEmptyMap());
-        BlockStateProvider diskProvider = Registry.BLOCK_STATE_PROVIDER_TYPE.getOrDefault(new ResourceLocation(ops.get("disk_provider").get("type").asString().orElseThrow(RuntimeException::new))).func_227399_a_(ops.get("disk_provider").orElseEmptyMap());;
+        BlockStateProvider diskProvider = Registry.BLOCK_STATE_PROVIDER_TYPE.getOrDefault(new ResourceLocation(ops.get("disk_provider").get("type").asString().orElseThrow(RuntimeException::new))).func_227399_a_(ops.get("disk_provider").orElseEmptyMap());
         int minHeight = ops.get("min_height").asInt(0);
         int maxHeight = ops.get("max_height").asInt(0);
         int diskRadius = ops.get("disk_radius").asInt(0);

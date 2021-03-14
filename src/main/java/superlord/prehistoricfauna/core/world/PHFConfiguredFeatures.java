@@ -1,17 +1,10 @@
 package superlord.prehistoricfauna.core.world;
 
-import static superlord.prehistoricfauna.core.world.util.WorldGenRegistrationHelper.createConfiguredFeature;
-
 import com.google.common.collect.ImmutableList;
-
 import net.minecraft.world.gen.blockplacer.DoublePlantBlockPlacer;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
-import net.minecraft.world.gen.feature.BlockClusterFeatureConfig;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.feature.MultipleRandomFeatureConfig;
+import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.FrequencyConfig;
 import net.minecraft.world.gen.placement.IPlacementConfig;
@@ -27,6 +20,8 @@ import superlord.prehistoricfauna.world.feature.triassic.HeidiphyllumTree;
 import superlord.prehistoricfauna.world.placement.DicroidiumConfig;
 import superlord.prehistoricfauna.world.placement.DidelphodonBurrowConfig;
 import superlord.prehistoricfauna.world.placement.JohnstoniaConfig;
+
+import static superlord.prehistoricfauna.core.world.util.WorldGenRegistrationHelper.createConfiguredFeature;
 
 public class PHFConfiguredFeatures {
 
@@ -47,7 +42,7 @@ public class PHFConfiguredFeatures {
     public static final ConfiguredFeature<PHFTreeConfig, ?> LIRIODENDRITES_TREE2 = createConfiguredFeature("liriodendrites_tree2", PHFFeatures.LIRIODENDRITES_TREE2.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.LIRIODENDRITES_LOG.getDefaultState()).setLeavesBlock(BlockInit.LIRIODENDRITES_LEAVES).setMinHeight(7).setMaxHeight(10).build()));
     public static final ConfiguredFeature<PHFTreeConfig, ?> LIRIODENDRITES_TREE3 = createConfiguredFeature("liriodendrites_tree3", PHFFeatures.LIRIODENDRITES_TREE3.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.LIRIODENDRITES_LOG.getDefaultState()).setLeavesBlock(BlockInit.LIRIODENDRITES_LEAVES).setMinHeight(12).setMaxHeight(15).build()));
     public static final ConfiguredFeature<PHFTreeConfig, ?> LIRIODENDRITES_TREE4 = createConfiguredFeature("liriodendrites_tree4", PHFFeatures.LIRIODENDRITES_TREE4.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.LIRIODENDRITES_LOG.getDefaultState()).setLeavesBlock(BlockInit.LIRIODENDRITES_LEAVES).setMinHeight(21).setMaxHeight(24).build()));
-    
+
     public static final ConfiguredFeature<PHFTreeConfig, ?> HEIDIPHYLLUM_TREE1 = createConfiguredFeature("heidiphyllum_tree1", PHFFeatures.HEIDIPHYLLUM_TREE1.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.HEIDIPHYLLUM_LOG.getDefaultState()).setLeavesBlock(BlockInit.HEIDIPHYLLUM_LEAVES).setMinHeight(9).setMaxHeight(12).build()));
     public static final ConfiguredFeature<PHFTreeConfig, ?> HEIDIPHYLLUM_TREE2 = createConfiguredFeature("heidiphyllum_tree2", PHFFeatures.HEIDIPHYLLUM_TREE2.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.HEIDIPHYLLUM_LOG.getDefaultState()).setLeavesBlock(BlockInit.HEIDIPHYLLUM_LEAVES).setMinHeight(12).setMaxHeight(15).build()));
     public static final ConfiguredFeature<PHFTreeConfig, ?> HEIDIPHYLLUM_TREE3 = createConfiguredFeature("heidiphyllum_tree3", PHFFeatures.HEIDIPHYLLUM_TREE3.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.HEIDIPHYLLUM_LOG.getDefaultState()).setLeavesBlock(BlockInit.HEIDIPHYLLUM_LEAVES).setMinHeight(12).setMaxHeight(15).build()));
@@ -92,7 +87,7 @@ public class PHFConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> PTILOPHYLLUM_TREE_BOOGALOO = createConfiguredFeature("ptilophylium_tree", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(PHFFeatures.PTILOPHYLLUM_TREE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(PrehistoricPlacement.PTILOPHYLLUM_TREE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)).withChance(0.05F)), PHFFeatures.PTILOPHYLLUM_TREE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(PrehistoricPlacement.PTILOPHYLLUM_TREE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)))));
     public static final ConfiguredFeature<?, ?> SCYTOPHYLLUM = createConfiguredFeature("scytophllum", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BlockInit.SCYTOPHYLLUM.getDefaultState()), new DoublePlantBlockPlacer())).tries(64).func_227317_b_().build()).withPlacement(Placement.COUNT_HEIGHTMAP_32.configure(new FrequencyConfig(30))));
 
-    public static final ConfiguredFeature<?, ?> ZAMITES_BUSH = Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(PHFFeatures.ZAMITES_BUSH.withConfiguration(ZamitesBush.ZAMITES_BUSH_CONFIG).withChance(1F)), PHFFeatures.ZAMITES_BUSH.withConfiguration(ZamitesBush.ZAMITES_BUSH_CONFIG))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(0, 0.2F, 1)));
+    public static final ConfiguredFeature<?, ?> ZAMITES_BUSH = createConfiguredFeature("zamites_bush", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(PHFFeatures.ZAMITES_BUSH.withConfiguration(ZamitesBush.ZAMITES_BUSH_CONFIG).withChance(1F)), PHFFeatures.ZAMITES_BUSH.withConfiguration(ZamitesBush.ZAMITES_BUSH_CONFIG))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(0, 0.2F, 1))));
 
 
     /************************************Random Selectors************************************/
@@ -122,7 +117,7 @@ public class PHFConfiguredFeatures {
             ARAUCARIA_TREE1.withChance(0.1F)
             ), ARAUCARIA_TREE2))
     ).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1)));
-    
+
     public static ConfiguredFeature<?, ?> MORRISON_SAVANNA_VEGETATION = createConfiguredFeature("morrison_savanna_vegetation", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
             PROTOPICEOXYLON_TREE1.withChance(0.1F),
             PROTOPICEOXYLON_TREE2.withChance(0.1F),
@@ -136,7 +131,7 @@ public class PHFConfiguredFeatures {
             ARAUCARIA_SMALL_TREE4.withChance(0.75F)
             ), PROTOPICEOXYLON_TREE7))
     ).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(0, 0.25F, 1)));
-    
+
     public static ConfiguredFeature<?, ?> LIRIODENDRITES_FOREST_VEGETATION = createConfiguredFeature("liriodendrites_vegetation", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
             LIRIODENDRITES_TREE1.withChance(0.2F),
             LIRIODENDRITES_TREE2.withChance(0.2F),
@@ -147,7 +142,7 @@ public class PHFConfiguredFeatures {
             ARAUCARIA_SMALL_TREE3.withChance(0.05F)
             ), ARAUCARIA_SMALL_TREE4))
     ).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(8, 0.2F, 3)));
-    
+
     public static ConfiguredFeature<?, ?> ISCHIGUALASTO_VEGETATION = createConfiguredFeature("ischigualasto_vegetation", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
             HEIDIPHYLLUM_TREE1.withChance(0.15F),
             HEIDIPHYLLUM_TREE2.withChance(0.15F),
@@ -161,7 +156,7 @@ public class PHFConfiguredFeatures {
             PROTOJUNIPEROXYLON_TREE1.withChance(0.5F)
             ), PROTOJUNIPEROXYLON_TREE2))
     ).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(8, 0.2F, 3)));
-    
+
     public static ConfiguredFeature<?, ?> SPARSE_ISCHIGUALASTO_VEGETATION = createConfiguredFeature("ischigualasto_vegetation", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
             HEIDIPHYLLUM_TREE1.withChance(0.15F),
             HEIDIPHYLLUM_TREE2.withChance(0.15F),
