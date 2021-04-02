@@ -1,9 +1,7 @@
 package superlord.prehistoricfauna.entity;
 
-import com.google.common.collect.Lists;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,37 +9,23 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.pathfinding.Path;
 import net.minecraft.stats.Stats;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.village.PointOfInterest;
-import net.minecraft.village.PointOfInterestManager;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.entity.tile.DidelphodonBurrowTileEntity;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
-import superlord.prehistoricfauna.init.PrehistoricPointofInterest;
 import superlord.prehistoricfauna.util.SoundHandler;
 
 import javax.annotation.Nullable;
-import java.util.Comparator;
-import java.util.EnumSet;
-import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class DidelphodonEntity extends PrehistoricEntity {
 	
@@ -50,10 +34,10 @@ public class DidelphodonEntity extends PrehistoricEntity {
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.CRASSOSTREA_BLOCK.asItem());
 	private int isReady;
 	public int stayOutOfBurrowCountdown;
-	private int remainingCooldownBeforeLocatingNewBurrow = 0;
+	//private int remainingCooldownBeforeLocatingNewBurrow = 0;
 	@Nullable
 	private BlockPos burrowPos = null;
-	private DidelphodonEntity.FindBurrowGoal findBurrowGoal;
+	//private DidelphodonEntity.FindBurrowGoal findBurrowGoal;
 	
 	public DidelphodonEntity(EntityType<? extends DidelphodonEntity> type, World world) {
 		super(type, world);
@@ -80,9 +64,9 @@ public class DidelphodonEntity extends PrehistoricEntity {
 		return stack.getItem() == BlockInit.CRASSOSTREA_BLOCK.asItem();
 	}
 	
-	private boolean isTooFar(BlockPos pos) {
-		return !this.isWithinDistance(pos, 48);
-	}
+	//private boolean isTooFar(BlockPos pos) {
+		//return !this.isWithinDistance(pos, 48);
+	//}
 	
 	@Override
 	public AgeableEntity createChild(AgeableEntity ageable) {
@@ -100,18 +84,18 @@ public class DidelphodonEntity extends PrehistoricEntity {
 	public void writeAddition(CompoundNBT compound) {
 		super.writeAdditional(compound);
 		compound.putBoolean("IsPregnant", this.isPregnant());
-		if (this.hasBurrow()) {
-			compound.put("BurrowPos",  NBTUtil.writeBlockPos(this.getBurrowPos()));
-		}
+		//if (this.hasBurrow()) {
+			//compound.put("BurrowPos",  NBTUtil.writeBlockPos(this.getBurrowPos()));
+		//}
 	}
 	
 	public void readAdditional(CompoundNBT compound) {
 		super.readAdditional(compound);
 		this.setPregnant(compound.getBoolean("IsPregnant"));
-		this.burrowPos = null;
-		if (compound.contains("BurrowPos")) {
-			this.burrowPos = NBTUtil.readBlockPos(compound.getCompound("BurrowPos"));
-		}
+		//this.burrowPos = null;
+		//if (compound.contains("BurrowPos")) {
+			//this.burrowPos = NBTUtil.readBlockPos(compound.getCompound("BurrowPos"));
+		//}
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -119,16 +103,16 @@ public class DidelphodonEntity extends PrehistoricEntity {
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new SwimGoal(this));
-		this.goalSelector.addGoal(1, new DidelphodonEntity.EnterBurrowGoal());
+		//this.goalSelector.addGoal(1, new DidelphodonEntity.EnterBurrowGoal());
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25F));
 		this.goalSelector.addGoal(2, new DidelphodonEntity.MateGoal(this, 1.0D));
 		this.goalSelector.addGoal(3, new FollowParentGoal(this, 1.1D));
 		this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, false, TEMPTATION_ITEMS));
 		this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-		this.goalSelector.addGoal(5, new DidelphodonEntity.UpdateBurrowGoal());
-		this.findBurrowGoal = new DidelphodonEntity.FindBurrowGoal();
-		this.goalSelector.addGoal(5, this.findBurrowGoal);
+		//this.goalSelector.addGoal(5, new DidelphodonEntity.UpdateBurrowGoal());
+		//this.findBurrowGoal = new DidelphodonEntity.FindBurrowGoal();
+		//this.goalSelector.addGoal(5, this.findBurrowGoal);
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, PlayerEntity.class, 10F, 2D, 2D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, TyrannosaurusEntity.class, 10F, 2D, 2D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, DakotaraptorEntity.class, 10F, 2D, 2D));
@@ -159,7 +143,7 @@ public class DidelphodonEntity extends PrehistoricEntity {
 		return SoundHandler.DIDELPHODON_DEATH;
 	}
 	
-	private void startMovingTo(BlockPos pos) {
+	/**private void startMovingTo(BlockPos pos) {
 		Vec3d vec3d = new Vec3d(pos);
 		int i = 0;
 		BlockPos blockpos = new BlockPos(this);
@@ -182,7 +166,7 @@ public class DidelphodonEntity extends PrehistoricEntity {
 			this.navigator.setRangeMultiplier(0.5F);
 			this.navigator.tryMoveToXYZ(vec3d1.x, vec3d1.y, vec3d1.z, 1.0D);
 		}
-	}
+	}*/
 
 	
 	@Override
@@ -190,7 +174,7 @@ public class DidelphodonEntity extends PrehistoricEntity {
 		super.updateAITasks();
 	}
 	
-	@Override
+	/**@Override
 	public void livingTick() {
 		super.livingTick();
 		if (!this.world.isRemote) {
@@ -213,7 +197,7 @@ public class DidelphodonEntity extends PrehistoricEntity {
 			TileEntity tileentity = this.world.getTileEntity(this.burrowPos);
 			return tileentity instanceof DidelphodonBurrowTileEntity;
 		}
-	}
+	}*/
 	
 	@Override
 	protected void registerAttributes() {
@@ -227,6 +211,7 @@ public class DidelphodonEntity extends PrehistoricEntity {
 		super.handleStatusUpdate(id);
 	}
 	
+	/**
 	private boolean canEnterBurrow() {
 		if (this.stayOutOfBurrowCountdown <= 0) {
 			boolean flag = this.world.isRaining() || this.world.isNightTime();
@@ -261,6 +246,7 @@ public class DidelphodonEntity extends PrehistoricEntity {
 	public BlockPos getBurrowPos() {
 		return this.burrowPos;
 	}
+	*/
 	
 	static class MateGoal extends BreedGoal {
 		private final DidelphodonEntity didelphodon;
@@ -310,7 +296,7 @@ public class DidelphodonEntity extends PrehistoricEntity {
 			return this.canDidelphodonContinue();
 		}
 	}
-	
+	/**
 	private boolean isWithinDistance(BlockPos pos, int distance) {
 		return pos.withinDistance(new BlockPos(this), (double)distance);
 	}
@@ -443,6 +429,7 @@ public class DidelphodonEntity extends PrehistoricEntity {
 			}
 		}
 	}
+	*/
 	
 	static class CarryYoungGoal extends Goal {
 		private final DidelphodonEntity didelphodon;
@@ -481,6 +468,7 @@ public class DidelphodonEntity extends PrehistoricEntity {
 		}
 	}
 	
+	/**
 	class UpdateBurrowGoal extends DidelphodonEntity.PassiveGoal {
 		private UpdateBurrowGoal() {
 		}
@@ -521,5 +509,5 @@ public class DidelphodonEntity extends PrehistoricEntity {
 			})).collect(Collectors.toList());
 		}
 	}
-
+*/
 }

@@ -834,5 +834,67 @@
 				"stream": true
 			}
 		]
+	},
+	"basilemys_idle": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.basilemysIdle",
+		"sounds": [
+			{
+				"name": "mob/turtle/idle1",
+				"stream": true
+			},
+			{
+				"name": "mob/turtle/idle2",
+				"stream": true
+			},
+			{
+				"name": "mob/turtle/idle3",
+				"stream": true
+			}
+		]
+	},
+	"basilemys_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.basilemysHurt",
+		"sounds": [
+			{
+				"name": "mob/turtle/hurt1",
+				"stream": true
+			},
+			{
+				"name": "mob/turtle/hurt2",
+				"stream": true
+			},
+			{
+				"name": "mob/turtle/hurt3",
+				"stream": true
+			},
+			{
+				"name": "mob/turtle/hurt4",
+				"stream": true
+			},
+			{
+				"name": "mob/turtle/hurt5",
+				"stream": true
+			}
+		]
+	},
+	"basilemys_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.basilemysDeath",
+		"sounds": [
+			{
+				"name": "mob/turtle/death1",
+				"stream": true
+			},
+			{
+				"name": "mob/turtle/death2",
+				"stream": true
+			},
+			{
+				"name": "mob/turtle/death3",
+				"stream": true
+			}
+		]
 	}
 }

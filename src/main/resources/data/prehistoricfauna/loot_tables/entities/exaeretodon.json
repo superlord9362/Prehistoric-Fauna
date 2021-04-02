@@ -1,7 +1,7 @@
 {
   "type": "minecraft:entity",
   "pools": [
-	{
+    {
       "rolls": 1,
       "entries": [
         {

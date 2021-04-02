@@ -5,6 +5,7 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import superlord.prehistoricfauna.world.feature.cretaceous.HellCreekSurfaceBuilder;
 import superlord.prehistoricfauna.world.surfacebuilder.IschigualastoSB;
 import superlord.prehistoricfauna.world.surfacebuilder.MorrisonSavannaSB;
+import superlord.prehistoricfauna.world.surfacebuilder.PetrifiedForestSB;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ public class PHFSurfaceBuilders {
     public static final SurfaceBuilder<SurfaceBuilderConfig> HELL_CREEK = createSurfaceBuilder("hell_creek", new HellCreekSurfaceBuilder(SurfaceBuilderConfig::deserialize));
     public static final SurfaceBuilder<SurfaceBuilderConfig> MORRISON_SAVANNA = createSurfaceBuilder("morrison", new MorrisonSavannaSB(SurfaceBuilderConfig::deserialize));
     public static final SurfaceBuilder<SurfaceBuilderConfig> ISCHIGUALASTO = createSurfaceBuilder("ischigualasto", new IschigualastoSB(SurfaceBuilderConfig::deserialize));
+    public static final SurfaceBuilder<SurfaceBuilderConfig> PETRIFIED_FOREST = createSurfaceBuilder("petrified_forest", new PetrifiedForestSB(SurfaceBuilderConfig::deserialize));
 
     public static void init(){
     }

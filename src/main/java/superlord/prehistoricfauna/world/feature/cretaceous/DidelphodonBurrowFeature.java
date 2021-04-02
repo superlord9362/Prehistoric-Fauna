@@ -18,7 +18,7 @@ import superlord.prehistoricfauna.world.placement.DidelphodonBurrowConfig;
 import java.util.Random;
 import java.util.function.Function;
 
-public class DidelphodonBurrowFeature extends Feature<DidelphodonBurrowConfig> {
+public class DidelphodonBurrowFeature { /** extends Feature<DidelphodonBurrowConfig> {
    public DidelphodonBurrowFeature(Function<Dynamic<?>, ? extends DidelphodonBurrowConfig> func) {
       super(func);
    }
@@ -47,5 +47,5 @@ public class DidelphodonBurrowFeature extends Feature<DidelphodonBurrowConfig> {
 	   }
 	   return i > 0;
    }
-
+*/
 }

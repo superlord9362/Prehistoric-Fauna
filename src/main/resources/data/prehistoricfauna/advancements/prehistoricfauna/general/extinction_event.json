@@ -135,7 +135,7 @@
       "trigger": "minecraft:player_killed_entity",
       "conditions": {
         "entity": {
-          "type": "prehistoricfauna:exaerertodon"
+          "type": "prehistoricfauna:exaeretodon"
         }
       }
     },

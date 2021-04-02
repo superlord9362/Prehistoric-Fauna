@@ -17,7 +17,7 @@ import java.util.Set;
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class PrehistoricPointofInterest {
 	private static final List<PointOfInterestType> POINTS_OF_INTEREST = new ArrayList<>();
-    public static final PointOfInterestType BURROWS = register("burrows", getAllStates(BlockInit.DIDELPHODON_BURROW), 0, 1);
+    //public static final PointOfInterestType BURROWS = register("burrows", getAllStates(BlockInit.DIDELPHODON_BURROW), 0, 1);
 
     public static PointOfInterestType register(String name, Set<BlockState> states, int maxFreeTickets, int i) {
         ResourceLocation id = new ResourceLocation(PrehistoricFauna.MODID, name);

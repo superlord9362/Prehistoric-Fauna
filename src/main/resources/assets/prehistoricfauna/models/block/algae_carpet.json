@@ -5,7 +5,8 @@
 		"0": "prehistoricfauna:blocks/algae",
 		"1": "prehistoricfauna:blocks/algae_side",
 		"2": "prehistoricfauna:blocks/algae_top",
-		"particle": "prehistoricfauna:blocks/algae"
+		"particle": "prehistoricfauna:blocks/algae",
+		"missing": "prehistoricfauna:blocks/empty_texture"
 	},
 	"elements": [
 		{

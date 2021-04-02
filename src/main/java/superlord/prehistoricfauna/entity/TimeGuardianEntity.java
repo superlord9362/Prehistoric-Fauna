@@ -17,7 +17,6 @@ import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -26,7 +25,6 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
@@ -38,14 +36,12 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerBossInfo;
-import net.minecraftforge.common.util.Constants.NBT;
 import superlord.prehistoricfauna.util.SoundHandler;
 
 public class TimeGuardianEntity extends MonsterEntity {
 	private static final DataParameter<Boolean> ACTIVE = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> USE_BEAM = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> USE_REGULAR_ATTACK = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.BOOLEAN);
-	private static final DataParameter<Optional<BlockPos>> REST_POSITION = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.OPTIONAL_BLOCK_POS);
 	private static final DataParameter<Boolean> CHARGING_BEAM = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> USING_BEAM = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Float> LASER_PITCH = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.FLOAT);
@@ -77,9 +73,9 @@ public class TimeGuardianEntity extends MonsterEntity {
 	protected void registerGoals() {
 		super.registerGoals();
 		goalSelector.addGoal(1, new TimeGuardianEntity.BeamAttackAI(this));
-		goalSelector.addGoal(1, new TimeGuardianEntity.MeleeAttackGoal(this, 1.0D, false));
-		goalSelector.addGoal(2, new TimeGuardianEntity.AttackAI(this));
-		targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 0, true, false, null));
+		goalSelector.addGoal(0, new TimeGuardianEntity.MeleeAttackGoal(this, 1.0D, true));
+		goalSelector.addGoal(0, new TimeGuardianEntity.AttackAI(this));
+		targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 0, true, false, null));
 	}
 
 	protected void registerAttributes() {
@@ -88,6 +84,11 @@ public class TimeGuardianEntity extends MonsterEntity {
 		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2D);
 		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(10.0D);
 		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(24.0D);
+		this.getAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(50.0D);
+	}
+	
+	public boolean canBreatheUnderwater() {
+		return true;
 	}
 
 	@Override
@@ -101,10 +102,10 @@ public class TimeGuardianEntity extends MonsterEntity {
 		if (!world.isRemote) {
 			if (!isAIDisabled()) {
 				if (isActive()) {
-					if (getAttackTarget() == null && moveForward == 0 && isAtRestPos()) {
+					if (getAttackTarget() == null) {
 						setActive(false);
 					}
-				} else if (getAttackTarget() != null && targetDistance <= 16) {
+				} else if (getAttackTarget() != null && targetDistance <= 30) {
 					setActive(true);
 				}
 			}
@@ -114,7 +115,6 @@ public class TimeGuardianEntity extends MonsterEntity {
 			rotationYaw = prevRotationYaw;
 		}
 		renderYawOffset = rotationYaw;
-		if(getAttackTarget() == null && getNavigator().noPath() && !isAtRestPos() && isActive()) updateRestPos();
 		if (!isActive() && !world.isRemote) heal(0.3f);
 	}
 
@@ -123,31 +123,9 @@ public class TimeGuardianEntity extends MonsterEntity {
 		return isActive();
 	}
 
-	private boolean isAtRestPos() {
-		Optional<BlockPos> restPos = getRestPos();
-		if (restPos.isPresent()) {
-			return restPos.get().distanceSq(getPosition()) < 36;
-		}
-		return false;
-	}
-
-	private void updateRestPos() {
-		boolean reassign = true;
-		if(getRestPos().isPresent()) {
-			BlockPos pos = getRestPos().get();
-			if(getNavigator().tryMoveToXYZ(pos.getX(), pos.getY(), pos.getZ(), 0.2)) {
-				reassign = false;
-			}
-		}
-		if (reassign) {
-			setRestPos(getPosition());
-		}
-	}
-
 	@Nullable
 	@Override
 	public ILivingEntityData onInitialSpawn(IWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData livingData, @Nullable CompoundNBT compound) {
-		setRestPos(getPosition());
 		return super.onInitialSpawn(world, difficulty, reason, livingData, compound);
 	}
 
@@ -159,7 +137,6 @@ public class TimeGuardianEntity extends MonsterEntity {
 	@Override
 	protected void registerData() {
 		super.registerData();
-		getDataManager().register(REST_POSITION, Optional.empty());
 		getDataManager().register(ACTIVE, false);
 		getDataManager().register(USE_BEAM, false);
 		getDataManager().register(USE_REGULAR_ATTACK, false);
@@ -170,14 +147,6 @@ public class TimeGuardianEntity extends MonsterEntity {
 		getDataManager().register(PREV_LASER_PITCH, (float) 0);
 		getDataManager().register(PREV_LASER_YAW, (float) 0);
 	}	
-
-	public Optional<BlockPos> getRestPos() {
-		return getDataManager().get(REST_POSITION);
-	}
-
-	public void setRestPos(BlockPos pos) {
-		getDataManager().set(REST_POSITION, Optional.of(pos));
-	}
 
 	public boolean isUsingBeamAttack() {
 		return getDataManager().get(USE_BEAM);
@@ -259,19 +228,12 @@ public class TimeGuardianEntity extends MonsterEntity {
 	@Override
 	public void writeAdditional(CompoundNBT compound) {
 		super.writeAdditional(compound);
-		Optional<BlockPos> restPos = getRestPos();
-		if(restPos.isPresent()) {
-			compound.put("restPos", NBTUtil.writeBlockPos(getRestPos().get()));
-		}
 		compound.putBoolean("active", isActive());
 	}
 
 	@Override
 	public void readAdditional(CompoundNBT compound) {
 		super.readAdditional(compound);
-		if(compound.contains("restPos", NBT.TAG_COMPOUND)) {
-			setRestPos(NBTUtil.readBlockPos(compound.getCompound("restPos")));
-		}
 		setActive(compound.getBoolean("active"));
 		if (this.hasCustomName()) {
 			this.bossInfo.setName(this.getDisplayName());

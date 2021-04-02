@@ -18,8 +18,6 @@ import superlord.prehistoricfauna.entity.PrehistoricBoatEntity;
 import superlord.prehistoricfauna.item.*;
 import superlord.prehistoricfauna.util.ArmorMaterialInit;
 
-;
-
 public class ItemInit {
 	@SuppressWarnings("deprecation")
 	public static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, PrehistoricFauna.MODID);
@@ -133,10 +131,10 @@ public class ItemInit {
 	public static final RegistryObject<PrehistoricBoatItem> HEIDIPHYLLUM_BOAT = ITEMS.register("heidiphyllum_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.HEIDIPHYLLUM, (new Item.Properties().maxStackSize(1).group(PFBook.instance))));
 	public static final RegistryObject<PrehistoricBoatItem> LIRIODENDRITES_BOAT = ITEMS.register("liriodendrites_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.LIRIODENDRITES, (new Item.Properties().maxStackSize(1).group(PFBook.instance))));
 	//Misc
-	public static final RegistryObject<Item> TIME_TOTEM = ITEMS.register("time_totem", () -> new Item(new Item.Properties().group(PFBook.instance)));
-	public static final RegistryObject<CretaceousTimeTotemItem> CRETACEOUS_TIME_TOTEM = ITEMS.register("cretaceous_time_totem", () -> new CretaceousTimeTotemItem(new Item.Properties().group(PFBook.instance).maxDamage(8)));
-	public static final RegistryObject<JurassicTimeTotemItem> JURASIC_TIME_TOTEM = ITEMS.register("jurassic_time_totem", () -> new JurassicTimeTotemItem(new Item.Properties().group(PFBook.instance).maxDamage(8)));
-	public static final RegistryObject<TriassicTimeTotemItem> TRIASSIC_TIME_TOTEM = ITEMS.register("triassic_time_totem", () -> new TriassicTimeTotemItem(new Item.Properties().group(PFBook.instance).maxDamage(8)));
+	public static final RegistryObject<Item> TIME_TOTEM = ITEMS.register("time_totem", () -> new Item(new Item.Properties().group(PFBook.instance).rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<CretaceousTimeTotemItem> CRETACEOUS_TIME_TOTEM = ITEMS.register("cretaceous_time_totem", () -> new CretaceousTimeTotemItem(new Item.Properties().group(PFBook.instance).maxDamage(8).rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<JurassicTimeTotemItem> JURASIC_TIME_TOTEM = ITEMS.register("jurassic_time_totem", () -> new JurassicTimeTotemItem(new Item.Properties().group(PFBook.instance).maxDamage(8).rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<TriassicTimeTotemItem> TRIASSIC_TIME_TOTEM = ITEMS.register("triassic_time_totem", () -> new TriassicTimeTotemItem(new Item.Properties().group(PFBook.instance).maxDamage(8).rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> TRIASSIC_FOSSIL = ITEMS.register("triassic_fossil", () -> new FossilItem(new Item.Properties().group(PFBook.instance)));
 	public static final RegistryObject<Item> JURASSIC_FOSSIL = ITEMS.register("jurassic_fossil", () -> new FossilItem(new Item.Properties().group(PFBook.instance)));
 	public static final RegistryObject<Item> CRETACEOUS_FOSSIL = ITEMS.register("cretaceous_fossil", () -> new FossilItem(new Item.Properties().group(PFBook.instance)));

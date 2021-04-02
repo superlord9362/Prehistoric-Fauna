@@ -66,6 +66,7 @@ public class PacketToClientSign
 		}
 	}
 
+	@SuppressWarnings("resource")
 	@OnlyIn(Dist.CLIENT)
 	private static void handleOnClient(PacketToClientSign packet)
 	{

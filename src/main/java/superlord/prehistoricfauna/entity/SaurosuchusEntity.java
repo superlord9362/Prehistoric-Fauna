@@ -1,16 +1,43 @@
 package superlord.prehistoricfauna.entity;
 
+import java.util.EnumSet;
+import java.util.Random;
+import java.util.function.Predicate;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.AgeableEntity;
+import net.minecraft.entity.EntityPredicate;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.entity.ai.goal.BreedGoal;
+import net.minecraft.entity.ai.goal.FollowParentGoal;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.MoveToBlockGoal;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.ChickenEntity;
+import net.minecraft.entity.passive.CowEntity;
+import net.minecraft.entity.passive.OcelotEntity;
+import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.passive.RabbitEntity;
+import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.entity.passive.horse.DonkeyEntity;
+import net.minecraft.entity.passive.horse.HorseEntity;
+import net.minecraft.entity.passive.horse.MuleEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -28,14 +55,11 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import superlord.prehistoricfauna.block.SaurosuchusEggBlock;
+import superlord.prehistoricfauna.entity.goal.HuntGoal;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
 import superlord.prehistoricfauna.util.SoundHandler;
-
-import java.util.EnumSet;
-import java.util.Random;
-import java.util.function.Predicate;
 
 public class SaurosuchusEntity extends PrehistoricEntity {
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(SaurosuchusEntity.class, DataSerializers.BOOLEAN);
@@ -79,14 +103,15 @@ public class SaurosuchusEntity extends PrehistoricEntity {
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new SwimGoal(this));
-		this.attackAnimals = new NearestAttackableTargetGoal<>(this, AnimalEntity.class, 10, false, false, (p_213487_0_) -> {
-			return p_213487_0_ instanceof ThescelosaurusEntity || p_213487_0_ instanceof DryosaurusEntity || p_213487_0_ instanceof HerrerasaurusEntity;
+		this.attackAnimals = new HuntGoal(this, AnimalEntity.class, 10, false, false, (p_213487_0_) -> {
+			return p_213487_0_ instanceof ThescelosaurusEntity || p_213487_0_ instanceof DryosaurusEntity || p_213487_0_ instanceof HerrerasaurusEntity || p_213487_0_ instanceof IschigualastiaEntity || p_213487_0_ instanceof SillosuchusEntity || p_213487_0_ instanceof HorseEntity || p_213487_0_ instanceof DonkeyEntity || p_213487_0_ instanceof MuleEntity || p_213487_0_ instanceof SheepEntity || p_213487_0_ instanceof CowEntity || p_213487_0_ instanceof PigEntity || p_213487_0_ instanceof OcelotEntity;
 		});
 		this.goalSelector.addGoal(1, new SaurosuchusEntity.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new SaurosuchusEntity.PanicGoal());
 		this.targetSelector.addGoal(1, new SaurosuchusEntity.HurtByTargetGoal());
 		this.targetSelector.addGoal(2, new SaurosuchusEntity.AttackPlayerGoal());
 		this.goalSelector.addGoal(2, new SaurosuchusEntity.MateGoal(this, 1.0D));
+		this.targetSelector.addGoal(1, attackAnimals);
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new SaurosuchusEntity.SleepGoal());
@@ -108,10 +133,6 @@ public class SaurosuchusEntity extends PrehistoricEntity {
 		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20.0D);
 		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
 		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
-	}
-
-	private void setAttackGoals() {
-		this.targetSelector.addGoal(2, attackAnimals);
 	}
 	
 	protected SoundEvent getAmbientSound() {
@@ -171,7 +192,6 @@ public class SaurosuchusEntity extends PrehistoricEntity {
 		super.readAdditional(compound);
 		this.setSleeping(compound.getBoolean("Sleeping"));
 		this.setHasEgg(compound.getBoolean("HasEgg"));
-		this.setAttackGoals();
 	}
 	
 	class AttackPlayerGoal extends NearestAttackableTargetGoal<PlayerEntity> {

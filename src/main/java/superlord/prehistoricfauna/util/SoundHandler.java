@@ -34,6 +34,9 @@ public class SoundHandler {
 	public static final SoundEvent DIDELPHODON_IDLE;
 	public static final SoundEvent DIDELPHODON_HURT;
 	public static final SoundEvent DIDELPHODON_DEATH;
+	public static final SoundEvent BASILEMYS_IDLE;
+	public static final SoundEvent BASILEMYS_HURT;
+	public static final SoundEvent BASILEMYS_DEATH;
 	//Morrison
 	public static final SoundEvent ALLOSAURUS_IDLE;
 	public static final SoundEvent ALLOSAURUS_HURT;
@@ -118,6 +121,9 @@ public class SoundHandler {
 		evt.getRegistry().register(DIDELPHODON_IDLE);
 		evt.getRegistry().register(DIDELPHODON_HURT);
 		evt.getRegistry().register(DIDELPHODON_DEATH);
+		evt.getRegistry().register(BASILEMYS_IDLE);
+		evt.getRegistry().register(BASILEMYS_HURT);
+		evt.getRegistry().register(BASILEMYS_DEATH);
 		//Morrison
 		evt.getRegistry().register(ALLOSAURUS_IDLE);
 		evt.getRegistry().register(ALLOSAURUS_HURT);
@@ -207,6 +213,9 @@ public class SoundHandler {
 		DIDELPHODON_IDLE = createEvent("didelphodon_idle");
 		DIDELPHODON_HURT = createEvent("didelphodon_hurt");
 		DIDELPHODON_DEATH = createEvent("didelphodon_death");
+		BASILEMYS_IDLE = createEvent("basilemys_idle");
+		BASILEMYS_HURT = createEvent("basilemys_hurt");
+		BASILEMYS_DEATH = createEvent("basilemys_death");
 		//Morrison
 		ALLOSAURUS_IDLE = createEvent("allosaurus_idle");
 		ALLOSAURUS_HURT = createEvent("allosaurus_hurt");

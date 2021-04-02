@@ -25,7 +25,8 @@ public class CretaceousBiomes {
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, OSMUNDA_DOUBLE);
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HORSETAIL_DOUBLE);
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, CRASSOSTREA_OYSTERS);
-        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DIDELPHODON_BURROW);
+        biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ALGAE);
+        //biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DIDELPHODON_BURROW);
         if (isClearing) {
             PHFDefaultBiomeFeatures.addSparseHellCreekVegetation(biome);
             biome.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(ModEntityTypes.THESCELOSAURUS_ENTITY, PrehistoricFaunaConfig.thescelosaurusClearingSpawnWeight, 2, 4));

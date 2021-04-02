@@ -39,6 +39,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.block.BasilemysEggBlock;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
+import superlord.prehistoricfauna.util.SoundHandler;
 
 public class BasilemysEntity extends PrehistoricEntity {
 
@@ -121,15 +122,15 @@ public class BasilemysEntity extends PrehistoricEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return SoundEvents.ENTITY_TURTLE_AMBIENT_LAND;
+		return SoundHandler.BASILEMYS_IDLE;
 	}
 
 	protected SoundEvent getHurtSound() {
-		return this.isChild() ? SoundEvents.ENTITY_TURTLE_HURT_BABY : SoundEvents.ENTITY_TURTLE_HURT;
+		return SoundHandler.BASILEMYS_HURT;
 	}
 
 	protected SoundEvent getDeathSound() {
-		return this.isChild() ? SoundEvents.ENTITY_TURTLE_DEATH_BABY : SoundEvents.ENTITY_TURTLE_DEATH;
+		return SoundHandler.BASILEMYS_DEATH;
 	}
 
 	public boolean canBreed() {

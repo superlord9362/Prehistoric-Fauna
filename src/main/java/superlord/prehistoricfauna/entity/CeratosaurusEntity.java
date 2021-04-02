@@ -8,6 +8,14 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.CowEntity;
+import net.minecraft.entity.passive.OcelotEntity;
+import net.minecraft.entity.passive.PandaEntity;
+import net.minecraft.entity.passive.PigEntity;
+import net.minecraft.entity.passive.SheepEntity;
+import net.minecraft.entity.passive.horse.DonkeyEntity;
+import net.minecraft.entity.passive.horse.HorseEntity;
+import net.minecraft.entity.passive.horse.MuleEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -25,6 +33,7 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import superlord.prehistoricfauna.block.CeratosaurusEggBlock;
+import superlord.prehistoricfauna.entity.goal.HuntGoal;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
@@ -76,8 +85,8 @@ public class CeratosaurusEntity extends PrehistoricEntity {
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new SwimGoal(this));
-		this.attackAnimals = new NearestAttackableTargetGoal<>(this, AnimalEntity.class, 10, false, false, (p_213487_0_) -> {
-	         return p_213487_0_ instanceof DryosaurusEntity || p_213487_0_ instanceof ThescelosaurusEntity;
+		this.attackAnimals = new HuntGoal(this, AnimalEntity.class, 10, false, false, (p_213487_0_) -> {
+	         return p_213487_0_ instanceof DryosaurusEntity || p_213487_0_ instanceof ThescelosaurusEntity || p_213487_0_ instanceof HorseEntity || p_213487_0_ instanceof DonkeyEntity || p_213487_0_ instanceof MuleEntity || p_213487_0_ instanceof SheepEntity || p_213487_0_ instanceof CowEntity || p_213487_0_ instanceof PigEntity || p_213487_0_ instanceof PandaEntity || p_213487_0_ instanceof OcelotEntity;
 		});
 		this.goalSelector.addGoal(1, new CeratosaurusEntity.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new CeratosaurusEntity.PanicGoal());

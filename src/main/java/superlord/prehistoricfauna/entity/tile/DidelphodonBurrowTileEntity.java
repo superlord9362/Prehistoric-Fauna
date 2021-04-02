@@ -1,6 +1,6 @@
 package superlord.prehistoricfauna.entity.tile;
 
-import com.google.common.collect.Lists;
+/**import com.google.common.collect.Lists;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -17,9 +17,9 @@ import superlord.prehistoricfauna.init.TileEntityRegistry;
 
 import javax.annotation.Nullable;
 import java.util.Iterator;
-import java.util.List;
+import java.util.List;*/
 
-public class DidelphodonBurrowTileEntity extends TileEntity implements ITickableTileEntity {
+public class DidelphodonBurrowTileEntity { /**extends TileEntity implements ITickableTileEntity {
    private final List<DidelphodonBurrowTileEntity.Didelphodon> didelphodon = Lists.newArrayList();
    
    public DidelphodonBurrowTileEntity() {
@@ -204,5 +204,5 @@ public class DidelphodonBurrowTileEntity extends TileEntity implements ITickable
    public static enum State {
       DIDELPHODON_RELEASED,
       EMERGENCY;
-   }
+   }*/
 }

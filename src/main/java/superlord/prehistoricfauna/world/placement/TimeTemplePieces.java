@@ -32,7 +32,11 @@ import java.util.Random;
 
 public class TimeTemplePieces {
 
+<<<<<<< Updated upstream
     private static final ResourceLocation PART_1 = new ResourceLocation(PrehistoricFauna.MODID, "time_temple");
+=======
+	private static final ResourceLocation PART_1 = new ResourceLocation(PrehistoricFauna.MODID, "time_temple");
+>>>>>>> Stashed changes
     private static final PlacementSettings OVERWRITE = (new PlacementSettings()).setIgnoreEntities(true).addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK);
     private static final PlacementSettings INSERT = (new PlacementSettings()).setIgnoreEntities(true).addProcessor(BlockIgnoreStructureProcessor.AIR_AND_STRUCTURE_BLOCK);
     private static final Map<ResourceLocation, BlockPos> OFFSET = ImmutableMap.of(PART_1, new BlockPos(0, 1, 0));

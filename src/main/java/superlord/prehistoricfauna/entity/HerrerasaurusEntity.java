@@ -1,12 +1,39 @@
 package superlord.prehistoricfauna.entity;
 
+import java.util.Random;
+import java.util.function.Predicate;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.AgeableEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.entity.ai.goal.BreedGoal;
+import net.minecraft.entity.ai.goal.FollowParentGoal;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.MoveToBlockGoal;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.ai.goal.PanicGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.CowEntity;
+import net.minecraft.entity.passive.OcelotEntity;
+import net.minecraft.entity.passive.PigEntity;
+import net.minecraft.entity.passive.SheepEntity;
+import net.minecraft.entity.passive.horse.DonkeyEntity;
+import net.minecraft.entity.passive.horse.HorseEntity;
+import net.minecraft.entity.passive.horse.MuleEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -24,18 +51,16 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import superlord.prehistoricfauna.block.HerrerasaurusEggBlock;
+import superlord.prehistoricfauna.entity.goal.HuntGoal;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
 import superlord.prehistoricfauna.util.SoundHandler;
 
-import java.util.Random;
-import java.util.function.Predicate;
-
 public class HerrerasaurusEntity extends PrehistoricEntity {
 
-	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(AllosaurusEntity.class, DataSerializers.BOOLEAN);
-	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(AllosaurusEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(HerrerasaurusEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(HerrerasaurusEntity.class, DataSerializers.BOOLEAN);
 	private int warningSoundTicks;
 	private int isDigging;
 	private Goal attackAnimals;
@@ -74,11 +99,11 @@ public class HerrerasaurusEntity extends PrehistoricEntity {
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new SwimGoal(this));
-		this.attackAnimals = new NearestAttackableTargetGoal<>(this, AnimalEntity.class, 10, false, false, (p_213487_0_) -> {
-	         return p_213487_0_ instanceof DryosaurusEntity || p_213487_0_ instanceof StegosaurusEntity || p_213487_0_ instanceof ThescelosaurusEntity || p_213487_0_ instanceof TriceratopsEntity;
+		this.attackAnimals = new HuntGoal(this, AnimalEntity.class, 10, false, false, (p_213487_0_) -> {
+	         return p_213487_0_ instanceof DryosaurusEntity || p_213487_0_ instanceof ThescelosaurusEntity || p_213487_0_ instanceof ChromogisaurusEntity || p_213487_0_ instanceof HyperodapedonEntity || p_213487_0_ instanceof HorseEntity || p_213487_0_ instanceof DonkeyEntity || p_213487_0_ instanceof MuleEntity || p_213487_0_ instanceof SheepEntity || p_213487_0_ instanceof CowEntity || p_213487_0_ instanceof PigEntity || p_213487_0_ instanceof OcelotEntity;
 		});
 		this.goalSelector.addGoal(1, new HerrerasaurusEntity.MeleeAttackGoal());
-		this.goalSelector.addGoal(1, new HerrerasaurusEntity.PanicGoal());
+		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
@@ -233,16 +258,6 @@ public class HerrerasaurusEntity extends PrehistoricEntity {
 
 		protected double getAttackReachSqr(LivingEntity attackTarget) {
 			return (double)(4.0F + attackTarget.getWidth());
-		}
-	}
-
-	class PanicGoal extends net.minecraft.entity.ai.goal.PanicGoal {
-		public PanicGoal() {
-			super(HerrerasaurusEntity.this, 2.0D);
-		}
-
-		public boolean shouldExecute() {
-			return !HerrerasaurusEntity.this.isChild() && !HerrerasaurusEntity.this.isBurning() ? false : super.shouldExecute();
 		}
 	}
    

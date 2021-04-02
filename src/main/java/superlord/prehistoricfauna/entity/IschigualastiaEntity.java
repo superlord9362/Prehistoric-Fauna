@@ -6,7 +6,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
-import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -36,8 +35,8 @@ import java.util.function.Predicate;
 
 public class IschigualastiaEntity extends PrehistoricEntity {
 	
-	private static final DataParameter<Boolean> SADDLED = EntityDataManager.createKey(PigEntity.class, DataSerializers.BOOLEAN);
-	private static final DataParameter<Integer> BOOST_TIME = EntityDataManager.createKey(PigEntity.class, DataSerializers.VARINT);
+	private static final DataParameter<Boolean> SADDLED = EntityDataManager.createKey(IschigualastiaEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Integer> BOOST_TIME = EntityDataManager.createKey(IschigualastiaEntity.class, DataSerializers.VARINT);
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(IschigualastiaEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(IschigualastiaEntity.class, DataSerializers.BOOLEAN);
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.CLADOPHLEBIS.asItem());

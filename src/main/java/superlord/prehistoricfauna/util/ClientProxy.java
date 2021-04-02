@@ -22,6 +22,7 @@ public class ClientProxy extends CommonProxy {
 	@SuppressWarnings("unused")
 	private FontRenderer paleoFontRenderer;
 
+	@SuppressWarnings("resource")
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void init() {
@@ -43,6 +44,7 @@ public class ClientProxy extends CommonProxy {
 		return InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), 340) || InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), 344);
 	}
 
+	@SuppressWarnings("resource")
 	public Object getFontRenderer() {
 		return Minecraft.getInstance().fontRenderer;
 	}
@@ -55,6 +57,7 @@ public class ClientProxy extends CommonProxy {
 		referencedTE = tileEntity;
 	}
 
+	@SuppressWarnings("resource")
 	public PlayerEntity getClientSidePlayer() {
 		return Minecraft.getInstance().player;
 	}

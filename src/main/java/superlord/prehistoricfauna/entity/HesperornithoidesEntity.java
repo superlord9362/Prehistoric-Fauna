@@ -1,12 +1,33 @@
 package superlord.prehistoricfauna.entity;
 
+import java.util.Random;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.AgeableEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.entity.ai.goal.BreedGoal;
+import net.minecraft.entity.ai.goal.FollowParentGoal;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.MoveToBlockGoal;
+import net.minecraft.entity.ai.goal.PanicGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.TemptGoal;
+import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.ChickenEntity;
+import net.minecraft.entity.passive.ParrotEntity;
+import net.minecraft.entity.passive.RabbitEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -25,12 +46,11 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import superlord.prehistoricfauna.block.HesperornithoidesEggBlock;
+import superlord.prehistoricfauna.entity.goal.HuntGoal;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
 import superlord.prehistoricfauna.util.SoundHandler;
-
-import java.util.Random;
 
 public class HesperornithoidesEntity extends PrehistoricEntity {
 	
@@ -75,8 +95,8 @@ public class HesperornithoidesEntity extends PrehistoricEntity {
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new SwimGoal(this));
-		this.attackAnimals = new NearestAttackableTargetGoal<>(this, AnimalEntity.class, 10, false, false, (p_213487_0_) -> {
-			return p_213487_0_ instanceof EilenodonEntity;
+		this.attackAnimals = new HuntGoal(this, AnimalEntity.class, 10, false, false, (p_213487_0_) -> {
+			return p_213487_0_ instanceof EilenodonEntity || p_213487_0_ instanceof RabbitEntity || p_213487_0_ instanceof ChickenEntity || p_213487_0_ instanceof ParrotEntity;
 		});
 		this.goalSelector.addGoal(1, new HesperornithoidesEntity.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25F));

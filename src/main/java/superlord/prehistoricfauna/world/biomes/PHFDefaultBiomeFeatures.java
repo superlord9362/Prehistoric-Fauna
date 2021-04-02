@@ -25,7 +25,11 @@ public class PHFDefaultBiomeFeatures {
     public static void addSparseIschigualastoVegetation(Biome biome) {
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PHFConfiguredFeatures.SPARSE_ISCHIGUALASTO_VEGETATION);
     }
+<<<<<<< Updated upstream
 
+=======
+    
+>>>>>>> Stashed changes
     public static void addCretaceousOres(Biome biome) {
         biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, PHFConfiguredFeatures.FOSSILIZED_CRETACEOUS_CHALK);
     }

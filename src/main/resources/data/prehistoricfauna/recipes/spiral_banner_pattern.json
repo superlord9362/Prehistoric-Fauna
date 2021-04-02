@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:medium_shell"
+    },
+	{
+		"item": "minecraft:paper"
+	}
+  ],
+  "result": {
+    "item": "prehistoricfauna:banner_pattern_spiral"
+  }
+}

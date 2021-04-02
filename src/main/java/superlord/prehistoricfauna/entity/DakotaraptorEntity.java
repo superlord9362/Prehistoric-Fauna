@@ -36,8 +36,15 @@ import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.ChickenEntity;
+import net.minecraft.entity.passive.CowEntity;
+import net.minecraft.entity.passive.OcelotEntity;
+import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.passive.RabbitEntity;
+import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.entity.passive.horse.DonkeyEntity;
+import net.minecraft.entity.passive.horse.HorseEntity;
+import net.minecraft.entity.passive.horse.MuleEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -66,6 +73,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.block.DakotaraptorEggBlock;
+import superlord.prehistoricfauna.entity.goal.HuntGoal;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
@@ -124,8 +132,8 @@ public class DakotaraptorEntity extends PrehistoricEntity {
 	}
 
 	protected void registerGoals() {
-		this.attackAnimals = new NearestAttackableTargetGoal<>(this, AnimalEntity.class, 10, false, false, (p_213487_0_) -> {
-			return p_213487_0_ instanceof ThescelosaurusEntity || p_213487_0_ instanceof BasilemysEntity || p_213487_0_ instanceof DryosaurusEntity || p_213487_0_ instanceof HesperornithoidesEntity || p_213487_0_ instanceof EilenodonEntity || p_213487_0_ instanceof DidelphodonEntity;
+		this.attackAnimals = new HuntGoal(this, AnimalEntity.class, 10, false, false, (p_213487_0_) -> {
+			return p_213487_0_ instanceof ThescelosaurusEntity || p_213487_0_ instanceof BasilemysEntity || p_213487_0_ instanceof DryosaurusEntity || p_213487_0_ instanceof HesperornithoidesEntity || p_213487_0_ instanceof EilenodonEntity || p_213487_0_ instanceof DidelphodonEntity || p_213487_0_ instanceof HorseEntity || p_213487_0_ instanceof DonkeyEntity || p_213487_0_ instanceof MuleEntity || p_213487_0_ instanceof SheepEntity || p_213487_0_ instanceof CowEntity || p_213487_0_ instanceof PigEntity || p_213487_0_ instanceof OcelotEntity;
 		});
 		this.goalSelector.addGoal(0, new DakotaraptorEntity.SwimGoal());
 		this.goalSelector.addGoal(1, new DakotaraptorEntity.JumpGoal());
@@ -755,6 +763,7 @@ public class DakotaraptorEntity extends PrehistoricEntity {
 			DakotaraptorEntity.this.func_213461_s(false);
 		}
 
+		@SuppressWarnings("deprecation")
 		public void tick() {
 			LivingEntity livingentity = DakotaraptorEntity.this.getAttackTarget();
 			if (livingentity != null) {

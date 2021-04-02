@@ -12,7 +12,7 @@ import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import superlord.prehistoricfauna.world.feature.*;
 import superlord.prehistoricfauna.world.feature.config.NoisySphereConfig;
 import superlord.prehistoricfauna.world.feature.config.PHFTreeConfig;
-import superlord.prehistoricfauna.world.feature.cretaceous.DidelphodonBurrowFeature;
+//import superlord.prehistoricfauna.world.feature.cretaceous.DidelphodonBurrowFeature;
 import superlord.prehistoricfauna.world.feature.cretaceous.araucaria.AraucariaTree1;
 import superlord.prehistoricfauna.world.feature.cretaceous.araucaria.AraucariaTree2;
 import superlord.prehistoricfauna.world.feature.cretaceous.araucaria.small.AraucariaSmallTree1;
@@ -41,7 +41,7 @@ import superlord.prehistoricfauna.world.feature.triassic.heidiphyllum.Heidiphyll
 import superlord.prehistoricfauna.world.feature.triassic.heidiphyllum.Heidiphyllum5;
 import superlord.prehistoricfauna.world.feature.util.SmallPineTree;
 import superlord.prehistoricfauna.world.placement.DicroidiumConfig;
-import superlord.prehistoricfauna.world.placement.DidelphodonBurrowConfig;
+//import superlord.prehistoricfauna.world.placement.DidelphodonBurrowConfig;
 import superlord.prehistoricfauna.world.placement.JohnstoniaConfig;
 
 public class PHFFeatures {
@@ -86,7 +86,7 @@ public class PHFFeatures {
 
     public static final Feature<CrassostreaOystersConfig> CRASSOSTREA_OYSTERS_FEATURE = createFeature("crassostrea_oysters", new CrassostreaOystersFeature(CrassostreaOystersConfig::deserialize));
     public static final Feature<AlgaeFeatureConfig> ALGAE_FEATURE = createFeature("algae", new AlgaeFeature(AlgaeFeatureConfig::deserialize));
-    public static final Feature<DidelphodonBurrowConfig> DIDELPHODON_BURROW_FEATURE = createFeature("didelphodon_burrow", new DidelphodonBurrowFeature(DidelphodonBurrowConfig::deserialize));
+    //public static final Feature<DidelphodonBurrowConfig> DIDELPHODON_BURROW_FEATURE = createFeature("didelphodon_burrow", new DidelphodonBurrowFeature(DidelphodonBurrowConfig::deserialize));
     public static final Feature<JohnstoniaConfig> JOHNSTONIA_FEATURE = createFeature("johnstonia_feature", new JohnstoniaFeature(JohnstoniaConfig::deserialize));
     public static final Feature<DicroidiumConfig> DICROIDIUM_FEATURE = createFeature("dicroidium_feature", new DicroidiumFeature(DicroidiumConfig::deserialize));
 

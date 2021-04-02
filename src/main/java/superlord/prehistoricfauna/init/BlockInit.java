@@ -51,7 +51,7 @@ import superlord.prehistoricfauna.block.CretaceousTimeBlock;
 import superlord.prehistoricfauna.block.DakotaraptorEggBlock;
 import superlord.prehistoricfauna.block.DeadConiopterisBlock;
 import superlord.prehistoricfauna.block.DicroidiumBlock;
-import superlord.prehistoricfauna.block.DidelphodonBurrowBlock;
+//import superlord.prehistoricfauna.block.DidelphodonBurrowBlock;
 import superlord.prehistoricfauna.block.DryosaurusEggBlock;
 import superlord.prehistoricfauna.block.EilenodonEggBlock;
 import superlord.prehistoricfauna.block.ExaeretodonEggBlock;
@@ -340,7 +340,7 @@ public class BlockInit {
 	public static final Block TRIASSIC_PORTAL = new TriassicPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).lightValue(11).noDrops()).setRegistryName("triassic_portal");//Loot Table done
 	public static final Block TRIASSIC_TIME_BLOCK = new TriassicTimeBlock();//Loot Table done
 	public static final Block CRASSOSTREA_BLOCK = new CrassostreaOysterBlock(Block.Properties.create(Material.CORAL).doesNotBlockMovement().hardnessAndResistance(0.5F).tickRandomly().sound(SoundType.STONE).harvestLevel(0)).setRegistryName("crassostrea_oysters");
-	public static final Block DIDELPHODON_BURROW = new DidelphodonBurrowBlock(Block.Properties.create(Material.EARTH).hardnessAndResistance(0.5F).sound(SoundType.GROUND)).setRegistryName("didelphodon_burrow");
+	//public static final Block DIDELPHODON_BURROW = new DidelphodonBurrowBlock(Block.Properties.create(Material.EARTH).hardnessAndResistance(0.5F).sound(SoundType.GROUND)).setRegistryName("didelphodon_burrow");
 	public static final Block HENOSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone");
 	public static final Block HENOSTONE_CARVED = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone_carved");
 	public static final Block HENOSTONE_BRICKS = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone_bricks");
@@ -356,7 +356,7 @@ public class BlockInit {
 	public static final Block HENOSTONE_DARK_BRICK_STAIRS = new PrehistoricStairsBlock(HENOSTONE_BRICKS_DARK.getDefaultState(), Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone_dark_brick_stairs");
 	public static final Block HENOSTONE_DARK_BRICK_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone_dark_brick_slab");
 	public static final Block HENOSTONE_DARK_BRICK_WALL = new WallBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone_dark_brick_wall");
-	public static final Block HENOSTONE_TRAP = new TrapBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone_trap");
+	public static final Block HENOSTONE_TRAP = new TrapBlock(TrapBlock.Sensitivity.MOBS, Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone_trap");
 	public static final Block LARGE_AMMONITE_SHELL = new AmmoniteLargeShellBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("large_shell");
 	public static final Block MEDIUM_AMMONITE_SHELL = new AmmoniteMediumShellBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("medium_shell");
 	public static final Block SMALL_AMMONITE_SHELL = new AmmoniteSmallShellBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("small_shell");
@@ -622,7 +622,7 @@ public class BlockInit {
 		event.getRegistry().register(TRIASSIC_PORTAL);
 		event.getRegistry().register(TRIASSIC_TIME_BLOCK);
 		event.getRegistry().register(CRASSOSTREA_BLOCK);
-		event.getRegistry().register(DIDELPHODON_BURROW);
+		//event.getRegistry().register(DIDELPHODON_BURROW);
 		event.getRegistry().register(HENOSTONE);
 		event.getRegistry().register(HENOSTONE_CARVED);
 		event.getRegistry().register(HENOSTONE_BRICKS);
@@ -989,7 +989,7 @@ public class BlockInit {
  		event.getRegistry().register(new BlockItem(BlockInit.SILLOSUCHUS_EGG, new Item.Properties().group(PFEntities.instance)).setRegistryName("sillosuchus_egg"));
  		event.getRegistry().register(new BlockItem(BlockInit.PORTAL_FRAME, new Item.Properties().group(PFBook.instance)).setRegistryName("portal_frame"));
  		event.getRegistry().register(new BlockItem(BlockInit.PORTAL_PROJECTOR, new Item.Properties().group(PFBook.instance)).setRegistryName("portal_projector"));
- 		event.getRegistry().register(new BlockItem(BlockInit.DIDELPHODON_BURROW, new Item.Properties().group(PFBook.instance)).setRegistryName("didelphodon_burrow"));
+ 		//event.getRegistry().register(new BlockItem(BlockInit.DIDELPHODON_BURROW, new Item.Properties().group(PFBook.instance)).setRegistryName("didelphodon_burrow"));
  		event.getRegistry().register(new BlockItem(BlockInit.HENOSTONE_CARVED, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone_carved"));
  		event.getRegistry().register(new BlockItem(BlockInit.HENOSTONE_BRICKS, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone_bricks"));
  		event.getRegistry().register(new BlockItem(BlockInit.HENOSTONE_BRICKS_DARK, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone_bricks_dark"));

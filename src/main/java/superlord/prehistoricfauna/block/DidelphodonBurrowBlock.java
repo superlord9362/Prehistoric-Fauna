@@ -27,7 +27,7 @@ import superlord.prehistoricfauna.entity.tile.DidelphodonBurrowTileEntity;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class DidelphodonBurrowBlock extends ContainerBlock {
+public class DidelphodonBurrowBlock { /**extends ContainerBlock {
 	
 	public DidelphodonBurrowBlock(Block.Properties builder) {
 		super(builder);
@@ -113,5 +113,5 @@ public class DidelphodonBurrowBlock extends ContainerBlock {
 	public TileEntity createNewTileEntity(IBlockReader worldIn) {
 		return new DidelphodonBurrowTileEntity();
 	}
-
+*/
 }

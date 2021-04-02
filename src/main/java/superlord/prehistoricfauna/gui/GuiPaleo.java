@@ -64,7 +64,8 @@ public class GuiPaleo extends Screen {
         index = true;
     }
 
-    private FontRenderer getFont() {
+    @SuppressWarnings("resource")
+	private FontRenderer getFont() {
         FontRenderer font;
         font = Minecraft.getInstance().fontRenderer;
         return font;
@@ -172,7 +173,7 @@ public class GuiPaleo extends Screen {
         writeFromTxt();
     }
 
-    @SuppressWarnings({ "unused", "rawtypes" })
+    @SuppressWarnings({ "unused", "rawtypes", "resource" })
 	public void imageFromTxt() {
         String fileName = this.pageType.toString().toLowerCase() + "_" + this.bookPages + ".txt";
         ResourceLocation fileLoc = new ResourceLocation("prehistoricfauna:lang/paleopedia/" + Minecraft.getInstance().gameSettings.language + "_0/" + fileName);
@@ -267,7 +268,7 @@ public class GuiPaleo extends Screen {
 
     }
 
-    @SuppressWarnings("rawtypes")
+    @SuppressWarnings({ "rawtypes", "resource" })
 	public void writeFromTxt() {
         String fileName = this.pageType.toString().toLowerCase() + "_" + this.bookPages + ".txt";
         ResourceLocation fileLoc = new ResourceLocation("prehistoricfauna:lang/paleopedia/" + Minecraft.getInstance().gameSettings.language + "_0/" + fileName);
@@ -310,13 +311,15 @@ public class GuiPaleo extends Screen {
         }
         GL11.glPushMatrix();
         String s = StatCollector.translateToLocal("paleopedia." + this.pageType.toString().toLowerCase());
-        float scale = font.getStringWidth(s) <= 100 ? 2 : font.getStringWidth(s) * 0.0125F;
-        GL11.glScalef(scale, scale, scale);
-        font.drawString(s, 20, 5, 0X303030);
+        float scale = font.getStringWidth(s) <= 85 ? 2 : font.getStringWidth(s) * 0.019F;
+        float scale2 = font.getStringWidth(s) <= 95 ? scale : font.getStringWidth(s) * 0.015F;
+        GL11.glScalef(scale2, scale2, scale2);
+        font.drawString(s, 15, 5, 0X303030);
         GL11.glPopMatrix();
     }
 
-    private boolean usingVanillaFont() {
+    @SuppressWarnings("resource")
+	private boolean usingVanillaFont() {
         return font == Minecraft.getInstance().fontRenderer;
     }
 

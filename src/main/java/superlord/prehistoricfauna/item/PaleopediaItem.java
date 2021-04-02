@@ -6,6 +6,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Rarity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
@@ -27,7 +28,7 @@ import java.util.List;
 public class PaleopediaItem extends Item {
 	
 	public PaleopediaItem() {
-		super(new Item.Properties().group(PFBook.instance).maxStackSize(1));
+		super(new Item.Properties().group(PFBook.instance).maxStackSize(1).rarity(Rarity.UNCOMMON));
 	}
 	
 	@Override
