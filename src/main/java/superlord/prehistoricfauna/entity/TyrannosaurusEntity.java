@@ -32,8 +32,6 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import superlord.prehistoricfauna.block.TyrannosaurusEggBlock;
 import superlord.prehistoricfauna.entity.goal.HuntGoal;
-import superlord.prehistoricfauna.entity.goal.ThreeStageBreedGoal;
-import superlord.prehistoricfauna.entity.goal.ThreeStageFollowParentGoal;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
@@ -42,11 +40,12 @@ import superlord.prehistoricfauna.util.SoundHandler;
 import java.util.Random;
 import java.util.function.Predicate;
 
-public class TyrannosaurusEntity extends PrehistoricEntity {
+public class TyrannosaurusEntity extends AnimalEntity {
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(TyrannosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(TyrannosaurusEntity.class, DataSerializers.BOOLEAN);
 	private int warningSoundTicks;
 	private int isDigging;
+	private Goal followParentGoal;
 
 	public TyrannosaurusEntity(EntityType<? extends TyrannosaurusEntity> type, World worldIn) {
 		super(type, worldIn);
@@ -82,7 +81,7 @@ public class TyrannosaurusEntity extends PrehistoricEntity {
 		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(1, new TyrannosaurusEntity.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new TyrannosaurusEntity.PanicGoal());
-		this.goalSelector.addGoal(4, new ThreeStageFollowParentGoal(this, 1.25D));
+		this.goalSelector.addGoal(4, followParentGoal = new FollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
@@ -100,6 +99,16 @@ public class TyrannosaurusEntity extends PrehistoricEntity {
 		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
 		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
 		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(12.0D);
+	}
+	
+	@Override
+	public void setGrowingAge(int age) {
+		super.setGrowingAge(age);
+		if (this.getGrowingAge() >= -12000 && this.getGrowingAge() < 0) {
+			this.goalSelector.removeGoal(followParentGoal);
+		} else if (this.getGrowingAge() < -12000) {
+			this.goalSelector.addGoal(4, followParentGoal);
+		}
 	}
 
 	protected SoundEvent getAmbientSound() {
@@ -322,7 +331,7 @@ public class TyrannosaurusEntity extends PrehistoricEntity {
 		}
 	}
 
-	static class MateGoal extends ThreeStageBreedGoal {
+	static class MateGoal extends BreedGoal {
 		private final TyrannosaurusEntity tyrannosaurus;
 
 		MateGoal(TyrannosaurusEntity tyrannosaurus, double speedIn) {
@@ -363,7 +372,7 @@ public class TyrannosaurusEntity extends PrehistoricEntity {
 	}
 
 	@Override
-	public ThreeStageAgeEntity createChild(ThreeStageAgeEntity ageable) {
+	public AgeableEntity createChild(AgeableEntity ageable) {
 		TyrannosaurusEntity entity = new TyrannosaurusEntity(ModEntityTypes.TYRANNOSAURUS_ENTITY, this.world);
 		entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
 		return entity;
