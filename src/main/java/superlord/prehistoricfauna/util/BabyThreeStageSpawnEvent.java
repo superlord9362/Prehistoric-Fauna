@@ -1,31 +1,32 @@
-package superlord.prehistoricfauna.entity.goal;
-
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraftforge.eventbus.api.Cancelable;
-import superlord.prehistoricfauna.entity.PrehistoricStagedEntity;
-import superlord.prehistoricfauna.entity.ThreeStageAgeEntity;
+package superlord.prehistoricfauna.util;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraftforge.eventbus.api.Cancelable;
+import superlord.prehistoricfauna.entity.PrehistoricEntity;
+import superlord.prehistoricfauna.entity.ThreeStageAgeEntity;
+
 @Cancelable
-public class PrehistoricBabyEntitySpawnEvent extends net.minecraftforge.eventbus.api.Event
+public class BabyThreeStageSpawnEvent extends net.minecraftforge.eventbus.api.Event
 {
-    private final PrehistoricStagedEntity parentA;
-    private final PrehistoricStagedEntity parentB;
+    private final MobEntity parentA;
+    private final MobEntity parentB;
     private final PlayerEntity causedByPlayer;
     private ThreeStageAgeEntity child;
 
-    public PrehistoricBabyEntitySpawnEvent(PrehistoricStagedEntity parentA, PrehistoricStagedEntity parentB, @Nullable ThreeStageAgeEntity proposedChild)
+    public BabyThreeStageSpawnEvent(MobEntity parentA, MobEntity parentB, @Nullable ThreeStageAgeEntity proposedChild)
     {
         //causedByPlayer calculated here to simplify the patch.
         PlayerEntity causedByPlayer = null;
-        if (parentA instanceof PrehistoricStagedEntity) {
-            causedByPlayer = ((PrehistoricStagedEntity)parentA).getLoveCause();
+        if (parentA instanceof PrehistoricEntity) {
+            causedByPlayer = ((PrehistoricEntity)parentA).getLoveCause();
         }
 
-        if (causedByPlayer == null && parentB instanceof PrehistoricStagedEntity)
+        if (causedByPlayer == null && parentB instanceof PrehistoricEntity)
         {
-            causedByPlayer = ((PrehistoricStagedEntity)parentB).getLoveCause();
+            causedByPlayer = ((PrehistoricEntity)parentB).getLoveCause();
         }
 
         this.parentA = parentA;
@@ -34,12 +35,12 @@ public class PrehistoricBabyEntitySpawnEvent extends net.minecraftforge.eventbus
         this.child = proposedChild;
     }
 
-    public PrehistoricStagedEntity getParentA()
+    public MobEntity getParentA()
     {
         return parentA;
     }
 
-    public PrehistoricStagedEntity getParentB()
+    public MobEntity getParentB()
     {
         return parentB;
     }

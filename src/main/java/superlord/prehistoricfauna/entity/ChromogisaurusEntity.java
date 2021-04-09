@@ -6,6 +6,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -32,7 +33,7 @@ import superlord.prehistoricfauna.util.SoundHandler;
 
 import java.util.Random;
 
-public class ChromogisaurusEntity extends PrehistoricEntity {
+public class ChromogisaurusEntity extends AnimalEntity {
 	
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(ChromogisaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(ChromogisaurusEntity.class, DataSerializers.BOOLEAN);

@@ -6,6 +6,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -33,7 +34,7 @@ import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.function.Predicate;
 
-public class IschigualastiaEntity extends PrehistoricEntity {
+public class IschigualastiaEntity extends AnimalEntity {
 	
 	private static final DataParameter<Boolean> SADDLED = EntityDataManager.createKey(IschigualastiaEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Integer> BOOST_TIME = EntityDataManager.createKey(IschigualastiaEntity.class, DataSerializers.VARINT);

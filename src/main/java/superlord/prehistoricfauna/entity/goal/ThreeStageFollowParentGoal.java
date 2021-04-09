@@ -1,30 +1,34 @@
 package superlord.prehistoricfauna.entity.goal;
 
-import net.minecraft.entity.ai.goal.Goal;
-import superlord.prehistoricfauna.entity.PrehistoricStagedEntity;
-
 import java.util.List;
 
-public class PrehistoricFollowParentGoal extends Goal {
-   private final PrehistoricStagedEntity childAnimal;
-   private PrehistoricStagedEntity parentAnimal;
+import net.minecraft.entity.ai.goal.Goal;
+import superlord.prehistoricfauna.entity.ThreeStageAgeEntity;
+
+public class ThreeStageFollowParentGoal extends Goal {
+   private final ThreeStageAgeEntity childAnimal;
+   private ThreeStageAgeEntity parentAnimal;
    private final double moveSpeed;
    private int delayCounter;
 
-   public PrehistoricFollowParentGoal(PrehistoricStagedEntity animal, double speed) {
+   public ThreeStageFollowParentGoal(ThreeStageAgeEntity animal, double speed) {
       this.childAnimal = animal;
       this.moveSpeed = speed;
    }
 
+   /**
+    * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+    * method as well.
+    */
    public boolean shouldExecute() {
-      if (this.childAnimal.getGrowingAge() >= -24000) {
+      if (this.childAnimal.getGrowingAge() >= 0) {
          return false;
       } else {
-         List<PrehistoricStagedEntity> list = this.childAnimal.world.getEntitiesWithinAABB(this.childAnimal.getClass(), this.childAnimal.getBoundingBox().grow(8.0D, 4.0D, 8.0D));
-         PrehistoricStagedEntity animalentity = null;
+         List<ThreeStageAgeEntity> list = this.childAnimal.world.getEntitiesWithinAABB(this.childAnimal.getClass(), this.childAnimal.getBoundingBox().grow(8.0D, 4.0D, 8.0D));
+         ThreeStageAgeEntity animalentity = null;
          double d0 = Double.MAX_VALUE;
 
-         for(PrehistoricStagedEntity animalentity1 : list) {
+         for(ThreeStageAgeEntity animalentity1 : list) {
             if (animalentity1.getGrowingAge() >= 0) {
                double d1 = this.childAnimal.getDistanceSq(animalentity1);
                if (!(d1 > d0)) {
@@ -45,8 +49,11 @@ public class PrehistoricFollowParentGoal extends Goal {
       }
    }
 
+   /**
+    * Returns whether an in-progress EntityAIBase should continue executing
+    */
    public boolean shouldContinueExecuting() {
-      if (this.childAnimal.getGrowingAge() >= 0) {
+      if (this.childAnimal.getGrowingAge() >= -12000) {
          return false;
       } else if (!this.parentAnimal.isAlive()) {
          return false;
@@ -56,14 +63,23 @@ public class PrehistoricFollowParentGoal extends Goal {
       }
    }
 
+   /**
+    * Execute a one shot task or start executing a continuous task
+    */
    public void startExecuting() {
       this.delayCounter = 0;
    }
 
+   /**
+    * Reset the task's internal state. Called when this task is interrupted by another one
+    */
    public void resetTask() {
       this.parentAnimal = null;
    }
 
+   /**
+    * Keep ticking a continuous task that has already been started
+    */
    public void tick() {
       if (--this.delayCounter <= 0) {
          this.delayCounter = 10;

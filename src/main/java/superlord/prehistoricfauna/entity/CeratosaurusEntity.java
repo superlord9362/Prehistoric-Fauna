@@ -42,7 +42,7 @@ import superlord.prehistoricfauna.util.SoundHandler;
 import java.util.Random;
 import java.util.function.Predicate;
 
-public class CeratosaurusEntity extends PrehistoricEntity {
+public class CeratosaurusEntity extends AnimalEntity {
 	
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(CeratosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(CeratosaurusEntity.class, DataSerializers.BOOLEAN);

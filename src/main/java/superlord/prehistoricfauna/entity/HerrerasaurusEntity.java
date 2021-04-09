@@ -57,7 +57,7 @@ import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
 import superlord.prehistoricfauna.util.SoundHandler;
 
-public class HerrerasaurusEntity extends PrehistoricEntity {
+public class HerrerasaurusEntity extends AnimalEntity {
 
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(HerrerasaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(HerrerasaurusEntity.class, DataSerializers.BOOLEAN);

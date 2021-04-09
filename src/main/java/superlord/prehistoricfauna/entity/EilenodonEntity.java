@@ -7,6 +7,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.RabbitEntity;
 import net.minecraft.entity.passive.TameableEntity;
@@ -37,7 +38,7 @@ import java.util.EnumSet;
 import java.util.Random;
 import java.util.function.Predicate;
 
-public class EilenodonEntity extends PrehistoricEntity {
+public class EilenodonEntity extends AnimalEntity {
 	
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(EilenodonEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(EilenodonEntity.class, DataSerializers.BOOLEAN);
@@ -310,11 +311,11 @@ public class EilenodonEntity extends PrehistoricEntity {
 		}
 
 		public boolean shouldExecute() {
-			return EilenodonEntity.this.getRevengeTarget() == null && EilenodonEntity.this.getRNG().nextFloat() < 0.02F && !EilenodonEntity.this.isSleeping() && EilenodonEntity.this.getAttackTarget() == null && EilenodonEntity.this.getNavigator().noPath() && !this.func_220814_h() && !EilenodonEntity.this.func_213480_dY() && !EilenodonEntity.this.isCrouching();
+			return EilenodonEntity.this.getRevengeTarget() == null && EilenodonEntity.this.getRNG().nextFloat() < 0.02F && !EilenodonEntity.this.isSleeping() && EilenodonEntity.this.getAttackTarget() == null && EilenodonEntity.this.getNavigator().noPath() && !this.func_220814_h() && !EilenodonEntity.this.func_213480_dY() && !EilenodonEntity.this.isCrouching() && world.getDayTime() <= 500 || EilenodonEntity.this.getRevengeTarget() == null && EilenodonEntity.this.getRNG().nextFloat() < 0.02F && !EilenodonEntity.this.isSleeping() && EilenodonEntity.this.getAttackTarget() == null && EilenodonEntity.this.getNavigator().noPath() && !this.func_220814_h() && !EilenodonEntity.this.func_213480_dY() && !EilenodonEntity.this.isCrouching() && world.getDayTime() >= 11500 && world.getDayTime() <= 13500 || EilenodonEntity.this.getRevengeTarget() == null && EilenodonEntity.this.getRNG().nextFloat() < 0.02F && !EilenodonEntity.this.isSleeping() && EilenodonEntity.this.getAttackTarget() == null && EilenodonEntity.this.getNavigator().noPath() && !this.func_220814_h() && !EilenodonEntity.this.func_213480_dY() && !EilenodonEntity.this.isCrouching() && world.getDayTime() >= 22500;
 		}
 
 		public boolean shouldContinueExecuting() {
-			return this.field_220822_f > 0;
+			return this.field_220822_f == 4;
 		}
 
 		public void startExecuting() {

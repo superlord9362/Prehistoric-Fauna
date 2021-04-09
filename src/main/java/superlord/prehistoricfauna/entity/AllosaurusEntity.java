@@ -41,7 +41,7 @@ import superlord.prehistoricfauna.util.SoundHandler;
 import java.util.Random;
 import java.util.function.Predicate;
 
-public class AllosaurusEntity extends PrehistoricEntity {
+public class AllosaurusEntity extends AnimalEntity {
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(AllosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(AllosaurusEntity.class, DataSerializers.BOOLEAN);
 	private int warningSoundTicks;

@@ -52,7 +52,7 @@ import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
 import superlord.prehistoricfauna.util.SoundHandler;
 
-public class HesperornithoidesEntity extends PrehistoricEntity {
+public class HesperornithoidesEntity extends AnimalEntity {
 	
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(HesperornithoidesEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(HesperornithoidesEntity.class, DataSerializers.BOOLEAN);

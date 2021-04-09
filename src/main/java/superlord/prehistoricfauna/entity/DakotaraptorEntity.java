@@ -79,7 +79,7 @@ import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
 import superlord.prehistoricfauna.util.SoundHandler;
 
-public class DakotaraptorEntity extends PrehistoricEntity {
+public class DakotaraptorEntity extends AnimalEntity {
 	private static final DataParameter<Byte> DAKOTARAPTOR_FLAGS = EntityDataManager.createKey(DakotaraptorEntity.class, DataSerializers.BYTE);
 	private static final Predicate<Entity> IS_PREY = (p_213498_0_) -> {
 		return p_213498_0_ instanceof ThescelosaurusEntity || p_213498_0_ instanceof BasilemysEntity || p_213498_0_ instanceof DryosaurusEntity || p_213498_0_ instanceof HesperornithoidesEntity || p_213498_0_ instanceof EilenodonEntity || p_213498_0_ instanceof DidelphodonEntity;

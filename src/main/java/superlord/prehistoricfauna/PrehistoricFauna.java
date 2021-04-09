@@ -162,17 +162,10 @@ public class PrehistoricFauna {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-<<<<<<< Updated upstream
-        List<Structure<?>> tempList = new ArrayList<>(Feature.ILLAGER_STRUCTURES);
-        tempList.add(PrehistoricFeature.TIME_TEMPLE);
-        Feature.ILLAGER_STRUCTURES = ImmutableList.copyOf(tempList);
-
-=======
     	List<Structure<?>> tempList = new ArrayList<>(Feature.ILLAGER_STRUCTURES);
         tempList.add(PrehistoricFeature.TIME_TEMPLE);
         Feature.ILLAGER_STRUCTURES = ImmutableList.copyOf(tempList);
         PFFeatureRegistration.addFeatures();
->>>>>>> Stashed changes
         CommonEvents.setup();
         PROXY.setup();
         for (Biome biome : ForgeRegistries.BIOMES) {

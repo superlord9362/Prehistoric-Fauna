@@ -15,10 +15,6 @@ import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 
 import java.util.Arrays;
-<<<<<<< Updated upstream
-import java.util.Map;
-=======
->>>>>>> Stashed changes
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -118,11 +114,7 @@ public class NoisySphereConfig implements IFeatureConfig {
         this.minZRadius = minZRadius;
         this.maxZRadius = maxZRadius;
         this.radiusDivisorPerStack = radiusDivisorPerStack;
-<<<<<<< Updated upstream
-        this.noiseFrequency = noiseFrequency;
-=======
         this.noiseFrequency = noiseFrequency;        
->>>>>>> Stashed changes
         this.whitelistedDimensions = whitelistedDimensions;
     }
 
@@ -217,11 +209,7 @@ public class NoisySphereConfig implements IFeatureConfig {
     public double getNoiseFrequency() {
         return noiseFrequency;
     }
-<<<<<<< Updated upstream
-
-=======
     
->>>>>>> Stashed changes
     public Set<ResourceLocation> getWhitelistedDimensions() {
         return whitelistedDimensions;
     }
@@ -312,11 +300,7 @@ public class NoisySphereConfig implements IFeatureConfig {
                 this.minXRadius = minXRadius;
             return this;
         }
-<<<<<<< Updated upstream
-
-=======
         
->>>>>>> Stashed changes
         public Builder setMinRadius(int minRadius) {
             if (minRadius <= 0) {
                 this.minXRadius = 1;
@@ -380,11 +364,7 @@ public class NoisySphereConfig implements IFeatureConfig {
             this.noiseFrequency = noiseFrequency;
             return this;
         }
-<<<<<<< Updated upstream
-
-=======
         
->>>>>>> Stashed changes
         public Set<ResourceLocation> getWhitelistedDimensions() {
             return whitelistedDimensions;
         }
@@ -399,12 +379,8 @@ public class NoisySphereConfig implements IFeatureConfig {
             return this;
         }
 
-<<<<<<< Updated upstream
-        public Builder setWhitelistedDimensions(DimensionType... whitelistedDimensions) {
-=======
         @SuppressWarnings("deprecation")
 		public Builder setWhitelistedDimensions(DimensionType... whitelistedDimensions) {
->>>>>>> Stashed changes
             this.whitelistedDimensions = Arrays.stream(whitelistedDimensions).map(Registry.DIMENSION_TYPE::getKey).collect(Collectors.toSet());
             return this;
         }
@@ -429,8 +405,4 @@ public class NoisySphereConfig implements IFeatureConfig {
             return new NoisySphereConfig(this.blockProvider, this.topBlockProvider, this.minStackHeight, this.maxStackHeight, this.minXRadius / 2, this.maxXRadius / 2, minYRadius / 2, maxYRadius / 2, minZRadius / 2, maxZRadius / 2, this.radiusDivisorPerStack, this.noiseFrequency, this.whitelistedDimensions);
         }
     }
-<<<<<<< Updated upstream
-}
-=======
 } 
->>>>>>> Stashed changes

@@ -1,6 +1,5 @@
 package superlord.prehistoricfauna.entity;
 
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -33,6 +32,8 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import superlord.prehistoricfauna.block.TyrannosaurusEggBlock;
 import superlord.prehistoricfauna.entity.goal.HuntGoal;
+import superlord.prehistoricfauna.entity.goal.ThreeStageBreedGoal;
+import superlord.prehistoricfauna.entity.goal.ThreeStageFollowParentGoal;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
@@ -49,12 +50,6 @@ public class TyrannosaurusEntity extends PrehistoricEntity {
 
 	public TyrannosaurusEntity(EntityType<? extends TyrannosaurusEntity> type, World worldIn) {
 		super(type, worldIn);
-	}
-
-	public AgeableEntity createChild(AgeableEntity ageable) {
-		TyrannosaurusEntity entity = new TyrannosaurusEntity(ModEntityTypes.TYRANNOSAURUS_ENTITY, this.world);
-		entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
-		return entity;
 	}
 
 	public boolean isDigging() {
@@ -87,7 +82,7 @@ public class TyrannosaurusEntity extends PrehistoricEntity {
 		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(1, new TyrannosaurusEntity.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new TyrannosaurusEntity.PanicGoal());
-		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
+		this.goalSelector.addGoal(4, new ThreeStageFollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
@@ -327,7 +322,7 @@ public class TyrannosaurusEntity extends PrehistoricEntity {
 		}
 	}
 
-	static class MateGoal extends BreedGoal {
+	static class MateGoal extends ThreeStageBreedGoal {
 		private final TyrannosaurusEntity tyrannosaurus;
 
 		MateGoal(TyrannosaurusEntity tyrannosaurus, double speedIn) {
@@ -354,7 +349,6 @@ public class TyrannosaurusEntity extends PrehistoricEntity {
 
 			if (serverplayerentity != null) {
 				serverplayerentity.addStat(Stats.ANIMALS_BRED);
-				CriteriaTriggers.BRED_ANIMALS.trigger(serverplayerentity, this.animal, this.targetMate, (AgeableEntity)null);
 			}
 
 			this.tyrannosaurus.setHasEgg(true);
@@ -366,6 +360,13 @@ public class TyrannosaurusEntity extends PrehistoricEntity {
 			}
 
 		}
+	}
+
+	@Override
+	public ThreeStageAgeEntity createChild(ThreeStageAgeEntity ageable) {
+		TyrannosaurusEntity entity = new TyrannosaurusEntity(ModEntityTypes.TYRANNOSAURUS_ENTITY, this.world);
+		entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
+		return entity;
 	}
 
 }
