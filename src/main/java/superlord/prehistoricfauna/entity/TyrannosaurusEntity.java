@@ -43,6 +43,7 @@ import java.util.function.Predicate;
 public class TyrannosaurusEntity extends AnimalEntity {
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(TyrannosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(TyrannosaurusEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> IS_JUVENILE = EntityDataManager.createKey(TyrannosaurusEntity.class, DataSerializers.BOOLEAN);
 	private int warningSoundTicks;
 	private int isDigging;
 	private Goal followParentGoal;
@@ -66,6 +67,14 @@ public class TyrannosaurusEntity extends AnimalEntity {
 
 	private void setHasEgg(boolean hasEgg) {
 		this.dataManager.set(HAS_EGG, hasEgg);
+	}
+	
+	public boolean isJuvenile() {
+		return this.dataManager.get(IS_JUVENILE);
+	}
+	
+	private void setJuvenile(boolean isJuvenile) {
+		this.dataManager.set(IS_JUVENILE, isJuvenile);
 	}
 
 	public boolean isBreedingItem(ItemStack stack) {
@@ -106,8 +115,11 @@ public class TyrannosaurusEntity extends AnimalEntity {
 		super.setGrowingAge(age);
 		if (this.getGrowingAge() >= -12000 && this.getGrowingAge() < 0) {
 			this.goalSelector.removeGoal(followParentGoal);
+			this.setJuvenile(true);
 		} else if (this.getGrowingAge() < -12000) {
 			this.goalSelector.addGoal(4, followParentGoal);
+		} else if(this.getGrowingAge() >= 0) {
+			this.setJuvenile(false);
 		}
 	}
 
@@ -138,6 +150,7 @@ public class TyrannosaurusEntity extends AnimalEntity {
 		super.registerData();
 		this.dataManager.register(HAS_EGG, false);
 		this.dataManager.register(IS_DIGGING, false);
+		this.dataManager.register(IS_JUVENILE, false);
 	}
 
 	public void writeAdditional(CompoundNBT compound) {

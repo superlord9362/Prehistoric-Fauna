@@ -57,6 +57,7 @@ public class ItemInit {
 	public static final RegistryObject<SpawnSkeletonItem> TYRANNOSAURUS_SKELETON = ITEMS.register("tyrannosaurus_skeleton", () -> new SpawnSkeletonItem(ModEntityTypes.TYRANNOSAURUS_SKELETON, new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> TRICERATOPS_SKELETON = ITEMS.register("triceratops_skeleton", () -> new SpawnSkeletonItem(ModEntityTypes.TRICERATOPS_SKELETON, new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> ANKYLOSAURUS_SKELTON = ITEMS.register("ankylosaurus_skeleton", () -> new SpawnSkeletonItem(ModEntityTypes.ANKYLOSAURUS_SKELETON, new Item.Properties().group(PFFossil.instance)));
+	public static final RegistryObject<SpawnSkeletonItem> CERATOSAURUS_SKELETON = ITEMS.register("ceratosaurus_skeleton", () -> new SpawnSkeletonItem(ModEntityTypes.CERATOSAURUS_SKELETON, new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> HERRERASAURUS_SKELETON = ITEMS.register("herrerasaurus_skeleton", () -> new SpawnSkeletonItem(ModEntityTypes.HERRERASAURUS_SKELETON, new Item.Properties().group(PFFossil.instance)));
 	//Drops
 	public static final RegistryObject<Item> TYRANNOSAURUS_TOOTH = ITEMS.register("tyrannosaurus_tooth", () -> new Item(new Item.Properties().group(PFEntities.instance)));

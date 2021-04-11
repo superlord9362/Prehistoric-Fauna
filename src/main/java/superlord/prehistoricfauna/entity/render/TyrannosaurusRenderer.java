@@ -32,7 +32,7 @@ public class TyrannosaurusRenderer extends MobRenderer<TyrannosaurusEntity, Enti
 	}
 	
 	protected void preRenderCallback(TyrannosaurusEntity tyrannosaurus, MatrixStack matrixStackIn, float partialTickTime) {
-		if(tyrannosaurus.getGrowingAge() < -12000) {
+		if(tyrannosaurus.isChild() && !tyrannosaurus.isJuvenile()) {
 			matrixStackIn.scale(0.5F, 0.5F, 0.5F);
 		}
 	}

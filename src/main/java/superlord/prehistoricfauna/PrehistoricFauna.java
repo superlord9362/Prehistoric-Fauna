@@ -265,6 +265,7 @@ public class PrehistoricFauna {
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.TYRANNOSAURUS_SKELETON, TyrannosaurusSkeletonRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.TRICERATOPS_SKELETON, TriceratopsSkeletonRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ANKYLOSAURUS_SKELETON, AnkylosaurusSkeletonRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.CERATOSAURUS_SKELETON, CeratosaurusSkeletonRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.HERRERASAURUS_SKELETON, HerrerasaurusSkeletonRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ALLOSAURUS_SKULL, AllosaurusSkullRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ISCHIGUALASTIA_SKULL, IschigualastiaSkullRenderer::new);

@@ -14,6 +14,7 @@ import superlord.prehistoricfauna.entity.AnkylosaurusSkullEntity;
 import superlord.prehistoricfauna.entity.BasilemysEntity;
 import superlord.prehistoricfauna.entity.CamarasaurusEntity;
 import superlord.prehistoricfauna.entity.CeratosaurusEntity;
+import superlord.prehistoricfauna.entity.CeratosaurusSkeletonEntity;
 import superlord.prehistoricfauna.entity.CeratosaurusSkullEntity;
 import superlord.prehistoricfauna.entity.ChromogisaurusEntity;
 import superlord.prehistoricfauna.entity.DakotaraptorEntity;
@@ -81,6 +82,7 @@ public class ModEntityTypes {
 	public static final EntityType<CeratosaurusSkullEntity> CERATOSAURUS_SKULL = register(EntityType.Builder.<CeratosaurusSkullEntity>create(CeratosaurusSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "ceratosaurus_skull");
 	public static final EntityType<TriceratopsSkeletonEntity> TRICERATOPS_SKELETON = register(EntityType.Builder.<TriceratopsSkeletonEntity>create(TriceratopsSkeletonEntity::new, EntityClassification.MISC).size(2F, 2.6F), "triceratops_skeleton");
 	public static final EntityType<AnkylosaurusSkeletonEntity> ANKYLOSAURUS_SKELETON = register(EntityType.Builder.<AnkylosaurusSkeletonEntity>create(AnkylosaurusSkeletonEntity::new, EntityClassification.MISC).size(2F, 2F), "ankylosaurus_skeleton");
+	public static final EntityType<CeratosaurusSkeletonEntity> CERATOSAURUS_SKELETON = register(EntityType.Builder.<CeratosaurusSkeletonEntity>create(CeratosaurusSkeletonEntity::new, EntityClassification.MISC).size(0.875F, 2F), "ceratosaurus_skeleton");
 	public static final EntityType<HerrerasaurusSkeletonEntity> HERRERASAURUS_SKELETON = register(EntityType.Builder.<HerrerasaurusSkeletonEntity>create(HerrerasaurusSkeletonEntity::new, EntityClassification.MISC).size(0.625F, 1.375F), "herrerasaurus_skeleton");
 	public static final EntityType<AllosaurusSkullEntity> ALLOSAURUS_SKULL = register(EntityType.Builder.<AllosaurusSkullEntity>create(AllosaurusSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "allosaurus_skull");
 	public static final EntityType<IschigualastiaSkullEntity> ISCHIGUALASTIA_SKULL = register(EntityType.Builder.<IschigualastiaSkullEntity>create(IschigualastiaSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "ischigualastia_skull");
