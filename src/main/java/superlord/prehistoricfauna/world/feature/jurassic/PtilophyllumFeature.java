@@ -19,7 +19,7 @@ public class PtilophyllumFeature extends Feature<NoFeatureConfig> {
    }
 
    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
-      if (worldIn.isAirBlock(pos.up()) && worldIn.getBlockState(pos).getBlock() == BlockInit.LOAM) {
+      if (worldIn.isAirBlock(pos.up()) && worldIn.getBlockState(pos).getBlock() == BlockInit.SILT) {
          PtilophyllumBaseBlock.generatePlant(worldIn, pos.up(), rand, 8);
          return true;
       } else {

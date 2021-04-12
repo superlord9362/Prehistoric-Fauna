@@ -1,5 +1,5 @@
 {
-  "parent": "prehistoricfauna:prehistoricfauna/recipes/root",
+  "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
       "prehistoricfauna:polished_jurassic_siltstone_slab"

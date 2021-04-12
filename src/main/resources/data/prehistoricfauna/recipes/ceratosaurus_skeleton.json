@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:ceratosaurus_skull"
+    },
+	{
+		"item": "prehistoricfauna:ceratosaurus_fossil"
+	},
+	{
+		"item": "prehistoricfauna:ceratosaurus_fossil"
+	}
+  ],
+  "result": {
+    "item": "prehistoricfauna:ceratosaurus_skeleton"
+  }
+}

@@ -9,6 +9,7 @@ import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.LogBlock;
 import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.RotatedPillarBlock;
+import net.minecraft.block.SandBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.WallBlock;
@@ -151,6 +152,7 @@ public class BlockInit {
 	public static final Block POTTED_MARCHANTIA = new FlowerPotBlock(MARCHANTIA, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_marchantia"); //Loot Table done
 	public static final Block MOSSY_DIRT = new MossyDirtBlock(Block.Properties.create(Material.ORGANIC).hardnessAndResistance(0.6F).sound(SoundType.PLANT)).setRegistryName("mossy_dirt"); //Loot Table done
 	public static final Block LOAM = new MossyDirtBlock(Block.Properties.create(Material.ORGANIC, MaterialColor.BROWN).hardnessAndResistance(0.6F).sound(SoundType.GROUND)).setRegistryName("loam");//Loot Table done
+	public static final Block PACKED_LOAM = new Block(Block.Properties.create(Material.ORGANIC, MaterialColor.BROWN).hardnessAndResistance(0.6F).sound(SoundType.GROUND)).setRegistryName("packed_loam");
 	public static final Block THESCELOSAURUS_EGG = new ThescelosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("thescelosaurus_egg");//Loot Table done
 	public static final Block TRICERATOPS_EGG = new TriceratopsEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("triceratops_egg");//Loot Table done
 	public static final Block ANKYLOSAURUS_EGG = new AnkylosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("ankylosaurus_egg");//Loot Table done
@@ -393,7 +395,9 @@ public class BlockInit {
 	public static final Block POTTED_SHORT_OSMUNDACAULIS = new FlowerPotBlock(SHORT_OSMUNDACAULIS, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_short_osmundacaulis");//Loot Table done
 	@SuppressWarnings("deprecation")
 	public static final Block POTTED_CONIOPTERIS = new FlowerPotBlock(CONIOPTERIS, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_coniopteris");//Loot Table done
-	
+	public static final Block SILT = new SandBlock(0x8C603C, Block.Properties.create(Material.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)).setRegistryName("silt");
+	public static final Block HARDENED_SILT = new Block(Block.Properties.create(Material.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)).setRegistryName("hardened_silt");
+
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 		event.getRegistry().register(HORSETAIL);
@@ -447,6 +451,7 @@ public class BlockInit {
 		event.getRegistry().register(DAKOTARAPTOR_EGG);
 		event.getRegistry().register(BASILEMYS_EGG);
 		event.getRegistry().register(LOAM);
+		event.getRegistry().register(PACKED_LOAM);
 		event.getRegistry().register(CAMARASAURUS_EGG);
 		/**event.getRegistry().register(CYPRESS_LOG);
 		event.getRegistry().register(CYPRESS_BUTTON);
@@ -672,6 +677,8 @@ public class BlockInit {
 		event.getRegistry().register(POTTED_DEAD_OSMUNDACAULIS);
 		event.getRegistry().register(POTTED_SHORT_OSMUNDACAULIS);
 		event.getRegistry().register(POTTED_CONIOPTERIS);
+		event.getRegistry().register(SILT);
+		event.getRegistry().register(HARDENED_SILT);
 		if (FMLEnvironment.dist == Dist.CLIENT) {
 			RenderType cutoutRenderType = RenderType.getCutout();
 			RenderType mippedRenderType = RenderType.getCutoutMipped();
@@ -858,6 +865,7 @@ public class BlockInit {
  		event.getRegistry().register(new BlockItem(BlockInit.PROTOPICEOXYLON_TRAPDOOR, new Item.Properties().group(PFWood.instance)).setRegistryName("protopiceoxylon_trapdoor"));
  		event.getRegistry().register(new BlockItem(BlockInit.POTTED_PROTOPICEOXYLON_SAPLING, new Item.Properties()).setRegistryName("potted_protopiceoxylon_sapling"));
  		event.getRegistry().register(new BlockItem(BlockInit.LOAM, new Item.Properties().group(PFPlants.instance)).setRegistryName("loam"));
+ 		event.getRegistry().register(new BlockItem(BlockInit.PACKED_LOAM, new Item.Properties().group(PFPlants.instance)).setRegistryName("packed_loam"));
  		event.getRegistry().register(new BlockItem(BlockInit.PTILOPHYLLUM_WOOD, new Item.Properties().group(PFWood.instance)).setRegistryName("ptilophyllum_wood"));
  		event.getRegistry().register(new BlockItem(BlockInit.PTILOPHYLLUM_BASE, new Item.Properties().group(PFWood.instance)).setRegistryName("ptilophyllum_base"));
  		event.getRegistry().register(new BlockItem(BlockInit.ZAMITES_LOG, new Item.Properties().group(PFWood.instance)).setRegistryName("zamites_log"));
@@ -1020,6 +1028,8 @@ public class BlockInit {
  		event.getRegistry().register(new BlockItem(BlockInit.PALEONTOLOGY_TABLE, new Item.Properties().group(PFBook.instance)).setRegistryName("paleontology_table"));
  		event.getRegistry().register(new BlockItem(BlockInit.ALGAE, new Item.Properties().group(PFPlants.instance)).setRegistryName("algae_carpet"));
  		event.getRegistry().register(new BlockItem(BlockInit.PALEOSCRIBE, new Item.Properties().group(PFBook.instance)).setRegistryName("paleoscribe"));
+ 		event.getRegistry().register(new BlockItem(BlockInit.SILT, new Item.Properties().group(PFPlants.instance)).setRegistryName("silt"));
+ 		event.getRegistry().register(new BlockItem(BlockInit.HARDENED_SILT, new Item.Properties().group(PFPlants.instance)).setRegistryName("hardened_silt"));
  	}
 	
 	public static final Tag<Block> BURROWS = makeWrapperTag("burrows");

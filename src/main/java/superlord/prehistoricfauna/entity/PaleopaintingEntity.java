@@ -148,7 +148,8 @@ public class PaleopaintingEntity extends HangingEntity implements IEntityAdditio
         DYNASTIC(16, 16),
         TALL_BUSTS(16, 32),
         CUBE(32, 32),
-        SERENITY(64, 48);
+        SERENITY(64, 48),
+        LAELAPS(64, 48);
 
         public static final Paleopainting[] VALUES = values();
 

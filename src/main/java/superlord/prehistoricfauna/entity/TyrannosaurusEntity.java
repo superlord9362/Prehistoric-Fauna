@@ -37,6 +37,7 @@ import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
 import superlord.prehistoricfauna.util.SoundHandler;
 
+import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
 
@@ -46,7 +47,7 @@ public class TyrannosaurusEntity extends AnimalEntity {
 	private static final DataParameter<Boolean> IS_JUVENILE = EntityDataManager.createKey(TyrannosaurusEntity.class, DataSerializers.BOOLEAN);
 	private int warningSoundTicks;
 	private int isDigging;
-	private Goal followParentGoal;
+	private Goal panicGoal;
 
 	public TyrannosaurusEntity(EntityType<? extends TyrannosaurusEntity> type, World worldIn) {
 		super(type, worldIn);
@@ -68,11 +69,11 @@ public class TyrannosaurusEntity extends AnimalEntity {
 	private void setHasEgg(boolean hasEgg) {
 		this.dataManager.set(HAS_EGG, hasEgg);
 	}
-	
+
 	public boolean isJuvenile() {
 		return this.dataManager.get(IS_JUVENILE);
 	}
-	
+
 	private void setJuvenile(boolean isJuvenile) {
 		this.dataManager.set(IS_JUVENILE, isJuvenile);
 	}
@@ -84,21 +85,26 @@ public class TyrannosaurusEntity extends AnimalEntity {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	protected void registerGoals() {
 		super.registerGoals();
-		this.targetSelector.addGoal(1, new HuntGoal(this, AnimalEntity.class, 10, false, false, (p_213487_0_) -> {
-			return p_213487_0_ instanceof ThescelosaurusEntity || p_213487_0_ instanceof TriceratopsEntity || p_213487_0_ instanceof StegosaurusEntity || p_213487_0_ instanceof DryosaurusEntity || p_213487_0_ instanceof CowEntity || p_213487_0_ instanceof SheepEntity || p_213487_0_ instanceof HorseEntity || p_213487_0_ instanceof DonkeyEntity || p_213487_0_ instanceof MuleEntity || p_213487_0_ instanceof PolarBearEntity || p_213487_0_ instanceof PandaEntity;
-		}));
-		this.goalSelector.addGoal(0, new SwimGoal(this));
-		this.goalSelector.addGoal(1, new TyrannosaurusEntity.MeleeAttackGoal());
-		this.goalSelector.addGoal(1, new TyrannosaurusEntity.PanicGoal());
-		this.goalSelector.addGoal(4, followParentGoal = new FollowParentGoal(this, 1.25D));
+
+		panicGoal = new TyrannosaurusEntity.PanicGoal();
+		this.goalSelector.addGoal(1, panicGoal);
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+		this.goalSelector.addGoal(4, new TyrannosaurusEntity.TyrannosaurusFollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
+		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, AnkylosaurusEntity.class, 7F, 1.25D, 1.25D));
+		this.goalSelector.addGoal(1, new TyrannosaurusEntity.MeleeAttackGoal());
 		this.targetSelector.addGoal(1, new TyrannosaurusEntity.HurtByTargetGoal());
 		this.targetSelector.addGoal(2, new TyrannosaurusEntity.AttackPlayerGoal());
 		this.goalSelector.addGoal(8, new TyrannosaurusEntity.LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(2, new TyrannosaurusEntity.MateGoal(this, 1.0D));
+		this.targetSelector.addGoal(1, new JuvenileHuntGoal(this, AnimalEntity.class, 10, false, false, (p_213487_0_) -> {
+			return p_213487_0_ instanceof ThescelosaurusEntity || p_213487_0_ instanceof DryosaurusEntity || p_213487_0_ instanceof IschigualastiaEntity || p_213487_0_ instanceof CowEntity || p_213487_0_ instanceof SheepEntity || p_213487_0_ instanceof HorseEntity || p_213487_0_ instanceof DonkeyEntity || p_213487_0_ instanceof MuleEntity;
+		}));
+		this.targetSelector.addGoal(1, new HuntGoal(this, AnimalEntity.class, 10, false, false, (p_213487_0_) -> {
+			return p_213487_0_ instanceof ThescelosaurusEntity || p_213487_0_ instanceof TriceratopsEntity || p_213487_0_ instanceof StegosaurusEntity || p_213487_0_ instanceof DryosaurusEntity || p_213487_0_ instanceof CowEntity || p_213487_0_ instanceof SheepEntity || p_213487_0_ instanceof HorseEntity || p_213487_0_ instanceof DonkeyEntity || p_213487_0_ instanceof MuleEntity || p_213487_0_ instanceof PolarBearEntity || p_213487_0_ instanceof PandaEntity;
+		}));
 	}
 
 	protected void registerAttributes() {
@@ -109,15 +115,12 @@ public class TyrannosaurusEntity extends AnimalEntity {
 		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
 		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(12.0D);
 	}
-	
+
 	@Override
 	public void setGrowingAge(int age) {
 		super.setGrowingAge(age);
 		if (this.getGrowingAge() >= -12000 && this.getGrowingAge() < 0) {
-			this.goalSelector.removeGoal(followParentGoal);
 			this.setJuvenile(true);
-		} else if (this.getGrowingAge() < -12000) {
-			this.goalSelector.addGoal(4, followParentGoal);
 		} else if(this.getGrowingAge() >= 0) {
 			this.setJuvenile(false);
 		}
@@ -163,9 +166,6 @@ public class TyrannosaurusEntity extends AnimalEntity {
 		this.setHasEgg(compound.getBoolean("HasEgg"));
 	}
 
-	/**
-	 * Called to update the entity's position/logic.
-	 */
 	public void tick() {
 		super.tick();
 		if (this.warningSoundTicks > 0) {
@@ -213,9 +213,6 @@ public class TyrannosaurusEntity extends AnimalEntity {
 			super(TyrannosaurusEntity.this);
 		}
 
-		/**
-		 * Execute a one shot task or start executing a continuous task
-		 */
 		public void startExecuting() {
 			super.startExecuting();
 			if (TyrannosaurusEntity.this.isChild()) {
@@ -257,9 +254,6 @@ public class TyrannosaurusEntity extends AnimalEntity {
 
 		}
 
-		/**
-		 * Reset the task's internal state. Called when this task is interrupted by another one
-		 */
 		public void resetTask() {
 			super.resetTask();
 		}
@@ -274,12 +268,14 @@ public class TyrannosaurusEntity extends AnimalEntity {
 			super(TyrannosaurusEntity.this, 2.0D);
 		}
 
-		/**
-		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-		 * method as well.
-		 */
 		public boolean shouldExecute() {
-			return !TyrannosaurusEntity.this.isChild() && !TyrannosaurusEntity.this.isBurning() ? false : super.shouldExecute();
+			if (!TyrannosaurusEntity.this.isChild() && !TyrannosaurusEntity.this.isBurning()) {
+				return false;
+			} else if (TyrannosaurusEntity.this.isJuvenile() && !TyrannosaurusEntity.this.isBurning()) {
+				return false;
+			} else {
+				return super.shouldExecute();
+			}
 		}
 	}
 
@@ -291,24 +287,14 @@ public class TyrannosaurusEntity extends AnimalEntity {
 			this.tyrannosaurus = tyrannosaurus;
 		}
 
-		/**
-		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-		 * method as well.
-		 */
 		public boolean shouldExecute() {
 			return this.tyrannosaurus.hasEgg() ? super.shouldExecute() : false;
 		}
 
-		/**
-		 * Returns whether an in-progress EntityAIBase should continue executing
-		 */
 		public boolean shouldContinueExecuting() {
 			return super.shouldContinueExecuting() && this.tyrannosaurus.hasEgg();
 		}
 
-		/**
-		 * Keep ticking a continuous task that has already been started
-		 */
 		public void tick() {
 			super.tick();
 			BlockPos blockpos = new BlockPos(this.tyrannosaurus);
@@ -331,9 +317,6 @@ public class TyrannosaurusEntity extends AnimalEntity {
 
 		}
 
-		/**
-		 * Return true to set given position as destination
-		 */
 		protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
 			if (!worldIn.isAirBlock(pos.up())) {
 				return false;
@@ -352,17 +335,10 @@ public class TyrannosaurusEntity extends AnimalEntity {
 			this.tyrannosaurus = tyrannosaurus;
 		}
 
-		/**
-		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-		 * method as well.
-		 */
 		public boolean shouldExecute() {
 			return super.shouldExecute() && !this.tyrannosaurus.hasEgg();
 		}
 
-		/**
-		 * Spawns a baby animal of the same type.
-		 */
 		protected void spawnBaby() {
 			ServerPlayerEntity serverplayerentity = this.animal.getLoveCause();
 			if (serverplayerentity == null && this.targetMate.getLoveCause() != null) {
@@ -389,6 +365,93 @@ public class TyrannosaurusEntity extends AnimalEntity {
 		TyrannosaurusEntity entity = new TyrannosaurusEntity(ModEntityTypes.TYRANNOSAURUS_ENTITY, this.world);
 		entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
 		return entity;
+	}
+
+	class TyrannosaurusFollowParentGoal extends Goal {
+		private final TyrannosaurusEntity babyTyrannosaurusEntity;
+		private TyrannosaurusEntity parentTyrannosaurusEntity;
+		private final double moveSpeed;
+		private int delayCounter;
+
+		public TyrannosaurusFollowParentGoal(TyrannosaurusEntity tyrannosaurus, double speed) {
+			this.babyTyrannosaurusEntity = tyrannosaurus;
+			this.moveSpeed = speed;
+		}
+
+		public boolean shouldExecute() {
+			if (this.babyTyrannosaurusEntity.isChild() && !this.babyTyrannosaurusEntity.isJuvenile()) {
+				List<TyrannosaurusEntity> list = this.babyTyrannosaurusEntity.world.getEntitiesWithinAABB(this.babyTyrannosaurusEntity.getClass(), this.babyTyrannosaurusEntity.getBoundingBox().grow(8.0D, 4.0D, 8.0D));
+				TyrannosaurusEntity tyrannosaurusEntity = null;
+				double d0 = Double.MAX_VALUE;
+				for (TyrannosaurusEntity tyrannosaurusEntity1 : list) {
+					if (!tyrannosaurusEntity1.isChild()) {
+						double d1 = this.babyTyrannosaurusEntity.getDistanceSq(tyrannosaurusEntity1);
+						if (!(d1 > d0)) {
+							d0 = d1;
+							tyrannosaurusEntity = tyrannosaurusEntity1;
+						}
+					}
+				}
+				if (tyrannosaurusEntity == null) {
+					return false;
+				} else if (d0 < 9.0D) {
+					return false;
+				} else {
+					this.parentTyrannosaurusEntity = tyrannosaurusEntity;
+					return true;
+				}
+			} else {
+				return false;
+			}
+		}
+
+		public boolean shouldContinueExecuting() {
+			if (!this.babyTyrannosaurusEntity.isJuvenile() || !this.babyTyrannosaurusEntity.isChild()) {
+				return false;
+			} else if (!this.parentTyrannosaurusEntity.isAlive()) {
+				return false;
+			} else  if(this.babyTyrannosaurusEntity.isChild() && !this.babyTyrannosaurusEntity.isJuvenile()){
+				double d0 = this.babyTyrannosaurusEntity.getDistanceSq(this.parentTyrannosaurusEntity);
+				return !(d0 < 9.0D) && !(d0 > 256.0D);
+			} else {
+				return false;
+			}
+		}
+
+		public void startExecuting() {
+			this.delayCounter = 0;
+		}
+
+		public void resetTask() {
+			this.parentTyrannosaurusEntity = null;
+		}
+
+		public void tick() {
+			if (--this.delayCounter <= 0) {
+				this.delayCounter = 10;
+				this.babyTyrannosaurusEntity.getNavigator().tryMoveToEntityLiving(this.parentTyrannosaurusEntity, this.moveSpeed);
+			}
+		}
+	}
+
+	class JuvenileHuntGoal extends HuntGoal {
+
+		private TyrannosaurusEntity tyrannosaurus;
+
+		@SuppressWarnings("rawtypes")
+		public JuvenileHuntGoal(MobEntity goalOwnerIn, Class targetClassIn, int targetChanceIn, boolean checkSight, boolean nearbyOnlyIn, Predicate targetPredicate) {
+			super(goalOwnerIn, targetClassIn, targetChanceIn, checkSight, nearbyOnlyIn, targetPredicate);
+			this.tyrannosaurus = (TyrannosaurusEntity) goalOwnerIn;
+		}
+
+		public boolean shouldExecute() {
+			if (super.shouldExecute() && tyrannosaurus.isJuvenile()) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
 	}
 
 }

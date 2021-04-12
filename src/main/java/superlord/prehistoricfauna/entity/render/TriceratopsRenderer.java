@@ -35,7 +35,7 @@ public class TriceratopsRenderer extends MobRenderer<TriceratopsEntity, EntityMo
 	}
 	
 	protected void preRenderCallback(TriceratopsEntity triceratops, MatrixStack matrixStackIn, float partialTickTime) {
-		if(triceratops.isChild()) {
+		if(triceratops.isChild() && !triceratops.isJuvenile()) {
 			matrixStackIn.scale(0.5F, 0.5F, 0.5F);
 		}
 	}

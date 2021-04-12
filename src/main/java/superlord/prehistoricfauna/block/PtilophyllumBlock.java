@@ -33,7 +33,7 @@ public class PtilophyllumBlock extends SixWayBlock {
       Block block3 = blockReader.getBlockState(pos.east()).getBlock();
       Block block4 = blockReader.getBlockState(pos.south()).getBlock();
       Block block5 = blockReader.getBlockState(pos.west()).getBlock();
-      return this.getDefaultState().with(DOWN, Boolean.valueOf(block == this || block == BlockInit.PTILOPHYLLUM_BASE || block == BlockInit.LOAM)).with(UP, Boolean.valueOf(block1 == this || block1 == BlockInit.PTILOPHYLLUM_BASE)).with(NORTH, Boolean.valueOf(block2 == this || block2 == BlockInit.PTILOPHYLLUM_BASE)).with(EAST, Boolean.valueOf(block3 == this || block3 == BlockInit.PTILOPHYLLUM_BASE)).with(SOUTH, Boolean.valueOf(block4 == this || block4 == BlockInit.PTILOPHYLLUM_BASE)).with(WEST, Boolean.valueOf(block5 == this || block5 == BlockInit.PTILOPHYLLUM_BASE));
+      return this.getDefaultState().with(DOWN, Boolean.valueOf(block == this || block == BlockInit.PTILOPHYLLUM_BASE || block == BlockInit.SILT || block == BlockInit.HARDENED_SILT)).with(UP, Boolean.valueOf(block1 == this || block1 == BlockInit.PTILOPHYLLUM_BASE)).with(NORTH, Boolean.valueOf(block2 == this || block2 == BlockInit.PTILOPHYLLUM_BASE)).with(EAST, Boolean.valueOf(block3 == this || block3 == BlockInit.PTILOPHYLLUM_BASE)).with(SOUTH, Boolean.valueOf(block4 == this || block4 == BlockInit.PTILOPHYLLUM_BASE)).with(WEST, Boolean.valueOf(block5 == this || block5 == BlockInit.PTILOPHYLLUM_BASE));
    }
 
    @SuppressWarnings("deprecation")
@@ -43,7 +43,7 @@ public class PtilophyllumBlock extends SixWayBlock {
          return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
       } else {
          Block block = facingState.getBlock();
-         boolean flag = block == this || block == BlockInit.PTILOPHYLLUM_BASE || facing == Direction.DOWN && block == BlockInit.LOAM;
+         boolean flag = block == this || block == BlockInit.PTILOPHYLLUM_BASE || facing == Direction.DOWN && block == BlockInit.SILT || facing == Direction.DOWN && block == BlockInit.HARDENED_SILT;
          return stateIn.with(FACING_TO_PROPERTY_MAP.get(facing), Boolean.valueOf(flag));
       }
    }
@@ -69,14 +69,14 @@ public class PtilophyllumBlock extends SixWayBlock {
             }
 
             Block block1 = worldIn.getBlockState(blockpos.down()).getBlock();
-            if (block1 == this || block1 == BlockInit.LOAM) {
+            if (block1 == this || block1 == BlockInit.SILT || block1 == BlockInit.HARDENED_SILT) {
                return true;
             }
          }
       }
 
       Block block2 = blockstate.getBlock();
-      return block2 == this || block2 == BlockInit.LOAM;
+      return block2 == this || block2 == BlockInit.SILT || block2 == BlockInit.HARDENED_SILT;
    }
 
    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
