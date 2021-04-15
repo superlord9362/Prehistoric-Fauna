@@ -7,6 +7,7 @@ import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
+import superlord.prehistoricfauna.core.world.PHFConfiguredFeatures;
 import superlord.prehistoricfauna.core.world.PHFSurfaceBuilders;
 import superlord.prehistoricfauna.init.ModEntityTypes;
 import superlord.prehistoricfauna.world.PrehistoricFeature;
@@ -60,7 +61,7 @@ public class CretaceousBiomes {
             biome.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(ModEntityTypes.DIDELPHODON_ENTITY, PrehistoricFaunaConfig.didelphodonSpawnWeight, 1, 3));
             
         }
-        DefaultBiomeFeatures.addTaigaRocks(biome);
+        PHFConfiguredFeatures.addHCRocks(biome);
         DefaultBiomeFeatures.addStoneVariants(biome);
         DefaultBiomeFeatures.addOres(biome);
         DefaultBiomeFeatures.addCarvers(biome);

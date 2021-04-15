@@ -6,8 +6,10 @@ import java.util.UUID;
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -23,7 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public abstract class PrehistoricEntity extends ThreeStageAgeEntity {
+public abstract class PrehistoricEntity extends AnimalEntity {
 	private int inLove;
 	private UUID playerInLove;
 
@@ -90,7 +92,7 @@ public abstract class PrehistoricEntity extends ThreeStageAgeEntity {
 		this.playerInLove = compound.hasUniqueId("LoveCause") ? compound.getUniqueId("LoveCause") : null;
 	}
 
-	public static boolean canAnimalSpawn(EntityType<? extends ThreeStageAgeEntity> animal, IWorld worldIn, SpawnReason reason, BlockPos pos, Random random) {
+	public static boolean canAnimalSpawn(EntityType<? extends AnimalEntity> animal, IWorld worldIn, SpawnReason reason, BlockPos pos, Random random) {
 		return worldIn.getBlockState(pos.down()).getBlock() == Blocks.GRASS_BLOCK && worldIn.getLightSubtracted(pos, 0) > 8;
 	}
 
@@ -198,7 +200,7 @@ public abstract class PrehistoricEntity extends ThreeStageAgeEntity {
 	}
 
 	@Override
-	public ThreeStageAgeEntity createChild(ThreeStageAgeEntity ageable) {
+	public AgeableEntity createChild(AgeableEntity ageable) {
 		return null;
 	}
 

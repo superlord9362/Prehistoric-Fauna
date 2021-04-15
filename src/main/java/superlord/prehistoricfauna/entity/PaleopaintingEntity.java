@@ -144,7 +144,6 @@ public class PaleopaintingEntity extends HangingEntity implements IEntityAdditio
     public enum Paleopainting {
         AMNIOTIC(32, 32),
         ANNING(32, 32),
-        APPROACHER(32, 16),
         DYNASTIC(16, 16),
         TALL_BUSTS(16, 32),
         CUBE(32, 32),

@@ -44,7 +44,7 @@ public class PtilophyllumBaseBlock extends Block {
                boolean flag1 = false;
                BlockState blockstate = worldIn.getBlockState(pos.down());
                Block block = blockstate.getBlock();
-               if (block == BlockInit.SILT || block == BlockInit.HARDENED_SILT) {
+               if (block == BlockInit.SILT) {
                   flag = true;
                } else if (block == this.plantBlock) {
                   int j = 1;
@@ -52,7 +52,7 @@ public class PtilophyllumBaseBlock extends Block {
                   for(int k = 0; k < 4; ++k) {
                      Block block1 = worldIn.getBlockState(pos.down(j + 1)).getBlock();
                      if (block1 != this.plantBlock) {
-                        if (block1 == BlockInit.SILT || block1 == BlockInit.HARDENED_SILT) {
+                        if (block1 == BlockInit.SILT) {
                            flag1 = true;
                         }
                         break;
@@ -132,7 +132,7 @@ public class PtilophyllumBaseBlock extends Block {
    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
       BlockState blockstate = worldIn.getBlockState(pos.down());
       Block block = blockstate.getBlock();
-      if (block != this.plantBlock && block != BlockInit.SILT || block != this.plantBlock && block != BlockInit.HARDENED_SILT) {
+      if (block != this.plantBlock && block != BlockInit.SILT) {
          if (!blockstate.isAir(worldIn, pos.down())) {
             return false;
          } else {

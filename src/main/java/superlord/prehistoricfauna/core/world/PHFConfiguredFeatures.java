@@ -3,10 +3,11 @@ package superlord.prehistoricfauna.core.world;
 
 import com.google.common.collect.ImmutableList;
 
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.blockplacer.ColumnBlockPlacer;
 //import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.blockplacer.DoublePlantBlockPlacer;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
@@ -32,6 +33,9 @@ import static superlord.prehistoricfauna.core.world.util.WorldGenRegistrationHel
 
 
 public class PHFConfiguredFeatures {
+
+
+	private static final BlockState MOSSY_COBBLESTONE = Blocks.MOSSY_COBBLESTONE.getDefaultState();
 
 	public static final ConfiguredFeature<PHFTreeConfig, ?> ARAUCARIA_SMALL_TREE1 = createConfiguredFeature("araucaria_small_tree1", PHFFeatures.ARAUCARIA_SMALL_TREE1.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.ARAUCARIA_LOG.getDefaultState()).setLeavesBlock(BlockInit.ARAUCARIA_LEAVES).setMinHeight(13).setMaxHeight(18).build()));
 	public static final ConfiguredFeature<PHFTreeConfig, ?> ARAUCARIA_SMALL_TREE2 = createConfiguredFeature("araucaria_small_tree2", PHFFeatures.ARAUCARIA_SMALL_TREE2.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.ARAUCARIA_LOG.getDefaultState()).setLeavesBlock(BlockInit.ARAUCARIA_LEAVES).setMinHeight(6).setMaxHeight(11).build()));
@@ -181,5 +185,9 @@ public class PHFConfiguredFeatures {
 			PROTOJUNIPEROXYLON_TREE1.withChance(0.5F)
 			), PROTOJUNIPEROXYLON_TREE2))
 			).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1)));
+
+	public static void addHCRocks(Biome biomeIn) {
+		biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Feature.FOREST_ROCK.withConfiguration(new BlockBlobConfig(MOSSY_COBBLESTONE, 0)).withPlacement(Placement.FOREST_ROCK.configure(new FrequencyConfig(2))));
+	}
 
 }

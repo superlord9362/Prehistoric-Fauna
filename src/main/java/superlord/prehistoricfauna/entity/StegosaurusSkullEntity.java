@@ -1,16 +1,17 @@
 package superlord.prehistoricfauna.entity;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 
 public class StegosaurusSkullEntity extends PrehistoricEntity {
-	
+
 	public StegosaurusSkullEntity(EntityType<? extends StegosaurusSkullEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
-	
+
 	protected void registerGoals() {
 		super.registerGoals();
 	}
@@ -23,9 +24,17 @@ public class StegosaurusSkullEntity extends PrehistoricEntity {
 	protected int getExperiencePoints(PlayerEntity player) {
 		return 0;
 	}
-	
+
 	public boolean canBreatheUnderwater() {
 		return true;
 	}
-	
+
+	public boolean canBePushed() {
+		return false;
+	}
+
+	protected void collideWithEntity(Entity entityIn) {
+	}
+
+
 }

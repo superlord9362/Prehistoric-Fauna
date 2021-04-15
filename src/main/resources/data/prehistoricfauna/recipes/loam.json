@@ -9,7 +9,7 @@
     	"tag": "minecraft:sand"
     },
 	"#": {
-		"item": "minecraft:clay_ball"
+		"item": "prehistoricfauna:silt"
 	}
   },
   "result": {

@@ -33,6 +33,7 @@ import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.ChickenEntity;
@@ -48,6 +49,7 @@ import net.minecraft.entity.passive.horse.MuleEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
@@ -93,6 +95,7 @@ public class DakotaraptorEntity extends AnimalEntity {
 	private float crouchAmountO;
 	private int warningSoundTicks;
 	private int isDigging;
+	private int eatTicks;
 
 	public boolean hasEgg() {
 		return this.dataManager.get(HAS_EGG);
@@ -163,6 +166,21 @@ public class DakotaraptorEntity extends AnimalEntity {
 
 	public void livingTick() {
 		if (!this.world.isRemote && this.isAlive() && this.isServerWorld()) {
+			++this.eatTicks;
+			ItemStack itemstack = this.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
+			if (this.canEatItem(itemstack)) {
+				if (this.eatTicks > 600) {
+					ItemStack itemstack1 = itemstack.onItemUseFinish(this.world, this);
+					if (!itemstack1.isEmpty()) {
+						this.setItemStackToSlot(EquipmentSlotType.MAINHAND, itemstack1);
+					}
+
+					this.eatTicks = 0;
+				} else if (this.eatTicks > 560 && this.rand.nextFloat() < 0.1F) {
+					this.world.setEntityState(this, (byte)45);
+				}
+			}
+
 			LivingEntity livingentity = this.getAttackTarget();
 			if (livingentity == null || !livingentity.isAlive()) {
 				this.setCrouching(false);
@@ -190,8 +208,50 @@ public class DakotaraptorEntity extends AnimalEntity {
 
 	}
 
+	private boolean canEatItem(ItemStack itemStackIn) {
+		return itemStackIn.getItem().isFood() && itemStackIn.getItem().getFood().isMeat() && this.getAttackTarget() == null && this.onGround && !this.isSleeping();
+	}
+
 	protected boolean isMovementBlocked() {
 		return this.getHealth() <= 0.0F;
+	}
+
+	public boolean canEquipItem(ItemStack stack) {
+		Item item = stack.getItem();
+		ItemStack itemstack = this.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
+		return itemstack.isEmpty() || this.eatTicks > 0 && item.isFood();
+	}
+
+	private void spitOutItem(ItemStack stackIn) {
+		if (!stackIn.isEmpty() && !this.world.isRemote) {
+			ItemEntity itementity = new ItemEntity(this.world, this.getPosX() + this.getLookVec().x, this.getPosY() + 1.0D, this.getPosZ() + this.getLookVec().z, stackIn);
+			itementity.setPickupDelay(40);
+			itementity.setThrowerId(this.getUniqueID());
+			this.world.addEntity(itementity);
+		}
+	}
+
+	private void spawnItem(ItemStack stackIn) {
+		ItemEntity itementity = new ItemEntity(this.world, this.getPosX(), this.getPosY(), this.getPosZ(), stackIn);
+		this.world.addEntity(itementity);
+	}
+
+	protected void updateEquipmentIfNeeded(ItemEntity itemEntity) {
+		ItemStack itemstack = itemEntity.getItem();
+		if (this.canEquipItem(itemstack)) {
+			int i = itemstack.getCount();
+			if (i > 1) {
+				this.spawnItem(itemstack.split(i - 1));
+			}
+
+			this.spitOutItem(this.getItemStackFromSlot(EquipmentSlotType.MAINHAND));
+			this.setItemStackToSlot(EquipmentSlotType.MAINHAND, itemstack.split(1));
+			this.inventoryHandsDropChances[EquipmentSlotType.MAINHAND.getIndex()] = 2.0F;
+			this.onItemPickup(itemEntity, itemstack.getCount());
+			itemEntity.remove();
+			this.eatTicks = 0;
+		}
+
 	}
 
 	protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
@@ -232,30 +292,30 @@ public class DakotaraptorEntity extends AnimalEntity {
 		}
 
 	}
-	
+
 	@Override
-    public void applyEntityCollision(Entity entity) {
-        super.applyEntityCollision(entity);
-        if (this.getAttackTarget() != null) {
-             if (this.getAttackTarget() == entity && !onGround && this.getRidingEntity() != entity) {
-                this.startRiding(entity);
-            }
-        }
-    }
-	
-	 @Override
-	    public boolean attackEntityFrom(DamageSource dmg, float i) {
-	        if (this.getRidingEntity() != null) {
-	            if (this.getLastAttackedEntity() != null) {
-	                if (this.getLastAttackedEntity() == this.getRidingEntity()) {
-	                    if (this.getRNG().nextInt(2) == 0) {
-	                        this.stopRiding();
-	                    }
-	                }
-	            }
-	        }
-	        return super.attackEntityFrom(dmg, i);
-	    }
+	public void applyEntityCollision(Entity entity) {
+		super.applyEntityCollision(entity);
+		if (this.getAttackTarget() != null) {
+			if (this.getAttackTarget() == entity && !onGround && this.getRidingEntity() != entity) {
+				this.startRiding(entity);
+			}
+		}
+	}
+
+	@Override
+	public boolean attackEntityFrom(DamageSource dmg, float i) {
+		if (this.getRidingEntity() != null) {
+			if (this.getLastAttackedEntity() != null) {
+				if (this.getLastAttackedEntity() == this.getRidingEntity()) {
+					if (this.getRNG().nextInt(2) == 0) {
+						this.stopRiding();
+					}
+				}
+			}
+		}
+		return super.attackEntityFrom(dmg, i);
+	}
 
 	public AgeableEntity createChild(AgeableEntity ageable) {
 		DakotaraptorEntity entity = new DakotaraptorEntity(ModEntityTypes.DAKOTARAPTOR_ENTITY, this.world);

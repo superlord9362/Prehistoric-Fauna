@@ -119,6 +119,7 @@ public class HerrerasaurusEntity extends AnimalEntity {
 		this.goalSelector.addGoal(8, new AvoidEntityGoal<AllosaurusEntity>(this, AllosaurusEntity.class, 7F, 1.25D, 1.25D));
 		this.goalSelector.addGoal(8, new AvoidEntityGoal<CeratosaurusEntity>(this, CeratosaurusEntity.class, 7F, 1.25D, 1.25D));
 		this.goalSelector.addGoal(8, new AvoidEntityGoal<TyrannosaurusEntity>(this, TyrannosaurusEntity.class, 7F, 1.25D, 1.25D));
+		this.goalSelector.addGoal(8, new AvoidEntityGoal<IschigualastiaEntity>(this, IschigualastiaEntity.class, 7F, 1.25D, 1.25D));
 	}
 
 	protected void registerAttributes() {
