@@ -103,7 +103,7 @@ public class TyrannosaurusEntity extends AnimalEntity {
 			return p_213487_0_ instanceof ThescelosaurusEntity || p_213487_0_ instanceof DryosaurusEntity || p_213487_0_ instanceof IschigualastiaEntity || p_213487_0_ instanceof CowEntity || p_213487_0_ instanceof SheepEntity || p_213487_0_ instanceof HorseEntity || p_213487_0_ instanceof DonkeyEntity || p_213487_0_ instanceof MuleEntity;
 		}));
 		this.targetSelector.addGoal(1, new HuntGoal(this, AnimalEntity.class, 10, false, false, (p_213487_0_) -> {
-			return p_213487_0_ instanceof ThescelosaurusEntity || p_213487_0_ instanceof TriceratopsEntity || p_213487_0_ instanceof StegosaurusEntity || p_213487_0_ instanceof DryosaurusEntity || p_213487_0_ instanceof CowEntity || p_213487_0_ instanceof SheepEntity || p_213487_0_ instanceof HorseEntity || p_213487_0_ instanceof DonkeyEntity || p_213487_0_ instanceof MuleEntity || p_213487_0_ instanceof PolarBearEntity || p_213487_0_ instanceof PandaEntity;
+			return p_213487_0_ instanceof TriceratopsEntity || p_213487_0_ instanceof StegosaurusEntity || p_213487_0_ instanceof CowEntity || p_213487_0_ instanceof SheepEntity || p_213487_0_ instanceof HorseEntity || p_213487_0_ instanceof DonkeyEntity || p_213487_0_ instanceof MuleEntity || p_213487_0_ instanceof PolarBearEntity || p_213487_0_ instanceof PandaEntity;
 		}));
 	}
 

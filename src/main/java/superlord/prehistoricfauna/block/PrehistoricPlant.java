@@ -24,7 +24,7 @@ public class PrehistoricPlant extends BushBlock implements IGrowable, IShearable
       return SHAPE;
    }
 	
-	public boolean canGrow(IBlockReader world, BlockPos pos, BlockState state, boolean isCleint) {
+	public boolean canGrow(IBlockReader world, BlockPos pos, BlockState state, boolean isClient) {
 		return true;
 	}
 	

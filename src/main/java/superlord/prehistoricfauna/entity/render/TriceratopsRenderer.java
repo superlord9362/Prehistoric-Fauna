@@ -14,7 +14,8 @@ import superlord.prehistoricfauna.entity.model.TriceratopsJuvenile;
 public class TriceratopsRenderer extends MobRenderer<TriceratopsEntity, EntityModel<TriceratopsEntity>> {
 	
 	private static final ResourceLocation TRICERATOPS = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/triceratops.png");
-	private static final ResourceLocation BABY_TRICERATOPS = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/triceratops_juvenile.png");
+	private static final ResourceLocation BABY_TRICERATOPS = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/triceratops_baby.png");
+	private static final ResourceLocation JUVENILE_TRICERATOPS = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/triceratops_juvenile.png");
 	private static final ResourceLocation SADDLED = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/triceratops_saddled.png");
 	private static final ResourceLocation CHESTED = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/triceratops_chested.png");
 	private static final ResourceLocation SADDLED_CHESTED = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/triceratops_saddled_chested.png");
@@ -42,9 +43,11 @@ public class TriceratopsRenderer extends MobRenderer<TriceratopsEntity, EntityMo
 	
 	@Override
 	public ResourceLocation getEntityTexture(TriceratopsEntity entity) {
-		if(entity.isChild()) {
+		if(entity.isChild() && !entity.isJuvenile()) {
 			return BABY_TRICERATOPS;
-		} else if(entity.isHorseSaddled() && !entity.hasChest()) {
+		} else if (entity.isJuvenile()) {
+			return JUVENILE_TRICERATOPS;
+		}else if(entity.isHorseSaddled() && !entity.hasChest()) {
 			return SADDLED;
 		} else if(entity.hasChest() && !entity.isHorseSaddled()) {
 			return CHESTED;

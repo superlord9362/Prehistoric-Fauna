@@ -5,6 +5,7 @@ import static superlord.prehistoricfauna.core.world.util.WorldGenRegistrationHel
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.world.gen.feature.BlockStateFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.TreeFeature;
@@ -61,6 +62,7 @@ public class PHFFeatures {
 
     public static final Feature<PHFTreeConfig> ARAUCARIA__TREE1 = createFeature("araucaria_tree1", new AraucariaTree1(PHFTreeConfig::deserialize));
     public static final Feature<PHFTreeConfig> ARAUCARIA__TREE2 = createFeature("araucaria_tree2", new AraucariaTree2(PHFTreeConfig::deserialize));
+    public static final Feature<BlockStateFeatureConfig> PREHISTORIC_LAKE = createFeature("prehistoric_lake", new PrehistoricLakesFeature(BlockStateFeatureConfig::deserialize));
 
     public static final Feature<PHFTreeConfig> METASEQUOIA_TREE1 = createFeature("metasequoia_tree1", new MetaSequoiaTree1(PHFTreeConfig::deserialize));
     public static final Feature<PHFTreeConfig> METASEQUOIA_TREE2 = createFeature("metasequoia_tree2", new MetaSequoiaTree2(PHFTreeConfig::deserialize));

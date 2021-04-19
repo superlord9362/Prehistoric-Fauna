@@ -66,6 +66,8 @@ public class CretaceousBiomes {
         DefaultBiomeFeatures.addOres(biome);
         DefaultBiomeFeatures.addCarvers(biome);
         PrehistoricFeature.addSedimentDisks(biome);
+        PHFConfiguredFeatures.addWaterLakesandSprings(biome);
+        PHFConfiguredFeatures.addLavaLakesandSprings(biome);
 
         return biome;
     }

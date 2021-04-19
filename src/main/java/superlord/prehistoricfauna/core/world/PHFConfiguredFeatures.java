@@ -6,6 +6,7 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.GenerationStage;
 //import net.minecraft.world.gen.GenerationStage;
@@ -36,6 +37,9 @@ public class PHFConfiguredFeatures {
 
 
 	private static final BlockState MOSSY_COBBLESTONE = Blocks.MOSSY_COBBLESTONE.getDefaultState();
+	private static final BlockState IRON_ORE = Blocks.IRON_ORE.getDefaultState();
+	private static final BlockState WATER = Blocks.WATER.getDefaultState();
+	private static final BlockState LAVA = Blocks.LAVA.getDefaultState();
 
 	public static final ConfiguredFeature<PHFTreeConfig, ?> ARAUCARIA_SMALL_TREE1 = createConfiguredFeature("araucaria_small_tree1", PHFFeatures.ARAUCARIA_SMALL_TREE1.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.ARAUCARIA_LOG.getDefaultState()).setLeavesBlock(BlockInit.ARAUCARIA_LEAVES).setMinHeight(13).setMaxHeight(18).build()));
 	public static final ConfiguredFeature<PHFTreeConfig, ?> ARAUCARIA_SMALL_TREE2 = createConfiguredFeature("araucaria_small_tree2", PHFFeatures.ARAUCARIA_SMALL_TREE2.withConfiguration(new PHFTreeConfig.Builder().setTrunkBlock(BlockInit.ARAUCARIA_LOG.getDefaultState()).setLeavesBlock(BlockInit.ARAUCARIA_LEAVES).setMinHeight(6).setMaxHeight(11).build()));
@@ -188,6 +192,25 @@ public class PHFConfiguredFeatures {
 
 	public static void addHCRocks(Biome biomeIn) {
 		biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Feature.FOREST_ROCK.withConfiguration(new BlockBlobConfig(MOSSY_COBBLESTONE, 0)).withPlacement(Placement.FOREST_ROCK.configure(new FrequencyConfig(2))));
+	}
+
+	public static void addExtraIronOre(Biome biomeIn) {
+		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, IRON_ORE, 9)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 32, 32, 80))));
+	}
+
+	public static void addWaterLakesandSprings(Biome biomeIn) {
+		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.SPRING_FEATURE.withConfiguration(DefaultBiomeFeatures.WATER_SPRING_CONFIG).withPlacement(Placement.COUNT_BIASED_RANGE.configure(new CountRangeConfig(50, 8, 8, 256))));
+		biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, PHFFeatures.PREHISTORIC_LAKE.withConfiguration(new BlockStateFeatureConfig(WATER)).withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(4))));
+	}
+	
+	public static void addWaterSprings(Biome biomeIn) {
+		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.SPRING_FEATURE.withConfiguration(DefaultBiomeFeatures.WATER_SPRING_CONFIG).withPlacement(Placement.COUNT_BIASED_RANGE.configure(new CountRangeConfig(50, 8, 8, 256))));
+	}
+
+	
+	public static void addLavaLakesandSprings(Biome biomeIn) {
+	      biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Feature.LAKE.withConfiguration(new BlockStateFeatureConfig(LAVA)).withPlacement(Placement.LAVA_LAKE.configure(new ChanceConfig(80))));
+	      biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.SPRING_FEATURE.withConfiguration(DefaultBiomeFeatures.LAVA_SPRING_CONFIG).withPlacement(Placement.COUNT_VERY_BIASED_RANGE.configure(new CountRangeConfig(20, 8, 16, 256))));
 	}
 
 }
