@@ -20,8 +20,8 @@ public class PrehistoricFaunaConfig {
 	public static int dryosaurusSpawnWeight = 7;
 	public static int ceratosaurusSpawnWeight = 2;
 	public static int allosaurusSpawnWeight = 3;
-	public static int hesperornithoidesSpawnWeight = 4;
-	public static int eilenodonSpawnWeight = 5;
+	public static int hesperornithoidesSpawnWeight = 7;
+	public static int eilenodonSpawnWeight = 8;
 	public static int camarasaurusSpawnWeight = 2;
 	public static int exaeretodonSpawnWeight = 12;
 	public static int chromogisaurusSpawnWeight = 10;
@@ -41,6 +41,7 @@ public class PrehistoricFaunaConfig {
 	public static int ischigualastoHutMinDistance = 40;
 	public static int ischigualastoHutMaxDistance = 60;
 	public static boolean spaceTimeContinuumWarping = false;
+	public static boolean geologyHammerMining = true;
 	
 	public static void bakeClient(final ModConfig config) {
 
@@ -84,6 +85,7 @@ public class PrehistoricFaunaConfig {
 			ischigualastoHutMinDistance = PrehistoricConfigHolder.SERVER.ischigualastoHutMinDistance.get();
 			ischigualastoHutMaxDistance = PrehistoricConfigHolder.SERVER.ischigualastoHutMaxDistance.get();
 			spaceTimeContinuumWarping = PrehistoricConfigHolder.SERVER.spaceTimeContinuumWarping.get();
+			geologyHammerMining = PrehistoricConfigHolder.SERVER.geologyHammerMining.get();
 		} catch (Exception e) {
 			PrehistoricFauna.LOGGER.warn("An exception was caused trying to load the config for Prehistoric Fauna");
 			e.printStackTrace();

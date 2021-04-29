@@ -2,11 +2,11 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "prehistoricfauna:paleopedia"
+      "prehistoricfauna:paleojournal"
     ]
   },
   "criteria": {
-    "has_meat": {
+    "has_page": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "prehistoricfauna:paleopedia"
+        "recipe": "prehistoricfauna:paleojournal"
       }
     }
   },
   "requirements": [
     [
-      "has_meat",
+      "has_page",
       "has_the_recipe"
     ]
   ]

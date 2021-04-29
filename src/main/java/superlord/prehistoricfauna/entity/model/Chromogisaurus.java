@@ -24,64 +24,54 @@ public class Chromogisaurus extends EntityModel<ChromogisaurusEntity> {
     public ModelRenderer Neck;
     public ModelRenderer Tail;
     public ModelRenderer Head;
-    public ModelRenderer LeftCalf;
-    public ModelRenderer LeftFoot;
-    public ModelRenderer RightCalf;
-    public ModelRenderer RightFoot;
+    public ModelRenderer LeftLeg;
+    public ModelRenderer LeftLeg_1;
 
     public Chromogisaurus() {
         this.textureWidth = 80;
         this.textureHeight = 64;
+        this.LeftThigh = new ModelRenderer(this, 30, 0);
+        this.LeftThigh.setRotationPoint(1.0F, 15.0F, 2.0F);
+        this.LeftThigh.addBox(-0.5F, 0.0F, -1.0F, 2.0F, 5.0F, 2.0F, 0.0F, 0.0F, 0.0F);
+        this.RightArm = new ModelRenderer(this, 12, 18);
+        this.RightArm.setRotationPoint(-1.5F, 1.0F, -6.0F);
+        this.RightArm.addBox(-0.5F, -1.0F, -1.0F, 1.0F, 5.0F, 2.0F, 0.0F, 0.0F, 0.0F);
+        this.LeftLeg_1 = new ModelRenderer(this, 60, 0);
+        this.LeftLeg_1.setRotationPoint(-0.6F, 5.0F, 1.0F);
+        this.LeftLeg_1.addBox(-1.5F, 0.0F, -3.0F, 3.0F, 4.0F, 3.0F, 0.0F, 0.0F, 0.0F);
+        this.LeftLeg = new ModelRenderer(this, 60, 0);
+        this.LeftLeg.setRotationPoint(0.6F, 5.0F, 1.0F);
+        this.LeftLeg.addBox(-1.5F, 0.0F, -3.0F, 3.0F, 4.0F, 3.0F, 0.0F, 0.0F, 0.0F);
         this.LeftArm = new ModelRenderer(this, 12, 18);
         this.LeftArm.setRotationPoint(1.5F, 1.0F, -6.0F);
         this.LeftArm.addBox(-0.5F, -1.0F, -1.0F, 1.0F, 5.0F, 2.0F, 0.0F, 0.0F, 0.0F);
-        this.LeftFoot = new ModelRenderer(this, 29, 15);
-        this.LeftFoot.setRotationPoint(0.5F, 4.0F, 0.0F);
-        this.LeftFoot.addBox(-1.5F, 0.0F, -3.0F, 2.0F, 0.0F, 3.0F, 0.0F, 0.0F, 0.0F);
-        this.LeftCalf = new ModelRenderer(this, 33, 8);
-        this.LeftCalf.setRotationPoint(0.5F, 5.0F, 1.0F);
-        this.LeftCalf.addBox(-0.5F, 0.0F, 0.0F, 1.0F, 4.0F, 0.0F, 0.0F, 0.0F, 0.0F);
-        this.RightThigh = new ModelRenderer(this, 39, 0);
-        this.RightThigh.setRotationPoint(-1.0F, 15.0F, 2.0F);
-        this.RightThigh.addBox(-1.5F, 0.0F, -1.0F, 2.0F, 5.0F, 2.0F, 0.0F, 0.0F, 0.0F);
         this.Neck = new ModelRenderer(this, 0, 18);
         this.Neck.setRotationPoint(0.5F, -1.0F, -8.0F);
         this.Neck.addBox(-1.5F, -3.0F, -2.0F, 2.0F, 5.0F, 2.0F, 0.0F, 0.0F, 0.0F);
         this.Tail = new ModelRenderer(this, 31, 3);
         this.Tail.setRotationPoint(0.0F, -0.9F, 4.0F);
-        this.Tail.addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 17.0F, 0.0F, 0.0F, 0.0F);
-        this.RightFoot = new ModelRenderer(this, 37, 15);
-        this.RightFoot.setRotationPoint(0.5F, 4.0F, 0.0F);
-        this.RightFoot.addBox(-1.5F, 0.0F, -3.0F, 2.0F, 0.0F, 3.0F, 0.0F, 0.0F, 0.0F);
-        this.RightCalf = new ModelRenderer(this, 40, 8);
-        this.RightCalf.setRotationPoint(-0.5F, 5.0F, 1.0F);
-        this.RightCalf.addBox(-0.5F, 0.0F, 0.0F, 1.0F, 4.0F, 0.0F, 0.0F, 0.0F, 0.0F);
-        this.RightArm = new ModelRenderer(this, 12, 18);
-        this.RightArm.setRotationPoint(-1.5F, 1.0F, -6.0F);
-        this.RightArm.addBox(-0.5F, -1.0F, -1.0F, 1.0F, 5.0F, 2.0F, 0.0F, 0.0F, 0.0F);
+        this.Tail.addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 16.0F, 0.0F, 0.0F, 0.0F);
+        this.RightThigh = new ModelRenderer(this, 39, 0);
+        this.RightThigh.setRotationPoint(-1.0F, 15.0F, 2.0F);
+        this.RightThigh.addBox(-1.5F, 0.0F, -1.0F, 2.0F, 5.0F, 2.0F, 0.0F, 0.0F, 0.0F);
         this.Head = new ModelRenderer(this, 0, 28);
         this.Head.setRotationPoint(0.0F, -3.0F, -1.0F);
         this.Head.addBox(-1.5F, -2.0F, -3.0F, 2.0F, 2.0F, 4.0F, 0.0F, 0.0F, 0.0F);
         this.Body = new ModelRenderer(this, 0, 0);
         this.Body.setRotationPoint(0.0F, 16.0F, 2.0F);
         this.Body.addBox(-1.5F, -2.0F, -8.0F, 3.0F, 4.0F, 12.0F, 0.0F, 0.0F, 0.0F);
-        this.LeftThigh = new ModelRenderer(this, 30, 0);
-        this.LeftThigh.setRotationPoint(1.0F, 15.0F, 2.0F);
-        this.LeftThigh.addBox(-0.5F, 0.0F, -1.0F, 2.0F, 5.0F, 2.0F, 0.0F, 0.0F, 0.0F);
+        this.Body.addChild(this.RightArm);
+        this.RightThigh.addChild(this.LeftLeg_1);
+        this.LeftThigh.addChild(this.LeftLeg);
         this.Body.addChild(this.LeftArm);
-        this.LeftCalf.addChild(this.LeftFoot);
-        this.LeftThigh.addChild(this.LeftCalf);
         this.Body.addChild(this.Neck);
         this.Body.addChild(this.Tail);
-        this.RightCalf.addChild(this.RightFoot);
-        this.RightThigh.addChild(this.RightCalf);
-        this.Body.addChild(this.RightArm);
         this.Neck.addChild(this.Head);
     }
 
     @Override
     public void render(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) { 
-        ImmutableList.of(this.RightThigh, this.Body, this.LeftThigh).forEach((modelRenderer) -> { 
+        ImmutableList.of(this.LeftThigh, this.RightThigh, this.Body).forEach((modelRenderer) -> { 
             modelRenderer.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
         });
     }

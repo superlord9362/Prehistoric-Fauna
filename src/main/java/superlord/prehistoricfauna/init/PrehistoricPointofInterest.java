@@ -27,7 +27,8 @@ public class PrehistoricPointofInterest {
         return pointOfInterestType;
     }
 
-    private static Set<BlockState> getAllStates(Block block) {
+    @SuppressWarnings("unused")
+	private static Set<BlockState> getAllStates(Block block) {
         return ImmutableSet.copyOf(block.getStateContainer().getValidStates());
     }
 

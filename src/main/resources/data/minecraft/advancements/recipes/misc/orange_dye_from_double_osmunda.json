@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "minecraft:orange_dye_from_double_osmunda"
+      "prehistoricfauna:orange_dye_from_tall_osmunda"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "minecraft:orange_dye_from_double_osmunda"
+        "recipe": "prehistoricfauna:orange_dye_from_tall_osmunda"
       }
     }
   },

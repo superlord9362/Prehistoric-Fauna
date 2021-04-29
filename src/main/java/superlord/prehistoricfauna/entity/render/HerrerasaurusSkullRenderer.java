@@ -12,7 +12,7 @@ public class HerrerasaurusSkullRenderer extends MobRenderer<HerrerasaurusSkullEn
     private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/skeleton/herrerasaurus_skull.png");
 
     public HerrerasaurusSkullRenderer(EntityRendererManager rm) {
-        super(rm, new HerrerasaurusSkull(), 0.375F);
+        super(rm, new HerrerasaurusSkull(), 0.5F);
     }
     @Override
 	public ResourceLocation getEntityTexture(HerrerasaurusSkullEntity entity) {

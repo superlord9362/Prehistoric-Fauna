@@ -23,6 +23,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -289,7 +290,7 @@ public class BlockInit {
 	public static final Block POTTED_LIRIODENDRITES_SAPLING = new FlowerPotBlock(LIRIODENDRITES_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_liriodendrites_sapling");//Loot Table done
 	public static final Block CRETACEOUS_PORTAL = new CretaceousPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).lightValue(11).noDrops()).setRegistryName("cretaceous_portal");//Loot Table done
 	public static final Block TRIASSIC_SANDSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("triassic_sandstone");//Loot Table done
-	public static final Block TRIASSIC_SANDSTONE_FOSSIL = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("triassic_sandstone_fossil");//Loot Table done
+	public static final Block TRIASSIC_SANDSTONE_FOSSIL = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE).harvestLevel(2).harvestTool(ToolType.PICKAXE)).setRegistryName("triassic_sandstone_fossil");//Loot Table done
 	public static final Block SMOOTH_TRIASSIC_SANDSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("smooth_triassic_sandstone");//Loot Table done
 	public static final Block POLISHED_TRIASSIC_SANDSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_triassic_sandstone");//Loot Table done
 	public static final Block POLISHED_TRIASSIC_SANDSTONE_BRICKS = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_triassic_sandstone_bricks");//Loot Table done
@@ -304,7 +305,7 @@ public class BlockInit {
 	public static final Block TRIASSIC_SANDSTONE_BRICK_STAIRS = new PrehistoricStairsBlock(POLISHED_TRIASSIC_SANDSTONE_BRICKS.getDefaultState(), Block.Properties.from(POLISHED_TRIASSIC_SANDSTONE_BRICKS)).setRegistryName("triassic_sandstone_brick_stairs");//Loot Table done
 	public static final Block TRIASSIC_SANDSTONE_BRICK_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("triassic_sandstone_brick_slab");//Loot Table done
 	public static final Block JURASSIC_SILTSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("jurassic_siltstone");//Loot Table done
-	public static final Block JURASSIC_SILTSTONE_FOSSIL = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("jurassic_siltstone_fossil");//Loot Table done
+	public static final Block JURASSIC_SILTSTONE_FOSSIL = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE).harvestLevel(2).harvestTool(ToolType.PICKAXE)).setRegistryName("jurassic_siltstone_fossil");//Loot Table done
 	public static final Block SMOOTH_JURASSIC_SILTSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("smooth_jurassic_siltstone");//Loot Table done
 	public static final Block POLISHED_JURASSIC_SILTSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_jurassic_siltstone");//Loot Table done
 	public static final Block POLISHED_JURASSIC_SILTSTONE_BRICKS = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_jurassic_siltstone_bricks");//Loot Table done
@@ -319,7 +320,7 @@ public class BlockInit {
 	public static final Block POLISHED_JURASSIC_SILTSTONE_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_jurassic_siltstone_slab");//Loot Table done
 	public static final Block POLISHED_JURASSIC_SILTSTONE_STAIRS = new PrehistoricStairsBlock(POLISHED_JURASSIC_SILTSTONE.getDefaultState(), Block.Properties.from(POLISHED_JURASSIC_SILTSTONE)).setRegistryName("polished_jurassic_siltstone_stairs");//Loot Table done
 	public static final Block CRETACEOUS_CHALK = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("cretaceous_chalk");//Loot Table done
-	public static final Block CRETACEOUS_CHALK_FOSSIL = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("cretaceous_chalk_fossil");//Loot Table done
+	public static final Block CRETACEOUS_CHALK_FOSSIL = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE).harvestLevel(2).harvestLevel(2).harvestTool(ToolType.PICKAXE)).setRegistryName("cretaceous_chalk_fossil");//Loot Table done
 	public static final Block SMOOTH_CRETACEOUS_CHALK = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("smooth_cretaceous_chalk");//Loot Table done
 	public static final Block POLISHED_CRETACEOUS_CHALK = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_cretaceous_chalk");//Loot Table done
 	public static final Block POLISHED_CRETACEOUS_CHALK_BRICKS = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_cretaceous_chalk_bricks");//Loot Table done
@@ -1013,8 +1014,6 @@ public class BlockInit {
  		event.getRegistry().register(new BlockItem(BlockInit.HENOSTONE_DARK_BRICK_STAIRS, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone_dark_brick_stairs"));
  		event.getRegistry().register(new BlockItem(BlockInit.HENOSTONE_DARK_BRICK_WALL, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone_dark_brick_wall"));
  		event.getRegistry().register(new BlockItem(BlockInit.HENOSTONE_TRAP, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone_trap"));
- 		event.getRegistry().register(new BlockItem(BlockInit.LARGE_AMMONITE_SHELL, new Item.Properties().group(PFFossil.instance)).setRegistryName("large_shell"));
- 		event.getRegistry().register(new BlockItem(BlockInit.SMALL_AMMONITE_SHELL, new Item.Properties().group(PFFossil.instance)).setRegistryName("small_shell"));
  		event.getRegistry().register(new BlockItem(BlockInit.GIANT_AMMONITE_SHELL_BB, new Item.Properties().group(PFFossil.instance)).setRegistryName("giant_shell_bb"));
  		event.getRegistry().register(new BlockItem(BlockInit.GIANT_AMMONITE_SHELL_BF, new Item.Properties().group(PFFossil.instance)).setRegistryName("giant_shell_bf"));
  		event.getRegistry().register(new BlockItem(BlockInit.GIANT_AMMONITE_SHELL_TB, new Item.Properties().group(PFFossil.instance)).setRegistryName("giant_shell_tb"));

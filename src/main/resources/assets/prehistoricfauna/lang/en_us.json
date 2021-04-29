@@ -345,6 +345,7 @@
 	"item.prehistoricfauna.cladophlebis_stick": "Cladophlebis on a Stick",
 	"item.prehistoricfauna.paleopainting": "Ancient Painting",
 	"item.prehistoricfauna.stegosaurus_thagomizer": "Stegosaurus Thagomizer",
+	"item.prehistoricfauna.geological_hammer": "Geological Hammer",
 	
 	"item.prehistoricfauna.raw_thescelosaurus_meat": "Raw Thescelosaurus",
 	"item.prehistoricfauna.cooked_thescelosaurus_meat": "Cooked Thescelosaurus",
@@ -723,6 +724,8 @@
 	"advancements.prehistoricfauna.weird_taxidermy.description": "Craft armor from an animal's body parts",
 	"advancements.prehistoricfauna.written_in_stone.title": "Written in Stone",
 	"advancements.prehistoricfauna.written_in_stone.description": "Chisel every sedimentary stone block",
+	"advancements.prehistoricfauna.master_paleontologist.title": "Fossil Finder",
+	"advancements.prehistoricfauna.master_paleontologist.description": "Collect them all!",
 	
 	"death.attack.trap.0": "%s was impaled by a henostone trap",
 	"death.attack.trap.1": "%s was shish kebabed by a henostone trap",

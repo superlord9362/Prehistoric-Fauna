@@ -3,6 +3,7 @@ package superlord.prehistoricfauna.util;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -13,7 +14,9 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.BlockInit;
+import superlord.prehistoricfauna.init.ItemInit;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +25,8 @@ import java.util.Map;
 public class CommonEvents {
 
 	public static Map<Block, Block> BLOCK_STRIPPING_MAP = new HashMap<>();
-	
+	public static Map<Block, Block> ROCK_SMASHING_MAP = new HashMap<>();
+
 	static {
 		BLOCK_STRIPPING_MAP.put(BlockInit.METASEQUOIA_LOG, BlockInit.METASEQUOIA_LOG_STRIPPED);
 		BLOCK_STRIPPING_MAP.put(BlockInit.METASEQUOIA_WOOD, BlockInit.STRIPPED_METASEQUOIA_WOOD);
@@ -38,10 +42,14 @@ public class CommonEvents {
 		BLOCK_STRIPPING_MAP.put(BlockInit.HEIDIPHYLLUM_WOOD, BlockInit.STRIPPED_HEIDIPHYLLUM_WOOD);
 		BLOCK_STRIPPING_MAP.put(BlockInit.LIRIODENDRITES_LOG, BlockInit.STRIPPED_LIRIODENDRITES_LOG);
 		BLOCK_STRIPPING_MAP.put(BlockInit.LIRIODENDRITES_WOOD, BlockInit.STRIPPED_LIRIODENDRITES_WOOD);
+		ROCK_SMASHING_MAP.put(Blocks.STONE, Blocks.COBBLESTONE);
+		ROCK_SMASHING_MAP.put(Blocks.COBBLESTONE, Blocks.GRAVEL);
+		ROCK_SMASHING_MAP.put(Blocks.SANDSTONE, Blocks.SAND);
+		ROCK_SMASHING_MAP.put(Blocks.RED_SANDSTONE, Blocks.RED_SAND);
 		//BLOCK_STRIPPING_MAP.put(BlockInit.CYPRESS_LOG, BlockInit.STRIPPED_CYPRESS_LOG);
 		//BLOCK_STRIPPING_MAP.put(BlockInit.CYPRESS_WOOD, BlockInit.STRIPPED_CYPRESS_WOOD);
 	}
-	
+
 	public static void setup() {
 		registerFlammable(BlockInit.ARAUCARIA_PLANKS, 5, 20);
 		registerFlammable(BlockInit.METASEQUOIA_PLANKS, 5, 20);
@@ -159,16 +167,16 @@ public class CommonEvents {
 		registerCompostable(0.65F, BlockInit.CLUBMOSS);
 		registerCompostable(0.65F, BlockInit.MARCHANTIA);
 	}
-	
+
 	public static void registerFlammable(Block block, int encouragement, int flammability) {
 		FireBlock fireblock = (FireBlock)Blocks.FIRE;
 		fireblock.setFireInfo(block, encouragement, flammability);
 	}
-	
+
 	public static void registerCompostable(float chance, IItemProvider item) {
 		ComposterBlock.CHANCES.put(item.asItem(), chance);
 	}
-	
+
 	@SubscribeEvent
 	public static void onBlockClicked(PlayerInteractEvent.RightClickBlock event) {
 		if(event.getItemStack().getItem() instanceof AxeItem) {
@@ -189,6 +197,28 @@ public class CommonEvents {
 				}
 			}
 		}
+		if(event.getItemStack().getItem() == ItemInit.GEOLOGY_HAMMER.get() && PrehistoricFaunaConfig.geologyHammerMining == true) {
+			World world = event.getWorld();
+			BlockPos pos = event.getPos();
+			BlockState state = world.getBlockState(pos);
+			Block block = ROCK_SMASHING_MAP.get(state.getBlock());
+			if(block != null) {
+				PlayerEntity entity = event.getPlayer();
+				world.playSound(entity, pos, SoundEvents.BLOCK_STONE_HIT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				double d0 = (double)pos.getX() + 0.5D;
+				double d1 = (double)pos.getY() + 0.7D;
+				double d2 = (double)pos.getZ() + 0.5D;
+				world.addParticle(ParticleTypes.LARGE_SMOKE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+				if(!world.isRemote) {
+					world.setBlockState(pos, block.getDefaultState(), 11);
+					if(entity != null) {
+						event.getItemStack().damageItem(1, entity, (p_220040_1_) -> {
+							p_220040_1_.sendBreakAnimation(event.getHand());
+						});
+					}
+				}
+			}
+		}
 	}
-	
+
 }

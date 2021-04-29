@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    " # ",
+	" L "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:iron_ingot"
+    },
+	"L": {
+		"item": "minecraft:leather"
+	}
+  },
+  "result": {
+    "item": "prehistoricfauna:geological_hammer",
+    "count": 1
+  }
+}

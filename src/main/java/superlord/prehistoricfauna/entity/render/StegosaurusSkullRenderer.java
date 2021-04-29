@@ -12,8 +12,9 @@ public class StegosaurusSkullRenderer extends MobRenderer<StegosaurusSkullEntity
     private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/skeleton/stegosaurus_skull.png");
 
     public StegosaurusSkullRenderer(EntityRendererManager rm) {
-        super(rm, new StegosaurusSkull(), 0.375F);
+        super(rm, new StegosaurusSkull(), 1.0F);
     }
+    
     @Override
 	public ResourceLocation getEntityTexture(StegosaurusSkullEntity entity) {
     	return SKULL;

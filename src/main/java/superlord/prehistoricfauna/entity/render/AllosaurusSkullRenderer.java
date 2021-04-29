@@ -12,7 +12,7 @@ public class AllosaurusSkullRenderer extends MobRenderer<AllosaurusSkullEntity, 
     private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/skeleton/allosaurus_skull.png");
 
     public AllosaurusSkullRenderer(EntityRendererManager rm) {
-        super(rm, new AllosaurusSkull(), 0.375F);
+        super(rm, new AllosaurusSkull(), 1.0F);
     }
     @Override
 	public ResourceLocation getEntityTexture(AllosaurusSkullEntity entity) {

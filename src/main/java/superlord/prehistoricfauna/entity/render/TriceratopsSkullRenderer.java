@@ -12,7 +12,7 @@ public class TriceratopsSkullRenderer extends MobRenderer<TriceratopsSkullEntity
     private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/skeleton/triceratops_skull.png");
 
     public TriceratopsSkullRenderer(EntityRendererManager rm) {
-        super(rm, new TriceratopsSkull(), 0.375F);
+        super(rm, new TriceratopsSkull(), 1.0F);
     }
     @Override
 	public ResourceLocation getEntityTexture(TriceratopsSkullEntity entity) {

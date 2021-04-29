@@ -12,8 +12,9 @@ public class SaurosuchusSkullRenderer extends MobRenderer<SaurosuchusSkullEntity
     private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/skeleton/saurosuchus_skull.png");
 
     public SaurosuchusSkullRenderer(EntityRendererManager rm) {
-        super(rm, new SaurosuchusSkull(), 0.375F);
+        super(rm, new SaurosuchusSkull(), 1.0F);
     }
+    
     @Override
 	public ResourceLocation getEntityTexture(SaurosuchusSkullEntity entity) {
     	return SKULL;

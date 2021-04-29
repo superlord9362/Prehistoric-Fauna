@@ -12,7 +12,7 @@ public class TyrannosaurusSkullRenderer extends MobRenderer<TyrannosaurusSkullEn
     private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MODID, "textures/blocks/tyrannosaurus_skull.png");
 
     public TyrannosaurusSkullRenderer(EntityRendererManager rm) {
-        super(rm, new Tyrannosaurusskull(), 0.375F);
+        super(rm, new Tyrannosaurusskull(), 1.0F);
     }
     @Override
 	public ResourceLocation getEntityTexture(TyrannosaurusSkullEntity entity) {

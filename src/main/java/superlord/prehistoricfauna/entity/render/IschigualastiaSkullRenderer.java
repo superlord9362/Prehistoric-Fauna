@@ -12,7 +12,7 @@ public class IschigualastiaSkullRenderer extends MobRenderer<IschigualastiaSkull
     private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/skeleton/ischigualastia_skull.png");
 
     public IschigualastiaSkullRenderer(EntityRendererManager rm) {
-        super(rm, new IschigualastiaSkull(), 0.375F);
+        super(rm, new IschigualastiaSkull(), 1.0F);
     }
     @Override
 	public ResourceLocation getEntityTexture(IschigualastiaSkullEntity entity) {

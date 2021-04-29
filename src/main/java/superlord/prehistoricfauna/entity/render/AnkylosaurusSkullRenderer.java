@@ -12,7 +12,7 @@ public class AnkylosaurusSkullRenderer extends MobRenderer<AnkylosaurusSkullEnti
     private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/skeleton/ankylosaurus_skull.png");
 
     public AnkylosaurusSkullRenderer(EntityRendererManager rm) {
-        super(rm, new AnkylosaurusSkull(), 0.375F);
+        super(rm, new AnkylosaurusSkull(), 1.0F);
     }
     @Override
 	public ResourceLocation getEntityTexture(AnkylosaurusSkullEntity entity) {

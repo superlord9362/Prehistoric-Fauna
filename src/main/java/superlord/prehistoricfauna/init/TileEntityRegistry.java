@@ -11,7 +11,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.entity.tile.DidelphodonBurrowTileEntity;
 import superlord.prehistoricfauna.entity.tile.PFSignTileEntity;
 import superlord.prehistoricfauna.entity.tile.PaleontologyTableTileEntity;
 import superlord.prehistoricfauna.entity.tile.PaleoscribeTileEntity;

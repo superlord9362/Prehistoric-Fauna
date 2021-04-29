@@ -23,9 +23,9 @@ public class ItemInit {
 	public static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, PrehistoricFauna.MODID);
 
 	//Spawn eggs
-	public static final RegistryObject<SpawnEggItem> THESCELOSAURUS_SPAWN_EGG = ITEMS.register("thescelosaurus_spawn_egg", () -> new SpawnEggItem(ModEntityTypes.THESCELOSAURUS_ENTITY, 0x582C20, 0x000000, new Item.Properties().group(PFEggs.instance)));
-	public static final RegistryObject<SpawnEggItem> TRICERATOPS_SPAWN_EGG = ITEMS.register("triceratops_spawn_egg", () -> new SpawnEggItem(ModEntityTypes.TRICERATOPS_ENTITY, 0x494427, 0x000000, new Item.Properties().group(PFEggs.instance)));
-	public static final RegistryObject<SpawnEggItem> ANKYLOSAURUS_SPAWN_EGG = ITEMS.register("ankylosaurus_spawn_egg", () -> new SpawnEggItem(ModEntityTypes.ANKYLOSAURUS_ENTITY, 0x696726, 0x1F1E13, new Item.Properties().group(PFEggs.instance)));
+	public static final RegistryObject<SpawnEggItem> THESCELOSAURUS_SPAWN_EGG = ITEMS.register("thescelosaurus_spawn_egg", () -> new SpawnEggItem(ModEntityTypes.THESCELOSAURUS_ENTITY, 0x582C20, 0x496659, new Item.Properties().group(PFEggs.instance)));
+	public static final RegistryObject<SpawnEggItem> TRICERATOPS_SPAWN_EGG = ITEMS.register("triceratops_spawn_egg", () -> new SpawnEggItem(ModEntityTypes.TRICERATOPS_ENTITY, 0x494427, 0xABA37B, new Item.Properties().group(PFEggs.instance)));
+	public static final RegistryObject<SpawnEggItem> ANKYLOSAURUS_SPAWN_EGG = ITEMS.register("ankylosaurus_spawn_egg", () -> new SpawnEggItem(ModEntityTypes.ANKYLOSAURUS_ENTITY, 0x202C0C, 0x908730, new Item.Properties().group(PFEggs.instance)));
 	public static final RegistryObject<SpawnEggItem> TYRANNOSAURUS_SPAWN_EGG = ITEMS.register("tyrannosaurus_spawn_egg", () -> new SpawnEggItem(ModEntityTypes.TYRANNOSAURUS_ENTITY, 0x56483E, 0x614C38, new Item.Properties().group(PFEggs.instance)));
 	public static final RegistryObject<SpawnEggItem> BASILEMYS_SPAWN_EGG = ITEMS.register("basilemys_spawn_egg", () -> new SpawnEggItem(ModEntityTypes.BASILEMYS_ENTITY, 0x6B3727, 0x373519, new Item.Properties().group(PFEggs.instance))); 
 	public static final RegistryObject<SpawnEggItem> DAKOTARAPTOR_SPAWN_EGG = ITEMS.register("dakotaraptor_spawn_egg", () -> new SpawnEggItem(ModEntityTypes.DAKOTARAPTOR_ENTITY, 0x453018, 0x986529, new Item.Properties().group(PFEggs.instance)));
@@ -46,19 +46,21 @@ public class ItemInit {
 	public static final RegistryObject<SpawnEggItem> ISCHIGUALASTIA_SPAWN_EGG = ITEMS.register("ischigualastia_spawn_egg", () -> new SpawnEggItem(ModEntityTypes.ISCHIGUALASTIA_ENTITY, 0x242820, 0x808776, new Item.Properties().group(PFEggs.instance)));
 	public static final RegistryObject<SpawnEggItem> TIME_GUARDIAN_SPAWN_EGG = ITEMS.register("time_guardian_spawn_egg", () -> new SpawnEggItem(ModEntityTypes.TIME_GUARDIAN_ENTITY, 0x55735F, 0x3B4B45, new Item.Properties().group(PFEggs.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> TYRANNOSAURUS_SKULL = ITEMS.register("tyrannosaurus_skull", () -> new SpawnSkeletonItem(ModEntityTypes.TYRANNOSAURUS_SKULL, new Item.Properties().group(PFFossil.instance)));
-	public static final RegistryObject<SpawnSkeletonItem> ANKYLOSAURUS_SKULL = ITEMS.register("ankylosaurus_skull", () -> new SpawnSkeletonItem(ModEntityTypes.ANKYLOSAURUS_SKULL, new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> TRICERATOPS_SKULL = ITEMS.register("triceratops_skull", () -> new SpawnSkeletonItem(ModEntityTypes.TRICERATOPS_SKULL, new Item.Properties().group(PFFossil.instance)));
-	public static final RegistryObject<SpawnSkeletonItem> HERRERASAURUS_SKULL = ITEMS.register("herrerasaurus_skull", () -> new SpawnSkeletonItem(ModEntityTypes.HERRERASAURUS_SKULL, new Item.Properties().group(PFFossil.instance)));
-	public static final RegistryObject<SpawnSkeletonItem> SAUROSUCHUS_SKULL = ITEMS.register("saurosuchus_skull", () -> new SpawnSkeletonItem(ModEntityTypes.SAUROSUCHUS_SKULL, new Item.Properties().group(PFFossil.instance)));
-	public static final RegistryObject<SpawnSkeletonItem> ISCHIGUALASTIA_SKULL = ITEMS.register("ischigualastia_skull", () -> new SpawnSkeletonItem(ModEntityTypes.ISCHIGUALASTIA_SKULL, new Item.Properties().group(PFFossil.instance)));
+	public static final RegistryObject<SpawnSkeletonItem> ANKYLOSAURUS_SKULL = ITEMS.register("ankylosaurus_skull", () -> new SpawnSkeletonItem(ModEntityTypes.ANKYLOSAURUS_SKULL, new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> STEGOSAURUS_SKULL = ITEMS.register("stegosaurus_skull", () -> new SpawnSkeletonItem(ModEntityTypes.STEGOSAURUS_SKULL, new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> CERATOSAURUS_SKULL = ITEMS.register("ceratosaurus_skull", () -> new SpawnSkeletonItem(ModEntityTypes.CERATOSAURUS_SKULL, new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> ALLOSAURUS_SKULL = ITEMS.register("allosaurus_skull", () -> new SpawnSkeletonItem(ModEntityTypes.ALLOSAURUS_SKULL, new Item.Properties().group(PFFossil.instance)));
+	public static final RegistryObject<SpawnSkeletonItem> HERRERASAURUS_SKULL = ITEMS.register("herrerasaurus_skull", () -> new SpawnSkeletonItem(ModEntityTypes.HERRERASAURUS_SKULL, new Item.Properties().group(PFFossil.instance)));
+	public static final RegistryObject<SpawnSkeletonItem> SAUROSUCHUS_SKULL = ITEMS.register("saurosuchus_skull", () -> new SpawnSkeletonItem(ModEntityTypes.SAUROSUCHUS_SKULL, new Item.Properties().group(PFFossil.instance)));
+	public static final RegistryObject<SpawnSkeletonItem> ISCHIGUALASTIA_SKULL = ITEMS.register("ischigualastia_skull", () -> new SpawnSkeletonItem(ModEntityTypes.ISCHIGUALASTIA_SKULL, new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> TYRANNOSAURUS_SKELETON = ITEMS.register("tyrannosaurus_skeleton", () -> new SpawnSkeletonItem(ModEntityTypes.TYRANNOSAURUS_SKELETON, new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> TRICERATOPS_SKELETON = ITEMS.register("triceratops_skeleton", () -> new SpawnSkeletonItem(ModEntityTypes.TRICERATOPS_SKELETON, new Item.Properties().group(PFFossil.instance)));
-	public static final RegistryObject<SpawnSkeletonItem> ANKYLOSAURUS_SKELTON = ITEMS.register("ankylosaurus_skeleton", () -> new SpawnSkeletonItem(ModEntityTypes.ANKYLOSAURUS_SKELETON, new Item.Properties().group(PFFossil.instance)));
+	public static final RegistryObject<SpawnSkeletonItem> ANKYLOSAURUS_SKELETON = ITEMS.register("ankylosaurus_skeleton", () -> new SpawnSkeletonItem(ModEntityTypes.ANKYLOSAURUS_SKELETON, new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> CERATOSAURUS_SKELETON = ITEMS.register("ceratosaurus_skeleton", () -> new SpawnSkeletonItem(ModEntityTypes.CERATOSAURUS_SKELETON, new Item.Properties().group(PFFossil.instance)));
+	public static final RegistryObject<SpawnSkeletonItem> ALLOSAURUS_SKELETON = ITEMS.register("allosaurus_skeleton", () -> new SpawnSkeletonItem(ModEntityTypes.ALLOSAURUS_SKELETON, new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> HERRERASAURUS_SKELETON = ITEMS.register("herrerasaurus_skeleton", () -> new SpawnSkeletonItem(ModEntityTypes.HERRERASAURUS_SKELETON, new Item.Properties().group(PFFossil.instance)));
+	public static final RegistryObject<SpawnSkeletonItem> ISCHIGUALASTIA_SKELETON = ITEMS.register("ischigualastia_skeleton", () -> new SpawnSkeletonItem(ModEntityTypes.ISCHIGUALASTIA_SKELETON, new Item.Properties().group(PFFossil.instance)));
 	//Drops
 	public static final RegistryObject<Item> TYRANNOSAURUS_TOOTH = ITEMS.register("tyrannosaurus_tooth", () -> new Item(new Item.Properties().group(PFEntities.instance)));
 	public static final RegistryObject<Item> TAIL_CLUB = ITEMS.register("tail_club", () -> new Item(new Item.Properties().group(PFEntities.instance)));
@@ -74,10 +76,10 @@ public class ItemInit {
 	public static final RegistryObject<Item> TRICERATOPS_FOSSIL = ITEMS.register("triceratops_fossil", () -> new Item(new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<Item> ANKYLOSAURUS_FOSSIL = ITEMS.register("ankylosaurus_fossil", () -> new Item(new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<Item> STEGOSAURUS_FOSSIL = ITEMS.register("stegosaurus_fossil", () -> new Item(new Item.Properties().group(PFFossil.instance)));
-	public static final RegistryObject<Item> HERRERASAURUS_FOSSIL = ITEMS.register("herrerasaurus_fossil", () -> new Item(new Item.Properties().group(PFFossil.instance)));
-	public static final RegistryObject<Item> SAUROSUCHUS_FOSSIL = ITEMS.register("saurosuchus_fossil", () -> new Item(new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<Item> ALLOSAURUS_FOSSIL = ITEMS.register("allosaurus_fossil", () -> new Item(new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<Item> CERATOSAURUS_FOSSIL = ITEMS.register("ceratosaurus_fossil", () -> new Item(new Item.Properties().group(PFFossil.instance)));
+	public static final RegistryObject<Item> HERRERASAURUS_FOSSIL = ITEMS.register("herrerasaurus_fossil", () -> new Item(new Item.Properties().group(PFFossil.instance)));
+	public static final RegistryObject<Item> SAUROSUCHUS_FOSSIL = ITEMS.register("saurosuchus_fossil", () -> new Item(new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<Item> ISCHIGUALASTIA_FOSSIL = ITEMS.register("ischigualastia_fossil", () -> new Item(new Item.Properties().group(PFFossil.instance)));
 	//Meat
 	public static final RegistryObject<Item> RAW_ANKYLOSAURUS_MEAT = ITEMS.register("raw_ankylosaurus_meat", () -> new Item(new Item.Properties().group(PFEntities.instance).food(new Food.Builder().hunger(4).saturation(0.3F).meat().build())));
@@ -142,9 +144,12 @@ public class ItemInit {
 	public static final RegistryObject<Item> CLADOPHEBLIS_STICK = ITEMS.register("cladophlebis_stick", () -> new Item(new Item.Properties().group(PFBook.instance).maxStackSize(1)));
 	public static final RegistryObject<PaleopaintingItem> PALEOPAINTING = ITEMS.register("paleopainting", () -> new PaleopaintingItem(new Item.Properties().group(PFBook.instance)));
 	public static final RegistryObject<WallFossilItem> WALL_FOSSIL = ITEMS.register("wall_fossil", () -> new WallFossilItem(new Item.Properties().group(PFFossil.instance)));
+	public static final RegistryObject<BlockItem> SMALL_AMMONITE_SHELL = ITEMS.register("small_shell", () -> new BlockItem(BlockInit.SMALL_AMMONITE_SHELL, new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<BlockItem> MEDIUM_AMMONITE_SHELL = ITEMS.register("medium_shell", () -> new BlockItem(BlockInit.MEDIUM_AMMONITE_SHELL, new Item.Properties().group(PFFossil.instance)));
+	public static final RegistryObject<BlockItem> LARGE_AMMONITE_SHELL = ITEMS.register("large_shell", () -> new BlockItem(BlockInit.LARGE_AMMONITE_SHELL, new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<BlockItem> CRASSOSTREA_BLOCK = ITEMS.register("crassostrea_oysters", () -> new BlockItem(BlockInit.CRASSOSTREA_BLOCK, new Item.Properties().group(PFEntities.instance)));
 	public static final RegistryObject<BlockItem> HENOSTONE = ITEMS.register("henostone", () -> new BlockItem(BlockInit.HENOSTONE, new Item.Properties().group(PFStone.instance)));
+	public static final RegistryObject<Item> GEOLOGY_HAMMER = ITEMS.register("geological_hammer", () -> new Item(new Item.Properties().group(PFBook.instance).maxStackSize(1).maxDamage(250)));
 	//Banners
 	public static final RegistryObject<Item> BANNER_PATTERN_CLAW = ITEMS.register("banner_pattern_claw", () -> new BannerPatternItem(registerPattern("claw", new ItemStack(DAKOTARAPTOR_CLAW.get())), new Item.Properties().maxStackSize(1).group(PFBook.instance)));
 	public static final RegistryObject<Item> BANNER_PATTERN_OYSTER = ITEMS.register("banner_pattern_oyster", () -> new BannerPatternItem(registerPattern("oyster", new ItemStack(CRASSOSTREA_BLOCK.get())), new Item.Properties().maxStackSize(1).group(PFBook.instance)));

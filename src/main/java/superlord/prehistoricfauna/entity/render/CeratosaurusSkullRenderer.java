@@ -12,7 +12,7 @@ public class CeratosaurusSkullRenderer extends MobRenderer<CeratosaurusSkullEnti
     private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/skeleton/ceratosaurus_skull.png");
 
     public CeratosaurusSkullRenderer(EntityRendererManager rm) {
-        super(rm, new CeratosaurusSkull(), 0.375F);
+        super(rm, new CeratosaurusSkull(), 1.0F);
     }
     @Override
 	public ResourceLocation getEntityTexture(CeratosaurusSkullEntity entity) {
