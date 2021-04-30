@@ -68,7 +68,7 @@ public class TreeParserUtils {
             "\t\t\t\t";
 
     public static void processTreeNBTData(IWorld world, BlockPos featureStartPos, List<Pair<BlockPos, CompoundNBT>> list2) {
-        translateTreeNBTData(world, featureStartPos, list2, 8, true);
+        translateTreeNBTData(world, featureStartPos, list2, 7, true);
     }
 
     public static void translateTreeNBTData(IWorld world, BlockPos featureStartPos, List<Pair<BlockPos, CompoundNBT>> list2, int treeHeight, boolean useRandTreeHeight) {
