@@ -144,10 +144,10 @@ public class PHFConfiguredFeatures {
 			PROTOPICEOXYLON_TREE4.withChance(0.1F),
 			PROTOPICEOXYLON_TREE5.withChance(0.1F),
 			PROTOPICEOXYLON_TREE6.withChance(0.1F),
-			ARAUCARIA_SMALL_TREE1.withChance(0.75F),
-			ARAUCARIA_SMALL_TREE2.withChance(0.75F),
-			ARAUCARIA_SMALL_TREE3.withChance(0.75F),
-			ARAUCARIA_SMALL_TREE4.withChance(0.75F)
+			ARAUCARIA_SMALL_TREE1.withChance(0.1F),
+			ARAUCARIA_SMALL_TREE2.withChance(0.1F),
+			ARAUCARIA_SMALL_TREE3.withChance(0.1F),
+			ARAUCARIA_SMALL_TREE4.withChance(0.05F)
 			), PROTOPICEOXYLON_TREE7))
 			).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(0, 0.25F, 1)));
 

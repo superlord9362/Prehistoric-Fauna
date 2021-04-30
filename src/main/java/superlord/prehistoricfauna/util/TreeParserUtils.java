@@ -68,7 +68,7 @@ public class TreeParserUtils {
             "\t\t\t\t";
 
     public static void processTreeNBTData(IWorld world, BlockPos featureStartPos, List<Pair<BlockPos, CompoundNBT>> list2) {
-        translateTreeNBTData(world, featureStartPos, list2, 7, true);
+        translateTreeNBTData(world, featureStartPos, list2, 14, true);
     }
 
     public static void translateTreeNBTData(IWorld world, BlockPos featureStartPos, List<Pair<BlockPos, CompoundNBT>> list2, int treeHeight, boolean useRandTreeHeight) {
@@ -135,7 +135,7 @@ public class TreeParserUtils {
         treeBranchList.forEach(builder::append);
         treeLeaveList.forEach(builder::append);
 
-        generateTreeFile(builder.toString(), trunkFillerBuilder.toString().replace(", );", ");"), "Heidiphyllum5", true, featureStartPos.getY() - 100, 32, treeHeight, useRandTreeHeight);
+        generateTreeFile(builder.toString(), trunkFillerBuilder.toString().replace(", );", ");"), "Protopiceoxylon7", true, featureStartPos.getY() - 100, 32, treeHeight, useRandTreeHeight);
     }
 
     static String cachePrevious = "";
