@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "phf.refmap.json",
   "mixins": [
+    "access.BiomeSourceAccess",
     "common.MixinTemplate"
   ],
   "client": [

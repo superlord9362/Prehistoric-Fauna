@@ -61,6 +61,8 @@ public class CretaceousBiomes {
             biome.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(ModEntityTypes.DIDELPHODON_ENTITY, PrehistoricFaunaConfig.didelphodonSpawnWeight, 1, 3));
             
         }
+
+        PHFDefaultBiomeFeatures.addHellCreekHut(biome);
         PHFConfiguredFeatures.addHCRocks(biome);
         DefaultBiomeFeatures.addStoneVariants(biome);
         DefaultBiomeFeatures.addOres(biome);
@@ -96,6 +98,7 @@ public class CretaceousBiomes {
         DefaultBiomeFeatures.addOres(biome);
         DefaultBiomeFeatures.addCarvers(biome);
         PrehistoricFeature.addSedimentDisks(biome);
+        PHFDefaultBiomeFeatures.addHellCreekHut(biome);
 
         biome.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(ModEntityTypes.THESCELOSAURUS_ENTITY, PrehistoricFaunaConfig.thescelosaurusSpawnWeight, 2, 4));
         biome.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(ModEntityTypes.TRICERATOPS_ENTITY, PrehistoricFaunaConfig.triceratopsSpawnWeight, 2, 3));

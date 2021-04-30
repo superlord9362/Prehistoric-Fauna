@@ -19,7 +19,9 @@ import net.minecraft.world.gen.area.LazyArea;
 import net.minecraft.world.gen.layer.Layer;
 import net.minecraft.world.gen.layer.ZoomLayer;
 import superlord.prehistoricfauna.core.world.PHFBiomes;
+import superlord.prehistoricfauna.mixin.access.BiomeSourceAccess;
 import superlord.prehistoricfauna.util.fastnoise.FastNoise;
+import superlord.prehistoricfauna.world.dimension.MasterLayer;
 import superlord.prehistoricfauna.world.feature.cretaceous.PHFHillsLayer;
 
 public class TriassicBiomeProvider extends BiomeProvider {
@@ -30,7 +32,7 @@ public class TriassicBiomeProvider extends BiomeProvider {
 	private final FastNoise noiseGen2;
 	private final long seed;
 
-	private final Int2ObjectMap<WeightedList<ResourceLocation>> HILLS = new Int2ObjectArrayMap<>();
+	private final Int2ObjectMap<WeightedList<ResourceLocation>> hills = new Int2ObjectArrayMap<>();
 
 	public TriassicBiomeProvider(Registry<Biome> biomeRegistry, long seed) {
 		super(BIOMES.stream().map(Registry.BIOME::getOrDefault).collect(Collectors.toSet()));
@@ -55,6 +57,12 @@ public class TriassicBiomeProvider extends BiomeProvider {
 		noiseGen2.SetFrequency(0.002F);
 
 		fillHillsList();
+		hills.forEach((integer, resourceLocationWeightedList) -> {
+			resourceLocationWeightedList.field_220658_a.forEach(entry -> {
+				ResourceLocation resourceLocation = entry.func_220647_b();
+				((BiomeSourceAccess) this).getBiomes().add(biomeRegistry.getOrDefault(resourceLocation));
+			});
+		});
 	}
 
 	public static final List<ResourceLocation> BIOMES = new ArrayList<>();
@@ -90,14 +98,14 @@ public class TriassicBiomeProvider extends BiomeProvider {
 	public Layer triassicBiomeLayer(Registry<Biome> biomeRegistry, long seed) {
 		LongFunction<IExtendedNoiseRandom<LazyArea>> randomProvider = salt -> new LazyAreaLayerContext(1, seed, salt);
 
-		IAreaFactory<LazyArea> layer = new TriassicMasterLayer(biomeRegistry, seed).apply(randomProvider.apply(485868686L));
+		IAreaFactory<LazyArea> layer = new MasterLayer(biomeRegistry, seed, BIOMES).apply(randomProvider.apply(485868686L));
 
 		int size = 2;
 		for (int biomeSize = 0; biomeSize <= size; biomeSize++) {
 			layer = ZoomLayer.NORMAL.apply(randomProvider.apply(28585L + biomeSize), layer);
 		}
 
-		layer = new PHFHillsLayer(biomeRegistry, HILLS).apply(randomProvider.apply(19394585865L), layer, layer);
+		layer = new PHFHillsLayer(biomeRegistry, hills).apply(randomProvider.apply(19394585865L), layer, layer);
 		layer = ZoomLayer.NORMAL.apply(randomProvider.apply(285368899L), layer);
 		layer = ZoomLayer.NORMAL.apply(randomProvider.apply(285368899L), layer);
 		layer = ZoomLayer.NORMAL.apply(randomProvider.apply(596969L), layer);
@@ -114,7 +122,7 @@ public class TriassicBiomeProvider extends BiomeProvider {
 		ischigualasto_sub_biomes.func_226313_a_(biomeRegistry.getKey(PHFBiomes.ISCHIGUALASTO_CLEARING), 5);
 		ischigualasto_sub_biomes.func_226313_a_(biomeRegistry.getKey(PHFBiomes.ISCHIGUALASTO_HILLS), 5);
 
-		HILLS.put(getRawIdFromKey(biomeRegistry, biomeRegistry.getKey(PHFBiomes.ISCHIGUALASTO_FOREST)), ischigualasto_sub_biomes);
+		hills.put(getRawIdFromKey(biomeRegistry, biomeRegistry.getKey(PHFBiomes.ISCHIGUALASTO_FOREST)), ischigualasto_sub_biomes);
 	}
 
 	public static int getRawIdFromKey(Registry<Biome> biomeRegistry, ResourceLocation location) {

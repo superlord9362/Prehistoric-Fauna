@@ -27,6 +27,7 @@ public class JurassicBiomes {
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ZAMITES_BUSH);
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PTILOPHYLLUM_TREE_BOOGALOO);
         biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, MORRISON_SAVANNA_VEGETATION);
+        PHFDefaultBiomeFeatures.addMorrisonHut(biome);
         biome.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(ModEntityTypes.STEGOSAURUS_ENTITY, PrehistoricFaunaConfig.stegosaurusSpawnWeight, 1, 2));
         biome.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(ModEntityTypes.DRYOSAURUS_ENTITY, PrehistoricFaunaConfig.dryosaurusSpawnWeight, 2, 4));
         biome.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(ModEntityTypes.CERATOSAURUS_ENTITY, PrehistoricFaunaConfig.ceratosaurusSpawnWeight, 1, 1));

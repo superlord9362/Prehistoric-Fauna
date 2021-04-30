@@ -23,86 +23,86 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
 
-public class MorrisonHutStructure  extends Structure<NoFeatureConfig>{
+public class MorrisonHutStructure extends Structure<NoFeatureConfig> {
 
-	public MorrisonHutStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> configFactoryIn) {
-		super(configFactoryIn);
-	}
+    public MorrisonHutStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> configFactoryIn) {
+        super(configFactoryIn);
+    }
 
-	@Override
-	public boolean canBeGenerated(BiomeManager biomeManagerIn, ChunkGenerator<?> chunkGen, Random rand, int chunkPosX, int chunkPosZ, Biome biome) {
-		ChunkPos chunkpos = this.getStartPositionForPosition(chunkGen, rand, chunkPosX, chunkPosZ, 0, 0);
-		if (chunkPosX == chunkpos.x && chunkPosZ == chunkpos.z) {
-			if (chunkGen.hasStructure(biome, this)) {
-				return true;
-			}
-		}
+    @Override
+    public boolean canBeGenerated(BiomeManager biomeManagerIn, ChunkGenerator<?> chunkGen, Random rand, int chunkPosX, int chunkPosZ, Biome biome) {
+        ChunkPos chunkpos = this.getStartPositionForPosition(chunkGen, rand, chunkPosX, chunkPosZ, 0, 0);
+        if (chunkPosX == chunkpos.x && chunkPosZ == chunkpos.z) {
+            if (chunkGen.hasStructure(biome, this)) {
+                return true;
+            }
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	@Override
-	public IStartFactory getStartFactory() {
-		return MorrisonHutStructure.Start::new;
-	}
+    @Override
+    public IStartFactory getStartFactory() {
+        return MorrisonHutStructure.Start::new;
+    }
 
-	@Override
-	public String getStructureName() {
-		return PrehistoricFauna.MODID + ":morrison_hut";
-	}
+    @Override
+    public String getStructureName() {
+        return PrehistoricFauna.MODID + ":morrison_hut";
+    }
 
-	@Override
-	public int getSize() {
-		return 0;
-	}
-	
-	@Override
-	protected ChunkPos getStartPositionForPosition(ChunkGenerator<?> chunkGenerator, Random random, int x, int z, int spacingOffsetsX, int spacingOffsetsZ) {
-		int maxDistance = PrehistoricFaunaConfig.morrisonHutMaxDistance;
-		int minDistance = PrehistoricFaunaConfig.morrisonHutMinDistance;
+    @Override
+    public int getSize() {
+        return 0;
+    }
 
-		int xTemp = x + maxDistance * spacingOffsetsX;
-		int ztemp = z + maxDistance * spacingOffsetsZ;
-		int xTemp2 = xTemp < 0 ? xTemp - maxDistance + 1 : xTemp;
-		int zTemp2 = ztemp < 0 ? ztemp - maxDistance + 1 : ztemp;
-		int validChunkX = xTemp2 / maxDistance;
-		int validChunkZ = zTemp2 / maxDistance;
+    @Override
+    protected ChunkPos getStartPositionForPosition(ChunkGenerator<?> chunkGenerator, Random random, int x, int z, int spacingOffsetsX, int spacingOffsetsZ) {
+        int maxDistance = PrehistoricFaunaConfig.morrisonHutMaxDistance;
+        int minDistance = PrehistoricFaunaConfig.morrisonHutMinDistance;
 
-		((SharedSeedRandom) random).setLargeFeatureSeedWithSalt(chunkGenerator.getSeed(), validChunkX, validChunkZ, this.getSeedModifier());
-		validChunkX = validChunkX * maxDistance;
-		validChunkZ = validChunkZ * maxDistance;
-		validChunkX = validChunkX + random.nextInt(maxDistance - minDistance);
-		validChunkZ = validChunkZ + random.nextInt(maxDistance - minDistance);
+        int xTemp = x + maxDistance * spacingOffsetsX;
+        int ztemp = z + maxDistance * spacingOffsetsZ;
+        int xTemp2 = xTemp < 0 ? xTemp - maxDistance + 1 : xTemp;
+        int zTemp2 = ztemp < 0 ? ztemp - maxDistance + 1 : ztemp;
+        int validChunkX = xTemp2 / maxDistance;
+        int validChunkZ = zTemp2 / maxDistance;
 
-		return new ChunkPos(validChunkX, validChunkZ);
-	}
-	
-	protected int getSeedModifier() {
-		return 1923735;
-	}
-	
-	@Override
-	public List<SpawnListEntry> getSpawnList() {
-		return super.getSpawnList();
-	}
-	
-	public static class Start extends StructureStart {
-		public Start(Structure<?> structureIn, int chunkX, int chunkZ, MutableBoundingBox mutableBoundingBox, int referenceIn, long seedIn) {
-			super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
-		}
+        ((SharedSeedRandom) random).setLargeFeatureSeedWithSalt(chunkGenerator.getSeed(), validChunkX, validChunkZ, this.getSeedModifier());
+        validChunkX = validChunkX * maxDistance;
+        validChunkZ = validChunkZ * maxDistance;
+        validChunkX = validChunkX + random.nextInt(maxDistance - minDistance);
+        validChunkZ = validChunkZ + random.nextInt(maxDistance - minDistance);
+
+        return new ChunkPos(validChunkX, validChunkZ);
+    }
+
+    protected int getSeedModifier() {
+        return 1923735;
+    }
+
+    @Override
+    public List<SpawnListEntry> getSpawnList() {
+        return super.getSpawnList();
+    }
+
+    public static class Start extends StructureStart {
+        public Start(Structure<?> structureIn, int chunkX, int chunkZ, MutableBoundingBox mutableBoundingBox, int referenceIn, long seedIn) {
+            super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
+        }
 
 
-		@Override
-		public void init(ChunkGenerator<?> generator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn) {
-			Rotation rotation = Rotation.values()[this.rand.nextInt(Rotation.values().length)];
-			int x = (chunkX << 4) + 7;
-			int z = (chunkZ << 4) + 7;
-			int surfaceY = generator.getNoiseHeightMinusOne(x, z, Heightmap.Type.WORLD_SURFACE_WG);
-			BlockPos blockpos = new BlockPos(x, surfaceY - 1, z);
-			MorrisonHutPieces.start(templateManagerIn, blockpos, rotation, this.components, this.rand);
-			this.recalculateStructureSize();
-		}
+        @Override
+        public void init(ChunkGenerator<?> generator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn) {
+            Rotation rotation = Rotation.values()[this.rand.nextInt(Rotation.values().length)];
+            int x = (chunkX << 4) + 7;
+            int z = (chunkZ << 4) + 7;
+            int surfaceY = generator.getNoiseHeightMinusOne(x, z, Heightmap.Type.WORLD_SURFACE_WG);
+            BlockPos blockpos = new BlockPos(x, surfaceY - 1, z);
+            MorrisonHutPieces.start(templateManagerIn, blockpos, rotation, this.components, this.rand);
+            this.recalculateStructureSize();
+        }
 
-	}
+    }
 
 }
