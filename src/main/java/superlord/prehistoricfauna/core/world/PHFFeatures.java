@@ -1,19 +1,9 @@
 package superlord.prehistoricfauna.core.world;
 
-import static superlord.prehistoricfauna.core.world.util.WorldGenRegistrationHelper.createFeature;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.world.gen.feature.BlockStateFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.feature.TreeFeature;
-import net.minecraft.world.gen.feature.TreeFeatureConfig;
+import net.minecraft.world.gen.feature.*;
 import superlord.prehistoricfauna.world.feature.*;
 import superlord.prehistoricfauna.world.feature.config.NoisySphereConfig;
 import superlord.prehistoricfauna.world.feature.config.PHFTreeConfig;
-//import superlord.prehistoricfauna.world.feature.cretaceous.DidelphodonBurrowFeature;
 import superlord.prehistoricfauna.world.feature.cretaceous.araucaria.AraucariaTree1;
 import superlord.prehistoricfauna.world.feature.cretaceous.araucaria.AraucariaTree2;
 import superlord.prehistoricfauna.world.feature.cretaceous.araucaria.small.AraucariaSmallTree1;
@@ -28,22 +18,16 @@ import superlord.prehistoricfauna.world.feature.cretaceous.metasequoia.MetaSequo
 import superlord.prehistoricfauna.world.feature.cretaceous.metasequoia.MetaSequoiaTree2;
 import superlord.prehistoricfauna.world.feature.jurassic.PtilophyllumFeature;
 import superlord.prehistoricfauna.world.feature.jurassic.ZamitesBushFeature;
-import superlord.prehistoricfauna.world.feature.tree.Protopiceoxylon1;
-import superlord.prehistoricfauna.world.feature.tree.Protopiceoxylon2;
-import superlord.prehistoricfauna.world.feature.tree.Protopiceoxylon3;
-import superlord.prehistoricfauna.world.feature.tree.Protopiceoxylon4;
-import superlord.prehistoricfauna.world.feature.tree.Protopiceoxylon5;
-import superlord.prehistoricfauna.world.feature.tree.Protopiceoxylon6;
-import superlord.prehistoricfauna.world.feature.tree.Protopiceoxylon7;
-import superlord.prehistoricfauna.world.feature.triassic.heidiphyllum.Heidiphyllum1;
-import superlord.prehistoricfauna.world.feature.triassic.heidiphyllum.Heidiphyllum2;
-import superlord.prehistoricfauna.world.feature.triassic.heidiphyllum.Heidiphyllum3;
-import superlord.prehistoricfauna.world.feature.triassic.heidiphyllum.Heidiphyllum4;
-import superlord.prehistoricfauna.world.feature.triassic.heidiphyllum.Heidiphyllum5;
+import superlord.prehistoricfauna.world.feature.tree.*;
+import superlord.prehistoricfauna.world.feature.triassic.heidiphyllum.*;
 import superlord.prehistoricfauna.world.feature.util.SmallPineTree;
 import superlord.prehistoricfauna.world.placement.DicroidiumConfig;
-//import superlord.prehistoricfauna.world.placement.DidelphodonBurrowConfig;
 import superlord.prehistoricfauna.world.placement.JohnstoniaConfig;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static superlord.prehistoricfauna.core.world.util.WorldGenRegistrationHelper.createFeature;
 
 public class PHFFeatures {
     public static List<Feature<?>> features = new ArrayList<>();

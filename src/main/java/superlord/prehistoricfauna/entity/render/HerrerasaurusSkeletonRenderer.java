@@ -7,10 +7,10 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.entity.HerrerasaurusSkeletonEntity;
 import superlord.prehistoricfauna.entity.model.HerrerasaurusSkeleton;
 import superlord.prehistoricfauna.entity.model.HerrerasaurusSkeletonAction;
 import superlord.prehistoricfauna.entity.model.HerrerasaurusSkeletonRunning;
-import superlord.prehistoricfauna.entity.HerrerasaurusSkeletonEntity;
 
 public class HerrerasaurusSkeletonRenderer extends MobRenderer<HerrerasaurusSkeletonEntity, EntityModel<HerrerasaurusSkeletonEntity>> {
 

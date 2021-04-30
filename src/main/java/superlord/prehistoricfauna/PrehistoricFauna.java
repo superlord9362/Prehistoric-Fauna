@@ -1,18 +1,6 @@
 package superlord.prehistoricfauna;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.*;
-import java.util.stream.Collectors;
-
 import com.google.common.collect.ImmutableList;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.structure.Structure;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
@@ -38,6 +26,7 @@ import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.GenerationStage.Decoration;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
@@ -75,27 +64,26 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import superlord.prehistoricfauna.config.PrehistoricConfigHolder;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.core.world.*;
 import superlord.prehistoricfauna.entity.HesperornithoidesEntity;
 import superlord.prehistoricfauna.entity.render.*;
 import superlord.prehistoricfauna.entity.tile.MessageUpdatePaleoscribe;
-import superlord.prehistoricfauna.init.BlockInit;
-import superlord.prehistoricfauna.init.ContainerRegistry;
-import superlord.prehistoricfauna.init.DimensionInit;
-import superlord.prehistoricfauna.init.ItemInit;
-import superlord.prehistoricfauna.init.ModEntityTypes;
-import superlord.prehistoricfauna.init.TileEntityRegistry;
+import superlord.prehistoricfauna.init.*;
 import superlord.prehistoricfauna.recipes.RecipeRegistry;
 import superlord.prehistoricfauna.server.command.PHFCommand;
-import superlord.prehistoricfauna.util.ClientProxy;
-import superlord.prehistoricfauna.util.CommonEvents;
-import superlord.prehistoricfauna.util.CommonProxy;
-import superlord.prehistoricfauna.util.PFPacketHandler;
-import superlord.prehistoricfauna.util.PFWoodTypes;
-import superlord.prehistoricfauna.util.PrehistoricColors;
+import superlord.prehistoricfauna.util.*;
 import superlord.prehistoricfauna.world.PrehistoricFeature;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("deprecation")
 @Mod(PrehistoricFauna.MODID)

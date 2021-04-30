@@ -1,17 +1,16 @@
 package superlord.prehistoricfauna.world.feature.cretaceous.liriodendrites;
 
-import java.util.Random;
-import java.util.Set;
-import java.util.function.Function;
-
 import com.mojang.datafixers.Dynamic;
-
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.IWorld;
 import superlord.prehistoricfauna.world.feature.config.PHFTreeConfig;
 import superlord.prehistoricfauna.world.feature.util.PHFAbstractTreeFeature;
+
+import java.util.Random;
+import java.util.Set;
+import java.util.function.Function;
 
 public class Liriodendrites3 extends PHFAbstractTreeFeature<PHFTreeConfig> {
 

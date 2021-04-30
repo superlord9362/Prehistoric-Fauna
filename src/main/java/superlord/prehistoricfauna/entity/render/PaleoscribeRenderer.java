@@ -6,6 +6,8 @@ import net.minecraft.client.renderer.Quaternion;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.entity.model.BookModel;
+import net.minecraft.client.renderer.model.Material;
+import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.util.ResourceLocation;
@@ -14,8 +16,6 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.block.PaleoscribeBlock;
 import superlord.prehistoricfauna.entity.tile.PaleoscribeContainer;
 import superlord.prehistoricfauna.entity.tile.PaleoscribeTileEntity;
-import net.minecraft.client.renderer.model.Material;
-import net.minecraft.client.renderer.texture.AtlasTexture;
 
 public class PaleoscribeRenderer extends TileEntityRenderer<PaleoscribeTileEntity> {
 	private static final RenderType ENCHANTMENT_TABLE_BOOK_TEXTURE = RenderType.getEntityCutoutNoCull(new ResourceLocation(PrehistoricFauna.MODID, "textures/models/paleoscribe_book.png"));

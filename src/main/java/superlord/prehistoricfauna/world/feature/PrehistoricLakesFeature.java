@@ -1,8 +1,6 @@
 package superlord.prehistoricfauna.world.feature;
 
 import com.mojang.datafixers.Dynamic;
-import java.util.Random;
-import java.util.function.Function;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
@@ -16,6 +14,9 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.BlockStateFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
+
+import java.util.Random;
+import java.util.function.Function;
 
 public class PrehistoricLakesFeature extends Feature<BlockStateFeatureConfig> {
    private static final BlockState AIR = Blocks.CAVE_AIR.getDefaultState();

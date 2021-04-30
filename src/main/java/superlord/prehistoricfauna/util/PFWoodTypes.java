@@ -1,10 +1,10 @@
 package superlord.prehistoricfauna.util;
 
-import java.util.Set;
-import java.util.stream.Stream;
-
 import it.unimi.dsi.fastutil.objects.ObjectArraySet;
 import net.minecraft.block.WoodType;
+
+import java.util.Set;
+import java.util.stream.Stream;
 
 public class PFWoodTypes extends WoodType
 {

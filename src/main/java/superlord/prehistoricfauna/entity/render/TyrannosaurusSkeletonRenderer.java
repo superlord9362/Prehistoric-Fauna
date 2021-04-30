@@ -8,12 +8,7 @@ import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.entity.TyrannosaurusSkeletonEntity;
-import superlord.prehistoricfauna.entity.model.Tyrannosaurusrexskeleton;
-import superlord.prehistoricfauna.entity.model.TyrannosaurusrexskeletonActionLeft;
-import superlord.prehistoricfauna.entity.model.TyrannosaurusrexskeletonActionRight;
-import superlord.prehistoricfauna.entity.model.TyrannosaurusrexskeletonJP;
-import superlord.prehistoricfauna.entity.model.TyrannosaurusrexskeletonSitting;
-import superlord.prehistoricfauna.entity.model.Tyrannosaurusrexskeletontripod;
+import superlord.prehistoricfauna.entity.model.*;
 
 public class TyrannosaurusSkeletonRenderer extends MobRenderer<TyrannosaurusSkeletonEntity, EntityModel<TyrannosaurusSkeletonEntity>> {
 

@@ -1,7 +1,5 @@
 package superlord.prehistoricfauna.util;
 
-import java.util.function.Supplier;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
@@ -14,6 +12,8 @@ import net.minecraftforge.fml.network.NetworkEvent.Context;
 import net.minecraftforge.fml.network.PacketDistributor;
 import superlord.prehistoricfauna.entity.render.PFEditSignScreen;
 import superlord.prehistoricfauna.entity.tile.PFSignTileEntity;
+
+import java.util.function.Supplier;
 
 public class PacketToClientSign
 {

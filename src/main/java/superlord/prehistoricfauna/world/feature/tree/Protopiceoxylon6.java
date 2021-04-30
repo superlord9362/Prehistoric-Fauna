@@ -1,7 +1,6 @@
 package superlord.prehistoricfauna.world.feature.tree;
 
 import com.mojang.datafixers.Dynamic;
-
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;

@@ -1,10 +1,5 @@
 package superlord.prehistoricfauna.entity;
 
-import java.util.Random;
-import java.util.UUID;
-
-import javax.annotation.Nullable;
-
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
@@ -24,6 +19,10 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import javax.annotation.Nullable;
+import java.util.Random;
+import java.util.UUID;
 
 public abstract class PrehistoricEntity extends AnimalEntity {
 	private int inLove;
