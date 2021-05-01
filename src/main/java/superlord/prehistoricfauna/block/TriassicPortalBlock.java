@@ -1,6 +1,9 @@
 package superlord.prehistoricfauna.block;
 
+import javax.annotation.Nonnull;
+
 import com.google.common.cache.LoadingCache;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -31,8 +34,6 @@ import net.minecraft.world.server.ServerWorld;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.DimensionTypeInit;
 import superlord.prehistoricfauna.util.TeleporterTriassic;
-
-import javax.annotation.Nonnull;
 
 public class TriassicPortalBlock extends BreakableBlock {
 
@@ -89,33 +90,33 @@ public class TriassicPortalBlock extends BreakableBlock {
 		 }
 	 }
     
-    @Override
-	@Deprecated
-	public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entity) {
-		if (!entity.isPassenger() && !entity.isBeingRidden() && entity.isNonBoss()) {
-			if (entity.timeUntilPortal > 0) {
-				entity.timeUntilPortal = entity.getPortalCooldown();
-			} else {
-				if (!entity.world.isRemote && !pos.equals(entity.lastPortalPos)) {
-					entity.lastPortalPos = new BlockPos(pos);
-					BlockPattern.PatternHelper helper = createPatternHelper(entity.world, entity.lastPortalPos);
-					double axis = helper.getForwards().getAxis() == Direction.Axis.X ? (double)helper.getFrontTopLeft().getZ() : (double)helper.getFrontTopLeft().getX();
-					double x = Math.abs(MathHelper.pct((helper.getForwards().getAxis() == Direction.Axis.X ? entity.getPosZ() : entity.getPosX()) - (double)(helper.getForwards().rotateY().getAxisDirection() == Direction.AxisDirection.NEGATIVE ? 1 : 0), axis, axis - (double)helper.getWidth()));
-					double y = MathHelper.pct(entity.getPosY() - 1.0D, (double)helper.getFrontTopLeft().getY(), (double)(helper.getFrontTopLeft().getY() - helper.getHeight()));
-					entity.lastPortalVec = new Vec3d(x, y, 0.0D);
-					entity.teleportDirection = helper.getForwards();
-				}
+	 @Override
+	    @Deprecated
+	    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entity) {
+	        if (!entity.isPassenger() && !entity.isBeingRidden() && entity.isNonBoss()) {
+	            if (entity.timeUntilPortal > 0) {
+	                entity.timeUntilPortal = entity.getPortalCooldown();
+	            } else {
+	                if (!entity.world.isRemote && !pos.equals(entity.lastPortalPos)) {
+	                    entity.lastPortalPos = new BlockPos(pos);
+	                    BlockPattern.PatternHelper helper = createPatternHelper(entity.world, entity.lastPortalPos);
+	                    double axis = helper.getForwards().getAxis() == Direction.Axis.X ? (double)helper.getFrontTopLeft().getZ() : (double)helper.getFrontTopLeft().getX();
+	                    double x = Math.abs(MathHelper.pct((helper.getForwards().getAxis() == Direction.Axis.X ? entity.getPosZ() : entity.getPosX()) - (double)(helper.getForwards().rotateY().getAxisDirection() == Direction.AxisDirection.NEGATIVE ? 1 : 0), axis, axis - (double)helper.getWidth()));
+	                    double y = MathHelper.pct(entity.getPosY() - 1.0D, (double)helper.getFrontTopLeft().getY(), (double)(helper.getFrontTopLeft().getY() - helper.getHeight()));
+	                    entity.lastPortalVec = new Vec3d(x, y, 0.0D);
+	                    entity.teleportDirection = helper.getForwards();
+	                }
 
-				if (entity.world instanceof ServerWorld) {
-					if (entity.world.getServer().getAllowNether() && !entity.isPassenger()) {
-						entity.timeUntilPortal = entity.getPortalCooldown();
-						DimensionType type = worldIn.dimension.getType() == DimensionTypeInit.TRIASSIC_DIMENSION_TYPE ? DimensionType.OVERWORLD : DimensionTypeInit.TRIASSIC_DIMENSION_TYPE;
-						entity.changeDimension(type, new TeleporterTriassic());
-					}
-				}
-			}
-		}
-	}
+	                if (entity.world instanceof ServerWorld) {
+	                    if (entity.world.getServer().getAllowNether() && !entity.isPassenger()) {
+	                        entity.timeUntilPortal = entity.getPortalCooldown();
+	                        DimensionType type = worldIn.dimension.getType() == DimensionTypeInit.TRIASSIC_DIMENSION_TYPE ? DimensionType.OVERWORLD : DimensionTypeInit.TRIASSIC_DIMENSION_TYPE;
+	                        entity.changeDimension(type, new TeleporterTriassic());
+	                    }
+	                }
+	            }
+	        }
+	    }
 
     @Override
     public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos, PlayerEntity player) {

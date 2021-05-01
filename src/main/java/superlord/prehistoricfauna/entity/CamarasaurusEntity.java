@@ -275,7 +275,7 @@ public class CamarasaurusEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == Blocks.COARSE_DIRT;
+				return block == BlockInit.SILT || block == BlockInit.HARDENED_SILT || block == Blocks.SAND;
 			}
 		}
 	}

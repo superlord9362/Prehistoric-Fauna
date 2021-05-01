@@ -1,6 +1,17 @@
 package superlord.prehistoricfauna;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.*;
+import java.util.stream.Collectors;
+
 import com.google.common.collect.ImmutableList;
+import net.minecraft.world.gen.feature.structure.Structure;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
@@ -26,7 +37,6 @@ import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.GenerationStage.Decoration;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
@@ -35,6 +45,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
@@ -64,26 +75,29 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import superlord.prehistoricfauna.config.PrehistoricConfigHolder;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.core.world.*;
 import superlord.prehistoricfauna.entity.HesperornithoidesEntity;
 import superlord.prehistoricfauna.entity.render.*;
 import superlord.prehistoricfauna.entity.tile.MessageUpdatePaleoscribe;
-import superlord.prehistoricfauna.init.*;
+import superlord.prehistoricfauna.init.BlockInit;
+import superlord.prehistoricfauna.init.ContainerRegistry;
+import superlord.prehistoricfauna.init.DimensionInit;
+import superlord.prehistoricfauna.init.ItemInit;
+import superlord.prehistoricfauna.init.ModEntityTypes;
+import superlord.prehistoricfauna.init.TileEntityRegistry;
 import superlord.prehistoricfauna.recipes.RecipeRegistry;
 import superlord.prehistoricfauna.server.command.PHFCommand;
-import superlord.prehistoricfauna.util.*;
+import superlord.prehistoricfauna.util.ClientProxy;
+import superlord.prehistoricfauna.util.CommonEvents;
+import superlord.prehistoricfauna.util.CommonProxy;
+import superlord.prehistoricfauna.util.PFPacketHandler;
+import superlord.prehistoricfauna.util.PFWoodTypes;
+import superlord.prehistoricfauna.util.PrehistoricColors;
+import superlord.prehistoricfauna.util.QuarkFlagRecipeCondition;
+import superlord.prehistoricfauna.util.RegistryHelper;
 import superlord.prehistoricfauna.world.PrehistoricFeature;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.*;
-import java.util.stream.Collectors;
 
 @SuppressWarnings("deprecation")
 @Mod(PrehistoricFauna.MODID)
@@ -99,6 +113,8 @@ public class PrehistoricFauna {
             .networkProtocolVersion(() -> PROTOCOL_VERSION)
             .simpleChannel();
     public static Logger LOGGER = LogManager.getLogger();
+	public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MODID);
+
 
     public static CommonProxy PROXY = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
     private static int packetsRegistered = 0;
@@ -112,7 +128,12 @@ public class PrehistoricFauna {
         modEventBus.addListener(this::chickenExtinction);
         modLoadingContext.registerConfig(ModConfig.Type.CLIENT, PrehistoricConfigHolder.CLIENT_SPEC);
         modLoadingContext.registerConfig(ModConfig.Type.COMMON, PrehistoricConfigHolder.SERVER_SPEC);
+		CraftingHelper.register(new QuarkFlagRecipeCondition.Serializer());
         DimensionInit.MOD_DIMENSIONS.register(modEventBus);
+        //if (ModList.get().isLoaded("quark")) {
+        	REGISTRY_HELPER.getDeferredBlockRegister().register(modEventBus);
+        	REGISTRY_HELPER.getDeferredItemRegister().register(modEventBus);
+       // }
         ItemInit.ITEMS.register(modEventBus);
         PrehistoricFeature.FEATURES.register(modEventBus);
         TileEntityRegistry.TILE_ENTITY_TYPES.register(modEventBus);
@@ -161,10 +182,10 @@ public class PrehistoricFauna {
         Collections.sort(PHFOverworldBiomeRegistry.biomeList);
         NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageUpdatePaleoscribe.class, MessageUpdatePaleoscribe::write, MessageUpdatePaleoscribe::read, MessageUpdatePaleoscribe.Handler::handle);
     }
-
+    
     private void addBiomeFeatures() {
         for (Biome biome : ForgeRegistries.BIOMES) {
-            if (biome != PHFBiomes.HELL_CREEK && biome != PHFBiomes.ISCHIGUALASTO_FOREST && biome != PHFBiomes.MORRISON_SAVANNAH && biome != Biomes.COLD_OCEAN && biome != Biomes.DEEP_COLD_OCEAN && biome != Biomes.DEEP_FROZEN_OCEAN && biome != Biomes.DEEP_LUKEWARM_OCEAN && biome != Biomes.DEEP_OCEAN && biome != Biomes.DEEP_WARM_OCEAN && biome != Biomes.FROZEN_OCEAN && biome != Biomes.LUKEWARM_OCEAN && biome != Biomes.OCEAN && biome != Biomes.WARM_OCEAN && biome != Biomes.FROZEN_RIVER && biome != Biomes.RIVER && biome != Biomes.BEACH && biome != Biomes.SNOWY_BEACH && biome != Biomes.END_BARRENS && biome != Biomes.END_HIGHLANDS && biome != Biomes.END_MIDLANDS && biome != Biomes.SMALL_END_ISLANDS && biome != Biomes.THE_END && biome != Biomes.NETHER && biome != Biomes.STONE_SHORE && biome != Biomes.THE_VOID) {
+            if (biome != PHFBiomes.HELL_CREEK_HILLS && biome != PHFBiomes.HELL_CREEK_RIVER && biome != PHFBiomes.ISCHIGUALASTO_CLEARING && biome != PHFBiomes.ISCHIGUALASTO_HILLS && biome != PHFBiomes.ISCHIGUALASTO_RIVER && biome != PHFBiomes.MORRISON_HILLS && biome != PHFBiomes.HELL_CREEK_CLEARING && biome != PHFBiomes.HELL_CREEK && biome != PHFBiomes.ISCHIGUALASTO_FOREST && biome != PHFBiomes.MORRISON_SAVANNAH && biome != Biomes.COLD_OCEAN && biome != Biomes.DEEP_COLD_OCEAN && biome != Biomes.DEEP_FROZEN_OCEAN && biome != Biomes.DEEP_LUKEWARM_OCEAN && biome != Biomes.DEEP_OCEAN && biome != Biomes.DEEP_WARM_OCEAN && biome != Biomes.FROZEN_OCEAN && biome != Biomes.LUKEWARM_OCEAN && biome != Biomes.OCEAN && biome != Biomes.WARM_OCEAN && biome != Biomes.FROZEN_RIVER && biome != Biomes.RIVER && biome != Biomes.BEACH && biome != Biomes.SNOWY_BEACH && biome != Biomes.END_BARRENS && biome != Biomes.END_HIGHLANDS && biome != Biomes.END_MIDLANDS && biome != Biomes.SMALL_END_ISLANDS && biome != Biomes.THE_END && biome != Biomes.NETHER && biome != Biomes.STONE_SHORE && biome != Biomes.THE_VOID) {
                 biome.addStructure(PrehistoricFeature.TIME_TEMPLE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
             }
             if (biome != PHFBiomes.DUMMY) {
@@ -203,14 +224,14 @@ public class PrehistoricFauna {
         }, BlockInit.CONIOPTERIS, BlockInit.CLADOPHLEBIS, BlockInit.POTTED_CLADOPHLEBIS);
         blockcolors.register((p_228061_0_, p_228061_1_, p_228061_2_, p_228061_3_) -> {
             return p_228061_1_ != null && p_228061_2_ != null ? BiomeColors.getFoliageColor(p_228061_1_, p_228061_2_) : FoliageColors.getDefault();
-        }, BlockInit.METASEQUOIA_LEAVES, BlockInit.PROTOPICEOXYLON_LEAVES, BlockInit.PROTOJUNIPER_LEAVES);
+        }, BlockInit.METASEQUOIA_LEAVES, BlockInit.PROTOPICEOXYLON_LEAVES, BlockInit.PROTOJUNIPER_LEAVES, BlockInit.METASEQUOIA_LEAF_CARPET.get(), BlockInit.PROTOPICEOXYLON_LEAF_CARPET.get(), BlockInit.PROTOJUNIPEROXYLON_LEAF_CARPET.get());
         blockcolors.register((p_228063_0_, p_228063_1_, p_228063_2_, p_228063_3_) -> {
             return PrehistoricColors.getAraucaria();
-        }, BlockInit.ARAUCARIA_LEAVES);
+        }, BlockInit.ARAUCARIA_LEAVES, BlockInit.ARAUCARIA_LEAF_CARPET.get());
         itemcolors.register((p_210235_1_, p_210235_2_) -> {
             BlockState blockstate = ((BlockItem) p_210235_1_.getItem()).getBlock().getDefaultState();
             return blockcolors.getColor(blockstate, (ILightReader) null, (BlockPos) null, p_210235_2_);
-        }, BlockInit.ARAUCARIA_LEAVES, BlockInit.METASEQUOIA_LEAVES, BlockInit.CONIOPTERIS, BlockInit.PROTOPICEOXYLON_LEAVES, BlockInit.PROTOJUNIPER_LEAVES, BlockInit.CLADOPHLEBIS);
+        }, BlockInit.ARAUCARIA_LEAVES, BlockInit.METASEQUOIA_LEAVES, BlockInit.CONIOPTERIS, BlockInit.PROTOPICEOXYLON_LEAVES, BlockInit.PROTOJUNIPER_LEAVES, BlockInit.CLADOPHLEBIS, BlockInit.ARAUCARIA_LEAF_CARPET.get(), BlockInit.METASEQUOIA_LEAF_CARPET.get(), BlockInit.PROTOPICEOXYLON_LEAF_CARPET.get(), BlockInit.PROTOJUNIPEROXYLON_LEAF_CARPET.get());
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.THESCELOSAURUS_ENTITY, ThescelosaurusRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.TRICERATOPS_ENTITY, manager -> new TriceratopsRenderer());
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ANKYLOSAURUS_ENTITY, AnkylosaurusRenderer::new);
@@ -249,6 +270,7 @@ public class PrehistoricFauna {
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ALLOSAURUS_SKELETON, manager -> new AllosaurusSkeletonRenderer());
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.HERRERASAURUS_SKELETON, manager -> new HerrerasaurusSkeletonRenderer());
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ISCHIGUALASTIA_SKELETON, manager -> new IschigualastiaSkeletonRenderer());
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.SAUROSUCHUS_SKELETON, manager -> new SaurosuchusSkeletonRenderer());
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ALLOSAURUS_SKULL, AllosaurusSkullRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ISCHIGUALASTIA_SKULL, IschigualastiaSkullRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.PALEOPAINTING, PaleopaintingRenderer::new);

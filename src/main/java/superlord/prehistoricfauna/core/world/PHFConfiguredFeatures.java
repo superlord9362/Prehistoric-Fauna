@@ -2,12 +2,14 @@ package superlord.prehistoricfauna.core.world;
 
 
 import com.google.common.collect.ImmutableList;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.GenerationStage;
+//import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.blockplacer.DoublePlantBlockPlacer;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
@@ -25,6 +27,7 @@ import superlord.prehistoricfauna.world.feature.config.PHFTreeConfig;
 import superlord.prehistoricfauna.world.feature.jurassic.ZamitesBush;
 import superlord.prehistoricfauna.world.feature.triassic.HeidiphyllumTree;
 import superlord.prehistoricfauna.world.placement.DicroidiumConfig;
+//import superlord.prehistoricfauna.world.placement.DidelphodonBurrowConfig;
 import superlord.prehistoricfauna.world.placement.JohnstoniaConfig;
 
 import static superlord.prehistoricfauna.core.world.util.WorldGenRegistrationHelper.createConfiguredFeature;

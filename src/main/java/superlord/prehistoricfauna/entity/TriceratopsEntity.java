@@ -471,7 +471,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == Blocks.COARSE_DIRT;
+				return block == BlockInit.LOAM || block == BlockInit.MOSSY_DIRT || block == Blocks.PODZOL;
 			}
 		}
 	}

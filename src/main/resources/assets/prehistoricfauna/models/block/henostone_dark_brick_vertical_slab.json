@@ -1,0 +1,8 @@
+{
+    "parent": "prehistoricfauna:block/vertical_slab",
+    "textures": {
+        "side": "prehistoricfauna:blocks/henostone_bricks_dark",
+        "top": "prehistoricfauna:blocks/henostone_bricks_dark",
+        "bottom": "prehistoricfauna:blocks/henostone_bricks_dark"
+    }
+}

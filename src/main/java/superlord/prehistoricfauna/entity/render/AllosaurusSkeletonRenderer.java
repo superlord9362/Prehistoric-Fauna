@@ -7,8 +7,12 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.entity.model.AllosaurusSkeleton;
+import superlord.prehistoricfauna.entity.model.AllosaurusSkeletonActionLeft;
+import superlord.prehistoricfauna.entity.model.AllosaurusSkeletonActionRight;
+import superlord.prehistoricfauna.entity.model.AllosaurusSkeletonResting;
+import superlord.prehistoricfauna.entity.model.AllosaurusSkeletonRetro;
 import superlord.prehistoricfauna.entity.AllosaurusSkeletonEntity;
-import superlord.prehistoricfauna.entity.model.*;
 
 public class AllosaurusSkeletonRenderer extends MobRenderer<AllosaurusSkeletonEntity, EntityModel<AllosaurusSkeletonEntity>> {
 

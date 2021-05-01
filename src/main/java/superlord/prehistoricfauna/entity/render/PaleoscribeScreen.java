@@ -1,12 +1,20 @@
 package superlord.prehistoricfauna.entity.render;
 
+import java.util.List;
+import java.util.Random;
+
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.Matrix4f;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.entity.model.BookModel;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.I18n;
@@ -23,9 +31,6 @@ import superlord.prehistoricfauna.entity.tile.PaleoscribeContainer;
 import superlord.prehistoricfauna.entity.tile.PaleoscribeTileEntity;
 import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.util.EnumPaleoPages;
-
-import java.util.List;
-import java.util.Random;
 
 @OnlyIn(Dist.CLIENT)
 public class PaleoscribeScreen extends ContainerScreen<PaleoscribeContainer> {

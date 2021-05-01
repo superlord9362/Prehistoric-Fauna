@@ -1,5 +1,7 @@
 package superlord.prehistoricfauna.item;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -10,8 +12,6 @@ import net.minecraft.item.SignItem;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import superlord.prehistoricfauna.util.PacketToClientSign;
-
-import javax.annotation.Nullable;
 
 public class PFSignItem extends SignItem
 {

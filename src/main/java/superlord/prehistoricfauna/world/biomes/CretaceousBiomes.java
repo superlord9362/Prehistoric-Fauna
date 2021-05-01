@@ -61,7 +61,6 @@ public class CretaceousBiomes {
             biome.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(ModEntityTypes.DIDELPHODON_ENTITY, PrehistoricFaunaConfig.didelphodonSpawnWeight, 1, 3));
             
         }
-
         PHFDefaultBiomeFeatures.addHellCreekHut(biome);
         PHFConfiguredFeatures.addHCRocks(biome);
         DefaultBiomeFeatures.addStoneVariants(biome);

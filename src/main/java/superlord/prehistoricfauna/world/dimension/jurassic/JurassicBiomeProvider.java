@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 
 public class JurassicBiomeProvider extends BiomeProvider {
 
-    private final Int2ObjectMap<WeightedList<ResourceLocation>> hills = new Int2ObjectArrayMap<>();
+	private final Int2ObjectMap<WeightedList<ResourceLocation>> hills = new Int2ObjectArrayMap<>();
     private final Registry<Biome> biomeRegistry;
     private final Layer layers;
 
@@ -88,5 +88,5 @@ public class JurassicBiomeProvider extends BiomeProvider {
 
         return layers.func_215738_a(x, z);
     }
-
+    
 }

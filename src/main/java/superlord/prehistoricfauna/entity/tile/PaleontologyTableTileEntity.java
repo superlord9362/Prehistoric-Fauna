@@ -1,5 +1,10 @@
 package superlord.prehistoricfauna.entity.tile;
 
+import java.util.Optional;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -30,10 +35,6 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.init.TileEntityRegistry;
 import superlord.prehistoricfauna.item.FossilItem;
 import superlord.prehistoricfauna.recipes.RecipePaleontologyTable;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.Optional;
 
 public class PaleontologyTableTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider, INameable
 {

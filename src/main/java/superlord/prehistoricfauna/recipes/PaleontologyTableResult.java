@@ -1,12 +1,12 @@
 package superlord.prehistoricfauna.recipes;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
-
 import java.util.Map.Entry;
 import java.util.NavigableMap;
 import java.util.Random;
 import java.util.TreeMap;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketBuffer;
 
 public class PaleontologyTableResult
 {

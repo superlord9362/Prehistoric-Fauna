@@ -163,7 +163,7 @@ public class AnkylosaurusSkeletonEntity extends PrehistoricEntity {
 	    	} else if (this.isActionRight() && !player.isSneaking()) {
 	    		this.setActionRight(false);
 	    		this.setSquatting(true);
-	    	} else if (this.isSquatting()) {
+	    	} else if (this.isSquatting() && !player.isSneaking()) {
 	    		this.setSquatting(false);
 	    	} else if (player.isSneaking() && !this.isPushable() && !this.isLooking()) {
 	    		this.setPushable(true);

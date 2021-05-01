@@ -1,35 +1,34 @@
 package superlord.prehistoricfauna.util;
 
 import com.google.common.collect.Maps;
+
+import it.unimi.dsi.fastutil.objects.Object2LongMap;
+import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.*;
-import net.minecraft.village.PointOfInterest;
-import net.minecraft.village.PointOfInterestManager;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.server.TicketType;
 import net.minecraftforge.common.util.ITeleporter;
 import superlord.prehistoricfauna.block.JurassicPortalBlock;
 import superlord.prehistoricfauna.block.PortalFrameBlock;
 import superlord.prehistoricfauna.init.BlockInit;
-
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public class TeleporterJurassic implements ITeleporter {
 
-    protected final Map<ColumnPos, PortalPosition> destinationCoordinateCache = Maps.newHashMapWithExpectedSize(4096);
-
+	protected final Map<ColumnPos, PortalPosition> destinationCoordinateCache = Maps.newHashMapWithExpectedSize(4096);
+    private final Object2LongMap<ColumnPos> columnMap = new Object2LongOpenHashMap<>();
+    
     public boolean placeInPortal(ServerWorld world, Entity entity, float yaw) {
         Vec3d vec3d = entity.getLastPortalVec();
         Direction direction = entity.getTeleportDirection();
-        BlockPattern.PortalInfo pattern = TeleporterJurassic.placeInExistingPortal(world, new BlockPos(entity.getPosX(), entity.getPosY(), entity.getPosZ()), entity.getMotion(), direction, vec3d.x, vec3d.y, entity instanceof PlayerEntity);
+        BlockPattern.PortalInfo pattern = this.placeInExistingPortal(world, new BlockPos(entity.getPosX(), entity.getPosY(), entity.getPosZ()), entity.getMotion(), direction, vec3d.x, vec3d.y, entity instanceof PlayerEntity);
         if (pattern == null) {
             return false;
         } else {
@@ -37,23 +36,63 @@ public class TeleporterJurassic implements ITeleporter {
             Vec3d motion = pattern.motion;
             entity.setMotion(motion);
             entity.rotationYaw = yaw + (float) pattern.rotation;
-            entity.setPositionAndUpdate(position.x + 1, position.y, position.z);
+            entity.forceSetPosition(position.x, position.y, position.z);
             return true;
         }
     }
 
+
     @Nullable
-    public static BlockPattern.PortalInfo placeInExistingPortal(ServerWorld world, @Nonnull BlockPos pos, @Nonnull Vec3d portalPos, @Nonnull Direction direction, double d, double d1, boolean b) {
-        PointOfInterestManager poiManager = world.getPointOfInterestManager();
-        poiManager.ensureLoadedAndValid(world, pos, 128);
-        List<PointOfInterest> list = poiManager.getInSquare((poi) -> poi == JurassicPointOfInterest.JURASSIC_PORTAL, pos, 128, PointOfInterestManager.Status.ANY).collect(Collectors.toList());
-        Optional<PointOfInterest> optional = list.stream().min(Comparator.<PointOfInterest>comparingDouble((poi) -> poi.getPos().distanceSq(pos)).thenComparingInt((poi) -> poi.getPos().getY()));
-        return optional.map((poi) -> {
-            BlockPos posPos = poi.getPos();
-            world.getChunkProvider().registerTicket(TicketType.PORTAL, new ChunkPos(posPos), 3, posPos);
-            BlockPattern.PatternHelper patternHelper = JurassicPortalBlock.createPatternHelper(world, posPos);
-            return patternHelper.getPortalInfo(direction, posPos, d1, portalPos, d);
-        }).orElse(null);
+    public BlockPattern.PortalInfo placeInExistingPortal(ServerWorld world, BlockPos pos, Vec3d motion, Direction direction, double x, double y, boolean isPlayer) {
+        boolean isFrame = true;
+        BlockPos blockpos = null;
+        ColumnPos columnpos = new ColumnPos(pos);
+        if (!isPlayer && this.columnMap.containsKey(columnpos)) {
+            return null;
+        } else {
+        	TeleporterJurassic.PortalPosition position = this.destinationCoordinateCache.get(columnpos);
+            if (position != null) {
+                blockpos = position.pos;
+                position.lastUpdateTime = world.getGameTime();
+                isFrame = false;
+            } else {
+                double d0 = Double.MAX_VALUE;
+
+                for(int eX = -128; eX <= 128; ++eX) {
+                    BlockPos blockpos2;
+                    for(int eZ = -128; eZ <= 128; ++eZ) {
+                        for(BlockPos blockpos1 = pos.add(eX, world.getActualHeight() - 1 - pos.getY(), eZ); blockpos1.getY() >= 0; blockpos1 = blockpos2) {
+                            blockpos2 = blockpos1.down();
+                            if (world.getBlockState(blockpos1).getBlock() == BlockInit.JURASSIC_PORTAL) {
+                                for(blockpos2 = blockpos1.down(); world.getBlockState(blockpos2).getBlock() == BlockInit.JURASSIC_PORTAL; blockpos2 = blockpos2.down()) {
+                                    blockpos1 = blockpos2;
+                                }
+
+                                double distance = blockpos1.distanceSq(pos);
+                                if (d0 < 0.0D || distance < d0) {
+                                    d0 = distance;
+                                    blockpos = blockpos1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (blockpos == null) {
+                long factor = world.getGameTime() + 300L;
+                this.columnMap.put(columnpos, factor);
+                return null;
+            } else {
+                if (isFrame) {
+                    this.destinationCoordinateCache.put(columnpos, new TeleporterJurassic.PortalPosition(blockpos, world.getGameTime()));
+                    world.getChunkProvider().registerTicket(TicketType.PORTAL, new ChunkPos(blockpos), 3, new BlockPos(columnpos.x, blockpos.getY(), columnpos.z));
+                }
+
+                BlockPattern.PatternHelper helper = JurassicPortalBlock.createPatternHelper(world, blockpos);
+                return helper.getPortalInfo(direction, blockpos, y, motion, x);
+            }
+        }
     }
 
     /**

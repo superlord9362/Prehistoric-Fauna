@@ -1,0 +1,8 @@
+{
+    "parent": "prehistoricfauna:block/vertical_slab",
+    "textures": {
+        "side": "prehistoricfauna:blocks/protopiceoxylon_planks",
+        "top": "prehistoricfauna:blocks/protopiceoxylon_planks",
+        "bottom": "prehistoricfauna:blocks/protopiceoxylon_planks"
+    }
+}

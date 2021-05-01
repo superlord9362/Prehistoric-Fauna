@@ -7,7 +7,13 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.PrehistoricFauna.*;
+import superlord.prehistoricfauna.PrehistoricFauna.PFBook;
+import superlord.prehistoricfauna.PrehistoricFauna.PFEggs;
+import superlord.prehistoricfauna.PrehistoricFauna.PFEntities;
+import superlord.prehistoricfauna.PrehistoricFauna.PFFossil;
+import superlord.prehistoricfauna.PrehistoricFauna.PFPlants;
+import superlord.prehistoricfauna.PrehistoricFauna.PFStone;
+import superlord.prehistoricfauna.PrehistoricFauna.PFWood;
 import superlord.prehistoricfauna.entity.PrehistoricBoatEntity;
 import superlord.prehistoricfauna.item.*;
 import superlord.prehistoricfauna.util.ArmorMaterialInit;
@@ -54,6 +60,7 @@ public class ItemInit {
 	public static final RegistryObject<SpawnSkeletonItem> CERATOSAURUS_SKELETON = ITEMS.register("ceratosaurus_skeleton", () -> new SpawnSkeletonItem(ModEntityTypes.CERATOSAURUS_SKELETON, new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> ALLOSAURUS_SKELETON = ITEMS.register("allosaurus_skeleton", () -> new SpawnSkeletonItem(ModEntityTypes.ALLOSAURUS_SKELETON, new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> HERRERASAURUS_SKELETON = ITEMS.register("herrerasaurus_skeleton", () -> new SpawnSkeletonItem(ModEntityTypes.HERRERASAURUS_SKELETON, new Item.Properties().group(PFFossil.instance)));
+	public static final RegistryObject<SpawnSkeletonItem> SAUROSUCHUS_SKELETON = ITEMS.register("saurosuchus_skeleton", () -> new SpawnSkeletonItem(ModEntityTypes.SAUROSUCHUS_SKELETON, new Item.Properties().group(PFFossil.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> ISCHIGUALASTIA_SKELETON = ITEMS.register("ischigualastia_skeleton", () -> new SpawnSkeletonItem(ModEntityTypes.ISCHIGUALASTIA_SKELETON, new Item.Properties().group(PFFossil.instance)));
 	//Drops
 	public static final RegistryObject<Item> TYRANNOSAURUS_TOOTH = ITEMS.register("tyrannosaurus_tooth", () -> new Item(new Item.Properties().group(PFEntities.instance)));

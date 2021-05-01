@@ -13,8 +13,6 @@ public class MasterLayer implements IAreaTransformer0 {
     private final Registry<Biome> biomeRegistry;
     private final List<ResourceLocation> biomes;
 
-    @SuppressWarnings("unused")
-
     public MasterLayer(Registry<Biome> biomeRegistry, long seed, List<ResourceLocation> biomes) {
         this.biomeRegistry = biomeRegistry;
         this.biomes = biomes;

@@ -1,5 +1,8 @@
 package superlord.prehistoricfauna.core.world;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
@@ -9,9 +12,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.world.biomes.PetrifiedForestBiome;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class PHFOverworldBiomeRegistry {

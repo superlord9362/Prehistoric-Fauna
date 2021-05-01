@@ -1,9 +1,9 @@
 package superlord.prehistoricfauna.entity.goal;
 
+import java.util.function.Predicate;
+
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-
-import java.util.function.Predicate;
 
 @SuppressWarnings("rawtypes")
 public class HuntGoal extends NearestAttackableTargetGoal {

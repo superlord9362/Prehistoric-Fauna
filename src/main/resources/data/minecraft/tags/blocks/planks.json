@@ -7,6 +7,13 @@
 	"prehistoricfauna:zamites_planks",
 	"prehistoricfauna:protojuniper_planks",
 	"prehistoricfauna:heidiphyllum_planks",
-	"prehistoricfauna:liriodendrites_planks"
+	"prehistoricfauna:liriodendrites_planks",
+	"prehistoricfauna:araucaria_vertical_planks",
+	"prehistoricfauna:metasequoia_vertical_planks",
+	"prehistoricfauna:protopiceoxylon_vertical_planks",
+	"prehistoricfauna:zamites_vertical_planks",
+	"prehistoricfauna:protojuniperoxylon_vertical_planks",
+	"prehistoricfauna:heidiphyllum_vertical_planks",
+	"prehistoricfauna:liriodendrites_vertical_planks"
   ]
 }

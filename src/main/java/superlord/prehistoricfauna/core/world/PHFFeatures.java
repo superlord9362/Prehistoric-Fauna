@@ -1,5 +1,10 @@
 package superlord.prehistoricfauna.core.world;
 
+import static superlord.prehistoricfauna.core.world.util.WorldGenRegistrationHelper.createFeature;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.world.gen.feature.*;
 import superlord.prehistoricfauna.world.feature.*;
 import superlord.prehistoricfauna.world.feature.config.NoisySphereConfig;
@@ -23,11 +28,6 @@ import superlord.prehistoricfauna.world.feature.triassic.heidiphyllum.*;
 import superlord.prehistoricfauna.world.feature.util.SmallPineTree;
 import superlord.prehistoricfauna.world.placement.DicroidiumConfig;
 import superlord.prehistoricfauna.world.placement.JohnstoniaConfig;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static superlord.prehistoricfauna.core.world.util.WorldGenRegistrationHelper.createFeature;
 
 public class PHFFeatures {
     public static List<Feature<?>> features = new ArrayList<>();

@@ -1,8 +1,16 @@
 package superlord.prehistoricfauna.entity.render;
 
+import java.util.List;
+
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import net.minecraft.block.*;
+
+import net.minecraft.block.AbstractSignBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.StandingSignBlock;
+import net.minecraft.block.WallSignBlock;
+import net.minecraft.block.WoodType;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.RenderComponentsUtil;
 import net.minecraft.client.renderer.Atlases;
@@ -21,8 +29,6 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.block.PFStandingSignBlock;
 import superlord.prehistoricfauna.block.PFWallSignBlock;
 import superlord.prehistoricfauna.entity.tile.PFSignTileEntity;
-
-import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 public class PFSignTileEntityRenderer extends TileEntityRenderer<PFSignTileEntity>

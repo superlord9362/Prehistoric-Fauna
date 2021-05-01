@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "prehistoricfauna:triassic_sandstone_brick_vertical_slab"
+  },
+  "result": "prehistoricfauna:triassic_sandstone_brick_slab",
+  "count": 1,
+  "conditions": [
+    {
+      "type": "prehistoricfauna:quark_flag",
+      "flag": "vertical_slabs"
+    }
+  ]
+}

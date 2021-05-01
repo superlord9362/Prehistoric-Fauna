@@ -1,18 +1,48 @@
 package superlord.prehistoricfauna.entity;
 
+import java.util.EnumSet;
+import java.util.Random;
+import java.util.function.Predicate;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.*;
+import net.minecraft.entity.AgeableEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityPredicate;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.ai.controller.LookController;
 import net.minecraft.entity.ai.controller.MovementController;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.entity.ai.goal.BreedGoal;
+import net.minecraft.entity.ai.goal.FleeSunGoal;
+import net.minecraft.entity.ai.goal.FollowParentGoal;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.LeapAtTargetGoal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.MoveToBlockGoal;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.passive.*;
+import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.ChickenEntity;
+import net.minecraft.entity.passive.CowEntity;
+import net.minecraft.entity.passive.OcelotEntity;
+import net.minecraft.entity.passive.PigEntity;
+import net.minecraft.entity.passive.RabbitEntity;
+import net.minecraft.entity.passive.SheepEntity;
+import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.passive.horse.DonkeyEntity;
 import net.minecraft.entity.passive.horse.HorseEntity;
 import net.minecraft.entity.passive.horse.MuleEntity;
@@ -50,11 +80,6 @@ import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
 import superlord.prehistoricfauna.util.SoundHandler;
-
-import javax.annotation.Nullable;
-import java.util.EnumSet;
-import java.util.Random;
-import java.util.function.Predicate;
 
 public class DakotaraptorEntity extends AnimalEntity {
 	private static final DataParameter<Byte> DAKOTARAPTOR_FLAGS = EntityDataManager.createKey(DakotaraptorEntity.class, DataSerializers.BYTE);
@@ -879,7 +904,7 @@ public class DakotaraptorEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == Blocks.COARSE_DIRT;
+				return block == BlockInit.LOAM || block == BlockInit.MOSSY_DIRT || block == Blocks.PODZOL;
 			}
 		}
 
@@ -1124,53 +1149,5 @@ public class DakotaraptorEntity extends AnimalEntity {
 		}
 		return flag;
 	}
-
-	/**
-
-	public DakotaraptorEntity(EntityType<? extends DakotaraptorEntity> type, World world) {
-		super(type, world);
-	}
-
-	public AgeableEntity createChild(AgeableEntity ageable) {
-		DakotaraptorEntity entity = new DakotaraptorEntity(ModEntityTypes.DAKOTARAPTOR_ENTITY, this.world);
-		entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
-		return entity;
-	}
-
-	public boolean hasEgg() {
-		return this.dataManager.get(HAS_EGG);
-	}
-
-	private void setHasEgg(boolean hasEgg) {
-		this.dataManager.set(HAS_EGG, hasEgg);
-	}
-
-	public boolean isDigging() {
-		return this.dataManager.get(IS_DIGGING);
-	}
-
-	private void setDigging(boolean isDigging) {
-		this.isDigging = isDigging ? 1 : 0;
-		this.dataManager.set(IS_DIGGING, isDigging);
-	}
-
-	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == ItemInit.RAW_THESCELOSAURUS_MEAT.get();
-	}
-
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	protected void registerGoals() {
-		super.registerGoals();
-		this.goalSelector.addGoal(0, new SwimGoal(this));
-		this.attackAnimals = new NearestAttackableTargetGoal<>(this, AnimalEntity.class, 10, false, false, (p_213487_0_) -> {
-			return p_213487_0_ instanceof ThescelosaurusEntity || p_213487_0_ instanceof BasilemysEntity || p_213487_0_ instanceof DryosaurusEntity || p_213487_0_ instanceof HesperornithoidesEntity || p_213487_0_ instanceof EilenodonEntity;
-		});
-		this.goalSelector.addGoal(1, new DakotaraptorEntity.MeleeAttackGoal());
-		this.goalSelector.addGoal(1, new DakotaraptorEntity.PanicGoal());
-		this.targetSelector.addGoal(1, new DakotaraptorEntity.HurtByTargetGoal());
-		this.goalSelector.addGoal(1, new DakotaraptorEntity.JumpGoal());
-		this.targetSelector.addGoal(2, new DakotaraptorEntity.AttackPlayerGoal());
-	}
-
-	 **/
+	
 }

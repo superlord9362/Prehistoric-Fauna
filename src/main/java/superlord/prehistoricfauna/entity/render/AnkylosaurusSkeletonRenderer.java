@@ -7,8 +7,12 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.entity.model.AnkylosaurusSkeleton;
+import superlord.prehistoricfauna.entity.model.AnkylosaurusSkeletonActionLeft;
+import superlord.prehistoricfauna.entity.model.AnkylosaurusSkeletonActionRight;
+import superlord.prehistoricfauna.entity.model.AnkylosaurusSkeletonResting;
+import superlord.prehistoricfauna.entity.model.AnkylosaurusSkeletonSquat;
 import superlord.prehistoricfauna.entity.AnkylosaurusSkeletonEntity;
-import superlord.prehistoricfauna.entity.model.*;
 
 public class AnkylosaurusSkeletonRenderer extends MobRenderer<AnkylosaurusSkeletonEntity, EntityModel<AnkylosaurusSkeletonEntity>> {
 

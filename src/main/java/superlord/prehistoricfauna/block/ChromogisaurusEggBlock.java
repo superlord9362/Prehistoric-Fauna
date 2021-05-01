@@ -21,6 +21,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import superlord.prehistoricfauna.entity.ChromogisaurusEntity;
+import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
 
 import javax.annotation.Nullable;
@@ -103,8 +104,7 @@ public class ChromogisaurusEggBlock extends Block {
 	}
 
 	private boolean hasProperHabitat(IBlockReader blockReader, BlockPos pos) {
-		return blockReader.getBlockState(pos.down()).getBlock() == Blocks.SAND
-				|| blockReader.getBlockState(pos.down()).getBlock() == Blocks.COARSE_DIRT;
+		return blockReader.getBlockState(pos.down()).getBlock() == Blocks.SAND || blockReader.getBlockState(pos.down()).getBlock() == Blocks.COARSE_DIRT || blockReader.getBlockState(pos.down()).getBlock() == Blocks.GRASS_BLOCK || blockReader.getBlockState(pos.down()).getBlock() == Blocks.DIRT || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.LOAM || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.PACKED_LOAM || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.SILT || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.HARDENED_SILT || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.MOSSY_DIRT;
 	}
 
 	public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {

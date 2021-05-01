@@ -4,5 +4,11 @@
     "item": "prehistoricfauna:jurassic_siltstone"
   },
   "result": "prehistoricfauna:jurassic_siltstone_wall",
-  "count": 1
+  "count": 1,
+  "conditions": [
+    {
+      "type": "prehistoricfauna:quark_flag",
+      "flag": "vertical_slabs"
+    }
+  ]
 }

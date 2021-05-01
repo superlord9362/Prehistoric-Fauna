@@ -8,7 +8,11 @@ import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.entity.CeratosaurusSkeletonEntity;
-import superlord.prehistoricfauna.entity.model.*;
+import superlord.prehistoricfauna.entity.model.CeratosaurusSkeleton;
+import superlord.prehistoricfauna.entity.model.CeratosaurusSkeletonAction;
+import superlord.prehistoricfauna.entity.model.CeratosaurusSkeletonAlertLeft;
+import superlord.prehistoricfauna.entity.model.CeratosaurusSkeletonAlertRight;
+import superlord.prehistoricfauna.entity.model.CeratosaurusSkeletonResting;
 
 public class CeratosaurusSkeletonRenderer extends MobRenderer<CeratosaurusSkeletonEntity, EntityModel<CeratosaurusSkeletonEntity>> {
 

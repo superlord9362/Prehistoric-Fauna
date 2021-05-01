@@ -178,7 +178,7 @@ public class TyrannosaurusSkeletonEntity extends PrehistoricEntity {
 			} else if (this.isActionRight() && !player.isSneaking()) {
 				this.setActionRight(false);
 				this.setJurassicParkReference(true);
-			} else if (this.isJurassicParkReference()) {
+			} else if (this.isJurassicParkReference() && !player.isSneaking()) {
 				this.setJurassicParkReference(false);
 			} else if (player.isSneaking() && !this.isPushable() && !this.isLooking()) {
 				this.setPushable(true);

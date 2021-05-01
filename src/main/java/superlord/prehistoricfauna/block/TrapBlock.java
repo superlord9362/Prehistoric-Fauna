@@ -1,5 +1,8 @@
 package superlord.prehistoricfauna.block;
 
+import java.util.List;
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -22,9 +25,6 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import superlord.prehistoricfauna.init.CustomDamageSourceInit;
-
-import java.util.List;
-import java.util.Random;
 
 public class TrapBlock extends Block {
 	protected static final VoxelShape PRESSED_AABB = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 15.0D, 15.0D, 15.0D);

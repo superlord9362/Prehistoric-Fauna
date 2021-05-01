@@ -33,7 +33,7 @@ public class PHFDefaultBiomeFeatures {
     public static void addCretaceousOres(Biome biome) {
         biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, PHFConfiguredFeatures.FOSSILIZED_CRETACEOUS_CHALK);
     }
-
+    
     public static void addMorrisonHut(Biome biome) {
         biome.addStructure(PrehistoricFeature.MORRISON_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
         biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, PrehistoricFeature.MORRISON_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));

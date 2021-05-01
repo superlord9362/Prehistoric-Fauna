@@ -4,5 +4,11 @@
     "item": "prehistoricfauna:triassic_sandstone"
   },
   "result": "prehistoricfauna:triassic_sandstone_wall",
-  "count": 1
+  "count": 1,
+  "conditions": [
+    {
+      "type": "prehistoricfauna:quark_flag",
+      "flag": "vertical_slabs"
+    }
+  ]
 }
