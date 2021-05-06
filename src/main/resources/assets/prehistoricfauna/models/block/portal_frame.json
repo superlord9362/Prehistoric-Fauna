@@ -2,7 +2,7 @@
     "parent": "block/cube_bottom_top",
     "textures": {
         "bottom": "prehistoricfauna:blocks/henostone",
-        "top": "prehistoricfauna:blocks/portalframe_top",
+        "top": "prehistoricfauna:blocks/projector",
         "side": "prehistoricfauna:blocks/portalframe"
     }
 }

@@ -1,41 +1,16 @@
 package superlord.prehistoricfauna.init;
 
-import com.google.common.collect.ImmutableSet;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.village.PointOfInterestType;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import superlord.prehistoricfauna.PrehistoricFauna;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
-@Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class PrehistoricPointofInterest {
-	private static final List<PointOfInterestType> POINTS_OF_INTEREST = new ArrayList<>();
-    //public static final PointOfInterestType BURROWS = register("burrows", getAllStates(BlockInit.DIDELPHODON_BURROW), 0, 1);
+	public static final DeferredRegister<PointOfInterestType> POI_TYPES = DeferredRegister.create(ForgeRegistries.POI_TYPES, PrehistoricFauna.MODID);
 
-    public static PointOfInterestType register(String name, Set<BlockState> states, int maxFreeTickets, int i) {
-        ResourceLocation id = new ResourceLocation(PrehistoricFauna.MODID, name);
-        PointOfInterestType pointOfInterestType = PointOfInterestType.registerBlockStates(new PointOfInterestType(id.toString(), states, maxFreeTickets, i));
-        pointOfInterestType.setRegistryName(id);
-        POINTS_OF_INTEREST.add(pointOfInterestType);
-        return pointOfInterestType;
-    }
+    public static final RegistryObject<PointOfInterestType> TRIASSIC_PORTAL = POI_TYPES.register("triassic_portal", () -> new PointOfInterestType("triassic_portal", PointOfInterestType.getAllStates(BlockInit.TRIASSIC_PORTAL.get()), 0, 1));
+    public static final RegistryObject<PointOfInterestType> JURASSIC_PORTAL = POI_TYPES.register("jurassic_portal", () -> new PointOfInterestType("jurassic_portal", PointOfInterestType.getAllStates(BlockInit.JURASSIC_PORTAL.get()), 0, 1));
+    public static final RegistryObject<PointOfInterestType> CRETACEOUS_PORTAL = POI_TYPES.register("cretaceous_portal", () -> new PointOfInterestType("cretaceous_portal", PointOfInterestType.getAllStates(BlockInit.CRETACEOUS_PORTAL.get()), 0, 1));
 
-    @SuppressWarnings("unused")
-	private static Set<BlockState> getAllStates(Block block) {
-        return ImmutableSet.copyOf(block.getStateContainer().getValidStates());
-    }
-
-    @SubscribeEvent
-    public static void registerRecipeSerializers(RegistryEvent.Register<PointOfInterestType> event) {
-        for (PointOfInterestType pointOfInterest : POINTS_OF_INTEREST) {
-            event.getRegistry().register(pointOfInterest);
-        }
-    }
 }

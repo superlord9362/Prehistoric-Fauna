@@ -31,6 +31,8 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.PrehistoricFauna.PFBook;
 import superlord.prehistoricfauna.PrehistoricFauna.PFEntities;
@@ -108,6 +110,8 @@ import superlord.prehistoricfauna.world.feature.util.PHFTreeSpawners;
 public class BlockInit {
 
 	public static final RegistryHelper HELPER = PrehistoricFauna.REGISTRY_HELPER;
+	@SuppressWarnings("deprecation")
+	public static final DeferredRegister<Block> BLOCKS = new DeferredRegister<>(ForgeRegistries.BLOCKS, PrehistoricFauna.MODID);
 	
 	public static final Block HORSETAIL = new PrehistoricPlant(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("horsetail"); //Loot Table done
 	public static final Block OSMUNDA = new PrehistoricPlant(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("osmunda"); //Loot table done
@@ -295,7 +299,6 @@ public class BlockInit {
 	public static final Block LIRIODENDRITES_SAPLING = new PHFSapling(new PHFTreeSpawners.Liriodendrites(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("liriodendrites_sapling"); //Loot Table done
 	@SuppressWarnings("deprecation")
 	public static final Block POTTED_LIRIODENDRITES_SAPLING = new FlowerPotBlock(LIRIODENDRITES_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_liriodendrites_sapling");//Loot Table done
-	public static final Block CRETACEOUS_PORTAL = new CretaceousPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).lightValue(11).noDrops()).setRegistryName("cretaceous_portal");//Loot Table done
 	public static final Block TRIASSIC_SANDSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("triassic_sandstone");//Loot Table done
 	public static final Block TRIASSIC_SANDSTONE_FOSSIL = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE).harvestLevel(2).harvestTool(ToolType.PICKAXE)).setRegistryName("triassic_sandstone_fossil");//Loot Table done
 	public static final Block SMOOTH_TRIASSIC_SANDSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("smooth_triassic_sandstone");//Loot Table done
@@ -343,11 +346,8 @@ public class BlockInit {
 	public static final Block POLISHED_CRETACEOUS_CHALK_STAIRS = new PrehistoricStairsBlock(POLISHED_CRETACEOUS_CHALK.getDefaultState(), Block.Properties.from(POLISHED_CRETACEOUS_CHALK)).setRegistryName("polished_cretaceous_chalk_stairs");//Loot Table done
 	public static final Block SILLOSUCHUS_EGG = new SillosuchusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("sillosuchus_egg");//Loot Table done
 	public static final Block PORTAL_FRAME = new PortalFrameBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).lightValue(9)).setRegistryName("portal_frame");//Loot Table done
-	public static final Block PORTAL_PROJECTOR = new PortalFrameBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).lightValue(9)).setRegistryName("portal_projector");//Loot Table done
 	public static final Block CRETACEOUS_TIME_BLOCK = new CretaceousTimeBlock();//Loot Table done
-	public static final Block JURASSIC_PORTAL = new JurassicPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).lightValue(11).noDrops()).setRegistryName("jurassic_portal");//Loot Table done
 	public static final Block JURASSIC_TIME_BLOCK = new JurassicTimeBlock();//Loot Table done
-	public static final Block TRIASSIC_PORTAL = new TriassicPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).lightValue(11).noDrops()).setRegistryName("triassic_portal");//Loot Table done
 	public static final Block TRIASSIC_TIME_BLOCK = new TriassicTimeBlock();//Loot Table done
 	public static final Block CRASSOSTREA_BLOCK = new CrassostreaOysterBlock(Block.Properties.create(Material.CORAL).doesNotBlockMovement().hardnessAndResistance(0.5F).tickRandomly().sound(SoundType.STONE).harvestLevel(0)).setRegistryName("crassostrea_oysters");
 	//public static final Block DIDELPHODON_BURROW = new DidelphodonBurrowBlock(Block.Properties.create(Material.EARTH).hardnessAndResistance(0.5F).sound(SoundType.GROUND)).setRegistryName("didelphodon_burrow");
@@ -406,6 +406,10 @@ public class BlockInit {
 	public static final Block SILT = new SandBlock(0x8C603C, Block.Properties.create(Material.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)).setRegistryName("silt");
 	public static final Block HARDENED_SILT = new Block(Block.Properties.create(Material.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)).setRegistryName("hardened_silt");
 	
+	public static final RegistryObject<TriassicPortalBlock> TRIASSIC_PORTAL = BLOCKS.register("triassic_portal", () -> new TriassicPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).lightValue(11).noDrops()));
+	public static final RegistryObject<JurassicPortalBlock> JURASSIC_PORTAL = BLOCKS.register("jurassic_portal", () -> new JurassicPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).lightValue(11).noDrops()));
+	public static final RegistryObject<CretaceousPortalBlock> CRETACEOUS_PORTAL = BLOCKS.register("cretaceous_portal", () -> new CretaceousPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).lightValue(11).noDrops()));
+
 	public static final RegistryObject<Block> METASEQUOIA_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "metasequoia_vertical_slab", () -> new VerticalSlabBlock(Properties.from(METASEQUOIA_SLAB)), PFWood.instance);
 	public static final RegistryObject<Block> ARAUCARIA_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "araucaria_vertical_slab", () -> new VerticalSlabBlock(Properties.from(ARAUCARIA_SLAB)), PFWood.instance);
 	public static final RegistryObject<Block> LIRIODENDRITES_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "liriodendrites_vertical_slab", () -> new VerticalSlabBlock(Properties.from(LIRIODENDRITES_SLAB)), PFWood.instance);
@@ -615,7 +619,6 @@ public class BlockInit {
 		event.getRegistry().register(LIRIODENDRITES_LEAVES);
 		event.getRegistry().register(LIRIODENDRITES_SAPLING);
 		event.getRegistry().register(POTTED_LIRIODENDRITES_SAPLING);
-		event.getRegistry().register(CRETACEOUS_PORTAL);
 		event.getRegistry().register(TRIASSIC_SANDSTONE);
 		event.getRegistry().register(TRIASSIC_SANDSTONE_FOSSIL);
 		event.getRegistry().register(POLISHED_TRIASSIC_SANDSTONE);
@@ -663,11 +666,8 @@ public class BlockInit {
 		event.getRegistry().register(POLISHED_CRETACEOUS_CHALK_STAIRS);
 		event.getRegistry().register(SILLOSUCHUS_EGG);
 		event.getRegistry().register(PORTAL_FRAME);
-		event.getRegistry().register(PORTAL_PROJECTOR);
 		event.getRegistry().register(CRETACEOUS_TIME_BLOCK);
-		event.getRegistry().register(JURASSIC_PORTAL);
 		event.getRegistry().register(JURASSIC_TIME_BLOCK);
-		event.getRegistry().register(TRIASSIC_PORTAL);
 		event.getRegistry().register(TRIASSIC_TIME_BLOCK);
 		event.getRegistry().register(CRASSOSTREA_BLOCK);
 		//event.getRegistry().register(DIDELPHODON_BURROW);
@@ -791,11 +791,11 @@ public class BlockInit {
 			RenderTypeLookup.setRenderLayer(LIRIODENDRITES_DOOR, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(LIRIODENDRITES_TRAPDOOR, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(CRASSOSTREA_BLOCK, cutoutRenderType);
-			RenderTypeLookup.setRenderLayer(CRETACEOUS_PORTAL, translucentRenderType);
+			RenderTypeLookup.setRenderLayer(CRETACEOUS_PORTAL.get(), translucentRenderType);
 			RenderTypeLookup.setRenderLayer(CRETACEOUS_TIME_BLOCK, translucentRenderType);
-			RenderTypeLookup.setRenderLayer(JURASSIC_PORTAL, translucentRenderType);
+			RenderTypeLookup.setRenderLayer(JURASSIC_PORTAL.get(), translucentRenderType);
 			RenderTypeLookup.setRenderLayer(JURASSIC_TIME_BLOCK, translucentRenderType);
-			RenderTypeLookup.setRenderLayer(TRIASSIC_PORTAL, translucentRenderType);
+			RenderTypeLookup.setRenderLayer(TRIASSIC_PORTAL.get(), translucentRenderType);
 			RenderTypeLookup.setRenderLayer(TRIASSIC_TIME_BLOCK, translucentRenderType);
 			RenderTypeLookup.setRenderLayer(HENOSTONE_TRAP, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(ALGAE, mippedRenderType);
@@ -1048,7 +1048,6 @@ public class BlockInit {
  		event.getRegistry().register(new BlockItem(BlockInit.CRETACEOUS_CHALK_BRICK_STAIRS, new Item.Properties().group(PFStone.instance)).setRegistryName("cretaceous_chalk_brick_stairs"));
  		event.getRegistry().register(new BlockItem(BlockInit.SILLOSUCHUS_EGG, new Item.Properties().group(PFEntities.instance)).setRegistryName("sillosuchus_egg"));
  		event.getRegistry().register(new BlockItem(BlockInit.PORTAL_FRAME, new Item.Properties().group(PFBook.instance)).setRegistryName("portal_frame"));
- 		event.getRegistry().register(new BlockItem(BlockInit.PORTAL_PROJECTOR, new Item.Properties().group(PFBook.instance)).setRegistryName("portal_projector"));
  		//event.getRegistry().register(new BlockItem(BlockInit.DIDELPHODON_BURROW, new Item.Properties().group(PFBook.instance)).setRegistryName("didelphodon_burrow"));
  		event.getRegistry().register(new BlockItem(BlockInit.HENOSTONE_CARVED, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone_carved"));
  		event.getRegistry().register(new BlockItem(BlockInit.HENOSTONE_BRICKS, new Item.Properties().group(PFStone.instance)).setRegistryName("henostone_bricks"));

@@ -13,8 +13,8 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.server.TicketType;
 import net.minecraftforge.common.util.ITeleporter;
-import superlord.prehistoricfauna.block.PortalFrameBlock;
 import superlord.prehistoricfauna.block.TriassicPortalBlock;
+import superlord.prehistoricfauna.block.PortalFrameBlock;
 import superlord.prehistoricfauna.init.BlockInit;
 import javax.annotation.Nullable;
 import java.util.*;
@@ -36,12 +36,11 @@ public class TeleporterTriassic implements ITeleporter {
             Vec3d motion = pattern.motion;
             entity.setMotion(motion);
             entity.rotationYaw = yaw + (float) pattern.rotation;
-            entity.forceSetPosition(position.x, position.y, position.z);
+            entity.setPosition(position.x, position.y, position.z);
             return true;
         }
     }
-
-
+    
     @Nullable
     public BlockPattern.PortalInfo placeInExistingPortal(ServerWorld world, BlockPos pos, Vec3d motion, Direction direction, double x, double y, boolean isPlayer) {
         boolean isFrame = true;
@@ -63,8 +62,8 @@ public class TeleporterTriassic implements ITeleporter {
                     for(int eZ = -128; eZ <= 128; ++eZ) {
                         for(BlockPos blockpos1 = pos.add(eX, world.getActualHeight() - 1 - pos.getY(), eZ); blockpos1.getY() >= 0; blockpos1 = blockpos2) {
                             blockpos2 = blockpos1.down();
-                            if (world.getBlockState(blockpos1).getBlock() == BlockInit.TRIASSIC_PORTAL) {
-                                for(blockpos2 = blockpos1.down(); world.getBlockState(blockpos2).getBlock() == BlockInit.TRIASSIC_PORTAL; blockpos2 = blockpos2.down()) {
+                            if (world.getBlockState(blockpos1).getBlock() == BlockInit.TRIASSIC_PORTAL.get()) {
+                                for(blockpos2 = blockpos1.down(); world.getBlockState(blockpos2).getBlock() == BlockInit.TRIASSIC_PORTAL.get(); blockpos2 = blockpos2.down()) {
                                     blockpos1 = blockpos2;
                                 }
 
@@ -94,7 +93,8 @@ public class TeleporterTriassic implements ITeleporter {
             }
         }
     }
-    
+
+
     /**
      * Create a portal at the teleport location.
      */
@@ -229,7 +229,7 @@ public class TeleporterTriassic implements ITeleporter {
         }
         
         //Bottom layer
-        world.setBlockState(pos, BlockInit.PORTAL_PROJECTOR.getDefaultState());
+        world.setBlockState(pos, BlockInit.PORTAL_FRAME.getDefaultState());
         world.setBlockState(pos.east(), BlockInit.PORTAL_FRAME.getDefaultState());
         world.setBlockState(pos.west(), BlockInit.PORTAL_FRAME.getDefaultState());
         world.setBlockState(pos.east(2), BlockInit.HENOSTONE_CARVED.getDefaultState());
@@ -238,28 +238,28 @@ public class TeleporterTriassic implements ITeleporter {
         //Pillars
         world.setBlockState(pos.east(2).up(), BlockInit.PORTAL_FRAME.getDefaultState().with(PortalFrameBlock.FACING, Direction.WEST));
         world.setBlockState(pos.west(2).up(), BlockInit.PORTAL_FRAME.getDefaultState().with(PortalFrameBlock.FACING, Direction.EAST));
-        world.setBlockState(pos.east(2).up(2), BlockInit.PORTAL_PROJECTOR.getDefaultState().with(PortalFrameBlock.FACING, Direction.WEST));
-        world.setBlockState(pos.west(2).up(2), BlockInit.PORTAL_PROJECTOR.getDefaultState().with(PortalFrameBlock.FACING, Direction.EAST));
+        world.setBlockState(pos.east(2).up(2), BlockInit.PORTAL_FRAME.getDefaultState().with(PortalFrameBlock.FACING, Direction.WEST));
+        world.setBlockState(pos.west(2).up(2), BlockInit.PORTAL_FRAME.getDefaultState().with(PortalFrameBlock.FACING, Direction.EAST));
         world.setBlockState(pos.east(2).up(3), BlockInit.PORTAL_FRAME.getDefaultState().with(PortalFrameBlock.FACING, Direction.WEST));
         world.setBlockState(pos.west(2).up(3), BlockInit.PORTAL_FRAME.getDefaultState().with(PortalFrameBlock.FACING, Direction.EAST));
 
         //Top layer
         world.setBlockState(pos.east(1).up(4), BlockInit.PORTAL_FRAME.getDefaultState().with(PortalFrameBlock.FACING, Direction.DOWN));
-        world.setBlockState(pos.up(4), BlockInit.PORTAL_PROJECTOR.getDefaultState().with(PortalFrameBlock.FACING, Direction.DOWN));
+        world.setBlockState(pos.up(4), BlockInit.PORTAL_FRAME.getDefaultState().with(PortalFrameBlock.FACING, Direction.DOWN));
         world.setBlockState(pos.west(1).up(4), BlockInit.PORTAL_FRAME.getDefaultState().with(PortalFrameBlock.FACING, Direction.DOWN));
         world.setBlockState(pos.west(2).up(4), BlockInit.HENOSTONE_CARVED.getDefaultState());
         world.setBlockState(pos.east(2).up(4), BlockInit.HENOSTONE_CARVED.getDefaultState());
         
         //Portal blocks
-        world.setBlockState(pos.up(), BlockInit.TRIASSIC_PORTAL.getDefaultState());
-		world.setBlockState(pos.up(2), BlockInit.TRIASSIC_PORTAL.getDefaultState());
-		world.setBlockState(pos.up(3), BlockInit.TRIASSIC_PORTAL.getDefaultState());
-		world.setBlockState(pos.east().up(), BlockInit.TRIASSIC_PORTAL.getDefaultState());
-		world.setBlockState(pos.east().up(2), BlockInit.TRIASSIC_PORTAL.getDefaultState());
-		world.setBlockState(pos.east().up(3), BlockInit.TRIASSIC_PORTAL.getDefaultState());
-		world.setBlockState(pos.west().up(), BlockInit.TRIASSIC_PORTAL.getDefaultState());
-		world.setBlockState(pos.west().up(2), BlockInit.TRIASSIC_PORTAL.getDefaultState());
-		world.setBlockState(pos.west().up(3), BlockInit.TRIASSIC_PORTAL.getDefaultState());
+        world.setBlockState(pos.up(), BlockInit.TRIASSIC_PORTAL.get().getDefaultState());
+		world.setBlockState(pos.up(2), BlockInit.TRIASSIC_PORTAL.get().getDefaultState());
+		world.setBlockState(pos.up(3), BlockInit.TRIASSIC_PORTAL.get().getDefaultState());
+		world.setBlockState(pos.east().up(), BlockInit.TRIASSIC_PORTAL.get().getDefaultState());
+		world.setBlockState(pos.east().up(2), BlockInit.TRIASSIC_PORTAL.get().getDefaultState());
+		world.setBlockState(pos.east().up(3), BlockInit.TRIASSIC_PORTAL.get().getDefaultState());
+		world.setBlockState(pos.west().up(), BlockInit.TRIASSIC_PORTAL.get().getDefaultState());
+		world.setBlockState(pos.west().up(2), BlockInit.TRIASSIC_PORTAL.get().getDefaultState());
+		world.setBlockState(pos.west().up(3), BlockInit.TRIASSIC_PORTAL.get().getDefaultState());
 
     }
 

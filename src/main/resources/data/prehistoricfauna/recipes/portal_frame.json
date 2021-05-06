@@ -2,19 +2,19 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "HHH",
-    "HGH",
+    "HCH",
 	"HHH"
   ],
   "key": {
     "H": {
       "item": "prehistoricfauna:henostone"
     },
-    "G": {
-      "item": "minecraft:gold_ingot"
+    "C": {
+      "item": "minecraft:clock"
     }
   },
   "result": {
-    "item": "prehistoricfauna:portal_frame",
+    "item": "prehistoricfauna:portal_projector",
     "count": 1
   }
 }
