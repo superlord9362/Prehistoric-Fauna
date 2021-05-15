@@ -40,6 +40,8 @@ public class PrehistoricFaunaConfig {
 	public static int morrisonHutMaxDistance = 60;
 	public static int ischigualastoHutMinDistance = 40;
 	public static int ischigualastoHutMaxDistance = 60;
+	public static int geologistCampMinDistance = 25;
+	public static int geologistCampMaxDistance = 50;
 	public static boolean spaceTimeContinuumWarping = false;
 	public static boolean geologyHammerMining = true;
 	
@@ -84,6 +86,8 @@ public class PrehistoricFaunaConfig {
 			morrisonHutMaxDistance = PrehistoricConfigHolder.SERVER.morrisonHutMaxDistance.get();
 			ischigualastoHutMinDistance = PrehistoricConfigHolder.SERVER.ischigualastoHutMinDistance.get();
 			ischigualastoHutMaxDistance = PrehistoricConfigHolder.SERVER.ischigualastoHutMaxDistance.get();
+			geologistCampMinDistance = PrehistoricConfigHolder.SERVER.geologistCampMinDistance.get();
+			geologistCampMaxDistance = PrehistoricConfigHolder.SERVER.geologistCampMaxDistance.get();
 			spaceTimeContinuumWarping = PrehistoricConfigHolder.SERVER.spaceTimeContinuumWarping.get();
 			geologyHammerMining = PrehistoricConfigHolder.SERVER.geologyHammerMining.get();
 		} catch (Exception e) {

@@ -39,6 +39,8 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue morrisonHutMaxDistance;
 	public final ForgeConfigSpec.IntValue ischigualastoHutMinDistance;
 	public final ForgeConfigSpec.IntValue ischigualastoHutMaxDistance;
+	public final ForgeConfigSpec.IntValue geologistCampMinDistance;
+	public final ForgeConfigSpec.IntValue geologistCampMaxDistance;
 	public final ForgeConfigSpec.BooleanValue spaceTimeContinuumWarping;
 	public final ForgeConfigSpec.BooleanValue geologyHammerMining;
 	
@@ -73,12 +75,14 @@ public class ServerConfig {
 		this.cretaceousDimensionID = buildInt(builder, "Cretaceous Dimension ID", "all", 9, Integer.MIN_VALUE, Integer.MAX_VALUE, "Cretaceous Dimension ID. Default is 9");
 		this.jurassicDimensionID = buildInt(builder, "Jurassic Dimension ID", "all", 8, Integer.MIN_VALUE, Integer.MAX_VALUE, "Jurassic Dimension ID. Default is 8");
 		this.triassicDimensionID = buildInt(builder, "Triassic Dimension ID", "all", 7, Integer.MIN_VALUE, Integer.MAX_VALUE, "Triassic Dimension ID. Default is 7");
-		this.hellCreekHutMinDistance = buildInt(builder, "Hell Creek Ruined Time Traveller's Hut Min Distance", "all", 75, 1, 300, "The closest two Hell Creek Ruined Time Traveller's Huts can spawn from eachother. Keep this value lower than the max. Default is 75");
-		this.hellCreekHutMaxDistance = buildInt(builder, "Hell Creek Ruined Time Traveller's Hut Max Distance", "all", 100, 1, 300, "The farthest two Hell Creek Ruined Time Traveller's Huts can spawn from eachother. Keep this value higher than the min. Default is 100");
-		this.morrisonHutMinDistance = buildInt(builder, "Morrison Ruined Time Traveller's Hut Min Distance", "all", 75, 1, 300, "The closest two Morrison Ruined Time Traveller's Huts can spawn from eachother. Keep this value lower than the max. Default is 75");
-		this.morrisonHutMaxDistance = buildInt(builder, "Morrison Ruined Time Traveller's Hut Max Distance", "all", 100, 1, 300, "The farthest two Morrison Ruined Time Traveller's Huts can spawn from eachother. Keep this value higher than the min. Default is 100");
-		this.ischigualastoHutMinDistance = buildInt(builder, "Ischigualasto Ruined Time Traveller's Hut Min Distance", "all", 75, 1, 300, "The closest two Ischigualasto Ruined Time Traveller's Huts can spawn from eachother. Keep this value lower than the max. Default is 75");
-		this.ischigualastoHutMaxDistance = buildInt(builder, "Ischigualasto Ruined Time Traveller's Hut Max Distance", "all", 100, 1, 300, "The farthest two Ischigualasto Ruined Time Traveller's Huts can spawn from eachother. Keep this value higher than the min. Default is 100");
+		this.hellCreekHutMinDistance = buildInt(builder, "Hell Creek Ruined Time Traveller's Hut Min Distance", "all", 40, 1, 300, "The closest two Hell Creek Ruined Time Traveller's Huts can spawn from eachother. Keep this value lower than the max. Default is 40");
+		this.hellCreekHutMaxDistance = buildInt(builder, "Hell Creek Ruined Time Traveller's Hut Max Distance", "all", 60, 1, 300, "The farthest two Hell Creek Ruined Time Traveller's Huts can spawn from eachother. Keep this value higher than the min. Default is 60");
+		this.morrisonHutMinDistance = buildInt(builder, "Morrison Ruined Time Traveller's Hut Min Distance", "all", 40, 1, 300, "The closest two Morrison Ruined Time Traveller's Huts can spawn from eachother. Keep this value lower than the max. Default is 40");
+		this.morrisonHutMaxDistance = buildInt(builder, "Morrison Ruined Time Traveller's Hut Max Distance", "all", 60, 1, 300, "The farthest two Morrison Ruined Time Traveller's Huts can spawn from eachother. Keep this value higher than the min. Default is 60");
+		this.ischigualastoHutMinDistance = buildInt(builder, "Ischigualasto Ruined Time Traveller's Hut Min Distance", "all", 40, 1, 300, "The closest two Ischigualasto Ruined Time Traveller's Huts can spawn from eachother. Keep this value lower than the max. Default is 40");
+		this.ischigualastoHutMaxDistance = buildInt(builder, "Ischigualasto Ruined Time Traveller's Hut Max Distance", "all", 60, 1, 300, "The farthest two Ischigualasto Ruined Time Traveller's Huts can spawn from eachother. Keep this value higher than the min. Default is 60");
+		this.geologistCampMinDistance = buildInt(builder, "Geologist Camp Min Distance", "all", 25, 1, 300, "The closest two Geologist Camps can spawn from eachother. Keep this value lower than the max. Default is 25");
+		this.geologistCampMaxDistance = buildInt(builder, "Geologist Camp Max Distance", "all", 50, 1, 300, "The farthest two Geologist Camps can spawn from eachother. Keep this value higher than the min. Default is 50");
 		this.spaceTimeContinuumWarping = buildBoolean(builder, "Space Time Continuum Warping", "all", false, "Warning: Messing with the time space continuum may lead to unforseen consequences. Recommended to keep false for servers. Default is false");
 		this.geologyHammerMining = buildBoolean(builder, "Geological Hammer Stone Breaking", "all", true, "Toggles whether stones can be broken down using the Geological Hammer. Default is true");
 	}

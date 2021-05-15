@@ -37,11 +37,13 @@ public class PrehistoricFeature {
 	public static Structure<NoFeatureConfig> ISCHIGUALASTO_HUT = new IschigualastoStructure(NoFeatureConfig::deserialize);
 	public static Structure<NoFeatureConfig> TIME_TEMPLE = new TimeTempleStructure(NoFeatureConfig::deserialize);
 	public static Structure<NoFeatureConfig> PORTAL_CHAMBER = new PortalChamber(NoFeatureConfig::deserialize);
+	public static Structure<NoFeatureConfig> GEOLOGIST_CAMP = new GeologistCampStructure(NoFeatureConfig::deserialize);
 	public static IStructurePieceType HCHUT_PIECE = HellCreekHutPieces.Piece::new;
 	public static IStructurePieceType MORRISON_HUT_PIECE = MorrisonHutPieces.Piece::new;
 	public static IStructurePieceType ISCHIGUALASTO_HUT_PIECE = IschigualastoHutPieces.Piece::new;
 	public static IStructurePieceType TIME_TEMPLE_PIECE = TimeTemplePieces.Piece::new;
 	public static IStructurePieceType PORTAL_CHAMBER_PIECE = PortalChamberPieces.Piece::new;
+	public static IStructurePieceType GEOLOGIST_CAMP_PIECE = GeologistCampPieces.Piece::new;
 
 	public static void registerFeatures(Register<Feature<?>> event) {
 		IForgeRegistry<Feature<?>> registry = event.getRegistry();
@@ -50,11 +52,13 @@ public class PrehistoricFeature {
 		PrehistoricFauna.register(registry, ISCHIGUALASTO_HUT, "ischigualasto_hut");
 		PrehistoricFauna.register(registry, TIME_TEMPLE, "time_temple");
 		PrehistoricFauna.register(registry, PORTAL_CHAMBER, "portal_chamber");
+		PrehistoricFauna.register(registry, GEOLOGIST_CAMP, "geologist_camp");
 		register(HCHUT_PIECE, "HCHUT_PIECE");
 		register(MORRISON_HUT_PIECE, "MORRISON_HUT_PIECE");
 		register(ISCHIGUALASTO_HUT_PIECE, "ISCHIGUALASTO_HUT_PIECE");
 		register(TIME_TEMPLE_PIECE, "TIME_TEMPLE_PIECE");
 		register(PORTAL_CHAMBER_PIECE, "PORTAL_CHAMBER_PIECE");
+		register(GEOLOGIST_CAMP_PIECE, "GEOLOGIST_CAMP_PIECE");
 	}
 
 	static IStructurePieceType register(IStructurePieceType structurePiece, String key) {

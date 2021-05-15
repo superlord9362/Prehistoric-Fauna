@@ -12,6 +12,7 @@ public class PrehistoricLootTables {
 
 	public static final ResourceLocation HELL_CREEK_LOOT_TABLE = register("prehistoricfauna:chests/hell_creek_loot_table");
 	public static final ResourceLocation TIME_TEMPLE_LOOT_TABLE = register("prehistoricfauna:chests/time_temple");
+	public static final ResourceLocation GEOLOGIST_CAMP_LOOT_TABLE = register("prehistoricfauna:chests/geologist_camp");
 	
 	private static ResourceLocation register(String id) {
 		return register(new ResourceLocation(id));

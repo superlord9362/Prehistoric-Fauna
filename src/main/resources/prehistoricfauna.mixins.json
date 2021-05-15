@@ -2,9 +2,9 @@
   "required": true,
   "package": "superlord.prehistoricfauna.mixin",
   "compatibilityLevel": "JAVA_8",
-  "refmap": "phf.refmap.json",
+  "refmap": "prehistoricfauna.refmap.json",
   "mixins": [
-	"access.BiomeSourceAccess",
+    "access.BiomeSourceAccess",
     "common.MixinTemplate"
   ],
   "client": [

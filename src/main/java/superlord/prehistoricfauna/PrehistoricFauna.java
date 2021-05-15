@@ -177,9 +177,8 @@ public class PrehistoricFauna {
 		List<Structure<?>> tempList = new ArrayList<>(Feature.ILLAGER_STRUCTURES);
 		tempList.add(PrehistoricFeature.TIME_TEMPLE);
 		Feature.ILLAGER_STRUCTURES = ImmutableList.copyOf(tempList);
+		MinecraftForge.EVENT_BUS.register(new CommonEvents());
 		PFFeatureRegistration.addFeatures();
-		CommonEvents.setup();
-		CommonEvents.init();
 		PROXY.setup();
 		addBiomeFeatures();
 		PHFOverworldBiomeRegistry.addBiomesToWeightSystem();
@@ -199,6 +198,10 @@ public class PrehistoricFauna {
 				biome.addFeature(Decoration.UNDERGROUND_ORES, PHFConfiguredFeatures.FOSSILIZED_TRIASSIC_SANDSTONE);
 				biome.addFeature(Decoration.UNDERGROUND_ORES, PHFConfiguredFeatures.FOSSILIZED_JURASSIC_SILTSTONE);
 				biome.addStructure(PrehistoricFeature.PORTAL_CHAMBER.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+			}
+			if (biome == Biomes.PLAINS || biome == Biomes.SUNFLOWER_PLAINS || biome == Biomes.FOREST || biome == Biomes.BIRCH_FOREST || biome == Biomes.BIRCH_FOREST_HILLS || biome == Biomes.FLOWER_FOREST || biome == Biomes.TALL_BIRCH_FOREST || biome == Biomes.GIANT_SPRUCE_TAIGA || biome == Biomes.TAIGA || biome == Biomes.TAIGA_HILLS || biome == Biomes.TAIGA_MOUNTAINS || biome == Biomes.GIANT_SPRUCE_TAIGA_HILLS || biome == Biomes.GIANT_TREE_TAIGA || biome == Biomes.GIANT_TREE_TAIGA_HILLS || biome == Biomes.SNOWY_TAIGA || biome == Biomes.SNOWY_TAIGA_HILLS || biome == Biomes.SNOWY_TAIGA_MOUNTAINS || biome == Biomes.MOUNTAIN_EDGE || biome == Biomes.MOUNTAINS || biome == Biomes.GRAVELLY_MOUNTAINS || biome == Biomes.SAVANNA || biome == Biomes.SAVANNA_PLATEAU || biome == Biomes.SNOWY_TUNDRA || biome == Biomes.WOODED_HILLS || biome == Biomes.WOODED_MOUNTAINS || biome == PHFOverworldBiomeRegistry.PETRIFIED_FOREST) {
+                biome.addFeature(Decoration.SURFACE_STRUCTURES, PrehistoricFeature.GEOLOGIST_CAMP.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+				biome.addStructure(PrehistoricFeature.GEOLOGIST_CAMP.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
 			}
 		}
 	}

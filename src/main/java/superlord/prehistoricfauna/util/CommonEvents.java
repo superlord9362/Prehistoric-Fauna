@@ -14,18 +14,19 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ItemInit;
+import superlord.prehistoricfauna.init.PrehistoricProfessionInit;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Bus.FORGE)
+@Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID)
 public class CommonEvents {
 
 	public static Map<Block, Block> BLOCK_STRIPPING_MAP = new HashMap<>();
@@ -493,6 +494,13 @@ public class CommonEvents {
 					return stack;
 				}
 			});
+		}
+	}
+	
+	@SubscribeEvent
+	public void onVillagerTrades(VillagerTradesEvent event) {
+		if (event.getType() == PrehistoricProfessionInit.GEOLOGIST) {
+			PrehistoricProfessionInit.addGeologistTrades(event.getTrades());
 		}
 	}
 
