@@ -86,6 +86,7 @@ import superlord.prehistoricfauna.init.ContainerRegistry;
 import superlord.prehistoricfauna.init.DimensionInit;
 import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.init.ModEntityTypes;
+import superlord.prehistoricfauna.init.ParticleInit;
 import superlord.prehistoricfauna.init.PrehistoricPointofInterest;
 import superlord.prehistoricfauna.init.TileEntityRegistry;
 import superlord.prehistoricfauna.recipes.RecipeRegistry;
@@ -141,6 +142,7 @@ public class PrehistoricFauna {
 		ContainerRegistry.CONTAINER_TYPES.register(modEventBus);
 		RecipeRegistry.RECIPES.register(modEventBus);
 		ModEntityTypes.ENTITY_TYPES.register(modEventBus);
+		ParticleInit.PARTICLE_TYPES.register(modEventBus);
 		MinecraftForge.EVENT_BUS.register(this);
 		MinecraftForge.EVENT_BUS.register(new ServerEvents());
 		PFPacketHandler.registerPackets();
@@ -177,6 +179,7 @@ public class PrehistoricFauna {
 		Feature.ILLAGER_STRUCTURES = ImmutableList.copyOf(tempList);
 		PFFeatureRegistration.addFeatures();
 		CommonEvents.setup();
+		CommonEvents.init();
 		PROXY.setup();
 		addBiomeFeatures();
 		PHFOverworldBiomeRegistry.addBiomesToWeightSystem();

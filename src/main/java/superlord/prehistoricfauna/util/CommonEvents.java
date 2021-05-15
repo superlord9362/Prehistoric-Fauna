@@ -1,8 +1,12 @@
 package superlord.prehistoricfauna.util;
 
 import net.minecraft.block.*;
+import net.minecraft.dispenser.IBlockSource;
+import net.minecraft.dispenser.OptionalDispenseBehavior;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.AxeItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.SoundCategory;
@@ -53,8 +57,8 @@ public class CommonEvents {
 		ROCK_SMASHING_MAP.put(Blocks.SMOOTH_SANDSTONE, Blocks.SANDSTONE);
 		ROCK_SMASHING_MAP.put(Blocks.STONE_BRICKS, Blocks.CRACKED_STONE_BRICKS);
 		ROCK_SMASHING_MAP.put(Blocks.CRACKED_STONE_BRICKS, Blocks.COBBLESTONE);
-		ROCK_SMASHING_MAP.put(Blocks.SMOOTH_RED_SANDSTONE_STAIRS, Blocks.RED_SANDSTONE_STAIRS);
 		ROCK_SMASHING_MAP.put(Blocks.CUT_RED_SANDSTONE, Blocks.RED_SANDSTONE);
+		ROCK_SMASHING_MAP.put(Blocks.CUT_SANDSTONE, Blocks.SANDSTONE);
 		ROCK_SMASHING_MAP.put(BlockInit.POLISHED_CRETACEOUS_CHALK, BlockInit.CRETACEOUS_CHALK);
 		ROCK_SMASHING_MAP.put(BlockInit.POLISHED_JURASSIC_SILTSTONE, BlockInit.JURASSIC_SILTSTONE);
 		ROCK_SMASHING_MAP.put(BlockInit.POLISHED_TRIASSIC_SANDSTONE, BlockInit.TRIASSIC_SANDSTONE);
@@ -246,6 +250,249 @@ public class CommonEvents {
 					}
 				}
 			}
+		}
+	}
+
+	public static void init() {
+		if (PrehistoricFaunaConfig.geologyHammerMining == true) {
+			DispenserBlock.registerDispenseBehavior(ItemInit.GEOLOGY_HAMMER.get().asItem(), new OptionalDispenseBehavior() {
+				protected ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
+					World world = source.getWorld();
+					if (!world.isRemote()) {
+						this.successful = false;
+						BlockPos blockpos = source.getBlockPos().offset(source.getBlockState().get(DispenserBlock.FACING));
+						if (!this.successful) {
+							BlockState blockstate = world.getBlockState(blockpos);
+							if (blockstate.getBlock() == Blocks.STONE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.COBBLESTONE.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.COBBLESTONE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.GRAVEL.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.SANDSTONE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.SAND.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.RED_SANDSTONE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.RED_SAND.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.SMOOTH_RED_SANDSTONE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.RED_SANDSTONE.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.SMOOTH_SANDSTONE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.SANDSTONE.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.STONE_BRICKS) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.CRACKED_STONE_BRICKS.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.CRACKED_STONE_BRICKS) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.COBBLESTONE.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.CUT_RED_SANDSTONE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.RED_SANDSTONE.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.CUT_SANDSTONE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.SANDSTONE.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.BLACK_CONCRETE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.BLACK_CONCRETE_POWDER.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.BLUE_CONCRETE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.BLUE_CONCRETE_POWDER.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.BROWN_CONCRETE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.BROWN_CONCRETE_POWDER.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.CYAN_CONCRETE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.CYAN_CONCRETE_POWDER.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.GRAY_CONCRETE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.GRAY_CONCRETE_POWDER.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.GREEN_CONCRETE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.GREEN_CONCRETE_POWDER.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.LIGHT_BLUE_CONCRETE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.LIGHT_BLUE_CONCRETE_POWDER.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.LIGHT_GRAY_CONCRETE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.LIGHT_GRAY_CONCRETE_POWDER.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.LIME_CONCRETE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.LIME_CONCRETE.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.MAGENTA_CONCRETE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.MAGENTA_CONCRETE_POWDER.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.ORANGE_CONCRETE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.ORANGE_CONCRETE_POWDER.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.PINK_CONCRETE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.PINK_CONCRETE_POWDER.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.PURPLE_CONCRETE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.PURPLE_CONCRETE_POWDER.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.RED_CONCRETE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.RED_CONCRETE_POWDER.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.WHITE_CONCRETE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.WHITE_CONCRETE_POWDER.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == Blocks.BLACK_CONCRETE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.BLACK_CONCRETE_POWDER.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == BlockInit.POLISHED_CRETACEOUS_CHALK) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, BlockInit.CRETACEOUS_CHALK.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == BlockInit.POLISHED_JURASSIC_SILTSTONE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, BlockInit.JURASSIC_SILTSTONE.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == BlockInit.POLISHED_TRIASSIC_SANDSTONE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, BlockInit.TRIASSIC_SANDSTONE.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == BlockInit.SMOOTH_CRETACEOUS_CHALK) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, BlockInit.CRETACEOUS_CHALK.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == BlockInit.SMOOTH_JURASSIC_SILTSTONE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, BlockInit.JURASSIC_SILTSTONE.getDefaultState());
+								this.successful = true;
+							}
+							if (blockstate.getBlock() == BlockInit.SMOOTH_TRIASSIC_SANDSTONE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, BlockInit.TRIASSIC_SANDSTONE.getDefaultState());
+								this.successful = true;
+							}
+						}
+					}
+
+					return stack;
+				}
+			});
 		}
 	}
 

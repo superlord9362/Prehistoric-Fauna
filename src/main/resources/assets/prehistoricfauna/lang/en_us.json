@@ -762,5 +762,12 @@
 	"block.prehistoricfauna.liriodendrites_leaf_carpet": "Liriodendrites Leaf Carpet",
 	"block.prehistoricfauna.protopiceoxylon_leaf_carpet": "Protopiceoxylon Leaf Carpet",
 	"block.prehistoricfauna.protojuniperoxylon_leaf_carpet": "Protojuniperoxylon Leaf Carpet",
-	"block.prehistoricfauna.heidiphyllum_leaf_carpet": "Heidiphyllum Leaf Carpet"
+	"block.prehistoricfauna.heidiphyllum_leaf_carpet": "Heidiphyllum Leaf Carpet",
+	
+	"hell_creek": "Hell Creek Formation",
+	"morrison": "Morrison Formation",
+	"ischigualasto": "Ischigualasto Formation",
+	"triassic": "Triassic Period",
+	"jurassic": "Jurassic Period",
+	"cretaceous": "Cretaceous Period"
 }

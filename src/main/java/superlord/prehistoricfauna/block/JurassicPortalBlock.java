@@ -1,5 +1,7 @@
 package superlord.prehistoricfauna.block;
 
+import java.util.Random;
+
 import javax.annotation.Nullable;
 
 import com.google.common.cache.LoadingCache;
@@ -16,6 +18,8 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.CachedBlockInfo;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Rotation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -26,8 +30,11 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.DimensionTypeInit;
+import superlord.prehistoricfauna.init.ParticleInit;
 import superlord.prehistoricfauna.util.TeleporterJurassic;
 
 public class JurassicPortalBlock extends BreakableBlock {
@@ -89,6 +96,31 @@ public class JurassicPortalBlock extends BreakableBlock {
         Direction.Axis directionAxis1 = stateIn.get(AXIS);
         boolean flag = directionAxis1 != directionAxis && directionAxis.isHorizontal();
         return !flag && facingState.getBlock() != this && !(new JurassicPortalBlock.Size(worldIn, currentPos, directionAxis1)).canCreatePortal() ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    }
+    
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void animateTick(BlockState state, World world, BlockPos pos, Random rand) {
+    	if (rand.nextInt(100) == 0) {
+    		world.playSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
+    	}
+    	for (int i = 0; i < 4; i++) {
+    		double x = (double)((float)pos.getX() + rand.nextFloat());
+    		double y = (double)((float)pos.getY() + rand.nextFloat());
+    		double z = (double)((float)pos.getZ() + rand.nextFloat());
+    		double sX = ((double)rand.nextFloat() - 0.5D) * 0.5D;
+    		double sY = ((double)rand.nextFloat() - 0.5D) * 0.5D;
+    		double sZ = ((double)rand.nextFloat() - 0.5D) * 0.5D;
+    		int mul = rand.nextInt(2) * 2 - 1;
+    		if(world.getBlockState(pos.west()).getBlock() != this && world.getBlockState(pos.east()).getBlock() != this) {
+    			x = (double)pos.getX() + 0.5D + 0.25D * (double)mul;
+    			sX = (double)(rand.nextFloat() * 2.0F * (float)mul);
+    		} else {
+    			z = (double)pos.getZ() + 0.5D + 0.25D * (double)mul;
+    			sZ = (double)(rand.nextFloat() * 2.0F * (float)mul);
+    		}
+    		world.addParticle(ParticleInit.JURASSIC.get(), x, y, z, sX, sY, sZ);
+    	}
     }
 
     @Override
