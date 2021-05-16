@@ -23,17 +23,44 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import superlord.prehistoricfauna.init.ItemInit;
 
-public class IschigualastiaSkeletonEntity extends PrehistoricEntity {
-	private static final DataParameter<Boolean> STRETCHING_POSE = EntityDataManager.createKey(IschigualastiaSkeletonEntity.class, DataSerializers.BOOLEAN);
-	private static final DataParameter<Boolean> PUSHING = EntityDataManager.createKey(IschigualastiaSkeletonEntity.class, DataSerializers.BOOLEAN);
-	private static final DataParameter<Boolean> LOOKING = EntityDataManager.createKey(IschigualastiaSkeletonEntity.class, DataSerializers.BOOLEAN);
+public class StegosaurusSkeletonEntity extends PrehistoricEntity {
+	private static final DataParameter<Boolean> RESTING_POSE = EntityDataManager.createKey(StegosaurusSkeletonEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> RETRO_POSE = EntityDataManager.createKey(StegosaurusSkeletonEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> ACTION_LEFT_POSE = EntityDataManager.createKey(StegosaurusSkeletonEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> ACTION_RIGHT_POSE = EntityDataManager.createKey(StegosaurusSkeletonEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> PUSHING = EntityDataManager.createKey(StegosaurusSkeletonEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> LOOKING = EntityDataManager.createKey(StegosaurusSkeletonEntity.class, DataSerializers.BOOLEAN);
 
-	public boolean isStretching() {
-		return this.dataManager.get(STRETCHING_POSE);
+	public boolean isResting() {
+		return this.dataManager.get(RESTING_POSE);
 	}
 
-	private void setStretching(boolean isStretching) {
-		this.dataManager.set(STRETCHING_POSE, isStretching);
+	private void setResting(boolean isResting) {
+		this.dataManager.set(RESTING_POSE, isResting);
+	}
+	
+	public boolean isRetro() {
+		return this.dataManager.get(RETRO_POSE);
+	}
+
+	private void setRetro(boolean isRetro) {
+		this.dataManager.set(RETRO_POSE, isRetro);
+	}
+	
+	public boolean isActionLeft() {
+		return this.dataManager.get(ACTION_LEFT_POSE);
+	}
+
+	private void setActionLeft(boolean isActionLeft) {
+		this.dataManager.set(ACTION_LEFT_POSE, isActionLeft);
+	}
+	
+	public boolean isActionRight() {
+		return this.dataManager.get(ACTION_RIGHT_POSE);
+	}
+
+	private void setActionRight(boolean isActionRight) {
+		this.dataManager.set(ACTION_RIGHT_POSE, isActionRight);
 	}
 	
 	public boolean isPushable() {
@@ -54,26 +81,35 @@ public class IschigualastiaSkeletonEntity extends PrehistoricEntity {
 	
 	protected void registerData() {
 		super.registerData();
-		this.dataManager.register(STRETCHING_POSE, false);
+		this.dataManager.register(RESTING_POSE, false);
+		this.dataManager.register(ACTION_LEFT_POSE, false);
+		this.dataManager.register(ACTION_RIGHT_POSE, false);
+		this.dataManager.register(RETRO_POSE, false);
 		this.dataManager.register(PUSHING, false);
 		this.dataManager.register(LOOKING, false);
 	}
 
 	public void writeAdditional(CompoundNBT compound) {
 		super.writeAdditional(compound);
-		compound.putBoolean("isStretching", this.isStretching());
+		compound.putBoolean("IsResting", this.isResting());
+		compound.putBoolean("IsActionLeft", this.isActionLeft());
+		compound.putBoolean("IsActionRight", this.isActionRight());
+		compound.putBoolean("IsRetro", this.isRetro());
 		compound.putBoolean("IsPushable", this.isPushable());
 		compound.putBoolean("IsLooking", this.isLooking());
 	}
 
 	public void readAdditional(CompoundNBT compound) {
 		super.readAdditional(compound); 
-		this.setStretching(compound.getBoolean("isStretching"));
+		this.setResting(compound.getBoolean("IsResting"));
+		this.setActionLeft(compound.getBoolean("IsActionLeft"));
+		this.setActionRight(compound.getBoolean("IsActionRight"));
+		this.setRetro(compound.getBoolean("IsRetro"));
 		this.setPushable(compound.getBoolean("IsPushable"));
 		this.setLooking(compound.getBoolean("IsLooking"));
 	}
 	
-	public IschigualastiaSkeletonEntity(EntityType<? extends IschigualastiaSkeletonEntity> type, World worldIn) {
+	public StegosaurusSkeletonEntity(EntityType<? extends StegosaurusSkeletonEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
 
@@ -102,10 +138,19 @@ public class IschigualastiaSkeletonEntity extends PrehistoricEntity {
 	public boolean processInteract(PlayerEntity player, Hand hand) {
 		ItemStack itemstack = player.getHeldItem(hand);
 	    if (itemstack.getItem() == ItemInit.GEOLOGY_HAMMER.get()) {
-	    	if (!this.isStretching() && !player.isSneaking()) {
-	    		this.setStretching(true);
-	    	} else if (this.isStretching() && !player.isSneaking()) {
-	    		this.setStretching(false);
+	    	if (!this.isResting() && !player.isSneaking() && !this.isRetro() && !this.isActionLeft() && !this.isActionRight()) {
+	    		this.setResting(true);
+	    	} else if (this.isResting() && !player.isSneaking()) {
+	    		this.setResting(false);
+	    		this.setRetro(true);
+	    	} else if (!player.isSneaking() && this.isRetro()) {
+	    		this.setRetro(false);
+	    		this.setActionLeft(true);
+	    	} else if (!player.isSneaking() && this.isActionLeft()) {
+	    		this.setActionLeft(false);
+	    		this.setActionRight(true);
+	    	} else if (!player.isSneaking() && this.isActionRight()) {
+	    		this.setActionRight(false);
 	    	} else if (player.isSneaking() && !this.isPushable() && !this.isLooking()) {
 	    		this.setPushable(true);
 	    	} else if (player.isSneaking() && this.isPushable()) {
@@ -141,14 +186,14 @@ public class IschigualastiaSkeletonEntity extends PrehistoricEntity {
 	}
 
 	private void spawnFossil(DamageSource p_213815_1_) {
-		Block.spawnAsEntity(this.world, new BlockPos(this), new ItemStack(ItemInit.ISCHIGUALASTIA_SKELETON.get()));
+		Block.spawnAsEntity(this.world, new BlockPos(this), new ItemStack(ItemInit.STEGOSAURUS_SKELETON.get()));
 	}
 	
 	static class LookAtPlayerGoal extends LookAtGoal {
 
-		IschigualastiaSkeletonEntity entity;
+		StegosaurusSkeletonEntity entity;
 		
-		public LookAtPlayerGoal(IschigualastiaSkeletonEntity entityIn, Class<? extends LivingEntity> watchTargetClass, float maxDistance) {
+		public LookAtPlayerGoal(StegosaurusSkeletonEntity entityIn, Class<? extends LivingEntity> watchTargetClass, float maxDistance) {
 			super(entityIn, watchTargetClass, maxDistance);
 			entity = entityIn;
 		}

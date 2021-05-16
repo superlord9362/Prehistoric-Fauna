@@ -278,6 +278,7 @@ public class PrehistoricFauna {
 		RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.HERRERASAURUS_SKELETON, manager -> new HerrerasaurusSkeletonRenderer());
 		RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ISCHIGUALASTIA_SKELETON, manager -> new IschigualastiaSkeletonRenderer());
 		RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.SAUROSUCHUS_SKELETON, manager -> new SaurosuchusSkeletonRenderer());
+		RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.STEGOSAURUS_SKELETON, manager -> new StegosaurusSkeletonRenderer());
 		RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ALLOSAURUS_SKULL, AllosaurusSkullRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ISCHIGUALASTIA_SKULL, IschigualastiaSkullRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.PALEOPAINTING, PaleopaintingRenderer::new);

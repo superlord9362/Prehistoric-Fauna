@@ -425,6 +425,7 @@
 	"item.prehistoricfauna.stegosaursus_skeleton": "Stegosaurus Skeletal Mount",
 	"item.prehistoricfauna.ceratosaurus_skeleton": "Ceratosaurus Skeletal Mount",
 	"item.prehistoricfauna.allosaurus_skeleton": "Allosaurus Skeletal Mount",
+	"item.prehistoricfauna.stegosaurus_skeleton": "Stegosaurus Skeletal Mount",
 	"entity.prehistoricfauna.tyrannosaurus_skeleton": "Tyrannosaurus Skeletal Mount",
 	"entity.prehistoricfauna.triceratops_skeleton": "Triceratops Skeletal Mount",
 	"entity.prehistoricfauna.ankylosaurus_skeleton": "Ankylosaurus Skeletal Mount",
@@ -770,5 +771,7 @@
 	"ischigualasto": "Ischigualasto Formation",
 	"triassic": "Triassic Period",
 	"jurassic": "Jurassic Period",
-	"cretaceous": "Cretaceous Period"
+	"cretaceous": "Cretaceous Period",
+	
+	"commands.byg.locatebiome.failed": "Could not find that biome nearby"
 }
