@@ -24,12 +24,14 @@ import java.util.List;
 import java.util.function.LongFunction;
 import java.util.stream.Collectors;
 
+@SuppressWarnings("deprecation")
 public class CretaceousBiomeProvider extends BiomeProvider {
 
 	private final Registry<Biome> biomeRegistry;
 	private final Layer layers;
 	private final FastNoise noiseGen;
 	private final FastNoise noiseGen2;
+	@SuppressWarnings("unused")
 	private final long seed;
 
 	private final Int2ObjectMap<WeightedList<ResourceLocation>> hills = new Int2ObjectArrayMap<>();

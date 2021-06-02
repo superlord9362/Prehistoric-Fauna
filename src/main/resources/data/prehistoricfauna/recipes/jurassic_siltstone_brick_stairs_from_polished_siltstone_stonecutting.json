@@ -1,8 +1,8 @@
 {
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "item": "prehistoricfauna:polished_jurassic_siltstone"
+    "item": "prehistoricfauna:polished_siltstone"
   },
-  "result": "prehistoricfauna:jurassic_siltstone_brick_stairs",
+  "result": "prehistoricfauna:siltstone_brick_stairs",
   "count": 1
 }

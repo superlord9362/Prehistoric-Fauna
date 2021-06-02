@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "prehistoricfauna:smooth_cretaceous_chalk"
+      "prehistoricfauna:smooth_chalk"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:cretaceous_chalk"
+            "item": "prehistoricfauna:chalk"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "prehistoricfauna:smooth_cretaceous_chalk"
+        "recipe": "prehistoricfauna:smooth_chalk"
       }
     }
   },

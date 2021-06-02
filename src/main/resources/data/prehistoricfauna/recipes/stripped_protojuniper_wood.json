@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "prehistoricfauna:stripped_protojuniper_log"
+      "item": "prehistoricfauna:stripped_protojuniperoxylon_log"
     }
   },
   "result": {
-    "item": "prehistoricfauna:stripped_protojuniper_wood",
+    "item": "prehistoricfauna:stripped_protojuniperoxylon_wood",
     "count": 3
   }
 }

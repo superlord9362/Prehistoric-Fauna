@@ -9,10 +9,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionType;
-import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.init.BlockInit;
-import superlord.prehistoricfauna.init.DimensionTypeInit;
 
 public class JurassicTimeBlock extends Block {
 
@@ -20,7 +17,6 @@ public class JurassicTimeBlock extends Block {
 
 	public JurassicTimeBlock() {
 		super(Properties.create(Material.IRON).sound(SoundType.METAL).notSolid().variableOpacity().hardnessAndResistance(2.0F, 1000.0F));
-		this.setRegistryName(PrehistoricFauna.MODID, "jurassic_time_block");
 	}
 
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
@@ -37,7 +33,7 @@ public class JurassicTimeBlock extends Block {
 
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean isMoving) {
 		if (oldState.getBlock() != state.getBlock()) {
-			if (world.getDimension().getType() != DimensionType.OVERWORLD && world.getDimension().getType() != DimensionTypeInit.JURASSIC_DIMENSION_TYPE || !BlockInit.JURASSIC_PORTAL.get().tryToCreatePortal(world, pos)) {
+			if (!BlockInit.JURASSIC_PORTAL.get().tryToCreatePortal(world, pos)) {
 				if (!state.isValidPosition(world, pos)) {
 					world.removeBlock(pos, false);
 				}

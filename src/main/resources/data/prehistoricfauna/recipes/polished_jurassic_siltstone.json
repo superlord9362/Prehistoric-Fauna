@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "prehistoricfauna:jurassic_siltstone"
+      "item": "prehistoricfauna:siltstone"
     }
   },
   "result": {
-    "item": "prehistoricfauna:polished_jurassic_siltstone",
+    "item": "prehistoricfauna:polished_siltstone",
     "count": 4
   }
 }

@@ -66,7 +66,7 @@ public class StegosaurusEntity extends AnimalEntity {
 	}
 
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.ZAMITES_LEAVES.asItem();
+		return stack.getItem() == BlockInit.ZAMITES_LEAVES.get().asItem();
 	}
 
 	protected void registerGoals() {
@@ -321,7 +321,7 @@ public class StegosaurusEntity extends AnimalEntity {
 				} else if (this.stegosaurus.isDigging > 200) {
 					World world = this.stegosaurus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.STEGOSAURUS_EGG.getDefaultState().with(StegosaurusEggBlock.EGGS, Integer.valueOf(this.stegosaurus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), BlockInit.STEGOSAURUS_EGG.get().getDefaultState().with(StegosaurusEggBlock.EGGS, Integer.valueOf(this.stegosaurus.rand.nextInt(4) + 1)), 3);
 					this.stegosaurus.setHasEgg(false);
 					this.stegosaurus.setDigging(false);
 					this.stegosaurus.setInLove(600);
@@ -342,7 +342,7 @@ public class StegosaurusEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.SILT || block == BlockInit.HARDENED_SILT || block == Blocks.SAND;
+				return block == BlockInit.SILT.get() || block == BlockInit.HARDENED_SILT.get() || block == Blocks.SAND;
 			}
 		}
 	}

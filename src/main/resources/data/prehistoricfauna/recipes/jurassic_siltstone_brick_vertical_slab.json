@@ -7,11 +7,11 @@
 	],
 	"key": {
 		"#": {
-			"item": "prehistoricfauna:jurassic_siltstone_brick_slab"
+			"item": "prehistoricfauna:siltstone_brick_slab"
 		}
 	},
 	"result": {
-		"item": "prehistoricfauna:jurassic_siltstone_brick_vertical_slab",
+		"item": "prehistoricfauna:siltstone_brick_vertical_slab",
 		"count": 3
 	},
   "conditions": [

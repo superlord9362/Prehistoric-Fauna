@@ -37,7 +37,7 @@ public class HyperodapedonEntity extends AnimalEntity {
 
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(HyperodapedonEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(HyperodapedonEntity.class, DataSerializers.BOOLEAN);
-	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.SCYTOPHYLLUM.asItem());
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.SCYTOPHYLLUM.get().asItem());
 	private int isDigging;
 	
 	public HyperodapedonEntity(EntityType<? extends HyperodapedonEntity> type, World world) {
@@ -62,7 +62,7 @@ public class HyperodapedonEntity extends AnimalEntity {
 	}
 	
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.SCYTOPHYLLUM.asItem();
+		return stack.getItem() == BlockInit.SCYTOPHYLLUM.get().asItem();
 	}
 	
 	@Override
@@ -176,7 +176,7 @@ public class HyperodapedonEntity extends AnimalEntity {
 				} else if (this.hyperodapedon.isDigging > 200) {
 					World world = this.hyperodapedon.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.HYPERODAPEDON_EGG.getDefaultState().with(HyperodapedonEggBlock.EGGS, Integer.valueOf(this.hyperodapedon.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), BlockInit.HYPERODAPEDON_EGG.get().getDefaultState().with(HyperodapedonEggBlock.EGGS, Integer.valueOf(this.hyperodapedon.rand.nextInt(4) + 1)), 3);
 					this.hyperodapedon.setHasEgg(false);
 					this.hyperodapedon.setDigging(false);
 					this.hyperodapedon.setInLove(600);
@@ -192,7 +192,7 @@ public class HyperodapedonEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.LOAM || block == BlockInit.PACKED_LOAM || block == Blocks.PODZOL;
+				return block == BlockInit.LOAM.get() || block == BlockInit.PACKED_LOAM.get() || block == Blocks.PODZOL;
 			}
 		}
 		

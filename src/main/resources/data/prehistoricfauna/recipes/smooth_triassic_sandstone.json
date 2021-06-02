@@ -1,8 +1,8 @@
 {
   "type": "minecraft:smelting",
   "ingredient": {
-    "item": "prehistoricfauna:triassic_sandstone"
+    "item": "prehistoricfauna:sandstone"
   },
-  "result": "prehistoricfauna:smooth_triassic_sandstone",
+  "result": "prehistoricfauna:smooth_sandstone",
   "cookingtime": 200
 }

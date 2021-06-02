@@ -7,11 +7,11 @@
 	],
 	"key": {
 		"#": {
-			"item": "prehistoricfauna:cretaceous_chalk_brick_slab"
+			"item": "prehistoricfauna:chalk_brick_slab"
 		}
 	},
 	"result": {
-		"item": "prehistoricfauna:cretaceous_chalk_brick_vertical_slab",
+		"item": "prehistoricfauna:chalk_brick_vertical_slab",
 		"count": 3
 	},
   "conditions": [

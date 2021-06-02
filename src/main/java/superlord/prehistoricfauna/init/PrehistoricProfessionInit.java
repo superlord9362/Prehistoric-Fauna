@@ -25,7 +25,7 @@ public class PrehistoricProfessionInit {
 	
 	@SubscribeEvent
 	public static void registerPointOfInterests(final RegistryEvent.Register<PointOfInterestType> event) {
-		event.getRegistry().register(PALEONTOLOGY_TABLE_POI = new PointOfInterestType("geologist", ImmutableSet.copyOf(BlockInit.PALEONTOLOGY_TABLE.getStateContainer().getValidStates()), 1, 1).setRegistryName("prehistoricfauna:geologist"));
+		event.getRegistry().register(PALEONTOLOGY_TABLE_POI = new PointOfInterestType("geologist", ImmutableSet.copyOf(BlockInit.PALEONTOLOGY_TABLE.get().getStateContainer().getValidStates()), 1, 1).setRegistryName("prehistoricfauna:geologist"));
 		PointOfInterestType.registerBlockStates(PALEONTOLOGY_TABLE_POI);
 	}
 	
@@ -44,9 +44,9 @@ public class PrehistoricProfessionInit {
 		trades.get(1).add((entity, random) -> new MerchantOffer(new ItemStack(Items.DIORITE, 24), new ItemStack(Items.EMERALD, 1), 25, 2, itemForEmeraldsMultiplier));
 		trades.get(1).add((entity, random) -> new MerchantOffer(new ItemStack(Items.SANDSTONE, 24), new ItemStack(Items.EMERALD, 1), 25, 2, itemForEmeraldsMultiplier));
 		trades.get(1).add((entity, random) -> new MerchantOffer(new ItemStack(Items.RED_SANDSTONE, 24), new ItemStack(Items.EMERALD, 1), 25, 2, itemForEmeraldsMultiplier));
-		trades.get(1).add((entity, random) -> new MerchantOffer(new ItemStack(BlockInit.TRIASSIC_SANDSTONE.asItem(), 24), new ItemStack(Items.EMERALD, 1), 25, 2, itemForEmeraldsMultiplier));
-		trades.get(1).add((entity, random) -> new MerchantOffer(new ItemStack(BlockInit.JURASSIC_SILTSTONE.asItem(), 24), new ItemStack(Items.EMERALD, 1), 25, 2, itemForEmeraldsMultiplier));
-		trades.get(1).add((entity, random) -> new MerchantOffer(new ItemStack(BlockInit.CRETACEOUS_CHALK.asItem(), 24), new ItemStack(Items.EMERALD, 1), 25, 2, itemForEmeraldsMultiplier));
+		trades.get(1).add((entity, random) -> new MerchantOffer(new ItemStack(BlockInit.SANDSTONE.get().asItem(), 24), new ItemStack(Items.EMERALD, 1), 25, 2, itemForEmeraldsMultiplier));
+		trades.get(1).add((entity, random) -> new MerchantOffer(new ItemStack(BlockInit.SILTSTONE.get().asItem(), 24), new ItemStack(Items.EMERALD, 1), 25, 2, itemForEmeraldsMultiplier));
+		trades.get(1).add((entity, random) -> new MerchantOffer(new ItemStack(BlockInit.CHALK.get().asItem(), 24), new ItemStack(Items.EMERALD, 1), 25, 2, itemForEmeraldsMultiplier));
 		trades.get(1).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 2), new ItemStack(ItemInit.GEOLOGY_HAMMER.get()), 10, 2, emeraldForItemsMultiplier));
 		trades.get(2).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 1), new ItemStack(Items.STONE), 16, 5, emeraldForItemsMultiplier));
 		trades.get(2).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 1), new ItemStack(Items.ANDESITE), 16, 5, emeraldForItemsMultiplier));
@@ -54,20 +54,20 @@ public class PrehistoricProfessionInit {
 		trades.get(2).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 1), new ItemStack(Items.DIORITE), 16, 5, emeraldForItemsMultiplier));
 		trades.get(2).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 1), new ItemStack(Items.SANDSTONE), 16, 5, emeraldForItemsMultiplier));
 		trades.get(2).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 1), new ItemStack(Items.RED_SANDSTONE), 16, 5, emeraldForItemsMultiplier));
-		trades.get(2).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 1), new ItemStack(BlockInit.TRIASSIC_SANDSTONE.asItem()), 16, 5, emeraldForItemsMultiplier));
-		trades.get(2).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 1), new ItemStack(BlockInit.JURASSIC_SILTSTONE.asItem()), 16, 5, emeraldForItemsMultiplier));
-		trades.get(2).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 1), new ItemStack(BlockInit.CRETACEOUS_CHALK.asItem()), 16, 5, emeraldForItemsMultiplier));
+		trades.get(2).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 1), new ItemStack(BlockInit.SANDSTONE.get().asItem()), 16, 5, emeraldForItemsMultiplier));
+		trades.get(2).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 1), new ItemStack(BlockInit.SILTSTONE.get().asItem()), 16, 5, emeraldForItemsMultiplier));
+		trades.get(2).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 1), new ItemStack(BlockInit.CHALK.get().asItem()), 16, 5, emeraldForItemsMultiplier));
 		trades.get(2).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 2), new ItemStack(ItemInit.CRETACEOUS_FOSSIL.get()), 16, 5, emeraldForItemsMultiplier));
 		trades.get(2).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 2), new ItemStack(ItemInit.JURASSIC_FOSSIL.get()), 16, 5, emeraldForItemsMultiplier));
 		trades.get(2).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 2), new ItemStack(ItemInit.TRIASSIC_FOSSIL.get()), 16, 5, emeraldForItemsMultiplier));
-		trades.get(3).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 2), new ItemStack(BlockInit.PETRIFIED_WOOD.asItem()), 16, 5, emeraldForItemsMultiplier));
-		trades.get(3).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 3), new ItemStack(ItemInit.SMALL_AMMONITE_SHELL.get()), 16, 5, emeraldForItemsMultiplier));
-		trades.get(3).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 3), new ItemStack(ItemInit.MEDIUM_AMMONITE_SHELL.get()), 16, 5, emeraldForItemsMultiplier));
-		trades.get(3).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 3), new ItemStack(ItemInit.LARGE_AMMONITE_SHELL.get()), 16, 5, emeraldForItemsMultiplier));
-		trades.get(3).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 4), new ItemStack(BlockInit.GIANT_AMMONITE_SHELL_BB.asItem()), 12, 6, rareItemForEmeraldsMultiplier));
-		trades.get(3).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 4), new ItemStack(BlockInit.GIANT_AMMONITE_SHELL_BF.asItem()), 12, 6, rareItemForEmeraldsMultiplier));
-		trades.get(3).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 4), new ItemStack(BlockInit.GIANT_AMMONITE_SHELL_TB.asItem()), 12, 6, rareItemForEmeraldsMultiplier));
-		trades.get(3).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 4), new ItemStack(BlockInit.GIANT_AMMONITE_SHELL_TF.asItem()), 12, 6, rareItemForEmeraldsMultiplier));
+		trades.get(3).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 2), new ItemStack(BlockInit.PETRIFIED_WOOD.get().asItem()), 16, 5, emeraldForItemsMultiplier));
+		trades.get(3).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 3), new ItemStack(BlockInit.SMALL_AMMONITE_SHELL.get().asItem()), 16, 5, emeraldForItemsMultiplier));
+		trades.get(3).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 3), new ItemStack(BlockInit.MEDIUM_AMMONITE_SHELL.get().asItem()), 16, 5, emeraldForItemsMultiplier));
+		trades.get(3).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 3), new ItemStack(BlockInit.LARGE_AMMONITE_SHELL.get().asItem()), 16, 5, emeraldForItemsMultiplier));
+		trades.get(3).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 4), new ItemStack(BlockInit.GIANT_AMMONITE_SHELL_BB.get().asItem()), 12, 6, rareItemForEmeraldsMultiplier));
+		trades.get(3).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 4), new ItemStack(BlockInit.GIANT_AMMONITE_SHELL_BF.get().asItem()), 12, 6, rareItemForEmeraldsMultiplier));
+		trades.get(3).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 4), new ItemStack(BlockInit.GIANT_AMMONITE_SHELL_TB.get().asItem()), 12, 6, rareItemForEmeraldsMultiplier));
+		trades.get(3).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 4), new ItemStack(BlockInit.GIANT_AMMONITE_SHELL_TF.get().asItem()), 12, 6, rareItemForEmeraldsMultiplier));
 		trades.get(4).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 3), new ItemStack(ItemInit.TRICERATOPS_FOSSIL.get()), 12, 6, emeraldForItemsMultiplier));
 		trades.get(4).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 3), new ItemStack(ItemInit.ANKYLOSAURUS_FOSSIL.get()), 12, 6, emeraldForItemsMultiplier));
 		trades.get(4).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 3), new ItemStack(ItemInit.STEGOSAURUS_FOSSIL.get()), 12, 6, emeraldForItemsMultiplier));
@@ -77,7 +77,7 @@ public class PrehistoricProfessionInit {
 		trades.get(4).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 4), new ItemStack(ItemInit.TYRANNOSAURUS_FOSSIL.get()), 8, 7, rareItemForEmeraldsMultiplier));
 		trades.get(4).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 4), new ItemStack(ItemInit.ALLOSAURUS_FOSSIL.get()), 8, 7, rareItemForEmeraldsMultiplier));
 		trades.get(4).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 4), new ItemStack(ItemInit.SAUROSUCHUS_FOSSIL.get()), 8, 7, rareItemForEmeraldsMultiplier));
-		trades.get(5).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 6), new ItemStack(ItemInit.HENOSTONE.get()), 4, 8, rareItemForEmeraldsMultiplier));
+		trades.get(5).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 6), new ItemStack(BlockInit.HENOSTONE.get().asItem()), 4, 8, rareItemForEmeraldsMultiplier));
 		trades.get(5).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 4), new ItemStack(ItemInit.TRICERATOPS_SKULL.get()), 8, 7, emeraldForItemsMultiplier));
 		trades.get(5).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 4), new ItemStack(ItemInit.ANKYLOSAURUS_SKULL.get()), 8, 7, emeraldForItemsMultiplier));
 		trades.get(5).add((entity, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, 4), new ItemStack(ItemInit.STEGOSAURUS_SKULL.get()), 8, 7, emeraldForItemsMultiplier));

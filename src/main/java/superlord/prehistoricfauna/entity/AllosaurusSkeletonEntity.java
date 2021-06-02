@@ -39,7 +39,7 @@ public class AllosaurusSkeletonEntity extends PrehistoricEntity {
 	private void setClassical(boolean isClassical) {
 		this.dataManager.set(CLASSICAL, isClassical);
 	}
-	
+
 	public boolean isResting() {
 		return this.dataManager.get(RESTING);
 	}
@@ -47,7 +47,7 @@ public class AllosaurusSkeletonEntity extends PrehistoricEntity {
 	private void setResting(boolean isResting) {
 		this.dataManager.set(RESTING, isResting);
 	}
-	
+
 	public boolean isActionLeft() {
 		return this.dataManager.get(ACTION_LEFT);
 	}
@@ -55,7 +55,7 @@ public class AllosaurusSkeletonEntity extends PrehistoricEntity {
 	private void setActionLeft(boolean isActionLeft) {
 		this.dataManager.set(ACTION_LEFT, isActionLeft);
 	}
-	
+
 	public boolean isActionRight() {
 		return this.dataManager.get(ACTION_RIGHT);
 	}
@@ -63,7 +63,7 @@ public class AllosaurusSkeletonEntity extends PrehistoricEntity {
 	private void setActionRight(boolean isActionRight) {
 		this.dataManager.set(ACTION_RIGHT, isActionRight);
 	}
-	
+
 	public boolean isPushable() {
 		return this.dataManager.get(PUSHING);
 	}
@@ -71,7 +71,7 @@ public class AllosaurusSkeletonEntity extends PrehistoricEntity {
 	private void setPushable(boolean isPushable) {
 		this.dataManager.set(PUSHING, isPushable);
 	}
-	
+
 	public boolean isLooking() {
 		return this.dataManager.get(LOOKING);
 	}
@@ -79,7 +79,7 @@ public class AllosaurusSkeletonEntity extends PrehistoricEntity {
 	private void setLooking(boolean isLooking) {
 		this.dataManager.set(LOOKING, isLooking);
 	}
-	
+
 	protected void registerData() {
 		super.registerData();
 		this.dataManager.register(CLASSICAL, false);
@@ -109,7 +109,7 @@ public class AllosaurusSkeletonEntity extends PrehistoricEntity {
 		this.setPushable(compound.getBoolean("IsPushable"));
 		this.setLooking(compound.getBoolean("IsLooking"));
 	}
-	
+
 	public AllosaurusSkeletonEntity(EntityType<? extends AllosaurusSkeletonEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
@@ -131,7 +131,7 @@ public class AllosaurusSkeletonEntity extends PrehistoricEntity {
 	public boolean canBreatheUnderwater() {
 		return true;
 	}
-	
+
 	public boolean canBePushed() {
 		return this.isPushable();
 	}
@@ -151,53 +151,63 @@ public class AllosaurusSkeletonEntity extends PrehistoricEntity {
 
 	public boolean processInteract(PlayerEntity player, Hand hand) {
 		ItemStack itemstack = player.getHeldItem(hand);
-	    if (itemstack.getItem() == ItemInit.GEOLOGY_HAMMER.get()) {
-	    	if (!this.isResting() && !this.isActionLeft() && !this.isActionRight() && !this.isClassical() && !player.isSneaking()) {
-	    		this.setClassical(true);
-	    	} else if (this.isClassical() && !player.isSneaking()) {
-	    		this.setClassical(false);
-	    		this.setResting(true);
-	    	} else if (this.isResting() && !player.isSneaking()) {
-	    		this.setResting(false);
-	    		this.setActionLeft(true);
-	    	} else if (this.isActionLeft() && !player.isSneaking()) {
-	    		this.setActionLeft(false);
-	    		this.setActionRight(true);
-	    	} else if (this.isActionRight() && !player.isSneaking()) {
-	    		this.setActionRight(false);
-	    	} else if (player.isSneaking() && !this.isPushable() && !this.isLooking()) {
-	    		this.setPushable(true);
-	    	} else if (player.isSneaking() && this.isPushable()) {
-	    		this.setPushable(false);
-	    		this.setLooking(true);
-	    	} else if (player.isSneaking() && this.isLooking()) {
-	    		this.setLooking(false);
-	    	}
-	    }
-        return super.processInteract(player, hand);
+		if (itemstack.getItem() == ItemInit.GEOLOGY_HAMMER.get()) {
+			if (!this.isResting() && !this.isActionLeft() && !this.isActionRight() && !this.isClassical() && !player.isSneaking()) {
+				this.setClassical(true);
+			} else if (this.isClassical() && !player.isSneaking()) {
+				this.setClassical(false);
+				this.setResting(true);
+			} else if (this.isResting() && !player.isSneaking()) {
+				this.setResting(false);
+				this.setActionLeft(true);
+			} else if (this.isActionLeft() && !player.isSneaking()) {
+				this.setActionLeft(false);
+				this.setActionRight(true);
+			} else if (this.isActionRight() && !player.isSneaking()) {
+				this.setActionRight(false);
+			} else if (player.isSneaking() && !this.isPushable() && !this.isLooking()) {
+				this.setPushable(true);
+			} else if (player.isSneaking() && this.isPushable()) {
+				this.setPushable(false);
+				this.setLooking(true);
+			} else if (player.isSneaking() && this.isLooking()) {
+				this.setLooking(false);
+			}
+		}
+		return super.processInteract(player, hand);
 	}
 
 	public boolean attackEntityFrom(DamageSource source, float amount) {
-		this.remove();
-		this.playBrokenSound();
-		this.playParticles();
-		this.spawnFossil(source);
+		if (source.getTrueSource() instanceof PlayerEntity) {
+			this.remove();
+			this.playBrokenSound();
+			this.playParticles();
+			this.spawnFossil(source);
+		}
 		return false;
+	}
+
+	public boolean canBeHitWithPotion() {
+		return false;
+	}
+
+	public void onKillCommand() {
+		this.remove();
 	}
 
 	private void spawnFossil(DamageSource p_213815_1_) {
 		Block.spawnAsEntity(this.world, new BlockPos(this), new ItemStack(ItemInit.ALLOSAURUS_SKELETON.get()));
 	}
-	
+
 	static class LookAtPlayerGoal extends LookAtGoal {
 
 		AllosaurusSkeletonEntity entity;
-		
+
 		public LookAtPlayerGoal(AllosaurusSkeletonEntity entityIn, Class<? extends LivingEntity> watchTargetClass, float maxDistance) {
 			super(entityIn, watchTargetClass, maxDistance);
 			entity = entityIn;
 		}
-		
+
 		public boolean shouldExecute() {
 			if (entity.isLooking()) {
 				return super.shouldExecute();
@@ -205,11 +215,11 @@ public class AllosaurusSkeletonEntity extends PrehistoricEntity {
 				return false;
 			}
 		}
-		
+
 		public boolean shouldContinueExecuting() {
 			return super.shouldContinueExecuting() && entity.isLooking();
 		}
-		
+
 	}
 
 }

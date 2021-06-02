@@ -26,7 +26,7 @@ public class ZamitesTopBlock extends SixWayBlock {
 			return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 		} else {
 			Block block = facingState.getBlock();
-			boolean flag = block == BlockInit.ZAMITES_LOG;
+			boolean flag = block == BlockInit.ZAMITES_LOG.get();
 			return stateIn.with(FACING_TO_PROPERTY_MAP.get(facing), Boolean.valueOf(flag));
 		}
 	}
@@ -44,18 +44,18 @@ public class ZamitesTopBlock extends SixWayBlock {
 		for(Direction direction : Direction.Plane.HORIZONTAL) {
 			BlockPos blockpos = pos.offset(direction);
 			Block block = worldIn.getBlockState(blockpos).getBlock();
-			if (block == BlockInit.ZAMITES_LOG) {
+			if (block == BlockInit.ZAMITES_LOG.get()) {
 				if (flag) {
 					return false;
 				}
 				Block block1 = worldIn.getBlockState(blockpos.down()).getBlock();
-				if (block1 == BlockInit.ZAMITES_LOG) {
+				if (block1 == BlockInit.ZAMITES_LOG.get()) {
 					return true;
 				}
 			}
 		}
 		Block block2 = blockstate.getBlock();
-		return block2 == BlockInit.ZAMITES_LOG ;
+		return block2 == BlockInit.ZAMITES_LOG.get();
 	}
 	   
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {

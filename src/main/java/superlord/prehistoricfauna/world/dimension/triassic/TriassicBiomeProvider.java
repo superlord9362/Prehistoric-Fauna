@@ -24,12 +24,14 @@ import superlord.prehistoricfauna.util.fastnoise.FastNoise;
 import superlord.prehistoricfauna.world.dimension.MasterLayer;
 import superlord.prehistoricfauna.world.feature.cretaceous.PHFHillsLayer;
 
+@SuppressWarnings("deprecation")
 public class TriassicBiomeProvider extends BiomeProvider {
 
 	private final Registry<Biome> biomeRegistry;
 	private final Layer layers;
 	private final FastNoise noiseGen;
 	private final FastNoise noiseGen2;
+	@SuppressWarnings("unused")
 	private final long seed;
 
 	private final Int2ObjectMap<WeightedList<ResourceLocation>> hills = new Int2ObjectArrayMap<>();

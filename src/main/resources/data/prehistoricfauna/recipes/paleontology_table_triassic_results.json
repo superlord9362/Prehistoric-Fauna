@@ -6,12 +6,12 @@
   },
   "results": [
     {
-      "item": "prehistoricfauna:triassic_sandstone",
+      "item": "prehistoricfauna:sandstone",
       "count": 1,
       "weight": 10.0
     },
 	{
-		"item": "prehistoricfauna:small_shell",
+		"item": "prehistoricfauna:small_ammonite_fossil",
 		"count": 1,
 		"weight": 7.5
 	},

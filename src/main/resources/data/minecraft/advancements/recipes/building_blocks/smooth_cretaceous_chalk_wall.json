@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "prehistoricfauna:smooth_cretaceous_chalk_wall"
+      "prehistoricfauna:smooth_chalk_wall"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:smooth_cretaceous_chalk"
+            "item": "prehistoricfauna:smooth_chalk"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "prehistoricfauna:smooth_cretaceous_chalk_wall"
+        "recipe": "prehistoricfauna:smooth_chalk_wall"
       }
     }
   },

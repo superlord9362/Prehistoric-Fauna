@@ -15,10 +15,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class RegistryHelper {
 	
+	@SuppressWarnings("unused")
 	private final String modId;
 	private final DeferredRegister<Item> itemRegister;
 	private final DeferredRegister<Block> blockRegister;
 	
+	@SuppressWarnings("deprecation")
 	public RegistryHelper(String modId) {
 		this.modId = modId;
 		this.itemRegister = new DeferredRegister<>(ForgeRegistries.ITEMS, modId);

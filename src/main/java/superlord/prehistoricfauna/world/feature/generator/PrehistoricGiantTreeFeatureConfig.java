@@ -39,15 +39,15 @@ public class PrehistoricGiantTreeFeatureConfig extends BaseTreeFeatureConfig {
 	   }
 
 	   public static <T> PrehistoricGiantTreeFeatureConfig deserializeMetasequoia(Dynamic<T> data) {
-	      return func_227277_a_(data).setSapling((net.minecraftforge.common.IPlantable)BlockInit.METASEQUOIA_SAPLING);
+	      return func_227277_a_(data).setSapling((net.minecraftforge.common.IPlantable)BlockInit.METASEQUOIA_SAPLING.get());
 	   }
 	   
 	   public static <T> PrehistoricGiantTreeFeatureConfig deserializeProtojuniper(Dynamic<T> data) {
-		   return func_227277_a_(data).setSapling((net.minecraftforge.common.IPlantable)BlockInit.PROTOJUNIPER_SAPLING);
+		   return func_227277_a_(data).setSapling((net.minecraftforge.common.IPlantable)BlockInit.PROTOJUNIPEROXYLON_SAPLING.get());
 	   }
 	   
 	   public static <T> PrehistoricGiantTreeFeatureConfig deserializeAraucaria(Dynamic<T> data) {
-		   return func_227277_a_(data).setSapling((net.minecraftforge.common.IPlantable)BlockInit.ARAUCARIA_SAPLING);
+		   return func_227277_a_(data).setSapling((net.minecraftforge.common.IPlantable)BlockInit.ARAUCARIA_SAPLING.get());
 	   }
 	   
 	   //public static <T> PrehistoricGiantTreeFeatureConfig deserializeCypress(Dynamic<T> data) {

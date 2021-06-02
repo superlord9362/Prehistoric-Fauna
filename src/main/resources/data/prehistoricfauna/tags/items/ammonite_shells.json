@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "prehistoricfauna:large_shell",
-	"prehistoricfauna:medium_shell",
-	"prehistoricfauna:small_shell"
+    "prehistoricfauna:large_ammonite_fossil",
+	"prehistoricfauna:medium_ammonite_fossil",
+	"prehistoricfauna:small_ammonite_fossil"
   ]
 }

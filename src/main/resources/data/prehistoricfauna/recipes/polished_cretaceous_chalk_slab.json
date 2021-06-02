@@ -6,11 +6,11 @@
   ],
   "key": {
     "#": {
-      "item": "prehistoricfauna:polished_cretaceous_chalk"
+      "item": "prehistoricfauna:polished_chalk"
     }
   },
   "result": {
-    "item": "prehistoricfauna:polished_cretaceous_chalk_slab",
+    "item": "prehistoricfauna:polished_chalk_slab",
     "count": 6
   }
 }

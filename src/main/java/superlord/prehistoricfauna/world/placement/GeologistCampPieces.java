@@ -6,7 +6,9 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.merchant.villager.VillagerData;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
+import net.minecraft.entity.villager.IVillagerType;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.util.Mirror;
@@ -24,6 +26,7 @@ import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.init.PrehistoricProfessionInit;
 import superlord.prehistoricfauna.world.PrehistoricFeature;
 import superlord.prehistoricfauna.world.PrehistoricLootTables;
 
@@ -121,10 +124,12 @@ public class GeologistCampPieces {
 	            if (structureBoundingBoxIn.isVecInside(new BlockPos(l, i1, k))) {
 	            	this.villager = true;
 	            	VillagerEntity villagerEntity = EntityType.VILLAGER.create(worldIn.getWorld());
+	            	VillagerData villagerData = new VillagerData(IVillagerType.PLAINS, PrehistoricProfessionInit.GEOLOGIST, 0);
 	            	villagerEntity.enablePersistence();
 	            	villagerEntity.setLocationAndAngles((double) l + 0.5D, (double) i1, (double) k + 0.5D, 0.0F, 0.0F);
 	            	villagerEntity.onInitialSpawn(worldIn, worldIn.getDifficultyForLocation(new BlockPos(l, i1, k)), SpawnReason.STRUCTURE, (ILivingEntityData) null, (CompoundNBT) null);
                     worldIn.addEntity(villagerEntity);
+	            	villagerEntity.setVillagerData(villagerData);
 	            }
 			}
 			

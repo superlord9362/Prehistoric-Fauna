@@ -29,12 +29,12 @@ public class JohnstoniaFeature extends Feature<JohnstoniaConfig> {
 		   int l = rand.nextInt(8) - rand.nextInt(8);
 		   int i1 = worldIn.getHeight(Heightmap.Type.WORLD_SURFACE, pos.getX() + k, pos.getZ() + l);
 		   BlockPos blockpos = new BlockPos(pos.getX() + k, i1, pos.getZ() + l);
-		   if (worldIn.getBlockState(blockpos).getBlock() == Blocks.AIR && worldIn.getBlockState(blockpos.up()).getBlock() == Blocks.AIR && worldIn.getBlockState(blockpos.up(2)).getBlock() == Blocks.AIR && worldIn.getBlockState(blockpos.down()).getBlock() == Blocks.COARSE_DIRT || worldIn.getBlockState(blockpos).getBlock() == Blocks.AIR && worldIn.getBlockState(blockpos.up()).getBlock() == Blocks.AIR && worldIn.getBlockState(blockpos.up(2)).getBlock() == Blocks.AIR && worldIn.getBlockState(blockpos.down()).getBlock() == Blocks.PODZOL || worldIn.getBlockState(blockpos).getBlock() == Blocks.AIR && worldIn.getBlockState(blockpos.up()).getBlock() == Blocks.AIR && worldIn.getBlockState(blockpos.up(2)).getBlock() == Blocks.AIR && worldIn.getBlockState(blockpos.down()).getBlock() == BlockInit.LOAM) {
-			   BlockState blockstate = BlockInit.JOHNSTONIA.getDefaultState();
+		   if (worldIn.getBlockState(blockpos).getBlock() == Blocks.AIR && worldIn.getBlockState(blockpos.up()).getBlock() == Blocks.AIR && worldIn.getBlockState(blockpos.up(2)).getBlock() == Blocks.AIR && worldIn.getBlockState(blockpos.down()).getBlock() == Blocks.COARSE_DIRT || worldIn.getBlockState(blockpos).getBlock() == Blocks.AIR && worldIn.getBlockState(blockpos.up()).getBlock() == Blocks.AIR && worldIn.getBlockState(blockpos.up(2)).getBlock() == Blocks.AIR && worldIn.getBlockState(blockpos.down()).getBlock() == Blocks.PODZOL || worldIn.getBlockState(blockpos).getBlock() == Blocks.AIR && worldIn.getBlockState(blockpos.up()).getBlock() == Blocks.AIR && worldIn.getBlockState(blockpos.up(2)).getBlock() == Blocks.AIR && worldIn.getBlockState(blockpos.down()).getBlock() == BlockInit.LOAM.get()) {
+			   BlockState blockstate = BlockInit.JOHNSTONIA.get().getDefaultState();
 			   if (blockstate.isValidPosition(worldIn, blockpos)) {
-				   worldIn.setBlockState(blockpos, BlockInit.JOHNSTONIA.getDefaultState().with(JohnstoniaBlock.LAYER, 0), 2);
-				   worldIn.setBlockState(blockpos.up(), BlockInit.JOHNSTONIA.getDefaultState().with(JohnstoniaBlock.LAYER, 1), 2);
-				   worldIn.setBlockState(blockpos.up(2), BlockInit.JOHNSTONIA.getDefaultState().with(JohnstoniaBlock.LAYER, 2), 2);
+				   worldIn.setBlockState(blockpos, BlockInit.JOHNSTONIA.get().getDefaultState().with(JohnstoniaBlock.LAYER, 0), 2);
+				   worldIn.setBlockState(blockpos.up(), BlockInit.JOHNSTONIA.get().getDefaultState().with(JohnstoniaBlock.LAYER, 1), 2);
+				   worldIn.setBlockState(blockpos.up(2), BlockInit.JOHNSTONIA.get().getDefaultState().with(JohnstoniaBlock.LAYER, 2), 2);
 			   }
 			   ++i;
 		   }

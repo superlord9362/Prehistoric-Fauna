@@ -40,10 +40,9 @@ import superlord.prehistoricfauna.util.SoundHandler;
 
 public class TimeGuardianEntity extends MonsterEntity {
 	private static final DataParameter<Boolean> ACTIVE = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.BOOLEAN);
-	private static final DataParameter<Boolean> USE_BEAM = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.BOOLEAN);
-	private static final DataParameter<Boolean> USE_REGULAR_ATTACK = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> CHARGING_BEAM = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> USING_BEAM = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> IS_SUMMONED = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Float> LASER_PITCH = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.FLOAT);
 	private static final DataParameter<Float> LASER_YAW = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.FLOAT);
 	private static final DataParameter<Float> PREV_LASER_PITCH = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.FLOAT);
@@ -56,7 +55,15 @@ public class TimeGuardianEntity extends MonsterEntity {
 	public TimeGuardianEntity(EntityType<? extends MonsterEntity> type, World world) {
 		super(type, world);
 	}
-	
+
+	public boolean isSummoned() {
+		return this.dataManager.get(IS_SUMMONED);
+	}
+
+	public void setSummoned(boolean isSummoned) {
+		this.dataManager.set(IS_SUMMONED, isSummoned);
+	}
+
 	protected SoundEvent getAmbientSound() {
 		return SoundHandler.HENOS_IDLE;
 	}
@@ -74,8 +81,7 @@ public class TimeGuardianEntity extends MonsterEntity {
 		super.registerGoals();
 		goalSelector.addGoal(1, new TimeGuardianEntity.BeamAttackAI(this));
 		goalSelector.addGoal(0, new TimeGuardianEntity.MeleeAttackGoal(this, 1.0D, true));
-		goalSelector.addGoal(0, new TimeGuardianEntity.AttackAI(this));
-		targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 0, true, false, null));
+		targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
 	}
 
 	protected void registerAttributes() {
@@ -86,7 +92,8 @@ public class TimeGuardianEntity extends MonsterEntity {
 		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(24.0D);
 		this.getAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(50.0D);
 	}
-	
+
+
 	public boolean canBreatheUnderwater() {
 		return true;
 	}
@@ -98,21 +105,12 @@ public class TimeGuardianEntity extends MonsterEntity {
 			targetDistance = getDistance(getAttackTarget()) - getAttackTarget().getWidth() / 2f;
 			targetAngle = (float) getAngleBetweenEntities(this, getAttackTarget());
 		}
-		if(getAttackTarget() != null && (!getAttackTarget().isAlive() || getAttackTarget().getHealth() <= 0)) setAttackTarget(null);
 		if (!world.isRemote) {
-			if (!isAIDisabled()) {
-				if (isActive()) {
-					if (getAttackTarget() == null) {
-						setActive(false);
-					}
-				} else if (getAttackTarget() != null && targetDistance <= 30) {
-					setActive(true);
-				}
+			if (getAttackTarget() == null) {
+				setActive(false);
+			} else if (getAttackTarget() != null && targetDistance <= 30) {
+				setActive(true);
 			}
-		}
-		if (!isActive()) {
-			setMotion(0, getMotion().y, 0);
-			rotationYaw = prevRotationYaw;
 		}
 		renderYawOffset = rotationYaw;
 		if (!isActive() && !world.isRemote) heal(0.3f);
@@ -138,31 +136,13 @@ public class TimeGuardianEntity extends MonsterEntity {
 	protected void registerData() {
 		super.registerData();
 		getDataManager().register(ACTIVE, false);
-		getDataManager().register(USE_BEAM, false);
-		getDataManager().register(USE_REGULAR_ATTACK, false);
+		getDataManager().register(IS_SUMMONED, false);
 		getDataManager().register(CHARGING_BEAM, false);
 		getDataManager().register(USING_BEAM, false);
 		getDataManager().register(LASER_PITCH, (float) 0);
 		getDataManager().register(LASER_YAW, (float) 0);
 		getDataManager().register(PREV_LASER_PITCH, (float) 0);
 		getDataManager().register(PREV_LASER_YAW, (float) 0);
-	}	
-
-	public boolean isUsingBeamAttack() {
-		return getDataManager().get(USE_BEAM);
-	}
-
-	public void useBeam(boolean isUsingBeam) {
-		getDataManager().set(USE_BEAM, isUsingBeam);
-	}
-
-
-	public boolean isUsingRegularAttack() {
-		return getDataManager().get(USE_REGULAR_ATTACK);
-	}
-
-	public void useRegularAttack(boolean isUsingRegularAttack) {
-		getDataManager().set(USE_REGULAR_ATTACK, isUsingRegularAttack);
 	}
 
 	public boolean isActive() {
@@ -229,12 +209,14 @@ public class TimeGuardianEntity extends MonsterEntity {
 	public void writeAdditional(CompoundNBT compound) {
 		super.writeAdditional(compound);
 		compound.putBoolean("active", isActive());
+		compound.putBoolean("summoned", isSummoned());
 	}
 
 	@Override
 	public void readAdditional(CompoundNBT compound) {
 		super.readAdditional(compound);
 		setActive(compound.getBoolean("active"));
+		setSummoned(compound.getBoolean("summoned"));
 		if (this.hasCustomName()) {
 			this.bossInfo.setName(this.getDisplayName());
 		}
@@ -280,7 +262,7 @@ public class TimeGuardianEntity extends MonsterEntity {
 
 		@Override
 		public boolean shouldExecute() {
-			if(timeGuardian.isUsingRegularAttack()) {
+			if(timeGuardian.getAttackTarget() != null) {
 				return super.shouldExecute();
 			} else {
 				return false;
@@ -290,7 +272,6 @@ public class TimeGuardianEntity extends MonsterEntity {
 		@Override
 		public void resetTask() {
 			super.resetTask();
-			timeGuardian.useRegularAttack(false);
 		}
 
 	}
@@ -298,7 +279,7 @@ public class TimeGuardianEntity extends MonsterEntity {
 	public static class BeamAttackAI extends Goal {
 		private TimeGuardianEntity timeGuardian;
 		private int tickCounter;
-		private int attackTick = 300;
+		public static int attackTick = 80;
 
 		public BeamAttackAI(TimeGuardianEntity timeGuardian) {
 			this.timeGuardian = timeGuardian;
@@ -317,12 +298,12 @@ public class TimeGuardianEntity extends MonsterEntity {
 
 		@Override
 		public boolean shouldExecute() {
-			return timeGuardian.isUsingBeamAttack();
+			return timeGuardian.getAttackTarget() != null && (timeGuardian.getHealth() <= (timeGuardian.getMaxHealth() / 2));
 		}
 
 		@Override
 		public boolean shouldContinueExecuting() {
-			if (tickCounter > this.attackTick || !super.shouldContinueExecuting()) {
+			if (tickCounter > BeamAttackAI.attackTick || !super.shouldContinueExecuting()) {
 				this.timeGuardian.setChargingBeam(false);
 				this.timeGuardian.setUsingBeam(false);
 				return false;
@@ -412,81 +393,6 @@ public class TimeGuardianEntity extends MonsterEntity {
 			super.tick();
 		}
 
-		@Override
-		public void resetTask() {
-			timeGuardian.useBeam(false);
-		}
-
-	}
-
-	public class AttackAI extends Goal {
-	    private final TimeGuardianEntity henos;
-
-	    private int repath;
-	    private double targetX;
-	    private double targetY;
-	    private double targetZ;
-
-	    private int attacksSinceBeam;
-
-	    public AttackAI(TimeGuardianEntity henos) {
-	        this.henos = henos;
-	        this.setMutexFlags(EnumSet.of(Flag.MOVE, Flag.JUMP, Flag.LOOK));
-	    }
-
-	    @Override
-	    public boolean shouldExecute() {
-	        LivingEntity target = this.henos.getAttackTarget();
-	        return target != null && target.isAlive() && this.henos.isActive() && !this.henos.isUsingBeamAttack() && !this.henos.isUsingRegularAttack();
-	    }
-
-	    @Override
-	    public void startExecuting() {
-	        this.repath = 0;
-	    }
-
-	    @Override
-	    public void resetTask() {
-	        this.henos.getNavigator().clearPath();
-	    }
-
-	    @Override
-	    public void tick() {
-	        LivingEntity target = this.henos.getAttackTarget();
-	        if (target == null) return;
-	        double dist = this.henos.getDistanceSq(this.targetX, this.targetY, this.targetZ);
-	        this.henos.getLookController().setLookPositionWithEntity(target, 30.0F, 30.0F);
-	        if (--this.repath <= 0 && (
-	            this.targetX == 0.0D && this.targetY == 0.0D && this.targetZ == 0.0D ||
-	            target.getDistanceSq(this.targetX, this.targetY, this.targetZ) >= 1.0D) ||
-	            this.henos.getNavigator().noPath()
-	        ) {
-	            this.targetX = target.getPosX();
-	            this.targetY = target.getPosY();
-	            this.targetZ = target.getPosZ();
-	            this.repath = 4 + this.henos.getRNG().nextInt(7);
-	            if (dist > 32.0D * 32.0D) {
-	                this.repath += 10;
-	            } else if (dist > 16.0D * 16.0D) {
-	                this.repath += 5;
-	            }
-	            if (!this.henos.getNavigator().tryMoveToEntityLiving(target, 0.2D)) {
-	                this.repath += 15;
-	            }
-	        }
-	        dist = this.henos.getDistanceSq(this.targetX, this.targetY, this.targetZ);
-	        if (target.getPosY() - this.henos.getPosY() >= -1 && target.getPosY() - this.henos.getPosY() <= 3) {
-	            if (dist < 3.5D * 3.5D && Math.abs(MathHelper.wrapDegrees(this.henos.getAngleBetweenEntities(target, this.henos) - this.henos.rotationYaw)) < 35.0D && (this.henos.getRNG().nextFloat() < 0.667F)) {
-	                if (this.attacksSinceBeam > 3 + 2 * (1 - henos.getHealthRatio()) || this.henos.getRNG().nextFloat() < 0.18F) {
-	                    this.henos.useBeam(true);	
-	                    this.attacksSinceBeam = 0;
-	                } else {
-	                    this.henos.useRegularAttack(true);
-	                    this.attacksSinceBeam++;
-	                }
-	            } 
-	        }
-	    }
 	}
 
 }

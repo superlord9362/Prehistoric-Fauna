@@ -3,10 +3,10 @@
   "group": "wooden_button",
   "ingredients": [
     {
-      "item": "prehistoricfauna:protojuniper_planks"
+      "item": "prehistoricfauna:protojuniperoxylon_planks"
     }
   ],
   "result": {
-    "item": "prehistoricfauna:protojuniper_button"
+    "item": "prehistoricfauna:protojuniperoxylon_button"
   }
 }

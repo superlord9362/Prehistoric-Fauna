@@ -6,11 +6,11 @@
   ],
   "key": {
     "#": {
-      "item": "prehistoricfauna:smooth_triassic_sandstone"
+      "item": "prehistoricfauna:smooth_sandstone"
     }
   },
   "result": {
-    "item": "prehistoricfauna:smooth_triassic_sandstone_wall",
+    "item": "prehistoricfauna:smooth_sandstone_wall",
     "count": 6
   }
 }

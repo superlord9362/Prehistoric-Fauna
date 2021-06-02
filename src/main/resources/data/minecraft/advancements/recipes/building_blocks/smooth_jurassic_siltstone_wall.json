@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "prehistoricfauna:smooth_jurassic_siltstone_wall"
+      "prehistoricfauna:smooth_siltstone_wall"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:smooth_jurassic_siltstone"
+            "item": "prehistoricfauna:smooth_siltstone"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "prehistoricfauna:smooth_jurassic_siltstone_wall"
+        "recipe": "prehistoricfauna:smooth_siltstone_wall"
       }
     }
   },

@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "prehistoricfauna:stripped_protojuniper_wood"
+      "prehistoricfauna:stripped_protojuniperoxylon_wood"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:stripped_protojuniper_log"
+            "item": "prehistoricfauna:stripped_protojuniperoxylon_log"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "prehistoricfauna:stripped_protojuniper_wood"
+        "recipe": "prehistoricfauna:stripped_protojuniperoxylon_wood"
       }
     }
   },

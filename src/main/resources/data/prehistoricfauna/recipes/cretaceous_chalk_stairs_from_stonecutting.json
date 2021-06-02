@@ -1,8 +1,8 @@
 {
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "item": "prehistoricfauna:cretaceous_chalk"
+    "item": "prehistoricfauna:chalk"
   },
-  "result": "prehistoricfauna:cretaceous_chalk_stairs",
+  "result": "prehistoricfauna:chalk_stairs",
   "count": 1
 }

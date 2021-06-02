@@ -71,7 +71,8 @@ public class TreeParserUtils {
         translateTreeNBTData(world, featureStartPos, list2, 14, true);
     }
 
-    public static void translateTreeNBTData(IWorld world, BlockPos featureStartPos, List<Pair<BlockPos, CompoundNBT>> list2, int treeHeight, boolean useRandTreeHeight) {
+    @SuppressWarnings("unused")
+	public static void translateTreeNBTData(IWorld world, BlockPos featureStartPos, List<Pair<BlockPos, CompoundNBT>> list2, int treeHeight, boolean useRandTreeHeight) {
         List<String> treeLeaveList = new ArrayList<>();
         List<String> trunkLogList = new ArrayList<>();
         List<String> treeBranchList = new ArrayList<>();

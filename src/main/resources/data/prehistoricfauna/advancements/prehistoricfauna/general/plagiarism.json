@@ -2,7 +2,7 @@
   "parent": "prehistoricfauna:prehistoricfauna/general/looting_like_year",
   "display": {
     "icon": {
-      "item": "prehistoricfauna:paleopage"
+      "item": "prehistoricfauna:ancient_journal_page"
     },
     "title": {
       "translate": "advancements.prehistoricfauna.plagiarism.title"
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:paleopage"
+            "item": "prehistoricfauna:ancient_journal_page"
           }
         ]
       }

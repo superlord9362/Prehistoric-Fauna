@@ -1,7 +1,8 @@
 package superlord.prehistoricfauna.world.placement;
 
 import com.google.common.collect.ImmutableMap;
-import net.minecraft.entity.ILivingEntityData;
+
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.LockableLootTileEntity;
@@ -45,7 +46,6 @@ public class TimeTemplePieces {
     }
 
     public static class Piece extends TemplateStructurePiece {
-        private boolean henos;
         private ResourceLocation resourceLocation;
         private Rotation rotation;
         private final boolean overwrite;
@@ -67,7 +67,6 @@ public class TimeTemplePieces {
             this.resourceLocation = new ResourceLocation(tagCompound.getString("Template"));
             this.rotation = Rotation.valueOf(tagCompound.getString("Rot"));
             this.overwrite = tagCompound.getBoolean("OW");
-            this.henos = tagCompound.getBoolean("Henos");
             this.setupPiece(templateManagerIn);
         }
 
@@ -81,7 +80,6 @@ public class TimeTemplePieces {
         @Override
         protected void readAdditional(CompoundNBT tagCompound) {
             super.readAdditional(tagCompound);
-            tagCompound.putBoolean("Henos", this.henos);
             tagCompound.putString("Template", this.resourceLocation.toString());
             tagCompound.putString("Rot", this.rotation.name());
             tagCompound.putBoolean("OW", this.overwrite);
@@ -125,6 +123,15 @@ public class TimeTemplePieces {
                     LockableLootTileEntity.setLootTable(worldIn, rand, blockpos, PrehistoricLootTables.TIME_TEMPLE_LOOT_TABLE);
                 }
             }
+            if ("henos".equals(function)) {
+				worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+                TimeGuardianEntity entity = ModEntityTypes.TIME_GUARDIAN_ENTITY.create(worldIn.getWorld());
+                if (entity != null) {
+                    entity.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+                    entity.onInitialSpawn(worldIn, worldIn.getDifficultyForLocation(pos), SpawnReason.STRUCTURE, null, null);
+                    worldIn.addEntity(entity);
+                }
+			}
         }
 
         // create
@@ -134,19 +141,6 @@ public class TimeTemplePieces {
             BlockPos blockpos = TimeTemplePieces.OFFSET.get(this.resourceLocation);
             this.templatePosition.add(Template.transformedBlockPos(placementsettings, new BlockPos(0 - blockpos.getX(), 0, 0 - blockpos.getZ())));
 
-            if (!this.henos) {
-                int l = this.getXWithOffset(19, 16);
-                int i1 = this.getYWithOffset(9);
-                int k = this.getZWithOffset(19, 16);
-                if (structureBoundingBoxIn.isVecInside(new BlockPos(l, i1, k))) {
-                    this.henos = true;
-                    TimeGuardianEntity henosentity = ModEntityTypes.TIME_GUARDIAN_ENTITY.create(worldIn.getWorld());
-                    henosentity.enablePersistence();
-                    henosentity.setLocationAndAngles((double) l + 0.5D, (double) i1, (double) k + 0.5D, 0.0F, 0.0F);
-                    henosentity.onInitialSpawn(worldIn, worldIn.getDifficultyForLocation(new BlockPos(l, i1, k)), SpawnReason.STRUCTURE, (ILivingEntityData) null, (CompoundNBT) null);
-                    worldIn.addEntity(henosentity);
-                }
-            }
 
             return super.create(worldIn, chunkGeneratorIn, randomIn, structureBoundingBoxIn, chunkPos);
         }

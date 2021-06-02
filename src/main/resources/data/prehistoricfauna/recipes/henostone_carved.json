@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "boat",
   "pattern": [
     "#",
     "#"
@@ -11,6 +10,6 @@
     }
   },
   "result": {
-    "item": "prehistoricfauna:henostone_carved"
+    "item": "prehistoricfauna:carved_henostone"
   }
 }

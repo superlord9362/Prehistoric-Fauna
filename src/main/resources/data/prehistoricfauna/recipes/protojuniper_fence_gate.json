@@ -10,10 +10,10 @@
       "item": "minecraft:stick"
     },
     "W": {
-      "item": "prehistoricfauna:protojuniper_planks"
+      "item": "prehistoricfauna:protojuniperoxylon_planks"
     }
   },
   "result": {
-    "item": "prehistoricfauna:protojuniper_fence_gate"
+    "item": "prehistoricfauna:protojuniperoxylon_fence_gate"
   }
 }

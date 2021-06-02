@@ -6,22 +6,22 @@
   },
   "results": [
     {
-      "item": "prehistoricfauna:cretaceous_chalk",
+      "item": "prehistoricfauna:chalk",
       "count": 1,
       "weight": 10.0
     },
 	{
-		"item": "prehistoricfauna:large_shell",
+		"item": "prehistoricfauna:large_ammonite_fossil",
 		"count": 1,
 		"weight": 7.5
 	},
 	{
-		"item": "prehistoricfauna:medium_shell",
+		"item": "prehistoricfauna:medium_ammonite_fossil",
 		"count": 1,
 		"weight": 7.5
 	},
 	{
-		"item": "prehistoricfauna:small_shell",
+		"item": "prehistoricfauna:small_ammonite_fossil",
 		"count": 1,
 		"weight": 7.5
 	},
@@ -31,22 +31,22 @@
       "weight": 5.0
     },
 	{
-      "item": "prehistoricfauna:giant_shell_bb",
+      "item": "prehistoricfauna:giant_ammonite_fossil_piece_bb",
       "count": 1,
       "weight": 1.0
     },
 	{
-      "item": "prehistoricfauna:giant_shell_bf",
+      "item": "prehistoricfauna:giant_ammonite_fossil_piece_bf",
       "count": 1,
       "weight": 1.0
     },
 	{
-      "item": "prehistoricfauna:giant_shell_tb",
+      "item": "prehistoricfauna:giant_ammonite_fossil_piece_tb",
       "count": 1,
       "weight": 1.0
     },
 	{
-      "item": "prehistoricfauna:giant_shell_tf",
+      "item": "prehistoricfauna:giant_ammonite_fossil_piece_tf",
       "count": 1,
       "weight": 1.0
     },

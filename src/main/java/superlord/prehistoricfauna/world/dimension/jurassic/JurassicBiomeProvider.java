@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.function.LongFunction;
 import java.util.stream.Collectors;
 
+@SuppressWarnings("deprecation")
 public class JurassicBiomeProvider extends BiomeProvider {
 
 	private final Int2ObjectMap<WeightedList<ResourceLocation>> hills = new Int2ObjectArrayMap<>();

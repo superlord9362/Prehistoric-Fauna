@@ -19,7 +19,7 @@ public interface IPFBlockState {
 	
 	default boolean isPortalFrame(BlockState state, IWorldReader world, BlockPos pos)
     {
-        return state.getBlock() == BlockInit.PORTAL_FRAME;
+        return state.getBlock() == BlockInit.PORTAL_FRAME.get();
     }
 
 }

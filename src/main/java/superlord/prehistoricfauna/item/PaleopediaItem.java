@@ -18,7 +18,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.PrehistoricFauna.PFBook;
+import superlord.prehistoricfauna.PrehistoricFauna.PFMisc;
 import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.util.EnumPaleoPages;
 
@@ -28,7 +28,7 @@ import java.util.List;
 public class PaleopediaItem extends Item {
 	
 	public PaleopediaItem() {
-		super(new Item.Properties().group(PFBook.instance).maxStackSize(1).rarity(Rarity.UNCOMMON));
+		super(new Item.Properties().group(PFMisc.instance).maxStackSize(1).rarity(Rarity.UNCOMMON));
 	}
 	
 	@Override

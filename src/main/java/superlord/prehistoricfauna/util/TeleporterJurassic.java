@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 
 import it.unimi.dsi.fastutil.objects.Object2LongMap;
 import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
@@ -14,7 +15,6 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.server.TicketType;
 import net.minecraftforge.common.util.ITeleporter;
 import superlord.prehistoricfauna.block.JurassicPortalBlock;
-import superlord.prehistoricfauna.block.PortalFrameBlock;
 import superlord.prehistoricfauna.init.BlockInit;
 import javax.annotation.Nullable;
 import java.util.*;
@@ -217,49 +217,42 @@ public class TeleporterJurassic implements ITeleporter {
             xAxis = -xAxis;
             zAxis = -zAxis;
         }
-        
-        BlockPos pos = new BlockPos(baseX, baseY, baseZ);
-        
-        while (pos.getY() > 1 && world.isAirBlock(pos)) {
-            pos = pos.down();
+
+        if (d0 < 0.0D) {
+            yPos = MathHelper.clamp(yPos, 70, world.getActualHeight() - 10);
+            baseY = yPos;
+
+            for (int j7 = -1; j7 <= 1; ++j7) {
+                for (int i8 = 1; i8 < 3; ++i8) {
+                    for (int i9 = -1; i9 < 3; ++i9) {
+                        int frameX = baseX + (i8 - 1) * xAxis + j7 * zAxis;
+                        int frameY = baseY + i9;
+                        int frameZ = baseZ + (i8 - 1) * zAxis - j7 * xAxis;
+                        boolean flag = i9 < 0;
+                        mutable.setPos(frameX, frameY, frameZ);
+                        world.setBlockState(mutable, flag ? BlockInit.PORTAL_FRAME.get().getDefaultState() : Blocks.AIR.getDefaultState());
+                    }
+                }
+            }
         }
 
-        while (!world.isAirBlock(pos.up()) && (world.getBlockState(pos).getBlock() != BlockInit.MOSSY_DIRT && (world.getBlockState(pos).getBlock() != Blocks.COARSE_DIRT) && (world.getBlockState(pos).getBlock() != Blocks.PODZOL) || world.getBlockState(pos).getBlock() != Blocks.GRASS)) {
-            pos = pos.up();
+        for (int fWidth = -1; fWidth < 3; ++fWidth) {
+            for (int fHeight = -1; fHeight < 4; ++fHeight) {
+                if (fWidth == -1 || fWidth == 2 || fHeight == -1 || fHeight == 3) {
+                    mutable.setPos(baseX + fWidth * xAxis, baseY + fHeight, baseZ + fWidth * zAxis);
+                    world.setBlockState(mutable, BlockInit.PORTAL_FRAME.get().getDefaultState(), 3);
+                }
+            }
         }
-        
-        //Bottom layer
-        world.setBlockState(pos, BlockInit.PORTAL_FRAME.getDefaultState());
-        world.setBlockState(pos.east(), BlockInit.PORTAL_FRAME.getDefaultState());
-        world.setBlockState(pos.west(), BlockInit.PORTAL_FRAME.getDefaultState());
-        world.setBlockState(pos.east(2), BlockInit.HENOSTONE_CARVED.getDefaultState());
-        world.setBlockState(pos.west(2), BlockInit.HENOSTONE_CARVED.getDefaultState());
 
-        //Pillars
-        world.setBlockState(pos.east(2).up(), BlockInit.PORTAL_FRAME.getDefaultState().with(PortalFrameBlock.FACING, Direction.WEST));
-        world.setBlockState(pos.west(2).up(), BlockInit.PORTAL_FRAME.getDefaultState().with(PortalFrameBlock.FACING, Direction.EAST));
-        world.setBlockState(pos.east(2).up(2), BlockInit.PORTAL_FRAME.getDefaultState().with(PortalFrameBlock.FACING, Direction.WEST));
-        world.setBlockState(pos.west(2).up(2), BlockInit.PORTAL_FRAME.getDefaultState().with(PortalFrameBlock.FACING, Direction.EAST));
-        world.setBlockState(pos.east(2).up(3), BlockInit.PORTAL_FRAME.getDefaultState().with(PortalFrameBlock.FACING, Direction.WEST));
-        world.setBlockState(pos.west(2).up(3), BlockInit.PORTAL_FRAME.getDefaultState().with(PortalFrameBlock.FACING, Direction.EAST));
+        BlockState portal = BlockInit.JURASSIC_PORTAL.get().getDefaultState().with(JurassicPortalBlock.AXIS, xAxis == 0 ? Direction.Axis.Z : Direction.Axis.X);
 
-        //Top layer
-        world.setBlockState(pos.east(1).up(4), BlockInit.PORTAL_FRAME.getDefaultState().with(PortalFrameBlock.FACING, Direction.DOWN));
-        world.setBlockState(pos.up(4), BlockInit.PORTAL_FRAME.getDefaultState().with(PortalFrameBlock.FACING, Direction.DOWN));
-        world.setBlockState(pos.west(1).up(4), BlockInit.PORTAL_FRAME.getDefaultState().with(PortalFrameBlock.FACING, Direction.DOWN));
-        world.setBlockState(pos.west(2).up(4), BlockInit.HENOSTONE_CARVED.getDefaultState());
-        world.setBlockState(pos.east(2).up(4), BlockInit.HENOSTONE_CARVED.getDefaultState());
-        
-        //Portal blocks
-        world.setBlockState(pos.up(), BlockInit.JURASSIC_PORTAL.get().getDefaultState());
-		world.setBlockState(pos.up(2), BlockInit.JURASSIC_PORTAL.get().getDefaultState());
-		world.setBlockState(pos.up(3), BlockInit.JURASSIC_PORTAL.get().getDefaultState());
-		world.setBlockState(pos.east().up(), BlockInit.JURASSIC_PORTAL.get().getDefaultState());
-		world.setBlockState(pos.east().up(2), BlockInit.JURASSIC_PORTAL.get().getDefaultState());
-		world.setBlockState(pos.east().up(3), BlockInit.JURASSIC_PORTAL.get().getDefaultState());
-		world.setBlockState(pos.west().up(), BlockInit.JURASSIC_PORTAL.get().getDefaultState());
-		world.setBlockState(pos.west().up(2), BlockInit.JURASSIC_PORTAL.get().getDefaultState());
-		world.setBlockState(pos.west().up(3), BlockInit.JURASSIC_PORTAL.get().getDefaultState());
+        for (int pWidth = 0; pWidth < 2; ++pWidth) {
+            for (int pHeight = 0; pHeight < 3; ++pHeight) {
+                mutable.setPos(baseX + pWidth * xAxis, baseY + pHeight, baseZ + pWidth * zAxis);
+                world.setBlockState(mutable, portal, 18);
+            }
+        }
 
     }
 

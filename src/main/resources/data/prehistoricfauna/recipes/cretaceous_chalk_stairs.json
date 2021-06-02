@@ -8,11 +8,11 @@
   ],
   "key": {
     "#": {
-      "item": "prehistoricfauna:cretaceous_chalk"
+      "item": "prehistoricfauna:chalk"
     }
   },
   "result": {
-    "item": "prehistoricfauna:cretaceous_chalk_stairs",
+    "item": "prehistoricfauna:chalk_stairs",
     "count": 4
   }
 }

@@ -2,7 +2,7 @@
   "parent": "prehistoricfauna:prehistoricfauna/general/time_temple",
   "display": {
     "icon": {
-      "item": "prehistoricfauna:henostone_carved"
+      "item": "prehistoricfauna:carved_henostone"
     },
     "title": {
       "translate": "advancements.prehistoricfauna.return_to_monke.title"

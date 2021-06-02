@@ -451,20 +451,6 @@
 			}
 		]
 	},
-	"eilenodon_idle": {
-		"category": "neutral",
-		"subtitle": "prehistoricfauna.subtitle.eilenodonIdle",
-		"sounds": [
-			{
-				"name": "prehistoricfauna:prehistoric/eilenodon/eilenodon_idle1",
-				"stream": true
-			},
-			{
-				"name": "prehistoricfauna:prehistoric/eilenodon/eilenodon_idle2",
-				"stream": true
-			}
-		]
-	},
 	"eilenodon_hurt": {
 		"category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.eilenodonHurt",
@@ -544,7 +530,7 @@
 		"subtitle": "prehistoricfauna.subtitle.exaeretodonWarning",
 		"sounds": [
 			{
-				"name": "prehistoricfauna:prehistoric/exaeretodon/exaeretodon_warn",
+				"name": "prehistoricfauna:prehistoric/exaeretodon/exaeretodon_warning",
 				"stream": true
 			}
 		]

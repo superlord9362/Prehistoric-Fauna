@@ -2,7 +2,7 @@
   "parent": "prehistoricfauna:prehistoricfauna/general/digger_man",
   "display": {
     "icon": {
-      "item": "prehistoricfauna:chiseled_polished_triassic_sandstone"
+      "item": "prehistoricfauna:chiseled_sandstone"
     },
     "title": {
       "translate": "advancements.prehistoricfauna.written_in_stone.title"
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:chiseled_polished_triassic_sandstone"
+            "item": "prehistoricfauna:chiseled_sandstone"
           }
         ]
       }
@@ -31,7 +31,7 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:chiseled_polished_jurassic_siltstone"
+            "item": "prehistoricfauna:chiseled_siltstone"
           }
         ]
       }
@@ -41,7 +41,7 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:chiseled_polished_cretaceous_chalk"
+            "item": "prehistoricfauna:chiseled_chalk"
           }
         ]
       }

@@ -6,15 +6,6 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "conditions": [
-            {
-              "condition": "minecraft:block_state_property",
-              "block": "prehistoricfauna:osmundacaulis",
-              "properties": {
-                "half": "lower"
-              }
-            }
-          ],
           "name": "prehistoricfauna:osmundacaulis"
         }
       ],

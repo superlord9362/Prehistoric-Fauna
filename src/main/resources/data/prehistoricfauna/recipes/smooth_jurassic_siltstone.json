@@ -1,8 +1,8 @@
 {
   "type": "minecraft:smelting",
   "ingredient": {
-    "item": "prehistoricfauna:jurassic_siltstone"
+    "item": "prehistoricfauna:siltstone"
   },
-  "result": "prehistoricfauna:smooth_jurassic_siltstone",
+  "result": "prehistoricfauna:smooth_siltstone",
   "cookingtime": 200
 }

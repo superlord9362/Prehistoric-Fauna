@@ -10,11 +10,11 @@
       "item": "minecraft:stick"
     },
     "W": {
-      "item": "prehistoricfauna:protojuniper_planks"
+      "item": "prehistoricfauna:protojuniperoxylon_planks"
     }
   },
   "result": {
-    "item": "prehistoricfauna:protojuniper_fence",
+    "item": "prehistoricfauna:protojuniperoxylon_fence",
     "count": 3
   }
 }

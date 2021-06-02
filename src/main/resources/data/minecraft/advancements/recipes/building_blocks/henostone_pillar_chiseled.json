@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "prehistoricfauna:henostone_pillar_chiseled"
+      "prehistoricfauna:chiseled_henostone_pillar"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "prehistoricfauna:henostone_pillar_chiseled"
+        "recipe": "prehistoricfauna:chiseled_henostone_pillar"
       }
     }
   },

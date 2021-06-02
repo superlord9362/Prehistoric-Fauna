@@ -8,11 +8,11 @@
   ],
   "key": {
     "#": {
-      "item": "prehistoricfauna:polished_triassic_sandstone_bricks"
+      "item": "prehistoricfauna:sandstone_bricks"
     }
   },
   "result": {
-    "item": "prehistoricfauna:triassic_sandstone_brick_stairs",
+    "item": "prehistoricfauna:sandstone_brick_stairs",
     "count": 4
   }
 }

@@ -193,15 +193,21 @@ public class TyrannosaurusSkeletonEntity extends PrehistoricEntity {
 	}
 
 	public boolean attackEntityFrom(DamageSource source, float amount) {
-		Entity entity = source.getTrueSource();
-		if (entity instanceof PlayerEntity) {
+		if (source.getTrueSource() instanceof PlayerEntity) {
 			this.remove();
 			this.playBrokenSound();
 			this.playParticles();
 			this.spawnFossil(source);
-			return false;
 		}
-        return super.attackEntityFrom(source, amount);
+		return false;
+	}
+
+	public boolean canBeHitWithPotion() {
+		return false;
+	}
+
+	public void onKillCommand() {
+		this.remove();
 	}
 
 	private void spawnFossil(DamageSource p_213815_1_) {

@@ -60,7 +60,6 @@ public class SoundHandler {
 	public static final SoundEvent CAMARASAURUS_HURT; 
 	public static final SoundEvent CAMARASAURUS_WARN; 
 	public static final SoundEvent CAMARASAURUS_DEATH;
-	public static final SoundEvent EILENODON_IDLE;
 	public static final SoundEvent EILENODON_HURT;
 	public static final SoundEvent EILENODON_DEATH;
 	//Ischigualasto
@@ -147,7 +146,6 @@ public class SoundHandler {
 		evt.getRegistry().register(CAMARASAURUS_HURT);
 		evt.getRegistry().register(CAMARASAURUS_DEATH);
 		evt.getRegistry().register(CAMARASAURUS_WARN);
-		evt.getRegistry().register(EILENODON_IDLE);
 		evt.getRegistry().register(EILENODON_HURT);
 		evt.getRegistry().register(EILENODON_DEATH);
 		//Ischigualasto
@@ -239,7 +237,6 @@ public class SoundHandler {
 		CAMARASAURUS_HURT = createEvent("camarasaurus_hurt");
 		CAMARASAURUS_WARN = createEvent("camarasaurus_warn");
 		CAMARASAURUS_DEATH = createEvent("camarasaurus_death");
-		EILENODON_IDLE = createEvent("eilenodon_idle");
 		EILENODON_HURT = createEvent("eilenodon_hurt");
 		EILENODON_DEATH = createEvent("eilenodon_death");
 		//Ischigualasto

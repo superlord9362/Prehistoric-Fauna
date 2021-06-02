@@ -29,7 +29,7 @@ public class CrassostreaOystersFeature extends Feature<CrassostreaOystersConfig>
          int i1 = worldIn.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX() + k, pos.getZ() + l);
          BlockPos blockpos = new BlockPos(pos.getX() + k, i1, pos.getZ() + l);
          if (worldIn.getBlockState(blockpos).getBlock() == Blocks.WATER && worldIn.getBlockState(blockpos.down()).getBlock() == Blocks.SAND) {
-            BlockState blockstate = BlockInit.CRASSOSTREA_BLOCK.getDefaultState().with(CrassostreaOysterBlock.AGE, Integer.valueOf(2));
+            BlockState blockstate = BlockInit.CRASSOSTREA_OYSTER.get().getDefaultState().with(CrassostreaOysterBlock.AGE, Integer.valueOf(2));
             if (blockstate.isValidPosition(worldIn, blockpos)) {
             	worldIn.setBlockState(blockpos, blockstate, 2);
             }

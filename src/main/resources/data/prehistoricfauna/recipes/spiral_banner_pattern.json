@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "prehistoricfauna:medium_shell"
+      "item": "prehistoricfauna:medium_ammonite_fossil"
     },
 	{
 		"item": "minecraft:paper"

@@ -6,11 +6,11 @@
   ],
   "key": {
     "#": {
-      "item": "prehistoricfauna:henostone_bricks_dark"
+      "item": "prehistoricfauna:dark_henostone_bricks"
     }
   },
   "result": {
-    "item": "prehistoricfauna:henostone_dark_brick_slab",
+    "item": "prehistoricfauna:dark_henostone_brick_slab",
     "count": 6
   }
 }

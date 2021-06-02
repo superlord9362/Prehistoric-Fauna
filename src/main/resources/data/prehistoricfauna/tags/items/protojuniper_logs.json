@@ -1,9 +1,9 @@
 {
   "replace": false,
   "values": [
-    "prehistoricfauna:protojuniper_wood",
-	"prehistoricfauna:protojuniper_log",
-	"prehistoricfauna:stripped_protojuniper_log",
-	"prehistoricfauna:stripped_protojuniper_wood"
+    "prehistoricfauna:protojuniperoxylon_wood",
+	"prehistoricfauna:protojuniperoxylon_log",
+	"prehistoricfauna:stripped_protojuniperoxylon_log",
+	"prehistoricfauna:stripped_protojuniperoxylon_wood"
   ]
 }

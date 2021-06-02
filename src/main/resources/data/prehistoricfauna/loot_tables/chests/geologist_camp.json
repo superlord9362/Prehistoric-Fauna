@@ -21,7 +21,7 @@
               }
             }
           ],
-          "name": "prehistoricfauna:triassic_sandstone"
+          "name": "prehistoricfauna:sandstone"
         },
         {
           "type": "minecraft:item",
@@ -81,7 +81,7 @@
               }
             }
           ],
-          "name": "prehistoricfauna:cretaceous_chalk"
+          "name": "prehistoricfauna:chalk"
         },
         {
           "type": "minecraft:item",
@@ -96,7 +96,7 @@
               }
             }
           ],
-          "name": "prehistoricfauna:jurassic_siltstone"
+          "name": "prehistoricfauna:siltstone"
         },
         {
           "type": "minecraft:item",

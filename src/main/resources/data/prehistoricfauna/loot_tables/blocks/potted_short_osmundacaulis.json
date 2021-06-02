@@ -20,7 +20,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "prehistoricfauna:short_osmundacaulis"
+          "name": "prehistoricfauna:osmundacaulis"
         }
       ],
       "conditions": [

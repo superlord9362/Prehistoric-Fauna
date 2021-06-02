@@ -3,11 +3,11 @@
   "group": "planks",
   "ingredients": [
     {
-      "item": "prehistoricfauna:protojuniper_wood"
+      "item": "prehistoricfauna:protojuniperoxylon_wood"
     }
   ],
   "result": {
-    "item": "prehistoricfauna:protojuniper_planks",
+    "item": "prehistoricfauna:protojuniperoxylon_planks",
     "count": 4
   }
 }

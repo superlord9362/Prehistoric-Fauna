@@ -8,11 +8,11 @@
   ],
   "key": {
     "#": {
-      "item": "prehistoricfauna:protojuniper_planks"
+      "item": "prehistoricfauna:protojuniperoxylon_planks"
     }
   },
   "result": {
-    "item": "prehistoricfauna:protojuniper_stairs",
+    "item": "prehistoricfauna:protojuniperoxylon_stairs",
     "count": 4
   }
 }

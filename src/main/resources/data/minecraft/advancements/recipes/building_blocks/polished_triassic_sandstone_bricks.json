@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "prehistoricfauna:polished_triassic_sandstone_bricks"
+      "prehistoricfauna:polished_sandstone_bricks"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:polished_triassic_sandstone"
+            "item": "prehistoricfauna:polished_sandstone"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "prehistoricfauna:polished_triassic_sandstone_bricks"
+        "recipe": "prehistoricfauna:polished_sandstone_bricks"
       }
     }
   },

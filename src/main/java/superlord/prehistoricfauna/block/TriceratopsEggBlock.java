@@ -99,7 +99,7 @@ public class TriceratopsEggBlock extends Block {
    }
 
    private boolean hasProperHabitat(IBlockReader blockReader, BlockPos pos) {
-		return blockReader.getBlockState(pos.down()).getBlock() == Blocks.SAND || blockReader.getBlockState(pos.down()).getBlock() == Blocks.COARSE_DIRT || blockReader.getBlockState(pos.down()).getBlock() == Blocks.GRASS_BLOCK || blockReader.getBlockState(pos.down()).getBlock() == Blocks.DIRT || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.LOAM || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.PACKED_LOAM || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.SILT || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.HARDENED_SILT || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.MOSSY_DIRT;
+		return blockReader.getBlockState(pos.down()).getBlock() == Blocks.SAND || blockReader.getBlockState(pos.down()).getBlock() == Blocks.COARSE_DIRT || blockReader.getBlockState(pos.down()).getBlock() == Blocks.GRASS_BLOCK || blockReader.getBlockState(pos.down()).getBlock() == Blocks.DIRT || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.LOAM.get() || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.PACKED_LOAM.get() || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.SILT.get() || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.HARDENED_SILT.get() || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.MOSSY_DIRT.get() || blockReader.getBlockState(pos.down()).getBlock() == Blocks.PODZOL;
    }
 
    public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {

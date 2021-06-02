@@ -37,7 +37,7 @@ public class ThescelosaurusEntity extends AnimalEntity {
 
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(ThescelosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(ThescelosaurusEntity.class, DataSerializers.BOOLEAN);
-	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.MARCHANTIA.asItem());
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.MARCHANTIA.get().asItem());
 	private int isDigging;
 
 	public ThescelosaurusEntity(EntityType<? extends ThescelosaurusEntity> type, World worldIn) {
@@ -63,7 +63,7 @@ public class ThescelosaurusEntity extends AnimalEntity {
 	}
 
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.MARCHANTIA.asItem();
+		return stack.getItem() == BlockInit.MARCHANTIA.get().asItem();
 	}
 
 	@Override
@@ -180,7 +180,7 @@ public class ThescelosaurusEntity extends AnimalEntity {
 				} else if (this.thescelosaurus.isDigging > 200) {
 					World world = this.thescelosaurus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.THESCELOSAURUS_EGG.getDefaultState().with(ThescelosaurusEggBlock.EGGS, Integer.valueOf(this.thescelosaurus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), BlockInit.THESCELOSAURUS_EGG.get().getDefaultState().with(ThescelosaurusEggBlock.EGGS, Integer.valueOf(this.thescelosaurus.rand.nextInt(4) + 1)), 3);
 					this.thescelosaurus.setHasEgg(false);
 					this.thescelosaurus.setDigging(false);
 					this.thescelosaurus.setInLove(600);
@@ -198,7 +198,7 @@ public class ThescelosaurusEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.LOAM || block == BlockInit.MOSSY_DIRT || block == Blocks.PODZOL;
+				return block == BlockInit.LOAM.get() || block == BlockInit.MOSSY_DIRT.get() || block == Blocks.PODZOL;
 			}
 		}
 	}

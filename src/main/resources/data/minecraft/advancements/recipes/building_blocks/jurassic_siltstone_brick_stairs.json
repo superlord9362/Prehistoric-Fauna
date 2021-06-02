@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "prehistoricfauna:jurassic_siltstone_brick_stairs"
+      "prehistoricfauna:siltstone_brick_stairs"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:polished_jurassic_siltstone_bricks"
+            "item": "prehistoricfauna:siltstone_bricks"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "prehistoricfauna:jurassic_siltstone_brick_stairs"
+        "recipe": "prehistoricfauna:siltstone_brick_stairs"
       }
     }
   },

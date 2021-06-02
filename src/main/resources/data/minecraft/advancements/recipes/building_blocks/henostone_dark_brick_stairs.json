@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "prehistoricfauna:henostone_dark_brick_stairs"
+      "prehistoricfauna:dark_henostone_brick_stairs"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:henostone_bricks_dark"
+            "item": "prehistoricfauna:dark_henostone_bricks"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "prehistoricfauna:henostone_dark_brick_stairs"
+        "recipe": "prehistoricfauna:dark_henostone_brick_stairs"
       }
     }
   },

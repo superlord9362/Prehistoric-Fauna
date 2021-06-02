@@ -35,7 +35,7 @@ public class ShortOsmundacaulisBlock extends BushBlock implements IGrowable, ISh
 	
 	@SuppressWarnings("static-access")
 	public void grow(ServerWorld world, Random rand, BlockPos pos, BlockState state) {
-		DoublePlantBlock doubleplantblock = (DoublePlantBlock)(this == BlockInit.SHORT_OSMUNDACAULIS ? BlockInit.OSMUNDACAULIS : BlockInit.SCYTOPHYLLUM);
+		DoublePlantBlock doubleplantblock = (DoublePlantBlock)(this == BlockInit.OSMUNDACAULIS.get() ? BlockInit.TALL_OSMUNDACAULIS.get() : BlockInit.SCYTOPHYLLUM.get());
 		if (doubleplantblock.getDefaultState().isValidPosition(world, pos) && world.isValid(pos.up())) {
 			doubleplantblock.placeAt(world, pos, 2);
 		}

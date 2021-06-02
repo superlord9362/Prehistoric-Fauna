@@ -104,10 +104,29 @@ public class Sillosuchus extends EntityModel<SillosuchusEntity> {
 
     @Override
     public void setRotationAngles(SillosuchusEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-    	this.Neck.rotateAngleX = headPitch * ((float)Math.PI / 180F);
-    	this.Neck.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
-    	this.RThigh.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-    	this.LThigh.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+    	float speed = 1.0f;
+    	float degree = 1.0f;
+    	float offset = 0.0F;
+        if (entityIn.getMotion().x != 0 && entityIn.getMotion().z != 0) {
+        	offset = 1.0F;
+        } else {
+        	offset = 0.0F;
+        }
+
+    	this.Neck.rotateAngleX = MathHelper.cos(-offset + limbSwing * speed * 0.3F) * degree * 0.4F * limbSwingAmount + 0.4F;
+    	this.RArm.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.3F) * degree * 0.3F * limbSwingAmount + 0.3F;
+    	this.LArm.rotateAngleX = MathHelper.cos(offset + limbSwing * speed * 0.3F) * degree * 0.3F * limbSwingAmount + 0.3F;
+    	this.Tail1.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.3F) * degree * 0.05F * limbSwingAmount - 0.15F;
+    	this.Tail2.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.3F) * degree * 0.1F * limbSwingAmount + 0.1F;
+    	this.Tail1.rotateAngleY = MathHelper.cos(limbSwing * speed * 0.15F) * degree * 0.25F * limbSwingAmount;
+    	this.Tail2.rotateAngleY = MathHelper.cos(limbSwing * speed * 0.15F) * degree * 0.3F * limbSwingAmount;
+    	this.RThigh.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.3F) * degree * 0.8F * limbSwingAmount;
+    	this.RLeg.rotateAngleX = MathHelper.cos(offset + limbSwing * speed * 0.3F) * degree * 0.8F * limbSwingAmount + 0.2F;
+    	this.RFoot.rotateAngleX = MathHelper.cos(offset + limbSwing * speed * 0.3F) * degree * 0.2F * limbSwingAmount + 0.2F;
+    	this.LThigh.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.3F) * degree * -0.8F * limbSwingAmount;
+    	this.LLeg.rotateAngleX = MathHelper.cos(offset + limbSwing * speed * 0.3F) * degree * -0.8F * limbSwingAmount + 0.2F;
+    	this.LFoot.rotateAngleX = MathHelper.cos(offset + limbSwing * speed * 0.3F) * degree * -0.2F * limbSwingAmount + 0.2F;
+
     }
 
     /**

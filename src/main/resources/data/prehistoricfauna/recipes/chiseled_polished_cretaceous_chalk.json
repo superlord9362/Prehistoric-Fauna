@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "prehistoricfauna:cretaceous_chalk_slab"
+      "item": "prehistoricfauna:chalk_slab"
     }
   },
   "result": {
-    "item": "prehistoricfauna:chiseled_polished_cretaceous_chalk",
+    "item": "prehistoricfauna:chiseled_chalk",
     "count": 1
   }
 }

@@ -121,7 +121,7 @@ public class CrassostreaOysterBlock extends BushBlock implements IGrowable, ILiq
 	}
 	
 	protected IItemProvider getSeedsItem() {
-		return BlockInit.CRASSOSTREA_BLOCK.asItem();
+		return BlockInit.CRASSOSTREA_OYSTER.get().asItem();
 	}
 	
 	public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state) {

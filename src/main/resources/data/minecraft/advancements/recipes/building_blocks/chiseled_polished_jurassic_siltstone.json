@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "prehistoricfauna:chiseled_polished_jurassic_siltstone"
+      "prehistoricfauna:chiseled_siltstone"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:jurassic_siltstone_slab"
+            "item": "prehistoricfauna:siltstone_slab"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "prehistoricfauna:chiseled_polished_jurassic_siltstone"
+        "recipe": "prehistoricfauna:chiseled_siltstone"
       }
     }
   },

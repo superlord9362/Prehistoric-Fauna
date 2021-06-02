@@ -307,7 +307,7 @@ public class AllosaurusEntity extends AnimalEntity {
 				} else if (this.allosaurus.isDigging > 200) {
 					World world = this.allosaurus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.ALLOSAURUS_EGG.getDefaultState().with(AllosaurusEggBlock.EGGS, Integer.valueOf(this.allosaurus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), BlockInit.ALLOSAURUS_EGG.get().getDefaultState().with(AllosaurusEggBlock.EGGS, Integer.valueOf(this.allosaurus.rand.nextInt(4) + 1)), 3);
 					this.allosaurus.setHasEgg(false);
 					this.allosaurus.setDigging(false);
 					this.allosaurus.setInLove(600);
@@ -328,7 +328,7 @@ public class AllosaurusEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.SILT || block == BlockInit.HARDENED_SILT || block == Blocks.SAND;
+				return block == BlockInit.SILT.get() || block == BlockInit.HARDENED_SILT.get() || block == Blocks.SAND;
 			}
 		}
 	}

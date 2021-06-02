@@ -8,17 +8,17 @@
 	"prehistoricfauna:zamites_vertical_slab",
 	"prehistoricfauna:protojuniperoxylon_vertical_slab",
 	"prehistoricfauna:heidiphyllum_vertical_slab",
-	"prehistoricfauna:triassic_sandstone_vertical_slab",
-	"prehistoricfauna:triassic_sandstone_brick_vertical_slab",
-	"prehistoricfauna:polished_triassic_sandstone_vertical_slab",
-	"prehistoricfauna:cretaceous_chalk_vertical_slab",
-	"prehistoricfauna:cretaceous_chalk_brick_vertical_slab",
-	"prehistoricfauna:polished_cretaceous_chalk_vertical_slab",
-	"prehistoricfauna:jurassic_siltstone_vertical_slab",
-	"prehistoricfauna:polished_jurassic_siltstone_vertical_slab",
-	"prehistoricfauna:jurassic_siltstone_brick_vertical_slab",
+	"prehistoricfauna:sandstone_vertical_slab",
+	"prehistoricfauna:sandstone_brick_vertical_slab",
+	"prehistoricfauna:polished_sandstone_vertical_slab",
+	"prehistoricfauna:chalk_vertical_slab",
+	"prehistoricfauna:chalk_brick_vertical_slab",
+	"prehistoricfauna:polished_chalk_vertical_slab",
+	"prehistoricfauna:siltstone_vertical_slab",
+	"prehistoricfauna:polished_siltstone_vertical_slab",
+	"prehistoricfauna:siltstone_brick_vertical_slab",
 	"prehistoricfauna:henostone_vertical_slab",
 	"prehistoricfauna:henostone_brick_vertical_slab",
-	"prehistoricfauna:henostone_dark_brick_vertical_slab"
+	"prehistoricfauna:dark_henostone_brick_vertical_slab"
 	]
 }

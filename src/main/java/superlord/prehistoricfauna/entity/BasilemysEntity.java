@@ -28,6 +28,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -47,7 +48,7 @@ public class BasilemysEntity extends AnimalEntity {
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(BasilemysEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(BasilemysEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_PANICING = EntityDataManager.createKey(BasilemysEntity.class, DataSerializers.BOOLEAN);
-	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.HORSETAIL.asItem());
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.HORSETAIL.get().asItem());
 	private int isDigging;
 
 	public BasilemysEntity(EntityType<? extends BasilemysEntity> type, World world) {
@@ -80,7 +81,7 @@ public class BasilemysEntity extends AnimalEntity {
 	}
 
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.HORSETAIL.asItem();
+		return stack.getItem() == BlockInit.HORSETAIL.get().asItem();
 	}
 
 	@Override
@@ -126,7 +127,7 @@ public class BasilemysEntity extends AnimalEntity {
 		return SoundHandler.BASILEMYS_IDLE;
 	}
 
-	protected SoundEvent getHurtSound() {
+	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
 		return SoundHandler.BASILEMYS_HURT;
 	}
 
@@ -213,7 +214,7 @@ public class BasilemysEntity extends AnimalEntity {
 				} else if (this.basilemys.isDigging > 200) {
 					World world = this.basilemys.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.BASILEMYS_EGG.getDefaultState().with(BasilemysEggBlock.EGGS, Integer.valueOf(this.basilemys.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), BlockInit.BASILEMYS_EGG.get().getDefaultState().with(BasilemysEggBlock.EGGS, Integer.valueOf(this.basilemys.rand.nextInt(4) + 1)), 3);
 					this.basilemys.setHasEgg(false);
 					this.basilemys.setDigging(false);
 					this.basilemys.setInLove(600);
@@ -229,7 +230,7 @@ public class BasilemysEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = world.getBlockState(pos).getBlock();
-				return block == BlockInit.LOAM || block == BlockInit.MOSSY_DIRT || block == Blocks.PODZOL;
+				return block == BlockInit.LOAM.get() || block == BlockInit.MOSSY_DIRT.get() || block == Blocks.PODZOL;
 			}
 		}
 

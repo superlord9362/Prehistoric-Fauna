@@ -117,11 +117,21 @@ public class AnkylosaurusSkullEntity extends PrehistoricEntity {
 	}
 
 	public boolean attackEntityFrom(DamageSource source, float amount) {
-		this.remove();
-		this.playBrokenSound();
-		this.playParticles();
-		this.spawnFossil(source);
+		if (source.getTrueSource() instanceof PlayerEntity) {
+			this.remove();
+			this.playBrokenSound();
+			this.playParticles();
+			this.spawnFossil(source);
+		}
 		return false;
+	}
+
+	public boolean canBeHitWithPotion() {
+		return false;
+	}
+
+	public void onKillCommand() {
+		this.remove();
 	}
 
 	private void spawnFossil(DamageSource p_213815_1_) {

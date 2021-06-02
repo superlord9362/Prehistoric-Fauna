@@ -98,7 +98,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.OSMUNDA.asItem();
+		return stack.getItem() == BlockInit.OSMUNDA.get().asItem();
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -450,7 +450,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 				} else if (this.triceratops.isDigging > 200) {
 					World world = this.triceratops.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.TRICERATOPS_EGG.getDefaultState().with(TriceratopsEggBlock.EGGS, Integer.valueOf(this.triceratops.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), BlockInit.TRICERATOPS_EGG.get().getDefaultState().with(TriceratopsEggBlock.EGGS, Integer.valueOf(this.triceratops.rand.nextInt(4) + 1)), 3);
 					this.triceratops.setHasEgg(false);
 					this.triceratops.setDigging(false);
 					this.triceratops.setInLove(600);
@@ -471,7 +471,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.LOAM || block == BlockInit.MOSSY_DIRT || block == Blocks.PODZOL;
+				return block == BlockInit.LOAM.get() || block == BlockInit.MOSSY_DIRT.get() || block == Blocks.PODZOL;
 			}
 		}
 	}
@@ -523,26 +523,26 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 		float f = 0.0F;
 		int i = 0;
 		Item item = stack.getItem();
-		if (item == BlockInit.HORSETAIL.asItem()) {
+		if (item == BlockInit.HORSETAIL.get().asItem()) {
 			f = 2.0F;
 			i = 20;
-		} else if (item == BlockInit.DOUBLE_HORSETAIL.asItem()) {
+		} else if (item == BlockInit.TALL_HORSETAIL.get().asItem()) {
 			f = 1.0F;
 			i = 30;
-		} else if (item == BlockInit.OSMUNDA.asItem()) {
+		} else if (item == BlockInit.OSMUNDA.get().asItem()) {
 			f = 20.0F;
 			i = 180;
-		} else if (item == BlockInit.DOUBLE_OSMUNDA.asItem()) {
+		} else if (item == BlockInit.TALL_OSMUNDA.get().asItem()) {
 			f = 3.0F;
 			i = 60;
-		} else if (item == BlockInit.CLUBMOSS.asItem()) {
+		} else if (item == BlockInit.CLUBMOSS.get().asItem()) {
 			f = 4.0F;
 			i = 60;
 			if (this.getGrowingAge() == 0 && !this.isInLove()) {
 				flag = true;
 				this.setInLove(player);
 			}
-		} else if (item == BlockInit.MARCHANTIA.asItem()) {
+		} else if (item == BlockInit.MARCHANTIA.get().asItem()) {
 			f = 3.0F;
 			i = 80;
 		}

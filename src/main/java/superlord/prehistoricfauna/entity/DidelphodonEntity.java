@@ -32,7 +32,7 @@ public class DidelphodonEntity extends AnimalEntity {
 	
 	private static final DataParameter<Boolean> IS_PREGNANT = EntityDataManager.createKey(DidelphodonEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_READY = EntityDataManager.createKey(DidelphodonEntity.class, DataSerializers.BOOLEAN);
-	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.CRASSOSTREA_BLOCK.asItem());
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.CRASSOSTREA_OYSTER.get().asItem());
 	private int isReady;
 	public int stayOutOfBurrowCountdown;
 	//private int remainingCooldownBeforeLocatingNewBurrow = 0;
@@ -62,7 +62,7 @@ public class DidelphodonEntity extends AnimalEntity {
 	}
 	
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.CRASSOSTREA_BLOCK.asItem();
+		return stack.getItem() == BlockInit.CRASSOSTREA_OYSTER.get().asItem();
 	}
 	
 	//private boolean isTooFar(BlockPos pos) {

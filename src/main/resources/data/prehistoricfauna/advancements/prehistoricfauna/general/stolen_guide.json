@@ -2,7 +2,7 @@
   "parent": "prehistoricfauna:prehistoricfauna/general/plagiarism",
   "display": {
     "icon": {
-      "item": "prehistoricfauna:paleopedia"
+      "item": "prehistoricfauna:ancient_journal"
     },
     "title": {
       "translate": "advancements.prehistoricfauna.stolen_guide.title"
@@ -21,44 +21,11 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:paleopedia"
+            "item": "prehistoricfauna:ancient_journal"
           }
         ]
       }
     }
-  },
-  "requirements": [
-    [
-      "paleopedia"
-    ]
-  ]
-}
-/**{
-  "parent": "prehistoricfauna:prehistoricfauna/general/plagiarism",
-  "display": {
-    "icon": {
-      "item": "prehistoricfauna:paleopedia"
-    },
-    "title": {
-      "translate": "advancements.prehistoricfauna.stolen_guide.title"
-    },
-    "description": {
-      "translate": "advancements.prehistoricfauna.stolen_guide.description"
-    },
-    "frame": "task",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
-  },
-  "paleopedia": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "prehistoricfauna:paleopedia"
-          }
-        ]
-      }
   },
   "requirements": [
     [

@@ -2,19 +2,19 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "prehistoricfauna:paleopage"
+      "item": "prehistoricfauna:ancient_journal_page"
     },
     {
-      "item": "prehistoricfauna:paleopage"
+      "item": "prehistoricfauna:ancient_journal_page"
     },
     {
-      "item": "prehistoricfauna:paleopage"
+      "item": "prehistoricfauna:ancient_journal_page"
     },
     {
       "item": "minecraft:leather"
     }
   ],
   "result": {
-    "item": "prehistoricfauna:paleopedia"
+    "item": "prehistoricfauna:ancient_journal"
   }
 }

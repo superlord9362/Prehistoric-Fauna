@@ -6,11 +6,11 @@
   ],
   "key": {
     "#": {
-      "item": "prehistoricfauna:smooth_cretaceous_chalk"
+      "item": "prehistoricfauna:smooth_chalk"
     }
   },
   "result": {
-    "item": "prehistoricfauna:smooth_cretaceous_chalk_wall",
+    "item": "prehistoricfauna:smooth_chalk_wall",
     "count": 6
   }
 }

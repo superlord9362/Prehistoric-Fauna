@@ -19,7 +19,6 @@ public class Liriodendrites1 extends PHFAbstractTreeFeature<PHFTreeConfig> {
         super(configIn);
     }
 
-    @SuppressWarnings("unused")
 	protected boolean generate(Set<BlockPos> changedBlocks, IWorld world, Random rand, BlockPos pos, MutableBoundingBox boundsIn, boolean isSapling, PHFTreeConfig config) {
 
         int randTreeHeight = config.getMinHeight() + rand.nextInt(config.getMaxPossibleHeight());

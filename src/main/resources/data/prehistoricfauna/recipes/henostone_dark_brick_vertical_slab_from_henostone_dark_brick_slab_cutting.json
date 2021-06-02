@@ -1,9 +1,9 @@
 {
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "item": "prehistoricfauna:henostone_dark_brick_slab"
+    "item": "prehistoricfauna:dark_henostone_brick_slab"
   },
-  "result": "prehistoricfauna:henostone_dark_brick_vertical_slab",
+  "result": "prehistoricfauna:dark_henostone_brick_vertical_slab",
   "count": 1,
   "conditions": [
     {

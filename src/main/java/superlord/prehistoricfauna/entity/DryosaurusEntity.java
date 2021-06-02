@@ -38,7 +38,7 @@ public class DryosaurusEntity extends AnimalEntity {
 
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(DryosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(DryosaurusEntity.class, DataSerializers.BOOLEAN);
-	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.CONIOPTERIS.asItem());
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.CONIOPTERIS.get().asItem());
 	private int isDigging;
 	
 	public DryosaurusEntity(EntityType<? extends DryosaurusEntity> type, World world) {
@@ -63,7 +63,7 @@ public class DryosaurusEntity extends AnimalEntity {
 	}
 	
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.CONIOPTERIS.asItem();
+		return stack.getItem() == BlockInit.CONIOPTERIS.get().asItem();
 	}
 	
 	@Override
@@ -176,7 +176,7 @@ public class DryosaurusEntity extends AnimalEntity {
 				} else if (this.dryosaurus.isDigging > 200) {
 					World world = this.dryosaurus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.DRYOSAURUS_EGG.getDefaultState().with(DryosaurusEggBlock.EGGS, Integer.valueOf(this.dryosaurus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), BlockInit.DRYOSAURUS_EGG.get().getDefaultState().with(DryosaurusEggBlock.EGGS, Integer.valueOf(this.dryosaurus.rand.nextInt(4) + 1)), 3);
 					this.dryosaurus.setHasEgg(false);
 					this.dryosaurus.setDigging(false);
 					this.dryosaurus.setInLove(600);
@@ -192,7 +192,7 @@ public class DryosaurusEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.SILT || block == BlockInit.HARDENED_SILT || block == Blocks.SAND;
+				return block == BlockInit.SILT.get() || block == BlockInit.HARDENED_SILT.get() || block == Blocks.SAND;
 			}
 		}
 		

@@ -10,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.BreakableBlock;
+import net.minecraft.block.NetherPortalBlock;
 import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
 import net.minecraft.state.EnumProperty;
@@ -60,21 +61,20 @@ public class JurassicPortalBlock extends BreakableBlock {
     }
 
     public boolean tryToCreatePortal(World worldIn, BlockPos pos) {
-        JurassicPortalBlock.Size gaiaPortalSize = this.isPortal(worldIn, pos);
-        if (gaiaPortalSize != null && this.canCreatePortalByWorld(worldIn, pos)) {
-            gaiaPortalSize.placePortalBlocks();
+        JurassicPortalBlock.Size portalSize = this.isPortal(worldIn, pos);
+        if (portalSize != null && this.canCreatePortalByWorld(worldIn, pos)) {
+        	portalSize.placePortalBlocks();
             return true;
         } else {
             return false;
         }
     }
 
-    // This will check for creation conditions in the Overworld or Gaia
     private boolean canCreatePortalByWorld(World world, BlockPos pos) {
         if (world.getDimension().getType() == DimensionType.OVERWORLD) {
             return true;
         } else {
-            return world.getDimension().getType() == DimensionTypeInit.JURASSIC_DIMENSION_TYPE;
+            return world.getDimension().getType() == DimensionTypeInit.CRETACEOUS_DIMENSION_TYPE || world.getDimension().getType() == DimensionTypeInit.JURASSIC_DIMENSION_TYPE || world.getDimension().getType() == DimensionTypeInit.TRIASSIC_DIMENSION_TYPE;
         }
     }
 
@@ -89,14 +89,14 @@ public class JurassicPortalBlock extends BreakableBlock {
         }
     }
 
+    @SuppressWarnings("deprecation")
     @Override
-    @Deprecated
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        Direction.Axis directionAxis = facing.getAxis();
-        Direction.Axis directionAxis1 = stateIn.get(AXIS);
-        boolean flag = directionAxis1 != directionAxis && directionAxis.isHorizontal();
-        return !flag && facingState.getBlock() != this && !(new JurassicPortalBlock.Size(worldIn, currentPos, directionAxis1)).canCreatePortal() ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-    }
+	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+		Direction.Axis direction$axis = facing.getAxis();
+		Direction.Axis direction$axis1 = stateIn.get(AXIS);
+		boolean flag = direction$axis1 != direction$axis && direction$axis.isHorizontal();
+		return !flag && facingState.getBlock() != this && !(new NetherPortalBlock.Size(worldIn, currentPos, direction$axis1)).func_208508_f() ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+	}
     
     @Override
     @OnlyIn(Dist.CLIENT)
@@ -227,7 +227,7 @@ public class JurassicPortalBlock extends BreakableBlock {
         private BlockPos bottomLeft;
         private int height;
         private int width;
-        private final Block PORTAL_FRAME = BlockInit.PORTAL_FRAME;
+        private final Block PORTAL_FRAME = BlockInit.PORTAL_FRAME.get();
         private final Block PORTAL = BlockInit.JURASSIC_PORTAL.get();
 
         public Size(IWorld worldIn, BlockPos pos, Direction.Axis facing) {
@@ -340,7 +340,7 @@ public class JurassicPortalBlock extends BreakableBlock {
 		boolean isEmptyBlock(BlockState state) {
             Block block = state.getBlock();
 
-            return state.isAir() || block == BlockInit.JURASSIC_TIME_BLOCK || block == PORTAL;
+            return state.isAir() || block == BlockInit.JURASSIC_TIME_BLOCK.get() || block == PORTAL;
         }
 
         public boolean isValid() {
@@ -364,6 +364,11 @@ public class JurassicPortalBlock extends BreakableBlock {
         public boolean canCreatePortal() {
             return this.isValid() && this.isLargeEnough();
         }
+        
+        boolean isPortalFrame(BlockState state) {
+			return state.getBlock() == BlockInit.PORTAL_FRAME.get();
+		}
+        
     }
 
 }

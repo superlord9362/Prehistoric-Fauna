@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "prehistoricfauna:protojuniper_planks"
+      "prehistoricfauna:protojuniperoxylon_planks"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "prehistoricfauna:protojuniper_planks"
+        "recipe": "prehistoricfauna:protojuniperoxylon_planks"
       }
     }
   },

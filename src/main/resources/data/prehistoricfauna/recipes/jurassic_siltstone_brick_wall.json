@@ -6,11 +6,11 @@
   ],
   "key": {
     "#": {
-      "item": "prehistoricfauna:polished_jurassic_siltstone_bricks"
+      "item": "prehistoricfauna:siltstone_bricks"
     }
   },
   "result": {
-    "item": "prehistoricfauna:jurassic_siltstone_brick_wall",
+    "item": "prehistoricfauna:siltstone_brick_wall",
     "count": 6
   }
 }

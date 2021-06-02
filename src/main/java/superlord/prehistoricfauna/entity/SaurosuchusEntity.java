@@ -309,7 +309,7 @@ public class SaurosuchusEntity extends AnimalEntity {
 				} else if (this.saurosuchus.isDigging > 200) {
 					World world = this.saurosuchus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.SAUROSUCHUS_EGG.getDefaultState().with(SaurosuchusEggBlock.EGGS, Integer.valueOf(this.saurosuchus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), BlockInit.SAUROSUCHUS_EGG.get().getDefaultState().with(SaurosuchusEggBlock.EGGS, Integer.valueOf(this.saurosuchus.rand.nextInt(4) + 1)), 3);
 					this.saurosuchus.setHasEgg(false);
 					this.saurosuchus.setDigging(false);
 					this.saurosuchus.setInLove(600);
@@ -325,7 +325,7 @@ public class SaurosuchusEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.LOAM || block == BlockInit.PACKED_LOAM || block == Blocks.PODZOL;
+				return block == BlockInit.LOAM.get() || block == BlockInit.PACKED_LOAM.get() || block == Blocks.PODZOL;
 			}
 		}
 		

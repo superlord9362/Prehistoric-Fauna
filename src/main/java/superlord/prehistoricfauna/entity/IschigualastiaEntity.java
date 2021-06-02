@@ -40,11 +40,13 @@ public class IschigualastiaEntity extends AnimalEntity {
 	private static final DataParameter<Integer> BOOST_TIME = EntityDataManager.createKey(IschigualastiaEntity.class, DataSerializers.VARINT);
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(IschigualastiaEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(IschigualastiaEntity.class, DataSerializers.BOOLEAN);
-	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.CLADOPHLEBIS.asItem());
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.CLADOPHLEBIS.get().asItem());
 	private int warningSoundTicks;
 	private int isDigging;
 	private boolean boosting;
 	private int boostTime;
+	public float ridingXZ;
+	public float ridingY = 1;
 	private int totalBoostTime;
 	
 	public IschigualastiaEntity(EntityType<? extends IschigualastiaEntity> type, World world) {
@@ -89,6 +91,26 @@ public class IschigualastiaEntity extends AnimalEntity {
 		}
 	}
 	
+	@Override
+	public void updatePassenger(Entity passenger) {
+		super.updatePassenger(passenger);
+
+			float radius = ridingXZ * 0.7F * -3;
+			float angle = (0.01745329251F * this.renderYawOffset);
+			double extraX = radius * MathHelper.sin((float) (Math.PI + angle));
+			double extraZ = radius * MathHelper.cos(angle);
+			double extraY = ridingY * 4;
+			this.getRidingPlayer().setPosition(this.getPosX() + extraX, this.getPosY() + extraY - 2.75F, this.getPosZ() + extraZ);
+	}
+	
+	public PlayerEntity getRidingPlayer() {
+		if (this.getControllingPassenger() instanceof PlayerEntity) {
+			return (PlayerEntity) getControllingPassenger();
+		} else {
+			return null;
+		}
+	}
+	
 	public void notifyDataManagerChange(DataParameter<?> key) {
 		if (BOOST_TIME.equals(key) && this.world.isRemote) {
 			this.boosting = true;
@@ -101,7 +123,7 @@ public class IschigualastiaEntity extends AnimalEntity {
 	
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.CLADOPHLEBIS.asItem();
+		return stack.getItem() == BlockInit.CLADOPHLEBIS.get().asItem();
 	}
 	
 	@Override
@@ -397,7 +419,7 @@ public class IschigualastiaEntity extends AnimalEntity {
 				} else if (this.ischigualastia.isDigging > 200) {
 					World world = this.ischigualastia.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.ISCHIGUALASTIA_EGG.getDefaultState().with(IschigualastiaEggBlock.EGGS, Integer.valueOf(this.ischigualastia.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), BlockInit.ISCHIGUALASTIA_EGG.get().getDefaultState().with(IschigualastiaEggBlock.EGGS, Integer.valueOf(this.ischigualastia.rand.nextInt(4) + 1)), 3);
 					this.ischigualastia.setHasEgg(false);
 					this.ischigualastia.setDigging(false);
 					this.ischigualastia.setInLove(600);
@@ -413,7 +435,7 @@ public class IschigualastiaEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.LOAM || block == BlockInit.PACKED_LOAM || block == Blocks.PODZOL;
+				return block == BlockInit.LOAM.get() || block == BlockInit.PACKED_LOAM.get() || block == Blocks.PODZOL;
 			}
 		}
 	}

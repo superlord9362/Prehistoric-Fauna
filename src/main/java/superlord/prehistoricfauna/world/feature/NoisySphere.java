@@ -25,7 +25,8 @@ public class NoisySphere extends Feature<NoisySphereConfig> {
     }
 
 
-    @Override
+    @SuppressWarnings({ "deprecation", "unused" })
+	@Override
     public boolean place(IWorld world, ChunkGenerator<? extends GenerationSettings> generator, Random random, BlockPos position, NoisySphereConfig config) {
         setSeed(world.getSeed());
 

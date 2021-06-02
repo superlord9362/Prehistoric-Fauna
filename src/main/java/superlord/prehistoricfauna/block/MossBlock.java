@@ -68,17 +68,15 @@ public class MossBlock extends Block {
 	}
 
 	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		BlockState blockstate = worldIn.getBlockState(pos.down());
-		Block block = blockstate.getBlock();
-		if (block != Blocks.ICE && block != Blocks.PACKED_ICE && block != Blocks.BARRIER) {
-			if (block != Blocks.HONEY_BLOCK && block != Blocks.SOUL_SAND) {
-				return Block.doesSideFillSquare(blockstate.getCollisionShape(worldIn, pos.down()), Direction.UP) || block == this && blockstate.get(LAYERS) == 8;
-			} else {
-				return true;
-			}
+		boolean placingCapable;
+		BlockState blockState = worldIn.getBlockState(pos.down());
+		Block block = blockState.getBlock();
+		if (block != Blocks.ICE && block != Blocks.PACKED_ICE && block != Blocks.BARRIER && hasEnoughSolidSide(worldIn, pos.down(), Direction.UP)) {
+			placingCapable = true;
 		} else {
-			return false;
+			placingCapable = false;
 		}
+		return placingCapable;
 	}
 
 	/**

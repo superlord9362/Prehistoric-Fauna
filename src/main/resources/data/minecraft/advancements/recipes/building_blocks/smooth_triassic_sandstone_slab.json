@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "prehistoricfauna:smooth_triassic_sandstone_slab"
+      "prehistoricfauna:smooth_sandstone_slab"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:smooth_triassic_sandstone"
+            "item": "prehistoricfauna:smooth_sandstone"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "prehistoricfauna:smooth_triassic_sandstone_slab"
+        "recipe": "prehistoricfauna:smooth_sandstone_slab"
       }
     }
   },

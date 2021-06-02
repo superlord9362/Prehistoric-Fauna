@@ -1,6 +1,8 @@
 package superlord.prehistoricfauna.world.placement;
 
 import com.google.common.collect.ImmutableMap;
+
+import net.minecraft.block.Blocks;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.util.Mirror;
@@ -86,6 +88,13 @@ public class PortalChamberPieces {
                 BlockPos blockpos = pos.down();
                 if (sbb.isVecInside(blockpos)) {
                     LockableLootTileEntity.setLootTable(worldIn, rand, blockpos, PrehistoricLootTables.HELL_CREEK_LOOT_TABLE);
+                }
+            }
+            if (function.startsWith("barrel")) {
+            	worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 0);
+                BlockPos blockpos = pos.down();
+                if (sbb.isVecInside(blockpos)) {
+                    LockableLootTileEntity.setLootTable(worldIn, rand, blockpos, PrehistoricLootTables.TIME_TEMPLE_LOOT_TABLE);
                 }
             }
         }

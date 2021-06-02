@@ -139,7 +139,7 @@ public class HesperornithoidesEntity extends AnimalEntity {
 		return SoundHandler.HESPERORNITHOIDES_IDLE;
 	}
 	
-	protected SoundEvent getHurtSound() {
+	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
 		return SoundHandler.HESPERORNITHOIDES_HURT;
 	}
 	
@@ -230,7 +230,7 @@ public class HesperornithoidesEntity extends AnimalEntity {
 				} else if (this.hesperornithoides.isDigging > 200) {
 					World world = this.hesperornithoides.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.HESPERORNITHOIDES_EGG.getDefaultState().with(HesperornithoidesEggBlock.EGGS, Integer.valueOf(this.hesperornithoides.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), BlockInit.HESPERORNITHOIDES_EGG.get().getDefaultState().with(HesperornithoidesEggBlock.EGGS, Integer.valueOf(this.hesperornithoides.rand.nextInt(4) + 1)), 3);
 					this.hesperornithoides.setHasEgg(false);
 					this.hesperornithoides.setDigging(false);
 					this.hesperornithoides.setInLove(600);
@@ -246,7 +246,7 @@ public class HesperornithoidesEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = world.getBlockState(pos).getBlock();
-				return block == BlockInit.SILT || block == BlockInit.HARDENED_SILT || block == Blocks.SAND;
+				return block == BlockInit.SILT.get() || block == BlockInit.HARDENED_SILT.get() || block == Blocks.SAND;
 			}
 		}
 		

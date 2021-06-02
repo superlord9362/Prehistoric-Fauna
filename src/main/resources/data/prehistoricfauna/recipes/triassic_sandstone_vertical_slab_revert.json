@@ -5,11 +5,11 @@
 	],
 	"key": {
 		"#": {
-			"item": "prehistoricfauna:triassic_sandstone_vertical_slab"
+			"item": "prehistoricfauna:sandstone_vertical_slab"
 		}
 	},
 	"result": {
-		"item": "prehistoricfauna:triassic_sandstone_slab",
+		"item": "prehistoricfauna:sandstone_slab",
 		"count": 1
 	}
 }

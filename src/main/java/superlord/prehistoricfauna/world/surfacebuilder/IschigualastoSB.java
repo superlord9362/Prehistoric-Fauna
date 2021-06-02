@@ -20,11 +20,11 @@ public class IschigualastoSB extends SurfaceBuilder<SurfaceBuilderConfig> {
 
 	public void buildSurface(Random random, IChunk chunkIn, Biome biomeIn, int x, int z, int startHeight, double noise, BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, SurfaceBuilderConfig config) {
 		if (noise > 1.75D) {
-			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, new SurfaceBuilderConfig(BlockInit.PACKED_LOAM.getDefaultState(), BlockInit.PACKED_LOAM.getDefaultState(), Blocks.GRAVEL.getDefaultState()));
+			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, new SurfaceBuilderConfig(BlockInit.PACKED_LOAM.get().getDefaultState(), BlockInit.PACKED_LOAM.get().getDefaultState(), Blocks.GRAVEL.getDefaultState()));
 		} else if (noise > -0.95D) {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, new SurfaceBuilderConfig(Blocks.PODZOL.getDefaultState(), Blocks.COARSE_DIRT.getDefaultState(), Blocks.COARSE_DIRT.getDefaultState()));
 		} else {
-			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, new SurfaceBuilderConfig(BlockInit.LOAM.getDefaultState(), BlockInit.PACKED_LOAM.getDefaultState(), Blocks.CLAY.getDefaultState()));
+			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, new SurfaceBuilderConfig(BlockInit.LOAM.get().getDefaultState(), BlockInit.PACKED_LOAM.get().getDefaultState(), Blocks.CLAY.getDefaultState()));
 		}
 	}
 }
