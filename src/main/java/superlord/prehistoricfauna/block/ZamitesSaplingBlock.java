@@ -83,8 +83,8 @@ public class ZamitesSaplingBlock extends Block implements IPlantable, IGrowable 
 	}
 	
 	public void grow(IWorld world, BlockPos pos) {
-		BlockState log = BlockInit.ZAMITES_LOG.get().getDefaultState();
-		BlockState leaves = BlockInit.ZAMITES_LEAVES.get().getDefaultState();
+		BlockState log = BlockInit.ZAMITES_LOG.getDefaultState();
+		BlockState leaves = BlockInit.ZAMITES_LEAVES.getDefaultState();
 		world.setBlockState(pos, log, 2);
 		world.setBlockState(pos.up(), log, 2);
 		world.setBlockState(pos.up(2), log, 2);

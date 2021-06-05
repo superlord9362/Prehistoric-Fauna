@@ -230,24 +230,24 @@ public class TeleporterCretaceous implements ITeleporter {
                         int frameZ = baseZ + (i8 - 1) * zAxis - j7 * xAxis;
                         boolean flag = i9 < 0;
                         mutable.setPos(frameX, frameY, frameZ);
-                        world.setBlockState(mutable, flag ? BlockInit.PORTAL_FRAME.get().getDefaultState() : Blocks.AIR.getDefaultState());
+                        world.setBlockState(mutable, flag ? BlockInit.PORTAL_FRAME.getDefaultState() : Blocks.AIR.getDefaultState());
                     }
                 }
             }
         }
 
-        for (int fWidth = -1; fWidth < 3; ++fWidth) {
+        for (int fWidth = -2; fWidth < 3; ++fWidth) {
             for (int fHeight = -1; fHeight < 4; ++fHeight) {
-                if (fWidth == -1 || fWidth == 2 || fHeight == -1 || fHeight == 3) {
+                if (fWidth == -2 || fWidth == 2 || fHeight == -1 || fHeight == 3) {
                     mutable.setPos(baseX + fWidth * xAxis, baseY + fHeight, baseZ + fWidth * zAxis);
-                    world.setBlockState(mutable, BlockInit.PORTAL_FRAME.get().getDefaultState(), 3);
+                    world.setBlockState(mutable, BlockInit.PORTAL_FRAME.getDefaultState(), 3);
                 }
             }
         }
 
         BlockState portal = BlockInit.CRETACEOUS_PORTAL.get().getDefaultState().with(CretaceousPortalBlock.AXIS, xAxis == 0 ? Direction.Axis.Z : Direction.Axis.X);
 
-        for (int pWidth = 0; pWidth < 2; ++pWidth) {
+        for (int pWidth = -1; pWidth < 2; ++pWidth) {
             for (int pHeight = 0; pHeight < 3; ++pHeight) {
                 mutable.setPos(baseX + pWidth * xAxis, baseY + pHeight, baseZ + pWidth * zAxis);
                 world.setBlockState(mutable, portal, 18);

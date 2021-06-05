@@ -227,7 +227,7 @@ public class CretaceousPortalBlock extends BreakableBlock {
 		private BlockPos bottomLeft;
 		private int height;
 		private int width;
-		private final Block PORTAL_FRAME = BlockInit.PORTAL_FRAME.get();
+		private final Block PORTAL_FRAME = BlockInit.PORTAL_FRAME;
 		private final Block PORTAL = BlockInit.CRETACEOUS_PORTAL.get();
 
 		public Size(IWorld worldIn, BlockPos pos, Direction.Axis facing) {
@@ -340,7 +340,7 @@ public class CretaceousPortalBlock extends BreakableBlock {
 		boolean isEmptyBlock(BlockState state) {
 			Block block = state.getBlock();
 
-			return state.isAir() || block == BlockInit.CRETACEOUS_TIME_BLOCK.get() || block == PORTAL;
+			return state.isAir() || block == BlockInit.CRETACEOUS_TIME_BLOCK || block == PORTAL;
 		}
 
 		public boolean isValid() {

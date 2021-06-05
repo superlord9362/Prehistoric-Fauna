@@ -37,7 +37,7 @@ public class ChromogisaurusEntity extends AnimalEntity {
 	
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(ChromogisaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(ChromogisaurusEntity.class, DataSerializers.BOOLEAN);
-	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.JOHNSTONIA.get().asItem());
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.JOHNSTONIA.asItem());
 	private int isDigging;
 	
 	public ChromogisaurusEntity(EntityType<? extends ChromogisaurusEntity> type, World world) {
@@ -62,7 +62,7 @@ public class ChromogisaurusEntity extends AnimalEntity {
 	}
 	
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.JOHNSTONIA.get().asItem();
+		return stack.getItem() == BlockInit.JOHNSTONIA.asItem();
 	}
 	
 	@Override
@@ -175,7 +175,7 @@ public class ChromogisaurusEntity extends AnimalEntity {
 				} else if (this.chromogisaurus.isDigging > 200) {
 					World world = this.chromogisaurus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.CHROMOGISAURUS_EGG.get().getDefaultState().with(ChromogisaurusEggBlock.EGGS, Integer.valueOf(this.chromogisaurus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), BlockInit.CHROMOGISAURUS_EGG.getDefaultState().with(ChromogisaurusEggBlock.EGGS, Integer.valueOf(this.chromogisaurus.rand.nextInt(4) + 1)), 3);
 					this.chromogisaurus.setHasEgg(false);
 					this.chromogisaurus.setDigging(false);
 					this.chromogisaurus.setInLove(600);
@@ -191,7 +191,7 @@ public class ChromogisaurusEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.LOAM.get() || block == BlockInit.PACKED_LOAM.get() || block == Blocks.PODZOL;
+				return block == BlockInit.LOAM || block == BlockInit.PACKED_LOAM || block == Blocks.PODZOL;
 			}
 		}
 		

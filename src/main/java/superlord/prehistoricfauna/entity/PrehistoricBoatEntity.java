@@ -75,19 +75,19 @@ public class PrehistoricBoatEntity extends BoatEntity {
     public Block getPlanks() {
         switch (this.getPFBoatType()) {
             default:
-                return BlockInit.ARAUCARIA_PLANKS.get();
+                return BlockInit.ARAUCARIA_PLANKS;
             case METASEQUOIA:
-                return BlockInit.METASEQUOIA_PLANKS.get();
+                return BlockInit.METASEQUOIA_PLANKS;
             case PROTOPICEOXYLON:
-                return BlockInit.PROTOPICEOXYLON_PLANKS.get();
+                return BlockInit.PROTOPICEOXYLON_PLANKS;
             case ZAMITES:
-                return BlockInit.ZAMITES_PLANKS.get();
+                return BlockInit.ZAMITES_PLANKS;
             case PROTOJUNIPER:
-            	return BlockInit.PROTOJUNIPEROXYLON_PLANKS.get();
+            	return BlockInit.PROTOJUNIPEROXYLON_PLANKS;
             case HEIDIPHYLLUM:
-            	return BlockInit.HEIDIPHYLLUM_PLANKS.get();
+            	return BlockInit.HEIDIPHYLLUM_PLANKS;
             case LIRIODENDRITES:
-            	return BlockInit.LIRIODENDRITES_PLANKS.get();
+            	return BlockInit.LIRIODENDRITES_PLANKS;
         }
     }
 

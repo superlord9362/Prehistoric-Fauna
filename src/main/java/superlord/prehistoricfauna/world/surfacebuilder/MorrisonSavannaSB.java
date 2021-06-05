@@ -22,9 +22,9 @@ public class MorrisonSavannaSB extends SurfaceBuilder<SurfaceBuilderConfig> {
 		if (noise > 1.75D) {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, new SurfaceBuilderConfig(Blocks.SAND.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.SANDSTONE.getDefaultState()));
 		} else if (noise > -0.95D) {
-			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, new SurfaceBuilderConfig(BlockInit.HARDENED_SILT.get().getDefaultState(), BlockInit.HARDENED_SILT.get().getDefaultState(), Blocks.CLAY.getDefaultState()));
+			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, new SurfaceBuilderConfig(BlockInit.HARDENED_SILT.getDefaultState(), BlockInit.HARDENED_SILT.getDefaultState(), Blocks.CLAY.getDefaultState()));
 		} else {
-			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, new SurfaceBuilderConfig(BlockInit.SILT.get().getDefaultState(), BlockInit.HARDENED_SILT.get().getDefaultState(), Blocks.COARSE_DIRT.getDefaultState()));
+			SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, new SurfaceBuilderConfig(BlockInit.SILT.getDefaultState(), BlockInit.HARDENED_SILT.getDefaultState(), Blocks.COARSE_DIRT.getDefaultState()));
 		}
 	}
 }

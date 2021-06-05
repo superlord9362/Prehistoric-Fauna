@@ -68,7 +68,7 @@ public class SillosuchusEntity extends AnimalEntity {
 
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.DICROIDIUM.get().asItem();
+		return stack.getItem() == BlockInit.DICROIDIUM.asItem();
 	}
 
 	protected void registerGoals() {
@@ -324,7 +324,7 @@ public class SillosuchusEntity extends AnimalEntity {
 				} else if (this.sillosuchus.isDigging > 200) {
 					World world = this.sillosuchus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.STEGOSAURUS_EGG.get().getDefaultState().with(SillosuchusEggBlock.EGGS, Integer.valueOf(this.sillosuchus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), BlockInit.STEGOSAURUS_EGG.getDefaultState().with(SillosuchusEggBlock.EGGS, Integer.valueOf(this.sillosuchus.rand.nextInt(4) + 1)), 3);
 					this.sillosuchus.setHasEgg(false);
 					this.sillosuchus.setDigging(false);
 					this.sillosuchus.setInLove(600);
@@ -345,7 +345,7 @@ public class SillosuchusEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.LOAM.get() || block == BlockInit.PACKED_LOAM.get() || block == Blocks.PODZOL;
+				return block == BlockInit.LOAM || block == BlockInit.PACKED_LOAM || block == Blocks.PODZOL;
 			}
 		}
 	}

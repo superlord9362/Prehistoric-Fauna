@@ -28,7 +28,7 @@ public class AlgaeFeature extends Feature<AlgaeFeatureConfig> {
          int i1 = worldIn.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX() + k, pos.getZ() + l);
          BlockPos blockpos = new BlockPos(pos.getX() + k, i1, pos.getZ() + l);
          if (worldIn.getBlockState(blockpos).getBlock() == Blocks.WATER && worldIn.getBlockState(blockpos.down()).getBlock() == Blocks.SAND || worldIn.getBlockState(blockpos).getBlock() == Blocks.WATER && worldIn.getBlockState(blockpos.down()).getBlock() == Blocks.DIRT || worldIn.getBlockState(blockpos).getBlock() == Blocks.WATER && worldIn.getBlockState(blockpos.down()).getBlock() == Blocks.COARSE_DIRT) {
-            BlockState blockstate = BlockInit.ALGAE_CARPET.get().getDefaultState();
+            BlockState blockstate = BlockInit.ALGAE_CARPET.getDefaultState();
             if (blockstate.isValidPosition(worldIn, blockpos)) {
             	worldIn.setBlockState(blockpos, blockstate, 2);
             }

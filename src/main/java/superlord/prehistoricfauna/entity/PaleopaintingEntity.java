@@ -111,7 +111,7 @@ public class PaleopaintingEntity extends HangingEntity implements IEntityAdditio
 
     @Override
     public void setPositionAndRotationDirect(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean teleport) {
-        BlockPos blockpos = this.hangingPosition.add(x - this.getPosX(), y - this.getPosY(), z - this.getPosZ());
+        BlockPos blockpos = this.hangingPosition;
         this.setPosition(blockpos.getX(), blockpos.getY(), blockpos.getZ());
     }
 
@@ -148,7 +148,8 @@ public class PaleopaintingEntity extends HangingEntity implements IEntityAdditio
         TALL_BUSTS(16, 32),
         CUBE(32, 32),
         SERENITY(64, 48),
-        LAELAPS(64, 48);
+        LAELAPS(64, 48),
+        CHAOTIAN(64, 32);
 
         public static final Paleopainting[] VALUES = values();
 

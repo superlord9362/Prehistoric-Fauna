@@ -36,7 +36,7 @@ public class ExaeretodonEntity extends AnimalEntity {
 	
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(ExaeretodonEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(ExaeretodonEntity.class, DataSerializers.BOOLEAN);
-	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.CLADOPHLEBIS.get().asItem());
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.CLADOPHLEBIS.asItem());
 	private int isDigging;
 	private int warningSoundTicks;
 
@@ -68,7 +68,7 @@ public class ExaeretodonEntity extends AnimalEntity {
 	}
 
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.CLADOPHLEBIS.get().asItem();
+		return stack.getItem() == BlockInit.CLADOPHLEBIS.asItem();
 	}
 
 	protected void registerGoals() {
@@ -267,7 +267,7 @@ public class ExaeretodonEntity extends AnimalEntity {
 				} else if (this.exaeretodon.isDigging > 200) {
 					World world = this.exaeretodon.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.EXAERETODON_EGG.get().getDefaultState().with(ExaeretodonEggBlock.EGGS, Integer.valueOf(this.exaeretodon.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), BlockInit.EXAERETODON_EGG.getDefaultState().with(ExaeretodonEggBlock.EGGS, Integer.valueOf(this.exaeretodon.rand.nextInt(4) + 1)), 3);
 					this.exaeretodon.setHasEgg(false);
 					this.exaeretodon.setDigging(false);
 					this.exaeretodon.setInLove(600);
@@ -283,7 +283,7 @@ public class ExaeretodonEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.LOAM.get() || block == BlockInit.PACKED_LOAM.get() || block == Blocks.PODZOL;
+				return block == BlockInit.LOAM || block == BlockInit.PACKED_LOAM || block == Blocks.PODZOL;
 			}
 		}
 		

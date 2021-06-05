@@ -227,7 +227,7 @@ public class JurassicPortalBlock extends BreakableBlock {
         private BlockPos bottomLeft;
         private int height;
         private int width;
-        private final Block PORTAL_FRAME = BlockInit.PORTAL_FRAME.get();
+        private final Block PORTAL_FRAME = BlockInit.PORTAL_FRAME;
         private final Block PORTAL = BlockInit.JURASSIC_PORTAL.get();
 
         public Size(IWorld worldIn, BlockPos pos, Direction.Axis facing) {
@@ -340,7 +340,7 @@ public class JurassicPortalBlock extends BreakableBlock {
 		boolean isEmptyBlock(BlockState state) {
             Block block = state.getBlock();
 
-            return state.isAir() || block == BlockInit.JURASSIC_TIME_BLOCK.get() || block == PORTAL;
+            return state.isAir() || block == BlockInit.JURASSIC_TIME_BLOCK || block == PORTAL;
         }
 
         public boolean isValid() {
@@ -366,7 +366,7 @@ public class JurassicPortalBlock extends BreakableBlock {
         }
         
         boolean isPortalFrame(BlockState state) {
-			return state.getBlock() == BlockInit.PORTAL_FRAME.get();
+			return state.getBlock() == BlockInit.PORTAL_FRAME;
 		}
         
     }

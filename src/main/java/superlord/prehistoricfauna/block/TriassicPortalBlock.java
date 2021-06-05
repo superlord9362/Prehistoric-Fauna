@@ -228,7 +228,7 @@ public class TriassicPortalBlock extends BreakableBlock {
         private BlockPos bottomLeft;
         private int height;
         private int width;
-        private final Block PORTAL_FRAME = BlockInit.PORTAL_FRAME.get();
+        private final Block PORTAL_FRAME = BlockInit.PORTAL_FRAME;
 
         public Size(IWorld worldIn, BlockPos pos, Direction.Axis facing) {
             world = worldIn;
@@ -340,7 +340,7 @@ public class TriassicPortalBlock extends BreakableBlock {
 		boolean isEmptyBlock(BlockState state) {
             Block block = state.getBlock();
 
-            return state.isAir() || block == BlockInit.TRIASSIC_TIME_BLOCK.get() || block == BlockInit.TRIASSIC_PORTAL.get();
+            return state.isAir() || block == BlockInit.TRIASSIC_TIME_BLOCK || block == BlockInit.TRIASSIC_PORTAL.get();
         }
 
         public boolean isValid() {

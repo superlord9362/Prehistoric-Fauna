@@ -14,7 +14,7 @@ import superlord.prehistoricfauna.world.feature.PetrifiedTree;
 
 public class PFFeatureRegistration {
 
-	public static final BlockClusterFeatureConfig PETRIFIED_TREE_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BlockInit.PETRIFIED_WOOD.get().getDefaultState()), new ColumnBlockPlacer(1, 4))).tries(10).func_227317_b_().build();
+	public static final BlockClusterFeatureConfig PETRIFIED_TREE_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BlockInit.PETRIFIED_WOOD.getDefaultState()), new ColumnBlockPlacer(1, 4))).tries(10).func_227317_b_().build();
 	
     public static void addFeatures() {
     	 for (Biome biome : ForgeRegistries.BIOMES) {	

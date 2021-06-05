@@ -66,7 +66,7 @@ public class AnkylosaurusEntity extends AnimalEntity {
 	}
 
    public boolean isBreedingItem(ItemStack stack) {
-	   return stack.getItem() == BlockInit.CLUBMOSS.get().asItem();
+	   return stack.getItem() == BlockInit.CLUBMOSS.asItem();
    }
 
    protected void registerGoals() {
@@ -322,7 +322,7 @@ public class AnkylosaurusEntity extends AnimalEntity {
 	            } else if (this.ankylosaurus.isDigging > 200) {
 	               World world = this.ankylosaurus.world;
 	               world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-	               world.setBlockState(this.destinationBlock.up(), BlockInit.ANKYLOSAURUS_EGG.get().getDefaultState().with(AnkylosaurusEggBlock.EGGS, Integer.valueOf(this.ankylosaurus.rand.nextInt(4) + 1)), 3);
+	               world.setBlockState(this.destinationBlock.up(), BlockInit.ANKYLOSAURUS_EGG.getDefaultState().with(AnkylosaurusEggBlock.EGGS, Integer.valueOf(this.ankylosaurus.rand.nextInt(4) + 1)), 3);
 	               this.ankylosaurus.setHasEgg(false);
 	               this.ankylosaurus.setDigging(false);
 	               this.ankylosaurus.setInLove(600);
@@ -343,7 +343,7 @@ public class AnkylosaurusEntity extends AnimalEntity {
 	            return false;
 	         } else {
 	            Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.LOAM.get() || block == BlockInit.MOSSY_DIRT.get() || block == Blocks.PODZOL;
+				return block == BlockInit.LOAM || block == BlockInit.MOSSY_DIRT || block == Blocks.PODZOL;
 	         }
 	      }
 	   }

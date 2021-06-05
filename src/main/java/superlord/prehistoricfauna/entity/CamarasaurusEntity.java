@@ -259,7 +259,7 @@ public class CamarasaurusEntity extends AnimalEntity {
 				} else if (this.camarasaurus.isDigging > 200) {
 					World world = this.camarasaurus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.CAMARASAURUS_EGG.get().getDefaultState().with(CamarasaurusEggBlock.EGGS, Integer.valueOf(this.camarasaurus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), BlockInit.CAMARASAURUS_EGG.getDefaultState().with(CamarasaurusEggBlock.EGGS, Integer.valueOf(this.camarasaurus.rand.nextInt(4) + 1)), 3);
 					this.camarasaurus.setHasEgg(false);
 					this.camarasaurus.setDigging(false);
 					this.camarasaurus.setInLove(600);
@@ -275,7 +275,7 @@ public class CamarasaurusEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.SILT.get() || block == BlockInit.HARDENED_SILT.get() || block == Blocks.SAND;
+				return block == BlockInit.SILT || block == BlockInit.HARDENED_SILT || block == Blocks.SAND;
 			}
 		}
 	}

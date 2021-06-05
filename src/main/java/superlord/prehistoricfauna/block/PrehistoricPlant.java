@@ -35,7 +35,7 @@ public class PrehistoricPlant extends BushBlock implements IGrowable, IShearable
 	
 	@SuppressWarnings("static-access")
 	public void grow(ServerWorld world, Random rand, BlockPos pos, BlockState state) {
-		DoublePlantBlock doubleplantblock = (DoublePlantBlock)(this == BlockInit.HORSETAIL.get() ? BlockInit.TALL_HORSETAIL.get() : BlockInit.TALL_OSMUNDA.get());
+		DoublePlantBlock doubleplantblock = (DoublePlantBlock)(this == BlockInit.HORSETAIL ? BlockInit.TALL_HORSETAIL : BlockInit.TALL_OSMUNDA);
 		if (doubleplantblock.getDefaultState().isValidPosition(world, pos) && world.isValid(pos.up())) {
 			doubleplantblock.placeAt(world, pos, 2);
 		}

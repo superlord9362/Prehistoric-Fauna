@@ -287,7 +287,7 @@ public class HerrerasaurusEntity extends AnimalEntity {
 				} else if (this.herrerasaurus.isDigging > 200) {
 					World world = this.herrerasaurus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.HERRERASAURUS_EGG.get().getDefaultState().with(HerrerasaurusEggBlock.EGGS, Integer.valueOf(this.herrerasaurus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), BlockInit.HERRERASAURUS_EGG.getDefaultState().with(HerrerasaurusEggBlock.EGGS, Integer.valueOf(this.herrerasaurus.rand.nextInt(4) + 1)), 3);
 					this.herrerasaurus.setHasEgg(false);
 					this.herrerasaurus.setDigging(false);
 					this.herrerasaurus.setInLove(600);
@@ -303,7 +303,7 @@ public class HerrerasaurusEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.LOAM.get() || block == BlockInit.PACKED_LOAM.get() || block == Blocks.PODZOL;
+				return block == BlockInit.LOAM || block == BlockInit.PACKED_LOAM || block == Blocks.PODZOL;
 			}
 		}
 	}

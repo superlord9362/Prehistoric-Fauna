@@ -11,11 +11,11 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.monster.GuardianEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.PrehistoricFauna;
@@ -28,6 +28,7 @@ public class BossRenderer extends MobRenderer<TimeGuardianEntity, EntityModel<Ti
 
 	private static final ResourceLocation TEXTURE = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/henos.png");
 	private static final ResourceLocation SUMMONED_TEXTURE = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/henos_summoned.png");
+	private static final ResourceLocation FUNKY_MONKEY = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/brass_monkey.png");
 	private static final Henos HENOS = new Henos();
 	private static final HenosSummoned SUMMONED = new HenosSummoned();
 	private static final ResourceLocation BEAM_TEXTURE = new ResourceLocation(PrehistoricFauna.MODID, "textures/entities/beam.png");
@@ -65,7 +66,7 @@ public class BossRenderer extends MobRenderer<TimeGuardianEntity, EntityModel<Ti
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 		LivingEntity livingentity = entityIn.getAttackTarget();
 		if (livingentity != null) {
-			float f = TimeGuardianEntity.BeamAttackAI.attackTick;
+			float f = 240.0F;
 			float f1 = (float)entityIn.world.getGameTime() + partialTicks;
 			float f2 = f1 * 0.5F % 1.0F;
 			float f3 = entityIn.getEyeHeight();
@@ -80,14 +81,11 @@ public class BossRenderer extends MobRenderer<TimeGuardianEntity, EntityModel<Ti
 			float f6 = (float)Math.atan2(vec3d2.z, vec3d2.x);
 			matrixStackIn.rotate(Vector3f.YP.rotationDegrees((((float)Math.PI / 2F) - f6) * (180F / (float)Math.PI)));
 			matrixStackIn.rotate(Vector3f.XP.rotationDegrees(f5 * (180F / (float)Math.PI)));
-			int i = 1;
 			float f7 = f1 * 0.05F * -1.5F;
 			float f8 = f * f;
 			int j = 64 + (int)(f8 * 191.0F);
 			int k = 32 + (int)(f8 * 191.0F);
 			int l = 128 - (int)(f8 * 64.0F);
-			float f9 = 0.2F;
-			float f10 = 0.282F;
 			float f11 = MathHelper.cos(f7 + 2.3561945F) * 0.282F;
 			float f12 = MathHelper.sin(f7 + 2.3561945F) * 0.282F;
 			float f13 = MathHelper.cos(f7 + ((float)Math.PI / 4F)) * 0.282F;
@@ -104,8 +102,6 @@ public class BossRenderer extends MobRenderer<TimeGuardianEntity, EntityModel<Ti
 			float f24 = MathHelper.sin(f7 + ((float)Math.PI / 2F)) * 0.2F;
 			float f25 = MathHelper.cos(f7 + ((float)Math.PI * 1.5F)) * 0.2F;
 			float f26 = MathHelper.sin(f7 + ((float)Math.PI * 1.5F)) * 0.2F;
-			float f27 = 0.0F;
-			float f28 = 0.4999F;
 			float f29 = -1.0F + f2;
 			float f30 = f4 * 2.5F + f29;
 			IVertexBuilder ivertexbuilder = bufferIn.getBuffer(field_229107_h_);
@@ -146,6 +142,10 @@ public class BossRenderer extends MobRenderer<TimeGuardianEntity, EntityModel<Ti
 
 
 	public ResourceLocation getEntityTexture(TimeGuardianEntity entity) {
+		String s = TextFormatting.getTextWithoutFormattingCodes(entity.getName().getString());
+		if (!entity.isSummoned() && s != null && "Brass Monkey".equals(s)) {
+			return FUNKY_MONKEY;
+		}
 		if (entity.isSummoned()) {
 			return SUMMONED_TEXTURE;
 		} else {

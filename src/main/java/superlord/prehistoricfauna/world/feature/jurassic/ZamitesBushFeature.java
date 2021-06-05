@@ -38,9 +38,9 @@ public class ZamitesBushFeature extends AbstractTreeFeature<TreeFeatureConfig>
         {
             for (int j = pos.getY(); j <= pos.getY() + height; j++)
             {
-                if (isAir(worldIn, new BlockPos(x, j, z))) setBlockState(worldIn, new BlockPos(x, j, z), BlockInit.ZAMITES_LOG.get().getDefaultState());
+                if (isAir(worldIn, new BlockPos(x, j, z))) setBlockState(worldIn, new BlockPos(x, j, z), BlockInit.ZAMITES_LOG.getDefaultState());
             }
-            if (isAir(worldIn, new BlockPos(x, pos.getY() + height + 1, z))) setBlockState(worldIn, new BlockPos(x, startPosition.getY() + height + 1, z), BlockInit.ZAMITES_LEAVES.get().getDefaultState());
+            if (isAir(worldIn, new BlockPos(x, pos.getY() + height + 1, z))) setBlockState(worldIn, new BlockPos(x, startPosition.getY() + height + 1, z), BlockInit.ZAMITES_LEAVES.getDefaultState());
             return true;
         }
         return false;

@@ -147,24 +147,24 @@ public class ItemInit {
 	public static final RegistryObject<WallFossilItem> WALL_FOSSIL = ITEMS.register("wall_fossil", () -> new WallFossilItem(new Item.Properties().group(PFDecoration.instance)));
 	public static final RegistryObject<Item> GEOLOGY_HAMMER = ITEMS.register("geological_hammer", () -> new Item(new Item.Properties().group(PFMisc.instance).maxStackSize(1).maxDamage(250)));
 	
-	public static final RegistryObject<Item> HENOSTONE = ITEMS.register("henostone", () -> new BlockItem(BlockInit.HENOSTONE.get(), new Item.Properties().group(PFBuilding.instance)));
-	public static final RegistryObject<Item> CARVED_HENOSTONE = ITEMS.register("carved_henostone", () -> new BlockItem(BlockInit.CARVED_HENOSTONE.get(), new Item.Properties().group(PFBuilding.instance)));
-	public static final RegistryObject<Item> HENOSTONE_BRICKS = ITEMS.register("henostone_bricks", () -> new BlockItem(BlockInit.HENOSTONE_BRICKS.get(), new Item.Properties().group(PFBuilding.instance)));
-	public static final RegistryObject<Item> DARK_HENOSTONE_BRICKS = ITEMS.register("dark_henostone_bricks", () -> new BlockItem(BlockInit.DARK_HENOSTONE_BRICKS.get(), new Item.Properties().group(PFBuilding.instance)));
-	public static final RegistryObject<Item> HENOSTONE_PILLAR = ITEMS.register("henostone_pillar", () -> new BlockItem(BlockInit.HENOSTONE_PILLAR.get(), new Item.Properties().group(PFBuilding.instance)));
-	public static final RegistryObject<Item> CHISELED_HENOSTONE_PILLAR = ITEMS.register("chiseled_henostone_pillar", () -> new BlockItem(BlockInit.CHISELED_HENOSTONE_PILLAR.get(), new Item.Properties().group(PFBuilding.instance)));
-	public static final RegistryObject<Item> HENOSTONE_STAIRS = ITEMS.register("henostone_stairs", () -> new BlockItem(BlockInit.HENOSTONE_STAIRS.get(), new Item.Properties().group(PFBuilding.instance)));
-	public static final RegistryObject<Item> HENOSTONE_SLAB = ITEMS.register("henostone_slab", () -> new BlockItem(BlockInit.HENOSTONE_SLAB.get(), new Item.Properties().group(PFBuilding.instance)));
-	public static final RegistryObject<Item> HENOSTONE_BRICK_STAIRS = ITEMS.register("henostone_brick_stairs", () -> new BlockItem(BlockInit.HENOSTONE_BRICK_STAIRS.get(), new Item.Properties().group(PFBuilding.instance)));
-	public static final RegistryObject<Item> HENOSTONE_BRICK_SLAB = ITEMS.register("henostone_brick_slab", () -> new BlockItem(BlockInit.HENOSTONE_BRICK_SLAB.get(), new Item.Properties().group(PFBuilding.instance)));
-	public static final RegistryObject<Item> DARK_HENOSTONE_BRICK_STAIRS = ITEMS.register("dark_henostone_brick_stairs", () -> new BlockItem(BlockInit.DARK_HENOSTONE_BRICK_STAIRS.get(), new Item.Properties().group(PFBuilding.instance)));
-	public static final RegistryObject<Item> DARK_HENOSTONE_BRICK_SLAB = ITEMS.register("dark_henostone_brick_slab", () -> new BlockItem(BlockInit.DARK_HENOSTONE_BRICK_SLAB.get(), new Item.Properties().group(PFBuilding.instance)));
+	public static final RegistryObject<Item> HENOSTONE = ITEMS.register("henostone", () -> new BlockItem(BlockInit.HENOSTONE, new Item.Properties().group(PFBuilding.instance)));
+	public static final RegistryObject<Item> CARVED_HENOSTONE = ITEMS.register("carved_henostone", () -> new BlockItem(BlockInit.CARVED_HENOSTONE, new Item.Properties().group(PFBuilding.instance)));
+	public static final RegistryObject<Item> HENOSTONE_BRICKS = ITEMS.register("henostone_bricks", () -> new BlockItem(BlockInit.HENOSTONE_BRICKS, new Item.Properties().group(PFBuilding.instance)));
+	public static final RegistryObject<Item> DARK_HENOSTONE_BRICKS = ITEMS.register("dark_henostone_bricks", () -> new BlockItem(BlockInit.DARK_HENOSTONE_BRICKS, new Item.Properties().group(PFBuilding.instance)));
+	public static final RegistryObject<Item> HENOSTONE_PILLAR = ITEMS.register("henostone_pillar", () -> new BlockItem(BlockInit.HENOSTONE_PILLAR, new Item.Properties().group(PFBuilding.instance)));
+	public static final RegistryObject<Item> CHISELED_HENOSTONE_PILLAR = ITEMS.register("chiseled_henostone_pillar", () -> new BlockItem(BlockInit.CHISELED_HENOSTONE_PILLAR, new Item.Properties().group(PFBuilding.instance)));
+	public static final RegistryObject<Item> HENOSTONE_STAIRS = ITEMS.register("henostone_stairs", () -> new BlockItem(BlockInit.HENOSTONE_STAIRS, new Item.Properties().group(PFBuilding.instance)));
+	public static final RegistryObject<Item> HENOSTONE_SLAB = ITEMS.register("henostone_slab", () -> new BlockItem(BlockInit.HENOSTONE_SLAB, new Item.Properties().group(PFBuilding.instance)));
+	public static final RegistryObject<Item> HENOSTONE_BRICK_STAIRS = ITEMS.register("henostone_brick_stairs", () -> new BlockItem(BlockInit.HENOSTONE_BRICK_STAIRS, new Item.Properties().group(PFBuilding.instance)));
+	public static final RegistryObject<Item> HENOSTONE_BRICK_SLAB = ITEMS.register("henostone_brick_slab", () -> new BlockItem(BlockInit.HENOSTONE_BRICK_SLAB, new Item.Properties().group(PFBuilding.instance)));
+	public static final RegistryObject<Item> DARK_HENOSTONE_BRICK_STAIRS = ITEMS.register("dark_henostone_brick_stairs", () -> new BlockItem(BlockInit.DARK_HENOSTONE_BRICK_STAIRS, new Item.Properties().group(PFBuilding.instance)));
+	public static final RegistryObject<Item> DARK_HENOSTONE_BRICK_SLAB = ITEMS.register("dark_henostone_brick_slab", () -> new BlockItem(BlockInit.DARK_HENOSTONE_BRICK_SLAB, new Item.Properties().group(PFBuilding.instance)));
 
-	public static final RegistryObject<Item> SMALL_AMMONITE_FOSSIL = ITEMS.register("small_ammonite_fossil", () -> new BlockItem(BlockInit.SMALL_AMMONITE_SHELL.get(), new Item.Properties().group(PFDecoration.instance)));
-	public static final RegistryObject<Item> MEDIUM_AMMONITE_FOSSIL = ITEMS.register("medium_ammonite_fossil", () -> new BlockItem(BlockInit.MEDIUM_AMMONITE_SHELL.get(), new Item.Properties().group(PFDecoration.instance)));
-	public static final RegistryObject<Item> LARGE_AMMONITE_FOSSIL = ITEMS.register("large_ammonite_fossil", () -> new BlockItem(BlockInit.LARGE_AMMONITE_SHELL.get(), new Item.Properties().group(PFDecoration.instance)));
+	public static final RegistryObject<Item> SMALL_AMMONITE_FOSSIL = ITEMS.register("small_ammonite_fossil", () -> new BlockItem(BlockInit.SMALL_AMMONITE_FOSSIL, new Item.Properties().group(PFDecoration.instance)));
+	public static final RegistryObject<Item> MEDIUM_AMMONITE_FOSSIL = ITEMS.register("medium_ammonite_fossil", () -> new BlockItem(BlockInit.MEDIUM_AMMONITE_FOSSIL, new Item.Properties().group(PFDecoration.instance)));
+	public static final RegistryObject<Item> LARGE_AMMONITE_FOSSIL = ITEMS.register("large_ammonite_fossil", () -> new BlockItem(BlockInit.LARGE_AMMONITE_FOSSIL, new Item.Properties().group(PFDecoration.instance)));
 
-	public static final RegistryObject<Item> CRASSOSTREA_OYSTER = ITEMS.register("crassostrea_oyster", () -> new BlockItem(BlockInit.CRASSOSTREA_OYSTER.get(), new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> CRASSOSTREA_OYSTER = ITEMS.register("crassostrea_oyster", () -> new BlockItem(BlockInit.CRASSOSTREA_OYSTER, new Item.Properties().group(PFMisc.instance)));
 	
 	//Banners
 	public static final RegistryObject<Item> BANNER_PATTERN_CLAW = ITEMS.register("banner_pattern_claw", () -> new BannerPatternItem(registerPattern("claw", new ItemStack(DAKOTARAPTOR_CLAW.get())), new Item.Properties().maxStackSize(1).group(PFMisc.instance)));
@@ -174,13 +174,13 @@ public class ItemInit {
 	public static final RegistryObject<Item> BANNER_PATTERN_TRICERATOPS = ITEMS.register("banner_pattern_triceratops", () -> new BannerPatternItem(registerPattern("triceratops", new ItemStack(TRICERATOPS_SKULL.get())), new Item.Properties().maxStackSize(1).group(PFMisc.instance)));
 	public static final RegistryObject<Item> BANNER_PATTERN_HENOS = ITEMS.register("banner_pattern_henos", () -> new BannerPatternItem(registerPattern("henos", new ItemStack(HENOSTONE.get())), new Item.Properties().maxStackSize(1).group(PFMisc.instance)));
 	
-	public static final RegistryObject<Item> ARAURCARIA_SIGN = ITEMS.register("araucaria_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFDecoration.instance), BlockInit.ARAUCARIA_SIGN.get(), BlockInit.ARAUCARIA_WALL_SIGN.get()));
-	public static final RegistryObject<Item> METASEQUOIA_SIGN = ITEMS.register("metasequoia_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFDecoration.instance), BlockInit.METASEQUOIA_SIGN.get(), BlockInit.METASEQUOIA_WALL_SIGN.get()));
-	public static final RegistryObject<Item> HEIDIPHYLLUM_SIGN = ITEMS.register("heidiphyllum_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFDecoration.instance), BlockInit.HEIDIPHYLLUM_SIGN.get(), BlockInit.HEIDIPHYLLUM_WALL_SIGN.get()));
-	public static final RegistryObject<Item> LIRIODENDRITES_SIGN = ITEMS.register("liriodendrites_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFDecoration.instance), BlockInit.LIRIODENDRITES_SIGN.get(), BlockInit.LIRIODENDRITES_WALL_SIGN.get()));;
-	public static final RegistryObject<Item> PROTOJUNIPEROXYLON_SIGN = ITEMS.register("protojuniperoxylon_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFDecoration.instance), BlockInit.PROTOJUNIPEROXYLON_SIGN.get(), BlockInit.PROTOJUNIPEROXYLON_WALL_SIGN.get()));;
-	public static final RegistryObject<Item> PROTOPICEOXYLON_SIGN = ITEMS.register("protopiceoxylon_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFDecoration.instance), BlockInit.PROTOPICEOXYLON_SIGN.get(), BlockInit.PROTOPICEOXYLON_WALL_SIGN.get()));;
-	public static final RegistryObject<Item> ZAMITES_SIGN = ITEMS.register("zamites_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFDecoration.instance), BlockInit.ZAMITES_SIGN.get(), BlockInit.ZAMITES_WALL_SIGN.get()));
+	public static final RegistryObject<Item> ARAURCARIA_SIGN = ITEMS.register("araucaria_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFDecoration.instance), BlockInit.ARAUCARIA_SIGN, BlockInit.ARAUCARIA_WALL_SIGN));
+	public static final RegistryObject<Item> METASEQUOIA_SIGN = ITEMS.register("metasequoia_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFDecoration.instance), BlockInit.METASEQUOIA_SIGN, BlockInit.METASEQUOIA_WALL_SIGN));
+	public static final RegistryObject<Item> HEIDIPHYLLUM_SIGN = ITEMS.register("heidiphyllum_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFDecoration.instance), BlockInit.HEIDIPHYLLUM_SIGN, BlockInit.HEIDIPHYLLUM_WALL_SIGN));
+	public static final RegistryObject<Item> LIRIODENDRITES_SIGN = ITEMS.register("liriodendrites_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFDecoration.instance), BlockInit.LIRIODENDRITES_SIGN, BlockInit.LIRIODENDRITES_WALL_SIGN));;
+	public static final RegistryObject<Item> PROTOJUNIPEROXYLON_SIGN = ITEMS.register("protojuniperoxylon_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFDecoration.instance), BlockInit.PROTOJUNIPEROXYLON_SIGN, BlockInit.PROTOJUNIPEROXYLON_WALL_SIGN));;
+	public static final RegistryObject<Item> PROTOPICEOXYLON_SIGN = ITEMS.register("protopiceoxylon_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFDecoration.instance), BlockInit.PROTOPICEOXYLON_SIGN, BlockInit.PROTOPICEOXYLON_WALL_SIGN));;
+	public static final RegistryObject<Item> ZAMITES_SIGN = ITEMS.register("zamites_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFDecoration.instance), BlockInit.ZAMITES_SIGN, BlockInit.ZAMITES_WALL_SIGN));
 
 	
 	private static BannerPattern registerPattern(String name, ItemStack item) {

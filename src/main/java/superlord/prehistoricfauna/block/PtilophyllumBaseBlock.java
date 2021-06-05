@@ -44,7 +44,7 @@ public class PtilophyllumBaseBlock extends Block {
                boolean flag1 = false;
                BlockState blockstate = worldIn.getBlockState(pos.down());
                Block block = blockstate.getBlock();
-               if (block == BlockInit.SILT.get() || block == BlockInit.HARDENED_SILT.get()) {
+               if (block == BlockInit.SILT || block == BlockInit.HARDENED_SILT) {
                   flag = true;
                } else if (block == this.plantBlock) {
                   int j = 1;
@@ -52,7 +52,7 @@ public class PtilophyllumBaseBlock extends Block {
                   for(int k = 0; k < 4; ++k) {
                      Block block1 = worldIn.getBlockState(pos.down(j + 1)).getBlock();
                      if (block1 != this.plantBlock) {
-                        if (block1 == BlockInit.SILT.get() || block1 == BlockInit.HARDENED_SILT.get()) {
+                        if (block1 == BlockInit.SILT || block1 == BlockInit.HARDENED_SILT) {
                            flag1 = true;
                         }
                         break;
@@ -132,7 +132,7 @@ public class PtilophyllumBaseBlock extends Block {
    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
       BlockState blockstate = worldIn.getBlockState(pos.down());
       Block block = blockstate.getBlock();
-      if (block != this.plantBlock && block != BlockInit.SILT.get() || block != this.plantBlock && block != BlockInit.HARDENED_SILT.get()) {
+      if (block != this.plantBlock && block != BlockInit.SILT || block != this.plantBlock && block != BlockInit.HARDENED_SILT) {
          if (!blockstate.isAir(worldIn, pos.down())) {
             return false;
          } else {
@@ -163,12 +163,12 @@ public class PtilophyllumBaseBlock extends Block {
    }
 
    public static void generatePlant(IWorld worldIn, BlockPos pos, Random rand, int p_185603_3_) {
-      worldIn.setBlockState(pos, ((PtilophyllumBlock)BlockInit.PTILOPHYLLUM_WOOD.get()).makeConnections(worldIn, pos), 2);
+      worldIn.setBlockState(pos, ((PtilophyllumBlock)BlockInit.PTILOPHYLLUM_WOOD).makeConnections(worldIn, pos), 2);
       growTreeRecursive(worldIn, pos, rand, pos, p_185603_3_, 0);
    }
 
    private static void growTreeRecursive(IWorld worldIn, BlockPos p_185601_1_, Random rand, BlockPos p_185601_3_, int p_185601_4_, int p_185601_5_) {
-	   PtilophyllumBlock ptilophullumwoodblock = (PtilophyllumBlock)BlockInit.PTILOPHYLLUM_WOOD.get();
+	   PtilophyllumBlock ptilophullumwoodblock = (PtilophyllumBlock)BlockInit.PTILOPHYLLUM_WOOD;
       int i = rand.nextInt(4) + 1;
       if (p_185601_5_ == 0) {
          ++i;
@@ -204,7 +204,7 @@ public class PtilophyllumBaseBlock extends Block {
       }
 
       if (!flag) {
-         worldIn.setBlockState(p_185601_1_.up(i), BlockInit.PTILOPHYLLUM_BASE.get().getDefaultState().with(AGE, Integer.valueOf(5)), 2);
+         worldIn.setBlockState(p_185601_1_.up(i), BlockInit.PTILOPHYLLUM_BASE.getDefaultState().with(AGE, Integer.valueOf(5)), 2);
       }
 
    }

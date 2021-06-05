@@ -111,7 +111,7 @@ public class WallFossilEntity extends HangingEntity implements IEntityAdditional
 
     @Override
     public void setPositionAndRotationDirect(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean teleport) {
-        BlockPos blockpos = this.hangingPosition.add(x - this.getPosX(), y - this.getPosY(), z - this.getPosZ());
+        BlockPos blockpos = this.hangingPosition;
         this.setPosition(blockpos.getX(), blockpos.getY(), blockpos.getZ());
     }
 

@@ -44,7 +44,7 @@ public class EilenodonEntity extends AnimalEntity {
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(EilenodonEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(EilenodonEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Byte> EILENODON_FLAGS = EntityDataManager.createKey(EilenodonEntity.class, DataSerializers.BYTE);
-	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.HORSETAIL.get().asItem());
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.HORSETAIL.asItem());
 	private int isDigging;
 	
 	public EilenodonEntity(EntityType<? extends EilenodonEntity> type, World world) {
@@ -69,7 +69,7 @@ public class EilenodonEntity extends AnimalEntity {
 	}
 	
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.HORSETAIL.get().asItem();
+		return stack.getItem() == BlockInit.HORSETAIL.asItem();
 	}
 	
 	@Override
@@ -207,7 +207,7 @@ public class EilenodonEntity extends AnimalEntity {
 				} else if (this.eilenodon.isDigging > 200) {
 					World world = this.eilenodon.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.EILENODON_EGG.get().getDefaultState().with(EilenodonEggBlock.EGGS, Integer.valueOf(this.eilenodon.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), BlockInit.EILENODON_EGG.getDefaultState().with(EilenodonEggBlock.EGGS, Integer.valueOf(this.eilenodon.rand.nextInt(4) + 1)), 3);
 					this.eilenodon.setHasEgg(false);
 					this.eilenodon.setDigging(false);
 					this.eilenodon.setInLove(600);
@@ -223,7 +223,7 @@ public class EilenodonEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.SILT.get() || block == BlockInit.HARDENED_SILT.get() || block == Blocks.SAND;
+				return block == BlockInit.SILT || block == BlockInit.HARDENED_SILT || block == Blocks.SAND;
 			}
 		}
 		
