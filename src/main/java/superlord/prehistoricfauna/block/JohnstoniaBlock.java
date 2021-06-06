@@ -7,15 +7,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 
-import java.util.Random;
-
-public class JohnstoniaBlock extends BushBlock implements IGrowable {
+public class JohnstoniaBlock extends BushBlock {
 
 	public static final IntegerProperty LAYER = IntegerProperty.create("layer", 0, 2);
 
@@ -40,28 +36,6 @@ public class JohnstoniaBlock extends BushBlock implements IGrowable {
 		BlockState blockstate = worldIn.getBlockState(pos.down());
 		if (state.getBlock() != this) return super.isValidPosition(state, worldIn, pos); 
 		return blockstate.getBlock() == this && blockstate.get(LAYER) == 0;
-	}
-
-	@Override
-	public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
-		return true;
-	}
-
-	@Override
-	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
-		return true;
-	}
-
-	@Override
-	public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
-		if (worldIn.getBlockState(pos.up()).getBlock() == Blocks.AIR && worldIn.getBlockState(pos.up(2)).getBlock() == Blocks.AIR && worldIn.getBlockState(pos.down()).getBlock() != this) {
-			worldIn.setBlockState(pos.up(), this.getDefaultState().with(LAYER, 1));
-			worldIn.setBlockState(pos.up(2), this.getDefaultState().with(LAYER, 2));
-		} else if (worldIn.getBlockState(pos.up()).getBlock() == Blocks.AIR && worldIn.getBlockState(pos.down()).getBlock() == this && worldIn.getBlockState(pos.down(2)).getBlock() != this) {
-			worldIn.setBlockState(pos.up(), this.getDefaultState().with(LAYER, 2));
-		} else if (worldIn.getBlockState(pos.up()).getBlock() == this && worldIn.getBlockState(pos.up(2)).getBlock() == Blocks.AIR && worldIn.getBlockState(pos.down()).getBlock() != this) {
-			worldIn.setBlockState(pos.up(2), this.getDefaultState().with(LAYER, 2));
-		} 
 	}
 
 	public void placeAt(IWorld worldIn, BlockPos pos, int flags) {

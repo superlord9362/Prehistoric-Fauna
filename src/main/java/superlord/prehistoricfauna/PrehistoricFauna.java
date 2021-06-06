@@ -222,21 +222,6 @@ public class PrehistoricFauna {
 
 	private void doClientStuff(final FMLClientSetupEvent event) {
 		trySetRandomPanorama();
-		BlockColors blockcolors = Minecraft.getInstance().getBlockColors();
-		ItemColors itemcolors = Minecraft.getInstance().getItemColors();
-		blockcolors.register((p_228064_0_, p_228064_1_, p_228064_2_, p_228064_3_) -> {
-			return p_228064_1_ != null && p_228064_2_ != null ? BiomeColors.getGrassColor(p_228064_1_, p_228064_2_) : GrassColors.get(0.5D, 1.0D);
-		}, BlockInit.CONIOPTERIS, BlockInit.CLADOPHLEBIS, BlockInit.POTTED_CLADOPHLEBIS);
-		blockcolors.register((p_228061_0_, p_228061_1_, p_228061_2_, p_228061_3_) -> {
-			return p_228061_1_ != null && p_228061_2_ != null ? BiomeColors.getFoliageColor(p_228061_1_, p_228061_2_) : FoliageColors.getDefault();
-		}, BlockInit.METASEQUOIA_LEAVES, BlockInit.PROTOPICEOXYLON_LEAVES, BlockInit.PROTOJUNIPEROXYLON_LEAVES, BlockInit.METASEQUOIA_LEAF_CARPET.get(), BlockInit.PROTOPICEOXYLON_LEAF_CARPET.get(), BlockInit.PROTOJUNIPEROXYLON_LEAF_CARPET.get());
-		blockcolors.register((p_228063_0_, p_228063_1_, p_228063_2_, p_228063_3_) -> {
-			return PrehistoricColors.getAraucaria();
-		}, BlockInit.ARAUCARIA_LEAVES, BlockInit.ARAUCARIA_LEAF_CARPET.get());
-		itemcolors.register((p_210235_1_, p_210235_2_) -> {
-			BlockState blockstate = ((BlockItem) p_210235_1_.getItem()).getBlock().getDefaultState();
-			return blockcolors.getColor(blockstate, (ILightReader) null, (BlockPos) null, p_210235_2_);
-		}, BlockInit.ARAUCARIA_LEAVES, BlockInit.METASEQUOIA_LEAVES, BlockInit.CONIOPTERIS, BlockInit.PROTOPICEOXYLON_LEAVES, BlockInit.PROTOJUNIPEROXYLON_LEAVES, BlockInit.CLADOPHLEBIS, BlockInit.ARAUCARIA_LEAF_CARPET.get(), BlockInit.METASEQUOIA_LEAF_CARPET.get(), BlockInit.PROTOPICEOXYLON_LEAF_CARPET.get(), BlockInit.PROTOJUNIPEROXYLON_LEAF_CARPET.get());
 	}
 
 	@SubscribeEvent
