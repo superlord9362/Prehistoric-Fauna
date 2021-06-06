@@ -532,16 +532,16 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 		} else if (item == BlockInit.OSMUNDA.asItem()) {
 			f = 20.0F;
 			i = 180;
+			if (this.getGrowingAge() == 0 && !this.isInLove()) {
+				flag = true;
+				this.setInLove(player);
+			}
 		} else if (item == BlockInit.TALL_OSMUNDA.asItem()) {
 			f = 3.0F;
 			i = 60;
 		} else if (item == BlockInit.CLUBMOSS.asItem()) {
 			f = 4.0F;
 			i = 60;
-			if (this.getGrowingAge() == 0 && !this.isInLove()) {
-				flag = true;
-				this.setInLove(player);
-			}
 		} else if (item == BlockInit.MARCHANTIA.asItem()) {
 			f = 3.0F;
 			i = 80;

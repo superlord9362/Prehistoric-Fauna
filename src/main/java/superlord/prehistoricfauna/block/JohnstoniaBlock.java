@@ -29,9 +29,12 @@ public class JohnstoniaBlock extends BushBlock implements IGrowable {
 			BlockState soil = worldIn.getBlockState(pos.down());
 			return soil.getBlock().canSustainPlant(soil, worldIn, pos.down(), net.minecraft.util.Direction.UP, this);
 		} else {
-			if (state.getBlock() == this && state.get(LAYER) != 0) {
+			if (state.getBlock() == this && state.get(LAYER) == 2) {
 				BlockState below = worldIn.getBlockState(pos.down());
-				return below.getBlock() == this;
+				BlockState air = Blocks.AIR.getDefaultState();
+				BlockState cave_air = Blocks.CAVE_AIR.getDefaultState();
+				BlockState void_air = Blocks.VOID_AIR.getDefaultState();
+				return below.getBlock() == this &&  worldIn.getBlockState(pos).getBlock() == air.getBlock() || below.getBlock() == this && worldIn.getBlockState(pos).getBlock() == cave_air.getBlock() || below.getBlock() == this && worldIn.getBlockState(pos).getBlock() == void_air.getBlock();
 			}
 		}
 		BlockState blockstate = worldIn.getBlockState(pos.down());

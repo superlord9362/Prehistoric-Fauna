@@ -259,14 +259,7 @@ public class TeleporterJurassic implements ITeleporter {
 
     @Override
     public Entity placeEntity(Entity entity, ServerWorld currentWorld, ServerWorld destWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
-        Entity newEntity = repositionEntity.apply(false);
-
-        if (!placeInPortal(destWorld, newEntity, newEntity.rotationYaw)) {
-            makePortal(destWorld, newEntity);
-            placeInPortal(destWorld, newEntity, newEntity.rotationYaw);
-        }
-
-        return newEntity;
+        return repositionEntity.apply(false);
     }
 
     static class PortalPosition {

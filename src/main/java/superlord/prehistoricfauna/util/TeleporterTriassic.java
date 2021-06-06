@@ -15,7 +15,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.server.TicketType;
 import net.minecraftforge.common.util.ITeleporter;
 import superlord.prehistoricfauna.block.CretaceousPortalBlock;
-import superlord.prehistoricfauna.block.TriassicPortalBlock;
+import superlord.prehistoricfauna.block.JurassicPortalBlock;
 import superlord.prehistoricfauna.init.BlockInit;
 import javax.annotation.Nullable;
 import java.util.*;
@@ -63,8 +63,8 @@ public class TeleporterTriassic implements ITeleporter {
                     for(int eZ = -128; eZ <= 128; ++eZ) {
                         for(BlockPos blockpos1 = pos.add(eX, world.getActualHeight() - 1 - pos.getY(), eZ); blockpos1.getY() >= 0; blockpos1 = blockpos2) {
                             blockpos2 = blockpos1.down();
-                            if (world.getBlockState(blockpos1).getBlock() == BlockInit.TRIASSIC_PORTAL.get()) {
-                                for(blockpos2 = blockpos1.down(); world.getBlockState(blockpos2).getBlock() == BlockInit.TRIASSIC_PORTAL.get(); blockpos2 = blockpos2.down()) {
+                            if (world.getBlockState(blockpos1).getBlock() == BlockInit.JURASSIC_PORTAL.get()) {
+                                for(blockpos2 = blockpos1.down(); world.getBlockState(blockpos2).getBlock() == BlockInit.JURASSIC_PORTAL.get(); blockpos2 = blockpos2.down()) {
                                     blockpos1 = blockpos2;
                                 }
 
@@ -89,7 +89,7 @@ public class TeleporterTriassic implements ITeleporter {
                     world.getChunkProvider().registerTicket(TicketType.PORTAL, new ChunkPos(blockpos), 3, new BlockPos(columnpos.x, blockpos.getY(), columnpos.z));
                 }
 
-                BlockPattern.PatternHelper helper = TriassicPortalBlock.createPatternHelper(world, blockpos);
+                BlockPattern.PatternHelper helper = JurassicPortalBlock.createPatternHelper(world, blockpos);
                 return helper.getPortalInfo(direction, blockpos, y, motion, x);
             }
         }
@@ -259,14 +259,7 @@ public class TeleporterTriassic implements ITeleporter {
 
     @Override
     public Entity placeEntity(Entity entity, ServerWorld currentWorld, ServerWorld destWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
-        Entity newEntity = repositionEntity.apply(false);
-
-        if (!placeInPortal(destWorld, newEntity, newEntity.rotationYaw)) {
-            makePortal(destWorld, newEntity);
-            placeInPortal(destWorld, newEntity, newEntity.rotationYaw);
-        }
-
-        return newEntity;
+        return repositionEntity.apply(false);
     }
 
     static class PortalPosition {
