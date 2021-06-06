@@ -36,11 +36,13 @@ public class MessageUpdatePaleoscribe {
 
     public MessageUpdatePaleoscribe() {
     }
-
+    
+    @OnlyIn(Dist.CLIENT)
     public static MessageUpdatePaleoscribe read(PacketBuffer buf) {
         return new MessageUpdatePaleoscribe(buf.readLong(), buf.readInt(), buf.readInt(), buf.readInt(), buf.readBoolean(), buf.readInt());
     }
-
+    
+    @OnlyIn(Dist.CLIENT)
     public static void write(MessageUpdatePaleoscribe message, PacketBuffer buf) {
         buf.writeLong(message.blockPos);
         buf.writeInt(message.selectedPages1);
@@ -50,10 +52,12 @@ public class MessageUpdatePaleoscribe {
         buf.writeInt(message.pageOrdinal);
     }
 
+    @OnlyIn(Dist.CLIENT)
     public static class Handler {
         public Handler() {
         }
 
+        @OnlyIn(Dist.CLIENT)
         public static void handle(MessageUpdatePaleoscribe message, Supplier<NetworkEvent.Context> context) {
             context.get().setPacketHandled(true);
             PlayerEntity player = context.get().getSender();
