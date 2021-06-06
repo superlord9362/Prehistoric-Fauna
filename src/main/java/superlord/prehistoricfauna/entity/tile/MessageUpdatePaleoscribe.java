@@ -24,6 +24,7 @@ public class MessageUpdatePaleoscribe {
     public boolean updateStack;
     public int pageOrdinal;
 
+    @OnlyIn(Dist.CLIENT)
     public MessageUpdatePaleoscribe(long blockPos, int selectedPages1, int selectedPages2, int selectedPages3, boolean updateStack, int pageOrdinal) {
         this.blockPos = blockPos;
         this.selectedPages1 = selectedPages1;
@@ -34,6 +35,7 @@ public class MessageUpdatePaleoscribe {
 
     }
 
+    @OnlyIn(Dist.CLIENT)
     public MessageUpdatePaleoscribe() {
     }
     

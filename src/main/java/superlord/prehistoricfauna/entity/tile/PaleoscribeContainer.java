@@ -13,6 +13,8 @@ import net.minecraft.util.IntArray;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.init.ContainerRegistry;
 import superlord.prehistoricfauna.init.ItemInit;
@@ -157,7 +159,8 @@ public class PaleoscribeContainer extends Container {
         }
         return -1;
     }
-
+    
+    @OnlyIn(Dist.CLIENT)
     public boolean enchantItem(PlayerEntity playerIn, int id) {
         possiblePagesInt[0] = getPageField(0);
         possiblePagesInt[1] = getPageField(1);

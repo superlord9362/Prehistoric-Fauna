@@ -26,6 +26,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.init.TileEntityRegistry;
 import superlord.prehistoricfauna.util.ClientEvents;
@@ -185,6 +187,7 @@ public class PaleoscribeTileEntity extends LockableTileEntity implements ITickab
         }
     }
 
+    @OnlyIn(Dist.CLIENT)
     public EnumPaleoPages[] randomizePages(ItemStack paleopedia, ItemStack paleopage) {
         if (!world.isRemote) {
             if (paleopedia.getItem() == ItemInit.PALEOPEDIA.get()) {

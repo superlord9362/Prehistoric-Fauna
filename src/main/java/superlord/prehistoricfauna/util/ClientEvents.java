@@ -23,7 +23,10 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.network.NetworkDirection;
+import net.minecraftforge.fml.network.NetworkRegistry;
+import net.minecraftforge.fml.network.simple.SimpleChannel;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.entity.render.AllosaurusRenderer;
@@ -72,6 +75,7 @@ import superlord.prehistoricfauna.entity.render.TyrannosaurusRenderer;
 import superlord.prehistoricfauna.entity.render.TyrannosaurusSkeletonRenderer;
 import superlord.prehistoricfauna.entity.render.TyrannosaurusSkullRenderer;
 import superlord.prehistoricfauna.entity.render.WallFossilRenderer;
+import superlord.prehistoricfauna.entity.tile.MessageUpdatePaleoscribe;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ContainerRegistry;
 import superlord.prehistoricfauna.init.ModEntityTypes;
@@ -80,6 +84,17 @@ import superlord.prehistoricfauna.init.TileEntityRegistry;
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientEvents {
+
+
+	private static final String PROTOCOL_VERSION = "1";
+	public static final SimpleChannel NETWORK_WRAPPER = NetworkRegistry.ChannelBuilder
+			.named(new ResourceLocation("prehistoricfauna", "main_channel"))
+			.clientAcceptedVersions(PROTOCOL_VERSION::equals)
+			.serverAcceptedVersions(PROTOCOL_VERSION::equals)
+			.networkProtocolVersion(() -> PROTOCOL_VERSION)
+			.simpleChannel();
+
+	private static int packetsRegistered = 0;
 
 	@SuppressWarnings("unchecked")
 	@SubscribeEvent
@@ -162,7 +177,7 @@ public class ClientEvents {
 
 
 	public static <MSG> void sendMSGToServer(MSG message) {
-		PrehistoricFauna.NETWORK_WRAPPER.sendToServer(message);
+		NETWORK_WRAPPER.sendToServer(message);
 	}
 
 	public static <MSG> void sendMSGToAll(MSG message) {
@@ -174,8 +189,14 @@ public class ClientEvents {
 	@SuppressWarnings("unlikely-arg-type")
 	public static <MSG> void sendNonLocal(MSG msg, ServerPlayerEntity player) {
 		if (player.server.isDedicatedServer() || !player.getName().equals(player.server.getServerOwner())) {
-			PrehistoricFauna.NETWORK_WRAPPER.sendTo(msg, player.connection.netManager, NetworkDirection.PLAY_TO_CLIENT);
+			NETWORK_WRAPPER.sendTo(msg, player.connection.netManager, NetworkDirection.PLAY_TO_CLIENT);
 		}
 	}
+	
+	@SubscribeEvent
+	public void setup(final FMLCommonSetupEvent event) {
+		NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageUpdatePaleoscribe.class, MessageUpdatePaleoscribe::write, MessageUpdatePaleoscribe::read, MessageUpdatePaleoscribe.Handler::handle);
+	}
+
 
 }
