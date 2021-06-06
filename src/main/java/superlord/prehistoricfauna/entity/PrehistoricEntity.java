@@ -13,7 +13,6 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
@@ -57,6 +56,11 @@ public abstract class PrehistoricEntity extends AnimalEntity {
 			}
 		}
 
+	}
+
+	@Override
+	public boolean isBreedingItem(ItemStack stack) {
+		return stack.getItem() == null;
 	}
 
 	public boolean attackEntityFrom(DamageSource source, float amount) {
@@ -106,10 +110,6 @@ public abstract class PrehistoricEntity extends AnimalEntity {
 
 	protected int getExperiencePoints(PlayerEntity player) {
 		return 1 + this.world.rand.nextInt(3);
-	}
-
-	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == Items.WHEAT;
 	}
 
 	public boolean processInteract(PlayerEntity player, Hand hand) {

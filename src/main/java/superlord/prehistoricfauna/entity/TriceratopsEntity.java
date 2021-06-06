@@ -122,7 +122,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 	@Override
 	protected void registerAttributes() {
 		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
+		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0D);
 		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20.0D);
 		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2D);
 		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);

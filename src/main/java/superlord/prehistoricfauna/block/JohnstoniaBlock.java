@@ -29,7 +29,7 @@ public class JohnstoniaBlock extends BushBlock {
 		} else {
 			BlockState blockstate = worldIn.getBlockState(pos.down());
 			if (state.getBlock() != this) return super.isValidPosition(state, worldIn, pos);
-			return blockstate.getBlock() == this && blockstate.get(LAYER) == 0;
+			return blockstate.getBlock() == this;
 		}
 
 	}
@@ -37,7 +37,7 @@ public class JohnstoniaBlock extends BushBlock {
 	@Nullable
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		BlockPos blockpos = context.getPos();
-		return blockpos.getY() < context.getWorld().getDimension().getHeight() - 1 && context.getWorld().getBlockState(blockpos.up()).isReplaceable(context) ? super.getStateForPlacement(context) : null;
+		return blockpos.getY() < context.getWorld().getDimension().getHeight() - 1 && context.getWorld().getBlockState(blockpos.up()).isReplaceable(context) && context.getWorld().getBlockState(blockpos.up(2)).isReplaceable(context) ? super.getStateForPlacement(context) : null;
 	}
 
 	public void placeAt(IWorld worldIn, BlockPos pos, int flags) {
@@ -56,14 +56,35 @@ public class JohnstoniaBlock extends BushBlock {
 	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
 		if (state.get(LAYER) == 0) {
-			worldIn.destroyBlock(pos, true);
-			for (int i = 1; i < 3; i++) {
-				if (worldIn.getBlockState(pos.up(i)).getBlock() == this) {
-					worldIn.destroyBlock(pos.up(i), false);
-				}
+			if(!player.isCreative()) {
+				worldIn.destroyBlock(pos, true);
+				worldIn.destroyBlock(pos.up(), false);
+				worldIn.destroyBlock(pos.up(2), false);
+			} else {
+				worldIn.destroyBlock(pos, false);
+				worldIn.destroyBlock(pos.up(), false);
+				worldIn.destroyBlock(pos.up(2), false);
 			}
-		} else {
-			worldIn.destroyBlock(pos, false);
+		} else if (state.get(LAYER) == 1) {
+			if(!player.isCreative()) {
+				worldIn.destroyBlock(pos.down(), true);
+				worldIn.destroyBlock(pos, false);
+				worldIn.destroyBlock(pos.up(), false);
+			} else {
+				worldIn.destroyBlock(pos.down(), false);
+				worldIn.destroyBlock(pos, false);
+				worldIn.destroyBlock(pos.up(), false);
+			}
+		} else if (state.get(LAYER) == 2) {
+			if(!player.isCreative()) {
+				worldIn.destroyBlock(pos.down(2), true);
+				worldIn.destroyBlock(pos.down(), false);
+				worldIn.destroyBlock(pos, false);
+			} else {
+				worldIn.destroyBlock(pos.down(2), false);
+				worldIn.destroyBlock(pos.down(), false);
+				worldIn.destroyBlock(pos, false);
+			}
 		}
 		super.onBlockHarvested(worldIn, pos, state, player);
 	}

@@ -49,8 +49,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.moddiscovery.ModFile;
-import net.minecraftforge.fml.network.NetworkRegistry;
-import net.minecraftforge.fml.network.simple.SimpleChannel;
 import net.minecraftforge.fml.packs.ModFileResourcePack;
 import net.minecraftforge.fml.packs.ResourcePackLoader;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -60,7 +58,6 @@ import superlord.prehistoricfauna.config.PrehistoricConfigHolder;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.core.world.*;
 import superlord.prehistoricfauna.entity.HesperornithoidesEntity;
-import superlord.prehistoricfauna.entity.tile.MessageUpdatePaleoscribe;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ContainerRegistry;
 import superlord.prehistoricfauna.init.DimensionInit;
@@ -85,19 +82,11 @@ import superlord.prehistoricfauna.world.PrehistoricFeature;
 public class PrehistoricFauna {
 
 	public final static String MODID = "prehistoricfauna";
-	private static final String PROTOCOL_VERSION = "1";
-	public static final SimpleChannel NETWORK_WRAPPER = NetworkRegistry.ChannelBuilder
-			.named(new ResourceLocation("prehistoricfauna", "main_channel"))
-			.clientAcceptedVersions(PROTOCOL_VERSION::equals)
-			.serverAcceptedVersions(PROTOCOL_VERSION::equals)
-			.networkProtocolVersion(() -> PROTOCOL_VERSION)
-			.simpleChannel();
 	public static Logger LOGGER = LogManager.getLogger();
 	public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MODID);
 
 
 	public static CommonProxy PROXY = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
-	private static int packetsRegistered = 0;
 
 	public PrehistoricFauna() {
 		final ModLoadingContext modLoadingContext = ModLoadingContext.get();
@@ -162,7 +151,6 @@ public class PrehistoricFauna {
 		addBiomeFeatures();
 		PHFOverworldBiomeRegistry.addBiomesToWeightSystem();
 		Collections.sort(PHFOverworldBiomeRegistry.biomeList);
-		NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageUpdatePaleoscribe.class, MessageUpdatePaleoscribe::write, MessageUpdatePaleoscribe::read, MessageUpdatePaleoscribe.Handler::handle);
 	}
 
 	private void addBiomeFeatures() {
