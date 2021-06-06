@@ -15,7 +15,7 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.gui.GuiPaleo;
 
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientProxy extends CommonProxy {
 
 	private TileEntity referencedTE = null;
@@ -24,7 +24,6 @@ public class ClientProxy extends CommonProxy {
 	private FontRenderer paleoFontRenderer;
 
 	@SuppressWarnings("resource")
-	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void init() {
 		try {
