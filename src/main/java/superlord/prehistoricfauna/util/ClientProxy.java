@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.Mod;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.gui.GuiPaleo;
 
+@OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientProxy extends CommonProxy {
 
@@ -34,7 +35,6 @@ public class ClientProxy extends CommonProxy {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void openPaleopediaGui(ItemStack book) {
 		Minecraft.getInstance().displayGuiScreen(new GuiPaleo(book));
