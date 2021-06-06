@@ -1,8 +1,11 @@
 package superlord.prehistoricfauna.block;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
@@ -26,9 +29,15 @@ public class JohnstoniaBlock extends BushBlock {
 		} else {
 			BlockState blockstate = worldIn.getBlockState(pos.down());
 			if (state.getBlock() != this) return super.isValidPosition(state, worldIn, pos);
-			return blockstate.getBlock() == this;
+			return blockstate.getBlock() == this && blockstate.get(LAYER) == 0;
 		}
 
+	}
+
+	@Nullable
+	public BlockState getStateForPlacement(BlockItemUseContext context) {
+		BlockPos blockpos = context.getPos();
+		return blockpos.getY() < context.getWorld().getDimension().getHeight() - 1 && context.getWorld().getBlockState(blockpos.up()).isReplaceable(context) ? super.getStateForPlacement(context) : null;
 	}
 
 	public void placeAt(IWorld worldIn, BlockPos pos, int flags) {

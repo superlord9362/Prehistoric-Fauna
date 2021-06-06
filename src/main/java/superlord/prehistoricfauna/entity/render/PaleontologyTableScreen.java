@@ -6,9 +6,12 @@ import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.entity.tile.PaleontologyTableContainer;
 
+@OnlyIn(Dist.CLIENT)
 public class PaleontologyTableScreen extends ContainerScreen<PaleontologyTableContainer>
 {
 	private static final ResourceLocation TEXTURE = new ResourceLocation(PrehistoricFauna.MODID, "textures/gui/container/paleotable.png");

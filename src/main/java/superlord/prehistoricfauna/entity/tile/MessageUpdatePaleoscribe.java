@@ -6,12 +6,15 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.network.NetworkEvent;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.util.EnumPaleoPages;
 
+@OnlyIn(Dist.CLIENT)
 public class MessageUpdatePaleoscribe {
 
     public long blockPos;
