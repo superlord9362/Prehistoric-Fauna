@@ -8,6 +8,8 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.item.model.AnkyHelmet;
 
 import javax.annotation.Nullable;
@@ -21,6 +23,7 @@ public class CustomArmorItem extends ArmorItem {
 	@SuppressWarnings("unchecked")
 	@Nullable
 	@Override
+	@OnlyIn(Dist.CLIENT)
 	public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default)
     {
 		AnkyHelmet model = new AnkyHelmet(1F);
@@ -37,6 +40,7 @@ public class CustomArmorItem extends ArmorItem {
 	
 	@Override
     @Nullable
+	@OnlyIn(Dist.CLIENT)
 	public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type)
     {
         return "prehistoricfauna:textures/models/armor/ankylosaurus_helmet.png";
