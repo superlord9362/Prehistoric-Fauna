@@ -46,9 +46,11 @@ public class JohnstoniaBlock extends BushBlock {
 
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
-		worldIn.setBlockState(pos, this.getDefaultState().with(LAYER, 0), 2);
-		worldIn.setBlockState(pos.up(), this.getDefaultState().with(LAYER, 1), 2);
-		worldIn.setBlockState(pos.up(2), this.getDefaultState().with(LAYER, 2), 2);
+		if(worldIn.getBlockState(pos.up()).getBlock() == Blocks.AIR && worldIn.getBlockState(pos.up(2)).getBlock() == Blocks.AIR || worldIn.getBlockState(pos.up()).getBlock() == Blocks.TALL_GRASS && worldIn.getBlockState(pos.up(2)).getBlock() == Blocks.AIR || worldIn.getBlockState(pos.up()).getBlock() == Blocks.CAVE_AIR && worldIn.getBlockState(pos.up(2)).getBlock() == Blocks.CAVE_AIR || worldIn.getBlockState(pos.up()).getBlock() == Blocks.TALL_GRASS && worldIn.getBlockState(pos.up(2)).getBlock() == Blocks.CAVE_AIR || worldIn.getBlockState(pos.up()).getBlock() == Blocks.VOID_AIR && worldIn.getBlockState(pos.up(2)).getBlock() == Blocks.VOID_AIR || worldIn.getBlockState(pos.up()).getBlock() == Blocks.TALL_GRASS && worldIn.getBlockState(pos.up(2)).getBlock() == Blocks.VOID_AIR) {
+			worldIn.setBlockState(pos, this.getDefaultState().with(LAYER, 0), 2);
+			worldIn.setBlockState(pos.up(), this.getDefaultState().with(LAYER, 1), 2);
+			worldIn.setBlockState(pos.up(2), this.getDefaultState().with(LAYER, 2), 2);
+		}
 	}
 
 	@Override

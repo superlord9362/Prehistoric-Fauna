@@ -424,14 +424,5 @@ public class PrehistoricFauna {
 	public static void registerModels(ModelRegistryEvent event) {
 		ClientRegistry.bindTileEntityRenderer(TileEntityRegistry.PF_SIGNS.get(), PFSignTileEntityRenderer::new);
 	}
-
-	@SubscribeEvent
-	public static void onStitchEvent(TextureStitchEvent.Pre event) {
-		ResourceLocation stitching = event.getMap().getTextureLocation();
-		if (!stitching.equals(Atlases.SIGN_ATLAS))
-			return;
-
-		PFWoodTypes.getValues().forEach(woodType -> event.addSprite(new ResourceLocation(PrehistoricFauna.MODID, "entities/signs/" + woodType.getName())));
-	}
 	
 }
