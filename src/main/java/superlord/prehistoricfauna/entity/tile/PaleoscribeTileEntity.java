@@ -26,9 +26,9 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.init.TileEntityRegistry;
+import superlord.prehistoricfauna.util.ClientEvents;
 import superlord.prehistoricfauna.util.EnumPaleoPages;
 
 public class PaleoscribeTileEntity extends LockableTileEntity implements ITickableTileEntity, ISidedInventory {
@@ -210,7 +210,7 @@ public class PaleoscribeTileEntity extends LockableTileEntity implements ITickab
             int page1 = selectedPages[0] == null ? -1 : selectedPages[0].ordinal();
             int page2 = selectedPages[1] == null ? -1 : selectedPages[1].ordinal();
             int page3 = selectedPages[2] == null ? -1 : selectedPages[2].ordinal();
-            PrehistoricFauna.sendMSGToAll(new MessageUpdatePaleoscribe(pos.toLong(), page1, page2, page3, false, 0));
+            ClientEvents.sendMSGToAll(new MessageUpdatePaleoscribe(pos.toLong(), page1, page2, page3, false, 0));
         }
         return selectedPages;
     }

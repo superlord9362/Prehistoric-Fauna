@@ -21,21 +21,14 @@ public class JohnstoniaBlock extends BushBlock {
 
 	@Override
 	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		if (state.getBlock() == this && state.get(LAYER) == 0) {
-			BlockState soil = worldIn.getBlockState(pos.down());
-			return soil.getBlock().canSustainPlant(soil, worldIn, pos.down(), net.minecraft.util.Direction.UP, this);
+		if (state.get(LAYER) == 0) {
+			return super.isValidPosition(state, worldIn, pos);
 		} else {
-			if (state.getBlock() == this && state.get(LAYER) == 2) {
-				BlockState below = worldIn.getBlockState(pos.down());
-				BlockState air = Blocks.AIR.getDefaultState();
-				BlockState cave_air = Blocks.CAVE_AIR.getDefaultState();
-				BlockState void_air = Blocks.VOID_AIR.getDefaultState();
-				return below.getBlock() == this &&  worldIn.getBlockState(pos).getBlock() == air.getBlock() || below.getBlock() == this && worldIn.getBlockState(pos).getBlock() == cave_air.getBlock() || below.getBlock() == this && worldIn.getBlockState(pos).getBlock() == void_air.getBlock();
-			}
+			BlockState blockstate = worldIn.getBlockState(pos.down());
+			if (state.getBlock() != this) return super.isValidPosition(state, worldIn, pos);
+			return blockstate.getBlock() == this;
 		}
-		BlockState blockstate = worldIn.getBlockState(pos.down());
-		if (state.getBlock() != this) return super.isValidPosition(state, worldIn, pos); 
-		return blockstate.getBlock() == this && blockstate.get(LAYER) == 0;
+
 	}
 
 	public void placeAt(IWorld worldIn, BlockPos pos, int flags) {
@@ -46,11 +39,9 @@ public class JohnstoniaBlock extends BushBlock {
 
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
-		if(worldIn.getBlockState(pos.up()).getBlock() == Blocks.AIR && worldIn.getBlockState(pos.up(2)).getBlock() == Blocks.AIR || worldIn.getBlockState(pos.up()).getBlock() == Blocks.TALL_GRASS && worldIn.getBlockState(pos.up(2)).getBlock() == Blocks.AIR || worldIn.getBlockState(pos.up()).getBlock() == Blocks.CAVE_AIR && worldIn.getBlockState(pos.up(2)).getBlock() == Blocks.CAVE_AIR || worldIn.getBlockState(pos.up()).getBlock() == Blocks.TALL_GRASS && worldIn.getBlockState(pos.up(2)).getBlock() == Blocks.CAVE_AIR || worldIn.getBlockState(pos.up()).getBlock() == Blocks.VOID_AIR && worldIn.getBlockState(pos.up(2)).getBlock() == Blocks.VOID_AIR || worldIn.getBlockState(pos.up()).getBlock() == Blocks.TALL_GRASS && worldIn.getBlockState(pos.up(2)).getBlock() == Blocks.VOID_AIR) {
-			worldIn.setBlockState(pos, this.getDefaultState().with(LAYER, 0), 2);
-			worldIn.setBlockState(pos.up(), this.getDefaultState().with(LAYER, 1), 2);
-			worldIn.setBlockState(pos.up(2), this.getDefaultState().with(LAYER, 2), 2);
-		}
+		worldIn.setBlockState(pos, this.getDefaultState().with(LAYER, 0), 2);
+		worldIn.setBlockState(pos.up(), this.getDefaultState().with(LAYER, 1), 2);
+		worldIn.setBlockState(pos.up(2), this.getDefaultState().with(LAYER, 2), 2);
 	}
 
 	@Override

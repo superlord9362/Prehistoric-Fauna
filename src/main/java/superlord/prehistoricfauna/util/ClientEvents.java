@@ -6,6 +6,7 @@ import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -15,11 +16,15 @@ import net.minecraft.world.ILightReader;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.network.NetworkDirection;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.entity.render.AllosaurusRenderer;
 import superlord.prehistoricfauna.entity.render.AllosaurusSkeletonRenderer;
@@ -47,6 +52,7 @@ import superlord.prehistoricfauna.entity.render.HyperodapedonRenderer;
 import superlord.prehistoricfauna.entity.render.IschigualastiaRenderer;
 import superlord.prehistoricfauna.entity.render.IschigualastiaSkeletonRenderer;
 import superlord.prehistoricfauna.entity.render.IschigualastiaSkullRenderer;
+import superlord.prehistoricfauna.entity.render.PFSignTileEntityRenderer;
 import superlord.prehistoricfauna.entity.render.PaleontologyTableScreen;
 import superlord.prehistoricfauna.entity.render.PaleopaintingRenderer;
 import superlord.prehistoricfauna.entity.render.PaleoscribeScreen;
@@ -69,14 +75,15 @@ import superlord.prehistoricfauna.entity.render.WallFossilRenderer;
 import superlord.prehistoricfauna.init.BlockInit;
 import superlord.prehistoricfauna.init.ContainerRegistry;
 import superlord.prehistoricfauna.init.ModEntityTypes;
+import superlord.prehistoricfauna.init.TileEntityRegistry;
 
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientEvents {
-	
+
 	@SuppressWarnings("unchecked")
 	@SubscribeEvent
-    public static void clientSetup(FMLClientSetupEvent event) {
+	public static void clientSetup(FMLClientSetupEvent event) {
 		BlockColors blockcolors = Minecraft.getInstance().getBlockColors();
 		ItemColors itemcolors = Minecraft.getInstance().getItemColors();
 		blockcolors.register((p_228064_0_, p_228064_1_, p_228064_2_, p_228064_3_) -> {
@@ -138,7 +145,7 @@ public class ClientEvents {
 		ScreenManager.registerFactory(ContainerRegistry.PALEONTOLOGY_TABLE.get(), PaleontologyTableScreen::new);
 		ScreenManager.registerFactory(ContainerRegistry.PALEOSCRIBE_CONTAINER, PaleoscribeScreen::new);
 	}
-	
+
 	@SubscribeEvent
 	public static void onStitchEvent(TextureStitchEvent.Pre event) {
 		ResourceLocation stitching = event.getMap().getTextureLocation();
@@ -146,6 +153,29 @@ public class ClientEvents {
 			return;
 
 		PFWoodTypes.getValues().forEach(woodType -> event.addSprite(new ResourceLocation(PrehistoricFauna.MODID, "entities/signs/" + woodType.getName())));
+	}
+
+	@SubscribeEvent
+	public static void registerModels(ModelRegistryEvent event) {
+		ClientRegistry.bindTileEntityRenderer(TileEntityRegistry.PF_SIGNS.get(), PFSignTileEntityRenderer::new);
+	}
+
+
+	public static <MSG> void sendMSGToServer(MSG message) {
+		PrehistoricFauna.NETWORK_WRAPPER.sendToServer(message);
+	}
+
+	public static <MSG> void sendMSGToAll(MSG message) {
+		for (ServerPlayerEntity player : ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayers()) {
+			sendNonLocal(message, player);
+		}
+	}
+
+	@SuppressWarnings("unlikely-arg-type")
+	public static <MSG> void sendNonLocal(MSG msg, ServerPlayerEntity player) {
+		if (player.server.isDedicatedServer() || !player.getName().equals(player.server.getServerOwner())) {
+			PrehistoricFauna.NETWORK_WRAPPER.sendTo(msg, player.connection.netManager, NetworkDirection.PLAY_TO_CLIENT);
+		}
 	}
 
 }

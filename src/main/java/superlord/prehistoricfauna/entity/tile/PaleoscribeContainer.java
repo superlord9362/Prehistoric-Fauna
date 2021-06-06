@@ -17,6 +17,7 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.init.ContainerRegistry;
 import superlord.prehistoricfauna.init.ItemInit;
 import superlord.prehistoricfauna.item.PaleopediaItem;
+import superlord.prehistoricfauna.util.ClientEvents;
 import superlord.prehistoricfauna.util.EnumPaleoPages;
 
 public class PaleoscribeContainer extends Container {
@@ -175,7 +176,7 @@ public class PaleoscribeContainer extends Container {
                     this.tileFurnace.setInventorySlotContents(0, itemstack);
                     if (PrehistoricFauna.PROXY.getReferencedTE() instanceof PaleoscribeTileEntity) {
                         if(playerIn.world.isRemote){
-                            PrehistoricFauna.sendMSGToServer(new MessageUpdatePaleoscribe(((PaleoscribeTileEntity)PrehistoricFauna.PROXY.getReferencedTE()).getPos().toLong(), 0, 0, 0, true, page.ordinal()));
+                        	ClientEvents.sendMSGToServer(new MessageUpdatePaleoscribe(((PaleoscribeTileEntity)PrehistoricFauna.PROXY.getReferencedTE()).getPos().toLong(), 0, 0, 0, true, page.ordinal()));
                         }
                         ((PaleoscribeTileEntity) PrehistoricFauna.PROXY.getReferencedTE()).randomizePages(itemstack, itemstack1);
                     }
