@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "bottom": "prehistoricfauna:blocks/henostone",
+        "top": "prehistoricfauna:blocks/projector_active",
+        "side": "prehistoricfauna:blocks/projector_side_active"
+    }
+}

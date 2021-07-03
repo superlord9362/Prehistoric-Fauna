@@ -6,6 +6,11 @@ most peculiar animal. Upon
 further inspection, I have
 concluded that the beast is
 none other than an Ankylosaurus.
+<image><drawings_ankylosaurus.png 25 100 0 0 127 48 1>
+
+
+
+
 
 Covered in armor, and
 equipped with it's large 
@@ -28,3 +33,4 @@ clubmoss! Upon feeding two
 Ankylosaurus this, they began
 to mate, and laid several
 eggs nearby.
+<image><drawings_ankylosaurus.png 225 150 0 48 117 48 1>

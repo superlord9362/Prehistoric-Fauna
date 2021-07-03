@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "prehistoricfauna:siltstone"
-  },
-  "result": "prehistoricfauna:chiseled_siltstone",
-  "count": 1
-}

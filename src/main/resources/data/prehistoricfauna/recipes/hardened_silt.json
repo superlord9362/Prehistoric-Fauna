@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "prehistoricfauna:silt"
-  },
-  "result": "prehistoricfauna:hardened_silt",
-  "cookingtime": 200
-}

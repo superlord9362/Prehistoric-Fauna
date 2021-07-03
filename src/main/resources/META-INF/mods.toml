@@ -1,5 +1,6 @@
 modLoader="javafml" #mandatory
-loaderVersion="[31,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+loaderVersion="[35,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+license="All rights reserved"
 [[mods]] #mandatory
 modId="prehistoricfauna" #mandatory
 version="2.0.0" #mandatory
@@ -11,13 +12,14 @@ Travel to the past to discover worlds time forgot. Bring back animals long extin
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.prehistoricfauna]] #optional
-    # the modid of the dependency
     modId="forge" #mandatory
-    # Does this dependency have to exist - if not, ordering below must be specified
     mandatory=true #mandatory
-    # The version range of the dependency
-    versionRange="[31.2.50,)" #mandatory
-    # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
+    versionRange="[35,)" #mandatory
     ordering="NONE"
-    # Side this dependency is applied on - BOTH, CLIENT or SERVER
-    side="BOTH" 
+    side="BOTH"
+[[dependencies.prehistoricfauna]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.4,1.17)"
+    ordering="NONE"
+    side="BOTH"

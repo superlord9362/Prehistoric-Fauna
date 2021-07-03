@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "prehistoricfauna:henostone_brick_slab"
-  },
-  "result": "prehistoricfauna:henostone_brick_vertical_slab",
-  "count": 1
-}

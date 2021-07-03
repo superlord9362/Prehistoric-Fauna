@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "prehistoricfauna:polished_chalk"
-  },
-  "result": "prehistoricfauna:chalk_brick_wall",
-  "count": 1
-}

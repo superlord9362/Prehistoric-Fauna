@@ -1,8 +1,0 @@
-{
-    "parent": "prehistoricfauna:block/vertical_slab",
-    "textures": {
-        "side": "prehistoricfauna:blocks/jurassic_siltstone",
-        "top": "prehistoricfauna:blocks/jurassic_siltstone",
-        "bottom": "prehistoricfauna:blocks/jurassic_siltstone"
-    }
-}

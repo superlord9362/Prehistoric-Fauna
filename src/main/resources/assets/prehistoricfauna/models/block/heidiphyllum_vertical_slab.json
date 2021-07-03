@@ -1,8 +1,0 @@
-{
-    "parent": "prehistoricfauna:block/vertical_slab",
-    "textures": {
-        "side": "prehistoricfauna:blocks/heidiphyllum_planks",
-        "top": "prehistoricfauna:blocks/heidiphyllum_planks",
-        "bottom": "prehistoricfauna:blocks/heidiphyllum_planks"
-    }
-}

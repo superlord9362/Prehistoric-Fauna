@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "prehistoricfauna:sandstone"
-  },
-  "result": "prehistoricfauna:sandstone_slab",
-  "count": 2
-}

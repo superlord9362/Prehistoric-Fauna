@@ -1,8 +1,0 @@
-{
-    "parent": "prehistoricfauna:block/vertical_slab",
-    "textures": {
-        "side": "prehistoricfauna:blocks/metasequoia_planks",
-        "top": "prehistoricfauna:blocks/metasequoia_planks",
-        "bottom": "prehistoricfauna:blocks/metasequoia_planks"
-    }
-}
