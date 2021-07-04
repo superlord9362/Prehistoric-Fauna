@@ -1,10 +1,12 @@
-package superlord.prehistoricfauna.entity;
+package superlord.prehistoricfauna.common.entities;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -30,14 +32,16 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import superlord.prehistoricfauna.block.CeratosaurusEggBlock;
-import superlord.prehistoricfauna.entity.goal.HuntGoal;
-import superlord.prehistoricfauna.init.BlockInit;
-import superlord.prehistoricfauna.init.ItemInit;
-import superlord.prehistoricfauna.init.ModEntityTypes;
-import superlord.prehistoricfauna.util.SoundHandler;
+import net.minecraft.world.server.ServerWorld;
+import superlord.prehistoricfauna.common.blocks.CeratosaurusEggBlock;
+import superlord.prehistoricfauna.common.entities.goal.HuntGoal;
+import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFEntities;
+import superlord.prehistoricfauna.init.PFItems;
+import superlord.prehistoricfauna.init.SoundInit;
 
 import java.util.Random;
 import java.util.function.Predicate;
@@ -52,12 +56,6 @@ public class CeratosaurusEntity extends AnimalEntity {
 	
 	public CeratosaurusEntity(EntityType<? extends CeratosaurusEntity> type, World worldIn) {
 		super(type, worldIn);
-	}
-	
-	public AgeableEntity createChild(AgeableEntity ageable) {
-		CeratosaurusEntity entity = new CeratosaurusEntity(ModEntityTypes.CERATOSAURUS_ENTITY, this.world);
-		entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
-		return entity;
 	}
 	
 	public boolean isDigging() {
@@ -78,7 +76,7 @@ public class CeratosaurusEntity extends AnimalEntity {
 	}
 	
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == ItemInit.RAW_DRYOSAURUS_MEAT.get();
+		return stack.getItem() == PFItems.RAW_DRYOSAURUS_MEAT.get();
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -106,13 +104,8 @@ public class CeratosaurusEntity extends AnimalEntity {
 		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, TyrannosaurusEntity.class, 7F, 1.25D, 1.25D));
 	}
 	
-	protected void registerAttributes() {
-		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30D);
-		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20D);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
-		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5D);
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 30.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 5.0D);
 	}
 	
 	private void setAttackGoals() {
@@ -120,15 +113,15 @@ public class CeratosaurusEntity extends AnimalEntity {
 	}
 	
 	protected SoundEvent getAmbientSound() {
-		return SoundHandler.CERATOSAURUS_IDLE;
+		return SoundInit.CERATOSAURUS_IDLE;
 	}
 	
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundHandler.CERATOSAURUS_HURT;
+		return SoundInit.CERATOSAURUS_HURT;
 	}
 	
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.CERATOSAURUS_DEATH;
+		return SoundInit.CERATOSAURUS_DEATH;
 	}
 	
 	protected void playStepSound(BlockPos pos, BlockState state) {
@@ -137,7 +130,7 @@ public class CeratosaurusEntity extends AnimalEntity {
 	
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(SoundHandler.CERATOSAURUS_WARN, 1.0F, this.getSoundPitch());
+			this.playSound(SoundInit.CERATOSAURUS_WARN, 1.0F, this.getSoundPitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -167,7 +160,7 @@ public class CeratosaurusEntity extends AnimalEntity {
 	}
 	
 	public boolean attackEntityAsMob(Entity entity) {
-		boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getValue()));
+		boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
 		if (flag) {
 			this.applyEnchantments(this, entity);
 		}
@@ -228,33 +221,32 @@ public class CeratosaurusEntity extends AnimalEntity {
 
 		protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
 			double d0 = this.getAttackReachSqr(enemy);
-			if (distToEnemySqr <= d0) {
-				this.attackTick = 20;
+			if (distToEnemySqr <= d0 && this.func_234040_h_()) {
+				this.func_234039_g_();
 				this.attacker.attackEntityAsMob(enemy);
 			} else if (distToEnemySqr <= d0 * 2.0D) {
-				if (this.attackTick <= 0) {
-					this.attackTick = 20;
+				if (this.func_234040_h_()) {
+					this.func_234039_g_();
 				}
 
-				if (this.attackTick <= 10) {
+				if (this.func_234041_j_() <= 10) {
 					CeratosaurusEntity.this.playWarningSound();
 				}
 			} else {
-				this.attackTick = 20;
+				this.func_234039_g_();
 			}
 
 		}
-		
 
-	      public boolean shouldContinueExecuting() {
-	         float f = this.attacker.getBrightness();
-	         if (f >= 0.5F && this.attacker.getRNG().nextInt(100) == 0) {
-	            this.attacker.setAttackTarget((LivingEntity)null);
-	            return false;
-	         } else {
-	            return super.shouldContinueExecuting();
-	         }
-	      }
+		public boolean shouldContinueExecuting() {
+			float f = this.attacker.getBrightness();
+			if (f >= 0.5F && this.attacker.getRNG().nextInt(100) == 0) {
+				this.attacker.setAttackTarget((LivingEntity)null);
+				return false;
+			} else {
+				return super.shouldContinueExecuting();
+			}
+		}
 
 		public void resetTask() {
 			super.resetTask();
@@ -294,14 +286,14 @@ public class CeratosaurusEntity extends AnimalEntity {
 		
 		public void tick() {
 			super.tick();
-			BlockPos blockpos = new BlockPos(this.ceratosaurus);
+			BlockPos blockpos = new BlockPos(this.ceratosaurus.getPositionVec());
 			if (!this.ceratosaurus.isInWater() && this.getIsAboveDestination()) {
 				if (this.ceratosaurus.isDigging < 1) {
 					this.ceratosaurus.setDigging(true);
 				} else if (this.ceratosaurus.isDigging > 200) {
 					World world = this.ceratosaurus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.CERATOSAURUS_EGG.getDefaultState().with(CeratosaurusEggBlock.EGGS, Integer.valueOf(this.ceratosaurus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.CERATOSAURUS_EGG.getDefaultState().with(CeratosaurusEggBlock.EGGS, Integer.valueOf(this.ceratosaurus.rand.nextInt(4) + 1)), 3);
 					this.ceratosaurus.setHasEgg(false);
 					this.ceratosaurus.setDigging(false);
 					this.ceratosaurus.setInLove(600);
@@ -317,7 +309,7 @@ public class CeratosaurusEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.SILT || block == BlockInit.HARDENED_SILT || block == Blocks.SAND;
+				return block == PFBlocks.SILT || block == PFBlocks.HARDENED_SILT || block == Blocks.SAND;
 			}
 		}
 		
@@ -353,6 +345,13 @@ public class CeratosaurusEntity extends AnimalEntity {
 			}
 		}
 		
+	}
+
+	@Override
+	public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+		CeratosaurusEntity entity = new CeratosaurusEntity(PFEntities.CERATOSAURUS_ENTITY, this.world);
+		entity.onInitialSpawn((IServerWorld) this.world, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
+		return entity;
 	}
 	
 }

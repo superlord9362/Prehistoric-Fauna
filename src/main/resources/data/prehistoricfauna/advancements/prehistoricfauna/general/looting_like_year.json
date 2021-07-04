@@ -1,0 +1,45 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/general/time_machine",
+  "display": {
+    "icon": {
+      "item": "prehistoricfauna:araucaria_door"
+    },
+    "title": {
+      "translate": "advancements.prehistoricfauna.looting_like_year.title"
+    },
+    "description": {
+      "translate": "advancements.prehistoricfauna.looting_like_year.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "cretaceous_hut": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "feature": "prehistoricfauna:hell_creek_hut"
+      }
+    },
+	"jurassic_hut": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "feature": "prehistoricfauna:morrison_hut"
+      }
+    },
+	"triassic_hut": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "feature": "prehistoricfauna:ischigualasto_hut"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "cretaceous_hut",
+		"jurassic_hut",
+		"triassic_hut"
+    ]
+  ]
+}

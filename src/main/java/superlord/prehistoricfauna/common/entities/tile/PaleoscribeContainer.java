@@ -14,10 +14,10 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.init.ContainerRegistry;
+import superlord.prehistoricfauna.common.items.PaleopediaItem;
+import superlord.prehistoricfauna.common.util.EnumPaleoPages;
+import superlord.prehistoricfauna.init.PFContainers;
 import superlord.prehistoricfauna.init.PFItems;
-import superlord.prehistoricfauna.item.PaleopediaItem;
-import superlord.prehistoricfauna.util.EnumPaleoPages;
 
 public class PaleoscribeContainer extends Container {
     private IInventory tileFurnace;
@@ -30,7 +30,7 @@ public class PaleoscribeContainer extends Container {
 
 
     public PaleoscribeContainer(int id, IInventory furnaceInventory, PlayerInventory playerInventory, IIntArray vars, IWorldPosCallable worldPosCallable) {
-        super(ContainerRegistry.PALEOSCRIBE_CONTAINER, id);
+        super(PFContainers.PALEOSCRIBE_CONTAINER, id);
         this.tileFurnace = furnaceInventory;
         this.worldPosCallable = worldPosCallable;
         this.addSlot(new PaleoscribeSlot(playerInventory.player, furnaceInventory, 0, 15, 47) {

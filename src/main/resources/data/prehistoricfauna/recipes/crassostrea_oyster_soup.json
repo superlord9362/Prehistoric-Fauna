@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:bowl"
+    },
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "item": "minecraft:bread"
+    },
+    {
+      "item": "minecraft:brown_mushroom"
+    },
+    {
+      "item": "prehistoricfauna:crassostrea_oyster"
+    },
+    {
+      "item": "prehistoricfauna:crassostrea_oyster"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:crassostrea_oyster_soup"
+  }
+}

@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.entity;
+package superlord.prehistoricfauna.common.entities;
 
 import java.util.EnumSet;
 import java.util.Optional;
@@ -7,10 +7,10 @@ import javax.annotation.Nullable;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -28,15 +28,13 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.Difficulty;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerBossInfo;
-import superlord.prehistoricfauna.util.SoundHandler;
+import superlord.prehistoricfauna.init.SoundInit;
 
 public class TimeGuardianEntity extends MonsterEntity {
 	private static final DataParameter<Boolean> ACTIVE = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.BOOLEAN);
@@ -67,15 +65,15 @@ public class TimeGuardianEntity extends MonsterEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return SoundHandler.HENOS_IDLE;
+		return SoundInit.HENOS_IDLE;
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundHandler.HENOS_HURT;
+		return SoundInit.HENOS_HURT;
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.HENOS_DEATH;
+		return SoundInit.HENOS_DEATH;
 	}
 
 	@Override
@@ -85,14 +83,9 @@ public class TimeGuardianEntity extends MonsterEntity {
 		goalSelector.addGoal(0, new TimeGuardianEntity.MeleeAttackGoal(this, 1.0D, true));
 		targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 0, true, false, null));
 	}
-
-	protected void registerAttributes() {
-		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(300.0D);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2D);
-		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(10.0D);
-		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(24.0D);
-		this.getAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(50.0D);
+	
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 300.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 10.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 25.0D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 50.0D);
 	}
 
 	public boolean canBreatheUnderwater() {
@@ -129,12 +122,6 @@ public class TimeGuardianEntity extends MonsterEntity {
 	@Override
 	public boolean canBePushed() {
 		return isActive();
-	}
-
-	@Nullable
-	@Override
-	public ILivingEntityData onInitialSpawn(IWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData livingData, @Nullable CompoundNBT compound) {
-		return super.onInitialSpawn(world, difficulty, reason, livingData, compound);
 	}
 
 	@Override
@@ -351,13 +338,13 @@ public class TimeGuardianEntity extends MonsterEntity {
 			this.setMutexFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
 		}
 
-		public static boolean canSeeEntity(Vec3d observer, Entity subject) {
+		public static boolean canSeeEntity(Vector3d observer, Entity subject) {
 			if (observer == null || subject == null) return false;
 			AxisAlignedBB axisalignedbb = subject.getBoundingBox().grow(0.30000001192092896D);
-			Vec3d subjectLocation = new Vec3d(subject.getPosX(), subject.getPosY() + subject.getEyeHeight(), subject.getPosZ());
+			Vector3d subjectLocation = new Vector3d(subject.getPosX(), subject.getPosY() + subject.getEyeHeight(), subject.getPosZ());
 			RayTraceResult traceToBlocks = subject.world.rayTraceBlocks(new RayTraceContext(observer, subjectLocation, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, subject));
 			if (traceToBlocks.getType() != RayTraceResult.Type.MISS) subjectLocation = traceToBlocks.getHitVec();
-			Optional<Vec3d> traceToEntity = axisalignedbb.rayTrace(observer, subjectLocation);
+			Optional<Vector3d> traceToEntity = axisalignedbb.rayTrace(observer, subjectLocation);
 			return traceToEntity.isPresent();
 		}
 
@@ -405,7 +392,7 @@ public class TimeGuardianEntity extends MonsterEntity {
 					double lureX = Math.cos(rot) * (double) (timeGuardian.getWidth() + 1f) + timeGuardian.getPosX();
 					double lureY = timeGuardian.getHeight() + 1f + timeGuardian.getPosY();
 					double lureZ = Math.sin(rot) * (double) (timeGuardian.getWidth() + 1f) + timeGuardian.getPosZ();
-					Vec3d lureVec = new Vec3d(lureX, lureY, lureZ);
+					Vector3d lureVec = new Vector3d(lureX, lureY, lureZ);
 
 					double d0 = targetX - lureX;
 					double d1 = targetY - lureY;
@@ -416,9 +403,9 @@ public class TimeGuardianEntity extends MonsterEntity {
 					timeGuardian.setLaserPitch(this.updateRotation(timeGuardian.getLaserPitch(), targetPitch, 35f - this.timeGuardian.world.getDifficulty().getId() * 2f));
 					timeGuardian.setLaserYaw(this.updateRotation(timeGuardian.getLaserYaw(), targetYaw, 20f - this.timeGuardian.world.getDifficulty().getId() * 2f));
 
-					Vec3d laserAngle = Vec3d.fromPitchYaw(timeGuardian.getLaserPitch(), timeGuardian.getLaserYaw());
+					Vector3d laserAngle = Vector3d.fromPitchYaw(timeGuardian.getLaserPitch(), timeGuardian.getLaserYaw());
 					double range = 30d;
-					Vec3d hitVec = lureVec.add(laserAngle.scale(range));
+					Vector3d hitVec = lureVec.add(laserAngle.scale(range));
 
 					RayTraceResult trace = timeGuardian.world.rayTraceBlocks(new RayTraceContext(lureVec, hitVec, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE, timeGuardian));
 					if (trace.getType() != RayTraceResult.Type.MISS) {
@@ -433,14 +420,14 @@ public class TimeGuardianEntity extends MonsterEntity {
 					LivingEntity base = null;
 					for (LivingEntity entity : timeGuardian.world.getEntitiesWithinAABB(LivingEntity.class, timeGuardian.getBoundingBox().grow(30))) {
 						AxisAlignedBB axisalignedbb = entity.getBoundingBox().grow(0.30000001192092896D);
-						Optional<Vec3d> traceToEntity = axisalignedbb.rayTrace(lureVec, hitVec);
+						Optional<Vector3d> traceToEntity = axisalignedbb.rayTrace(lureVec, hitVec);
 						if (traceToEntity.isPresent() && canSeeEntity(lureVec, entity) && entity != timeGuardian && (base == null || timeGuardian.getDistance(entity) < timeGuardian.getDistance(base)))
 							base = entity;
 					}
 
 					if (base != null) {
 						base.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this.timeGuardian, this.timeGuardian), f);
-						base.attackEntityFrom(DamageSource.causeMobDamage(this.timeGuardian), (float) this.timeGuardian.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getValue() / 2);
+						base.attackEntityFrom(DamageSource.causeMobDamage(this.timeGuardian), (float) this.timeGuardian.getAttribute(Attributes.ATTACK_DAMAGE).getValue() / 2);
 						((LivingEntity)base).addPotionEffect(new EffectInstance(Effects.SLOWNESS, 140 * (int)f, 2));
 						((LivingEntity)base).addPotionEffect(new EffectInstance(Effects.WEAKNESS, 140 * (int)f, 2));
 					}
@@ -454,7 +441,7 @@ public class TimeGuardianEntity extends MonsterEntity {
 			if (this.tickCounter == 0) {
 				this.timeGuardian.setChargingBeam(false);
 				this.timeGuardian.setUsingBeam(true);
-				this.timeGuardian.playSound(SoundHandler.HENOS_LASER, 1.0F, this.timeGuardian.getSoundPitch());
+				this.timeGuardian.playSound(SoundInit.HENOS_LASER, 1.0F, this.timeGuardian.getSoundPitch());
 			} else if (this.tickCounter < attackTick) {
 				this.updateLaser();
 			}

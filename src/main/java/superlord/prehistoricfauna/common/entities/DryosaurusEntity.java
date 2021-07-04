@@ -1,11 +1,27 @@
-package superlord.prehistoricfauna.entity;
+package superlord.prehistoricfauna.common.entities;
+
+import java.util.Random;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.effect.LightningBoltEntity;
+import net.minecraft.entity.AgeableEntity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.entity.ai.goal.BreedGoal;
+import net.minecraft.entity.ai.goal.FollowParentGoal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.MoveToBlockGoal;
+import net.minecraft.entity.ai.goal.PanicGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.TemptGoal;
+import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,22 +39,22 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.block.DryosaurusEggBlock;
-import superlord.prehistoricfauna.init.BlockInit;
-import superlord.prehistoricfauna.init.ModEntityTypes;
-import superlord.prehistoricfauna.util.SoundHandler;
-
-import java.util.Random;
+import superlord.prehistoricfauna.common.blocks.DryosaurusEggBlock;
+import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFEntities;
+import superlord.prehistoricfauna.init.SoundInit;
 
 public class DryosaurusEntity extends AnimalEntity {
 
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(DryosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(DryosaurusEntity.class, DataSerializers.BOOLEAN);
-	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.CONIOPTERIS.asItem());
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(PFBlocks.CONIOPTERIS.asItem());
 	private int isDigging;
 	
 	public DryosaurusEntity(EntityType<? extends DryosaurusEntity> type, World world) {
@@ -63,14 +79,7 @@ public class DryosaurusEntity extends AnimalEntity {
 	}
 	
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.CONIOPTERIS.asItem();
-	}
-	
-	@Override
-	public AgeableEntity createChild(AgeableEntity ageable) {
-		DryosaurusEntity entity = new DryosaurusEntity(ModEntityTypes.DRYOSAURUS_ENTITY, this.world);
-		entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
-		return entity;
+		return stack.getItem() == PFBlocks.CONIOPTERIS.asItem();
 	}
 	
 	protected void registerData() {
@@ -113,15 +122,15 @@ public class DryosaurusEntity extends AnimalEntity {
 	}
 	
 	protected SoundEvent getAmbientSound() {
-		return SoundHandler.DRYOSAURUS_IDLE;
+		return SoundInit.DRYOSAURUS_IDLE;
 	}
 	
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundHandler.DRYOSAURUS_HURT;
+		return SoundInit.DRYOSAURUS_HURT;
 	}
 	
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.DRYOSAURUS_DEATH;
+		return SoundInit.DRYOSAURUS_DEATH;
 	}
 	
 	@Override
@@ -134,21 +143,13 @@ public class DryosaurusEntity extends AnimalEntity {
 		super.livingTick();
 	}
 	
-	@Override
-	protected void registerAttributes() {
-		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.23D);
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 12.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D);
 	}
 	
 	@OnlyIn(Dist.CLIENT)
 	public void handleStatusUpdate(byte id) {
 		super.handleStatusUpdate(id);
-	}
-	
-	@Override
-	public void onStruckByLightning(LightningBoltEntity lightningBoltEntity) {
-		this.setGlowing(true);
 	}
 	
 	static class LayEggGoal extends MoveToBlockGoal {
@@ -169,14 +170,14 @@ public class DryosaurusEntity extends AnimalEntity {
 		
 		public void tick() {
 			super.tick();
-			BlockPos blockpos = new BlockPos(this.dryosaurus);
+			BlockPos blockpos = new BlockPos(this.dryosaurus.getPositionVec());
 			if (this.dryosaurus.isInWater() && this.getIsAboveDestination()) {
 				if (this.dryosaurus.isDigging < 1) {
 					this.dryosaurus.setDigging(true);
 				} else if (this.dryosaurus.isDigging > 200) {
 					World world = this.dryosaurus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.DRYOSAURUS_EGG.getDefaultState().with(DryosaurusEggBlock.EGGS, Integer.valueOf(this.dryosaurus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.DRYOSAURUS_EGG.getDefaultState().with(DryosaurusEggBlock.EGGS, Integer.valueOf(this.dryosaurus.rand.nextInt(4) + 1)), 3);
 					this.dryosaurus.setHasEgg(false);
 					this.dryosaurus.setDigging(false);
 					this.dryosaurus.setInLove(600);
@@ -192,7 +193,7 @@ public class DryosaurusEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.SILT || block == BlockInit.HARDENED_SILT || block == Blocks.SAND;
+				return block == PFBlocks.SILT || block == PFBlocks.HARDENED_SILT || block == Blocks.SAND;
 			}
 		}
 		
@@ -228,6 +229,13 @@ public class DryosaurusEntity extends AnimalEntity {
 			}
 		}
 		
+	}
+
+	@Override
+	public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+		DryosaurusEntity entity = new DryosaurusEntity(PFEntities.DRYOSAURUS_ENTITY, this.world);
+		entity.onInitialSpawn((IServerWorld)this.world, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
+		return entity;
 	}
 	
 }

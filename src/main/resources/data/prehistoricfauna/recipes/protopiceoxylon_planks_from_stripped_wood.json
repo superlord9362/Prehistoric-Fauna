@@ -1,0 +1,13 @@
+{
+  "type": "crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:stripped_protopiceoxylon_wood"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:protopiceoxylon_planks",
+    "count": 4
+  }
+}

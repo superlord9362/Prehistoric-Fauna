@@ -19,8 +19,8 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.PrehistoricFauna.PFMisc;
+import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.init.PFItems;
-import superlord.prehistoricfauna.util.EnumPaleoPages;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -74,13 +74,13 @@ public class PaleopediaItem extends Item {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (stack.getTag() != null) {
         	if (PrehistoricFauna.PROXY.shouldSeePaleopediaContents()) {
-                tooltip.add(new TranslationTextComponent("paleopedia.contains").applyTextStyle(TextFormatting.GRAY));
+                tooltip.add(new TranslationTextComponent("paleopedia.contains").mergeStyle(TextFormatting.GRAY));
                 List<EnumPaleoPages> pages = EnumPaleoPages.containedPages(EnumPaleoPages.toList(stack.getTag().getIntArray("Pages")));
                 for (EnumPaleoPages page : pages) {
-                    tooltip.add(new StringTextComponent(TextFormatting.WHITE + "-").appendSibling(new TranslationTextComponent("paleopedia." + EnumPaleoPages.values()[page.ordinal()].toString().toLowerCase())).applyTextStyle(TextFormatting.GRAY));
+                    tooltip.add(new StringTextComponent(TextFormatting.WHITE + "-").append(new TranslationTextComponent("paleopedia." + EnumPaleoPages.values()[page.ordinal()].toString().toLowerCase())).mergeStyle(TextFormatting.GRAY));
                 }
             } else {
-                tooltip.add(new TranslationTextComponent("paleopedia.hold_shift").applyTextStyle(TextFormatting.GRAY));
+                tooltip.add(new TranslationTextComponent("paleopedia.hold_shift").mergeStyle(TextFormatting.GRAY));
             }
 
         }

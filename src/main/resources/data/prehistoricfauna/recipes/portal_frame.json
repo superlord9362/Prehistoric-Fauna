@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "HHH",
+    "HCH",
+	"HHH"
+  ],
+  "key": {
+    "H": {
+      "item": "prehistoricfauna:henostone"
+    },
+    "C": {
+      "item": "minecraft:clock"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:portal_frame",
+    "count": 1
+  }
+}

@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.entity;
+package superlord.prehistoricfauna.common.entities;
 
 import java.util.Random;
 
@@ -10,8 +10,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.ai.goal.BreedGoal;
 import net.minecraft.entity.ai.goal.FollowParentGoal;
@@ -43,31 +45,27 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import superlord.prehistoricfauna.block.HesperornithoidesEggBlock;
-import superlord.prehistoricfauna.entity.goal.HuntGoal;
-import superlord.prehistoricfauna.init.BlockInit;
-import superlord.prehistoricfauna.init.ItemInit;
-import superlord.prehistoricfauna.init.ModEntityTypes;
-import superlord.prehistoricfauna.util.SoundHandler;
+import net.minecraft.world.server.ServerWorld;
+import superlord.prehistoricfauna.common.blocks.HesperornithoidesEggBlock;
+import superlord.prehistoricfauna.common.entities.goal.HuntGoal;
+import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFEntities;
+import superlord.prehistoricfauna.init.PFItems;
+import superlord.prehistoricfauna.init.SoundInit;
 
 public class HesperornithoidesEntity extends AnimalEntity {
 	
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(HesperornithoidesEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(HesperornithoidesEntity.class, DataSerializers.BOOLEAN);
-	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(ItemInit.RAW_EILENODON_MEAT.get());
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(PFItems.RAW_EILENODON_MEAT.get());
 	private int isDigging;
 	private Goal attackAnimals;
 	
 	public HesperornithoidesEntity(EntityType<? extends HesperornithoidesEntity> type, World world) {
 		super(type, world);
-	}
-	
-	public AgeableEntity createChild(AgeableEntity ageable) {
-		HesperornithoidesEntity entity = new HesperornithoidesEntity(ModEntityTypes.HESPERORNITHOIDES_ENTITY, this.world);
-		entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
-		return entity;
 	}
 	
 	public boolean isDigging() {
@@ -88,7 +86,7 @@ public class HesperornithoidesEntity extends AnimalEntity {
 	}
 	
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == ItemInit.RAW_EILENODON_MEAT.get();
+		return stack.getItem() == PFItems.RAW_EILENODON_MEAT.get();
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -122,13 +120,8 @@ public class HesperornithoidesEntity extends AnimalEntity {
 		this.goalSelector.addGoal(8, new HesperornithoidesEntity.LayEggGoal(this, 1.0D));
 	}
 	
-	protected void registerAttributes() {
-		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(6D);
-		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(25D);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.26D);
-		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
-		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2D);
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 6.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.26D).createMutableAttribute(Attributes.FOLLOW_RANGE, 25.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0D);
 	}
 	
 	private void setAttackGoals() {
@@ -136,15 +129,15 @@ public class HesperornithoidesEntity extends AnimalEntity {
 	}
 	
 	protected SoundEvent getAmbientSound() {
-		return SoundHandler.HESPERORNITHOIDES_IDLE;
+		return SoundInit.HESPERORNITHOIDES_IDLE;
 	}
 	
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundHandler.HESPERORNITHOIDES_HURT;
+		return SoundInit.HESPERORNITHOIDES_HURT;
 	}
 	
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.HESPERORNITHOIDES_DEATH;
+		return SoundInit.HESPERORNITHOIDES_DEATH;
 	}
 	
 	protected void registerData() {
@@ -169,7 +162,7 @@ public class HesperornithoidesEntity extends AnimalEntity {
 	}
 	
 	public boolean attackEntityAsMob(Entity entity) {
-		boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getValue()));
+		boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
 		if (flag) {
 			this.applyEnchantments(this, entity);
 		}
@@ -180,29 +173,39 @@ public class HesperornithoidesEntity extends AnimalEntity {
 		public MeleeAttackGoal() {
 			super(HesperornithoidesEntity.this, 1.25D, true);
 		}
-		
+
 		protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
 			double d0 = this.getAttackReachSqr(enemy);
-			if (distToEnemySqr <= d0 && this.attackTick <= 0) {
-				this.attackTick = 20;
+			if (distToEnemySqr <= d0 && this.func_234040_h_()) {
+				this.func_234039_g_();
 				this.attacker.attackEntityAsMob(enemy);
-			} else if (distToEnemySqr <= d0 * 2D) {
-				if (this.attackTick <= 0) {
-					this.attackTick = 20;
+			} else if (distToEnemySqr <= d0 * 2.0D) {
+				if (this.func_234040_h_()) {
+					this.func_234039_g_();
 				}
 			} else {
-				this.attackTick = 20;
+				this.func_234039_g_();
+			}
+
+		}
+
+		public boolean shouldContinueExecuting() {
+			float f = this.attacker.getBrightness();
+			if (f >= 0.5F && this.attacker.getRNG().nextInt(100) == 0) {
+				this.attacker.setAttackTarget((LivingEntity)null);
+				return false;
+			} else {
+				return super.shouldContinueExecuting();
 			}
 		}
-		
+
 		public void resetTask() {
 			super.resetTask();
 		}
-		
+
 		protected double getAttackReachSqr(LivingEntity attackTarget) {
-			return (double)(4F + attackTarget.getWidth());
+			return (double)(4.0F + attackTarget.getWidth());
 		}
-		
 	}
 	
 	class LayEggGoal extends MoveToBlockGoal {
@@ -223,14 +226,14 @@ public class HesperornithoidesEntity extends AnimalEntity {
 		
 		public void tick() {
 			super.tick();
-			BlockPos blockpos = new BlockPos(this.hesperornithoides);
+			BlockPos blockpos = new BlockPos(this.hesperornithoides.getPositionVec());
 			if (!this.hesperornithoides.isInWater() && this.getIsAboveDestination()) {
 				if(this.hesperornithoides.isDigging < 1) {
 					this.hesperornithoides.setDigging(true);
 				} else if (this.hesperornithoides.isDigging > 200) {
 					World world = this.hesperornithoides.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.HESPERORNITHOIDES_EGG.getDefaultState().with(HesperornithoidesEggBlock.EGGS, Integer.valueOf(this.hesperornithoides.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.HESPERORNITHOIDES_EGG.getDefaultState().with(HesperornithoidesEggBlock.EGGS, Integer.valueOf(this.hesperornithoides.rand.nextInt(4) + 1)), 3);
 					this.hesperornithoides.setHasEgg(false);
 					this.hesperornithoides.setDigging(false);
 					this.hesperornithoides.setInLove(600);
@@ -246,7 +249,7 @@ public class HesperornithoidesEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = world.getBlockState(pos).getBlock();
-				return block == BlockInit.SILT || block == BlockInit.HARDENED_SILT || block == Blocks.SAND;
+				return block == PFBlocks.SILT || block == PFBlocks.HARDENED_SILT || block == Blocks.SAND;
 			}
 		}
 		
@@ -282,6 +285,13 @@ public class HesperornithoidesEntity extends AnimalEntity {
 			}
 		}
 		
+	}
+
+	@Override
+	public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+		HesperornithoidesEntity entity = new HesperornithoidesEntity(PFEntities.HESPERORNITHOIDES_ENTITY, this.world);
+		entity.onInitialSpawn((IServerWorld) this.world, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
+		return entity;
 	}
 	
 }

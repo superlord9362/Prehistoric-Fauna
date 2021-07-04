@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:ankylosaurus_helmet"
+    ]
+  },
+  "criteria": {
+    "has_ankylosaurus_scute": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:ankylosaurus_scute"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:ankylosaurus_helmet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ankylosaurus_scute",
+      "has_the_recipe"
+    ]
+  ]
+}

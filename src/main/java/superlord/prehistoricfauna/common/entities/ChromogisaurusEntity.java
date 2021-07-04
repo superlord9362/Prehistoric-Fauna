@@ -1,9 +1,11 @@
-package superlord.prehistoricfauna.entity;
+package superlord.prehistoricfauna.common.entities;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -22,14 +24,16 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.block.ChromogisaurusEggBlock;
-import superlord.prehistoricfauna.init.BlockInit;
-import superlord.prehistoricfauna.init.ModEntityTypes;
-import superlord.prehistoricfauna.util.SoundHandler;
+import superlord.prehistoricfauna.common.blocks.ChromogisaurusEggBlock;
+import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFEntities;
+import superlord.prehistoricfauna.init.SoundInit;
 
 import java.util.Random;
 
@@ -37,7 +41,7 @@ public class ChromogisaurusEntity extends AnimalEntity {
 	
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(ChromogisaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(ChromogisaurusEntity.class, DataSerializers.BOOLEAN);
-	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.JOHNSTONIA.asItem());
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(PFBlocks.JOHNSTONIA.asItem());
 	private int isDigging;
 	
 	public ChromogisaurusEntity(EntityType<? extends ChromogisaurusEntity> type, World world) {
@@ -62,14 +66,7 @@ public class ChromogisaurusEntity extends AnimalEntity {
 	}
 	
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.JOHNSTONIA.asItem();
-	}
-	
-	@Override
-	public AgeableEntity createChild(AgeableEntity ageable) {
-		ChromogisaurusEntity entity = new ChromogisaurusEntity(ModEntityTypes.CHROMOGISAURUS_ENTITY, this.world);
-		entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
-		return entity;
+		return stack.getItem() == PFBlocks.JOHNSTONIA.asItem();
 	}
 	
 	protected void registerData() {
@@ -117,15 +114,15 @@ public class ChromogisaurusEntity extends AnimalEntity {
 	}
 	
 	protected SoundEvent getAmbientSound() {
-		return SoundHandler.CHROMOGISAURUS_IDLE;
+		return SoundInit.CHROMOGISAURUS_IDLE;
 	}
 	
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundHandler.CHROMOGISAURUS_HURT;
+		return SoundInit.CHROMOGISAURUS_HURT;
 	}
 	
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.CHROMOGISAURUS_DEATH;
+		return SoundInit.CHROMOGISAURUS_DEATH;
 	}
 	
 	@Override
@@ -138,11 +135,8 @@ public class ChromogisaurusEntity extends AnimalEntity {
 		super.livingTick();
 	}
 	
-	@Override
-	protected void registerAttributes() {
-		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.22D);
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 8.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D);
 	}
 	
 	@OnlyIn(Dist.CLIENT)
@@ -168,14 +162,14 @@ public class ChromogisaurusEntity extends AnimalEntity {
 		
 		public void tick() {
 			super.tick();
-			BlockPos blockpos = new BlockPos(this.chromogisaurus);
+			BlockPos blockpos = new BlockPos(this.chromogisaurus.getPositionVec());
 			if (this.chromogisaurus.isInWater() && this.getIsAboveDestination()) {
 				if (this.chromogisaurus.isDigging < 1) {
 					this.chromogisaurus.setDigging(true);
 				} else if (this.chromogisaurus.isDigging > 200) {
 					World world = this.chromogisaurus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.CHROMOGISAURUS_EGG.getDefaultState().with(ChromogisaurusEggBlock.EGGS, Integer.valueOf(this.chromogisaurus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.CHROMOGISAURUS_EGG.getDefaultState().with(ChromogisaurusEggBlock.EGGS, Integer.valueOf(this.chromogisaurus.rand.nextInt(4) + 1)), 3);
 					this.chromogisaurus.setHasEgg(false);
 					this.chromogisaurus.setDigging(false);
 					this.chromogisaurus.setInLove(600);
@@ -191,7 +185,7 @@ public class ChromogisaurusEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.LOAM || block == BlockInit.PACKED_LOAM || block == Blocks.PODZOL;
+				return block == PFBlocks.LOAM || block == PFBlocks.PACKED_LOAM || block == Blocks.PODZOL;
 			}
 		}
 		
@@ -227,6 +221,13 @@ public class ChromogisaurusEntity extends AnimalEntity {
 			}
 		}
 		
+	}
+
+	@Override
+	public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+		ChromogisaurusEntity entity = new ChromogisaurusEntity(PFEntities.CHROMOGISAURUS_ENTITY, this.world);
+		entity.onInitialSpawn((IServerWorld)this.world, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
+		return entity;
 	}
 
 }

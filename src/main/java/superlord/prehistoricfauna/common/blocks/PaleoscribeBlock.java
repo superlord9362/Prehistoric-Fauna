@@ -29,8 +29,8 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.entity.tile.PaleoscribeContainer;
-import superlord.prehistoricfauna.entity.tile.PaleoscribeTileEntity;
+import superlord.prehistoricfauna.common.entities.tile.PaleoscribeContainer;
+import superlord.prehistoricfauna.common.entities.tile.PaleoscribeTileEntity;
 import superlord.prehistoricfauna.init.PFItems;
 
 public class PaleoscribeBlock extends ContainerBlock {
@@ -93,6 +93,7 @@ public class PaleoscribeBlock extends ContainerBlock {
 		return state.with(FACING, rot.rotate(state.get(FACING)));
 	}
 
+	@SuppressWarnings("deprecation")
 	public BlockState mirror(BlockState state, Mirror mirrorIn) {
 		return state.rotate(mirrorIn.toRotation(state.get(FACING)));
 	}

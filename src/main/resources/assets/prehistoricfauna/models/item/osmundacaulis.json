@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:blocks/osmundacaulis_top"
+        "layer0": "prehistoricfauna:blocks/osmundacaulis_short"
     }
 }

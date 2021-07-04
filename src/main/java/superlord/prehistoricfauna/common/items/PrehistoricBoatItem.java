@@ -11,11 +11,10 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.entity.PrehistoricBoatEntity;
+import superlord.prehistoricfauna.common.entities.PrehistoricBoatEntity;
 
 import java.util.List;
 import java.util.function.Predicate;

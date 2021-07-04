@@ -24,7 +24,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import superlord.prehistoricfauna.init.CustomDamageSourceInit;
+import superlord.prehistoricfauna.init.PFCustomDamageSource;
 
 public class TrapBlock extends Block {
 	protected static final VoxelShape PRESSED_AABB = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 15.0D, 15.0D, 15.0D);
@@ -73,7 +73,7 @@ public class TrapBlock extends Block {
 				this.updateState(worldIn, pos, state, i);
 			}
 			if(state.get(POWERED)) {
-			      entityIn.attackEntityFrom(CustomDamageSourceInit.HENOSTONE_TRAP, 2.0F);
+			      entityIn.attackEntityFrom(PFCustomDamageSource.HENOSTONE_TRAP, 2.0F);
 			}
 		}
 	}

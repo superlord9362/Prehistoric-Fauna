@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_stairs",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:liriodendrites_planks"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:liriodendrites_stairs",
+    "count": 4
+  }
+}

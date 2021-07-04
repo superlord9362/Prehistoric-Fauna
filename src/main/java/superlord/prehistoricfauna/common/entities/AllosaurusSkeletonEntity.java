@@ -1,11 +1,14 @@
-package superlord.prehistoricfauna.entity;
+package superlord.prehistoricfauna.common.entities;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -15,13 +18,13 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.BlockParticleData;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import superlord.prehistoricfauna.init.ItemInit;
+import superlord.prehistoricfauna.init.PFItems;
 
 public class AllosaurusSkeletonEntity extends PrehistoricEntity {
 
@@ -119,9 +122,8 @@ public class AllosaurusSkeletonEntity extends PrehistoricEntity {
 		this.goalSelector.addGoal(0, new LookAtPlayerGoal(this, PlayerEntity.class, 8.0F));
 	}
 
-	protected void registerAttributes() {
-		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(100.0D);
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 100.0D);
 	}
 
 	protected int getExperiencePoints(PlayerEntity player) {
@@ -149,9 +151,9 @@ public class AllosaurusSkeletonEntity extends PrehistoricEntity {
 		}
 	}
 
-	public boolean processInteract(PlayerEntity player, Hand hand) {
+	public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
 		ItemStack itemstack = player.getHeldItem(hand);
-		if (itemstack.getItem() == ItemInit.GEOLOGY_HAMMER.get()) {
+		if (itemstack.getItem() == PFItems.GEOLOGY_HAMMER.get()) {
 			if (!this.isResting() && !this.isActionLeft() && !this.isActionRight() && !this.isClassical() && !player.isSneaking()) {
 				this.setClassical(true);
 			} else if (this.isClassical() && !player.isSneaking()) {
@@ -174,7 +176,7 @@ public class AllosaurusSkeletonEntity extends PrehistoricEntity {
 				this.setLooking(false);
 			}
 		}
-		return super.processInteract(player, hand);
+		return super.func_230254_b_(player, hand);
 	}
 
 	public boolean attackEntityFrom(DamageSource source, float amount) {
@@ -182,7 +184,7 @@ public class AllosaurusSkeletonEntity extends PrehistoricEntity {
 			this.remove();
 			this.playBrokenSound();
 			this.playParticles();
-			this.spawnFossil(source);
+			Block.spawnAsEntity(this.world, this.getPosition(), new ItemStack(PFItems.ALLOSAURUS_SKELETON.get()));
 		}
 		return false;
 	}
@@ -194,11 +196,6 @@ public class AllosaurusSkeletonEntity extends PrehistoricEntity {
 	public void onKillCommand() {
 		this.remove();
 	}
-
-	private void spawnFossil(DamageSource p_213815_1_) {
-		Block.spawnAsEntity(this.world, new BlockPos(this), new ItemStack(ItemInit.ALLOSAURUS_SKELETON.get()));
-	}
-
 	static class LookAtPlayerGoal extends LookAtGoal {
 
 		AllosaurusSkeletonEntity entity;
@@ -220,6 +217,10 @@ public class AllosaurusSkeletonEntity extends PrehistoricEntity {
 			return super.shouldContinueExecuting() && entity.isLooking();
 		}
 
+	}
+	@Override
+	public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+		return null;
 	}
 
 }

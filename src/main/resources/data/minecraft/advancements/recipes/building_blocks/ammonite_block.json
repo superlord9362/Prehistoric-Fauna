@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:plastered_ammonites"
+    ]
+  },
+  "criteria": {
+    "has_shells": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "prehistoricfauna:ammonite_shells"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:plastered_ammonites"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_shells",
+      "has_the_recipe"
+    ]
+  ]
+}

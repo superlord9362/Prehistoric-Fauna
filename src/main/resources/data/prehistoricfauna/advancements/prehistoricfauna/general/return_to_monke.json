@@ -1,0 +1,33 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/general/time_temple",
+  "display": {
+    "icon": {
+      "item": "prehistoricfauna:carved_henostone"
+    },
+    "title": {
+      "translate": "advancements.prehistoricfauna.return_to_monke.title"
+    },
+    "description": {
+      "translate": "advancements.prehistoricfauna.return_to_monke.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "henos": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:henos"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "henos"
+    ]
+  ]
+}

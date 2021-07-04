@@ -1,0 +1,6 @@
+{   
+    "parent": "prehistoricfauna:block/leaf_carpet",
+    "textures": {
+        "all": "prehistoricfauna:blocks/protopiceoxylon_leaves"
+    }
+}

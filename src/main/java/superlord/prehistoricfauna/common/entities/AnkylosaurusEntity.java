@@ -1,11 +1,29 @@
-package superlord.prehistoricfauna.entity;
+package superlord.prehistoricfauna.common.entities;
+
+import java.util.Random;
+import java.util.function.Predicate;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.AgeableEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.BreedGoal;
+import net.minecraft.entity.ai.goal.FollowParentGoal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.MoveToBlockGoal;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,15 +40,14 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import superlord.prehistoricfauna.block.AnkylosaurusEggBlock;
-import superlord.prehistoricfauna.init.BlockInit;
-import superlord.prehistoricfauna.init.ModEntityTypes;
-import superlord.prehistoricfauna.util.SoundHandler;
-
-import java.util.Random;
-import java.util.function.Predicate;
+import net.minecraft.world.server.ServerWorld;
+import superlord.prehistoricfauna.common.blocks.AnkylosaurusEggBlock;
+import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFEntities;
+import superlord.prehistoricfauna.init.SoundInit;
 
 public class AnkylosaurusEntity extends AnimalEntity {
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(AnkylosaurusEntity.class, DataSerializers.BOOLEAN);
@@ -43,8 +60,8 @@ public class AnkylosaurusEntity extends AnimalEntity {
    }
 
    public AgeableEntity createChild(AgeableEntity ageable) {
-	   AnkylosaurusEntity entity = new AnkylosaurusEntity(ModEntityTypes.ANKYLOSAURUS_ENTITY, this.world);
-		entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
+	   AnkylosaurusEntity entity = new AnkylosaurusEntity(PFEntities.ANKYLOSAURUS_ENTITY, this.world);
+		entity.onInitialSpawn((IServerWorld) this.world, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
 		return entity;
 	}
    
@@ -66,7 +83,7 @@ public class AnkylosaurusEntity extends AnimalEntity {
 	}
 
    public boolean isBreedingItem(ItemStack stack) {
-	   return stack.getItem() == BlockInit.CLUBMOSS.asItem();
+	   return stack.getItem() == PFBlocks.CLUBMOSS.asItem();
    }
 
    protected void registerGoals() {
@@ -84,28 +101,21 @@ public class AnkylosaurusEntity extends AnimalEntity {
       this.goalSelector.addGoal(8, new AnkylosaurusEntity.LayEggGoal(this, 1.0D));
       this.goalSelector.addGoal(2, new AnkylosaurusEntity.MateGoal(this, 1.0D));
    }
-
-   protected void registerAttributes() {
-      super.registerAttributes();
-      this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
-      this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20.0D);
-      this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2D);
-      this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(10.0D);
-      this.getAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).setBaseValue(0.0F);
-      this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
-      this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(12.0D);
-   }
+   
+   public static AttributeModifierMap.MutableAttribute createAttributes() {
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 30.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2D).createMutableAttribute(Attributes.ARMOR, 10D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 12.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D);
+	}
    
    protected SoundEvent getAmbientSound() {
-	   return SoundHandler.ANKYLOSAURUS_IDLE;
+	   return SoundInit.ANKYLOSAURUS_IDLE;
    }
 
    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-	   return SoundHandler.ANKYLOSAURUS_HURT;
+	   return SoundInit.ANKYLOSAURUS_HURT;
    }
 
    protected SoundEvent getDeathSound() {
-	   return SoundHandler.ANKYLOSAURUS_DEATH;
+	   return SoundInit.ANKYLOSAURUS_DEATH;
    }
 
    protected void playStepSound(BlockPos pos, BlockState blockIn) {
@@ -114,7 +124,7 @@ public class AnkylosaurusEntity extends AnimalEntity {
 
    protected void playWarningSound() {
 	   if (this.warningSoundTicks <= 0) {
-		   this.playSound(SoundHandler.ANKYLOSAURUS_WARN, 1.0F, this.getSoundPitch());
+		   this.playSound(SoundInit.ANKYLOSAURUS_WARN, 1.0F, this.getSoundPitch());
 		   this.warningSoundTicks = 40;
 	   }
    }
@@ -146,7 +156,7 @@ public class AnkylosaurusEntity extends AnimalEntity {
    }
 
    public boolean attackEntityAsMob(Entity entityIn) {
-      boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getValue()));
+      boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
       if (flag) {
          this.applyEnchantments(this, entityIn);
       }
@@ -208,40 +218,47 @@ public class AnkylosaurusEntity extends AnimalEntity {
    }
 
    class MeleeAttackGoal extends net.minecraft.entity.ai.goal.MeleeAttackGoal {
-	      public MeleeAttackGoal() {
-	          super(AnkylosaurusEntity.this, 1.25D, true);
-	       }
+		public MeleeAttackGoal() {
+			super(AnkylosaurusEntity.this, 1.25D, true);
+		}
 
-	       protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
-	          double d0 = this.getAttackReachSqr(enemy);
-	          if (distToEnemySqr <= d0 && this.attackTick <= 0) {
-	             this.attackTick = 20;
-	             this.attacker.attackEntityAsMob(enemy);
-	          } else if (distToEnemySqr <= d0 * 2.0D) {
-	             if (this.attackTick <= 0) {
-	                this.attackTick = 20;
-	             }
+		protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
+			double d0 = this.getAttackReachSqr(enemy);
+			if (distToEnemySqr <= d0 && this.func_234040_h_()) {
+				this.func_234039_g_();
+				this.attacker.attackEntityAsMob(enemy);
+			} else if (distToEnemySqr <= d0 * 2.0D) {
+				if (this.func_234040_h_()) {
+					this.func_234039_g_();
+				}
 
-	             if (this.attackTick <= 10) {
-	             	AnkylosaurusEntity.this.playWarningSound();
-	             }
-	          } else {
-	             this.attackTick = 20;
-	          }
+				if (this.func_234041_j_() <= 10) {
+					AnkylosaurusEntity.this.playWarningSound();
+				}
+			} else {
+				this.func_234039_g_();
+			}
 
-	       }
+		}
 
-	       /**
-	        * Reset the task's internal state. Called when this task is interrupted by another one
-	        */
-	       public void resetTask() {
-	          super.resetTask();
-	       }
+		public boolean shouldContinueExecuting() {
+			float f = this.attacker.getBrightness();
+			if (f >= 0.5F && this.attacker.getRNG().nextInt(100) == 0) {
+				this.attacker.setAttackTarget((LivingEntity)null);
+				return false;
+			} else {
+				return super.shouldContinueExecuting();
+			}
+		}
 
-	       protected double getAttackReachSqr(LivingEntity attackTarget) {
-	          return (double)(4.0F + attackTarget.getWidth());
-	       }
-	    }
+		public void resetTask() {
+			super.resetTask();
+		}
+
+		protected double getAttackReachSqr(LivingEntity attackTarget) {
+			return (double)(4.0F + attackTarget.getWidth());
+		}
+	}
 
    class PanicGoal extends net.minecraft.entity.ai.goal.PanicGoal {
       public PanicGoal() {
@@ -315,14 +332,14 @@ public class AnkylosaurusEntity extends AnimalEntity {
 	       */
 	      public void tick() {
 	         super.tick();
-	         BlockPos blockpos = new BlockPos(this.ankylosaurus);
+	         BlockPos blockpos = new BlockPos(this.ankylosaurus.getPositionVec());
 	         if (!this.ankylosaurus.isInWater() && this.getIsAboveDestination()) {
 	            if (this.ankylosaurus.isDigging < 1) {
 	               this.ankylosaurus.setDigging(true);
 	            } else if (this.ankylosaurus.isDigging > 200) {
 	               World world = this.ankylosaurus.world;
 	               world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-	               world.setBlockState(this.destinationBlock.up(), BlockInit.ANKYLOSAURUS_EGG.getDefaultState().with(AnkylosaurusEggBlock.EGGS, Integer.valueOf(this.ankylosaurus.rand.nextInt(4) + 1)), 3);
+	               world.setBlockState(this.destinationBlock.up(), PFBlocks.ANKYLOSAURUS_EGG.getDefaultState().with(AnkylosaurusEggBlock.EGGS, Integer.valueOf(this.ankylosaurus.rand.nextInt(4) + 1)), 3);
 	               this.ankylosaurus.setHasEgg(false);
 	               this.ankylosaurus.setDigging(false);
 	               this.ankylosaurus.setInLove(600);
@@ -343,7 +360,7 @@ public class AnkylosaurusEntity extends AnimalEntity {
 	            return false;
 	         } else {
 	            Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.LOAM || block == BlockInit.MOSSY_DIRT || block == Blocks.PODZOL;
+				return block == PFBlocks.LOAM || block == PFBlocks.MOSSY_DIRT || block == Blocks.PODZOL;
 	         }
 	      }
 	   }
@@ -388,5 +405,11 @@ public class AnkylosaurusEntity extends AnimalEntity {
 
 	      }
 	   }
+
+	@Override
+	public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+		AnkylosaurusEntity entity = new AnkylosaurusEntity(PFEntities.ANKYLOSAURUS_ENTITY, this.world);
+		entity.onInitialSpawn(p_241840_1_, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
+		return entity;	}
 	
 }

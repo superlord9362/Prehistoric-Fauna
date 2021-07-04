@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.entity;
+package superlord.prehistoricfauna.common.entities;
 
 import java.util.EnumSet;
 import java.util.Random;
@@ -13,8 +13,9 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.ai.goal.BreedGoal;
 import net.minecraft.entity.ai.goal.FollowParentGoal;
@@ -54,12 +55,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import superlord.prehistoricfauna.block.SaurosuchusEggBlock;
-import superlord.prehistoricfauna.entity.goal.HuntGoal;
-import superlord.prehistoricfauna.init.BlockInit;
-import superlord.prehistoricfauna.init.ItemInit;
-import superlord.prehistoricfauna.init.ModEntityTypes;
-import superlord.prehistoricfauna.util.SoundHandler;
+import net.minecraft.world.server.ServerWorld;
+import superlord.prehistoricfauna.common.blocks.SaurosuchusEggBlock;
+import superlord.prehistoricfauna.common.entities.goal.HuntGoal;
+import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFEntities;
+import superlord.prehistoricfauna.init.PFItems;
+import superlord.prehistoricfauna.init.SoundInit;
 
 public class SaurosuchusEntity extends AnimalEntity {
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(SaurosuchusEntity.class, DataSerializers.BOOLEAN);
@@ -71,12 +73,6 @@ public class SaurosuchusEntity extends AnimalEntity {
 
 	public SaurosuchusEntity(EntityType<? extends AnimalEntity> type, World worldIn) {
 		super(type, worldIn);
-	}
-
-	public AgeableEntity createChild(AgeableEntity ageable) {
-		SaurosuchusEntity entity = new SaurosuchusEntity(ModEntityTypes.SAUROSUCHUS_ENTITY, this.world);
-		entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
-		return entity;
 	}
 
 	public boolean hasEgg() {
@@ -97,7 +93,7 @@ public class SaurosuchusEntity extends AnimalEntity {
 	}
 
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == ItemInit.RAW_ISCHIGUALASTIA_MEAT.get();
+		return stack.getItem() == PFItems.RAW_ISCHIGUALASTIA_MEAT.get();
 	}
 
 	protected void registerGoals() {
@@ -125,31 +121,26 @@ public class SaurosuchusEntity extends AnimalEntity {
 		this.goalSelector.addGoal(9, new AvoidEntityGoal<AnkylosaurusEntity>(this, AnkylosaurusEntity.class, 7F, 1.25D, 1.25D));
 		this.goalSelector.addGoal(9, new AvoidEntityGoal<TyrannosaurusEntity>(this, TyrannosaurusEntity.class, 7F, 1.25D, 1.25D));
 	}
-
-	protected void registerAttributes() {
-		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20.0D);
-		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
-		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
+	
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0D);
 	}
 	
 	protected SoundEvent getAmbientSound() {
-		return SoundHandler.SAUROSUCHUS_IDLE;
+		return SoundInit.SAUROSUCHUS_IDLE;
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundHandler.SAUROSUCHUS_HURT;
+		return SoundInit.SAUROSUCHUS_HURT;
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.SAUROSUCHUS_DEATH;
+		return SoundInit.SAUROSUCHUS_DEATH;
 	}
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(SoundHandler.SAUROSUCHUS_WARN, 1.0F, this.getSoundPitch());
+			this.playSound(SoundInit.SAUROSUCHUS_WARN, 1.0F, this.getSoundPitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -248,33 +239,32 @@ public class SaurosuchusEntity extends AnimalEntity {
 
 		protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
 			double d0 = this.getAttackReachSqr(enemy);
-			if (distToEnemySqr <= d0) {
-				this.attackTick = 20;
+			if (distToEnemySqr <= d0 && this.func_234040_h_()) {
+				this.func_234039_g_();
 				this.attacker.attackEntityAsMob(enemy);
 			} else if (distToEnemySqr <= d0 * 2.0D) {
-				if (this.attackTick <= 0) {
-					this.attackTick = 20;
+				if (this.func_234040_h_()) {
+					this.func_234039_g_();
 				}
 
-				if (this.attackTick <= 10) {
+				if (this.func_234041_j_() <= 10) {
 					SaurosuchusEntity.this.playWarningSound();
 				}
 			} else {
-				this.attackTick = 20;
+				this.func_234039_g_();
 			}
 
 		}
-		
 
-	      public boolean shouldContinueExecuting() {
-	         float f = this.attacker.getBrightness();
-	         if (f >= 0.5F && this.attacker.getRNG().nextInt(100) == 0) {
-	            this.attacker.setAttackTarget((LivingEntity)null);
-	            return false;
-	         } else {
-	            return super.shouldContinueExecuting();
-	         }
-	      }
+		public boolean shouldContinueExecuting() {
+			float f = this.attacker.getBrightness();
+			if (f >= 0.5F && this.attacker.getRNG().nextInt(100) == 0) {
+				this.attacker.setAttackTarget((LivingEntity)null);
+				return false;
+			} else {
+				return super.shouldContinueExecuting();
+			}
+		}
 
 		public void resetTask() {
 			super.resetTask();
@@ -314,14 +304,14 @@ public class SaurosuchusEntity extends AnimalEntity {
 		
 		public void tick() {
 			super.tick();
-			BlockPos blockpos = new BlockPos(this.saurosuchus);
+			BlockPos blockpos = new BlockPos(this.saurosuchus.getPositionVec());
 			if (!this.saurosuchus.isInWater() && this.getIsAboveDestination()) {
 				if (this.saurosuchus.isDigging < 1) {
 					this.saurosuchus.setDigging(true);
 				} else if (this.saurosuchus.isDigging > 200) {
 					World world = this.saurosuchus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.SAUROSUCHUS_EGG.getDefaultState().with(SaurosuchusEggBlock.EGGS, Integer.valueOf(this.saurosuchus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.SAUROSUCHUS_EGG.getDefaultState().with(SaurosuchusEggBlock.EGGS, Integer.valueOf(this.saurosuchus.rand.nextInt(4) + 1)), 3);
 					this.saurosuchus.setHasEgg(false);
 					this.saurosuchus.setDigging(false);
 					this.saurosuchus.setInLove(600);
@@ -337,7 +327,7 @@ public class SaurosuchusEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.LOAM || block == BlockInit.PACKED_LOAM || block == Blocks.PODZOL;
+				return block == PFBlocks.LOAM || block == PFBlocks.PACKED_LOAM || block == Blocks.PODZOL;
 			}
 		}
 		
@@ -383,7 +373,7 @@ public class SaurosuchusEntity extends AnimalEntity {
 		}
 		
 		protected boolean func_220813_g() {
-			BlockPos blockpos = new BlockPos(SaurosuchusEntity.this);
+			BlockPos blockpos = new BlockPos(SaurosuchusEntity.this.getPositionVec());
 			return !SaurosuchusEntity.this.world.canSeeSky(blockpos) && SaurosuchusEntity.this.getBlockPathWeight(blockpos) >= 0.0F;
 		}
 		
@@ -450,6 +440,13 @@ public class SaurosuchusEntity extends AnimalEntity {
 			SaurosuchusEntity.this.getNavigator().clearPath();
 			SaurosuchusEntity.this.getMoveHelper().setMoveTo(SaurosuchusEntity.this.getPosX(), SaurosuchusEntity.this.getPosY(), SaurosuchusEntity.this.getPosZ(), 0.0D);
 		}
+	}
+
+	@Override
+	public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+		SaurosuchusEntity entity = new SaurosuchusEntity(PFEntities.SAUROSUCHUS_ENTITY, this.world);
+		entity.onInitialSpawn(p_241840_1_, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
+		return entity;
 	}     
 	
 }

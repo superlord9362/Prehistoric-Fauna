@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:stegosaurus_skull"
+    },
+	{
+		"item": "prehistoricfauna:stegosaurus_fossil"
+	},
+	{
+		"item": "prehistoricfauna:stegosaurus_fossil"
+	}
+  ],
+  "result": {
+    "item": "prehistoricfauna:stegosaurus_skeleton"
+  }
+}

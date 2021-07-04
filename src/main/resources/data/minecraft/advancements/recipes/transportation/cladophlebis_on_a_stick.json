@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:cladophlebis_stick"
+    ]
+  },
+  "criteria": {
+    "has_cladophlebis": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:cladophlebis"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:cladophlebis_stick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cladophlebis",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.entity;
+package superlord.prehistoricfauna.common.entities;
 
 import java.util.EnumSet;
 import java.util.Random;
@@ -17,9 +17,10 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.ai.attributes.IAttributeInstance;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.ai.controller.LookController;
 import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
@@ -31,6 +32,7 @@ import net.minecraft.entity.ai.goal.LeapAtTargetGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.item.ItemEntity;
@@ -68,20 +70,21 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.GameRules;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.block.DakotaraptorEggBlock;
-import superlord.prehistoricfauna.entity.goal.HuntGoal;
-import superlord.prehistoricfauna.init.BlockInit;
-import superlord.prehistoricfauna.init.ItemInit;
-import superlord.prehistoricfauna.init.ModEntityTypes;
-import superlord.prehistoricfauna.util.SoundHandler;
+import superlord.prehistoricfauna.common.blocks.DakotaraptorEggBlock;
+import superlord.prehistoricfauna.common.entities.goal.HuntGoal;
+import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFEntities;
+import superlord.prehistoricfauna.init.PFItems;
+import superlord.prehistoricfauna.init.SoundInit;
 
 public class DakotaraptorEntity extends AnimalEntity {
 	private static final DataParameter<Byte> DAKOTARAPTOR_FLAGS = EntityDataManager.createKey(DakotaraptorEntity.class, DataSerializers.BYTE);
@@ -118,7 +121,7 @@ public class DakotaraptorEntity extends AnimalEntity {
 	}
 
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == ItemInit.RAW_THESCELOSAURUS_MEAT.get();
+		return stack.getItem() == PFItems.RAW_THESCELOSAURUS_MEAT.get();
 	}
 
 	protected PathNavigator createNavigator(World worldIn) {
@@ -145,7 +148,7 @@ public class DakotaraptorEntity extends AnimalEntity {
 		this.attackAnimals = new HuntGoal(this, AnimalEntity.class, 10, false, false, (p_213487_0_) -> {
 			return p_213487_0_ instanceof ThescelosaurusEntity || p_213487_0_ instanceof BasilemysEntity || p_213487_0_ instanceof DryosaurusEntity || p_213487_0_ instanceof HesperornithoidesEntity || p_213487_0_ instanceof EilenodonEntity || p_213487_0_ instanceof DidelphodonEntity || p_213487_0_ instanceof HorseEntity || p_213487_0_ instanceof DonkeyEntity || p_213487_0_ instanceof MuleEntity || p_213487_0_ instanceof SheepEntity || p_213487_0_ instanceof CowEntity || p_213487_0_ instanceof PigEntity || p_213487_0_ instanceof OcelotEntity;
 		});
-		this.goalSelector.addGoal(0, new DakotaraptorEntity.SwimGoal());
+		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(1, new DakotaraptorEntity.JumpGoal());
 		this.goalSelector.addGoal(2, new DakotaraptorEntity.PanicGoal());
 		this.goalSelector.addGoal(3, new DakotaraptorEntity.MateGoal(this, 1.0D));
@@ -197,7 +200,7 @@ public class DakotaraptorEntity extends AnimalEntity {
 		if (this.getAttackTarget() != null) {
 			if (this.getRidingEntity() != null) {
 				if (this.getRidingEntity() == this.getAttackTarget() && this.ticksExisted % 20 == 0) {
-					IAttributeInstance iattributeinstance = this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
+					ModifiableAttributeInstance iattributeinstance = this.getAttribute(Attributes.ATTACK_DAMAGE);
 					this.getAttackTarget().attackEntityFrom(DamageSource.causeMobDamage(this), (float) iattributeinstance.getBaseValue());
 				}
 			}
@@ -290,7 +293,7 @@ public class DakotaraptorEntity extends AnimalEntity {
 			ItemStack itemstack = this.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
 			if (!itemstack.isEmpty()) {
 				for(int i = 0; i < 8; ++i) {
-					Vec3d vec3d = (new Vec3d(((double)this.rand.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, 0.0D)).rotatePitch(-this.rotationPitch * ((float)Math.PI / 180F)).rotateYaw(-this.rotationYaw * ((float)Math.PI / 180F));
+					Vector3d vec3d = (new Vector3d(((double)this.rand.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, 0.0D)).rotatePitch(-this.rotationPitch * ((float)Math.PI / 180F)).rotateYaw(-this.rotationYaw * ((float)Math.PI / 180F));
 					this.world.addParticle(new ItemParticleData(ParticleTypes.ITEM, itemstack), this.getPosX() + this.getLookVec().x / 2.0D, this.getPosY(), this.getPosZ() + this.getLookVec().z / 2.0D, vec3d.x, vec3d.y + 0.05D, vec3d.z);
 				}
 			}
@@ -322,12 +325,6 @@ public class DakotaraptorEntity extends AnimalEntity {
 			}
 		}
 		return super.attackEntityFrom(dmg, i);
-	}
-
-	public AgeableEntity createChild(AgeableEntity ageable) {
-		DakotaraptorEntity entity = new DakotaraptorEntity(ModEntityTypes.DAKOTARAPTOR_ENTITY, this.world);
-		entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
-		return entity;
 	}
 
 	private void setAttackGoals() {
@@ -415,7 +412,7 @@ public class DakotaraptorEntity extends AnimalEntity {
 			}
 
 			if (this.isStuck() && this.world.rand.nextFloat() < 0.2F) {
-				BlockPos blockpos = new BlockPos(this);
+				BlockPos blockpos = new BlockPos(this.getPositionVec());
 				BlockState blockstate = this.world.getBlockState(blockpos);
 				this.world.playEvent(2001, blockpos, Block.getStateId(blockstate));
 			}
@@ -539,31 +536,26 @@ public class DakotaraptorEntity extends AnimalEntity {
 	}
 
 	protected SoundEvent getAmbientSound()  {
-		return SoundHandler.DAKOTARAPTOR_IDLE;
+		return SoundInit.DAKOTARAPTOR_IDLE;
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundHandler.DAKOTARAPTOR_HURT;
+		return SoundInit.DAKOTARAPTOR_HURT;
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.DAKOTARAPTOR_DEATH;
+		return SoundInit.DAKOTARAPTOR_DEATH;
 	}
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(SoundHandler.DAKOTARAPTOR_WARN, 1.0F, this.getSoundPitch());
+			this.playSound(SoundInit.DAKOTARAPTOR_WARN, 1.0F, this.getSoundPitch());
 			this.warningSoundTicks = 40;
 		}
 	}
-
-	protected void registerAttributes() {
-		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20.0D);
-		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
-		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
+	
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0D);
 	}
 
 	public static boolean func_213481_a(DakotaraptorEntity p_213481_0_, LivingEntity p_213481_1_) {
@@ -609,7 +601,7 @@ public class DakotaraptorEntity extends AnimalEntity {
 		}
 
 		protected boolean func_220813_g() {
-			BlockPos blockpos = new BlockPos(DakotaraptorEntity.this);
+			BlockPos blockpos = new BlockPos(DakotaraptorEntity.this.getPositionVec());
 			return !DakotaraptorEntity.this.world.canSeeSky(blockpos) && DakotaraptorEntity.this.getBlockPathWeight(blockpos) >= 0.0F;
 		}
 
@@ -625,11 +617,10 @@ public class DakotaraptorEntity extends AnimalEntity {
 
 		protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
 			double d0 = this.getAttackReachSqr(enemy);
-			if (distToEnemySqr <= d0) {
-				this.attackTick = 20;
+			if (distToEnemySqr <= d0 && this.func_234040_h_()) {
+				this.func_234039_g_();
 				this.attacker.attackEntityAsMob(enemy);
 			}
-
 		}
 
 		public boolean shouldContinueExecuting() {
@@ -668,7 +659,7 @@ public class DakotaraptorEntity extends AnimalEntity {
 					return false;
 				} else {
 					this.cooldown = 100;
-					BlockPos blockpos = new BlockPos(this.creature);
+					BlockPos blockpos = new BlockPos(this.creature.getPositionVec());
 					return DakotaraptorEntity.this.world.isDaytime() && DakotaraptorEntity.this.world.canSeeSky(blockpos) && !((ServerWorld)DakotaraptorEntity.this.world).isVillage(blockpos) && this.isPossibleShelter();
 				}
 			} else {
@@ -854,7 +845,7 @@ public class DakotaraptorEntity extends AnimalEntity {
 			DakotaraptorEntity.this.func_213502_u(false);
 			LivingEntity livingentity = DakotaraptorEntity.this.getAttackTarget();
 			DakotaraptorEntity.this.getLookController().setLookPositionWithEntity(livingentity, 60.0F, 30.0F);
-			Vec3d vec3d = (new Vec3d(livingentity.getPosX() - DakotaraptorEntity.this.getPosX(), livingentity.getPosY() - DakotaraptorEntity.this.getPosY(), livingentity.getPosZ() - DakotaraptorEntity.this.getPosZ())).normalize();
+			Vector3d vec3d = (new Vector3d(livingentity.getPosX() - DakotaraptorEntity.this.getPosX(), livingentity.getPosY() - DakotaraptorEntity.this.getPosY(), livingentity.getPosZ() - DakotaraptorEntity.this.getPosZ())).normalize();
 			DakotaraptorEntity.this.setMotion(DakotaraptorEntity.this.getMotion().add(vec3d.x * 0.8D, 0.9D, vec3d.z * 0.8D));
 			DakotaraptorEntity.this.getNavigator().clearPath();
 		}
@@ -875,7 +866,7 @@ public class DakotaraptorEntity extends AnimalEntity {
 			}
 
 			if (!DakotaraptorEntity.this.isStuck()) {
-				Vec3d vec3d = DakotaraptorEntity.this.getMotion();
+				Vector3d vec3d = DakotaraptorEntity.this.getMotion();
 				if (vec3d.y * vec3d.y < (double)0.03F && DakotaraptorEntity.this.rotationPitch != 0.0F) {
 					DakotaraptorEntity.this.rotationPitch = MathHelper.rotLerp(DakotaraptorEntity.this.rotationPitch, 0.0F, 0.2F);
 				} else {
@@ -887,7 +878,7 @@ public class DakotaraptorEntity extends AnimalEntity {
 
 			if (livingentity != null && DakotaraptorEntity.this.getDistance(livingentity) <= 2.0F) {
 				DakotaraptorEntity.this.attackEntityAsMob(livingentity);
-			} else if (DakotaraptorEntity.this.rotationPitch > 0.0F && DakotaraptorEntity.this.onGround && (float)DakotaraptorEntity.this.getMotion().y != 0.0F && DakotaraptorEntity.this.world.getBlockState(new BlockPos(DakotaraptorEntity.this)).getBlock() == Blocks.SNOW) {
+			} else if (DakotaraptorEntity.this.rotationPitch > 0.0F && DakotaraptorEntity.this.onGround && (float)DakotaraptorEntity.this.getMotion().y != 0.0F && DakotaraptorEntity.this.world.getBlockState(new BlockPos(DakotaraptorEntity.this.getPositionVec())).getBlock() == Blocks.SNOW) {
 				DakotaraptorEntity.this.rotationPitch = 60.0F;
 				DakotaraptorEntity.this.setAttackTarget((LivingEntity)null);
 				DakotaraptorEntity.this.setStuck(true);
@@ -925,14 +916,14 @@ public class DakotaraptorEntity extends AnimalEntity {
 
 		public void tick() {
 			super.tick();
-			BlockPos blockpos = new BlockPos(this.dakotaraptor);
+			BlockPos blockpos = new BlockPos(this.dakotaraptor.getPositionVec());
 			if (!this.dakotaraptor.isInWater() && this.getIsAboveDestination()) {
 				if (this.dakotaraptor.isDigging < 1) {
 					this.dakotaraptor.setDigging(true);
 				} else if (this.dakotaraptor.isDigging > 200) {
 					World world = this.dakotaraptor.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.DAKOTARAPTOR_EGG.getDefaultState().with(DakotaraptorEggBlock.EGGS, Integer.valueOf(this.dakotaraptor.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.DAKOTARAPTOR_EGG.getDefaultState().with(DakotaraptorEggBlock.EGGS, Integer.valueOf(this.dakotaraptor.rand.nextInt(4) + 1)), 3);
 					this.dakotaraptor.setHasEgg(false);
 					this.dakotaraptor.setDigging(false);
 					this.dakotaraptor.setInLove(600);
@@ -948,7 +939,7 @@ public class DakotaraptorEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.LOAM || block == BlockInit.MOSSY_DIRT || block == Blocks.PODZOL;
+				return block == PFBlocks.LOAM || block == PFBlocks.MOSSY_DIRT || block == Blocks.PODZOL;
 			}
 		}
 
@@ -1077,21 +1068,6 @@ public class DakotaraptorEntity extends AnimalEntity {
 		}
 	}
 
-	class SwimGoal extends net.minecraft.entity.ai.goal.SwimGoal {
-		public SwimGoal() {
-			super(DakotaraptorEntity.this);
-		}
-
-		public void startExecuting() {
-			super.startExecuting();
-			DakotaraptorEntity.this.func_213499_en();
-		}
-
-		public boolean shouldExecute() {
-			return DakotaraptorEntity.this.isInWater() && DakotaraptorEntity.this.getSubmergedHeight() > 0.25D || DakotaraptorEntity.this.isInLava();
-		}
-	}
-
 	class WatchGoal extends LookAtGoal {
 		public WatchGoal(MobEntity p_i50733_2_, Class<? extends LivingEntity> p_i50733_3_, float p_i50733_4_) {
 			super(p_i50733_2_, p_i50733_3_, p_i50733_4_);
@@ -1161,20 +1137,32 @@ public class DakotaraptorEntity extends AnimalEntity {
 
 		protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
 			double d0 = this.getAttackReachSqr(enemy);
-			if (distToEnemySqr <= d0 && this.attackTick <= 0) {
-				this.attackTick = 20;
+			if (distToEnemySqr <= d0 && this.func_234040_h_()) {
+				this.func_234039_g_();
 				this.attacker.attackEntityAsMob(enemy);
 			} else if (distToEnemySqr <= d0 * 2.0D) {
-				if (this.attackTick <= 0) {
-					this.attackTick = 20;
+				if (this.func_234040_h_()) {
+					this.func_234039_g_();
 				}
-				if (this.attackTick <= 10) {
+
+				if (this.func_234041_j_() <= 10) {
 					DakotaraptorEntity.this.playWarningSound();
 				}
-			}else {
-				this.attackTick = 20;
+			} else {
+				this.func_234039_g_();
 			}
-		} 
+
+		}
+
+		public boolean shouldContinueExecuting() {
+			float f = this.attacker.getBrightness();
+			if (f >= 0.5F && this.attacker.getRNG().nextInt(100) == 0) {
+				this.attacker.setAttackTarget((LivingEntity)null);
+				return false;
+			} else {
+				return super.shouldContinueExecuting();
+			}
+		}
 
 		public void resetTask() {
 			super.resetTask();
@@ -1183,15 +1171,21 @@ public class DakotaraptorEntity extends AnimalEntity {
 		protected double getAttackReachSqr(LivingEntity attackTarget) {
 			return (double)(4.0F + attackTarget.getWidth());
 		}
-
 	}
 
 	public boolean attackEntityAsMob(Entity entity) {
-		boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getValue()));
+		boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
 		if (flag) {
 			this.applyEnchantments(this, entity);
 		}
 		return flag;
+	}
+
+	@Override
+	public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+		DakotaraptorEntity entity = new DakotaraptorEntity(PFEntities.DAKOTARAPTOR_ENTITY, this.world);
+		entity.onInitialSpawn((IServerWorld)this.world, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
+		return entity;
 	}
 
 }

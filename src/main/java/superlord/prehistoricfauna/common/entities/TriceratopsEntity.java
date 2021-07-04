@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.entity;
+package superlord.prehistoricfauna.common.entities;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
@@ -6,6 +6,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.passive.horse.AbstractChestedHorseEntity;
@@ -26,14 +28,15 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.GameRules;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import superlord.prehistoricfauna.block.TriceratopsEggBlock;
-import superlord.prehistoricfauna.init.BlockInit;
-import superlord.prehistoricfauna.init.ModEntityTypes;
-import superlord.prehistoricfauna.util.SoundHandler;
+import superlord.prehistoricfauna.common.blocks.TriceratopsEggBlock;
+import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFEntities;
+import superlord.prehistoricfauna.init.SoundInit;
 
 import java.util.List;
 import java.util.Random;
@@ -54,8 +57,8 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 	}
 
 	public AgeableEntity createChild(AgeableEntity ageable) {
-		TriceratopsEntity entity = new TriceratopsEntity(ModEntityTypes.TRICERATOPS_ENTITY, this.world);
-		entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
+		TriceratopsEntity entity = new TriceratopsEntity(PFEntities.TRICERATOPS_ENTITY, this.world);
+		entity.onInitialSpawn((IServerWorld) this.world, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
 		return entity;
 	}
 
@@ -98,7 +101,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.OSMUNDA.asItem();
+		return stack.getItem() == PFBlocks.OSMUNDA.asItem();
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -119,18 +122,12 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 		this.goalSelector.addGoal(2, new TriceratopsEntity.MateGoal(this, 1.0D));
 	}
 
-	@Override
-	protected void registerAttributes() {
-		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0D);
-		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20.0D);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2D);
-		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
-		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 40.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.2F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 6.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D);
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return SoundHandler.TRICERATOPS_IDLE;
+		return SoundInit.TRICERATOPS_IDLE;
 	}
 
 	@Override
@@ -139,15 +136,15 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundHandler.TRICERATOPS_HURT;
+		return SoundInit.TRICERATOPS_HURT;
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.TRICERATOPS_DEATH;
+		return SoundInit.TRICERATOPS_DEATH;
 	}
 
 	protected SoundEvent getAngrySound() {
-		return SoundHandler.TRICERATOPS_WARN;
+		return SoundInit.TRICERATOPS_WARN;
 	}
 
 	@Override	
@@ -179,7 +176,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(SoundHandler.TRICERATOPS_WARN, 1.0F, this.getSoundPitch());
+			this.playSound(SoundInit.TRICERATOPS_WARN, 1.0F, this.getSoundPitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -239,7 +236,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 		}
 	}
 
-	public void travel(Vec3d positionIn) {
+	public void travel(Vector3d positionIn) {
 		if (this.isAlive()) {
 			if (this.isBeingRidden() && this.canBeSteered() && this.isHorseSaddled()) {
 				LivingEntity livingentity = (LivingEntity)this.getControllingPassenger();
@@ -270,7 +267,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 						d1 = d0;
 					}
 
-					Vec3d vec3d = this.getMotion();
+					Vector3d vec3d = this.getMotion();
 					this.setMotion(vec3d.x, d1, vec3d.z);
 					this.setHorseJumping(true);
 					this.isAirBorne = true;
@@ -287,10 +284,10 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 
 				this.jumpMovementFactor = this.getAIMoveSpeed() * 0.1F;
 				if (this.canPassengerSteer()) {
-					this.setAIMoveSpeed((float)this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getValue());
-					super.travel(new Vec3d((double)f, positionIn.y, (double)f1));
+					this.setAIMoveSpeed((float)this.getAttribute(Attributes.MOVEMENT_SPEED).getValue());
+					super.travel(new Vector3d((double)f, positionIn.y, (double)f1));
 				} else if (livingentity instanceof PlayerEntity) {
-					this.setMotion(Vec3d.ZERO);
+					this.setMotion(Vector3d.ZERO);
 				}
 
 				if (this.onGround) {
@@ -305,7 +302,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 	}
 
 	public boolean attackEntityAsMob(Entity entityIn) {
-		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getValue()));
+		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
 		if (flag) {
 			this.applyEnchantments(this, entityIn);
 		}
@@ -372,26 +369,33 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 
 		protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
 			double d0 = this.getAttackReachSqr(enemy);
-			if (distToEnemySqr <= d0 && this.attackTick <= 0 && !TriceratopsEntity.this.isTame()) {
-				this.attackTick = 20;
+			if (distToEnemySqr <= d0 && this.func_234040_h_()) {
+				this.func_234039_g_();
 				this.attacker.attackEntityAsMob(enemy);
-			} else if (distToEnemySqr <= d0 * 2.0D && !TriceratopsEntity.this.isTame()) {
-				if (this.attackTick <= 0) {
-					this.attackTick = 20;
+			} else if (distToEnemySqr <= d0 * 2.0D) {
+				if (this.func_234040_h_()) {
+					this.func_234039_g_();
 				}
 
-				if (this.attackTick <= 10) {
+				if (this.func_234041_j_() <= 10) {
 					TriceratopsEntity.this.playWarningSound();
 				}
 			} else {
-				this.attackTick = 20;
+				this.func_234039_g_();
 			}
 
 		}
 
-		/**
-		 * Reset the task's internal state. Called when this task is interrupted by another one
-		 */
+		public boolean shouldContinueExecuting() {
+			float f = this.attacker.getBrightness();
+			if (f >= 0.5F && this.attacker.getRNG().nextInt(100) == 0) {
+				this.attacker.setAttackTarget((LivingEntity)null);
+				return false;
+			} else {
+				return super.shouldContinueExecuting();
+			}
+		}
+
 		public void resetTask() {
 			super.resetTask();
 		}
@@ -443,14 +447,14 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 		 */
 		public void tick() {
 			super.tick();
-			BlockPos blockpos = new BlockPos(this.triceratops);
+			BlockPos blockpos = new BlockPos(this.triceratops.getPositionVec());
 			if (!this.triceratops.isInWater() && this.getIsAboveDestination()) {
 				if (this.triceratops.isDigging < 1) {
 					this.triceratops.setDigging(true);
 				} else if (this.triceratops.isDigging > 200) {
 					World world = this.triceratops.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.TRICERATOPS_EGG.getDefaultState().with(TriceratopsEggBlock.EGGS, Integer.valueOf(this.triceratops.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.TRICERATOPS_EGG.getDefaultState().with(TriceratopsEggBlock.EGGS, Integer.valueOf(this.triceratops.rand.nextInt(4) + 1)), 3);
 					this.triceratops.setHasEgg(false);
 					this.triceratops.setDigging(false);
 					this.triceratops.setInLove(600);
@@ -471,7 +475,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.LOAM || block == BlockInit.MOSSY_DIRT || block == Blocks.PODZOL;
+				return block == PFBlocks.LOAM || block == PFBlocks.MOSSY_DIRT || block == Blocks.PODZOL;
 			}
 		}
 	}
@@ -523,26 +527,26 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 		float f = 0.0F;
 		int i = 0;
 		Item item = stack.getItem();
-		if (item == BlockInit.HORSETAIL.asItem()) {
+		if (item == PFBlocks.HORSETAIL.asItem()) {
 			f = 2.0F;
 			i = 20;
-		} else if (item == BlockInit.TALL_HORSETAIL.asItem()) {
+		} else if (item == PFBlocks.TALL_HORSETAIL.asItem()) {
 			f = 1.0F;
 			i = 30;
-		} else if (item == BlockInit.OSMUNDA.asItem()) {
+		} else if (item == PFBlocks.OSMUNDA.asItem()) {
 			f = 20.0F;
 			i = 180;
 			if (this.getGrowingAge() == 0 && !this.isInLove()) {
 				flag = true;
 				this.setInLove(player);
 			}
-		} else if (item == BlockInit.TALL_OSMUNDA.asItem()) {
+		} else if (item == PFBlocks.TALL_OSMUNDA.asItem()) {
 			f = 3.0F;
 			i = 60;
-		} else if (item == BlockInit.CLUBMOSS.asItem()) {
+		} else if (item == PFBlocks.CLUBMOSS.asItem()) {
 			f = 4.0F;
 			i = 60;
-		} else if (item == BlockInit.MARCHANTIA.asItem()) {
+		} else if (item == PFBlocks.MARCHANTIA.asItem()) {
 			f = 3.0F;
 			i = 80;
 		}

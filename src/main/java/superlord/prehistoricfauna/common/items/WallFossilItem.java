@@ -10,7 +10,7 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import superlord.prehistoricfauna.entity.WallFossilEntity;
+import superlord.prehistoricfauna.common.entities.WallFossilEntity;
 
 public class WallFossilItem extends Item {
     public WallFossilItem(Item.Properties properties) {

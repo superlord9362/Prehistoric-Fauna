@@ -27,9 +27,9 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.init.PFItems;
-import superlord.prehistoricfauna.init.TileEntityRegistry;
-import superlord.prehistoricfauna.util.EnumPaleoPages;
+import superlord.prehistoricfauna.init.PFTileEntities;
 
 public class PaleoscribeTileEntity extends LockableTileEntity implements ITickableTileEntity, ISidedInventory {
     private static final int[] slotsTop = new int[]{0};
@@ -66,7 +66,7 @@ public class PaleoscribeTileEntity extends LockableTileEntity implements ITickab
     private NonNullList<ItemStack> stacks = NonNullList.withSize(3, ItemStack.EMPTY);
 
     public PaleoscribeTileEntity() {
-        super(TileEntityRegistry.PALEOSCRIBE.get());
+        super(PFTileEntities.PALEOSCRIBE.get());
     }
 
     @Override
@@ -216,15 +216,15 @@ public class PaleoscribeTileEntity extends LockableTileEntity implements ITickab
     }
 
     @Override
-    public void read(CompoundNBT compound) {
-        super.read(compound);
+    public void read(BlockState state, CompoundNBT compound) {
+        super.read(state, compound);
         this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(compound, this.stacks);
 
     }
     
     public void read2(BlockState blockstate, CompoundNBT compound) {
-        super.read(compound);
+        super.read(blockstate, compound);
         this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(compound, this.stacks);
 

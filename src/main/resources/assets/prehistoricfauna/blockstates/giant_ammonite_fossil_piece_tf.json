@@ -1,0 +1,8 @@
+{
+    "variants": {
+		"facing=north": { "model": "prehistoricfauna:block/giant_shell_tf"},
+		"facing=east": { "model": "prehistoricfauna:block/giant_shell_tf", "y": 90 },
+		"facing=west": { "model": "prehistoricfauna:block/giant_shell_tf", "y": 270 },
+		"facing=south": { "model": "prehistoricfauna:block/giant_shell_tf", "y": 180 }
+	}
+}

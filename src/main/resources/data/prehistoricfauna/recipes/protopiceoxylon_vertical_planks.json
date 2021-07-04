@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:protopiceoxylon_planks"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:protopiceoxylon_vertical_planks",
+    "count": 3
+  },
+  "conditions": [
+    {
+      "type": "prehistoricfauna:quark_flag",
+      "flag": "vertical_planks"
+    }
+  ]
+}

@@ -1,9 +1,11 @@
-package superlord.prehistoricfauna.entity;
+package superlord.prehistoricfauna.common.entities;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -30,12 +32,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import superlord.prehistoricfauna.block.TyrannosaurusEggBlock;
-import superlord.prehistoricfauna.entity.goal.HuntGoal;
-import superlord.prehistoricfauna.init.BlockInit;
-import superlord.prehistoricfauna.init.ItemInit;
-import superlord.prehistoricfauna.init.ModEntityTypes;
-import superlord.prehistoricfauna.util.SoundHandler;
+import net.minecraft.world.server.ServerWorld;
+import superlord.prehistoricfauna.common.blocks.TyrannosaurusEggBlock;
+import superlord.prehistoricfauna.common.entities.goal.HuntGoal;
+import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFEntities;
+import superlord.prehistoricfauna.init.PFItems;
+import superlord.prehistoricfauna.init.SoundInit;
 
 import java.util.List;
 import java.util.Random;
@@ -79,7 +82,7 @@ public class TyrannosaurusEntity extends AnimalEntity {
 	}
 
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == ItemInit.RAW_TRICERATOPS_MEAT.get();
+		return stack.getItem() == PFItems.RAW_TRICERATOPS_MEAT.get();
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -106,14 +109,9 @@ public class TyrannosaurusEntity extends AnimalEntity {
 			return p_213487_0_ instanceof TriceratopsEntity || p_213487_0_ instanceof StegosaurusEntity || p_213487_0_ instanceof CowEntity || p_213487_0_ instanceof SheepEntity || p_213487_0_ instanceof HorseEntity || p_213487_0_ instanceof DonkeyEntity || p_213487_0_ instanceof MuleEntity || p_213487_0_ instanceof PolarBearEntity || p_213487_0_ instanceof PandaEntity || p_213487_0_ instanceof PlayerEntity;
 		}));
 	}
-
-	protected void registerAttributes() {
-		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(50.0D);
-		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20.0D);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
-		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(12.0D);
+	
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 50.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 12.0D);
 	}
 
 	@Override
@@ -127,15 +125,15 @@ public class TyrannosaurusEntity extends AnimalEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return SoundHandler.TYRANNOSAURUS_IDLE;
+		return SoundInit.TYRANNOSAURUS_IDLE;
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundHandler.TYRANNOSAURUS_HURT;
+		return SoundInit.TYRANNOSAURUS_HURT;
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.TYRANNOSAURUS_DEATH;
+		return SoundInit.TYRANNOSAURUS_DEATH;
 	}
 
 	protected void playStepSound(BlockPos pos, BlockState blockIn) {
@@ -144,7 +142,7 @@ public class TyrannosaurusEntity extends AnimalEntity {
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(SoundHandler.TYRANNOSAURUS_WARN, 1.0F, this.getSoundPitch());
+			this.playSound(SoundInit.TYRANNOSAURUS_WARN, 1.0F, this.getSoundPitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -174,7 +172,7 @@ public class TyrannosaurusEntity extends AnimalEntity {
 	}
 
 	public boolean attackEntityAsMob(Entity entityIn) {
-		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getValue()));
+		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
 		if (flag) {
 			this.applyEnchantments(this, entityIn);
 		}
@@ -239,33 +237,32 @@ public class TyrannosaurusEntity extends AnimalEntity {
 
 		protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
 			double d0 = this.getAttackReachSqr(enemy);
-			if (distToEnemySqr <= d0) {
-				this.attackTick = 20;
+			if (distToEnemySqr <= d0 && this.func_234040_h_()) {
+				this.func_234039_g_();
 				this.attacker.attackEntityAsMob(enemy);
 			} else if (distToEnemySqr <= d0 * 2.0D) {
-				if (this.attackTick <= 0) {
-					this.attackTick = 20;
+				if (this.func_234040_h_()) {
+					this.func_234039_g_();
 				}
 
-				if (this.attackTick <= 10) {
+				if (this.func_234041_j_() <= 10) {
 					TyrannosaurusEntity.this.playWarningSound();
 				}
 			} else {
-				this.attackTick = 20;
+				this.func_234039_g_();
 			}
 
 		}
-		
 
-	      public boolean shouldContinueExecuting() {
-	         float f = this.attacker.getBrightness();
-	         if (f >= 0.5F && this.attacker.getRNG().nextInt(100) == 0) {
-	            this.attacker.setAttackTarget((LivingEntity)null);
-	            return false;
-	         } else {
-	            return super.shouldContinueExecuting();
-	         }
-	      }
+		public boolean shouldContinueExecuting() {
+			float f = this.attacker.getBrightness();
+			if (f >= 0.5F && this.attacker.getRNG().nextInt(100) == 0) {
+				this.attacker.setAttackTarget((LivingEntity)null);
+				return false;
+			} else {
+				return super.shouldContinueExecuting();
+			}
+		}
 
 		public void resetTask() {
 			super.resetTask();
@@ -310,14 +307,14 @@ public class TyrannosaurusEntity extends AnimalEntity {
 
 		public void tick() {
 			super.tick();
-			BlockPos blockpos = new BlockPos(this.tyrannosaurus);
+			BlockPos blockpos = new BlockPos(this.tyrannosaurus.getPositionVec());
 			if (!this.tyrannosaurus.isInWater() && this.getIsAboveDestination()) {
 				if (this.tyrannosaurus.isDigging < 1) {
 					this.tyrannosaurus.setDigging(true);
 				} else if (this.tyrannosaurus.isDigging > 200) {
 					World world = this.tyrannosaurus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.TYRANNOSAURUS_EGG.getDefaultState().with(TyrannosaurusEggBlock.EGGS, Integer.valueOf(this.tyrannosaurus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.TYRANNOSAURUS_EGG.getDefaultState().with(TyrannosaurusEggBlock.EGGS, Integer.valueOf(this.tyrannosaurus.rand.nextInt(4) + 1)), 3);
 					this.tyrannosaurus.setHasEgg(false);
 					this.tyrannosaurus.setDigging(false);
 					this.tyrannosaurus.setInLove(600);
@@ -335,7 +332,7 @@ public class TyrannosaurusEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.LOAM || block == BlockInit.MOSSY_DIRT || block == Blocks.PODZOL;
+				return block == PFBlocks.LOAM || block == PFBlocks.MOSSY_DIRT || block == Blocks.PODZOL;
 			}
 		}
 	}
@@ -372,14 +369,7 @@ public class TyrannosaurusEntity extends AnimalEntity {
 
 		}
 	}
-
-	@Override
-	public AgeableEntity createChild(AgeableEntity ageable) {
-		TyrannosaurusEntity entity = new TyrannosaurusEntity(ModEntityTypes.TYRANNOSAURUS_ENTITY, this.world);
-		entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
-		return entity;
-	}
-
+	
 	class TyrannosaurusFollowParentGoal extends Goal {
 		private final TyrannosaurusEntity babyTyrannosaurusEntity;
 		private TyrannosaurusEntity parentTyrannosaurusEntity;
@@ -465,6 +455,13 @@ public class TyrannosaurusEntity extends AnimalEntity {
 			}
 		}
 
+	}
+
+	@Override
+	public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+		TyrannosaurusEntity entity = new TyrannosaurusEntity(PFEntities.TYRANNOSAURUS_ENTITY, this.world);
+		entity.onInitialSpawn(p_241840_1_, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
+		return entity;
 	}
 
 }

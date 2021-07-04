@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":  { "model": "prehistoricfauna:block/henostone_pillar_chiseled" },
+        "axis=z":   { "model": "prehistoricfauna:block/henostone_pillar_chiseled", "x": 90 },
+        "axis=x":   { "model": "prehistoricfauna:block/henostone_pillar_chiseled", "x": 90, "y": 90 }
+    }
+}

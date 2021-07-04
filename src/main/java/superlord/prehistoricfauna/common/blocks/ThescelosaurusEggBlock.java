@@ -20,9 +20,9 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import superlord.prehistoricfauna.entity.ThescelosaurusEntity;
+import superlord.prehistoricfauna.common.entities.ThescelosaurusEntity;
 import superlord.prehistoricfauna.init.PFBlocks;
-import superlord.prehistoricfauna.init.ModEntityTypes;
+import superlord.prehistoricfauna.init.PFEntities;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -88,7 +88,7 @@ public class ThescelosaurusEggBlock extends Block {
 
             for(int j = 0; j < state.get(EGGS); ++j) {
                worldIn.playEvent(2001, pos, Block.getStateId(state));
-               ThescelosaurusEntity thescelosaurusentity = ModEntityTypes.THESCELOSAURUS_ENTITY.create(worldIn);
+               ThescelosaurusEntity thescelosaurusentity = PFEntities.THESCELOSAURUS_ENTITY.create(worldIn);
                thescelosaurusentity.setGrowingAge(-24000);
                thescelosaurusentity.setLocationAndAngles((double)pos.getX() + 0.3D + (double)j * 0.2D, (double)pos.getY(), (double)pos.getZ() + 0.3D, 0.0F, 0.0F);
                worldIn.addEntity(thescelosaurusentity);

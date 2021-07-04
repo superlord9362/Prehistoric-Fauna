@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "prehistoricfauna:dark_henostone_bricks"
+  },
+  "result": "prehistoricfauna:dark_henostone_brick_stairs",
+  "count": 1
+}

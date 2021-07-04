@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.entity;
+package superlord.prehistoricfauna.common.entities;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -14,8 +14,8 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.network.NetworkHooks;
-import superlord.prehistoricfauna.init.ItemInit;
-import superlord.prehistoricfauna.init.ModEntityTypes;
+import superlord.prehistoricfauna.init.PFItems;
+import superlord.prehistoricfauna.init.PFEntities;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class PaleopaintingEntity extends HangingEntity implements IEntityAdditio
     }
 
     public PaleopaintingEntity(World world, BlockPos pos, Direction facing) {
-        super(ModEntityTypes.PALEOPAINTING, world, pos);
+        super(PFEntities.PALEOPAINTING, world, pos);
         List<Paleopainting> list = new ArrayList<>();
         int i = 0;
 
@@ -95,7 +95,7 @@ public class PaleopaintingEntity extends HangingEntity implements IEntityAdditio
                 }
             }
 
-            this.entityDropItem(ItemInit.PALEOPAINTING.get());
+            this.entityDropItem(PFItems.PALEOPAINTING.get());
         }
     }
 

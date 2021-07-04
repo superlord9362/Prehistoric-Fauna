@@ -31,7 +31,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
-import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -40,6 +39,7 @@ import superlord.prehistoricfauna.common.entities.goal.HuntGoal;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
+import superlord.prehistoricfauna.init.SoundInit;
 
 import java.util.Random;
 import java.util.function.Predicate;
@@ -96,6 +96,7 @@ public class AllosaurusEntity extends AnimalEntity {
 		this.goalSelector.addGoal(8, new AvoidEntityGoal<CamarasaurusEntity>(this, CamarasaurusEntity.class, 7F, 1.25D, 1.25D));
 
 	}
+	
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
 		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 36.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.25F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 9.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D);
 	}
@@ -105,15 +106,15 @@ public class AllosaurusEntity extends AnimalEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return SoundHandler.ALLOSAURUS_IDLE;
+		return SoundInit.ALLOSAURUS_IDLE;
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundHandler.ALLOSAURUS_HURT;
+		return SoundInit.ALLOSAURUS_HURT;
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.ALLOSAURUS_DEATH;
+		return SoundInit.ALLOSAURUS_DEATH;
 	}
 
 	protected void playStepSound(BlockPos pos, BlockState blockIn) {
@@ -122,7 +123,7 @@ public class AllosaurusEntity extends AnimalEntity {
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(SoundHandler.ALLOSAURUS_WARN, 1.0F, this.getSoundPitch());
+			this.playSound(SoundInit.ALLOSAURUS_WARN, 1.0F, this.getSoundPitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -155,7 +156,7 @@ public class AllosaurusEntity extends AnimalEntity {
 	}
 
 	public boolean attackEntityAsMob(Entity entityIn) {
-		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getValue()));
+		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
 		if (flag) {
 			this.applyEnchantments(this, entityIn);
 		}

@@ -19,8 +19,8 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
-import superlord.prehistoricfauna.entity.tile.PaleontologyTableTileEntity;
-import superlord.prehistoricfauna.init.TileEntityRegistry;
+import superlord.prehistoricfauna.common.entities.tile.PaleontologyTableTileEntity;
+import superlord.prehistoricfauna.init.PFTileEntities;
 
 public class PaleontologyTableBlock extends Block {
 
@@ -38,13 +38,14 @@ public class PaleontologyTableBlock extends Block {
 
 	@Override
 	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-		return TileEntityRegistry.PALEONTOLOGY_TABLE.get().create();
+		return PFTileEntities.PALEONTOLOGY_TABLE.get().create();
 	}
 
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(FACING);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public BlockState mirror(BlockState state, Mirror mirrorIn) {
 		return state.rotate(mirrorIn.toRotation(state.get(FACING)));

@@ -1,5 +1,9 @@
 package superlord.prehistoricfauna.common.blocks;
 
+import java.util.Random;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -20,12 +24,9 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import superlord.prehistoricfauna.entity.AllosaurusEntity;
-import superlord.prehistoricfauna.init.BlockInit;
-import superlord.prehistoricfauna.init.ModEntityTypes;
-
-import javax.annotation.Nullable;
-import java.util.Random;
+import superlord.prehistoricfauna.common.entities.AllosaurusEntity;
+import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFEntities;
 
 public class AllosaurusEggBlock extends Block {
 	private static final VoxelShape ONE_EGG_SHAPE = Block.makeCuboidShape(3.0D, 0.0D, 3.0D, 12.0D, 7.0D, 12.0D);
@@ -92,7 +93,7 @@ public class AllosaurusEggBlock extends Block {
 
 				for (int j = 0; j < state.get(EGGS); ++j) {
 					worldIn.playEvent(2001, pos, Block.getStateId(state));
-					AllosaurusEntity allosaurusentity = ModEntityTypes.ALLOSAURUS_ENTITY.create(worldIn);
+					AllosaurusEntity allosaurusentity = PFEntities.ALLOSAURUS_ENTITY.create(worldIn);
 					allosaurusentity.setGrowingAge(-24000);
 					allosaurusentity.setLocationAndAngles((double) pos.getX() + 0.3D + (double) j * 0.2D,
 							(double) pos.getY(), (double) pos.getZ() + 0.3D, 0.0F, 0.0F);
@@ -104,7 +105,7 @@ public class AllosaurusEggBlock extends Block {
 	}
 
 	private boolean hasProperHabitat(IBlockReader blockReader, BlockPos pos) {
-		return blockReader.getBlockState(pos.down()).getBlock() == Blocks.SAND || blockReader.getBlockState(pos.down()).getBlock() == Blocks.COARSE_DIRT || blockReader.getBlockState(pos.down()).getBlock() == Blocks.GRASS_BLOCK || blockReader.getBlockState(pos.down()).getBlock() == Blocks.DIRT || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.LOAM || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.PACKED_LOAM || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.SILT || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.HARDENED_SILT || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.MOSSY_DIRT || blockReader.getBlockState(pos.down()).getBlock() == Blocks.PODZOL;
+		return blockReader.getBlockState(pos.down()).getBlock() == Blocks.SAND || blockReader.getBlockState(pos.down()).getBlock() == Blocks.COARSE_DIRT || blockReader.getBlockState(pos.down()).getBlock() == Blocks.GRASS_BLOCK || blockReader.getBlockState(pos.down()).getBlock() == Blocks.DIRT || blockReader.getBlockState(pos.down()).getBlock() == PFBlocks.LOAM || blockReader.getBlockState(pos.down()).getBlock() == PFBlocks.PACKED_LOAM || blockReader.getBlockState(pos.down()).getBlock() == PFBlocks.SILT || blockReader.getBlockState(pos.down()).getBlock() == PFBlocks.HARDENED_SILT || blockReader.getBlockState(pos.down()).getBlock() == PFBlocks.MOSSY_DIRT || blockReader.getBlockState(pos.down()).getBlock() == Blocks.PODZOL;
 	}
 
 	public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {

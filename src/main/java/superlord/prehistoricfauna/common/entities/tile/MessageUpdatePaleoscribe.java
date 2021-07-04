@@ -9,8 +9,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.network.NetworkEvent;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.init.PFItems;
-import superlord.prehistoricfauna.util.EnumPaleoPages;
 
 public class MessageUpdatePaleoscribe {
 

@@ -1,0 +1,13 @@
+{
+  "type": "crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:liriodendrites_log"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:liriodendrites_planks",
+    "count": 4
+  }
+}

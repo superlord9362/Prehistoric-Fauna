@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:siltstone"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:siltstone_slab",
+    "count": 6
+  }
+}

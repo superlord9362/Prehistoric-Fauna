@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:henostone_bricks"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:henostone_brick_stairs",
+    "count": 4
+  }
+}

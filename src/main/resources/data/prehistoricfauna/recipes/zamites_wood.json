@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:zamites_log"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:zamites_wood",
+    "count": 3
+  }
+}

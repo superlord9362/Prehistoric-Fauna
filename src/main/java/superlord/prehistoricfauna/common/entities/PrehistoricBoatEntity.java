@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.entity;
+package superlord.prehistoricfauna.common.entities;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -17,16 +17,16 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IndirectEntityDamageSource;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.FMLPlayMessages;
 import net.minecraftforge.fml.network.NetworkHooks;
-import superlord.prehistoricfauna.init.BlockInit;
-import superlord.prehistoricfauna.init.ItemInit;
-import superlord.prehistoricfauna.init.ModEntityTypes;
+import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFEntities;
+import superlord.prehistoricfauna.init.PFItems;
 
 public class PrehistoricBoatEntity extends BoatEntity {
     private static final DataParameter<Integer> PF_BOAT_TYPE = EntityDataManager.createKey(PrehistoricBoatEntity.class, DataSerializers.VARINT);
@@ -35,9 +35,9 @@ public class PrehistoricBoatEntity extends BoatEntity {
 	private double lastYd;
 
     public PrehistoricBoatEntity(World worldIn, double x, double y, double z) {
-        this(ModEntityTypes.BOAT, worldIn);
+        this(PFEntities.BOAT, worldIn);
         this.setPosition(x, y, z);
-        this.setMotion(Vec3d.ZERO);
+        this.setMotion(Vector3d.ZERO);
         this.prevPosX = x;
         this.prevPosY = y;
         this.prevPosZ = z;
@@ -48,7 +48,7 @@ public class PrehistoricBoatEntity extends BoatEntity {
     }
 
     public PrehistoricBoatEntity(FMLPlayMessages.SpawnEntity packet, World world) {
-        super(ModEntityTypes.BOAT, world);
+        super(PFEntities.BOAT, world);
     }
 
 
@@ -56,38 +56,38 @@ public class PrehistoricBoatEntity extends BoatEntity {
     public Item getItemBoat() {
         switch (this.getPFBoatType()) {
             default:
-                return ItemInit.ARAUCARIA_BOAT.get();
+                return PFItems.ARAUCARIA_BOAT.get();
             case METASEQUOIA:
-                return ItemInit.METASEQUOIA_BOAT.get();
+                return PFItems.METASEQUOIA_BOAT.get();
             case PROTOPICEOXYLON:
-                return ItemInit.PROTOPICEOXYLON_BOAT.get();
+                return PFItems.PROTOPICEOXYLON_BOAT.get();
             case ZAMITES:
-                return ItemInit.ZAMITES_BOAT.get();
+                return PFItems.ZAMITES_BOAT.get();
             case PROTOJUNIPER:
-            	return ItemInit.PROTOJUNIPER_BOAT.get();
+            	return PFItems.PROTOJUNIPER_BOAT.get();
             case HEIDIPHYLLUM:
-            	return ItemInit.HEIDIPHYLLUM_BOAT.get();
+            	return PFItems.HEIDIPHYLLUM_BOAT.get();
             case LIRIODENDRITES:
-            	return ItemInit.LIRIODENDRITES_BOAT.get();
+            	return PFItems.LIRIODENDRITES_BOAT.get();
         }
     }
 
     public Block getPlanks() {
         switch (this.getPFBoatType()) {
             default:
-                return BlockInit.ARAUCARIA_PLANKS;
+                return PFBlocks.ARAUCARIA_PLANKS;
             case METASEQUOIA:
-                return BlockInit.METASEQUOIA_PLANKS;
+                return PFBlocks.METASEQUOIA_PLANKS;
             case PROTOPICEOXYLON:
-                return BlockInit.PROTOPICEOXYLON_PLANKS;
+                return PFBlocks.PROTOPICEOXYLON_PLANKS;
             case ZAMITES:
-                return BlockInit.ZAMITES_PLANKS;
+                return PFBlocks.ZAMITES_PLANKS;
             case PROTOJUNIPER:
-            	return BlockInit.PROTOJUNIPEROXYLON_PLANKS;
+            	return PFBlocks.PROTOJUNIPEROXYLON_PLANKS;
             case HEIDIPHYLLUM:
-            	return BlockInit.HEIDIPHYLLUM_PLANKS;
+            	return PFBlocks.HEIDIPHYLLUM_PLANKS;
             case LIRIODENDRITES:
-            	return BlockInit.LIRIODENDRITES_PLANKS;
+            	return PFBlocks.LIRIODENDRITES_PLANKS;
         }
     }
 
@@ -157,7 +157,7 @@ public class PrehistoricBoatEntity extends BoatEntity {
                 }
 
                 this.fallDistance = 0.0F;
-            } else if (!this.world.getFluidState((new BlockPos(this)).down()).isTagged(FluidTags.WATER) && y < 0.0D) {
+            } else if (!this.world.getFluidState((new BlockPos(this.getPositionVec())).down()).isTagged(FluidTags.WATER) && y < 0.0D) {
                 this.fallDistance = (float) ((double) this.fallDistance - y);
             }
 

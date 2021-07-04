@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:henostone_slab"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:carved_henostone"
+  }
+}

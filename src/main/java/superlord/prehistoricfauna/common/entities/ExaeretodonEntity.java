@@ -1,10 +1,29 @@
-package superlord.prehistoricfauna.entity;
+package superlord.prehistoricfauna.common.entities;
+
+import java.util.Random;
+import java.util.function.Predicate;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.AgeableEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.entity.ai.goal.BreedGoal;
+import net.minecraft.entity.ai.goal.FollowParentGoal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.MoveToBlockGoal;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.ai.goal.TemptGoal;
+import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,21 +41,20 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import superlord.prehistoricfauna.block.ExaeretodonEggBlock;
-import superlord.prehistoricfauna.init.BlockInit;
-import superlord.prehistoricfauna.init.ModEntityTypes;
-import superlord.prehistoricfauna.util.SoundHandler;
-
-import java.util.Random;
-import java.util.function.Predicate;
+import net.minecraft.world.server.ServerWorld;
+import superlord.prehistoricfauna.common.blocks.ExaeretodonEggBlock;
+import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFEntities;
+import superlord.prehistoricfauna.init.SoundInit;
 
 public class ExaeretodonEntity extends AnimalEntity {
 	
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(ExaeretodonEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(ExaeretodonEntity.class, DataSerializers.BOOLEAN);
-	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.CLADOPHLEBIS.asItem());
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(PFBlocks.CLADOPHLEBIS.asItem());
 	private int isDigging;
 	private int warningSoundTicks;
 
@@ -61,14 +79,8 @@ public class ExaeretodonEntity extends AnimalEntity {
 		this.dataManager.set(IS_DIGGING, isDigging);
 	}
 
-	public AgeableEntity createChild(AgeableEntity ageable) {
-		ExaeretodonEntity entity = new ExaeretodonEntity(ModEntityTypes.EXAERETODON_ENTITY, this.world);
-		entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
-		return entity;
-	}
-
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.CLADOPHLEBIS.asItem();
+		return stack.getItem() == PFBlocks.CLADOPHLEBIS.asItem();
 	}
 
 	protected void registerGoals() {
@@ -97,30 +109,25 @@ public class ExaeretodonEntity extends AnimalEntity {
 		this.goalSelector.addGoal(2, new ExaeretodonEntity.MateGoal(this, 1.0D));
 	}
 
-	protected void registerAttributes() {
-		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
-		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(15.0D);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.23D);
-		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
-		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23D).createMutableAttribute(Attributes.FOLLOW_RANGE, 15).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0D);
 	}
    
 	protected SoundEvent getAmbientSound() {
-		return SoundHandler.EXAERETODON_IDLE;
+		return SoundInit.EXAERETODON_IDLE;
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundHandler.EXAERETODON_HURT;
+		return SoundInit.EXAERETODON_HURT;
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.EXAERETODON_DEATH;
+		return SoundInit.EXAERETODON_DEATH;
 	}
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(SoundHandler.EXAERETODON_WARN, 1.0F, this.getSoundPitch());
+			this.playSound(SoundInit.EXAERETODON_WARN, 1.0F, this.getSoundPitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -149,7 +156,7 @@ public class ExaeretodonEntity extends AnimalEntity {
 	}
 
 	public boolean attackEntityAsMob(Entity entityIn) {
-		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getValue()));
+		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
 		if (flag) {
 			this.applyEnchantments(this, entityIn);
 		}
@@ -208,21 +215,33 @@ public class ExaeretodonEntity extends AnimalEntity {
 
 		protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
 			double d0 = this.getAttackReachSqr(enemy);
-			if (distToEnemySqr <= d0 && this.attackTick <= 0) {
-				this.attackTick = 20;
+			if (distToEnemySqr <= d0 && this.func_234040_h_()) {
+				this.func_234039_g_();
 				this.attacker.attackEntityAsMob(enemy);
 			} else if (distToEnemySqr <= d0 * 2.0D) {
-				if (this.attackTick <= 0) {
-					this.attackTick = 20;
+				if (this.func_234040_h_()) {
+					this.func_234039_g_();
 				}
-				if (this.attackTick <= 10) {
+
+				if (this.func_234041_j_() <= 10) {
 					ExaeretodonEntity.this.playWarningSound();
 				}
 			} else {
-				this.attackTick = 20;
+				this.func_234039_g_();
+			}
+
+		}
+
+		public boolean shouldContinueExecuting() {
+			float f = this.attacker.getBrightness();
+			if (f >= 0.5F && this.attacker.getRNG().nextInt(100) == 0) {
+				this.attacker.setAttackTarget((LivingEntity)null);
+				return false;
+			} else {
+				return super.shouldContinueExecuting();
 			}
 		}
-      
+
 		public void resetTask() {
 			super.resetTask();
 		}
@@ -230,7 +249,7 @@ public class ExaeretodonEntity extends AnimalEntity {
 		protected double getAttackReachSqr(LivingEntity attackTarget) {
 			return (double)(4.0F + attackTarget.getWidth());
 		}
-   }
+	}
 
 	class PanicGoal extends net.minecraft.entity.ai.goal.PanicGoal {
 		public PanicGoal() {
@@ -260,14 +279,14 @@ public class ExaeretodonEntity extends AnimalEntity {
 		
 		public void tick() {
 			super.tick();
-			BlockPos blockpos = new BlockPos(this.exaeretodon);
+			BlockPos blockpos = new BlockPos(this.exaeretodon.getPositionVec());
 			if (this.exaeretodon.isInWater() && this.getIsAboveDestination()) {
 				if (this.exaeretodon.isDigging < 1) {
 					this.exaeretodon.setDigging(true);
 				} else if (this.exaeretodon.isDigging > 200) {
 					World world = this.exaeretodon.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.EXAERETODON_EGG.getDefaultState().with(ExaeretodonEggBlock.EGGS, Integer.valueOf(this.exaeretodon.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.EXAERETODON_EGG.getDefaultState().with(ExaeretodonEggBlock.EGGS, Integer.valueOf(this.exaeretodon.rand.nextInt(4) + 1)), 3);
 					this.exaeretodon.setHasEgg(false);
 					this.exaeretodon.setDigging(false);
 					this.exaeretodon.setInLove(600);
@@ -283,7 +302,7 @@ public class ExaeretodonEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.LOAM || block == BlockInit.PACKED_LOAM || block == Blocks.PODZOL;
+				return block == PFBlocks.LOAM || block == PFBlocks.PACKED_LOAM || block == Blocks.PODZOL;
 			}
 		}
 		
@@ -319,6 +338,13 @@ public class ExaeretodonEntity extends AnimalEntity {
 			}
 		}
 		
+	}
+
+	@Override
+	public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+		ExaeretodonEntity entity = new ExaeretodonEntity(PFEntities.EXAERETODON_ENTITY, this.world);
+		entity.onInitialSpawn((IServerWorld) this.world, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
+		return entity;
 	}
 	
 }

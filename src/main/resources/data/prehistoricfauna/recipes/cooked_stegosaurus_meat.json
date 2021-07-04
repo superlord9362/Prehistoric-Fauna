@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "prehistoricfauna:raw_stegosaurus_meat"
+  },
+  "result": "prehistoricfauna:cooked_stegosaurus_meat",
+  "experience": 0.35,
+  "cookingtime": 200
+}

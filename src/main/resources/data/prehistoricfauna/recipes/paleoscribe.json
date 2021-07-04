@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    " J ",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "tag": "minecraft:wooden_slabs"
+    },
+    "J": {
+      "item": "prehistoricfauna:ancient_journal"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:paleoscribe"
+  }
+}

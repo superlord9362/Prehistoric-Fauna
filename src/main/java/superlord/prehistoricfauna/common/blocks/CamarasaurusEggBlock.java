@@ -20,9 +20,9 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import superlord.prehistoricfauna.entity.CamarasaurusEntity;
-import superlord.prehistoricfauna.init.BlockInit;
-import superlord.prehistoricfauna.init.ModEntityTypes;
+import superlord.prehistoricfauna.common.entities.CamarasaurusEntity;
+import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFEntities;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -82,7 +82,7 @@ public class CamarasaurusEggBlock extends Block {
 
 				for(int j = 0; j < state.get(EGGS); ++j) {
 					worldIn.playEvent(2001, pos, Block.getStateId(state));
-					CamarasaurusEntity camarasaurusentity = ModEntityTypes.CAMARASAURUS_ENTITY.create(worldIn);
+					CamarasaurusEntity camarasaurusentity = PFEntities.CAMARASAURUS_ENTITY.create(worldIn);
 					camarasaurusentity.setGrowingAge(-24000);
 					camarasaurusentity.setLocationAndAngles((double)pos.getX() + 0.3D + (double)j * 0.2D, (double)pos.getY(), (double)pos.getZ() + 0.3D, 0.0F, 0.0F);
 					worldIn.addEntity(camarasaurusentity);
@@ -93,7 +93,7 @@ public class CamarasaurusEggBlock extends Block {
 	}
 
 	private boolean hasProperHabitat(IBlockReader blockReader, BlockPos pos) {
-		return blockReader.getBlockState(pos.down()).getBlock() == Blocks.SAND || blockReader.getBlockState(pos.down()).getBlock() == Blocks.COARSE_DIRT || blockReader.getBlockState(pos.down()).getBlock() == Blocks.GRASS_BLOCK || blockReader.getBlockState(pos.down()).getBlock() == Blocks.DIRT || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.LOAM || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.PACKED_LOAM || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.SILT || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.HARDENED_SILT || blockReader.getBlockState(pos.down()).getBlock() == BlockInit.MOSSY_DIRT || blockReader.getBlockState(pos.down()).getBlock() == Blocks.PODZOL;
+		return blockReader.getBlockState(pos.down()).getBlock() == Blocks.SAND || blockReader.getBlockState(pos.down()).getBlock() == Blocks.COARSE_DIRT || blockReader.getBlockState(pos.down()).getBlock() == Blocks.GRASS_BLOCK || blockReader.getBlockState(pos.down()).getBlock() == Blocks.DIRT || blockReader.getBlockState(pos.down()).getBlock() == PFBlocks.LOAM || blockReader.getBlockState(pos.down()).getBlock() == PFBlocks.PACKED_LOAM || blockReader.getBlockState(pos.down()).getBlock() == PFBlocks.SILT || blockReader.getBlockState(pos.down()).getBlock() == PFBlocks.HARDENED_SILT || blockReader.getBlockState(pos.down()).getBlock() == PFBlocks.MOSSY_DIRT || blockReader.getBlockState(pos.down()).getBlock() == Blocks.PODZOL;
 	}
 
 	public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {

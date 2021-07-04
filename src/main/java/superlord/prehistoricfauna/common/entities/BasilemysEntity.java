@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.entity;
+package superlord.prehistoricfauna.common.entities;
 
 import java.util.Random;
 
@@ -8,8 +8,10 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.BreedGoal;
 import net.minecraft.entity.ai.goal.FollowParentGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
@@ -34,21 +36,23 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.block.BasilemysEggBlock;
-import superlord.prehistoricfauna.init.BlockInit;
-import superlord.prehistoricfauna.init.ModEntityTypes;
-import superlord.prehistoricfauna.util.SoundHandler;
+import superlord.prehistoricfauna.common.blocks.BasilemysEggBlock;
+import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFEntities;
+import superlord.prehistoricfauna.init.SoundInit;
 
 public class BasilemysEntity extends AnimalEntity {
 
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(BasilemysEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(BasilemysEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_PANICING = EntityDataManager.createKey(BasilemysEntity.class, DataSerializers.BOOLEAN);
-	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.HORSETAIL.asItem());
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(PFBlocks.HORSETAIL.asItem());
 	private int isDigging;
 
 	public BasilemysEntity(EntityType<? extends BasilemysEntity> type, World world) {
@@ -81,14 +85,7 @@ public class BasilemysEntity extends AnimalEntity {
 	}
 
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.HORSETAIL.asItem();
-	}
-
-	@Override
-	public AgeableEntity createChild(AgeableEntity ageable) {
-		BasilemysEntity entity = new BasilemysEntity(ModEntityTypes.BASILEMYS_ENTITY, this.world);
-		entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
-		return entity;
+		return stack.getItem() == PFBlocks.HORSETAIL.asItem();
 	}
 
 	protected void registerData() {
@@ -124,15 +121,15 @@ public class BasilemysEntity extends AnimalEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return SoundHandler.BASILEMYS_IDLE;
+		return SoundInit.BASILEMYS_IDLE;
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundHandler.BASILEMYS_HURT;
+		return SoundInit.BASILEMYS_HURT;
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.BASILEMYS_DEATH;
+		return SoundInit.BASILEMYS_DEATH;
 	}
 
 	public boolean canBreed() {
@@ -149,11 +146,8 @@ public class BasilemysEntity extends AnimalEntity {
 		super.livingTick();
 	}
 
-	@Override
-	protected void registerAttributes() {
-		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.1D);
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.1D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.0D).createMutableAttribute(Attributes.ARMOR, 0.0D).createMutableAttribute(Attributes.ARMOR_TOUGHNESS, 0.0D);
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -176,16 +170,16 @@ public class BasilemysEntity extends AnimalEntity {
 
 		public void startExecuting() {
 			BasilemysEntity.this.setPanicing(true);
-			BasilemysEntity.this.getAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(100.0D);
-			BasilemysEntity.this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(100.0D);
-			BasilemysEntity.this.getAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).setBaseValue(100.0D);
+			BasilemysEntity.this.getAttribute(Attributes.KNOCKBACK_RESISTANCE).setBaseValue(100.0D);
+			BasilemysEntity.this.getAttribute(Attributes.ARMOR).setBaseValue(100.0D);
+			BasilemysEntity.this.getAttribute(Attributes.ARMOR_TOUGHNESS).setBaseValue(100.0D);
 		}
 
 		public void resetTask() {
 			BasilemysEntity.this.setPanicing(false);
-			BasilemysEntity.this.getAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0D);
-			BasilemysEntity.this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(0.0D);
-			BasilemysEntity.this.getAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).setBaseValue(0.0D);
+			BasilemysEntity.this.getAttribute(Attributes.KNOCKBACK_RESISTANCE).setBaseValue(0D);
+			BasilemysEntity.this.getAttribute(Attributes.ARMOR).setBaseValue(0.0D);
+			BasilemysEntity.this.getAttribute(Attributes.ARMOR_TOUGHNESS).setBaseValue(0.0D);
 		}
 	}
 
@@ -207,14 +201,14 @@ public class BasilemysEntity extends AnimalEntity {
 
 		public void tick() {
 			super.tick();
-			BlockPos blockpos = new BlockPos(this.basilemys);
+			BlockPos blockpos = new BlockPos(this.basilemys.getPositionVec());
 			if(this.basilemys.isInWater() && this.getIsAboveDestination()) {
 				if (this.basilemys.isDigging < 1) {
 					this.basilemys.setDigging(true);
 				} else if (this.basilemys.isDigging > 200) {
 					World world = this.basilemys.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.BASILEMYS_EGG.getDefaultState().with(BasilemysEggBlock.EGGS, Integer.valueOf(this.basilemys.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.BASILEMYS_EGG.getDefaultState().with(BasilemysEggBlock.EGGS, Integer.valueOf(this.basilemys.rand.nextInt(4) + 1)), 3);
 					this.basilemys.setHasEgg(false);
 					this.basilemys.setDigging(false);
 					this.basilemys.setInLove(600);
@@ -230,7 +224,7 @@ public class BasilemysEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = world.getBlockState(pos).getBlock();
-				return block == BlockInit.LOAM || block == BlockInit.MOSSY_DIRT || block == Blocks.PODZOL;
+				return block == PFBlocks.LOAM || block == PFBlocks.MOSSY_DIRT || block == Blocks.PODZOL;
 			}
 		}
 
@@ -265,6 +259,13 @@ public class BasilemysEntity extends AnimalEntity {
 				this.world.addEntity(new ExperienceOrbEntity(this.world, this.animal.getPosX(), this.animal.getPosY(), this.animal.getPosZ(), random.nextInt(7) + 1));
 			}
 		}
+	}
+
+	@Override
+	public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+		BasilemysEntity entity = new BasilemysEntity(PFEntities.BASILEMYS_ENTITY, this.world);
+		entity.onInitialSpawn((IServerWorld) this.world, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
+		return entity;
 	}
 
 }

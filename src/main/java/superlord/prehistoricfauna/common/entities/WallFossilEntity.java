@@ -1,4 +1,10 @@
-package superlord.prehistoricfauna.entity;
+package superlord.prehistoricfauna.common.entities;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.annotation.Nullable;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -14,13 +20,8 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.network.NetworkHooks;
-import superlord.prehistoricfauna.init.ItemInit;
-import superlord.prehistoricfauna.init.ModEntityTypes;
-
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import superlord.prehistoricfauna.init.PFEntities;
+import superlord.prehistoricfauna.init.PFItems;
 
 public class WallFossilEntity extends HangingEntity implements IEntityAdditionalSpawnData {
     public Fossil fossil;
@@ -30,7 +31,7 @@ public class WallFossilEntity extends HangingEntity implements IEntityAdditional
     }
 
     public WallFossilEntity(World world, BlockPos pos, Direction facing) {
-        super(ModEntityTypes.WALL_FOSSIL, world, pos);
+        super(PFEntities.WALL_FOSSIL, world, pos);
         List<Fossil> list = new ArrayList<>();
         int i = 0;
 
@@ -95,7 +96,7 @@ public class WallFossilEntity extends HangingEntity implements IEntityAdditional
                 }
             }
 
-            this.entityDropItem(ItemInit.WALL_FOSSIL.get());
+            this.entityDropItem(PFItems.WALL_FOSSIL.get());
         }
     }
 

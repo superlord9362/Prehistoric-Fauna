@@ -1,11 +1,30 @@
-package superlord.prehistoricfauna.entity;
+package superlord.prehistoricfauna.common.entities;
+
+import java.util.Random;
+import java.util.function.Predicate;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.AgeableEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.entity.ai.goal.BreedGoal;
+import net.minecraft.entity.ai.goal.FollowParentGoal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.MoveToBlockGoal;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,13 +43,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import superlord.prehistoricfauna.block.SillosuchusEggBlock;
-import superlord.prehistoricfauna.init.BlockInit;
-import superlord.prehistoricfauna.init.ModEntityTypes;
-import superlord.prehistoricfauna.util.SoundHandler;
-
-import java.util.Random;
-import java.util.function.Predicate;
+import net.minecraft.world.server.ServerWorld;
+import superlord.prehistoricfauna.common.blocks.SillosuchusEggBlock;
+import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFEntities;
+import superlord.prehistoricfauna.init.SoundInit;
 
 public class SillosuchusEntity extends AnimalEntity {
 	
@@ -41,12 +58,6 @@ public class SillosuchusEntity extends AnimalEntity {
 
 	public SillosuchusEntity(EntityType<? extends SillosuchusEntity> type, World worldIn) {
 		super(type, worldIn);
-	}
-
-	public AgeableEntity createChild(AgeableEntity ageable) {
-		SillosuchusEntity entity = new SillosuchusEntity(ModEntityTypes.SILLOSUCHUS_ENTITY, this.world);
-		entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
-		return entity;
 	}
 
 	public boolean isDigging() {
@@ -68,7 +79,7 @@ public class SillosuchusEntity extends AnimalEntity {
 
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.DICROIDIUM.asItem();
+		return stack.getItem() == PFBlocks.DICROIDIUM.asItem();
 	}
 
 	protected void registerGoals() {
@@ -90,25 +101,20 @@ public class SillosuchusEntity extends AnimalEntity {
 		this.goalSelector.addGoal(8, new AvoidEntityGoal<CamarasaurusEntity>(this, CamarasaurusEntity.class, 7F, 1.25D, 1.25D));
 	}
 
-	protected void registerAttributes() {
-		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(25.0D);
-		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20.0D);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.23D);
-		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
-		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5.0D);
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 25.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 5.0D);
 	}
-
+	
 	protected SoundEvent getAmbientSound() {
-		return SoundHandler.SILLOSUCHUS_IDLE;
+		return SoundInit.SILLOSUCHUS_IDLE;
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundHandler.SILLOSUCHUS_HURT;
+		return SoundInit.SILLOSUCHUS_HURT;
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.SILLOSUCHUS_DEATH;
+		return SoundInit.SILLOSUCHUS_DEATH;
 	}
 
 	protected void playStepSound(BlockPos pos, BlockState blockIn) {
@@ -117,7 +123,7 @@ public class SillosuchusEntity extends AnimalEntity {
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(SoundHandler.SILLOSUCHUS_WARN, 1.0F, this.getSoundPitch());
+			this.playSound(SoundInit.SILLOSUCHUS_WARN, 1.0F, this.getSoundPitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -149,7 +155,7 @@ public class SillosuchusEntity extends AnimalEntity {
 	}
 
 	public boolean attackEntityAsMob(Entity entityIn) {
-		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getValue()));
+		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
 		if (flag) {
 			this.applyEnchantments(this, entityIn);
 		}
@@ -217,25 +223,33 @@ public class SillosuchusEntity extends AnimalEntity {
 
 		protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
 			double d0 = this.getAttackReachSqr(enemy);
-			if (distToEnemySqr <= d0 && this.attackTick <= 0) {
-				this.attackTick = 20;
+			if (distToEnemySqr <= d0 && this.func_234040_h_()) {
+				this.func_234039_g_();
 				this.attacker.attackEntityAsMob(enemy);
 			} else if (distToEnemySqr <= d0 * 2.0D) {
-				if (this.attackTick <= 0) {
-					this.attackTick = 20;
+				if (this.func_234040_h_()) {
+					this.func_234039_g_();
 				}
 
-				if (this.attackTick <= 10) {
+				if (this.func_234041_j_() <= 10) {
+					SillosuchusEntity.this.playWarningSound();
 				}
 			} else {
-				this.attackTick = 20;
+				this.func_234039_g_();
 			}
 
 		}
 
-		/**
-		 * Reset the task's internal state. Called when this task is interrupted by another one
-		 */
+		public boolean shouldContinueExecuting() {
+			float f = this.attacker.getBrightness();
+			if (f >= 0.5F && this.attacker.getRNG().nextInt(100) == 0) {
+				this.attacker.setAttackTarget((LivingEntity)null);
+				return false;
+			} else {
+				return super.shouldContinueExecuting();
+			}
+		}
+
 		public void resetTask() {
 			super.resetTask();
 		}
@@ -317,14 +331,14 @@ public class SillosuchusEntity extends AnimalEntity {
 		 */
 		public void tick() {
 			super.tick();
-			BlockPos blockpos = new BlockPos(this.sillosuchus);
+			BlockPos blockpos = new BlockPos(this.sillosuchus.getPositionVec());
 			if (!this.sillosuchus.isInWater() && this.getIsAboveDestination()) {
 				if (this.sillosuchus.isDigging < 1) {
 					this.sillosuchus.setDigging(true);
 				} else if (this.sillosuchus.isDigging > 200) {
 					World world = this.sillosuchus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.STEGOSAURUS_EGG.getDefaultState().with(SillosuchusEggBlock.EGGS, Integer.valueOf(this.sillosuchus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.STEGOSAURUS_EGG.getDefaultState().with(SillosuchusEggBlock.EGGS, Integer.valueOf(this.sillosuchus.rand.nextInt(4) + 1)), 3);
 					this.sillosuchus.setHasEgg(false);
 					this.sillosuchus.setDigging(false);
 					this.sillosuchus.setInLove(600);
@@ -345,7 +359,7 @@ public class SillosuchusEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.LOAM || block == BlockInit.PACKED_LOAM || block == Blocks.PODZOL;
+				return block == PFBlocks.LOAM || block == PFBlocks.PACKED_LOAM || block == Blocks.PODZOL;
 			}
 		}
 	}
@@ -389,6 +403,13 @@ public class SillosuchusEntity extends AnimalEntity {
 			}
 
 		}
+	}
+
+	@Override
+	public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+		SillosuchusEntity entity = new SillosuchusEntity(PFEntities.SILLOSUCHUS_ENTITY, this.world);
+		entity.onInitialSpawn(p_241840_1_, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
+		return entity;
 	}
 	
 }

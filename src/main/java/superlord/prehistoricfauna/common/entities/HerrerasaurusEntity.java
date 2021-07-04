@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.entity;
+package superlord.prehistoricfauna.common.entities;
 
 import java.util.Random;
 import java.util.function.Predicate;
@@ -12,8 +12,9 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.ai.goal.BreedGoal;
 import net.minecraft.entity.ai.goal.FollowParentGoal;
@@ -48,14 +49,16 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import superlord.prehistoricfauna.block.HerrerasaurusEggBlock;
-import superlord.prehistoricfauna.entity.goal.HuntGoal;
-import superlord.prehistoricfauna.init.BlockInit;
-import superlord.prehistoricfauna.init.ItemInit;
-import superlord.prehistoricfauna.init.ModEntityTypes;
-import superlord.prehistoricfauna.util.SoundHandler;
+import net.minecraft.world.server.ServerWorld;
+import superlord.prehistoricfauna.common.blocks.HerrerasaurusEggBlock;
+import superlord.prehistoricfauna.common.entities.goal.HuntGoal;
+import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFEntities;
+import superlord.prehistoricfauna.init.PFItems;
+import superlord.prehistoricfauna.init.SoundInit;
 
 public class HerrerasaurusEntity extends AnimalEntity {
 
@@ -69,11 +72,6 @@ public class HerrerasaurusEntity extends AnimalEntity {
 		super(type, worldIn);
 	}
 
-	public AgeableEntity createChild(AgeableEntity ageable) {
-		HerrerasaurusEntity entity = new HerrerasaurusEntity(ModEntityTypes.HERRERASAURUS_ENTITY, this.world);
-		entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
-		return entity;
-	}
    
 	public boolean isDigging() {
 		return this.dataManager.get(IS_DIGGING);
@@ -93,7 +91,7 @@ public class HerrerasaurusEntity extends AnimalEntity {
 	}
 
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == ItemInit.RAW_HYPERODAPEDON_MEAT.get();
+		return stack.getItem() == PFItems.RAW_HYPERODAPEDON_MEAT.get();
 	}
 
 	protected void registerGoals() {
@@ -121,14 +119,9 @@ public class HerrerasaurusEntity extends AnimalEntity {
 		this.goalSelector.addGoal(8, new AvoidEntityGoal<TyrannosaurusEntity>(this, TyrannosaurusEntity.class, 7F, 1.25D, 1.25D));
 		this.goalSelector.addGoal(8, new AvoidEntityGoal<IschigualastiaEntity>(this, IschigualastiaEntity.class, 7F, 1.25D, 1.25D));
 	}
-
-	protected void registerAttributes() {
-		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
-		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20.0D);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
-		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5.0D);
+	
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 5.0D);
 	}
 
 	private void setAttackGoals() {
@@ -136,20 +129,20 @@ public class HerrerasaurusEntity extends AnimalEntity {
 	}
    
 	protected SoundEvent getAmbientSound() {
-		return SoundHandler.HERRERASAURUS_IDLE;
+		return SoundInit.HERRERASAURUS_IDLE;
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundHandler.HERRERASAURUS_HURT;
+		return SoundInit.HERRERASAURUS_HURT;
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.HERRERASAURUS_DEATH;
+		return SoundInit.HERRERASAURUS_DEATH;
 	}
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(SoundHandler.HERRERASAURUS_WARN, 1.0F, this.getSoundPitch());
+			this.playSound(SoundInit.HERRERASAURUS_WARN, 1.0F, this.getSoundPitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -179,7 +172,7 @@ public class HerrerasaurusEntity extends AnimalEntity {
 	}
 
 	public boolean attackEntityAsMob(Entity entityIn) {
-		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getValue()));
+		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
 		if (flag) {
 			this.applyEnchantments(this, entityIn);
 		}
@@ -238,33 +231,32 @@ public class HerrerasaurusEntity extends AnimalEntity {
 
 		protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
 			double d0 = this.getAttackReachSqr(enemy);
-			if (distToEnemySqr <= d0) {
-				this.attackTick = 20;
+			if (distToEnemySqr <= d0 && this.func_234040_h_()) {
+				this.func_234039_g_();
 				this.attacker.attackEntityAsMob(enemy);
 			} else if (distToEnemySqr <= d0 * 2.0D) {
-				if (this.attackTick <= 0) {
-					this.attackTick = 20;
+				if (this.func_234040_h_()) {
+					this.func_234039_g_();
 				}
 
-				if (this.attackTick <= 10) {
+				if (this.func_234041_j_() <= 10) {
 					HerrerasaurusEntity.this.playWarningSound();
 				}
 			} else {
-				this.attackTick = 20;
+				this.func_234039_g_();
 			}
 
 		}
-		
 
-	      public boolean shouldContinueExecuting() {
-	         float f = this.attacker.getBrightness();
-	         if (f >= 0.5F && this.attacker.getRNG().nextInt(100) == 0) {
-	            this.attacker.setAttackTarget((LivingEntity)null);
-	            return false;
-	         } else {
-	            return super.shouldContinueExecuting();
-	         }
-	      }
+		public boolean shouldContinueExecuting() {
+			float f = this.attacker.getBrightness();
+			if (f >= 0.5F && this.attacker.getRNG().nextInt(100) == 0) {
+				this.attacker.setAttackTarget((LivingEntity)null);
+				return false;
+			} else {
+				return super.shouldContinueExecuting();
+			}
+		}
 
 		public void resetTask() {
 			super.resetTask();
@@ -274,7 +266,6 @@ public class HerrerasaurusEntity extends AnimalEntity {
 			return (double)(4.0F + attackTarget.getWidth());
 		}
 	}
-   
 	static class LayEggGoal extends MoveToBlockGoal {
 		private final HerrerasaurusEntity herrerasaurus;
 
@@ -293,14 +284,14 @@ public class HerrerasaurusEntity extends AnimalEntity {
 
 		public void tick() {
 			super.tick();
-			BlockPos blockpos = new BlockPos(this.herrerasaurus);
+			BlockPos blockpos = new BlockPos(this.herrerasaurus.getPositionVec());
 			if (!this.herrerasaurus.isInWater() && this.getIsAboveDestination()) {
 				if (this.herrerasaurus.isDigging < 1) {
 					this.herrerasaurus.setDigging(true);
 				} else if (this.herrerasaurus.isDigging > 200) {
 					World world = this.herrerasaurus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.HERRERASAURUS_EGG.getDefaultState().with(HerrerasaurusEggBlock.EGGS, Integer.valueOf(this.herrerasaurus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.HERRERASAURUS_EGG.getDefaultState().with(HerrerasaurusEggBlock.EGGS, Integer.valueOf(this.herrerasaurus.rand.nextInt(4) + 1)), 3);
 					this.herrerasaurus.setHasEgg(false);
 					this.herrerasaurus.setDigging(false);
 					this.herrerasaurus.setInLove(600);
@@ -316,7 +307,7 @@ public class HerrerasaurusEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.LOAM || block == BlockInit.PACKED_LOAM || block == Blocks.PODZOL;
+				return block == PFBlocks.LOAM || block == PFBlocks.PACKED_LOAM || block == Blocks.PODZOL;
 			}
 		}
 	}
@@ -350,5 +341,12 @@ public class HerrerasaurusEntity extends AnimalEntity {
 				this.world.addEntity(new ExperienceOrbEntity(this.world, this.animal.getPosX(), this.animal.getPosY(), this.animal.getPosZ(), random.nextInt(7) + 1));
 			}
 		}
+	}
+
+	@Override
+	public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+		HerrerasaurusEntity entity = new HerrerasaurusEntity(PFEntities.HERRERASAURUS_ENTITY, this.world);
+		entity.onInitialSpawn((IServerWorld) this.world, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
+		return entity;
 	}
 }

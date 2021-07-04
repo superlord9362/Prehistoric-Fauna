@@ -16,7 +16,8 @@ import net.minecraft.util.IWorldPosCallable;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.SlotItemHandler;
-import superlord.prehistoricfauna.entity.tile.PaleontologyTableTileEntity;
+import superlord.prehistoricfauna.common.blocks.PaleontologyTableBlock;
+import superlord.prehistoricfauna.init.PFContainers;
 
 public class PaleontologyTableContainer extends Container
 {
@@ -25,7 +26,7 @@ public class PaleontologyTableContainer extends Container
 
 	public PaleontologyTableContainer(final int windowID, final PlayerInventory playerInventory, final PaleontologyTableTileEntity tileEntity)
 	{
-		super(ContainerRegistry.PALEONTOLOGY_TABLE.get(), windowID);
+		super(PFContainers.PALEONTOLOGY_TABLE.get(), windowID);
 
 		this.canInteractWithCallable = IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos());
 		this.tileEntity = tileEntity;

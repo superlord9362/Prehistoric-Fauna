@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "prehistoricfauna:smooth_siltstone"
+  },
+  "result": "prehistoricfauna:smooth_siltstone_wall",
+  "count": 1
+}

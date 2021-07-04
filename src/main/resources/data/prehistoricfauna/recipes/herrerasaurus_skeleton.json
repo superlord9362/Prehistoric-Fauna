@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:herrerasaurus_skull"
+    },
+	{
+		"item": "prehistoricfauna:herrerasaurus_fossil"
+	},
+	{
+		"item": "prehistoricfauna:herrerasaurus_fossil"
+	}
+  ],
+  "result": {
+    "item": "prehistoricfauna:herrerasaurus_skeleton"
+  }
+}

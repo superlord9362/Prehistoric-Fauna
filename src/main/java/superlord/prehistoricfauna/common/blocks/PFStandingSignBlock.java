@@ -4,7 +4,7 @@ import net.minecraft.block.StandingSignBlock;
 import net.minecraft.block.WoodType;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;
-import superlord.prehistoricfauna.entity.tile.PFSignTileEntity;
+import superlord.prehistoricfauna.common.entities.tile.PFSignTileEntity;
 
 public class PFStandingSignBlock extends StandingSignBlock
 {

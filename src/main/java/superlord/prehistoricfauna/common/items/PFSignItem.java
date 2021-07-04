@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.SignItem;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import superlord.prehistoricfauna.util.PacketToClientSign;
+import superlord.prehistoricfauna.client.util.PacketToClientSign;
 
 public class PFSignItem extends SignItem
 {

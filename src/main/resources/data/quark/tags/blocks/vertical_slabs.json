@@ -1,0 +1,24 @@
+{
+  "replace": false,
+  "values": [
+	"prehistoricfauna:metasequoia_vertical_slab",
+	"prehistoricfauna:araucaria_vertical_slab",
+	"prehistoricfauna:liriodendrites_vertical_slab",
+	"prehistoricfauna:protopiceoxylon_vertical_slab",
+	"prehistoricfauna:zamites_vertical_slab",
+	"prehistoricfauna:protojuniperoxylon_vertical_slab",
+	"prehistoricfauna:heidiphyllum_vertical_slab",
+	"prehistoricfauna:sandstone_vertical_slab",
+	"prehistoricfauna:sandstone_brick_vertical_slab",
+	"prehistoricfauna:polished_sandstone_vertical_slab",
+	"prehistoricfauna:chalk_vertical_slab",
+	"prehistoricfauna:chalk_brick_vertical_slab",
+	"prehistoricfauna:polished_chalk_vertical_slab",
+	"prehistoricfauna:siltstone_vertical_slab",
+	"prehistoricfauna:polished_siltstone_vertical_slab",
+	"prehistoricfauna:siltstone_brick_vertical_slab",
+	"prehistoricfauna:henostone_vertical_slab",
+	"prehistoricfauna:henostone_brick_vertical_slab",
+	"prehistoricfauna:dark_henostone_brick_vertical_slab"
+	]
+}

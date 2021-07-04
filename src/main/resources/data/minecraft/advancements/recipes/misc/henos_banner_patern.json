@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:henos_banner_pattern"
+    ]
+  },
+  "criteria": {
+    "has_banner_material": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:henostone"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:henos_banner_pattern"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_banner_material",
+      "has_the_recipe"
+    ]
+  ]
+}

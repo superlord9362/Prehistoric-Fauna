@@ -1,10 +1,27 @@
-package superlord.prehistoricfauna.entity;
+package superlord.prehistoricfauna.common.entities;
+
+import java.util.Random;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.AgeableEntity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.entity.ai.goal.BreedGoal;
+import net.minecraft.entity.ai.goal.FollowParentGoal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.MoveToBlockGoal;
+import net.minecraft.entity.ai.goal.PanicGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.TemptGoal;
+import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,20 +41,19 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.block.ThescelosaurusEggBlock;
-import superlord.prehistoricfauna.init.BlockInit;
-import superlord.prehistoricfauna.init.ModEntityTypes;
-import superlord.prehistoricfauna.util.SoundHandler;
-
-import java.util.Random;
+import superlord.prehistoricfauna.common.blocks.ThescelosaurusEggBlock;
+import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFEntities;
+import superlord.prehistoricfauna.init.SoundInit;
 
 public class ThescelosaurusEntity extends AnimalEntity {
 
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(ThescelosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(ThescelosaurusEntity.class, DataSerializers.BOOLEAN);
-	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.MARCHANTIA.asItem());
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(PFBlocks.MARCHANTIA.asItem());
 	private int isDigging;
 
 	public ThescelosaurusEntity(EntityType<? extends ThescelosaurusEntity> type, World worldIn) {
@@ -63,14 +79,7 @@ public class ThescelosaurusEntity extends AnimalEntity {
 	}
 
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.MARCHANTIA.asItem();
-	}
-
-	@Override
-	public AgeableEntity createChild(AgeableEntity ageable) {
-		ThescelosaurusEntity entity = new ThescelosaurusEntity(ModEntityTypes.THESCELOSAURUS_ENTITY, this.world);
-		entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
-		return entity;
+		return stack.getItem() == PFBlocks.MARCHANTIA.asItem();
 	}
 
 	protected void registerData() {
@@ -112,15 +121,15 @@ public class ThescelosaurusEntity extends AnimalEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return SoundHandler.THESCELOSAURUS_IDLE;
+		return SoundInit.THESCELOSAURUS_IDLE;
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundHandler.THESCELOSAURUS_HURT;
+		return SoundInit.THESCELOSAURUS_HURT;
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.THESCELOSAURUS_DEATH;
+		return SoundInit.THESCELOSAURUS_DEATH;
 	}
 
 	@Override
@@ -132,14 +141,11 @@ public class ThescelosaurusEntity extends AnimalEntity {
 	public void livingTick() {
 		super.livingTick();
 	}
-
-	@Override
-	protected void registerAttributes() {
-		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(16.0D);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.23D);
+	
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 16.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23D);
 	}
-
+	
 	@OnlyIn(Dist.CLIENT)
 	public void handleStatusUpdate(byte id) {
 		super.handleStatusUpdate(id);
@@ -173,14 +179,14 @@ public class ThescelosaurusEntity extends AnimalEntity {
 		 */
 		public void tick() {
 			super.tick();
-			BlockPos blockpos = new BlockPos(this.thescelosaurus);
+			BlockPos blockpos = new BlockPos(this.thescelosaurus.getPositionVec());
 			if (!this.thescelosaurus.isInWater() && this.getIsAboveDestination()) {
 				if (this.thescelosaurus.isDigging < 1) {
 					this.thescelosaurus.setDigging(true);
 				} else if (this.thescelosaurus.isDigging > 200) {
 					World world = this.thescelosaurus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.THESCELOSAURUS_EGG.getDefaultState().with(ThescelosaurusEggBlock.EGGS, Integer.valueOf(this.thescelosaurus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.THESCELOSAURUS_EGG.getDefaultState().with(ThescelosaurusEggBlock.EGGS, Integer.valueOf(this.thescelosaurus.rand.nextInt(4) + 1)), 3);
 					this.thescelosaurus.setHasEgg(false);
 					this.thescelosaurus.setDigging(false);
 					this.thescelosaurus.setInLove(600);
@@ -198,7 +204,7 @@ public class ThescelosaurusEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.LOAM || block == BlockInit.MOSSY_DIRT || block == Blocks.PODZOL;
+				return block == PFBlocks.LOAM || block == PFBlocks.MOSSY_DIRT || block == Blocks.PODZOL;
 			}
 		}
 	}
@@ -235,6 +241,13 @@ public class ThescelosaurusEntity extends AnimalEntity {
 			}
 
 		}
+	}
+
+	@Override
+	public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+		ThescelosaurusEntity entity = new ThescelosaurusEntity(PFEntities.THESCELOSAURUS_ENTITY, this.world);
+		entity.onInitialSpawn(p_241840_1_, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
+		return entity;
 	}
 
 }

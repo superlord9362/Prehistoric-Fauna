@@ -1,0 +1,117 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/general/warpaholic",
+  "display": {
+    "icon": {
+      "item": "prehistoricfauna:araucaria_log"
+    },
+    "title": {
+      "translate": "advancements.prehistoricfauna.anti_lorax.title"
+    },
+    "description": {
+      "translate": "advancements.prehistoricfauna.anti_lorax.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 100
+  },
+  "criteria": {
+    "metasequoia": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+	
+        "items": [
+	{
+          "item": "prehistoricfauna:metasequoia_log"
+        }
+]
+      }
+    },
+	"araucaria": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+	{
+          "item": "prehistoricfauna:araucaria_log"
+        }
+]
+      }
+    },
+	"protopiceoxylon": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+	{
+          "item": "prehistoricfauna:protopiceoxylon_log"
+        }
+]
+      }
+    },
+	"zamites": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+	{
+          "item": "prehistoricfauna:zamites_log"
+        }
+]
+      }
+    },
+	"protojuniperoxylon": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+	{
+          "item": "prehistoricfauna:protojuniperoxylon_log"
+        }
+]     
+ }
+    },
+	"heidiphyllum": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+	{
+          "item": "prehistoricfauna:heidiphyllum_log"
+        }
+]
+      }
+    },
+	"liriodendrites": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+	{
+          "item": "prehistoricfauna:liriodendrites_log"
+        }
+]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "metasequoia"
+    ],
+	[
+      "araucaria"
+    ],
+	[
+      "protopiceoxylon"
+    ],
+	[
+      "zamites"
+    ],
+	[
+      "protojuniperoxylon"
+    ],
+	[
+      "heidiphyllum"
+    ],
+	[
+      "liriodendrites"
+    ]
+  ]
+}

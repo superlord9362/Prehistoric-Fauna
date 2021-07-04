@@ -5,6 +5,7 @@ import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -32,9 +33,9 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.RangedWrapper;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.init.TileEntityRegistry;
-import superlord.prehistoricfauna.item.FossilItem;
-import superlord.prehistoricfauna.recipes.RecipePaleontologyTable;
+import superlord.prehistoricfauna.common.items.FossilItem;
+import superlord.prehistoricfauna.common.util.RecipePaleontologyTable;
+import superlord.prehistoricfauna.init.PFTileEntities;
 
 public class PaleontologyTableTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider, INameable
 {
@@ -78,7 +79,7 @@ public class PaleontologyTableTileEntity extends TileEntity implements ITickable
 
 	public PaleontologyTableTileEntity()
 	{
-		super(TileEntityRegistry.PALEONTOLOGY_TABLE.get());
+		super(PFTileEntities.PALEONTOLOGY_TABLE.get());
 
 		this.inventory = new TileRecipeInventory(10);
 		this.inventoryCapabilityExternal = LazyOptional.of(() -> this.inventory);
@@ -323,7 +324,7 @@ public class PaleontologyTableTileEntity extends TileEntity implements ITickable
 
 	private ITextComponent getDefaultName()
 	{
-		return new TranslationTextComponent("container." + PrehistoricFauna.MODID + ".paleontology_table");
+		return new TranslationTextComponent("container." + PrehistoricFauna.MOD_ID + ".paleontology_table");
 	}
 
 	@Override
@@ -333,14 +334,14 @@ public class PaleontologyTableTileEntity extends TileEntity implements ITickable
 	}
 
 	@Override
-	public void read(CompoundNBT compound)
+	public void read(BlockState state, CompoundNBT compound)
 	{
-		super.read(compound);
+		super.read(state, compound);
 
 		this.inventory.read(compound);
 		this.workTime = compound.getShort("WorkTime");
 		if (compound.contains("CustomName", Constants.NBT.TAG_STRING))
-			this.customName = ITextComponent.Serializer.fromJson(compound.getString("CustomName"));
+			this.customName = ITextComponent.Serializer.getComponentFromJson(compound.getString("CustomName"));
 	}
 
 	@Override

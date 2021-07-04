@@ -1,10 +1,27 @@
-package superlord.prehistoricfauna.entity;
+package superlord.prehistoricfauna.common.entities;
+
+import java.util.Random;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.AgeableEntity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.entity.ai.goal.BreedGoal;
+import net.minecraft.entity.ai.goal.FollowParentGoal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.MoveToBlockGoal;
+import net.minecraft.entity.ai.goal.PanicGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.TemptGoal;
+import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,20 +41,19 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.block.HyperodapedonEggBlock;
-import superlord.prehistoricfauna.init.BlockInit;
-import superlord.prehistoricfauna.init.ModEntityTypes;
-import superlord.prehistoricfauna.util.SoundHandler;
-
-import java.util.Random;
+import superlord.prehistoricfauna.common.blocks.HyperodapedonEggBlock;
+import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFEntities;
+import superlord.prehistoricfauna.init.SoundInit;
 
 public class HyperodapedonEntity extends AnimalEntity {
 
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(HyperodapedonEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(HyperodapedonEntity.class, DataSerializers.BOOLEAN);
-	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(BlockInit.SCYTOPHYLLUM.asItem());
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(PFBlocks.SCYTOPHYLLUM.asItem());
 	private int isDigging;
 	
 	public HyperodapedonEntity(EntityType<? extends HyperodapedonEntity> type, World world) {
@@ -62,14 +78,7 @@ public class HyperodapedonEntity extends AnimalEntity {
 	}
 	
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == BlockInit.SCYTOPHYLLUM.asItem();
-	}
-	
-	@Override
-	public AgeableEntity createChild(AgeableEntity ageable) {
-		HyperodapedonEntity entity = new HyperodapedonEntity(ModEntityTypes.HYPERODAPEDON_ENTITY, this.world);
-		entity.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entity)), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
-		return entity;
+		return stack.getItem() == PFBlocks.SCYTOPHYLLUM.asItem();
 	}
 	
 	public void registerData() {
@@ -119,15 +128,15 @@ public class HyperodapedonEntity extends AnimalEntity {
 	}
 	
 	protected SoundEvent getAmbientSound() {
-		return SoundHandler.HYPERODAPEDON_IDLE;
+		return SoundInit.HYPERODAPEDON_IDLE;
 	}
 	
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundHandler.HYPERODAPEDON_HURT;
+		return SoundInit.HYPERODAPEDON_HURT;
 	}
 	
 	protected SoundEvent getDeathSound() {
-		return SoundHandler.HYPERODAPEDON_DEATH;
+		return SoundInit.HYPERODAPEDON_DEATH;
 	}
 	
 	@Override
@@ -140,11 +149,8 @@ public class HyperodapedonEntity extends AnimalEntity {
 		super.livingTick();
 	}
 	
-	@Override
-	protected void registerAttributes() {
-		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.24D);
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 8.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.24D);
 	}
 	
 	@OnlyIn(Dist.CLIENT)
@@ -169,14 +175,14 @@ public class HyperodapedonEntity extends AnimalEntity {
 		}
 		
 		public void tick() {
-			BlockPos blockpos = new BlockPos(this.hyperodapedon);
+			BlockPos blockpos = new BlockPos(this.hyperodapedon.getPositionVec());
 			if (this.hyperodapedon.isInWater() && this.getIsAboveDestination()) {
 				if (this.hyperodapedon.isDigging < 1) {
 					this.hyperodapedon.setDigging(true);
 				} else if (this.hyperodapedon.isDigging > 200) {
 					World world = this.hyperodapedon.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), BlockInit.HYPERODAPEDON_EGG.getDefaultState().with(HyperodapedonEggBlock.EGGS, Integer.valueOf(this.hyperodapedon.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.HYPERODAPEDON_EGG.getDefaultState().with(HyperodapedonEggBlock.EGGS, Integer.valueOf(this.hyperodapedon.rand.nextInt(4) + 1)), 3);
 					this.hyperodapedon.setHasEgg(false);
 					this.hyperodapedon.setDigging(false);
 					this.hyperodapedon.setInLove(600);
@@ -192,7 +198,7 @@ public class HyperodapedonEntity extends AnimalEntity {
 				return false;
 			} else {
 				Block block = worldIn.getBlockState(pos).getBlock();
-				return block == BlockInit.LOAM || block == BlockInit.PACKED_LOAM || block == Blocks.PODZOL;
+				return block == PFBlocks.LOAM || block == PFBlocks.PACKED_LOAM || block == Blocks.PODZOL;
 			}
 		}
 		
@@ -228,6 +234,13 @@ public class HyperodapedonEntity extends AnimalEntity {
 			}
 		}
 		
+	}
+
+	@Override
+	public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+		HyperodapedonEntity entity = new HyperodapedonEntity(PFEntities.HYPERODAPEDON_ENTITY, this.world);
+		entity.onInitialSpawn(p_241840_1_, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
+		return entity;
 	}
 	
 }

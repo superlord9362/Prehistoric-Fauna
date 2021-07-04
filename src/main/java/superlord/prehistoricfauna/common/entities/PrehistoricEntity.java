@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.entity;
+package superlord.prehistoricfauna.common.entities;
 
 import java.util.Random;
 import java.util.UUID;
@@ -6,7 +6,6 @@ import java.util.UUID;
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -16,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
@@ -112,26 +110,6 @@ public abstract class PrehistoricEntity extends AnimalEntity {
 		return 1 + this.world.rand.nextInt(3);
 	}
 
-	public boolean processInteract(PlayerEntity player, Hand hand) {
-		ItemStack itemstack = player.getHeldItem(hand);
-		if (this.isBreedingItem(itemstack)) {
-			if (!this.world.isRemote && this.getGrowingAge() == 0 && this.canBreed()) {
-				this.consumeItemFromStack(player, itemstack);
-				this.setInLove(player);
-				player.swing(hand, true);
-				return true;
-			}
-
-			if (this.isChild()) {
-				this.consumeItemFromStack(player, itemstack);
-				this.ageUp((int)((float)(-this.getGrowingAge() / 20) * 0.1F), true);
-				return true;
-			}
-		}
-
-		return super.processInteract(player, hand);
-	}
-
 	protected void consumeItemFromStack(PlayerEntity player, ItemStack stack) {
 		if (!player.abilities.isCreativeMode) {
 			stack.shrink(1);
@@ -197,11 +175,6 @@ public abstract class PrehistoricEntity extends AnimalEntity {
 			super.handleStatusUpdate(id);
 		}
 
-	}
-
-	@Override
-	public AgeableEntity createChild(AgeableEntity ageable) {
-		return null;
 	}
 
 }

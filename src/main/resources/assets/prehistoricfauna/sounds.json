@@ -451,20 +451,6 @@
 			}
 		]
 	},
-	"eilenodon_idle": {
-		"category": "neutral",
-		"subtitle": "prehistoricfauna.subtitle.eilenodonIdle",
-		"sounds": [
-			{
-				"name": "prehistoricfauna:prehistoric/eilenodon/eilenodon_idle1",
-				"stream": true
-			},
-			{
-				"name": "prehistoricfauna:prehistoric/eilenodon/eilenodon_idle2",
-				"stream": true
-			}
-		]
-	},
 	"eilenodon_hurt": {
 		"category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.eilenodonHurt",
@@ -522,10 +508,6 @@
 			{
 				"name": "prehistoricfauna:prehistoric/exaeretodon/exaeretodon_idle1",
 				"stream": true
-			},
-			{
-				"name": "prehistoricfauna:prehistoric/exaeretodon/exaeretodon_idle2",
-				"stream": true
 			}
 		]
 	},
@@ -544,7 +526,7 @@
 		"subtitle": "prehistoricfauna.subtitle.exaeretodonWarning",
 		"sounds": [
 			{
-				"name": "prehistoricfauna:prehistoric/exaeretodon/exaeretodon_warn",
+				"name": "prehistoricfauna:prehistoric/exaeretodon/exaeretodon_warning",
 				"stream": true
 			}
 		]
@@ -676,7 +658,7 @@
 		"subtitle": "prehistoricfauna.subtitle.saurosuchusWarning",
 		"sounds": [
 			{
-				"name": "prehistoricfauna:prehistoric/saurosuchus/saurosuchus_warn",
+				"name": "prehistoricfauna:prehistoric/saurosuchus/saurosuchus_warning",
 				"stream": true
 			}
 		]

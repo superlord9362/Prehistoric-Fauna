@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:henostone"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:henostone_pillar",
+	"count": 2
+  }
+}

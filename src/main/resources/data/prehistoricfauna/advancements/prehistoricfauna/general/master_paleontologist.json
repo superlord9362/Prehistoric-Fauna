@@ -1,0 +1,259 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/general/digger_man",
+  "display": {
+    "icon": {
+      "item": "prehistoricfauna:triceratops_fossil"
+    },
+    "title": {
+      "translate": "advancements.prehistoricfauna.master_paleontologist.title"
+    },
+    "description": {
+      "translate": "advancements.prehistoricfauna.master_paleontologist.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+	"rewards": {
+		"experience": 50
+	},
+  "criteria": {
+    "tyrannosaurus_skull": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:tyrannosaurus_skull"
+          }
+        ]
+      }
+    },
+	"triceratops_skull": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:triceratops_skull"
+          }
+        ]
+      }
+    },
+	"ankylosaurus_skull": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:ankylosaurus_skull"
+          }
+        ]
+      }
+    },
+	"stegosaurus_skull": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:stegosaurus_skull"
+          }
+        ]
+      }
+    },
+	"ceratosaurus_skull": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:ceratosaurus_skull"
+          }
+        ]
+      }
+    },
+	"allosaurus_skull": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:allosaurus_skull"
+          }
+        ]
+      }
+    },
+	"herrerasaurus_skull": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:herrerasaurus_skull"
+          }
+        ]
+      }
+    },
+	"saurosuchus_skull": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:saurosuchus_skull"
+          }
+        ]
+      }
+    },
+	"ischigualastia_skull": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:ischigualastia_skull"
+          }
+        ]
+      }
+    },
+	"tyrannosaurus_skeleton": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:tyrannosaurus_skeleton"
+          }
+        ]
+      }
+    },
+	"triceratops_skeleton": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:triceratops_skeleton"
+          }
+        ]
+      }
+    },
+	"ankylosaurus_skeleton": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:ankylosaurus_skeleton"
+          }
+        ]
+      }
+    },
+	"stegosaurus_skeleton": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:stegosaurus_skeleton"
+          }
+        ]
+      }
+    },
+	"allosaurus_skeleton": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:allosaurus_skeleton"
+          }
+        ]
+      }
+    },
+	"ceratosaurus_skeleton": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:ceratosaurus_skeleton"
+          }
+        ]
+      }
+    },
+	"herrerasaurus_skeleton": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:herrerasaurus_skeleton"
+          }
+        ]
+      }
+    },
+	"saurosuchus_skeleton": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:saurosuchus_skeleton"
+          }
+        ]
+      }
+    },
+	"ischigualastia_skeleton": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:ischigualastia_skeleton"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "tyrannosaurus_skull"
+    ],
+	[
+		"triceratops_skull"
+	],
+	[
+		"ankylosaurus_skull"
+	],
+	[
+		"ceratosaurus_skull"
+	],
+	[
+		"allosaurus_skull"
+	],
+	[
+		"stegosaurus_skull"
+	],
+	[
+		"herrerasaurus_skull"
+	],
+	[
+		"saurosuchus_skull"
+	],
+	[
+		"ischigualastia_skull"
+	],
+	[
+		"tyrannosaurus_skeleton"
+	],
+	[
+		"triceratops_skeleton"
+	],
+	[
+		"ankylosaurus_skeleton"
+	],
+	[
+		"ceratosaurus_skeleton"
+	],
+	[
+		"allosaurus_skeleton"
+	],
+	[
+		"stegosaurus_skeleton"
+	],
+	[
+		"herrerasaurus_skeleton"
+	],
+	[
+		"saurosuchus_skeleton"
+	],
+	[
+		"ischigualastia_skeleton"
+	]
+  ]
+}

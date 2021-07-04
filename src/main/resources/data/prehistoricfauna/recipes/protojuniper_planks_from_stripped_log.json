@@ -1,0 +1,13 @@
+{
+  "type": "crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:stripped_protojuniperoxylon_log"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:protojuniperoxylon_planks",
+    "count": 4
+  }
+}
