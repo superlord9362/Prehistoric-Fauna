@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "prehistoricfauna:protojuniperoxylon_wood",
+	"prehistoricfauna:protojuniperoxylon_log",
+	"prehistoricfauna:stripped_protojuniperoxylon_log",
+	"prehistoricfauna:stripped_protojuniperoxylon_wood"
+  ]
+}

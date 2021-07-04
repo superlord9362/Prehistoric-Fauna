@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+	"prehistoricfauna:araucaria_slab",
+	"prehistoricfauna:metasequoia_slab",
+	"prehistoricfauna:liriodendrites_slab",
+	"prehistoricfauna:zamites_slab",
+	"prehistoricfauna:protopiceoxylon_slab",
+	"prehistoricfauna:protojuniperoxylon_slab",
+	"prehistoricfauna:heidiphyllum_slab"
+  ]
+}

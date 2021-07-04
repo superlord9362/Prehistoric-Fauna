@@ -1,12 +1,17 @@
 package superlord.prehistoricfauna.client;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.color.BlockColors;
+import net.minecraft.client.renderer.color.ItemColors;
+import net.minecraft.item.BlockItem;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.FoliageColors;
 import net.minecraft.world.GrassColors;
+import net.minecraft.world.IBlockDisplayReader;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -74,6 +79,7 @@ public class ClientEvents {
 	@SubscribeEvent
 	public static void clientSetup(FMLClientSetupEvent event) {
 		BlockColors blockcolors = Minecraft.getInstance().getBlockColors();
+		ItemColors itemcolors = Minecraft.getInstance().getItemColors();
 		blockcolors.register((p_228064_0_, p_228064_1_, p_228064_2_, p_228064_3_) -> {
 			return p_228064_1_ != null && p_228064_2_ != null ? BiomeColors.getGrassColor(p_228064_1_, p_228064_2_) : GrassColors.get(0.5D, 1.0D);
 		}, PFBlocks.CONIOPTERIS, PFBlocks.CLADOPHLEBIS, PFBlocks.POTTED_CLADOPHLEBIS);
@@ -83,8 +89,12 @@ public class ClientEvents {
 		blockcolors.register((p_228063_0_, p_228063_1_, p_228063_2_, p_228063_3_) -> {
 			return 0x45AF45;
 		}, PFBlocks.ARAUCARIA_LEAVES, PFBlocks.ARAUCARIA_LEAF_CARPET.get());
-		 blockcolors.register((state, reader, pos, color) -> {
-	         return reader != null && pos != null ? BiomeColors.getFoliageColor(reader, pos) : FoliageColors.getDefault();
+		blockcolors.register((state, reader, pos, color) -> {
+			return reader != null && pos != null ? BiomeColors.getFoliageColor(reader, pos) : FoliageColors.getDefault();
+		}, PFBlocks.ARAUCARIA_LEAVES, PFBlocks.METASEQUOIA_LEAVES, PFBlocks.CONIOPTERIS, PFBlocks.PROTOPICEOXYLON_LEAVES, PFBlocks.PROTOJUNIPEROXYLON_LEAVES, PFBlocks.CLADOPHLEBIS, PFBlocks.ARAUCARIA_LEAF_CARPET.get(), PFBlocks.METASEQUOIA_LEAF_CARPET.get(), PFBlocks.PROTOPICEOXYLON_LEAF_CARPET.get(), PFBlocks.PROTOJUNIPEROXYLON_LEAF_CARPET.get());
+		itemcolors.register((p_210235_1_, p_210235_2_) -> {
+			BlockState blockstate = ((BlockItem) p_210235_1_.getItem()).getBlock().getDefaultState();
+			return blockcolors.getColor(blockstate, (IBlockDisplayReader) null, (BlockPos) null, p_210235_2_);
 		}, PFBlocks.ARAUCARIA_LEAVES, PFBlocks.METASEQUOIA_LEAVES, PFBlocks.CONIOPTERIS, PFBlocks.PROTOPICEOXYLON_LEAVES, PFBlocks.PROTOJUNIPEROXYLON_LEAVES, PFBlocks.CLADOPHLEBIS, PFBlocks.ARAUCARIA_LEAF_CARPET.get(), PFBlocks.METASEQUOIA_LEAF_CARPET.get(), PFBlocks.PROTOPICEOXYLON_LEAF_CARPET.get(), PFBlocks.PROTOJUNIPEROXYLON_LEAF_CARPET.get());
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.THESCELOSAURUS_ENTITY, ThescelosaurusRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.TRICERATOPS_ENTITY, manager -> new TriceratopsRenderer());

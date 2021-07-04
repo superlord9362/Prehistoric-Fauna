@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+	"prehistoricfauna:araucaria_fence_gate",
+	"prehistoricfauna:metasequoia_fence_gate",
+	"prehistoricfauna:liriodendrites_fence_gate",
+	"prehistoricfauna:zamites_fence_gate",
+	"prehistoricfauna:protopiceoxylon_fence_gate",
+	"prehistoricfauna:protojuniperoxylon_fence_gate",
+	"prehistoricfauna:heidiphyllum_fence_gate"
+  ]
+}

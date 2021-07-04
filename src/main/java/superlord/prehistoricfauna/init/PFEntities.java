@@ -6,10 +6,53 @@ import net.minecraft.entity.EntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.common.entities.*;
+import superlord.prehistoricfauna.common.entities.AllosaurusEntity;
+import superlord.prehistoricfauna.common.entities.AllosaurusSkeletonEntity;
+import superlord.prehistoricfauna.common.entities.AllosaurusSkullEntity;
+import superlord.prehistoricfauna.common.entities.AnkylosaurusEntity;
+import superlord.prehistoricfauna.common.entities.AnkylosaurusSkeletonEntity;
+import superlord.prehistoricfauna.common.entities.AnkylosaurusSkullEntity;
+import superlord.prehistoricfauna.common.entities.BasilemysEntity;
+import superlord.prehistoricfauna.common.entities.CamarasaurusEntity;
+import superlord.prehistoricfauna.common.entities.CeratosaurusEntity;
+import superlord.prehistoricfauna.common.entities.CeratosaurusSkeletonEntity;
+import superlord.prehistoricfauna.common.entities.CeratosaurusSkullEntity;
+import superlord.prehistoricfauna.common.entities.ChromogisaurusEntity;
+import superlord.prehistoricfauna.common.entities.DakotaraptorEntity;
+import superlord.prehistoricfauna.common.entities.DidelphodonEntity;
+import superlord.prehistoricfauna.common.entities.DryosaurusEntity;
+import superlord.prehistoricfauna.common.entities.EilenodonEntity;
+import superlord.prehistoricfauna.common.entities.ExaeretodonEntity;
+import superlord.prehistoricfauna.common.entities.HerrerasaurusEntity;
+import superlord.prehistoricfauna.common.entities.HerrerasaurusSkeletonEntity;
+import superlord.prehistoricfauna.common.entities.HerrerasaurusSkullEntity;
+import superlord.prehistoricfauna.common.entities.HesperornithoidesEntity;
+import superlord.prehistoricfauna.common.entities.HyperodapedonEntity;
+import superlord.prehistoricfauna.common.entities.IschigualastiaEntity;
+import superlord.prehistoricfauna.common.entities.IschigualastiaSkeletonEntity;
+import superlord.prehistoricfauna.common.entities.IschigualastiaSkullEntity;
+import superlord.prehistoricfauna.common.entities.PaleopaintingEntity;
+import superlord.prehistoricfauna.common.entities.PrehistoricBoatEntity;
+import superlord.prehistoricfauna.common.entities.SaurosuchusEntity;
+import superlord.prehistoricfauna.common.entities.SaurosuchusSkeletonEntity;
+import superlord.prehistoricfauna.common.entities.SaurosuchusSkullEntity;
+import superlord.prehistoricfauna.common.entities.SillosuchusEntity;
+import superlord.prehistoricfauna.common.entities.StegosaurusEntity;
+import superlord.prehistoricfauna.common.entities.StegosaurusSkeletonEntity;
+import superlord.prehistoricfauna.common.entities.StegosaurusSkullEntity;
+import superlord.prehistoricfauna.common.entities.ThescelosaurusEntity;
+import superlord.prehistoricfauna.common.entities.TimeGuardianEntity;
+import superlord.prehistoricfauna.common.entities.TriceratopsEntity;
+import superlord.prehistoricfauna.common.entities.TriceratopsSkeletonEntity;
+import superlord.prehistoricfauna.common.entities.TriceratopsSkullEntity;
+import superlord.prehistoricfauna.common.entities.TyrannosaurusEntity;
+import superlord.prehistoricfauna.common.entities.TyrannosaurusSkeletonEntity;
+import superlord.prehistoricfauna.common.entities.TyrannosaurusSkullEntity;
+import superlord.prehistoricfauna.common.entities.WallFossilEntity;
 
 public class PFEntities {
 	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, PrehistoricFauna.MOD_ID);
+	
 	public static final EntityType<ThescelosaurusEntity> THESCELOSAURUS_ENTITY = register(EntityType.Builder.<ThescelosaurusEntity>create(ThescelosaurusEntity::new, EntityClassification.CREATURE).size(0.55F, 1.0F), "thescelosaurus");
 	public static final EntityType<TriceratopsEntity> TRICERATOPS_ENTITY = register(EntityType.Builder.<TriceratopsEntity>create(TriceratopsEntity::new, EntityClassification.CREATURE).size(2F, 2.6F), "triceratops");
 	public static final EntityType<AnkylosaurusEntity> ANKYLOSAURUS_ENTITY = register(EntityType.Builder.<AnkylosaurusEntity>create(AnkylosaurusEntity::new, EntityClassification.CREATURE).size(2F, 2F), "ankylosaurus");
@@ -54,10 +97,10 @@ public class PFEntities {
 	public static final EntityType<IschigualastiaSkullEntity> ISCHIGUALASTIA_SKULL = register(EntityType.Builder.<IschigualastiaSkullEntity>create(IschigualastiaSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "ischigualastia_skull");
     public static final EntityType<WallFossilEntity> WALL_FOSSIL = register(EntityType.Builder.<WallFossilEntity>create(WallFossilEntity::new, EntityClassification.MISC).size(0.5F, 0.5F), "wall_fossil");
 
-	private static <T extends Entity> EntityType<T> register(EntityType.Builder<T> builder, String entityName){
+    private static <T extends Entity> EntityType<T> register(EntityType.Builder<T> builder, String entityName){
         EntityType<T> type = builder.build(entityName);
         ENTITY_TYPES.register(entityName, () -> type);
         return type;
 	}
-
+    
 }

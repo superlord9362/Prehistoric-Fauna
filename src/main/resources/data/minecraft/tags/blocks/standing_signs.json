@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+	"prehistoricfauna:araucaria_sign",
+	"prehistoricfauna:metasequoia_sign",
+	"prehistoricfauna:liriodendrites_sign",
+	"prehistoricfauna:zamites_sign",
+	"prehistoricfauna:protopiceoxylon_sign",
+	"prehistoricfauna:protojuniperoxylon_sign",
+	"prehistoricfauna:heidiphyllum_sign"
+  ]
+}

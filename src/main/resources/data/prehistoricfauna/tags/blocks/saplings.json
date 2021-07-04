@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "prehistoricfauna:araucaria_sapling",
+    "prehistoricfauna:metasequoia_sapling",
+	"prehistoricfauna:protopiceoxylon_sapling",
+	"prehistoricfauna:zamites_sapling",
+	"prehistoricfauna:protojuniperoxylon_sapling",
+	"prehistoricfauna:heidiphyllum_sapling",
+	"prehistoricfauna:liriodendrites_sapling"
+  ]
+}

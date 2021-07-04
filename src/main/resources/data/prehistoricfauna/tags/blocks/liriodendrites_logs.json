@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "prehistoricfauna:liriodendrites_wood",
+	"prehistoricfauna:liriodendrites_log",
+	"prehistoricfauna:stripped_liriodendrites_log",
+	"prehistoricfauna:stripped_liriodendrites_wood"
+  ]
+}

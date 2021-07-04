@@ -14,8 +14,6 @@ import org.apache.logging.log4j.Logger;
 
 import net.minecraft.client.gui.screen.MainMenuScreen;
 import net.minecraft.client.renderer.RenderSkyboxCube;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemGroup;

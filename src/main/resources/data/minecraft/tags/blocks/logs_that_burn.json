@@ -1,0 +1,33 @@
+{
+  "replace": false,
+  "values": [
+	"prehistoricfauna:araucaria_log",
+	"prehistoricfauna:stripped_araucaria_log",
+	"prehistoricfauna:araucaria_wood",
+	"prehistoricfauna:stripped_araucaria_wood",
+	"prehistoricfauna:metasequoia_log",
+	"prehistoricfauna:metasequoia_wood",
+	"prehistoricfauna:stripped_metasequoia_log",
+	"prehistoricfauna:stripped_metasequoia_wood",
+	"prehistoricfauna:liriodendrites_log",
+	"prehistoricfauna:liriodendrites_wood",
+	"prehistoricfauna:stripped_liriodendrites_log",
+	"prehistoricfauna:stripped_liriodendrites_wood",
+	"prehistoricfauna:zamites_log",
+	"prehistoricfauna:zamites_wood",
+	"prehistoricfauna:stripped_zamites_log",
+	"prehistoricfauna:stripped_zamites_wood",
+	"prehistoricfauna:protopiceoxylon_log",
+	"prehistoricfauna:protopiceoxylon_wood",
+	"prehistoricfauna:stripped_protopiceoxylon_log",
+	"prehistoricfauna:stripped_protopiceoxylon_wood",
+	"prehistoricfauna:protojuniperoxylon_log",
+	"prehistoricfauna:protojuniperoxylon_wood",
+	"prehistoricfauna:stripped_protojuniperoxylon_log",
+	"prehistoricfauna:stripped_protojuniperoxylon_wood",
+	"prehistoricfauna:heidiphyllum_log",
+	"prehistoricfauna:heidiphyllum_wood",
+	"prehistoricfauna:stripped_heidiphyllum_log",
+	"prehistoricfauna:stripped_heidiphyllum_wood"
+  ]
+}

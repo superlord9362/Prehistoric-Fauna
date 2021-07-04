@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "prehistoricfauna:heidiphyllum_wood",
+	"prehistoricfauna:heidiphyllum_log",
+	"prehistoricfauna:stripped_heidiphyllum_log",
+	"prehistoricfauna:stripped_heidiphyllum_wood"
+  ]
+}
