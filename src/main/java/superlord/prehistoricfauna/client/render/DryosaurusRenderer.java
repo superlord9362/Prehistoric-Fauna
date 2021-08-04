@@ -11,8 +11,12 @@ import superlord.prehistoricfauna.common.entities.DryosaurusEntity;
 
 public class DryosaurusRenderer extends MobRenderer<DryosaurusEntity, Dryosaurus> {
 
-    private static final ResourceLocation DRYOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dryosaurus.png");
-    private static final ResourceLocation DRYOSAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dryosaurus_baby.png");
+    private static final ResourceLocation DRYOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dryosaurus/dryosaurus.png");
+    private static final ResourceLocation DRYOSAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dryosaurus/dryosaurus_baby.png");
+    private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dryosaurus/albino.png");
+    private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dryosaurus/albino_baby.png");
+    private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dryosaurus/melanistic.png");
+    private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dryosaurus/melanistic_baby.png");
 
     public DryosaurusRenderer(EntityRendererManager rm) {
         super(rm, new Dryosaurus(), 0.375F);
@@ -26,7 +30,15 @@ public class DryosaurusRenderer extends MobRenderer<DryosaurusEntity, Dryosaurus
 
     @Override
 	public ResourceLocation getEntityTexture(DryosaurusEntity entity) {
-    	if(entity.isChild()) {
+    	if (entity.isAlbino() && !entity.isChild()) {
+    		return ALBINO;
+    	} else if (entity.isAlbino() && entity.isChild()) {
+    		return ALBINO_BABY;
+    	} else if (entity.isMelanistic() && !entity.isChild()) {
+    		return MELANISTIC;
+    	} else if (entity.isMelanistic() && entity.isChild()) {
+    		return MELANISTIC_BABY;
+    	} else if(entity.isChild()) {
     		return DRYOSAURUS_BABY;
     	} else {
     		return DRYOSAURUS;

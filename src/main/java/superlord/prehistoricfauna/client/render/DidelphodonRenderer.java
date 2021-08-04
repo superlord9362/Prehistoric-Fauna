@@ -13,7 +13,9 @@ import superlord.prehistoricfauna.common.entities.DidelphodonEntity;
 
 public class DidelphodonRenderer extends MobRenderer<DidelphodonEntity, EntityModel<DidelphodonEntity>> {
 	
-	private static final ResourceLocation DIDELPHODON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/didelphodon.png");
+	private static final ResourceLocation DIDELPHODON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/didelphodon/didelphodon.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/didelphodon/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/didelphodon/melanistic.png");
 	private static final Didelphodon DIDELPHODON_MODEL = new Didelphodon();
 	
 	public DidelphodonRenderer() {
@@ -33,7 +35,13 @@ public class DidelphodonRenderer extends MobRenderer<DidelphodonEntity, EntityMo
 	
 	@Override
 	public ResourceLocation getEntityTexture(DidelphodonEntity entity) {
-		return DIDELPHODON;
+		if(entity.isAlbino()) {
+			return ALBINO;
+		} else if(entity.isMelanistic()) {
+			return MELANISTIC;
+		} else {
+			return DIDELPHODON;
+		}
 	}
 
 }

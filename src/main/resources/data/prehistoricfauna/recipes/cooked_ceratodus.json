@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "prehistoricfauna:raw_ceratodus"
+  },
+  "result": "prehistoricfauna:cooked_ceratodus",
+  "experience": 0.35,
+  "cookingtime": 200
+}

@@ -2,6 +2,8 @@ package superlord.prehistoricfauna.common.entities;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -38,7 +40,9 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.GameRules;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -53,6 +57,8 @@ public class HyperodapedonEntity extends AnimalEntity {
 
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(HyperodapedonEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(HyperodapedonEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> ALBINO = EntityDataManager.createKey(HyperodapedonEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> MELANISTIC = EntityDataManager.createKey(HyperodapedonEntity.class, DataSerializers.BOOLEAN);
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(PFBlocks.SCYTOPHYLLUM.asItem());
 	private int isDigging;
 	
@@ -81,20 +87,54 @@ public class HyperodapedonEntity extends AnimalEntity {
 		return stack.getItem() == PFBlocks.SCYTOPHYLLUM.asItem();
 	}
 	
+	public boolean isAlbino() {
+		return this.dataManager.get(ALBINO);
+	}
+
+	private void setAlbino(boolean isAlbino) {
+		this.dataManager.set(ALBINO, isAlbino);
+	}
+
+	public boolean isMelanistic() {
+		return this.dataManager.get(MELANISTIC);
+	}
+
+	private void setMelanistic(boolean isMelanistic) {
+		this.dataManager.set(MELANISTIC, isMelanistic);
+	}
+	
 	public void registerData() {
 		super.registerData();
 		this.dataManager.register(HAS_EGG, false);
 		this.dataManager.register(IS_DIGGING, false);
+		this.dataManager.register(ALBINO, false);
+		this.dataManager.register(MELANISTIC, false);
 	}
 	
 	public void writeAdditional(CompoundNBT compound) {
 		super.writeAdditional(compound);
 		compound.putBoolean("HasEgg", this.hasEgg());
+		compound.putBoolean("IsAlbino", this.isAlbino());
+		compound.putBoolean("IsMelanistic", this.isMelanistic());
 	}
 	
 	public void readAdditional(CompoundNBT compound) {
 		super.readAdditional(compound);
 		this.setHasEgg(compound.getBoolean("HasEgg"));
+		this.setAlbino(compound.getBoolean("IsAlbino"));
+		this.setMelanistic(compound.getBoolean("IsMelanistic"));
+	}
+	
+	@Nullable
+	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+		Random rand = new Random();
+		int birthNumber = rand.nextInt(399);
+		if (birthNumber >= 0 && birthNumber < 4) {
+			this.setAlbino(true);
+		} else if (birthNumber >= 4 && birthNumber < 7) {
+			this.setMelanistic(true);
+		}
+		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 	
 	@Override
@@ -150,7 +190,7 @@ public class HyperodapedonEntity extends AnimalEntity {
 	}
 	
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 8.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.24D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 4.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.24D);
 	}
 	
 	@OnlyIn(Dist.CLIENT)

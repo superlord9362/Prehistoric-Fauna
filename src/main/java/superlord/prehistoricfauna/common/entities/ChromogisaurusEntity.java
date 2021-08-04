@@ -23,6 +23,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
@@ -37,10 +38,14 @@ import superlord.prehistoricfauna.init.SoundInit;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 public class ChromogisaurusEntity extends AnimalEntity {
 	
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(ChromogisaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(ChromogisaurusEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> ALBINO = EntityDataManager.createKey(ChromogisaurusEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> MELANISTIC = EntityDataManager.createKey(ChromogisaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(PFBlocks.JOHNSTONIA.asItem());
 	private int isDigging;
 	
@@ -69,20 +74,42 @@ public class ChromogisaurusEntity extends AnimalEntity {
 		return stack.getItem() == PFBlocks.JOHNSTONIA.asItem();
 	}
 	
+	public boolean isAlbino() {
+		return this.dataManager.get(ALBINO);
+	}
+
+	private void setAlbino(boolean isAlbino) {
+		this.dataManager.set(ALBINO, isAlbino);
+	}
+
+	public boolean isMelanistic() {
+		return this.dataManager.get(MELANISTIC);
+	}
+
+	private void setMelanistic(boolean isMelanistic) {
+		this.dataManager.set(MELANISTIC, isMelanistic);
+	}
+	
 	protected void registerData() {
 		super.registerData();
 		this.dataManager.register(HAS_EGG, false);
 		this.dataManager.register(IS_DIGGING, false);
+		this.dataManager.register(ALBINO, false);
+		this.dataManager.register(MELANISTIC, false);
 	}
 	
 	public void writeAdditional(CompoundNBT compound) {
 		super.writeAdditional(compound);
 		compound.putBoolean("HasEgg", this.hasEgg());
+		compound.putBoolean("IsAlbino", this.isAlbino());
+		compound.putBoolean("IsMelanistic", this.isMelanistic());
 	}
 	
 	public void readAdditional(CompoundNBT compound) {
 		super.readAdditional(compound);
 		this.setHasEgg(compound.getBoolean("HasEgg"));
+		this.setAlbino(compound.getBoolean("IsAlbino"));
+		this.setMelanistic(compound.getBoolean("IsMelanistic"));
 	}
 	
 	@Override
@@ -113,6 +140,18 @@ public class ChromogisaurusEntity extends AnimalEntity {
 		this.goalSelector.addGoal(8, new ChromogisaurusEntity.LayEggGoal(this, 1.0D));
 	}
 	
+	@Nullable
+	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+		Random rand = new Random();
+		int birthNumber = rand.nextInt(399);
+		if (birthNumber >= 0 && birthNumber < 4) {
+			this.setAlbino(true);
+		} else if (birthNumber >= 4 && birthNumber < 7) {
+			this.setMelanistic(true);
+		}
+		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+	}
+	
 	protected SoundEvent getAmbientSound() {
 		return SoundInit.CHROMOGISAURUS_IDLE;
 	}
@@ -136,7 +175,7 @@ public class ChromogisaurusEntity extends AnimalEntity {
 	}
 	
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 8.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 6.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D);
 	}
 	
 	@OnlyIn(Dist.CLIENT)

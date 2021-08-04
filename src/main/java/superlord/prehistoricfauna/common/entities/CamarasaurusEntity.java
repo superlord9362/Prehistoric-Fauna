@@ -3,6 +3,8 @@ package superlord.prehistoricfauna.common.entities;
 import java.util.Random;
 import java.util.function.Predicate;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -38,6 +40,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
@@ -50,38 +53,56 @@ import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.SoundInit;
 
 public class CamarasaurusEntity extends AnimalEntity {
-	
+
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(CamarasaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(CamarasaurusEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> ALBINO = EntityDataManager.createKey(CamarasaurusEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> MELANISTIC = EntityDataManager.createKey(CamarasaurusEntity.class, DataSerializers.BOOLEAN);
 	private int warningSoundTicks;
 	private int isDigging;
-	
+
 	public CamarasaurusEntity(EntityType<? extends CamarasaurusEntity> type, World world) {
 		super(type, world);
 	}
-	
+
 	public boolean isDigging() {
 		return this.dataManager.get(IS_DIGGING);
 	}
-	
+
 	private void setDigging(boolean isDigging) {
 		this.isDigging = isDigging ? 1 : 0;
 		this.dataManager.set(IS_DIGGING, isDigging);
 	}
-	
+
 	public boolean hasEgg() {
 		return this.dataManager.get(HAS_EGG);
 	}
-	
+
 	private void setHasEgg(boolean hasEgg) {
 		this.dataManager.set(HAS_EGG, hasEgg);
 	}
-	
+
+	public boolean isAlbino() {
+		return this.dataManager.get(ALBINO);
+	}
+
+	private void setAlbino(boolean isAlbino) {
+		this.dataManager.set(ALBINO, isAlbino);
+	}
+
+	public boolean isMelanistic() {
+		return this.dataManager.get(MELANISTIC);
+	}
+
+	private void setMelanistic(boolean isMelanistic) {
+		this.dataManager.set(MELANISTIC, isMelanistic);
+	}
+
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
 		return stack.getItem() == PFItems.PTILOPHYLLUM_FRONDS.get();
 	}
-	
+
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
@@ -97,11 +118,11 @@ public class CamarasaurusEntity extends AnimalEntity {
 		this.goalSelector.addGoal(8, new CamarasaurusEntity.LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(2, new CamarasaurusEntity.MateGoal(this, 1.0D));
 	}
-	
+
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 60.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 12.0D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 200.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 10.0D);
 	}
-	
+
 	protected SoundEvent getAmbientSound() {
 		return SoundInit.CAMARASAURUS_IDLE;
 	}
@@ -113,45 +134,51 @@ public class CamarasaurusEntity extends AnimalEntity {
 	protected SoundEvent getDeathSound() {
 		return SoundInit.CAMARASAURUS_DEATH;
 	}
-	
+
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
 			this.playSound(SoundInit.CAMARASAURUS_WARN, 1.0F, this.getSoundPitch());
 			this.warningSoundTicks = 40;
 		}
 	}
-	
+
 	protected void registerData() {
 		super.registerData();
 		this.dataManager.register(HAS_EGG, false);
 		this.dataManager.register(IS_DIGGING, false);
+		this.dataManager.register(ALBINO, false);
+		this.dataManager.register(MELANISTIC, false);
 	}
-		   
+
 	public void writeAdditional(CompoundNBT compound) {
 		super.writeAdditional(compound);
 		compound.putBoolean("HasEgg", this.hasEgg());
+		compound.putBoolean("IsAlbino", this.isAlbino());
+		compound.putBoolean("IsMelanistic", this.isMelanistic());
 	}
-		   
+
 	public void readAdditional(CompoundNBT compound) {
 		super.readAdditional(compound);
 		this.setHasEgg(compound.getBoolean("HasEgg"));
+		this.setAlbino(compound.getBoolean("IsAlbino"));
+		this.setMelanistic(compound.getBoolean("IsMelanistic"));
 	}
-	
+
 	public void tick() {
 		super.tick();
 		if (this.warningSoundTicks > 0) {
 			--this.warningSoundTicks;
 		}
 	}
-	
-	public boolean attackEntityAsMob(Entity entityIn) {
-	      boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
-	      if (flag) {
-	         this.applyEnchantments(this, entityIn);
-	      }
 
-	      return flag;
-	   }	
+	public boolean attackEntityAsMob(Entity entityIn) {
+		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
+		if (flag) {
+			this.applyEnchantments(this, entityIn);
+		}
+
+		return flag;
+	}	
 
 	class AttackPlayerGoal extends NearestAttackableTargetGoal<PlayerEntity> {
 		public AttackPlayerGoal() {
@@ -172,10 +199,22 @@ public class CamarasaurusEntity extends AnimalEntity {
 				return false;
 			}
 		}
-		
+
 		protected double getTargetDistance() {
 			return super.getTargetDistance() * 0.5D;
 		}
+	}
+
+	@Nullable
+	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+		Random rand = new Random();
+		int birthNumber = rand.nextInt(399);
+		if (birthNumber >= 0 && birthNumber < 4) {
+			this.setAlbino(true);
+		} else if (birthNumber >= 4 && birthNumber < 7) {
+			this.setMelanistic(true);
+		}
+		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
 	class HurtByTargetGoal extends net.minecraft.entity.ai.goal.HurtByTargetGoal {
@@ -250,7 +289,7 @@ public class CamarasaurusEntity extends AnimalEntity {
 			return !CamarasaurusEntity.this.isChild() && !CamarasaurusEntity.this.isBurning() ? false : super.shouldExecute();
 		}
 	}
-	   
+
 	static class LayEggGoal extends MoveToBlockGoal {
 		private final CamarasaurusEntity camarasaurus;
 
@@ -286,7 +325,7 @@ public class CamarasaurusEntity extends AnimalEntity {
 				}
 			}
 		}
-		
+
 		protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
 			if (!worldIn.isAirBlock(pos.up())) {
 				return false;

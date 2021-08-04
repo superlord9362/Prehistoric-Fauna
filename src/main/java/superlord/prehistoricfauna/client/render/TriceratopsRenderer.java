@@ -14,12 +14,25 @@ import superlord.prehistoricfauna.common.entities.TriceratopsEntity;
 
 public class TriceratopsRenderer extends MobRenderer<TriceratopsEntity, EntityModel<TriceratopsEntity>> {
 	
-	private static final ResourceLocation TRICERATOPS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops.png");
-	private static final ResourceLocation BABY_TRICERATOPS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops_baby.png");
-	private static final ResourceLocation JUVENILE_TRICERATOPS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops_juvenile.png");
-	private static final ResourceLocation SADDLED = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops_saddled.png");
-	private static final ResourceLocation CHESTED = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops_chested.png");
-	private static final ResourceLocation SADDLED_CHESTED = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops_saddled_chested.png");
+	private static final ResourceLocation TRICERATOPS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/triceratops.png");
+	private static final ResourceLocation BABY_TRICERATOPS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/triceratops_baby.png");
+	private static final ResourceLocation JUVENILE_TRICERATOPS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/triceratops_juvenile.png");
+	private static final ResourceLocation SADDLED = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/triceratops_saddled.png");
+	private static final ResourceLocation CHESTED = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/triceratops_chested.png");
+	private static final ResourceLocation SADDLED_CHESTED = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/triceratops_saddled_chested.png");
+	
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/albino.png");
+	private static final ResourceLocation BABY_ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/albino_baby.png");
+	private static final ResourceLocation SADDLED_ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/albino_saddled.png");
+	private static final ResourceLocation CHESTED_ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/albino_chested.png");
+	private static final ResourceLocation SADDLED_CHESTED_ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/albino_saddled_chested.png");
+	
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/melanistic.png");
+	private static final ResourceLocation BABY_MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/melanistic_baby.png");
+	private static final ResourceLocation SADDLED_MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/melanistic_saddled.png");
+	private static final ResourceLocation CHESTED_MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/melanistic_chested.png");
+	private static final ResourceLocation SADDLED_CHESTED_MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/melanistic_saddled_chested.png");
+	
 	private static final Triceratops TRICERATOPS_MODEL = new Triceratops();
 	private static final TriceratopsJuvenile BABY_TRICERATOPS_MODEL = new TriceratopsJuvenile();
 	
@@ -44,7 +57,27 @@ public class TriceratopsRenderer extends MobRenderer<TriceratopsEntity, EntityMo
 	
 	@Override
 	public ResourceLocation getEntityTexture(TriceratopsEntity entity) {
-		if(entity.isChild() && !entity.isJuvenile()) {
+		if (entity.hasChest() && !entity.isHorseSaddled() && entity.isAlbino()) {
+			return CHESTED_ALBINO;
+		} else if (!entity.hasChest() && !entity.isHorseSaddled() && entity.isAlbino()) {
+			return ALBINO;
+		} else if (!entity.hasChest() && entity.isHorseSaddled() && entity.isAlbino()) {
+			return SADDLED_ALBINO;
+		} else if (entity.hasChest() && entity.isHorseSaddled() && entity.isAlbino()) {
+			return SADDLED_CHESTED_ALBINO;
+		} else if (entity.isChild() && entity.isAlbino()) {
+			return BABY_ALBINO;
+		} else if (entity.hasChest() && !entity.isHorseSaddled() && entity.isMelanistic()) {
+			return CHESTED_MELANISTIC;
+		} else if (!entity.hasChest() && !entity.isHorseSaddled() && entity.isMelanistic()) {
+			return MELANISTIC;
+		} else if (!entity.hasChest() && entity.isHorseSaddled() && entity.isMelanistic()) {
+			return SADDLED_MELANISTIC;
+		} else if (entity.hasChest() && entity.isHorseSaddled() && entity.isMelanistic()) {
+			return SADDLED_CHESTED_MELANISTIC;
+		} else if (entity.isChild() && entity.isMelanistic()) {
+			return BABY_MELANISTIC;
+		} else if(entity.isChild() && !entity.isJuvenile()) {
 			return BABY_TRICERATOPS;
 		} else if (entity.isJuvenile()) {
 			return JUVENILE_TRICERATOPS;

@@ -13,7 +13,9 @@ import superlord.prehistoricfauna.common.entities.HyperodapedonEntity;
 
 public class HyperodapedonRenderer extends MobRenderer<HyperodapedonEntity, EntityModel<HyperodapedonEntity>> {
 	
-	private static final ResourceLocation HYPERODAPEDON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hyperodapedon.png");
+	private static final ResourceLocation HYPERODAPEDON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hyperodapedon/hyperodapedon.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hyperodapedon/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hyperodapedon/melanistic.png");
 	private static final Hyperodapedon HYPERODAPEDON_MODEL = new Hyperodapedon();
 
 	public HyperodapedonRenderer() {
@@ -33,7 +35,13 @@ public class HyperodapedonRenderer extends MobRenderer<HyperodapedonEntity, Enti
 	
 	@Override
 	public ResourceLocation getEntityTexture(HyperodapedonEntity entity) {
-		return HYPERODAPEDON;
+		if(entity.isAlbino()) {
+			return ALBINO;
+		} else if (entity.isMelanistic()) {
+			return MELANISTIC;
+		} else {
+			return HYPERODAPEDON;
+		}
 	}
 	
 }

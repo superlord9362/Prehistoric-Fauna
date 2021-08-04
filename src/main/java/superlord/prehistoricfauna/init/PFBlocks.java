@@ -23,6 +23,7 @@ import superlord.prehistoricfauna.PrehistoricFauna.PFBuilding;
 import superlord.prehistoricfauna.PrehistoricFauna.PFDecoration;
 import superlord.prehistoricfauna.common.util.PFWoodTypes;
 import superlord.prehistoricfauna.common.util.RegistryHelper;
+import superlord.prehistoricfauna.world.feature.trees.PFTreeSpawners;
 import superlord.prehistoricfauna.common.blocks.*;
 @SuppressWarnings("deprecation")
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID, bus = Bus.MOD)
@@ -41,14 +42,14 @@ public class PFBlocks {
 	public static final Block METASEQUOIA_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("metasequoia_planks"); //Loot Table done
 	public static final Block METASEQUOIA_LOG = createLogBlock(MaterialColor.WOOD, MaterialColor.OBSIDIAN).setRegistryName("metasequoia_log"); //Loot Table done
 	public static final Block METASEQUOIA_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()).setRegistryName("metasequoia_leaves"); //Loot Table done
-	//public static final Block METASEQUOIA_SAPLING = new PHFSapling(new PHFTreeSpawners.MetaSequoia(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("metasequoia_sapling"); //Loot Table done
+	public static final Block METASEQUOIA_SAPLING = new PFSapling(new PFTreeSpawners.Metasequoia(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("metasequoia_sapling"); //Loot Table done
 	public static final Block STRIPPED_METASEQUOIA_LOG = createLogBlock(MaterialColor.WOOD, MaterialColor.OBSIDIAN).setRegistryName("stripped_metasequoia_log");//Loot Table done
 	public static final Block METASEQUOIA_WOOD = createLogBlock(MaterialColor.WOOD, MaterialColor.OBSIDIAN).setRegistryName("metasequoia_wood");//Loot Table done
 	public static final Block STRIPPED_METASEQUOIA_WOOD = createLogBlock(MaterialColor.WOOD, MaterialColor.OBSIDIAN).setRegistryName("stripped_metasequoia_wood");//Loot Table done
 	public static final Block ARAUCARIA_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("araucaria_planks");//Loot Table done
 	public static final Block ARAUCARIA_LOG = createLogBlock(MaterialColor.WOOD, MaterialColor.OBSIDIAN).setRegistryName("araucaria_log");//Loot Table done
 	public static final Block ARAUCARIA_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()).setRegistryName("araucaria_leaves");//Loot Table done
-	//public static final Block ARAUCARIA_SAPLING = new PHFSapling(new PHFTreeSpawners.Araucaria(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("araucaria_sapling"); //Loot Table done
+	public static final Block ARAUCARIA_SAPLING = new PFSapling(new PFTreeSpawners.Araucaria(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("araucaria_sapling"); //Loot Table done
 	public static final Block STRIPPED_ARAUCARIA_LOG = createLogBlock(MaterialColor.WOOD, MaterialColor.OBSIDIAN).setRegistryName("stripped_araucaria_log");//Loot Table done
 	public static final Block ARAUCARIA_WOOD = createLogBlock(MaterialColor.WOOD, MaterialColor.OBSIDIAN).setRegistryName("araucaria_wood");//Loot Table done
 	public static final Block STRIPPED_ARAUCARIA_WOOD = createLogBlock(MaterialColor.WOOD, MaterialColor.OBSIDIAN).setRegistryName("stripped_araucaria_wood");//Loot Table done
@@ -68,8 +69,8 @@ public class PFBlocks {
 	public static final Block ARAUCARIA_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("araucaria_pressure_plate");//Loot Table done
 	public static final Block METASEQUOIA_TRAPDOOR = new TrapDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("metasequoia_trapdoor");//Loot Table done
 	public static final Block ARAUCARIA_TRAPDOOR = new TrapDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("araucaria_trapdoor");//Loot Table done
-	//public static final Block POTTED_METASEQUOIA_SAPLING = new FlowerPotBlock(METASEQUOIA_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_metasequoia_sapling");//Loot Table done
-	//public static final Block POTTED_ARAUCARIA_SAPLING = new FlowerPotBlock(ARAUCARIA_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_araucaria_sapling");//Loot Table done
+	public static final Block POTTED_METASEQUOIA_SAPLING = new FlowerPotBlock(METASEQUOIA_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_metasequoia_sapling");//Loot Table done
+	public static final Block POTTED_ARAUCARIA_SAPLING = new FlowerPotBlock(ARAUCARIA_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_araucaria_sapling");//Loot Table done
 	public static final Block POTTED_HORSETAIL = new FlowerPotBlock(HORSETAIL, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_horsetail"); //Loot Table done
 	public static final Block POTTED_OSMUNDA = new FlowerPotBlock(OSMUNDA, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_osmunda");//Loot Table done
 	public static final Block POTTED_CLUBMOSS = new FlowerPotBlock(CLUBMOSS, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_clubmoss"); //Loot Table done
@@ -110,8 +111,8 @@ public class PFBlocks {
 	public static final Block PROTOPICEOXYLON_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_fence_gate");//Loot Table done
 	public static final Block PROTOPICEOXYLON_BUTTON = new WoodButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_button");//Loot Table done
 	public static final Block PROTOPICEOXYLON_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protopiceoxylon_slab");//Loot Table done
-	//public static final Block PROTOPICEOXYLON_SAPLING = new PHFSapling(new PHFTreeSpawners.Protopiceoxylon(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("protopiceoxylon_sapling"); //Loot Table done
-	//public static final Block POTTED_PROTOPICEOXYLON_SAPLING = new FlowerPotBlock(PROTOPICEOXYLON_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_protopiceoxylon_sapling");//Loot Table done
+	public static final Block PROTOPICEOXYLON_SAPLING = new PFSapling(new PFTreeSpawners.Protopiceoxylon(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("protopiceoxylon_sapling"); //Loot Table done
+	public static final Block POTTED_PROTOPICEOXYLON_SAPLING = new FlowerPotBlock(PROTOPICEOXYLON_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_protopiceoxylon_sapling");//Loot Table done
 	public static final Block PTILOPHYLLUM_WOOD = new PtilophyllumBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(0.4F).sound(SoundType.WOOD).notSolid()).setRegistryName("ptilophyllum_wood");//Loot Table done
 	public static final Block PTILOPHYLLUM_BASE = new PtilophyllumBaseBlock((PtilophyllumBlock)PTILOPHYLLUM_WOOD, Block.Properties.create(Material.WOOD, MaterialColor.WOOD).tickRandomly().hardnessAndResistance(0.4F).sound(SoundType.WOOD).notSolid()).setRegistryName("ptilophyllum_base");//Loot Table done
 	public static final Block ZAMITES_LOG = createLogBlock(MaterialColor.WOOD, MaterialColor.OBSIDIAN).setRegistryName("zamites_log");//Loot Table done
@@ -144,8 +145,8 @@ public class PFBlocks {
 	public static final Block PROTOJUNIPEROXYLON_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protojuniperoxylon_fence_gate");//Loot Table done
 	public static final Block PROTOJUNIPEROXYLON_BUTTON = new WoodButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("protojuniperoxylon_button");//Loot Table done
 	public static final Block PROTOJUNIPEROXYLON_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protojuniperoxylon_slab");//Loot Table done
-	//public static final Block PROTOJUNIPEROXYLON_SAPLING = new PHFSapling(new PHFTreeSpawners.ProtoJuniper(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("protojuniperoxylon_sapling");//Loot Table done
-	//public static final Block POTTED_PROTOJUNIPEROXYLON_SAPLING = new FlowerPotBlock(PROTOJUNIPEROXYLON_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_protojuniperoxylon_sapling");//Loot Table done
+	public static final Block PROTOJUNIPEROXYLON_SAPLING = new PFSapling(new PFTreeSpawners.Protojuniperoxylon(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("protojuniperoxylon_sapling");//Loot Table done
+	public static final Block POTTED_PROTOJUNIPEROXYLON_SAPLING = new FlowerPotBlock(PROTOJUNIPEROXYLON_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_protojuniperoxylon_sapling");//Loot Table done
 	public static final Block DICROIDIUM = new DicroidiumBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.5F).doesNotBlockMovement().sound(SoundType.PLANT)).setRegistryName("dicroidium");//Loot Table done
 	public static final Block JOHNSTONIA = new JohnstoniaBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.5F).doesNotBlockMovement().sound(SoundType.PLANT)).setRegistryName("johnstonia");//Loot Table done
 	public static final Block SCYTOPHYLLUM = new DoublePlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("scytophyllum");//Loot Table done
@@ -167,8 +168,8 @@ public class PFBlocks {
 	public static final Block HEIDIPHYLLUM_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("heidiphyllum_fence_gate");//Loot Table done
 	public static final Block HEIDIPHYLLUM_BUTTON = new WoodButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("heidiphyllum_button");//Loot Table done
 	public static final Block HEIDIPHYLLUM_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("heidiphyllum_slab");//Loot Table done
-	//public static final Block HEIDIPHYLLUM_SAPLING = new PHFSapling(new PHFTreeSpawners.Heidiphyllum(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("heidiphyllum_sapling");//Loot Table done
-	//public static final Block POTTED_HEIDIPHYLLUM_SAPLING = new FlowerPotBlock(HEIDIPHYLLUM_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_heidiphyllum_sapling");//Loot Table done
+	public static final Block HEIDIPHYLLUM_SAPLING = new PFSapling(new PFTreeSpawners.Heidiphyllum(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("heidiphyllum_sapling");//Loot Table done
+	public static final Block POTTED_HEIDIPHYLLUM_SAPLING = new FlowerPotBlock(HEIDIPHYLLUM_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_heidiphyllum_sapling");//Loot Table done
 	public static final Block OSMUNDACAULIS = new ShortOsmundacaulisBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("osmundacaulis"); //Loot Table done
 	public static final Block DEAD_OSMUNDACAULIS = new DeadConiopterisBlock(Block.Properties.create(Material.TALL_PLANTS, MaterialColor.WOOD).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("dead_osmundacaulis"); //Loot Table done
 	public static final Block LIRIODENDRITES_LOG = createLogBlock(MaterialColor.WOOD, MaterialColor.OBSIDIAN).setRegistryName("liriodendrites_log");//Loot Table done
@@ -185,8 +186,8 @@ public class PFBlocks {
 	public static final Block LIRIODENDRITES_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("liriodendrites_fence_gate");//Loot Table done
 	public static final Block LIRIODENDRITES_BUTTON = new WoodButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("liriodendrites_button");//Loot Table done
 	public static final Block LIRIODENDRITES_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("liriodendrites_slab");//Loot Table done
-	//public static final Block LIRIODENDRITES_SAPLING = new PHFSapling(new PHFTreeSpawners.Liriodendrites(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("liriodendrites_sapling"); //Loot Table done
-	//public static final Block POTTED_LIRIODENDRITES_SAPLING = new FlowerPotBlock(LIRIODENDRITES_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_liriodendrites_sapling");//Loot Table done
+	public static final Block LIRIODENDRITES_SAPLING = new PFSapling(new PFTreeSpawners.Liriodendrites(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("liriodendrites_sapling"); //Loot Table done
+	public static final Block POTTED_LIRIODENDRITES_SAPLING = new FlowerPotBlock(LIRIODENDRITES_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_liriodendrites_sapling");//Loot Table done
 	public static final Block SANDSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("sandstone");//Loot Table done
 	public static final Block SANDSTONE_FOSSIL = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE).harvestLevel(2).harvestTool(ToolType.PICKAXE)).setRegistryName("sandstone_fossil");//Loot Table done
 	public static final Block SMOOTH_SANDSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("smooth_sandstone");//Loot Table done
@@ -350,14 +351,14 @@ public class PFBlocks {
 		event.getRegistry().register(METASEQUOIA_LEAVES);
 		event.getRegistry().register(METASEQUOIA_LOG);
 		event.getRegistry().register(METASEQUOIA_PLANKS);
-		//event.getRegistry().register(METASEQUOIA_SAPLING);
+		event.getRegistry().register(METASEQUOIA_SAPLING);
 		event.getRegistry().register(STRIPPED_METASEQUOIA_LOG);
 		event.getRegistry().register(METASEQUOIA_WOOD);
 		event.getRegistry().register(STRIPPED_METASEQUOIA_WOOD);
 		event.getRegistry().register(ARAUCARIA_LEAVES);
 		event.getRegistry().register(ARAUCARIA_LOG);
 		event.getRegistry().register(ARAUCARIA_PLANKS);
-		//event.getRegistry().register(ARAUCARIA_SAPLING);
+		event.getRegistry().register(ARAUCARIA_SAPLING);
 		event.getRegistry().register(STRIPPED_ARAUCARIA_LOG);
 		event.getRegistry().register(ARAUCARIA_WOOD);
 		event.getRegistry().register(STRIPPED_ARAUCARIA_WOOD);
@@ -377,8 +378,8 @@ public class PFBlocks {
 		event.getRegistry().register(METASEQUOIA_SLAB);
 		event.getRegistry().register(METASEQUOIA_STAIRS);
 		event.getRegistry().register(METASEQUOIA_TRAPDOOR);
-		//event.getRegistry().register(POTTED_ARAUCARIA_SAPLING);
-		//event.getRegistry().register(POTTED_METASEQUOIA_SAPLING);
+		event.getRegistry().register(POTTED_ARAUCARIA_SAPLING);
+		event.getRegistry().register(POTTED_METASEQUOIA_SAPLING);
 		event.getRegistry().register(POTTED_CLUBMOSS);
 		event.getRegistry().register(POTTED_HORSETAIL);
 		event.getRegistry().register(POTTED_MARCHANTIA);
@@ -404,7 +405,7 @@ public class PFBlocks {
 		event.getRegistry().register(PROTOPICEOXYLON_LEAVES);
 		event.getRegistry().register(PROTOPICEOXYLON_PLANKS);
 		event.getRegistry().register(PROTOPICEOXYLON_PRESSURE_PLATE);
-		//event.getRegistry().register(PROTOPICEOXYLON_SAPLING);
+		event.getRegistry().register(PROTOPICEOXYLON_SAPLING);
 		event.getRegistry().register(PROTOPICEOXYLON_SLAB);
 		event.getRegistry().register(PROTOPICEOXYLON_STAIRS);
 		event.getRegistry().register(PROTOPICEOXYLON_TRAPDOOR);
@@ -413,7 +414,7 @@ public class PFBlocks {
 		event.getRegistry().register(STRIPPED_PROTOPICEOXYLON_WOOD);
 		event.getRegistry().register(PTILOPHYLLUM_WOOD);
 		event.getRegistry().register(PTILOPHYLLUM_BASE);
-		//event.getRegistry().register(POTTED_PROTOPICEOXYLON_SAPLING);
+		event.getRegistry().register(POTTED_PROTOPICEOXYLON_SAPLING);
 		event.getRegistry().register(ZAMITES_LOG);
 		event.getRegistry().register(ZAMITES_BUTTON);
 		event.getRegistry().register(ZAMITES_DOOR);
@@ -444,8 +445,8 @@ public class PFBlocks {
 		event.getRegistry().register(STRIPPED_PROTOJUNIPEROXYLON_LOG);
 		event.getRegistry().register(STRIPPED_PROTOJUNIPEROXYLON_WOOD);
 		event.getRegistry().register(PROTOJUNIPEROXYLON_LEAVES);
-		//event.getRegistry().register(PROTOJUNIPEROXYLON_SAPLING);
-		//event.getRegistry().register(POTTED_PROTOJUNIPEROXYLON_SAPLING);
+		event.getRegistry().register(PROTOJUNIPEROXYLON_SAPLING);
+		event.getRegistry().register(POTTED_PROTOJUNIPEROXYLON_SAPLING);
 		event.getRegistry().register(DICROIDIUM);
 		event.getRegistry().register(JOHNSTONIA);
 		event.getRegistry().register(CLADOPHLEBIS);
@@ -467,8 +468,8 @@ public class PFBlocks {
 		event.getRegistry().register(STRIPPED_HEIDIPHYLLUM_LOG);
 		event.getRegistry().register(STRIPPED_HEIDIPHYLLUM_WOOD);
 		event.getRegistry().register(HEIDIPHYLLUM_LEAVES);
-		//event.getRegistry().register(HEIDIPHYLLUM_SAPLING);
-		//event.getRegistry().register(POTTED_HEIDIPHYLLUM_SAPLING);
+		event.getRegistry().register(HEIDIPHYLLUM_SAPLING);
+		event.getRegistry().register(POTTED_HEIDIPHYLLUM_SAPLING);
 		event.getRegistry().register(OSMUNDACAULIS);
 		event.getRegistry().register(DEAD_OSMUNDACAULIS);
 		event.getRegistry().register(ALLOSAURUS_EGG);
@@ -494,8 +495,8 @@ public class PFBlocks {
 		event.getRegistry().register(STRIPPED_LIRIODENDRITES_LOG);
 		event.getRegistry().register(STRIPPED_LIRIODENDRITES_WOOD);
 		event.getRegistry().register(LIRIODENDRITES_LEAVES);
-		//event.getRegistry().register(LIRIODENDRITES_SAPLING);
-		//event.getRegistry().register(POTTED_LIRIODENDRITES_SAPLING);
+		event.getRegistry().register(LIRIODENDRITES_SAPLING);
+		event.getRegistry().register(POTTED_LIRIODENDRITES_SAPLING);
 		event.getRegistry().register(SANDSTONE);
 		event.getRegistry().register(SANDSTONE_FOSSIL);
 		event.getRegistry().register(POLISHED_SANDSTONE);
@@ -611,13 +612,13 @@ public class PFBlocks {
 			RenderTypeLookup.setRenderLayer(CLUBMOSS, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(MARCHANTIA, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(CONIOPTERIS, cutoutRenderType);
-			//RenderTypeLookup.setRenderLayer(METASEQUOIA_SAPLING, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(METASEQUOIA_SAPLING, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(METASEQUOIA_LEAVES, mippedRenderType);
-			//RenderTypeLookup.setRenderLayer(ARAUCARIA_SAPLING, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(ARAUCARIA_SAPLING, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(ARAUCARIA_LEAVES, mippedRenderType);
-			//RenderTypeLookup.setRenderLayer(POTTED_ARAUCARIA_SAPLING, cutoutRenderType);
-			//RenderTypeLookup.setRenderLayer(POTTED_METASEQUOIA_SAPLING, cutoutRenderType);
-			//RenderTypeLookup.setRenderLayer(POTTED_PROTOPICEOXYLON_SAPLING, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(POTTED_ARAUCARIA_SAPLING, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(POTTED_METASEQUOIA_SAPLING, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(POTTED_PROTOPICEOXYLON_SAPLING, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(POTTED_CLUBMOSS, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(POTTED_HORSETAIL, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(POTTED_MARCHANTIA, cutoutRenderType);
@@ -631,9 +632,9 @@ public class PFBlocks {
 			RenderTypeLookup.setRenderLayer(POTTED_CYPRESS_SAPLING, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(CYPRESS_DOOR, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(CYPRESS_TRAPDOOR, cutoutRenderType);*/
-			//RenderTypeLookup.setRenderLayer(PROTOPICEOXYLON_SAPLING, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(PROTOPICEOXYLON_SAPLING, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(PROTOPICEOXYLON_LEAVES, mippedRenderType);
-			//RenderTypeLookup.setRenderLayer(POTTED_PROTOPICEOXYLON_SAPLING, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(POTTED_PROTOPICEOXYLON_SAPLING, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(PROTOPICEOXYLON_DOOR, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(PROTOPICEOXYLON_TRAPDOOR, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(PTILOPHYLLUM_BASE, cutoutRenderType);
@@ -643,8 +644,8 @@ public class PFBlocks {
 			RenderTypeLookup.setRenderLayer(ZAMITES_DOOR, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(ZAMITES_TRAPDOOR, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(PROTOJUNIPEROXYLON_LEAVES, cutoutRenderType);
-			//RenderTypeLookup.setRenderLayer(POTTED_PROTOJUNIPEROXYLON_SAPLING, cutoutRenderType);
-			//RenderTypeLookup.setRenderLayer(PROTOJUNIPEROXYLON_SAPLING, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(POTTED_PROTOJUNIPEROXYLON_SAPLING, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(PROTOJUNIPEROXYLON_SAPLING, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(PROTOJUNIPEROXYLON_DOOR, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(PROTOJUNIPEROXYLON_TRAPDOOR, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(DICROIDIUM, cutoutRenderType);
@@ -655,15 +656,15 @@ public class PFBlocks {
 			RenderTypeLookup.setRenderLayer(POTTED_CLADOPHLEBIS, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(POTTED_MICHELILLOA, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(HEIDIPHYLLUM_LEAVES, cutoutRenderType);
-			//RenderTypeLookup.setRenderLayer(POTTED_HEIDIPHYLLUM_SAPLING, cutoutRenderType);
-			//RenderTypeLookup.setRenderLayer(HEIDIPHYLLUM_SAPLING, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(POTTED_HEIDIPHYLLUM_SAPLING, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(HEIDIPHYLLUM_SAPLING, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(HEIDIPHYLLUM_DOOR, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(HEIDIPHYLLUM_TRAPDOOR, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(OSMUNDACAULIS, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(DEAD_OSMUNDACAULIS, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(LIRIODENDRITES_LEAVES, cutoutRenderType);
-			//RenderTypeLookup.setRenderLayer(POTTED_LIRIODENDRITES_SAPLING, cutoutRenderType);
-			//RenderTypeLookup.setRenderLayer(LIRIODENDRITES_SAPLING, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(POTTED_LIRIODENDRITES_SAPLING, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(LIRIODENDRITES_SAPLING, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(LIRIODENDRITES_DOOR, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(LIRIODENDRITES_TRAPDOOR, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(CRASSOSTREA_OYSTER, cutoutRenderType);
@@ -826,13 +827,13 @@ public class PFBlocks {
 		event.getRegistry().register(new BlockItem(PFBlocks.HEIDIPHYLLUM_LEAVES, new Item.Properties().group(PFDecoration.instance)).setRegistryName("heidiphyllum_leaves"));
 
 		//Saplings
-		//event.getRegistry().register(new BlockItem(PFBlocks.METASEQUOIA_SAPLING, new Item.Properties().group(PFDecoration.instance)).setRegistryName("metasequoia_sapling"));
-		//event.getRegistry().register(new BlockItem(PFBlocks.ARAUCARIA_SAPLING, new Item.Properties().group(PFDecoration.instance)).setRegistryName("araucaria_sapling"));
-		//event.getRegistry().register(new BlockItem(PFBlocks.LIRIODENDRITES_SAPLING, new Item.Properties().group(PFDecoration.instance)).setRegistryName("liriodendrites_sapling"));
-		//event.getRegistry().register(new BlockItem(PFBlocks.PROTOPICEOXYLON_SAPLING, new Item.Properties().group(PFDecoration.instance)).setRegistryName("protopiceoxylon_sapling"));
+		event.getRegistry().register(new BlockItem(PFBlocks.METASEQUOIA_SAPLING, new Item.Properties().group(PFDecoration.instance)).setRegistryName("metasequoia_sapling"));
+		event.getRegistry().register(new BlockItem(PFBlocks.ARAUCARIA_SAPLING, new Item.Properties().group(PFDecoration.instance)).setRegistryName("araucaria_sapling"));
+		event.getRegistry().register(new BlockItem(PFBlocks.LIRIODENDRITES_SAPLING, new Item.Properties().group(PFDecoration.instance)).setRegistryName("liriodendrites_sapling"));
+		event.getRegistry().register(new BlockItem(PFBlocks.PROTOPICEOXYLON_SAPLING, new Item.Properties().group(PFDecoration.instance)).setRegistryName("protopiceoxylon_sapling"));
 		event.getRegistry().register(new BlockItem(PFBlocks.ZAMITES_SAPLING, new Item.Properties().group(PFDecoration.instance)).setRegistryName("zamites_sapling"));
-		//event.getRegistry().register(new BlockItem(PFBlocks.PROTOJUNIPEROXYLON_SAPLING, new Item.Properties().group(PFDecoration.instance)).setRegistryName("protojuniperoxylon_sapling"));
-		//event.getRegistry().register(new BlockItem(PFBlocks.HEIDIPHYLLUM_SAPLING, new Item.Properties().group(PFDecoration.instance)).setRegistryName("heidiphyllum_sapling"));
+		event.getRegistry().register(new BlockItem(PFBlocks.PROTOJUNIPEROXYLON_SAPLING, new Item.Properties().group(PFDecoration.instance)).setRegistryName("protojuniperoxylon_sapling"));
+		event.getRegistry().register(new BlockItem(PFBlocks.HEIDIPHYLLUM_SAPLING, new Item.Properties().group(PFDecoration.instance)).setRegistryName("heidiphyllum_sapling"));
 
 		//Plants
 		event.getRegistry().register(new BlockItem(PFBlocks.HORSETAIL, new Item.Properties().group(PFDecoration.instance)).setRegistryName("horsetail"));

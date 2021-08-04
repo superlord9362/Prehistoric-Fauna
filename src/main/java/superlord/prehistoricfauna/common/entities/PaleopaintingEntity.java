@@ -144,12 +144,18 @@ public class PaleopaintingEntity extends HangingEntity implements IEntityAdditio
     public enum Paleopainting {
         AMNIOTIC(32, 32),
         ANNING(32, 32),
+        NIGHTSTAND(32, 16),
         DYNASTIC(16, 16),
         TALL_BUSTS(16, 32),
+        BOLIDE(16, 32),
+        NEIGHBOR(48, 16),
         CUBE(32, 32),
         SERENITY(64, 48),
         LAELAPS(64, 48),
-        CHAOTIAN(64, 32);
+        CHAOTIAN(64, 32),
+        ELECTROCUTION(64, 48),
+        LIFEBLOOD(16, 16),
+        DUEL_OF_TIME(48, 48);
 
         public static final Paleopainting[] VALUES = values();
 

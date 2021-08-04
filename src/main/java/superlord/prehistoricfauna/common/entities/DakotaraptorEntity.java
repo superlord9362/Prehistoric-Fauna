@@ -94,6 +94,8 @@ public class DakotaraptorEntity extends AnimalEntity {
 	};
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(DakotaraptorEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(DakotaraptorEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> ALBINO = EntityDataManager.createKey(DakotaraptorEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> MELANISTIC = EntityDataManager.createKey(DakotaraptorEntity.class, DataSerializers.BOOLEAN);
 	private Goal attackAnimals;
 	private float interestedAngle;
 	private float interestedAngleO;
@@ -119,6 +121,22 @@ public class DakotaraptorEntity extends AnimalEntity {
 		this.isDigging = isDigging ? 1 : 0;
 		this.dataManager.set(IS_DIGGING, isDigging);
 	}
+	
+	public boolean isAlbino() {
+		return this.dataManager.get(ALBINO);
+	}
+
+	private void setAlbino(boolean isAlbino) {
+		this.dataManager.set(ALBINO, isAlbino);
+	}
+
+	public boolean isMelanistic() {
+		return this.dataManager.get(MELANISTIC);
+	}
+
+	private void setMelanistic(boolean isMelanistic) {
+		this.dataManager.set(MELANISTIC, isMelanistic);
+	}
 
 	public boolean isBreedingItem(ItemStack stack) {
 		return stack.getItem() == PFItems.RAW_THESCELOSAURUS_MEAT.get();
@@ -142,6 +160,8 @@ public class DakotaraptorEntity extends AnimalEntity {
 		this.dataManager.register(IS_DIGGING, false);
 		this.dataManager.register(DAKOTARAPTOR_FLAGS, (byte)0);
 		this.dataManager.register(CLIMBING, (byte)0);
+		this.dataManager.register(ALBINO, false);
+		this.dataManager.register(MELANISTIC, false);
 	}
 
 	protected void registerGoals() {
@@ -337,6 +357,8 @@ public class DakotaraptorEntity extends AnimalEntity {
 		compound.putBoolean("Sitting", this.isSitting());
 		compound.putBoolean("Crouching", this.isCrouching());
 		compound.putBoolean("HasEgg", this.hasEgg());
+		compound.putBoolean("IsAlbino", this.isAlbino());
+		compound.putBoolean("IsMelanistic", this.isMelanistic());
 	}
 
 	/**
@@ -348,7 +370,21 @@ public class DakotaraptorEntity extends AnimalEntity {
 		this.setSitting(compound.getBoolean("Sitting"));
 		this.setCrouching(compound.getBoolean("Crouching"));
 		this.setHasEgg(compound.getBoolean("HasEgg"));
+		this.setAlbino(compound.getBoolean("IsAlbino"));
+		this.setMelanistic(compound.getBoolean("IsMelanistic"));
 		this.setAttackGoals();
+	}
+	
+	@Nullable
+	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+		Random rand = new Random();
+		int birthNumber = rand.nextInt(399);
+		if (birthNumber >= 0 && birthNumber < 4) {
+			this.setAlbino(true);
+		} else if (birthNumber >= 4 && birthNumber < 7) {
+			this.setMelanistic(true);
+		}
+		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
 	public boolean isSitting() {
@@ -555,7 +591,7 @@ public class DakotaraptorEntity extends AnimalEntity {
 	}
 	
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 6.0D);
 	}
 
 	public static boolean func_213481_a(DakotaraptorEntity p_213481_0_, LivingEntity p_213481_1_) {

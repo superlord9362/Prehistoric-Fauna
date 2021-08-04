@@ -11,8 +11,10 @@ import superlord.prehistoricfauna.common.entities.ThescelosaurusEntity;
 
 public class ThescelosaurusRenderer extends MobRenderer<ThescelosaurusEntity, Thescelosaurus> {
 
-    private static final ResourceLocation THESCELOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus.png");
-    private static final ResourceLocation BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus_baby.png");
+    private static final ResourceLocation THESCELOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus/thescelosaurus.png");
+    private static final ResourceLocation BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus/thescelosaurus_baby.png");
+    private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus/melanistic.png");
 
     public ThescelosaurusRenderer(EntityRendererManager rm) {
         super(rm, new Thescelosaurus(), 0.55f);
@@ -26,8 +28,12 @@ public class ThescelosaurusRenderer extends MobRenderer<ThescelosaurusEntity, Th
 
     @Override
 	public ResourceLocation getEntityTexture(ThescelosaurusEntity entity) {
-    	if(entity.isChild()) {
+    	if(entity.isChild() && !entity.isAlbino() && !entity.isMelanistic()) {
     		return BABY;
+    	} else if (entity.isAlbino()) {
+    		return ALBINO;
+    	} else if (entity.isMelanistic()) {
+    		return MELANISTIC;
     	} else {
     		return THESCELOSAURUS;
     	}

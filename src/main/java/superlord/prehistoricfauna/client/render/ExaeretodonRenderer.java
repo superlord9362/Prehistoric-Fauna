@@ -13,7 +13,10 @@ import superlord.prehistoricfauna.common.entities.ExaeretodonEntity;
 
 public class ExaeretodonRenderer extends MobRenderer<ExaeretodonEntity, EntityModel<ExaeretodonEntity>>{
 	
-	private static final ResourceLocation EXAERETODON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/exaeretodon.png");
+	private static final ResourceLocation EXAERETODON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/exaeretodon/exaeretodon.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/exaeretodon/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/exaeretodon/melanistic.png");
+
 	private final static Exaeretodon EXAERETODON_MODEL = new Exaeretodon();
 	
 	public ExaeretodonRenderer() {
@@ -33,7 +36,13 @@ public class ExaeretodonRenderer extends MobRenderer<ExaeretodonEntity, EntityMo
 	
 	@Override
 	public ResourceLocation getEntityTexture(ExaeretodonEntity entity) {
-		return EXAERETODON;
+		if(entity.isAlbino()) {
+			return ALBINO;
+		} else if (entity.isMelanistic()) {
+			return MELANISTIC;
+		} else {
+			return EXAERETODON;
+		}
 	}
 
 }

@@ -71,12 +71,14 @@ public class Ischigualastia extends EntityModel<IschigualastiaEntity> {
 
     @Override
     public void setRotationAngles(IschigualastiaEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-    	this.Neck.rotateAngleX = headPitch * ((float)Math.PI / 180F);
+		this.Neck.rotateAngleX = (headPitch * ((float)Math.PI / 180F)) + (Math.abs(-0.05F * MathHelper.sin(0.1F * ageInTicks / 3)));
     	this.Neck.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
-    	this.LegR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-    	this.LegL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-    	this.ArmR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-    	this.ArmL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+    	this.LegR.rotateAngleX = (MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
+    	this.LegL.rotateAngleX = (MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount);
+    	this.ArmL.rotateAngleX = (MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
+    	this.ArmR.rotateAngleX = (MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount);
+		this.Tail.rotateAngleY = (-0.12F * MathHelper.sin(0.2F * ageInTicks / 5));
+		this.Tail.rotateAngleX = (-Math.abs(-0.05F * MathHelper.sin(0.1F * ageInTicks / 5))) - 0.25F;
     }
 
     /**

@@ -29,6 +29,7 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
@@ -42,10 +43,14 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
 
+import javax.annotation.Nullable;
+
 public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(TriceratopsEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(TriceratopsEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_JUVENILE = EntityDataManager.createKey(TriceratopsEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> ALBINO = EntityDataManager.createKey(TriceratopsEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> MELANISTIC = EntityDataManager.createKey(TriceratopsEntity.class, DataSerializers.BOOLEAN);
 	private int warningSoundTicks;
 	private int isDigging;
 	public float ridingXZ;
@@ -98,6 +103,21 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 		this.dataManager.set(IS_JUVENILE, isJuvenile);
 	}
 
+	public boolean isAlbino() {
+		return this.dataManager.get(ALBINO);
+	}
+
+	private void setAlbino(boolean isAlbino) {
+		this.dataManager.set(ALBINO, isAlbino);
+	}
+
+	public boolean isMelanistic() {
+		return this.dataManager.get(MELANISTIC);
+	}
+
+	private void setMelanistic(boolean isMelanistic) {
+		this.dataManager.set(MELANISTIC, isMelanistic);
+	}
 
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
@@ -123,7 +143,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 40.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.2F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 6.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 60.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.2F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 10.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D);
 	}
 
 	protected SoundEvent getAmbientSound() {
@@ -186,16 +206,34 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 		this.dataManager.register(HAS_EGG, false);
 		this.dataManager.register(IS_DIGGING, false);
 		this.dataManager.register(IS_JUVENILE, false);
+		this.dataManager.register(ALBINO, false);
+		this.dataManager.register(MELANISTIC, false);
 	}
 
 	public void writeAdditional(CompoundNBT compound) {
 		super.writeAdditional(compound);
 		compound.putBoolean("HasEgg", this.hasEgg());
+		compound.putBoolean("IsAlbino", this.isAlbino());
+		compound.putBoolean("IsMelanistic", this.isMelanistic());
 	}
 
 	public void readAdditional(CompoundNBT compound) {
 		super.readAdditional(compound);
 		this.setHasEgg(compound.getBoolean("HasEgg"));
+		this.setAlbino(compound.getBoolean("IsAlbino"));
+		this.setMelanistic(compound.getBoolean("IsMelanistic"));
+	}
+	
+	@Nullable
+	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+		Random rand = new Random();
+		int birthNumber = rand.nextInt(399);
+		if (birthNumber >= 0 && birthNumber < 4) {
+			this.setAlbino(true);
+		} else if (birthNumber >= 4 && birthNumber < 7) {
+			this.setMelanistic(true);
+		}
+		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
 	/**

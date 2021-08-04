@@ -14,8 +14,12 @@ import superlord.prehistoricfauna.common.entities.TyrannosaurusEntity;
 
 public class TyrannosaurusRenderer extends MobRenderer<TyrannosaurusEntity, EntityModel<TyrannosaurusEntity>> {
 	
-	private static final ResourceLocation TYRANNOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurusrex.png");
-	private static final ResourceLocation BABY_TYRANNOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurusrexjuv.png");
+	private static final ResourceLocation TYRANNOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/tyrannosaurusrex.png");
+	private static final ResourceLocation BABY_TYRANNOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/tyrannosaurusrexjuv.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/albino.png");
+	private static final ResourceLocation BABY_ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/albino_juv.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/melanistic.png");
+	private static final ResourceLocation BABY_MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/melanistic_juv.png");
 	private static final Tyrannosaurusrex TYRANNOSAURUS_MODEL = new Tyrannosaurusrex();
 	private static final Tyrannosaurusrexjuvenile BABY_TYRANNOSAURUS_MODEL = new Tyrannosaurusrexjuvenile();
 	
@@ -40,7 +44,15 @@ public class TyrannosaurusRenderer extends MobRenderer<TyrannosaurusEntity, Enti
 	
 	@Override
 	public ResourceLocation getEntityTexture(TyrannosaurusEntity entity) {
-		if(entity.isChild()) {
+		if (entity.isAlbino() && !entity.isChild()) {
+			return ALBINO;
+		} else if (entity.isAlbino() && entity.isChild()) {
+			return BABY_ALBINO;
+		} else if (entity.isMelanistic() && !entity.isChild()) {
+			return MELANISTIC;
+		} else if (entity.isMelanistic() && entity.isChild()) {
+			return BABY_MELANISTIC;
+		} else if(entity.isChild()) {
 			return BABY_TYRANNOSAURUS;
 		} else {
 	        return TYRANNOSAURUS;

@@ -11,8 +11,10 @@ import superlord.prehistoricfauna.common.entities.StegosaurusEntity;
 
 public class StegosaurusRenderer extends MobRenderer<StegosaurusEntity, Stegosaurus> {
 
-	private static final ResourceLocation STEGOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus.png");
-	
+	private static final ResourceLocation STEGOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/stegosaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/melanistic.png");
+
 	public StegosaurusRenderer(EntityRendererManager rm) {
 		super(rm, new Stegosaurus(), 1.25F);
 	}
@@ -25,8 +27,13 @@ public class StegosaurusRenderer extends MobRenderer<StegosaurusEntity, Stegosau
 	
 	@Override
 	public ResourceLocation getEntityTexture(StegosaurusEntity entity) {
-		return STEGOSAURUS;
+		if (entity.isAlbino()) {
+			return ALBINO;
+		} else if (entity.isMelanistic()) {
+			return MELANISTIC;
+		} else {
+			return STEGOSAURUS;
+		}
 	}
-
 	
 }

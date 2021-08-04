@@ -3,6 +3,8 @@ package superlord.prehistoricfauna.common.entities;
 import java.util.Random;
 import java.util.function.Predicate;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -40,6 +42,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
@@ -51,9 +54,11 @@ import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.SoundInit;
 
 public class ExaeretodonEntity extends AnimalEntity {
-	
+
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(ExaeretodonEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(ExaeretodonEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> ALBINO = EntityDataManager.createKey(ExaeretodonEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> MELANISTIC = EntityDataManager.createKey(ExaeretodonEntity.class, DataSerializers.BOOLEAN);
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(PFBlocks.CLADOPHLEBIS.asItem());
 	private int isDigging;
 	private int warningSoundTicks;
@@ -61,22 +66,38 @@ public class ExaeretodonEntity extends AnimalEntity {
 	public ExaeretodonEntity(EntityType<? extends ExaeretodonEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
-	
+
 	public boolean hasEgg() {
 		return this.dataManager.get(HAS_EGG);
 	}
-	
+
 	private void setHasEgg(boolean hasEgg) {
 		this.dataManager.set(HAS_EGG, hasEgg);
 	}
-	
+
 	public boolean isDigging() {
 		return this.dataManager.get(IS_DIGGING);
 	}
-	
+
 	private void setDigging(boolean isDigging) {
 		this.isDigging = isDigging ? 1 : 0;
 		this.dataManager.set(IS_DIGGING, isDigging);
+	}
+
+	public boolean isAlbino() {
+		return this.dataManager.get(ALBINO);
+	}
+
+	private void setAlbino(boolean isAlbino) {
+		this.dataManager.set(ALBINO, isAlbino);
+	}
+
+	public boolean isMelanistic() {
+		return this.dataManager.get(MELANISTIC);
+	}
+
+	private void setMelanistic(boolean isMelanistic) {
+		this.dataManager.set(MELANISTIC, isMelanistic);
 	}
 
 	public boolean isBreedingItem(ItemStack stack) {
@@ -110,9 +131,9 @@ public class ExaeretodonEntity extends AnimalEntity {
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23D).createMutableAttribute(Attributes.FOLLOW_RANGE, 15).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 6.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23D).createMutableAttribute(Attributes.FOLLOW_RANGE, 15).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0D);
 	}
-   
+
 	protected SoundEvent getAmbientSound() {
 		return SoundInit.EXAERETODON_IDLE;
 	}
@@ -136,17 +157,35 @@ public class ExaeretodonEntity extends AnimalEntity {
 		super.registerData();
 		this.dataManager.register(HAS_EGG, false);
 		this.dataManager.register(IS_DIGGING, false);
+		this.dataManager.register(ALBINO, false);
+		this.dataManager.register(MELANISTIC, false);
 	}
-   
+
 	public void writeAdditional(CompoundNBT compound) {
 		super.writeAdditional(compound);
 		compound.putBoolean("HasEgg", this.hasEgg());
+		compound.putBoolean("IsAlbino", this.isAlbino());
+		compound.putBoolean("IsMelanistic", this.isMelanistic());
 	}
-   
+
 	public void readAdditional(CompoundNBT compound) {
-	   super.readAdditional(compound);
-	   this.setHasEgg(compound.getBoolean("HasEgg"));
-   }
+		super.readAdditional(compound);
+		this.setHasEgg(compound.getBoolean("HasEgg"));
+		this.setAlbino(compound.getBoolean("IsAlbino"));
+		this.setMelanistic(compound.getBoolean("IsMelanistic"));
+	}
+
+	@Nullable
+	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+		Random rand = new Random();
+		int birthNumber = rand.nextInt(399);
+		if (birthNumber >= 0 && birthNumber < 4) {
+			this.setAlbino(true);
+		} else if (birthNumber >= 4 && birthNumber < 7) {
+			this.setMelanistic(true);
+		}
+		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+	}
 
 	public void tick() {
 		super.tick();
@@ -167,7 +206,7 @@ public class ExaeretodonEntity extends AnimalEntity {
 		public AttackPlayerGoal() {
 			super(ExaeretodonEntity.this, PlayerEntity.class, 20, true, true, (Predicate<LivingEntity>)null);
 		}
-		
+
 		public boolean shouldExecute() {
 			if (ExaeretodonEntity.this.isChild()) {
 				return false;
@@ -200,7 +239,7 @@ public class ExaeretodonEntity extends AnimalEntity {
 				this.resetTask();
 			}
 		}
-      
+
 		protected void setAttackTarget(MobEntity mobIn, LivingEntity targetIn) {
 			if (mobIn instanceof AllosaurusEntity && !mobIn.isChild()) {
 				super.setAttackTarget(mobIn, targetIn);
@@ -255,28 +294,28 @@ public class ExaeretodonEntity extends AnimalEntity {
 		public PanicGoal() {
 			super(ExaeretodonEntity.this, 2.0D);
 		}
-		
+
 		public boolean shouldExecute() {
 			return !ExaeretodonEntity.this.isChild() && !ExaeretodonEntity.this.isBurning() ? false : super.shouldExecute();
 		}
 	}
-	
+
 	static class LayEggGoal extends MoveToBlockGoal {
 		private final ExaeretodonEntity exaeretodon;
-		
+
 		LayEggGoal(ExaeretodonEntity exaeretodon, double speed) {
 			super(exaeretodon, speed, 16);
 			this.exaeretodon = exaeretodon;
 		}
-		
+
 		public boolean shouldExecute() {
 			return this.exaeretodon.hasEgg() ? super.shouldExecute() : false;
 		}
-		
+
 		public boolean shouldContinueExecuting() {
 			return super.shouldContinueExecuting() && this.exaeretodon.hasEgg();
 		}
-		
+
 		public void tick() {
 			super.tick();
 			BlockPos blockpos = new BlockPos(this.exaeretodon.getPositionVec());
@@ -296,7 +335,7 @@ public class ExaeretodonEntity extends AnimalEntity {
 				}
 			}
 		}
-		
+
 		protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
 			if (!worldIn.isAirBlock(pos.up())) {
 				return false;
@@ -305,21 +344,21 @@ public class ExaeretodonEntity extends AnimalEntity {
 				return block == PFBlocks.LOAM || block == PFBlocks.PACKED_LOAM || block == Blocks.PODZOL;
 			}
 		}
-		
+
 	}
-	
+
 	static class MateGoal extends BreedGoal {
 		private final ExaeretodonEntity exaeretodon;
-		
+
 		MateGoal(ExaeretodonEntity exaeretodon, double speed) {
 			super(exaeretodon, speed);
 			this.exaeretodon = exaeretodon;
 		}
-		
+
 		public boolean shouldExecute() {
 			return super.shouldExecute() && !this.exaeretodon.hasEgg();
 		}
-		
+
 		protected void spawnBaby() {
 			ServerPlayerEntity serverPlayerEntity = this.animal.getLoveCause();
 			if (serverPlayerEntity == null && this.targetMate.getLoveCause() != null) {
@@ -337,7 +376,7 @@ public class ExaeretodonEntity extends AnimalEntity {
 				this.world.addEntity(new ExperienceOrbEntity(this.world, this.animal.getPosX(), this.animal.getPosY(), this.animal.getPosZ(), random.nextInt(7) + 1));
 			}
 		}
-		
+
 	}
 
 	@Override
@@ -346,5 +385,5 @@ public class ExaeretodonEntity extends AnimalEntity {
 		entity.onInitialSpawn((IServerWorld) this.world, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
 		return entity;
 	}
-	
+
 }

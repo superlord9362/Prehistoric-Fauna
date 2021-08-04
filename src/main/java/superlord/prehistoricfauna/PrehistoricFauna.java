@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
@@ -19,15 +20,23 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -84,13 +93,22 @@ import superlord.prehistoricfauna.common.entities.TyrannosaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.TyrannosaurusSkullEntity;
 import superlord.prehistoricfauna.common.entities.tile.MessageUpdatePaleoscribe;
 import superlord.prehistoricfauna.common.util.RegistryHelper;
+import superlord.prehistoricfauna.common.world.PFFeatures;
+import superlord.prehistoricfauna.common.world.PFSurfaceBuilders;
+import superlord.prehistoricfauna.compat.QuarkFlagRecipeCondition;
+import superlord.prehistoricfauna.config.PFConfigHolder;
+import superlord.prehistoricfauna.init.PFBiomes;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFContainers;
+import superlord.prehistoricfauna.init.PFDecorators;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
+import superlord.prehistoricfauna.init.PFOverworldBiomes;
+import superlord.prehistoricfauna.init.PFRecipes;
 import superlord.prehistoricfauna.init.PFTileEntities;
 
 @Mod(PrehistoricFauna.MOD_ID)
+@Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID)
 public class PrehistoricFauna {
 
 	public static final String MOD_ID = "prehistoricfauna";
@@ -109,11 +127,13 @@ public class PrehistoricFauna {
 	public static CommonProxy PROXY = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 
 	public PrehistoricFauna() {
+		final ModLoadingContext modLoadingContext = ModLoadingContext.get();
 		final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		modEventBus.addListener(this::registerCommon);
 		modEventBus.addListener(this::doClientStuff);
 		modEventBus.addListener(this::setup);
-
+		CraftingHelper.register(new QuarkFlagRecipeCondition.Serializer());
+		PFRecipes.RECIPES.register(modEventBus);
 		REGISTRY_HELPER.getDeferredBlockRegister().register(modEventBus);
 		REGISTRY_HELPER.getDeferredItemRegister().register(modEventBus);
 		PFBlocks.REGISTER.register(modEventBus);
@@ -124,6 +144,8 @@ public class PrehistoricFauna {
 		PFPacketHandler.registerPackets();
 		PROXY.init();
 
+		modLoadingContext.registerConfig(ModConfig.Type.CLIENT, PFConfigHolder.CLIENT_SPEC);
+		modLoadingContext.registerConfig(ModConfig.Type.COMMON, PFConfigHolder.SERVER_SPEC);
 	}
 
 	private void registerCommon(FMLCommonSetupEvent event) {
@@ -132,6 +154,13 @@ public class PrehistoricFauna {
 
 	public void setup(final FMLCommonSetupEvent event) {
 		NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageUpdatePaleoscribe.class, MessageUpdatePaleoscribe::write, MessageUpdatePaleoscribe::read, MessageUpdatePaleoscribe.Handler::handle);
+		event.enqueueWork(() -> {
+			PFBiomes.addBiomeEntries();
+			PFBiomes.fillBiomeDictionary();
+			PFOverworldBiomes.addBiomeEntries();
+			PFOverworldBiomes.fillBiomeDictionary();
+			System.out.println("Added biomes!");
+		});
 	}
 
 	private void doClientStuff(final FMLClientSetupEvent event) {
@@ -139,46 +168,46 @@ public class PrehistoricFauna {
 	}
 
 	private void registerEntityAttributes() {
-			GlobalEntityTypeAttributes.put(PFEntities.ALLOSAURUS_ENTITY, AllosaurusEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.ALLOSAURUS_SKELETON, AllosaurusSkeletonEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.ALLOSAURUS_SKULL, AllosaurusSkullEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.ANKYLOSAURUS_ENTITY, AnkylosaurusEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.ANKYLOSAURUS_SKELETON, AnkylosaurusSkeletonEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.ANKYLOSAURUS_SKULL, AnkylosaurusSkullEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.BASILEMYS_ENTITY, BasilemysEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.CAMARASAURUS_ENTITY, CamarasaurusEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.CERATOSAURUS_ENTITY, CeratosaurusEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.CERATOSAURUS_SKELETON, CeratosaurusSkeletonEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.CERATOSAURUS_SKULL, CeratosaurusSkullEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.CHROMOGISAURUS_ENTITY, ChromogisaurusEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.DAKOTARAPTOR_ENTITY, DakotaraptorEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.DIDELPHODON_ENTITY, DidelphodonEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.DRYOSAURUS_ENTITY, DryosaurusEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.EILENODON_ENTITY, EilenodonEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.EXAERETODON_ENTITY, ExaeretodonEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.HERRERASAURUS_ENTITY, HerrerasaurusEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.HERRERASAURUS_SKELETON, HerrerasaurusSkeletonEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.HERRERASAURUS_SKULL, HerrerasaurusSkullEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.HESPERORNITHOIDES_ENTITY, HesperornithoidesEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.HYPERODAPEDON_ENTITY, HyperodapedonEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.ISCHIGUALASTIA_ENTITY, IschigualastiaEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.ISCHIGUALASTIA_SKELETON, IschigualastiaSkeletonEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.ISCHIGUALASTIA_SKULL, IschigualastiaSkullEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.SAUROSUCHUS_ENTITY, SaurosuchusEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.SAUROSUCHUS_SKELETON, SaurosuchusSkeletonEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.SAUROSUCHUS_SKULL, SaurosuchusSkullEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.SILLOSUCHUS_ENTITY, SillosuchusEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.STEGOSAURUS_ENTITY, StegosaurusEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.STEGOSAURUS_SKELETON, StegosaurusSkeletonEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.STEGOSAURUS_SKULL, StegosaurusSkullEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.THESCELOSAURUS_ENTITY, ThescelosaurusEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.TIME_GUARDIAN_ENTITY, TimeGuardianEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.TRICERATOPS_ENTITY, TriceratopsEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.TRICERATOPS_SKELETON, TriceratopsSkeletonEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.TRICERATOPS_SKULL, TriceratopsSkullEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.TYRANNOSAURUS_ENTITY, TyrannosaurusEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.TYRANNOSAURUS_SKELETON, TyrannosaurusSkeletonEntity.createAttributes().create());
-			GlobalEntityTypeAttributes.put(PFEntities.TYRANNOSAURUS_SKULL, TyrannosaurusSkullEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.ALLOSAURUS_ENTITY, AllosaurusEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.ALLOSAURUS_SKELETON, AllosaurusSkeletonEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.ALLOSAURUS_SKULL, AllosaurusSkullEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.ANKYLOSAURUS_ENTITY, AnkylosaurusEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.ANKYLOSAURUS_SKELETON, AnkylosaurusSkeletonEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.ANKYLOSAURUS_SKULL, AnkylosaurusSkullEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.BASILEMYS_ENTITY, BasilemysEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.CAMARASAURUS_ENTITY, CamarasaurusEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.CERATOSAURUS_ENTITY, CeratosaurusEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.CERATOSAURUS_SKELETON, CeratosaurusSkeletonEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.CERATOSAURUS_SKULL, CeratosaurusSkullEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.CHROMOGISAURUS_ENTITY, ChromogisaurusEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.DAKOTARAPTOR_ENTITY, DakotaraptorEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.DIDELPHODON_ENTITY, DidelphodonEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.DRYOSAURUS_ENTITY, DryosaurusEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.EILENODON_ENTITY, EilenodonEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.EXAERETODON_ENTITY, ExaeretodonEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.HERRERASAURUS_ENTITY, HerrerasaurusEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.HERRERASAURUS_SKELETON, HerrerasaurusSkeletonEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.HERRERASAURUS_SKULL, HerrerasaurusSkullEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.HESPERORNITHOIDES_ENTITY, HesperornithoidesEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.HYPERODAPEDON_ENTITY, HyperodapedonEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.ISCHIGUALASTIA_ENTITY, IschigualastiaEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.ISCHIGUALASTIA_SKELETON, IschigualastiaSkeletonEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.ISCHIGUALASTIA_SKULL, IschigualastiaSkullEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.SAUROSUCHUS_ENTITY, SaurosuchusEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.SAUROSUCHUS_SKELETON, SaurosuchusSkeletonEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.SAUROSUCHUS_SKULL, SaurosuchusSkullEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.SILLOSUCHUS_ENTITY, SillosuchusEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.STEGOSAURUS_ENTITY, StegosaurusEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.STEGOSAURUS_SKELETON, StegosaurusSkeletonEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.STEGOSAURUS_SKULL, StegosaurusSkullEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.THESCELOSAURUS_ENTITY, ThescelosaurusEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.TIME_GUARDIAN_ENTITY, TimeGuardianEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.TRICERATOPS_ENTITY, TriceratopsEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.TRICERATOPS_SKELETON, TriceratopsSkeletonEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.TRICERATOPS_SKULL, TriceratopsSkullEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.TYRANNOSAURUS_ENTITY, TyrannosaurusEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.TYRANNOSAURUS_SKELETON, TyrannosaurusSkeletonEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.TYRANNOSAURUS_SKULL, TyrannosaurusSkullEntity.createAttributes().create());
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -314,6 +343,45 @@ public class PrehistoricFauna {
 	@SubscribeEvent
 	public static void registerModels(ModelRegistryEvent event) {
 		ClientRegistry.bindTileEntityRenderer(PFTileEntities.PF_SIGNS.get(), PFSignTileEntityRenderer::new);
+	}
+
+	@Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+	public static class PFWorldGenRegistries {
+		@SubscribeEvent
+		public static void registerFeatures(RegistryEvent.Register<Feature<?>> event) {
+			PFFeatures.init();
+			PFFeatures.features.forEach(feature -> event.getRegistry().register(feature));
+			System.out.println("Registered features!");
+		}
+
+		@SubscribeEvent
+		public static void registerBiomes(RegistryEvent.Register<Biome> event) {
+			LOGGER.debug("PF: Registering biomes...");
+			PFBiomes.init();
+			PFOverworldBiomes.init();
+			PFBiomes.biomeList.sort(Comparator.comparingInt(PFBiomes.PreserveBiomeOrder::getOrderPosition));
+			PFBiomes.biomeList.forEach(preserveBiomeOrder -> event.getRegistry().register(preserveBiomeOrder.getBiome()));
+			PFOverworldBiomes.biomeList.sort(Comparator.comparingInt(PFBiomes.PreserveBiomeOrder::getOrderPosition));
+			PFOverworldBiomes.biomeList.forEach(preserveBiomeOrder -> event.getRegistry().register(preserveBiomeOrder.getBiome()));
+			PFOverworldBiomes.PETRIFIED_FOREST_KEY = PFOverworldBiomes.PETRIFIED_FOREST.getKey();
+			LOGGER.info("PF: Biomes registered!");
+		}
+
+		@SubscribeEvent
+		public static void registerSurfaceBuilders(RegistryEvent.Register<SurfaceBuilder<?>> event) {
+			LOGGER.debug("PF: Registering surface builders...");
+			PFSurfaceBuilders.init();
+			PFSurfaceBuilders.surfaceBuilders.forEach(surfaceBuilder -> event.getRegistry().register(surfaceBuilder));
+			LOGGER.info("PF: Surface builders registered!");
+		}
+		
+		@SubscribeEvent
+        public static void registerDecorators(RegistryEvent.Register<Placement<?>> event) {
+    		PFDecorators.init();
+    		PFDecorators.decorators.forEach(decorator -> event.getRegistry().register(decorator));
+    		System.out.println("Registered decorators!");
+    	}
+
 	}
 
 }

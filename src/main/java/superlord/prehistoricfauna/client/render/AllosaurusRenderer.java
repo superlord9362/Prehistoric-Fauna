@@ -16,7 +16,9 @@ import superlord.prehistoricfauna.common.entities.AllosaurusEntity;
 public class AllosaurusRenderer extends MobRenderer<AllosaurusEntity, EntityModel<AllosaurusEntity>> {
 
     private static final Allosaurus ALLOSAURUS_MODEL = new Allosaurus();
-    private static final ResourceLocation ALLOSAURUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/allosaurus.png");
+    private static final ResourceLocation ALLOSAURUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/allosaurus/allosaurus.png");
+    private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/allosaurus/albino.png");
+    private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/allosaurus/melanistic.png");
 
     public AllosaurusRenderer() {
         super(Minecraft.getInstance().getRenderManager(), ALLOSAURUS_MODEL, 1.25F);
@@ -29,6 +31,12 @@ public class AllosaurusRenderer extends MobRenderer<AllosaurusEntity, EntityMode
     }
 
     public ResourceLocation getEntityTexture(AllosaurusEntity entity) {
-    	return ALLOSAURUS_TEXTURE;
+    	if (entity.isAlbino()) {
+    		return ALBINO;
+    	} else if(entity.isMelanistic()) {
+    		return MELANISTIC;
+    	} else {
+    		return ALLOSAURUS_TEXTURE;
+    	}
     }
 }

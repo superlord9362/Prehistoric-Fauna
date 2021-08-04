@@ -13,7 +13,9 @@ import superlord.prehistoricfauna.common.entities.ChromogisaurusEntity;
 
 public class ChromogisaurusRenderer extends MobRenderer<ChromogisaurusEntity, EntityModel<ChromogisaurusEntity>> {
 
-	private static final ResourceLocation CHROMOGISAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/chromogisaurus.png");
+	private static final ResourceLocation CHROMOGISAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/chromogisaurus/chromogisaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/chromogisaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/chromogisaurus/melanistic.png");
 	private static final Chromogisaurus CHROMOGISAURUS_MODEL = new Chromogisaurus();
 	
 	public ChromogisaurusRenderer() {
@@ -33,7 +35,13 @@ public class ChromogisaurusRenderer extends MobRenderer<ChromogisaurusEntity, En
 	
 	@Override
 	public ResourceLocation getEntityTexture(ChromogisaurusEntity entity) {
-		return CHROMOGISAURUS;
+		if (entity.isAlbino()) {
+			return ALBINO;
+		} else if (entity.isMelanistic()) {
+			return MELANISTIC;
+		} else {
+			return CHROMOGISAURUS;
+		}
 	}
 
 }

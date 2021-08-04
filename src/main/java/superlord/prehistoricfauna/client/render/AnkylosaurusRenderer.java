@@ -11,22 +11,29 @@ import superlord.prehistoricfauna.common.entities.AnkylosaurusEntity;
 
 public class AnkylosaurusRenderer extends MobRenderer<AnkylosaurusEntity, Ankylosaurus> {
 
-	private static final ResourceLocation ANKYLOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ankylosaurus.png");
-	
+	private static final ResourceLocation ANKYLOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ankylosaurus/ankylosaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ankylosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ankylosaurus/melanistic.png");
+
 	public AnkylosaurusRenderer(EntityRendererManager rm) {
 		super(rm, new Ankylosaurus(), 2F);
 	}
-	
+
 	protected void preRenderCallback(AnkylosaurusEntity entity, MatrixStack matrixStackIn, float partialTickTime) {
-		 if(entity.isChild()) {
-			 matrixStackIn.scale(0.5F, 0.5F, 0.5F);
-		 }
-	 }
-	
-	@Override
-	public ResourceLocation getEntityTexture(AnkylosaurusEntity entity) {
-		return ANKYLOSAURUS;
+		if(entity.isChild()) {
+			matrixStackIn.scale(0.5F, 0.5F, 0.5F);
+		}
 	}
 
-	
+	@Override
+	public ResourceLocation getEntityTexture(AnkylosaurusEntity entity) {
+		if (entity.isAlbino()) {
+			return ALBINO;
+		} else if (entity.isMelanistic()) {
+			return MELANISTIC;
+		} else {
+			return ANKYLOSAURUS;
+		}
+	}
+
 }

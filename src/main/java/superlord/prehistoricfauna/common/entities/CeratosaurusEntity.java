@@ -31,6 +31,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
@@ -46,45 +47,77 @@ import superlord.prehistoricfauna.init.SoundInit;
 import java.util.Random;
 import java.util.function.Predicate;
 
+import javax.annotation.Nullable;
+
 public class CeratosaurusEntity extends AnimalEntity {
-	
+
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(CeratosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(CeratosaurusEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> ALBINO = EntityDataManager.createKey(CeratosaurusEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> MELANISTIC = EntityDataManager.createKey(CeratosaurusEntity.class, DataSerializers.BOOLEAN);
 	private int warningSoundTicks;
 	private int isDigging;
 	private Goal attackAnimals;
-	
+
 	public CeratosaurusEntity(EntityType<? extends CeratosaurusEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
-	
+
 	public boolean isDigging() {
 		return this.getDataManager().get(IS_DIGGING);
 	}
-	
+
 	private void setDigging(boolean isDigging) {
 		this.isDigging = isDigging ? 1 : 0;
 		this.dataManager.set(IS_DIGGING, isDigging);
 	}
-	
+
 	public boolean hasEgg() {
 		return this.getDataManager().get(HAS_EGG);
 	}
-	
+
 	private void setHasEgg(boolean hasEgg) {
 		this.dataManager.set(HAS_EGG, hasEgg);
 	}
-	
+
+	public boolean isAlbino() {
+		return this.dataManager.get(ALBINO);
+	}
+
+	private void setAlbino(boolean isAlbino) {
+		this.dataManager.set(ALBINO, isAlbino);
+	}
+
+	public boolean isMelanistic() {
+		return this.dataManager.get(MELANISTIC);
+	}
+
+	private void setMelanistic(boolean isMelanistic) {
+		this.dataManager.set(MELANISTIC, isMelanistic);
+	}
+
+	@Nullable
+	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+		Random rand = new Random();
+		int birthNumber = rand.nextInt(399);
+		if (birthNumber >= 0 && birthNumber < 4) {
+			this.setAlbino(true);
+		} else if (birthNumber >= 4 && birthNumber < 7) {
+			this.setMelanistic(true);
+		}
+		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+	}
+
 	public boolean isBreedingItem(ItemStack stack) {
 		return stack.getItem() == PFItems.RAW_DRYOSAURUS_MEAT.get();
 	}
-	
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.attackAnimals = new HuntGoal(this, AnimalEntity.class, 10, false, false, (p_213487_0_) -> {
-	         return p_213487_0_ instanceof DryosaurusEntity || p_213487_0_ instanceof ThescelosaurusEntity || p_213487_0_ instanceof HorseEntity || p_213487_0_ instanceof DonkeyEntity || p_213487_0_ instanceof MuleEntity || p_213487_0_ instanceof SheepEntity || p_213487_0_ instanceof CowEntity || p_213487_0_ instanceof PigEntity || p_213487_0_ instanceof PandaEntity || p_213487_0_ instanceof OcelotEntity || p_213487_0_ instanceof PlayerEntity;
+			return p_213487_0_ instanceof DryosaurusEntity || p_213487_0_ instanceof ThescelosaurusEntity || p_213487_0_ instanceof HorseEntity || p_213487_0_ instanceof DonkeyEntity || p_213487_0_ instanceof MuleEntity || p_213487_0_ instanceof SheepEntity || p_213487_0_ instanceof CowEntity || p_213487_0_ instanceof PigEntity || p_213487_0_ instanceof PandaEntity || p_213487_0_ instanceof OcelotEntity || p_213487_0_ instanceof PlayerEntity;
 		});
 		this.goalSelector.addGoal(1, new CeratosaurusEntity.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new CeratosaurusEntity.PanicGoal());
@@ -103,62 +136,68 @@ public class CeratosaurusEntity extends AnimalEntity {
 		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, AnkylosaurusEntity.class, 7F, 1.25D, 1.25D));
 		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, TyrannosaurusEntity.class, 7F, 1.25D, 1.25D));
 	}
-	
+
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 30.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 5.0D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 30.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 8.0D);
 	}
-	
+
 	private void setAttackGoals() {
 		this.targetSelector.addGoal(4, this.attackAnimals);
 	}
-	
+
 	protected SoundEvent getAmbientSound() {
 		return SoundInit.CERATOSAURUS_IDLE;
 	}
-	
+
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
 		return SoundInit.CERATOSAURUS_HURT;
 	}
-	
+
 	protected SoundEvent getDeathSound() {
 		return SoundInit.CERATOSAURUS_DEATH;
 	}
-	
+
 	protected void playStepSound(BlockPos pos, BlockState state) {
 		this.playSound(SoundEvents.ENTITY_COW_STEP, 0.15F, 1F);
 	}
-	
+
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
 			this.playSound(SoundInit.CERATOSAURUS_WARN, 1.0F, this.getSoundPitch());
 			this.warningSoundTicks = 40;
 		}
 	}
-	
+
 	protected void registerData() {
 		super.registerData();
 		this.dataManager.register(HAS_EGG, false);
 		this.dataManager.register(IS_DIGGING, false);
+		this.dataManager.register(ALBINO, false);
+		this.dataManager.register(MELANISTIC, false);
 	}
-	
+
 	public void writeAdditional(CompoundNBT compound) {
 		super.writeAdditional(compound);
 		compound.putBoolean("HasEgg", this.hasEgg());
+		compound.putBoolean("IsAlbino", this.isAlbino());
+		compound.putBoolean("IsMelanistic", this.isMelanistic());
 	}
-	
+
 	public void readAdditional(CompoundNBT compound) {
 		super.readAdditional(compound);
 		this.setHasEgg(compound.getBoolean("HasEgg"));
+		this.setAlbino(compound.getBoolean("IsAlbino"));
+		this.setMelanistic(compound.getBoolean("IsMelanistic"));
 		this.setAttackGoals();
 	}
-	
+
 	public void tick() {
 		super.tick();
 		if (this.warningSoundTicks > 0) {
 			--this.warningSoundTicks;
 		}
 	}
-	
+
 	public boolean attackEntityAsMob(Entity entity) {
 		boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
 		if (flag) {
@@ -166,12 +205,12 @@ public class CeratosaurusEntity extends AnimalEntity {
 		}
 		return flag;
 	}
-	
+
 	class AttackPlayerGoal extends NearestAttackableTargetGoal<PlayerEntity> {
 		public AttackPlayerGoal() {
 			super(CeratosaurusEntity.this, PlayerEntity.class, 20, true, true, (Predicate<LivingEntity>)null);
 		}
-		
+
 		public boolean shouldExecute() {
 			if (CeratosaurusEntity.this.isChild()) {
 				return false;
@@ -186,18 +225,18 @@ public class CeratosaurusEntity extends AnimalEntity {
 				return false;
 			}
 		}
-		
+
 		protected double getTargetDistance() {
 			return super.getTargetDistance() * 0.5D;
 		}	
-		
+
 	}
-	
+
 	class HurtByTargetGoal extends net.minecraft.entity.ai.goal.HurtByTargetGoal {
 		public HurtByTargetGoal() {
 			super(CeratosaurusEntity.this);
 		}
-		
+
 		public void startExecuting() {
 			super.startExecuting();
 			if(CeratosaurusEntity.this.isChild()) {
@@ -205,15 +244,15 @@ public class CeratosaurusEntity extends AnimalEntity {
 				this.resetTask();
 			}
 		}
-		
+
 		protected void setAttackTarget(MobEntity entity, LivingEntity target) {
 			if (entity instanceof CeratosaurusEntity && !entity.isChild()) {
 				super.setAttackTarget(entity, target);
 			}
 		}
-		
+
 	}
-	
+
 	class MeleeAttackGoal extends net.minecraft.entity.ai.goal.MeleeAttackGoal {
 		public MeleeAttackGoal() {
 			super(CeratosaurusEntity.this, 1.25D, true);
@@ -256,34 +295,34 @@ public class CeratosaurusEntity extends AnimalEntity {
 			return (double)(4.0F + attackTarget.getWidth());
 		}
 	}
-	
+
 	class PanicGoal extends net.minecraft.entity.ai.goal.PanicGoal {
 		public PanicGoal() {
 			super(CeratosaurusEntity.this, 2.0D);
 		}
-		
+
 		public boolean shouldExecute() {
 			return !CeratosaurusEntity.this.isChild() && !CeratosaurusEntity.this.isBurning() ? false : super.shouldExecute();
 		}
-		
+
 	}
-	
+
 	static class LayEggGoal extends MoveToBlockGoal {
 		private final CeratosaurusEntity ceratosaurus;
-		
+
 		LayEggGoal(CeratosaurusEntity ceratosaurus, double speed) {
 			super(ceratosaurus, speed, 16);
 			this.ceratosaurus = ceratosaurus;
 		}
-		
+
 		public boolean shouldExecute() {
 			return this.ceratosaurus.hasEgg() ? super.shouldExecute() : false;
 		}
-		
+
 		public boolean shouldContinueExecuting() {
 			return super.shouldContinueExecuting() && ceratosaurus.hasEgg();
 		}
-		
+
 		public void tick() {
 			super.tick();
 			BlockPos blockpos = new BlockPos(this.ceratosaurus.getPositionVec());
@@ -303,7 +342,7 @@ public class CeratosaurusEntity extends AnimalEntity {
 				}
 			}
 		}
-		
+
 		public boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
 			if (!worldIn.isAirBlock(pos.up())) {
 				return false;
@@ -312,21 +351,21 @@ public class CeratosaurusEntity extends AnimalEntity {
 				return block == PFBlocks.SILT || block == PFBlocks.HARDENED_SILT || block == Blocks.SAND;
 			}
 		}
-		
+
 	}
-	
+
 	static class MateGoal extends BreedGoal {
 		private final CeratosaurusEntity ceratosaurus;
-		
+
 		MateGoal(CeratosaurusEntity ceratosaurus, double speed) {
 			super(ceratosaurus, speed);
 			this.ceratosaurus = ceratosaurus;
 		}
-		
+
 		public boolean shouldExecute() {
 			return super.shouldExecute() && !this.ceratosaurus.hasEgg();
 		}
-		
+
 		protected void spawnBaby() {
 			ServerPlayerEntity serverPlayerEntity = this.animal.getLoveCause();
 			if (serverPlayerEntity == null && this.targetMate.getLoveCause() == null) {
@@ -344,7 +383,7 @@ public class CeratosaurusEntity extends AnimalEntity {
 				this.world.addEntity(new ExperienceOrbEntity(this.world, this.animal.getPosX(), this.animal.getPosY(), this.animal.getPosZ(), random.nextInt(7) + 1));
 			}
 		}
-		
+
 	}
 
 	@Override
@@ -353,5 +392,5 @@ public class CeratosaurusEntity extends AnimalEntity {
 		entity.onInitialSpawn((IServerWorld) this.world, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
 		return entity;
 	}
-	
+
 }

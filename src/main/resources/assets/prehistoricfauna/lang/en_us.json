@@ -384,6 +384,17 @@
 	"item.prehistoricfauna.raw_ischigualastia_meat": "Raw Ischigualastia",
 	"item.prehistoricfauna.cooked_ischigualastia_meat": "Cooked Ischigualastia",
 	
+	"item.prehistoricfauna.raw_ceratodus": "Raw Ceratodus",
+	"item.prehistoricfauna.cooked_ceratodus": "Cooked Ceratodus",
+	"item.prehistoricfauna.raw_cyclurus": "Raw Cyclurus",
+	"item.prehistoricfauna.cooked_cyclurus": "Cooked Cyclurus",
+	"item.prehistoricfauna.raw_lepisosteus": "Raw Lepisosteus",
+	"item.prehistoricfauna.cooked_lepisosteus": "Cooked Lepisosteus",
+	"item.prehistoricfauna.raw_myledaphus": "Raw Myledaphus",
+	"item.prehistoricfauna.cooked_myledaphus": "Cooked Myledaphus",
+	"item.prehistoricfauna.raw_potamoceratodus": "Raw Potamoceratodus",
+	"item.prehistoricfauna.cooked_potamoceratodus": "Cooked Potamoceratodus",
+	
 	"block.prehistoricfauna.triceratops_egg": "Triceratops Egg",
 	"block.prehistoricfauna.thescelosaurus_egg": "Thescelosaurus Egg",
 	"block.prehistoricfauna.ankylosaurus_egg": "Ankylosaurus Egg",

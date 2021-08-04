@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "prehistoricfauna:raw_potamoceratodus"
+  },
+  "result": "prehistoricfauna:cooked_potamoceratodus",
+  "experience": 0.35,
+  "cookingtime": 100
+}

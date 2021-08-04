@@ -14,7 +14,9 @@ import superlord.prehistoricfauna.common.entities.BasilemysEntity;
 
 public class BasilemysRenderer extends MobRenderer<BasilemysEntity,  EntityModel<BasilemysEntity>> {
 
-	private static final ResourceLocation BASILEMYS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/basilemys.png");
+	private static final ResourceLocation BASILEMYS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/basilemys/basilemys.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/basilemys/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/basilemys/melanistic.png");
 	private static final Basilemys BASILEMYS_MODEL = new Basilemys();
 	private static final BasilemysHiding BASILEMYS_HIDING_MODEL = new BasilemysHiding();
 	
@@ -39,7 +41,13 @@ public class BasilemysRenderer extends MobRenderer<BasilemysEntity,  EntityModel
 	
 	@Override
 	public ResourceLocation getEntityTexture(BasilemysEntity entity) {
-		return BASILEMYS;
+		if (entity.isAlbino()) {
+			return ALBINO;
+		} else if (entity.isMelanistic()) {
+			return MELANISTIC;
+		} else {
+			return BASILEMYS;
+		}
 	}
 	
 }

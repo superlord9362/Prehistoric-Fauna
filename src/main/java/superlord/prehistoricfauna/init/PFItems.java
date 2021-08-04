@@ -204,7 +204,16 @@ public class PFItems {
 	public static final RegistryObject<Item> PROTOPICEOXYLON_SIGN = REGISTER.register("protopiceoxylon_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFDecoration.instance), PFBlocks.PROTOPICEOXYLON_SIGN, PFBlocks.PROTOPICEOXYLON_WALL_SIGN));;
 	public static final RegistryObject<Item> ZAMITES_SIGN = REGISTER.register("zamites_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFDecoration.instance), PFBlocks.ZAMITES_SIGN, PFBlocks.ZAMITES_WALL_SIGN));
 
-	
+	public static final RegistryObject<Item> CERATODUS = REGISTER.register("raw_ceratodus", () -> new Item(new Item.Properties().group(PFFood.instance).food(new Food.Builder().saturation(0.1F).hunger(2).build())));
+	public static final RegistryObject<Item> COOKED_CERATODUS = REGISTER.register("cooked_ceratodus", () -> new Item(new Item.Properties().group(PFFood.instance).food(new Food.Builder().saturation(0.8F).hunger(6).build())));
+	public static final RegistryObject<Item> CYCLURUS = REGISTER.register("raw_cyclurus", () -> new Item(new Item.Properties().group(PFFood.instance).food(new Food.Builder().saturation(0.1F).hunger(2).build())));
+	public static final RegistryObject<Item> COOKED_CYCLURUS = REGISTER.register("cooked_cyclurus", () -> new Item(new Item.Properties().group(PFFood.instance).food(new Food.Builder().saturation(0.8F).hunger(6).build())));
+	public static final RegistryObject<Item> LEPISOSTEUS = REGISTER.register("raw_lepisosteus", () -> new Item(new Item.Properties().group(PFFood.instance).food(new Food.Builder().saturation(0.1F).hunger(2).build())));
+	public static final RegistryObject<Item> COOKED_LEPISOSTEUS = REGISTER.register("cooked_lepisosteus", () -> new Item(new Item.Properties().group(PFFood.instance).food(new Food.Builder().saturation(0.8F).hunger(6).build())));
+	public static final RegistryObject<Item> MYLEDAPHUS = REGISTER.register("raw_myledaphus", () -> new Item(new Item.Properties().group(PFFood.instance).food(new Food.Builder().saturation(0.2F).hunger(2).build())));
+	public static final RegistryObject<Item> POTAMOCERATODUS = REGISTER.register("raw_potamoceratodus", () -> new Item(new Item.Properties().group(PFFood.instance).food(new Food.Builder().saturation(0.1F).hunger(2).build())));
+	public static final RegistryObject<Item> COOKED_POTAMOCERATODUS = REGISTER.register("cooked_potamoceratodus", () -> new Item(new Item.Properties().group(PFFood.instance).food(new Food.Builder().saturation(0.8F).hunger(6).build())));
+
 	private static BannerPattern registerPattern(String name) {
         return BannerPattern.create(name.toUpperCase(), name, name, true);
     }

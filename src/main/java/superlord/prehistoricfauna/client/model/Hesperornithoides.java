@@ -78,10 +78,17 @@ public class Hesperornithoides extends EntityModel<HesperornithoidesEntity> {
 
     @Override
     public void setRotationAngles(HesperornithoidesEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-    	this.Head.rotateAngleX = headPitch * ((float)Math.PI / 180F);
+		this.Head.rotateAngleX = (headPitch * ((float)Math.PI / 180F)) + (Math.abs(-0.05F * MathHelper.sin(0.1F * ageInTicks / 3)));
+		this.Fluff.rotateAngleX = -Math.abs(-0.05F * MathHelper.sin(0.1F * ageInTicks / 3));
     	this.Head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
     	this.RightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-    	this.LeftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;	
+    	this.LeftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+		this.Tail.rotateAngleY = -0.12F * MathHelper.sin(0.2F * ageInTicks / 5);
+		this.Tail.rotateAngleX = -Math.abs(-0.05F * MathHelper.sin(0.1F * ageInTicks / 5));
+		this.LeftWing.rotateAngleZ = -Math.abs(-0.05F * MathHelper.sin(0.15F * ageInTicks / 3));
+		this.RightWing.rotateAngleZ = Math.abs(-0.05F * MathHelper.sin(0.15F * ageInTicks / 3));
+		this.LeftWing.rotateAngleY = Math.abs(-0.05F * MathHelper.sin(0.15F * ageInTicks / 3));
+		this.RightWing.rotateAngleY = -Math.abs(-0.05F * MathHelper.sin(0.15F * ageInTicks / 3));
     }
 
     /**

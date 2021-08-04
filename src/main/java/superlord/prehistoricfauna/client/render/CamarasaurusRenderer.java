@@ -12,7 +12,9 @@ import superlord.prehistoricfauna.common.entities.CamarasaurusEntity;
 
 public class CamarasaurusRenderer extends MobRenderer<CamarasaurusEntity, EntityModel<CamarasaurusEntity>> {
 	
-	private static final ResourceLocation CAMARASAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/camarasaurus.png");
+	private static final ResourceLocation CAMARASAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/camarasaurus/camarasaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/camarasaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/camarasaurus/melanistic.png");
 	private static final Camarasaurus CAMARASAURUS_MODEL = new Camarasaurus();
 	
 	public CamarasaurusRenderer() {
@@ -27,7 +29,13 @@ public class CamarasaurusRenderer extends MobRenderer<CamarasaurusEntity, Entity
 	
 	@Override
 	public ResourceLocation getEntityTexture(CamarasaurusEntity entity) {
-		return CAMARASAURUS;
+		if (entity.isAlbino()) {
+			return ALBINO;
+		} else if (entity.isMelanistic()) {
+			return MELANISTIC;
+		} else {
+			return CAMARASAURUS;
+		}
 	}
 
 }

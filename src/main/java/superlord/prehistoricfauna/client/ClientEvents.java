@@ -15,8 +15,10 @@ import net.minecraft.world.IBlockDisplayReader;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -64,12 +66,14 @@ import superlord.prehistoricfauna.client.render.TyrannosaurusRenderer;
 import superlord.prehistoricfauna.client.render.TyrannosaurusSkeletonRenderer;
 import superlord.prehistoricfauna.client.render.TyrannosaurusSkullRenderer;
 import superlord.prehistoricfauna.client.render.WallFossilRenderer;
+import superlord.prehistoricfauna.client.render.tileentity.PFSignTileEntityRenderer;
 import superlord.prehistoricfauna.client.render.tileentity.gui.PaleontologyTableScreen;
 import superlord.prehistoricfauna.client.render.tileentity.gui.PaleoscribeScreen;
 import superlord.prehistoricfauna.common.util.PFWoodTypes;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFContainers;
 import superlord.prehistoricfauna.init.PFEntities;
+import superlord.prehistoricfauna.init.PFTileEntities;
 
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -144,12 +148,19 @@ public class ClientEvents {
 	}
 
 	@SubscribeEvent
-	public static void onStitchEvent(TextureStitchEvent.Pre event) {
+	public static void registerModels(ModelRegistryEvent event)
+	{
+		ClientRegistry.bindTileEntityRenderer(PFTileEntities.PF_SIGNS.get(), PFSignTileEntityRenderer::new);
+	}
+
+	@SubscribeEvent
+	public static void onStitchEvent(TextureStitchEvent.Pre event)
+	{
 		ResourceLocation stitching = event.getMap().getTextureLocation();
 		if (!stitching.equals(Atlases.SIGN_ATLAS))
 			return;
 
-		PFWoodTypes.getValues().forEach(woodType -> event.addSprite(new ResourceLocation(PrehistoricFauna.MOD_ID, "entities/signs/" + woodType.getName())));
+		PFWoodTypes.getValues().forEach(woodType -> event.addSprite(new ResourceLocation(PrehistoricFauna.MOD_ID, "entity/signs/" + woodType.getName())));
 	}
 
 }

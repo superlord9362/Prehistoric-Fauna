@@ -13,7 +13,9 @@ import superlord.prehistoricfauna.common.entities.CeratosaurusEntity;
 
 public class CeratosaurusRenderer extends MobRenderer<CeratosaurusEntity,  EntityModel<CeratosaurusEntity>> {
 
-	private static final ResourceLocation CERATOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ceratosaurus.png");
+	private static final ResourceLocation CERATOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ceratosaurus/ceratosaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ceratosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ceratosaurus/melanistic.png");
 	private static final Ceratosaurus CERATOSAURUS_MODEL = new Ceratosaurus();
 
 	public CeratosaurusRenderer() {
@@ -33,7 +35,13 @@ public class CeratosaurusRenderer extends MobRenderer<CeratosaurusEntity,  Entit
 
 	@Override
 	public ResourceLocation getEntityTexture(CeratosaurusEntity entity) {
-		return CERATOSAURUS;
+		if (entity.isMelanistic()) {
+			return MELANISTIC;
+		} else if (entity.isAlbino()) {
+			return ALBINO;
+		} else {
+			return CERATOSAURUS;
+		}
 	}
 
 }
