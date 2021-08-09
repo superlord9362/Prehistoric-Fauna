@@ -6,8 +6,11 @@ import java.util.Objects;
 
 import javax.annotation.Nullable;
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.WeightedList;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.biome.Biome;
@@ -25,6 +28,11 @@ public class PFBiome {
 	private final Biome biome;
 
 	public static List<BiomeData> biomeData = new ArrayList<>();
+	
+	public static final Int2ObjectMap<WeightedList<Biome>> BIOME_TO_HILLS_LIST = new Int2ObjectArrayMap<>();
+	public static final Int2ObjectMap<Biome> BIOME_TO_BEACH_LIST = new Int2ObjectArrayMap<>();
+	public static final Int2ObjectMap<Biome> BIOME_TO_EDGE_LIST = new Int2ObjectArrayMap<>();
+	public static final Int2ObjectMap<Biome> BIOME_TO_RIVER_LIST = new Int2ObjectArrayMap<>();
 
 	public PFBiome(Biome.Climate climate, Biome.Category category, float depth, float scale, BiomeAmbience effects, BiomeGenerationSettings biomeGenerationSettings, MobSpawnInfo mobSpawnInfo) {
 		biome = new Biome(climate, category, depth, scale, effects, biomeGenerationSettings, mobSpawnInfo);
@@ -50,12 +58,17 @@ public class PFBiome {
 	}
 
 	@Nullable
-	public WeightedList<Biome> getHills() {
+	public Biome getHills() {
 		return null;
 	}
 
 	@Nullable
 	public Biome getEdge() {
+		return null;
+	}
+
+	@Nullable
+	public Biome getClearing() {
 		return null;
 	}
 
@@ -78,6 +91,12 @@ public class PFBiome {
 
 	public RegistryKey<Biome> getKey() {
 		return RegistryKey.getOrCreateKey(Registry.BIOME_KEY, Objects.requireNonNull(WorldGenRegistries.BIOME.getKey(this.biome)));
+	}
+
+	public static int getSkyColorWithTemperatureModifier(float temperature) {
+		float lvt_1_1_ = temperature / 3.0F;
+		lvt_1_1_ = MathHelper.clamp(lvt_1_1_, -1.0F, 1.0F);
+		return MathHelper.hsvToRGB(0.62222224F - lvt_1_1_ * 0.05F, 0.5F + lvt_1_1_ * 0.1F, 1.0F);
 	}
 
 }

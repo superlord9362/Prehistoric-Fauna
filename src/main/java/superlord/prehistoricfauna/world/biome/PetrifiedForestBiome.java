@@ -11,6 +11,7 @@ import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
+import superlord.prehistoricfauna.common.world.PFConfiguredFeatures;
 import superlord.prehistoricfauna.common.world.PFSurfaceBuilders;
 import superlord.prehistoricfauna.common.world.WorldGenRegistrationHelper;
 import superlord.prehistoricfauna.init.PFBlocks;
@@ -66,7 +67,7 @@ public class PetrifiedForestBiome extends PFBiome {
     	DefaultBiomeFeatures.withDisks(GENERATION_SETTINGS);
     	DefaultBiomeFeatures.withLavaAndWaterSprings(GENERATION_SETTINGS);
     	DefaultBiomeFeatures.withBadlandsGrassAndBush(GENERATION_SETTINGS);
-    	DefaultBiomeFeatures.withBadlandsOakTrees(GENERATION_SETTINGS);
+    	PFConfiguredFeatures.addSparseandPetrifiedTrees(GENERATION_SETTINGS);
         SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.SHEEP, 12, 4, 4));
         SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.PIG, 10, 4, 4));
         SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.CHICKEN, 10, 4, 4));

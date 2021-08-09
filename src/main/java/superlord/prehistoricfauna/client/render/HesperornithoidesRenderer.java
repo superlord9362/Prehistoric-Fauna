@@ -12,7 +12,9 @@ import superlord.prehistoricfauna.common.entities.HesperornithoidesEntity;
 
 public class HesperornithoidesRenderer extends MobRenderer<HesperornithoidesEntity, EntityModel<HesperornithoidesEntity>> {
 
-	private static final ResourceLocation HESPERORNITHOIDES = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hesperornithoides.png");
+	private static final ResourceLocation HESPERORNITHOIDES = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hesperornithoides/hesperornithoides.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hesperornithoides/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hesperornithoides/melanistic.png");
 	private static final Hesperornithoides HESPERORNITHOIDES_MODEL = new Hesperornithoides();
 	
 	public HesperornithoidesRenderer() {
@@ -27,7 +29,13 @@ public class HesperornithoidesRenderer extends MobRenderer<HesperornithoidesEnti
 	
 	@Override
 	public ResourceLocation getEntityTexture(HesperornithoidesEntity entity) {
-		return HESPERORNITHOIDES;
+		if (entity.isAlbino()) {
+			return ALBINO;
+		} else if (entity.isMelanistic()) {
+			return MELANISTIC;
+		} else {
+			return HESPERORNITHOIDES;
+		}
 	}
 	
 }

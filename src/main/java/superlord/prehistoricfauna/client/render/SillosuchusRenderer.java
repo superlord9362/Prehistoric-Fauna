@@ -16,7 +16,9 @@ import superlord.prehistoricfauna.common.entities.SillosuchusEntity;
 public class SillosuchusRenderer extends MobRenderer<SillosuchusEntity, EntityModel<SillosuchusEntity>>{
 	
 	private static final Sillosuchus SILLOSUCHUS_MODEL = new Sillosuchus();
-	private static final ResourceLocation SILLOSUCHUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sillosuchus.png");
+	private static final ResourceLocation SILLOSUCHUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sillosuchus/sillosuchus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sillosuchus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sillosuchus/melanistic.png");
 	
 	public SillosuchusRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), SILLOSUCHUS_MODEL, 1.0F);
@@ -29,7 +31,13 @@ public class SillosuchusRenderer extends MobRenderer<SillosuchusEntity, EntityMo
 	}
 	
 	public ResourceLocation getEntityTexture(SillosuchusEntity entity) {
-		return SILLOSUCHUS;
+		if (entity.isAlbino()) {
+			return ALBINO;
+		} else if (entity.isMelanistic()) {
+			return MELANISTIC;
+		} else {
+			return SILLOSUCHUS;
+		}
 	}
 
 }

@@ -5,10 +5,18 @@ import java.util.List;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.world.feature.AlgaeFeature;
+import superlord.prehistoricfauna.world.feature.CrassostreaOystersFeature;
+import superlord.prehistoricfauna.world.feature.DicroidiumFeature;
+import superlord.prehistoricfauna.world.feature.JohnstoniaFeature;
+import superlord.prehistoricfauna.world.feature.PtilophyllumFeature;
+import superlord.prehistoricfauna.world.feature.config.CrassostreaOystersConfig;
+import superlord.prehistoricfauna.world.feature.config.JohnstoniaConfig;
 import superlord.prehistoricfauna.world.feature.config.PFTreeConfig;
 import superlord.prehistoricfauna.world.feature.trees.araucaria.AraucariaSmallTree1;
 import superlord.prehistoricfauna.world.feature.trees.araucaria.AraucariaSmallTree2;
@@ -35,6 +43,7 @@ import superlord.prehistoricfauna.world.feature.trees.protopiceoxylon.Protopiceo
 import superlord.prehistoricfauna.world.feature.trees.protopiceoxylon.ProtopiceoxylonTree6;
 import superlord.prehistoricfauna.world.feature.trees.protopiceoxylon.ProtopiceoxylonTree7;
 import superlord.prehistoricfauna.world.feature.trees.util.SmallPineTree;
+import superlord.prehistoricfauna.world.feature.trees.zamites.ZamiteBushFeature;
 
 public class PFFeatures {
 	
@@ -70,7 +79,16 @@ public class PFFeatures {
 	public static final Feature<PFTreeConfig> HEIDIPHYLLUM_TREE_5 = createFeature("heidiphyllum_tree_5", new HeidiphyllumTree5(PFTreeConfig.CODEC.stable()));
 
     public static final Feature<NoFeatureConfig> DUMMY = createFeature("dummy", new SmallPineTree(NoFeatureConfig.field_236558_a_.stable()));
-	
+    
+    public static final Feature<NoFeatureConfig> PTILOPHYLLUM_TREE = createFeature("ptilophyllum_tree", new PtilophyllumFeature(NoFeatureConfig.field_236558_a_.stable()));
+    public static final Feature<BaseTreeFeatureConfig> ZAMITES_BUSH = createFeature("zamites_bush", new ZamiteBushFeature(BaseTreeFeatureConfig.CODEC.stable()));
+    public static final Feature<JohnstoniaConfig> JOHNSTONIA_FEATURE = createFeature("johnstonia_feature", new JohnstoniaFeature(JohnstoniaConfig.field_236558_a_.stable()));
+    public static final Feature<JohnstoniaConfig> DICROIDIUM_FEATURE = createFeature("dicroidium_feature", new DicroidiumFeature(JohnstoniaConfig.field_236558_a_.stable()));
+
+    public static final Feature<CrassostreaOystersConfig> CRASSOSTREA_OYSTERS_FEATURE = createFeature("crassostrea_oysters", new CrassostreaOystersFeature(CrassostreaOystersConfig.field_236558_a_.stable()));
+    public static final Feature<CrassostreaOystersConfig> ALGAE_FEATURE = createFeature("algae", new AlgaeFeature(CrassostreaOystersConfig.field_236558_a_.stable()));
+
+    
     //public static final Feature<CrassostreaOystersConfig> CRASSOSTREA_OYSTERS_FEATURE = createFeature("crassostrea_oysters", new CrassostreaOystersFeature(CrassostreaOystersConfig::deserialize));
     //public static final Feature<CrassostreaOystersConfig> ALGAE_FEATURE = createFeature("algae", new AlgaeFeature(CrassostreaOystersConfig::deserialize));
 
