@@ -96,11 +96,13 @@ public class PFEntities {
 	public static final EntityType<AllosaurusSkullEntity> ALLOSAURUS_SKULL = register(EntityType.Builder.<AllosaurusSkullEntity>create(AllosaurusSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "allosaurus_skull");
 	public static final EntityType<IschigualastiaSkullEntity> ISCHIGUALASTIA_SKULL = register(EntityType.Builder.<IschigualastiaSkullEntity>create(IschigualastiaSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "ischigualastia_skull");
     public static final EntityType<WallFossilEntity> WALL_FOSSIL = register(EntityType.Builder.<WallFossilEntity>create(WallFossilEntity::new, EntityClassification.MISC).size(0.5F, 0.5F), "wall_fossil");
-
+    
     private static <T extends Entity> EntityType<T> register(EntityType.Builder<T> builder, String entityName){
         EntityType<T> type = builder.build(entityName);
         ENTITY_TYPES.register(entityName, () -> type);
         return type;
 	}
+    
+    
     
 }

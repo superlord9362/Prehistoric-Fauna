@@ -32,22 +32,32 @@ public class PFBiomes {
 	public static List<PreserveBiomeOrder> biomeList = new ArrayList<>();
 
 	public static Biome DUMMY = WorldGenRegistrationHelper.createBiome("dummy", new Dummy().getBiome(), 2000);
+	public static final PFBiome HELL_CREEK_BIOME = new HellCreekBiome(0.2F, 0.1F);
+	public static final PFBiome HELL_CREEK_CLEARING_BIOME = new HellCreekClearingBiome();
+	public static final PFBiome HELL_CREEK_HILLS_BIOME = new HellCreekHillsBiome();
+	public static final PFBiome HELL_CREEK_RIVER_BIOME = new HellCreekRiverBiome();
+	public static final PFBiome MORRISON_SAVANNAH_BIOME = new MorrisonSavannahBiome(0.05F, 0.125F);
+	public static final PFBiome MORRISON_HILLS_BIOME = new MorrisonSavannahHillsBiome();
+	public static final PFBiome ISCHIGUALASTO_FOREST_BIOME = new IschigualastoBiome(0.1F, 0.1F);
+	public static final PFBiome ISCHIGUALASTO_CLEARING_BIOME = new IschigualastoClearingBiome();
+	public static final PFBiome ISCHIGUALASTO_HILLS_BIOME = new IschigualastoHillsBiome();
+	public static final PFBiome ISCHIGUALASTO_RIVER_BIOME = new IschigualastoRiverBiome();
 
 	//Cretaceous
-	public static final Biome HELL_CREEK = WorldGenRegistrationHelper.createBiome("hell_creek", new HellCreekBiome(0.2F, 0.1F).getBiome(), 1);
-	public static final Biome HELL_CREEK_CLEARING = WorldGenRegistrationHelper.createBiome("hell_creek_clearing", new HellCreekClearingBiome().getBiome(), 6);
-	public static final Biome HELL_CREEK_HILLS = WorldGenRegistrationHelper.createBiome("hell_creek_hills", new HellCreekHillsBiome().getBiome(), 5);
-	public static final Biome HELL_CREEK_RIVER = WorldGenRegistrationHelper.createBiome("hell_creek_river", new HellCreekRiverBiome().getBiome(), 7);
+	public static final Biome HELL_CREEK = WorldGenRegistrationHelper.createBiome("hell_creek", HELL_CREEK_BIOME.getBiome(), 1);
+	public static final Biome HELL_CREEK_CLEARING = WorldGenRegistrationHelper.createBiome("hell_creek_clearing", HELL_CREEK_CLEARING_BIOME.getBiome(), 6);
+	public static final Biome HELL_CREEK_HILLS = WorldGenRegistrationHelper.createBiome("hell_creek_hills", HELL_CREEK_HILLS_BIOME.getBiome(), 5);
+	public static final Biome HELL_CREEK_RIVER = WorldGenRegistrationHelper.createBiome("hell_creek_river", HELL_CREEK_RIVER_BIOME.getBiome(), 7);
 
 	//Jurassic
-	public static final Biome MORRISON_SAVANNAH = WorldGenRegistrationHelper.createBiome("morrison_savannah", new MorrisonSavannahBiome(0.05F, 0.125F).getBiome(), 2);
-	public static final Biome MORRISON_HILLS = WorldGenRegistrationHelper.createBiome("morrison_hills", new MorrisonSavannahHillsBiome().getBiome(), 11);
+	public static final Biome MORRISON_SAVANNAH = WorldGenRegistrationHelper.createBiome("morrison_savannah", MORRISON_SAVANNAH_BIOME.getBiome(), 2);
+	public static final Biome MORRISON_HILLS = WorldGenRegistrationHelper.createBiome("morrison_hills", MORRISON_HILLS_BIOME.getBiome(), 11);
 
 	//Triassic
-	public static final Biome ISCHIGUALASTO_FOREST = WorldGenRegistrationHelper.createBiome("ischigualasto_forest", new IschigualastoBiome(0.1F, 0.1F).getBiome(), 3);
-	public static final Biome ISCHIGUALASTO_CLEARING = WorldGenRegistrationHelper.createBiome("ischigualasto_clearing", new IschigualastoClearingBiome().getBiome(), 8);
-	public static final Biome ISCHIGUALASTO_HILLS = WorldGenRegistrationHelper.createBiome("ischigualasto_hills", new IschigualastoHillsBiome().getBiome(), 9);
-	public static final Biome ISCHIGUALASTO_RIVER = WorldGenRegistrationHelper.createBiome("ischigualasto_river", new IschigualastoRiverBiome().getBiome(), 10);
+	public static final Biome ISCHIGUALASTO_FOREST = WorldGenRegistrationHelper.createBiome("ischigualasto_forest", ISCHIGUALASTO_FOREST_BIOME.getBiome(), 3);
+	public static final Biome ISCHIGUALASTO_CLEARING = WorldGenRegistrationHelper.createBiome("ischigualasto_clearing", ISCHIGUALASTO_CLEARING_BIOME.getBiome(), 8);
+	public static final Biome ISCHIGUALASTO_HILLS = WorldGenRegistrationHelper.createBiome("ischigualasto_hills", ISCHIGUALASTO_HILLS_BIOME.getBiome(), 9);
+	public static final Biome ISCHIGUALASTO_RIVER = WorldGenRegistrationHelper.createBiome("ischigualasto_river", ISCHIGUALASTO_RIVER_BIOME.getBiome(), 10);
 
 	public static void init() {
 	}

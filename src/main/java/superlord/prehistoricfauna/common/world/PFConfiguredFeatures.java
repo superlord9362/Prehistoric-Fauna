@@ -83,10 +83,10 @@ public class PFConfiguredFeatures {
 	public static final ConfiguredFeature<?, ?> OSMUNDA = createConfiguredFeature("osmunda", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.OSMUNDA.getDefaultState()), new SimpleBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(2)).func_242731_b(5));
 	public static final ConfiguredFeature<?, ?> OSMUNDA_DOUBLE = createConfiguredFeature("double_osmunda", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.TALL_OSMUNDA.getDefaultState()), new DoublePlantBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(20)).func_242731_b(5));
 	public static final ConfiguredFeature<?, ?> MOSS = createConfiguredFeature("moss", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.MOSS_CARPET.getDefaultState()), new SimpleBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242731_b(5));
-	
-	   public static final ConfiguredFeature<?, ?> CRASSOSTREA_OYSTERS = createConfiguredFeature("crassostrea_oysters", PFFeatures.CRASSOSTREA_OYSTERS_FEATURE.withConfiguration(new CrassostreaOystersConfig(24)).func_242731_b(48).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT));
-	   public static final ConfiguredFeature<?, ?> ALGAE = createConfiguredFeature("algae", PFFeatures.ALGAE_FEATURE.withConfiguration(new CrassostreaOystersConfig(24)).func_242731_b(48).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT));
-	
+
+	public static final ConfiguredFeature<?, ?> CRASSOSTREA_OYSTERS = createConfiguredFeature("crassostrea_oysters", PFFeatures.CRASSOSTREA_OYSTERS_FEATURE.withConfiguration(new CrassostreaOystersConfig(24)).func_242731_b(48).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT));
+	public static final ConfiguredFeature<?, ?> ALGAE = createConfiguredFeature("algae", PFFeatures.ALGAE_FEATURE.withConfiguration(new CrassostreaOystersConfig(24)).func_242731_b(48).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT));
+
 	//Morrison
 	public static final ConfiguredFeature<?, ?> PTILOPHYLLUM_TREE_BOOGALOO = createConfiguredFeature("ptilophylium_tree", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(PFFeatures.PTILOPHYLLUM_TREE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(PFDecorators.PTILOPHYLLUM_TREE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)).withChance(0.05F)), PFFeatures.PTILOPHYLLUM_TREE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(PFDecorators.PTILOPHYLLUM_TREE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)))));
 	public static final ConfiguredFeature<?, ?> ZAMITES_BUSH = createConfiguredFeature("zamites_bush", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(PFFeatures.ZAMITES_BUSH.withConfiguration(ZamitesBush.ZAMITES_BUSH_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT).withChance(1F)), PFFeatures.ZAMITES_BUSH.withConfiguration(ZamitesBush.ZAMITES_BUSH_CONFIG))).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242731_b(5));
@@ -100,13 +100,16 @@ public class PFConfiguredFeatures {
 	public static final ConfiguredFeature<?, ?> ORE_IRON_EXTRA = createConfiguredFeature("ore_iron_extra", Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, Blocks.IRON_ORE.getDefaultState(), 9)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(32, 32, 80))).square().func_242731_b(20));
 
 	//Ischigualasto
-	public static final ConfiguredFeature<?, ?> MICHELILLOA = createConfiguredFeature("michelilloa", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.MICHELILLOA.getDefaultState()), new SimpleBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(10)).func_242731_b(5));
-	public static final ConfiguredFeature<?, ?> CLADOPHLEBIS = createConfiguredFeature("cladophlebis", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.CLADOPHLEBIS.getDefaultState()), new SimpleBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(2)).func_242731_b(5));
+	public static final ConfiguredFeature<?, ?> MICHELILLOA = createConfiguredFeature("michelilloa", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.MICHELILLOA.getDefaultState()), new SimpleBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(5)).func_242731_b(5));
+	public static final ConfiguredFeature<?, ?> CLADOPHLEBIS = createConfiguredFeature("cladophlebis", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.CLADOPHLEBIS.getDefaultState()), new SimpleBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(1)).func_242731_b(5));
 	public static final ConfiguredFeature<?, ?> SCYTOPHYLLUM = createConfiguredFeature("scytophyllum", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.SCYTOPHYLLUM.getDefaultState()), new DoublePlantBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(60)).func_242731_b(5));
 	public static final ConfiguredFeature<?, ?> JOHNSTONIA = createConfiguredFeature("johnstonia", PFFeatures.JOHNSTONIA_FEATURE.withConfiguration(new JohnstoniaConfig(3)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 	public static final ConfiguredFeature<?, ?> DICROIDIUM = createConfiguredFeature("dicroidium", PFFeatures.DICROIDIUM_FEATURE.withConfiguration(new JohnstoniaConfig(6)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 
-	
+	public static final ConfiguredFeature<?, ?> SPARSE_JOHNSTONIA = createConfiguredFeature("sparse_johnstonia", PFFeatures.JOHNSTONIA_FEATURE.withConfiguration(new JohnstoniaConfig(1)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+	public static final ConfiguredFeature<?, ?> SPARSE_DICROIDIUM = createConfiguredFeature("sparse_dicroidium", PFFeatures.DICROIDIUM_FEATURE.withConfiguration(new JohnstoniaConfig(1)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+
+
 	//public static final ConfiguredFeature<?, ?> ALGAE = createConfiguredFeature("algae", PFFeatures.ALGAE_FEATURE.withConfiguration(new CrassostreaOystersConfig(24)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 	//public static final ConfiguredFeature<?, ?> CRASSOSTREA_OYSTERS = createConfiguredFeature("crassostrea_oysters", PFFeatures.CRASSOSTREA_OYSTERS_FEATURE.withConfiguration(new CrassostreaOystersConfig(24)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 
@@ -136,7 +139,6 @@ public class PFConfiguredFeatures {
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ALGAE);
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, OSMUNDA);
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, OSMUNDA_DOUBLE);
-		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, CRASSOSTREA_OYSTERS);
 	}
 
 	public static final ConfiguredFeature<?, ?> HELL_CREEK_VEGETATION = createConfiguredFeature("hell_creek_vegetation", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
@@ -152,7 +154,7 @@ public class PFConfiguredFeatures {
 			ARAUCARIA_SMALL_TREE_4.withChance(0.1F),
 			ARAUCARIA_TREE_1.withChance(0.1F)),
 			ARAUCARIA_TREE_2))
-			.withPlacement(Features.Placements.HEIGHTMAP_SPREAD_DOUBLE_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(8, 0.2F, 3))));
+			.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(8, 0.2F, 3))));
 
 	public static final ConfiguredFeature<?, ?> SPARSE_HELL_CREEK_VEGETATION = createConfiguredFeature("sparse_hell_creek_vegetation", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
 			METASEQUOIA_TREE_1.withChance(0.1F),
@@ -163,7 +165,7 @@ public class PFConfiguredFeatures {
 			ARAUCARIA_SMALL_TREE_4.withChance(0.15F),
 			ARAUCARIA_TREE_1.withChance(0.1F)
 			), ARAUCARIA_TREE_2))
-			.withPlacement(Features.Placements.HEIGHTMAP_SPREAD_DOUBLE_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
+			.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
 
 	public static final ConfiguredFeature<?, ?> LIRIODENDRITES_FOREST_VEGETATION = createConfiguredFeature("liriodendrites_vegetation", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
 			LIRIODENDRITES_TREE_1.withChance(0.2F),
@@ -174,7 +176,7 @@ public class PFConfiguredFeatures {
 			ARAUCARIA_SMALL_TREE_2.withChance(0.05F),
 			ARAUCARIA_SMALL_TREE_3.withChance(0.05F)
 			), ARAUCARIA_SMALL_TREE_4))
-			.withPlacement(Features.Placements.HEIGHTMAP_SPREAD_DOUBLE_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(8, 0.2F, 3))));
+			.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(8, 0.2F, 3))));
 
 	public static ConfiguredFeature<?, ?> MORRISON_SAVANNA_VEGETATION = createConfiguredFeature("morrison_savanna_vegetation", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
 			PROTOPICEOXYLON_TREE_1.withChance(0.1F),
@@ -188,35 +190,35 @@ public class PFConfiguredFeatures {
 			ARAUCARIA_SMALL_TREE_3.withChance(0.1F),
 			ARAUCARIA_SMALL_TREE_4.withChance(0.05F)
 			), PROTOPICEOXYLON_TREE_7))
-			.withPlacement(Features.Placements.HEIGHTMAP_SPREAD_DOUBLE_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0.25F, 1))));
-	
+			.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0.25F, 1))));
+
 	public static ConfiguredFeature<?, ?> ISCHIGUALASTO_VEGETATION = createConfiguredFeature("ischigualasto_vegetation", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
-			HEIDIPHYLLUM_TREE_1.withChance(0.15F),
-			HEIDIPHYLLUM_TREE_2.withChance(0.15F),
+			HEIDIPHYLLUM_TREE_1.withChance(0.1F),
+			HEIDIPHYLLUM_TREE_2.withChance(0.1F),
 			HEIDIPHYLLUM_TREE_3.withChance(0.1F),
 			HEIDIPHYLLUM_TREE_4.withChance(0.1F),
 			HEIDIPHYLLUM_TREE_5.withChance(0.1F),
-			ARAUCARIA_SMALL_TREE_1.withChance(0.75F),
-			ARAUCARIA_SMALL_TREE_2.withChance(0.75F),
-			ARAUCARIA_SMALL_TREE_3.withChance(0.75F),
-			ARAUCARIA_SMALL_TREE_4.withChance(0.75F),
-			PROTOJUNIPEROXYLON_TREE_1.withChance(0.5F)
+			ARAUCARIA_SMALL_TREE_1.withChance(0.05F),
+			ARAUCARIA_SMALL_TREE_2.withChance(0.05F),
+			ARAUCARIA_SMALL_TREE_3.withChance(0.05F),
+			ARAUCARIA_SMALL_TREE_4.withChance(0.05F),
+			PROTOJUNIPEROXYLON_TREE_1.withChance(0.15F)
 			), PROTOJUNIPEROXYLON_TREE_2))
-			.withPlacement(Features.Placements.HEIGHTMAP_SPREAD_DOUBLE_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(8, 0.2F, 3))));
-	
+			.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(8, 0.2F, 3))));
+
 	public static ConfiguredFeature<?, ?> SPARSE_ISCHIGUALASTO_VEGETATION = createConfiguredFeature("sparse_ischigualasto_vegetation", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
-			HEIDIPHYLLUM_TREE_1.withChance(0.15F),
-			HEIDIPHYLLUM_TREE_2.withChance(0.15F),
+			HEIDIPHYLLUM_TREE_1.withChance(0.1F),
+			HEIDIPHYLLUM_TREE_2.withChance(0.1F),
 			HEIDIPHYLLUM_TREE_3.withChance(0.1F),
 			HEIDIPHYLLUM_TREE_4.withChance(0.1F),
 			HEIDIPHYLLUM_TREE_5.withChance(0.1F),
-			ARAUCARIA_SMALL_TREE_1.withChance(0.75F),
-			ARAUCARIA_SMALL_TREE_2.withChance(0.75F),
-			ARAUCARIA_SMALL_TREE_3.withChance(0.75F),
-			ARAUCARIA_SMALL_TREE_4.withChance(0.75F),
-			PROTOJUNIPEROXYLON_TREE_1.withChance(0.5F)
+			ARAUCARIA_SMALL_TREE_1.withChance(0.05F),
+			ARAUCARIA_SMALL_TREE_2.withChance(0.05F),
+			ARAUCARIA_SMALL_TREE_3.withChance(0.05F),
+			ARAUCARIA_SMALL_TREE_4.withChance(0.05F),
+			PROTOJUNIPEROXYLON_TREE_1.withChance(0.15F)
 			), PROTOJUNIPEROXYLON_TREE_2))
-			.withPlacement(Features.Placements.HEIGHTMAP_SPREAD_DOUBLE_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
+			.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
 
 	public static void addHellCreekVegetation(BiomeGenerationSettings.Builder builder) {
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PFConfiguredFeatures.HELL_CREEK_VEGETATION);
@@ -250,7 +252,7 @@ public class PFConfiguredFeatures {
 	public static void addExtraIronOre(BiomeGenerationSettings.Builder builder) {
 		builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ORE_IRON_EXTRA);
 	}
-	
+
 	public static void addIschigualastoVegetation(BiomeGenerationSettings.Builder builder) {
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, MICHELILLOA);
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS);
@@ -258,13 +260,15 @@ public class PFConfiguredFeatures {
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, JOHNSTONIA);
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, SCYTOPHYLLUM);
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ISCHIGUALASTO_VEGETATION);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ALGAE);
 	}
-	
+
 	public static void addSparseIschigualastoVegetation(BiomeGenerationSettings.Builder builder) {
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, MICHELILLOA);
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS);
-		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DICROIDIUM);
-		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, JOHNSTONIA);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, SPARSE_DICROIDIUM);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ALGAE);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, SPARSE_JOHNSTONIA);
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, SCYTOPHYLLUM);
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, SPARSE_ISCHIGUALASTO_VEGETATION);
 	}

@@ -15,22 +15,6 @@ public class CommonProxy {
 		
 	}
 	
-	public boolean chickensDie() {
-		return false;
-	}
-
-/**	
-	@SubscribeEvent
-	public void spaceTimeContinuumWarping(LivingDeathEvent event) {
-		if (PrehistoricFaunaConfig.spaceTimeContinuumWarping) {
-			if (event.getEntity() instanceof HesperornithoidesEntity) {
-				if (event.getSource().getTrueSource() instanceof PlayerEntity) {
-					this.chickensDie();
-				}
-			}
-		}
-	}*/
-	
 	public void openPaleopediaGui(ItemStack book) {
 		
 	}
@@ -58,5 +42,5 @@ public class CommonProxy {
     public void setup() {
         MinecraftForge.EVENT_BUS.register(new ServerEvents());
     }
-	
+    
 }

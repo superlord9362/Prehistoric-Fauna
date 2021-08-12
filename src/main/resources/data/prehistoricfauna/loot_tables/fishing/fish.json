@@ -1,0 +1,190 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+			"conditions": [
+            {
+              "condition": "minecraft:alternative",
+              "terms": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:ischigualasto_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:ischigualasto_clearing"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:ischigualasto_hills"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:ischigualasto_river"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:morrison_savannah"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:morrison_hills"
+                  }
+                }
+              ]
+            }
+          ],
+          "weight": 60,
+          "name": "prehistoricfauna:raw_ceratodus"
+        },
+        {
+          "type": "minecraft:item",
+			"conditions": [
+            {
+              "condition": "minecraft:alternative",
+              "terms": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_clearing"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_hills"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_river"
+                  }
+                }
+              ]
+            }
+          ],
+          "weight": 50,
+          "name": "prehistoricfauna:raw_lepisosteus"
+        },
+        {
+          "type": "minecraft:item",
+			"conditions": [
+            {
+              "condition": "minecraft:alternative",
+              "terms": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_clearing"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_hills"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_river"
+                  }
+                }
+              ]
+            }
+          ],
+          "weight": 2,
+          "name": "prehistoricfauna:raw_myledaphus"
+        },
+        {
+          "type": "minecraft:item",
+			"conditions": [
+            {
+              "condition": "minecraft:alternative",
+              "terms": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_clearing"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_hills"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_river"
+                  }
+                }
+              ]
+            }
+          ],
+          "weight": 13,
+          "name": "prehistoricfauna:raw_cyclurus"
+        },
+		{
+			"type": "minecraft:item",
+			"conditions": [
+            {
+              "condition": "minecraft:alternative",
+              "terms": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:morrison_savannah"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:morrison_hills"
+                  }
+                }
+              ]
+            }
+          ],
+			"weight": 25,
+			"name": "prehistoricfauna:raw_potamoceratodus"
+		}
+      ]
+    }
+  ]
+}

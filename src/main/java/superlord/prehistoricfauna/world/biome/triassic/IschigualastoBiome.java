@@ -27,7 +27,6 @@ public class IschigualastoBiome extends PFBiome {
 	static final float DOWNFALL = 0.9F;
 	static final int WATER_COLOR = 4159204;
 	static final int WATER_FOG_COLOR = 329011;
-	static final int SKY_COLOR = 0x7ebf9f;
 	static final int FOLIAGE_COLOR = 0x53711f;
 	static final int GRASS_COLOR = 0x53711f;
 	static final int FOG_COLOR = 12638463;
@@ -37,7 +36,7 @@ public class IschigualastoBiome extends PFBiome {
 	static final BiomeGenerationSettings.Builder GENERATION_SETTINGS = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(SURFACE_BUILDER);
 
 	public IschigualastoBiome(float scale, float depth) {
-		super(WEATHER, CATEGORY, depth, scale, (new BiomeAmbience.Builder()).setWaterColor(WATER_COLOR).setWaterFogColor(WATER_FOG_COLOR).withSkyColor(SKY_COLOR).setFogColor(FOG_COLOR).withFoliageColor(FOLIAGE_COLOR).withGrassColor(GRASS_COLOR).build(), GENERATION_SETTINGS.build(), SPAWN_SETTINGS.copy());
+		super(WEATHER, CATEGORY, depth, scale, (new BiomeAmbience.Builder()).setWaterColor(WATER_COLOR).setWaterFogColor(WATER_FOG_COLOR).withSkyColor(getSkyColorWithTemperatureModifier(TEMPERATURE)).setFogColor(FOG_COLOR).withFoliageColor(FOLIAGE_COLOR).withGrassColor(GRASS_COLOR).build(), GENERATION_SETTINGS.build(), SPAWN_SETTINGS.copy());
 	}
 
 	@Override

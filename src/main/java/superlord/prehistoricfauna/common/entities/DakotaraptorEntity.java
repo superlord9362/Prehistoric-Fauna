@@ -86,7 +86,7 @@ import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.SoundInit;
 
-public class DakotaraptorEntity extends AnimalEntity {
+public class DakotaraptorEntity extends DinosaurEntity {
 	private static final DataParameter<Byte> DAKOTARAPTOR_FLAGS = EntityDataManager.createKey(DakotaraptorEntity.class, DataSerializers.BYTE);
 	private static final DataParameter<Byte> CLIMBING = EntityDataManager.createKey(DakotaraptorEntity.class, DataSerializers.BYTE);
 	private static final Predicate<Entity> IS_PREY = (p_213498_0_) -> {

@@ -27,8 +27,8 @@ public class HellCreekRiverBiome extends PFBiome {
 	static final Biome.Category CATEGORY = Biome.Category.TAIGA;
 	static final float TEMPERATURE = 0.7F;
 	static final float DOWNFALL = 0.8F;
-	static final int WATER_COLOR = 4159204;
-	static final int WATER_FOG_COLOR = 329011;
+	static final int WATER_COLOR = 0x7C5D48;
+	static final int WATER_FOG_COLOR = 0x6B4E3B;
 	static final int SKY_COLOR = 0x7ebf9f;
 	static final int FOLIAGE_COLOR = 0x53711f;
 	static final int GRASS_COLOR = 0x53711f;
@@ -74,7 +74,8 @@ public class HellCreekRiverBiome extends PFBiome {
         SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.TRICERATOPS_ENTITY, PrehistoricFaunaConfig.triceratopsSpawnWeight, 2, 3));
         SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.ANKYLOSAURUS_ENTITY, PrehistoricFaunaConfig.ankylosaurusSpawnWeight, 1, 2));
         SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.BASILEMYS_ENTITY, PrehistoricFaunaConfig.basilemysSpawnWeight, 1, 2));
-		GENERATION_SETTINGS.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PFConfiguredFeatures.MOSS);
+		GENERATION_SETTINGS.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PFConfiguredFeatures.CRASSOSTREA_OYSTERS);
+        GENERATION_SETTINGS.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PFConfiguredFeatures.MOSS);
 		PFConfiguredFeatures.addHellCreekVegetation(GENERATION_SETTINGS);
 		DefaultBiomeFeatures.withOverworldOres(GENERATION_SETTINGS);
 		DefaultBiomeFeatures.withCavesAndCanyons(GENERATION_SETTINGS);

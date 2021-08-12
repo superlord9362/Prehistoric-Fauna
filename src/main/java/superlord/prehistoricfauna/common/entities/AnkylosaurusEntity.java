@@ -24,10 +24,8 @@ import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
-import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -52,7 +50,7 @@ import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.SoundInit;
 
-public class AnkylosaurusEntity extends AnimalEntity {
+public class AnkylosaurusEntity extends DinosaurEntity {
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(AnkylosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(AnkylosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> ALBINO = EntityDataManager.createKey(AnkylosaurusEntity.class, DataSerializers.BOOLEAN);
@@ -83,10 +81,14 @@ public class AnkylosaurusEntity extends AnimalEntity {
 		return this.dataManager.get(HAS_EGG);
 	}
 
+	public int getMaxAir() {
+		return 0;
+	}
+
 	private void setHasEgg(boolean hasEgg) {
 		this.dataManager.set(HAS_EGG, hasEgg);
 	}
-	
+
 	public boolean isAlbino() {
 		return this.dataManager.get(ALBINO);
 	}
@@ -121,7 +123,6 @@ public class AnkylosaurusEntity extends AnimalEntity {
 
 	protected void registerGoals() {
 		super.registerGoals();
-		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(1, new AnkylosaurusEntity.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new AnkylosaurusEntity.PanicGoal());
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));

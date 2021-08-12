@@ -22,13 +22,13 @@ public class TriceratopsRenderer extends MobRenderer<TriceratopsEntity, EntityMo
 	private static final ResourceLocation SADDLED_CHESTED = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/triceratops_saddled_chested.png");
 	
 	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/albino.png");
-	private static final ResourceLocation BABY_ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/albino_baby.png");
+	private static final ResourceLocation BABY_ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/albino_juv.png");
 	private static final ResourceLocation SADDLED_ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/albino_saddled.png");
 	private static final ResourceLocation CHESTED_ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/albino_chested.png");
 	private static final ResourceLocation SADDLED_CHESTED_ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/albino_saddled_chested.png");
 	
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/melanistic.png");
-	private static final ResourceLocation BABY_MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/melanistic_baby.png");
+	private static final ResourceLocation BABY_MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/melanistic_juv.png");
 	private static final ResourceLocation SADDLED_MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/melanistic_saddled.png");
 	private static final ResourceLocation CHESTED_MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/melanistic_chested.png");
 	private static final ResourceLocation SADDLED_CHESTED_MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/melanistic_saddled_chested.png");
@@ -57,27 +57,32 @@ public class TriceratopsRenderer extends MobRenderer<TriceratopsEntity, EntityMo
 	
 	@Override
 	public ResourceLocation getEntityTexture(TriceratopsEntity entity) {
-		if (entity.hasChest() && !entity.isHorseSaddled() && entity.isAlbino()) {
-			return CHESTED_ALBINO;
-		} else if (!entity.hasChest() && !entity.isHorseSaddled() && entity.isAlbino()) {
-			return ALBINO;
-		} else if (!entity.hasChest() && entity.isHorseSaddled() && entity.isAlbino()) {
-			return SADDLED_ALBINO;
-		} else if (entity.hasChest() && entity.isHorseSaddled() && entity.isAlbino()) {
-			return SADDLED_CHESTED_ALBINO;
-		} else if (entity.isChild() && entity.isAlbino()) {
-			return BABY_ALBINO;
-		} else if (entity.hasChest() && !entity.isHorseSaddled() && entity.isMelanistic()) {
-			return CHESTED_MELANISTIC;
-		} else if (!entity.hasChest() && !entity.isHorseSaddled() && entity.isMelanistic()) {
-			return MELANISTIC;
-		} else if (!entity.hasChest() && entity.isHorseSaddled() && entity.isMelanistic()) {
-			return SADDLED_MELANISTIC;
-		} else if (entity.hasChest() && entity.isHorseSaddled() && entity.isMelanistic()) {
-			return SADDLED_CHESTED_MELANISTIC;
-		} else if (entity.isChild() && entity.isMelanistic()) {
-			return BABY_MELANISTIC;
-		} else if(entity.isChild() && !entity.isJuvenile()) {
+		if (entity.isAlbino()) {
+			if (entity.isChild()) {
+				return BABY_ALBINO;
+			} else if (entity.hasChest() && !entity.isHorseSaddled()) {
+				return CHESTED_ALBINO;
+			} else if (entity.isHorseSaddled() && !entity.hasChest()) {
+				return SADDLED_ALBINO;
+			} else if (entity.isHorseSaddled() && entity.hasChest()) {
+				return SADDLED_CHESTED_ALBINO;
+			} else {
+				return ALBINO;
+			}
+		} else if (entity.isMelanistic()) {
+			if (entity.isChild()) {
+				return BABY_MELANISTIC;
+			} else if (entity.hasChest() && !entity.isHorseSaddled()) {
+				return CHESTED_MELANISTIC;
+			} else if (entity.isHorseSaddled() && !entity.hasChest()) {
+				return SADDLED_MELANISTIC;
+			} else if (entity.isHorseSaddled() && entity.hasChest()) {
+				return SADDLED_CHESTED_MELANISTIC;
+			} else {
+				return MELANISTIC;
+			}
+		}
+		if(entity.isChild() && !entity.isJuvenile()) {
 			return BABY_TRICERATOPS;
 		} else if (entity.isJuvenile()) {
 			return JUVENILE_TRICERATOPS;

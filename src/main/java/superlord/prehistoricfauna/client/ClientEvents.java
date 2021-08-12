@@ -86,7 +86,7 @@ public class ClientEvents {
 		ItemColors itemcolors = Minecraft.getInstance().getItemColors();
 		blockcolors.register((p_228064_0_, p_228064_1_, p_228064_2_, p_228064_3_) -> {
 			return p_228064_1_ != null && p_228064_2_ != null ? BiomeColors.getGrassColor(p_228064_1_, p_228064_2_) : GrassColors.get(0.5D, 1.0D);
-		}, PFBlocks.CONIOPTERIS, PFBlocks.CLADOPHLEBIS, PFBlocks.POTTED_CLADOPHLEBIS);
+		}, PFBlocks.CONIOPTERIS);
 		blockcolors.register((p_228061_0_, p_228061_1_, p_228061_2_, p_228061_3_) -> {
 			return p_228061_1_ != null && p_228061_2_ != null ? BiomeColors.getFoliageColor(p_228061_1_, p_228061_2_) : FoliageColors.getDefault();
 		}, PFBlocks.METASEQUOIA_LEAVES, PFBlocks.PROTOPICEOXYLON_LEAVES, PFBlocks.PROTOJUNIPEROXYLON_LEAVES, PFBlocks.METASEQUOIA_LEAF_CARPET.get(), PFBlocks.PROTOPICEOXYLON_LEAF_CARPET.get(), PFBlocks.PROTOJUNIPEROXYLON_LEAF_CARPET.get());

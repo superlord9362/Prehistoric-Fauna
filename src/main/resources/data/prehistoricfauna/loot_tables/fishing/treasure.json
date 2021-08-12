@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:small_ammonite_fossil"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:medium_ammonite_fossil"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:ancient_journal_page"
+        }
+      ]
+    }
+  ]
+}
