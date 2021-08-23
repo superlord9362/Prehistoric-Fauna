@@ -3,6 +3,7 @@ package superlord.prehistoricfauna.world.biome.jurassic;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.Category;
 import net.minecraft.world.biome.BiomeAmbience;
 import net.minecraft.world.biome.BiomeGenerationSettings;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
@@ -23,7 +24,7 @@ public class MorrisonSavannahBiome extends PFBiome {
 
 	static final ConfiguredSurfaceBuilder<?> SURFACE_BUILDER = WorldGenRegistrationHelper.createConfiguredSurfaceBuilder("morrison_savannah_sb", new ConfiguredSurfaceBuilder<>(PFSurfaceBuilders.MORRISON_SAVANNA, new SurfaceBuilderConfig(PFBlocks.HARDENED_SILT.getDefaultState(), PFBlocks.HARDENED_SILT.getDefaultState(), Blocks.CLAY.getDefaultState())));
 	static final Biome.RainType PRECIPATATION = Biome.RainType.NONE;
-	static final Biome.Category CATEGORY = Biome.Category.SAVANNA;
+	static final Biome.Category CATEGORY = Category.NONE;
 	static final float TEMPERATURE = 1F;
 	static final float DOWNFALL = 0.2F;
 	static final int WATER_COLOR = 4159204;
@@ -68,6 +69,8 @@ public class MorrisonSavannahBiome extends PFBiome {
 		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.HESPERORNITHOIDES_ENTITY, PrehistoricFaunaConfig.hesperornithoidesSpawnWeight, 2, 3));
 		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.EILENODON_ENTITY, PrehistoricFaunaConfig.eilenodonSpawnWeight, 1, 2));
 		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.CAMARASAURUS_ENTITY, PrehistoricFaunaConfig.camarasaurusSpawnWeight, 2, 4));
+		GENERATION_SETTINGS.withStructure(PFConfiguredFeatures.MORRISON_HUT);
+		GENERATION_SETTINGS.withStructure(PFConfiguredFeatures.PORTAL_CHAMBER);
 		DefaultBiomeFeatures.withOverworldOres(GENERATION_SETTINGS);
 		DefaultBiomeFeatures.withCavesAndCanyons(GENERATION_SETTINGS);
 		DefaultBiomeFeatures.withCommonOverworldBlocks(GENERATION_SETTINGS);

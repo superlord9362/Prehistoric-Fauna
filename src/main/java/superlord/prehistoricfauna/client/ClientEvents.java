@@ -70,18 +70,21 @@ import superlord.prehistoricfauna.client.render.tileentity.PFSignTileEntityRende
 import superlord.prehistoricfauna.client.render.tileentity.gui.PaleontologyTableScreen;
 import superlord.prehistoricfauna.client.render.tileentity.gui.PaleoscribeScreen;
 import superlord.prehistoricfauna.common.util.PFWoodTypes;
+import superlord.prehistoricfauna.compat.PFChestTileEntityRenderer;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFContainers;
 import superlord.prehistoricfauna.init.PFEntities;
+import superlord.prehistoricfauna.init.PFKeybinds;
 import superlord.prehistoricfauna.init.PFTileEntities;
 
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientEvents {
-
+		
 	@SuppressWarnings("unchecked")
 	@SubscribeEvent
 	public static void clientSetup(FMLClientSetupEvent event) {
+		PFKeybinds.register(event);
 		BlockColors blockcolors = Minecraft.getInstance().getBlockColors();
 		ItemColors itemcolors = Minecraft.getInstance().getItemColors();
 		blockcolors.register((p_228064_0_, p_228064_1_, p_228064_2_, p_228064_3_) -> {
@@ -92,14 +95,14 @@ public class ClientEvents {
 		}, PFBlocks.METASEQUOIA_LEAVES, PFBlocks.PROTOPICEOXYLON_LEAVES, PFBlocks.PROTOJUNIPEROXYLON_LEAVES, PFBlocks.METASEQUOIA_LEAF_CARPET.get(), PFBlocks.PROTOPICEOXYLON_LEAF_CARPET.get(), PFBlocks.PROTOJUNIPEROXYLON_LEAF_CARPET.get());
 		blockcolors.register((p_228063_0_, p_228063_1_, p_228063_2_, p_228063_3_) -> {
 			return 0x45AF45;
-		}, PFBlocks.ARAUCARIA_LEAVES, PFBlocks.ARAUCARIA_LEAF_CARPET.get());
+		}, PFBlocks.ARAUCARIA_LEAVES, PFBlocks.ARAUCARIA_LEAF_CARPET.get(), PFBlocks.ARAUCARIA_HEDGE.get());
 		blockcolors.register((state, reader, pos, color) -> {
 			return reader != null && pos != null ? BiomeColors.getFoliageColor(reader, pos) : FoliageColors.getDefault();
-		}, PFBlocks.ARAUCARIA_LEAVES, PFBlocks.METASEQUOIA_LEAVES, PFBlocks.CONIOPTERIS, PFBlocks.PROTOPICEOXYLON_LEAVES, PFBlocks.PROTOJUNIPEROXYLON_LEAVES, PFBlocks.CLADOPHLEBIS, PFBlocks.ARAUCARIA_LEAF_CARPET.get(), PFBlocks.METASEQUOIA_LEAF_CARPET.get(), PFBlocks.PROTOPICEOXYLON_LEAF_CARPET.get(), PFBlocks.PROTOJUNIPEROXYLON_LEAF_CARPET.get());
+		}, PFBlocks.ARAUCARIA_LEAVES, PFBlocks.METASEQUOIA_LEAVES, PFBlocks.CONIOPTERIS, PFBlocks.PROTOPICEOXYLON_LEAVES, PFBlocks.PROTOJUNIPEROXYLON_LEAVES, PFBlocks.CLADOPHLEBIS, PFBlocks.ARAUCARIA_LEAF_CARPET.get(), PFBlocks.METASEQUOIA_LEAF_CARPET.get(), PFBlocks.PROTOPICEOXYLON_LEAF_CARPET.get(), PFBlocks.PROTOJUNIPEROXYLON_LEAF_CARPET.get(), PFBlocks.METASEQUOIA_HEDGE.get(), PFBlocks.PROTOPICEOXYLON_HEDGE.get(), PFBlocks.LIRIODENDRITES_HEDGE.get(), PFBlocks.PROTOJUNIPEROXYLON_HEDGE.get(), PFBlocks.HEIDIPHYLLUM_HEDGE.get());
 		itemcolors.register((p_210235_1_, p_210235_2_) -> {
 			BlockState blockstate = ((BlockItem) p_210235_1_.getItem()).getBlock().getDefaultState();
 			return blockcolors.getColor(blockstate, (IBlockDisplayReader) null, (BlockPos) null, p_210235_2_);
-		}, PFBlocks.ARAUCARIA_LEAVES, PFBlocks.METASEQUOIA_LEAVES, PFBlocks.CONIOPTERIS, PFBlocks.PROTOPICEOXYLON_LEAVES, PFBlocks.PROTOJUNIPEROXYLON_LEAVES, PFBlocks.CLADOPHLEBIS, PFBlocks.ARAUCARIA_LEAF_CARPET.get(), PFBlocks.METASEQUOIA_LEAF_CARPET.get(), PFBlocks.PROTOPICEOXYLON_LEAF_CARPET.get(), PFBlocks.PROTOJUNIPEROXYLON_LEAF_CARPET.get());
+		}, PFBlocks.ARAUCARIA_LEAVES, PFBlocks.METASEQUOIA_LEAVES, PFBlocks.CONIOPTERIS, PFBlocks.PROTOPICEOXYLON_LEAVES, PFBlocks.PROTOJUNIPEROXYLON_LEAVES, PFBlocks.CLADOPHLEBIS, PFBlocks.ARAUCARIA_LEAF_CARPET.get(), PFBlocks.METASEQUOIA_LEAF_CARPET.get(), PFBlocks.PROTOPICEOXYLON_LEAF_CARPET.get(), PFBlocks.PROTOJUNIPEROXYLON_LEAF_CARPET.get(), PFBlocks.METASEQUOIA_HEDGE.get(), PFBlocks.PROTOPICEOXYLON_HEDGE.get(), PFBlocks.LIRIODENDRITES_HEDGE.get(), PFBlocks.PROTOJUNIPEROXYLON_HEDGE.get(), PFBlocks.HEIDIPHYLLUM_HEDGE.get(), PFBlocks.ARAUCARIA_HEDGE.get());
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.THESCELOSAURUS_ENTITY, ThescelosaurusRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.TRICERATOPS_ENTITY, manager -> new TriceratopsRenderer());
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.ANKYLOSAURUS_ENTITY, AnkylosaurusRenderer::new);
@@ -113,7 +116,7 @@ public class ClientEvents {
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.HESPERORNITHOIDES_ENTITY, manager -> new HesperornithoidesRenderer());
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.EILENODON_ENTITY, manager -> new EilenodonRenderer());
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.CAMARASAURUS_ENTITY, manager -> new CamarasaurusRenderer());
-		RenderingRegistry.registerEntityRenderingHandler(PFEntities.DIDELPHODON_ENTITY, manager -> new DidelphodonRenderer());
+		RenderingRegistry.registerEntityRenderingHandler(PFEntities.DIDELPHODON_ENTITY, DidelphodonRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.BOAT, PrehistoricBoatRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.EXAERETODON_ENTITY, manager -> new ExaeretodonRenderer());
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.CHROMOGISAURUS_ENTITY, manager -> new ChromogisaurusRenderer());
@@ -145,6 +148,8 @@ public class ClientEvents {
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.PALEOPAINTING, PaleopaintingRenderer::new);
 		ScreenManager.registerFactory(PFContainers.PALEONTOLOGY_TABLE.get(), PaleontologyTableScreen::new);
 		ScreenManager.registerFactory(PFContainers.PALEOSCRIBE_CONTAINER, PaleoscribeScreen::new);
+		ClientRegistry.bindTileEntityRenderer(PFTileEntities.CHEST.get(), PFChestTileEntityRenderer::new);
+		ClientRegistry.bindTileEntityRenderer(PFTileEntities.TRAPPED_CHEST.get(), PFChestTileEntityRenderer::new);
 	}
 
 	@SubscribeEvent

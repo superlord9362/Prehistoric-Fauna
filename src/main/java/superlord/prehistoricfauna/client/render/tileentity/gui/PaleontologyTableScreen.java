@@ -37,9 +37,6 @@ public class PaleontologyTableScreen extends ContainerScreen<PaleontologyTableCo
 	@Override
 	protected void drawGuiContainerForegroundLayer(MatrixStack matrixStack, int mouseX, int mouseY) {
 		super.drawGuiContainerForegroundLayer(matrixStack, mouseX, mouseY);
-		String s = this.title.getString();
-		this.font.drawString(matrixStack, s, (float) (this.xSize / 2 - this.font.getStringWidth(s) / 2), 6.0F, 4210752);
-		this.font.drawString(matrixStack, this.playerInventory.getDisplayName().getString(), 8.0f, 69.0f, 0x404040);
 	}
 
 	@SuppressWarnings("deprecation")

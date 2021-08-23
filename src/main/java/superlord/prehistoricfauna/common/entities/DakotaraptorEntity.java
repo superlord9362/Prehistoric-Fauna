@@ -139,7 +139,7 @@ public class DakotaraptorEntity extends DinosaurEntity {
 	}
 
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == PFItems.RAW_THESCELOSAURUS_MEAT.get();
+		return stack.getItem() == PFItems.RAW_SMALL_ORNITHISCHIAN_MEAT.get();
 	}
 
 	protected PathNavigator createNavigator(World worldIn) {

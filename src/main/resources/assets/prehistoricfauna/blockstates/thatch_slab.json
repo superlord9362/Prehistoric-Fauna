@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "prehistoricfauna:block/thatch_slab" },
+        "type=top": { "model": "prehistoricfauna:block/thatch_slab_top" },
+        "type=double": { "model": "prehistoricfauna:block/thatch" }
+    }
+}

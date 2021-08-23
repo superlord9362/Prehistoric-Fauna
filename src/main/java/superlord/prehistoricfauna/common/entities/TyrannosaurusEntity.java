@@ -43,6 +43,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
@@ -58,6 +59,7 @@ import net.minecraft.world.server.ServerWorld;
 import superlord.prehistoricfauna.common.blocks.TyrannosaurusEggBlock;
 import superlord.prehistoricfauna.common.entities.goal.HuntGoal;
 import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFEffects;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.SoundInit;
@@ -118,7 +120,7 @@ public class TyrannosaurusEntity extends DinosaurEntity {
 	}
 
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == PFItems.RAW_TRICERATOPS_MEAT.get();
+		return stack.getItem() == PFItems.RAW_LARGE_MARGINOCEPHALIAN_MEAT.get();
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -229,6 +231,7 @@ public class TyrannosaurusEntity extends DinosaurEntity {
 		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
 		if (flag) {
 			this.applyEnchantments(this, entityIn);
+			((LivingEntity)entityIn).addPotionEffect(new EffectInstance(PFEffects.BLEEDING.get(), 300, 0, true, false));
 		}
 
 		return flag;

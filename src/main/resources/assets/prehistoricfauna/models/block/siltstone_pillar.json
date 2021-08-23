@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "prehistoricfauna:blocks/siltstone_pillar_top",
+        "side": "prehistoricfauna:blocks/siltstone_pillar"
+    }
+}

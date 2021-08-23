@@ -1,12 +1,8 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "group": "red_dye",
-  "ingredients": [
-    {
-      "item": "prehistoricfauna:scytophyllum"
-    }
-  ],
-  "result": {
-    "item": "minecraft:red_dye"
-  }
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "prehistoricfauna:scytophyllum"
+  },
+  "result": "minecraft:red_dye",
+  "cookingtime": 200
 }

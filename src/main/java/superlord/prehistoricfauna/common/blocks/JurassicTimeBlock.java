@@ -9,6 +9,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import superlord.prehistoricfauna.init.PFBlocks;
 
 public class JurassicTimeBlock extends Block {
 
@@ -32,11 +33,11 @@ public class JurassicTimeBlock extends Block {
 
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean isMoving) {
 		if (oldState.getBlock() != state.getBlock()) {
-			/**if (!BlockInit.JURASSIC_PORTAL.get().tryToCreatePortal(world, pos)) {
+			if (!PFBlocks.JURASSIC_PORTAL.get().tryToCreatePortal(world, pos)) {
 				if (!state.isValidPosition(world, pos)) {
 					world.removeBlock(pos, false);
 				}
-			}*/
+			}
 		}
 	}
 

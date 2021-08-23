@@ -9,10 +9,10 @@ import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.Dakotaraptor;
-import superlord.prehistoricfauna.client.model.DakotaraptorCrouching;
-import superlord.prehistoricfauna.client.model.DakotaraptorSitting;
-import superlord.prehistoricfauna.client.model.DakotaraptorSleeping;
+import superlord.prehistoricfauna.client.model.DakotaraptorCrouchingModel;
+import superlord.prehistoricfauna.client.model.DakotaraptorModel;
+import superlord.prehistoricfauna.client.model.DakotaraptorSittingModel;
+import superlord.prehistoricfauna.client.model.DakotaraptorSleepingModel;
 import superlord.prehistoricfauna.common.entities.DakotaraptorEntity;
 
 public class DakotaraptorRenderer extends MobRenderer<DakotaraptorEntity, EntityModel<DakotaraptorEntity>> {
@@ -22,7 +22,7 @@ public class DakotaraptorRenderer extends MobRenderer<DakotaraptorEntity, Entity
 	private static final ResourceLocation CHILD_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/dakotaraptor_child_sleeping.png");
 	private static final ResourceLocation CHILD = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/dakotaraptor_child.png");
 	private static final ResourceLocation MAN = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/dakotaraptor_man.png");
-	private static final ResourceLocation SLEEPING_MAN = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/dakotaraptor/entities/dakotaraptor_man_sleeping.png");
+	private static final ResourceLocation SLEEPING_MAN = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/dakotaraptor_man_sleeping.png");
 	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/albino.png");
 	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/albino_sleeping.png");
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/melanistic.png");
@@ -32,10 +32,10 @@ public class DakotaraptorRenderer extends MobRenderer<DakotaraptorEntity, Entity
 	private static final ResourceLocation MELANISTIC_MAN = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/melanistic_man.png");
 	private static final ResourceLocation MELANISTIC_MAN_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/melanistic_man_sleeping.png");
 
-	private static final Dakotaraptor DAKOTARAPTOR_MODEL = new Dakotaraptor();
-	private static final DakotaraptorSitting DAKOTARAPTOR_SITTING_MODEL = new DakotaraptorSitting();
-	private static final DakotaraptorSleeping DAKOTARAPTOR_SLEEPING_MODEL = new DakotaraptorSleeping();
-	private static final DakotaraptorCrouching DAKOTARAPTOR_CROUCHING_MODEL = new DakotaraptorCrouching();
+	private static final DakotaraptorModel DAKOTARAPTOR_MODEL = new DakotaraptorModel();
+	private static final DakotaraptorSittingModel DAKOTARAPTOR_SITTING_MODEL = new DakotaraptorSittingModel();
+	private static final DakotaraptorSleepingModel DAKOTARAPTOR_SLEEPING_MODEL = new DakotaraptorSleepingModel();
+	private static final DakotaraptorCrouchingModel DAKOTARAPTOR_CROUCHING_MODEL = new DakotaraptorCrouchingModel();
 
 	public DakotaraptorRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), DAKOTARAPTOR_MODEL, 0.875F);

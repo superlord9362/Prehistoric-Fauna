@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.Hyperodapedon;
+import superlord.prehistoricfauna.client.model.HyperodapedonModel;
 import superlord.prehistoricfauna.common.entities.HyperodapedonEntity;
 
 public class HyperodapedonRenderer extends MobRenderer<HyperodapedonEntity, EntityModel<HyperodapedonEntity>> {
@@ -16,7 +16,7 @@ public class HyperodapedonRenderer extends MobRenderer<HyperodapedonEntity, Enti
 	private static final ResourceLocation HYPERODAPEDON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hyperodapedon/hyperodapedon.png");
 	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hyperodapedon/albino.png");
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hyperodapedon/melanistic.png");
-	private static final Hyperodapedon HYPERODAPEDON_MODEL = new Hyperodapedon();
+	private static final HyperodapedonModel HYPERODAPEDON_MODEL = new HyperodapedonModel();
 
 	public HyperodapedonRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), HYPERODAPEDON_MODEL, 0.325F);

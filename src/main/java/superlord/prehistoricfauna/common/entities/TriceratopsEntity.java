@@ -11,6 +11,7 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.passive.horse.AbstractChestedHorseEntity;
+import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
@@ -56,6 +57,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 	public float ridingXZ;
 	public float ridingY = 1;
 	private boolean allowStandSliding;
+	public int attackTick;
 
 	public TriceratopsEntity(EntityType<? extends TriceratopsEntity> type, World worldIn) {
 		super(type, worldIn);
@@ -215,6 +217,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 		compound.putBoolean("HasEgg", this.hasEgg());
 		compound.putBoolean("IsAlbino", this.isAlbino());
 		compound.putBoolean("IsMelanistic", this.isMelanistic());
+		compound.putInt("AttackTick", this.attackTick);
 	}
 
 	public void readAdditional(CompoundNBT compound) {
@@ -222,8 +225,9 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 		this.setHasEgg(compound.getBoolean("HasEgg"));
 		this.setAlbino(compound.getBoolean("IsAlbino"));
 		this.setMelanistic(compound.getBoolean("IsMelanistic"));
+		this.attackTick = compound.getInt("AttackTick");
 	}
-	
+
 	@Nullable
 	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		Random rand = new Random();
@@ -243,6 +247,16 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 		super.tick();
 		if (this.warningSoundTicks > 0) {
 			--this.warningSoundTicks;
+		}
+	}
+
+	@Override
+	public void livingTick() {
+		super.livingTick();
+		if (this.isAlive()) {
+			if (this.attackTick > 0) {
+				--this.attackTick;
+			}
 		}
 	}
 
@@ -297,7 +311,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 				}
 
 				if (this.jumpPower > 0.0F && !this.isHorseJumping() && this.onGround) {
-					double d0 = this.getHorseJumpStrength() * (double)this.jumpPower * (double)this.getJumpFactor();
+					double d0 = 0;
 					double d1;
 					if (this.isPotionActive(Effects.JUMP_BOOST)) {
 						d1 = d0 + (double)((float)(this.getActivePotionEffect(Effects.JUMP_BOOST).getAmplifier() + 1) * 0.1F);
@@ -314,7 +328,6 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 						float f2 = MathHelper.sin(this.rotationYaw * ((float)Math.PI / 180F));
 						float f3 = MathHelper.cos(this.rotationYaw * ((float)Math.PI / 180F));
 						this.setMotion(this.getMotion().add((double)(-0.4F * f2 * this.jumpPower), 0.0D, (double)(0.4F * f3 * this.jumpPower)));
-						this.playJumpSound();
 					}
 
 					this.jumpPower = 0.0F;
@@ -348,6 +361,14 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 		return flag;
 	}	
 
+	@Override
+	protected void setOffspringAttributes(AgeableEntity p_190681_1_, AbstractHorseEntity p_190681_2_) {
+		double d0 = this.getBaseAttributeValue(Attributes.MAX_HEALTH);
+		p_190681_2_.getAttribute(Attributes.MAX_HEALTH).setBaseValue(d0);
+		double d2 = this.getBaseAttributeValue(Attributes.MOVEMENT_SPEED);
+		p_190681_2_.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(d2);
+	}
+
 	class AttackPlayerGoal extends NearestAttackableTargetGoal<PlayerEntity> {
 		public AttackPlayerGoal() {
 			super(TriceratopsEntity.this, PlayerEntity.class, 20, true, true, (Predicate<LivingEntity>)null);
@@ -376,6 +397,11 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 		protected double getTargetDistance() {
 			return super.getTargetDistance() * 0.5D;
 		}
+	}
+
+	@Override
+	protected float getModifiedMaxHealth() {
+		return this.getMaxHealth();
 	}
 
 	class HurtByTargetGoal extends net.minecraft.entity.ai.goal.HurtByTargetGoal {

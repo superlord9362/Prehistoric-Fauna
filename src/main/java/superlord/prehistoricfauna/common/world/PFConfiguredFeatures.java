@@ -11,6 +11,7 @@ import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.blockplacer.DoublePlantBlockPlacer;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
+import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.BlockClusterFeatureConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
@@ -20,19 +21,26 @@ import net.minecraft.world.gen.feature.FeatureSpread;
 import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.MultipleRandomFeatureConfig;
+import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.TwoLayerFeature;
+import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
+import net.minecraft.world.gen.placement.DepthAverageConfig;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.placement.TopSolidRangeConfig;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFDecorators;
+import superlord.prehistoricfauna.init.PFStructures;
 import superlord.prehistoricfauna.world.feature.config.CrassostreaOystersConfig;
 import superlord.prehistoricfauna.world.feature.config.JohnstoniaConfig;
+import superlord.prehistoricfauna.world.feature.config.NoisySphereConfig;
 import superlord.prehistoricfauna.world.feature.config.PFTreeConfig;
 import superlord.prehistoricfauna.world.feature.trees.zamites.ZamitesBush;
 
@@ -74,6 +82,9 @@ public class PFConfiguredFeatures {
 
 	public static final ConfiguredFeature<?, ?> PETRIFIED_TREE = createConfiguredFeature("petrified_tree", Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.PETRIFIED_WOOD.getDefaultState()), new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()), new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3), new StraightTrunkPlacer(4, 2, 0), new TwoLayerFeature(1, 0, 1))).setIgnoreVines().build()).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242731_b(5));
 
+	public static final ConfiguredFeature<?, ?> FOSSILIZED_CHALK = createConfiguredFeature("fossilized_chalk", PFFeatures.NOISY_SPHERE.withConfiguration(new NoisySphereConfig.Builder().setBlock(new WeightedBlockStateProvider().addWeightedBlockstate(PFBlocks.CHALK.getDefaultState(), PrehistoricFaunaConfig.baseStoneWeight).addWeightedBlockstate(PFBlocks.CHALK_FOSSIL.getDefaultState(), PrehistoricFaunaConfig.fossilWeight)).setMinRadius(4).setMaxRadius(10).setMinYRadius(3).setMaxYRadius(8).build()).withPlacement(Placement.DEPTH_AVERAGE.configure(new DepthAverageConfig(47, 5))).square().func_242731_b(1));
+	public static final ConfiguredFeature<?, ?> FOSSILIZED_SILTSTONE = createConfiguredFeature("fossilized_siltstone", PFFeatures.NOISY_SPHERE.withConfiguration(new NoisySphereConfig.Builder().setBlock(new WeightedBlockStateProvider().addWeightedBlockstate(PFBlocks.SILTSTONE.getDefaultState(), PrehistoricFaunaConfig.baseStoneWeight).addWeightedBlockstate(PFBlocks.SILTSTONE_FOSSIL.getDefaultState(), PrehistoricFaunaConfig.fossilWeight)).setMinRadius(4).setMaxRadius(10).setMinYRadius(3).setMaxYRadius(8).build()).withPlacement(Placement.DEPTH_AVERAGE.configure(new DepthAverageConfig(42, 5))).square().func_242731_b(1));
+	public static final ConfiguredFeature<?, ?> FOSSILIZED_SANDSTONE = createConfiguredFeature("fossilized_sandstone", PFFeatures.NOISY_SPHERE.withConfiguration(new NoisySphereConfig.Builder().setBlock(new WeightedBlockStateProvider().addWeightedBlockstate(PFBlocks.SANDSTONE.getDefaultState(), PrehistoricFaunaConfig.baseStoneWeight).addWeightedBlockstate(PFBlocks.SANDSTONE_FOSSIL.getDefaultState(), PrehistoricFaunaConfig.fossilWeight)).setMinRadius(4).setMaxRadius(10).setMinYRadius(3).setMaxYRadius(8).build()).withPlacement(Placement.DEPTH_AVERAGE.configure(new DepthAverageConfig(37, 5))).square().func_242731_b(1));
 
 	//Hell Creek
 	public static final ConfiguredFeature<?, ?> MARCHANTIA = createConfiguredFeature("marchantia", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.MARCHANTIA.getDefaultState()), new SimpleBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(5)).func_242731_b(5));
@@ -109,6 +120,20 @@ public class PFConfiguredFeatures {
 	public static final ConfiguredFeature<?, ?> SPARSE_JOHNSTONIA = createConfiguredFeature("sparse_johnstonia", PFFeatures.JOHNSTONIA_FEATURE.withConfiguration(new JohnstoniaConfig(1)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 	public static final ConfiguredFeature<?, ?> SPARSE_DICROIDIUM = createConfiguredFeature("sparse_dicroidium", PFFeatures.DICROIDIUM_FEATURE.withConfiguration(new JohnstoniaConfig(1)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 
+
+	public static final StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> HELL_CREEK_HUT = register("hell_creek_hut", PFStructures.HELL_CREEK_HUT.get().withConfiguration(NoFeatureConfig.field_236559_b_));
+	public static final StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> MORRISON_HUT = register("morrison_hut", PFStructures.MORRISON_HUT.get().withConfiguration(NoFeatureConfig.field_236559_b_));
+	public static final StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> ISCHIGUALASTO_HUT = register("ischigualasto_hut", PFStructures.ISCHIGUALASTO_HUT.get().withConfiguration(NoFeatureConfig.field_236559_b_));
+	public static final StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> PORTAL_CHAMBER = register("portal_chamber", PFStructures.PORTAL_CHAMBER.get().withConfiguration(NoFeatureConfig.field_236559_b_));
+
+	private static <FC extends IFeatureConfig, F extends Structure<FC>> StructureFeature<FC, F> register(String name, StructureFeature<FC, F> structure) {
+		ResourceLocation pfID = new ResourceLocation(PrehistoricFauna.MOD_ID, name);
+		if (WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE.keySet().contains(pfID))
+			throw new IllegalStateException("Configured Feature ID: \"" + pfID.toString() + "\" already exists in the Configured Features registry!");
+
+		Registry.register(WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE, pfID, structure);
+		return structure;
+	}
 
 	//public static final ConfiguredFeature<?, ?> ALGAE = createConfiguredFeature("algae", PFFeatures.ALGAE_FEATURE.withConfiguration(new CrassostreaOystersConfig(24)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 	//public static final ConfiguredFeature<?, ?> CRASSOSTREA_OYSTERS = createConfiguredFeature("crassostrea_oysters", PFFeatures.CRASSOSTREA_OYSTERS_FEATURE.withConfiguration(new CrassostreaOystersConfig(24)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));

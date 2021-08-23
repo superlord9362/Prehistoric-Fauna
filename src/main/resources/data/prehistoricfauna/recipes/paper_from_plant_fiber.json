@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+	"#": {
+		"item": "prehistoricfauna:plant_fiber"
+	}
+  },
+  "result": {
+    "item": "minecraft:paper",
+    "count": 3
+  }
+}

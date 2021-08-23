@@ -8,19 +8,19 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.TriceratopsSkeleton;
-import superlord.prehistoricfauna.client.model.TriceratopsSkeletonCharging;
-import superlord.prehistoricfauna.client.model.TriceratopsSkeletonClassical;
-import superlord.prehistoricfauna.client.model.TriceratopsSkeletonSleeping;
+import superlord.prehistoricfauna.client.model.TriceratopsSkeletonChargingModel;
+import superlord.prehistoricfauna.client.model.TriceratopsSkeletonClassicalModel;
+import superlord.prehistoricfauna.client.model.TriceratopsSkeletonModel;
+import superlord.prehistoricfauna.client.model.TriceratopsSkeletonSleepingModel;
 import superlord.prehistoricfauna.common.entities.TriceratopsSkeletonEntity;
 
 public class TriceratopsSkeletonRenderer extends MobRenderer<TriceratopsSkeletonEntity, EntityModel<TriceratopsSkeletonEntity>> {
 
 	private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/triceratops_skeleton.png");
-	private static final TriceratopsSkeleton IDLE = new TriceratopsSkeleton();
-	private static final TriceratopsSkeletonCharging CHARGING = new TriceratopsSkeletonCharging();
-	private static final TriceratopsSkeletonSleeping SLEEPING = new TriceratopsSkeletonSleeping();
-	private static final TriceratopsSkeletonClassical CLASSICAL = new TriceratopsSkeletonClassical();
+	private static final TriceratopsSkeletonModel IDLE = new TriceratopsSkeletonModel();
+	private static final TriceratopsSkeletonChargingModel CHARGING = new TriceratopsSkeletonChargingModel();
+	private static final TriceratopsSkeletonSleepingModel SLEEPING = new TriceratopsSkeletonSleepingModel();
+	private static final TriceratopsSkeletonClassicalModel CLASSICAL = new TriceratopsSkeletonClassicalModel();
 
 	public TriceratopsSkeletonRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), IDLE, 1.25F);

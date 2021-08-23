@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  S",
+    " S#",
+	"S #"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:thatch"
+    },
+	"S": {
+		"item": "minecraft:stick"
+	}
+  },
+  "result": {
+    "item": "minecraft:fishing_rod"
+  }
+}

@@ -1,5 +1,7 @@
 package superlord.prehistoricfauna.common.entities;
 
+import java.util.EnumSet;
+import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
 
@@ -20,6 +22,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.BreedGoal;
 import net.minecraft.entity.ai.goal.FollowParentGoal;
+import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
@@ -28,13 +31,19 @@ import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootContext;
+import net.minecraft.loot.LootParameterSets;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -45,6 +54,8 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.Tags;
+import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.blocks.AnkylosaurusEggBlock;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
@@ -128,6 +139,7 @@ public class AnkylosaurusEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+		this.goalSelector.addGoal(6, new DiggingGoal(this));
 		this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
 		this.targetSelector.addGoal(1, new AnkylosaurusEntity.HurtByTargetGoal());
 		this.targetSelector.addGoal(2, new AnkylosaurusEntity.AttackPlayerGoal());
@@ -450,6 +462,81 @@ public class AnkylosaurusEntity extends DinosaurEntity {
 	public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
 		AnkylosaurusEntity entity = new AnkylosaurusEntity(PFEntities.ANKYLOSAURUS_ENTITY, this.world);
 		entity.onInitialSpawn(p_241840_1_, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
-		return entity;	}
+		return entity;
+	}
+	
+	static class DiggingGoal extends Goal {
+		private static final ResourceLocation DIGGING_LOOT = new ResourceLocation(PrehistoricFauna.MOD_ID, "entities/ankylosaurus_digging");
+		
+		private final AnkylosaurusEntity ankylosaurus;
+		private int diggingTimer;
+		private int digTimer2;
+		
+		public DiggingGoal(AnkylosaurusEntity entity) {
+			this.ankylosaurus = entity;
+			setMutexFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK, Goal.Flag.JUMP));
+		}
+		
+		@Override
+		public boolean shouldExecute() {
+			if (digTimer2 > 0) {
+				--digTimer2;
+				return false;
+			}
+			if (ankylosaurus.getRNG().nextInt(ankylosaurus.isChild() ? 100 : 1000) != 0) {
+				return false;
+			} else {
+				BlockPos blockpos = ankylosaurus.getPosition();
+				BlockState state = ankylosaurus.world.getBlockState(blockpos);
+				if (state.isIn(Tags.Blocks.DIRT)) {
+					return true;
+				} else {
+					return ankylosaurus.world.getBlockState(blockpos.down()).isIn(Tags.Blocks.DIRT);
+				}
+			}
+		}
+		
+		@Override
+		public void startExecuting() {
+			diggingTimer = 40;
+			digTimer2 = 6000;
+			ankylosaurus.world.setEntityState(ankylosaurus, (byte) 10);
+			ankylosaurus.getNavigator().clearPath();
+		}
+		
+		@Override
+		public void resetTask() {
+			diggingTimer = 0;
+		}
+		
+		@Override
+		public boolean shouldContinueExecuting() {
+			return diggingTimer > 0;
+		}
+		
+		@Override
+		public void tick() {
+			if (digTimer2 > 0) {
+				--digTimer2;
+			}
+			if (diggingTimer > 0) {
+				--diggingTimer;
+			}
+			if (diggingTimer == 25) {
+				BlockPos blockpos = ankylosaurus.getPosition();
+				BlockPos blockpos1 = blockpos.down();
+				if (ankylosaurus.world.getBlockState(blockpos1).isIn(Tags.Blocks.DIRT)) {
+					BlockState state = ankylosaurus.world.getBlockState(blockpos1);
+					ankylosaurus.world.playEvent(2001, blockpos1, Block.getStateId(state));
+					MinecraftServer server = ankylosaurus.world.getServer();
+					if (server != null) {
+						List<ItemStack> items = server.getLootTableManager().getLootTableFromLocation(DIGGING_LOOT).generate(new LootContext.Builder((ServerWorld) ankylosaurus.world).withRandom(ankylosaurus.getRNG()).build(LootParameterSets.EMPTY));
+						InventoryHelper.dropItems(ankylosaurus.world, blockpos, NonNullList.from(ItemStack.EMPTY, items.toArray(new ItemStack[0])));
+					}
+				}
+			}
+		}
+		
+	}
 
 }

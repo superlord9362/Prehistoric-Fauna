@@ -12,7 +12,6 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
-import net.minecraft.world.gen.settings.StructureSeparationSettings;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,12 +31,16 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.Category;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.FlatChunkGenerator;
+import net.minecraft.world.gen.GenerationStage.Decoration;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
+import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
@@ -45,6 +48,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.common.world.ForgeWorldType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.WorldEvent;
@@ -115,6 +119,7 @@ import superlord.prehistoricfauna.common.entities.TyrannosaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.TyrannosaurusSkullEntity;
 import superlord.prehistoricfauna.common.entities.tile.MessageUpdatePaleoscribe;
 import superlord.prehistoricfauna.common.util.RegistryHelper;
+import superlord.prehistoricfauna.common.world.PFConfiguredFeatures;
 import superlord.prehistoricfauna.common.world.PFFeatures;
 import superlord.prehistoricfauna.common.world.PFSurfaceBuilders;
 import superlord.prehistoricfauna.compat.QuarkFlagRecipeCondition;
@@ -124,13 +129,16 @@ import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFConfiguredStructures;
 import superlord.prehistoricfauna.init.PFContainers;
 import superlord.prehistoricfauna.init.PFDecorators;
+import superlord.prehistoricfauna.init.PFDimensions;
+import superlord.prehistoricfauna.init.PFEffects;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFOverworldBiomes;
 import superlord.prehistoricfauna.init.PFRecipes;
 import superlord.prehistoricfauna.init.PFStructures;
 import superlord.prehistoricfauna.init.PFTileEntities;
-import net.minecraft.world.gen.feature.structure.Structure;
+import superlord.prehistoricfauna.network.message.InputMessage;
+import superlord.prehistoricfauna.world.worldtype.PFWorldType;
 
 @Mod(PrehistoricFauna.MOD_ID)
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID)
@@ -156,17 +164,20 @@ public class PrehistoricFauna {
 		modEventBus.addListener(this::registerCommon);
 		modEventBus.addListener(this::doClientStuff);
 		modEventBus.addListener(this::setup);
+		modEventBus.addListener(this::setupBiomesAndDimensions);
 		CraftingHelper.register(new QuarkFlagRecipeCondition.Serializer());
 		PFRecipes.RECIPES.register(modEventBus);
 		REGISTRY_HELPER.getDeferredBlockRegister().register(modEventBus);
 		REGISTRY_HELPER.getDeferredItemRegister().register(modEventBus);
+		REGISTRY_HELPER.getDeferredTileEntityRegister().register(modEventBus);
 		PFBlocks.REGISTER.register(modEventBus);
 		PFItems.REGISTER.register(modEventBus);
 		PFTileEntities.TILE_ENTITY_TYPES.register(modEventBus);
 		PFContainers.CONTAINER_TYPES.register(modEventBus);
 		PFEntities.ENTITY_TYPES.register(modEventBus);
+		PFDimensions.POI_TYPES.register(modEventBus);
 		PFPacketHandler.registerPackets();
-		PFStructures.REGISTER.register(modEventBus);
+		PFEffects.EFFECTS.register(modEventBus);
 		PROXY.init();
 
 		modLoadingContext.registerConfig(ModConfig.Type.CLIENT, PFConfigHolder.CLIENT_SPEC);
@@ -182,25 +193,29 @@ public class PrehistoricFauna {
 
 	public void setup(final FMLCommonSetupEvent event) {
 		NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageUpdatePaleoscribe.class, MessageUpdatePaleoscribe::write, MessageUpdatePaleoscribe::read, MessageUpdatePaleoscribe.Handler::handle);
+		NETWORK_WRAPPER.registerMessage(packetsRegistered++, InputMessage.class, InputMessage::encode, InputMessage::decode, InputMessage::handle);
 		event.enqueueWork(() -> {
-			PFStructures.setupStructures();
-			PFStructures.registerStructurePieces();
 			PFConfiguredStructures.registerConfiguredStructures();
 			WorldGenRegistries.NOISE_SETTINGS.getEntries().forEach(settings -> {
 				Map<Structure<?>, StructureSeparationSettings> structureMap = settings.getValue().getStructures().func_236195_a_();
 				if (structureMap instanceof ImmutableMap){
 					Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(structureMap);
 					tempMap.put(PFStructures.TIME_TEMPLE.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.TIME_TEMPLE.get()));
+					tempMap.put(PFStructures.GEOLOGIST_CAMP.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.GEOLOGIST_CAMP.get()));
+					tempMap.put(PFStructures.PORTAL_CHAMBER.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.PORTAL_CHAMBER.get()));
+					tempMap.put(PFStructures.HELL_CREEK_HUT.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.HELL_CREEK_HUT.get()));
+					tempMap.put(PFStructures.MORRISON_HUT.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.MORRISON_HUT.get()));
+					tempMap.put(PFStructures.ISCHIGUALASTO_HUT.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.ISCHIGUALASTO_HUT.get()));
 					settings.getValue().getStructures().field_236193_d_ = tempMap;
 				} else {
 					structureMap.put(PFStructures.TIME_TEMPLE.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.TIME_TEMPLE.get()));
+					structureMap.put(PFStructures.GEOLOGIST_CAMP.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.GEOLOGIST_CAMP.get()));
+					structureMap.put(PFStructures.PORTAL_CHAMBER.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.PORTAL_CHAMBER.get()));
+					structureMap.put(PFStructures.HELL_CREEK_HUT.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.HELL_CREEK_HUT.get()));
+					structureMap.put(PFStructures.MORRISON_HUT.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.MORRISON_HUT.get()));
+					structureMap.put(PFStructures.ISCHIGUALASTO_HUT.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.ISCHIGUALASTO_HUT.get()));
 				}
 			});
-			PFBiomes.addBiomeEntries();
-			PFBiomes.fillBiomeDictionary();
-			PFOverworldBiomes.addBiomeEntries();
-			PFOverworldBiomes.fillBiomeDictionary();
-			System.out.println("Added biomes!");
 			MinecraftForge.EVENT_BUS.register(new CommonEvents());
 		});
         EntitySpawnPlacementRegistry.register(PFEntities.ALLOSAURUS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
@@ -226,6 +241,17 @@ public class PrehistoricFauna {
         EntitySpawnPlacementRegistry.register(PFEntities.TYRANNOSAURUS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
         CommonEvents.init();
         CommonEvents.setup();
+	}
+	
+	public void setupBiomesAndDimensions(final FMLCommonSetupEvent event) {
+		event.enqueueWork(() -> {
+			PFBiomes.addBiomeEntries();
+			PFBiomes.fillBiomeDictionary();
+			PFOverworldBiomes.addBiomeEntries();
+			PFDimensions.initDimension();
+			PFOverworldBiomes.fillBiomeDictionary();
+			System.out.println("Added biomes!");
+		});
 	}
 
 	private void doClientStuff(final FMLClientSetupEvent event) {
@@ -275,9 +301,29 @@ public class PrehistoricFauna {
 		GlobalEntityTypeAttributes.put(PFEntities.TYRANNOSAURUS_SKULL, TyrannosaurusSkullEntity.createAttributes().create());
 	}
 	
+	@SuppressWarnings("unlikely-arg-type")
 	public void biomeModification(final BiomeLoadingEvent event) {
-		if (event.getCategory() == Biome.Category.PLAINS || event.getCategory() == Biome.Category.FOREST || event.getCategory() == Biome.Category.DESERT || event.getCategory() == Biome.Category.EXTREME_HILLS || event.getCategory() == Biome.Category.JUNGLE || event.getCategory() == Biome.Category.MESA || event.getCategory() == Biome.Category.MESA || event.getCategory() == Biome.Category.SAVANNA || event.getCategory() == Biome.Category.SWAMP || event.getCategory() == Biome.Category.TAIGA) {
+		String name = event.getName().getPath();
+		if ((event.getCategory() == Biome.Category.PLAINS || event.getCategory() == Biome.Category.FOREST || event.getCategory() == Biome.Category.DESERT || event.getCategory() == Biome.Category.EXTREME_HILLS || event.getCategory() == Biome.Category.JUNGLE || event.getCategory() == Biome.Category.MESA || event.getCategory() == Biome.Category.MESA || event.getCategory() == Biome.Category.SAVANNA || event.getCategory() == Biome.Category.SWAMP || event.getCategory() == Biome.Category.TAIGA) && (!name.equals("hell_creek") || !name.equals("hell_creek_clearing") || !name.equals("hell_creek_hills") || !name.equals(PFBiomes.HELL_CREEK_RIVER.getRegistryName()))) {
 			event.getGeneration().getStructures().add(() -> PFConfiguredStructures.CONFIGURED_TIME_TEMPLE);
+		}
+		if ((event.getCategory() == Biome.Category.PLAINS || event.getCategory() == Biome.Category.FOREST || event.getCategory() == Biome.Category.SAVANNA || event.getCategory() == Biome.Category.TAIGA || event.getCategory() == Biome.Category.EXTREME_HILLS || name.equals("petrified_forest")) && (!name.equals("hell_creek") || !name.equals("hell_creek_clearing") || !name.equals("hell_creek_hills") || !name.equals(PFBiomes.HELL_CREEK_RIVER.getRegistryName()))) {
+			event.getGeneration().getStructures().add(() -> PFConfiguredStructures.CONFIGURED_GEOLOGIST_CAMP);
+		}
+		if (event.getCategory() != Biome.Category.NETHER || event.getCategory() != Biome.Category.THEEND) {
+			event.getGeneration().getStructures().add(() -> PFConfiguredStructures.CONFIGURED_PORTAL_CHAMBER);
+			if (!name.equals("hell_creek") || !name.equals("hell_creek_clearing") || !name.equals("hell_creek_hills") || !name.equals("hell_creek_river") || name.equals("hell_creek") || name.equals("hell_creek_clearing") || name.equals("hell_creek_hills") || name.equals("hell_creek_river") || name.equals("ischigualasto_forest") || name.equals("ischigualasto_clearing") || name.equals("ischigualasto_hills") || name.equals("ischigualasto_river") || name.equals("morrison_hills") || name.equals("morrison_savannah")) {
+				event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(() -> PFConfiguredFeatures.FOSSILIZED_CHALK);
+				event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(() -> PFConfiguredFeatures.FOSSILIZED_SILTSTONE);
+				event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(() -> PFConfiguredFeatures.FOSSILIZED_SANDSTONE);	
+			}
+		}
+		if (name.equals("hell_creek") || name.equals("hell_creek_clearing") || name.equals("hell_creek_hills") || name.equals("hell_creek_river") || event.getCategory() != Biome.Category.NETHER || event.getCategory() != Biome.Category.THEEND) {
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(() -> PFConfiguredFeatures.FOSSILIZED_SILTSTONE);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(() -> PFConfiguredFeatures.FOSSILIZED_SANDSTONE);
+		}
+		if (name.equals("morrison_hills") || name.equals("morrison_savannah") || event.getCategory() != Category.NETHER || event.getCategory() != Category.THEEND) {
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(() -> PFConfiguredFeatures.FOSSILIZED_SANDSTONE);
 		}
 	}
 	
@@ -299,6 +345,10 @@ public class PrehistoricFauna {
 			}
 			Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkProvider().generator.func_235957_b_().func_236195_a_());
 			tempMap.putIfAbsent(PFStructures.TIME_TEMPLE.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.TIME_TEMPLE.get()));
+			tempMap.putIfAbsent(PFStructures.GEOLOGIST_CAMP.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.GEOLOGIST_CAMP.get()));
+			tempMap.putIfAbsent(PFStructures.HELL_CREEK_HUT.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.HELL_CREEK_HUT.get()));
+			tempMap.putIfAbsent(PFStructures.MORRISON_HUT.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.MORRISON_HUT.get()));
+			tempMap.putIfAbsent(PFStructures.ISCHIGUALASTO_HUT.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.ISCHIGUALASTO_HUT.get()));
 			serverWorld.getChunkProvider().generator.func_235957_b_().field_236193_d_ = tempMap;
 		}
 	}
@@ -371,7 +421,7 @@ public class PrehistoricFauna {
 
 		@Override
 		public ItemStack createIcon() {
-			return new ItemStack(PFItems.RAW_THESCELOSAURUS_MEAT.get());
+			return new ItemStack(PFItems.RAW_LARGE_THEROPOD_MEAT.get());
 		}
 	}
 
@@ -446,7 +496,7 @@ public class PrehistoricFauna {
 			PFFeatures.features.forEach(feature -> event.getRegistry().register(feature));
 			System.out.println("Registered features!");
 		}
-
+		
 		@SubscribeEvent
 		public static void registerBiomes(RegistryEvent.Register<Biome> event) {
 			LOGGER.debug("PF: Registering biomes...");
@@ -459,7 +509,7 @@ public class PrehistoricFauna {
 			PFOverworldBiomes.PETRIFIED_FOREST_KEY = PFOverworldBiomes.PETRIFIED_FOREST.getKey();
 			LOGGER.info("PF: Biomes registered!");
 		}
-
+		
 		@SubscribeEvent
 		public static void registerSurfaceBuilders(RegistryEvent.Register<SurfaceBuilder<?>> event) {
 			LOGGER.debug("PF: Registering surface builders...");
@@ -468,12 +518,17 @@ public class PrehistoricFauna {
 			LOGGER.info("PF: Surface builders registered!");
 		}
 		
-		@SubscribeEvent
+		@SubscribeEvent()
         public static void registerDecorators(RegistryEvent.Register<Placement<?>> event) {
     		PFDecorators.init();
     		PFDecorators.decorators.forEach(decorator -> event.getRegistry().register(decorator));
     		System.out.println("Registered decorators!");
     	}
+		
+		@SubscribeEvent
+        public static void registerWorldtype(RegistryEvent.Register<ForgeWorldType> event) {
+            event.getRegistry().register(new PFWorldType().setRegistryName(new ResourceLocation(MOD_ID, "prehistoric_world")));
+        }
 
 	}
 

@@ -14,9 +14,11 @@ import superlord.prehistoricfauna.world.feature.AlgaeFeature;
 import superlord.prehistoricfauna.world.feature.CrassostreaOystersFeature;
 import superlord.prehistoricfauna.world.feature.DicroidiumFeature;
 import superlord.prehistoricfauna.world.feature.JohnstoniaFeature;
+import superlord.prehistoricfauna.world.feature.NoisySphereFeature;
 import superlord.prehistoricfauna.world.feature.PtilophyllumFeature;
 import superlord.prehistoricfauna.world.feature.config.CrassostreaOystersConfig;
 import superlord.prehistoricfauna.world.feature.config.JohnstoniaConfig;
+import superlord.prehistoricfauna.world.feature.config.NoisySphereConfig;
 import superlord.prehistoricfauna.world.feature.config.PFTreeConfig;
 import superlord.prehistoricfauna.world.feature.trees.araucaria.AraucariaSmallTree1;
 import superlord.prehistoricfauna.world.feature.trees.araucaria.AraucariaSmallTree2;
@@ -88,6 +90,7 @@ public class PFFeatures {
     public static final Feature<CrassostreaOystersConfig> CRASSOSTREA_OYSTERS_FEATURE = createFeature("crassostrea_oysters", new CrassostreaOystersFeature(CrassostreaOystersConfig.field_236558_a_.stable()));
     public static final Feature<CrassostreaOystersConfig> ALGAE_FEATURE = createFeature("algae", new AlgaeFeature(CrassostreaOystersConfig.field_236558_a_.stable()));
 
+    public static final Feature<NoisySphereConfig> NOISY_SPHERE = createFeature("noisy_sphere", new NoisySphereFeature(NoisySphereConfig.CODEC.stable()));
     
     //public static final Feature<CrassostreaOystersConfig> CRASSOSTREA_OYSTERS_FEATURE = createFeature("crassostrea_oysters", new CrassostreaOystersFeature(CrassostreaOystersConfig::deserialize));
     //public static final Feature<CrassostreaOystersConfig> ALGAE_FEATURE = createFeature("algae", new AlgaeFeature(CrassostreaOystersConfig::deserialize));

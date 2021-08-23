@@ -3,6 +3,7 @@ package superlord.prehistoricfauna.world.biome.triassic;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.Category;
 import net.minecraft.world.biome.BiomeAmbience;
 import net.minecraft.world.biome.BiomeGenerationSettings;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
@@ -22,7 +23,7 @@ public class IschigualastoHillsBiome extends PFBiome {
 
 	static final ConfiguredSurfaceBuilder<?> SURFACE_BUILDER = WorldGenRegistrationHelper.createConfiguredSurfaceBuilder("ischigualasto_hills_sb", new ConfiguredSurfaceBuilder<>(PFSurfaceBuilders.ISCHIGUALASTO, new SurfaceBuilderConfig(Blocks.PODZOL.getDefaultState(), Blocks.COARSE_DIRT.getDefaultState(), Blocks.COARSE_DIRT.getDefaultState())));
 	static final Biome.RainType PRECIPATATION = Biome.RainType.RAIN;
-	static final Biome.Category CATEGORY = Biome.Category.FOREST;
+	static final Biome.Category CATEGORY = Category.NONE;
 	static final float TEMPERATURE = 0.75F;
 	static final float DOWNFALL = 0.9F;
 	static final int WATER_COLOR = 4159204;
@@ -70,6 +71,8 @@ public class IschigualastoHillsBiome extends PFBiome {
 		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.SILLOSUCHUS_ENTITY, PrehistoricFaunaConfig.sillosuchusSpawnWeight, 1, 3));
 		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.SAUROSUCHUS_ENTITY, PrehistoricFaunaConfig.saurosuchusSpawnWeight, 1, 2));
 		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.ISCHIGUALASTIA_ENTITY, PrehistoricFaunaConfig.ischigualastiaSpawnWeight, 2, 5));
+		GENERATION_SETTINGS.withStructure(PFConfiguredFeatures.ISCHIGUALASTO_HUT);
+		GENERATION_SETTINGS.withStructure(PFConfiguredFeatures.PORTAL_CHAMBER);
 		DefaultBiomeFeatures.withOverworldOres(GENERATION_SETTINGS);
 		DefaultBiomeFeatures.withCavesAndCanyons(GENERATION_SETTINGS);
 		DefaultBiomeFeatures.withCommonOverworldBlocks(GENERATION_SETTINGS);

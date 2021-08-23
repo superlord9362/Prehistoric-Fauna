@@ -6,17 +6,17 @@ import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.Ankylosaurus;
+import superlord.prehistoricfauna.client.model.AnkylosaurusModel;
 import superlord.prehistoricfauna.common.entities.AnkylosaurusEntity;
 
-public class AnkylosaurusRenderer extends MobRenderer<AnkylosaurusEntity, Ankylosaurus> {
+public class AnkylosaurusRenderer extends MobRenderer<AnkylosaurusEntity, AnkylosaurusModel> {
 
 	private static final ResourceLocation ANKYLOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ankylosaurus/ankylosaurus.png");
 	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ankylosaurus/albino.png");
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ankylosaurus/melanistic.png");
 
 	public AnkylosaurusRenderer(EntityRendererManager rm) {
-		super(rm, new Ankylosaurus(), 2F);
+		super(rm, new AnkylosaurusModel(), 2F);
 	}
 
 	protected void preRenderCallback(AnkylosaurusEntity entity, MatrixStack matrixStackIn, float partialTickTime) {

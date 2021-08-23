@@ -23,8 +23,8 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.Henos;
-import superlord.prehistoricfauna.client.model.HenosSummoned;
+import superlord.prehistoricfauna.client.model.HenosModel;
+import superlord.prehistoricfauna.client.model.HenosSummonedModel;
 import superlord.prehistoricfauna.common.entities.TimeGuardianEntity;
 
 @OnlyIn(Dist.CLIENT)
@@ -33,8 +33,8 @@ public class BossRenderer extends MobRenderer<TimeGuardianEntity, EntityModel<Ti
 	private static final ResourceLocation TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos.png");
 	private static final ResourceLocation SUMMONED_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos_summoned.png");
 	private static final ResourceLocation FUNKY_MONKEY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/brass_monkey.png");
-	private static final Henos HENOS = new Henos();
-	private static final HenosSummoned SUMMONED = new HenosSummoned();
+	private static final HenosModel HENOS = new HenosModel();
+	private static final HenosSummonedModel SUMMONED = new HenosSummonedModel();
 	private static final ResourceLocation BEAM_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/beam.png");
 	private static final RenderType field_229107_h_ = RenderType.getEntityCutoutNoCull(BEAM_TEXTURE);
 

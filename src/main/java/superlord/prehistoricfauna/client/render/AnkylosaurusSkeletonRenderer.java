@@ -8,21 +8,21 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.AnkylosaurusSkeleton;
-import superlord.prehistoricfauna.client.model.AnkylosaurusSkeletonActionLeft;
-import superlord.prehistoricfauna.client.model.AnkylosaurusSkeletonActionRight;
-import superlord.prehistoricfauna.client.model.AnkylosaurusSkeletonResting;
-import superlord.prehistoricfauna.client.model.AnkylosaurusSkeletonSquat;
+import superlord.prehistoricfauna.client.model.AnkylosaurusSkeletonModel;
+import superlord.prehistoricfauna.client.model.AnkylosaurusSkeletonActionLeftModel;
+import superlord.prehistoricfauna.client.model.AnkylosaurusSkeletonActionRightModel;
+import superlord.prehistoricfauna.client.model.AnkylosaurusSkeletonRestingModel;
+import superlord.prehistoricfauna.client.model.AnkylosaurusSkeletonSquatModel;
 import superlord.prehistoricfauna.common.entities.AnkylosaurusSkeletonEntity;
 
 public class AnkylosaurusSkeletonRenderer extends MobRenderer<AnkylosaurusSkeletonEntity, EntityModel<AnkylosaurusSkeletonEntity>> {
 
 	private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/ankylosaurus_skeleton.png");
-	private static final AnkylosaurusSkeleton IDLE = new AnkylosaurusSkeleton();
-	private static final AnkylosaurusSkeletonActionLeft ACTION_LEFT = new AnkylosaurusSkeletonActionLeft();
-	private static final AnkylosaurusSkeletonActionRight ACTION_RIGHT = new AnkylosaurusSkeletonActionRight();
-	private static final AnkylosaurusSkeletonResting RESTING = new AnkylosaurusSkeletonResting();
-	private static final AnkylosaurusSkeletonSquat SQUATTING = new AnkylosaurusSkeletonSquat();
+	private static final AnkylosaurusSkeletonModel IDLE = new AnkylosaurusSkeletonModel();
+	private static final AnkylosaurusSkeletonActionLeftModel ACTION_LEFT = new AnkylosaurusSkeletonActionLeftModel();
+	private static final AnkylosaurusSkeletonActionRightModel ACTION_RIGHT = new AnkylosaurusSkeletonActionRightModel();
+	private static final AnkylosaurusSkeletonRestingModel RESTING = new AnkylosaurusSkeletonRestingModel();
+	private static final AnkylosaurusSkeletonSquatModel SQUATTING = new AnkylosaurusSkeletonSquatModel();
 	
 	public AnkylosaurusSkeletonRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), IDLE, 2F);

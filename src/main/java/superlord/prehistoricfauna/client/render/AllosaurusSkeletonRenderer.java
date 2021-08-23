@@ -8,21 +8,21 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.AllosaurusSkeleton;
-import superlord.prehistoricfauna.client.model.AllosaurusSkeletonActionLeft;
-import superlord.prehistoricfauna.client.model.AllosaurusSkeletonActionRight;
-import superlord.prehistoricfauna.client.model.AllosaurusSkeletonResting;
-import superlord.prehistoricfauna.client.model.AllosaurusSkeletonRetro;
+import superlord.prehistoricfauna.client.model.AllosaurusSkeletonModel;
+import superlord.prehistoricfauna.client.model.AllosaurusSkeletonActionLeftModel;
+import superlord.prehistoricfauna.client.model.AllosaurusSkeletonActionRightModel;
+import superlord.prehistoricfauna.client.model.AllosaurusSkeletonRestingModel;
+import superlord.prehistoricfauna.client.model.AllosaurusSkeletonRetroModel;
 import superlord.prehistoricfauna.common.entities.AllosaurusSkeletonEntity;
 
 public class AllosaurusSkeletonRenderer extends MobRenderer<AllosaurusSkeletonEntity, EntityModel<AllosaurusSkeletonEntity>> {
 
 	private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/allosaurus_skeleton.png");
-	private static final AllosaurusSkeleton IDLE = new AllosaurusSkeleton();
-	private static final AllosaurusSkeletonActionLeft ACTION_LEFT = new AllosaurusSkeletonActionLeft();
-	private static final AllosaurusSkeletonActionRight ACTION_RIGHT = new AllosaurusSkeletonActionRight();
-	private static final AllosaurusSkeletonResting RESTING = new AllosaurusSkeletonResting();
-	private static final AllosaurusSkeletonRetro CLASSICAL = new AllosaurusSkeletonRetro();
+	private static final AllosaurusSkeletonModel IDLE = new AllosaurusSkeletonModel();
+	private static final AllosaurusSkeletonActionLeftModel ACTION_LEFT = new AllosaurusSkeletonActionLeftModel();
+	private static final AllosaurusSkeletonActionRightModel ACTION_RIGHT = new AllosaurusSkeletonActionRightModel();
+	private static final AllosaurusSkeletonRestingModel RESTING = new AllosaurusSkeletonRestingModel();
+	private static final AllosaurusSkeletonRetroModel CLASSICAL = new AllosaurusSkeletonRetroModel();
 	
 	public AllosaurusSkeletonRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), IDLE, 1.25F);

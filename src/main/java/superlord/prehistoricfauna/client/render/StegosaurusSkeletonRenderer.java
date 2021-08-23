@@ -8,21 +8,21 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.StegosaurusSkeleton;
-import superlord.prehistoricfauna.client.model.StegosaurusSkeletonActionLeft;
-import superlord.prehistoricfauna.client.model.StegosaurusSkeletonActionRight;
-import superlord.prehistoricfauna.client.model.StegosaurusSkeletonResting;
-import superlord.prehistoricfauna.client.model.StegosaurusSkeletonRetro;
+import superlord.prehistoricfauna.client.model.StegosaurusSkeletonActionLeftModel;
+import superlord.prehistoricfauna.client.model.StegosaurusSkeletonActionRightModel;
+import superlord.prehistoricfauna.client.model.StegosaurusSkeletonModel;
+import superlord.prehistoricfauna.client.model.StegosaurusSkeletonRestingModel;
+import superlord.prehistoricfauna.client.model.StegosaurusSkeletonRetroModel;
 import superlord.prehistoricfauna.common.entities.StegosaurusSkeletonEntity;
 
 public class StegosaurusSkeletonRenderer extends MobRenderer<StegosaurusSkeletonEntity, EntityModel<StegosaurusSkeletonEntity>> {
 
 	private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/stegosaurus_skeleton.png");
-	private static final StegosaurusSkeleton IDLE = new StegosaurusSkeleton();
-	private static final StegosaurusSkeletonRetro RETRO = new StegosaurusSkeletonRetro();
-	private static final StegosaurusSkeletonResting RESTING = new StegosaurusSkeletonResting();
-	private static final StegosaurusSkeletonActionRight RIGHT = new StegosaurusSkeletonActionRight();
-	private static final StegosaurusSkeletonActionLeft LEFT = new StegosaurusSkeletonActionLeft();
+	private static final StegosaurusSkeletonModel IDLE = new StegosaurusSkeletonModel();
+	private static final StegosaurusSkeletonRetroModel RETRO = new StegosaurusSkeletonRetroModel();
+	private static final StegosaurusSkeletonRestingModel RESTING = new StegosaurusSkeletonRestingModel();
+	private static final StegosaurusSkeletonActionRightModel RIGHT = new StegosaurusSkeletonActionRightModel();
+	private static final StegosaurusSkeletonActionLeftModel LEFT = new StegosaurusSkeletonActionLeftModel();
 	
 	public StegosaurusSkeletonRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), IDLE,  0.75F);

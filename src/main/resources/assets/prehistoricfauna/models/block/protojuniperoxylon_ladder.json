@@ -1,0 +1,7 @@
+{
+	"parent": "block/ladder",
+	"textures": {
+		"particle": "prehistoricfauna:blocks/protojuniper_ladder",
+		"texture": "prehistoricfauna:blocks/protojuniper_ladder"
+	}
+}

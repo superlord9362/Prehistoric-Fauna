@@ -2,42 +2,35 @@ package superlord.prehistoricfauna.client.render;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.Didelphodon;
+import superlord.prehistoricfauna.client.model.DidelphodonModel;
 import superlord.prehistoricfauna.common.entities.DidelphodonEntity;
 
-public class DidelphodonRenderer extends MobRenderer<DidelphodonEntity, EntityModel<DidelphodonEntity>> {
-	
+public class DidelphodonRenderer extends MobRenderer<DidelphodonEntity, DidelphodonModel> {
+
 	private static final ResourceLocation DIDELPHODON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/didelphodon/didelphodon.png");
 	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/didelphodon/albino.png");
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/didelphodon/melanistic.png");
-	private static final Didelphodon DIDELPHODON_MODEL = new Didelphodon();
-	
-	public DidelphodonRenderer() {
-		super(Minecraft.getInstance().getRenderManager(), DIDELPHODON_MODEL, 0.25F);
+
+	public DidelphodonRenderer(EntityRendererManager rm) {
+		super(rm, new DidelphodonModel(), 0.25F);
+		this.addLayer(new DidelphodonHeldItemLayer(this));
 	}
-	
-	public void render(DidelphodonEntity entity, float entityYaw, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int packedLight) {
-		entityModel = DIDELPHODON_MODEL;
-		super.render(entity, entityYaw, partialTicks, matrixStack, buffer, packedLight);
-	}
-	
-	protected void preRenderCallback(DidelphodonEntity didelphodon, MatrixStack matrixStack, float partialTickTime) {
-		if(didelphodon.isChild()) {
-			matrixStack.scale(0.5F, 0.5F, 0.5F);
+
+	protected void preRenderCallback(DidelphodonEntity entity, MatrixStack matrixStackIn, float partialTickTime) {
+		if(entity.isChild()) {
+			matrixStackIn.scale(0.5F, 0.5F, 0.5F);
 		}
 	}
-	
+
 	@Override
 	public ResourceLocation getEntityTexture(DidelphodonEntity entity) {
-		if(entity.isAlbino()) {
+		if (entity.isAlbino()) {
 			return ALBINO;
-		} else if(entity.isMelanistic()) {
+		} else if (entity.isMelanistic()) {
 			return MELANISTIC;
 		} else {
 			return DIDELPHODON;

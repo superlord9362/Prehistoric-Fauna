@@ -1,0 +1,12 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:plant_fiber_block"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:plant_fiber",
+    "count": 9
+  }
+}

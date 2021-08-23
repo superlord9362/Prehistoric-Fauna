@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.Herrerasaurus;
+import superlord.prehistoricfauna.client.model.HerrerasaurusModel;
 import superlord.prehistoricfauna.common.entities.HerrerasaurusEntity;
 
 public class HerrerasaurusRenderer extends MobRenderer<HerrerasaurusEntity, EntityModel<HerrerasaurusEntity>> {
@@ -16,7 +16,7 @@ public class HerrerasaurusRenderer extends MobRenderer<HerrerasaurusEntity, Enti
 	private static final ResourceLocation HERRERASAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/herrerasaurus/herrerasaurus.png");
 	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/herrerasaurus/albino.png");
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/herrerasaurus/melanistic.png");
-	private static final Herrerasaurus HERRERASAURUS_MODEL = new Herrerasaurus();
+	private static final HerrerasaurusModel HERRERASAURUS_MODEL = new HerrerasaurusModel();
 
 	public HerrerasaurusRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), HERRERASAURUS_MODEL, 0.625F);

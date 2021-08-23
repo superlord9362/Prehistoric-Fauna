@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.Hesperornithoides;
+import superlord.prehistoricfauna.client.model.HesperornithoidesModel;
 import superlord.prehistoricfauna.common.entities.HesperornithoidesEntity;
 
 public class HesperornithoidesRenderer extends MobRenderer<HesperornithoidesEntity, EntityModel<HesperornithoidesEntity>> {
@@ -15,7 +15,7 @@ public class HesperornithoidesRenderer extends MobRenderer<HesperornithoidesEnti
 	private static final ResourceLocation HESPERORNITHOIDES = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hesperornithoides/hesperornithoides.png");
 	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hesperornithoides/albino.png");
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hesperornithoides/melanistic.png");
-	private static final Hesperornithoides HESPERORNITHOIDES_MODEL = new Hesperornithoides();
+	private static final HesperornithoidesModel HESPERORNITHOIDES_MODEL = new HesperornithoidesModel();
 	
 	public HesperornithoidesRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), HESPERORNITHOIDES_MODEL, 0.375F);

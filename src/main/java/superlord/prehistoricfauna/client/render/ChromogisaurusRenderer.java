@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.Chromogisaurus;
+import superlord.prehistoricfauna.client.model.ChromogisaurusModel;
 import superlord.prehistoricfauna.common.entities.ChromogisaurusEntity;
 
 public class ChromogisaurusRenderer extends MobRenderer<ChromogisaurusEntity, EntityModel<ChromogisaurusEntity>> {
@@ -16,7 +16,7 @@ public class ChromogisaurusRenderer extends MobRenderer<ChromogisaurusEntity, En
 	private static final ResourceLocation CHROMOGISAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/chromogisaurus/chromogisaurus.png");
 	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/chromogisaurus/albino.png");
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/chromogisaurus/melanistic.png");
-	private static final Chromogisaurus CHROMOGISAURUS_MODEL = new Chromogisaurus();
+	private static final ChromogisaurusModel CHROMOGISAURUS_MODEL = new ChromogisaurusModel();
 	
 	public ChromogisaurusRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), CHROMOGISAURUS_MODEL, 0.375F);

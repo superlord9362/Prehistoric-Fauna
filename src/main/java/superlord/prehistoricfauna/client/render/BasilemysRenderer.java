@@ -8,8 +8,8 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.Basilemys;
-import superlord.prehistoricfauna.client.model.BasilemysHiding;
+import superlord.prehistoricfauna.client.model.BasilemysModel;
+import superlord.prehistoricfauna.client.model.BasilemysHidingModel;
 import superlord.prehistoricfauna.common.entities.BasilemysEntity;
 
 public class BasilemysRenderer extends MobRenderer<BasilemysEntity,  EntityModel<BasilemysEntity>> {
@@ -17,8 +17,8 @@ public class BasilemysRenderer extends MobRenderer<BasilemysEntity,  EntityModel
 	private static final ResourceLocation BASILEMYS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/basilemys/basilemys.png");
 	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/basilemys/albino.png");
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/basilemys/melanistic.png");
-	private static final Basilemys BASILEMYS_MODEL = new Basilemys();
-	private static final BasilemysHiding BASILEMYS_HIDING_MODEL = new BasilemysHiding();
+	private static final BasilemysModel BASILEMYS_MODEL = new BasilemysModel();
+	private static final BasilemysHidingModel BASILEMYS_HIDING_MODEL = new BasilemysHidingModel();
 	
 	public BasilemysRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), BASILEMYS_MODEL, 0.75F);

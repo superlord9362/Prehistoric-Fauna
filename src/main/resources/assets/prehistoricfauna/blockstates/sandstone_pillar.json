@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":  { "model": "prehistoricfauna:block/sandstone_pillar" },
+        "axis=z":   { "model": "prehistoricfauna:block/sandstone_pillar", "x": 90 },
+        "axis=x":   { "model": "prehistoricfauna:block/sandstone_pillar", "x": 90, "y": 90 }
+    }
+}

@@ -25,8 +25,10 @@ import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
@@ -34,7 +36,9 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -50,6 +54,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.common.blocks.ThescelosaurusEggBlock;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
+import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.SoundInit;
 
 public class ThescelosaurusEntity extends DinosaurEntity {
@@ -60,6 +65,7 @@ public class ThescelosaurusEntity extends DinosaurEntity {
 	private static final DataParameter<Boolean> MELANISTIC = EntityDataManager.createKey(ThescelosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(PFBlocks.MARCHANTIA.asItem());
 	private int isDigging;
+	private int chewingTick;
 
 	public ThescelosaurusEntity(EntityType<? extends ThescelosaurusEntity> type, World worldIn) {
 		super(type, worldIn);
@@ -82,7 +88,7 @@ public class ThescelosaurusEntity extends DinosaurEntity {
 		this.isDigging = isDigging ? 1 : 0;
 		this.dataManager.set(IS_DIGGING, isDigging);
 	}
-	
+
 	public boolean isAlbino() {
 		return this.dataManager.get(ALBINO);
 	}
@@ -124,7 +130,7 @@ public class ThescelosaurusEntity extends DinosaurEntity {
 		this.setAlbino(compound.getBoolean("IsAlbino"));
 		this.setMelanistic(compound.getBoolean("IsMelanistic"));
 	}
-	
+
 	@Nullable
 	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		Random rand = new Random();
@@ -175,16 +181,43 @@ public class ThescelosaurusEntity extends DinosaurEntity {
 	protected void updateAITasks() {
 		super.updateAITasks();
 	}
+	
+	private void spawnItem(ItemStack stack) {
+		ItemEntity itemEntity = new ItemEntity(this.world, this.getPosX(), this.getPosY(), this.getPosZ(), stack);
+		this.world.addEntity(itemEntity);
+	}
+
+	public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
+		ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
+		Item item = itemstack.getItem();
+		if (this.chewingTick == 0 && (item == PFItems.PTILOPHYLLUM_FRONDS.get() || item == PFBlocks.DICROIDIUM.asItem() || item == PFBlocks.JOHNSTONIA.asItem() || item == PFBlocks.MICHELILLOA.asItem() || item == PFBlocks.SCYTOPHYLLUM.asItem() || item == PFBlocks.METASEQUOIA_SAPLING.asItem() || item == PFBlocks.PROTOPICEOXYLON_SAPLING.asItem() || item == PFBlocks.PROTOJUNIPEROXYLON_SAPLING.asItem() || item == PFBlocks.HEIDIPHYLLUM_SAPLING.asItem())) {
+			this.chewingTick = 600;
+			if (!p_230254_1_.abilities.isCreativeMode) {
+				itemstack.shrink(1);
+			}
+            return ActionResultType.SUCCESS;
+		}
+        return super.func_230254_b_(p_230254_1_, p_230254_2_);
+	}
+
 
 	@Override
 	public void livingTick() {
 		super.livingTick();
+		if (this.chewingTick > 0) {
+			--chewingTick;
+		}
+		if (this.chewingTick == 1) {
+			this.spawnItem(PFItems.PLANT_FIBER.get().getDefaultInstance());
+			this.spawnItem(PFItems.PLANT_FIBER.get().getDefaultInstance());
+			this.spawnItem(PFItems.PLANT_FIBER.get().getDefaultInstance());
+		}
 	}
-	
+
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
 		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23D);
 	}
-	
+
 	@OnlyIn(Dist.CLIENT)
 	public void handleStatusUpdate(byte id) {
 		super.handleStatusUpdate(id);

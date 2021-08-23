@@ -6,10 +6,10 @@ import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.Thescelosaurus;
+import superlord.prehistoricfauna.client.model.ThescelosaurusModel;
 import superlord.prehistoricfauna.common.entities.ThescelosaurusEntity;
 
-public class ThescelosaurusRenderer extends MobRenderer<ThescelosaurusEntity, Thescelosaurus> {
+public class ThescelosaurusRenderer extends MobRenderer<ThescelosaurusEntity, ThescelosaurusModel> {
 
     private static final ResourceLocation THESCELOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus/thescelosaurus.png");
     private static final ResourceLocation BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus/thescelosaurus_baby.png");
@@ -17,7 +17,7 @@ public class ThescelosaurusRenderer extends MobRenderer<ThescelosaurusEntity, Th
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus/melanistic.png");
 
     public ThescelosaurusRenderer(EntityRendererManager rm) {
-        super(rm, new Thescelosaurus(), 0.55f);
+        super(rm, new ThescelosaurusModel(), 0.55f);
     }
     
     protected void preRenderCallback(ThescelosaurusEntity thescelosaurus, MatrixStack matrixStackIn, float partialTickTime) {

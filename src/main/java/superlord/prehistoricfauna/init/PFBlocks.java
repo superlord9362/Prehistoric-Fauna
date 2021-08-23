@@ -1,6 +1,27 @@
 package superlord.prehistoricfauna.init;
 
-import net.minecraft.block.*;
+import com.mojang.datafixers.util.Pair;
+
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.DoorBlock;
+import net.minecraft.block.DoublePlantBlock;
+import net.minecraft.block.FenceBlock;
+import net.minecraft.block.FenceGateBlock;
+import net.minecraft.block.FlowerPotBlock;
+import net.minecraft.block.HayBlock;
+import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.PressurePlateBlock;
+import net.minecraft.block.RotatedPillarBlock;
+import net.minecraft.block.SandBlock;
+import net.minecraft.block.SlabBlock;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.StairsBlock;
+import net.minecraft.block.TrapDoorBlock;
+import net.minecraft.block.WallBlock;
+import net.minecraft.block.WoodButtonBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.client.renderer.RenderType;
@@ -21,10 +42,70 @@ import net.minecraftforge.registries.ForgeRegistries;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.PrehistoricFauna.PFBuilding;
 import superlord.prehistoricfauna.PrehistoricFauna.PFDecoration;
+import superlord.prehistoricfauna.common.blocks.AlgaeBlock;
+import superlord.prehistoricfauna.common.blocks.AllosaurusEggBlock;
+import superlord.prehistoricfauna.common.blocks.AmmoniteGiantShellBlock;
+import superlord.prehistoricfauna.common.blocks.AmmoniteLargeShellBlock;
+import superlord.prehistoricfauna.common.blocks.AmmoniteMediumShellBlock;
+import superlord.prehistoricfauna.common.blocks.AmmoniteSmallShellBlock;
+import superlord.prehistoricfauna.common.blocks.AnkylosaurusEggBlock;
+import superlord.prehistoricfauna.common.blocks.BasilemysEggBlock;
+import superlord.prehistoricfauna.common.blocks.CamarasaurusEggBlock;
+import superlord.prehistoricfauna.common.blocks.CeratosaurusEggBlock;
+import superlord.prehistoricfauna.common.blocks.ChromogisaurusEggBlock;
+import superlord.prehistoricfauna.common.blocks.CrassostreaOysterBlock;
+import superlord.prehistoricfauna.common.blocks.CretaceousPortalBlock;
+import superlord.prehistoricfauna.common.blocks.CretaceousTimeBlock;
+import superlord.prehistoricfauna.common.blocks.DakotaraptorEggBlock;
+import superlord.prehistoricfauna.common.blocks.DeadConiopterisBlock;
+import superlord.prehistoricfauna.common.blocks.DicroidiumBlock;
+import superlord.prehistoricfauna.common.blocks.DryosaurusEggBlock;
+import superlord.prehistoricfauna.common.blocks.EilenodonEggBlock;
+import superlord.prehistoricfauna.common.blocks.ExaeretodonEggBlock;
+import superlord.prehistoricfauna.common.blocks.HerrerasaurusEggBlock;
+import superlord.prehistoricfauna.common.blocks.HesperornithoidesEggBlock;
+import superlord.prehistoricfauna.common.blocks.HyperodapedonEggBlock;
+import superlord.prehistoricfauna.common.blocks.IschigualastiaEggBlock;
+import superlord.prehistoricfauna.common.blocks.JohnstoniaBlock;
+import superlord.prehistoricfauna.common.blocks.JurassicPortalBlock;
+import superlord.prehistoricfauna.common.blocks.JurassicTimeBlock;
+import superlord.prehistoricfauna.common.blocks.LeafCarpetBlock;
+import superlord.prehistoricfauna.common.blocks.LiriodendritesLeavesBlock;
+import superlord.prehistoricfauna.common.blocks.MossBlock;
+import superlord.prehistoricfauna.common.blocks.MossyDirtBlock;
+import superlord.prehistoricfauna.common.blocks.PFSapling;
+import superlord.prehistoricfauna.common.blocks.PFStandingSignBlock;
+import superlord.prehistoricfauna.common.blocks.PFWallSignBlock;
+import superlord.prehistoricfauna.common.blocks.PaleontologyTableBlock;
+import superlord.prehistoricfauna.common.blocks.PaleoscribeBlock;
+import superlord.prehistoricfauna.common.blocks.PlantFiberBlock;
+import superlord.prehistoricfauna.common.blocks.PrehistoricPlant;
+import superlord.prehistoricfauna.common.blocks.PrehistoricPlantBlock;
+import superlord.prehistoricfauna.common.blocks.PtilophyllumBaseBlock;
+import superlord.prehistoricfauna.common.blocks.PtilophyllumBlock;
+import superlord.prehistoricfauna.common.blocks.SaurosuchusEggBlock;
+import superlord.prehistoricfauna.common.blocks.ShortOsmundacaulisBlock;
+import superlord.prehistoricfauna.common.blocks.SillosuchusEggBlock;
+import superlord.prehistoricfauna.common.blocks.StegosaurusEggBlock;
+import superlord.prehistoricfauna.common.blocks.ThescelosaurusEggBlock;
+import superlord.prehistoricfauna.common.blocks.TrapBlock;
+import superlord.prehistoricfauna.common.blocks.TriassicPortalBlock;
+import superlord.prehistoricfauna.common.blocks.TriassicTimeBlock;
+import superlord.prehistoricfauna.common.blocks.TriceratopsEggBlock;
+import superlord.prehistoricfauna.common.blocks.TyrannosaurusEggBlock;
+import superlord.prehistoricfauna.common.blocks.VerticalSlabBlock;
+import superlord.prehistoricfauna.common.blocks.ZamitesSaplingBlock;
+import superlord.prehistoricfauna.common.blocks.ZamitesTopBlock;
 import superlord.prehistoricfauna.common.util.PFWoodTypes;
 import superlord.prehistoricfauna.common.util.RegistryHelper;
+import superlord.prehistoricfauna.compat.HedgeBlock;
+import superlord.prehistoricfauna.compat.PFBeehiveBlock;
+import superlord.prehistoricfauna.compat.PFBookshelfBlock;
+import superlord.prehistoricfauna.compat.PFChestBlock;
+import superlord.prehistoricfauna.compat.PFLadderBlock;
+import superlord.prehistoricfauna.compat.PFTrappedChestBlock;
+import superlord.prehistoricfauna.compat.WoodPostBlock;
 import superlord.prehistoricfauna.world.feature.trees.PFTreeSpawners;
-import superlord.prehistoricfauna.common.blocks.*;
 @SuppressWarnings("deprecation")
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID, bus = Bus.MOD)
 public class PFBlocks {
@@ -237,9 +318,9 @@ public class PFBlocks {
 	public static final Block PORTAL_FRAME = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).setLightLevel((state) -> {
 		return 9;
 	})).setRegistryName("portal_frame");//Loot Table done
-	//public static final Block CRETACEOUS_TIME_BLOCK = new CretaceousTimeBlock().setRegistryName("cretaceous_time_block");//Loot Table done
-	//public static final Block JURASSIC_TIME_BLOCK = new JurassicTimeBlock().setRegistryName("jurassic_time_block");//Loot Table done
-	//public static final Block TRIASSIC_TIME_BLOCK = new TriassicTimeBlock().setRegistryName("triassic_time_block");//Loot Table done
+	public static final Block CRETACEOUS_TIME_BLOCK = new CretaceousTimeBlock().setRegistryName("cretaceous_time_block");//Loot Table done
+	public static final Block JURASSIC_TIME_BLOCK = new JurassicTimeBlock().setRegistryName("jurassic_time_block");//Loot Table done
+	public static final Block TRIASSIC_TIME_BLOCK = new TriassicTimeBlock().setRegistryName("triassic_time_block");//Loot Table done
 	public static final Block CRASSOSTREA_OYSTER = new CrassostreaOysterBlock(Block.Properties.create(Material.CORAL).doesNotBlockMovement().hardnessAndResistance(0.5F).tickRandomly().sound(SoundType.STONE).harvestLevel(0)).setRegistryName("crassostrea_oyster");
 	//public static final Block DIDELPHODON_BURROW = new DidelphodonBurrowBlock(Block.Properties.create(Material.EARTH).hardnessAndResistance(0.5F).sound(SoundType.GROUND)).setRegistryName("didelphodon_burrow");
 	public static final Block HENOSTONE = new Block(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("henostone");
@@ -293,10 +374,13 @@ public class PFBlocks {
 	public static final Block POTTED_CONIOPTERIS = new FlowerPotBlock(CONIOPTERIS, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_coniopteris");//Loot Table done
 	public static final Block SILT = new SandBlock(0x8C603C, Block.Properties.create(Material.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)).setRegistryName("silt");
 	public static final Block HARDENED_SILT = new Block(Block.Properties.create(Material.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)).setRegistryName("hardened_silt");
-
-	//public static final RegistryObject<TriassicPortalBlock> TRIASSIC_PORTAL = REGISTER.register("triassic_portal", () -> new TriassicPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).lightValue(11).noDrops()));
-	//public static final RegistryObject<JurassicPortalBlock> JURASSIC_PORTAL = REGISTER.register("jurassic_portal", () -> new JurassicPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).lightValue(11).noDrops()));
-	//public static final RegistryObject<CretaceousPortalBlock> CRETACEOUS_PORTAL = REGISTER.register("cretaceous_portal", () -> new CretaceousPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).lightValue(11).noDrops()));
+	public static final Block PLANT_FIBER_BLOCK = new PlantFiberBlock(AbstractBlock.Properties.create(Material.ORGANIC).hardnessAndResistance(0.5F).sound(SoundType.PLANT)).setRegistryName("plant_fiber_block");
+	public static final Block THATCH= new HayBlock(AbstractBlock.Properties.create(Material.ORGANIC).hardnessAndResistance(0.6F).sound(SoundType.PLANT)).setRegistryName("thatch");
+	public static final Block THATCH_STAIRS = new StairsBlock(THATCH.getDefaultState(), AbstractBlock.Properties.from(THATCH)).setRegistryName("thatch_stairs");
+	public static final Block THATCH_SLAB = new SlabBlock(AbstractBlock.Properties.from(THATCH)).setRegistryName("thatch_slab");
+	public static final RegistryObject<TriassicPortalBlock> TRIASSIC_PORTAL = REGISTER.register("triassic_portal", () -> new TriassicPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).noDrops()));
+	public static final RegistryObject<JurassicPortalBlock> JURASSIC_PORTAL = REGISTER.register("jurassic_portal", () -> new JurassicPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).noDrops()));
+	public static final RegistryObject<CretaceousPortalBlock> CRETACEOUS_PORTAL = REGISTER.register("cretaceous_portal", () -> new CretaceousPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).noDrops()));
 
 	public static final RegistryObject<Block> METASEQUOIA_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "metasequoia_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(METASEQUOIA_SLAB)), PFBuilding.instance);
 	public static final RegistryObject<Block> ARAUCARIA_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "araucaria_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(ARAUCARIA_SLAB)), PFBuilding.instance);
@@ -332,6 +416,67 @@ public class PFBlocks {
 	public static final RegistryObject<Block> PROTOPICEOXYLON_LEAF_CARPET = HELPER.createCompatBlock("quark", "protopiceoxylon_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.create(Material.CARPET).hardnessAndResistance(0.0F).sound(SoundType.PLANT).notSolid()), PFDecoration.instance);
 	public static final RegistryObject<Block> PROTOJUNIPEROXYLON_LEAF_CARPET = HELPER.createCompatBlock("quark", "protojuniperoxylon_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.create(Material.CARPET).hardnessAndResistance(0.0F).sound(SoundType.PLANT).notSolid()), PFDecoration.instance);
 	public static final RegistryObject<Block> HEIDIPHYLLUM_LEAF_CARPET = HELPER.createCompatBlock("quark", "heidiphyllum_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.create(Material.CARPET).hardnessAndResistance(0.0F).sound(SoundType.PLANT).notSolid()), PFDecoration.instance);
+
+	public static final RegistryObject<Block> METASEQUOIA_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "metasequoia_beehive", () -> new PFBeehiveBlock(Properties.from(Blocks.BEEHIVE)), PFDecoration.instance);
+	public static final RegistryObject<Block> ARAUCARIA_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "araucaria_beehive", () -> new PFBeehiveBlock(Properties.from(Blocks.BEEHIVE)), PFDecoration.instance);
+	public static final RegistryObject<Block> LIRIODENDRITES_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "liriodendrites_beehive", () -> new PFBeehiveBlock(Properties.from(Blocks.BEEHIVE)), PFDecoration.instance);
+	public static final RegistryObject<Block> ZAMITES_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "zamites_beehive", () -> new PFBeehiveBlock(Properties.from(Blocks.BEEHIVE)), PFDecoration.instance);
+	public static final RegistryObject<Block> PROTOPICEOXYLON_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "protopiceoxylon_beehive", () -> new PFBeehiveBlock(Properties.from(Blocks.BEEHIVE)), PFDecoration.instance);
+	public static final RegistryObject<Block> PROTOJUNIPEROXYLON_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "protojuniperoxylon_beehive", () -> new PFBeehiveBlock(Properties.from(Blocks.BEEHIVE)), PFDecoration.instance);
+	public static final RegistryObject<Block> HEIDIPHYLLUM_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "heidiphyllum_beehive", () -> new PFBeehiveBlock(Properties.from(Blocks.BEEHIVE)), PFDecoration.instance);
+
+	public static final RegistryObject<Block> METASEQUOIA_BOOKSHELF = HELPER.createCompatBlock("quark", "metasequoia_bookshelf", () -> new PFBookshelfBlock(Properties.from(Blocks.BOOKSHELF)), PFBuilding.instance);
+	public static final RegistryObject<Block> ARAUCARIA_BOOKSHELF = HELPER.createCompatBlock("quark", "araucaria_bookshelf", () -> new PFBookshelfBlock(Properties.from(Blocks.BOOKSHELF)), PFBuilding.instance);
+	public static final RegistryObject<Block> LIRIODENDRITES_BOOKSHELF = HELPER.createCompatBlock("quark", "liriodendrites_bookshelf", () -> new PFBookshelfBlock(Properties.from(Blocks.BOOKSHELF)), PFBuilding.instance);
+	public static final RegistryObject<Block> ZAMITES_BOOKSHELF = HELPER.createCompatBlock("quark", "zamites_bookshelf", () -> new PFBookshelfBlock(Properties.from(Blocks.BOOKSHELF)), PFBuilding.instance);
+	public static final RegistryObject<Block> PROTOPICEOXYLON_BOOKSHELF = HELPER.createCompatBlock("quark", "protopiceoxylon_bookshelf", () -> new PFBookshelfBlock(Properties.from(Blocks.BOOKSHELF)), PFBuilding.instance);
+	public static final RegistryObject<Block> PROTOJUNIPEROXYLON_BOOKSHELF = HELPER.createCompatBlock("quark", "protojuniperoxylon_bookshelf", () -> new PFBookshelfBlock(Properties.from(Blocks.BOOKSHELF)), PFBuilding.instance);
+	public static final RegistryObject<Block> HEIDIPHYLLUM_BOOKSHELF = HELPER.createCompatBlock("quark", "heidiphyllum_bookshelf", () -> new PFBookshelfBlock(Properties.from(Blocks.BOOKSHELF)), PFBuilding.instance);
+
+	public static final RegistryObject<Block> METASEQUOIA_LADDER = HELPER.createCompatBlock("quark", "metasequoia_ladder", () -> new PFLadderBlock(Properties.from(Blocks.LADDER)), PFDecoration.instance);
+	public static final RegistryObject<Block> ARAUCARIA_LADDER = HELPER.createCompatBlock("quark", "araucaria_ladder", () -> new PFLadderBlock(Properties.from(Blocks.LADDER)), PFDecoration.instance);
+	public static final RegistryObject<Block> LIRIODENDRITES_LADDER = HELPER.createCompatBlock("quark", "liriodendrites_ladder", () -> new PFLadderBlock(Properties.from(Blocks.LADDER)), PFDecoration.instance);
+	public static final RegistryObject<Block> ZAMITES_LADDER = HELPER.createCompatBlock("quark", "zamites_ladder", () -> new PFLadderBlock(Properties.from(Blocks.LADDER)), PFDecoration.instance);
+	public static final RegistryObject<Block> PROTOPICEOXYLON_LADDER = HELPER.createCompatBlock("quark", "protopiceoxylon_ladder", () -> new PFLadderBlock(Properties.from(Blocks.LADDER)), PFDecoration.instance);
+	public static final RegistryObject<Block> PROTOJUNIPEROXYLON_LADDER = HELPER.createCompatBlock("quark", "protojuniperoxylon_ladder", () -> new PFLadderBlock(Properties.from(Blocks.LADDER)), PFDecoration.instance);
+	public static final RegistryObject<Block> HEIDIPHYLLUM_LADDER = HELPER.createCompatBlock("quark", "heidiphyllum_ladder", () -> new PFLadderBlock(Properties.from(Blocks.LADDER)), PFDecoration.instance);
+	
+	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> METASEQUOIA_CHEST 	= HELPER.createCompatChestBlocks("metasequoia", MaterialColor.WOOD);
+	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> ARAUCARIA_CHEST 	= HELPER.createCompatChestBlocks("araucaria", MaterialColor.WOOD);
+	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> LIRIODENDRITES_CHEST 	= HELPER.createCompatChestBlocks("liriodendrites", MaterialColor.WOOD);
+	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> ZAMITES_CHEST 	= HELPER.createCompatChestBlocks("zamites", MaterialColor.WOOD);
+	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> PROTOPICEOXYLON_CHEST 	= HELPER.createCompatChestBlocks("protopiceoxylon", MaterialColor.WOOD);
+	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> PROTOJUNIPEROXYLON_CHEST 	= HELPER.createCompatChestBlocks("protojuniperoxylon", MaterialColor.WOOD);
+	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> HEIDIPHYLLUM_CHEST 	= HELPER.createCompatChestBlocks("heidiphyllum", MaterialColor.WOOD);
+
+	public static final RegistryObject<Block> CHALK_PAVEMENT = HELPER.createCompatBlock("quark", "chalk_pavement", () -> new Block(AbstractBlock.Properties.from(CHALK_BRICKS)), PFBuilding.instance);
+	public static final RegistryObject<Block> CHALK_PILLAR = HELPER.createCompatBlock("quark", "chalk_pillar", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(CHALK_BRICKS)), PFBuilding.instance);
+	public static final RegistryObject<Block> SILTSTONE_PAVEMENT = HELPER.createCompatBlock("quark", "siltstone_pavement", () -> new Block(AbstractBlock.Properties.from(CHALK_BRICKS)), PFBuilding.instance);
+	public static final RegistryObject<Block> SILTSTONE_PILLAR = HELPER.createCompatBlock("quark", "siltstone_pillar", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(CHALK_BRICKS)), PFBuilding.instance);
+	public static final RegistryObject<Block> SANDSTONE_PAVEMENT = HELPER.createCompatBlock("quark", "sandstone_pavement", () -> new Block(AbstractBlock.Properties.from(CHALK_BRICKS)), PFBuilding.instance);
+	public static final RegistryObject<Block> SANDSTONE_PILLAR = HELPER.createCompatBlock("quark", "sandstone_pillar", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(CHALK_BRICKS)), PFBuilding.instance);
+
+	public static final RegistryObject<Block> METASEQUOIA_POST = HELPER.createCompatBlock("quark", "metasequoia_post", () -> new WoodPostBlock(Properties.from(METASEQUOIA_FENCE)), PFBuilding.instance);
+	public static final RegistryObject<Block> STRIPPED_METASEQUOIA_POST = HELPER.createCompatBlock("quark", "stripped_metasequoia_post", () -> new WoodPostBlock(Properties.from(METASEQUOIA_FENCE)), PFBuilding.instance);
+	public static final RegistryObject<Block> ARAUCARIA_POST = HELPER.createCompatBlock("quark", "araucaria_post", () -> new WoodPostBlock(Properties.from(METASEQUOIA_FENCE)), PFBuilding.instance);
+	public static final RegistryObject<Block> STRIPPED_ARAUCARIA_POST = HELPER.createCompatBlock("quark", "stripped_araucaria_post", () -> new WoodPostBlock(Properties.from(METASEQUOIA_FENCE)), PFBuilding.instance);
+	public static final RegistryObject<Block> LIRIODENDRITES_POST = HELPER.createCompatBlock("quark", "liriodendrites_post", () -> new WoodPostBlock(Properties.from(METASEQUOIA_FENCE)), PFBuilding.instance);
+	public static final RegistryObject<Block> STRIPPED_LIRIODENDRITES_POST = HELPER.createCompatBlock("quark", "stripped_liriodendrites_post", () -> new WoodPostBlock(Properties.from(METASEQUOIA_FENCE)), PFBuilding.instance);
+	public static final RegistryObject<Block> ZAMITES_POST = HELPER.createCompatBlock("quark", "zamites_post", () -> new WoodPostBlock(Properties.from(METASEQUOIA_FENCE)), PFBuilding.instance);
+	public static final RegistryObject<Block> STRIPPED_ZAMITES_POST = HELPER.createCompatBlock("quark", "stripped_zamites_post", () -> new WoodPostBlock(Properties.from(METASEQUOIA_FENCE)), PFBuilding.instance);
+	public static final RegistryObject<Block> PROTOPICEOXYLON_POST = HELPER.createCompatBlock("quark", "protopiceoxylon_post", () -> new WoodPostBlock(Properties.from(METASEQUOIA_FENCE)), PFBuilding.instance);
+	public static final RegistryObject<Block> STRIPPED_PROTOPICEOXYLON_POST = HELPER.createCompatBlock("quark", "stripped_protopiceoxylon_post", () -> new WoodPostBlock(Properties.from(METASEQUOIA_FENCE)), PFBuilding.instance);
+	public static final RegistryObject<Block> PROTOJUNIPEROXYLON_POST = HELPER.createCompatBlock("quark", "protojuniperoxylon_post", () -> new WoodPostBlock(Properties.from(METASEQUOIA_FENCE)), PFBuilding.instance);
+	public static final RegistryObject<Block> STRIPPED_PROTOJUNIPEROXYLON_POST = HELPER.createCompatBlock("quark", "stripped_protojuniperoxylon_post", () -> new WoodPostBlock(Properties.from(METASEQUOIA_FENCE)), PFBuilding.instance);
+	public static final RegistryObject<Block> HEIDIPHYLLUM_POST = HELPER.createCompatBlock("quark", "heidiphyllum_post", () -> new WoodPostBlock(Properties.from(METASEQUOIA_FENCE)), PFBuilding.instance);
+	public static final RegistryObject<Block> STRIPPED_HEIDIPHYLLUM_POST = HELPER.createCompatBlock("quark", "stripped_heidiphyllum_post", () -> new WoodPostBlock(Properties.from(METASEQUOIA_FENCE)), PFBuilding.instance);
+
+	public static final RegistryObject<Block> METASEQUOIA_HEDGE = HELPER.createCompatBlock("quark", "metasequoia_hedge", () -> new HedgeBlock(Properties.from(METASEQUOIA_PLANKS)), PFBuilding.instance);
+	public static final RegistryObject<Block> ARAUCARIA_HEDGE = HELPER.createCompatBlock("quark", "araucaria_hedge", () -> new HedgeBlock(Properties.from(ARAUCARIA_PLANKS)), PFBuilding.instance);
+	public static final RegistryObject<Block> LIRIODENDRITES_HEDGE = HELPER.createCompatBlock("quark", "liriodendrites_hedge", () -> new HedgeBlock(Properties.from(LIRIODENDRITES_PLANKS)), PFBuilding.instance);
+	public static final RegistryObject<Block> PROTOPICEOXYLON_HEDGE = HELPER.createCompatBlock("quark", "protopiceoxylon_hedge", () -> new HedgeBlock(Properties.from(PROTOPICEOXYLON_PLANKS)), PFBuilding.instance);
+	public static final RegistryObject<Block> PROTOJUNIPEROXYLON_HEDGE = HELPER.createCompatBlock("quark", "protojuniperoxylon_hedge", () -> new HedgeBlock(Properties.from(PROTOJUNIPEROXYLON_PLANKS)), PFBuilding.instance);
+	public static final RegistryObject<Block> HEIDIPHYLLUM_HEDGE = HELPER.createCompatBlock("quark", "heidiphyllum_hedge", () -> new HedgeBlock(Properties.from(HEIDIPHYLLUM_PLANKS)), PFBuilding.instance);
 
 	private static RotatedPillarBlock createLogBlock(MaterialColor topColor, MaterialColor barkColor) {
 		return new RotatedPillarBlock(AbstractBlock.Properties.create(Material.WOOD, (state) -> {
@@ -544,9 +689,9 @@ public class PFBlocks {
 		event.getRegistry().register(POLISHED_CHALK_STAIRS);
 		event.getRegistry().register(SILLOSUCHUS_EGG);
 		event.getRegistry().register(PORTAL_FRAME);
-		//event.getRegistry().register(CRETACEOUS_TIME_BLOCK);
-		//event.getRegistry().register(JURASSIC_TIME_BLOCK);
-		//event.getRegistry().register(TRIASSIC_TIME_BLOCK);
+		event.getRegistry().register(CRETACEOUS_TIME_BLOCK);
+		event.getRegistry().register(JURASSIC_TIME_BLOCK);
+		event.getRegistry().register(TRIASSIC_TIME_BLOCK);
 		event.getRegistry().register(CRASSOSTREA_OYSTER);
 		event.getRegistry().register(HENOSTONE);
 		event.getRegistry().register(CARVED_HENOSTONE);
@@ -599,10 +744,14 @@ public class PFBlocks {
 		event.getRegistry().register(POTTED_CONIOPTERIS);
 		event.getRegistry().register(SILT);
 		event.getRegistry().register(HARDENED_SILT);
+		event.getRegistry().register(PLANT_FIBER_BLOCK);
+		event.getRegistry().register(THATCH);
+		event.getRegistry().register(THATCH_SLAB);
+		event.getRegistry().register(THATCH_STAIRS);
 		if (FMLEnvironment.dist == Dist.CLIENT) {
 			RenderType cutoutRenderType = RenderType.getCutout();
 			RenderType mippedRenderType = RenderType.getCutoutMipped();
-			//RenderType translucentRenderType = RenderType.getTranslucent();
+			RenderType translucentRenderType = RenderType.getTranslucent();
 
 			RenderTypeLookup.setRenderLayer(HORSETAIL, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(OSMUNDA, cutoutRenderType);
@@ -668,17 +817,25 @@ public class PFBlocks {
 			RenderTypeLookup.setRenderLayer(LIRIODENDRITES_DOOR, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(LIRIODENDRITES_TRAPDOOR, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(CRASSOSTREA_OYSTER, cutoutRenderType);
-			//RenderTypeLookup.setRenderLayer(CRETACEOUS_PORTAL.get(), translucentRenderType);
-			//RenderTypeLookup.setRenderLayer(CRETACEOUS_TIME_BLOCK, translucentRenderType);
-			//RenderTypeLookup.setRenderLayer(JURASSIC_PORTAL.get(), translucentRenderType);
-			//RenderTypeLookup.setRenderLayer(JURASSIC_TIME_BLOCK, translucentRenderType);
-			//RenderTypeLookup.setRenderLayer(TRIASSIC_PORTAL.get(), translucentRenderType);
-			//RenderTypeLookup.setRenderLayer(TRIASSIC_TIME_BLOCK, translucentRenderType);
+			RenderTypeLookup.setRenderLayer(CRETACEOUS_PORTAL.get(), translucentRenderType);
+			RenderTypeLookup.setRenderLayer(CRETACEOUS_TIME_BLOCK, translucentRenderType);
+			RenderTypeLookup.setRenderLayer(JURASSIC_PORTAL.get(), translucentRenderType);
+			RenderTypeLookup.setRenderLayer(JURASSIC_TIME_BLOCK, translucentRenderType);
+			RenderTypeLookup.setRenderLayer(TRIASSIC_PORTAL.get(), translucentRenderType);
+			RenderTypeLookup.setRenderLayer(TRIASSIC_TIME_BLOCK, translucentRenderType);
 			RenderTypeLookup.setRenderLayer(HENOSTONE_TRAP, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(ALGAE_CARPET, mippedRenderType);
 			RenderTypeLookup.setRenderLayer(POTTED_CONIOPTERIS, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(POTTED_DEAD_OSMUNDACAULIS, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(POTTED_SHORT_OSMUNDACAULIS, cutoutRenderType);
+			
+			RenderTypeLookup.setRenderLayer(ARAUCARIA_LADDER.get(), cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(METASEQUOIA_LADDER.get(), cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(LIRIODENDRITES_LADDER.get(), cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(ZAMITES_LADDER.get(), cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(PROTOPICEOXYLON_LADDER.get(), cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(PROTOJUNIPEROXYLON_LADDER.get(), cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(HEIDIPHYLLUM_LADDER.get(), cutoutRenderType);
 
 			RenderTypeLookup.setRenderLayer(ARAUCARIA_LEAF_CARPET.get(), mippedRenderType);
 			RenderTypeLookup.setRenderLayer(METASEQUOIA_LEAF_CARPET.get(), mippedRenderType);
@@ -686,6 +843,13 @@ public class PFBlocks {
 			RenderTypeLookup.setRenderLayer(PROTOPICEOXYLON_LEAF_CARPET.get(), mippedRenderType);
 			RenderTypeLookup.setRenderLayer(PROTOJUNIPEROXYLON_LEAF_CARPET.get(), mippedRenderType);
 			RenderTypeLookup.setRenderLayer(HEIDIPHYLLUM_LEAF_CARPET.get(), mippedRenderType);
+			
+			RenderTypeLookup.setRenderLayer(ARAUCARIA_HEDGE.get(), mippedRenderType);
+			RenderTypeLookup.setRenderLayer(METASEQUOIA_HEDGE.get(), mippedRenderType);
+			RenderTypeLookup.setRenderLayer(LIRIODENDRITES_HEDGE.get(), mippedRenderType);
+			RenderTypeLookup.setRenderLayer(PROTOPICEOXYLON_HEDGE.get(), mippedRenderType);
+			RenderTypeLookup.setRenderLayer(PROTOJUNIPEROXYLON_HEDGE.get(), mippedRenderType);
+			RenderTypeLookup.setRenderLayer(HEIDIPHYLLUM_HEDGE.get(), mippedRenderType);
 
 
 			RenderTypeLookup.setRenderLayer(ARAUCARIA_SIGN, cutoutRenderType);
@@ -702,6 +866,9 @@ public class PFBlocks {
 			RenderTypeLookup.setRenderLayer(PROTOPICEOXYLON_WALL_SIGN, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(ZAMITES_SIGN, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(ZAMITES_WALL_SIGN, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(THATCH, RenderType.getCutout());
+			RenderTypeLookup.setRenderLayer(THATCH_STAIRS, mippedRenderType);
+			RenderTypeLookup.setRenderLayer(THATCH_SLAB, mippedRenderType);
 		}
 	}
 
@@ -930,7 +1097,11 @@ public class PFBlocks {
 
 		//IDunno
 		event.getRegistry().register(new BlockItem(PFBlocks.MOSS_BLOCK, new Item.Properties().group(PFDecoration.instance)).setRegistryName("moss_block"));
-
+		event.getRegistry().register(new BlockItem(PFBlocks.PLANT_FIBER_BLOCK, new Item.Properties().group(PFDecoration.instance)).setRegistryName("plant_fiber_block"));
+		event.getRegistry().register(new BlockItem(PFBlocks.THATCH, new Item.Properties().group(PFBuilding.instance)).setRegistryName("thatch"));
+		event.getRegistry().register(new BlockItem(PFBlocks.THATCH_STAIRS, new Item.Properties().group(PFBuilding.instance)).setRegistryName("thatch_stairs"));
+		event.getRegistry().register(new BlockItem(PFBlocks.THATCH_SLAB, new Item.Properties().group(PFBuilding.instance)).setRegistryName("thatch_slab"));
+		
 		event.getRegistry().register(new BlockItem(PFBlocks.PORTAL_FRAME, new Item.Properties().group(PFDecoration.instance)).setRegistryName("portal_frame"));
 		event.getRegistry().register(new BlockItem(PFBlocks.HENOSTONE_TRAP, new Item.Properties().group(PFDecoration.instance)).setRegistryName("henostone_trap"));
 
@@ -941,7 +1112,6 @@ public class PFBlocks {
 		event.getRegistry().register(new BlockItem(PFBlocks.GIANT_AMMONITE_SHELL_BF, new Item.Properties().group(PFDecoration.instance)).setRegistryName("giant_ammonite_fossil_piece_bf"));
 		event.getRegistry().register(new BlockItem(PFBlocks.GIANT_AMMONITE_SHELL_TB, new Item.Properties().group(PFDecoration.instance)).setRegistryName("giant_ammonite_fossil_piece_tb"));
 		event.getRegistry().register(new BlockItem(PFBlocks.GIANT_AMMONITE_SHELL_TF, new Item.Properties().group(PFDecoration.instance)).setRegistryName("giant_ammonite_fossil_piece_tf"));
-
 
 		//Eggs
 		event.getRegistry().register(new BlockItem(PFBlocks.THESCELOSAURUS_EGG, new Item.Properties().group(PFDecoration.instance)).setRegistryName("thescelosaurus_egg"));

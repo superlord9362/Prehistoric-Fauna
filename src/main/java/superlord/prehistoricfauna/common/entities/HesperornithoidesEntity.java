@@ -65,7 +65,7 @@ public class HesperornithoidesEntity extends DinosaurEntity {
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(HesperornithoidesEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> ALBINO = EntityDataManager.createKey(HesperornithoidesEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> MELANISTIC = EntityDataManager.createKey(HesperornithoidesEntity.class, DataSerializers.BOOLEAN);
-	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(PFItems.RAW_EILENODON_MEAT.get());
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(PFItems.RAW_SMALL_REPTILE_MEAT.get());
 	private int isDigging;
 	private Goal attackAnimals;
 	
@@ -107,7 +107,7 @@ public class HesperornithoidesEntity extends DinosaurEntity {
 	}
 	
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == PFItems.RAW_EILENODON_MEAT.get();
+		return stack.getItem() == PFItems.RAW_SMALL_REPTILE_MEAT.get();
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })

@@ -8,8 +8,8 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.Tyrannosaurusrex;
-import superlord.prehistoricfauna.client.model.Tyrannosaurusrexjuvenile;
+import superlord.prehistoricfauna.client.model.TyrannosaurusrexModel;
+import superlord.prehistoricfauna.client.model.TyrannosaurusrexjuvenileModel;
 import superlord.prehistoricfauna.common.entities.TyrannosaurusEntity;
 
 public class TyrannosaurusRenderer extends MobRenderer<TyrannosaurusEntity, EntityModel<TyrannosaurusEntity>> {
@@ -20,8 +20,8 @@ public class TyrannosaurusRenderer extends MobRenderer<TyrannosaurusEntity, Enti
 	private static final ResourceLocation BABY_ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/albino_juv.png");
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/melanistic.png");
 	private static final ResourceLocation BABY_MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/melanistic_juv.png");
-	private static final Tyrannosaurusrex TYRANNOSAURUS_MODEL = new Tyrannosaurusrex();
-	private static final Tyrannosaurusrexjuvenile BABY_TYRANNOSAURUS_MODEL = new Tyrannosaurusrexjuvenile();
+	private static final TyrannosaurusrexModel TYRANNOSAURUS_MODEL = new TyrannosaurusrexModel();
+	private static final TyrannosaurusrexjuvenileModel BABY_TYRANNOSAURUS_MODEL = new TyrannosaurusrexjuvenileModel();
 	
 	public TyrannosaurusRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), TYRANNOSAURUS_MODEL, 2F);

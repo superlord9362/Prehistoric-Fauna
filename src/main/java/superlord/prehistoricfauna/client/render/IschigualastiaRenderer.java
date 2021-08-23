@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.Ischigualastia;
+import superlord.prehistoricfauna.client.model.IschigualastiaModel;
 import superlord.prehistoricfauna.common.entities.IschigualastiaEntity;
 
 public class IschigualastiaRenderer extends MobRenderer<IschigualastiaEntity, EntityModel<IschigualastiaEntity>> {
@@ -20,7 +20,7 @@ public class IschigualastiaRenderer extends MobRenderer<IschigualastiaEntity, En
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/melanistic.png");
 	private static final ResourceLocation MELANISTIC_SADDLED = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/melanistic_saddled.png");
 
-	private static final Ischigualastia ISCHIGUALASTIA_MODEL = new Ischigualastia();
+	private static final IschigualastiaModel ISCHIGUALASTIA_MODEL = new IschigualastiaModel();
 
 	public IschigualastiaRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), ISCHIGUALASTIA_MODEL, 1.25F);

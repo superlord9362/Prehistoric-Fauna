@@ -8,21 +8,21 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.CeratosaurusSkeleton;
-import superlord.prehistoricfauna.client.model.CeratosaurusSkeletonAction;
-import superlord.prehistoricfauna.client.model.CeratosaurusSkeletonAlertLeft;
-import superlord.prehistoricfauna.client.model.CeratosaurusSkeletonAlertRight;
-import superlord.prehistoricfauna.client.model.CeratosaurusSkeletonResting;
+import superlord.prehistoricfauna.client.model.CeratosaurusSkeletonActionModel;
+import superlord.prehistoricfauna.client.model.CeratosaurusSkeletonAlertLeftModel;
+import superlord.prehistoricfauna.client.model.CeratosaurusSkeletonAlertRightModel;
+import superlord.prehistoricfauna.client.model.CeratosaurusSkeletonModel;
+import superlord.prehistoricfauna.client.model.CeratosaurusSkeletonRestingModel;
 import superlord.prehistoricfauna.common.entities.CeratosaurusSkeletonEntity;
 
 public class CeratosaurusSkeletonRenderer extends MobRenderer<CeratosaurusSkeletonEntity, EntityModel<CeratosaurusSkeletonEntity>> {
 
 	private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/ceratosaurus_skeleton.png");
-	private static final CeratosaurusSkeleton IDLE = new CeratosaurusSkeleton();
-	private static final CeratosaurusSkeletonAction ACTION = new CeratosaurusSkeletonAction();
-	private static final CeratosaurusSkeletonResting RESTING = new CeratosaurusSkeletonResting();
-	private static final CeratosaurusSkeletonAlertRight RIGHT = new CeratosaurusSkeletonAlertRight();
-	private static final CeratosaurusSkeletonAlertLeft LEFT = new CeratosaurusSkeletonAlertLeft();
+	private static final CeratosaurusSkeletonModel IDLE = new CeratosaurusSkeletonModel();
+	private static final CeratosaurusSkeletonActionModel ACTION = new CeratosaurusSkeletonActionModel();
+	private static final CeratosaurusSkeletonRestingModel RESTING = new CeratosaurusSkeletonRestingModel();
+	private static final CeratosaurusSkeletonAlertRightModel RIGHT = new CeratosaurusSkeletonAlertRightModel();
+	private static final CeratosaurusSkeletonAlertLeftModel LEFT = new CeratosaurusSkeletonAlertLeftModel();
 	
 	public CeratosaurusSkeletonRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), IDLE,  0.75F);

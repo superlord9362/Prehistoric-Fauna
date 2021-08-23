@@ -9,6 +9,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import superlord.prehistoricfauna.init.PFBlocks;
 
 public class CretaceousTimeBlock extends Block {
 
@@ -32,12 +33,11 @@ public class CretaceousTimeBlock extends Block {
 
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean isMoving) {
 		if (oldState.getBlock() != state.getBlock()) {
-			/*if (!BlockInit.CRETACEOUS_PORTAL.get().tryToCreatePortal(world, pos)) {
+			if (!PFBlocks.CRETACEOUS_PORTAL.get().tryToCreatePortal(world, pos)) {
 				if (!state.isValidPosition(world, pos)) {
 					world.removeBlock(pos, false);
-					Add this back during dimension work
 				}
-			}*/
+			}
 		}
 	}
 

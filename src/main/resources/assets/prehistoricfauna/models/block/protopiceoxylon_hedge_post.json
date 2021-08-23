@@ -1,0 +1,7 @@
+{
+	"parent": "prehistoricfauna:block/hedge_post",
+	"textures": {
+		"log": "prehistoricfauna:blocks/protopiceoxylon_log",
+		"leaf": "prehistoricfauna:blocks/protopiceoxylon_leaves"
+	}
+}

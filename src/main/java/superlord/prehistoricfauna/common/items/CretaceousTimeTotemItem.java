@@ -1,6 +1,6 @@
 package superlord.prehistoricfauna.common.items;
 
-/*import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,14 +13,11 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
-import superlord.prehistoricfauna.block.CretaceousTimeBlock;
 import superlord.prehistoricfauna.init.PFBlocks;
-*/
-public class CretaceousTimeTotemItem { /*extends Item {
-*
-*
-*
-*For dimension stuff
+import superlord.prehistoricfauna.common.blocks.CretaceousTimeBlock;
+
+public class CretaceousTimeTotemItem extends Item {
+
 
 	public CretaceousTimeTotemItem(Properties properties) {
 		super(properties);
@@ -56,6 +53,6 @@ public class CretaceousTimeTotemItem { /*extends Item {
 			flag = true;
 		}
 		return existingState.isAir() && (blockstate.isValidPosition(worldIn, posIn) || flag);
-	}*/
+	}
 
 }

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SIS",
+    "#T#",
+	" S "
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:thatch"
+    },
+	"S": {
+		"item": "minecraft:stick"
+	},
+	"I": {
+		"item": "minecraft:iron_ingot"
+	},
+	"T": {
+		"item": "minecraft:tripwire_hook"
+	}
+  },
+  "result": {
+    "item": "minecraft:crossbow"
+  }
+}

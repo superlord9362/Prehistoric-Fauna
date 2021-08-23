@@ -1,5 +1,6 @@
 package superlord.prehistoricfauna.common.entities;
 
+import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
 
@@ -18,7 +19,7 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.BreedGoal;
-import net.minecraft.entity.ai.goal.FollowParentGoal;
+import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
@@ -47,6 +48,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import superlord.prehistoricfauna.common.blocks.CamarasaurusEggBlock;
 import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFCustomDamageSource;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.SoundInit;
@@ -55,6 +57,7 @@ public class CamarasaurusEntity extends DinosaurEntity {
 
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(CamarasaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(CamarasaurusEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> IS_JUVENILE = EntityDataManager.createKey(CamarasaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> ALBINO = EntityDataManager.createKey(CamarasaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> MELANISTIC = EntityDataManager.createKey(CamarasaurusEntity.class, DataSerializers.BOOLEAN);
 	private int warningSoundTicks;
@@ -71,6 +74,14 @@ public class CamarasaurusEntity extends DinosaurEntity {
 	private void setDigging(boolean isDigging) {
 		this.isDigging = isDigging ? 1 : 0;
 		this.dataManager.set(IS_DIGGING, isDigging);
+	}
+	
+	public boolean isJuvenile() {
+		return this.dataManager.get(IS_JUVENILE);
+	}
+
+	private void setJuvenile(boolean isJuvenile) {
+		this.dataManager.set(IS_JUVENILE, isJuvenile);
 	}
 
 	public boolean hasEgg() {
@@ -108,7 +119,7 @@ public class CamarasaurusEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(1, new CamarasaurusEntity.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new CamarasaurusEntity.PanicGoal());
-		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
+		this.goalSelector.addGoal(4, new CamarasaurusEntity.CamarasaurusFollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
@@ -117,9 +128,19 @@ public class CamarasaurusEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(8, new CamarasaurusEntity.LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(2, new CamarasaurusEntity.MateGoal(this, 1.0D));
 	}
+	
+	@Override
+	public void setGrowingAge(int age) {
+		super.setGrowingAge(age);
+		if (this.getGrowingAge() >= -12000 && this.getGrowingAge() < 0) {
+			this.setJuvenile(true);
+		} else if(this.getGrowingAge() >= 0) {
+			this.setJuvenile(false);
+		}
+	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 200.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 10.0D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 200.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 12.0D);
 	}
 
 	protected SoundEvent getAmbientSound() {
@@ -147,6 +168,7 @@ public class CamarasaurusEntity extends DinosaurEntity {
 		this.dataManager.register(IS_DIGGING, false);
 		this.dataManager.register(ALBINO, false);
 		this.dataManager.register(MELANISTIC, false);
+		this.dataManager.register(IS_JUVENILE, false);
 	}
 
 	public void writeAdditional(CompoundNBT compound) {
@@ -169,7 +191,20 @@ public class CamarasaurusEntity extends DinosaurEntity {
 			--this.warningSoundTicks;
 		}
 	}
+	
+	@Override
+	public void livingTick() {
+		super.livingTick();
+		if (this.getMotion().x != 0 && !this.isChild() || this.getMotion().z != 0  && !this.isChild() || this.getMotion().y != 0 && !this.isChild() ) {
+			for (Entity entity : this.world.getEntitiesWithinAABB(LivingEntity.class, this.getBoundingBox().grow(1, 0, 1))) {
+				if (!(entity instanceof CamarasaurusEntity)) {
+					entity.attackEntityFrom(PFCustomDamageSource.SAUROPOD_TRAMPLING, (float) 5.0D);
+				}
+			}
+		}
+	}
 
+ 
 	public boolean attackEntityAsMob(Entity entityIn) {
 		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
 		if (flag) {
@@ -373,6 +408,73 @@ public class CamarasaurusEntity extends DinosaurEntity {
 		CamarasaurusEntity entity = new CamarasaurusEntity(PFEntities.CAMARASAURUS_ENTITY, this.world);
 		entity.onInitialSpawn((IServerWorld) world, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
 		return entity;
+	}
+	
+	class CamarasaurusFollowParentGoal extends Goal {
+		private final CamarasaurusEntity babyCamarasaurusEntity;
+		private CamarasaurusEntity parentCamarasaurusEntity;
+		private final double moveSpeed;
+		private int delayCounter;
+
+		public CamarasaurusFollowParentGoal(CamarasaurusEntity camarasaurus, double speed) {
+			this.babyCamarasaurusEntity = camarasaurus;
+			this.moveSpeed = speed;
+		}
+
+		public boolean shouldExecute() {
+			if (this.babyCamarasaurusEntity.isChild() && !this.babyCamarasaurusEntity.isJuvenile()) {
+				List<CamarasaurusEntity> list = this.babyCamarasaurusEntity.world.getEntitiesWithinAABB(this.babyCamarasaurusEntity.getClass(), this.babyCamarasaurusEntity.getBoundingBox().grow(8.0D, 4.0D, 8.0D));
+				CamarasaurusEntity camarasaurusEntity = null;
+				double d0 = Double.MAX_VALUE;
+				for (CamarasaurusEntity tyrannosaurusEntity1 : list) {
+					if (!tyrannosaurusEntity1.isChild()) {
+						double d1 = this.babyCamarasaurusEntity.getDistanceSq(tyrannosaurusEntity1);
+						if (!(d1 > d0)) {
+							d0 = d1;
+							camarasaurusEntity = tyrannosaurusEntity1;
+						}
+					}
+				}
+				if (camarasaurusEntity == null) {
+					return false;
+				} else if (d0 < 9.0D) {
+					return false;
+				} else {
+					this.parentCamarasaurusEntity = camarasaurusEntity;
+					return true;
+				}
+			} else {
+				return false;
+			}
+		}
+
+		public boolean shouldContinueExecuting() {
+			if (!this.babyCamarasaurusEntity.isJuvenile() || !this.babyCamarasaurusEntity.isChild()) {
+				return false;
+			} else if (!this.parentCamarasaurusEntity.isAlive()) {
+				return false;
+			} else  if(this.babyCamarasaurusEntity.isChild() && !this.babyCamarasaurusEntity.isJuvenile()){
+				double d0 = this.babyCamarasaurusEntity.getDistanceSq(this.parentCamarasaurusEntity);
+				return !(d0 < 9.0D) && !(d0 > 256.0D);
+			} else {
+				return false;
+			}
+		}
+
+		public void startExecuting() {
+			this.delayCounter = 0;
+		}
+
+		public void resetTask() {
+			this.parentCamarasaurusEntity = null;
+		}
+
+		public void tick() {
+			if (--this.delayCounter <= 0) {
+				this.delayCounter = 10;
+				this.babyCamarasaurusEntity.getNavigator().tryMoveToEntityLiving(this.parentCamarasaurusEntity, this.moveSpeed);
+			}
+		}
 	}
 
 }

@@ -2,7 +2,7 @@
   "parent": "prehistoricfauna:prehistoricfauna/general/warpaholic",
   "display": {
     "icon": {
-      "item": "prehistoricfauna:raw_herrerasaurus_meat"
+      "item": "prehistoricfauna:raw_small_theropod_meat"
     },
     "title": {
       "translate": "advancements.prehistoricfauna.extinction_event.title"

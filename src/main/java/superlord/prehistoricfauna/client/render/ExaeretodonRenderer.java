@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.Exaeretodon;
+import superlord.prehistoricfauna.client.model.ExaeretodonModel;
 import superlord.prehistoricfauna.common.entities.ExaeretodonEntity;
 
 public class ExaeretodonRenderer extends MobRenderer<ExaeretodonEntity, EntityModel<ExaeretodonEntity>>{
@@ -17,7 +17,7 @@ public class ExaeretodonRenderer extends MobRenderer<ExaeretodonEntity, EntityMo
 	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/exaeretodon/albino.png");
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/exaeretodon/melanistic.png");
 
-	private final static Exaeretodon EXAERETODON_MODEL = new Exaeretodon();
+	private final static ExaeretodonModel EXAERETODON_MODEL = new ExaeretodonModel();
 	
 	public ExaeretodonRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), EXAERETODON_MODEL, 0.75F);

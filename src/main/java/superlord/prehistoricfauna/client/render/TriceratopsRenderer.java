@@ -8,8 +8,8 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.Triceratops;
-import superlord.prehistoricfauna.client.model.TriceratopsJuvenile;
+import superlord.prehistoricfauna.client.model.TriceratopsJuvenileModel;
+import superlord.prehistoricfauna.client.model.TriceratopsModel;
 import superlord.prehistoricfauna.common.entities.TriceratopsEntity;
 
 public class TriceratopsRenderer extends MobRenderer<TriceratopsEntity, EntityModel<TriceratopsEntity>> {
@@ -33,8 +33,8 @@ public class TriceratopsRenderer extends MobRenderer<TriceratopsEntity, EntityMo
 	private static final ResourceLocation CHESTED_MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/melanistic_chested.png");
 	private static final ResourceLocation SADDLED_CHESTED_MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/melanistic_saddled_chested.png");
 	
-	private static final Triceratops TRICERATOPS_MODEL = new Triceratops();
-	private static final TriceratopsJuvenile BABY_TRICERATOPS_MODEL = new TriceratopsJuvenile();
+	private static final TriceratopsModel TRICERATOPS_MODEL = new TriceratopsModel();
+	private static final TriceratopsJuvenileModel BABY_TRICERATOPS_MODEL = new TriceratopsJuvenileModel();
 	
 	public TriceratopsRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), TRICERATOPS_MODEL, 2F);

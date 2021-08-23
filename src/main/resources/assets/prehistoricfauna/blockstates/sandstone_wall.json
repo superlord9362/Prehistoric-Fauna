@@ -81,7 +81,7 @@
         "west": "tall"
       },
       "apply": {
-        "model": "prehistoricfauna:block/sandstone_wall_side_tall",
+        "model": "prehistoricfauna:block/triassic_sandstone_wall_side_tall",
         "y": 270,
         "uvlock": true
       }

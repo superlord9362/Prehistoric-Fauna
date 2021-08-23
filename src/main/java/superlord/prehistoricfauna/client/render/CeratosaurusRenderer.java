@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.Ceratosaurus;
+import superlord.prehistoricfauna.client.model.CeratosaurusModel;
 import superlord.prehistoricfauna.common.entities.CeratosaurusEntity;
 
 public class CeratosaurusRenderer extends MobRenderer<CeratosaurusEntity,  EntityModel<CeratosaurusEntity>> {
@@ -16,7 +16,7 @@ public class CeratosaurusRenderer extends MobRenderer<CeratosaurusEntity,  Entit
 	private static final ResourceLocation CERATOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ceratosaurus/ceratosaurus.png");
 	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ceratosaurus/albino.png");
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ceratosaurus/melanistic.png");
-	private static final Ceratosaurus CERATOSAURUS_MODEL = new Ceratosaurus();
+	private static final CeratosaurusModel CERATOSAURUS_MODEL = new CeratosaurusModel();
 
 	public CeratosaurusRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), CERATOSAURUS_MODEL, 0.75F);

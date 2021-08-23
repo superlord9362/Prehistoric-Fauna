@@ -41,8 +41,14 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue ischigualastoHutMaxDistance;
 	public final ForgeConfigSpec.IntValue geologistCampMinDistance;
 	public final ForgeConfigSpec.IntValue geologistCampMaxDistance;
+	public final ForgeConfigSpec.IntValue timeTempleMinDistance;
+	public final ForgeConfigSpec.IntValue timeTempleMaxDistance;
+	public final ForgeConfigSpec.IntValue portalHubMinDistance;
+	public final ForgeConfigSpec.IntValue portalHubMaxDistance;
 	public final ForgeConfigSpec.BooleanValue spaceTimeContinuumWarping;
 	public final ForgeConfigSpec.BooleanValue geologyHammerMining;
+	public final ForgeConfigSpec.IntValue baseStoneWeight;
+	public final ForgeConfigSpec.IntValue fossilWeight;
 	
 	public ServerConfig(final ForgeConfigSpec.Builder builder) {
 		builder.push("general");
@@ -83,8 +89,14 @@ public class ServerConfig {
 		this.ischigualastoHutMaxDistance = buildInt(builder, "Ischigualasto Ruined Time Traveller's Hut Max Distance", "all", 60, 1, 300, "The farthest two Ischigualasto Ruined Time Traveller's Huts can spawn from eachother. Keep this value higher than the min. Default is 60");
 		this.geologistCampMinDistance = buildInt(builder, "Geologist Camp Min Distance", "all", 25, 1, 300, "The closest two Geologist Camps can spawn from eachother. Keep this value lower than the max. Default is 25");
 		this.geologistCampMaxDistance = buildInt(builder, "Geologist Camp Max Distance", "all", 50, 1, 300, "The farthest two Geologist Camps can spawn from eachother. Keep this value higher than the min. Default is 50");
+		this.timeTempleMinDistance = buildInt(builder, "Time Temple Min Distance", "all", 75, 1, 300, "The closest two Time Temples can spawn from eachother. Keep this value lower than the max. Default is 75");
+		this.timeTempleMaxDistance = buildInt(builder, "Time Temple Max Distance", "all", 100, 1, 300, "The farthest two Time Temples can spawn from eachother. Keep this value higher than the min. Default is 100");
+		this.portalHubMinDistance = buildInt(builder, "Portal Hub Min Distance", "all", 40, 1, 300, "The closest two Portal Hubs can spawn from eachother. Keep this value lower than the max. Default is 40");
+		this.portalHubMaxDistance = buildInt(builder, "Portal Hub Hut Max Distance", "all", 60, 1, 300, "The farthest two Portal Hubs can spawn from eachother. Keep this value higher than the min. Default is 60");
 		this.spaceTimeContinuumWarping = buildBoolean(builder, "Space Time Continuum Warping", "all", false, "Warning: Messing with the time space continuum may lead to unforseen consequences. Recommended to keep false for servers. Default is false");
 		this.geologyHammerMining = buildBoolean(builder, "Geological Hammer Stone Breaking", "all", true, "Toggles whether stones can be broken down using the Geological Hammer. Default is true");
+		this.baseStoneWeight = buildInt(builder, "Base Stone Weight", "all", 97, 1, 300, "The probability of an ancient stone deposit is made up of the base stone. To find the percentage probability, add the base stone weight with the fossil weight, and then divide the base stone weight by the combined weights. Default is 97");
+		this.fossilWeight = buildInt(builder, "Fossil Weight", "all", 3, 1, 300, "The probability of an ancient stone deposit is made up of the fossilized stone. To find the percentage probability, add the base stone weight with the fossil weight, and then divide the fossil stone weight by the combined weights. Default is 3");
 	}
 	
 	private static ForgeConfigSpec.BooleanValue buildBoolean(ForgeConfigSpec.Builder builder, String name, String catagory, boolean defaultValue, String comment){

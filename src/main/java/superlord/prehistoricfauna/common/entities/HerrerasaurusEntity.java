@@ -96,7 +96,7 @@ public class HerrerasaurusEntity extends DinosaurEntity {
 	}
 
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == PFItems.RAW_HYPERODAPEDON_MEAT.get();
+		return stack.getItem() == PFItems.RAW_SMALL_ARCHOSAUROMORPH_MEAT.get();
 	}
 	
 	public boolean isAlbino() {

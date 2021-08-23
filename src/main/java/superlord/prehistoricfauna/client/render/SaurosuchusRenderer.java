@@ -8,8 +8,8 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.Saurosuchus;
-import superlord.prehistoricfauna.client.model.SaurosuchusSleeping;
+import superlord.prehistoricfauna.client.model.SaurosuchusModel;
+import superlord.prehistoricfauna.client.model.SaurosuchusSleepingModel;
 import superlord.prehistoricfauna.common.entities.SaurosuchusEntity;
 
 public class SaurosuchusRenderer extends MobRenderer<SaurosuchusEntity, EntityModel<SaurosuchusEntity>> {
@@ -20,8 +20,8 @@ public class SaurosuchusRenderer extends MobRenderer<SaurosuchusEntity, EntityMo
 	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/saurosuchus/albino_sleeping.png");
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/saurosuchus/melanistic.png");
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/saurosuchus/melanistic_sleeping.png");
-	private static final Saurosuchus SAUROSUCHUS_MODEL = new Saurosuchus();
-	private static final SaurosuchusSleeping SAUROSUCHUS_SLEEPING_MODEL = new SaurosuchusSleeping();
+	private static final SaurosuchusModel SAUROSUCHUS_MODEL = new SaurosuchusModel();
+	private static final SaurosuchusSleepingModel SAUROSUCHUS_SLEEPING_MODEL = new SaurosuchusSleepingModel();
 	
 	public SaurosuchusRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), SAUROSUCHUS_MODEL, 0.75F);

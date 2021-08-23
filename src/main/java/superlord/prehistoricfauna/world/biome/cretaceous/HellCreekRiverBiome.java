@@ -3,6 +3,7 @@ package superlord.prehistoricfauna.world.biome.cretaceous;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.Category;
 import net.minecraft.world.biome.BiomeAmbience;
 import net.minecraft.world.biome.BiomeGenerationSettings;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
@@ -24,7 +25,7 @@ public class HellCreekRiverBiome extends PFBiome {
 	
 	static final ConfiguredSurfaceBuilder<?> SURFACE_BUILDER = WorldGenRegistrationHelper.createConfiguredSurfaceBuilder("hell_creek_river_sb", new ConfiguredSurfaceBuilder<>(PFSurfaceBuilders.HELL_CREEK, new SurfaceBuilderConfig(PFBlocks.MOSSY_DIRT.getDefaultState(), Blocks.COARSE_DIRT.getDefaultState(), Blocks.COARSE_DIRT.getDefaultState())));
 	static final Biome.RainType PRECIPATATION = Biome.RainType.RAIN;
-	static final Biome.Category CATEGORY = Biome.Category.TAIGA;
+	static final Biome.Category CATEGORY = Category.NONE;
 	static final float TEMPERATURE = 0.7F;
 	static final float DOWNFALL = 0.8F;
 	static final int WATER_COLOR = 0x7C5D48;
@@ -32,8 +33,8 @@ public class HellCreekRiverBiome extends PFBiome {
 	static final int SKY_COLOR = 0x7ebf9f;
 	static final int FOLIAGE_COLOR = 0x53711f;
 	static final int GRASS_COLOR = 0x53711f;
-	static final float DEPTH = 0.05F;
-	static final float SCALE = -0.6F;
+	static final float DEPTH = -0.5F;
+	static final float SCALE = 0.0F;
 	static final int FOG_COLOR = 12638463;
 
 	static final Biome.Climate WEATHER = new Biome.Climate(PRECIPATATION, TEMPERATURE, Biome.TemperatureModifier.NONE, DOWNFALL);
@@ -76,6 +77,7 @@ public class HellCreekRiverBiome extends PFBiome {
         SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.BASILEMYS_ENTITY, PrehistoricFaunaConfig.basilemysSpawnWeight, 1, 2));
 		GENERATION_SETTINGS.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PFConfiguredFeatures.CRASSOSTREA_OYSTERS);
         GENERATION_SETTINGS.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PFConfiguredFeatures.MOSS);
+		GENERATION_SETTINGS.withStructure(PFConfiguredFeatures.PORTAL_CHAMBER);
 		PFConfiguredFeatures.addHellCreekVegetation(GENERATION_SETTINGS);
 		DefaultBiomeFeatures.withOverworldOres(GENERATION_SETTINGS);
 		DefaultBiomeFeatures.withCavesAndCanyons(GENERATION_SETTINGS);

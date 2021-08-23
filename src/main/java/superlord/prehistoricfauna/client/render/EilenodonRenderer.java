@@ -8,8 +8,8 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.Eilenodon;
-import superlord.prehistoricfauna.client.model.EilenodonBasking;
+import superlord.prehistoricfauna.client.model.EilenodonBaskingModel;
+import superlord.prehistoricfauna.client.model.EilenodonModel;
 import superlord.prehistoricfauna.common.entities.EilenodonEntity;
 
 public class EilenodonRenderer extends MobRenderer<EilenodonEntity, EntityModel<EilenodonEntity>> {
@@ -17,8 +17,8 @@ public class EilenodonRenderer extends MobRenderer<EilenodonEntity, EntityModel<
 	private static final ResourceLocation EILENODON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/eilenodon/eilenodon.png");
 	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/eilenodon/albino.png");
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/eilenodon/melanistic.png");
-	private final static Eilenodon EILENODON_MODEL = new Eilenodon();
-	private final static EilenodonBasking EILENODON_BASKING = new EilenodonBasking();
+	private final static EilenodonModel EILENODON_MODEL = new EilenodonModel();
+	private final static EilenodonBaskingModel EILENODON_BASKING = new EilenodonBaskingModel();
 
 	public EilenodonRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), EILENODON_MODEL, 0.25F);

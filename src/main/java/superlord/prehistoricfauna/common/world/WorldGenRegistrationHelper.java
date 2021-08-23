@@ -56,4 +56,5 @@ public class WorldGenRegistrationHelper {
 		return biome;
 	}
 
+	
 }

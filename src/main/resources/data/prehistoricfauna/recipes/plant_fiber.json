@@ -1,0 +1,13 @@
+{
+  "type": "crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "prehistoricfauna:fibrous_plants"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:plant_fiber",
+    "count": 1
+  }
+}

@@ -9,6 +9,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import superlord.prehistoricfauna.init.PFBlocks;
 
 public class TriassicTimeBlock extends Block {
 
@@ -32,12 +33,11 @@ public class TriassicTimeBlock extends Block {
 
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean isMoving) {
 		if (oldState.getBlock() != state.getBlock()) {
-			/*if (!BlockInit.TRIASSIC_PORTAL.get().tryToCreatePortal(world, pos)) {
+			if (!PFBlocks.TRIASSIC_PORTAL.get().tryToCreatePortal(world, pos)) {
 				if (!state.isValidPosition(world, pos)) {
 					world.removeBlock(pos, false);
 				}
-				Add back later
-			}*/
+			}
 		}
 	}
 

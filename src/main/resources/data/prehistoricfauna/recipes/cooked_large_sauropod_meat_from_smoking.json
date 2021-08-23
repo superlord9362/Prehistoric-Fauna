@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "prehistoricfauna:raw_large_sauropod_meat"
+  },
+  "result": "prehistoricfauna:cooked_large_sauropod_meat",
+  "experience": 0.35,
+  "cookingtime": 100
+}

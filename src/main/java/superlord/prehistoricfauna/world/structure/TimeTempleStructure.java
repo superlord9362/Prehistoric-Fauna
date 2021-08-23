@@ -12,7 +12,6 @@ import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
-import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
@@ -20,7 +19,6 @@ import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.Heightmap;
@@ -49,22 +47,6 @@ public class TimeTempleStructure extends Structure<NoFeatureConfig> {
 	public String getStructureName() {
 		return PrehistoricFauna.MOD_ID + ":time_temple";
 	}
-	
-    protected boolean func_230363_a_(ChunkGenerator p_230363_1_, BiomeProvider p_230363_2_, long p_230363_3_, SharedSeedRandom p_230363_5_, int p_230363_6_, int p_230363_7_, Biome p_230363_8_, ChunkPos p_230363_9_, NoFeatureConfig p_230363_10_) {
-    	int i = p_230363_6_ >> 4;
-    	int j = p_230363_7_ >> 4;
-    	p_230363_5_.setSeed((long) (i ^ j << 4) ^ p_230363_3_);
-    	p_230363_5_.nextInt();
-    	for (int k = p_230363_6_ - 10; k <= p_230363_6_ + 10; ++k) {
-    		for (int l = p_230363_7_ - 10; l <= p_230363_7_ + 10; ++l) {
-    			ChunkPos chunkpos = Structure.VILLAGE.getChunkPosForStructure(p_230363_1_.func_235957_b_().func_236197_a_(Structure.VILLAGE), p_230363_3_, p_230363_5_, k, l);
-    			if (k == chunkpos.x && l == chunkpos.z) {
-    				return false;
-    			}
-    		}
-    	}
-    	return true;
-    }
     
     @Override
     public GenerationStage.Decoration getDecorationStage() {
@@ -144,36 +126,42 @@ public class TimeTempleStructure extends Structure<NoFeatureConfig> {
     	@Override
     	protected void handleDataMarker(String function, BlockPos pos, IServerWorld world, Random rand, MutableBoundingBox sbb) {
     		if (function.startsWith("chest")) {
+                world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
                 BlockPos blockpos = pos.down();
                 if (sbb.isVecInside(blockpos)) {
                     LockableLootTileEntity.setLootTable(world, rand, blockpos, PFLootTables.TIME_TEMPLE_LOOT_TABLE);
                 }
             }
             if (function.startsWith("chest1")) {
+                world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
                 BlockPos blockpos = pos.down();
                 if (sbb.isVecInside(blockpos)) {
                     LockableLootTileEntity.setLootTable(world, rand, blockpos, PFLootTables.TIME_TEMPLE_LOOT_TABLE);
                 }
             }
             if (function.startsWith("chest2")) {
+                world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
                 BlockPos blockpos = pos.down();
                 if (sbb.isVecInside(blockpos)) {
                     LockableLootTileEntity.setLootTable(world, rand, blockpos, PFLootTables.TIME_TEMPLE_LOOT_TABLE);
                 }
             }
             if (function.startsWith("chest3")) {
+                world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
                 BlockPos blockpos = pos.down();
                 if (sbb.isVecInside(blockpos)) {
                     LockableLootTileEntity.setLootTable(world, rand, blockpos, PFLootTables.TIME_TEMPLE_LOOT_TABLE);
                 }
             }
             if (function.startsWith("chest4")) {
+                world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
                 BlockPos blockpos = pos.down();
                 if (sbb.isVecInside(blockpos)) {
                     LockableLootTileEntity.setLootTable(world, rand, blockpos, PFLootTables.TIME_TEMPLE_LOOT_TABLE);
                 }
             }
             if (function.startsWith("chest5")) {
+                world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
                 BlockPos blockpos = pos.down();
                 if (sbb.isVecInside(blockpos)) {
                     LockableLootTileEntity.setLootTable(world, rand, blockpos, PFLootTables.TIME_TEMPLE_LOOT_TABLE);

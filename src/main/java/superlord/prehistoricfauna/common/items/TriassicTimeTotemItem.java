@@ -1,5 +1,5 @@
 package superlord.prehistoricfauna.common.items;
-/*
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -13,15 +13,11 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
-import superlord.prehistoricfauna.block.TriassicTimeBlock;
-import superlord.prehistoricfauna.init.BlockInit;
-*/
-public class TriassicTimeTotemItem{ // extends Item {
-/*
- * 
- * Add back with dimensions
- * 
- *
+import superlord.prehistoricfauna.common.blocks.TriassicTimeBlock;
+import superlord.prehistoricfauna.init.PFBlocks;
+
+public class TriassicTimeTotemItem extends Item {
+
 	public TriassicTimeTotemItem(Properties properties) {
 		super(properties);
 	}
@@ -33,7 +29,7 @@ public class TriassicTimeTotemItem{ // extends Item {
 		BlockPos blockpos1 = blockpos.offset(context.getFace());
         if (canOpenPortal(iworld.getBlockState(blockpos1), iworld, blockpos1)) {
            iworld.playSound(playerentity, blockpos1, SoundEvents.ITEM_TOTEM_USE, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
-           BlockState blockstate1 = ((TriassicTimeBlock)BlockInit.TRIASSIC_TIME_BLOCK).getDefaultState();
+           BlockState blockstate1 = ((TriassicTimeBlock)PFBlocks.TRIASSIC_TIME_BLOCK).getDefaultState();
            iworld.setBlockState(blockpos1, blockstate1, 11);
            ItemStack itemstack = context.getItem();
            if (playerentity instanceof ServerPlayerEntity) {
@@ -50,12 +46,12 @@ public class TriassicTimeTotemItem{ // extends Item {
 
 	@SuppressWarnings("deprecation")
 	public static boolean canOpenPortal(BlockState existingState, IWorld worldIn, BlockPos posIn) {
-		BlockState blockstate = ((TriassicTimeBlock)BlockInit.TRIASSIC_TIME_BLOCK).getDefaultState();
+		BlockState blockstate = ((TriassicTimeBlock)PFBlocks.TRIASSIC_TIME_BLOCK).getDefaultState();
 		boolean flag = false;
-		if (worldIn.getBlockState(posIn.down()).getBlock() == BlockInit.PORTAL_FRAME && worldIn.getBlockState(posIn).getBlock() == Blocks.AIR || worldIn.getBlockState(posIn.down()).getBlock() == BlockInit.PORTAL_FRAME && worldIn.getBlockState(posIn).getBlock() == Blocks.AIR || worldIn.getBlockState(posIn.down()).getBlock() == BlockInit.PORTAL_FRAME && worldIn.getBlockState(posIn).getBlock() == Blocks.CAVE_AIR || worldIn.getBlockState(posIn.down()).getBlock() == BlockInit.PORTAL_FRAME && worldIn.getBlockState(posIn).getBlock() == Blocks.CAVE_AIR || worldIn.getBlockState(posIn.down()).getBlock() == BlockInit.PORTAL_FRAME && worldIn.getBlockState(posIn).getBlock() == Blocks.VOID_AIR || worldIn.getBlockState(posIn.down()).getBlock() == BlockInit.PORTAL_FRAME && worldIn.getBlockState(posIn).getBlock() == Blocks.VOID_AIR) {
+		if (worldIn.getBlockState(posIn.down()).getBlock() == PFBlocks.PORTAL_FRAME && worldIn.getBlockState(posIn).getBlock() == Blocks.AIR || worldIn.getBlockState(posIn.down()).getBlock() == PFBlocks.PORTAL_FRAME && worldIn.getBlockState(posIn).getBlock() == Blocks.AIR || worldIn.getBlockState(posIn.down()).getBlock() == PFBlocks.PORTAL_FRAME && worldIn.getBlockState(posIn).getBlock() == Blocks.CAVE_AIR || worldIn.getBlockState(posIn.down()).getBlock() == PFBlocks.PORTAL_FRAME && worldIn.getBlockState(posIn).getBlock() == Blocks.CAVE_AIR || worldIn.getBlockState(posIn.down()).getBlock() == PFBlocks.PORTAL_FRAME && worldIn.getBlockState(posIn).getBlock() == Blocks.VOID_AIR || worldIn.getBlockState(posIn.down()).getBlock() == PFBlocks.PORTAL_FRAME && worldIn.getBlockState(posIn).getBlock() == Blocks.VOID_AIR) {
 			flag = true;
 		}
 		return existingState.isAir() && (blockstate.isValidPosition(worldIn, posIn) || flag);
 	}
-*/
+
 }

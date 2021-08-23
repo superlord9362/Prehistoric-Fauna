@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "prehistoricfauna:block/plant_fiber_block",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "prehistoricfauna:block/plant_fiber_block"
+    },
+    "facing=south": {
+      "model": "prehistoricfauna:block/plant_fiber_block",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "prehistoricfauna:block/plant_fiber_block",
+      "y": 270
+    }
+  }
+}

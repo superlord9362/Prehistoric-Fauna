@@ -8,23 +8,23 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.Tyrannosaurusrexskeleton;
-import superlord.prehistoricfauna.client.model.TyrannosaurusrexskeletonActionLeft;
-import superlord.prehistoricfauna.client.model.TyrannosaurusrexskeletonActionRight;
-import superlord.prehistoricfauna.client.model.TyrannosaurusrexskeletonJP;
-import superlord.prehistoricfauna.client.model.TyrannosaurusrexskeletonSitting;
-import superlord.prehistoricfauna.client.model.Tyrannosaurusrexskeletontripod;
+import superlord.prehistoricfauna.client.model.TyrannosaurusrexskeletonActionLeftModel;
+import superlord.prehistoricfauna.client.model.TyrannosaurusrexskeletonActionRightModel;
+import superlord.prehistoricfauna.client.model.TyrannosaurusrexskeletonJPModel;
+import superlord.prehistoricfauna.client.model.TyrannosaurusrexskeletonModel;
+import superlord.prehistoricfauna.client.model.TyrannosaurusrexskeletonSittingModel;
+import superlord.prehistoricfauna.client.model.TyrannosaurusrexskeletontripodModel;
 import superlord.prehistoricfauna.common.entities.TyrannosaurusSkeletonEntity;
 
 public class TyrannosaurusSkeletonRenderer extends MobRenderer<TyrannosaurusSkeletonEntity, EntityModel<TyrannosaurusSkeletonEntity>> {
 
 	private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/tyrannosaurus.png");
-	private static final Tyrannosaurusrexskeleton IDLE = new Tyrannosaurusrexskeleton();
-	private static final TyrannosaurusrexskeletonActionLeft ACTION_LEFT = new TyrannosaurusrexskeletonActionLeft();
-	private static final TyrannosaurusrexskeletonActionRight ACTION_RIGHT = new TyrannosaurusrexskeletonActionRight();
-	private static final TyrannosaurusrexskeletonSitting RESTING = new TyrannosaurusrexskeletonSitting();
-	private static final Tyrannosaurusrexskeletontripod CLASSICAL = new Tyrannosaurusrexskeletontripod();
-	private static final TyrannosaurusrexskeletonJP JP = new TyrannosaurusrexskeletonJP();
+	private static final TyrannosaurusrexskeletonModel IDLE = new TyrannosaurusrexskeletonModel();
+	private static final TyrannosaurusrexskeletonActionLeftModel ACTION_LEFT = new TyrannosaurusrexskeletonActionLeftModel();
+	private static final TyrannosaurusrexskeletonActionRightModel ACTION_RIGHT = new TyrannosaurusrexskeletonActionRightModel();
+	private static final TyrannosaurusrexskeletonSittingModel RESTING = new TyrannosaurusrexskeletonSittingModel();
+	private static final TyrannosaurusrexskeletontripodModel CLASSICAL = new TyrannosaurusrexskeletontripodModel();
+	private static final TyrannosaurusrexskeletonJPModel JP = new TyrannosaurusrexskeletonJPModel();
 	
 	public TyrannosaurusSkeletonRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), IDLE, 2F);

@@ -10,6 +10,7 @@ import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -48,6 +49,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
@@ -63,6 +65,7 @@ import net.minecraft.world.server.ServerWorld;
 import superlord.prehistoricfauna.common.blocks.SaurosuchusEggBlock;
 import superlord.prehistoricfauna.common.entities.goal.HuntGoal;
 import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFEffects;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.SoundInit;
@@ -115,7 +118,7 @@ public class SaurosuchusEntity extends DinosaurEntity {
 	}
 
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == PFItems.RAW_ISCHIGUALASTIA_MEAT.get();
+		return stack.getItem() == PFItems.RAW_LARGE_SYNAPSID_MEAT.get();
 	}
 
 	protected void registerGoals() {
@@ -223,6 +226,15 @@ public class SaurosuchusEntity extends DinosaurEntity {
 			this.setMelanistic(true);
 		}
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+	}
+	
+	public boolean attackEntityAsMob(Entity entityIn) {
+		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
+		if (flag) {
+			this.applyEnchantments(this, entityIn);
+			((LivingEntity)entityIn).addPotionEffect(new EffectInstance(PFEffects.BLEEDING.get(), 300, 0, true, false));
+		}
+		return flag;
 	}
 	
 	class AttackPlayerGoal extends NearestAttackableTargetGoal<PlayerEntity> {

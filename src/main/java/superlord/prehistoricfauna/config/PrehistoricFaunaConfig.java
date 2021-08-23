@@ -42,8 +42,14 @@ public class PrehistoricFaunaConfig {
 	public static int ischigualastoHutMaxDistance = 60;
 	public static int geologistCampMinDistance = 25;
 	public static int geologistCampMaxDistance = 50;
+	public static int timeTempleMinDistance = 75;
+	public static int timeTempleMaxDistance = 100;
+	public static int portalHubMinDistance = 40;
+	public static int portalHubMaxDistance = 60;
 	public static boolean spaceTimeContinuumWarping = false;
 	public static boolean geologyHammerMining = true;
+	public static int baseStoneWeight = 97;
+	public static int fossilWeight = 3;
 	
 	public static void bakeClient(final ModConfig config) {
 
@@ -88,8 +94,14 @@ public class PrehistoricFaunaConfig {
 			ischigualastoHutMaxDistance = PFConfigHolder.SERVER.ischigualastoHutMaxDistance.get();
 			geologistCampMinDistance = PFConfigHolder.SERVER.geologistCampMinDistance.get();
 			geologistCampMaxDistance = PFConfigHolder.SERVER.geologistCampMaxDistance.get();
+			timeTempleMinDistance = PFConfigHolder.SERVER.timeTempleMinDistance.get();
+			timeTempleMaxDistance = PFConfigHolder.SERVER.timeTempleMaxDistance.get();
+			portalHubMinDistance = PFConfigHolder.SERVER.portalHubMinDistance.get();
+			portalHubMaxDistance = PFConfigHolder.SERVER.portalHubMaxDistance.get();
 			spaceTimeContinuumWarping = PFConfigHolder.SERVER.spaceTimeContinuumWarping.get();
 			geologyHammerMining = PFConfigHolder.SERVER.geologyHammerMining.get();
+			baseStoneWeight = PFConfigHolder.SERVER.baseStoneWeight.get();
+			fossilWeight = PFConfigHolder.SERVER.fossilWeight.get();
 		} catch (Exception e) {
 			PrehistoricFauna.LOGGER.warn("An exception was caused trying to load the config for Prehistoric Fauna");
 			e.printStackTrace();
