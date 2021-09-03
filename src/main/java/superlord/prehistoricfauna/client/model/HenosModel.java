@@ -122,12 +122,21 @@ public class HenosModel extends EntityModel<TimeGuardianEntity> {
 
     @Override
     public void setRotationAngles(TimeGuardianEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-    	this.Head.rotateAngleX = headPitch * ((float)Math.PI / 180F);
-    	this.Head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
-    	this.RLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-    	this.LLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;		
-    	this.LArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-    	this.RArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;	
+        this.RLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+    	this.LLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+    	float f = entityIn.getMeleeProgress(ageInTicks - entityIn.ticksExisted) / 5.0F;
+        float armPitch = f * (float)Math.toRadians(-120);
+        float armRoll = f * (float)Math.toRadians(60);
+        float bodyYaw = f * (float)Math.toRadians(20);
+        this.LArm.rotateAngleX = armPitch + (MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount) * (1.0F - f);
+        this.RArm.rotateAngleX = armPitch + (MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount) * (1.0F - f);
+        this.LArm.rotateAngleZ = -armRoll;
+        this.RArm.rotateAngleZ = armRoll;
+        this.Body.rotationPointY = -20.0F + f * 5;
+        this.Body.rotateAngleX = bodyYaw;
+        this.Hips.rotateAngleX = -bodyYaw;
+        this.Head.rotateAngleX = headPitch * ((float)Math.PI / 180F) - bodyYaw;
+        this.Head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
     }
 
     /**

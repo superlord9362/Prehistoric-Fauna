@@ -13,6 +13,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -47,10 +48,13 @@ public class TimeGuardianEntity extends MonsterEntity {
 	private static final DataParameter<Float> PREV_LASER_PITCH = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.FLOAT);
 	private static final DataParameter<Float> PREV_LASER_YAW = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.FLOAT);
 	private static final DataParameter<Boolean> IS_SUMMONED = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Integer> MELEE_TICK = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.VARINT);
 	private final ServerBossInfo bossInfo = (ServerBossInfo)(new ServerBossInfo(this.getDisplayName(), BossInfo.Color.GREEN, BossInfo.Overlay.PROGRESS));
 
 	public float targetDistance;
 	public float targetAngle;
+	private float meleeProgress;
+	private float prevMeleeProgress;
 
 	public TimeGuardianEntity(EntityType<? extends MonsterEntity> type, World world) {
 		super(type, world);
@@ -81,6 +85,7 @@ public class TimeGuardianEntity extends MonsterEntity {
 		super.registerGoals();
 		goalSelector.addGoal(1, new TimeGuardianEntity.BeamAttackAI(this));
 		goalSelector.addGoal(0, new TimeGuardianEntity.MeleeAttackGoal(this, 1.0D, true));
+		targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, 0, true, false, null));
 		targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 0, true, false, null));
 	}
 	
@@ -95,6 +100,7 @@ public class TimeGuardianEntity extends MonsterEntity {
 	@Override
 	public void tick() {
 		super.tick();
+		prevMeleeProgress = meleeProgress;
 		if (getAttackTarget() != null) {
 			targetDistance = getDistance(getAttackTarget()) - getAttackTarget().getWidth() / 2f;
 			targetAngle = (float) getAngleBetweenEntities(this, getAttackTarget());
@@ -117,6 +123,19 @@ public class TimeGuardianEntity extends MonsterEntity {
 		}
 		renderYawOffset = rotationYaw;
 		if (!isActive() && !world.isRemote) heal(0.3f);
+		if(this.dataManager.get(MELEE_TICK) > 0 && isUsingRegularAttack()){
+			if(this.dataManager.get(MELEE_TICK) == 2 && this.getAttackTarget() != null && this.getDistance(this.getAttackTarget()) < this.getAttackTarget().getWidth() + this.getWidth() + 2.0F){
+				this.getAttackTarget().attackEntityFrom(DamageSource.causeMobDamage(this), 2);
+			}
+			this.dataManager.set(MELEE_TICK, this.dataManager.get(MELEE_TICK) - 1);
+			if(meleeProgress < 5F){
+				meleeProgress++;
+			}
+		}else{
+			if(meleeProgress > 0F){
+				meleeProgress--;
+			}
+		}
 	}
 
 	@Override
@@ -141,6 +160,7 @@ public class TimeGuardianEntity extends MonsterEntity {
 		getDataManager().register(LASER_YAW, (float) 0);
 		getDataManager().register(PREV_LASER_PITCH, (float) 0);
 		getDataManager().register(PREV_LASER_YAW, (float) 0);
+		getDataManager().register(MELEE_TICK, 0);
 		getDataManager().register(IS_SUMMONED, false);
 	}	
 
@@ -221,6 +241,10 @@ public class TimeGuardianEntity extends MonsterEntity {
 		this.dataManager.set(CHARGING_BEAM, isChargingBeam);
 	}
 
+	public float getMeleeProgress(float partialTick){
+		return prevMeleeProgress + (meleeProgress - prevMeleeProgress) * partialTick;
+	}
+
 	@Override
 	public void writeAdditional(CompoundNBT compound) {
 		super.writeAdditional(compound);
@@ -262,6 +286,11 @@ public class TimeGuardianEntity extends MonsterEntity {
 	@Override
 	public boolean isNonBoss() {
 		return false;
+	}
+
+	public boolean attackEntityAsMob(Entity entityIn) {
+		this.getDataManager().set(MELEE_TICK, 6);
+		return true;
 	}
 
 	public double getAngleBetweenEntities(Entity first, Entity second) {
