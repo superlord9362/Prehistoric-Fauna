@@ -115,19 +115,41 @@ public class HenosSummonedModel extends EntityModel<TimeGuardianEntity> {
     public void setRotationAngles(TimeGuardianEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.RLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         this.LLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-        float f = entityIn.getMeleeProgress(ageInTicks - entityIn.ticksExisted) / 5.0F;
-        float armPitch = f * (float)Math.toRadians(-120);
-        float armRoll = f * (float)Math.toRadians(60);
-        float bodyYaw = f * (float)Math.toRadians(20);
-        this.LArm.rotateAngleX = armPitch + (MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount) * (1.0F - f);
-        this.RArm.rotateAngleX = armPitch + (MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount) * (1.0F - f);
-        this.LArm.rotateAngleZ = -armRoll;
-        this.RArm.rotateAngleZ = armRoll;
-        this.Body.rotationPointY = -20.0F + f * 5;
+        float attackRight = entityIn.getMeleeProgress(false, ageInTicks - entityIn.ticksExisted) / 5.0F;
+        float attackLeft = entityIn.getMeleeProgress(true, ageInTicks - entityIn.ticksExisted) / 5.0F;
+        float attack = Math.max(attackLeft, attackRight);
+        float rightFingerCurl = attackRight * (float)Math.toRadians(80);
+        float leftFingerCurl = attackLeft * (float)Math.toRadians(80);
+        float bodyYaw = attack * (float)Math.toRadians(20);
+        this.LArm.rotateAngleX = attackLeft * (float)Math.toRadians(-100) + (MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount) * (1.0F - attack);
+        this.LArm.rotateAngleY = leftFingerCurl * -0.25F;
+        this.LArm.rotateAngleZ = leftFingerCurl * 0.15F;
+        this.RArm.rotateAngleX = attackRight * (float)Math.toRadians(-100) + (MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount) * (1.0F - attack);
+        this.RArm.rotateAngleY = rightFingerCurl * 0.25F;
+        this.RArm.rotateAngleZ = rightFingerCurl * -0.15F;
+        this.RIFinger.rotateAngleX = rightFingerCurl;
+        this.ROFinger.rotateAngleX = rightFingerCurl;
+        this.RMFinger.rotateAngleX = rightFingerCurl;
+        this.RThumb.rotateAngleX = rightFingerCurl;
+        this.LIFinger.rotateAngleX = leftFingerCurl;
+        this.LOFinger.rotateAngleX = leftFingerCurl;
+        this.LMFinger.rotateAngleX = leftFingerCurl;
+        this.LThumb.rotateAngleX = leftFingerCurl;
+        this.RArm.rotationPointX = 36.0F + attackRight * -5;
+        this.RArm.rotationPointZ = 11.0F + attackRight * -16;
+        this.RThumb.rotationPointX = -1.0F + attackRight * 1;
+        this.RThumb.rotationPointY = 11.0F + attackRight * 2;
+        this.LArm.rotationPointX = -2.0F - attackLeft * -5;
+        this.LArm.rotationPointZ = 11.0F + attackLeft * -16;
+        this.LThumb.rotationPointX = 1.0F - attackLeft * 1;
+        this.LThumb.rotationPointY = 11.0F + attackLeft * 2;
+        this.Body.rotateAngleY = attackLeft * (float)Math.toRadians(-20) + attackRight * (float)Math.toRadians(20);
+        this.Body.rotationPointY = -20.0F + attack * 5;
+        this.Body.rotationPointZ = -11.0F - attack * 8;
         this.Body.rotateAngleX = bodyYaw;
         this.Hips.rotateAngleX = -bodyYaw;
         this.Head.rotateAngleX = headPitch * ((float)Math.PI / 180F) - bodyYaw;
-        this.Head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
+        this.Head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F) - this.Body.rotateAngleY;
     }
     /**
      * This is a helper function from Tabula to set the rotation of model parts

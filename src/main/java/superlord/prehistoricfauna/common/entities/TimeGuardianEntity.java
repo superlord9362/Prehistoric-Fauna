@@ -15,6 +15,7 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.passive.StriderEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -53,8 +54,11 @@ public class TimeGuardianEntity extends MonsterEntity {
 
 	public float targetDistance;
 	public float targetAngle;
-	private float meleeProgress;
-	private float prevMeleeProgress;
+	private float leftPunchProgress;
+	private float prevLeftPunchProgress;
+	private float rightPunchProgress;
+	private float prevRightPunchProgress;
+	private boolean usingLeftHand;
 
 	public TimeGuardianEntity(EntityType<? extends MonsterEntity> type, World world) {
 		super(type, world);
@@ -85,7 +89,6 @@ public class TimeGuardianEntity extends MonsterEntity {
 		super.registerGoals();
 		goalSelector.addGoal(1, new TimeGuardianEntity.BeamAttackAI(this));
 		goalSelector.addGoal(0, new TimeGuardianEntity.MeleeAttackGoal(this, 1.0D, true));
-		targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, 0, true, false, null));
 		targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 0, true, false, null));
 	}
 	
@@ -100,7 +103,8 @@ public class TimeGuardianEntity extends MonsterEntity {
 	@Override
 	public void tick() {
 		super.tick();
-		prevMeleeProgress = meleeProgress;
+		prevRightPunchProgress = rightPunchProgress;
+		prevLeftPunchProgress = leftPunchProgress;
 		if (getAttackTarget() != null) {
 			targetDistance = getDistance(getAttackTarget()) - getAttackTarget().getWidth() / 2f;
 			targetAngle = (float) getAngleBetweenEntities(this, getAttackTarget());
@@ -124,16 +128,34 @@ public class TimeGuardianEntity extends MonsterEntity {
 		renderYawOffset = rotationYaw;
 		if (!isActive() && !world.isRemote) heal(0.3f);
 		if(this.dataManager.get(MELEE_TICK) > 0 && isUsingRegularAttack()){
-			if(this.dataManager.get(MELEE_TICK) == 2 && this.getAttackTarget() != null && this.getDistance(this.getAttackTarget()) < this.getAttackTarget().getWidth() + this.getWidth() + 2.0F){
+			if(Math.max(rightPunchProgress, leftPunchProgress) == 5 && this.getAttackTarget() != null && this.getDistance(this.getAttackTarget()) < this.getAttackTarget().getWidth() + this.getWidth() + 2.0F){
 				this.getAttackTarget().attackEntityFrom(DamageSource.causeMobDamage(this), 2);
 			}
 			this.dataManager.set(MELEE_TICK, this.dataManager.get(MELEE_TICK) - 1);
-			if(meleeProgress < 5F){
-				meleeProgress++;
+			if(this.dataManager.get(MELEE_TICK) == 0){
+				usingLeftHand = !usingLeftHand;
+			}
+			if(!usingLeftHand && rightPunchProgress < 5F){
+				rightPunchProgress += 2.5F;
+			}
+			if(usingLeftHand && leftPunchProgress < 5F){
+				leftPunchProgress += 2.5F;
 			}
 		}else{
-			if(meleeProgress > 0F){
-				meleeProgress--;
+			if(leftPunchProgress > 0F){
+				leftPunchProgress -= Math.min(0.5F, leftPunchProgress);
+			}
+			if(rightPunchProgress > 0F){
+				rightPunchProgress -= Math.min(0.5F, rightPunchProgress);
+			}
+		}
+		if(usingLeftHand){
+			if(rightPunchProgress > 0F){
+				rightPunchProgress--;
+			}
+		}else{
+			if(leftPunchProgress > 0F){
+				leftPunchProgress--;
 			}
 		}
 	}
@@ -241,8 +263,12 @@ public class TimeGuardianEntity extends MonsterEntity {
 		this.dataManager.set(CHARGING_BEAM, isChargingBeam);
 	}
 
-	public float getMeleeProgress(float partialTick){
-		return prevMeleeProgress + (meleeProgress - prevMeleeProgress) * partialTick;
+	public float getMeleeProgress(boolean left, float partialTick){
+		if(left){
+			return prevLeftPunchProgress + (leftPunchProgress - prevLeftPunchProgress) * partialTick;
+		}else{
+			return prevRightPunchProgress + (rightPunchProgress - prevRightPunchProgress) * partialTick;
+		}
 	}
 
 	@Override
@@ -289,7 +315,7 @@ public class TimeGuardianEntity extends MonsterEntity {
 	}
 
 	public boolean attackEntityAsMob(Entity entityIn) {
-		this.getDataManager().set(MELEE_TICK, 6);
+		this.getDataManager().set(MELEE_TICK, 10);
 		return true;
 	}
 
