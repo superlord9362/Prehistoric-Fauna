@@ -39,6 +39,7 @@ public class MorrisonHutStructure extends Structure<NoFeatureConfig> {
 	
 	public MorrisonHutStructure(Codec<NoFeatureConfig> codec) {
 		super(codec);
+		this.setRegistryName(PrehistoricFauna.MOD_ID + ":morrison_hut");
 	}
 	
 	public String getStructureName() {

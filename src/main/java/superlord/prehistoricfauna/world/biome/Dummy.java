@@ -28,7 +28,7 @@ public class Dummy extends PFBiome {
 
 	static final Biome.Climate WEATHER = new Biome.Climate(PRECIPATATION, TEMPERATURE, Biome.TemperatureModifier.NONE, DOWNFALL);
 	static final MobSpawnInfo.Builder SPAWN_SETTINGS = new MobSpawnInfo.Builder().isValidSpawnBiomeForPlayer();
-	static final BiomeGenerationSettings.Builder GENERATION_SETTINGS = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(SURFACE_BUILDER);
+	static final BiomeGenerationSettings.Builder GENERATION_SETTINGS = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(SURFACE_BUILDER).withFeature(GenerationStage.Decoration.RAW_GENERATION, PFConfiguredFeatures.DUMMY_TREE);
 
 	public Dummy() {
 		super(WEATHER, CATEGORY, DEPTH, SCALE, (new BiomeAmbience.Builder()).setWaterColor(WATER_COLOR).setWaterFogColor(WATER_FOG_COLOR).setFogColor(12638463).withSkyColor(WATER_COLOR).build(), GENERATION_SETTINGS.build(), SPAWN_SETTINGS.copy());
@@ -55,9 +55,6 @@ public class Dummy extends PFBiome {
 		return BiomeManager.BiomeType.WARM;
 	}
 
-	static {
-		GENERATION_SETTINGS.withFeature(GenerationStage.Decoration.RAW_GENERATION, PFConfiguredFeatures.DUMMY_TREE);
-	}
 }
 
 

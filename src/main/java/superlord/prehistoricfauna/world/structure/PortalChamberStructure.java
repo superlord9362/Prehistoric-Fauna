@@ -39,6 +39,7 @@ public class PortalChamberStructure extends Structure<NoFeatureConfig> {
 
 	public PortalChamberStructure(Codec<NoFeatureConfig> codec) {
 		super(codec);
+		this.setRegistryName(PrehistoricFauna.MOD_ID + ":portal_chamber");
 	}
 
 	public String getStructureName() {

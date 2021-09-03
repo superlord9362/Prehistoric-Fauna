@@ -39,6 +39,7 @@ public class IschigualastoHutStructure extends Structure<NoFeatureConfig> {
 	
 	public IschigualastoHutStructure(Codec<NoFeatureConfig> codec) {
 		super(codec);
+		this.setRegistryName(PrehistoricFauna.MOD_ID + ":ischigualasto_hut");
 	}
 	
 	public String getStructureName() {

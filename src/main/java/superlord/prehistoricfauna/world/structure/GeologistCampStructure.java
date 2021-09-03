@@ -46,6 +46,7 @@ public class GeologistCampStructure extends Structure<NoFeatureConfig> {
 	
 	public GeologistCampStructure(Codec<NoFeatureConfig> codec) {
 		super(codec);
+		this.setRegistryName(PrehistoricFauna.MOD_ID + ":geologist_camp");
 	}
 	
 	public String getStructureName() {
