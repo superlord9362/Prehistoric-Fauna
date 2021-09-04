@@ -7,6 +7,7 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.common.entities.TimeGuardianEntity;
@@ -113,10 +114,11 @@ public class HenosSummonedModel extends EntityModel<TimeGuardianEntity> {
 
     @Override
     public void setRotationAngles(TimeGuardianEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        float f = ageInTicks - entityIn.ticksExisted;
         this.RLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         this.LLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-        float attackRight = entityIn.getMeleeProgress(false, ageInTicks - entityIn.ticksExisted) / 5.0F;
-        float attackLeft = entityIn.getMeleeProgress(true, ageInTicks - entityIn.ticksExisted) / 5.0F;
+        float attackRight = entityIn.getMeleeProgress(false, f) / 5.0F;
+        float attackLeft = entityIn.getMeleeProgress(true, f) / 5.0F;
         float attack = Math.max(attackLeft, attackRight);
         float rightFingerCurl = attackRight * (float)Math.toRadians(80);
         float leftFingerCurl = attackLeft * (float)Math.toRadians(80);
@@ -143,13 +145,19 @@ public class HenosSummonedModel extends EntityModel<TimeGuardianEntity> {
         this.LArm.rotationPointZ = 11.0F + attackLeft * -16;
         this.LThumb.rotationPointX = 1.0F - attackLeft * 1;
         this.LThumb.rotationPointY = 11.0F + attackLeft * 2;
-        this.Body.rotateAngleY = attackLeft * (float)Math.toRadians(-20) + attackRight * (float)Math.toRadians(20);
         this.Body.rotationPointY = -20.0F + attack * 5;
         this.Body.rotationPointZ = -11.0F - attack * 8;
         this.Body.rotateAngleX = bodyYaw;
         this.Hips.rotateAngleX = -bodyYaw;
         this.Head.rotateAngleX = headPitch * ((float)Math.PI / 180F) - bodyYaw;
         this.Head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F) - this.Body.rotateAngleY;
+        Vector3d vec = entityIn.getLaserTargetPos(f);
+        double d0 = vec.x - entityIn.getPosX();
+        double d2 = vec.z - entityIn.getPosZ();
+        float bossYaw = 90F + MathHelper.interpolateAngle(f, entityIn.prevRenderYawOffset, entityIn.renderYawOffset);
+        float laserBodyTwist = MathHelper.wrapDegrees((float)(MathHelper.atan2(d2, d0) * (double)(180F / (float)Math.PI)) - bossYaw);
+        this.Body.rotateAngleY = attackLeft * (float)Math.toRadians(-20) + attackRight * (float)Math.toRadians(20);
+        this.Hips.rotateAngleY = -(float) Math.toRadians(laserBodyTwist * entityIn.getLaserTargetProgress(f));
     }
     /**
      * This is a helper function from Tabula to set the rotation of model parts
