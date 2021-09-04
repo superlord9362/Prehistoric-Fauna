@@ -15,7 +15,6 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
@@ -183,7 +182,7 @@ public class TimeGuardianEntity extends MonsterEntity {
             d1 = d1 / d3;
             d2 = d2 / d3;
             double d4 = this.rand.nextDouble();
-            while(d4 < d3) {
+            while (d4 < d3) {
                 d4 += 3.0D - this.rand.nextDouble() * 2.5D;
                 this.world.addParticle(PFParticles.BOSS_LASER, this.getPosX() + d0 * d4, this.getPosYEye() + d1 * d4, this.getPosZ() + d2 * d4, (rand.nextFloat() - 0.5F) * 0.1F, rand.nextFloat() * 0.2F, (rand.nextFloat() - 0.5F) * 0.1F);
             }
@@ -371,9 +370,8 @@ public class TimeGuardianEntity extends MonsterEntity {
     }
 
     protected float determineNextStepDistance() {
-        return this.distanceWalkedOnStepModified + 0.6F;
+        return this.distanceWalkedOnStepModified + 0.3F;
     }
-
 
     public double getAngleBetweenEntities(Entity first, Entity second) {
         return Math.atan2(second.getPosZ() - first.getPosZ(), second.getPosX() - first.getPosX()) * (180 / Math.PI) + 90;
@@ -418,6 +416,12 @@ public class TimeGuardianEntity extends MonsterEntity {
 
         @Override
         public boolean shouldContinueExecuting() {
+            if(timeGuardian.ticksExisted > 0 && timeGuardian.ticksExisted % 20 == 0 && !canSeeEntity(timeGuardian.getPositionVec(), timeGuardian.getAttackTarget())){
+                this.timeGuardian.setChargingBeam(false);
+                this.timeGuardian.setUsingBeam(false);
+                this.timeGuardian.setLaserTick(-120);
+                return false;
+            }
             if (timeGuardian.getLaserTick() <= 0 || !super.shouldContinueExecuting()) {
                 this.timeGuardian.setChargingBeam(false);
                 this.timeGuardian.setUsingBeam(false);
@@ -539,7 +543,7 @@ public class TimeGuardianEntity extends MonsterEntity {
 
         @Override
         public boolean shouldExecute() {
-            if (timeGuardian.getHealth() >= (timeGuardian.getMaxHealth() / 2)) {
+            if (timeGuardian.getHealth() >= (timeGuardian.getMaxHealth() / 2) || timeGuardian.getLaserTick() < 0) {
                 return super.shouldExecute();
             } else if (timeGuardian.getHealth() <= (timeGuardian.getMaxHealth() / 2) && !timeGuardian.isUsingBeamAttack()) {
                 if (timeGuardian.getAttackTarget() != null) {
@@ -557,11 +561,14 @@ public class TimeGuardianEntity extends MonsterEntity {
         }
 
         protected double getAttackReachSqr(LivingEntity attackTarget) {
-            return (double)(this.attacker.getWidth() * 3.0F * this.attacker.getWidth() * 3.0F + attackTarget.getWidth());
+            return this.attacker.getWidth() * 3.0F * this.attacker.getWidth() * 3.0F + attackTarget.getWidth();
         }
 
         @Override
         public boolean shouldContinueExecuting() {
+            if(timeGuardian.getLaserTick() < 0){
+                return super.shouldContinueExecuting();
+            }
             if (timeGuardian.getHealth() <= (timeGuardian.getMaxHealth() / 2) && !timeGuardian.isUsingBeamAttack()) {
                 if (timeGuardian.getAttackTarget() != null) {
                     if (timeGuardian.getDistanceSq(timeGuardian.getAttackTarget()) <= 10D) {
@@ -572,7 +579,7 @@ public class TimeGuardianEntity extends MonsterEntity {
                 } else {
                     return false;
                 }
-            } else if (timeGuardian.getHealth() > (timeGuardian.getMaxHealth() / 2)) {
+            } else if (timeGuardian.getHealth() > (timeGuardian.getMaxHealth() / 2) || timeGuardian.getLaserTick() < 0) {
                 return super.shouldContinueExecuting();
             } else {
                 return false;
