@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"L",
+		"W"
+	],
+	"key": {
+		"L": {
+			"item": "prehistoricfauna:araucaria_leaves"
+		},
+		"W": {
+			"tag": "prehistoricfauna:araucaria_logs"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:araucaria_hedge",
+		"count": 2
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:quark_flag",
+			"flag": "hedges"
+		}
+	]
+}

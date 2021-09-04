@@ -5,17 +5,18 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.FlatGenerationSettings;
 import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
 import superlord.prehistoricfauna.PrehistoricFauna;
 
 public class PFConfiguredStructures {
 	
-	public static StructureFeature<?, ?> CONFIGURED_TIME_TEMPLE = PFStructures.TIME_TEMPLE.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
-	public static StructureFeature<?, ?> CONFIGURED_GEOLOGIST_CAMP = PFStructures.GEOLOGIST_CAMP.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
-	public static StructureFeature<?, ?> CONFIGURED_PORTAL_CHAMBER = PFStructures.PORTAL_CHAMBER.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
-	public static StructureFeature<?, ?> CONFIGURED_HELL_CREEK_HUT = PFStructures.HELL_CREEK_HUT.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
-	public static StructureFeature<?, ?> CONFIGURED_MORRISON_HUT = PFStructures.MORRISON_HUT.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
-	public static StructureFeature<?, ?> CONFIGURED_ISCHIGUALASTO_HUT = PFStructures.ISCHIGUALASTO_HUT.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
+	public static StructureFeature<NoFeatureConfig, ?> CONFIGURED_TIME_TEMPLE = PFStructures.TIME_TEMPLE.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
+	public static StructureFeature<NoFeatureConfig, ?> CONFIGURED_GEOLOGIST_CAMP = PFStructures.GEOLOGIST_CAMP.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
+	public static StructureFeature<NoFeatureConfig, ?> CONFIGURED_PORTAL_CHAMBER = PFStructures.PORTAL_CHAMBER.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
+	public static StructureFeature<NoFeatureConfig, ?> CONFIGURED_HELL_CREEK_HUT = PFStructures.HELL_CREEK_HUT.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
+	public static StructureFeature<NoFeatureConfig, ?> CONFIGURED_MORRISON_HUT = PFStructures.MORRISON_HUT.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
+	public static StructureFeature<NoFeatureConfig, ?> CONFIGURED_ISCHIGUALASTO_HUT = PFStructures.ISCHIGUALASTO_HUT.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
 
 	public static void registerConfiguredStructures() {
 		Registry<StructureFeature<?, ?>> registry = WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE;

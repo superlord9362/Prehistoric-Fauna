@@ -1,0 +1,33 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"group": "protojuniperoxylon_chest",
+	"pattern": [
+		"###",
+		"# #",
+		"###"
+	],
+	"key": {
+		"#": {
+			"tag": "prehistoricfauna:protojuniperoxylon_logs"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:protojuniperoxylon_chest",
+		"count": "4"
+	},
+	"conditions": [
+		{
+			"type": "forge:and",
+			"values": [
+				{
+					"type": "prehistoricfauna:quark_flag",
+					"flag": "wood_to_chest_recipes"
+				},
+				{
+					"type": "prehistoricfauna:quark_flag",
+					"flag": "variant_chests"
+				}
+			]
+		}
+	]
+}

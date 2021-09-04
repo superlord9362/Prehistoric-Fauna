@@ -41,12 +41,12 @@ public class PFStructures {
 	public static final RegistryObject<Structure<NoFeatureConfig>> ISCHIGUALASTO_HUT = REGISTER.register("ischigualasto_hut", () -> (new IschigualastoHutStructure(NoFeatureConfig.field_236558_a_)));
 
 	public static void setupStructures() {
-		setupMapSpacingAndLand(TIME_TEMPLE.get(), new StructureSeparationSettings(PrehistoricFaunaConfig.timeTempleMinDistance, PrehistoricFaunaConfig.timeTempleMaxDistance, 8237163), true);
-		setupMapSpacingAndLand(GEOLOGIST_CAMP.get(), new StructureSeparationSettings(PrehistoricFaunaConfig.geologistCampMinDistance, PrehistoricFaunaConfig.geologistCampMaxDistance, 37126163), true);
-		setupMapSpacingAndLand(PORTAL_CHAMBER.get(), new StructureSeparationSettings(PrehistoricFaunaConfig.portalHubMinDistance, PrehistoricFaunaConfig.portalHubMaxDistance, 2837462), true);
-		setupMapSpacingAndLand(HELL_CREEK_HUT.get(), new StructureSeparationSettings(PrehistoricFaunaConfig.hellCreekHutMinDistance, PrehistoricFaunaConfig.hellCreekHutMaxDistance, 42773854), true);
-		setupMapSpacingAndLand(MORRISON_HUT.get(), new StructureSeparationSettings(PrehistoricFaunaConfig.morrisonHutMinDistance, PrehistoricFaunaConfig.morrisonHutMaxDistance, 476256184), true);
-		setupMapSpacingAndLand(ISCHIGUALASTO_HUT.get(), new StructureSeparationSettings(PrehistoricFaunaConfig.ischigualastoHutMinDistance, PrehistoricFaunaConfig.ischigualastoHutMaxDistance, 29578373), true);
+		setupMapSpacingAndLand(TIME_TEMPLE.get(), new StructureSeparationSettings(PrehistoricFaunaConfig.timeTempleMaxDistance, PrehistoricFaunaConfig.timeTempleMinDistance, 8237163), true);
+		setupMapSpacingAndLand(GEOLOGIST_CAMP.get(), new StructureSeparationSettings(PrehistoricFaunaConfig.geologistCampMaxDistance, PrehistoricFaunaConfig.geologistCampMinDistance, 37126163), true);
+		setupMapSpacingAndLand(PORTAL_CHAMBER.get(), new StructureSeparationSettings(PrehistoricFaunaConfig.portalHubMaxDistance, PrehistoricFaunaConfig.portalHubMinDistance, 2837462), true);
+		setupMapSpacingAndLand(HELL_CREEK_HUT.get(), new StructureSeparationSettings(PrehistoricFaunaConfig.hellCreekHutMaxDistance, PrehistoricFaunaConfig.hellCreekHutMinDistance, 42773854), true);
+		setupMapSpacingAndLand(MORRISON_HUT.get(), new StructureSeparationSettings(PrehistoricFaunaConfig.morrisonHutMaxDistance, PrehistoricFaunaConfig.morrisonHutMinDistance, 476256184), true);
+		setupMapSpacingAndLand(ISCHIGUALASTO_HUT.get(), new StructureSeparationSettings(PrehistoricFaunaConfig.ischigualastoHutMaxDistance, PrehistoricFaunaConfig.ischigualastoHutMinDistance, 29578373), true);
 	}
 	
 	public static <F extends Structure<?>> void setupMapSpacingAndLand(F structure, StructureSeparationSettings structureSeparationSettings, boolean transformSurroundingLand) {

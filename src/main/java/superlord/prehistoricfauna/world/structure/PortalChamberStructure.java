@@ -49,7 +49,7 @@ public class PortalChamberStructure extends Structure<NoFeatureConfig> {
 	public GenerationStage.Decoration getDecorationStage() {
 		return GenerationStage.Decoration.SURFACE_STRUCTURES;
 	}
-
+	
 	@Override
 	public IStartFactory<NoFeatureConfig> getStartFactory() {
 		return PortalChamberStructure.Start::new;

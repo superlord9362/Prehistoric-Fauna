@@ -1,0 +1,15 @@
+{
+	"required": true,
+	"package": "superlord.prehistoricfauna.client",
+	"compatibilityLevel": "JAVA_8",
+	"refmap": "prehistoricfauna.refmap.json",
+	"mixins": [
+	],
+	"client": [
+		"WarningDispersal"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"minVersion": "0.8"
+}

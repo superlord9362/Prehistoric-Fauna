@@ -5,7 +5,6 @@ import java.util.List;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
@@ -83,7 +82,7 @@ public class PFFeatures {
     public static final Feature<NoFeatureConfig> DUMMY = createFeature("dummy", new SmallPineTree(NoFeatureConfig.field_236558_a_.stable()));
     
     public static final Feature<NoFeatureConfig> PTILOPHYLLUM_TREE = createFeature("ptilophyllum_tree", new PtilophyllumFeature(NoFeatureConfig.field_236558_a_.stable()));
-    public static final Feature<BaseTreeFeatureConfig> ZAMITES_BUSH = createFeature("zamites_bush", new ZamiteBushFeature(BaseTreeFeatureConfig.CODEC.stable()));
+    public static final Feature<JohnstoniaConfig> ZAMITES_BUSH = createFeature("zamites_bush", new ZamiteBushFeature(JohnstoniaConfig.field_236558_a_.stable()));
     public static final Feature<JohnstoniaConfig> JOHNSTONIA_FEATURE = createFeature("johnstonia_feature", new JohnstoniaFeature(JohnstoniaConfig.field_236558_a_.stable()));
     public static final Feature<JohnstoniaConfig> DICROIDIUM_FEATURE = createFeature("dicroidium_feature", new DicroidiumFeature(JohnstoniaConfig.field_236558_a_.stable()));
 

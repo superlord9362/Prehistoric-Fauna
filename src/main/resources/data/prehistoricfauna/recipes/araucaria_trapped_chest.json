@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "prehistoricfauna:araucaria_chest"
+		},
+		{
+			"item": "minecraft:tripwire_hook"
+		}
+	],
+	"result": {
+		"item": "prehistoricfauna:araucaria_trapped_chest"
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:quark_flag",
+			"flag": "variant_chests"
+		}
+	]
+}

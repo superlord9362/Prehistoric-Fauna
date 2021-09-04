@@ -1,0 +1,26 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"# #",
+		"#W#",
+		"# #"
+	],
+	"key": {
+		"#": {
+			"item": "minecraft:stick"
+		},
+		"W": {
+			"item": "prehistoricfauna:protopiceoxylon_planks"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:protopiceoxylon_ladder",
+		"count": 4
+	},
+	"conditions": [
+		{
+      "type": "prehistoricfauna:quark_flag",
+			"flag": "variant_ladders"
+		}
+	]
+}

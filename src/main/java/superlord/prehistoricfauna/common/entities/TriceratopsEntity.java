@@ -16,6 +16,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -23,7 +24,9 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effects;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -38,6 +41,7 @@ import net.minecraft.world.World;
 import superlord.prehistoricfauna.common.blocks.TriceratopsEggBlock;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
+import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.SoundInit;
 
 import java.util.List;
@@ -238,6 +242,72 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 			this.setMelanistic(true);
 		}
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+	}
+
+	public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
+		World world = p_230254_1_.world;
+		ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
+		Item item = itemstack.getItem();
+		if (!this.isChild()) {
+			if (item == PFItems.TRICERATOPS_SPAWN_EGG.get()) {
+				TriceratopsEntity triceratopsentity = PFEntities.TRICERATOPS_ENTITY.create(world);
+				triceratopsentity.setGrowingAge(-24000);
+				triceratopsentity.setLocationAndAngles((double)this.getPosX() + 0.3D * 0.2D, (double)this.getPosY(), (double)this.getPosZ() + 0.3D, 0.0F, 0.0F);
+				world.addEntity(triceratopsentity);
+				return super.func_230254_b_(p_230254_1_, p_230254_2_);
+			}
+			if (this.isTame() && p_230254_1_.isSecondaryUseActive()) {
+				this.openGUI(p_230254_1_);
+				return ActionResultType.func_233537_a_(this.world.isRemote);
+			}
+
+			if (this.isBeingRidden()) {
+				return super.func_230254_b_(p_230254_1_, p_230254_2_);
+			}
+		}
+
+		if (!itemstack.isEmpty()) {
+			if (this.isBreedingItem(itemstack)) {
+				return this.func_241395_b_(p_230254_1_, itemstack);
+			}
+
+			if (!this.isTame()) {
+				this.makeMad();
+				return ActionResultType.func_233537_a_(this.world.isRemote);
+			}
+
+			if (!this.hasChest() && itemstack.getItem() == Blocks.CHEST.asItem()) {
+				this.setChested(true);
+				this.playChestEquipSound();
+				if (!p_230254_1_.abilities.isCreativeMode) {
+					itemstack.shrink(1);
+				}
+
+				this.initHorseChest();
+				return ActionResultType.func_233537_a_(this.world.isRemote);
+			}
+
+			if (!this.isChild() && !this.isHorseSaddled() && itemstack.getItem() == Items.SADDLE) {
+				this.openGUI(p_230254_1_);
+				return ActionResultType.func_233537_a_(this.world.isRemote);
+			}
+		}
+
+
+		if (this.isChild()) {
+			if (item == PFItems.TRICERATOPS_SPAWN_EGG.get()) {
+				TriceratopsEntity triceratopsentity = PFEntities.TRICERATOPS_ENTITY.create(world);
+				triceratopsentity.setGrowingAge(-24000);
+				triceratopsentity.setLocationAndAngles((double)this.getPosX() + 0.3D * 0.2D, (double)this.getPosY(), (double)this.getPosZ() + 0.3D, 0.0F, 0.0F);
+				world.addEntity(triceratopsentity);
+				return super.func_230254_b_(p_230254_1_, p_230254_2_);
+			} else {
+				return super.func_230254_b_(p_230254_1_, p_230254_2_);
+			}
+		} else {
+			this.mountTo(p_230254_1_);
+			return ActionResultType.func_233537_a_(this.world.isRemote);
+		}
 	}
 
 	/**

@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"L",
+		"W"
+	],
+	"key": {
+		"L": {
+			"item": "prehistoricfauna:protojuniperoxylon_leaves"
+		},
+		"W": {
+			"tag": "prehistoricfauna:protojuniperoxylon_logs"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:protojuniperoxylon_hedge",
+		"count": 2
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:quark_flag",
+			"flag": "hedges"
+		}
+	]
+}

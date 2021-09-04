@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"L",
+		"W"
+	],
+	"key": {
+		"L": {
+			"item": "prehistoricfauna:liriodendrites_leaves"
+		},
+		"W": {
+			"tag": "prehistoricfauna:liriodendrites_logs"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:liriodendrites_hedge",
+		"count": 2
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:quark_flag",
+			"flag": "hedges"
+		}
+	]
+}
