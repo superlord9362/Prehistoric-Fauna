@@ -14,17 +14,8 @@ import net.minecraft.world.gen.blockplacer.DoublePlantBlockPlacer;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
-import net.minecraft.world.gen.feature.BlockClusterFeatureConfig;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.DecoratedFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.FeatureSpread;
-import net.minecraft.world.gen.feature.Features;
-import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.feature.MultipleRandomFeatureConfig;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.minecraft.world.gen.feature.TwoLayerFeature;
+import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.DepthAverageConfig;
@@ -37,10 +28,12 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFDecorators;
+import superlord.prehistoricfauna.init.PFStructures;
 import superlord.prehistoricfauna.world.feature.config.CrassostreaOystersConfig;
 import superlord.prehistoricfauna.world.feature.config.JohnstoniaConfig;
 import superlord.prehistoricfauna.world.feature.config.NoisySphereConfig;
 import superlord.prehistoricfauna.world.feature.config.PFTreeConfig;
+import superlord.prehistoricfauna.world.feature.trees.zamites.ZamitesBush;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -111,7 +104,7 @@ public class PFConfiguredFeatures {
 	public static final ConfiguredFeature<?, ?> OSMUNDACAULIS = createConfiguredFeature("osmundacaulis", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.OSMUNDACAULIS.getDefaultState()), new SimpleBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(25)).func_242731_b(5));
 	public static final ConfiguredFeature<?, ?> TALL_OSMUNDACAULIS = createConfiguredFeature("tall_osmundacaulist", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.TALL_OSMUNDACAULIS.getDefaultState()), new DoublePlantBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(35)).func_242731_b(5));
 	public static final ConfiguredFeature<?, ?> DEAD_OSMUNDACAULIS = createConfiguredFeature("dead_osmundacaulis", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.DEAD_OSMUNDACAULIS.getDefaultState()), new SimpleBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(45)).func_242731_b(5));
-	public static final ConfiguredFeature<?, ?> ZAMITES_BUSH = createConfiguredFeature("zamites_bush", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(PFFeatures.ZAMITES_BUSH.withConfiguration(new JohnstoniaConfig(1)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)).withChance(0.5F)), CONIOPTERIS)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)).func_242731_b(5));
+	public static final ConfiguredFeature<?, ?> ZAMITES_BUSH = createConfiguredFeature("zamites_bush", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(PFFeatures.ZAMITES_BUSH.withConfiguration(ZamitesBush.ZAMITES_BUSH_CONFIG).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)).withChance(0.5F)), CONIOPTERIS)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)).func_242731_b(5));
 
 	public static final ConfiguredFeature<?, ?> ORE_IRON_EXTRA = createConfiguredFeature("ore_iron_extra", Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, Blocks.IRON_ORE.getDefaultState(), 9)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(32, 32, 80))).square().func_242731_b(20));
 

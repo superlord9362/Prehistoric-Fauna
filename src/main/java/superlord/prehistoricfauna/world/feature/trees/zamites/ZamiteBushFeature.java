@@ -10,13 +10,14 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.world.feature.config.JohnstoniaConfig;
 
-public class ZamiteBushFeature extends Feature<JohnstoniaConfig>
+public class ZamiteBushFeature extends Feature<BaseTreeFeatureConfig>
 {
-	public ZamiteBushFeature(Codec<JohnstoniaConfig> codec) {
+	public ZamiteBushFeature(Codec<BaseTreeFeatureConfig> codec) {
 		super(codec);
 	}
 
@@ -50,7 +51,7 @@ public class ZamiteBushFeature extends Feature<JohnstoniaConfig>
 	}
 
 	@Override
-	public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos startPosition, JohnstoniaConfig config) {
+	public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos startPosition, BaseTreeFeatureConfig config) {
 		BlockPos pos = startPosition;
 		// Moving down until it is on the ground
 		while (pos.getY() > 1 && isAirOrLeaves(worldIn, pos)) pos = pos.down();

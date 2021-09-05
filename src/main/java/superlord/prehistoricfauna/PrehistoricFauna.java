@@ -173,7 +173,6 @@ public class PrehistoricFauna {
 		REGISTRY_HELPER.getDeferredTileEntityRegister().register(modEventBus);
 		PFBlocks.REGISTER.register(modEventBus);
 		PFItems.REGISTER.register(modEventBus);
-		PFStructures.REGISTER.register(modEventBus);
 		PFTileEntities.TILE_ENTITY_TYPES.register(modEventBus);
 		PFContainers.CONTAINER_TYPES.register(modEventBus);
 		PFEntities.ENTITY_TYPES.register(modEventBus);
@@ -197,7 +196,6 @@ public class PrehistoricFauna {
 		NETWORK_WRAPPER.registerMessage(packetsRegistered++, InputMessage.class, InputMessage::encode, InputMessage::decode, InputMessage::handle);
 		event.enqueueWork(() -> {
 			PFStructures.setupStructures();
-			PFStructures.registerStructurePieces();
 			PFConfiguredStructures.registerConfiguredStructures();
 			WorldGenRegistries.NOISE_SETTINGS.getEntries().forEach(settings -> {
 				Map<Structure<?>, StructureSeparationSettings> structureMap = settings.getValue().getStructures().func_236195_a_();
