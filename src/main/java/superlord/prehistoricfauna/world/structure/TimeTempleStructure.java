@@ -44,6 +44,7 @@ public class TimeTempleStructure extends Structure<NoFeatureConfig> {
 	
 	public TimeTempleStructure(Codec<NoFeatureConfig> codec) {
 		super(codec);
+		this.setRegistryName(PrehistoricFauna.MOD_ID + ":time_temple");
 	}
 	
 	public String getStructureName() {

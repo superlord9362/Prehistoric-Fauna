@@ -39,6 +39,7 @@ public class HellCreekHutStructure extends Structure<NoFeatureConfig> {
 	
 	public HellCreekHutStructure(Codec<NoFeatureConfig> codec) {
 		super(codec);
+		this.setRegistryName(PrehistoricFauna.MOD_ID + ":hell_creek_hut");
 	}
 	
 	public String getStructureName() {

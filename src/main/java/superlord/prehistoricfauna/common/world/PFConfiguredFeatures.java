@@ -3,10 +3,12 @@ package superlord.prehistoricfauna.common.world;
 import com.google.common.collect.ImmutableList;
 
 import net.minecraft.block.Blocks;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.biome.BiomeGenerationSettings;
+import net.minecraft.world.gen.DimensionSettings;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.blockplacer.DoublePlantBlockPlacer;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
@@ -29,6 +31,7 @@ import net.minecraft.world.gen.placement.DepthAverageConfig;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.placement.TopSolidRangeConfig;
+import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
@@ -39,7 +42,13 @@ import superlord.prehistoricfauna.world.feature.config.JohnstoniaConfig;
 import superlord.prehistoricfauna.world.feature.config.NoisySphereConfig;
 import superlord.prehistoricfauna.world.feature.config.PFTreeConfig;
 
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
 public class PFConfiguredFeatures {
+
+	public static Map<String, Object> configuredFeatureRegistry = new HashMap<>();
 
 	public static final ConfiguredFeature<PFTreeConfig, ?> METASEQUOIA_TREE_1 = createConfiguredFeature("metasequoia_tree_1", PFFeatures.METASEQUOIA_TREE_1.withConfiguration(new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.METASEQUOIA_LOG).setLeavesBlock(PFBlocks.METASEQUOIA_LEAVES).setMaxHeight(53).setMinHeight(41).build()));
 	public static final ConfiguredFeature<PFTreeConfig, ?> METASEQUOIA_TREE_2 = createConfiguredFeature("metasequoia_tree_2", PFFeatures.METASEQUOIA_TREE_2.withConfiguration(new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.METASEQUOIA_LOG).setLeavesBlock(PFBlocks.METASEQUOIA_LEAVES).setMaxHeight(56).setMinHeight(44).build()));
@@ -116,6 +125,20 @@ public class PFConfiguredFeatures {
 	public static final ConfiguredFeature<?, ?> SPARSE_JOHNSTONIA = createConfiguredFeature("sparse_johnstonia", PFFeatures.JOHNSTONIA_FEATURE.withConfiguration(new JohnstoniaConfig(1)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 	public static final ConfiguredFeature<?, ?> SPARSE_DICROIDIUM = createConfiguredFeature("sparse_dicroidium", PFFeatures.DICROIDIUM_FEATURE.withConfiguration(new JohnstoniaConfig(1)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 
+
+
+	public static StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> HELL_CREEK_HUT;// = register("hell_creek_hut", PFStructures.HELL_CREEK_HUT.withConfiguration(NoFeatureConfig.field_236559_b_));
+	public static StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> MORRISON_HUT;// = register("morrison_hut", PFStructures.MORRISON_HUT.withConfiguration(NoFeatureConfig.field_236559_b_));
+	public static StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> ISCHIGUALASTO_HUT;// = register("ischigualasto_hut", PFStructures.ISCHIGUALASTO_HUT.withConfiguration(NoFeatureConfig.field_236559_b_));
+	public static StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> PORTAL_CHAMBER;// = register("portal_chamber", PFStructures.PORTAL_CHAMBER.withConfiguration(NoFeatureConfig.field_236559_b_));
+
+	private static <FC extends IFeatureConfig, F extends Structure<FC>> StructureFeature<FC, F> register(String name, StructureFeature<FC, F> structure) {
+		ResourceLocation pfID = new ResourceLocation(PrehistoricFauna.MOD_ID, name);
+		if (WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE.keySet().contains(pfID))
+			throw new IllegalStateException("Configured Feature ID: \"" + pfID.toString() + "\" already exists in the Configured Features registry!");
+		return structure;
+	}
+  
 	//public static final ConfiguredFeature<?, ?> ALGAE = createConfiguredFeature("algae", PFFeatures.ALGAE_FEATURE.withConfiguration(new CrassostreaOystersConfig(24)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 	//public static final ConfiguredFeature<?, ?> CRASSOSTREA_OYSTERS = createConfiguredFeature("crassostrea_oysters", PFFeatures.CRASSOSTREA_OYSTERS_FEATURE.withConfiguration(new CrassostreaOystersConfig(24)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 
@@ -123,8 +146,7 @@ public class PFConfiguredFeatures {
 		ResourceLocation pfID = new ResourceLocation(PrehistoricFauna.MOD_ID, id);
 		if (WorldGenRegistries.CONFIGURED_FEATURE.keySet().contains(pfID))
 			throw new IllegalStateException("Configured Feature ID: \"" + pfID.toString() + "\" already exists in the Configured Features registry!");
-
-		Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, pfID, configuredFeature);
+		configuredFeatureRegistry.put(pfID.toString(), configuredFeature);
 		return configuredFeature;
 	}
 
@@ -279,4 +301,18 @@ public class PFConfiguredFeatures {
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, SPARSE_ISCHIGUALASTO_VEGETATION);
 	}
 
+	public static void registerConfiguredFeatures() {
+		HELL_CREEK_HUT = Registry.register(WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE, "prehistoricfauna:hell_creek_hut", PFStructures.HELL_CREEK_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+		MORRISON_HUT = Registry.register(WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE, "prehistoricfauna:morrison_hut", PFStructures.MORRISON_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+		ISCHIGUALASTO_HUT = Registry.register(WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE, "prehistoricfauna:ischigualasto_hut", PFStructures.ISCHIGUALASTO_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+		PORTAL_CHAMBER = Registry.register(WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE, "prehistoricfauna:portal_chamber", PFStructures.PORTAL_CHAMBER.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+	}
+
+	public static <F extends Structure<?>> void addStructureToBimap(String nameForList, F structure) {
+		Structure.NAME_STRUCTURE_BIMAP.put(nameForList.toLowerCase(Locale.ROOT), structure);
+	}
+
+	public static void addStructureSeperation(RegistryKey<DimensionSettings> preset, Structure structure, StructureSeparationSettings settings) {
+		WorldGenRegistries.NOISE_SETTINGS.getValueForKey(preset).getStructures().func_236195_a_().put(structure, settings);
+	}
 }

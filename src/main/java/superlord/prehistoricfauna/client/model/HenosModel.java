@@ -7,6 +7,8 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.common.entities.TimeGuardianEntity;
@@ -122,12 +124,50 @@ public class HenosModel extends EntityModel<TimeGuardianEntity> {
 
     @Override
     public void setRotationAngles(TimeGuardianEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-    	this.Head.rotateAngleX = headPitch * ((float)Math.PI / 180F);
-    	this.Head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
-    	this.RLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-    	this.LLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;		
-    	this.LArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-    	this.RArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;	
+        float f = ageInTicks - entityIn.ticksExisted;
+        this.RLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+    	this.LLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+        float attackRight = entityIn.getMeleeProgress(false, f) / 5.0F;
+        float attackLeft = entityIn.getMeleeProgress(true, f) / 5.0F;
+        float attack = Math.max(attackLeft, attackRight);
+        float rightFingerCurl = attackRight * (float)Math.toRadians(80);
+        float leftFingerCurl = attackLeft * (float)Math.toRadians(80);
+        float bodyYaw = attack * (float)Math.toRadians(20);
+        this.LArm.rotateAngleX = attackLeft * (float)Math.toRadians(-100) + (MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount) * (1.0F - attack);
+        this.LArm.rotateAngleY = leftFingerCurl * -0.25F;
+        this.LArm.rotateAngleZ = leftFingerCurl * 0.15F;
+        this.RArm.rotateAngleX = attackRight * (float)Math.toRadians(-100) + (MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount) * (1.0F - attack);
+        this.RArm.rotateAngleY = rightFingerCurl * 0.25F;
+        this.RArm.rotateAngleZ = rightFingerCurl * -0.15F;
+        this.RIFinger.rotateAngleX = rightFingerCurl;
+        this.ROFinger.rotateAngleX = rightFingerCurl;
+        this.RMFinger.rotateAngleX = rightFingerCurl;
+        this.RThumb.rotateAngleX = rightFingerCurl;
+        this.LIFinger.rotateAngleX = leftFingerCurl;
+        this.LOFinger.rotateAngleX = leftFingerCurl;
+        this.LMFinger.rotateAngleX = leftFingerCurl;
+        this.LThumb.rotateAngleX = leftFingerCurl;
+        this.RArm.rotationPointX = 36.0F + attackRight * -5;
+        this.RArm.rotationPointZ = 11.0F + attackRight * -16;
+        this.RThumb.rotationPointX = -1.0F + attackRight * 1;
+        this.RThumb.rotationPointY = 11.0F + attackRight * 2;
+        this.LArm.rotationPointX = -2.0F - attackLeft * -5;
+        this.LArm.rotationPointZ = 11.0F + attackLeft * -16;
+        this.LThumb.rotationPointX = 1.0F - attackLeft * 1;
+        this.LThumb.rotationPointY = 11.0F + attackLeft * 2;
+        this.Body.rotationPointY = -20.0F + attack * 5;
+        this.Body.rotationPointZ = -11.0F - attack * 8;
+        this.Body.rotateAngleX = bodyYaw;
+        this.Hips.rotateAngleX = -bodyYaw;
+        this.Head.rotateAngleX = headPitch * ((float)Math.PI / 180F) - bodyYaw;
+        this.Head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F) - this.Body.rotateAngleY;
+        Vector3d vec = entityIn.getLaserTargetPos(f);
+        double d0 = vec.x - entityIn.getPosX();
+        double d2 = vec.z - entityIn.getPosZ();
+        float bossYaw = 90F + MathHelper.interpolateAngle(f, entityIn.prevRenderYawOffset, entityIn.renderYawOffset);
+        float laserBodyTwist = MathHelper.wrapDegrees((float)(MathHelper.atan2(d2, d0) * (double)(180F / (float)Math.PI)) - bossYaw);
+        this.Body.rotateAngleY = attackLeft * (float)Math.toRadians(-20) + attackRight * (float)Math.toRadians(20);
+        this.Hips.rotateAngleY = -(float) Math.toRadians(laserBodyTwist * entityIn.getLaserTargetProgress(f));
     }
 
     /**

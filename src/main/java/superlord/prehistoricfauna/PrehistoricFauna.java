@@ -164,6 +164,8 @@ public class PrehistoricFauna {
 		modEventBus.addListener(this::doClientStuff);
 		modEventBus.addListener(this::setup);
 		modEventBus.addListener(this::setupBiomesAndDimensions);
+		PFStructures.setupStructures();
+		PFConfiguredFeatures.registerConfiguredFeatures();
 		CraftingHelper.register(new QuarkFlagRecipeCondition.Serializer());
 		PFRecipes.RECIPES.register(modEventBus);
 		REGISTRY_HELPER.getDeferredBlockRegister().register(modEventBus);
@@ -179,7 +181,6 @@ public class PrehistoricFauna {
 		PFPacketHandler.registerPackets();
 		PFEffects.EFFECTS.register(modEventBus);
 		PROXY.init();
-
 		modLoadingContext.registerConfig(ModConfig.Type.CLIENT, PFConfigHolder.CLIENT_SPEC);
 		modLoadingContext.registerConfig(ModConfig.Type.COMMON, PFConfigHolder.SERVER_SPEC);
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
@@ -202,20 +203,20 @@ public class PrehistoricFauna {
 				Map<Structure<?>, StructureSeparationSettings> structureMap = settings.getValue().getStructures().func_236195_a_();
 				if (structureMap instanceof ImmutableMap){
 					Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(structureMap);
-					tempMap.put(PFStructures.TIME_TEMPLE.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.TIME_TEMPLE.get()));
-					tempMap.put(PFStructures.GEOLOGIST_CAMP.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.GEOLOGIST_CAMP.get()));
-					tempMap.put(PFStructures.PORTAL_CHAMBER.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.PORTAL_CHAMBER.get()));
-					tempMap.put(PFStructures.HELL_CREEK_HUT.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.HELL_CREEK_HUT.get()));
-					tempMap.put(PFStructures.MORRISON_HUT.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.MORRISON_HUT.get()));
-					tempMap.put(PFStructures.ISCHIGUALASTO_HUT.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.ISCHIGUALASTO_HUT.get()));
+					tempMap.put(PFStructures.TIME_TEMPLE, DimensionStructuresSettings.field_236191_b_.get(PFStructures.TIME_TEMPLE));
+					tempMap.put(PFStructures.GEOLOGIST_CAMP, DimensionStructuresSettings.field_236191_b_.get(PFStructures.GEOLOGIST_CAMP));
+					tempMap.put(PFStructures.PORTAL_CHAMBER, DimensionStructuresSettings.field_236191_b_.get(PFStructures.PORTAL_CHAMBER));
+					tempMap.put(PFStructures.HELL_CREEK_HUT, DimensionStructuresSettings.field_236191_b_.get(PFStructures.HELL_CREEK_HUT));
+					tempMap.put(PFStructures.MORRISON_HUT, DimensionStructuresSettings.field_236191_b_.get(PFStructures.MORRISON_HUT));
+					tempMap.put(PFStructures.ISCHIGUALASTO_HUT, DimensionStructuresSettings.field_236191_b_.get(PFStructures.ISCHIGUALASTO_HUT));
 					settings.getValue().getStructures().field_236193_d_ = tempMap;
 				} else {
-					structureMap.put(PFStructures.TIME_TEMPLE.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.TIME_TEMPLE.get()));
-					structureMap.put(PFStructures.GEOLOGIST_CAMP.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.GEOLOGIST_CAMP.get()));
-					structureMap.put(PFStructures.PORTAL_CHAMBER.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.PORTAL_CHAMBER.get()));
-					structureMap.put(PFStructures.HELL_CREEK_HUT.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.HELL_CREEK_HUT.get()));
-					structureMap.put(PFStructures.MORRISON_HUT.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.MORRISON_HUT.get()));
-					structureMap.put(PFStructures.ISCHIGUALASTO_HUT.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.ISCHIGUALASTO_HUT.get()));
+					structureMap.put(PFStructures.TIME_TEMPLE, DimensionStructuresSettings.field_236191_b_.get(PFStructures.TIME_TEMPLE));
+					structureMap.put(PFStructures.GEOLOGIST_CAMP, DimensionStructuresSettings.field_236191_b_.get(PFStructures.GEOLOGIST_CAMP));
+					structureMap.put(PFStructures.PORTAL_CHAMBER, DimensionStructuresSettings.field_236191_b_.get(PFStructures.PORTAL_CHAMBER));
+					structureMap.put(PFStructures.HELL_CREEK_HUT, DimensionStructuresSettings.field_236191_b_.get(PFStructures.HELL_CREEK_HUT));
+					structureMap.put(PFStructures.MORRISON_HUT, DimensionStructuresSettings.field_236191_b_.get(PFStructures.MORRISON_HUT));
+					structureMap.put(PFStructures.ISCHIGUALASTO_HUT, DimensionStructuresSettings.field_236191_b_.get(PFStructures.ISCHIGUALASTO_HUT));
 				}
 			});
 			MinecraftForge.EVENT_BUS.register(new CommonEvents());
@@ -348,11 +349,11 @@ public class PrehistoricFauna {
 				return;
 			}
 			Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkProvider().generator.func_235957_b_().func_236195_a_());
-			tempMap.putIfAbsent(PFStructures.TIME_TEMPLE.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.TIME_TEMPLE.get()));
-			tempMap.putIfAbsent(PFStructures.GEOLOGIST_CAMP.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.GEOLOGIST_CAMP.get()));
-			tempMap.putIfAbsent(PFStructures.HELL_CREEK_HUT.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.HELL_CREEK_HUT.get()));
-			tempMap.putIfAbsent(PFStructures.MORRISON_HUT.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.MORRISON_HUT.get()));
-			tempMap.putIfAbsent(PFStructures.ISCHIGUALASTO_HUT.get(), DimensionStructuresSettings.field_236191_b_.get(PFStructures.ISCHIGUALASTO_HUT.get()));
+			tempMap.putIfAbsent(PFStructures.TIME_TEMPLE, DimensionStructuresSettings.field_236191_b_.get(PFStructures.TIME_TEMPLE));
+			tempMap.putIfAbsent(PFStructures.GEOLOGIST_CAMP, DimensionStructuresSettings.field_236191_b_.get(PFStructures.GEOLOGIST_CAMP));
+			tempMap.putIfAbsent(PFStructures.HELL_CREEK_HUT, DimensionStructuresSettings.field_236191_b_.get(PFStructures.HELL_CREEK_HUT));
+			tempMap.putIfAbsent(PFStructures.MORRISON_HUT, DimensionStructuresSettings.field_236191_b_.get(PFStructures.MORRISON_HUT));
+			tempMap.putIfAbsent(PFStructures.ISCHIGUALASTO_HUT, DimensionStructuresSettings.field_236191_b_.get(PFStructures.ISCHIGUALASTO_HUT));
 			serverWorld.getChunkProvider().generator.func_235957_b_().field_236193_d_ = tempMap;
 		}
 	}
