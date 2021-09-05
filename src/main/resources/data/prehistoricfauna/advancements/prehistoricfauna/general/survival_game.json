@@ -1,0 +1,35 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/general/plant_made_of_plant",
+  "display": {
+    "icon": {
+      "item": "prehistoricfauna:thatch"
+    },
+    "title": {
+      "translate": "advancements.prehistoricfauna.survival_game.title"
+    },
+    "description": {
+      "translate": "advancements.prehistoricfauna.survival_game.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "thatch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:thatch"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "thatch"
+    ]
+  ]
+}

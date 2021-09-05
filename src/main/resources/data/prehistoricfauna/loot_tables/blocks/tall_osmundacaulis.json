@@ -2,25 +2,25 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",
-          "conditions": [
+          "functions": [
             {
-              "condition": "minecraft:block_state_property",
-              "block": "prehistoricfauna:tall_osmundacaulis",
-              "properties": {
-                "half": "lower"
-              }
+              "function": "minecraft:set_count",
+              "count": 2
             }
           ],
-          "name": "prehistoricfauna:tall_osmundacaulis"
+          "name": "prehistoricfauna:osmundacaulis"
         }
       ],
       "conditions": [
         {
-          "condition": "minecraft:survives_explosion"
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "item": "minecraft:shears"
+          }
         }
       ]
     }

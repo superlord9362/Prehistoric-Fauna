@@ -1,5 +1,7 @@
 package superlord.prehistoricfauna.common.blocks;
 
+import java.util.Random;
+
 import javax.annotation.Nullable;
 
 import net.minecraft.block.*;
@@ -10,11 +12,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
-public class JohnstoniaBlock extends BushBlock {
+public class JohnstoniaBlock extends BushBlock implements IGrowable {
 
 	public static final IntegerProperty LAYER = IntegerProperty.create("layer", 0, 2);
 
@@ -100,6 +104,18 @@ public class JohnstoniaBlock extends BushBlock {
 	@Override
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(LAYER);
+	}
+
+	public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
+		return true;
+	}
+
+	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
+		return true;
+	}
+
+	public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
+		spawnAsEntity(worldIn, pos, new ItemStack(this));
 	}
 
 }

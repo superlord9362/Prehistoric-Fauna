@@ -1,5 +1,6 @@
 {
     "variants": {
-        "": { "model": "prehistoricfauna:block/portal_frame" }
+        "activated=false": { "model": "prehistoricfauna:block/portal_frame" },
+		"activated=true": { "model": "prehistoricfauna:block/portal_frame_active" }
     }
 }

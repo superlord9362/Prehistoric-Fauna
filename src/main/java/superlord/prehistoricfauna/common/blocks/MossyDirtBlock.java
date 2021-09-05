@@ -16,5 +16,5 @@ public class MossyDirtBlock extends Block {
 	public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, net.minecraftforge.common.IPlantable plantable) {
 		return true;
 	}
-
+	
 }

@@ -1,0 +1,69 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/general/time_machine",
+  "display": {
+    "icon": {
+      "item": "prehistoricfauna:raw_myledaphus"
+    },
+    "title": {
+      "translate": "advancements.prehistoricfauna.river_monsters.title"
+    },
+    "description": {
+      "translate": "advancements.prehistoricfauna.river_monsters.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "myledaphus": {
+      "trigger": "minecraft:fishing_rod_hooked",
+      "conditions": {
+        "item": {
+          "item": "prehistoricfauna:raw_myledaphus"
+        }
+      }
+    },
+	"ceratodus": {
+		"trigger": "minecraft:fishing_rod_hooked",
+		"conditions": {
+			"item": {
+				"item": "prehistoricfauna:raw_ceratodus"
+			}
+		}
+	},
+	"cyclurus": {
+		"trigger": "minecraft:fishing_rod_hooked",
+		"conditions": {
+			"item": {
+				"item": "prehistoricfauna:raw_cyclurus"
+			}
+		}
+	},
+	"lepisosteus": {
+		"trigger": "minecraft:fishing_rod_hooked",
+		"conditions": {
+			"item": {
+				"item": "prehistoricfauna:raw_lepisosteus"
+			}
+		}
+	},
+	"potamoceratodus": {
+		"trigger": "minecraft:fishing_rod_hooked",
+		"conditions": {
+			"item": {
+				"item": "prehistoricfauna:raw_potamoceratodus"
+			}
+		}
+	}
+  },
+  "requirements": [
+    [
+		"myledaphus",
+		"ceratodus",
+		"cyclurus",
+		"lepisosteus",
+		"potamoceratodus"
+    ]
+  ]
+}

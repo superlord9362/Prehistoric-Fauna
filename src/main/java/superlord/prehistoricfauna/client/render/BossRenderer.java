@@ -2,6 +2,7 @@ package superlord.prehistoricfauna.client.render;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
@@ -81,7 +82,8 @@ public class BossRenderer extends MobRenderer<TimeGuardianEntity, EntityModel<Ti
         matrixStackIn.rotate(Vector3f.YN.rotationDegrees(f2 * f3));
     }
 
-    public void render(TimeGuardianEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
+    @SuppressWarnings("unused")
+	public void render(TimeGuardianEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
         super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
         if (entityIn.isSummoned()) {
             entityModel = SUMMONED;

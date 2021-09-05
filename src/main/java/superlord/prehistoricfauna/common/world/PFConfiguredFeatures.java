@@ -1,5 +1,9 @@
 package superlord.prehistoricfauna.common.world;
 
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
 import com.google.common.collect.ImmutableList;
 
 import net.minecraft.block.Blocks;
@@ -23,8 +27,11 @@ import net.minecraft.world.gen.feature.FeatureSpread;
 import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.MultipleRandomFeatureConfig;
+import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.TwoLayerFeature;
+import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.DepthAverageConfig;
@@ -37,14 +44,11 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFDecorators;
+import superlord.prehistoricfauna.init.PFStructures;
 import superlord.prehistoricfauna.world.feature.config.CrassostreaOystersConfig;
 import superlord.prehistoricfauna.world.feature.config.JohnstoniaConfig;
 import superlord.prehistoricfauna.world.feature.config.NoisySphereConfig;
 import superlord.prehistoricfauna.world.feature.config.PFTreeConfig;
-
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
 
 public class PFConfiguredFeatures {
 
@@ -84,8 +88,6 @@ public class PFConfiguredFeatures {
 
 	public static final ConfiguredFeature<?, ?> DUMMY_TREE = createConfiguredFeature("dummy_trees", PFFeatures.DUMMY.withConfiguration(DecoratedFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(10000, 0.4F, 8))));
 
-	public static final ConfiguredFeature<?, ?> PETRIFIED_TREE = createConfiguredFeature("petrified_tree", Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.PETRIFIED_WOOD.getDefaultState()), new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()), new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3), new StraightTrunkPlacer(4, 2, 0), new TwoLayerFeature(1, 0, 1))).setIgnoreVines().build()).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242731_b(5));
-
 	public static final ConfiguredFeature<?, ?> FOSSILIZED_CHALK = createConfiguredFeature("fossilized_chalk", PFFeatures.NOISY_SPHERE.withConfiguration(new NoisySphereConfig.Builder().setBlock(new WeightedBlockStateProvider().addWeightedBlockstate(PFBlocks.CHALK.getDefaultState(), PrehistoricFaunaConfig.baseStoneWeight).addWeightedBlockstate(PFBlocks.CHALK_FOSSIL.getDefaultState(), PrehistoricFaunaConfig.fossilWeight)).setMinRadius(4).setMaxRadius(10).setMinYRadius(3).setMaxYRadius(8).build()).withPlacement(Placement.DEPTH_AVERAGE.configure(new DepthAverageConfig(47, 5))).square().func_242731_b(1));
 	public static final ConfiguredFeature<?, ?> FOSSILIZED_SILTSTONE = createConfiguredFeature("fossilized_siltstone", PFFeatures.NOISY_SPHERE.withConfiguration(new NoisySphereConfig.Builder().setBlock(new WeightedBlockStateProvider().addWeightedBlockstate(PFBlocks.SILTSTONE.getDefaultState(), PrehistoricFaunaConfig.baseStoneWeight).addWeightedBlockstate(PFBlocks.SILTSTONE_FOSSIL.getDefaultState(), PrehistoricFaunaConfig.fossilWeight)).setMinRadius(4).setMaxRadius(10).setMinYRadius(3).setMaxYRadius(8).build()).withPlacement(Placement.DEPTH_AVERAGE.configure(new DepthAverageConfig(42, 5))).square().func_242731_b(1));
 	public static final ConfiguredFeature<?, ?> FOSSILIZED_SANDSTONE = createConfiguredFeature("fossilized_sandstone", PFFeatures.NOISY_SPHERE.withConfiguration(new NoisySphereConfig.Builder().setBlock(new WeightedBlockStateProvider().addWeightedBlockstate(PFBlocks.SANDSTONE.getDefaultState(), PrehistoricFaunaConfig.baseStoneWeight).addWeightedBlockstate(PFBlocks.SANDSTONE_FOSSIL.getDefaultState(), PrehistoricFaunaConfig.fossilWeight)).setMinRadius(4).setMaxRadius(10).setMinYRadius(3).setMaxYRadius(8).build()).withPlacement(Placement.DEPTH_AVERAGE.configure(new DepthAverageConfig(37, 5))).square().func_242731_b(1));
@@ -111,7 +113,9 @@ public class PFConfiguredFeatures {
 	public static final ConfiguredFeature<?, ?> OSMUNDACAULIS = createConfiguredFeature("osmundacaulis", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.OSMUNDACAULIS.getDefaultState()), new SimpleBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(25)).func_242731_b(5));
 	public static final ConfiguredFeature<?, ?> TALL_OSMUNDACAULIS = createConfiguredFeature("tall_osmundacaulist", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.TALL_OSMUNDACAULIS.getDefaultState()), new DoublePlantBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(35)).func_242731_b(5));
 	public static final ConfiguredFeature<?, ?> DEAD_OSMUNDACAULIS = createConfiguredFeature("dead_osmundacaulis", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.DEAD_OSMUNDACAULIS.getDefaultState()), new SimpleBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(45)).func_242731_b(5));
-	public static final ConfiguredFeature<?, ?> ZAMITES_BUSH = createConfiguredFeature("zamites_bush", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(PFFeatures.ZAMITES_BUSH.withConfiguration(new JohnstoniaConfig(1)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)).withChance(0.5F)), CONIOPTERIS)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)).func_242731_b(5));
+	public static final ConfiguredFeature<?, ?> PETRIFIED_TREE = createConfiguredFeature("petrified_tree", Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.PETRIFIED_WOOD.getDefaultState()), new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()), new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3), new StraightTrunkPlacer(4, 2, 0), new TwoLayerFeature(1, 0, 1))).setIgnoreVines().build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(15)).func_242731_b(5));
+	public static final ConfiguredFeature<?, ?> ZAMITES_BUSH = createConfiguredFeature("zamites_bush", PFFeatures.ZAMITES_BUSH.withConfiguration(new JohnstoniaConfig(1)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+
 
 	public static final ConfiguredFeature<?, ?> ORE_IRON_EXTRA = createConfiguredFeature("ore_iron_extra", Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, Blocks.IRON_ORE.getDefaultState(), 9)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(32, 32, 80))).square().func_242731_b(20));
 
@@ -123,7 +127,7 @@ public class PFConfiguredFeatures {
 	public static final ConfiguredFeature<?, ?> DICROIDIUM = createConfiguredFeature("dicroidium", PFFeatures.DICROIDIUM_FEATURE.withConfiguration(new JohnstoniaConfig(6)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 
 	public static final ConfiguredFeature<?, ?> SPARSE_JOHNSTONIA = createConfiguredFeature("sparse_johnstonia", PFFeatures.JOHNSTONIA_FEATURE.withConfiguration(new JohnstoniaConfig(1)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
-	public static final ConfiguredFeature<?, ?> SPARSE_DICROIDIUM = createConfiguredFeature("sparse_dicroidium", PFFeatures.DICROIDIUM_FEATURE.withConfiguration(new JohnstoniaConfig(1)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+	public static final ConfiguredFeature<?, ?> SPARSE_DICROIDIUM = createConfiguredFeature("sparse_dicroidium", PFFeatures.DICROIDIUM_FEATURE.withConfiguration(new JohnstoniaConfig(1)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));	
 
 
 
@@ -132,13 +136,14 @@ public class PFConfiguredFeatures {
 	public static StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> ISCHIGUALASTO_HUT;// = register("ischigualasto_hut", PFStructures.ISCHIGUALASTO_HUT.withConfiguration(NoFeatureConfig.field_236559_b_));
 	public static StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> PORTAL_CHAMBER;// = register("portal_chamber", PFStructures.PORTAL_CHAMBER.withConfiguration(NoFeatureConfig.field_236559_b_));
 
+	@SuppressWarnings("unused")
 	private static <FC extends IFeatureConfig, F extends Structure<FC>> StructureFeature<FC, F> register(String name, StructureFeature<FC, F> structure) {
 		ResourceLocation pfID = new ResourceLocation(PrehistoricFauna.MOD_ID, name);
 		if (WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE.keySet().contains(pfID))
 			throw new IllegalStateException("Configured Feature ID: \"" + pfID.toString() + "\" already exists in the Configured Features registry!");
 		return structure;
 	}
-  
+
 	//public static final ConfiguredFeature<?, ?> ALGAE = createConfiguredFeature("algae", PFFeatures.ALGAE_FEATURE.withConfiguration(new CrassostreaOystersConfig(24)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 	//public static final ConfiguredFeature<?, ?> CRASSOSTREA_OYSTERS = createConfiguredFeature("crassostrea_oysters", PFFeatures.CRASSOSTREA_OYSTERS_FEATURE.withConfiguration(new CrassostreaOystersConfig(24)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 
@@ -260,9 +265,8 @@ public class PFConfiguredFeatures {
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PFConfiguredFeatures.LIRIODENDRITES_FOREST_VEGETATION);
 	}
 
-	public static void addSparseandPetrifiedTrees(BiomeGenerationSettings.Builder builder) {
+	public static void addSparseTrees(BiomeGenerationSettings.Builder builder) {
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.PLAIN_VEGETATION);
-		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PETRIFIED_TREE);
 	}
 
 	public static void addMorrisonSavannaVegetation(BiomeGenerationSettings.Builder builder) {
@@ -312,6 +316,7 @@ public class PFConfiguredFeatures {
 		Structure.NAME_STRUCTURE_BIMAP.put(nameForList.toLowerCase(Locale.ROOT), structure);
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static void addStructureSeperation(RegistryKey<DimensionSettings> preset, Structure structure, StructureSeparationSettings settings) {
 		WorldGenRegistries.NOISE_SETTINGS.getValueForKey(preset).getStructures().func_236195_a_().put(structure, settings);
 	}

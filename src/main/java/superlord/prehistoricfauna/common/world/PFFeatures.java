@@ -36,6 +36,7 @@ import superlord.prehistoricfauna.world.feature.trees.liriodendrites.Liriodendri
 import superlord.prehistoricfauna.world.feature.trees.liriodendrites.LiriodendritesTree4;
 import superlord.prehistoricfauna.world.feature.trees.metasequoia.MetasequoiaTree1;
 import superlord.prehistoricfauna.world.feature.trees.metasequoia.MetasequoiaTree2;
+import superlord.prehistoricfauna.world.feature.trees.petrified.PetrifiedTreeFeature;
 import superlord.prehistoricfauna.world.feature.trees.protopiceoxylon.ProtopiceoxylonTree1;
 import superlord.prehistoricfauna.world.feature.trees.protopiceoxylon.ProtopiceoxylonTree2;
 import superlord.prehistoricfauna.world.feature.trees.protopiceoxylon.ProtopiceoxylonTree3;
@@ -83,6 +84,7 @@ public class PFFeatures {
     
     public static final Feature<NoFeatureConfig> PTILOPHYLLUM_TREE = createFeature("ptilophyllum_tree", new PtilophyllumFeature(NoFeatureConfig.field_236558_a_.stable()));
     public static final Feature<JohnstoniaConfig> ZAMITES_BUSH = createFeature("zamites_bush", new ZamiteBushFeature(JohnstoniaConfig.field_236558_a_.stable()));
+    public static final Feature<JohnstoniaConfig> PETRIFIED_TREE = createFeature("petrified_tree", new PetrifiedTreeFeature(JohnstoniaConfig.field_236558_a_.stable()));
     public static final Feature<JohnstoniaConfig> JOHNSTONIA_FEATURE = createFeature("johnstonia_feature", new JohnstoniaFeature(JohnstoniaConfig.field_236558_a_.stable()));
     public static final Feature<JohnstoniaConfig> DICROIDIUM_FEATURE = createFeature("dicroidium_feature", new DicroidiumFeature(JohnstoniaConfig.field_236558_a_.stable()));
 

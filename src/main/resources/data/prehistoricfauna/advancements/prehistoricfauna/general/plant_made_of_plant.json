@@ -1,0 +1,35 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/general/time_machine",
+  "display": {
+    "icon": {
+      "item": "prehistoricfauna:plant_fiber"
+    },
+    "title": {
+      "translate": "advancements.prehistoricfauna.plant_made_of_plant.title"
+    },
+    "description": {
+      "translate": "advancements.prehistoricfauna.plant_made_of_plant.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "fiber": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:plant_fiber"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "fiber"
+    ]
+  ]
+}

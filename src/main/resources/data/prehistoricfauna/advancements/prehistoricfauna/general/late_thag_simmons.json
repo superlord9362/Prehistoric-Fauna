@@ -16,8 +16,8 @@
     "hidden": false
   },
   "criteria": {
-     "killed_by_something": {
-      "trigger": "minecraft:entity_killed_player",
+     "killed_something": {
+      "trigger": "minecraft:player_killed_entity",
       "conditions": {
 	"entity": {
           "type": "prehistoricfauna:stegosaurus"
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "killed_by_something"
+      "killed_something"
     ]
   ]
 }

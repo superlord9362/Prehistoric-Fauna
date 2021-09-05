@@ -126,6 +126,10 @@ public class CretaceousPortalBlock extends BreakableBlock {
 		boolean flag = directionAxis1 != directionAxis && directionAxis.isHorizontal();
 		return !flag && facingState.getBlock() != this && !(new CretaceousPortalBlock.Size(world, currentPos, directionAxis1)).canCreatePortal() ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(state, facing, facingState, world, currentPos, facingPos);
 	}
+	
+	protected void updateNeighbors(World worldIn, BlockPos pos) {
+		worldIn.notifyNeighborsOfStateChange(pos, this);
+	}
 
 	@Override
 	@Deprecated

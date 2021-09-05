@@ -444,7 +444,8 @@ public class TimeGuardianEntity extends MonsterEntity {
             this.timeGuardian.useBeam(true);
         }
 
-        private float updateRotation(float currentAngle, float targetAngle, float maxChange) {
+        @SuppressWarnings("unused")
+		private float updateRotation(float currentAngle, float targetAngle, float maxChange) {
             float change = MathHelper.wrapDegrees(targetAngle - currentAngle);
             return MathHelper.wrapDegrees(currentAngle + timeGuardian.rand.nextFloat() * 1.5F - 0.75F + change / maxChange);
         }

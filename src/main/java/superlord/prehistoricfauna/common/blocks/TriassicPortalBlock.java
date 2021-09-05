@@ -43,6 +43,10 @@ public class TriassicPortalBlock extends BreakableBlock {
 		super(properties);
 		this.setDefaultState(this.stateContainer.getBaseState().with(AXIS, Direction.Axis.X));
 	}
+	
+	protected void updateNeighbors(World worldIn, BlockPos pos) {
+		worldIn.notifyNeighborsOfStateChange(pos, this);
+	}
 
 	@Override
 	@Deprecated
