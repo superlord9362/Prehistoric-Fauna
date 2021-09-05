@@ -22,6 +22,9 @@ public class PFRenderTypes extends RenderType {
         super(nameIn, formatIn, drawModeIn, bufferSizeIn, useDelegateIn, needsSortingIn, setupTaskIn, clearTaskIn);
     }
 
+    public static RenderType getBossGlint() {
+        return makeType("henos_glint", DefaultVertexFormats.ENTITY, 7, 256, RenderType.State.getBuilder().texture(new RenderState.TextureState(new ResourceLocation("prehistoricfauna:textures/entities/henos_healing.png"), true, false)).writeMask(COLOR_DEPTH_WRITE).transparency(TRANSLUCENT_TRANSPARENCY).alpha(DEFAULT_ALPHA).cull(CULL_ENABLED).texturing(ENTITY_GLINT_TEXTURING).overlay(OVERLAY_ENABLED).build(false));
+    }
     public static RenderType getBossBeam(ResourceLocation locationIn) {
         TextureState lvt_1_1_ = new TextureState(locationIn, false, false);
         return makeType("boss_beam", DefaultVertexFormats.ENTITY, 7, 262144, false, true, RenderType.State.getBuilder().texture(lvt_1_1_).writeMask(COLOR_DEPTH_WRITE).depthTest(DEPTH_LEQUAL).alpha(DEFAULT_ALPHA).diffuseLighting(RenderState.DIFFUSE_LIGHTING_DISABLED).lightmap(LIGHTMAP_DISABLED).overlay(OVERLAY_ENABLED).transparency(GHOST_TRANSPARANCY).fog(FOG).cull(RenderState.CULL_DISABLED).build(true));

@@ -19,6 +19,7 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceContext;
@@ -49,6 +50,7 @@ public class TimeGuardianEntity extends MonsterEntity {
     private static final DataParameter<Boolean> IS_SUMMONED = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> MELEE_TICK = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> LASER_TICK = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> SHIELD_LEVEL = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.VARINT);
     private final ServerBossInfo bossInfo = new ServerBossInfo(this.getDisplayName(), BossInfo.Color.GREEN, BossInfo.Overlay.PROGRESS);
 
     public float targetDistance;
@@ -63,6 +65,7 @@ public class TimeGuardianEntity extends MonsterEntity {
     private float laserProgress;
     private float prevLaserProgress;
     private boolean usingLeftHand;
+    private int shieldCooldown = 0;
 
     public TimeGuardianEntity(EntityType<? extends MonsterEntity> type, World world) {
         super(type, world);
@@ -113,10 +116,10 @@ public class TimeGuardianEntity extends MonsterEntity {
         prevLaserY = this.getLaserY();
         prevLaserZ = this.getLaserZ();
         prevLaserProgress = laserProgress;
-        if (laserProgress < 1.0F && this.isUsingBeamAttack()) {
+        if (laserProgress < 1.0F && this.isUsingBeamAttack() && !this.isUsingRegularAttack()) {
             laserProgress += 0.1F;
         }
-        if (laserProgress > 0.0F && !this.isUsingBeamAttack()) {
+        if (laserProgress > 0.0F && (!this.isUsingBeamAttack() || this.isUsingRegularAttack())) {
             laserProgress -= 0.1F;
         }
         if (getAttackTarget() != null) {
@@ -134,6 +137,10 @@ public class TimeGuardianEntity extends MonsterEntity {
                 } else if (getAttackTarget() != null && targetDistance <= 30) {
                     setActive(true);
                 }
+                if(this.getHealthRatio() < 0.5F && shieldCooldown == 0 && !this.hasHealingShield()){
+                    shieldCooldown = 300 + rand.nextInt(300);
+                    this.setHealingShield(3);
+                }
             }
         }
         if (!isActive()) {
@@ -141,7 +148,18 @@ public class TimeGuardianEntity extends MonsterEntity {
             rotationYaw = prevRotationYaw;
         }
         renderYawOffset = rotationYaw;
-        if (!isActive() && !world.isRemote) heal(0.3f);
+        if (!world.isRemote && hasHealingShield()){
+            if(this.getAttackTarget() == null){
+                this.heal(0.3F);
+            }else{
+                double dist = this.getDistance(this.getAttackTarget());
+                if(dist > 16.0F){
+                    this.heal(3F);
+                }else{
+                    this.heal((float)MathHelper.clamp(dist * 0.085F, 0.2F, 3F));
+                }
+            }
+        }
         if (this.dataManager.get(MELEE_TICK) > 0 && isUsingRegularAttack()) {
             if (Math.max(rightPunchProgress, leftPunchProgress) == 5 && this.getAttackTarget() != null && this.getDistance(this.getAttackTarget()) < this.getAttackTarget().getWidth() + this.getWidth() + 2.0F) {
                 this.getAttackTarget().attackEntityFrom(DamageSource.causeMobDamage(this), 2);
@@ -187,8 +205,16 @@ public class TimeGuardianEntity extends MonsterEntity {
                 this.world.addParticle(PFParticles.BOSS_LASER, this.getPosX() + d0 * d4, this.getPosYEye() + d1 * d4, this.getPosZ() + d2 * d4, (rand.nextFloat() - 0.5F) * 0.1F, rand.nextFloat() * 0.2F, (rand.nextFloat() - 0.5F) * 0.1F);
             }
         }
+        if(this.hasHealingShield() && world.isRemote){
+            for(int i = 0; i < 2 + rand.nextInt(2); i++){
+                this.world.addParticle(PFParticles.BOSS_HEAL, this.getPosXRandom(2.0D), this.getPosY(), this.getPosZRandom(2.0D), this.getPosX(), this.getPosYHeight(0.75F), this.getPosZ());
+            }
+        }
         if (this.getLaserTick() < 0) {
             this.setLaserTick(this.getLaserTick() + 1);
+        }
+        if(shieldCooldown > 0 && !this.hasHealingShield()){
+            shieldCooldown--;
         }
     }
 
@@ -217,6 +243,7 @@ public class TimeGuardianEntity extends MonsterEntity {
         getDataManager().register(LASER_TICK, 0);
         getDataManager().register(LASER_TARGET_ENTITY, -1);
         getDataManager().register(IS_SUMMONED, false);
+        getDataManager().register(SHIELD_LEVEL, 0);
     }
 
     public boolean isUsingBeamAttack() {
@@ -227,6 +254,19 @@ public class TimeGuardianEntity extends MonsterEntity {
         getDataManager().set(USE_BEAM, isUsingBeam);
     }
 
+    public boolean hasHealingShield() {
+        return getShieldLevel() > 0;
+    }
+
+
+    public int getShieldLevel() {
+        return getDataManager().get(SHIELD_LEVEL);
+    }
+
+
+    public void setHealingShield(int shield) {
+        getDataManager().set(SHIELD_LEVEL, shield);
+    }
 
     public boolean isUsingRegularAttack() {
         return getDataManager().get(USE_REGULAR_ATTACK);
@@ -388,11 +428,36 @@ public class TimeGuardianEntity extends MonsterEntity {
         return this.prevLaserProgress + (this.laserProgress - this.prevLaserProgress) * partialTicks;
     }
 
+    public boolean attackEntityFrom(DamageSource source, float amount) {
+        if(this.hasHealingShield()){
+            float pitchMod = MathHelper.clamp(4 - this.getShieldLevel(), 1, 3);
+            this.playSound(SoundEvents.ENTITY_GENERIC_BURN, this.getSoundVolume(), this.getSoundPitch() * pitchMod);
+            this.setHealingShield(Math.max(0, this.getShieldLevel() - 1));
+            return false;
+        }else{
+            return super.attackEntityFrom(source, amount);
+        }
+    }
+
+    public float getShieldThickness() {
+        switch(this.getShieldLevel()){
+            case 1:
+                return 0.15F;
+            case 2:
+                return 0.5F;
+            case 3:
+                return 1.0F;
+            default:
+                return 0.0F;
+        }
+    }
+
     public static class BeamAttackAI extends Goal {
         private static final int TIME = 40;
         private TimeGuardianEntity timeGuardian;
         private float laserYaw;
         private float laserPitch;
+        private int laserSoundTick = 0;
 
         public BeamAttackAI(TimeGuardianEntity timeGuardian) {
             this.timeGuardian = timeGuardian;
@@ -431,6 +496,7 @@ public class TimeGuardianEntity extends MonsterEntity {
         }
 
         public void startExecuting() {
+            this.laserSoundTick = 0;
             this.timeGuardian.setChargingBeam(true);
             this.timeGuardian.setLaserEntity(timeGuardian.getAttackTarget());
             this.timeGuardian.getNavigator().clearPath();
@@ -453,11 +519,11 @@ public class TimeGuardianEntity extends MonsterEntity {
             if (this.timeGuardian.world != null) {
                 if (timeGuardian.getAttackTarget() != null) {
                     double targetX = timeGuardian.getAttackTarget().getPosX();
-                    double targetY = timeGuardian.getAttackTarget().getPosY() + timeGuardian.getAttackTarget().getEyeHeight();
+                    double targetY = timeGuardian.getAttackTarget().getPosY() + timeGuardian.getAttackTarget().getEyeHeight() * 0.5F;
                     double targetZ = timeGuardian.getAttackTarget().getPosZ();
                     double rot = timeGuardian.renderYawOffset * 0.01745329238474369D + (Math.PI / 2D);
                     double lureX = Math.cos(rot) * (double) (timeGuardian.getWidth() + 1f) + timeGuardian.getPosX();
-                    double lureY = timeGuardian.getHeight() + 1f + timeGuardian.getPosY();
+                    double lureY = timeGuardian.getPosYHeight(0.65F);
                     double lureZ = Math.sin(rot) * (double) (timeGuardian.getWidth() + 1f) + timeGuardian.getPosZ();
                     Vector3d lureVec = new Vector3d(lureX, lureY, lureZ);
                     double d0 = targetX - lureX;
@@ -468,7 +534,7 @@ public class TimeGuardianEntity extends MonsterEntity {
                     float targetPitch = (float) (-(MathHelper.atan2(d1, d3) * (180D / Math.PI)));
                     float laserProg = 1F - (MathHelper.clamp(timeGuardian.getLaserTick(), 0, TIME) / (float) TIME);
                     float baseYaw = MathHelper.wrapDegrees(timeGuardian.rotationYaw);
-                    float basePitch = MathHelper.wrapDegrees(timeGuardian.rotationPitch + 90);
+                    float basePitch = MathHelper.wrapDegrees(timeGuardian.rotationPitch + 120);
                     this.laserYaw = baseYaw + MathHelper.wrapDegrees(targetYaw - baseYaw) * laserProg;
                     this.laserPitch = basePitch + (targetPitch - basePitch) * laserProg;
 
@@ -517,6 +583,10 @@ public class TimeGuardianEntity extends MonsterEntity {
                 this.timeGuardian.playSound(SoundInit.HENOS_LASER, 1.0F, this.timeGuardian.getSoundPitch());
             } else if (timeGuardian.getLaserTick() > 0) {
                 this.updateLaser();
+                if(laserSoundTick % 17 == 0){
+                    this.timeGuardian.playSound(SoundInit.HENOS_LASER_LOOP, 1.0F, this.timeGuardian.getSoundPitch());
+                }
+                laserSoundTick++;
             }
             super.tick();
         }

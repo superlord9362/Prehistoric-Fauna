@@ -7,7 +7,9 @@ import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.culling.ClippingHelper;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.entity.Entity;
@@ -32,13 +34,17 @@ public class BossRenderer extends MobRenderer<TimeGuardianEntity, EntityModel<Ti
     private static final ResourceLocation TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos.png");
     private static final ResourceLocation SUMMONED_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos_summoned.png");
     private static final ResourceLocation FUNKY_MONKEY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/brass_monkey.png");
-    private static final HenosModel HENOS = new HenosModel();
-    private static final HenosSummonedModel SUMMONED = new HenosSummonedModel();
+    private static final HenosModel HENOS = new HenosModel(0.0F);
+    private static final HenosSummonedModel SUMMONED = new HenosSummonedModel(0.0F);
+    private static final HenosModel HENOS_HEALING = new HenosModel(0.5F);
+    private static final HenosSummonedModel SUMMONED_HEALING = new HenosSummonedModel(0.5F);
+
     private static final ResourceLocation BEAM_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/beam.png");
     private static final RenderType BEAM_RENDER_TYPE = PFRenderTypes.getBossBeam(BEAM_TEXTURE);
 
     public BossRenderer(EntityRendererManager rm) {
         super(Minecraft.getInstance().getRenderManager(), HENOS, 1.25F);
+        this.addLayer(new HealingLayer(this));
     }
 
     private static void func_229108_a_(IVertexBuilder p_229108_0_, Matrix4f p_229108_1_, Matrix3f p_229108_2_, float p_229108_3_, float p_229108_4_, float p_229108_5_, int p_229108_6_, int p_229108_7_, int p_229108_8_, float p_229108_9_, float p_229108_10_) {
@@ -82,7 +88,6 @@ public class BossRenderer extends MobRenderer<TimeGuardianEntity, EntityModel<Ti
     }
 
     public void render(TimeGuardianEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-        super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
         if (entityIn.isSummoned()) {
             entityModel = SUMMONED;
         } else {
@@ -165,6 +170,23 @@ public class BossRenderer extends MobRenderer<TimeGuardianEntity, EntityModel<Ti
             return SUMMONED_TEXTURE;
         } else {
             return TEXTURE;
+        }
+    }
+
+    class HealingLayer extends LayerRenderer<TimeGuardianEntity, EntityModel<TimeGuardianEntity>>{
+
+        public HealingLayer(IEntityRenderer<TimeGuardianEntity, EntityModel<TimeGuardianEntity>> entityRendererIn) {
+            super(entityRendererIn);
+        }
+
+        @Override
+        public void render(MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn, TimeGuardianEntity entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+            if(entitylivingbaseIn.hasHealingShield()){
+                EntityModel<TimeGuardianEntity> model = entitylivingbaseIn.isSummoned() ? SUMMONED_HEALING : HENOS_HEALING;
+                IVertexBuilder vertexBuilder = bufferIn.getBuffer(PFRenderTypes.getBossGlint());
+                model.setRotationAngles(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+                model.render(matrixStackIn, vertexBuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, entitylivingbaseIn.getShieldThickness());
+            }
         }
     }
 }

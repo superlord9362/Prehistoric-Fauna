@@ -817,6 +817,16 @@
 			}
 		]
 	},
+	"henos_laser_loop": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.henosLaser",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/henos/henos_laser_loop",
+				"stream": true
+			}
+		]
+	},
 	"basilemys_idle": {
 		"category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.basilemysIdle",
