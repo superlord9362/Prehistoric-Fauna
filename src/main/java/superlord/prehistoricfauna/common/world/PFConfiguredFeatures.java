@@ -23,11 +23,8 @@ import net.minecraft.world.gen.feature.FeatureSpread;
 import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.MultipleRandomFeatureConfig;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.TwoLayerFeature;
-import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.DepthAverageConfig;
@@ -40,12 +37,10 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFDecorators;
-import superlord.prehistoricfauna.init.PFStructures;
 import superlord.prehistoricfauna.world.feature.config.CrassostreaOystersConfig;
 import superlord.prehistoricfauna.world.feature.config.JohnstoniaConfig;
 import superlord.prehistoricfauna.world.feature.config.NoisySphereConfig;
 import superlord.prehistoricfauna.world.feature.config.PFTreeConfig;
-import superlord.prehistoricfauna.world.feature.trees.zamites.ZamitesBush;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -109,13 +104,14 @@ public class PFConfiguredFeatures {
 
 	//Morrison
 	public static final ConfiguredFeature<?, ?> PTILOPHYLLUM_TREE_BOOGALOO = createConfiguredFeature("ptilophylium_tree", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(PFFeatures.PTILOPHYLLUM_TREE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(PFDecorators.PTILOPHYLLUM_TREE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)).withChance(0.05F)), PFFeatures.PTILOPHYLLUM_TREE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(PFDecorators.PTILOPHYLLUM_TREE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)))));
-	public static final ConfiguredFeature<?, ?> ZAMITES_BUSH = createConfiguredFeature("zamites_bush", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(PFFeatures.ZAMITES_BUSH.withConfiguration(ZamitesBush.ZAMITES_BUSH_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT).withChance(1F)), PFFeatures.ZAMITES_BUSH.withConfiguration(ZamitesBush.ZAMITES_BUSH_CONFIG))).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242731_b(5));
+
 	public static final ConfiguredFeature<?, ?> CONIOPTERIS = createConfiguredFeature("coniopteris", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.CONIOPTERIS.getDefaultState()), new SimpleBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(1)).func_242731_b(5));
 	public static final ConfiguredFeature<?, ?> MORRISON_HORSETAILS = createConfiguredFeature("morrison_horestails", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.HORSETAIL.getDefaultState()), new SimpleBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(50)).func_242731_b(5));
 	public static final ConfiguredFeature<?, ?> MORRISON_DOUBLE_HORSETAILS = createConfiguredFeature("morrison_double_horestails", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.TALL_HORSETAIL.getDefaultState()), new DoublePlantBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(75)).func_242731_b(5));
 	public static final ConfiguredFeature<?, ?> OSMUNDACAULIS = createConfiguredFeature("osmundacaulis", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.OSMUNDACAULIS.getDefaultState()), new SimpleBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(25)).func_242731_b(5));
 	public static final ConfiguredFeature<?, ?> TALL_OSMUNDACAULIS = createConfiguredFeature("tall_osmundacaulist", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.TALL_OSMUNDACAULIS.getDefaultState()), new DoublePlantBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(35)).func_242731_b(5));
 	public static final ConfiguredFeature<?, ?> DEAD_OSMUNDACAULIS = createConfiguredFeature("dead_osmundacaulis", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.DEAD_OSMUNDACAULIS.getDefaultState()), new SimpleBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(45)).func_242731_b(5));
+	public static final ConfiguredFeature<?, ?> ZAMITES_BUSH = createConfiguredFeature("zamites_bush", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(PFFeatures.ZAMITES_BUSH.withConfiguration(new JohnstoniaConfig(1)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)).withChance(0.5F)), CONIOPTERIS)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)).func_242731_b(5));
 
 	public static final ConfiguredFeature<?, ?> ORE_IRON_EXTRA = createConfiguredFeature("ore_iron_extra", Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, Blocks.IRON_ORE.getDefaultState(), 9)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(32, 32, 80))).square().func_242731_b(20));
 
@@ -130,6 +126,7 @@ public class PFConfiguredFeatures {
 	public static final ConfiguredFeature<?, ?> SPARSE_DICROIDIUM = createConfiguredFeature("sparse_dicroidium", PFFeatures.DICROIDIUM_FEATURE.withConfiguration(new JohnstoniaConfig(1)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 
 
+
 	public static StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> HELL_CREEK_HUT;// = register("hell_creek_hut", PFStructures.HELL_CREEK_HUT.withConfiguration(NoFeatureConfig.field_236559_b_));
 	public static StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> MORRISON_HUT;// = register("morrison_hut", PFStructures.MORRISON_HUT.withConfiguration(NoFeatureConfig.field_236559_b_));
 	public static StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> ISCHIGUALASTO_HUT;// = register("ischigualasto_hut", PFStructures.ISCHIGUALASTO_HUT.withConfiguration(NoFeatureConfig.field_236559_b_));
@@ -141,7 +138,7 @@ public class PFConfiguredFeatures {
 			throw new IllegalStateException("Configured Feature ID: \"" + pfID.toString() + "\" already exists in the Configured Features registry!");
 		return structure;
 	}
-
+  
 	//public static final ConfiguredFeature<?, ?> ALGAE = createConfiguredFeature("algae", PFFeatures.ALGAE_FEATURE.withConfiguration(new CrassostreaOystersConfig(24)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 	//public static final ConfiguredFeature<?, ?> CRASSOSTREA_OYSTERS = createConfiguredFeature("crassostrea_oysters", PFFeatures.CRASSOSTREA_OYSTERS_FEATURE.withConfiguration(new CrassostreaOystersConfig(24)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 

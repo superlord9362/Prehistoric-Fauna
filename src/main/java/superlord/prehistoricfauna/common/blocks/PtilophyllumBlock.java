@@ -12,6 +12,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.Tags;
 import superlord.prehistoricfauna.init.PFBlocks;
 
 import java.util.Random;
@@ -33,7 +34,7 @@ public class PtilophyllumBlock extends SixWayBlock {
       Block block3 = blockReader.getBlockState(pos.east()).getBlock();
       Block block4 = blockReader.getBlockState(pos.south()).getBlock();
       Block block5 = blockReader.getBlockState(pos.west()).getBlock();
-      return this.getDefaultState().with(DOWN, Boolean.valueOf(block == this || block == PFBlocks.PTILOPHYLLUM_BASE || block == PFBlocks.SILT || block == PFBlocks.HARDENED_SILT)).with(UP, Boolean.valueOf(block1 == this || block1 == PFBlocks.PTILOPHYLLUM_BASE)).with(NORTH, Boolean.valueOf(block2 == this || block2 == PFBlocks.PTILOPHYLLUM_BASE)).with(EAST, Boolean.valueOf(block3 == this || block3 == PFBlocks.PTILOPHYLLUM_BASE)).with(SOUTH, Boolean.valueOf(block4 == this || block4 == PFBlocks.PTILOPHYLLUM_BASE)).with(WEST, Boolean.valueOf(block5 == this || block5 == PFBlocks.PTILOPHYLLUM_BASE));
+      return this.getDefaultState().with(DOWN, Boolean.valueOf(block == this || block == PFBlocks.PTILOPHYLLUM_BASE || block == Tags.Blocks.DIRT)).with(UP, Boolean.valueOf(block1 == this || block1 == PFBlocks.PTILOPHYLLUM_BASE)).with(NORTH, Boolean.valueOf(block2 == this || block2 == PFBlocks.PTILOPHYLLUM_BASE)).with(EAST, Boolean.valueOf(block3 == this || block3 == PFBlocks.PTILOPHYLLUM_BASE)).with(SOUTH, Boolean.valueOf(block4 == this || block4 == PFBlocks.PTILOPHYLLUM_BASE)).with(WEST, Boolean.valueOf(block5 == this || block5 == PFBlocks.PTILOPHYLLUM_BASE));
    }
 
    @SuppressWarnings("deprecation")
@@ -69,14 +70,14 @@ public class PtilophyllumBlock extends SixWayBlock {
             }
 
             Block block1 = worldIn.getBlockState(blockpos.down()).getBlock();
-            if (block1 == this || block1 == PFBlocks.SILT || block1 == PFBlocks.HARDENED_SILT) {
+            if (block1 == this || block1 == Tags.Blocks.DIRT) {
                return true;
             }
          }
       }
 
       Block block2 = blockstate.getBlock();
-      return block2 == this || block2 == PFBlocks.SILT || block2 == PFBlocks.HARDENED_SILT;
+      return block2 == this || block2 == Tags.Blocks.DIRT;
    }
 
    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {

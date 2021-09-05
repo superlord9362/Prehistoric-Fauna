@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting:shaped",
+	"pattern": [
+		"###",
+		"XXX",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:zamites_planks"
+		},
+		"X": {
+			"item": "minecraft:book"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:zamites_bookshelf"
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:quark_flag",
+			"flag": "varian_bookshelves"
+		}
+	]
+}

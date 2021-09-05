@@ -1,0 +1,14 @@
+{
+	"type": "minecraft:stonecutting",
+	"ingredient": {
+		"item": "prehistoricfauna:polished_sandstone"
+	},
+	"result": "prehistoricfauna:sandstone_pillar",
+	"count": 1,
+	"conditions": [
+		{
+			"type": "prehistoricfauna:quark_flag",
+			"flag": "stone_pillar"
+		}
+	]
+}

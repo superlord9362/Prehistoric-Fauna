@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"###",
+		"###",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:polished_sandstone"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:sandstone_pavement",
+		"count": 9
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:quark_flag",
+			"flag": "stone_pavement"
+		}
+	]
+}

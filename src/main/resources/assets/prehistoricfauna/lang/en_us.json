@@ -807,8 +807,8 @@
 	"block.prehistoricfauna.araucaria_ladder": "Araucaria Ladder",
 	"block.prehistoricfauna.metasequoia_ladder": "Metasequoia Ladder",
 	"block.prehistoricfauna.liriodendrites_ladder": "Liriodendrites Ladder",
-	"block.prehistoricfauna.zamites_ladder": "Ladder Ladder",
-	"block.prehistoricfauna.protopiceoxylon_ladder": "Protojuniperoxylon Ladder",
+	"block.prehistoricfauna.zamites_ladder": "Zamites Ladder",
+	"block.prehistoricfauna.protopiceoxylon_ladder": "Protopiceoxylon Ladder",
 	"block.prehistoricfauna.protojuniperoxylon_ladder": "Protojuniperoxylon Ladder",
 	"block.prehistoricfauna.heidiphyllum_ladder": "Heidiphyllum Ladder",
 	
@@ -869,5 +869,5 @@
 	"key.prehistoricfauna.attack_key": "Attack Key",
 	"key.category.prehistoricfauna": "Prehistoric Fauna Keys",
 	
-	"generator.prehistoricfauna.prehistoric_world": "Prehistoric World Type"
+	"generator.prehistoricfauna.prehistoric_world": "Prehistoric"
 }

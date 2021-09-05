@@ -5,12 +5,13 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.FlatGenerationSettings;
 import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
 import superlord.prehistoricfauna.PrehistoricFauna;
 
 public class PFConfiguredStructures {
 	
-	public static StructureFeature<?, ?> CONFIGURED_TIME_TEMPLE = PFStructures.TIME_TEMPLE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
+  public static StructureFeature<?, ?> CONFIGURED_TIME_TEMPLE = PFStructures.TIME_TEMPLE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
 	public static StructureFeature<?, ?> CONFIGURED_GEOLOGIST_CAMP = PFStructures.GEOLOGIST_CAMP.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
 	public static StructureFeature<?, ?> CONFIGURED_PORTAL_CHAMBER = PFStructures.PORTAL_CHAMBER.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
 	public static StructureFeature<?, ?> CONFIGURED_HELL_CREEK_HUT = PFStructures.HELL_CREEK_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);

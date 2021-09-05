@@ -66,7 +66,7 @@ public class HellCreekHutStructure extends Structure<NoFeatureConfig> {
     		Rotation rotation = Rotation.values()[this.rand.nextInt(Rotation.values().length)];
     		int x = (chunkX << 4) + 7;
     		int z = (chunkZ << 4) + 7;
-    		int surfaceY = Math.max(generator.getNoiseHeight(x + 12, z + 12, Heightmap.Type.WORLD_SURFACE_WG) - 1, generator.getGroundHeight() - 1);
+    		int surfaceY = Math.max(generator.getNoiseHeight(x + 12, z + 12, Heightmap.Type.WORLD_SURFACE_WG), generator.getGroundHeight() - 1);
     		BlockPos blockpos = new BlockPos(x, surfaceY, z);
             Piece.start(templateManager, blockpos, rotation, this.components, this.rand);
     		this.recalculateStructureSize();

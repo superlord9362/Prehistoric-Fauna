@@ -37,7 +37,7 @@ public class SmallPineTree extends Feature<NoFeatureConfig> {
             }
 
             TemplateManager templatemanager = world.getWorld().getStructureTemplateManager();
-            Template template = templatemanager.getTemplate(new ResourceLocation(PrehistoricFauna.MOD_ID + ":features/trees/embur_tree4"));
+            Template template = templatemanager.getTemplate(new ResourceLocation(PrehistoricFauna.MOD_ID + ":features/trees/zamites_1"));
 
             if (template == null) {
                 PrehistoricFauna.LOGGER.warn("NBT does not exist!");

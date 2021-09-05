@@ -1,0 +1,14 @@
+{
+	"type": "minecraft:stonecutting",
+	"ingredient": {
+		"item": "prehistoricfauna:siltstone"
+	},
+	"result": "prehistoricfauna:siltstone_pillar",
+	"count": 1,
+	"conditions": [
+		{
+			"type": "prehistoricfauna:quark_flag",
+			"flag": "stone_pillar"
+		}
+	]
+}

@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting:shaped",
+	"pattern": [
+		"###",
+		"XXX",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:heidiphyllum_planks"
+		},
+		"X": {
+			"item": "minecraft:book"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:heidiphyllum_bookshelf"
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:quark_flag",
+			"flag": "varian_bookshelves"
+		}
+	]
+}

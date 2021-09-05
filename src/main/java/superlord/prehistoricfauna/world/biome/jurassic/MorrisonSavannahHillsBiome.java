@@ -8,6 +8,7 @@ import net.minecraft.world.biome.BiomeAmbience;
 import net.minecraft.world.biome.BiomeGenerationSettings;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.biome.MobSpawnInfo;
+import net.minecraft.world.gen.GenerationStage.Decoration;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraftforge.common.BiomeDictionary;
@@ -71,9 +72,8 @@ public class MorrisonSavannahHillsBiome extends PFBiome {
 		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.HESPERORNITHOIDES_ENTITY, PrehistoricFaunaConfig.hesperornithoidesSpawnWeight, 2, 3));
 		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.EILENODON_ENTITY, PrehistoricFaunaConfig.eilenodonSpawnWeight, 1, 2));
 		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.CAMARASAURUS_ENTITY, PrehistoricFaunaConfig.camarasaurusSpawnWeight, 2, 4));
-		GENERATION_SETTINGS.withStructure(PFConfiguredFeatures.MORRISON_HUT);
-		GENERATION_SETTINGS.withStructure(PFConfiguredFeatures.PORTAL_CHAMBER);
 		DefaultBiomeFeatures.withOverworldOres(GENERATION_SETTINGS);
+		GENERATION_SETTINGS.withFeature(Decoration.UNDERGROUND_ORES, PFConfiguredFeatures.FOSSILIZED_SILTSTONE);
 		DefaultBiomeFeatures.withCavesAndCanyons(GENERATION_SETTINGS);
 		DefaultBiomeFeatures.withCommonOverworldBlocks(GENERATION_SETTINGS);
 		DefaultBiomeFeatures.withDisks(GENERATION_SETTINGS);

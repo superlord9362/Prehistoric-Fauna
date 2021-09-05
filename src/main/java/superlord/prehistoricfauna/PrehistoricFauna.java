@@ -31,7 +31,6 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.Category;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.FlatChunkGenerator;
 import net.minecraft.world.gen.GenerationStage.Decoration;
@@ -174,6 +173,7 @@ public class PrehistoricFauna {
 		REGISTRY_HELPER.getDeferredTileEntityRegister().register(modEventBus);
 		PFBlocks.REGISTER.register(modEventBus);
 		PFItems.REGISTER.register(modEventBus);
+		PFStructures.REGISTER.register(modEventBus);
 		PFTileEntities.TILE_ENTITY_TYPES.register(modEventBus);
 		PFContainers.CONTAINER_TYPES.register(modEventBus);
 		PFEntities.ENTITY_TYPES.register(modEventBus);
@@ -196,6 +196,8 @@ public class PrehistoricFauna {
 		NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageUpdatePaleoscribe.class, MessageUpdatePaleoscribe::write, MessageUpdatePaleoscribe::read, MessageUpdatePaleoscribe.Handler::handle);
 		NETWORK_WRAPPER.registerMessage(packetsRegistered++, InputMessage.class, InputMessage::encode, InputMessage::decode, InputMessage::handle);
 		event.enqueueWork(() -> {
+			PFStructures.setupStructures();
+			PFStructures.registerStructurePieces();
 			PFConfiguredStructures.registerConfiguredStructures();
 			WorldGenRegistries.NOISE_SETTINGS.getEntries().forEach(settings -> {
 				Map<Structure<?>, StructureSeparationSettings> structureMap = settings.getValue().getStructures().func_236195_a_();
@@ -313,18 +315,20 @@ public class PrehistoricFauna {
 		}
 		if (event.getCategory() != Biome.Category.NETHER || event.getCategory() != Biome.Category.THEEND) {
 			event.getGeneration().getStructures().add(() -> PFConfiguredStructures.CONFIGURED_PORTAL_CHAMBER);
-			if (!name.equals("hell_creek") || !name.equals("hell_creek_clearing") || !name.equals("hell_creek_hills") || !name.equals("hell_creek_river") || name.equals("hell_creek") || name.equals("hell_creek_clearing") || name.equals("hell_creek_hills") || name.equals("hell_creek_river") || name.equals("ischigualasto_forest") || name.equals("ischigualasto_clearing") || name.equals("ischigualasto_hills") || name.equals("ischigualasto_river") || name.equals("morrison_hills") || name.equals("morrison_savannah")) {
+			if (!name.equals("hell_creek") && !name.equals("hell_creek_clearing") && !name.equals("hell_creek_hills") && !name.equals("hell_creek_river") && !name.equals("morrison_savannah") && !name.equals("morrison_hills") && !name.equals("ischigualasto_forest") && !name.equals("ischigualasto_clearing") && !name.equals("ischigualasto_hills") && !name.equals("ischigualasto_river")) {
 				event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(() -> PFConfiguredFeatures.FOSSILIZED_CHALK);
 				event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(() -> PFConfiguredFeatures.FOSSILIZED_SILTSTONE);
 				event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(() -> PFConfiguredFeatures.FOSSILIZED_SANDSTONE);	
 			}
 		}
-		if (name.equals("hell_creek") || name.equals("hell_creek_clearing") || name.equals("hell_creek_hills") || name.equals("hell_creek_river") || event.getCategory() != Biome.Category.NETHER || event.getCategory() != Biome.Category.THEEND) {
-			event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(() -> PFConfiguredFeatures.FOSSILIZED_SILTSTONE);
-			event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(() -> PFConfiguredFeatures.FOSSILIZED_SANDSTONE);
+		if (name.equals("hell_creek") || name.equals("hell_creek_clearing") || name.equals("hell_creek_hills")) {
+			event.getGeneration().getStructures().add(() -> PFConfiguredStructures.CONFIGURED_HELL_CREEK_HUT);
 		}
-		if (name.equals("morrison_hills") || name.equals("morrison_savannah") || event.getCategory() != Category.NETHER || event.getCategory() != Category.THEEND) {
-			event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(() -> PFConfiguredFeatures.FOSSILIZED_SANDSTONE);
+		if (name.equals("ischigualasto_forest") || name.equals("ischigualasto_clearing") || name.equals("ischigualasto_hills")) {
+			event.getGeneration().getStructures().add(() -> PFConfiguredStructures.CONFIGURED_ISCHIGUALASTO_HUT);
+		}
+		if (name.equals("morrison_savannah") || name.equals("morrison_hills")) {
+			event.getGeneration().getStructures().add(() -> PFConfiguredStructures.CONFIGURED_MORRISON_HUT);
 		}
 	}
 	
@@ -498,7 +502,7 @@ public class PrehistoricFauna {
 			System.out.println("Registered features!");
 		}
 		
-		@SubscribeEvent
+		@SubscribeEvent(priority=EventPriority.LOW)
 		public static void registerBiomes(RegistryEvent.Register<Biome> event) {
 			LOGGER.debug("PF: Registering biomes...");
 			PFBiomes.init();

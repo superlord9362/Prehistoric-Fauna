@@ -18,7 +18,7 @@ public class ZamitesTopBlock extends SixWayBlock {
 	public ZamitesTopBlock(Properties properties) {
 		super(0.3125F, properties);
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
 		if (!stateIn.isValidPosition(worldIn, currentPos)) {
@@ -30,34 +30,18 @@ public class ZamitesTopBlock extends SixWayBlock {
 			return stateIn.with(FACING_TO_PROPERTY_MAP.get(facing), Boolean.valueOf(flag));
 		}
 	}
-	
+
 	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
 		if (!state.isValidPosition(worldIn, pos)) {
 			worldIn.destroyBlock(pos, true);
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		BlockState blockstate = worldIn.getBlockState(pos.down());
-		boolean flag = !worldIn.getBlockState(pos.up()).isAir() && !blockstate.isAir();
-		for(Direction direction : Direction.Plane.HORIZONTAL) {
-			BlockPos blockpos = pos.offset(direction);
-			Block block = worldIn.getBlockState(blockpos).getBlock();
-			if (block == PFBlocks.ZAMITES_LOG) {
-				if (flag) {
-					return false;
-				}
-				Block block1 = worldIn.getBlockState(blockpos.down()).getBlock();
-				if (block1 == PFBlocks.ZAMITES_LOG) {
-					return true;
-				}
-			}
-		}
-		Block block2 = blockstate.getBlock();
-		return block2 == PFBlocks.ZAMITES_LOG;
+		BlockPos blockpos = pos.down();
+		return hasSolidSideOnTop(worldIn, blockpos) || hasEnoughSolidSide(worldIn, blockpos, Direction.UP);
 	}
-	   
+
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(NORTH, EAST, SOUTH, WEST, UP, DOWN);
 	}
