@@ -71,7 +71,7 @@ public class ZamiteBushFeature extends Feature<JohnstoniaConfig>
 			{
 				if (isAir(worldIn, new BlockPos(x, j, z))) setBlockState(worldIn, new BlockPos(x, j, z), PFBlocks.ZAMITES_LOG.getDefaultState());
 			}
-			if (isAir(worldIn, new BlockPos(x, pos.getY() + height + 1, z))) setBlockState(worldIn, new BlockPos(x, startPosition.getY() + height + 1, z), PFBlocks.ZAMITES_LEAVES.getDefaultState());
+			if (isAir(worldIn, new BlockPos(x, pos.getY() + height + 1, z))) setBlockState(worldIn, new BlockPos(x, pos.getY() + height + 1, z), PFBlocks.ZAMITES_LEAVES.getDefaultState());
 			return true;
 		}
 		return false;

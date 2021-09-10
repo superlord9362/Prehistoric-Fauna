@@ -16,7 +16,7 @@ import superlord.prehistoricfauna.common.entities.TrilobiteSentinelEntity;
  * Created using Tabula 8.0.0
  */
 @OnlyIn(Dist.CLIENT)
-public class SentinelTrilobiteModel<T extends TrilobiteSentinelEntity> extends EntityModel<T> {
+public class SentinelTrilobiteModel extends EntityModel<TrilobiteSentinelEntity> {
 	public ModelRenderer Cephalon;
     public ModelRenderer Cranidium;
     public ModelRenderer Thorax;

@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entities.TimeGuardianEntity;
  * Created using Tabula 8.0.0
  */
 @OnlyIn(Dist.CLIENT)
-public class HenosModel<T extends TimeGuardianEntity> extends EntityModel<T> {
+public class HenosModel extends EntityModel<TimeGuardianEntity> {
     public ModelRenderer Body;
     public ModelRenderer RArm;
     public ModelRenderer Head;
@@ -37,64 +37,64 @@ public class HenosModel<T extends TimeGuardianEntity> extends EntityModel<T> {
     public ModelRenderer LOFinger;
     public ModelRenderer LMFinger;
 
-    public HenosModel() {
+    public HenosModel(float modelScale) {
         this.textureWidth = 128;
         this.textureHeight = 128;
         this.LLeg = new ModelRenderer(this, 56, 64);
         this.LLeg.setRotationPoint(-4.0F, 7.0F, 0.0F);
-        this.LLeg.addBox(-9.0F, -1.0F, -4.0F, 9.0F, 17.0F, 9.0F, 0.0F, 0.0F, 0.0F);
+        this.LLeg.addBox(-9.0F, -1.0F, -4.0F, 9.0F, 17.0F, 9.0F, modelScale);
         this.LIFinger = new ModelRenderer(this, 1, 44);
         this.LIFinger.setRotationPoint(-2.5F, 17.0F, -5.5F);
-        this.LIFinger.addBox(-1.5F, 0.0F, -1.5F, 3.0F, 8.0F, 3.0F, 0.0F, 0.0F, 0.0F);
+        this.LIFinger.addBox(-1.5F, 0.0F, -1.5F, 3.0F, 8.0F, 3.0F, modelScale);
         this.REar = new ModelRenderer(this, 37, 77);
         this.REar.setRotationPoint(6.0F, -3.0F, -7.0F);
-        this.REar.addBox(0.0F, -3.0F, -1.0F, 6.0F, 7.0F, 3.0F, 0.0F, 0.0F, 0.0F);
+        this.REar.addBox(0.0F, -3.0F, -1.0F, 6.0F, 7.0F, 3.0F, modelScale);
         this.Head = new ModelRenderer(this, 0, 76);
         this.Head.setRotationPoint(17.0F, 1.0F, 5.0F);
-        this.Head.addBox(-6.0F, -7.0F, -12.0F, 12.0F, 14.0F, 12.0F, 0.0F, 0.0F, 0.0F);
+        this.Head.addBox(-6.0F, -7.0F, -12.0F, 12.0F, 14.0F, 12.0F, modelScale);
         this.Mouth = new ModelRenderer(this, 49, 91);
         this.Mouth.setRotationPoint(0.0F, 5.0F, -10.0F);
-        this.Mouth.addBox(-10.0F, -3.0F, -4.0F, 20.0F, 7.0F, 4.0F, 0.0F, 0.0F, 0.0F);
+        this.Mouth.addBox(-10.0F, -3.0F, -4.0F, 20.0F, 7.0F, 4.0F, modelScale);
         this.LArm = new ModelRenderer(this, 0, 42);
         this.LArm.setRotationPoint(-2.0F, 13.0F, 11.0F);
-        this.LArm.addBox(-14.0F, -4.0F, -7.0F, 14.0F, 20.0F, 14.0F, 0.0F, 0.0F, 0.0F);
+        this.LArm.addBox(-14.0F, -4.0F, -7.0F, 14.0F, 20.0F, 14.0F, modelScale);
         this.RThumb = new ModelRenderer(this, 1, 44);
         this.RThumb.setRotationPoint(-1.0F, 11.0F, -3.5F);
-        this.RThumb.addBox(-3.0F, 0.0F, -1.5F, 3.0F, 8.0F, 3.0F, 0.0F, 0.0F, 0.0F);
+        this.RThumb.addBox(-3.0F, 0.0F, -1.5F, 3.0F, 8.0F, 3.0F, modelScale);
         this.RIFinger = new ModelRenderer(this, 1, 44);
         this.RIFinger.setRotationPoint(2.5F, 17.0F, -5.5F);
-        this.RIFinger.addBox(-1.5F, 0.0F, -1.5F, 3.0F, 8.0F, 3.0F, 0.0F, 0.0F, 0.0F);
+        this.RIFinger.addBox(-1.5F, 0.0F, -1.5F, 3.0F, 8.0F, 3.0F, modelScale);
         this.RArm = new ModelRenderer(this, 0, 42);
         this.RArm.setRotationPoint(36.0F, 13.0F, 11.0F);
-        this.RArm.addBox(0.0F, -4.0F, -7.0F, 14.0F, 20.0F, 14.0F, 0.0F, 0.0F, 0.0F);
+        this.RArm.addBox(0.0F, -4.0F, -7.0F, 14.0F, 20.0F, 14.0F, modelScale);
         this.RLeg = new ModelRenderer(this, 56, 64);
         this.RLeg.setRotationPoint(4.0F, 7.0F, 0.0F);
-        this.RLeg.addBox(0.0F, -1.0F, -4.0F, 9.0F, 17.0F, 9.0F, 0.0F, 0.0F, 0.0F);
+        this.RLeg.addBox(0.0F, -1.0F, -4.0F, 9.0F, 17.0F, 9.0F, modelScale);
         this.Hips = new ModelRenderer(this, 56, 42);
         this.Hips.setRotationPoint(17.0F, 21.0F, 11.0F);
-        this.Hips.addBox(-8.0F, 0.0F, -6.0F, 16.0F, 9.0F, 13.0F, 0.0F, 0.0F, 0.0F);
+        this.Hips.addBox(-8.0F, 0.0F, -6.0F, 16.0F, 9.0F, 13.0F, modelScale);
         this.LOFinger = new ModelRenderer(this, 1, 44);
         this.LOFinger.setRotationPoint(-12.5F, 17.0F, -5.5F);
-        this.LOFinger.addBox(-1.5F, 0.0F, -1.5F, 3.0F, 8.0F, 3.0F, 0.0F, 0.0F, 0.0F);
+        this.LOFinger.addBox(-1.5F, 0.0F, -1.5F, 3.0F, 8.0F, 3.0F, modelScale);
         this.Body = new ModelRenderer(this, 0, 0);
         this.Body.setRotationPoint(-17.0F, -20.0F, -11.0F);
-        this.Body.addBox(0.0F, 0.0F, 0.0F, 34.0F, 21.0F, 21.0F, 0.0F, 0.0F, 0.0F);
+        this.Body.addBox(0.0F, 0.0F, 0.0F, 34.0F, 21.0F, 21.0F, modelScale);
         this.RMFinger = new ModelRenderer(this, 1, 44);
         this.RMFinger.setRotationPoint(7.5F, 17.0F, -5.5F);
-        this.RMFinger.addBox(-1.5F, 0.0F, -1.5F, 3.0F, 8.0F, 3.0F, 0.0F, 0.0F, 0.0F);
+        this.RMFinger.addBox(-1.5F, 0.0F, -1.5F, 3.0F, 8.0F, 3.0F, modelScale);
         this.LEar = new ModelRenderer(this, 37, 77);
         this.LEar.mirror = true;
         this.LEar.setRotationPoint(-6.0F, -3.0F, -7.0F);
-        this.LEar.addBox(-6.0F, -3.0F, -1.0F, 6.0F, 7.0F, 3.0F, 0.0F, 0.0F, 0.0F);
+        this.LEar.addBox(-6.0F, -3.0F, -1.0F, 6.0F, 7.0F, 3.0F, modelScale);
         this.ROFinger = new ModelRenderer(this, 1, 44);
         this.ROFinger.setRotationPoint(12.5F, 17.0F, -5.5F);
-        this.ROFinger.addBox(-1.5F, 0.0F, -1.5F, 3.0F, 8.0F, 3.0F, 0.0F, 0.0F, 0.0F);
+        this.ROFinger.addBox(-1.5F, 0.0F, -1.5F, 3.0F, 8.0F, 3.0F, modelScale);
         this.LThumb = new ModelRenderer(this, 1, 44);
         this.LThumb.setRotationPoint(1.0F, 11.0F, -3.5F);
-        this.LThumb.addBox(0.0F, 0.0F, -1.5F, 3.0F, 8.0F, 3.0F, 0.0F, 0.0F, 0.0F);
+        this.LThumb.addBox(0.0F, 0.0F, -1.5F, 3.0F, 8.0F, 3.0F, modelScale);
         this.LMFinger = new ModelRenderer(this, 1, 44);
         this.LMFinger.setRotationPoint(-7.5F, 17.0F, -5.5F);
-        this.LMFinger.addBox(-1.5F, 0.0F, -1.5F, 3.0F, 8.0F, 3.0F, 0.0F, 0.0F, 0.0F);
+        this.LMFinger.addBox(-1.5F, 0.0F, -1.5F, 3.0F, 8.0F, 3.0F, modelScale);
         this.Hips.addChild(this.LLeg);
         this.LArm.addChild(this.LIFinger);
         this.Head.addChild(this.REar);

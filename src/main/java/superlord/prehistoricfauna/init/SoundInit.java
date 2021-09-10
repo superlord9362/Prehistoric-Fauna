@@ -94,6 +94,7 @@ public class SoundInit {
 	public static final SoundEvent HENOS_HURT;
 	public static final SoundEvent HENOS_DEATH;
 	public static final SoundEvent HENOS_LASER;
+	public static final SoundEvent HENOS_LASER_LOOP;
 	
 	@SubscribeEvent
 	public static void registerSounds(final RegistryEvent.Register<SoundEvent> evt) {
@@ -180,6 +181,7 @@ public class SoundInit {
 		evt.getRegistry().register(HENOS_HURT);
 		evt.getRegistry().register(HENOS_DEATH);
 		evt.getRegistry().register(HENOS_LASER);
+		evt.getRegistry().register(HENOS_LASER_LOOP);
 	}
 	
 	private static SoundEvent createEvent(final String soundName) {
@@ -271,6 +273,7 @@ public class SoundInit {
 		HENOS_HURT = createEvent("henos_hurt");
 		HENOS_DEATH = createEvent("henos_death");
 		HENOS_LASER = createEvent("henos_laser");
+		HENOS_LASER_LOOP = createEvent("henos_laser_loop");
 	}
 
 }
