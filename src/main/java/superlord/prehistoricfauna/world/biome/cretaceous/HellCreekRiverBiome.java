@@ -76,16 +76,14 @@ public class HellCreekRiverBiome extends PFBiome {
         SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.TRICERATOPS_ENTITY, PrehistoricFaunaConfig.triceratopsSpawnWeight, 2, 3));
         SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.ANKYLOSAURUS_ENTITY, PrehistoricFaunaConfig.ankylosaurusSpawnWeight, 1, 2));
         SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.BASILEMYS_ENTITY, PrehistoricFaunaConfig.basilemysSpawnWeight, 1, 2));
-		GENERATION_SETTINGS.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PFConfiguredFeatures.CRASSOSTREA_OYSTERS);
+		SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.TRILOBITE_SENTINEL_ENTITY, PrehistoricFaunaConfig.trilobiteSentinelSpawnWeight, 1, 1));
+        GENERATION_SETTINGS.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PFConfiguredFeatures.CRASSOSTREA_OYSTERS);
         GENERATION_SETTINGS.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PFConfiguredFeatures.MOSS);
 		GENERATION_SETTINGS.withFeature(Decoration.UNDERGROUND_ORES, PFConfiguredFeatures.FOSSILIZED_SANDSTONE);
 		GENERATION_SETTINGS.withFeature(Decoration.UNDERGROUND_ORES, PFConfiguredFeatures.FOSSILIZED_SILTSTONE);
 		PFConfiguredFeatures.addHellCreekVegetation(GENERATION_SETTINGS);
-		DefaultBiomeFeatures.withOverworldOres(GENERATION_SETTINGS);
 		DefaultBiomeFeatures.withCavesAndCanyons(GENERATION_SETTINGS);
-		DefaultBiomeFeatures.withCommonOverworldBlocks(GENERATION_SETTINGS);
 		PFConfiguredFeatures.withWaterLakesAndSprings(GENERATION_SETTINGS);
-		DefaultBiomeFeatures.withDisks(GENERATION_SETTINGS);
 	}
 
 }

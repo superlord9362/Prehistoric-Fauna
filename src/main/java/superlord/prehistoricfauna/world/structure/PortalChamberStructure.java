@@ -6,6 +6,7 @@ import java.util.Random;
 import com.mojang.serialization.Codec;
 
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.util.Mirror;
@@ -32,6 +33,8 @@ import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.common.entities.TrilobiteSentinelEntity;
+import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFLootTables;
 import superlord.prehistoricfauna.init.PFStructures;
 
@@ -144,6 +147,15 @@ public class PortalChamberStructure extends Structure<NoFeatureConfig> {
 				if (sbb.isVecInside(blockpos)) {
 					LockableLootTileEntity.setLootTable(world, rand, blockpos, PFLootTables.TIME_TEMPLE_LOOT_TABLE);
 				}
+			}
+			if ("Trilobite".equals(function)) {
+            	world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+                TrilobiteSentinelEntity entity = PFEntities.TRILOBITE_SENTINEL_ENTITY.create(world.getWorld());
+                if (entity != null) {
+                    entity.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+                    entity.onInitialSpawn(world, world.getDifficultyForLocation(pos), SpawnReason.STRUCTURE, null, null);
+                    world.addEntity(entity);
+                }
 			}
 		}
 	}

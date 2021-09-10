@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.culling.ClippingHelper;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
@@ -24,29 +23,27 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.HenosModel;
-import superlord.prehistoricfauna.client.model.HenosSummonedModel;
 import superlord.prehistoricfauna.common.entities.TimeGuardianEntity;
 
 @OnlyIn(Dist.CLIENT)
-public class BossRenderer extends MobRenderer<TimeGuardianEntity, EntityModel<TimeGuardianEntity>> {
+public class BossRenderer<T extends TimeGuardianEntity> extends MobRenderer<T, HenosModel<T>> {
 
     private static final ResourceLocation TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos.png");
     private static final ResourceLocation SUMMONED_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos_summoned.png");
     private static final ResourceLocation FUNKY_MONKEY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/brass_monkey.png");
-    private static final HenosModel HENOS = new HenosModel();
-    private static final HenosSummonedModel SUMMONED = new HenosSummonedModel();
     private static final ResourceLocation BEAM_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/beam.png");
     private static final RenderType BEAM_RENDER_TYPE = PFRenderTypes.getBossBeam(BEAM_TEXTURE);
 
     public BossRenderer(EntityRendererManager rm) {
-        super(Minecraft.getInstance().getRenderManager(), HENOS, 1.25F);
+        super(Minecraft.getInstance().getRenderManager(), new HenosModel<T>(), 1.25F);
+        this.addLayer(new HenosGemGlowLayer<>(this));
     }
 
     private static void func_229108_a_(IVertexBuilder p_229108_0_, Matrix4f p_229108_1_, Matrix3f p_229108_2_, float p_229108_3_, float p_229108_4_, float p_229108_5_, int p_229108_6_, int p_229108_7_, int p_229108_8_, float p_229108_9_, float p_229108_10_) {
         p_229108_0_.pos(p_229108_1_, p_229108_3_, p_229108_4_, p_229108_5_).color(p_229108_6_, p_229108_7_, p_229108_8_, 255).tex(p_229108_9_, p_229108_10_).overlay(OverlayTexture.NO_OVERLAY).lightmap(240).normal(p_229108_2_, 0.0F, 1.0F, 0.0F).endVertex();
     }
 
-    public boolean shouldRender(TimeGuardianEntity livingEntityIn, ClippingHelper camera, double camX, double camY, double camZ) {
+    public boolean shouldRender(T livingEntityIn, ClippingHelper camera, double camX, double camY, double camZ) {
         if (super.shouldRender(livingEntityIn, camera, camX, camY, camZ)) {
             return true;
         } else {
@@ -70,7 +67,7 @@ public class BossRenderer extends MobRenderer<TimeGuardianEntity, EntityModel<Ti
         return new Vector3d(d0, d1, d2);
     }
 
-    protected void applyRotations(TimeGuardianEntity entityIn, MatrixStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
+    protected void applyRotations(T entityIn, MatrixStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
         super.applyRotations(entityIn, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
         Vector3d vec = entityIn.getLaserTargetPos(partialTicks);
         double d0 = vec.x - entityIn.getPosX();
@@ -83,13 +80,8 @@ public class BossRenderer extends MobRenderer<TimeGuardianEntity, EntityModel<Ti
     }
 
     @SuppressWarnings("unused")
-	public void render(TimeGuardianEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
+	public void render(T entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
         super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
-        if (entityIn.isSummoned()) {
-            entityModel = SUMMONED;
-        } else {
-            entityModel = HENOS;
-        }
         super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
         Entity livingentity = entityIn.getLaserTarget();
         if (livingentity != null) {

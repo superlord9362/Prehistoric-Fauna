@@ -140,7 +140,7 @@ public class CamarasaurusEntity extends DinosaurEntity {
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 200.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 12.0D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 200.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 12.0D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 50.0D);
 	}
 
 	protected SoundEvent getAmbientSound() {

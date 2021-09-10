@@ -231,6 +231,17 @@ public class CommonEvents {
 		VANILLA_ROCK_SMASHING_MAP.put(Blocks.RED_CONCRETE, Blocks.RED_CONCRETE_POWDER);
 		VANILLA_ROCK_SMASHING_MAP.put(Blocks.WHITE_CONCRETE, Blocks.WHITE_CONCRETE_POWDER);
 		VANILLA_ROCK_SMASHING_MAP.put(Blocks.YELLOW_CONCRETE, Blocks.YELLOW_CONCRETE_POWDER);
+		VANILLA_ROCK_SMASHING_MAP.put(Blocks.END_STONE_BRICKS, Blocks.END_STONE);
+		VANILLA_ROCK_SMASHING_MAP.put(Blocks.PRISMARINE_BRICKS, Blocks.PRISMARINE);
+		ROCK_SMASHING_MAP.put(PFBlocks.HENOSTONE_BRICKS, PFBlocks.HENOSTONE);
+		VANILLA_ROCK_SMASHING_MAP.put(Blocks.POLISHED_DIORITE, Blocks.DIORITE);
+		VANILLA_ROCK_SMASHING_MAP.put(Blocks.POLISHED_ANDESITE, Blocks.ANDESITE);
+		VANILLA_ROCK_SMASHING_MAP.put(Blocks.POLISHED_GRANITE, Blocks.GRANITE);
+		VANILLA_ROCK_SMASHING_MAP.put(Blocks.NETHER_BRICKS, Blocks.CRACKED_NETHER_BRICKS);
+		VANILLA_ROCK_SMASHING_MAP.put(Blocks.POLISHED_BLACKSTONE, Blocks.BLACKSTONE);
+		VANILLA_ROCK_SMASHING_MAP.put(Blocks.POLISHED_BLACKSTONE_BRICKS, Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS);
+		VANILLA_ROCK_SMASHING_MAP.put(Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS, Blocks.BLACKSTONE);
+		VANILLA_ROCK_SMASHING_MAP.put(Blocks.POLISHED_BASALT, Blocks.BASALT);
 		//BLOCK_STRIPPING_MAP.put(PFBlocks.CYPRESS_LOG, PFBlocks.STRIPPED_CYPRESS_LOG);
 		//BLOCK_STRIPPING_MAP.put(PFBlocks.CYPRESS_WOOD, PFBlocks.STRIPPED_CYPRESS_WOOD);
 	}
@@ -578,6 +589,76 @@ public class CommonEvents {
 									stack.setCount(0);
 								}
 								world.setBlockState(blockpos, PFBlocks.SANDSTONE.getDefaultState());
+								this.setSuccessful(true);
+							}
+							if (blockstate.getBlock() == Blocks.END_STONE_BRICKS) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.END_STONE.getDefaultState());
+								this.setSuccessful(true);
+							}
+							if (blockstate.getBlock() == Blocks.PRISMARINE_BRICKS) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.PRISMARINE.getDefaultState());
+								this.setSuccessful(true);
+							}
+							if (blockstate.getBlock() == Blocks.POLISHED_DIORITE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.DIORITE.getDefaultState());
+								this.setSuccessful(true);
+							}
+							if (blockstate.getBlock() == Blocks.POLISHED_ANDESITE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.ANDESITE.getDefaultState());
+								this.setSuccessful(true);
+							}
+							if (blockstate.getBlock() == Blocks.POLISHED_GRANITE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.GRANITE.getDefaultState());
+								this.setSuccessful(true);
+							}
+							if (blockstate.getBlock() == Blocks.NETHER_BRICKS) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.CRACKED_NETHER_BRICKS.getDefaultState());
+								this.setSuccessful(true);
+							}
+							if (blockstate.getBlock() == Blocks.POLISHED_BLACKSTONE) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.BLACKSTONE.getDefaultState());
+								this.setSuccessful(true);
+							}
+							if (blockstate.getBlock() == Blocks.POLISHED_BLACKSTONE_BRICKS) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS.getDefaultState());
+								this.setSuccessful(true);
+							}
+							if (blockstate.getBlock() == Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.BLACKSTONE.getDefaultState());
+								this.setSuccessful(true);
+							}
+							if (blockstate.getBlock() == Blocks.POLISHED_BASALT) {
+								if (stack.attemptDamageItem(1, world.rand, (ServerPlayerEntity)null)) {
+									stack.setCount(0);
+								}
+								world.setBlockState(blockpos, Blocks.BASALT.getDefaultState());
 								this.setSuccessful(true);
 							}
 						}

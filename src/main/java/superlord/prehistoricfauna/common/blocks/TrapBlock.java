@@ -24,6 +24,8 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import superlord.prehistoricfauna.common.entities.TimeGuardianEntity;
+import superlord.prehistoricfauna.common.entities.TrilobiteSentinelEntity;
 import superlord.prehistoricfauna.init.PFCustomDamageSource;
 
 public class TrapBlock extends Block {
@@ -68,12 +70,14 @@ public class TrapBlock extends Block {
 
 	public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
 		if (!worldIn.isRemote) {
-			int i = this.getRedstoneStrength(state);
-			if (i == 0) {
-				this.updateState(worldIn, pos, state, i);
-			}
-			if(state.get(POWERED)) {
-			      entityIn.attackEntityFrom(PFCustomDamageSource.HENOSTONE_TRAP, 2.0F);
+			if (!(entityIn instanceof TrilobiteSentinelEntity) || !(entityIn instanceof TimeGuardianEntity)) {
+				int i = this.getRedstoneStrength(state);
+				if (i == 0) {
+					this.updateState(worldIn, pos, state, i);
+				}
+				if(state.get(POWERED)) {
+					entityIn.attackEntityFrom(PFCustomDamageSource.HENOSTONE_TRAP, 2.0F);
+				}
 			}
 		}
 	}

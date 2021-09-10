@@ -289,6 +289,7 @@
 	"item.prehistoricfauna.time_guardian_spawn_egg": "Henos Spawn Egg",
 	"item.prehistoricfauna.saurosuchus_spawn_egg": "Saurosuchus Spawn Egg",
 	"item.prehistoricfauna.ischigualastia_spawn_egg": "Ischigualastia Spawn Egg",
+	"item.prehistoricfauna.trilobite_sentinel_spawn_egg": "Henos Trilobite Sentinel Spawn Egg",
 	
 	"entity.prehistoricfauna.thescelosaurus": "Thescelosaurus",
 	"entity.prehistoricfauna.triceratops": "Triceratops",
@@ -314,6 +315,7 @@
 	"entity.prehistoricfauna.saurosuchus": "Saurosuchus",
 	"block.prehistoricfauna.crassostrea_oyster": "Crassostrea Oyster",
 	"entity.prehistoricfauna.ischigualastia": "Ischigualastia",
+	"entity.prehistoricfuana.trilobite_sentinel": "Henos Trilobite Sentinel",
 	"entity.minecraft.villager.prehistoricfauna.geologist": "Geologist",
 	
 	"item.prehistoricfauna.araucaria_boat": "Araucaria Boat",
@@ -749,6 +751,8 @@
 	"advancements.prehistoricfauna.plant_made_of_plant.description": "Collect plant fiber",
 	"advancements.prehistoricfauna.survival_game.title": "We're a Survival Game",
 	"advancements.prehistoricfauna.survival_game.description": "Craft thatch",
+	"advancements.prehistoricfauna.pest_control.title": "Someone Call Pest Control?",
+	"advancements.prehistoricfauna.pest_control.description": "Kill any Henos Sentinel",
 	
 	"death.attack.trap.0": "%s was impaled by a henostone trap",
 	"death.attack.trap.1": "%s was shish kebabed by a henostone trap",

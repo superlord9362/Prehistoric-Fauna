@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entities.TimeGuardianEntity;
  * Created using Tabula 8.0.0
  */
 @OnlyIn(Dist.CLIENT)
-public class HenosModel extends EntityModel<TimeGuardianEntity> {
+public class HenosModel<T extends TimeGuardianEntity> extends EntityModel<T> {
     public ModelRenderer Body;
     public ModelRenderer RArm;
     public ModelRenderer Head;

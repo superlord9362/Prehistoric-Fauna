@@ -71,10 +71,7 @@ public class IschigualastoClearingBiome extends PFBiome {
 		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.SILLOSUCHUS_ENTITY, PrehistoricFaunaConfig.sillosuchusSpawnWeight, 1, 3));
 		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.SAUROSUCHUS_ENTITY, PrehistoricFaunaConfig.saurosuchusSpawnWeight, 1, 2));
 		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.ISCHIGUALASTIA_ENTITY, PrehistoricFaunaConfig.ischigualastiaSpawnWeight, 2, 5));
-		DefaultBiomeFeatures.withOverworldOres(GENERATION_SETTINGS);
 		DefaultBiomeFeatures.withCavesAndCanyons(GENERATION_SETTINGS);
-		DefaultBiomeFeatures.withCommonOverworldBlocks(GENERATION_SETTINGS);
-		DefaultBiomeFeatures.withDisks(GENERATION_SETTINGS);
 	}
 
 

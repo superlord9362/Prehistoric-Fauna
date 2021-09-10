@@ -62,6 +62,7 @@ import superlord.prehistoricfauna.client.render.ThescelosaurusRenderer;
 import superlord.prehistoricfauna.client.render.TriceratopsRenderer;
 import superlord.prehistoricfauna.client.render.TriceratopsSkeletonRenderer;
 import superlord.prehistoricfauna.client.render.TriceratopsSkullRenderer;
+import superlord.prehistoricfauna.client.render.TrilobiteSentinelRenderer;
 import superlord.prehistoricfauna.client.render.TyrannosaurusRenderer;
 import superlord.prehistoricfauna.client.render.TyrannosaurusSkeletonRenderer;
 import superlord.prehistoricfauna.client.render.TyrannosaurusSkullRenderer;
@@ -146,6 +147,7 @@ public class ClientEvents {
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.ALLOSAURUS_SKULL, AllosaurusSkullRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.ISCHIGUALASTIA_SKULL, IschigualastiaSkullRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.PALEOPAINTING, PaleopaintingRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(PFEntities.TRILOBITE_SENTINEL_ENTITY, manager -> new TrilobiteSentinelRenderer());
 		ScreenManager.registerFactory(PFContainers.PALEONTOLOGY_TABLE.get(), PaleontologyTableScreen::new);
 		ScreenManager.registerFactory(PFContainers.PALEOSCRIBE_CONTAINER, PaleoscribeScreen::new);
 		ClientRegistry.bindTileEntityRenderer(PFTileEntities.CHEST.get(), PFChestTileEntityRenderer::new);

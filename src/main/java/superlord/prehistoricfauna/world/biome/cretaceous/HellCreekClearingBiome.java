@@ -77,10 +77,8 @@ public class HellCreekClearingBiome extends PFBiome {
 		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.TRICERATOPS_ENTITY, PrehistoricFaunaConfig.triceratopsClearingSpawnWeight, 2, 3));
 		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.ANKYLOSAURUS_ENTITY, PrehistoricFaunaConfig.ankylosaurusClearingSpawnWeight, 1, 2));
 		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.BASILEMYS_ENTITY, PrehistoricFaunaConfig.basilemysClearingSpawnWeight, 1, 2));
-		DefaultBiomeFeatures.withOverworldOres(GENERATION_SETTINGS);
+		SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.TRILOBITE_SENTINEL_ENTITY, PrehistoricFaunaConfig.trilobiteSentinelSpawnWeight, 1, 1));
 		DefaultBiomeFeatures.withCavesAndCanyons(GENERATION_SETTINGS);
-		DefaultBiomeFeatures.withCommonOverworldBlocks(GENERATION_SETTINGS);
-		DefaultBiomeFeatures.withDisks(GENERATION_SETTINGS);
 	}
 
 

@@ -36,6 +36,7 @@ import net.minecraft.world.gen.FlatChunkGenerator;
 import net.minecraft.world.gen.GenerationStage.Decoration;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
@@ -113,6 +114,7 @@ import superlord.prehistoricfauna.common.entities.TimeGuardianEntity;
 import superlord.prehistoricfauna.common.entities.TriceratopsEntity;
 import superlord.prehistoricfauna.common.entities.TriceratopsSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.TriceratopsSkullEntity;
+import superlord.prehistoricfauna.common.entities.TrilobiteSentinelEntity;
 import superlord.prehistoricfauna.common.entities.TyrannosaurusEntity;
 import superlord.prehistoricfauna.common.entities.TyrannosaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.TyrannosaurusSkullEntity;
@@ -239,6 +241,7 @@ public class PrehistoricFauna {
         EntitySpawnPlacementRegistry.register(PFEntities.THESCELOSAURUS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
         EntitySpawnPlacementRegistry.register(PFEntities.TRICERATOPS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
         EntitySpawnPlacementRegistry.register(PFEntities.TYRANNOSAURUS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.TRILOBITE_SENTINEL_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TrilobiteSentinelEntity::canSpawn);
         CommonEvents.init();
         CommonEvents.setup();
 	}
@@ -299,6 +302,7 @@ public class PrehistoricFauna {
 		GlobalEntityTypeAttributes.put(PFEntities.TYRANNOSAURUS_ENTITY, TyrannosaurusEntity.createAttributes().create());
 		GlobalEntityTypeAttributes.put(PFEntities.TYRANNOSAURUS_SKELETON, TyrannosaurusSkeletonEntity.createAttributes().create());
 		GlobalEntityTypeAttributes.put(PFEntities.TYRANNOSAURUS_SKULL, TyrannosaurusSkullEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.TRILOBITE_SENTINEL_ENTITY, TrilobiteSentinelEntity.createAttributes().create());
 	}
 	
 	@SuppressWarnings("unlikely-arg-type")
@@ -320,12 +324,54 @@ public class PrehistoricFauna {
 		}
 		if (name.equals("hell_creek") || name.equals("hell_creek_clearing") || name.equals("hell_creek_hills")) {
 			event.getGeneration().getStructures().add(() -> PFConfiguredStructures.CONFIGURED_HELL_CREEK_HUT);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_COAL);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_IRON);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_GOLD);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_REDSTONE);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_DIAMOND);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_LAPIS);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_DIRT);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_GRAVEL);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_ANDESITE);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_GRANITE);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_DIORITE);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.DISK_SAND);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.DISK_GRAVEL);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.DISK_CLAY);
 		}
 		if (name.equals("ischigualasto_forest") || name.equals("ischigualasto_clearing") || name.equals("ischigualasto_hills")) {
 			event.getGeneration().getStructures().add(() -> PFConfiguredStructures.CONFIGURED_ISCHIGUALASTO_HUT);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_COAL);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_IRON);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_GOLD);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_REDSTONE);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_DIAMOND);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_LAPIS);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_DIRT);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_GRAVEL);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_ANDESITE);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_GRANITE);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_DIORITE);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.DISK_SAND);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.DISK_GRAVEL);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.DISK_CLAY);
 		}
 		if (name.equals("morrison_savannah") || name.equals("morrison_hills")) {
 			event.getGeneration().getStructures().add(() -> PFConfiguredStructures.CONFIGURED_MORRISON_HUT);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_COAL);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_IRON);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_GOLD);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_REDSTONE);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_DIAMOND);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_LAPIS);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_DIRT);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_GRAVEL);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_ANDESITE);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_GRANITE);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_DIORITE);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.DISK_SAND);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.DISK_GRAVEL);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.DISK_CLAY);
 		}
 		if (name.equals("petrified_forest")) {
 			event.getGeneration().getFeatures(Decoration.VEGETAL_DECORATION).add(() -> PFConfiguredFeatures.PETRIFIED_TREE);

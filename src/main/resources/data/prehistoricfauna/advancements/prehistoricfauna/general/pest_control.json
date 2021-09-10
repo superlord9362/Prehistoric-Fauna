@@ -1,0 +1,33 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/general/time_machine",
+  "display": {
+    "icon": {
+      "item": "prehistoricfauna:time_totem"
+    },
+    "title": {
+      "translate": "advancements.prehistoricfauna.pest_control.title"
+    },
+    "description": {
+      "translate": "advancements.prehistoricfauna.pest_control.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "control": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:trilobite_sentinel"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "control"
+    ]
+  ]
+}
