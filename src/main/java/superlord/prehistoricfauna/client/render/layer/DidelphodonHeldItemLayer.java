@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.client.render;
+package superlord.prehistoricfauna.client.render.layer;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 

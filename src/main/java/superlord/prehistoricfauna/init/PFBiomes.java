@@ -12,6 +12,7 @@ import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
+import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.world.WorldGenRegistrationHelper;
 import superlord.prehistoricfauna.world.biome.BiomeData;
 import superlord.prehistoricfauna.world.biome.Dummy;
@@ -26,6 +27,7 @@ import superlord.prehistoricfauna.world.biome.triassic.IschigualastoBiome;
 import superlord.prehistoricfauna.world.biome.triassic.IschigualastoClearingBiome;
 import superlord.prehistoricfauna.world.biome.triassic.IschigualastoHillsBiome;
 import superlord.prehistoricfauna.world.biome.triassic.IschigualastoRiverBiome;
+import superlord.prehistoricfauna.world.worldtype.PrehistoricWorldTypeBiomeProvider;
 
 public class PFBiomes {
 
@@ -60,6 +62,7 @@ public class PFBiomes {
 	public static final Biome ISCHIGUALASTO_RIVER = WorldGenRegistrationHelper.createBiome("ischigualasto_river", ISCHIGUALASTO_RIVER_BIOME.getBiome(), 10);
 
 	public static void init() {
+		Registry.register(Registry.BIOME_PROVIDER_CODEC, new ResourceLocation(PrehistoricFauna.MOD_ID, "prehistoric_world"), PrehistoricWorldTypeBiomeProvider.CODEC);
 	}
 
 	@SuppressWarnings({ "unused", "deprecation" })

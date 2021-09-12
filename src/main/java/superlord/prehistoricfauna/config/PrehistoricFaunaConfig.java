@@ -30,7 +30,8 @@ public class PrehistoricFaunaConfig {
 	public static int sillosuchusSpawnWeight = 6;
 	public static int saurosuchusSpawnWeight = 4;
 	public static int ischigualastiaSpawnWeight = 8;
-	public static int trilobiteSentinelSpawnWeight = 5;
+	public static int caveSentinelSpawnWeight = 5;
+	public static int landSentinelSpawnWeight = 2;
 	public static int cretaceousDimensionID = 9;
 	public static int jurassicDimensionID = 8;
 	public static int triassicDimensionID = 7;
@@ -83,7 +84,8 @@ public class PrehistoricFaunaConfig {
 			sillosuchusSpawnWeight = PFConfigHolder.SERVER.sillosuchusSpawnWeight.get();
 			saurosuchusSpawnWeight = PFConfigHolder.SERVER.saurosuchusSpawnWeight.get();
 			ischigualastiaSpawnWeight = PFConfigHolder.SERVER.ischigualastiaSpawnWeight.get();
-			trilobiteSentinelSpawnWeight = PFConfigHolder.SERVER.trilobiteSentinelSpawnWeight.get();
+			caveSentinelSpawnWeight = PFConfigHolder.SERVER.caveSentinelSpawnWeight.get();
+			landSentinelSpawnWeight = PFConfigHolder.SERVER.landSentinelSpawnWeight.get();
 			cretaceousDimensionID = PFConfigHolder.SERVER.cretaceousDimensionID.get();
 			jurassicDimensionID = PFConfigHolder.SERVER.jurassicDimensionID.get();
 			triassicDimensionID = PFConfigHolder.SERVER.triassicDimensionID.get();

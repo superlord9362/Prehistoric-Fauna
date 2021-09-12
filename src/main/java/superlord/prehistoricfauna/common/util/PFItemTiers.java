@@ -12,13 +12,13 @@ public enum PFItemTiers implements IItemTier {
 		return Ingredient.fromItems(PFItems.TAIL_CLUB.get());
 	}),
 	TYRANNOSAURUS(2, 250, 6.0F, 2.5F, 14, () -> {
-		return Ingredient.fromItems(PFItems.TYRANNOSAURUS_TOOTH.get());
+		return Ingredient.fromItems(PFItems.TYRANNOSAUR_TOOTH.get());
 	}),
 	DAKOTARAPTOR(2, 178, 6.0F, 5.0F, 14, () -> {
-		return Ingredient.fromItems(PFItems.DAKOTARAPTOR_CLAW.get());
+		return Ingredient.fromItems(PFItems.DROMAEOSAUR_CLAW.get());
 	}),
 	THAGOMIZER(2, 200, 6.0F, 2.0F, 14, () -> {
-		return Ingredient.fromItems(PFItems.STEGOSAURUS_THAGOMIZERS.get());
+		return Ingredient.fromItems(PFItems.THAGOMIZERS.get());
 	});
 
 	private final int harvestLevel;

@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "prehistoricfauna:stegosaurus_thagomizer_picaxe"
+      "prehistoricfauna:thagomizer_picaxe"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:stegosaurus_thagomizer"
+            "item": "prehistoricfauna:thagomizer"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "prehistoricfauna:stegosaurus_thagomizer_picaxe"
+        "recipe": "prehistoricfauna:thagomizer_picaxe"
       }
     }
   },

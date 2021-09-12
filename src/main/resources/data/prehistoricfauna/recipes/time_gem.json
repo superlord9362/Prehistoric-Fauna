@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"###",
+		"###",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:time_gem_shard"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:time_totem",
+		"count": 1
+	}
+}

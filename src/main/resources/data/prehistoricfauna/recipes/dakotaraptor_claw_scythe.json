@@ -7,14 +7,14 @@
   ],
   "key": {
     "#": {
-      "item": "prehistoricfauna:dakotaraptor_claw"
+      "item": "prehistoricfauna:dromaeosaur_claw"
     },
 	"S": {
 		"item": "minecraft:stick"
 	}
   },
   "result": {
-    "item": "prehistoricfauna:dakotaraptor_claw_scythe",
+    "item": "prehistoricfauna:dromaeosaur_claw_scythe",
     "count": 1
   }
 }

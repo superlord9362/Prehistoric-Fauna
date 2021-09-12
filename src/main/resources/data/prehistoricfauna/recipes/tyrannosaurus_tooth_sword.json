@@ -7,14 +7,14 @@
   ],
   "key": {
     "#": {
-      "item": "prehistoricfauna:tyrannosaurus_tooth"
+      "item": "prehistoricfauna:tyrannosaur_tooth"
     },
 	"S": {
 		"item": "minecraft:stick"
 	}
   },
   "result": {
-    "item": "prehistoricfauna:tyrannosaurus_tooth_sword",
+    "item": "prehistoricfauna:tyrannosaur_tooth_sword",
     "count": 1
   }
 }

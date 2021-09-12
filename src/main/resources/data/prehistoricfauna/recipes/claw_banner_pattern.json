@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "prehistoricfauna:dakotaraptor_claw"
+      "item": "prehistoricfauna:dromaeosaur_claw"
     },
 	{
 		"item": "minecraft:paper"

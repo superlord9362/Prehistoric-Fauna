@@ -2,7 +2,7 @@
   "parent": "prehistoricfauna:prehistoricfauna/general/time_machine",
   "display": {
     "icon": {
-      "item": "prehistoricfauna:ankylosaurus_chestplate"
+      "item": "prehistoricfauna:thyreophoran_chestplate"
     },
     "title": {
       "translate": "advancements.prehistoricfauna.weird_taxidermy.title"
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:ankylosaurus_chestplate"
+            "item": "prehistoricfauna:thyreophoran_chestplate"
           }
         ]
       }

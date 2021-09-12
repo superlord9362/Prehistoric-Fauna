@@ -2,7 +2,7 @@
   "parent": "prehistoricfauna:prehistoricfauna/general/jurassic_time_travel",
   "display": {
     "icon": {
-      "item": "prehistoricfauna:stegosaurus_thagomizer"
+      "item": "prehistoricfauna:thagomizer"
     },
     "title": {
       "translate": "advancements.prehistoricfauna.late_thag_simmons.title"

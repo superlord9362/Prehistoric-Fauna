@@ -8,12 +8,12 @@
 	],
 	"key": {
 		"#": {
-			"tag": "prehistoricfauna:protojuniperoxylon_logs"
+			"tag": "prehistoricfauna:protojuniper_logs"
 		}
 	},
 	"result": {
 		"item": "prehistoricfauna:protojuniperoxylon_chest",
-		"count": "4"
+		"count": 4
 	},
 	"conditions": [
 		{

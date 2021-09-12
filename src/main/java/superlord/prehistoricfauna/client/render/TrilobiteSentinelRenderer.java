@@ -8,6 +8,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.SentinelTrilobiteModel;
+import superlord.prehistoricfauna.client.render.layer.TrilobiteSentinelGlowLayer;
 import superlord.prehistoricfauna.common.entities.TrilobiteSentinelEntity;
 
 @OnlyIn(Dist.CLIENT)

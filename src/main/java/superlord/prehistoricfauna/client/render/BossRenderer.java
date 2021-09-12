@@ -27,6 +27,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.HenosModel;
 import superlord.prehistoricfauna.client.model.HenosSummonedModel;
+import superlord.prehistoricfauna.client.render.layer.HenosGemGlowLayer;
 import superlord.prehistoricfauna.common.entities.TimeGuardianEntity;
 
 @OnlyIn(Dist.CLIENT)

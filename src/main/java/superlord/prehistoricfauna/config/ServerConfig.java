@@ -29,7 +29,8 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue sillosuchusSpawnWeight;
 	public final ForgeConfigSpec.IntValue saurosuchusSpawnWeight;
 	public final ForgeConfigSpec.IntValue ischigualastiaSpawnWeight;
-	public final ForgeConfigSpec.IntValue trilobiteSentinelSpawnWeight;
+	public final ForgeConfigSpec.IntValue caveSentinelSpawnWeight;
+	public final ForgeConfigSpec.IntValue landSentinelSpawnWeight;
 	public final ForgeConfigSpec.BooleanValue superSecretSetting;
 	public final ForgeConfigSpec.IntValue cretaceousDimensionID;
 	public final ForgeConfigSpec.IntValue jurassicDimensionID;
@@ -78,7 +79,8 @@ public class ServerConfig {
 		this.sillosuchusSpawnWeight = buildInt(builder, "Sillosuchus Spawn Weight", "all", 6, 1, 300, "The weight of Sillosuchus in vanilla's spawn rate. Default is 6");
 		this.saurosuchusSpawnWeight = buildInt(builder, "Saurosuchus Spawn Weight", "all", 4, 1, 300, "The weight of Saurosuchus in vanilla's spawn rate. Default is 4");
 		this.ischigualastiaSpawnWeight = buildInt(builder, "Ischigualastia Spawn Weight", "all", 8, 1, 300, "The weight of Ischigualastia in vanilla's spawn rate. Default is 8");
-		this.trilobiteSentinelSpawnWeight = buildInt(builder, "Henos Trilobite Sentinel Spawn Weight", "all", 5, 1, 300, "The weight of Henos Trilobite Sentinels in vanilla's spawn rate. Default is 5");
+		this.caveSentinelSpawnWeight = buildInt(builder, "Cave Sentinel Spawn Weight", "all", 5, 1, 300, "The weight of Cave Sentinels in vanilla's spawn rate. Default is 5");
+		this.landSentinelSpawnWeight = buildInt(builder, "Land Sentinel Spawn Weight", "all", 2, 1, 300, "The weight of Land Sentinels in vanilla's spawn rate. Default is 2");
 		this.superSecretSetting = buildBoolean(builder, "Super Secret Setting", "all", false, "Even I don't know what it does. Default is false");
 		this.cretaceousDimensionID = buildInt(builder, "Cretaceous Dimension ID", "all", 9, Integer.MIN_VALUE, Integer.MAX_VALUE, "Cretaceous Dimension ID. Default is 9");
 		this.jurassicDimensionID = buildInt(builder, "Jurassic Dimension ID", "all", 8, Integer.MIN_VALUE, Integer.MAX_VALUE, "Jurassic Dimension ID. Default is 8");

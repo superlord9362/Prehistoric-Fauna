@@ -6,14 +6,14 @@
   ],
   "key": {
     "S": {
-      "item": "prehistoricfauna:ankylosaurus_scute"
+      "item": "prehistoricfauna:thyreophoran_scute"
     },
 	"#": {
-		"item": "prehistoricfauna:triceratops_horn"
+		"item": "prehistoricfauna:ceratopsian_horn"
 	}
   },
   "result": {
-    "item": "prehistoricfauna:ankylosaurus_helmet",
+    "item": "prehistoricfauna:thyreophoran_helmet",
     "count": 1
   }
 }

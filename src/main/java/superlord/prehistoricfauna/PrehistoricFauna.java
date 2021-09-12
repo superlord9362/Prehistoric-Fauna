@@ -102,6 +102,7 @@ import superlord.prehistoricfauna.common.entities.HyperodapedonEntity;
 import superlord.prehistoricfauna.common.entities.IschigualastiaEntity;
 import superlord.prehistoricfauna.common.entities.IschigualastiaSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.IschigualastiaSkullEntity;
+import superlord.prehistoricfauna.common.entities.LandSentinelEntity;
 import superlord.prehistoricfauna.common.entities.SaurosuchusEntity;
 import superlord.prehistoricfauna.common.entities.SaurosuchusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.SaurosuchusSkullEntity;
@@ -242,6 +243,7 @@ public class PrehistoricFauna {
         EntitySpawnPlacementRegistry.register(PFEntities.TRICERATOPS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
         EntitySpawnPlacementRegistry.register(PFEntities.TYRANNOSAURUS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
         EntitySpawnPlacementRegistry.register(PFEntities.TRILOBITE_SENTINEL_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TrilobiteSentinelEntity::canSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.LAND_SENTINEL_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, LandSentinelEntity::canSpawn);
         CommonEvents.init();
         CommonEvents.setup();
 	}
@@ -303,6 +305,7 @@ public class PrehistoricFauna {
 		GlobalEntityTypeAttributes.put(PFEntities.TYRANNOSAURUS_SKELETON, TyrannosaurusSkeletonEntity.createAttributes().create());
 		GlobalEntityTypeAttributes.put(PFEntities.TYRANNOSAURUS_SKULL, TyrannosaurusSkullEntity.createAttributes().create());
 		GlobalEntityTypeAttributes.put(PFEntities.TRILOBITE_SENTINEL_ENTITY, TrilobiteSentinelEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.LAND_SENTINEL_ENTITY, LandSentinelEntity.createAttributes().create());
 	}
 	
 	@SuppressWarnings("unlikely-arg-type")
@@ -551,13 +554,13 @@ public class PrehistoricFauna {
 		@SubscribeEvent(priority=EventPriority.LOW)
 		public static void registerBiomes(RegistryEvent.Register<Biome> event) {
 			LOGGER.debug("PF: Registering biomes...");
-			PFBiomes.init();
 			PFOverworldBiomes.init();
 			PFBiomes.biomeList.sort(Comparator.comparingInt(PFBiomes.PreserveBiomeOrder::getOrderPosition));
 			PFBiomes.biomeList.forEach(preserveBiomeOrder -> event.getRegistry().register(preserveBiomeOrder.getBiome()));
 			PFOverworldBiomes.biomeList.sort(Comparator.comparingInt(PFBiomes.PreserveBiomeOrder::getOrderPosition));
 			PFOverworldBiomes.biomeList.forEach(preserveBiomeOrder -> event.getRegistry().register(preserveBiomeOrder.getBiome()));
 			PFOverworldBiomes.PETRIFIED_FOREST_KEY = PFOverworldBiomes.PETRIFIED_FOREST.getKey();
+			PFBiomes.init();
 			LOGGER.info("PF: Biomes registered!");
 		}
 		

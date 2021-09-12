@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "prehistoricfauna:ankylosaurus_chestplate"
+      "prehistoricfauna:thyreophoran_chestplate"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:ankylosaurus_scute"
+            "item": "prehistoricfauna:thyreophoran_scute"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "prehistoricfauna:ankylosaurus_chestplate"
+        "recipe": "prehistoricfauna:thyreophoran_chestplate"
       }
     }
   },

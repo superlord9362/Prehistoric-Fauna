@@ -7,14 +7,14 @@
   ],
   "key": {
     "#": {
-      "item": "prehistoricfauna:stegosaurus_thagomizer"
+      "item": "prehistoricfauna:thagomizer"
     },
 	"S": {
 		"item": "minecraft:stick"
 	}
   },
   "result": {
-    "item": "prehistoricfauna:stegosaurus_thagomizer_pickaxe",
+    "item": "prehistoricfauna:thagomizer_pickaxe",
     "count": 1
   }
 }

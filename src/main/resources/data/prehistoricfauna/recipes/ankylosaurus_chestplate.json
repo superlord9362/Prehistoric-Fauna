@@ -7,11 +7,11 @@
   ],
   "key": {
     "S": {
-      "item": "prehistoricfauna:ankylosaurus_scute"
+      "item": "prehistoricfauna:thyreophoran_scute"
     }
   },
   "result": {
-    "item": "prehistoricfauna:ankylosaurus_chestplate",
+    "item": "prehistoricfauna:thyreophoran_chestplate",
     "count": 1
   }
 }

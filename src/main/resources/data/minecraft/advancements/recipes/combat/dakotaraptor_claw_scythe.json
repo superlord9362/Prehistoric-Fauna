@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "prehistoricfauna:dakotaraptor_claw_scythe"
+      "prehistoricfauna:dromaeosaur_claw_scythe"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:dakotaraptor_claw"
+            "item": "prehistoricfauna:dromaeosaur_claw"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "prehistoricfauna:dakotaraptor_claw_scythe"
+        "recipe": "prehistoricfauna:dromaeosaur_claw_scythe"
       }
     }
   },

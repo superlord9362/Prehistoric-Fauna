@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.DidelphodonModel;
+import superlord.prehistoricfauna.client.render.layer.DidelphodonHeldItemLayer;
 import superlord.prehistoricfauna.common.entities.DidelphodonEntity;
 
 public class DidelphodonRenderer extends MobRenderer<DidelphodonEntity, DidelphodonModel> {

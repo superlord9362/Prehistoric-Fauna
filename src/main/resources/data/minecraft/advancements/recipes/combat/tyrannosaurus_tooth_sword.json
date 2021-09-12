@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "prehistoricfauna:tyrannosaurus_tooth_sword"
+      "prehistoricfauna:tyrannosaur_tooth_sword"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:tyrannosaurus_tooth"
+            "item": "prehistoricfauna:tyrannosaur_tooth"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "prehistoricfauna:tyrannosaurus_tooth_sword"
+        "recipe": "prehistoricfauna:tyrannosaur_tooth_sword"
       }
     }
   },

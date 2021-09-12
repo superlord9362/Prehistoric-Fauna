@@ -49,6 +49,7 @@ import superlord.prehistoricfauna.client.render.HyperodapedonRenderer;
 import superlord.prehistoricfauna.client.render.IschigualastiaRenderer;
 import superlord.prehistoricfauna.client.render.IschigualastiaSkeletonRenderer;
 import superlord.prehistoricfauna.client.render.IschigualastiaSkullRenderer;
+import superlord.prehistoricfauna.client.render.LandSentinelRenderer;
 import superlord.prehistoricfauna.client.render.PaleopaintingRenderer;
 import superlord.prehistoricfauna.client.render.PrehistoricBoatRenderer;
 import superlord.prehistoricfauna.client.render.SaurosuchusRenderer;
@@ -148,6 +149,7 @@ public class ClientEvents {
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.ISCHIGUALASTIA_SKULL, IschigualastiaSkullRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.PALEOPAINTING, PaleopaintingRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.TRILOBITE_SENTINEL_ENTITY, manager -> new TrilobiteSentinelRenderer());
+		RenderingRegistry.registerEntityRenderingHandler(PFEntities.LAND_SENTINEL_ENTITY, manager -> new LandSentinelRenderer());
 		ScreenManager.registerFactory(PFContainers.PALEONTOLOGY_TABLE.get(), PaleontologyTableScreen::new);
 		ScreenManager.registerFactory(PFContainers.PALEOSCRIBE_CONTAINER, PaleoscribeScreen::new);
 		ClientRegistry.bindTileEntityRenderer(PFTileEntities.CHEST.get(), PFChestTileEntityRenderer::new);

@@ -31,6 +31,7 @@ import superlord.prehistoricfauna.common.entities.HyperodapedonEntity;
 import superlord.prehistoricfauna.common.entities.IschigualastiaEntity;
 import superlord.prehistoricfauna.common.entities.IschigualastiaSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.IschigualastiaSkullEntity;
+import superlord.prehistoricfauna.common.entities.LandSentinelEntity;
 import superlord.prehistoricfauna.common.entities.PaleopaintingEntity;
 import superlord.prehistoricfauna.common.entities.PrehistoricBoatEntity;
 import superlord.prehistoricfauna.common.entities.SaurosuchusEntity;
@@ -87,6 +88,7 @@ public class PFEntities {
     //Henos & Related
 	public static final EntityType<TimeGuardianEntity> TIME_GUARDIAN_ENTITY = register(EntityType.Builder.<TimeGuardianEntity>create(TimeGuardianEntity::new, EntityClassification.CREATURE).immuneToFire().size(1.3125F, 3.125F), "henos");
     public static final EntityType<TrilobiteSentinelEntity> TRILOBITE_SENTINEL_ENTITY = register(EntityType.Builder.<TrilobiteSentinelEntity>create(TrilobiteSentinelEntity::new, EntityClassification.MONSTER).immuneToFire().size(1.25F, 0.375F), "trilobite_sentinel");
+    public static final EntityType<LandSentinelEntity> LAND_SENTINEL_ENTITY = register(EntityType.Builder.<LandSentinelEntity>create(LandSentinelEntity::new, EntityClassification.MONSTER).immuneToFire().size(0.875F, 0.4375F), "land_sentinel");
 
     //Skeletons and Skulls
     public static final EntityType<AnkylosaurusSkullEntity> ANKYLOSAURUS_SKULL = register(EntityType.Builder.<AnkylosaurusSkullEntity>create(AnkylosaurusSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "ankylosaurus_skull");

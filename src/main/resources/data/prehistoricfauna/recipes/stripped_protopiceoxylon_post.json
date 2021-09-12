@@ -7,10 +7,13 @@
 	],
 	"key": {
 		"F": {
-			"item": "prehistoricfauna:stripped_protopiceoxylon_wood",
-			"count": 8 
+			"item": "prehistoricfauna:stripped_protopiceoxylon_wood"
 		}
 	},
+  	"result": {
+		"item": "prehistoricfauna:stripped_protopiceoxylon_post",
+		"count": 8
+  	},
 	"conditions": [
 		{
 			"type": "prehistoricfauna:quark_flag",

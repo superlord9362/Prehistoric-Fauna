@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "prehistoricfauna:stegosaurus_thagomizer"
+      "item": "prehistoricfauna:thagomizer"
     },
 	{
 		"item": "minecraft:paper"
