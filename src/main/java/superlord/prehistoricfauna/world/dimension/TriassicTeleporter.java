@@ -33,6 +33,7 @@ import net.minecraft.world.server.TicketType;
 import net.minecraftforge.common.util.ITeleporter;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.common.blocks.PortalFrameBlock;
 import superlord.prehistoricfauna.common.blocks.TriassicPortalBlock;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFDimensions;
@@ -132,7 +133,7 @@ public class TriassicTeleporter implements ITeleporter {
                     for (int fHeight = -1; fHeight < 3; ++fHeight) {
                         boolean flag = fHeight < 0;
                         mutable.setAndOffset(blockpos, fWidth * direction.getXOffset() + fOffset * drotated.getXOffset(), fHeight, fWidth * direction.getZOffset() + fOffset * direction.getZOffset());
-                        world.setBlockState(mutable, flag ? FRAME.getDefaultState() : Blocks.AIR.getDefaultState());
+                        world.setBlockState(mutable, flag ? FRAME.getDefaultState().with(PortalFrameBlock.ACTIVATED, true) : Blocks.AIR.getDefaultState());
                     }
                 }
             }
@@ -142,7 +143,7 @@ public class TriassicTeleporter implements ITeleporter {
             for (int fHeight = -1; fHeight < 4; ++fHeight) {
                 if (fWidth == -1 || fWidth == 3 || fHeight == -1 || fHeight == 3) {
                     mutable.setAndOffset(blockpos, fWidth * direction.getXOffset(), fHeight, fWidth * direction.getZOffset());
-                    world.setBlockState(mutable, FRAME.getDefaultState());
+                    world.setBlockState(mutable, FRAME.getDefaultState().with(PortalFrameBlock.ACTIVATED, true));
                 }
             }
         }

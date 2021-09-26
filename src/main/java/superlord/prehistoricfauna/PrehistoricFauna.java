@@ -23,6 +23,7 @@ import net.minecraft.client.gui.screen.MainMenuScreen;
 import net.minecraft.client.renderer.RenderSkyboxCube;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
+import net.minecraft.entity.passive.fish.AbstractFishEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -76,6 +77,7 @@ import superlord.prehistoricfauna.client.render.tileentity.PFSignTileEntityRende
 import superlord.prehistoricfauna.client.util.PFPacketHandler;
 import superlord.prehistoricfauna.common.CommonEvents;
 import superlord.prehistoricfauna.common.CommonProxy;
+import superlord.prehistoricfauna.common.entities.AbstractBottomDwellerFishEntity;
 import superlord.prehistoricfauna.common.entities.AllosaurusEntity;
 import superlord.prehistoricfauna.common.entities.AllosaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.AllosaurusSkullEntity;
@@ -84,16 +86,19 @@ import superlord.prehistoricfauna.common.entities.AnkylosaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.AnkylosaurusSkullEntity;
 import superlord.prehistoricfauna.common.entities.BasilemysEntity;
 import superlord.prehistoricfauna.common.entities.CamarasaurusEntity;
+import superlord.prehistoricfauna.common.entities.CeratodusEntity;
 import superlord.prehistoricfauna.common.entities.CeratosaurusEntity;
 import superlord.prehistoricfauna.common.entities.CeratosaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.CeratosaurusSkullEntity;
 import superlord.prehistoricfauna.common.entities.ChromogisaurusEntity;
+import superlord.prehistoricfauna.common.entities.CyclurusEntity;
 import superlord.prehistoricfauna.common.entities.DakotaraptorEntity;
 import superlord.prehistoricfauna.common.entities.DidelphodonEntity;
 import superlord.prehistoricfauna.common.entities.DinosaurEntity;
 import superlord.prehistoricfauna.common.entities.DryosaurusEntity;
 import superlord.prehistoricfauna.common.entities.EilenodonEntity;
 import superlord.prehistoricfauna.common.entities.ExaeretodonEntity;
+import superlord.prehistoricfauna.common.entities.GarEntity;
 import superlord.prehistoricfauna.common.entities.HerrerasaurusEntity;
 import superlord.prehistoricfauna.common.entities.HerrerasaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.HerrerasaurusSkullEntity;
@@ -103,6 +108,8 @@ import superlord.prehistoricfauna.common.entities.IschigualastiaEntity;
 import superlord.prehistoricfauna.common.entities.IschigualastiaSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.IschigualastiaSkullEntity;
 import superlord.prehistoricfauna.common.entities.LandSentinelEntity;
+import superlord.prehistoricfauna.common.entities.MyledaphusEntity;
+import superlord.prehistoricfauna.common.entities.PotamoceratodusEntity;
 import superlord.prehistoricfauna.common.entities.SaurosuchusEntity;
 import superlord.prehistoricfauna.common.entities.SaurosuchusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.SaurosuchusSkullEntity;
@@ -244,6 +251,11 @@ public class PrehistoricFauna {
         EntitySpawnPlacementRegistry.register(PFEntities.TYRANNOSAURUS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
         EntitySpawnPlacementRegistry.register(PFEntities.TRILOBITE_SENTINEL_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TrilobiteSentinelEntity::canSpawn);
         EntitySpawnPlacementRegistry.register(PFEntities.LAND_SENTINEL_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, LandSentinelEntity::canSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.MYLEDAPHUS, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.OCEAN_FLOOR, AbstractBottomDwellerFishEntity::canSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.GAR, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractFishEntity::func_223363_b);
+        EntitySpawnPlacementRegistry.register(PFEntities.CYCLURUS, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractFishEntity::func_223363_b);
+        EntitySpawnPlacementRegistry.register(PFEntities.POTAMOCERATODUS, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractFishEntity::func_223363_b);
+        EntitySpawnPlacementRegistry.register(PFEntities.CERATODUS, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractFishEntity::func_223363_b);
         CommonEvents.init();
         CommonEvents.setup();
 	}
@@ -306,6 +318,11 @@ public class PrehistoricFauna {
 		GlobalEntityTypeAttributes.put(PFEntities.TYRANNOSAURUS_SKULL, TyrannosaurusSkullEntity.createAttributes().create());
 		GlobalEntityTypeAttributes.put(PFEntities.TRILOBITE_SENTINEL_ENTITY, TrilobiteSentinelEntity.createAttributes().create());
 		GlobalEntityTypeAttributes.put(PFEntities.LAND_SENTINEL_ENTITY, LandSentinelEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.MYLEDAPHUS, MyledaphusEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.GAR, GarEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.CYCLURUS, CyclurusEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.CERATODUS, CeratodusEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.POTAMOCERATODUS, PotamoceratodusEntity.createAttributes().create());
 	}
 	
 	@SuppressWarnings("unlikely-arg-type")

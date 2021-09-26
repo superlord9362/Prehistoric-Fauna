@@ -26,8 +26,8 @@ public class IschigualastoRiverBiome extends PFBiome {
 	static final Biome.Category CATEGORY = Category.NONE;
 	static final float TEMPERATURE = 0.75F;
 	static final float DOWNFALL = 0.9F;
-	static final int WATER_COLOR = 4159204;
-	static final int WATER_FOG_COLOR = 329011;
+	static final int WATER_COLOR = 0x436853;
+	static final int WATER_FOG_COLOR = 0x40624e;
 	static final int FOLIAGE_COLOR = 0x53711f;
 	static final int GRASS_COLOR = 0x53711f;
 	static final int FOG_COLOR = 12638463;
@@ -73,6 +73,7 @@ public class IschigualastoRiverBiome extends PFBiome {
 		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.ISCHIGUALASTIA_ENTITY, PrehistoricFaunaConfig.ischigualastiaSpawnWeight, 2, 5));
 		SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.TRILOBITE_SENTINEL_ENTITY, PrehistoricFaunaConfig.caveSentinelSpawnWeight, 1, 1));
 		SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.LAND_SENTINEL_ENTITY, PrehistoricFaunaConfig.landSentinelSpawnWeight, 1, 1));
+		SPAWN_SETTINGS.withSpawner(EntityClassification.WATER_AMBIENT, new MobSpawnInfo.Spawners(PFEntities.CERATODUS, PrehistoricFaunaConfig.ceratodusIschigualastoSpawnWeight, 1, 2));
 		DefaultBiomeFeatures.withCavesAndCanyons(GENERATION_SETTINGS);
 	}
 

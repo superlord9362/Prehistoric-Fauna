@@ -31,6 +31,12 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue ischigualastiaSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelSpawnWeight;
+	public final ForgeConfigSpec.IntValue myledaphusSpawnWeight;
+	public final ForgeConfigSpec.IntValue garSpawnWeight;
+	public final ForgeConfigSpec.IntValue cyclurusSpawnWeight;
+	public final ForgeConfigSpec.IntValue ceratodusMorrisonSpawnWeight;
+	public final ForgeConfigSpec.IntValue ceratodusIschigualastoSpawnWeight;
+	public final ForgeConfigSpec.IntValue potamoceratodusSpawnWeight;
 	public final ForgeConfigSpec.BooleanValue superSecretSetting;
 	public final ForgeConfigSpec.IntValue cretaceousDimensionID;
 	public final ForgeConfigSpec.IntValue jurassicDimensionID;
@@ -81,6 +87,12 @@ public class ServerConfig {
 		this.ischigualastiaSpawnWeight = buildInt(builder, "Ischigualastia Spawn Weight", "all", 8, 1, 300, "The weight of Ischigualastia in vanilla's spawn rate. Default is 8");
 		this.caveSentinelSpawnWeight = buildInt(builder, "Cave Sentinel Spawn Weight", "all", 5, 1, 300, "The weight of Cave Sentinels in vanilla's spawn rate. Default is 5");
 		this.landSentinelSpawnWeight = buildInt(builder, "Land Sentinel Spawn Weight", "all", 2, 1, 300, "The weight of Land Sentinels in vanilla's spawn rate. Default is 2");
+		this.myledaphusSpawnWeight = buildInt(builder, "Myledaphus Spawn Weight", "all", 2, 1, 300, "The weight of Myledaphus in vanilla's spawn rate. Default is 5");
+		this.garSpawnWeight = buildInt(builder, "Gar Spawn Weight", "all", 4, 1, 300, "The weight of Gar in vanilla's spawn rate. Default is 4");
+		this.cyclurusSpawnWeight = buildInt(builder, "Cyclurus Spawn Weight", "all", 1, 1, 300, "The weight of Cyclurus in vanilla's spawn rate. Default is 3");
+		this.ceratodusMorrisonSpawnWeight = buildInt(builder, "Ceratodus Morrison Spawn Weight", "all", 1, 1, 300, "The weight of Ceratodus in vanilla's spawn rate in the Morrison biomes. Default is 1");
+		this.ceratodusIschigualastoSpawnWeight = buildInt(builder, "Ceratodus Ischigualasto Spawn Weight", "all", 3, 1, 300, "The weight of Ceratodus in vanilla's spawn rate in the Ischigualasto biomes. Default is 3");
+		this.potamoceratodusSpawnWeight = buildInt(builder, "Potamoceratodus Spawn Weight", "all", 3, 1, 300, "The weight of Potamoceratodus in vanilla's spawn rate. Default is 1");
 		this.superSecretSetting = buildBoolean(builder, "Super Secret Setting", "all", false, "Even I don't know what it does. Default is false");
 		this.cretaceousDimensionID = buildInt(builder, "Cretaceous Dimension ID", "all", 9, Integer.MIN_VALUE, Integer.MAX_VALUE, "Cretaceous Dimension ID. Default is 9");
 		this.jurassicDimensionID = buildInt(builder, "Jurassic Dimension ID", "all", 8, Integer.MIN_VALUE, Integer.MAX_VALUE, "Jurassic Dimension ID. Default is 8");

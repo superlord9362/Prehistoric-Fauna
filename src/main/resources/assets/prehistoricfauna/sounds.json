@@ -888,5 +888,247 @@
 				"stream": true
 			}
 		]
+	},
+	"myledaphus_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.myledaphusHurt",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"myledaphus_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.myledaphusDeath",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"gar_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.garHurt",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"gar_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.garDeath",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"cyclurus_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.cylcurusHurt",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"cyclurus_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.cyclurusDeath",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"ceratodus_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.ceratodusHurt",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"ceratodus_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.ceratodusDeath",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"potamoceratodus_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.potamoceratodusHurt",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"potamoceratodus_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.potamoceratodusDeath",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"fish_flop": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.fishFlops",
+		"sounds": [
+			{
+				"name": "entity/fish/flop1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/flop2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/flop3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/flop4",
+				"stream": true
+			}
+		]
 	}
 }

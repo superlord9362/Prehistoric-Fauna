@@ -19,7 +19,7 @@
 	"conditions": [
 		{
 			"type": "prehistoricfauna:quark_flag",
-			"flag": "varian_bookshelves"
+			"flag": "variant_bookshelves"
 		}
 	]
 }

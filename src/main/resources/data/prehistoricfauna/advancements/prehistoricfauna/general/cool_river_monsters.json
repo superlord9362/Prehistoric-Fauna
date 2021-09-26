@@ -1,0 +1,69 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/general/time_machine",
+  "display": {
+    "icon": {
+      "item": "prehistoricfauna:gar_bucket"
+    },
+    "title": {
+      "translate": "advancements.prehistoricfauna.cool_river_monsters.title"
+    },
+    "description": {
+      "translate": "advancements.prehistoricfauna.cool_river_monsters.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "myledaphus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:myledaphus_bucket"
+          }
+        ]
+      }
+    },
+	"gar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:gar_bucket"
+          }
+        ]
+      }
+    },
+	"ceratodus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:ceratodus_bucket"
+          }
+        ]
+      }
+    },
+	"potamoceratodus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:potamoceratodus_bucket"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "myledaphus",
+	  "gar",
+	  "cyclurus",
+		"potamoceratodus",
+		"ceratodus"
+    ]
+  ]
+}

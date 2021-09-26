@@ -14,15 +14,18 @@ import superlord.prehistoricfauna.common.entities.AnkylosaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.AnkylosaurusSkullEntity;
 import superlord.prehistoricfauna.common.entities.BasilemysEntity;
 import superlord.prehistoricfauna.common.entities.CamarasaurusEntity;
+import superlord.prehistoricfauna.common.entities.CeratodusEntity;
 import superlord.prehistoricfauna.common.entities.CeratosaurusEntity;
 import superlord.prehistoricfauna.common.entities.CeratosaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.CeratosaurusSkullEntity;
 import superlord.prehistoricfauna.common.entities.ChromogisaurusEntity;
+import superlord.prehistoricfauna.common.entities.CyclurusEntity;
 import superlord.prehistoricfauna.common.entities.DakotaraptorEntity;
 import superlord.prehistoricfauna.common.entities.DidelphodonEntity;
 import superlord.prehistoricfauna.common.entities.DryosaurusEntity;
 import superlord.prehistoricfauna.common.entities.EilenodonEntity;
 import superlord.prehistoricfauna.common.entities.ExaeretodonEntity;
+import superlord.prehistoricfauna.common.entities.GarEntity;
 import superlord.prehistoricfauna.common.entities.HerrerasaurusEntity;
 import superlord.prehistoricfauna.common.entities.HerrerasaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.HerrerasaurusSkullEntity;
@@ -32,7 +35,9 @@ import superlord.prehistoricfauna.common.entities.IschigualastiaEntity;
 import superlord.prehistoricfauna.common.entities.IschigualastiaSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.IschigualastiaSkullEntity;
 import superlord.prehistoricfauna.common.entities.LandSentinelEntity;
+import superlord.prehistoricfauna.common.entities.MyledaphusEntity;
 import superlord.prehistoricfauna.common.entities.PaleopaintingEntity;
+import superlord.prehistoricfauna.common.entities.PotamoceratodusEntity;
 import superlord.prehistoricfauna.common.entities.PrehistoricBoatEntity;
 import superlord.prehistoricfauna.common.entities.SaurosuchusEntity;
 import superlord.prehistoricfauna.common.entities.SaurosuchusSkeletonEntity;
@@ -110,6 +115,13 @@ public class PFEntities {
 	public static final EntityType<TyrannosaurusSkullEntity> TYRANNOSAURUS_SKULL = register(EntityType.Builder.<TyrannosaurusSkullEntity>create(TyrannosaurusSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "tyrannosaurus_skull");
 	public static final EntityType<TyrannosaurusSkeletonEntity> TYRANNOSAURUS_SKELETON = register(EntityType.Builder.<TyrannosaurusSkeletonEntity>create(TyrannosaurusSkeletonEntity::new, EntityClassification.MISC).size(2F, 3.9F), "tyrannosaurus_skeleton");
 
+	//Fish
+	public static final EntityType<MyledaphusEntity> MYLEDAPHUS = register(EntityType.Builder.<MyledaphusEntity>create(MyledaphusEntity::new, EntityClassification.WATER_AMBIENT).size(0.6875F, 0.0625F), "myledaphus");
+	public static final EntityType<GarEntity> GAR = register(EntityType.Builder.<GarEntity>create(GarEntity::new, EntityClassification.WATER_AMBIENT).size(0.6875F, 0.2F), "gar");
+	public static final EntityType<CyclurusEntity> CYCLURUS = register(EntityType.Builder.<CyclurusEntity>create(CyclurusEntity::new, EntityClassification.WATER_AMBIENT).size(0.6875F, 0.2F), "cyclurus");
+	public static final EntityType<CeratodusEntity> CERATODUS = register(EntityType.Builder.<CeratodusEntity>create(CeratodusEntity::new, EntityClassification.WATER_AMBIENT).size(0.6875F, 0.2F), "ceratodus");
+	public static final EntityType<PotamoceratodusEntity> POTAMOCERATODUS = register(EntityType.Builder.<PotamoceratodusEntity>create(PotamoceratodusEntity::new, EntityClassification.WATER_AMBIENT).size(0.6875F, 0.2F), "potamoceratodus");
+	
     //Misc
 	public static final EntityType<WallFossilEntity> WALL_FOSSIL = register(EntityType.Builder.<WallFossilEntity>create(WallFossilEntity::new, EntityClassification.MISC).size(0.5F, 0.5F), "wall_fossil");
 	public static final EntityType<PrehistoricBoatEntity> BOAT = register(EntityType.Builder.<PrehistoricBoatEntity>create(PrehistoricBoatEntity::new, EntityClassification.MISC).size(1.375F, 0.5625F), "boat");

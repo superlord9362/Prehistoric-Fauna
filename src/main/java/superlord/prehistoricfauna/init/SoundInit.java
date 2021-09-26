@@ -37,6 +37,12 @@ public class SoundInit {
 	public static final SoundEvent BASILEMYS_IDLE;
 	public static final SoundEvent BASILEMYS_HURT;
 	public static final SoundEvent BASILEMYS_DEATH;
+	public static final SoundEvent MYLEDAPHUS_HURT;
+	public static final SoundEvent MYLEDAPHUS_DEATH;
+	public static final SoundEvent GAR_HURT;
+	public static final SoundEvent GAR_DEATH;
+	public static final SoundEvent CYCLURUS_HURT;
+	public static final SoundEvent CYCLURUS_DEATH;
 	//Morrison
 	public static final SoundEvent ALLOSAURUS_IDLE;
 	public static final SoundEvent ALLOSAURUS_HURT;
@@ -62,6 +68,10 @@ public class SoundInit {
 	public static final SoundEvent CAMARASAURUS_DEATH;
 	public static final SoundEvent EILENODON_HURT;
 	public static final SoundEvent EILENODON_DEATH;
+	public static final SoundEvent POTAMOCERATODUS_HURT;
+	public static final SoundEvent POTAMOCERATODUS_DEATH;
+	public static final SoundEvent CERATODUS_HURT;
+	public static final SoundEvent CERATODUS_DEATH;
 	//Ischigualasto
 	public static final SoundEvent EXAERETODON_IDLE;
 	public static final SoundEvent EXAERETODON_HURT;
@@ -95,6 +105,8 @@ public class SoundInit {
 	public static final SoundEvent HENOS_DEATH;
 	public static final SoundEvent HENOS_LASER;
 	public static final SoundEvent HENOS_LASER_LOOP;
+	//Misc
+	public static final SoundEvent FISH_FLOP;
 	
 	@SubscribeEvent
 	public static void registerSounds(final RegistryEvent.Register<SoundEvent> evt) {
@@ -124,6 +136,12 @@ public class SoundInit {
 		evt.getRegistry().register(BASILEMYS_IDLE);
 		evt.getRegistry().register(BASILEMYS_HURT);
 		evt.getRegistry().register(BASILEMYS_DEATH);
+		evt.getRegistry().register(MYLEDAPHUS_HURT);
+		evt.getRegistry().register(MYLEDAPHUS_DEATH);
+		evt.getRegistry().register(GAR_HURT);
+		evt.getRegistry().register(GAR_DEATH);
+		evt.getRegistry().register(CYCLURUS_HURT);
+		evt.getRegistry().register(CYCLURUS_DEATH);
 		//Morrison
 		evt.getRegistry().register(ALLOSAURUS_IDLE);
 		evt.getRegistry().register(ALLOSAURUS_HURT);
@@ -149,6 +167,10 @@ public class SoundInit {
 		evt.getRegistry().register(CAMARASAURUS_WARN);
 		evt.getRegistry().register(EILENODON_HURT);
 		evt.getRegistry().register(EILENODON_DEATH);
+		evt.getRegistry().register(POTAMOCERATODUS_HURT);
+		evt.getRegistry().register(POTAMOCERATODUS_DEATH);
+		evt.getRegistry().register(CERATODUS_HURT);
+		evt.getRegistry().register(CERATODUS_DEATH);
 		//Ischigualasto
 		evt.getRegistry().register(EXAERETODON_IDLE);
 		evt.getRegistry().register(EXAERETODON_HURT);
@@ -182,6 +204,8 @@ public class SoundInit {
 		evt.getRegistry().register(HENOS_DEATH);
 		evt.getRegistry().register(HENOS_LASER);
 		evt.getRegistry().register(HENOS_LASER_LOOP);
+		//Misc
+		evt.getRegistry().register(FISH_FLOP);
 	}
 	
 	private static SoundEvent createEvent(final String soundName) {
@@ -216,6 +240,12 @@ public class SoundInit {
 		BASILEMYS_IDLE = createEvent("basilemys_idle");
 		BASILEMYS_HURT = createEvent("basilemys_hurt");
 		BASILEMYS_DEATH = createEvent("basilemys_death");
+		MYLEDAPHUS_HURT = createEvent("myledaphus_hurt");
+		MYLEDAPHUS_DEATH = createEvent("myledaphus_death");
+		GAR_HURT = createEvent("gar_hurt");
+		GAR_DEATH = createEvent("gar_death");
+		CYCLURUS_HURT = createEvent("cyclurus_hurt");
+		CYCLURUS_DEATH = createEvent("cyclurus_death");
 		//Morrison
 		ALLOSAURUS_IDLE = createEvent("allosaurus_idle");
 		ALLOSAURUS_HURT = createEvent("allosaurus_hurt");
@@ -241,6 +271,10 @@ public class SoundInit {
 		CAMARASAURUS_DEATH = createEvent("camarasaurus_death");
 		EILENODON_HURT = createEvent("eilenodon_hurt");
 		EILENODON_DEATH = createEvent("eilenodon_death");
+		POTAMOCERATODUS_HURT = createEvent("potamoceratodus_hurt");
+		POTAMOCERATODUS_DEATH = createEvent("potamoceratodus_death");
+		CERATODUS_HURT = createEvent("ceratodus_hurt");
+		CERATODUS_DEATH = createEvent("ceratodus_death");
 		//Ischigualasto
 		EXAERETODON_IDLE = createEvent("exaeretodon_idle");
 		EXAERETODON_HURT = createEvent("exaeretodon_hurt");
@@ -274,6 +308,8 @@ public class SoundInit {
 		HENOS_DEATH = createEvent("henos_death");
 		HENOS_LASER = createEvent("henos_laser");
 		HENOS_LASER_LOOP = createEvent("henos_laser_loop");
+		//Misc
+		FISH_FLOP = createEvent("fish_flop");
 	}
 
 }

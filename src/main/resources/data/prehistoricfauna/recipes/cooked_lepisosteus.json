@@ -1,9 +1,9 @@
 {
   "type": "minecraft:smelting",
   "ingredient": {
-    "item": "prehistoricfauna:raw_lepisosteus"
+    "item": "prehistoricfauna:raw_gar"
   },
-  "result": "prehistoricfauna:cooked_lepisosteus",
+  "result": "prehistoricfauna:cooked_gar",
   "experience": 0.35,
   "cookingtime": 200
 }

@@ -149,7 +149,11 @@ public class DidelphodonEntity extends TameableEntity {
 							this.setItemStackToSlot(EquipmentSlotType.MAINHAND, itemStack);
 						}
 						this.eatTicks = 0;
-						this.spawnItem(openedStack);
+						Random rand = new Random();
+						int dropChance = rand.nextInt(99);
+						if (dropChance >=24) {
+							this.spawnItem(openedStack);
+						}
 						itemStack.shrink(1);
 					} else {
 						ItemStack itemStack = stack.onItemUseFinish(world, this);

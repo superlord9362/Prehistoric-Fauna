@@ -168,7 +168,6 @@ public class LandSentinelModel extends EntityModel<LandSentinelEntity> {
     public void setRotationAngles(LandSentinelEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     	float walkSpeed = 1.0f;
         float walkDegree = 0.5f;
-        float idleDegree = 1.0f;
     	this.Mid1.rotateAngleX = -0.025F * MathHelper.sin(0.1F * ageInTicks);
 		this.Mid2.rotateAngleX = -0.025F * MathHelper.sin(0.1F * ageInTicks);
 		this.Tail.rotateAngleX = -0.025F * MathHelper.sin(0.1F * ageInTicks);

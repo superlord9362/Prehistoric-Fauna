@@ -9,7 +9,6 @@ import java.util.function.ToDoubleFunction;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.PortalInfo;
@@ -34,12 +33,13 @@ import net.minecraftforge.common.util.ITeleporter;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.blocks.CretaceousPortalBlock;
+import superlord.prehistoricfauna.common.blocks.PortalFrameBlock;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFDimensions;
 
 public class CretaceousTeleporter implements ITeleporter {
 	
-    private static final Block FRAME = PFBlocks.PORTAL_FRAME;
+    private static final BlockState FRAME_STATE = PFBlocks.PORTAL_FRAME.getDefaultState().with(PortalFrameBlock.ACTIVATED, true);
     private final ServerWorld world;
     private static final Method m_getRelativePortalPosition = ObfuscationReflectionHelper.findMethod(Entity.class, "func_241839_a", Direction.Axis.class, TeleportationRepositioner.Result.class);
 	
@@ -132,7 +132,7 @@ public class CretaceousTeleporter implements ITeleporter {
                     for (int fHeight = -1; fHeight < 3; ++fHeight) {
                         boolean flag = fHeight < 0;
                         mutable.setAndOffset(blockpos, fWidth * direction.getXOffset() + fOffset * drotated.getXOffset(), fHeight, fWidth * direction.getZOffset() + fOffset * direction.getZOffset());
-                        world.setBlockState(mutable, flag ? FRAME.getDefaultState() : Blocks.AIR.getDefaultState());
+                        world.setBlockState(mutable, flag ? FRAME_STATE : Blocks.AIR.getDefaultState());
                     }
                 }
             }
@@ -142,7 +142,7 @@ public class CretaceousTeleporter implements ITeleporter {
             for (int fHeight = -1; fHeight < 4; ++fHeight) {
                 if (fWidth == -1 || fWidth == 3 || fHeight == -1 || fHeight == 3) {
                     mutable.setAndOffset(blockpos, fWidth * direction.getXOffset(), fHeight, fWidth * direction.getZOffset());
-                    world.setBlockState(mutable, FRAME.getDefaultState());
+                    world.setBlockState(mutable, FRAME_STATE);
                 }
             }
         }

@@ -32,6 +32,12 @@ public class PrehistoricFaunaConfig {
 	public static int ischigualastiaSpawnWeight = 8;
 	public static int caveSentinelSpawnWeight = 5;
 	public static int landSentinelSpawnWeight = 2;
+	public static int myledaphusSpawnWeight = 2;
+	public static int garSpawnWeight = 4;
+	public static int cyclurusSpawnWeight = 3;
+	public static int ceratodusMorrisonSpawnWeight = 1;
+	public static int ceratodusIschigualastoSpawnWeight = 3;
+	public static int potamoceratodusSpawnWeight = 3;
 	public static int cretaceousDimensionID = 9;
 	public static int jurassicDimensionID = 8;
 	public static int triassicDimensionID = 7;
@@ -86,6 +92,12 @@ public class PrehistoricFaunaConfig {
 			ischigualastiaSpawnWeight = PFConfigHolder.SERVER.ischigualastiaSpawnWeight.get();
 			caveSentinelSpawnWeight = PFConfigHolder.SERVER.caveSentinelSpawnWeight.get();
 			landSentinelSpawnWeight = PFConfigHolder.SERVER.landSentinelSpawnWeight.get();
+			myledaphusSpawnWeight = PFConfigHolder.SERVER.myledaphusSpawnWeight.get();
+			garSpawnWeight = PFConfigHolder.SERVER.garSpawnWeight.get();
+			cyclurusSpawnWeight = PFConfigHolder.SERVER.cyclurusSpawnWeight.get();
+			ceratodusMorrisonSpawnWeight = PFConfigHolder.SERVER.ceratodusMorrisonSpawnWeight.get();
+			ceratodusIschigualastoSpawnWeight = PFConfigHolder.SERVER.ceratodusIschigualastoSpawnWeight.get();
+			potamoceratodusSpawnWeight = PFConfigHolder.SERVER.potamoceratodusSpawnWeight.get();
 			cretaceousDimensionID = PFConfigHolder.SERVER.cretaceousDimensionID.get();
 			jurassicDimensionID = PFConfigHolder.SERVER.jurassicDimensionID.get();
 			triassicDimensionID = PFConfigHolder.SERVER.triassicDimensionID.get();
