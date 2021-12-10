@@ -52,7 +52,7 @@ public class TimeGuardianEntity extends MonsterEntity {
 	private static final DataParameter<Integer> LASER_TICK = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.VARINT);
 	private static final DataParameter<Integer> SHIELD_LEVEL = EntityDataManager.createKey(TimeGuardianEntity.class, DataSerializers.VARINT);
 	private final ServerBossInfo bossInfo = new ServerBossInfo(this.getDisplayName(), BossInfo.Color.GREEN, BossInfo.Overlay.PROGRESS);
-
+	public boolean inWall;
 	public float targetDistance;
 	public float targetAngle;
 	public float prevLaserX;
@@ -106,7 +106,50 @@ public class TimeGuardianEntity extends MonsterEntity {
 	public boolean canBreatheUnderwater() {
 		return true;
 	}
+	
+	private boolean checkWalls(AxisAlignedBB p_31140_) {
+		int i = MathHelper.floor(p_31140_.minX);
+		int j = MathHelper.floor(p_31140_.minY);
+		int k = MathHelper.floor(p_31140_.minZ);
+		int l = MathHelper.floor(p_31140_.maxX);
+		int i1 = MathHelper.floor(p_31140_.maxY);
+		int j1 = MathHelper.floor(p_31140_.maxZ);
+		boolean flag = false;
+		boolean flag1 = false;
 
+		for(int k1 = i; k1 <= l; ++k1) {
+			for(int l1 = j; l1 <= i1; ++l1) {
+				for(int i2 = k; i2 <= j1; ++i2) {
+					BlockPos blockpos = new BlockPos(k1, l1, i2);
+					BlockState blockstate = this.world.getBlockState(blockpos);
+					if (!blockstate.isAir() && blockstate.getMaterial() != Material.FIRE) {
+						if (net.minecraftforge.common.ForgeHooks.canEntityDestroy(this.world, blockpos, this) && !BlockTags.DRAGON_IMMUNE.contains(blockstate.getBlock())) {
+							flag1 = this.world.removeBlock(blockpos, false) || flag1;
+						} else {
+							flag = true;
+						}
+					}
+				}
+			}
+		}
+
+		if (flag1) {
+			BlockPos blockpos1 = new BlockPos(i + this.rand.nextInt(l - i + 1), j + this.rand.nextInt(i1 - j + 1), k + this.rand.nextInt(j1 - k + 1));
+			this.world.playEvent(2008, blockpos1, 0);
+		}
+
+		return flag;
+	}
+	
+	public void livingTick() {
+
+		if (!this.world.isRemote) {
+			this.inWall = this.checkWalls(this.getBoundingBox());
+		}
+
+		super.livingTick();
+	}
+	
 	@Override
 	public void tick() {
 		super.tick();
