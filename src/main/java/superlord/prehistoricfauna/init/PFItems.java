@@ -224,15 +224,15 @@ public class PFItems {
 	public static final RegistryObject<Item> COOKED_POTAMOCERATODUS = REGISTER.register("cooked_potamoceratodus", () -> new Item(new Item.Properties().group(PFFood.instance).food(new Food.Builder().saturation(0.8F).hunger(6).build())));
 	
 	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> MYLEDAPHUS_BUCKET = REGISTER.register("myledaphus_bucket", () -> new FishBucketItem(PFEntities.MYLEDAPHUS, Fluids.WATER, new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> MYLEDAPHUS_BUCKET = REGISTER.register("myledaphus_bucket", () -> new FishBucketItem(PFEntities.MYLEDAPHUS, Fluids.WATER, new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
 	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> GAR_BUCKET = REGISTER.register("gar_bucket", () -> new FishBucketItem(PFEntities.GAR, Fluids.WATER, new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> GAR_BUCKET = REGISTER.register("gar_bucket", () -> new FishBucketItem(PFEntities.GAR, Fluids.WATER, new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
 	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> CYCLURUS_BUCKET = REGISTER.register("cyclurus_bucket", () -> new FishBucketItem(PFEntities.CYCLURUS, Fluids.WATER, new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> CYCLURUS_BUCKET = REGISTER.register("cyclurus_bucket", () -> new FishBucketItem(PFEntities.CYCLURUS, Fluids.WATER, new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
 	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> CERATODUS_BUCKET = REGISTER.register("ceratodus_bucket", () -> new FishBucketItem(PFEntities.CERATODUS, Fluids.WATER, new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> CERATODUS_BUCKET = REGISTER.register("ceratodus_bucket", () -> new FishBucketItem(PFEntities.CERATODUS, Fluids.WATER, new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
 	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> POTAMOCERATODUS_BUCKET = REGISTER.register("potamoceratodus_bucket", () -> new FishBucketItem(PFEntities.POTAMOCERATODUS, Fluids.WATER, new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> POTAMOCERATODUS_BUCKET = REGISTER.register("potamoceratodus_bucket", () -> new FishBucketItem(PFEntities.POTAMOCERATODUS, Fluids.WATER, new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
 	
 	private static BannerPattern registerPattern(String name) {
         return BannerPattern.create(name.toUpperCase(), name, name, true);

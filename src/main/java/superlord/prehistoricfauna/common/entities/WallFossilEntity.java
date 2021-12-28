@@ -66,13 +66,16 @@ public class WallFossilEntity extends HangingEntity implements IEntityAdditional
     @Override
     public void writeAdditional(CompoundNBT compound) {
         compound.putInt("Type", fossil.ordinal());
+        compound.putByte("Facing", (byte)this.facingDirection.getHorizontalIndex());
         super.writeAdditional(compound);
     }
 
     @Override
     public void readAdditional(CompoundNBT compound) {
         fossil = Fossil.VALUES[compound.getInt("Type")];
+        this.facingDirection = Direction.byHorizontalIndex(compound.getByte("Facing"));
         super.readAdditional(compound);
+        this.updateFacingWithBoundingBox(this.facingDirection);
     }
 
     @Override

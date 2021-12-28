@@ -65,13 +65,16 @@ public class PaleopaintingEntity extends HangingEntity implements IEntityAdditio
     @Override
     public void writeAdditional(CompoundNBT compound) {
         compound.putInt("Type", paleopainting.ordinal());
+        compound.putByte("Facing", (byte)this.facingDirection.getHorizontalIndex());
         super.writeAdditional(compound);
     }
 
     @Override
     public void readAdditional(CompoundNBT compound) {
         paleopainting = Paleopainting.VALUES[compound.getInt("Type")];
+        this.facingDirection = Direction.byHorizontalIndex(compound.getByte("Facing"));
         super.readAdditional(compound);
+        this.updateFacingWithBoundingBox(this.facingDirection);
     }
 
     @Override
