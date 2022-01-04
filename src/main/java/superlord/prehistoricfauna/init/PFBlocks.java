@@ -6,6 +6,7 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.AbstractBlock.Properties;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.CarpetBlock;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.DoublePlantBlock;
 import net.minecraft.block.FenceBlock;
@@ -28,6 +29,7 @@ import net.minecraft.block.material.MaterialColor;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.util.Direction;
 import net.minecraftforge.api.distmarker.Dist;
@@ -43,6 +45,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.PrehistoricFauna.PFBuilding;
 import superlord.prehistoricfauna.PrehistoricFauna.PFDecoration;
+import superlord.prehistoricfauna.common.blocks.AepyornithomimusEggBlock;
 import superlord.prehistoricfauna.common.blocks.AlgaeBlock;
 import superlord.prehistoricfauna.common.blocks.AllosaurusEggBlock;
 import superlord.prehistoricfauna.common.blocks.AmmoniteGiantShellBlock;
@@ -54,11 +57,12 @@ import superlord.prehistoricfauna.common.blocks.BasilemysEggBlock;
 import superlord.prehistoricfauna.common.blocks.CamarasaurusEggBlock;
 import superlord.prehistoricfauna.common.blocks.CeratosaurusEggBlock;
 import superlord.prehistoricfauna.common.blocks.ChromogisaurusEggBlock;
+import superlord.prehistoricfauna.common.blocks.CitipatiEggBlock;
 import superlord.prehistoricfauna.common.blocks.CrassostreaOysterBlock;
 import superlord.prehistoricfauna.common.blocks.CretaceousPortalBlock;
 import superlord.prehistoricfauna.common.blocks.CretaceousTimeBlock;
 import superlord.prehistoricfauna.common.blocks.DakotaraptorEggBlock;
-import superlord.prehistoricfauna.common.blocks.DeadConiopterisBlock;
+import superlord.prehistoricfauna.common.blocks.DeadCycadBlock;
 import superlord.prehistoricfauna.common.blocks.DicroidiumBlock;
 import superlord.prehistoricfauna.common.blocks.DryosaurusEggBlock;
 import superlord.prehistoricfauna.common.blocks.EilenodonEggBlock;
@@ -84,6 +88,7 @@ import superlord.prehistoricfauna.common.blocks.PlantFiberBlock;
 import superlord.prehistoricfauna.common.blocks.PortalFrameBlock;
 import superlord.prehistoricfauna.common.blocks.PrehistoricPlant;
 import superlord.prehistoricfauna.common.blocks.PrehistoricPlantBlock;
+import superlord.prehistoricfauna.common.blocks.ProtoceratopsEggBlock;
 import superlord.prehistoricfauna.common.blocks.PtilophyllumBaseBlock;
 import superlord.prehistoricfauna.common.blocks.PtilophyllumBlock;
 import superlord.prehistoricfauna.common.blocks.SaurosuchusEggBlock;
@@ -95,7 +100,9 @@ import superlord.prehistoricfauna.common.blocks.TrapBlock;
 import superlord.prehistoricfauna.common.blocks.TriassicPortalBlock;
 import superlord.prehistoricfauna.common.blocks.TriassicTimeBlock;
 import superlord.prehistoricfauna.common.blocks.TriceratopsEggBlock;
+import superlord.prehistoricfauna.common.blocks.TuberCropBlock;
 import superlord.prehistoricfauna.common.blocks.TyrannosaurusEggBlock;
+import superlord.prehistoricfauna.common.blocks.VelociraptorEggBlock;
 import superlord.prehistoricfauna.common.blocks.VerticalSlabBlock;
 import superlord.prehistoricfauna.common.blocks.ZamitesSaplingBlock;
 import superlord.prehistoricfauna.common.blocks.ZamitesTopBlock;
@@ -178,6 +185,10 @@ public class PFBlocks {
 	public static final Block HESPERORNITHOIDES_EGG = new HesperornithoidesEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("hesperornithoides_egg");//Loot Table done
 	public static final Block HYPERODAPEDON_EGG = new HyperodapedonEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("hyperodapedon_egg");//Loot Table done
 	public static final Block STEGOSAURUS_EGG = new StegosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("stegosaurus_egg");//Loot Table done
+	public static final Block PROTOCERATOPS_EGG = new ProtoceratopsEggBlock(AbstractBlock.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly()).setRegistryName("protoceratops_egg");
+	public static final Block VELOCIRAPTOR_EGG = new VelociraptorEggBlock(AbstractBlock.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("velociraptor_egg");
+	public static final Block CITIPATI_EGG = new CitipatiEggBlock(AbstractBlock.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).tickRandomly().notSolid().sound(SoundType.METAL)).setRegistryName("citipati_egg");
+	public static final Block AEPYORNITHOMIMUS_EGG = new AepyornithomimusEggBlock(AbstractBlock.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).tickRandomly().notSolid().sound(SoundType.METAL)).setRegistryName("aepyornithomimus_egg");
 	public static final Block MOSS_BLOCK = new Block(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.2F).sound(SoundType.PLANT)).setRegistryName("moss_block"); //Loot Table done
 	public static final Block CONIOPTERIS = new PrehistoricPlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("coniopteris");//Loot Table done
 	public static final Block TALL_OSMUNDACAULIS = new DoublePlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).doesNotBlockMovement().sound(SoundType.PLANT)).setRegistryName("tall_osmundacaulis"); //Loot Table done
@@ -255,7 +266,7 @@ public class PFBlocks {
 	public static final Block HEIDIPHYLLUM_SAPLING = new PFSapling(new PFTreeSpawners.Heidiphyllum(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("heidiphyllum_sapling");//Loot Table done
 	public static final Block POTTED_HEIDIPHYLLUM_SAPLING = new FlowerPotBlock(HEIDIPHYLLUM_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_heidiphyllum_sapling");//Loot Table done
 	public static final Block OSMUNDACAULIS = new ShortOsmundacaulisBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("osmundacaulis"); //Loot Table done
-	public static final Block DEAD_OSMUNDACAULIS = new DeadConiopterisBlock(Block.Properties.create(Material.TALL_PLANTS, MaterialColor.WOOD).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("dead_osmundacaulis"); //Loot Table done
+	public static final Block DEAD_OSMUNDACAULIS = new DeadCycadBlock(Block.Properties.create(Material.TALL_PLANTS, MaterialColor.WOOD).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("dead_osmundacaulis"); //Loot Table done
 	public static final Block LIRIODENDRITES_LOG = createLogBlock(MaterialColor.WOOD, MaterialColor.OBSIDIAN).setRegistryName("liriodendrites_log");//Loot Table done
 	public static final Block LIRIODENDRITES_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("liriodendrites_planks");//Loot Table done
 	public static final Block STRIPPED_LIRIODENDRITES_LOG = createLogBlock(MaterialColor.WOOD, MaterialColor.OBSIDIAN).setRegistryName("stripped_liriodendrites_log");//Loot Table done
@@ -378,12 +389,32 @@ public class PFBlocks {
 	public static final Block SILT = new SandBlock(0x8C603C, Block.Properties.create(Material.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND).harvestTool(ToolType.SHOVEL)).setRegistryName("silt");
 	public static final Block HARDENED_SILT = new HardenedSiltBlock(Block.Properties.create(Material.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND).harvestTool(ToolType.SHOVEL)).setRegistryName("hardened_silt");
 	public static final Block PLANT_FIBER_BLOCK = new PlantFiberBlock(AbstractBlock.Properties.create(Material.ORGANIC).hardnessAndResistance(0.5F).sound(SoundType.PLANT)).setRegistryName("plant_fiber_block");
-	public static final Block THATCH= new HayBlock(AbstractBlock.Properties.create(Material.ORGANIC).hardnessAndResistance(0.6F).sound(SoundType.PLANT)).setRegistryName("thatch");
-	public static final Block THATCH_STAIRS = new StairsBlock(THATCH.getDefaultState(), AbstractBlock.Properties.from(THATCH)).setRegistryName("thatch_stairs");
-	public static final Block THATCH_SLAB = new SlabBlock(AbstractBlock.Properties.from(THATCH)).setRegistryName("thatch_slab");
+	public static final Block THATCH = new HayBlock(AbstractBlock.Properties.create(Material.ORGANIC).hardnessAndResistance(0.6F).sound(SoundType.PLANT).notSolid()).setRegistryName("thatch");
+	public static final Block THATCH_STAIRS = new StairsBlock(THATCH.getDefaultState(), AbstractBlock.Properties.from(THATCH).notSolid()).setRegistryName("thatch_stairs");
+	public static final Block THATCH_SLAB = new SlabBlock(AbstractBlock.Properties.from(THATCH).notSolid()).setRegistryName("thatch_slab");
+	public static final Block TUBER_CROP = new TuberCropBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)).setRegistryName("tuber_crop");
+	public static final Block THATCH_CARPET = new CarpetBlock(DyeColor.YELLOW, AbstractBlock.Properties.create(Material.PLANTS).hardnessAndResistance(0.1F).sound(SoundType.CLOTH)).setRegistryName("thatch_carpet");
 	public static final RegistryObject<TriassicPortalBlock> TRIASSIC_PORTAL = REGISTER.register("triassic_portal", () -> new TriassicPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).noDrops()));
 	public static final RegistryObject<JurassicPortalBlock> JURASSIC_PORTAL = REGISTER.register("jurassic_portal", () -> new JurassicPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).noDrops()));
 	public static final RegistryObject<CretaceousPortalBlock> CRETACEOUS_PORTAL = REGISTER.register("cretaceous_portal", () -> new CretaceousPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().tickRandomly().hardnessAndResistance(-1.0F).sound(SoundType.GLASS).noDrops()));
+	public static final Block GINKGO_LOG = createLogBlock(MaterialColor.WOOD, MaterialColor.OBSIDIAN).setRegistryName("ginkgo_log");//Loot Table done
+	public static final Block GINKGO_PLANKS = new Block(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("ginkgo_planks");//Loot Table done
+	public static final Block STRIPPED_GINKGO_LOG = createLogBlock(MaterialColor.WOOD, MaterialColor.OBSIDIAN).setRegistryName("stripped_ginkgo_log");//Loot Table done
+	public static final Block GINKGO_WOOD = createLogBlock(MaterialColor.WOOD, MaterialColor.OBSIDIAN).setRegistryName("ginkgo_wood");//Loot Table done
+	public static final Block STRIPPED_GINKGO_WOOD = createLogBlock(MaterialColor.WOOD, MaterialColor.OBSIDIAN).setRegistryName("stripped_ginkgo_wood");//Loot Table done
+	public static final Block GINKGO_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()).setRegistryName("ginkgo_leaves");//Loot Table done
+	public static final Block GINKGO_STAIRS = new StairsBlock(GINKGO_PLANKS.getDefaultState(), Block.Properties.from(GINKGO_PLANKS)).setRegistryName("ginkgo_stairs");//Loot Table done
+	public static final Block GINKGO_DOOR = new DoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("ginkgo_door");//Loot Table done
+	public static final Block GINKGO_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("ginkgo_pressure_plate");//Loot Table done
+	public static final Block GINKGO_FENCE = new FenceBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("ginkgo_fence");//Loot Table done
+	public static final Block GINKGO_TRAPDOOR = new TrapDoorBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()).setRegistryName("ginkgo_trapdoor");//Loot Table done
+	public static final Block GINKGO_FENCE_GATE = new FenceGateBlock(Block.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("ginkgo_fence_gate");//Loot Table done
+	public static final Block GINKGO_BUTTON = new WoodButtonBlock(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)).setRegistryName("ginkgo_button");//Loot Table done
+	public static final Block GINKGO_SLAB = new SlabBlock(Block.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("ginkgo_slab");//Loot Table done
+	public static final Block GINKGO_SAPLING = new PFSapling(new PFTreeSpawners.Heidiphyllum(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("ginkgo_sapling");//Loot Table done
+	public static final Block POTTED_GINKGO_SAPLING = new FlowerPotBlock(GINKGO_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_ginkgo_sapling");//Loot Table done
+	public static final Block GINKGO_SIGN = new PFStandingSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.GINKGO).setRegistryName("ginkgo_sign");
+	public static final Block GINKGO_WALL_SIGN = new PFWallSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.GINKGO).setRegistryName("ginkgo_wall_sign");
 
 	public static final RegistryObject<Block> METASEQUOIA_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "metasequoia_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(METASEQUOIA_SLAB)), PFBuilding.instance);
 	public static final RegistryObject<Block> ARAUCARIA_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "araucaria_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(ARAUCARIA_SLAB)), PFBuilding.instance);
@@ -392,6 +423,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> ZAMITES_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "zamites_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(ZAMITES_SLAB)), PFBuilding.instance);
 	public static final RegistryObject<Block> PROTOJUNIPEROXYLON_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "protojuniperoxylon_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(PROTOJUNIPEROXYLON_SLAB)), PFBuilding.instance);
 	public static final RegistryObject<Block> HEIDIPHYLLUM_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "heidiphyllum_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(HEIDIPHYLLUM_SLAB)), PFBuilding.instance);
+	public static final RegistryObject<Block> GINKGO_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "ginkgo_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(GINKGO_SLAB)), PFBuilding.instance);
 	public static final RegistryObject<Block> TRIASSIC_SANDSTONE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "sandstone_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(SANDSTONE_SLAB)), PFBuilding.instance);
 	public static final RegistryObject<Block> POLISHED_TRIASSIC_SANDSTONE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "polished_sandstone_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(POLISHED_SANDSTONE_SLAB)), PFBuilding.instance);
 	public static final RegistryObject<Block> TRIASSIC_SANDSTONE_BRICK_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "sandstone_brick_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(SANDSTONE_BRICK_SLAB)), PFBuilding.instance);
@@ -404,6 +436,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> HENOSTONE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "henostone_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(HENOSTONE_SLAB)), PFBuilding.instance);
 	public static final RegistryObject<Block> HENOSTONE_BRICK_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "henostone_brick_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(HENOSTONE_BRICK_SLAB)), PFBuilding.instance);
 	public static final RegistryObject<Block> HENOSTONE_DARK_BRICK_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "dark_henostone_brick_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(DARK_HENOSTONE_BRICK_SLAB)), PFBuilding.instance);
+	public static final RegistryObject<Block> THATCH_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "thatch_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(THATCH_SLAB)), PFBuilding.instance);
 
 	public static final RegistryObject<Block> METASEQUOIA_VERTICAL_PLANKS = HELPER.createCompatBlock("quark", "metasequoia_vertical_planks", () -> new Block(AbstractBlock.Properties.from(METASEQUOIA_PLANKS)), PFBuilding.instance);
 	public static final RegistryObject<Block> ARAUCARIA_VERTICAL_PLANKS = HELPER.createCompatBlock("quark", "araucaria_vertical_planks", () -> new Block(AbstractBlock.Properties.from(ARAUCARIA_PLANKS)), PFBuilding.instance);
@@ -412,6 +445,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> ZAMITES_VERTICAL_PLANKS = HELPER.createCompatBlock("quark", "zamites_vertical_planks", () -> new Block(AbstractBlock.Properties.from(ZAMITES_PLANKS)), PFBuilding.instance);
 	public static final RegistryObject<Block> PROTOJUNIPEROXYLON_VERTICAL_PLANKS = HELPER.createCompatBlock("quark", "protojuniperoxylon_vertical_planks", () -> new Block(AbstractBlock.Properties.from(PROTOJUNIPEROXYLON_PLANKS)), PFBuilding.instance);
 	public static final RegistryObject<Block> HEIDIPHYLLUM_VERTICAL_PLANKS = HELPER.createCompatBlock("quark", "heidiphyllum_vertical_planks", () -> new Block(AbstractBlock.Properties.from(HEIDIPHYLLUM_PLANKS)), PFBuilding.instance);
+	public static final RegistryObject<Block> GINKGO_VERTICAL_PLANKS = HELPER.createCompatBlock("quark", "ginkgo_vertical_planks", () -> new Block(AbstractBlock.Properties.from(GINKGO_PLANKS)), PFBuilding.instance);
 
 	public static final RegistryObject<Block> METASEQUOIA_LEAF_CARPET = HELPER.createCompatBlock("quark", "metasequoia_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.create(Material.CARPET).hardnessAndResistance(0.0F).sound(SoundType.PLANT).notSolid()), PFDecoration.instance);
 	public static final RegistryObject<Block> ARAUCARIA_LEAF_CARPET = HELPER.createCompatBlock("quark", "araucaria_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.create(Material.CARPET).hardnessAndResistance(0.0F).sound(SoundType.PLANT).notSolid()), PFDecoration.instance);
@@ -419,6 +453,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> PROTOPICEOXYLON_LEAF_CARPET = HELPER.createCompatBlock("quark", "protopiceoxylon_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.create(Material.CARPET).hardnessAndResistance(0.0F).sound(SoundType.PLANT).notSolid()), PFDecoration.instance);
 	public static final RegistryObject<Block> PROTOJUNIPEROXYLON_LEAF_CARPET = HELPER.createCompatBlock("quark", "protojuniperoxylon_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.create(Material.CARPET).hardnessAndResistance(0.0F).sound(SoundType.PLANT).notSolid()), PFDecoration.instance);
 	public static final RegistryObject<Block> HEIDIPHYLLUM_LEAF_CARPET = HELPER.createCompatBlock("quark", "heidiphyllum_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.create(Material.CARPET).hardnessAndResistance(0.0F).sound(SoundType.PLANT).notSolid()), PFDecoration.instance);
+	public static final RegistryObject<Block> GINKGO_LEAF_CARPET = HELPER.createCompatBlock("quark", "ginkgo_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.create(Material.CARPET).hardnessAndResistance(0.0F).sound(SoundType.PLANT).notSolid()), PFDecoration.instance);
 
 	public static final RegistryObject<Block> METASEQUOIA_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "metasequoia_beehive", () -> new PFBeehiveBlock(Properties.from(Blocks.BEEHIVE)), PFDecoration.instance);
 	public static final RegistryObject<Block> ARAUCARIA_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "araucaria_beehive", () -> new PFBeehiveBlock(Properties.from(Blocks.BEEHIVE)), PFDecoration.instance);
@@ -427,6 +462,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> PROTOPICEOXYLON_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "protopiceoxylon_beehive", () -> new PFBeehiveBlock(Properties.from(Blocks.BEEHIVE)), PFDecoration.instance);
 	public static final RegistryObject<Block> PROTOJUNIPEROXYLON_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "protojuniperoxylon_beehive", () -> new PFBeehiveBlock(Properties.from(Blocks.BEEHIVE)), PFDecoration.instance);
 	public static final RegistryObject<Block> HEIDIPHYLLUM_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "heidiphyllum_beehive", () -> new PFBeehiveBlock(Properties.from(Blocks.BEEHIVE)), PFDecoration.instance);
+	public static final RegistryObject<Block> GINKGO_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "ginkgo_beehive", () -> new PFBeehiveBlock(Properties.from(Blocks.BEEHIVE)), PFDecoration.instance);
 
 	public static final RegistryObject<Block> METASEQUOIA_BOOKSHELF = HELPER.createCompatBlock("quark", "metasequoia_bookshelf", () -> new PFBookshelfBlock(Properties.from(Blocks.BOOKSHELF)), PFBuilding.instance);
 	public static final RegistryObject<Block> ARAUCARIA_BOOKSHELF = HELPER.createCompatBlock("quark", "araucaria_bookshelf", () -> new PFBookshelfBlock(Properties.from(Blocks.BOOKSHELF)), PFBuilding.instance);
@@ -435,7 +471,8 @@ public class PFBlocks {
 	public static final RegistryObject<Block> PROTOPICEOXYLON_BOOKSHELF = HELPER.createCompatBlock("quark", "protopiceoxylon_bookshelf", () -> new PFBookshelfBlock(Properties.from(Blocks.BOOKSHELF)), PFBuilding.instance);
 	public static final RegistryObject<Block> PROTOJUNIPEROXYLON_BOOKSHELF = HELPER.createCompatBlock("quark", "protojuniperoxylon_bookshelf", () -> new PFBookshelfBlock(Properties.from(Blocks.BOOKSHELF)), PFBuilding.instance);
 	public static final RegistryObject<Block> HEIDIPHYLLUM_BOOKSHELF = HELPER.createCompatBlock("quark", "heidiphyllum_bookshelf", () -> new PFBookshelfBlock(Properties.from(Blocks.BOOKSHELF)), PFBuilding.instance);
-
+	public static final RegistryObject<Block> GINKGO_BOOKSHELF = HELPER.createCompatBlock("quark", "ginkgo_bookshelf", () -> new PFBookshelfBlock(Properties.from(Blocks.BOOKSHELF)), PFBuilding.instance);
+	
 	public static final RegistryObject<Block> METASEQUOIA_LADDER = HELPER.createCompatBlock("quark", "metasequoia_ladder", () -> new PFLadderBlock(Properties.from(Blocks.LADDER)), PFDecoration.instance);
 	public static final RegistryObject<Block> ARAUCARIA_LADDER = HELPER.createCompatBlock("quark", "araucaria_ladder", () -> new PFLadderBlock(Properties.from(Blocks.LADDER)), PFDecoration.instance);
 	public static final RegistryObject<Block> LIRIODENDRITES_LADDER = HELPER.createCompatBlock("quark", "liriodendrites_ladder", () -> new PFLadderBlock(Properties.from(Blocks.LADDER)), PFDecoration.instance);
@@ -443,6 +480,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> PROTOPICEOXYLON_LADDER = HELPER.createCompatBlock("quark", "protopiceoxylon_ladder", () -> new PFLadderBlock(Properties.from(Blocks.LADDER)), PFDecoration.instance);
 	public static final RegistryObject<Block> PROTOJUNIPEROXYLON_LADDER = HELPER.createCompatBlock("quark", "protojuniperoxylon_ladder", () -> new PFLadderBlock(Properties.from(Blocks.LADDER)), PFDecoration.instance);
 	public static final RegistryObject<Block> HEIDIPHYLLUM_LADDER = HELPER.createCompatBlock("quark", "heidiphyllum_ladder", () -> new PFLadderBlock(Properties.from(Blocks.LADDER)), PFDecoration.instance);
+	public static final RegistryObject<Block> GINKGO_LADDER = HELPER.createCompatBlock("quark", "ginkgo_ladder", () -> new PFLadderBlock(Properties.from(Blocks.LADDER)), PFDecoration.instance);
 	
 	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> METASEQUOIA_CHEST 	= HELPER.createCompatChestBlocks("metasequoia", MaterialColor.WOOD);
 	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> ARAUCARIA_CHEST 	= HELPER.createCompatChestBlocks("araucaria", MaterialColor.WOOD);
@@ -451,6 +489,7 @@ public class PFBlocks {
 	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> PROTOPICEOXYLON_CHEST 	= HELPER.createCompatChestBlocks("protopiceoxylon", MaterialColor.WOOD);
 	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> PROTOJUNIPEROXYLON_CHEST 	= HELPER.createCompatChestBlocks("protojuniperoxylon", MaterialColor.WOOD);
 	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> HEIDIPHYLLUM_CHEST 	= HELPER.createCompatChestBlocks("heidiphyllum", MaterialColor.WOOD);
+	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> GINKGO_CHEST 	= HELPER.createCompatChestBlocks("ginkgo", MaterialColor.WOOD);
 
 	public static final RegistryObject<Block> CHALK_PAVEMENT = HELPER.createCompatBlock("quark", "chalk_pavement", () -> new Block(AbstractBlock.Properties.from(CHALK_BRICKS)), PFBuilding.instance);
 	public static final RegistryObject<Block> CHALK_PILLAR = HELPER.createCompatBlock("quark", "chalk_pillar", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(CHALK_BRICKS)), PFBuilding.instance);
@@ -473,6 +512,8 @@ public class PFBlocks {
 	public static final RegistryObject<Block> STRIPPED_PROTOJUNIPEROXYLON_POST = HELPER.createCompatBlock("quark", "stripped_protojuniperoxylon_post", () -> new WoodPostBlock(Properties.from(METASEQUOIA_FENCE)), PFBuilding.instance);
 	public static final RegistryObject<Block> HEIDIPHYLLUM_POST = HELPER.createCompatBlock("quark", "heidiphyllum_post", () -> new WoodPostBlock(Properties.from(METASEQUOIA_FENCE)), PFBuilding.instance);
 	public static final RegistryObject<Block> STRIPPED_HEIDIPHYLLUM_POST = HELPER.createCompatBlock("quark", "stripped_heidiphyllum_post", () -> new WoodPostBlock(Properties.from(METASEQUOIA_FENCE)), PFBuilding.instance);
+	public static final RegistryObject<Block> GINKGO_POST = HELPER.createCompatBlock("quark", "ginkgo_post", () -> new WoodPostBlock(Properties.from(GINKGO_FENCE)), PFBuilding.instance);
+	public static final RegistryObject<Block> STRIPPED_GINKGO_POST = HELPER.createCompatBlock("quark", "stripped_ginkgo_post", () -> new WoodPostBlock(Properties.from(GINKGO_FENCE)), PFBuilding.instance);
 
 	public static final RegistryObject<Block> METASEQUOIA_HEDGE = HELPER.createCompatBlock("quark", "metasequoia_hedge", () -> new HedgeBlock(Properties.from(METASEQUOIA_PLANKS)), PFBuilding.instance);
 	public static final RegistryObject<Block> ARAUCARIA_HEDGE = HELPER.createCompatBlock("quark", "araucaria_hedge", () -> new HedgeBlock(Properties.from(ARAUCARIA_PLANKS)), PFBuilding.instance);
@@ -480,6 +521,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> PROTOPICEOXYLON_HEDGE = HELPER.createCompatBlock("quark", "protopiceoxylon_hedge", () -> new HedgeBlock(Properties.from(PROTOPICEOXYLON_PLANKS)), PFBuilding.instance);
 	public static final RegistryObject<Block> PROTOJUNIPEROXYLON_HEDGE = HELPER.createCompatBlock("quark", "protojuniperoxylon_hedge", () -> new HedgeBlock(Properties.from(PROTOJUNIPEROXYLON_PLANKS)), PFBuilding.instance);
 	public static final RegistryObject<Block> HEIDIPHYLLUM_HEDGE = HELPER.createCompatBlock("quark", "heidiphyllum_hedge", () -> new HedgeBlock(Properties.from(HEIDIPHYLLUM_PLANKS)), PFBuilding.instance);
+	public static final RegistryObject<Block> GINKGO_HEDGE = HELPER.createCompatBlock("quark", "ginkgo_hedge", () -> new HedgeBlock(Properties.from(GINKGO_PLANKS)), PFBuilding.instance);
 
 	private static RotatedPillarBlock createLogBlock(MaterialColor topColor, MaterialColor barkColor) {
 		return new RotatedPillarBlock(AbstractBlock.Properties.create(Material.WOOD, (state) -> {
@@ -629,6 +671,7 @@ public class PFBlocks {
 		event.getRegistry().register(HESPERORNITHOIDES_EGG);
 		event.getRegistry().register(HYPERODAPEDON_EGG);
 		event.getRegistry().register(STEGOSAURUS_EGG);
+		event.getRegistry().register(VELOCIRAPTOR_EGG);
 		event.getRegistry().register(LIRIODENDRITES_LOG);
 		event.getRegistry().register(LIRIODENDRITES_BUTTON);
 		event.getRegistry().register(LIRIODENDRITES_DOOR);
@@ -751,6 +794,29 @@ public class PFBlocks {
 		event.getRegistry().register(THATCH);
 		event.getRegistry().register(THATCH_SLAB);
 		event.getRegistry().register(THATCH_STAIRS);
+		event.getRegistry().register(TUBER_CROP);
+		event.getRegistry().register(THATCH_CARPET);
+		event.getRegistry().register(PROTOCERATOPS_EGG);
+		event.getRegistry().register(CITIPATI_EGG);
+		event.getRegistry().register(GINKGO_LOG);
+		event.getRegistry().register(GINKGO_BUTTON);
+		event.getRegistry().register(GINKGO_DOOR);
+		event.getRegistry().register(GINKGO_FENCE);
+		event.getRegistry().register(GINKGO_FENCE_GATE);
+		event.getRegistry().register(GINKGO_PLANKS);
+		event.getRegistry().register(GINKGO_PRESSURE_PLATE);
+		event.getRegistry().register(GINKGO_SLAB);
+		event.getRegistry().register(GINKGO_STAIRS);
+		event.getRegistry().register(GINKGO_TRAPDOOR);
+		event.getRegistry().register(GINKGO_WOOD);
+		event.getRegistry().register(STRIPPED_GINKGO_LOG);
+		event.getRegistry().register(STRIPPED_GINKGO_WOOD);
+		event.getRegistry().register(GINKGO_LEAVES);
+		event.getRegistry().register(GINKGO_SAPLING);
+		event.getRegistry().register(POTTED_GINKGO_SAPLING);
+		event.getRegistry().register(GINKGO_SIGN);
+		event.getRegistry().register(GINKGO_WALL_SIGN);
+		event.getRegistry().register(AEPYORNITHOMIMUS_EGG);
 		if (FMLEnvironment.dist == Dist.CLIENT) {
 			RenderType cutoutRenderType = RenderType.getCutout();
 			RenderType mippedRenderType = RenderType.getCutoutMipped();
@@ -779,6 +845,7 @@ public class PFBlocks {
 			RenderTypeLookup.setRenderLayer(METASEQUOIA_DOOR, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(ARAUCARIA_TRAPDOOR, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(METASEQUOIA_TRAPDOOR, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(TUBER_CROP, cutoutRenderType);
 			/**RenderTypeLookup.setRenderLayer(CYPRESS_SAPLING, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(CYPRESS_LEAVES, mippedRenderType);
 			RenderTypeLookup.setRenderLayer(POTTED_CYPRESS_SAPLING, cutoutRenderType);
@@ -831,6 +898,11 @@ public class PFBlocks {
 			RenderTypeLookup.setRenderLayer(POTTED_CONIOPTERIS, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(POTTED_DEAD_OSMUNDACAULIS, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(POTTED_SHORT_OSMUNDACAULIS, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(GINKGO_LEAVES, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(POTTED_GINKGO_SAPLING, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(GINKGO_SAPLING, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(GINKGO_DOOR, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(GINKGO_TRAPDOOR, cutoutRenderType);
 			
 			RenderTypeLookup.setRenderLayer(ARAUCARIA_LADDER.get(), cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(METASEQUOIA_LADDER.get(), cutoutRenderType);
@@ -846,6 +918,7 @@ public class PFBlocks {
 			RenderTypeLookup.setRenderLayer(PROTOPICEOXYLON_LEAF_CARPET.get(), mippedRenderType);
 			RenderTypeLookup.setRenderLayer(PROTOJUNIPEROXYLON_LEAF_CARPET.get(), mippedRenderType);
 			RenderTypeLookup.setRenderLayer(HEIDIPHYLLUM_LEAF_CARPET.get(), mippedRenderType);
+			RenderTypeLookup.setRenderLayer(GINKGO_LEAF_CARPET.get(), mippedRenderType);
 			
 			RenderTypeLookup.setRenderLayer(ARAUCARIA_HEDGE.get(), mippedRenderType);
 			RenderTypeLookup.setRenderLayer(METASEQUOIA_HEDGE.get(), mippedRenderType);
@@ -853,6 +926,7 @@ public class PFBlocks {
 			RenderTypeLookup.setRenderLayer(PROTOPICEOXYLON_HEDGE.get(), mippedRenderType);
 			RenderTypeLookup.setRenderLayer(PROTOJUNIPEROXYLON_HEDGE.get(), mippedRenderType);
 			RenderTypeLookup.setRenderLayer(HEIDIPHYLLUM_HEDGE.get(), mippedRenderType);
+			RenderTypeLookup.setRenderLayer(GINKGO_HEDGE.get(), mippedRenderType);
 
 
 			RenderTypeLookup.setRenderLayer(ARAUCARIA_SIGN, cutoutRenderType);
@@ -869,9 +943,12 @@ public class PFBlocks {
 			RenderTypeLookup.setRenderLayer(PROTOPICEOXYLON_WALL_SIGN, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(ZAMITES_SIGN, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(ZAMITES_WALL_SIGN, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(GINKGO_SIGN, cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(GINKGO_WALL_SIGN, cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(THATCH, RenderType.getCutout());
 			RenderTypeLookup.setRenderLayer(THATCH_STAIRS, mippedRenderType);
 			RenderTypeLookup.setRenderLayer(THATCH_SLAB, mippedRenderType);
+			RenderTypeLookup.setRenderLayer(THATCH_VERTICAL_SLAB.get(), mippedRenderType);
 		}
 	}
 
@@ -934,6 +1011,14 @@ public class PFBlocks {
 		event.getRegistry().register(new BlockItem(PFBlocks.HEIDIPHYLLUM_PLANKS, new Item.Properties().group(PFBuilding.instance)).setRegistryName("heidiphyllum_planks"));
 		event.getRegistry().register(new BlockItem(PFBlocks.HEIDIPHYLLUM_STAIRS, new Item.Properties().group(PFBuilding.instance)).setRegistryName("heidiphyllum_stairs"));
 		event.getRegistry().register(new BlockItem(PFBlocks.HEIDIPHYLLUM_SLAB, new Item.Properties().group(PFBuilding.instance)).setRegistryName("heidiphyllum_slab"));
+		//Ginkgo
+		event.getRegistry().register(new BlockItem(PFBlocks.GINKGO_LOG, new Item.Properties().group(PFBuilding.instance)).setRegistryName("ginkgo_log"));
+		event.getRegistry().register(new BlockItem(PFBlocks.STRIPPED_GINKGO_LOG, new Item.Properties().group(PFBuilding.instance)).setRegistryName("stripped_ginkgo_log"));
+		event.getRegistry().register(new BlockItem(PFBlocks.GINKGO_WOOD, new Item.Properties().group(PFBuilding.instance)).setRegistryName("ginkgo_wood"));
+		event.getRegistry().register(new BlockItem(PFBlocks.STRIPPED_GINKGO_WOOD, new Item.Properties().group(PFBuilding.instance)).setRegistryName("stripped_ginkgo_wood"));
+		event.getRegistry().register(new BlockItem(PFBlocks.GINKGO_PLANKS, new Item.Properties().group(PFBuilding.instance)).setRegistryName("ginkgo_planks"));
+		event.getRegistry().register(new BlockItem(PFBlocks.GINKGO_STAIRS, new Item.Properties().group(PFBuilding.instance)).setRegistryName("ginkgo_stairs"));
+		event.getRegistry().register(new BlockItem(PFBlocks.GINKGO_SLAB, new Item.Properties().group(PFBuilding.instance)).setRegistryName("ginkgo_slab"));	
 		//Sandstone
 		event.getRegistry().register(new BlockItem(PFBlocks.SANDSTONE, new Item.Properties().group(PFBuilding.instance)).setRegistryName("sandstone"));
 		event.getRegistry().register(new BlockItem(PFBlocks.SANDSTONE_SLAB, new Item.Properties().group(PFBuilding.instance)).setRegistryName("sandstone_slab"));
@@ -995,6 +1080,7 @@ public class PFBlocks {
 		event.getRegistry().register(new BlockItem(PFBlocks.ZAMITES_LEAVES, new Item.Properties().group(PFDecoration.instance)).setRegistryName("zamites_leaves"));
 		event.getRegistry().register(new BlockItem(PFBlocks.PROTOJUNIPEROXYLON_LEAVES, new Item.Properties().group(PFDecoration.instance)).setRegistryName("protojuniperoxylon_leaves"));
 		event.getRegistry().register(new BlockItem(PFBlocks.HEIDIPHYLLUM_LEAVES, new Item.Properties().group(PFDecoration.instance)).setRegistryName("heidiphyllum_leaves"));
+		event.getRegistry().register(new BlockItem(PFBlocks.GINKGO_LEAVES, new Item.Properties().group(PFDecoration.instance)).setRegistryName("ginkgo_leaves"));
 
 		//Saplings
 		event.getRegistry().register(new BlockItem(PFBlocks.METASEQUOIA_SAPLING, new Item.Properties().group(PFDecoration.instance)).setRegistryName("metasequoia_sapling"));
@@ -1004,7 +1090,8 @@ public class PFBlocks {
 		event.getRegistry().register(new BlockItem(PFBlocks.ZAMITES_SAPLING, new Item.Properties().group(PFDecoration.instance)).setRegistryName("zamites_sapling"));
 		event.getRegistry().register(new BlockItem(PFBlocks.PROTOJUNIPEROXYLON_SAPLING, new Item.Properties().group(PFDecoration.instance)).setRegistryName("protojuniperoxylon_sapling"));
 		event.getRegistry().register(new BlockItem(PFBlocks.HEIDIPHYLLUM_SAPLING, new Item.Properties().group(PFDecoration.instance)).setRegistryName("heidiphyllum_sapling"));
-
+		event.getRegistry().register(new BlockItem(PFBlocks.GINKGO_SAPLING, new Item.Properties().group(PFDecoration.instance)).setRegistryName("ginkgo_sapling"));
+		
 		//Plants
 		event.getRegistry().register(new BlockItem(PFBlocks.HORSETAIL, new Item.Properties().group(PFDecoration.instance)).setRegistryName("horsetail"));
 		event.getRegistry().register(new BlockItem(PFBlocks.TALL_HORSETAIL, new Item.Properties().group(PFDecoration.instance)).setRegistryName("tall_horsetail"));
@@ -1025,7 +1112,8 @@ public class PFBlocks {
 		//Carpets
 		event.getRegistry().register(new BlockItem(PFBlocks.MOSS_CARPET, new Item.Properties().group(PFDecoration.instance)).setRegistryName("moss_carpet"));
 		event.getRegistry().register(new BlockItem(PFBlocks.ALGAE_CARPET, new Item.Properties().group(PFDecoration.instance)).setRegistryName("algae_carpet"));
-
+		event.getRegistry().register(new BlockItem(PFBlocks.THATCH_CARPET, new Item.Properties().group(PFDecoration.instance)).setRegistryName("thatch_carpet"));
+		
 		//Walls
 		event.getRegistry().register(new BlockItem(PFBlocks.SANDSTONE_WALL, new Item.Properties().group(PFDecoration.instance)).setRegistryName("sandstone_wall"));
 		event.getRegistry().register(new BlockItem(PFBlocks.SMOOTH_SANDSTONE_WALL, new Item.Properties().group(PFDecoration.instance)).setRegistryName("smooth_sandstone_wall"));
@@ -1048,6 +1136,7 @@ public class PFBlocks {
 		event.getRegistry().register(new BlockItem(PFBlocks.ZAMITES_DOOR, new Item.Properties().group(PFDecoration.instance)).setRegistryName("zamites_door"));
 		event.getRegistry().register(new BlockItem(PFBlocks.PROTOJUNIPEROXYLON_DOOR, new Item.Properties().group(PFDecoration.instance)).setRegistryName("protojuniperoxylon_door"));
 		event.getRegistry().register(new BlockItem(PFBlocks.HEIDIPHYLLUM_DOOR, new Item.Properties().group(PFDecoration.instance)).setRegistryName("heidiphyllum_door"));
+		event.getRegistry().register(new BlockItem(PFBlocks.GINKGO_DOOR, new Item.Properties().group(PFDecoration.instance)).setRegistryName("ginkgo_door"));
 
 		//Trapdoors(Metasequoia,Araucarua,Liriodendrites,Protopiceoxylon,Zamites,Protojuniperoxylon,Heidiphyllum)
 		event.getRegistry().register(new BlockItem(PFBlocks.METASEQUOIA_TRAPDOOR, new Item.Properties().group(PFDecoration.instance)).setRegistryName("metasequoia_trapdoor"));
@@ -1057,7 +1146,8 @@ public class PFBlocks {
 		event.getRegistry().register(new BlockItem(PFBlocks.ZAMITES_TRAPDOOR, new Item.Properties().group(PFDecoration.instance)).setRegistryName("zamites_trapdoor"));
 		event.getRegistry().register(new BlockItem(PFBlocks.PROTOJUNIPEROXYLON_TRAPDOOR, new Item.Properties().group(PFDecoration.instance)).setRegistryName("protojuniperoxylon_trapdoor"));
 		event.getRegistry().register(new BlockItem(PFBlocks.HEIDIPHYLLUM_TRAPDOOR, new Item.Properties().group(PFDecoration.instance)).setRegistryName("heidiphyllum_trapdoor"));
-
+		event.getRegistry().register(new BlockItem(PFBlocks.GINKGO_TRAPDOOR, new Item.Properties().group(PFDecoration.instance)).setRegistryName("ginkgo_trapdoor"));
+		
 		//Fences(Metasequoia,Araucarua,Liriodendrites,Protopiceoxylon,Zamites,Protojuniperoxylon,Heidiphyllum)
 		event.getRegistry().register(new BlockItem(PFBlocks.METASEQUOIA_FENCE, new Item.Properties().group(PFDecoration.instance)).setRegistryName("metasequoia_fence"));
 		event.getRegistry().register(new BlockItem(PFBlocks.ARAUCARIA_FENCE, new Item.Properties().group(PFDecoration.instance)).setRegistryName("araucaria_fence"));
@@ -1066,7 +1156,8 @@ public class PFBlocks {
 		event.getRegistry().register(new BlockItem(PFBlocks.ZAMITES_FENCE, new Item.Properties().group(PFDecoration.instance)).setRegistryName("zamites_fence"));
 		event.getRegistry().register(new BlockItem(PFBlocks.PROTOJUNIPEROXYLON_FENCE, new Item.Properties().group(PFDecoration.instance)).setRegistryName("protojuniperoxylon_fence"));
 		event.getRegistry().register(new BlockItem(PFBlocks.HEIDIPHYLLUM_FENCE, new Item.Properties().group(PFDecoration.instance)).setRegistryName("heidiphyllum_fence"));
-
+		event.getRegistry().register(new BlockItem(PFBlocks.GINKGO_FENCE, new Item.Properties().group(PFDecoration.instance)).setRegistryName("ginkgo_fence"));
+		
 		//Fencegates(Metasequoia,Araucarua,Liriodendrites,Protopiceoxylon,Zamites,Protojuniperoxylon,Heidiphyllum)
 		event.getRegistry().register(new BlockItem(PFBlocks.METASEQUOIA_FENCE_GATE, new Item.Properties().group(PFDecoration.instance)).setRegistryName("metasequoia_fence_gate"));
 		event.getRegistry().register(new BlockItem(PFBlocks.ARAUCARIA_FENCE_GATE, new Item.Properties().group(PFDecoration.instance)).setRegistryName("araucaria_fence_gate"));
@@ -1075,7 +1166,8 @@ public class PFBlocks {
 		event.getRegistry().register(new BlockItem(PFBlocks.ZAMITES_FENCE_GATE, new Item.Properties().group(PFDecoration.instance)).setRegistryName("zamites_fence_gate"));
 		event.getRegistry().register(new BlockItem(PFBlocks.PROTOJUNIPEROXYLON_FENCE_GATE, new Item.Properties().group(PFDecoration.instance)).setRegistryName("protojuniperoxylon_fence_gate"));
 		event.getRegistry().register(new BlockItem(PFBlocks.HEIDIPHYLLUM_FENCE_GATE, new Item.Properties().group(PFDecoration.instance)).setRegistryName("heidiphyllum_fence_gate"));
-
+		event.getRegistry().register(new BlockItem(PFBlocks.GINKGO_FENCE_GATE, new Item.Properties().group(PFDecoration.instance)).setRegistryName("ginkgo_fence_gate"));
+		
 		//Button(Metasequoia,Araucarua,Liriodendrites,Protopiceoxylon,Zamites,Protojuniperoxylon,Heidiphyllum)
 		event.getRegistry().register(new BlockItem(PFBlocks.METASEQUOIA_BUTTON, new Item.Properties().group(PFDecoration.instance)).setRegistryName("metasequoia_button"));
 		event.getRegistry().register(new BlockItem(PFBlocks.ARAUCARIA_BUTTON, new Item.Properties().group(PFDecoration.instance)).setRegistryName("araucaria_button"));
@@ -1084,7 +1176,8 @@ public class PFBlocks {
 		event.getRegistry().register(new BlockItem(PFBlocks.ZAMITES_BUTTON, new Item.Properties().group(PFDecoration.instance)).setRegistryName("zamites_button"));
 		event.getRegistry().register(new BlockItem(PFBlocks.PROTOJUNIPEROXYLON_BUTTON, new Item.Properties().group(PFDecoration.instance)).setRegistryName("protojuniperoxylon_button"));
 		event.getRegistry().register(new BlockItem(PFBlocks.HEIDIPHYLLUM_BUTTON, new Item.Properties().group(PFDecoration.instance)).setRegistryName("heidiphyllum_button"));
-
+		event.getRegistry().register(new BlockItem(PFBlocks.GINKGO_BUTTON, new Item.Properties().group(PFDecoration.instance)).setRegistryName("ginkgo_button"));
+		
 		//PressurePlates(Metasequoia,Araucarua,Liriodendrites,Protopiceoxylon,Zamites,Protojuniperoxylon,Heidiphyllum)
 		event.getRegistry().register(new BlockItem(PFBlocks.METASEQUOIA_PRESSURE_PLATE, new Item.Properties().group(PFDecoration.instance)).setRegistryName("metasequoia_pressure_plate"));
 		event.getRegistry().register(new BlockItem(PFBlocks.ARAUCARIA_PRESSURE_PLATE, new Item.Properties().group(PFDecoration.instance)).setRegistryName("araucaria_pressure_plate"));
@@ -1093,7 +1186,8 @@ public class PFBlocks {
 		event.getRegistry().register(new BlockItem(PFBlocks.ZAMITES_PRESSURE_PLATE, new Item.Properties().group(PFDecoration.instance)).setRegistryName("zamites_pressure_plate"));
 		event.getRegistry().register(new BlockItem(PFBlocks.PROTOJUNIPEROXYLON_PRESSURE_PLATE, new Item.Properties().group(PFDecoration.instance)).setRegistryName("protojuniperoxylon_pressure_plate"));
 		event.getRegistry().register(new BlockItem(PFBlocks.HEIDIPHYLLUM_PRESSURE_PLATE, new Item.Properties().group(PFDecoration.instance)).setRegistryName("heidiphyllum_pressure_plate"));
-
+		event.getRegistry().register(new BlockItem(PFBlocks.GINKGO_PRESSURE_PLATE, new Item.Properties().group(PFDecoration.instance)).setRegistryName("ginkgo_pressure_plate"));
+		
 		//Ptilophyllum
 		event.getRegistry().register(new BlockItem(PFBlocks.PTILOPHYLLUM_WOOD, new Item.Properties().group(PFDecoration.instance)).setRegistryName("ptilophyllum_wood"));
 		event.getRegistry().register(new BlockItem(PFBlocks.PTILOPHYLLUM_BASE, new Item.Properties().group(PFDecoration.instance)).setRegistryName("ptilophyllum_base"));
@@ -1137,6 +1231,10 @@ public class PFBlocks {
 		event.getRegistry().register(new BlockItem(PFBlocks.SAUROSUCHUS_EGG, new Item.Properties().group(PFDecoration.instance)).setRegistryName("saurosuchus_egg"));
 		event.getRegistry().register(new BlockItem(PFBlocks.ISCHIGUALASTIA_EGG, new Item.Properties().group(PFDecoration.instance)).setRegistryName("ischigualastia_egg"));
 		event.getRegistry().register(new BlockItem(PFBlocks.EXAERETODON_EGG, new Item.Properties().group(PFDecoration.instance)).setRegistryName("exaeretodon_egg"));
+		event.getRegistry().register(new BlockItem(PFBlocks.PROTOCERATOPS_EGG, new Item.Properties().group(PFDecoration.instance)).setRegistryName("protoceratops_egg"));
+		event.getRegistry().register(new BlockItem(PFBlocks.VELOCIRAPTOR_EGG, new Item.Properties().group(PFDecoration.instance)).setRegistryName("velociraptor_egg"));
+		event.getRegistry().register(new BlockItem(PFBlocks.CITIPATI_EGG, new Item.Properties().group(PFDecoration.instance)).setRegistryName("citipati_egg"));
+		event.getRegistry().register(new BlockItem(PFBlocks.AEPYORNITHOMIMUS_EGG, new Item.Properties().group(PFDecoration.instance)).setRegistryName("aepyornithomimus_egg"));
 	}
 
 }

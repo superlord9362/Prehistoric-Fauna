@@ -5,10 +5,14 @@ import java.util.List;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
+import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
+import net.minecraft.world.gen.feature.BlockClusterFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.world.feature.AlgaeFeature;
 import superlord.prehistoricfauna.world.feature.CrassostreaOystersFeature;
 import superlord.prehistoricfauna.world.feature.DicroidiumFeature;
@@ -36,6 +40,9 @@ import superlord.prehistoricfauna.world.feature.trees.liriodendrites.Liriodendri
 import superlord.prehistoricfauna.world.feature.trees.liriodendrites.LiriodendritesTree4;
 import superlord.prehistoricfauna.world.feature.trees.metasequoia.MetasequoiaTree1;
 import superlord.prehistoricfauna.world.feature.trees.metasequoia.MetasequoiaTree2;
+import superlord.prehistoricfauna.world.feature.trees.metasequoia.SmallMetasequoia1;
+import superlord.prehistoricfauna.world.feature.trees.metasequoia.SmallMetasequoia2;
+import superlord.prehistoricfauna.world.feature.trees.metasequoia.SmallMetasequoia3;
 import superlord.prehistoricfauna.world.feature.trees.petrified.PetrifiedTreeFeature;
 import superlord.prehistoricfauna.world.feature.trees.protopiceoxylon.ProtopiceoxylonTree1;
 import superlord.prehistoricfauna.world.feature.trees.protopiceoxylon.ProtopiceoxylonTree2;
@@ -53,7 +60,10 @@ public class PFFeatures {
 
 	public static final Feature<PFTreeConfig> METASEQUOIA_TREE_1 = createFeature("metasequoia_tree_1", new MetasequoiaTree1(PFTreeConfig.CODEC.stable()));
 	public static final Feature<PFTreeConfig> METASEQUOIA_TREE_2 = createFeature("metasequoia_tree_2", new MetasequoiaTree2(PFTreeConfig.CODEC.stable()));
-	
+	public static final Feature<PFTreeConfig> METASEQUOIA_SMALL_TREE_1 = createFeature("metasequoia_small_tree_1", new SmallMetasequoia1(PFTreeConfig.CODEC.stable()));
+	public static final Feature<PFTreeConfig> METASEQUOIA_SMALL_TREE_2 = createFeature("metasequoia_small_tree_2", new SmallMetasequoia2(PFTreeConfig.CODEC.stable()));
+	public static final Feature<PFTreeConfig> METASEQUOIA_SMALL_TREE_3 = createFeature("metasequoia_small_tree_3", new SmallMetasequoia3(PFTreeConfig.CODEC.stable()));
+
 	public static final Feature<PFTreeConfig> ARAUCARIA_TREE_1 = createFeature("araucaria_tree_1", new AraucariaTree1(PFTreeConfig.CODEC.stable()));
 	public static final Feature<PFTreeConfig> ARAUCARIA_TREE_2 = createFeature("araucaria_tree_2", new AraucariaTree2(PFTreeConfig.CODEC.stable()));
 	public static final Feature<PFTreeConfig> ARAUCARIA_SMALL_TREE_1 = createFeature("araucaria_small_tree_1", new AraucariaSmallTree1(PFTreeConfig.CODEC.stable()));
@@ -93,6 +103,9 @@ public class PFFeatures {
 
     public static final Feature<NoisySphereConfig> NOISY_SPHERE = createFeature("noisy_sphere", new NoisySphereFeature(NoisySphereConfig.CODEC.stable()));
     
+    
+    public static final BlockClusterFeatureConfig DEAD_CYCAD_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.DEAD_OSMUNDACAULIS.getDefaultState()), SimpleBlockPlacer.PLACER)).tries(4).build();
+
     //public static final Feature<CrassostreaOystersConfig> CRASSOSTREA_OYSTERS_FEATURE = createFeature("crassostrea_oysters", new CrassostreaOystersFeature(CrassostreaOystersConfig::deserialize));
     //public static final Feature<CrassostreaOystersConfig> ALGAE_FEATURE = createFeature("algae", new AlgaeFeature(CrassostreaOystersConfig::deserialize));
 

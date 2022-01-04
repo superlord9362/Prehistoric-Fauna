@@ -1,0 +1,6 @@
+{
+    "parent": "prehistoricfauna:block/two_velociraptor_eggs",
+    "textures": {
+        "all": "prehistoricfauna:blocks/velociraptor_egg_slightly_cracked"
+    }
+}

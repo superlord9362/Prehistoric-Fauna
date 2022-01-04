@@ -13,6 +13,7 @@
 	"block.prehistoricfauna.clubmoss": "Clubmoss",
 	"block.prehistoricfauna.marchantia": "Marchantia",
 	"block.prehistoricfauna.moss_carpet": "Moss Carpet",
+	"block.prehistoricfauna.thatch_carpet": "Thatch Carpet",
 	"block.prehistoricfauna.loam": "Loam",
 	"block.prehistoricfauna.packed_loam": "Packed Loam",
 	"block.prehistoricfauna.moss_block": "Moss Block",
@@ -31,6 +32,7 @@
 	"block.prehistoricfauna.cypress_planks": "Taxodium Planks",
 	"block.prehistoricfauna.araucaria_planks" :"Araucaria Planks",
 	"block.prehistoricfauna.metasequoia_planks": "Metasequoia Planks",
+	"block.prehistoricfauna.ginkgo_planks": "Ginkgo Planks",
 	
 	"block.prehistoricfauna.araucaria_sign": "Araucaria Sign",
 	"block.prehistoricfauna.araucaria_wall_sign": "Araucaria Sign",
@@ -46,6 +48,8 @@
 	"block.prehistoricfauna.protopiceoxylon_wall_sign": "Protopiceoxlyon Sign",
 	"block.prehistoricfauna.zamites_sign": "Zamites Sign",
 	"block.prehistoricfauna.zamites_wall_sign": "Zamites Sign",
+	"block.prehistoricfauna.ginkgo_sign": "Ginkgo Sign",
+	"block.prehistoricfauna.ginkgo_wall_sign": "Ginkgo Sign",
 	
 	"block.prehistoricfauna.stripped_liriodendrites_log": "Stripped Liriodendrites Log",
 	"block.prehistoricfauna.liriodendrites_wood": "Liriodendrites Wood",
@@ -81,6 +85,10 @@
 	"block.prehistoricfauna.stripped_cypress_log": "Stripped Taxodium Log",
 	"block.prehistoricfauna.cypress_wood": "Taxodium Wood",
 	"block.prehistoricfauna.stripped_cypress_wood": "Stripped Taxodium Wood",
+	"block.prehistoricfauna.ginkgo_log": "Ginkgo Log",
+	"block.prehistoricfauna.ginkgo_wood": "Ginkgo Wood",
+	"block.prehistoricfauna.stripped_ginkgo_log": "Stripped Ginkgo Log",
+	"block.prehistoricfauna.stripped_ginkgo_wood": "Stripped Ginkgo Wood",
 	
 	"block.prehistoricfauna.liriodendrites_slab": "Liriodendrites Slab",
 	"block.prehistoricfauna.heidiphyllum_slab": "Heidiphyllum Slab",
@@ -90,6 +98,7 @@
 	"block.prehistoricfauna.araucaria_slab": "Araucaria Slab",
 	"block.prehistoricfauna.metasequoia_slab": "Metasequoia Slab",
 	"block.prehistoricfauna.cypress_slab": "Taxodium Slab",
+	"block.prehistoricfauna.ginkgo_slab": "Ginkgo Slab",
 	
 	"block.prehistoricfauna.liriodendrites_stairs": "Liriodendrites Stairs",
 	"block.prehistoricfauna.heidiphyllum_stairs": "Heidiphyllum Stairs",
@@ -99,6 +108,7 @@
 	"block.prehistoricfauna.araucaria_stairs": "Araucaria Stairs",
 	"block.prehistoricfauna.metasequoia_stairs": "Metasequoia Stairs",
 	"block.prehistoricfauna.cypress_stairs": "Taxodium Stairs",
+	"block.prehistoricfauna.ginkgo_stairs": "Ginkgo Stairs",
 	
 	"block.prehistoricfauna.liriodendrites_leaves": "Liriodendrites Leaves",
 	"block.prehistoricfauna.liriodendrites_leaves_flower": "Flowering Liriodendrites Leaves",
@@ -109,6 +119,7 @@
 	"block.prehistoricfauna.protopiceoxylon_leaves": "Protopiceoxylon Leaves",
 	"block.prehistoricfauna.araucaria_leaves": "Araucaria Leaves",
 	"block.prehistoricfauna.cypress_leaves": "Taxodium Leaves",
+	"block.prehistoricfauna.ginkgo_leaves": "Ginkgo Leaves",
 	
 	"block.prehistoricfauna.liriodendrites_pressure_plate": "Liriodendrites Pressure Plate",
 	"block.prehistoricfauna.heidiphyllum_pressure_plate": "Heidiphyllum Pressure Plate",
@@ -118,6 +129,7 @@
 	"block.prehistoricfauna.araucaria_pressure_plate": "Araucaria Pressure Plate",
 	"block.prehistoricfauna.metasequoia_pressure_plate": "Metasequoia Pressure plate",
 	"block.prehistoricfauna.cypress_pressure_plate": "Taxodium Pressure Plate",
+	"block.prehistoricfauna.ginkgo_pressure_plate": "Ginkgo Pressure Plate",
 	
 	"block.prehistoricfauna.liriodendrites_trapdoor": "Liriodendrites Trapdoor",
 	"block.prehistoricfauna.liriodendrites_door": "Liriodendrites Door",
@@ -135,6 +147,8 @@
 	"block.prehistoricfauna.metasequoia_trapdoor": "Metasequoia Trapdoor",
 	"block.prehistoricfauna.cypress_door": "Taxodium Door",
 	"block.prehistoricfauna.cypress_trapdoor": "Taxodium Trapdoor",
+	"block.prehistoricfauna.ginkgo_door": "Ginkgo Door",
+	"block.prehistoricfauna.ginkgo_trapdoor":"Ginkgo Trapdoor",
 	
 	"block.prehistoricfauna.liriodendrites_fence": "Liriodendrites Fence",
 	"block.prehistoricfauna.liriodendrites_fence_gate": "Liriodendrites Fence Gate",
@@ -152,6 +166,8 @@
 	"block.prehistoricfauna.araucaria_fence_gate": "Araucaria Fence Gate",
 	"block.prehistoricfauna.metasequoia_fence": "Metasequoia Fence",
 	"block.prehistoricfauna.metasequoia_fence_gate": "Metasequoia Fence Gate",
+	"block.prehistoricfauna.ginkgo_fence": "Ginkgo Fence",
+	"block.prehistoricfauna.ginkgo_fence_gate": "Ginkgo Fence Gate",
 	
 	"block.prehistoricfauna.liriodendrites_sapling": "Liriodendrites Sapling",
 	"block.prehistoricfauna.heidiphyllum_sapling": "Heidiphyllum Sapling",
@@ -161,6 +177,7 @@
 	"block.prehistoricfauna.cypress_sapling": "Taxodium Sapling",
 	"block.prehistoricfauna.araucaria_sapling": "Araucaria Sapling",
 	"block.prehistoricfauna.metasequoia_sapling": "Metasequoia Sapling",
+	"block.prehistoricfauna.ginkgo_sapling": "Ginkgo Sapling",
 	
 	"block.prehistoricfauna.liriodendrites_button": "Liriodendrites Button",
 	"block.prehistoricfauna.heidiphyllum_button": "Heidiphyllum Button",
@@ -170,6 +187,7 @@
 	"block.prehistoricfauna.araucaria_button": "Araucaria Button",
 	"block.prehistoricfauna.metasequoia_button": "Metasequoia Button",
 	"block.prehistoricfauna.cypress_button": "Taxodium Button",
+	"block.prehistoricfauna.ginkgo_button": "Ginkgo Button",
 	
 	"block.prehistoricfauna.cretaceous_portal": "Cretaceous Warp Block",
 	"block.prehistoricfauna.portal_frame": "Time Machine Frame",
@@ -266,6 +284,8 @@
 	"biome.prehistoricfauna.ischigualasto_hills": "Ischigualasto Hills",
 	"biome.prehistoricfauna.ischigualasto_river": "Ischigualasto River",
 	"biome.prehistoricfauna.petrified_forest": "Petrified Forest",
+	"biome.prehistoricfauna.djadochta_dunes": "Djadochta Dunes",
+	"biome.prehistoricfauna.djadochta_arroyo": "Djadochta Arroyo",
 	
 	"item.prehistoricfauna.thescelosaurus_spawn_egg": "Thescelosaurus Spawn Egg",
 	"item.prehistoricfauna.triceratops_spawn_egg": "Triceratops Spawn Egg",
@@ -296,6 +316,10 @@
 	"item.prehistoricfauna.cyclurus_spawn_egg": "Cyclurus Spawn Egg",
 	"item.prehistoricfauna.potamoceratodus_spawn_egg": "Potamoceratodus Spawn Egg",
 	"item.prehistoricfauna.ceratodus_spawn_egg": "Ceratodus Spawn Egg",
+	"item.prehistoricfauna.protoceratops_spawn_egg": "Protoceratops Spawn Egg",
+	"item.prehistoricfauna.velociraptor_spawn_egg": "Velociraptor Spawn Egg",
+	"item.prehistoricfauna.citipati_spawn_egg": "Citipati Spawn Egg",
+	"item.prehistoricfauna.aepyornithomimus_spawn_egg": "Aepyornithomimus Spawn Egg",
 	
 	"entity.prehistoricfauna.thescelosaurus": "Thescelosaurus",
 	"entity.prehistoricfauna.triceratops": "Triceratops",
@@ -320,6 +344,7 @@
 	"entity.prehistoricfauna.henos": "Henos",
 	"entity.prehistoricfauna.saurosuchus": "Saurosuchus",
 	"block.prehistoricfauna.crassostrea_oyster": "Crassostrea Oyster",
+	"block.prehistoricfauna.tuber_crop": "Tubers",
 	"entity.prehistoricfauna.ischigualastia": "Ischigualastia",
 	"entity.prehistoricfuana.trilobite_sentinel": "Cave Sentinel",
 	"entity.prehistoricfauna.land_sentinel": "Land Sentinel",
@@ -329,7 +354,14 @@
 	"entity.prehistoricfauna.potamoceratodus": "Potamoceratodus",
 	"entity.prehistoricfauna.ceratodus": "Ceratodus",
 	"entity.minecraft.villager.prehistoricfauna.geologist": "Geologist",
+<<<<<<< Updated upstream
 	"entity.prehistoricfauna.paleopainting": "Ancient Painting",
+=======
+	"entity.prehistoricfauna.protoceratops": "Protoceratops",
+	"entity.prehistoricfauna.velociraptor": "Velociraptor",
+	"entity.prehistoricfauna.citipati": "Citipati",
+	"entity.prehistoricfauna.aepyornithomimus": "Aepyornithomimus",
+>>>>>>> Stashed changes
 	
 	"item.prehistoricfauna.araucaria_boat": "Araucaria Boat",
 	"item.prehistoricfauna.metasequoia_boat": "Metasequoia Boat",
@@ -338,6 +370,7 @@
 	"item.prehistoricfauna.protojuniperoxylon_boat": "Protojuniperoxylon Boat",
 	"item.prehistoricfauna.heidiphyllum_boat": "Heidiphyllum Boat",
 	"item.prehistoricfauna.liriodendrites_boat": "Liriodendrites Boat",
+	"item.prehistoricfauna.ginkgo_boat": "Ginkgo Boat",
 
 	"item.prehistoricfauna.tyrannosaur_tooth": "Tyrannosaur Tooth",
 	"item.prehistoricfauna.tail_club": "Tail Club",
@@ -370,6 +403,7 @@
 	
 	"item.prehistoricfauna.raw_large_thyreophoran_meat": "Large Raw Thyreophoran",
 	"item.prehistoricfauna.raw_large_marginocephalian_meat": "Large Raw Marginocephalian",
+	"item.prehistoricfauna.raw_small_marginocephalian_meat": "Small Raw Marginocephalian",
 	"item.prehistoricfauna.raw_small_ornithischian_meat": "Small Raw Ornithischian",
 	"item.prehistoricfauna.raw_large_sauropod_meat": "Large Raw Sauropodomorph",
 	"item.prehistoricfauna.raw_small_sauropod_meat": "Small Raw Sauropodomorph",
@@ -381,6 +415,7 @@
 	"item.prehistoricfauna.raw_large_synapsid_meat": "Large Raw Synapsid",
 	"item.prehistoricfauna.cooked_large_thyreophoran_meat": "Large Cooked Thyreophoran",
 	"item.prehistoricfauna.cooked_large_marginocephalian_meat": "Large Cooked Marginocephalian",
+	"item.prehistoricfauna.cooked_small_marginocephalian_meat": "Small Cooked Marginocephalian",
 	"item.prehistoricfauna.cooked_small_ornithischian_meat": "Small Cooked Ornithischian",
 	"item.prehistoricfauna.cooked_large_sauropod_meat": "Large Cooked Sauropodomorph",
 	"item.prehistoricfauna.cooked_small_sauropod_meat": "Small Cooked Sauropodomorph",
@@ -428,6 +463,10 @@
 	"block.prehistoricfauna.saurosuchus_egg": "Saurosuchus Egg",
 	"block.prehistoricfauna.ischigualastia_egg": "Ischigualastia Egg",
 	"block.prehistoricfauna.exaeretodon_egg": "Exaeretodon Egg",
+	"block.prehistoricfauna.protoceratops_egg": "Protoceratops Egg",
+	"block.prehistoricfauna.velociraptor_egg": "Velociraptor Egg",
+	"block.prehistoricfauna.citipati_egg": "Citipati Egg",
+	"block.prehistoricfauna.aepyornithomimus_egg": "Aepyornithomimus Egg",
 	
 	"block.prehistoricfauna.small_ammonite_fossil": "Small Ammonite Fossil",
 	"block.prehistoricfauna.medium_ammonite_fossil": "Medium Ammonite Fossil",
@@ -725,6 +764,18 @@
 	"prehistoricfauna.subtitle.henosLaser": "Time laser",
 	"prehistoricfauna.subtitle.henosHurt": "Henos hurts",
 	"prehistoricfauna.subtitle.henosDeath": "Henos dies",
+	"prehistoricfauna.subtitle.protoceratopsIdle": "Protoceratops ?",
+	"prehistoricfauna.subtitle.protoceratopsHurt": "Protoceratops hurts",
+	"prehistoricfauna.subtitle.protoceratopsDeath": "Protoceratops dies",
+	"prehistoricfauna.subtitle.protoceratopsWarning": "Protoceratops ?",
+	"prehistoricfauna.subtitle.velociraptorIdle": "Velociraptor coos",
+	"prehistoricfauna.subtitle.velociraptorHurt": "Velociraptor hurts",
+	"prehistoricfauna.subtitle.velociraptorDeath": "Velociraptor dies",
+	"prehistoricfauna.subtitle.velociraptorWarning": "Velociraptor ?",
+	"prehistoricfauna.subtitle.citipatiIdle": "Citipati ?",
+	"prehistoricfauna.subtitle.citipatiHurt": "Citipati hurts",
+	"prehistoricfauna.subtitle.citipatiDeath": "Citipati dies",
+	"prehistoricfauna.subtitle.citipatiWarning": "Citipati ?",
 	
 	"effect.prehistoricfauna.bleeding": "Bleeding",
 	
@@ -782,6 +833,8 @@
 	"advancements.prehistoricfauna.survival_game.description": "Craft thatch",
 	"advancements.prehistoricfauna.pest_control.title": "Someone Call Pest Control?",
 	"advancements.prehistoricfauna.pest_control.description": "Kill any Henos Sentinel",
+	"advancements.prehistoricfauna.cool_river_monsters.title": "Cool Episode of River Monsters",
+	"advancements.prehistoricfauna.cool_river_monsters.description": "Catch a prehistoric fish in a bucket",
 	
 	"death.attack.trap.0": "%s was impaled by a henostone trap",
 	"death.attack.trap.1": "%s was shish kebabed by a henostone trap",
@@ -814,6 +867,7 @@
 	"block.prehistoricfauna.henostone_vertical_slab": "Henostone Vertical Slab",
 	"block.prehistoricfauna.henostone_brick_vertical_slab": "Henostone Brick Vertical Slab",
 	"block.prehistoricfauna.dark_henostone_brick_vertical_slab": "Dark Henostone Brick Vertical Slab",
+	"block.prehistoricfauna.thatch_vertical_slab": "Thatch Vertical Slab",
 	"block.prehistoricfauna.araucaria_vertical_planks": "Vertical Araucaria Planks",
 	"block.prehistoricfauna.metasequoia_vertical_planks": "Vertical Metasequoia Planks",
 	"block.prehistoricfauna.liriodendrites_vertical_planks": "Vertical Liriodendrites Planks",
@@ -827,6 +881,9 @@
 	"block.prehistoricfauna.protopiceoxylon_leaf_carpet": "Protopiceoxylon Leaf Carpet",
 	"block.prehistoricfauna.protojuniperoxylon_leaf_carpet": "Protojuniperoxylon Leaf Carpet",
 	"block.prehistoricfauna.heidiphyllum_leaf_carpet": "Heidiphyllum Leaf Carpet",
+	"block.prehistoricfauna.ginkgo_vertical_slab": "Ginkgo Vertical Slab",
+	"block.prehistoricfauna.ginkgo_vertical_planks": "Ginkgo Vertical Planks",
+	"block.prehistoricfauna.ginkgo_leaf_carpet": "Ginkgo Leaf Carpet",
 	
 	"block.prehistoricfauna.araucaria_chest": "Araucaria Chest",
 	"block.prehistoricfauna.araucaria_trapped_chest": "Araucaria Trapped Chest",
@@ -842,6 +899,8 @@
 	"block.prehistoricfauna.protojuniperoxylon_trapped_chest": "Protojuniperoxylon Trapped Chest",
 	"block.prehistoricfauna.heidiphyllum_chest": "Heidiphyllum Chest",
 	"block.prehistoricfauna.heidiphyllum_trapped_chest": "Heidiphyllum Trapped Chest",
+	"block.prehistoricfauna.ginkgo_chest": "Ginkgo Chest",
+	"block.prehistoricfauna.ginkgo_trapped_chest": "Ginkgo Trapped Chest",
 	
 	"block.prehistoricfauna.araucaria_ladder": "Araucaria Ladder",
 	"block.prehistoricfauna.metasequoia_ladder": "Metasequoia Ladder",
@@ -850,6 +909,7 @@
 	"block.prehistoricfauna.protopiceoxylon_ladder": "Protopiceoxylon Ladder",
 	"block.prehistoricfauna.protojuniperoxylon_ladder": "Protojuniperoxylon Ladder",
 	"block.prehistoricfauna.heidiphyllum_ladder": "Heidiphyllum Ladder",
+	"block.prehistoricfauna.ginkgo_ladder": "Ginkgo Ladder",
 	
 	"block.prehistoricfauna.araucaria_bookshelf": "Araucaria Bookshelf",
 	"block.prehistoricfauna.metasequoia_bookshelf": "Metasequoia Bookshelf",
@@ -858,6 +918,7 @@
 	"block.prehistoricfauna.protopiceoxylon_bookshelf": "Protopiceoxylon Bookshelf",
 	"block.prehistoricfauna.protojuniperoxylon_bookshelf": "Protojuniperoxylon Bookshelf",
 	"block.prehistoricfauna.heidiphyllum_bookshelf": "Heidiphyllum Bookshelf",
+	"block.prehistoricfauna.ginkgo_bookshelf": "Ginkgo Bookshelf",
 	
 	"block.prehistoricfauna.chalk_pavement": "Chalk Pavement",
 	"block.prehistoricfauna.sandstone_pavement": "Sandstone Pavement",
@@ -880,6 +941,8 @@
 	"block.prehistoricfauna.stripped_protojuniperoxylon_post": "Stripped Protojuniperoxylon Post",
 	"block.prehistoricfauna.heidiphyllum_post": "Heidiphyllum Post",
 	"block.prehistoricfauna.stripped_heidiphyllum_post": "Stripped Heidiphyllum Post",
+	"block.prehistoricfauna.ginkgo_post": "Ginkgo Post",
+	"block.prehistoricfauna.stripped_ginkgo_post": "Stripped Ginkgo Post",
 	
 	"block.prehistoricfauna.araucaria_hedge": "Araucaria Hedge",
 	"block.prehistoricfauna.metasequoia_hedge": "Metasequoia Hedge",
@@ -887,6 +950,7 @@
 	"block.prehistoricfauna.protopiceoxylon_hedge": "Protopiceoxylon Hedge",
 	"block.prehistoricfauna.protojuniperoxylon_hedge": "Protojuniperoxylon Hedge",
 	"block.prehistoricfauna.heidiphyllum_hedge": "Heidiphyllum Hedge",
+	"block.prehistoricfauna.ginkgo_hedge": "Ginkgo Hedge",
 	
 	"block.prehistoricfauna.metasequoia_beehive": "Metasequoia Beehive",
 	"block.prehistoricfauna.araucaria_beehive": "Araucaria Beehive",
@@ -895,6 +959,7 @@
 	"block.prehistoricfauna.protopiceoxylon_beehive": "Protopiceoxylon Beehive",
 	"block.prehistoricfauna.protojuniperoxylon_beehive": "Protojuniperoxylon Beehive",
 	"block.prehistoricfauna.heidiphyllum_beehive": "Heidiphyllum Beehive",
+	"block.prehistoricfauna.ginkgo_beehive": "Ginkgo Beehive",
 	
 	"hell_creek": "Hell Creek Formation",
 	"morrison": "Morrison Formation",
@@ -902,10 +967,9 @@
 	"triassic": "Triassic Period",
 	"jurassic": "Jurassic Period",
 	"cretaceous": "Cretaceous Period",
-	"mi": "Ischigualasto, Morrison",
-	"jt": "Triassic, Jurassic",
-	
-	"commands.byg.locatebiome.failed": "Could not find that biome nearby",
+	"mi": "Ischigualasto Formation, Morrison Fromation",
+	"jt": "Triassic Period, Jurassic Period",
+	"djadochta": "Djadochta Formation",
 	
 	"key.prehistoricfauna.attack_key": "Attack Key",
 	"key.category.prehistoricfauna": "Prehistoric Fauna Keys",

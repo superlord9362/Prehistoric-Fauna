@@ -29,7 +29,7 @@ public class PrehistoricWorldTypeBiomeProvider extends BiomeProvider {
 	private final long seed;
 	private final Registry<Biome> registry;
 	private final Layer genBiomes;
-	private static final List<RegistryKey<Biome>> biomes = ImmutableList.of(PFBiomes.HELL_CREEK_BIOME.getKey(), PFBiomes.HELL_CREEK_CLEARING_BIOME.getKey(), PFBiomes.HELL_CREEK_HILLS_BIOME.getKey(), PFBiomes.HELL_CREEK_RIVER_BIOME.getKey(), PFBiomes.ISCHIGUALASTO_CLEARING_BIOME.getKey(), PFBiomes.ISCHIGUALASTO_FOREST_BIOME.getKey(), PFBiomes.ISCHIGUALASTO_HILLS_BIOME.getKey(), PFBiomes.ISCHIGUALASTO_RIVER_BIOME.getKey(), PFBiomes.MORRISON_HILLS_BIOME.getKey(), PFBiomes.MORRISON_SAVANNAH_BIOME.getKey());
+	private static final List<RegistryKey<Biome>> biomes = ImmutableList.of(PFBiomes.HELL_CREEK_BIOME.getKey(), PFBiomes.HELL_CREEK_CLEARING_BIOME.getKey(), PFBiomes.HELL_CREEK_HILLS_BIOME.getKey(), PFBiomes.HELL_CREEK_RIVER_BIOME.getKey(), PFBiomes.ISCHIGUALASTO_CLEARING_BIOME.getKey(), PFBiomes.ISCHIGUALASTO_FOREST_BIOME.getKey(), PFBiomes.ISCHIGUALASTO_HILLS_BIOME.getKey(), PFBiomes.ISCHIGUALASTO_RIVER_BIOME.getKey(), PFBiomes.MORRISON_HILLS_BIOME.getKey(), PFBiomes.MORRISON_SAVANNAH_BIOME.getKey(), PFBiomes.DJADOCHTA_DUNES_BIOME.getKey(), PFBiomes.DJADOCHTA_ARROYO_BIOME.getKey());
 	
 	public PrehistoricWorldTypeBiomeProvider(long seed, Registry<Biome> registry) {
 		super(biomes.stream().map(define -> () -> registry.getOrThrow(define)));

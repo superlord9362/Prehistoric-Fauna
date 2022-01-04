@@ -136,7 +136,7 @@ public class BasilemysEntity extends DinosaurEntity {
 	@Nullable
 	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		Random rand = new Random();
-		int birthNumber = rand.nextInt(399);
+		int birthNumber = rand.nextInt(799);
 		if (birthNumber >= 0 && birthNumber < 4) {
 			this.setAlbino(true);
 		} else if (birthNumber >= 4 && birthNumber < 7) {
@@ -149,10 +149,10 @@ public class BasilemysEntity extends DinosaurEntity {
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new BasilemysEntity.PanicGoal(this, 1.25F));
-		this.goalSelector.addGoal(1, new BasilemysEntity.MateGoal(this, 1.0D));
+		this.goalSelector.addGoal(0, new BasilemysEntity.MateGoal(this, 1.0D));
 		this.goalSelector.addGoal(2, new FollowParentGoal(this, 1.1D));
 		this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-		this.goalSelector.addGoal(4, new BasilemysEntity.LayEggGoal(this, 1.0D));
+		this.goalSelector.addGoal(0, new BasilemysEntity.LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, false, TEMPTATION_ITEMS));
 		this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 8.0F));
 		this.goalSelector.addGoal(6, new LookRandomlyGoal(this));

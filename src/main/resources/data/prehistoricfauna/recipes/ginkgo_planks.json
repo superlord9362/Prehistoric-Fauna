@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "prehistoricfauna:ginkgo_logs"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:ginkgo_planks",
+	"count": 4
+  }
+}

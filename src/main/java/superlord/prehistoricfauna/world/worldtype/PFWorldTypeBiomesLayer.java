@@ -11,7 +11,9 @@ public class PFWorldTypeBiomesLayer implements IAreaTransformer0 {
 	protected int[] commonBiomes = new int[] {
 			PFWorldTypeLayerUtil.getBiomeId(PFBiomes.HELL_CREEK_BIOME.getKey()),
 			PFWorldTypeLayerUtil.getBiomeId(PFBiomes.ISCHIGUALASTO_FOREST_BIOME.getKey()),
-			PFWorldTypeLayerUtil.getBiomeId(PFBiomes.MORRISON_SAVANNAH_BIOME.getKey())
+			PFWorldTypeLayerUtil.getBiomeId(PFBiomes.MORRISON_SAVANNAH_BIOME.getKey()),
+			PFWorldTypeLayerUtil.getBiomeId(PFBiomes.DJADOCHTA_DUNES_BIOME.getKey()),
+			PFWorldTypeLayerUtil.getBiomeId(PFBiomes.DJADOCHTA_ARROYO_BIOME.getKey())
 	};
 	protected int[] uncommonBiomes = new int[] {
 			PFWorldTypeLayerUtil.getBiomeId(PFBiomes.HELL_CREEK_HILLS_BIOME.getKey()),

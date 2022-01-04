@@ -14,7 +14,7 @@ public class HuntGoal extends NearestAttackableTargetGoal {
 	}
 	
 	public boolean shouldExecute() {
-		if (super.shouldExecute() && this.goalOwner.getRNG().nextInt(1000) == 0 && !this.goalOwner.isChild()) {
+		if (super.shouldExecute() && this.goalOwner.getRNG().nextInt(249) == 0 && !this.goalOwner.isChild()) {
 			return true;
 		} else {
 			return false;

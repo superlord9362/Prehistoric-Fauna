@@ -1,0 +1,6 @@
+{
+	"parent": "prehistoricfauna:block/hedge_extended",
+	"textures": {
+		"leaf": "prehistoricfauna:blocks/ginkgo_leaves"
+	} 
+}

@@ -33,15 +33,18 @@ import superlord.prehistoricfauna.common.entities.TimeGuardianEntity;
 @OnlyIn(Dist.CLIENT)
 public class BossRenderer extends MobRenderer<TimeGuardianEntity, EntityModel<TimeGuardianEntity>> {
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos.png");
-	private static final ResourceLocation SUMMONED_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos_summoned.png");
-	private static final ResourceLocation FUNKY_MONKEY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/brass_monkey.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos/henos.png");
+	private static final ResourceLocation SUMMONED_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos/henos_summoned.png");
+	private static final ResourceLocation FUNKY_MONKEY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos/brass_monkey.png");
+	private static final ResourceLocation TEXTURE_LIT = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos/henos_lit.png");
+	private static final ResourceLocation SUMMONED_TEXTURE_LIT = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos/henos_summoned_lit.png");
+	private static final ResourceLocation FUNKY_MONKEY_LIT = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos/brass_monkey_lit.png");
     private static final HenosModel HENOS = new HenosModel(0.0F);
     private static final HenosSummonedModel SUMMONED = new HenosSummonedModel(0.0F);
     private static final HenosModel HENOS_HEALING = new HenosModel(0.5F);
     private static final HenosSummonedModel SUMMONED_HEALING = new HenosSummonedModel(0.5F);
 
-    private static final ResourceLocation BEAM_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/beam.png");
+    private static final ResourceLocation BEAM_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos/beam.png");
     private static final RenderType BEAM_RENDER_TYPE = PFRenderTypes.getBossBeam(BEAM_TEXTURE);
     
 	public BossRenderer(EntityRendererManager rm) {
@@ -168,12 +171,24 @@ public class BossRenderer extends MobRenderer<TimeGuardianEntity, EntityModel<Ti
 	public ResourceLocation getEntityTexture(TimeGuardianEntity entity) {
 		String s = TextFormatting.getTextWithoutFormattingCodes(entity.getName().getString());
 		if (!entity.isSummoned() && s != null && "Brass Monkey".equals(s)) {
-			return FUNKY_MONKEY;
+			if (entity.getLaserTick() > 0) {
+				return FUNKY_MONKEY_LIT;
+			} else {
+				return FUNKY_MONKEY;
+			}
 		}
 		if (entity.isSummoned()) {
-			return SUMMONED_TEXTURE;
+			if (entity.getLaserTick() > 0) {
+				return SUMMONED_TEXTURE_LIT;
+			} else {
+				return SUMMONED_TEXTURE;
+			}
 		} else {
-			return TEXTURE;
+			if (entity.getLaserTick() > 0) {
+				return TEXTURE_LIT;
+			} else {
+				return TEXTURE;
+			}
 		}
 	}
 

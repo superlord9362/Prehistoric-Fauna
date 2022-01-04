@@ -124,20 +124,21 @@ public class AllosaurusEntity extends DinosaurEntity {
 		});
 		this.goalSelector.addGoal(1, new AllosaurusEntity.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new AllosaurusEntity.PanicGoal());
+		this.targetSelector.addGoal(2, new AllosaurusEntity.TerritoryAttackGoal());
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
 		this.targetSelector.addGoal(1, new AllosaurusEntity.HurtByTargetGoal());
 		this.targetSelector.addGoal(2, new AllosaurusEntity.AttackPlayerGoal());
-		this.goalSelector.addGoal(8, new AllosaurusEntity.LayEggGoal(this, 1.0D));
+		this.goalSelector.addGoal(0, new AllosaurusEntity.LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(2, new AllosaurusEntity.MateGoal(this, 1.0D));
 		this.goalSelector.addGoal(8, new AvoidEntityGoal<CamarasaurusEntity>(this, CamarasaurusEntity.class, 7F, 1.25D, 1.25D));
 
 	}
 	
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 50.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.25F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 12.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 50.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.25F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 12.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.6D);
 	}
 
 	private void setAttackGoals() {
@@ -193,7 +194,7 @@ public class AllosaurusEntity extends DinosaurEntity {
 	@Nullable
 	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		Random rand = new Random();
-		int birthNumber = rand.nextInt(399);
+		int birthNumber = rand.nextInt(799);
 		if (birthNumber >= 0 && birthNumber < 4) {
 			this.setAlbino(true);
 		} else if (birthNumber >= 4 && birthNumber < 7) {
@@ -312,7 +313,7 @@ public class AllosaurusEntity extends DinosaurEntity {
 		}
 
 		protected double getAttackReachSqr(LivingEntity attackTarget) {
-			return (double)(4.0F + attackTarget.getWidth());
+			return (double)(8.0F + attackTarget.getWidth());
 		}
 	}
 
@@ -327,6 +328,34 @@ public class AllosaurusEntity extends DinosaurEntity {
 		 */
 		public boolean shouldExecute() {
 			return !AllosaurusEntity.this.isChild() && !AllosaurusEntity.this.isBurning() ? false : super.shouldExecute();
+		}
+	}
+	
+	class TerritoryAttackGoal extends NearestAttackableTargetGoal<PlayerEntity> {
+		public TerritoryAttackGoal() {
+			super(AllosaurusEntity.this, PlayerEntity.class, 20, true, true, (Predicate<LivingEntity>)null);
+		}
+
+		/**
+		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+		 * method as well.
+		 */
+		public boolean shouldExecute() {
+			if (AllosaurusEntity.this.isChild()) {
+				return false;
+			} else {
+				if (super.shouldExecute()) {
+					for(@SuppressWarnings("unused") AllosaurusEntity allosaurus : AllosaurusEntity.this.world.getEntitiesWithinAABB(AllosaurusEntity.class, AllosaurusEntity.this.getBoundingBox().grow(8.0D, 4.0D, 8.0D))) {
+						return true;
+					}
+				}
+
+				return false;
+			}
+		}
+
+		protected double getTargetDistance() {
+			return super.getTargetDistance() * 0.5D;
 		}
 	}
 

@@ -1,0 +1,10 @@
+{
+    "parent": "block/orientable_with_bottom",
+    "textures": {
+        "particle": "prehistoricfauna:blocks/ginkgo_beehive_side",
+        "bottom": "prehistoricfauna:blocks/ginkgo_beehive_end",
+        "top": "prehistoricfauna:blocks/ginkgo_beehive_end",
+        "front": "prehistoricfauna:blocks/ginkgo_beehive_front",
+        "side": "prehistoricfauna:blocks/ginkgo_beehive_side"
+    }
+}

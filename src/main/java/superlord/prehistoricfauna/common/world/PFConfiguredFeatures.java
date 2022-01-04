@@ -56,6 +56,9 @@ public class PFConfiguredFeatures {
 
 	public static final ConfiguredFeature<PFTreeConfig, ?> METASEQUOIA_TREE_1 = createConfiguredFeature("metasequoia_tree_1", PFFeatures.METASEQUOIA_TREE_1.withConfiguration(new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.METASEQUOIA_LOG).setLeavesBlock(PFBlocks.METASEQUOIA_LEAVES).setMaxHeight(53).setMinHeight(41).build()));
 	public static final ConfiguredFeature<PFTreeConfig, ?> METASEQUOIA_TREE_2 = createConfiguredFeature("metasequoia_tree_2", PFFeatures.METASEQUOIA_TREE_2.withConfiguration(new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.METASEQUOIA_LOG).setLeavesBlock(PFBlocks.METASEQUOIA_LEAVES).setMaxHeight(56).setMinHeight(44).build()));
+	public static final ConfiguredFeature<PFTreeConfig, ?> METASEQUOIA_SMALL_TREE_1 = createConfiguredFeature("metasequoia_small_tree_1", PFFeatures.METASEQUOIA_SMALL_TREE_1.withConfiguration(new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.METASEQUOIA_LOG).setLeavesBlock(PFBlocks.METASEQUOIA_LEAVES).setMinHeight(10).setMaxHeight(16).build()));
+	public static final ConfiguredFeature<PFTreeConfig, ?> METASEQUOIA_SMALL_TREE_2 = createConfiguredFeature("metasequoia_small_tree_2", PFFeatures.METASEQUOIA_SMALL_TREE_2.withConfiguration(new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.METASEQUOIA_LOG).setLeavesBlock(PFBlocks.METASEQUOIA_LEAVES).setMinHeight(15).setMaxHeight(21).build()));
+	public static final ConfiguredFeature<PFTreeConfig, ?> METASEQUOIA_SMALL_TREE_3 = createConfiguredFeature("metasequoia_small_tree_3", PFFeatures.METASEQUOIA_SMALL_TREE_3.withConfiguration(new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.METASEQUOIA_LOG).setLeavesBlock(PFBlocks.METASEQUOIA_LEAVES).setMinHeight(19).setMaxHeight(25).build()));
 
 	public static final ConfiguredFeature<PFTreeConfig, ?> ARAUCARIA_TREE_1 = createConfiguredFeature("araucaria_tree_1", PFFeatures.ARAUCARIA_TREE_1.withConfiguration(new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.ARAUCARIA_LOG).setLeavesBlock(PFBlocks.ARAUCARIA_LEAVES).setMinHeight(44).setMaxHeight(55).build()));
 	public static final ConfiguredFeature<PFTreeConfig, ?> ARAUCARIA_TREE_2 = createConfiguredFeature("araucaria_tree_2", PFFeatures.ARAUCARIA_TREE_2.withConfiguration(new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.ARAUCARIA_LOG).setLeavesBlock(PFBlocks.ARAUCARIA_LEAVES).setMinHeight(44).setMaxHeight(55).build()));
@@ -112,7 +115,8 @@ public class PFConfiguredFeatures {
 	public static final ConfiguredFeature<?, ?> MORRISON_DOUBLE_HORSETAILS = createConfiguredFeature("morrison_double_horestails", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.TALL_HORSETAIL.getDefaultState()), new DoublePlantBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(75)).func_242731_b(5));
 	public static final ConfiguredFeature<?, ?> OSMUNDACAULIS = createConfiguredFeature("osmundacaulis", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.OSMUNDACAULIS.getDefaultState()), new SimpleBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(25)).func_242731_b(5));
 	public static final ConfiguredFeature<?, ?> TALL_OSMUNDACAULIS = createConfiguredFeature("tall_osmundacaulist", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.TALL_OSMUNDACAULIS.getDefaultState()), new DoublePlantBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(35)).func_242731_b(5));
-	public static final ConfiguredFeature<?, ?> DEAD_OSMUNDACAULIS = createConfiguredFeature("dead_osmundacaulis", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.DEAD_OSMUNDACAULIS.getDefaultState()), new SimpleBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(45)).func_242731_b(5));
+   public static final ConfiguredFeature<?, ?> DEAD_OSMUNDACAULIS = createConfiguredFeature("dead_osmundacaulis", Feature.RANDOM_PATCH.withConfiguration(PFFeatures.DEAD_CYCAD_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242731_b(20));
+
 	public static final ConfiguredFeature<?, ?> PETRIFIED_TREE = createConfiguredFeature("petrified_tree", Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.PETRIFIED_WOOD.getDefaultState()), new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()), new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3), new StraightTrunkPlacer(4, 2, 0), new TwoLayerFeature(1, 0, 1))).setIgnoreVines().build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(15)).func_242731_b(5));
 	public static final ConfiguredFeature<?, ?> ZAMITES_BUSH = createConfiguredFeature("zamites_bush", PFFeatures.ZAMITES_BUSH.withConfiguration(new JohnstoniaConfig(1)).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(15)));
 
@@ -174,6 +178,15 @@ public class PFConfiguredFeatures {
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, OSMUNDA_DOUBLE);
 	}
 
+	public static void withDeadPlants(BiomeGenerationSettings.Builder builder) {
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DEAD_OSMUNDACAULIS);
+	}
+	
+	public static void withDjadochtaPlants(BiomeGenerationSettings.Builder builder) {
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HORSETAIL);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HORSETAIL_DOUBLE);
+	}
+
 	public static final ConfiguredFeature<?, ?> HELL_CREEK_VEGETATION = createConfiguredFeature("hell_creek_vegetation", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
 			METASEQUOIA_TREE_1.withChance(0.1F),
 			METASEQUOIA_TREE_2.withChance(0.1F),
@@ -211,6 +224,12 @@ public class PFConfiguredFeatures {
 			), ARAUCARIA_SMALL_TREE_4))
 			.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(8, 0.2F, 3))));
 
+	public static ConfiguredFeature<?, ?> DJADOCHTA_ARROYO_VEGETATION = createConfiguredFeature("djadochta_arroyo_vegetation", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
+			METASEQUOIA_SMALL_TREE_1.withChance(0.33F),
+			METASEQUOIA_SMALL_TREE_2.withChance(0.33F)
+			), METASEQUOIA_SMALL_TREE_3))
+			.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0.25F, 1))));
+	
 	public static ConfiguredFeature<?, ?> MORRISON_SAVANNA_VEGETATION = createConfiguredFeature("morrison_savanna_vegetation", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
 			PROTOPICEOXYLON_TREE_1.withChance(0.1F),
 			PROTOPICEOXYLON_TREE_2.withChance(0.1F),

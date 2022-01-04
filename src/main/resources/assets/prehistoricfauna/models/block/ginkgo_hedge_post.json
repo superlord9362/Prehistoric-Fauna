@@ -1,0 +1,7 @@
+{
+	"parent": "prehistoricfauna:block/hedge_post",
+	"textures": {
+		"log": "prehistoricfauna:blocks/ginkgo_log",
+		"leaf": "prehistoricfauna:blocks/ginkgo_leaves"
+	}
+}

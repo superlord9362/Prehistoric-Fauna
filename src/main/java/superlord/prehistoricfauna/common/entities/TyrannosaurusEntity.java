@@ -72,6 +72,7 @@ public class TyrannosaurusEntity extends DinosaurEntity {
 	private static final DataParameter<Boolean> MELANISTIC = EntityDataManager.createKey(TyrannosaurusEntity.class, DataSerializers.BOOLEAN);
 	private int warningSoundTicks;
 	private int isDigging;
+	public int attackTick = 0;
 	private Goal panicGoal;
 
 	public TyrannosaurusEntity(EntityType<? extends TyrannosaurusEntity> type, World worldIn) {
@@ -138,8 +139,9 @@ public class TyrannosaurusEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(1, new TyrannosaurusEntity.MeleeAttackGoal());
 		this.targetSelector.addGoal(1, new TyrannosaurusEntity.HurtByTargetGoal());
 		this.targetSelector.addGoal(2, new TyrannosaurusEntity.AttackPlayerGoal(this));
-		this.goalSelector.addGoal(8, new TyrannosaurusEntity.LayEggGoal(this, 1.0D));
-		this.goalSelector.addGoal(2, new TyrannosaurusEntity.MateGoal(this, 1.0D));
+		this.targetSelector.addGoal(2, new TyrannosaurusEntity.TerritoryAttackGoal());
+		this.goalSelector.addGoal(0, new TyrannosaurusEntity.LayEggGoal(this, 1.0D));
+		this.goalSelector.addGoal(0, new TyrannosaurusEntity.MateGoal(this, 1.0D));
 		this.targetSelector.addGoal(1, new JuvenileHuntGoal(this, AnimalEntity.class, 10, false, false, (p_213487_0_) -> {
 			return p_213487_0_ instanceof ThescelosaurusEntity || p_213487_0_ instanceof DryosaurusEntity || p_213487_0_ instanceof IschigualastiaEntity || p_213487_0_ instanceof CowEntity || p_213487_0_ instanceof SheepEntity || p_213487_0_ instanceof HorseEntity || p_213487_0_ instanceof DonkeyEntity || p_213487_0_ instanceof MuleEntity || p_213487_0_ instanceof PlayerEntity;
 		}));
@@ -149,7 +151,7 @@ public class TyrannosaurusEntity extends DinosaurEntity {
 	}
 	
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 100.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 14.0D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 100.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 14.0D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.75D);
 	}
 
 	@Override
@@ -211,7 +213,7 @@ public class TyrannosaurusEntity extends DinosaurEntity {
 	@Nullable
 	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		Random rand = new Random();
-		int birthNumber = rand.nextInt(399);
+		int birthNumber = rand.nextInt(799);
 		if (birthNumber >= 0 && birthNumber < 4) {
 			this.setAlbino(true);
 		} else if (birthNumber >= 4 && birthNumber < 7) {
@@ -310,7 +312,7 @@ public class TyrannosaurusEntity extends DinosaurEntity {
 			}
 
 		}
-
+		
 		public boolean shouldContinueExecuting() {
 			float f = this.attacker.getBrightness();
 			if (f >= 0.5F && this.attacker.getRNG().nextInt(100) == 0) {
@@ -326,7 +328,7 @@ public class TyrannosaurusEntity extends DinosaurEntity {
 		}
 
 		protected double getAttackReachSqr(LivingEntity attackTarget) {
-			return (double)(4.0F + attackTarget.getWidth());
+			return (double)(15.0F + attackTarget.getWidth());
 		}
 	}
 
@@ -491,6 +493,34 @@ public class TyrannosaurusEntity extends DinosaurEntity {
 				this.delayCounter = 10;
 				this.babyTyrannosaurusEntity.getNavigator().tryMoveToEntityLiving(this.parentTyrannosaurusEntity, this.moveSpeed);
 			}
+		}
+	}
+	
+	class TerritoryAttackGoal extends NearestAttackableTargetGoal<PlayerEntity> {
+		public TerritoryAttackGoal() {
+			super(TyrannosaurusEntity.this, PlayerEntity.class, 20, true, true, (Predicate<LivingEntity>)null);
+		}
+
+		/**
+		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+		 * method as well.
+		 */
+		public boolean shouldExecute() {
+			if (TyrannosaurusEntity.this.isChild()) {
+				return false;
+			} else {
+				if (super.shouldExecute()) {
+					for(@SuppressWarnings("unused") TyrannosaurusEntity tyrannosaurus : TyrannosaurusEntity.this.world.getEntitiesWithinAABB(TyrannosaurusEntity.class, TyrannosaurusEntity.this.getBoundingBox().grow(8.0D, 4.0D, 8.0D))) {
+						return true;
+					}
+				}
+
+				return false;
+			}
+		}
+
+		protected double getTargetDistance() {
+			return super.getTargetDistance() * 0.5D;
 		}
 	}
 

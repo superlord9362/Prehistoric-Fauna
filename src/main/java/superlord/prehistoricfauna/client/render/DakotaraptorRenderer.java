@@ -81,27 +81,29 @@ public class DakotaraptorRenderer extends MobRenderer<DakotaraptorEntity, Entity
 					return MAN;
 				}
 			}
-		}
-		if(entity.isSleeping()) {
-			if (entity.isAlbino()) {
-				return ALBINO_SLEEPING;
-			} else if (entity.isMelanistic()) {
-				return MELANISTIC_SLEEPING;
+		} else if(entity.isSleeping()) {
+			if (entity.isChild()) {
+				return CHILD_SLEEPING;
 			} else {
-				return SLEEPING;
+				if (entity.isAlbino()) {
+					return ALBINO_SLEEPING;
+				} else if (entity.isMelanistic()) {
+					return MELANISTIC_SLEEPING;
+				} else {
+					return SLEEPING;
+				}
 			}
-		} else if(entity.isChild() && entity.isSleeping() && !entity.isAlbino() && !entity.isMelanistic()) {
-			return CHILD_SLEEPING;
-		} else if (entity.isChild() && !entity.isAlbino() && !entity.isMelanistic()) {
+		} else if (entity.isChild()) {
 			return CHILD;
-		} else if (entity.isAlbino()) {
-			return ALBINO;
-		} else if (entity.isMelanistic()) {
-			return MELANISTIC;
 		} else {
-			return DAKOTARAPTOR;
+			if (entity.isAlbino()) {
+				return ALBINO;
+			} else if (entity.isMelanistic()) {
+				return MELANISTIC;
+			} else {
+				return DAKOTARAPTOR;
+			}
 		}
 	}
-
 
 }

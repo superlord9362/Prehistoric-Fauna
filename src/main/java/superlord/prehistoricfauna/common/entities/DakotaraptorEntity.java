@@ -171,7 +171,7 @@ public class DakotaraptorEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(1, new DakotaraptorEntity.JumpGoal());
 		this.goalSelector.addGoal(2, new DakotaraptorEntity.PanicGoal());
-		this.goalSelector.addGoal(3, new DakotaraptorEntity.MateGoal(this, 1.0D));
+		this.goalSelector.addGoal(0, new DakotaraptorEntity.MateGoal(this, 1.0D));
 		this.targetSelector.addGoal(2, new DakotaraptorEntity.AttackPlayerGoal());
 		this.goalSelector.addGoal(5, new DakotaraptorEntity.FollowTargetGoal());
 		this.goalSelector.addGoal(6, new DakotaraptorEntity.PounceGoal());
@@ -184,7 +184,7 @@ public class DakotaraptorEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(11, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(12, new DakotaraptorEntity.WatchGoal(this, PlayerEntity.class, 24.0F));
 		this.goalSelector.addGoal(13, new DakotaraptorEntity.SitAndLookGoal());
-		this.goalSelector.addGoal(8, new DakotaraptorEntity.LayEggGoal(this, 1.0D));
+		this.goalSelector.addGoal(0, new DakotaraptorEntity.LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, AnkylosaurusEntity.class, 7F, 1.25D, 1.25D));
 		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, TriceratopsEntity.class, 7F, 1.25D, 1.25D));
 		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, TyrannosaurusEntity.class, 7F, 1.25D, 1.25D));
@@ -327,7 +327,7 @@ public class DakotaraptorEntity extends DinosaurEntity {
 	public void applyEntityCollision(Entity entity) {
 		super.applyEntityCollision(entity);
 		if (this.getAttackTarget() != null) {
-			if (this.getAttackTarget() == entity && !onGround && this.getRidingEntity() != entity) {
+			if (this.getAttackTarget() == entity && !onGround && this.getRidingEntity() != entity && !(entity instanceof PlayerEntity)) {
 				this.startRiding(entity);
 			}
 		}
@@ -378,7 +378,7 @@ public class DakotaraptorEntity extends DinosaurEntity {
 	@Nullable
 	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		Random rand = new Random();
-		int birthNumber = rand.nextInt(399);
+		int birthNumber = rand.nextInt(799);
 		if (birthNumber >= 0 && birthNumber < 4) {
 			this.setAlbino(true);
 		} else if (birthNumber >= 4 && birthNumber < 7) {
@@ -418,7 +418,7 @@ public class DakotaraptorEntity extends DinosaurEntity {
 		return this.getDakotaraptorFlag(32);
 	}
 
-	private void setSleeping(boolean p_213485_1_) {
+	public void setSleeping(boolean p_213485_1_) {
 		this.setDakotaraptorFlag(32, p_213485_1_);
 	}
 
@@ -591,7 +591,7 @@ public class DakotaraptorEntity extends DinosaurEntity {
 	}
 	
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 6.0D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 6.0D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.1D);
 	}
 
 	public static boolean func_213481_a(DakotaraptorEntity p_213481_0_, LivingEntity p_213481_1_) {
@@ -917,7 +917,6 @@ public class DakotaraptorEntity extends DinosaurEntity {
 			} else if (DakotaraptorEntity.this.rotationPitch > 0.0F && DakotaraptorEntity.this.onGround && (float)DakotaraptorEntity.this.getMotion().y != 0.0F && DakotaraptorEntity.this.world.getBlockState(new BlockPos(DakotaraptorEntity.this.getPositionVec())).getBlock() == Blocks.SNOW) {
 				DakotaraptorEntity.this.rotationPitch = 60.0F;
 				DakotaraptorEntity.this.setAttackTarget((LivingEntity)null);
-				DakotaraptorEntity.this.setStuck(true);
 			}
 
 		}
@@ -1205,7 +1204,7 @@ public class DakotaraptorEntity extends DinosaurEntity {
 		}
 
 		protected double getAttackReachSqr(LivingEntity attackTarget) {
-			return (double)(4.0F + attackTarget.getWidth());
+			return (double)(5.0F + attackTarget.getWidth());
 		}
 	}
 

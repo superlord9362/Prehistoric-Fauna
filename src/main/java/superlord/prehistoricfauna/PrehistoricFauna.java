@@ -78,6 +78,7 @@ import superlord.prehistoricfauna.client.util.PFPacketHandler;
 import superlord.prehistoricfauna.common.CommonEvents;
 import superlord.prehistoricfauna.common.CommonProxy;
 import superlord.prehistoricfauna.common.entities.AbstractBottomDwellerFishEntity;
+import superlord.prehistoricfauna.common.entities.AepyornithomimusEntity;
 import superlord.prehistoricfauna.common.entities.AllosaurusEntity;
 import superlord.prehistoricfauna.common.entities.AllosaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.AllosaurusSkullEntity;
@@ -91,6 +92,7 @@ import superlord.prehistoricfauna.common.entities.CeratosaurusEntity;
 import superlord.prehistoricfauna.common.entities.CeratosaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.CeratosaurusSkullEntity;
 import superlord.prehistoricfauna.common.entities.ChromogisaurusEntity;
+import superlord.prehistoricfauna.common.entities.CitipatiEntity;
 import superlord.prehistoricfauna.common.entities.CyclurusEntity;
 import superlord.prehistoricfauna.common.entities.DakotaraptorEntity;
 import superlord.prehistoricfauna.common.entities.DidelphodonEntity;
@@ -110,6 +112,7 @@ import superlord.prehistoricfauna.common.entities.IschigualastiaSkullEntity;
 import superlord.prehistoricfauna.common.entities.LandSentinelEntity;
 import superlord.prehistoricfauna.common.entities.MyledaphusEntity;
 import superlord.prehistoricfauna.common.entities.PotamoceratodusEntity;
+import superlord.prehistoricfauna.common.entities.ProtoceratopsEntity;
 import superlord.prehistoricfauna.common.entities.SaurosuchusEntity;
 import superlord.prehistoricfauna.common.entities.SaurosuchusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.SaurosuchusSkullEntity;
@@ -126,6 +129,7 @@ import superlord.prehistoricfauna.common.entities.TrilobiteSentinelEntity;
 import superlord.prehistoricfauna.common.entities.TyrannosaurusEntity;
 import superlord.prehistoricfauna.common.entities.TyrannosaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.TyrannosaurusSkullEntity;
+import superlord.prehistoricfauna.common.entities.VelociraptorEntity;
 import superlord.prehistoricfauna.common.entities.tile.MessageUpdatePaleoscribe;
 import superlord.prehistoricfauna.common.util.RegistryHelper;
 import superlord.prehistoricfauna.common.world.PFConfiguredFeatures;
@@ -228,6 +232,7 @@ public class PrehistoricFauna {
 			});
 			MinecraftForge.EVENT_BUS.register(new CommonEvents());
 		});
+<<<<<<< Updated upstream
 		EntitySpawnPlacementRegistry.register(PFEntities.ALLOSAURUS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		EntitySpawnPlacementRegistry.register(PFEntities.ANKYLOSAURUS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		EntitySpawnPlacementRegistry.register(PFEntities.BASILEMYS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
@@ -258,6 +263,42 @@ public class PrehistoricFauna {
 		EntitySpawnPlacementRegistry.register(PFEntities.CERATODUS, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractFishEntity::func_223363_b);
 		CommonEvents.init();
 		CommonEvents.setup();
+=======
+        EntitySpawnPlacementRegistry.register(PFEntities.ALLOSAURUS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.ANKYLOSAURUS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.BASILEMYS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.CAMARASAURUS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.CERATOSAURUS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.CHROMOGISAURUS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.DAKOTARAPTOR_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.DIDELPHODON_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.DRYOSAURUS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.VELOCIRAPTOR_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.CITIPATI_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.AEPYORNITHOMIMUS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.EILENODON_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.EXAERETODON_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.HERRERASAURUS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.HESPERORNITHOIDES_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.HYPERODAPEDON_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.ISCHIGUALASTIA_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.SAUROSUCHUS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.SILLOSUCHUS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.STEGOSAURUS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.THESCELOSAURUS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.TRICERATOPS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.TYRANNOSAURUS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.PROTOCERATOPS_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.TRILOBITE_SENTINEL_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TrilobiteSentinelEntity::canSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.LAND_SENTINEL_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, LandSentinelEntity::canSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.MYLEDAPHUS, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.OCEAN_FLOOR, AbstractBottomDwellerFishEntity::canSpawn);
+        EntitySpawnPlacementRegistry.register(PFEntities.GAR, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractFishEntity::func_223363_b);
+        EntitySpawnPlacementRegistry.register(PFEntities.CYCLURUS, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractFishEntity::func_223363_b);
+        EntitySpawnPlacementRegistry.register(PFEntities.POTAMOCERATODUS, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractFishEntity::func_223363_b);
+        EntitySpawnPlacementRegistry.register(PFEntities.CERATODUS, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractFishEntity::func_223363_b);
+        CommonEvents.init();
+        CommonEvents.setup();
+>>>>>>> Stashed changes
 	}
 
 	public void setupBiomesAndDimensions(final FMLCommonSetupEvent event) {
@@ -298,6 +339,7 @@ public class PrehistoricFauna {
 		GlobalEntityTypeAttributes.put(PFEntities.HERRERASAURUS_SKULL, HerrerasaurusSkullEntity.createAttributes().create());
 		GlobalEntityTypeAttributes.put(PFEntities.HESPERORNITHOIDES_ENTITY, HesperornithoidesEntity.createAttributes().create());
 		GlobalEntityTypeAttributes.put(PFEntities.HYPERODAPEDON_ENTITY, HyperodapedonEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.PROTOCERATOPS_ENTITY, ProtoceratopsEntity.createAttributes().create());
 		GlobalEntityTypeAttributes.put(PFEntities.ISCHIGUALASTIA_ENTITY, IschigualastiaEntity.createAttributes().create());
 		GlobalEntityTypeAttributes.put(PFEntities.ISCHIGUALASTIA_SKELETON, IschigualastiaSkeletonEntity.createAttributes().create());
 		GlobalEntityTypeAttributes.put(PFEntities.ISCHIGUALASTIA_SKULL, IschigualastiaSkullEntity.createAttributes().create());
@@ -323,6 +365,9 @@ public class PrehistoricFauna {
 		GlobalEntityTypeAttributes.put(PFEntities.CYCLURUS, CyclurusEntity.createAttributes().create());
 		GlobalEntityTypeAttributes.put(PFEntities.CERATODUS, CeratodusEntity.createAttributes().create());
 		GlobalEntityTypeAttributes.put(PFEntities.POTAMOCERATODUS, PotamoceratodusEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.VELOCIRAPTOR_ENTITY, VelociraptorEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.CITIPATI_ENTITY, CitipatiEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.AEPYORNITHOMIMUS_ENTITY, AepyornithomimusEntity.createAttributes().create());
 	}
 
 	@SuppressWarnings("unlikely-arg-type")
@@ -395,6 +440,23 @@ public class PrehistoricFauna {
 		}
 		if (name.equals("petrified_forest")) {
 			event.getGeneration().getFeatures(Decoration.VEGETAL_DECORATION).add(() -> PFConfiguredFeatures.PETRIFIED_TREE);
+		}
+		if (name.equals("djadochta_dunes") || name.equals("djadochta_arroyo")) {
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_COAL);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_IRON);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_GOLD);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_REDSTONE);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_DIAMOND);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_LAPIS);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_DIRT);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_GRAVEL);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_ANDESITE);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_GRANITE);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_DIORITE);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.DISK_SAND);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.DISK_GRAVEL);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.DISK_CLAY);
+			event.getGeneration().getFeatures(Decoration.VEGETAL_DECORATION).add(() ->  Features.PATCH_DEAD_BUSH_BADLANDS);
 		}
 	}
 

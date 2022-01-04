@@ -10,7 +10,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.common.Mod;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.render.tileentity.GuiPaleo;
+import superlord.prehistoricfauna.client.render.tileentity.gui.GuiPaleo;
 import superlord.prehistoricfauna.common.CommonProxy;
 
 @OnlyIn(Dist.CLIENT)

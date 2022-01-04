@@ -36,6 +36,16 @@
         ]
       }
     },
+	"cyclurus": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:cyclurus_bucket"
+				}
+			]
+		}
+	},
 	"ceratodus": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {

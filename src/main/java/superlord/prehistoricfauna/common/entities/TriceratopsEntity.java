@@ -141,15 +141,15 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 		this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
 		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, AnkylosaurusEntity.class, 7F, 1.25D, 1.25D));
-		this.targetSelector.addGoal(1, new TriceratopsEntity.HurtByTargetGoal());
-		this.targetSelector.addGoal(2, new TriceratopsEntity.AttackPlayerGoal());
-		this.goalSelector.addGoal(1, new TriceratopsEntity.MeleeAttackGoal());
-		this.goalSelector.addGoal(8, new TriceratopsEntity.LayEggGoal(this, 1.0D));
-		this.goalSelector.addGoal(2, new TriceratopsEntity.MateGoal(this, 1.0D));
+		this.targetSelector.addGoal(0, new TriceratopsEntity.HurtByTargetGoal());
+		this.targetSelector.addGoal(0, new TriceratopsEntity.AttackPlayerGoal());
+		this.goalSelector.addGoal(0, new TriceratopsEntity.MeleeAttackGoal());
+		this.goalSelector.addGoal(0, new TriceratopsEntity.LayEggGoal(this, 1.0D));
+		this.goalSelector.addGoal(0, new TriceratopsEntity.MateGoal(this, 1.0D));
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 60.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.2F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 10.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 60.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.2F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 10.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.5D);
 	}
 
 	protected SoundEvent getAmbientSound() {
@@ -235,7 +235,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 	@Nullable
 	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		Random rand = new Random();
-		int birthNumber = rand.nextInt(399);
+		int birthNumber = rand.nextInt(799);
 		if (birthNumber >= 0 && birthNumber < 4) {
 			this.setAlbino(true);
 		} else if (birthNumber >= 4 && birthNumber < 7) {
@@ -535,7 +535,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 		}
 
 		protected double getAttackReachSqr(LivingEntity attackTarget) {
-			return (double)(4.0F + attackTarget.getWidth());
+			return (double)(10.0F + attackTarget.getWidth());
 		}
 	}
 

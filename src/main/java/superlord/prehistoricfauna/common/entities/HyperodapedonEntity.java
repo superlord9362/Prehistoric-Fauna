@@ -127,7 +127,7 @@ public class HyperodapedonEntity extends DinosaurEntity {
 	@Nullable
 	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		Random rand = new Random();
-		int birthNumber = rand.nextInt(399);
+		int birthNumber = rand.nextInt(799);
 		if (birthNumber >= 0 && birthNumber < 4) {
 			this.setAlbino(true);
 		} else if (birthNumber >= 4 && birthNumber < 7) {
@@ -141,7 +141,7 @@ public class HyperodapedonEntity extends DinosaurEntity {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25F));
-		this.goalSelector.addGoal(2, new HyperodapedonEntity.MateGoal(this, 1.0D));
+		this.goalSelector.addGoal(0, new HyperodapedonEntity.MateGoal(this, 1.0D));
 		this.goalSelector.addGoal(3, new FollowParentGoal(this, 1.1D));
 		this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, false, TEMPTATION_ITEMS));
@@ -163,7 +163,7 @@ public class HyperodapedonEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<ExaeretodonEntity>(this, ExaeretodonEntity.class, 10F, 2D, 2D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<ChromogisaurusEntity>(this, ChromogisaurusEntity.class, 10F, 2D, 2D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<SaurosuchusEntity>(this, SaurosuchusEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(8, new HyperodapedonEntity.LayEggGoal(this, 1.0D));
+		this.goalSelector.addGoal(0, new HyperodapedonEntity.LayEggGoal(this, 1.0D));
 	}
 	
 	protected SoundEvent getAmbientSound() {

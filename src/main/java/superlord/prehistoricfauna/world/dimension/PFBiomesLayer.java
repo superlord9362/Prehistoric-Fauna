@@ -10,6 +10,8 @@ public class PFBiomesLayer implements IAreaTransformer0 {
 	private static final int RARE_BIOME_CHANCE = 16;
 	protected int[] commonBiomes = new int[] {
 			PFLayerUtil.getBiomeId(PFBiomes.HELL_CREEK_BIOME.getKey()),
+			PFLayerUtil.getBiomeId(PFBiomes.DJADOCHTA_DUNES_BIOME.getKey()),
+			PFLayerUtil.getBiomeId(PFBiomes.DJADOCHTA_ARROYO_BIOME.getKey())
 	};
 	protected int[] uncommonBiomes = new int[] {
 			PFLayerUtil.getBiomeId(PFBiomes.HELL_CREEK_HILLS_BIOME.getKey())

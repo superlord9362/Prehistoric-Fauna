@@ -44,7 +44,7 @@
 		"trigger": "minecraft:fishing_rod_hooked",
 		"conditions": {
 			"item": {
-				"item": "prehistoricfauna:raw_lepisosteus"
+				"item": "prehistoricfauna:raw_gar"
 			}
 		}
 	},

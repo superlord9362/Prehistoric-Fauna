@@ -62,11 +62,11 @@ public class TrapBlock extends Block {
 
 	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
 		int i = this.getRedstoneStrength(state);
+		System.out.println("Pain");
 		if (i > 0) {
 			this.updateState(worldIn, pos, state, i);
 		}
-
-	}
+	}	
 
 	public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
 		if (!worldIn.isRemote) {

@@ -17,6 +17,8 @@ import superlord.prehistoricfauna.common.world.WorldGenRegistrationHelper;
 import superlord.prehistoricfauna.world.biome.BiomeData;
 import superlord.prehistoricfauna.world.biome.Dummy;
 import superlord.prehistoricfauna.world.biome.PFBiome;
+import superlord.prehistoricfauna.world.biome.cretaceous.DjadochtaArroyoBiome;
+import superlord.prehistoricfauna.world.biome.cretaceous.DjadochtaDunesBiome;
 import superlord.prehistoricfauna.world.biome.cretaceous.HellCreekBiome;
 import superlord.prehistoricfauna.world.biome.cretaceous.HellCreekClearingBiome;
 import superlord.prehistoricfauna.world.biome.cretaceous.HellCreekHillsBiome;
@@ -44,12 +46,18 @@ public class PFBiomes {
 	public static final PFBiome ISCHIGUALASTO_CLEARING_BIOME = new IschigualastoClearingBiome();
 	public static final PFBiome ISCHIGUALASTO_HILLS_BIOME = new IschigualastoHillsBiome();
 	public static final PFBiome ISCHIGUALASTO_RIVER_BIOME = new IschigualastoRiverBiome();
+	
+	public static final PFBiome DJADOCHTA_DUNES_BIOME = new DjadochtaDunesBiome(0.4F, 0.2F);
+	public static final PFBiome DJADOCHTA_ARROYO_BIOME = new DjadochtaArroyoBiome(0.05F, 0.2F);
 
 	//Cretaceous
 	public static final Biome HELL_CREEK = WorldGenRegistrationHelper.createBiome("hell_creek", HELL_CREEK_BIOME.getBiome(), 1);
 	public static final Biome HELL_CREEK_CLEARING = WorldGenRegistrationHelper.createBiome("hell_creek_clearing", HELL_CREEK_CLEARING_BIOME.getBiome(), 6);
 	public static final Biome HELL_CREEK_HILLS = WorldGenRegistrationHelper.createBiome("hell_creek_hills", HELL_CREEK_HILLS_BIOME.getBiome(), 5);
 	public static final Biome HELL_CREEK_RIVER = WorldGenRegistrationHelper.createBiome("hell_creek_river", HELL_CREEK_RIVER_BIOME.getBiome(), 7);
+	
+	public static final Biome DJADOCHTA_DUNES = WorldGenRegistrationHelper.createBiome("djadochta_dunes", DJADOCHTA_DUNES_BIOME.getBiome(), 12);
+	public static final Biome DJADOCHTA_ARROYO = WorldGenRegistrationHelper.createBiome("djadochta_arroyo", DJADOCHTA_ARROYO_BIOME.getBiome(), 13);
 
 	//Jurassic
 	public static final Biome MORRISON_SAVANNAH = WorldGenRegistrationHelper.createBiome("morrison_savannah", MORRISON_SAVANNAH_BIOME.getBiome(), 2);

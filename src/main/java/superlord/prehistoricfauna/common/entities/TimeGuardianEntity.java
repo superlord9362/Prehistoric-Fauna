@@ -615,7 +615,7 @@ public class TimeGuardianEntity extends MonsterEntity {
 						base.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this.timeGuardian, this.timeGuardian), f);
 						base.attackEntityFrom(DamageSource.causeMobDamage(this.timeGuardian), (float) this.timeGuardian.getAttribute(Attributes.ATTACK_DAMAGE).getValue() / 2);
 						base.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 140 * (int) f, 2));
-						base.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 140 * (int) f, 2));
+						base.addPotionEffect(new EffectInstance(Effects.MINING_FATIGUE, 140 * (int) f, 2));
 					}
 				}
 			}

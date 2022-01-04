@@ -14,10 +14,10 @@
       "item": "minecraft:brown_mushroom"
     },
     {
-      "item": "prehistoricfauna:crassostrea_oyster"
+      "tag": "prehistoricfauna:oysters"
     },
     {
-      "item": "prehistoricfauna:crassostrea_oyster"
+      "tag": "prehistoricfauna:oysters"
     }
   ],
   "result": {

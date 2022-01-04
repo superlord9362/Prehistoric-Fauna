@@ -125,8 +125,8 @@ public class CamarasaurusEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
 		this.targetSelector.addGoal(1, new CamarasaurusEntity.HurtByTargetGoal());
 		this.targetSelector.addGoal(2, new CamarasaurusEntity.AttackPlayerGoal());
-		this.goalSelector.addGoal(8, new CamarasaurusEntity.LayEggGoal(this, 1.0D));
-		this.goalSelector.addGoal(2, new CamarasaurusEntity.MateGoal(this, 1.0D));
+		this.goalSelector.addGoal(0, new CamarasaurusEntity.LayEggGoal(this, 1.0D));
+		this.goalSelector.addGoal(0, new CamarasaurusEntity.MateGoal(this, 1.0D));
 	}
 	
 	@Override
@@ -140,7 +140,7 @@ public class CamarasaurusEntity extends DinosaurEntity {
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 200.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 12.0D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 50.0D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 200.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 12.0D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
 	}
 
 	protected SoundEvent getAmbientSound() {
@@ -242,7 +242,7 @@ public class CamarasaurusEntity extends DinosaurEntity {
 	@Nullable
 	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		Random rand = new Random();
-		int birthNumber = rand.nextInt(399);
+		int birthNumber = rand.nextInt(799);
 		if (birthNumber >= 0 && birthNumber < 4) {
 			this.setAlbino(true);
 		} else if (birthNumber >= 4 && birthNumber < 7) {
@@ -310,7 +310,7 @@ public class CamarasaurusEntity extends DinosaurEntity {
 		}
 
 		protected double getAttackReachSqr(LivingEntity attackTarget) {
-			return (double)(4.0F + attackTarget.getWidth());
+			return (double)(15.0F + attackTarget.getWidth());
 		}
 	}
 

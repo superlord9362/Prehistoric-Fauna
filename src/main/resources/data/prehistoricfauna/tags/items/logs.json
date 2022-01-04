@@ -28,6 +28,10 @@
 		"prehistoricfauna:stripped_zamites_wood",
 		"prehistoricfauna:stripped_protojuniperoxylon_wood",
 		"prehistoricfauna:stripped_heidiphyllum_wood",
-		"prehistoricfauna:stripped_liriodendrites_wood"
+		"prehistoricfauna:stripped_liriodendrites_wood",
+		"prehistoricfauna:ginkgo_log",
+		"prehistoricfauna:ginkgo_wood",
+		"prehistoricfauna:stripped_ginkgo_log",
+		"prehistoricfauna:stripped_ginkgo_wood"
 	]
 }

@@ -69,6 +69,8 @@ public class PrehistoricBoatEntity extends BoatEntity {
             	return PFItems.HEIDIPHYLLUM_BOAT.get();
             case LIRIODENDRITES:
             	return PFItems.LIRIODENDRITES_BOAT.get();
+            case GINKGO:
+            	return PFItems.GINKGO_BOAT.get();
         }
     }
 
@@ -88,6 +90,8 @@ public class PrehistoricBoatEntity extends BoatEntity {
             	return PFBlocks.HEIDIPHYLLUM_PLANKS;
             case LIRIODENDRITES:
             	return PFBlocks.LIRIODENDRITES_PLANKS;
+            case GINKGO:
+            	return PFBlocks.GINKGO_PLANKS;
         }
     }
 
@@ -205,7 +209,8 @@ public class PrehistoricBoatEntity extends BoatEntity {
         ZAMITES("zamites"),
         PROTOJUNIPER("protojuniper"),
         HEIDIPHYLLUM("heidiphyllum"),
-        LIRIODENDRITES("liriodendrites");
+        LIRIODENDRITES("liriodendrites"),
+        GINKGO("ginkgo");
 
 
         private final String name;

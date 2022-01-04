@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.common.entities.AepyornithomimusEntity;
 import superlord.prehistoricfauna.common.entities.AllosaurusEntity;
 import superlord.prehistoricfauna.common.entities.AllosaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.AllosaurusSkullEntity;
@@ -19,6 +20,7 @@ import superlord.prehistoricfauna.common.entities.CeratosaurusEntity;
 import superlord.prehistoricfauna.common.entities.CeratosaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.CeratosaurusSkullEntity;
 import superlord.prehistoricfauna.common.entities.ChromogisaurusEntity;
+import superlord.prehistoricfauna.common.entities.CitipatiEntity;
 import superlord.prehistoricfauna.common.entities.CyclurusEntity;
 import superlord.prehistoricfauna.common.entities.DakotaraptorEntity;
 import superlord.prehistoricfauna.common.entities.DidelphodonEntity;
@@ -39,6 +41,7 @@ import superlord.prehistoricfauna.common.entities.MyledaphusEntity;
 import superlord.prehistoricfauna.common.entities.PaleopaintingEntity;
 import superlord.prehistoricfauna.common.entities.PotamoceratodusEntity;
 import superlord.prehistoricfauna.common.entities.PrehistoricBoatEntity;
+import superlord.prehistoricfauna.common.entities.ProtoceratopsEntity;
 import superlord.prehistoricfauna.common.entities.SaurosuchusEntity;
 import superlord.prehistoricfauna.common.entities.SaurosuchusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.SaurosuchusSkullEntity;
@@ -55,6 +58,7 @@ import superlord.prehistoricfauna.common.entities.TrilobiteSentinelEntity;
 import superlord.prehistoricfauna.common.entities.TyrannosaurusEntity;
 import superlord.prehistoricfauna.common.entities.TyrannosaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.TyrannosaurusSkullEntity;
+import superlord.prehistoricfauna.common.entities.VelociraptorEntity;
 import superlord.prehistoricfauna.common.entities.WallFossilEntity;
 
 public class PFEntities {
@@ -69,7 +73,11 @@ public class PFEntities {
 	public static final EntityType<BasilemysEntity> BASILEMYS_ENTITY = register(EntityType.Builder.<BasilemysEntity>create(BasilemysEntity::new, EntityClassification.CREATURE).size(0.75F, 0.375F), "basilemys");
 	public static final EntityType<DakotaraptorEntity> DAKOTARAPTOR_ENTITY = register(EntityType.Builder.<DakotaraptorEntity>create(DakotaraptorEntity::new, EntityClassification.CREATURE).size(0.875F, 1.6875F), "dakotaraptor");
 	public static final EntityType<DidelphodonEntity> DIDELPHODON_ENTITY = register(EntityType.Builder.<DidelphodonEntity>create(DidelphodonEntity::new, EntityClassification.CREATURE).size(0.25F, 0.25F), "didelphodon");
-
+	//Djadochta
+	public static final EntityType<ProtoceratopsEntity> PROTOCERATOPS_ENTITY = register(EntityType.Builder.<ProtoceratopsEntity>create(ProtoceratopsEntity::new, EntityClassification.CREATURE).size(0.4375F, 0.875F), "protoceratops");
+	public static final EntityType<VelociraptorEntity> VELOCIRAPTOR_ENTITY = register(EntityType.Builder.<VelociraptorEntity>create(VelociraptorEntity::new, EntityClassification.CREATURE).size(0.3125F, 0.625F), "velociraptor");
+	public static final EntityType<CitipatiEntity> CITIPATI_ENTITY = register(EntityType.Builder.<CitipatiEntity>create(CitipatiEntity::new, EntityClassification.CREATURE).size(0.5625F, 1.3125F), "citipati");
+	public static final EntityType<AepyornithomimusEntity> AEPYORNITHOMIMUS_ENTITY = register(EntityType.Builder.<AepyornithomimusEntity>create(AepyornithomimusEntity::new, EntityClassification.CREATURE).size(0.9375F, 0.5F), "aepyornithomimus");
 	//Jurassic
 	//Morrison
 	public static final EntityType<AllosaurusEntity> ALLOSAURUS_ENTITY = register(EntityType.Builder.<AllosaurusEntity>create(AllosaurusEntity::new, EntityClassification.CREATURE).size(1.25F, 2.8125F), "allosaurus");

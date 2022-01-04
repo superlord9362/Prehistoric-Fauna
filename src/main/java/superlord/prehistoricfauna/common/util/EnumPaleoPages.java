@@ -86,7 +86,7 @@ public enum EnumPaleoPages {
     }
 
     public static List<Integer> enumToInt(List<EnumPaleoPages> pages) {
-        Iterator<EnumPaleoPages> itr = pages.iterator();
+        Iterator<superlord.prehistoricfauna.common.util.EnumPaleoPages> itr = pages.iterator();
         List<Integer> list = new ArrayList<Integer>();
         while (itr.hasNext()) {
             list.add(EnumPaleoPages.values()[(itr.next()).ordinal()].ordinal());
@@ -117,7 +117,7 @@ public enum EnumPaleoPages {
             }
             List<EnumPaleoPages> containedPages = containedPages(toList(tag.getIntArray("Pages")));
             List<EnumPaleoPages> possiblePages = new ArrayList<EnumPaleoPages>();
-            Iterator<EnumPaleoPages> itr = allPages.iterator();
+            Iterator<superlord.prehistoricfauna.common.util.EnumPaleoPages> itr = allPages.iterator();
             while (itr.hasNext()) {
                 EnumPaleoPages page = itr.next();
                 if (!containedPages.contains(page)) {

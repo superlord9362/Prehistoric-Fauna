@@ -100,35 +100,22 @@ public class DakotaraptorModel extends EntityModel<DakotaraptorEntity> {
 	public void setRotationAngles(DakotaraptorEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		float speed = 1.0f;
 		float degree = 1.0f;
-		if (entityIn.getMotion().x !=  0 && entityIn.getMotion().y != 0 && entityIn.getMotion().z != 0) {
-			this.Tail1.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.2F) * degree * 0.05F * limbSwingAmount + 0.05F;
-			this.Tail2.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.1F) * degree * 0.1F * limbSwingAmount - 0.05F;
-			this.Tail2.rotateAngleZ = MathHelper.cos(limbSwing * speed * 0.1F) * degree * 0.1F * limbSwingAmount;
-			this.Tail1.rotateAngleY = MathHelper.cos(limbSwing * speed * 0.2F) * degree * 0.2F * limbSwingAmount;
-			this.LeftLeg1.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.4F) * degree * 1.0F * limbSwingAmount;
-			this.RightLeg1.rotateAngleX = MathHelper.cos(3.0F + limbSwing * speed * 0.4F) * degree * 1.0F * limbSwingAmount;
-			this.LeftWing.rotateAngleZ = MathHelper.cos(limbSwing * speed * 0.4F) * degree * 0.1F * limbSwingAmount;
-			this.RightWing.rotateAngleZ = MathHelper.cos(3.0F + limbSwing * speed * 0.4F) * degree * 0.1F * limbSwingAmount;
-			this.LeftWing.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.2F) * degree * 0.2F * limbSwingAmount;
-			this.RightWing.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.2F) * degree * 0.2F * limbSwingAmount;
-			this.Head1.rotateAngleX = 0F;
-			this.Body.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.1F) * (degree / 2) * 0.2F * limbSwingAmount;
-			this.Neck.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.1F) * (degree / 2) * 0.3F * limbSwingAmount + 0.1F;
-		} else {
-			this.LeftLeg1.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.4F) * degree * 1.0F * limbSwingAmount;
-			this.RightLeg1.rotateAngleX = MathHelper.cos(3.0F + limbSwing * speed * 0.4F) * degree * 1.0F * limbSwingAmount;
-			this.Tail1.rotateAngleY = -0.12F * MathHelper.sin(0.2F * ageInTicks / 5);
-			this.Tail2.rotateAngleY = -0.12F * MathHelper.sin(0.2F * ageInTicks / 5);
-			this.Tail1.rotateAngleX = -Math.abs(-0.05F * MathHelper.sin(0.1F * ageInTicks / 5));
-			this.Tail2.rotateAngleX = -Math.abs(-0.05F * MathHelper.sin(0.1F * ageInTicks / 5));
-			this.Body.rotateAngleX = Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3));
-			this.Neck.rotateAngleX = Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3)) + (MathHelper.cos(limbSwing * speed * 0.1F) * (degree / 2) * 0.3F * limbSwingAmount + 0.1F) + (headPitch * ((float)Math.PI / 180F));
-			this.Neck.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
-			this.Head1.rotateAngleX = -Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3));
-			this.LeftWing.rotateAngleZ = -Math.abs(-0.05F * MathHelper.sin(0.15F * ageInTicks / 3));
-			this.RightWing.rotateAngleZ = Math.abs(-0.05F * MathHelper.sin(0.15F * ageInTicks / 3));
-			this.Head1.rotateAngleX = headPitch * ((float) Math.PI / 180F);
-		}
+		this.LeftLeg1.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.4F) * degree * 1.0F * limbSwingAmount;
+		this.RightLeg1.rotateAngleX = MathHelper.cos(3.0F + limbSwing * speed * 0.4F) * degree * 1.0F * limbSwingAmount;
+		this.Tail1.rotateAngleY = (-0.12F * MathHelper.sin(0.2F * ageInTicks / 5)) + (MathHelper.cos(limbSwing * speed * 0.2F) * degree * 0.2F * limbSwingAmount);
+		this.Tail2.rotateAngleY = -0.12F * MathHelper.sin(0.2F * ageInTicks / 5);
+		this.Tail1.rotateAngleX = (-Math.abs(-0.05F * MathHelper.sin(0.1F * ageInTicks / 5))) + (MathHelper.cos(limbSwing * speed * 0.2F) * degree * 0.05F * limbSwingAmount + 0.05F);
+		this.Tail2.rotateAngleX = (-Math.abs(-0.05F * MathHelper.sin(0.1F * ageInTicks / 5))) + (MathHelper.cos(limbSwing * speed * 0.1F) * degree * 0.1F * limbSwingAmount - 0.05F);
+		this.Tail2.rotateAngleZ = MathHelper.cos(limbSwing * speed * 0.1F) * degree * 0.1F * limbSwingAmount;
+		this.Body.rotateAngleX = (Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3))) + (MathHelper.cos(limbSwing * speed * 0.1F) * (degree / 2) * 0.2F * limbSwingAmount);
+		this.Neck.rotateAngleX = Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3)) + (MathHelper.cos(limbSwing * speed * 0.1F) * (degree / 2) * 0.3F * limbSwingAmount + 0.1F) + (headPitch * ((float)Math.PI / 180F));
+		this.Neck.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
+		this.Head1.rotateAngleX = -Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3));
+		this.LeftWing.rotateAngleZ = (-Math.abs(-0.05F * MathHelper.sin(0.15F * ageInTicks / 3))) + (MathHelper.cos(limbSwing * speed * 0.4F) * degree * 0.1F * limbSwingAmount);
+		this.RightWing.rotateAngleZ = (Math.abs(-0.05F * MathHelper.sin(0.15F * ageInTicks / 3))) + (MathHelper.cos(3.0F + limbSwing * speed * 0.4F) * degree * 0.1F * limbSwingAmount);
+		this.Head1.rotateAngleX = headPitch * ((float) Math.PI / 180F);
+		this.LeftWing.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.2F) * degree * 0.2F * limbSwingAmount;
+		this.RightWing.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.2F) * degree * 0.2F * limbSwingAmount;
 	}
 
 	/**

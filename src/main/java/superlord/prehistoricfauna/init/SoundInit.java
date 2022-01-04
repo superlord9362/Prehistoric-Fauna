@@ -43,6 +43,22 @@ public class SoundInit {
 	public static final SoundEvent GAR_DEATH;
 	public static final SoundEvent CYCLURUS_HURT;
 	public static final SoundEvent CYCLURUS_DEATH;
+	//Djadochta
+	public static final SoundEvent PROTOCERATOPS_IDLE;
+	public static final SoundEvent PROTOCERATOPS_HURT;
+	public static final SoundEvent PROTOCERATOPS_WARN;
+	public static final SoundEvent PROTOCERATOPS_DEATH;
+	public static final SoundEvent VELOCIRAPTOR_IDLE;
+	public static final SoundEvent VELOCIRAPTOR_HURT;
+	public static final SoundEvent VELOCIRAPTOR_DEATH;
+	public static final SoundEvent VELOCIRAPTOR_WARN;
+	public static final SoundEvent CITIPATI_IDLE;
+	public static final SoundEvent CITIPATI_HURT;
+	public static final SoundEvent CITIPATI_DEATH;
+	public static final SoundEvent CITIPATI_WARN;
+	public static final SoundEvent AEPYORNITHOMIMUS_IDLE;
+	public static final SoundEvent AEPYORNITHOMIMUS_HURT;
+	public static final SoundEvent AEPYORNITHOMIMUS_DEATH;
 	//Morrison
 	public static final SoundEvent ALLOSAURUS_IDLE;
 	public static final SoundEvent ALLOSAURUS_HURT;
@@ -142,6 +158,22 @@ public class SoundInit {
 		evt.getRegistry().register(GAR_DEATH);
 		evt.getRegistry().register(CYCLURUS_HURT);
 		evt.getRegistry().register(CYCLURUS_DEATH);
+		//Djadochta
+		evt.getRegistry().register(PROTOCERATOPS_IDLE);
+		evt.getRegistry().register(PROTOCERATOPS_WARN);
+		evt.getRegistry().register(PROTOCERATOPS_HURT);
+		evt.getRegistry().register(PROTOCERATOPS_DEATH);
+		evt.getRegistry().register(VELOCIRAPTOR_IDLE);
+		evt.getRegistry().register(VELOCIRAPTOR_HURT);
+		evt.getRegistry().register(VELOCIRAPTOR_DEATH);
+		evt.getRegistry().register(VELOCIRAPTOR_WARN);
+		evt.getRegistry().register(CITIPATI_IDLE);
+		evt.getRegistry().register(CITIPATI_HURT);
+		evt.getRegistry().register(CITIPATI_DEATH);
+		evt.getRegistry().register(CITIPATI_WARN);
+		evt.getRegistry().register(AEPYORNITHOMIMUS_IDLE);
+		evt.getRegistry().register(AEPYORNITHOMIMUS_HURT);
+		evt.getRegistry().register(AEPYORNITHOMIMUS_DEATH);
 		//Morrison
 		evt.getRegistry().register(ALLOSAURUS_IDLE);
 		evt.getRegistry().register(ALLOSAURUS_HURT);
@@ -246,6 +278,22 @@ public class SoundInit {
 		GAR_DEATH = createEvent("gar_death");
 		CYCLURUS_HURT = createEvent("cyclurus_hurt");
 		CYCLURUS_DEATH = createEvent("cyclurus_death");
+		//Djadochta
+		PROTOCERATOPS_IDLE = createEvent("protoceratops_idle");
+		PROTOCERATOPS_HURT = createEvent("protoceratops_hurt");
+		PROTOCERATOPS_WARN = createEvent("protoceratops_warn");
+		PROTOCERATOPS_DEATH = createEvent("protoceratops_death");
+		VELOCIRAPTOR_IDLE = createEvent("velociraptor_idle");
+		VELOCIRAPTOR_HURT = createEvent("velociraptor_hurt");
+		VELOCIRAPTOR_DEATH = createEvent("velociraptor_death");
+		VELOCIRAPTOR_WARN = createEvent("velociraptor_warn");
+		CITIPATI_IDLE = createEvent("citipati_idle");
+		CITIPATI_HURT = createEvent("citipati_hurt");
+		CITIPATI_DEATH = createEvent("citipati_death");
+		CITIPATI_WARN = createEvent("citipati_warn");
+		AEPYORNITHOMIMUS_IDLE = createEvent("aepyornithomimus_idle");
+		AEPYORNITHOMIMUS_HURT = createEvent("aepyornithomimus_hurt");
+		AEPYORNITHOMIMUS_DEATH = createEvent("aepyornithomimus_death");
 		//Morrison
 		ALLOSAURUS_IDLE = createEvent("allosaurus_idle");
 		ALLOSAURUS_HURT = createEvent("allosaurus_hurt");

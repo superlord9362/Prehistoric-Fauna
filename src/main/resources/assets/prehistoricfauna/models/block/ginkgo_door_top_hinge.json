@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_top",
+    "textures": {
+        "bottom": "prehistoricfauna:blocks/ginkgo_door_bottom",
+        "top": "prehistoricfauna:blocks/ginkgo_door_top"
+    }
+}

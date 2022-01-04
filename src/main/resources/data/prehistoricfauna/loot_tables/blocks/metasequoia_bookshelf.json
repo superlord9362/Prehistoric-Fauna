@@ -5,6 +5,7 @@
       "rolls": 1,
       "entries": [
         {
+<<<<<<< Updated upstream
           "type": "minecraft:alternatives",
           "children": [
             {
@@ -40,6 +41,15 @@
               "name": "minecraft:book"
             }
           ]
+=======
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:metasequoia_bookshelf"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+>>>>>>> Stashed changes
         }
       ]
     }

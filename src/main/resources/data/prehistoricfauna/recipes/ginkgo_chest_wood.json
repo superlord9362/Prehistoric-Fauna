@@ -1,0 +1,33 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"group": "ginkgo_chest",
+	"pattern": [
+		"###",
+		"# #",
+		"###"
+	],
+	"key": {
+		"#": {
+			"tag": "prehistoricfauna:ginkgo_logs"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:ginkgo_chest",
+		"count": 4
+	},
+	"conditions": [
+		{
+			"type": "forge:and",
+			"values": [
+				{
+					"type": "prehistoricfauna:quark_flag",
+					"flag": "wood_to_chest_recipes"
+				},
+				{
+					"type": "prehistoricfauna:quark_flag",
+					"flag": "variant_chests"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,7 @@
+{
+    "parent": "prehistoricfauna:block/protoceratops_egg",
+    "textures": {
+        "particle": "prehistoricfauna:blocks/protoceratops_egg_very_cracked",
+        "all": "prehistoricfauna:blocks/protoceratops_egg_very_cracked"
+    }
+}

@@ -225,27 +225,27 @@ public class DidelphodonEntity extends TameableEntity {
 		this.dataManager.register(MELANISTIC, false);
 	}
 
-	public void writeAddition(CompoundNBT compound) {
+	public void writeAdditional(CompoundNBT compound) {
 		super.writeAdditional(compound);
 		compound.putBoolean("IsPregnant", this.isPregnant());
-		compound.putBoolean("isAlbino", this.isAlbino());
-		compound.putBoolean("isMelanistic", this.isMelanistic());
+		compound.putBoolean("IsAlbino", this.isAlbino());
+		compound.putBoolean("IsMelanistic", this.isMelanistic());
 	}
 
 	public void readAdditional(CompoundNBT compound) {
 		super.readAdditional(compound);
 		this.setPregnant(compound.getBoolean("IsPregnant"));
-		this.setAlbino(compound.getBoolean("isAlbino"));
-		this.setMelanistic(compound.getBoolean("isMelanistic"));
+		this.setAlbino(compound.getBoolean("IsAlbino"));
+		this.setMelanistic(compound.getBoolean("IsMelanistic"));
 	}
 
 	@Nullable
 	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		Random rand = new Random();
-		int birthNumber = rand.nextInt(399);
+		int birthNumber = rand.nextInt(799);
 		if (birthNumber >= 0 && birthNumber < 4) {
 			this.setAlbino(true);
-		} else if (birthNumber >= 4 && birthNumber < 7) {
+		} else if (birthNumber == 4) {
 			this.setMelanistic(true);
 		}
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
@@ -257,7 +257,7 @@ public class DidelphodonEntity extends TameableEntity {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new DidelphodonEntity.SwimGoal());
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25F));
-		this.goalSelector.addGoal(2, new DidelphodonEntity.MateGoal(this, 1.0D));
+		this.goalSelector.addGoal(0, new DidelphodonEntity.MateGoal(this, 1.0D));
 		this.goalSelector.addGoal(3, new FollowParentGoal(this, 1.1D));
 		this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, false, TEMPTATION_ITEMS));
@@ -278,7 +278,7 @@ public class DidelphodonEntity extends TameableEntity {
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, HerrerasaurusEntity.class, 10F, 2D, 2D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, ExaeretodonEntity.class, 10F, 2D, 2D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<SaurosuchusEntity>(this, SaurosuchusEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(8, new DidelphodonEntity.CarryYoungGoal(this, 1.0D));
+		this.goalSelector.addGoal(0, new DidelphodonEntity.CarryYoungGoal(this, 1.0D));
 	}
 
 	protected SoundEvent getAmbientSound() {

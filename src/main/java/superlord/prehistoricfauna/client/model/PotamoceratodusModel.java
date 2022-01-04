@@ -84,9 +84,9 @@ public class PotamoceratodusModel extends EntityModel<PotamoceratodusEntity> {
         if (!entityIn.isInWater()) {
            f = 1.5F;
         }
-
+        this.Torso.rotateAngleX = headPitch * ((float)Math.PI / 180F);
+        this.Torso.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
         this.Hip.rotateAngleY = -f * 0.45F * MathHelper.sin(0.6F * ageInTicks);
-        this.Tailstock.rotateAngleY = -f * 0.45F * MathHelper.sin(0.6F * ageInTicks);
     }
 
     /**

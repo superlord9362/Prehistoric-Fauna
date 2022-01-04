@@ -115,15 +115,15 @@ public class SillosuchusEntity extends DinosaurEntity {
 		this.targetSelector.addGoal(1, new SillosuchusEntity.HurtByTargetGoal());
 		this.targetSelector.addGoal(2, new SillosuchusEntity.AttackPlayerGoal());
 		this.targetSelector.addGoal(3, new SillosuchusEntity.ProtectBabyGoal());
-		this.goalSelector.addGoal(8, new SillosuchusEntity.LayEggGoal(this, 1.0D));
-		this.goalSelector.addGoal(2, new SillosuchusEntity.MateGoal(this, 1.0D));
+		this.goalSelector.addGoal(0, new SillosuchusEntity.LayEggGoal(this, 1.0D));
+		this.goalSelector.addGoal(0, new SillosuchusEntity.MateGoal(this, 1.0D));
 		this.goalSelector.addGoal(8, new AvoidEntityGoal<TyrannosaurusEntity>(this, TyrannosaurusEntity.class, 7F, 1.25D, 1.25D));
 		this.goalSelector.addGoal(8, new AvoidEntityGoal<AllosaurusEntity>(this, AllosaurusEntity.class, 7F, 1.25D, 1.25D));
 		this.goalSelector.addGoal(8, new AvoidEntityGoal<CamarasaurusEntity>(this, CamarasaurusEntity.class, 7F, 1.25D, 1.25D));
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 30.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 7.0D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 30.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 7.0D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.6D);
 	}
 	
 	protected SoundEvent getAmbientSound() {
@@ -174,7 +174,7 @@ public class SillosuchusEntity extends DinosaurEntity {
 	@Nullable
 	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		Random rand = new Random();
-		int birthNumber = rand.nextInt(399);
+		int birthNumber = rand.nextInt(799);
 		if (birthNumber >= 0 && birthNumber < 4) {
 			this.setAlbino(true);
 		} else if (birthNumber >= 4 && birthNumber < 7) {
@@ -294,7 +294,7 @@ public class SillosuchusEntity extends DinosaurEntity {
 		}
 
 		protected double getAttackReachSqr(LivingEntity attackTarget) {
-			return (double)(4.0F + attackTarget.getWidth());
+			return (double)(10.0F + attackTarget.getWidth());
 		}
 	}
 
@@ -377,7 +377,7 @@ public class SillosuchusEntity extends DinosaurEntity {
 				} else if (this.sillosuchus.isDigging > 200) {
 					World world = this.sillosuchus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), PFBlocks.STEGOSAURUS_EGG.getDefaultState().with(SillosuchusEggBlock.EGGS, Integer.valueOf(this.sillosuchus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.SILLOSUCHUS_EGG.getDefaultState().with(SillosuchusEggBlock.EGGS, Integer.valueOf(this.sillosuchus.rand.nextInt(4) + 1)), 3);
 					this.sillosuchus.setHasEgg(false);
 					this.sillosuchus.setDigging(false);
 					this.sillosuchus.setInLove(600);

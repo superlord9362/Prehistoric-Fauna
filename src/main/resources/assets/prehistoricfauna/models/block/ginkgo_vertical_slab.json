@@ -1,0 +1,8 @@
+{
+    "parent": "prehistoricfauna:block/vertical_slab",
+    "textures": {
+        "side": "prehistoricfauna:blocks/ginkgo_planks",
+        "top": "prehistoricfauna:blocks/ginkgo_planks",
+        "bottom": "prehistoricfauna:blocks/ginkgo_planks"
+    }
+}

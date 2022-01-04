@@ -1130,5 +1130,93 @@
 				"stream": true
 			}
 		]
-	}
+	},
+	"protoceratops_idle": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.protoceratopsIdle",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/protoceratops/protoceratops_idle1",
+                "stream": true
+            },
+			{
+                "name": "prehistoricfauna:prehistoric/protoceratops/protoceratops_idle2",
+				"stream": true
+			}
+        ]
+    },
+   "protoceratops_hurt": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.protoceratopsHurt",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/protoceratops/protoceratops_hurt",
+                "stream": true
+            }
+        ]
+    },
+    "protoceratops_warn": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.protoceratopsWarning",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/protoceratops/protoceratops_angry",
+                "stream": true
+            }
+        ]
+    },
+	"protoceratops_death": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.protoceratopsDeath",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/protoceratops/protoceratops_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"velociraptor_idle": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.velociraptorIdle",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/velociraptor/velociraptor_idle1",
+                "stream": true
+            },
+			{
+                "name": "prehistoricfauna:prehistoric/velociraptor/velociraptor_idle2",
+				"stream": true
+			}
+        ]
+    },
+   "velociraptor_hurt": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.velociraptorHurt",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/velociraptor/velociraptor_hurt",
+                "stream": true
+            }
+        ]
+    },
+    "velociraptor_warn": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.protoceratopsvelociraptorWarning",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/velociraptor/velociraptor_warning",
+                "stream": true
+            }
+        ]
+    },
+	"velociraptor_death": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.velociraptorDeath",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/velociraptor/velociraptor_hurt",
+                "stream": true
+            }
+        ]
+    }
 }
