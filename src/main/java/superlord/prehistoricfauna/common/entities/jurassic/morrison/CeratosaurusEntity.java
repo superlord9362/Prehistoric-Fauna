@@ -357,7 +357,7 @@ public class CeratosaurusEntity extends DinosaurEntity {
 	}
 
 	public boolean attackEntityAsMob(Entity entity) {
-		boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
+		boolean flag = super.attackEntityAsMob(entity);
 		if (flag) {
 			this.applyEnchantments(this, entity);
 		}

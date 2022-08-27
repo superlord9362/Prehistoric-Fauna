@@ -359,7 +359,7 @@ public class DilophosaurusEntity extends DinosaurEntity {
 	}
 
 	public boolean attackEntityAsMob(Entity entity) {
-		boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
+		boolean flag = super.attackEntityAsMob(entity);
 		if (flag) {
 			this.applyEnchantments(this, entity);
 		}
@@ -387,7 +387,7 @@ public class DilophosaurusEntity extends DinosaurEntity {
 		}
 
 		protected double getTargetDistance() {
-			return super.getTargetDistance() * 0.5D;
+			return super.getTargetDistance() * 0.95D;
 		}	
 
 	}
@@ -416,7 +416,7 @@ public class DilophosaurusEntity extends DinosaurEntity {
 		}
 
 		protected double getTargetDistance() {
-			return super.getTargetDistance() * 0.5D;
+			return super.getTargetDistance() * 0.95D;
 		}
 	}
 
