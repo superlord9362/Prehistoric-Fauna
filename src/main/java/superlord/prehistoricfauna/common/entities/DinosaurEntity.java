@@ -21,6 +21,7 @@ public class DinosaurEntity extends TameableEntity {
 
     private static final DataParameter<Boolean> ASLEEP = EntityDataManager.createKey(DinosaurEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> ATTACK_TICK = EntityDataManager.createKey(DinosaurEntity.class, DataSerializers.VARINT);
+    private static final DataParameter<Boolean> ATTACK_DIR = EntityDataManager.createKey(DinosaurEntity.class, DataSerializers.BOOLEAN);
     private float sleepProgress = 0.0F;
     private float prevSleepProgress = 0.0F;
     private float meleeProgress = 0.0F;
@@ -46,6 +47,7 @@ public class DinosaurEntity extends TameableEntity {
         super.registerData();
         this.dataManager.register(ASLEEP, false);
         this.dataManager.register(ATTACK_TICK, 0);
+        this.dataManager.register(ATTACK_DIR, false);
     }
 
     public void writeAdditional(CompoundNBT compound) {
@@ -89,7 +91,15 @@ public class DinosaurEntity extends TameableEntity {
         return 1.5F;
     }
 
+    //some dinosaurs(ex. ankylosaurus) have alternate attack patterns that have left/right differences. This boolean is true if the current melee attack is coming from the left and false if from the right.
+    public boolean getMeleeDirection() {
+        return this.dataManager.get(ATTACK_DIR);
+    }
+
     public boolean attackEntityAsMob(Entity entityIn) {
+        if(this.dataManager.get(ATTACK_TICK) == 0){
+            this.dataManager.set(ATTACK_DIR, rand.nextBoolean());
+        }
         //now simply starts counting down till the actual damage is done, starts the animation
         this.dataManager.set(ATTACK_TICK, 7);
         return true;

@@ -331,9 +331,9 @@ public class AnkylosaurusEntity extends DinosaurEntity {
 		}
 
 		return flag;
-	}	
+	}
 
-	class AttackPlayerGoal extends NearestAttackableTargetGoal<PlayerEntity> {
+    class AttackPlayerGoal extends NearestAttackableTargetGoal<PlayerEntity> {
 		public AttackPlayerGoal() {
 			super(AnkylosaurusEntity.this, PlayerEntity.class, 20, true, true, (Predicate<LivingEntity>)null);
 		}
