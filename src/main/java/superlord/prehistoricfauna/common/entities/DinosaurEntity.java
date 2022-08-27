@@ -65,10 +65,10 @@ public class DinosaurEntity extends TameableEntity {
         prevSleepProgress = sleepProgress;
         prevMeleeProgress = meleeProgress;
         if (this.isAsleep() && sleepProgress < 1.0F) {
-            sleepProgress += 0.2F;
+            sleepProgress = Math.min(sleepProgress + 0.2F, 1.0F);
         }
         if (!this.isAsleep() && sleepProgress > 0.0F) {
-            sleepProgress -= 0.2F;
+            sleepProgress = Math.max(sleepProgress - 0.2F, 0.0F);
         }
         if (this.dataManager.get(ATTACK_TICK) > 0) {
             LivingEntity target = this.getAttackTarget();
@@ -77,11 +77,11 @@ public class DinosaurEntity extends TameableEntity {
             }
             this.dataManager.set(ATTACK_TICK, this.dataManager.get(ATTACK_TICK) - 1);
             if (meleeProgress < 1.0F) {
-                meleeProgress += 0.2F;
+                meleeProgress = Math.min(meleeProgress + 0.2F, 1.0F);
             }
         } else {
             if (meleeProgress > 0F) {
-                meleeProgress -= 0.2F;
+                meleeProgress = Math.max(meleeProgress - 0.2F, 0.0F);
             }
         }
     }
