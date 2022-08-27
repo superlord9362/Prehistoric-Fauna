@@ -11,6 +11,7 @@ import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.command.arguments.EntityAnchorArgument;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityPredicate;
@@ -41,6 +42,7 @@ import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.merchant.villager.WanderingTraderEntity;
 import net.minecraft.entity.monster.AbstractIllagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.monster.SpiderEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.entity.passive.ChickenEntity;
@@ -1395,9 +1397,18 @@ public class DakotaraptorEntity extends DinosaurEntity {
 	}
 
 	public boolean attackEntityAsMob(Entity entity) {
-		boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
+		boolean flag = super.attackEntityAsMob(entity);
 		if (flag) {
 			this.applyEnchantments(this, entity);
+		}
+		if(this.isOnGround()){
+			Vector3d vector3d = this.getMotion();
+			Vector3d vector3d1 = new Vector3d(entity.getPosX() - this.getPosX(), 0.0D, entity.getPosZ() - this.getPosZ());
+			if (vector3d1.lengthSquared() > 1.0E-7D) {
+				vector3d1 = vector3d1.normalize().scale(0.5D).add(vector3d.scale(0.2D));
+			}
+			this.lookAt(EntityAnchorArgument.Type.EYES, entity.getEyePosition(1.0F));
+			this.setMotion(vector3d1.x, 0.4D, vector3d1.z);
 		}
 		return flag;
 	}

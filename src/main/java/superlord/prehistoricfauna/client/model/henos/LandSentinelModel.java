@@ -166,8 +166,8 @@ public class LandSentinelModel extends EntityModel<LandSentinelEntity> {
 
     @Override
     public void setRotationAngles(LandSentinelEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-    	float walkSpeed = 1.0f;
-        float walkDegree = 0.5f;
+    	float walkSpeed = 3.0f;
+        float walkDegree = 2.0f;
     	this.Mid1.rotateAngleX = -0.025F * MathHelper.sin(0.1F * ageInTicks);
 		this.Mid2.rotateAngleX = -0.025F * MathHelper.sin(0.1F * ageInTicks);
 		this.Tail.rotateAngleX = -0.025F * MathHelper.sin(0.1F * ageInTicks);
@@ -179,12 +179,12 @@ public class LandSentinelModel extends EntityModel<LandSentinelEntity> {
 		this.ArmLeft.rotateAngleY = -(-0.025F * MathHelper.sin(0.1F * ageInTicks));
 		this.Arm2Left.rotateAngleZ = -(-0.025F * MathHelper.sin(0.1F * ageInTicks));
 		this.Arm2Left.rotateAngleY = -(-0.025F * MathHelper.sin(0.1F * ageInTicks));
-		this.LegLeftFront.rotateAngleZ = Math.abs(MathHelper.cos(limbSwing * walkSpeed * 0.3F) * walkDegree * 1F * limbSwingAmount);
-		this.LegRightFront.rotateAngleZ = -Math.abs(-(MathHelper.cos(limbSwing * walkSpeed * 0.3F) * walkDegree * 1F * limbSwingAmount));
-		this.LegLeftMid.rotateAngleZ = Math.abs(MathHelper.cos(limbSwing * walkSpeed * 0.3F + 1) * walkDegree * 1F * limbSwingAmount);
-		this.LegRightMid.rotateAngleZ = -Math.abs(-(MathHelper.cos(limbSwing * walkSpeed * 0.3F + 1) * walkDegree * 1F * limbSwingAmount));
-		this.LegLeftBack.rotateAngleZ = Math.abs(MathHelper.cos(limbSwing * walkSpeed * 0.3F + 2) * walkDegree * 1F * limbSwingAmount);
-		this.LegRightBack.rotateAngleZ = -Math.abs(-(MathHelper.cos(limbSwing * walkSpeed * 0.3F + 2) * walkDegree * 1F * limbSwingAmount));
+		this.LegLeftFront.rotateAngleZ = -Math.abs(MathHelper.cos(limbSwing * walkSpeed * 0.3F) * walkDegree * 1F * limbSwingAmount);
+		this.LegRightFront.rotateAngleZ = Math.abs(-(MathHelper.cos(limbSwing * walkSpeed * 0.3F) * walkDegree * 1F * limbSwingAmount));
+		this.LegLeftMid.rotateAngleZ = -Math.abs(MathHelper.cos(limbSwing * walkSpeed * 0.3F + 1) * walkDegree * 1F * limbSwingAmount);
+		this.LegRightMid.rotateAngleZ = Math.abs(-(MathHelper.cos(limbSwing * walkSpeed * 0.3F + 1) * walkDegree * 1F * limbSwingAmount));
+		this.LegLeftBack.rotateAngleZ = -Math.abs(MathHelper.cos(limbSwing * walkSpeed * 0.3F + 2) * walkDegree * 1F * limbSwingAmount);
+		this.LegRightBack.rotateAngleZ = Math.abs(-(MathHelper.cos(limbSwing * walkSpeed * 0.3F + 2) * walkDegree * 1F * limbSwingAmount));
     }
 
     /**

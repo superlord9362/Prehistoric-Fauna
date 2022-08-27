@@ -324,16 +324,16 @@ public class AnkylosaurusEntity extends DinosaurEntity {
 		}
 	}
 
-	public boolean attackEntityAsMob(Entity entityIn) {
-		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
+	public boolean onAttackAnimationFinish(Entity entityIn) {
+		boolean flag = super.onAttackAnimationFinish(entityIn);
 		if (flag) {
 			this.applyEnchantments(this, entityIn);
 		}
 
 		return flag;
-	}	
+	}
 
-	class AttackPlayerGoal extends NearestAttackableTargetGoal<PlayerEntity> {
+    class AttackPlayerGoal extends NearestAttackableTargetGoal<PlayerEntity> {
 		public AttackPlayerGoal() {
 			super(AnkylosaurusEntity.this, PlayerEntity.class, 20, true, true, (Predicate<LivingEntity>)null);
 		}

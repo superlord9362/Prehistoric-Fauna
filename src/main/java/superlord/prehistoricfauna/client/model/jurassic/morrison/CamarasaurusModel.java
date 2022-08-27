@@ -135,6 +135,8 @@ public class CamarasaurusModel extends EntityModel<CamarasaurusEntity> {
 	public void setRotationAngles(CamarasaurusEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		float speed = 1.0f;
 		float degree = 1.0f;
+		float partialTick = ageInTicks - entityIn.ticksExisted;
+		float attackProgress = entityIn.getMeleeProgress(partialTick);
 		this.body.rotateAngleX = Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3));
 		this.body.rotateAngleZ = MathHelper.cos(limbSwing * speed * 0.3F) * degree * 0.1F * limbSwingAmount;
 		this.Neck1.rotateAngleX = Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3));

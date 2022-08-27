@@ -132,6 +132,9 @@ public class AnkylosaurusModel extends EntityModel<AnkylosaurusEntity> {
 	public void setRotationAngles(AnkylosaurusEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		float speed = 0.9f;
 		float degree = 1.0f;
+		float partialTick = ageInTicks - entityIn.ticksExisted;
+		float attackProgress = entityIn.getMeleeProgress(partialTick);
+		float leftOrRight = entityIn.getMeleeDirection() ? 1.0F : -1.0F;
 		this.Body.rotateAngleX = 0F;
 		this.LeftThigh.rotateAngleX = -0F;
 		this.RightThigh.rotateAngleX = -0F;
@@ -147,12 +150,16 @@ public class AnkylosaurusModel extends EntityModel<AnkylosaurusEntity> {
 		this.LeftThigh.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.3F) * degree * -0.8F * limbSwingAmount;
 		this.LeftLeg.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.3F) * degree * -0.8F * limbSwingAmount;
 		this.LeftFoot.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.3F) * degree * -0.4F * limbSwingAmount;
-		this.Tail1.rotateAngleY = (-0.12F * MathHelper.sin(0.2F * ageInTicks / 5)) + (MathHelper.cos(limbSwing * speed * 0.15F) * degree * 0.35F * limbSwingAmount);
-		this.Tail2.rotateAngleY = (-0.12F * MathHelper.sin(0.2F * ageInTicks / 5)) + (MathHelper.cos(limbSwing * speed * 0.15F) * degree * 0.35F * limbSwingAmount);
+		this.Tail1.rotateAngleY = (-0.12F * MathHelper.sin(0.2F * ageInTicks / 5)) + (MathHelper.cos(limbSwing * speed * 0.15F) * degree * 0.35F * limbSwingAmount) + attackProgress * leftOrRight * (float)Math.toRadians(-15);
+		this.Tail2.rotateAngleY = (-0.12F * MathHelper.sin(0.2F * ageInTicks / 5)) + (MathHelper.cos(limbSwing * speed * 0.15F) * degree * 0.35F * limbSwingAmount) + attackProgress * leftOrRight * (float)Math.toRadians(-25);
 		this.Tail1.rotateAngleX = (-Math.abs(-0.05F * MathHelper.sin(0.1F * ageInTicks / 5))) + (MathHelper.cos(limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount - 0.15F);
 		this.Tail2.rotateAngleX = (-Math.abs(-0.05F * MathHelper.sin(0.1F * ageInTicks / 5))) + (MathHelper.cos(limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount + 0.15F);
 		this.Neck.rotateAngleX = (Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3))) + (MathHelper.cos(limbSwing * speed * 0.3F) * degree * 0.1F * limbSwingAmount + 0.15F);
 		this.Head.rotateAngleX = (-Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3))) + (MathHelper.cos(-1.0F + limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount + 0.05F);
+		this.Body.rotateAngleY = attackProgress * leftOrRight * (float)Math.toRadians(-200);
+		this.Tail1.rotateAngleZ = attackProgress * leftOrRight * (float)Math.toRadians(15);
+		this.TailClub.rotateAngleY = attackProgress * leftOrRight * (float)Math.toRadians(-25);
+		this.Body.rotationPointZ = 12.0F + attackProgress * -22;
 		if (entityIn.isEating()) {
 			this.Neck.rotateAngleX = Math.abs(MathHelper.sin(0.05F * ageInTicks) * 0.5F) + 0.25F;
 			this.Body.rotateAngleX = 0.1F;

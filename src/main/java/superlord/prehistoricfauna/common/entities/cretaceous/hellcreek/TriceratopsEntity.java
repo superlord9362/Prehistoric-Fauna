@@ -61,6 +61,7 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import superlord.prehistoricfauna.common.blocks.TriceratopsEggBlock;
+import superlord.prehistoricfauna.common.entities.DinosaurEntity;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
@@ -76,6 +77,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 	private static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(TriceratopsEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> EATING = EntityDataManager.createKey(TriceratopsEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> NATURAL_LOVE = EntityDataManager.createKey(TriceratopsEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Integer> ATTACK_TICK = EntityDataManager.createKey(TriceratopsEntity.class, DataSerializers.VARINT);
 	private int maxHunger = 150;
 	private int currentHunger;
 	int hungerTick = 0;
@@ -87,6 +89,8 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 	private boolean allowStandSliding;
 	public int attackTick;
 	int loveTick = 0;
+	private float meleeProgress = 0.0F;
+	private float prevMeleeProgress = 0.0F;
 
 	public TriceratopsEntity(EntityType<? extends TriceratopsEntity> type, World worldIn) {
 		super(type, worldIn);
@@ -286,6 +290,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 		this.dataManager.register(SLEEPING, false);
 		this.dataManager.register(EATING, false);
 		this.dataManager.register(NATURAL_LOVE, false);
+		this.dataManager.register(ATTACK_TICK, 0);
 	}
 
 	public void writeAdditional(CompoundNBT compound) {
@@ -396,9 +401,43 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 	 */
 	public void tick() {
 		super.tick();
+		prevMeleeProgress = meleeProgress;
 		if (this.warningSoundTicks > 0) {
 			--this.warningSoundTicks;
 		}
+		if (this.dataManager.get(ATTACK_TICK) > 0) {
+			LivingEntity target = this.getAttackTarget();
+			if (this.dataManager.get(ATTACK_TICK) == 1 && target != null && this.canEntityBeSeen(target) && this.getDistance(target) < this.getMeleeRange() + this.getWidth() + target.getWidth()) {
+				this.onAttackAnimationFinish(target);
+			}
+			this.dataManager.set(ATTACK_TICK, this.dataManager.get(ATTACK_TICK) - 1);
+			if (meleeProgress < 1.0F) {
+				meleeProgress = Math.min(meleeProgress + 0.2F, 1.0F);
+			}
+		} else {
+			if (meleeProgress > 0F) {
+				meleeProgress = Math.max(meleeProgress - 0.2F, 0.0F);
+			}
+		}
+	}
+
+	public float getMeleeRange() {
+		return 2.5F;
+	}
+
+	public boolean attackEntityAsMob(Entity entityIn) {
+		//now simply starts counting down till the actual damage is done, starts the animation
+		this.dataManager.set(ATTACK_TICK, 7);
+		return true;
+	}
+
+	public boolean onAttackAnimationFinish(Entity target) {
+		return target.attackEntityFrom(DamageSource.causeMobDamage(this), (float) ((int) this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
+	}
+
+	//lerped number from 0.0 - 1.0 that determines where in the melee animation this entity is
+	public float getMeleeProgress(float partialTick) {
+		return prevMeleeProgress + (meleeProgress - prevMeleeProgress) * partialTick;
 	}
 
 	@Override
@@ -558,15 +597,6 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 			}
 		}
 	}
-
-	public boolean attackEntityAsMob(Entity entityIn) {
-		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
-		if (flag) {
-			this.applyEnchantments(this, entityIn);
-		}
-
-		return flag;
-	}	
 
 	@Override
 	protected void setOffspringAttributes(AgeableEntity p_190681_1_, AbstractHorseEntity p_190681_2_) {
