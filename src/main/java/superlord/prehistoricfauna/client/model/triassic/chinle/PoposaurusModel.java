@@ -137,7 +137,10 @@ public class PoposaurusModel extends EntityModel<PoposaurusEntity> {
     public void setRotationAngles(PoposaurusEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     	float speed = 0.9f;
 		float degree = 1.0f;
-		this.Jaw_base.rotateAngleX = Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3));
+        float partialTick = ageInTicks - entityIn.ticksExisted;
+        float attackProgress = entityIn.getMeleeProgress(partialTick);
+        float leftOrRight = entityIn.getMeleeDirection() ? 1.0F : -1.0F;
+		this.Jaw_base.rotateAngleX = Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(25F);
 		this.Arm_L.rotateAngleZ = -Math.abs(-0.05F * MathHelper.sin(0.15F * ageInTicks / 3));
 		this.Arm_R.rotateAngleZ = Math.abs(-0.05F * MathHelper.sin(0.15F * ageInTicks / 3));
 		this.Body.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.1F) * degree * 0.15F * limbSwingAmount;
@@ -154,6 +157,8 @@ public class PoposaurusModel extends EntityModel<PoposaurusEntity> {
 		this.Thigh_R.rotateAngleX = MathHelper.cos(3.0F + limbSwing * speed * 0.2F) * degree * 1.5F * limbSwingAmount - 0.35F;
 		this.Leg_R.rotateAngleX = MathHelper.cos(3.0F + limbSwing * speed * 0.2F) * degree * 2.0F * limbSwingAmount + 0.35F;
 		this.Foot_R.rotateAngleX = MathHelper.cos(3.0F + limbSwing * speed * 0.2F) * degree * 1.5F * limbSwingAmount;
+        this.Neck.rotateAngleZ = attackProgress * leftOrRight * (float) Math.toRadians(15F);
+        this.Head.rotateAngleZ = attackProgress * leftOrRight * (float) Math.toRadians(5F);
     }
 
     /**

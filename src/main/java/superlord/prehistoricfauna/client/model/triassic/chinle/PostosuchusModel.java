@@ -139,7 +139,10 @@ public class PostosuchusModel extends EntityModel<PostosuchusEntity> {
     public void setRotationAngles(PostosuchusEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     	float speed = 0.9f;
 		float degree = 1.0f;
-		this.Jaw.rotateAngleX = Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3));
+        float partialTick = ageInTicks - entityIn.ticksExisted;
+        float attackProgress = entityIn.getMeleeProgress(partialTick);
+
+        this.Jaw.rotateAngleX = Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3)) +  attackProgress * (float) Math.toRadians(25F);
 		this.Arm.rotateAngleZ = -Math.abs(-0.05F * MathHelper.sin(0.15F * ageInTicks / 3));
 		this.Arm_1.rotateAngleZ = Math.abs(-0.05F * MathHelper.sin(0.15F * ageInTicks / 3));
 		this.Body.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.1F) * degree * 0.15F * limbSwingAmount;

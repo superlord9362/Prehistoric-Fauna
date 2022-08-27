@@ -141,9 +141,11 @@ public class SaurosuchusModel extends EntityModel<SaurosuchusEntity> {
 	public void setRotationAngles(SaurosuchusEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		float speed = 1.0f;
 		float degree = 1.0f;
+		float partialTick = ageInTicks - entityIn.ticksExisted;
+		float attackProgress = entityIn.getMeleeProgress(partialTick);
+		this.Jaw.rotateAngleX = Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(25F);
 		if (entityIn.getMotion().x !=  0 && entityIn.getMotion().y != 0 && entityIn.getMotion().z != 0) {
 			this.Head.rotateAngleX = 0;
-			this.Jaw.rotateAngleX = 0;
 			this.Neck.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.3F) * degree * 0.08F * limbSwingAmount;
 			this.Head.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.3F) * degree * -0.1F * limbSwingAmount + 0.05F;
 			this.Arm.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.3F) * degree * 0.6F * limbSwingAmount;
@@ -168,7 +170,6 @@ public class SaurosuchusModel extends EntityModel<SaurosuchusEntity> {
 			this.Thigh_1.rotateAngleX = MathHelper.cos(-1.0F + limbSwing * speed * 0.3F) * degree * -0.6F * limbSwingAmount;
 			this.Calf_1.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.3F) * degree * -0.6F * limbSwingAmount;
 			this.Foot_1.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.3F) * degree * 0.6F * limbSwingAmount;
-			this.Jaw.rotateAngleX = Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3));
 			this.Tail.rotateAngleY = (-0.12F * MathHelper.sin(0.2F * ageInTicks / 5)) + (MathHelper.cos(-1.0F + limbSwing * speed * 0.15F) * degree * -0.15F * limbSwingAmount);
 			this.Tail2.rotateAngleY = (-0.12F * MathHelper.sin(0.2F * ageInTicks / 5)) + (MathHelper.cos(-1.0F + limbSwing * speed * 0.15F) * degree * -0.15F * limbSwingAmount);
 			this.Tail.rotateAngleX = (-Math.abs(-0.05F * MathHelper.sin(0.1F * ageInTicks / 5))) + (MathHelper.cos(-1.0F + limbSwing * speed * 0.3F) * degree * 0.1F * limbSwingAmount - 0.1F);
