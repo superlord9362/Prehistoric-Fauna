@@ -351,8 +351,8 @@ public class AllosaurusEntity extends DinosaurEntity {
 		}
 	}
 
-	public boolean attackEntityAsMob(Entity entityIn) {
-		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
+	public boolean onAttackAnimationFinish(Entity entityIn) {
+		boolean flag = super.onAttackAnimationFinish(entityIn);
 		if (flag) {
 			this.applyEnchantments(this, entityIn);
 			((LivingEntity)entityIn).addPotionEffect(new EffectInstance(PFEffects.BLEEDING.get(), 300, 0, true, false));

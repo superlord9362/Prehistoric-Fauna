@@ -559,15 +559,6 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 		}
 	}
 
-	public boolean attackEntityAsMob(Entity entityIn) {
-		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
-		if (flag) {
-			this.applyEnchantments(this, entityIn);
-		}
-
-		return flag;
-	}	
-
 	@Override
 	protected void setOffspringAttributes(AgeableEntity p_190681_1_, AbstractHorseEntity p_190681_2_) {
 		double d0 = this.getBaseAttributeValue(Attributes.MAX_HEALTH);
