@@ -1,0 +1,6 @@
+{
+    "parent": "prehistoricfauna:block/two_sarahsaurus_eggs",
+    "textures": {
+        "all": "prehistoricfauna:blocks/sarahsaurus_eggs_slightly_cracked"
+    }
+}

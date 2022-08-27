@@ -67,20 +67,21 @@ public class HellCreekClearingBiome extends PFBiome {
 
 	static {
 		PFConfiguredFeatures.withHellCreekVegetation(GENERATION_SETTINGS);
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.DIDELPHODON_ENTITY, PrehistoricFaunaConfig.didelphodonSpawnWeight, 1, 3));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.DAKOTARAPTOR_ENTITY, PrehistoricFaunaConfig.dakotaraptorSpawnWeight, 1, 3));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.TYRANNOSAURUS_ENTITY, PrehistoricFaunaConfig.tyrannosaurusSpawnWeight, 1, 1));
+		if (PrehistoricFaunaConfig.didelphodonHellCreekClearingSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.DIDELPHODON_ENTITY, PrehistoricFaunaConfig.didelphodonHellCreekClearingSpawnWeight, 1, 3));
+		if (PrehistoricFaunaConfig.dakotaraptorHellCreekClearingSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.DAKOTARAPTOR_ENTITY, PrehistoricFaunaConfig.dakotaraptorHellCreekClearingSpawnWeight, 1, 3));
+		if (PrehistoricFaunaConfig.tyrannosaurusHellCreekClearingSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.TYRANNOSAURUS_ENTITY, PrehistoricFaunaConfig.tyrannosaurusHellCreekClearingSpawnWeight, 1, 1));
 		PFConfiguredFeatures.addSparseHellCreekVegetation(GENERATION_SETTINGS);
 		GENERATION_SETTINGS.withFeature(Decoration.UNDERGROUND_ORES, PFConfiguredFeatures.FOSSILIZED_SANDSTONE);
 		GENERATION_SETTINGS.withFeature(Decoration.UNDERGROUND_ORES, PFConfiguredFeatures.FOSSILIZED_SILTSTONE);
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.THESCELOSAURUS_ENTITY, PrehistoricFaunaConfig.thescelosaurusClearingSpawnWeight, 2, 4));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.TRICERATOPS_ENTITY, PrehistoricFaunaConfig.triceratopsClearingSpawnWeight, 2, 3));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.ANKYLOSAURUS_ENTITY, PrehistoricFaunaConfig.ankylosaurusClearingSpawnWeight, 1, 2));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.BASILEMYS_ENTITY, PrehistoricFaunaConfig.basilemysClearingSpawnWeight, 1, 2));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.TRILOBITE_SENTINEL_ENTITY, PrehistoricFaunaConfig.caveSentinelSpawnWeight, 1, 1));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.LAND_SENTINEL_ENTITY, PrehistoricFaunaConfig.landSentinelSpawnWeight, 1, 1));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.WATER_AMBIENT, new MobSpawnInfo.Spawners(PFEntities.GAR, PrehistoricFaunaConfig.garSpawnWeight, 1, 2));
-        SPAWN_SETTINGS.withSpawner(EntityClassification.WATER_AMBIENT, new MobSpawnInfo.Spawners(PFEntities.CYCLURUS, PrehistoricFaunaConfig.cyclurusSpawnWeight, 1, 3));
+		if (PrehistoricFaunaConfig.thescelosaurusHellCreekClearingSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.THESCELOSAURUS_ENTITY, PrehistoricFaunaConfig.thescelosaurusHellCreekClearingSpawnWeight, 2, 4));
+		if (PrehistoricFaunaConfig.triceratopsHellCreekClearingSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.TRICERATOPS_ENTITY, PrehistoricFaunaConfig.triceratopsHellCreekClearingSpawnWeight, 2, 3));
+		if (PrehistoricFaunaConfig.ankylosaurusHellCreekClearingSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.ANKYLOSAURUS_ENTITY, PrehistoricFaunaConfig.ankylosaurusHellCreekClearingSpawnWeight, 1, 2));
+		if (PrehistoricFaunaConfig.baseStoneWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.BASILEMYS_ENTITY, PrehistoricFaunaConfig.basilemysHellCreekClearingSpawnWeight, 1, 2));
+		if (PrehistoricFaunaConfig.caveSentinelHellCreekClearingSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.TRILOBITE_SENTINEL_ENTITY, PrehistoricFaunaConfig.caveSentinelHellCreekClearingSpawnWeight, 1, 1));
+		if (PrehistoricFaunaConfig.landSentinelHellCreekClearingSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.LAND_SENTINEL_ENTITY, PrehistoricFaunaConfig.landSentinelHellCreekClearingSpawnWeight, 1, 1));
+		if (PrehistoricFaunaConfig.garHellCreekClearingSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.WATER_AMBIENT, new MobSpawnInfo.Spawners(PFEntities.GAR, PrehistoricFaunaConfig.garHellCreekClearingSpawnWeight, 1, 2));
+		if (PrehistoricFaunaConfig.cyclurusHellCreekClearingSpawnWeight != 0)  SPAWN_SETTINGS.withSpawner(EntityClassification.WATER_AMBIENT, new MobSpawnInfo.Spawners(PFEntities.CYCLURUS, PrehistoricFaunaConfig.cyclurusHellCreekClearingSpawnWeight, 1, 3));
+        if (PrehistoricFaunaConfig.myledaphusHellCreekClearingSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.WATER_AMBIENT, new MobSpawnInfo.Spawners(PFEntities.MYLEDAPHUS, PrehistoricFaunaConfig.myledaphusHellCreekClearingSpawnWeight, 1, 7));
         DefaultBiomeFeatures.withCavesAndCanyons(GENERATION_SETTINGS);
 	}
 

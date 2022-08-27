@@ -33,7 +33,7 @@ import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.common.entities.TrilobiteSentinelEntity;
+import superlord.prehistoricfauna.common.entities.henos.TrilobiteSentinelEntity;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFLootTables;
 import superlord.prehistoricfauna.init.PFStructures;

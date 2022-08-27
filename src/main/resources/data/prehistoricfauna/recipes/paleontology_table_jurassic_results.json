@@ -50,20 +50,11 @@
       "count": 1,
       "weight": 1.0
     },
+    
     {
-      "item": "prehistoricfauna:stegosaurus_fossil",
+      "item": "prehistoricfauna:fossilized_bones",
       "count": 1,
       "weight": 5.0
-    },
-    {
-      "item": "prehistoricfauna:ceratosaurus_fossil",
-      "count": 1,
-      "weight": 2.5
-    },
-    {
-      "item": "prehistoricfauna:allosaurus_fossil",
-      "count": 1,
-      "weight": 2.5
     },
 	{
 		"item": "prehistoricfauna:ceratosaurus_skull",
@@ -76,7 +67,17 @@
 		"weight": 1.25
 	},
 	{
+		"item": "prehistoricfauna:dilophosaurus_skull",
+		"count": 1,
+		"weight": 1.25
+	},
+	{
 		"item": "prehistoricfauna:stegosaurus_skull",
+		"count": 1,
+		"weight": 2.5
+	},
+	{
+		"item": "prehistoricfauna:scelidosaurus_skull",
 		"count": 1,
 		"weight": 2.5
 	}

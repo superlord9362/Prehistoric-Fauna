@@ -1,0 +1,7 @@
+{
+    "parent": "prehistoricfauna:block/two_plesiohadros_eggs",
+    "textures": {
+        "particle": "prehistoricfauna:blocks/plesiohadros_eggs_slightly_cracked",
+        "all": "prehistoricfauna:blocks/plesiohadros_eggs_slightly_cracked"
+    }
+}

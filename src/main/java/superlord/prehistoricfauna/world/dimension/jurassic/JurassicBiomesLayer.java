@@ -9,9 +9,12 @@ public class JurassicBiomesLayer implements IAreaTransformer0 {
 	private static final int UNCOMMON_BIOME_CHANCE = 8;
 	protected int[] commonBiomes = new int[] {
 			JurassicLayerUtil.getBiomeId(PFBiomes.MORRISON_SAVANNAH_BIOME.getKey()),
+			JurassicLayerUtil.getBiomeId(PFBiomes.KAYENTA_DRY_FOREST_BIOME.getKey())
 	};
 	protected int[] uncommonBiomes = new int[] {
-			JurassicLayerUtil.getBiomeId(PFBiomes.MORRISON_HILLS_BIOME.getKey())
+			JurassicLayerUtil.getBiomeId(PFBiomes.MORRISON_HILLS_BIOME.getKey()),
+			JurassicLayerUtil.getBiomeId(PFBiomes.KAYENTA_BUTTES_BIOME.getKey()),
+			JurassicLayerUtil.getBiomeId(PFBiomes.KAYENTA_DESERT_BIOME.getKey())
 	};
 	
 	public JurassicBiomesLayer() {

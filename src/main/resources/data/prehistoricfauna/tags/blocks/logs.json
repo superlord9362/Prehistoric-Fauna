@@ -32,6 +32,14 @@
 		"prehistoricfauna:ginkgo_log",
 		"prehistoricfauna:ginkgo_wood",
 		"prehistoricfauna:stripped_ginkgo_log",
-		"prehistoricfauna:stripped_ginkgo_wood"
+		"prehistoricfauna:stripped_ginkgo_wood",
+		"prehistoricfauna:trochodendroides_wood",
+		"prehistoricfauna:trochodendroides_log",
+		"prehistoricfauna:stripped_trochodendroides_log",
+		"prehistoricfauna:stripped_trochodendroides_wood",
+		"prehistoricfauna:brachyphyllum_log",
+		"prehistoricfauna:brachyphyllum_wood",
+		"prehistoricfauna:stripped_brachyphyllum_log",
+		"prehistoricfauna:stripped_brachyphyllum_wood"
 	]
 }

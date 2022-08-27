@@ -72,16 +72,16 @@ public class IschigualastoBiome extends PFBiome {
 
 	static {
 		PFConfiguredFeatures.addIschigualastoVegetation(GENERATION_SETTINGS);
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.EXAERETODON_ENTITY, PrehistoricFaunaConfig.exaeretodonSpawnWeight, 1, 3));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.CHROMOGISAURUS_ENTITY, PrehistoricFaunaConfig.chromogisaurusSpawnWeight, 1, 4));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.HERRERASAURUS_ENTITY, PrehistoricFaunaConfig.herrerasaurusSpawnWeight, 1, 2));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.HYPERODAPEDON_ENTITY, PrehistoricFaunaConfig.hyperodapedonSpawnWeight, 2, 4));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.SILLOSUCHUS_ENTITY, PrehistoricFaunaConfig.sillosuchusSpawnWeight, 1, 3));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.SAUROSUCHUS_ENTITY, PrehistoricFaunaConfig.saurosuchusSpawnWeight, 1, 2));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.ISCHIGUALASTIA_ENTITY, PrehistoricFaunaConfig.ischigualastiaSpawnWeight, 2, 5));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.TRILOBITE_SENTINEL_ENTITY, PrehistoricFaunaConfig.caveSentinelSpawnWeight, 1, 1));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.WATER_AMBIENT, new MobSpawnInfo.Spawners(PFEntities.CERATODUS, PrehistoricFaunaConfig.ceratodusIschigualastoSpawnWeight, 1, 2));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.LAND_SENTINEL_ENTITY, PrehistoricFaunaConfig.landSentinelSpawnWeight, 1, 1));
+		if (PrehistoricFaunaConfig.exaeretodonIschigualastoForestSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.EXAERETODON_ENTITY, PrehistoricFaunaConfig.exaeretodonIschigualastoForestSpawnWeight, 1, 3));
+		if (PrehistoricFaunaConfig.chromogisaurusIschigualastoForestSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.CHROMOGISAURUS_ENTITY, PrehistoricFaunaConfig.chromogisaurusIschigualastoForestSpawnWeight, 1, 4));
+		if (PrehistoricFaunaConfig.herrerasaurusIschigualastoForestSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.HERRERASAURUS_ENTITY, PrehistoricFaunaConfig.herrerasaurusIschigualastoForestSpawnWeight, 1, 2));
+		if (PrehistoricFaunaConfig.hyperodapedonIschigualastoForestSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.HYPERODAPEDON_ENTITY, PrehistoricFaunaConfig.hyperodapedonIschigualastoForestSpawnWeight, 2, 4));
+		if (PrehistoricFaunaConfig.sillosuchusIschigualastoForestSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.SILLOSUCHUS_ENTITY, PrehistoricFaunaConfig.sillosuchusIschigualastoForestSpawnWeight, 1, 3));
+		if (PrehistoricFaunaConfig.saurosuchusIschigualastoForestSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.SAUROSUCHUS_ENTITY, PrehistoricFaunaConfig.saurosuchusIschigualastoForestSpawnWeight, 1, 2));
+		if (PrehistoricFaunaConfig.ischigualastiaIschigualastoForestSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.ISCHIGUALASTIA_ENTITY, PrehistoricFaunaConfig.ischigualastiaIschigualastoForestSpawnWeight, 2, 5));
+		if (PrehistoricFaunaConfig.caveSentinelIschigualastoForestSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.TRILOBITE_SENTINEL_ENTITY, PrehistoricFaunaConfig.caveSentinelIschigualastoForestSpawnWeight, 1, 1));
+		if (PrehistoricFaunaConfig.ceratodusIschigualastoForestSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.WATER_AMBIENT, new MobSpawnInfo.Spawners(PFEntities.CERATODUS, PrehistoricFaunaConfig.ceratodusIschigualastoForestSpawnWeight, 1, 2));
+		if (PrehistoricFaunaConfig.landSentinelIschigualastoForestSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.LAND_SENTINEL_ENTITY, PrehistoricFaunaConfig.landSentinelIschigualastoForestSpawnWeight, 1, 1));
 		DefaultBiomeFeatures.withCavesAndCanyons(GENERATION_SETTINGS);
 	}
 

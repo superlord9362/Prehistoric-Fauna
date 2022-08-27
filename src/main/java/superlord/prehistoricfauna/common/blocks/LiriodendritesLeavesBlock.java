@@ -51,7 +51,8 @@ public class LiriodendritesLeavesBlock extends LeavesBlock {
 			if (i < this.getMaxAge()) {
 				float f = 1.0F;
 				if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt((int)(25.0F / f) + 1) == 0)) {
-					worldIn.setBlockState(pos, this.withAge(i + 1));
+					BlockState oldState = worldIn.getBlockState(pos);
+					worldIn.setBlockState(pos, oldState.with(AGE, i + 1));
 					net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
 				}
 			}

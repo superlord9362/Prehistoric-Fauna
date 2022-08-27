@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_stairs",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:trochodendroides_planks"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:trochodendroides_stairs",
+    "count": 4
+  }
+}

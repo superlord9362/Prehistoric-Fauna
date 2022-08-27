@@ -7,7 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.common.entities.LandSentinelEntity;
+import superlord.prehistoricfauna.common.entities.henos.LandSentinelEntity;
 
 @OnlyIn(Dist.CLIENT)
 public class LandSentinelGlowLayer extends AbstractHenosGlowLayer<LandSentinelEntity, EntityModel<LandSentinelEntity>> {

@@ -1,0 +1,7 @@
+{
+	"parent": "block/ladder",
+	"textures": {
+		"particle": "prehistoricfauna:blocks/schilderia_ladder",
+		"texture": "prehistoricfauna:blocks/schilderia_ladder"
+	}
+}

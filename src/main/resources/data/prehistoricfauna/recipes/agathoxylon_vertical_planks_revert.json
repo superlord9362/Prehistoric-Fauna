@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:agathoxylon_vertical_planks"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:agathoxylon_planks"
+  },
+  "conditions": [
+    {
+      "type": "prehistoricfauna:quark_flag",
+      "flag": "vertical_planks"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:protoceratops_skeleton"
+    ]
+  },
+  "criteria": {
+    "has_fossil": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:fossilized_bones"
+          }
+        ]
+      }
+    },
+	"has_skull": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:protoceratops_skull"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:protoceratops_skeleton"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_fossil",
+	  "has_skull",
+      "has_the_recipe"
+    ]
+  ]
+}

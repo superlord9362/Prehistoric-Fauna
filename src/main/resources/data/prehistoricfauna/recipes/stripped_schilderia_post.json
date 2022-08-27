@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"F",
+		"F",
+		"F"
+	],
+	"key": {
+		"F": {
+			"item": "prehistoricfauna:stripped_schilderia_wood"
+		}
+	},
+  	"result": {
+		"item": "prehistoricfauna:stripped_schilderia_post",
+		"count": 8
+  	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:quark_flag",
+			"flag": "wooden_posts"
+		}
+	]
+}

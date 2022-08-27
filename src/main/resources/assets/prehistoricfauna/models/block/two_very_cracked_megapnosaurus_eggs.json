@@ -1,0 +1,7 @@
+{
+    "parent": "prehistoricfauna:block/two_megapnosaurus_eggs",
+    "textures": {
+        "particle": "prehistoricfauna:blocks/megapnosaurus_eggs_very_cracked",
+        "all": "prehistoricfauna:blocks/megapnosaurus_eggs_very_cracked"
+    }
+}

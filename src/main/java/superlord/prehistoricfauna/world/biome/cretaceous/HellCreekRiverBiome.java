@@ -69,22 +69,24 @@ public class HellCreekRiverBiome extends PFBiome {
 
 	static {
 		PFConfiguredFeatures.withHellCreekVegetation(GENERATION_SETTINGS);
-        SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.DIDELPHODON_ENTITY, PrehistoricFaunaConfig.didelphodonSpawnWeight, 1, 3));
-        SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.DAKOTARAPTOR_ENTITY, PrehistoricFaunaConfig.dakotaraptorSpawnWeight, 1, 3));
-        SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.TYRANNOSAURUS_ENTITY, PrehistoricFaunaConfig.tyrannosaurusSpawnWeight, 1, 1));
-        SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.THESCELOSAURUS_ENTITY, PrehistoricFaunaConfig.thescelosaurusSpawnWeight, 2, 4));
-        SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.TRICERATOPS_ENTITY, PrehistoricFaunaConfig.triceratopsSpawnWeight, 2, 3));
-        SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.ANKYLOSAURUS_ENTITY, PrehistoricFaunaConfig.ankylosaurusSpawnWeight, 1, 2));
-        SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.BASILEMYS_ENTITY, PrehistoricFaunaConfig.basilemysSpawnWeight, 1, 2));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.TRILOBITE_SENTINEL_ENTITY, PrehistoricFaunaConfig.caveSentinelSpawnWeight, 1, 1));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.LAND_SENTINEL_ENTITY, PrehistoricFaunaConfig.landSentinelSpawnWeight, 1, 1));
-        SPAWN_SETTINGS.withSpawner(EntityClassification.WATER_AMBIENT, new MobSpawnInfo.Spawners(PFEntities.MYLEDAPHUS, PrehistoricFaunaConfig.myledaphusSpawnWeight, 1, 7));
-        SPAWN_SETTINGS.withSpawner(EntityClassification.WATER_AMBIENT, new MobSpawnInfo.Spawners(PFEntities.GAR, PrehistoricFaunaConfig.garSpawnWeight, 1, 2));
-        SPAWN_SETTINGS.withSpawner(EntityClassification.WATER_AMBIENT, new MobSpawnInfo.Spawners(PFEntities.CYCLURUS, PrehistoricFaunaConfig.cyclurusSpawnWeight, 1, 3));
+		if (PrehistoricFaunaConfig.didelphodonHellCreekRiverSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.DIDELPHODON_ENTITY, PrehistoricFaunaConfig.didelphodonHellCreekRiverSpawnWeight, 1, 3));
+		if (PrehistoricFaunaConfig.dakotaraptorHellCreekRiverSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.DAKOTARAPTOR_ENTITY, PrehistoricFaunaConfig.dakotaraptorHellCreekRiverSpawnWeight, 1, 3));
+        if (PrehistoricFaunaConfig.tyrannosaurusHellCreekRiverSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.TYRANNOSAURUS_ENTITY, PrehistoricFaunaConfig.tyrannosaurusHellCreekRiverSpawnWeight, 1, 1));
+        if (PrehistoricFaunaConfig.thescelosaurusHellCreekRiverSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.THESCELOSAURUS_ENTITY, PrehistoricFaunaConfig.thescelosaurusHellCreekRiverSpawnWeight, 2, 4));
+        if (PrehistoricFaunaConfig.triceratopsHellCreekRiverSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.TRICERATOPS_ENTITY, PrehistoricFaunaConfig.triceratopsHellCreekRiverSpawnWeight, 2, 3));
+        if (PrehistoricFaunaConfig.ankylosaurusHellCreekRiverSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.ANKYLOSAURUS_ENTITY, PrehistoricFaunaConfig.ankylosaurusHellCreekRiverSpawnWeight, 1, 2));
+        if (PrehistoricFaunaConfig.basilemysHellCreekRiverSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.BASILEMYS_ENTITY, PrehistoricFaunaConfig.basilemysHellCreekRiverSpawnWeight, 1, 2));
+        if (PrehistoricFaunaConfig.caveSentinelHellCreekRiverSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.TRILOBITE_SENTINEL_ENTITY, PrehistoricFaunaConfig.caveSentinelHellCreekRiverSpawnWeight, 1, 1));
+        if (PrehistoricFaunaConfig.landSentinelHellCreekRiverSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.LAND_SENTINEL_ENTITY, PrehistoricFaunaConfig.landSentinelHellCreekRiverSpawnWeight, 1, 1));
+        if (PrehistoricFaunaConfig.myledaphusHellCreekRiverSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.WATER_AMBIENT, new MobSpawnInfo.Spawners(PFEntities.MYLEDAPHUS, PrehistoricFaunaConfig.myledaphusHellCreekRiverSpawnWeight, 1, 7));
+        if (PrehistoricFaunaConfig.garHellCreekRiverSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.WATER_AMBIENT, new MobSpawnInfo.Spawners(PFEntities.GAR, PrehistoricFaunaConfig.garHellCreekRiverSpawnWeight, 1, 2));
+        if (PrehistoricFaunaConfig.cyclurusHellCreekRiverSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.WATER_AMBIENT, new MobSpawnInfo.Spawners(PFEntities.CYCLURUS, PrehistoricFaunaConfig.cyclurusHellCreekRiverSpawnWeight, 1, 3));
         GENERATION_SETTINGS.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PFConfiguredFeatures.CRASSOSTREA_OYSTERS);
         GENERATION_SETTINGS.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PFConfiguredFeatures.MOSS);
 		GENERATION_SETTINGS.withFeature(Decoration.UNDERGROUND_ORES, PFConfiguredFeatures.FOSSILIZED_SANDSTONE);
 		GENERATION_SETTINGS.withFeature(Decoration.UNDERGROUND_ORES, PFConfiguredFeatures.FOSSILIZED_SILTSTONE);
+		GENERATION_SETTINGS.withFeature(Decoration.VEGETAL_DECORATION, PFConfiguredFeatures.TROCHODENDROIDES_VEGETATION);
+		GENERATION_SETTINGS.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PFConfiguredFeatures.COBBANIA);
 		PFConfiguredFeatures.addHellCreekVegetation(GENERATION_SETTINGS);
 		DefaultBiomeFeatures.withCavesAndCanyons(GENERATION_SETTINGS);
 		PFConfiguredFeatures.withWaterLakesAndSprings(GENERATION_SETTINGS);

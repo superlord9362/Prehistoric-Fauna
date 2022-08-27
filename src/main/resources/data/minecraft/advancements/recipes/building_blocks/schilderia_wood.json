@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:schilderia_wood"
+    ]
+  },
+  "criteria": {
+    "has_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:schilderia_log"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:schilderia_wood"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_log",
+      "has_the_recipe"
+    ]
+  ]
+}

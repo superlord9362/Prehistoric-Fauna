@@ -1,0 +1,224 @@
+{
+	"parent": "prehistoricfauna:prehistoricfauna/general/warpaholic",
+	"display": {
+		"icon": {
+			"item": "minecraft:leather_boots",
+			"nbt": "{Damage:0}"
+		},
+		"title": {
+			"translate": "advancements.prehistoricfauna.intrepid_interloper.title"	
+		},
+		"description": {
+			"translate": "advancements.prehistoricfauna.intrepid_interloper.description"
+		},
+		"frame": "challenge",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"rewards": {
+		"experience": 500
+	},
+	"criteria": {
+		"chinle_flats": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:chinle_flats"
+				}
+			}
+		},
+		"chinle_swamp": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:chinle_swamp"
+				}
+			}
+		},
+		"chinle_wooded_mountains": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:chinle_wooded_mountains"
+				}
+			}
+		},
+		"djadochta_arroyo": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:djadochta_arroyo"
+				}
+			}
+		},
+		"djadochta_dunes": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:djadochta_dunes"
+				}
+			}
+		},
+		"hell_creek": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:hell_creek"
+				}
+			}
+		},
+		"hell_creek_clearing": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:hell_creek_clearing"
+				}
+			}
+		},
+		"hell_creek_hills": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:hell_creek_hills"
+				}
+			}
+		},
+		"hell_creek_river": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:hell_creek_river"
+				}
+			}
+		},
+		"ischigualasto_clearing": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:ischigualasto_clearing"
+				}
+			}
+		},
+		"ischigualasto_forest": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:ischigualasto_forest"
+				}
+			}
+		},
+		"ischigualasto_hills": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:ischigualasto_hills"
+				}
+			}
+		},
+		"ischigualasto_river": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:ischigualasto_river"
+				}
+			}
+		},
+		"kayenta_canyon": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:kayenta_canyon"
+				}
+			}
+		},
+		"kayenta_desert": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:kayenta_desert"
+				}
+			}
+		},
+		"kayenta_dry_forest": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:kayenta_dry_forest"
+				}
+			}
+		},
+		"morrison_hills": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:morrison_hills"
+				}
+			}
+		},
+		"morrison_savannah": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:morrison_savannah"
+				}
+			}
+		}
+	},
+	"requirements": [
+		[
+			"chinle_flats"
+		],
+		[
+			"chinle_swamp"
+		],
+		[
+			"chinle_wooded_mountains"
+		],
+		[
+			"djadochta_arroyo"
+		],
+		[
+			"djadochta_dunes"
+		],
+		[
+			"hell_creek"
+		],
+		[
+			"hell_creek_clearing"
+		],
+		[
+			"hell_creek_hills"
+		],
+		[
+			"hell_creek_river"
+		],
+		[
+			"ischigualasto_clearing"
+		],
+		[
+			"ischigualasto_forest"
+		],
+		[
+			"ischigualasto_hills"
+		],
+		[
+			"ischigualasto_river"
+		],
+		[
+			"kayenta_canyon"
+		],
+		[
+			"kayenta_desert"
+		],
+		[
+			"kayenta_dry_forest"
+		],
+		[
+			"morrison_hills"
+		],
+		[
+			"morrison_savannah"
+		]
+	]
+}

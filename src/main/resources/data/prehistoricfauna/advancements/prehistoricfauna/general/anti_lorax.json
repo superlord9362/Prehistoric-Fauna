@@ -89,7 +89,37 @@
         }
 ]
       }
-    }
+    },
+	"ginkgo": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+	{
+          "item": "prehistoricfauna:ginkgo_log"
+        }
+]
+      }
+    },
+	"trochodendroides": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+	{
+          "item": "prehistoricfauna:trochodendroides_log"
+        }
+]
+      }
+    },
+	"brachyphyllum": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:brachyphyllum_log"
+				}
+			]
+		}
+	}
   },
   "requirements": [
     [
@@ -112,6 +142,15 @@
     ],
 	[
       "liriodendrites"
-    ]
+    ],
+	[
+		"ginkgo"
+	],
+	[
+		"trochodendroides"
+	],
+	[
+		"brachyphyllum"
+	]
   ]
 }

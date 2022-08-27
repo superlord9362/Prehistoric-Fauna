@@ -5,10 +5,28 @@
       "item": "prehistoricfauna:ceratosaurus_skull"
     },
 	{
-		"item": "prehistoricfauna:ceratosaurus_fossil"
+		"item": "prehistoricfauna:fossilized_bones"
 	},
 	{
-		"item": "prehistoricfauna:ceratosaurus_fossil"
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
 	}
   ],
   "result": {

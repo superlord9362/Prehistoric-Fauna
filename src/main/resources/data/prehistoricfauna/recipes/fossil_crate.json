@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"WFW",
+		"PPP",
+		"WWW"
+	],
+	"key": {
+		"W": {
+			"tag": "minecraft:planks"
+		},
+		"P": {
+			"item": "minecraft:paper"
+		},
+		"F": {
+			"item": "prehistoricfauna:fossilized_bones"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:fossil_crate"
+	}
+}

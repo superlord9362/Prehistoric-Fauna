@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:moss_ball"
+    },
+	{
+		"item": "minecraft:cobblestone"
+	}
+  ],
+  "result": {
+    "item": "minecraft:mossy_cobblestone"
+  }
+}

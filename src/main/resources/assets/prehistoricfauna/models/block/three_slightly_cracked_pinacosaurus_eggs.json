@@ -1,0 +1,7 @@
+{
+    "parent": "prehistoricfauna:block/three_pinacosaurus_eggs",
+    "textures": {
+        "particle": "prehistoricfauna:blocks/pinacosaurus_eggs_slightly_cracked",
+        "all": "prehistoricfauna:blocks/pinacosaurus_eggs_slightly_cracked"
+    }
+}

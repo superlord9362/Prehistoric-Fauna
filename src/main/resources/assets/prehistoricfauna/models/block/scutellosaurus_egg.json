@@ -1,0 +1,27 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "prehistoricfauna:blocks/scutellosaurus_eggs",
+		"particle": "prehistoricfauna:blocks/scutellosaurus_eggs"
+	},
+	"elements": [
+		{
+			"from": [7, 0, 7],
+			"to": [10, 6, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 6, 7]},
+			"faces": {
+				"north": {"uv": [3, 3, 6, 9], "texture": "#0"},
+				"east": {"uv": [0, 3, 3, 9], "texture": "#0"},
+				"south": {"uv": [9, 3, 12, 9], "texture": "#0"},
+				"west": {"uv": [6, 3, 9, 9], "texture": "#0"},
+				"up": {"uv": [3, 0, 6, 3], "texture": "#0"},
+				"down": {"uv": [6, 0, 9, 3], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, 6, 0]
+		}
+	}
+}

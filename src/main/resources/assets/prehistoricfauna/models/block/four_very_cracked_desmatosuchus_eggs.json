@@ -1,0 +1,7 @@
+{
+    "parent": "prehistoricfauna:block/four_desmatosuchus_eggs",
+    "textures": {
+        "particle": "prehistoricfauna:blocks/desmatosuchus_eggs_very_cracked",
+        "all": "prehistoricfauna:blocks/desmatosuchus_eggs_very_cracked"
+    }
+}

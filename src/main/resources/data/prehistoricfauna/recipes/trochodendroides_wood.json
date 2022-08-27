@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:trochodendroides_log"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:trochodendroides_wood",
+    "count": 3
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:woodworthia_trapdoor"
+    ]
+  },
+  "criteria": {
+    "has_planks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:woodworthia_planks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:woodworthia_trapdoor"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_planks",
+      "has_the_recipe"
+    ]
+  ]
+}

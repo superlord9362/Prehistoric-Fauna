@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_slab",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:brachyphyllum_planks"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:brachyphyllum_slab",
+    "count": 6
+  }
+}

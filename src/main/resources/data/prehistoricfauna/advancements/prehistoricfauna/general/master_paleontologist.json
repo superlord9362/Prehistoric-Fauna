@@ -2,7 +2,7 @@
   "parent": "prehistoricfauna:prehistoricfauna/general/digger_man",
   "display": {
     "icon": {
-      "item": "prehistoricfauna:triceratops_fossil"
+      "item": "prehistoricfauna:fossilized_bones"
     },
     "title": {
       "translate": "advancements.prehistoricfauna.master_paleontologist.title"
@@ -109,6 +109,26 @@
         ]
       }
     },
+	"velociraptor_skull": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:velociraptor_skull"
+				}
+			]
+		}
+	},
+	"protoceratops_skull": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:protoceratops_skull"
+				}
+			]
+		}
+	},
 	"tyrannosaurus_skeleton": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -198,7 +218,27 @@
           }
         ]
       }
-    }
+    },
+	"velociraptor_skeleton": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:velociraptor_skeleton"
+				}
+			]
+		}
+	},
+	"protoceratops_skeleton": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:protoceratops_skeleton"
+				}
+			]
+		}
+	}
   },
   "requirements": [
     [
@@ -254,6 +294,18 @@
 	],
 	[
 		"ischigualastia_skeleton"
+	],
+	[
+		"protoceratops_skeleton"
+	],
+	[
+		"velociraptor_skeleton"
+	],
+	[
+		"velociraptor_skull"
+	],
+	[
+		"protoceratops_skull"
 	]
   ]
 }

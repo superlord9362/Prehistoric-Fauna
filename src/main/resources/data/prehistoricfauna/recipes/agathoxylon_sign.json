@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+	" S "
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:agathoxylon_planks"
+    },
+	"S": {
+		"item": "minecraft:stick"
+	}
+  },
+  "result": {
+    "item": "prehistoricfauna:agathoxylon_sign",
+    "count": 3
+  }
+}

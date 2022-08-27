@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "prehistoricfauna:blocks/trochodendroides_planks",
+        "top": "prehistoricfauna:blocks/trochodendroides_planks",
+        "side": "prehistoricfauna:blocks/trochodendroides_planks"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "variants": {
+ 		"type=north": { "model": "prehistoricfauna:block/schilderia_vertical_slab", "y": 0, "uvlock": true },
+ 		"type=south": { "model": "prehistoricfauna:block/schilderia_vertical_slab", "y": 180, "uvlock": true },
+  		"type=east": { "model": "prehistoricfauna:block/schilderia_vertical_slab", "y": 90, "uvlock": true },
+ 		"type=west": { "model": "prehistoricfauna:block/schilderia_vertical_slab", "y": 270, "uvlock": true },
+        "type=double": { "model": "prehistoricfauna:block/schilderia_planks" }
+    }
+}

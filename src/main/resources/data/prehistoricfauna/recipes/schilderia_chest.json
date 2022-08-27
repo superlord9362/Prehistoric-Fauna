@@ -1,0 +1,24 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"group": "schilderia_chest",
+	"pattern": [
+		"###",
+		"# #",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:schilderia_planks"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:schilderia_chest",
+		"count": 1
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:quark_flag",
+			"flag": "variant_chests"
+		}
+	]
+}

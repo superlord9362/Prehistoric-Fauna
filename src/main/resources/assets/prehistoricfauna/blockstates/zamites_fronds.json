@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "prehistoricfauna:block/zamites_fronds",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "prehistoricfauna:block/zamites_fronds",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "prehistoricfauna:block/zamites_fronds"
+    },
+    "facing=west": {
+      "model": "prehistoricfauna:block/zamites_fronds",
+      "y": 90
+    }
+  }
+}

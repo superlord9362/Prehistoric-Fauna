@@ -1,0 +1,7 @@
+{
+    "parent": "prehistoricfauna:block/two_kayentatherium_eggs",
+    "textures": {
+        "particle": "prehistoricfauna:blocks/kayentatherium_egg_slightly_cracked",
+        "all": "prehistoricfauna:blocks/kayentatherium_egg_slightly_cracked"
+    }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:brachyphyllum_wood"
+    ]
+  },
+  "criteria": {
+    "has_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "prehistoricfauna:brachyphyllum_log"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:brachyphyllum_wood"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_log",
+      "has_the_recipe"
+    ]
+  ]
+}

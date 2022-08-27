@@ -13,8 +13,25 @@ import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.dispenser.OptionalDispenseBehavior;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
+import net.minecraft.entity.monster.AbstractIllagerEntity;
+import net.minecraft.entity.passive.BatEntity;
+import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.entity.passive.ChickenEntity;
+import net.minecraft.entity.passive.CowEntity;
+import net.minecraft.entity.passive.DolphinEntity;
+import net.minecraft.entity.passive.FoxEntity;
+import net.minecraft.entity.passive.MooshroomEntity;
+import net.minecraft.entity.passive.OcelotEntity;
+import net.minecraft.entity.passive.PandaEntity;
 import net.minecraft.entity.passive.ParrotEntity;
+import net.minecraft.entity.passive.PigEntity;
+import net.minecraft.entity.passive.PolarBearEntity;
+import net.minecraft.entity.passive.RabbitEntity;
+import net.minecraft.entity.passive.SheepEntity;
+import net.minecraft.entity.passive.WolfEntity;
+import net.minecraft.entity.passive.horse.AbstractHorseEntity;
+import net.minecraft.entity.passive.horse.LlamaEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.AxeItem;
@@ -34,8 +51,12 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.common.entities.HesperornithoidesEntity;
-import superlord.prehistoricfauna.common.entities.TimeGuardianEntity;
+import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.DidelphodonEntity;
+import superlord.prehistoricfauna.common.entities.henos.TimeGuardianEntity;
+import superlord.prehistoricfauna.common.entities.jurassic.morrison.CamarasaurusEntity;
+import superlord.prehistoricfauna.common.entities.jurassic.morrison.HesperornithoidesEntity;
+import superlord.prehistoricfauna.common.entities.triassic.ischigualasto.ChromogisaurusEntity;
+import superlord.prehistoricfauna.common.items.PrehistoricSpawnEggItem;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
@@ -67,6 +88,10 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.METASEQUOIA_FENCE, 5, 20);
 		registerFlammable(PFBlocks.ARAUCARIA_FENCE_GATE, 5, 20);
 		registerFlammable(PFBlocks.METASEQUOIA_FENCE_GATE, 5, 20);
+		registerFlammable(PFBlocks.GINKGO_FENCE, 5, 20);
+		registerFlammable(PFBlocks.GINKGO_FENCE_GATE, 5, 20);
+		registerFlammable(PFBlocks.TROCHODENDROIDES_FENCE, 5, 20);
+		registerFlammable(PFBlocks.TROCHODENDROIDES_FENCE_GATE, 5, 20);
 		registerFlammable(PFBlocks.ARAUCARIA_STAIRS, 5, 20);
 		registerFlammable(PFBlocks.METASEQUOIA_STAIRS, 5, 20);
 		registerFlammable(PFBlocks.PROTOPICEOXYLON_PLANKS, 5, 20);
@@ -94,6 +119,24 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.LIRIODENDRITES_FENCE, 5, 20);
 		registerFlammable(PFBlocks.LIRIODENDRITES_FENCE_GATE, 5, 20);
 		registerFlammable(PFBlocks.LIRIODENDRITES_STAIRS, 5, 20);
+		registerFlammable(PFBlocks.GINKGO_PLANKS, 5, 20);
+		registerFlammable(PFBlocks.GINKGO_SLAB, 5, 20);
+		registerFlammable(PFBlocks.GINKGO_STAIRS, 5, 20);
+		registerFlammable(PFBlocks.TROCHODENDROIDES_PLANKS, 5, 20);
+		registerFlammable(PFBlocks.TROCHODENDROIDES_SLAB, 5, 20);
+		registerFlammable(PFBlocks.TROCHODENDROIDES_STAIRS, 5, 20);
+		registerFlammable(PFBlocks.BRACHYPHYLLUM_PLANKS, 5, 20);
+		registerFlammable(PFBlocks.BRACHYPHYLLUM_SLAB, 5, 20);
+		registerFlammable(PFBlocks.BRACHYPHYLLUM_STAIRS, 5, 20);
+		registerFlammable(PFBlocks.AGATHOXYLON_PLANKS, 5, 20);
+		registerFlammable(PFBlocks.AGATHOXYLON_SLAB, 5, 20);
+		registerFlammable(PFBlocks.AGATHOXYLON_STAIRS, 5, 20);
+		registerFlammable(PFBlocks.WOODWORTHIA_PLANKS, 5, 20);
+		registerFlammable(PFBlocks.WOODWORTHIA_SLAB, 5, 20);
+		registerFlammable(PFBlocks.WOODWORTHIA_STAIRS, 5, 20);
+		registerFlammable(PFBlocks.SCHILDERIA_PLANKS, 5, 20);
+		registerFlammable(PFBlocks.SCHILDERIA_SLAB, 5, 20);
+		registerFlammable(PFBlocks.SCHILDERIA_STAIRS, 5, 20);
 		registerFlammable(PFBlocks.ARAUCARIA_LOG, 5, 5);
 		registerFlammable(PFBlocks.METASEQUOIA_LOG, 5, 5);
 		registerFlammable(PFBlocks.METASEQUOIA_WOOD, 5, 5);
@@ -123,6 +166,30 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.STRIPPED_LIRIODENDRITES_LOG, 5, 5);
 		registerFlammable(PFBlocks.LIRIODENDRITES_WOOD, 5, 5);
 		registerFlammable(PFBlocks.STRIPPED_LIRIODENDRITES_WOOD, 5, 5);
+		registerFlammable(PFBlocks.GINKGO_LOG, 5, 5);
+		registerFlammable(PFBlocks.STRIPPED_GINKGO_LOG, 5, 5);
+		registerFlammable(PFBlocks.GINKGO_WOOD, 5, 5);
+		registerFlammable(PFBlocks.STRIPPED_GINKGO_WOOD, 5, 5);
+		registerFlammable(PFBlocks.TROCHODENDROIDES_LOG, 5, 5);
+		registerFlammable(PFBlocks.STRIPPED_TROCHODENDROIDES_LOG, 5, 5);
+		registerFlammable(PFBlocks.TROCHODENDROIDES_WOOD, 5, 5);
+		registerFlammable(PFBlocks.STRIPPED_TROCHODENDROIDES_WOOD, 5, 5);
+		registerFlammable(PFBlocks.BRACHYPHYLLUM_LOG, 5, 5);
+		registerFlammable(PFBlocks.STRIPPED_BRACHYPHYLLUM_LOG, 5, 5);
+		registerFlammable(PFBlocks.BRACHYPHYLLUM_WOOD, 5, 5);
+		registerFlammable(PFBlocks.STRIPPED_BRACHYPHYLLUM_WOOD, 5, 5);
+		registerFlammable(PFBlocks.AGATHOXYLON_LOG, 5, 5);
+		registerFlammable(PFBlocks.AGATHOXYLON_WOOD, 5, 5);
+		registerFlammable(PFBlocks.STRIPPED_AGATHOXYLON_LOG, 5, 5);
+		registerFlammable(PFBlocks.STRIPPED_AGATHOXYLON_WOOD, 5, 5);
+		registerFlammable(PFBlocks.WOODWORTHIA_LOG, 5, 5);
+		registerFlammable(PFBlocks.WOODWORTHIA_WOOD, 5, 5);
+		registerFlammable(PFBlocks.STRIPPED_WOODWORTHIA_LOG, 5, 5);
+		registerFlammable(PFBlocks.STRIPPED_WOODWORTHIA_WOOD, 5, 5);
+		registerFlammable(PFBlocks.SCHILDERIA_LOG, 5, 5);
+		registerFlammable(PFBlocks.SCHILDERIA_WOOD, 5, 5);
+		registerFlammable(PFBlocks.STRIPPED_SCHILDERIA_LOG, 5, 5);
+		registerFlammable(PFBlocks.STRIPPED_SCHILDERIA_WOOD, 5, 5);
 		//registerFlammable(PFBlocks.CYPRESS_LOG, 5, 5);
 		//registerFlammable(PFBlocks.STRIPPED_CYPRESS_LOG, 5, 5);
 		//registerFlammable(PFBlocks.CYPRESS_WOOD, 5, 5);
@@ -134,6 +201,12 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.PROTOJUNIPEROXYLON_LEAVES, 30, 60);
 		registerFlammable(PFBlocks.HEIDIPHYLLUM_LEAVES, 30, 60);
 		registerFlammable(PFBlocks.LIRIODENDRITES_LEAVES, 30, 60);;
+		registerFlammable(PFBlocks.GINKGO_LEAVES, 30, 60);
+		registerFlammable(PFBlocks.TROCHODENDROIDES_LEAVES, 30, 60);
+		registerFlammable(PFBlocks.BRACHYPHYLLUM_LEAVES, 30, 60);
+		registerFlammable(PFBlocks.AGATHOXYLON_LEAVES, 30, 60);
+		registerFlammable(PFBlocks.WOODWORTHIA_LEAVES, 30, 60);
+		registerFlammable(PFBlocks.SCHILDERIA_LEAVES, 30, 60);
 		//registerFlammable(PFBlocks.CYPRESS_LEAVES, 30, 60);
 		registerFlammable(PFBlocks.CLUBMOSS, 60, 100);
 		registerFlammable(PFBlocks.HORSETAIL, 60, 100);
@@ -145,6 +218,9 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.TALL_OSMUNDA, 60, 100);
 		registerFlammable(PFBlocks.CONIOPTERIS, 60, 100);
 		registerFlammable(PFBlocks.TALL_OSMUNDACAULIS, 60, 100);
+		registerFlammable(PFBlocks.TALL_OTOZAMITES, 60, 100);
+		registerFlammable(PFBlocks.OTOZAMITES, 60, 100);
+		registerFlammable(PFBlocks.LAUROZAMITES, 60, 100);
 		registerFlammable(PFBlocks.MOSS_CARPET, 60, 20);
 		registerFlammable(PFBlocks.MOSS_BLOCK, 60, 20);
 		registerCompostable(0.3F, PFBlocks.ARAUCARIA_LEAVES);
@@ -154,6 +230,12 @@ public class CommonEvents {
 		registerCompostable(0.3F, PFBlocks.PROTOJUNIPEROXYLON_LEAVES);
 		registerCompostable(0.3F, PFBlocks.HEIDIPHYLLUM_LEAVES);
 		registerCompostable(0.3F, PFBlocks.LIRIODENDRITES_LEAVES);
+		registerCompostable(0.3F, PFBlocks.GINKGO_LEAVES);
+		registerCompostable(0.3F, PFBlocks.TROCHODENDROIDES_LEAVES);
+		registerCompostable(0.3F, PFBlocks.BRACHYPHYLLUM_LEAVES);
+		registerCompostable(0.3F, PFBlocks.AGATHOXYLON_LEAVES);
+		registerCompostable(0.3F, PFBlocks.WOODWORTHIA_LEAVES);
+		registerCompostable(0.3F, PFBlocks.SCHILDERIA_LEAVES);
 		//registerCompostable(0.3F, PFBlocks.CYPRESS_LEAVES);
 		registerCompostable(0.3F, PFBlocks.ARAUCARIA_SAPLING);
 		registerCompostable(0.3F, PFBlocks.METASEQUOIA_SAPLING);
@@ -162,6 +244,12 @@ public class CommonEvents {
 		registerCompostable(0.3F, PFBlocks.PROTOJUNIPEROXYLON_SAPLING);
 		registerCompostable(0.3F, PFBlocks.HEIDIPHYLLUM_SAPLING);
 		registerCompostable(0.3F, PFBlocks.LIRIODENDRITES_SAPLING);
+		registerCompostable(0.3F, PFBlocks.GINKGO_SAPLING);
+		registerCompostable(0.3F, PFBlocks.TROCHODENDROIDES_SAPLING);
+		registerCompostable(0.3F, PFBlocks.BRACHYPHYLLUM_SAPLING);
+		registerCompostable(0.3F, PFBlocks.AGATHOXYLON_SAPLING);
+		registerCompostable(0.3F, PFBlocks.WOODWORTHIA_SAPLING);
+		registerCompostable(0.3F, PFBlocks.SCHILDERIA_SAPLING);
 		//registerCompostable(0.3F, PFBlocks.CYPRESS_SAPLING);
 		registerCompostable(0.3F, PFBlocks.HORSETAIL);
 		registerCompostable(0.3F, PFBlocks.OSMUNDA);
@@ -173,11 +261,14 @@ public class CommonEvents {
 		registerCompostable(0.3F, PFBlocks.MOSS_CARPET);
 		registerCompostable(0.3F, PFBlocks.CONIOPTERIS);
 		registerCompostable(0.3F, PFBlocks.OSMUNDACAULIS);
+		registerCompostable(0.3F, PFBlocks.LAUROZAMITES);
+		registerCompostable(0.3F, PFBlocks.OTOZAMITES);
 		registerCompostable(0.5F, PFBlocks.TALL_HORSETAIL);
 		registerCompostable(0.5F, PFBlocks.MOSS_BLOCK);
 		registerCompostable(0.5F, PFBlocks.SCYTOPHYLLUM);
 		registerCompostable(0.5F, PFBlocks.TALL_OSMUNDA);
 		registerCompostable(0.5F, PFBlocks.TALL_OSMUNDACAULIS);
+		registerCompostable(0.5F, PFBlocks.TALL_OTOZAMITES);
 		registerCompostable(0.65F, PFBlocks.JOHNSTONIA);
 		registerCompostable(0.75F, PFBlocks.DICROIDIUM);
 		registerCompostable(0.65F, PFBlocks.CLUBMOSS);
@@ -199,6 +290,18 @@ public class CommonEvents {
 		BLOCK_STRIPPING_MAP.put(PFBlocks.HEIDIPHYLLUM_WOOD, PFBlocks.STRIPPED_HEIDIPHYLLUM_WOOD);
 		BLOCK_STRIPPING_MAP.put(PFBlocks.LIRIODENDRITES_LOG, PFBlocks.STRIPPED_LIRIODENDRITES_LOG);
 		BLOCK_STRIPPING_MAP.put(PFBlocks.LIRIODENDRITES_WOOD, PFBlocks.STRIPPED_LIRIODENDRITES_WOOD);
+		BLOCK_STRIPPING_MAP.put(PFBlocks.GINKGO_LOG, PFBlocks.STRIPPED_GINKGO_LOG);
+		BLOCK_STRIPPING_MAP.put(PFBlocks.GINKGO_WOOD, PFBlocks.STRIPPED_GINKGO_WOOD);
+		BLOCK_STRIPPING_MAP.put(PFBlocks.TROCHODENDROIDES_LOG, PFBlocks.STRIPPED_TROCHODENDROIDES_LOG);
+		BLOCK_STRIPPING_MAP.put(PFBlocks.TROCHODENDROIDES_WOOD, PFBlocks.STRIPPED_TROCHODENDROIDES_WOOD);
+		BLOCK_STRIPPING_MAP.put(PFBlocks.BRACHYPHYLLUM_LOG, PFBlocks.STRIPPED_BRACHYPHYLLUM_LOG);
+		BLOCK_STRIPPING_MAP.put(PFBlocks.BRACHYPHYLLUM_WOOD, PFBlocks.STRIPPED_BRACHYPHYLLUM_WOOD);
+		BLOCK_STRIPPING_MAP.put(PFBlocks.AGATHOXYLON_LOG, PFBlocks.STRIPPED_AGATHOXYLON_LOG);
+		BLOCK_STRIPPING_MAP.put(PFBlocks.AGATHOXYLON_WOOD, PFBlocks.STRIPPED_AGATHOXYLON_WOOD);
+		BLOCK_STRIPPING_MAP.put(PFBlocks.WOODWORTHIA_LOG, PFBlocks.STRIPPED_WOODWORTHIA_LOG);
+		BLOCK_STRIPPING_MAP.put(PFBlocks.WOODWORTHIA_WOOD, PFBlocks.STRIPPED_WOODWORTHIA_WOOD);
+		BLOCK_STRIPPING_MAP.put(PFBlocks.SCHILDERIA_LOG, PFBlocks.STRIPPED_SCHILDERIA_LOG);
+		BLOCK_STRIPPING_MAP.put(PFBlocks.SCHILDERIA_WOOD, PFBlocks.STRIPPED_SCHILDERIA_WOOD);
 		VANILLA_ROCK_SMASHING_MAP.put(Blocks.STONE, Blocks.COBBLESTONE);
 		VANILLA_ROCK_SMASHING_MAP.put(Blocks.COBBLESTONE, Blocks.GRAVEL);
 		VANILLA_ROCK_SMASHING_MAP.put(Blocks.SANDSTONE, Blocks.SAND);
@@ -358,6 +461,7 @@ public class CommonEvents {
 	}
 	
 	public static void init() {
+		PrehistoricSpawnEggItem.initSpawnEggs();
 		if (PrehistoricFaunaConfig.geologyHammerMining == true) {
 			DispenserBlock.registerDispenseBehavior(PFItems.GEOLOGY_HAMMER.get().asItem(), new OptionalDispenseBehavior() {
 				protected ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
@@ -678,6 +782,8 @@ public class CommonEvents {
 	}
 	
 	public boolean deadBirds = false;
+	public boolean deadSauropods = false;
+	public boolean deadMammals = false;
 
 	@SubscribeEvent
 	public void spaceTimeContinuumWarping(LivingDeathEvent event) {
@@ -685,6 +791,16 @@ public class CommonEvents {
 			if (event.getEntity() instanceof HesperornithoidesEntity) {
 				if (event.getSource().getTrueSource() instanceof PlayerEntity) {
 					this.deadBirds = true;
+				}
+			}
+			if (event.getEntity() instanceof DidelphodonEntity) {
+				if (event.getSource().getTrueSource() instanceof PlayerEntity) {
+					this.deadMammals = true;
+				}
+			}
+			if (event.getEntity() instanceof ChromogisaurusEntity) {
+				if (event.getSource().getTrueSource() instanceof PlayerEntity) {
+					this.deadSauropods = true;
 				}
 			}
 		}
@@ -695,6 +811,18 @@ public class CommonEvents {
 		if (this.deadBirds == true) {
 			Entity entity = event.getEntity();
 			if (event.getEntity() instanceof ChickenEntity || event.getEntity() instanceof ParrotEntity) {
+				entity.remove();
+			}
+		}
+		if (this.deadMammals == true) {
+			Entity entity = event.getEntity();
+			if (event.getEntity() instanceof AbstractHorseEntity || event.getEntity() instanceof CowEntity || event.getEntity() instanceof WolfEntity || event.getEntity() instanceof AbstractVillagerEntity || event.getEntity() instanceof AbstractIllagerEntity || event.getEntity() instanceof OcelotEntity || event.getEntity() instanceof CatEntity || event.getEntity() instanceof PigEntity || event.getEntity() instanceof BatEntity || event.getEntity() instanceof RabbitEntity || event.getEntity() instanceof FoxEntity || event.getEntity() instanceof SheepEntity || event.getEntity() instanceof PolarBearEntity || event.getEntity() instanceof PandaEntity || event.getEntity() instanceof MooshroomEntity || event.getEntity() instanceof LlamaEntity || event.getEntity() instanceof DolphinEntity) {
+				entity.remove();
+			}
+		}
+		if (this.deadSauropods == true) {
+			Entity entity = event.getEntity();
+			if (event.getEntity() instanceof CamarasaurusEntity) {
 				entity.remove();
 			}
 		}

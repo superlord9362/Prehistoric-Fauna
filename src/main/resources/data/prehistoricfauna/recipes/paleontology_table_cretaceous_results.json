@@ -52,19 +52,9 @@
     },
 
     {
-      "item": "prehistoricfauna:triceratops_fossil",
+      "item": "prehistoricfauna:fossilized_bones",
       "count": 1,
       "weight": 5.0
-    },
-    {
-      "item": "prehistoricfauna:ankylosaurus_fossil",
-      "count": 1,
-      "weight": 2.5
-    },
-    {
-      "item": "prehistoricfauna:tyrannosaurus_fossil",
-      "count": 1,
-      "weight": 2.5
     },
 	{
 		"item": "prehistoricfauna:tyrannosaurus_skull",
@@ -78,6 +68,21 @@
 	},
 	{
 		"item": "prehistoricfauna:triceratops_skull",
+		"count": 1,
+		"weight": 2.5
+	},
+	{
+		"item": "prehistoricfauna:velociraptor_skull",
+		"count": 1,
+		"weight": 1.25
+	},
+	{
+		"item": "prehistoricfauna:plesiohadros_skull",
+		"count": 1,
+		"weight": 1.25
+	},
+	{
+		"item": "prehistoricfauna:protoceratops_skull",
 		"count": 1,
 		"weight": 2.5
 	}

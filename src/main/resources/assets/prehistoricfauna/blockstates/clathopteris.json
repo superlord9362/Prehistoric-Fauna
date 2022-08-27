@@ -1,0 +1,21 @@
+{
+    "variants": {
+        "": [
+			{
+				"model": "prehistoricfauna:block/clathopteris"
+			},
+			{
+				"model": "prehistoricfauna:block/clathopteris",
+				"y": 90
+			},
+			{
+				"model": "prehistoricfauna:block/clathopteris",
+				"y": 180
+			},
+			{
+				"model": "prehistoricfauna:block/clathopteris",
+				"y": 270
+			}
+		]
+    }
+}

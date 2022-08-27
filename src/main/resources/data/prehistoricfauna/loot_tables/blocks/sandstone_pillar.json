@@ -6,11 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-<<<<<<< Updated upstream
-          "name": "prehistoricfauna:sandstone_pavement"
-=======
           "name": "prehistoricfauna:sandstone_pillar"
->>>>>>> Stashed changes
         }
       ],
       "conditions": [

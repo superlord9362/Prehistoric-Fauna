@@ -13,13 +13,18 @@ public class PFWorldTypeBiomesLayer implements IAreaTransformer0 {
 			PFWorldTypeLayerUtil.getBiomeId(PFBiomes.ISCHIGUALASTO_FOREST_BIOME.getKey()),
 			PFWorldTypeLayerUtil.getBiomeId(PFBiomes.MORRISON_SAVANNAH_BIOME.getKey()),
 			PFWorldTypeLayerUtil.getBiomeId(PFBiomes.DJADOCHTA_DUNES_BIOME.getKey()),
-			PFWorldTypeLayerUtil.getBiomeId(PFBiomes.DJADOCHTA_ARROYO_BIOME.getKey())
+			PFWorldTypeLayerUtil.getBiomeId(PFBiomes.DJADOCHTA_ARROYO_BIOME.getKey()),
+			PFWorldTypeLayerUtil.getBiomeId(PFBiomes.KAYENTA_DRY_FOREST_BIOME.getKey()),
+			PFWorldTypeLayerUtil.getBiomeId(PFBiomes.CHINLE_SWAMP_BIOME.getKey())
 	};
 	protected int[] uncommonBiomes = new int[] {
 			PFWorldTypeLayerUtil.getBiomeId(PFBiomes.HELL_CREEK_HILLS_BIOME.getKey()),
 			PFWorldTypeLayerUtil.getBiomeId(PFBiomes.MORRISON_HILLS_BIOME.getKey()),
-			PFWorldTypeLayerUtil.getBiomeId(PFBiomes.ISCHIGUALASTO_HILLS_BIOME.getKey())
-
+			PFWorldTypeLayerUtil.getBiomeId(PFBiomes.ISCHIGUALASTO_HILLS_BIOME.getKey()),
+			PFWorldTypeLayerUtil.getBiomeId(PFBiomes.KAYENTA_BUTTES_BIOME.getKey()),
+			PFWorldTypeLayerUtil.getBiomeId(PFBiomes.KAYENTA_DESERT_BIOME.getKey()),
+			PFWorldTypeLayerUtil.getBiomeId(PFBiomes.CHINLE_FLATS_BIOME.getKey()),
+			PFWorldTypeLayerUtil.getBiomeId(PFBiomes.CHINLE_WOODED_MOUNTAINS_BIOME.getKey())
 	};
 	protected int[] rareBiomes = new int[] {
 			PFWorldTypeLayerUtil.getBiomeId(PFBiomes.HELL_CREEK_CLEARING_BIOME.getKey()),

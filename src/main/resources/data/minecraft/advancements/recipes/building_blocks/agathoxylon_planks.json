@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:agathoxylon_planks"
+    ]
+  },
+  "criteria": {
+    "has_logs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "prehistoricfauna:agathoxylon_logs"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:agathoxylon_planks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_logs",
+      "has_the_recipe"
+    ]
+  ]
+}

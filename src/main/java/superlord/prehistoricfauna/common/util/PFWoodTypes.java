@@ -17,6 +17,11 @@ public class PFWoodTypes extends WoodType
 	public static final WoodType PROTOPICEOXYLON = PFWoodTypes.register(new PFWoodTypes("protopiceoxylon"));
 	public static final WoodType ZAMITES = PFWoodTypes.register(new PFWoodTypes("zamites"));
 	public static final WoodType GINKGO = PFWoodTypes.register(new PFWoodTypes("ginkgo"));
+	public static final WoodType TROCHODENDROIDES = PFWoodTypes.register(new PFWoodTypes("trochodendroides"));
+	public static final WoodType BRACHYPHYLLUM = PFWoodTypes.register(new PFWoodTypes("brachyphyllum"));
+	public static final WoodType AGATHOXYLON = PFWoodTypes.register(new PFWoodTypes("agathoxylon"));
+	public static final WoodType WOODWORTHIA = PFWoodTypes.register(new PFWoodTypes("woodworthia"));
+	public static final WoodType SCHILDERIA = PFWoodTypes.register(new PFWoodTypes("schilderia"));
 	
 	private final String name;
 

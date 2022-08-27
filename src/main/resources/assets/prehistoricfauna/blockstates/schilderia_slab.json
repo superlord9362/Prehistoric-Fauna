@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "prehistoricfauna:block/schilderia_slab" },
+        "type=top": { "model": "prehistoricfauna:block/schilderia_slab_top" },
+        "type=double": { "model": "prehistoricfauna:block/schilderia_planks" }
+    }
+}

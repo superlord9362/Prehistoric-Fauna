@@ -17,13 +17,14 @@ import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.layer.Layer;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.init.PFBiomes;
-import superlord.prehistoricfauna.world.dimension.PFChunkGenerator;
 import superlord.prehistoricfauna.world.dimension.PFLayerUtil;
+import superlord.prehistoricfauna.world.dimension.WorldSeedHolder;
 
 public class CretaceousBiomeProvider extends BiomeProvider {
 	
 	public static final Codec<CretaceousBiomeProvider> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
-			Codec.LONG.fieldOf("seed").orElse(PFChunkGenerator.hackSeed).forGetter((obj) -> obj.seed),
+			Codec.LONG.fieldOf("seed").orElseGet(WorldSeedHolder::getSeed).forGetter((chunkGenerator) -> {
+	            return chunkGenerator.seed;}),
 			RegistryLookupCodec.getLookUpCodec(Registry.BIOME_KEY).forGetter((obj) -> obj.registry)
 			).apply(instance, instance.stable(CretaceousBiomeProvider::new)));
 	

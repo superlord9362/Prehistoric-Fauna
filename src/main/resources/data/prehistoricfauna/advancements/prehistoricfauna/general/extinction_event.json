@@ -186,6 +186,46 @@
           "type": "prehistoricfauna:ischigualastia"
         }
       }
+    },
+    "velociraptor": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:velociraptor"
+        }
+      }
+    },
+    "aepyornithomimus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:aepyornithomimus"
+        }
+      }
+    },
+    "telmasaurus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:telmasaurus"
+        }
+      }
+    },
+    "citipati": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:citipati"
+        }
+      }
+    },
+    "protoceratops": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:protoceratops"
+        }
+      }
     }
   },
   "requirements": [
@@ -251,6 +291,21 @@
     ],
     [
       "prehistoricfauna:ischigualastia"
-    ]
+    ],
+	[
+		"velociraptor"
+	],
+	[
+		"aepyornithomimus"
+	],
+	[
+		"citipati"
+	],
+	[
+		"telmasaurus"
+	],
+	[
+		"protoceratops"
+	]
   ]
 }

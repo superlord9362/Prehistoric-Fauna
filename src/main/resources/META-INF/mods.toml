@@ -3,14 +3,10 @@ loaderVersion="[35,)" #mandatory This is typically bumped every Minecraft versio
 license="All rights reserved"
 [[mods]] #mandatory
 modId="prehistoricfauna" #mandatory
-<<<<<<< Updated upstream
-version="2.1.2" #mandatory
-=======
 version="2.2.0" #mandatory
->>>>>>> Stashed changes
 displayName="Prehistoric Fauna" #mandatory
 credits="AGSuko, Antlion, Bastion, Baular, Coda, Corgi Taco, Obsolerus, RafaMv, Ralof, Seal, superlord9362, Weastian" #optional
-authors="superlord9362, Corgi Taco, RafaMv" #optional
+authors="superlord9362, Corgi Taco, RafaMv, AlexThe668" #optional
 description='''
 Travel to the past to discover worlds time forgot. Bring back animals long extinct, or join their world.
 '''

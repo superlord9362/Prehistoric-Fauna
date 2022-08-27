@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "prehistoricfauna:trochodendroides_wood",
+	"prehistoricfauna:trochodendroides_log",
+	"prehistoricfauna:stripped_trochodendroides_log",
+	"prehistoricfauna:stripped_trochodendroides_wood"
+  ]
+}

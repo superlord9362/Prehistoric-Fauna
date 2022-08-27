@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:woodworthia_vertical_planks"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:woodworthia_planks"
+  },
+  "conditions": [
+    {
+      "type": "prehistoricfauna:quark_flag",
+      "flag": "vertical_planks"
+    }
+  ]
+}

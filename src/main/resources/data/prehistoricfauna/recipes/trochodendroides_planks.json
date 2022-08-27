@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "prehistoricfauna:trochodendroides_logs"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:trochodendroides_planks",
+    "count": 4
+  }
+}

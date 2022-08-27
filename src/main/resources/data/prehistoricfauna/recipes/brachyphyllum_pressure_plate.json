@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_pressure_plate",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:brachyphyllum_planks"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:brachyphyllum_pressure_plate"
+  }
+}

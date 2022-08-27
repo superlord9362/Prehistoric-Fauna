@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "ingredient": {
+    "item": "prehistoricfauna:raw_large_ornithischian_meat"
+  },
+  "result": "prehistoricfauna:cooked_large_ornithischian_meat",
+  "experience": 0.35,
+  "cookingtime": 600
+}

@@ -1,0 +1,6 @@
+{
+	"parent": "prehistoricfauna:block/hedge_side",
+	"textures": {
+		"leaf": "prehistoricfauna:blocks/agathoxylon_leaves"
+	}
+}

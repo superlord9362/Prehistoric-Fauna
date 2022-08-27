@@ -12,6 +12,7 @@ import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.fml.common.Mod;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.world.WorldGenRegistrationHelper;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.world.biome.BiomeData;
 import superlord.prehistoricfauna.world.biome.PFBiome;
 import superlord.prehistoricfauna.world.biome.PetrifiedForestBiome;
@@ -31,7 +32,7 @@ public class PFOverworldBiomes {
 	}
 
 	public static void addBiomeEntries() {
-		BiomeManager.addBiome(PETRIFIED_FOREST.getBiomeType(), new BiomeManager.BiomeEntry(PETRIFIED_FOREST_KEY, 6));
+		BiomeManager.addBiome(PETRIFIED_FOREST.getBiomeType(), new BiomeManager.BiomeEntry(PETRIFIED_FOREST_KEY, PrehistoricFaunaConfig.petrifiedForestWeight));
 	}
 
 	@SuppressWarnings("deprecation")

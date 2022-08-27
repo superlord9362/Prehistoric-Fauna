@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"L",
+		"W"
+	],
+	"key": {
+		"L": {
+			"item": "prehistoricfauna:schilderia_leaves"
+		},
+		"W": {
+			"tag": "prehistoricfauna:schilderia_logs"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:schilderia_hedge",
+		"count": 2
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:quark_flag",
+			"flag": "hedges"
+		}
+	]
+}

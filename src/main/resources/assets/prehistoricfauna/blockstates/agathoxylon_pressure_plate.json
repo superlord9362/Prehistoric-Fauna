@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "powered=false": { "model": "prehistoricfauna:block/agathoxylon_pressure_plate" },
+        "powered=true": { "model": "prehistoricfauna:block/agathoxylon_pressure_plate_down" }
+    }
+}

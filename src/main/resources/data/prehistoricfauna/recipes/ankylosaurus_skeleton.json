@@ -5,10 +5,28 @@
       "item": "prehistoricfauna:ankylosaurus_skull"
     },
 	{
-		"item": "prehistoricfauna:ankylosaurus_fossil"
+		"item": "prehistoricfauna:fossilized_bones"
 	},
 	{
-		"item": "prehistoricfauna:ankylosaurus_fossil"
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
 	}
   ],
   "result": {

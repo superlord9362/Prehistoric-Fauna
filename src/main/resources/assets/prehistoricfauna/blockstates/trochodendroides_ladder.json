@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": { "model": "prehistoricfauna:block/trochodendroides_ladder" },
+		"facing=east": { "model": "prehistoricfauna:block/trochodendroides_ladder", "y": 90 },
+		"facing=south": { "model": "prehistoricfauna:block/trochodendroides_ladder", "y": 180 },
+		"facing=west": { "model": "prehistoricfauna:block/trochodendroides_ladder", "y": 270 }
+	}
+}

@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.common.entities.TimeGuardianEntity;
+import superlord.prehistoricfauna.common.entities.henos.TimeGuardianEntity;
 
 @OnlyIn(Dist.CLIENT)
 public class HenosGemGlowLayer extends AbstractHenosGlowLayer<TimeGuardianEntity, EntityModel<TimeGuardianEntity>> {

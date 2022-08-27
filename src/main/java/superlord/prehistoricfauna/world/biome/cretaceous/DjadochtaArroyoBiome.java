@@ -28,7 +28,7 @@ public class DjadochtaArroyoBiome extends PFBiome {
 	static final Biome.Category CATEGORY = Category.NONE;
 	static final float TEMPERATURE = 1F;
 	static final float DOWNFALL = 0.2F;
-	static final int WATER_COLOR = 0xab986d;
+	static final int WATER_COLOR = 0x66866b ;
 	static final int WATER_FOG_COLOR = 0x9c8c67;
 	static final int FOG_COLOR = 12638463;
 
@@ -37,7 +37,7 @@ public class DjadochtaArroyoBiome extends PFBiome {
 	static final BiomeGenerationSettings.Builder GENERATION_SETTINGS = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(SURFACE_BUILDER);
 
 	public DjadochtaArroyoBiome(float scale, float depth) {
-		super(WEATHER, CATEGORY, depth, scale, (new BiomeAmbience.Builder()).setWaterColor(WATER_COLOR).setWaterFogColor(WATER_FOG_COLOR).withSkyColor(getSkyColorWithTemperatureModifier(TEMPERATURE)).setFogColor(FOG_COLOR).build(), GENERATION_SETTINGS.build(), SPAWN_SETTINGS.copy());
+		super(WEATHER, CATEGORY, depth, scale, (new BiomeAmbience.Builder()).setWaterColor(WATER_COLOR).setWaterFogColor(WATER_FOG_COLOR).withSkyColor(0x528790).setFogColor(FOG_COLOR).build(), GENERATION_SETTINGS.build(), SPAWN_SETTINGS.copy());
 	}
 	
 	
@@ -63,13 +63,18 @@ public class DjadochtaArroyoBiome extends PFBiome {
 		PFConfiguredFeatures.withDeadPlants(GENERATION_SETTINGS);
 		PFConfiguredFeatures.withDjadochtaPlants(GENERATION_SETTINGS);
 		DefaultBiomeFeatures.withCavesAndCanyons(GENERATION_SETTINGS);
+		PFConfiguredFeatures.withDjadochtaRocks(GENERATION_SETTINGS);
+		PFConfiguredFeatures.withArroyoPlants(GENERATION_SETTINGS);
 		GENERATION_SETTINGS.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PFConfiguredFeatures.DJADOCHTA_ARROYO_VEGETATION);
-		SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.TRILOBITE_SENTINEL_ENTITY, PrehistoricFaunaConfig.caveSentinelSpawnWeight, 1, 1));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.LAND_SENTINEL_ENTITY, PrehistoricFaunaConfig.landSentinelSpawnWeight, 1, 1));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.PROTOCERATOPS_ENTITY, PrehistoricFaunaConfig.protoceratopsSpawnWeight, 2, 5));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.VELOCIRAPTOR_ENTITY, PrehistoricFaunaConfig.velociraptorSpawnWeight, 1, 2));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.CITIPATI_ENTITY, PrehistoricFaunaConfig.citipatiSpawnWeight, 1, 2));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.AEPYORNITHOMIMUS_ENTITY, PrehistoricFaunaConfig.aepyornithomimusSpawnWeight, 3, 5));
+		if (PrehistoricFaunaConfig.caveSentinelDjadochtaArroyoSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.TRILOBITE_SENTINEL_ENTITY, PrehistoricFaunaConfig.caveSentinelDjadochtaArroyoSpawnWeight, 1, 1));
+		if (PrehistoricFaunaConfig.landSentinelDjadochtaArroyoSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.LAND_SENTINEL_ENTITY, PrehistoricFaunaConfig.landSentinelDjadochtaArroyoSpawnWeight, 1, 1));
+		if (PrehistoricFaunaConfig.protoceratopsDjadochtaArroyoSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.PROTOCERATOPS_ENTITY, PrehistoricFaunaConfig.protoceratopsDjadochtaArroyoSpawnWeight, 2, 5));
+		if (PrehistoricFaunaConfig.velociraptorDjadochtaArroyoSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.VELOCIRAPTOR_ENTITY, PrehistoricFaunaConfig.velociraptorDjadochtaArroyoSpawnWeight, 1, 2));
+		if (PrehistoricFaunaConfig.citipatiDjadochtaArroyoSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.CITIPATI_ENTITY, PrehistoricFaunaConfig.citipatiDjadochtaArroyoSpawnWeight, 1, 2));
+		if (PrehistoricFaunaConfig.aepyornithomimusDjadochtaArroyoSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.AEPYORNITHOMIMUS_ENTITY, PrehistoricFaunaConfig.aepyornithomimusDjadochtaArroyoSpawnWeight, 3, 5));
+		if (PrehistoricFaunaConfig.telmasaurusDjadochtaArroyoSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.TELMASAURUS_ENTITY, PrehistoricFaunaConfig.telmasaurusDjadochtaArroyoSpawnWeight, 1, 2));
+		if (PrehistoricFaunaConfig.pinacosaurusDjadochtaArroyoSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.PINACOSAURUS_ENTITY, PrehistoricFaunaConfig.pinacosaurusDjadochtaArroyoSpawnWeight, 4, 5));
+		if (PrehistoricFaunaConfig.plesiohadrosDjadochtaArroyoSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.PLESIOHADROS_ENTITY, PrehistoricFaunaConfig.plesiohadrosDjadochtaArroyoSpawnWeight, 3, 5));
 	}
 
 

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:agathoxylon_log"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:agathoxylon_wood",
+    "count": 3
+  }
+}

@@ -1,6 +1,6 @@
 {
-    "parent": "block/cross",
+    "parent": "block/tinted_cross",
     "textures": {
-        "cross": "prehistoricfauna:blocks/cladophlebis"
+        "cross": "prehistoricfauna:blocks/cladophlebis_gray"
     }
 }

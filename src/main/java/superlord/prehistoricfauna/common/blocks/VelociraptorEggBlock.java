@@ -1,5 +1,9 @@
 package superlord.prehistoricfauna.common.blocks;
 
+import java.util.Random;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -8,9 +12,11 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -20,23 +26,22 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import superlord.prehistoricfauna.common.entities.VelociraptorEntity;
+import superlord.prehistoricfauna.common.entities.cretaceous.djadochta.CitipatiEntity;
+import superlord.prehistoricfauna.common.entities.cretaceous.djadochta.TelmasaurusEntity;
+import superlord.prehistoricfauna.common.entities.cretaceous.djadochta.VelociraptorEntity;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
-
-import javax.annotation.Nullable;
-import java.util.Random;
 
 public class VelociraptorEggBlock extends Block {
 	private static final VoxelShape ONE_EGG_SHAPE = Block.makeCuboidShape(3.0D, 0.0D, 3.0D, 12.0D, 7.0D, 12.0D);
 	private static final VoxelShape MULTI_EGG_SHAPE = Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 7.0D, 15.0D);
 	public static final IntegerProperty HATCH = BlockStateProperties.HATCH_0_2;
 	public static final IntegerProperty EGGS = BlockStateProperties.EGGS_1_4;
+	public static final BooleanProperty CITIPATIFIED = BooleanProperty.create("citipatified");
 
 	public VelociraptorEggBlock(Block.Properties properties) {
 		super(properties);
-		this.setDefaultState(
-				this.stateContainer.getBaseState().with(HATCH, Integer.valueOf(0)).with(EGGS, Integer.valueOf(1)));
+		this.setDefaultState(this.stateContainer.getBaseState().with(HATCH, Integer.valueOf(0)).with(EGGS, Integer.valueOf(1)).with(CITIPATIFIED, false));
 	}
 
 	/**
@@ -79,7 +84,7 @@ public class VelociraptorEggBlock extends Block {
 	}
 
 	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-		if (this.canGrow(worldIn) && this.hasProperHabitat(worldIn, pos)) {
+		if (this.canGrow(worldIn, state) && this.hasProperHabitat(worldIn, pos)) {
 			int i = state.get(HATCH);
 			if (i < 2) {
 				worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ENTITY_TURTLE_EGG_CRACK, SoundCategory.BLOCKS,
@@ -104,7 +109,7 @@ public class VelociraptorEggBlock extends Block {
 	}
 
 	private boolean hasProperHabitat(IBlockReader blockReader, BlockPos pos) {
-		return blockReader.getBlockState(pos.down()).getBlock() == Blocks.SAND || blockReader.getBlockState(pos.down()).getBlock() == Blocks.COARSE_DIRT || blockReader.getBlockState(pos.down()).getBlock() == Blocks.GRASS_BLOCK || blockReader.getBlockState(pos.down()).getBlock() == Blocks.DIRT || blockReader.getBlockState(pos.down()).getBlock() == PFBlocks.LOAM || blockReader.getBlockState(pos.down()).getBlock() == PFBlocks.PACKED_LOAM || blockReader.getBlockState(pos.down()).getBlock() == PFBlocks.SILT || blockReader.getBlockState(pos.down()).getBlock() == PFBlocks.HARDENED_SILT || blockReader.getBlockState(pos.down()).getBlock() == PFBlocks.MOSSY_DIRT || blockReader.getBlockState(pos.down()).getBlock() == Blocks.PODZOL;
+		return blockReader.getBlockState(pos.down()).getBlock() == Blocks.SAND || blockReader.getBlockState(pos.down()).getBlock() == Blocks.RED_SAND || blockReader.getBlockState(pos.down()).getBlock() == Blocks.COARSE_DIRT || blockReader.getBlockState(pos.down()).getBlock() == Blocks.GRASS_BLOCK || blockReader.getBlockState(pos.down()).getBlock() == Blocks.DIRT || blockReader.getBlockState(pos.down()).getBlock() == PFBlocks.LOAM || blockReader.getBlockState(pos.down()).getBlock() == PFBlocks.PACKED_LOAM || blockReader.getBlockState(pos.down()).getBlock() == PFBlocks.SILT || blockReader.getBlockState(pos.down()).getBlock() == PFBlocks.HARDENED_SILT || blockReader.getBlockState(pos.down()).getBlock() == PFBlocks.MOSSY_DIRT || blockReader.getBlockState(pos.down()).getBlock() == Blocks.PODZOL || blockReader.getBlockState(pos.down()).getBlock() == Blocks.MYCELIUM || blockReader.getBlockState(pos.down()).getBlock() == BlockTags.LEAVES;
 	}
 
 	public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
@@ -114,10 +119,13 @@ public class VelociraptorEggBlock extends Block {
 
 	}
 
-	private boolean canGrow(World worldIn) {
+	private boolean canGrow(World worldIn, BlockState state) {
 		float f = worldIn.func_242415_f(1.0F);
+		boolean citipatified = state.get(CITIPATIFIED);
 		if ((double) f < 0.69D && (double) f > 0.65D) {
 			return true;
+		} else if (citipatified){
+			return worldIn.rand.nextInt(250) == 0;
 		} else {
 			return worldIn.rand.nextInt(500) == 0;
 		}
@@ -152,11 +160,11 @@ public class VelociraptorEggBlock extends Block {
 	}
 
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		builder.add(HATCH, EGGS);
+		builder.add(HATCH, EGGS, CITIPATIFIED);
 	}
 
 	private boolean canTrample(World worldIn, Entity trampler) {
-		if (trampler instanceof VelociraptorEntity) {
+		if (trampler instanceof VelociraptorEntity || trampler instanceof CitipatiEntity || trampler instanceof TelmasaurusEntity) {
 			return false;
 		} else {
 			return trampler instanceof LivingEntity && !(trampler instanceof PlayerEntity)

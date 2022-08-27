@@ -1,0 +1,6 @@
+{
+    "parent": "prehistoricfauna:block/three_dilophosaurus_eggs",
+    "textures": {
+        "all": "prehistoricfauna:blocks/dilophosaurus_eggs_very_cracked"
+    }
+}

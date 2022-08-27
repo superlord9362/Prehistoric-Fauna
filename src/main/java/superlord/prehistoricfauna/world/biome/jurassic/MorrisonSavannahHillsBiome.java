@@ -63,19 +63,18 @@ public class MorrisonSavannahHillsBiome extends PFBiome {
 	}
 
 	static {
-        //PHFDefaultBiomeFeatures.addMorrisonHut(biome);
 		PFConfiguredFeatures.addMorrisonSavannaVegetation(GENERATION_SETTINGS);
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.STEGOSAURUS_ENTITY, PrehistoricFaunaConfig.stegosaurusSpawnWeight, 1, 2));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.DRYOSAURUS_ENTITY, PrehistoricFaunaConfig.dryosaurusSpawnWeight, 2, 4));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.CERATOSAURUS_ENTITY, PrehistoricFaunaConfig.ceratosaurusSpawnWeight, 1, 1));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.ALLOSAURUS_ENTITY, PrehistoricFaunaConfig.allosaurusSpawnWeight, 1, 1));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.HESPERORNITHOIDES_ENTITY, PrehistoricFaunaConfig.hesperornithoidesSpawnWeight, 2, 3));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.EILENODON_ENTITY, PrehistoricFaunaConfig.eilenodonSpawnWeight, 1, 2));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.CAMARASAURUS_ENTITY, PrehistoricFaunaConfig.camarasaurusSpawnWeight, 2, 4));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.WATER_AMBIENT, new MobSpawnInfo.Spawners(PFEntities.CERATODUS, PrehistoricFaunaConfig.ceratodusMorrisonSpawnWeight, 1, 2));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.WATER_AMBIENT, new MobSpawnInfo.Spawners(PFEntities.POTAMOCERATODUS, PrehistoricFaunaConfig.potamoceratodusSpawnWeight, 1, 2));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.TRILOBITE_SENTINEL_ENTITY, PrehistoricFaunaConfig.caveSentinelSpawnWeight, 1, 1));
-		SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.LAND_SENTINEL_ENTITY, PrehistoricFaunaConfig.landSentinelSpawnWeight, 1, 1));
+		if (PrehistoricFaunaConfig.stegosaurusMorrisonSavannahSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.STEGOSAURUS_ENTITY, PrehistoricFaunaConfig.stegosaurusMorrisonSavannahSpawnWeight, 1, 2));
+		if (PrehistoricFaunaConfig.dryosaurusMorrisonSavannahSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.DRYOSAURUS_ENTITY, PrehistoricFaunaConfig.dryosaurusMorrisonSavannahSpawnWeight, 2, 4));
+		if (PrehistoricFaunaConfig.ceratosaurusMorrisonSavannahSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.CERATOSAURUS_ENTITY, PrehistoricFaunaConfig.ceratosaurusMorrisonSavannahSpawnWeight, 1, 1));
+		if (PrehistoricFaunaConfig.allosaurusMorrisonSavannahSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.ALLOSAURUS_ENTITY, PrehistoricFaunaConfig.allosaurusMorrisonSavannahSpawnWeight, 1, 1));
+		if (PrehistoricFaunaConfig.hesperornithoidesMorrisonSavannahSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.HESPERORNITHOIDES_ENTITY, PrehistoricFaunaConfig.hesperornithoidesMorrisonSavannahSpawnWeight, 2, 3));
+		if (PrehistoricFaunaConfig.eilenodonMorrisonSavannahSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.EILENODON_ENTITY, PrehistoricFaunaConfig.eilenodonMorrisonSavannahSpawnWeight, 1, 2));
+		if (PrehistoricFaunaConfig.camarasaurusMorrisonSavannahSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.CAMARASAURUS_ENTITY, PrehistoricFaunaConfig.camarasaurusMorrisonSavannahSpawnWeight, 2, 4));
+		if (PrehistoricFaunaConfig.ceratodusMorrisonSavannahSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.WATER_AMBIENT, new MobSpawnInfo.Spawners(PFEntities.CERATODUS, PrehistoricFaunaConfig.ceratodusMorrisonSavannahSpawnWeight, 1, 2));
+		if (PrehistoricFaunaConfig.potamoceratodusMorrisonSavannahSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.WATER_AMBIENT, new MobSpawnInfo.Spawners(PFEntities.POTAMOCERATODUS, PrehistoricFaunaConfig.potamoceratodusMorrisonSavannahSpawnWeight, 1, 2));
+		if (PrehistoricFaunaConfig.caveSentinelMorrisonSavannahSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.TRILOBITE_SENTINEL_ENTITY, PrehistoricFaunaConfig.caveSentinelMorrisonSavannahSpawnWeight, 1, 1));
+		if (PrehistoricFaunaConfig.landSentinelMorrisonSavannahSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.LAND_SENTINEL_ENTITY, PrehistoricFaunaConfig.landSentinelMorrisonSavannahSpawnWeight, 1, 1));
 		GENERATION_SETTINGS.withFeature(Decoration.UNDERGROUND_ORES, PFConfiguredFeatures.FOSSILIZED_SANDSTONE);
 		DefaultBiomeFeatures.withCavesAndCanyons(GENERATION_SETTINGS);
 		PFConfiguredFeatures.addExtraIronOre(GENERATION_SETTINGS);

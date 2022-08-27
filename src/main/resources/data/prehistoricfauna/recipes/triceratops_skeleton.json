@@ -5,10 +5,28 @@
       "item": "prehistoricfauna:triceratops_skull"
     },
 	{
-		"item": "prehistoricfauna:triceratops_fossil"
+		"item": "prehistoricfauna:fossilized_bones"
 	},
 	{
-		"item": "prehistoricfauna:triceratops_fossil"
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
 	}
   ],
   "result": {

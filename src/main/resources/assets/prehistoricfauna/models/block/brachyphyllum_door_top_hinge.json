@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_top_rh",
+    "textures": {
+        "bottom": "prehistoricfauna:blocks/brachyphyllum_door_bottom",
+        "top": "prehistoricfauna:blocks/brachyphyllum_door_top"
+    }
+}

@@ -23,8 +23,14 @@ import superlord.prehistoricfauna.world.biome.cretaceous.HellCreekBiome;
 import superlord.prehistoricfauna.world.biome.cretaceous.HellCreekClearingBiome;
 import superlord.prehistoricfauna.world.biome.cretaceous.HellCreekHillsBiome;
 import superlord.prehistoricfauna.world.biome.cretaceous.HellCreekRiverBiome;
+import superlord.prehistoricfauna.world.biome.jurassic.KayentaButtesBiome;
+import superlord.prehistoricfauna.world.biome.jurassic.KayentaDesertBiome;
+import superlord.prehistoricfauna.world.biome.jurassic.KayentaDryForestBiome;
 import superlord.prehistoricfauna.world.biome.jurassic.MorrisonSavannahBiome;
 import superlord.prehistoricfauna.world.biome.jurassic.MorrisonSavannahHillsBiome;
+import superlord.prehistoricfauna.world.biome.triassic.ChinleFlatsBiome;
+import superlord.prehistoricfauna.world.biome.triassic.ChinleSwampBiome;
+import superlord.prehistoricfauna.world.biome.triassic.ChinleWoodedMountainsBiome;
 import superlord.prehistoricfauna.world.biome.triassic.IschigualastoBiome;
 import superlord.prehistoricfauna.world.biome.triassic.IschigualastoClearingBiome;
 import superlord.prehistoricfauna.world.biome.triassic.IschigualastoHillsBiome;
@@ -48,7 +54,13 @@ public class PFBiomes {
 	public static final PFBiome ISCHIGUALASTO_RIVER_BIOME = new IschigualastoRiverBiome();
 	
 	public static final PFBiome DJADOCHTA_DUNES_BIOME = new DjadochtaDunesBiome(0.4F, 0.2F);
-	public static final PFBiome DJADOCHTA_ARROYO_BIOME = new DjadochtaArroyoBiome(0.05F, 0.2F);
+	public static final PFBiome DJADOCHTA_ARROYO_BIOME = new DjadochtaArroyoBiome(0.05F, 0.05F);
+	public static final PFBiome KAYENTA_DRY_FOREST_BIOME = new KayentaDryForestBiome();
+	public static final PFBiome KAYENTA_BUTTES_BIOME = new KayentaButtesBiome();
+	public static final PFBiome KAYENTA_DESERT_BIOME = new KayentaDesertBiome();
+	public static final PFBiome CHINLE_SWAMP_BIOME = new ChinleSwampBiome();
+	public static final PFBiome CHINLE_FLATS_BIOME = new ChinleFlatsBiome();
+	public static final PFBiome CHINLE_WOODED_MOUNTAINS_BIOME = new ChinleWoodedMountainsBiome();
 
 	//Cretaceous
 	public static final Biome HELL_CREEK = WorldGenRegistrationHelper.createBiome("hell_creek", HELL_CREEK_BIOME.getBiome(), 1);
@@ -62,12 +74,20 @@ public class PFBiomes {
 	//Jurassic
 	public static final Biome MORRISON_SAVANNAH = WorldGenRegistrationHelper.createBiome("morrison_savannah", MORRISON_SAVANNAH_BIOME.getBiome(), 2);
 	public static final Biome MORRISON_HILLS = WorldGenRegistrationHelper.createBiome("morrison_hills", MORRISON_HILLS_BIOME.getBiome(), 11);
+	
+	public static final Biome KAYENTA_DRY_FOREST = WorldGenRegistrationHelper.createBiome("kayenta_dry_forest", KAYENTA_DRY_FOREST_BIOME.getBiome(), 14);
+	public static final Biome KAYENTA_BUTTES = WorldGenRegistrationHelper.createBiome("kayenta_canyon", KAYENTA_BUTTES_BIOME.getBiome(), 15);
+	public static final Biome KAYENTA_DESERT = WorldGenRegistrationHelper.createBiome("kayenta_desert", KAYENTA_DESERT_BIOME.getBiome(), 16);
 
 	//Triassic
 	public static final Biome ISCHIGUALASTO_FOREST = WorldGenRegistrationHelper.createBiome("ischigualasto_forest", ISCHIGUALASTO_FOREST_BIOME.getBiome(), 3);
 	public static final Biome ISCHIGUALASTO_CLEARING = WorldGenRegistrationHelper.createBiome("ischigualasto_clearing", ISCHIGUALASTO_CLEARING_BIOME.getBiome(), 8);
 	public static final Biome ISCHIGUALASTO_HILLS = WorldGenRegistrationHelper.createBiome("ischigualasto_hills", ISCHIGUALASTO_HILLS_BIOME.getBiome(), 9);
 	public static final Biome ISCHIGUALASTO_RIVER = WorldGenRegistrationHelper.createBiome("ischigualasto_river", ISCHIGUALASTO_RIVER_BIOME.getBiome(), 10);
+	
+	public static final Biome CHINLE_SWAMP = WorldGenRegistrationHelper.createBiome("chinle_swamp", CHINLE_SWAMP_BIOME.getBiome(), 17);
+	public static final Biome CHINLE_FLATS = WorldGenRegistrationHelper.createBiome("chinle_flats", CHINLE_FLATS_BIOME.getBiome(), 18);
+	public static final Biome CHINLE_WOODED_MOUNTAINS = WorldGenRegistrationHelper.createBiome("chinle_wooded_mountains", CHINLE_WOODED_MOUNTAINS_BIOME.getBiome(), 19);
 
 	public static void init() {
 		Registry.register(Registry.BIOME_PROVIDER_CODEC, new ResourceLocation(PrehistoricFauna.MOD_ID, "prehistoric_world"), PrehistoricWorldTypeBiomeProvider.CODEC);

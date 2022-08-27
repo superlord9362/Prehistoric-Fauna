@@ -32,6 +32,26 @@
 	"prehistoricfauna:ginkgo_log",
 	"prehistoricfauna:ginkgo_wood",
 	"prehistoricfauna:stripped_ginkgo_log",
-	"prehistoricfauna:stripped_ginkgo_wood"
+	"prehistoricfauna:stripped_ginkgo_wood",
+	"prehistoricfauna:trochodendroides_log",
+	"prehistoricfauna:trochodendroides_wood",
+	"prehistoricfauna:stripped_trochodendroides_log",
+	"prehistoricfauna:stripped_trochodendroides_wood",
+	"prehistoricfauna:brachyphyllum_log",
+	"prehistoricfauna:brachyphyllum_wood",
+	"prehistoricfauna:stripped_brachyphyllum_log",
+	"prehistoricfauna:stripped_brachyphyllum_wood",
+	"prehistoricfauna:agathoxylon_log",
+	"prehistoricfauna:agathoxylon_wood",
+	"prehistoricfauna:stripped_agathoxylon_log",
+	"prehistoricfauna:stripped_agathoxylon_wood",
+	"prehistoricfauna:woodworthia_log",
+	"prehistoricfauna:woodworthia_wood",
+	"prehistoricfauna:stripped_woodworthia_log",
+	"prehistoricfauna:stripped_woodworthia_wood",
+	"prehistoricfauna:schilderia_log",
+	"prehistoricfauna:schilderia_wood",
+	"prehistoricfauna:stripped_schilderia_log",
+	"prehistoricfauna:stripped_schilderia_wood"
   ]
 }

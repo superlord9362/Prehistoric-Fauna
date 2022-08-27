@@ -24,8 +24,8 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import superlord.prehistoricfauna.common.entities.TimeGuardianEntity;
-import superlord.prehistoricfauna.common.entities.TrilobiteSentinelEntity;
+import superlord.prehistoricfauna.common.entities.henos.TimeGuardianEntity;
+import superlord.prehistoricfauna.common.entities.henos.TrilobiteSentinelEntity;
 import superlord.prehistoricfauna.init.PFCustomDamageSource;
 
 public class TrapBlock extends Block {
@@ -62,7 +62,6 @@ public class TrapBlock extends Block {
 
 	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
 		int i = this.getRedstoneStrength(state);
-		System.out.println("Pain");
 		if (i > 0) {
 			this.updateState(worldIn, pos, state, i);
 		}

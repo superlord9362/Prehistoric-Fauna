@@ -1,0 +1,24 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"group": "agathoxylon_chest",
+	"pattern": [
+		"###",
+		"# #",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:agathoxylon_planks"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:agathoxylon_chest",
+		"count": 1
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:quark_flag",
+			"flag": "variant_chests"
+		}
+	]
+}

@@ -17,19 +17,20 @@ import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.layer.Layer;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.init.PFBiomes;
-import superlord.prehistoricfauna.world.dimension.PFChunkGenerator;
+import superlord.prehistoricfauna.world.dimension.WorldSeedHolder;
 
 public class TriassicBiomeProvider extends BiomeProvider {
 	
 	public static final Codec<TriassicBiomeProvider> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
-			Codec.LONG.fieldOf("seed").orElse(PFChunkGenerator.hackSeed).forGetter((obj) -> obj.seed),
+			Codec.LONG.fieldOf("seed").orElseGet(WorldSeedHolder::getSeed).forGetter((chunkGenerator) -> {
+	            return chunkGenerator.seed;}),
 			RegistryLookupCodec.getLookUpCodec(Registry.BIOME_KEY).forGetter((obj) -> obj.registry)
 			).apply(instance, instance.stable(TriassicBiomeProvider::new)));
 	
 	private final long seed;
 	private final Registry<Biome> registry;
 	private final Layer genBiomes;
-	private static final List<RegistryKey<Biome>> biomes = ImmutableList.of(PFBiomes.ISCHIGUALASTO_FOREST_BIOME.getKey(), PFBiomes.ISCHIGUALASTO_CLEARING_BIOME.getKey(), PFBiomes.ISCHIGUALASTO_HILLS_BIOME.getKey(), PFBiomes.ISCHIGUALASTO_RIVER_BIOME.getKey());
+	private static final List<RegistryKey<Biome>> biomes = ImmutableList.of(PFBiomes.ISCHIGUALASTO_FOREST_BIOME.getKey(), PFBiomes.ISCHIGUALASTO_CLEARING_BIOME.getKey(), PFBiomes.ISCHIGUALASTO_HILLS_BIOME.getKey(), PFBiomes.ISCHIGUALASTO_RIVER_BIOME.getKey(), PFBiomes.CHINLE_SWAMP_BIOME.getKey(), PFBiomes.CHINLE_FLATS_BIOME.getKey(), PFBiomes.CHINLE_WOODED_MOUNTAINS_BIOME.getKey());
 	
 	public TriassicBiomeProvider(long seed, Registry<Biome> registry) {
 		super(biomes.stream().map(define -> () -> registry.getOrThrow(define)));

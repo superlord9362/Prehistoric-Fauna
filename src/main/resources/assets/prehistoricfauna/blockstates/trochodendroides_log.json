@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":  { "model": "prehistoricfauna:block/trochodendroides_log" },
+        "axis=z":   { "model": "prehistoricfauna:block/trochodendroides_log", "x": 90 },
+        "axis=x":   { "model": "prehistoricfauna:block/trochodendroides_log", "x": 90, "y": 90 }
+    }
+}

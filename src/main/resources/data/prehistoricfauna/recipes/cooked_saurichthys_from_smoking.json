@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "prehistoricfauna:raw_saurichthys"
+  },
+  "result": "prehistoricfauna:cooked_saurichthys",
+  "experience": 0.35,
+  "cookingtime": 100
+}

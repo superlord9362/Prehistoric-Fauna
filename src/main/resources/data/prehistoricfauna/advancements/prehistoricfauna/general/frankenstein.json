@@ -2,7 +2,7 @@
   "parent": "prehistoricfauna:prehistoricfauna/general/weird_taxidermy",
   "display": {
     "icon": {
-      "item": "prehistoricfauna:thyreophoran_helmet"
+      "item": "prehistoricfauna:ankylosaurus_helmet"
     },
     "title": {
       "translate": "advancements.prehistoricfauna.frankenstein.title"
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:thyreophoran_helmet"
+            "item": "prehistoricfauna:ankylosaurus_helmet"
           }
         ]
       }

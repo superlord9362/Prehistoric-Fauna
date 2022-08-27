@@ -1,0 +1,21 @@
+{
+    "variants": {
+        "": [
+			{
+				"model": "prehistoricfauna:block/cobbania"
+			},
+			{
+				"model": "prehistoricfauna:block/cobbania",
+				"y": 90
+			},
+			{
+				"model": "prehistoricfauna:block/cobbania",
+				"y": 180
+			},
+			{
+				"model": "prehistoricfauna:block/cobbania",
+				"y": 270
+			}
+		]
+    }
+}

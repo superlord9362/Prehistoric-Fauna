@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":  { "model": "prehistoricfauna:block/agathoxylon_wood" },
+        "axis=z":   { "model": "prehistoricfauna:block/agathoxylon_wood", "x": 90 },
+        "axis=x":   { "model": "prehistoricfauna:block/agathoxylon_wood", "x": 90, "y": 90 }
+    }
+}

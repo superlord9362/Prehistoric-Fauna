@@ -21,7 +21,16 @@
       "conditions": {
 	"entity": {
           "type": "prehistoricfauna:stegosaurus"
-        }
+        },
+		"killing_blow": {
+			"source_entity": {
+				"equipment": {
+					"mainhand": {
+						"item": "prehistoricfauna:thagomizer_pickaxe"
+					}
+				}
+			}
+		}
       }
     }
   },

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:agathoxylon_planks"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:agathoxylon_boat"
+  }
+}

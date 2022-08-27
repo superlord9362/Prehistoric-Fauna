@@ -1,0 +1,35 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [48, 16],
+	"textures": {
+		"particle": "#bush"
+	},
+	"elements": [
+		{
+			"from": [-16, 0, 8],
+			"to": [32, 16, 8],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#bush"},
+				"east": {"uv": [0, 0, 0, 16], "texture": "#bush"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#bush"},
+				"west": {"uv": [0, 0, 0, 16], "texture": "#bush"},
+				"up": {"uv": [0, 0, 16, 0], "texture": "#bush"},
+				"down": {"uv": [0, 0, 16, 0], "texture": "#bush"}
+			}
+		},
+		{
+			"from": [-16, 0, 8],
+			"to": [32, 16, 8],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#bush"},
+				"east": {"uv": [0, 0, 0, 16], "texture": "#bush"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#bush"},
+				"west": {"uv": [0, 0, 0, 16], "texture": "#bush"},
+				"up": {"uv": [0, 0, 16, 0], "texture": "#bush"},
+				"down": {"uv": [0, 0, 16, 0], "texture": "#bush"}
+			}
+		}
+	]
+}

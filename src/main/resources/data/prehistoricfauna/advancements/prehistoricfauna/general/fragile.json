@@ -218,6 +218,56 @@
         	}
 		]
       }
+    },
+    "velociraptor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+			"items": [
+				{
+          			"item": "prehistoricfauna:velociraptor_egg"
+        		}
+			]     
+		 }
+    },
+    "telmasaurus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+			"items": [
+				{
+          			"item": "prehistoricfauna:telmasaurus_egg"
+        		}
+			]     
+		 }
+    },
+    "aepyornithomimus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+			"items": [
+				{
+          			"item": "prehistoricfauna:aepyornithomimus_egg"
+        		}
+			]     
+		 }
+    },
+    "citipati": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+			"items": [
+				{
+          			"item": "prehistoricfauna:citipati_egg"
+        		}
+			]     
+		 }
+    },
+    "protoceratops": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+			"items": [
+				{
+          			"item": "prehistoricfauna:protoceratops_egg"
+        		}
+			]     
+		 }
     }
   },
   "requirements": [
@@ -280,6 +330,21 @@
     ],
     [
       "prehistoricfauna:ischigualastia_egg"
+    ],
+    [
+      "velociraptor"
+    ],
+    [
+      "telmasaurus"
+    ],
+    [
+      "citipati"
+    ],
+    [
+      "protoceratops"
+    ],
+    [
+      "aepyornithomimus"
     ]
   ]
 }

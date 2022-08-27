@@ -1,0 +1,6 @@
+{
+    "parent": "block/button",
+    "textures": {
+        "texture": "prehistoricfauna:blocks/woodworthia_planks"
+    }
+}

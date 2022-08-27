@@ -1218,5 +1218,649 @@
                 "stream": true
             }
         ]
-    }
+    },
+	"aepyornithomimus_idle": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.aepyornithomimusIdle",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/aepyornithomimus/aepyornithomimus_idle1",
+				"stream": true
+			},
+			{
+				"name": "prehistoricfauna:prehistoric/aepyornithomimus/aepyornithomimus_idle2",
+				"stream":true
+			}
+		]
+	},
+	"aepyornithomimus_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.aepyornithomimusHurt",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/aepyornithomimus/aepyornithomimus_hurt",
+				"stream": true
+			}
+		]
+	},
+	"aepyornithomimus_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.aepyornithomimusDeath",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/aepyornithomimus/aepyornithomimus_hurt",
+				"stream": true
+			}
+		]
+	},
+	"citipati_idle": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.citipatiIdle",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/citipati/citipati_idle1",
+				"stream": true
+			},
+			{
+				"name": "prehistoricfauna:prehistoric/citipati/citipati_idle2",
+				"stream":true
+			}
+		]
+	},
+	"citipati_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.citipatiHurt",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/citipati/citipati_hurt",
+				"stream": true
+			}
+		]
+	},
+	"citipati_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.citipatiDeath",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/citipati/citipati_hurt",
+				"stream": true
+			}
+		]
+	},
+	"telmasaurus_idle": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.telmasaurusIdle",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/telmasaurus/telmasaurus_idle1",
+				"stream": true
+			},
+			{
+				"name": "prehistoricfauna:prehistoric/telmasaurus/telmasaurus_idle2",
+				"stream": true
+			}
+		]
+	},
+	"telmasaurus_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.telmasaurusHurt",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/telmasaurus/telmasaurus_hurt",
+				"stream": true
+			}
+		]
+	},
+	"telmasaurus_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.telmasaurusDeath",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/telmasaurus/telmasaurus_hurt",
+				"stream": true
+			}
+		]
+	},
+	"pinacosaurus_idle": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.pinacosaurusIdle",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/pinacosaurus/pinacosaurus_idle1",
+				"stream": true
+			},
+			{
+				"name": "prehistoricfauna:prehistoric/pinacosaurus/pinacosaurus_idle2",
+				"stream":true
+			}
+		]
+	},
+	"pinacosaurus_warning": {
+		"category":"neutral",
+		"subtitle": "prehistoricfauna.subtitle.pinacosaurusWarning",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistorc/pinacosaurus/pinacosaurus_warning",
+				"stream": true
+			}
+		]
+	},
+	"pinacosaurus_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.pinacosaurusHurt",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/pinacosaurus/pinacosaurus_hurt",
+				"stream": true
+			}
+		]
+	},
+	"pinacosaurus_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.pinacosaurusDeath",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/pinacosaurus/pinacosaurus_hurt",
+				"stream": true
+			}
+		]
+	},
+	"plesiohadros_idle": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.plesiohadrosIdle",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/plesiohadros/plesiohadros_idle1",
+				"stream": true
+			},
+			{
+				"name": "prehistoricfauna:prehistoric/plesiohadros/plesiohadros_idle2",
+				"stream":true
+			}
+		]
+	},
+	"plesiohadros_warning": {
+		"category":"neutral",
+		"subtitle": "prehistoricfauna.subtitle.plesiohadrosWarning",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistorc/plesiohadros/plesiohadros_warning",
+				"stream": true
+			}
+		]
+	},
+	"plesiohadros_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.plesiohadrosHurt",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/plesiohadros/plesiohadros_hurt",
+				"stream": true
+			}
+		]
+	},
+	"plesiohadros_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.plesiohadrosDeath",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/plesiohadros/plesiohadros_hurt",
+				"stream": true
+			}
+		]
+	},
+	"dilophosaurus_idle": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.dilophosaurusIdle",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/dilophosaurus/dilophosaurus_idle1",
+                "stream": true
+            },
+			{
+                "name": "prehistoricfauna:prehistoric/dilophosaurus/dilophosaurus_idle2",
+				"stream": true
+			}
+        ]
+    },
+	"dilophosaurus_hurt": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.dilophosaurusHurt",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/dilophosaurus/dilophosaurus_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"dilophosaurus_warn": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.dilophosaurusWarning",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/dilophosaurus/dilophosaurus_angry",
+                "stream": true
+            }
+        ]
+    },
+	"dilophosaurus_death": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.dilophosaurusDeath",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/dilophosaurus/dilophosaurus_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"megapnosaurus_idle": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.megapnosaurusIdle",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/megapnosaurus/megapnosaurus_idle1",
+                "stream": true
+            },
+			{
+                "name": "prehistoricfauna:prehistoric/megapnosaurus/megapnosaurus_idle2",
+				"stream": true
+			}
+        ]
+    },
+	"megapnosaurus_hurt": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.megapnosaurusHurt",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/megapnosaurus/megapnosaurus_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"megapnosaurus_warn": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.megapnosaurusWarning",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/megapnosaurus/megapnosaurus_angry",
+                "stream": true
+            }
+        ]
+    },
+	"megapnosaurus_death": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.megapnosaurusDeath",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/megapnosaurus/megapnosaurus_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"sarahsaurus_idle": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.sarahsaurusIdle",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/sarahsaurus/sarahsaurus_idle1",
+                "stream": true
+            },
+			{
+                "name": "prehistoricfauna:prehistoric/sarahsaurus/sarahsaurus_idle2",
+				"stream": true
+			}
+        ]
+    },
+	"sarahsaurus_hurt": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.sarahsaurusHurt",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/sarahsaurus/sarahsaurus_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"sarahsaurus_warn": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.sarahsaurusWarning",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/sarahsaurus/sarahsaurus_angry",
+                "stream": true
+            }
+        ]
+    },
+	"sarahsaurus_death": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.sarahsaurusDeath",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/sarahsaurus/sarahsaurus_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"calsoyasuchus_idle": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.calsoyasuchusIdle",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/calsoyasuchus/calsoyasuchus_idle1",
+                "stream": true
+            },
+			{
+                "name": "prehistoricfauna:prehistoric/calsoyasuchus/calsoyasuchus_idle2",
+				"stream": true
+			}
+        ]
+    },
+	"calsoyasuchus_hurt": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.calsoyasuchusHurt",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/calsoyasuchus/calsoyasuchus_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"calsoyasuchus_warn": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.calsoyasuchusWarning",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/calsoyasuchus/calsoyasuchus_angry",
+                "stream": true
+            }
+        ]
+    },
+	"calsoyasuchus_death": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.calsoyasuchusDeath",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/calsoyasuchus/calsoyasuchus_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"scelidosaurus_idle": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.scelidosaurusIdle",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/scelidosaurus/scelidosaurus_idle1",
+                "stream": true
+            },
+			{
+                "name": "prehistoricfauna:prehistoric/scelidosaurus/scelidosaurus_idle2",
+				"stream": true
+			}
+        ]
+    },
+	"scelidosaurus_hurt": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.scelidosaurusHurt",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/scelidosaurus/scelidosaurus_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"scelidosaurus_death": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.scelidosaurusDeath",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/scelidosaurus/scelidosaurus_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"scutellosaurus_idle": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.scutellosaurusIdle",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/scutellosaurus/scutellosaurus_idle1",
+                "stream": true
+            },
+			{
+                "name": "prehistoricfauna:prehistoric/scutellosaurus/scutellosaurus_idle2",
+				"stream": true
+			}
+        ]
+    },
+	"scutellosaurus_hurt": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.scutellosaurusHurt",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/scutellosaurus/scutellosaurus_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"scutellosaurus_death": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.scutellosaurusDeath",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/scutellosaurus/scutellosaurus_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"kayentatherium_idle": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.kayentatheriumIdle",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/kayentatherium/kayentatherium_idle1",
+                "stream": true
+            },
+			{
+                "name": "prehistoricfauna:prehistoric/kayentatherium/kayentatherium_idle2",
+				"stream": true
+			}
+        ]
+    },
+	"kayentatherium_hurt": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.kayentatheriumHurt",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/kayentatherium/kayentatherium_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"kayentatherium_death": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.kayentatheriumDeath",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/kayentatherium/kayentatherium_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"arganodus_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.arganodusHurt",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"arganodus_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.arganodusDeath",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"chinlea_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.chinleaHurt",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"chinlea_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.chinleaDeath",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"mooreodontus_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.mooreodontusHurt",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"mooreodontus_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.mooreodontusDeath",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"saurichthys_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.saurichthysHurt",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"saurichthys_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.saurichthysDeath",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	}
 }

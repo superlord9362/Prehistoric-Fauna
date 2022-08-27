@@ -1,0 +1,168 @@
+{
+	"parent": "prehistoricfauna:prehistoricfauna/general/digger_man",
+	"display": {
+		"icon": {
+			"item": "prehistoricfauna:fossil_crate"
+		},
+		"title": {
+			"translate": "advancements.prehistoricfauna.stromers_nightmare.title"
+		},
+		"description": {
+			"translate": "advancements.prehistoricfauna.stromers_nightmare.description"
+		},
+		"frame": "task",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"criteria": {
+		"blew_up_protoceratops_skeleton": {
+			"trigger": "minecraft:player_killed_entity",
+			"conditions": {
+				"entity": {
+					"type": "prehistoricfauna:protoceratops_skeleton"
+				},
+				"killing_blow": {
+					"is_explosion": true
+				}
+			}
+		},
+		"blew_up_velociraptor_skeleton": {
+			"trigger": "minecraft:player_killed_entity",
+			"conditions": {
+				"entity": {
+					"type": "prehistoricfauna:velociraptor_skeleton"
+				},
+				"killing_blow": {
+					"is_explosion": true
+				}
+			}
+		},
+		"blew_up_ankylosaurus_skeleton": {
+			"trigger": "minecraft:player_killed_entity",
+			"conditions": {
+				"entity": {
+					"type": "prehistoricfauna:ankylosaurus_skeleton"
+				},
+				"killing_blow": {
+					"is_explosion": true
+				}
+			}
+		},
+		"blew_up_triceratops_skeleton": {
+			"trigger": "minecraft:player_killed_entity",
+			"conditions": {
+				"entity": {
+					"type": "prehistoricfauna:triceratops_skeleton"
+				},
+				"killing_blow": {
+					"is_explosion": true
+				}
+			}
+		},
+		"blew_up_tyrannosaurus_skeleton": {
+			"trigger": "minecraft:player_killed_entity",
+			"conditions": {
+				"entity": {
+					"type": "prehistoricfauna:tyrannosaurus_skeleton"
+				},
+				"killing_blow": {
+					"is_projectile": true
+				}
+			}
+		},
+		"blew_up_allosaurus_skeleton": {
+			"trigger": "minecraft:player_killed_entity",
+			"conditions": {
+				"entity": {
+					"type": "prehistoricfauna:allosaurus_skeleton"
+				},
+				"killing_blow": {
+					"is_explosion": true
+				}
+			}
+		},
+		"blew_up_ceratosaurus_skeleton": {
+			"trigger": "minecraft:player_killed_entity",
+			"conditions": {
+				"entity": {
+					"type": "prehistoricfauna:ceratosaurus_skeleton"
+				},
+				"killing_blow": {
+					"is_explosion": true
+				}
+			}
+		},
+		"blew_up_stegosaurus_skeleton": {
+			"trigger": "minecraft:player_killed_entity",
+			"conditions": {
+				"entity": {
+					"type": "prehistoricfauna:stegosaurus_skeleton"
+				},
+				"killing_blow": {
+					"is_explosion": true
+				}
+			}
+		},
+		"blew_up_coelophysis_skeleton": {
+			"trigger": "minecraft:player_killed_entity",
+			"conditions": {
+				"entity": {
+					"type": "prehistoricfauna:coelophysis_skeleton"
+				},
+				"killing_blow": {
+					"is_explosion": true
+				}
+			}
+		},
+		"blew_up_herrerasaurus_skeleton": {
+			"trigger": "minecraft:player_killed_entity",
+			"conditions": {
+				"entity": {
+					"type": "prehistoricfauna:herrerasaurus_skeleton"
+				},
+				"killing_blow": {
+					"is_explosion": true
+				}
+			}
+		},
+		"blew_up_ischigualastia_skeleton": {
+			"trigger": "minecraft:player_killed_entity",
+			"conditions": {
+				"entity": {
+					"type": "prehistoricfauna:ischigualastia_skeleton"
+				},
+				"killing_blow": {
+					"is_explosion": true
+				}
+			}
+		},
+		"blew_up_saurosuchus_skeleton": {
+			"trigger": "minecraft:player_killed_entity",
+			"conditions": {
+				"entity": {
+					"type": "prehistoricfauna:saurosuchus_skeleton"
+				},
+				"killing_blow": {
+					"is_explosion": true
+				}
+			}
+		}
+	},
+	"requirements": [
+		[
+			"blew_up_protoceratops_skeleton",
+			"blew_up_velociraptor_skeleton",
+			"blew_up_ankylosaurus_skeleton",
+			"blew_up_triceratops_skeleton",
+			"blew_up_tyrannosaurus_skeleton",
+			"blew_up_allosaurus_skeleton",
+			"blew_up_stegosaurus_skeleton",
+			"blew_up_ceratosaurus_skeleton",
+			"blew_up_coelophysis_skeleton",
+			"blew_up_herrerasaurus_skeleton",
+			"blew_up_ischigualastia_skeleton",
+			"blew_up_saurosuchus_skeleton"
+		]
+	]
+}

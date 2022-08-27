@@ -6,7 +6,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.fml.network.NetworkEvent;
-import superlord.prehistoricfauna.common.entities.TriceratopsEntity;
+import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.TriceratopsEntity;
 import superlord.prehistoricfauna.init.SoundInit;
 
 import java.util.function.Supplier;

@@ -1,0 +1,6 @@
+{
+    "parent": "prehistoricfauna:block/two_coelophysis_eggs",
+    "textures": {
+        "all": "prehistoricfauna:blocks/coelophysis_eggs_slightly_cracked"
+    }
+}

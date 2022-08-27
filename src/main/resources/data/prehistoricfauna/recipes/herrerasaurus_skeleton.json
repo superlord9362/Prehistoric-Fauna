@@ -5,10 +5,28 @@
       "item": "prehistoricfauna:herrerasaurus_skull"
     },
 	{
-		"item": "prehistoricfauna:herrerasaurus_fossil"
+		"item": "prehistoricfauna:fossilized_bones"
 	},
 	{
-		"item": "prehistoricfauna:herrerasaurus_fossil"
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
 	}
   ],
   "result": {

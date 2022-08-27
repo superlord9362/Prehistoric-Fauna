@@ -1,0 +1,13 @@
+{
+  "type": "crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "prehistoricfauna:woodworthia_logs"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:woodworthia_planks",
+    "count": 4
+  }
+}

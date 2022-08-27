@@ -5,10 +5,28 @@
       "item": "prehistoricfauna:tyrannosaurus_skull"
     },
 	{
-		"item": "prehistoricfauna:tyrannosaurus_fossil"
+		"item": "prehistoricfauna:fossilized_bones"
 	},
 	{
-		"item": "prehistoricfauna:tyrannosaurus_fossil"
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
+	},
+	{
+		"item": "prehistoricfauna:fossilized_bones"
 	}
   ],
   "result": {

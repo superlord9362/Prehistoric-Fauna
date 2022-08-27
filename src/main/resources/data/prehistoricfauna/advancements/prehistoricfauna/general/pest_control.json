@@ -2,7 +2,7 @@
   "parent": "prehistoricfauna:prehistoricfauna/general/time_machine",
   "display": {
     "icon": {
-      "item": "prehistoricfauna:time_totem"
+      "item": "prehistoricfauna:time_gem_shard"
     },
     "title": {
       "translate": "advancements.prehistoricfauna.pest_control.title"

@@ -5,7 +5,6 @@ import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "prehistoricfauna:raw_chinlea"
+  },
+  "result": "prehistoricfauna:cooked_chinlea",
+  "experience": 0.35,
+  "cookingtime": 200
+}

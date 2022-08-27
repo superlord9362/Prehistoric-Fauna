@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:brachyphyllum_log"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:brachyphyllum_wood",
+    "count": 3
+  }
+}

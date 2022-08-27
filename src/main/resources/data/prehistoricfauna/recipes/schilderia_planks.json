@@ -1,0 +1,13 @@
+{
+  "type": "crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "prehistoricfauna:schilderia_logs"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:schilderia_planks",
+    "count": 4
+  }
+}

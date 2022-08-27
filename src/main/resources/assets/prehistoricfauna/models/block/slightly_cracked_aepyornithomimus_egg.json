@@ -1,7 +1,7 @@
 {
     "parent": "prehistoricfauna:block/aepyornithomimus_egg",
     "textures": {
-        "particle": "prehistoricfauna:blocks/aepyornithomimus_eggs_slightly_cracked",
-        "all": "prehistoricfauna:blocks/aepyornithomimus_eggs_slightly_cracked"
+        "particle": "prehistoricfauna:blocks/aepyornithomimus_egg_slightly_cracked",
+        "all": "prehistoricfauna:blocks/aepyornithomimus_egg_slightly_cracked"
     }
 }

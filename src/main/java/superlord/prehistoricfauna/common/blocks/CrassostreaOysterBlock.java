@@ -21,7 +21,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import superlord.prehistoricfauna.common.entities.DidelphodonEntity;
+import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.DidelphodonEntity;
 import superlord.prehistoricfauna.init.PFBlocks;
 
 import javax.annotation.Nullable;

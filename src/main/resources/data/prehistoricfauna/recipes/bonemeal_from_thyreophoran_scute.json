@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:thyreophoran_scute"
+    }
+  ],
+  "result": {
+    "item": "minecraft:bone_meal",
+	"count": 3
+  }
+}

@@ -71,6 +71,16 @@ public class PrehistoricBoatEntity extends BoatEntity {
             	return PFItems.LIRIODENDRITES_BOAT.get();
             case GINKGO:
             	return PFItems.GINKGO_BOAT.get();
+            case TROCHODENDROIDES:
+            	return PFItems.TROCHODENDROIDES_BOAT.get();
+            case BRACHYPHYLLUM:
+            	return PFItems.BRACHYPHYLLUM_BOAT.get();
+            case AGATHOXYLON:
+            	return PFItems.AGATHOXYLON_BOAT.get();
+            case WOODWORTHIA:
+            	return PFItems.WOODWORTHIA_BOAT.get();
+            case SCHILDERIA:
+            	return PFItems.SCHILDERIA_BOAT.get();
         }
     }
 
@@ -92,6 +102,16 @@ public class PrehistoricBoatEntity extends BoatEntity {
             	return PFBlocks.LIRIODENDRITES_PLANKS;
             case GINKGO:
             	return PFBlocks.GINKGO_PLANKS;
+            case TROCHODENDROIDES:
+            	return PFBlocks.TROCHODENDROIDES_PLANKS;
+            case BRACHYPHYLLUM:
+            	return PFBlocks.BRACHYPHYLLUM_PLANKS;
+            case AGATHOXYLON:
+            	return PFBlocks.AGATHOXYLON_PLANKS;
+            case WOODWORTHIA:
+            	return PFBlocks.WOODWORTHIA_PLANKS;
+            case SCHILDERIA:
+            	return PFBlocks.SCHILDERIA_PLANKS;
         }
     }
 
@@ -210,7 +230,12 @@ public class PrehistoricBoatEntity extends BoatEntity {
         PROTOJUNIPER("protojuniper"),
         HEIDIPHYLLUM("heidiphyllum"),
         LIRIODENDRITES("liriodendrites"),
-        GINKGO("ginkgo");
+        GINKGO("ginkgo"),
+        TROCHODENDROIDES("trochodendroides"),
+        BRACHYPHYLLUM("brachyphyllum"),
+        AGATHOXYLON("agathoxylon"),
+        WOODWORTHIA("woodworthia"),
+        SCHILDERIA("schilderia");
 
 
         private final String name;

@@ -1,0 +1,7 @@
+{
+    "parent": "prehistoricfauna:block/coelophysis_egg",
+    "textures": {
+        "particle": "prehistoricfauna:blocks/coelophysis_eggs_very_cracked",
+        "all": "prehistoricfauna:blocks/coelophysis_eggs_very_cracked"
+    }
+}

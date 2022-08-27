@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:stripped_woodworthia_log"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:stripped_woodworthia_wood",
+    "count": 3
+  }
+}

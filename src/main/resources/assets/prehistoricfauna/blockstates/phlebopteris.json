@@ -1,0 +1,21 @@
+{
+    "variants": {
+        "": [
+			{
+				"model": "prehistoricfauna:block/phlebopteris"
+			},
+			{
+				"model": "prehistoricfauna:block/phlebopteris",
+				"y": 90
+			},
+			{
+				"model": "prehistoricfauna:block/phlebopteris",
+				"y": 180
+			},
+			{
+				"model": "prehistoricfauna:block/phlebopteris",
+				"y": 270
+			}
+		]
+    }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:brachyphyllum_planks"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:brachyphyllum_boat"
+  }
+}

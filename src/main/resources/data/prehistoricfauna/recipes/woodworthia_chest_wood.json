@@ -1,0 +1,33 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"group": "woodworthia_chest",
+	"pattern": [
+		"###",
+		"# #",
+		"###"
+	],
+	"key": {
+		"#": {
+			"tag": "prehistoricfauna:woodworthia_logs"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:woodworthia_chest",
+		"count": 4
+	},
+	"conditions": [
+		{
+			"type": "forge:and",
+			"values": [
+				{
+					"type": "prehistoricfauna:quark_flag",
+					"flag": "wood_to_chest_recipes"
+				},
+				{
+					"type": "prehistoricfauna:quark_flag",
+					"flag": "variant_chests"
+				}
+			]
+		}
+	]
+}

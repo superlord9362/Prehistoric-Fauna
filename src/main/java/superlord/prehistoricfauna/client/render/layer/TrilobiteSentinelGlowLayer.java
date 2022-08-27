@@ -7,7 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.common.entities.TrilobiteSentinelEntity;
+import superlord.prehistoricfauna.common.entities.henos.TrilobiteSentinelEntity;
 
 @OnlyIn(Dist.CLIENT)
 public class TrilobiteSentinelGlowLayer extends AbstractHenosGlowLayer<TrilobiteSentinelEntity, EntityModel<TrilobiteSentinelEntity>> {

@@ -14,7 +14,12 @@ public class MossyDirtBlock extends Block {
 
 	@Override
 	public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, net.minecraftforge.common.IPlantable plantable) {
-		return true;
+		net.minecraftforge.common.PlantType type = plantable.getPlantType(world, pos.offset(facing));
+		if (net.minecraftforge.common.PlantType.WATER.equals(type)) {
+			return false;
+		} else {
+			return true;
+		}
 	}
-	
+
 }

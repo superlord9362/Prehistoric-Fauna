@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "prehistoricfauna:block/agathoxylon_slab" },
+        "type=top": { "model": "prehistoricfauna:block/agathoxylon_slab_top" },
+        "type=double": { "model": "prehistoricfauna:block/agathoxylon_planks" }
+    }
+}

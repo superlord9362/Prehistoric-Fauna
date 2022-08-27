@@ -4,6 +4,7 @@ import java.util.function.Predicate;
 
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 @SuppressWarnings("rawtypes")
 public class HuntGoal extends NearestAttackableTargetGoal {
@@ -14,7 +15,7 @@ public class HuntGoal extends NearestAttackableTargetGoal {
 	}
 	
 	public boolean shouldExecute() {
-		if (super.shouldExecute() && this.goalOwner.getRNG().nextInt(249) == 0 && !this.goalOwner.isChild()) {
+		if (super.shouldExecute() && this.goalOwner.getRNG().nextInt(249) == 0 && !this.goalOwner.isChild() && !PrehistoricFaunaConfig.advancedHunger) {
 			return true;
 		} else {
 			return false;

@@ -1,0 +1,33 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"group": "schilderia_chest",
+	"pattern": [
+		"###",
+		"# #",
+		"###"
+	],
+	"key": {
+		"#": {
+			"tag": "prehistoricfauna:schilderia_logs"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:schilderia_chest",
+		"count": 4
+	},
+	"conditions": [
+		{
+			"type": "forge:and",
+			"values": [
+				{
+					"type": "prehistoricfauna:quark_flag",
+					"flag": "wood_to_chest_recipes"
+				},
+				{
+					"type": "prehistoricfauna:quark_flag",
+					"flag": "variant_chests"
+				}
+			]
+		}
+	]
+}

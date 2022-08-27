@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_trapdoor",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:trochodendroides_planks"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:trochodendroides_trapdoor",
+    "count": 2
+  }
+}
