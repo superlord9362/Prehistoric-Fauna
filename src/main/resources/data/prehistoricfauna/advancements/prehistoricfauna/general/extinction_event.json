@@ -226,7 +226,135 @@
           "type": "prehistoricfauna:protoceratops"
         }
       }
-    }
+    },
+	"pinacosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:pinacosaurus"
+			}
+		}
+	},
+	"plesiohadros": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:plesiohadros"
+			}
+		}
+	},
+	"calsoyasuchus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:calsoyasuchus"
+			}
+		}
+	},
+	"dilophosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:dilophosaurus"
+			}
+		}
+	},
+	"kayentatherium": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:kayentatherium"
+			}
+		}
+	},
+	"megapnosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:megapnosaurus"
+			}
+		}
+	},
+	"sarahsaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:sarahsaurus"
+			}
+		}
+	},
+	"scelidosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:scelidosaurus"
+			}
+		}
+	},
+	"scutellosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:scutellosaurus"
+			}
+		}
+	},
+	"coelophysis": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:coelophysis"
+			}
+		}
+	},
+	"desmatosuchus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:desmatosuchus"
+			}
+		}
+	},
+	"placerias": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:placerias"
+			}
+		}
+	},
+	"poposaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:poposaurus"
+			}
+		}
+	},
+	"postosuchus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:postosuchus"
+			}
+		}
+	},
+	"trilophosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:trilophosaurus"
+			}
+		}
+	},
+	"typothorax": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:typothorax"
+			}
+		}
+	}
   },
   "requirements": [
     [
@@ -306,6 +434,54 @@
 	],
 	[
 		"protoceratops"
+	],
+	[
+		"pinacosaurus"
+	],
+	[
+		"plesiohadros"
+	],
+	[
+		"calsoyasuchus"
+	],
+	[
+		"dilophosaurus"
+	],
+	[
+		"kayentatherium"
+	],
+	[
+		"megapnosaurus"
+	],
+	[
+		"sarahsaurus"
+	],
+	[
+		"scelidosaurus"
+	],
+	[
+		"scutellosaurus"
+	],
+	[
+		"coelophysis"
+	],
+	[
+		"desmatosuchus"
+	],
+	[
+		"placerias"
+	],
+	[
+		"poposaurus"
+	],
+	[
+		"postosuchus"
+	],
+	[
+		"trilophosaurus"
+	],
+	[
+		"typothorax"
 	]
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "parent": "prehistoricfauna:prehistoricfauna/general/time_machine",
+  "parent": "prehistoricfauna:prehistoricfauna/general/river_monsters",
   "display": {
     "icon": {
       "item": "prehistoricfauna:gar_bucket"
@@ -65,7 +65,47 @@
           }
         ]
       }
-    }
+    },
+	"saurichthys": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:saurichthys_bucket"
+				}
+			]
+		}
+	},
+	"chinlea": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:chinlea_bucket"
+				}
+			]
+		}
+	},
+	"arganodus": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:arganodus_bucket"
+				}
+			]
+		}
+	},
+	"mooreodontus": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:mooreodontus_bucket"
+				}
+			]
+		}
+	}
   },
   "requirements": [
     [
@@ -73,7 +113,11 @@
 	  "gar",
 	  "cyclurus",
 		"potamoceratodus",
-		"ceratodus"
+		"ceratodus",
+		"chinlea",
+		"arganodus",
+		"mooreodontus",
+		"saurichthys"
     ]
   ]
 }

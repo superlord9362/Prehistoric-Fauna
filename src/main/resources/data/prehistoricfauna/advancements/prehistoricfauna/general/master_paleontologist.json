@@ -129,6 +129,66 @@
 			]
 		}
 	},
+	"plesiohadros_skull": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:plesiohadros_skull"
+				}
+			]
+		}
+	},
+	"dilophosaurus_skull": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:dilophosaurus_skull"
+				}
+			]
+		}
+	},
+	"scelidosaurus_skull": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:scelidosaurus_skull"
+				}
+			]
+		}
+	},
+	"coelophysis_skull": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:coelophysis_skull"
+				}
+			]
+		}
+	},
+	"desmatosuchus_skull": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:desmatosuchus_skull"
+				}
+			]
+		}
+	},
+	"postosuchus_skull": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:postosuchus_skull"
+				}
+			]
+		}
+	},
 	"tyrannosaurus_skeleton": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -238,8 +298,28 @@
 				}
 			]
 		}
+	},
+  "plesiohadros_skeleton": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:plesiohadros_skeleton"
+				}
+			]
+		}
+	},
+	"coelophysis_skeleton": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:coelophysis_skeleton"
+				}
+			]
+		}
 	}
-  },
+	},
   "requirements": [
     [
       "tyrannosaurus_skull"
@@ -306,6 +386,30 @@
 	],
 	[
 		"protoceratops_skull"
+	],
+	[
+		"plesiohadros_skeleton"
+	],
+	[
+		"coelophysis_skeleton"
+	],
+	[
+		"plesiohadros_skull"
+	],
+	[
+		"dilophosaurus_skull"
+	],
+	[
+		"scelidosaurus_skull"
+	],
+	[
+		"coelophysis_skull"
+	],
+	[
+		"desmatosuchus_skull"
+	],
+	[
+		"postosuchus_skull"
 	]
   ]
 }

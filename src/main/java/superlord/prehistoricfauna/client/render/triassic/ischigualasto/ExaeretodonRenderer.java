@@ -10,7 +10,9 @@ import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.triassic.ischigualasto.ExaeretodonModel;
 import superlord.prehistoricfauna.client.model.triassic.ischigualasto.ExaeretodonSleepingModel;
+import superlord.prehistoricfauna.client.render.layer.ExaeretodonEyeLayer;
 import superlord.prehistoricfauna.common.entities.triassic.ischigualasto.ExaeretodonEntity;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class ExaeretodonRenderer extends MobRenderer<ExaeretodonEntity, EntityModel<ExaeretodonEntity>>{
 	
@@ -26,6 +28,9 @@ public class ExaeretodonRenderer extends MobRenderer<ExaeretodonEntity, EntityMo
 	
 	public ExaeretodonRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), EXAERETODON_MODEL, 0.75F);
+		if (PrehistoricFaunaConfig.eyeShine) {
+			this.addLayer(new ExaeretodonEyeLayer(this));
+		}
 	}
 	
 	public void render(ExaeretodonEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
@@ -46,15 +51,15 @@ public class ExaeretodonRenderer extends MobRenderer<ExaeretodonEntity, EntityMo
 	@Override
 	public ResourceLocation getEntityTexture(ExaeretodonEntity entity) {
 		if(entity.isAlbino()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return ALBINO_SLEEPING;
 			} else return ALBINO;
 		} else if (entity.isMelanistic()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return MELANISTIC_SLEEPING;
 			} else return MELANISTIC;
 		} else {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return EXAERETODON_SLEEPING;
 			} else return EXAERETODON;
 		}

@@ -47,19 +47,19 @@ public class TrilophosaurusRenderer extends MobRenderer<TrilophosaurusEntity, En
 
 	public ResourceLocation getEntityTexture(TrilophosaurusEntity entity) {
 		if (entity.isAlbino()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return ALBINO_SLEEPING;
 			} else {
 				return ALBINO;
 			}
 		} else if(entity.isMelanistic()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return MELANISTIC_SLEEPING;
 			} else {
 				return MELANISTIC;
 			}
 		} else {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return TRILOPHOSAURUS_TEXTURE_SLEEPING;
 			} else {
 				return TRILOPHOSAURUS_TEXTURE;

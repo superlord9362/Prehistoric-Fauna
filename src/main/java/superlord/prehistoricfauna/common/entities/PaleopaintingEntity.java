@@ -4,12 +4,14 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.item.HangingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
@@ -155,10 +157,12 @@ public class PaleopaintingEntity extends HangingEntity implements IEntityAdditio
         CUBE(32, 32),
         SERENITY(64, 48),
         LAELAPS(64, 48),
-        CHAOTIAN(64, 32),
+        CRYOGENIAN(64, 32),
         ELECTROCUTION(64, 48),
         LIFEBLOOD(16, 16),
-        DUEL_OF_TIME(48, 48);
+        DUEL_OF_TIME(48, 48),
+        CHRONOSTRATIGRAPHIC(16, 32),
+        BURIAN(64, 48);
 
         public static final Paleopainting[] VALUES = values();
 
@@ -178,4 +182,10 @@ public class PaleopaintingEntity extends HangingEntity implements IEntityAdditio
             return height;
         }
     }
+    
+    @Override
+	public ItemStack getPickedResult(RayTraceResult target) {
+		return new ItemStack(PFItems.PALEOPAINTING.get());
+	}
+    
 }

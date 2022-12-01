@@ -79,7 +79,7 @@ import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.SoundInit;
 
 public class EilenodonEntity extends DinosaurEntity {
-	
+
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(EilenodonEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(EilenodonEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> ALBINO = EntityDataManager.createKey(EilenodonEntity.class, DataSerializers.BOOLEAN);
@@ -94,28 +94,28 @@ public class EilenodonEntity extends DinosaurEntity {
 	int hungerTick = 0;
 	private int isDigging;
 	int loveTick = 0;
-	
+
 	public EilenodonEntity(EntityType<? extends EilenodonEntity> type, World world) {
 		super(type, world);
 	}
-	
+
 	public boolean hasEgg() {
 		return this.dataManager.get(HAS_EGG);
 	}
-	
+
 	private void setHasEgg(boolean hasEgg) {
 		this.dataManager.set(HAS_EGG, hasEgg);
 	}
-	
+
 	public boolean isDigging() {
 		return this.dataManager.get(IS_DIGGING);
 	}
-	
+
 	private void setDigging(boolean isDigging) {
 		this.isDigging = isDigging ? 1 : 0;
 		this.dataManager.set(IS_DIGGING, isDigging);
 	}
-	
+
 	public boolean isAlbino() {
 		return this.dataManager.get(ALBINO);
 	}
@@ -131,11 +131,11 @@ public class EilenodonEntity extends DinosaurEntity {
 	private void setMelanistic(boolean isMelanistic) {
 		this.dataManager.set(MELANISTIC, isMelanistic);
 	}
-	
+
 	public boolean isBreedingItem(ItemStack stack) {
 		return stack.getItem() == PFBlocks.HORSETAIL.asItem();
 	}
-	
+
 	public int getCurrentHunger() {
 		return this.currentHunger;
 	}
@@ -167,7 +167,7 @@ public class EilenodonEntity extends DinosaurEntity {
 	public int getThreeQuartersHunger() {
 		return (maxHunger / 4) * 3;
 	}
-	
+
 	protected void registerData() {
 		super.registerData();
 		this.dataManager.register(HAS_EGG, false);
@@ -178,7 +178,7 @@ public class EilenodonEntity extends DinosaurEntity {
 		this.dataManager.register(EATING, false);
 		this.dataManager.register(NATURAL_LOVE, false);
 	}
-	
+
 	public void writeAdditional(CompoundNBT compound) {
 		super.writeAdditional(compound);
 		compound.putBoolean("HasEgg", this.hasEgg());
@@ -189,7 +189,7 @@ public class EilenodonEntity extends DinosaurEntity {
 		compound.putBoolean("IsEating", this.isEating());
 		compound.putBoolean("InNaturalLove", this.isInLoveNaturally());
 	}
-	
+
 	public void readAdditional(CompoundNBT compound) {
 		super.readAdditional(compound);
 		this.setHasEgg(compound.getBoolean("HasEgg"));
@@ -200,7 +200,7 @@ public class EilenodonEntity extends DinosaurEntity {
 		this.setHunger(compound.getInt("MaxHunger"));
 		this.setInLoveNaturally(compound.getBoolean("InNaturalLove"));
 	}
-	
+
 	@Nullable
 	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		Random rand = new Random();
@@ -210,10 +210,10 @@ public class EilenodonEntity extends DinosaurEntity {
 		} else if (birthNumber >= 4 && birthNumber < 7) {
 			this.setMelanistic(true);
 		}
-		this.setHunger(10);
+		this.setHunger(this.maxHunger);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
-	
+
 	private void setEilenodonFlag(int p_213505_1_, boolean p_213505_2_) {
 		if (p_213505_2_) {
 			this.dataManager.set(EILENODON_FLAGS, (byte)(this.dataManager.get(EILENODON_FLAGS) | p_213505_1_));
@@ -221,11 +221,11 @@ public class EilenodonEntity extends DinosaurEntity {
 			this.dataManager.set(EILENODON_FLAGS, (byte)(this.dataManager.get(EILENODON_FLAGS) & ~p_213505_1_));
 		}
 	}
-	
+
 	private boolean getEilenodonFlag(int p_213507_1_) {
 		return (this.dataManager.get(EILENODON_FLAGS) & p_213507_1_) != 0;
 	}
-	
+
 	public boolean isSitting() {
 		return this.getEilenodonFlag(1);
 	}
@@ -233,15 +233,15 @@ public class EilenodonEntity extends DinosaurEntity {
 	public void setSitting(boolean p_213466_1_) {
 		this.setEilenodonFlag(1, p_213466_1_);
 	}
-	
+
 	public boolean func_213480_dY() {
 		return this.getEilenodonFlag(16);
 	}
-	
+
 	public void func_213461_s(boolean p_213461_1_) {
 		this.setEilenodonFlag(16, p_213461_1_);
 	}
-	
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	protected void registerGoals() {
@@ -277,7 +277,7 @@ public class EilenodonEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(1, new NocturnalSleepGoal(this));
 		this.goalSelector.addGoal(0, new EilenodonEntity.HerbivoreEatGoal((double)1.2F, 12, 2));
 	}
-	
+
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
 		return SoundInit.EILENODON_HURT;
 	}
@@ -294,29 +294,44 @@ public class EilenodonEntity extends DinosaurEntity {
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.25D);
 		}
-		List<EilenodonEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
-		if (PrehistoricFaunaConfig.advancedHunger) {
-			hungerTick++;
-			if (hungerTick == 900 && !this.isChild() || hungerTick == 450 && this.isChild()) {
-				hungerTick = 0;
-				if (currentHunger != 0 || !this.isAsleep()) {
-					this.setHunger(currentHunger - 1);
+		if (!this.isAIDisabled()) {
+			List<EilenodonEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
+			if (PrehistoricFaunaConfig.advancedHunger) {
+				hungerTick++;
+				if (hungerTick == 900 && !this.isChild() || hungerTick == 450 && this.isChild()) {
+					hungerTick = 0;
+					if (currentHunger != 0 || !this.isAsleep()) {
+						this.setHunger(currentHunger - 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
+					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getAttackTarget() == null && this.getRevengeTarget() == null) {
+						float currentHealth = this.getHealth();
+						this.setHealth(currentHealth + 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 3) {
+						loveTick = 600;
+						this.setInLoveNaturally(true);
+						this.setInLove(600);
+						lastInLove = 28800;
+					}
+					if (loveTick != 0) {
+						loveTick--;
+					} else {
+						this.setInLoveNaturally(false);
+					}
 				}
-			}
-			if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-				if (this.getHealth() < this.getMaxHealth()) {
-					float currentHealth = this.getHealth();
-					this.setHealth(currentHealth + 1);
-				}
-			}
-			if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 3) {
+			} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+				int naturalBreedingChance = rand.nextInt(1000);
+				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 3) {
 					loveTick = 600;
 					this.setInLoveNaturally(true);
 					this.setInLove(600);
@@ -328,50 +343,37 @@ public class EilenodonEntity extends DinosaurEntity {
 					this.setInLoveNaturally(false);
 				}
 			}
-		} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-			int naturalBreedingChance = rand.nextInt(1000);
-			if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 3) {
-				loveTick = 600;
-				this.setInLoveNaturally(true);
-				this.setInLove(600);
-				lastInLove = 28800;
+			if (lastInLove != 0) {
+				lastInLove--;
 			}
-			if (loveTick != 0) {
-				loveTick--;
-			} else {
-				this.setInLoveNaturally(false);
-			}
-		}
-		if (lastInLove != 0) {
-			lastInLove--;
 		}
 	}
-	
+
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
 		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 4.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D);
 	}
-	
+
 	@OnlyIn(Dist.CLIENT)
 	public void handleStatusUpdate(byte id) {
 		super.handleStatusUpdate(id);
 	}
-	
+
 	static class LayEggGoal extends MoveToBlockGoal {
 		private final EilenodonEntity eilenodon;
-		
+
 		LayEggGoal(EilenodonEntity eilenodon, double speed) {
 			super(eilenodon, speed, 16);
 			this.eilenodon = eilenodon;
 		}
-		
+
 		public boolean shouldExecute() {
 			return this.eilenodon.hasEgg() ? super.shouldExecute() : false;
 		}
-		
+
 		public boolean shouldContinueExecuting() {
 			return super.shouldContinueExecuting() && this.eilenodon.hasEgg();
 		}
-		
+
 		public void tick() {
 			super.tick();
 			BlockPos blockpos = new BlockPos(this.eilenodon.getPositionVec());
@@ -391,7 +393,7 @@ public class EilenodonEntity extends DinosaurEntity {
 				}
 			}
 		}
-		
+
 		protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
 			if (!worldIn.isAirBlock(pos.up())) {
 				return false;
@@ -400,21 +402,21 @@ public class EilenodonEntity extends DinosaurEntity {
 				return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.MYCELIUM || block == Blocks.SAND || block == Blocks.RED_SAND || block == PFBlocks.MOSSY_DIRT || block == PFBlocks.MOSS_BLOCK || block == PFBlocks.LOAM || block == PFBlocks.PACKED_LOAM || block == PFBlocks.SILT || block == PFBlocks.PACKED_LOAM || block == BlockTags.LEAVES;
 			}
 		}
-		
+
 	}
-	
+
 	static class MateGoal extends BreedGoal {
 		private final EilenodonEntity eilenodon;
-		
+
 		MateGoal(EilenodonEntity eilenodon, double speed) {
 			super(eilenodon, speed);
 			this.eilenodon = eilenodon;
 		}
-		
+
 		public boolean shouldExecute() {
 			return super.shouldExecute() && !this.eilenodon.hasEgg() && !this.eilenodon.isInLoveNaturally();
 		}
-		
+
 		protected void spawnBaby() {
 			ServerPlayerEntity serverPlayerEntity = this.animal.getLoveCause();
 			if (serverPlayerEntity == null && this.targetMate.getLoveCause() != null) {
@@ -432,7 +434,7 @@ public class EilenodonEntity extends DinosaurEntity {
 				this.world.addEntity(new ExperienceOrbEntity(this.world, this.animal.getPosX(), this.animal.getPosY(), this.animal.getPosZ(), random.nextInt(7) + 1));
 			}
 		}
-		
+
 	}
 
 	static class NaturalMateGoal extends BreedGoal {
@@ -477,7 +479,7 @@ public class EilenodonEntity extends DinosaurEntity {
 		}
 
 	}
-	
+
 	public class AlertablePredicate implements Predicate<LivingEntity> {
 		public boolean test(LivingEntity p_test_1_) {
 			if (p_test_1_ instanceof EilenodonEntity) {
@@ -495,31 +497,31 @@ public class EilenodonEntity extends DinosaurEntity {
 			}
 		}
 	}
-	
+
 	abstract class BaseGoal extends Goal {
 		private final EntityPredicate field_220816_b = (new EntityPredicate()).setDistance(12.0D).setLineOfSiteRequired().setCustomPredicate(EilenodonEntity.this.new AlertablePredicate());
-		
+
 		private BaseGoal() {
-			
+
 		}
-		
+
 		protected boolean func_220813_g() {
 			BlockPos blockpos = new BlockPos(EilenodonEntity.this.getPositionVec());
 			return !EilenodonEntity.this.world.canSeeSky(blockpos) && EilenodonEntity.this.getBlockPathWeight(blockpos) >= 0.0F;
 		}
-		
+
 		protected boolean func_220814_h() {
 			return !EilenodonEntity.this.world.getTargettableEntitiesWithinAABB(LivingEntity.class, this.field_220816_b, EilenodonEntity.this, EilenodonEntity.this.getBoundingBox().grow(12.0D, 6.0D, 12.0D)).isEmpty();
 		}
-		
+
 	}
-	
+
 	class SitAndLookGoal extends EilenodonEntity.BaseGoal {
 		private double field_220819_c;
 		private double field_220820_d;
 		private int field_220821_e;
 		private int field_220822_f;
-		
+
 		public SitAndLookGoal() {
 			this.setMutexFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 		}
@@ -566,7 +568,7 @@ public class EilenodonEntity extends DinosaurEntity {
 		entity.onInitialSpawn((IServerWorld) world, world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
 		return entity;
 	}
-	
+
 	public class HerbivoreEatGoal extends MoveToBlockGoal {
 		protected int field_220731_g;
 
@@ -735,5 +737,5 @@ public class EilenodonEntity extends DinosaurEntity {
 			super.startExecuting();
 		}
 	}
-	
+
 }

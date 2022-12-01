@@ -11,7 +11,10 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.EilenodonBaskingModel;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.EilenodonModel;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.EilenodonSleepingModel;
+import superlord.prehistoricfauna.client.render.layer.EilenodonBaskingEyeLayer;
+import superlord.prehistoricfauna.client.render.layer.EilenodonEyeLayer;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.EilenodonEntity;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class EilenodonRenderer extends MobRenderer<EilenodonEntity, EntityModel<EilenodonEntity>> {
 
@@ -27,6 +30,10 @@ public class EilenodonRenderer extends MobRenderer<EilenodonEntity, EntityModel<
 
 	public EilenodonRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), EILENODON_MODEL, 0.25F);
+		if (PrehistoricFaunaConfig.eyeShine) {
+			this.addLayer(new EilenodonEyeLayer(this));
+			this.addLayer(new EilenodonBaskingEyeLayer(this));
+		}
 	}
 
 	public void render(EilenodonEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
@@ -49,19 +56,19 @@ public class EilenodonRenderer extends MobRenderer<EilenodonEntity, EntityModel<
 	@Override
 	public ResourceLocation getEntityTexture(EilenodonEntity entity) {
 		if (entity.isAlbino()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return ALBINO_SLEEPING;
 			} else {
 				return ALBINO;
 			}
 		} else if (entity.isMelanistic()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return MELANISTIC_SLEEPING;
 			} else {
 				return MELANISTIC;
 			}
 		} else {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return EILENODON_SLEEPING_TEXTURE;
 			} else {
 				return EILENODON;

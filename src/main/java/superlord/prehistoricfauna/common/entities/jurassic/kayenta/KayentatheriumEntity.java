@@ -138,7 +138,7 @@ public class KayentatheriumEntity extends DinosaurEntity {
 	private void setInLoveNaturally(boolean isInLoveNaturally) {
 		this.dataManager.set(NATURAL_LOVE, isInLoveNaturally);
 	}
-	
+
 	public int getCurrentHunger() {
 		return this.currentHunger;
 	}
@@ -197,7 +197,19 @@ public class KayentatheriumEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(1, new CrepuscularSleepGoal(this));
 		this.goalSelector.addGoal(0, new KayentatheriumEntity.HerbivoreEatGoal((double)1.2F, 12, 2));
 	}
-	
+
+	public int getMaxAir() {
+		return 4800;
+	}
+
+	protected int determineNextAir(int currentAir) {
+		return this.getMaxAir();
+	}
+
+	protected float getWaterSlowDown() {
+		return 0.8F;
+	}
+
 	public void livingTick() {
 		super.livingTick();
 		if (this.isAsleep()) {
@@ -205,29 +217,44 @@ public class KayentatheriumEntity extends DinosaurEntity {
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.23D);
 		}
-		List<KayentatheriumEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
-		if (PrehistoricFaunaConfig.advancedHunger) {
-			hungerTick++;
-			if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
-				hungerTick = 0;
-				if (currentHunger != 0 || !this.isAsleep()) {
-					this.setHunger(currentHunger - 1);
+		if (!this.isAIDisabled()) {
+			List<KayentatheriumEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
+			if (PrehistoricFaunaConfig.advancedHunger) {
+				hungerTick++;
+				if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
+					hungerTick = 0;
+					if (currentHunger != 0 || !this.isAsleep()) {
+						this.setHunger(currentHunger - 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
+					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getAttackTarget() == null && this.getRevengeTarget() == null) {
+						float currentHealth = this.getHealth();
+						this.setHealth(currentHealth + 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 4) {
+						loveTick = 600;
+						this.setInLoveNaturally(true);
+						this.setInLove(600);
+						lastInLove = 28800;
+					}
+					if (loveTick != 0) {
+						loveTick--;
+					} else {
+						this.setInLoveNaturally(false);
+					}
 				}
-			}
-			if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-				if (this.getHealth() < this.getMaxHealth()) {
-					float currentHealth = this.getHealth();
-					this.setHealth(currentHealth + 1);
-				}
-			}
-			if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 4) {
+			} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+				int naturalBreedingChance = rand.nextInt(1000);
+				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 4) {
 					loveTick = 600;
 					this.setInLoveNaturally(true);
 					this.setInLove(600);
@@ -239,22 +266,9 @@ public class KayentatheriumEntity extends DinosaurEntity {
 					this.setInLoveNaturally(false);
 				}
 			}
-		} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-			int naturalBreedingChance = rand.nextInt(1000);
-			if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 4) {
-				loveTick = 600;
-				this.setInLoveNaturally(true);
-				this.setInLove(600);
-				lastInLove = 28800;
+			if (lastInLove != 0) {
+				lastInLove--;
 			}
-			if (loveTick != 0) {
-				loveTick--;
-			} else {
-				this.setInLoveNaturally(false);
-			}
-		}
-		if (lastInLove != 0) {
-			lastInLove--;
 		}
 	}
 
@@ -459,7 +473,7 @@ public class KayentatheriumEntity extends DinosaurEntity {
 		entity.onInitialSpawn((IServerWorld) this.world, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
 		return entity;
 	}
-	
+
 	public class HerbivoreEatGoal extends MoveToBlockGoal {
 		protected int field_220731_g;
 

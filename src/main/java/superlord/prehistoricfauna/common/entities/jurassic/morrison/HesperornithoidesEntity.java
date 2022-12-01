@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
@@ -29,17 +30,21 @@ import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.RabbitEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.particles.BlockParticleData;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.DamageSource;
@@ -80,12 +85,14 @@ import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.SoundInit;
 
 public class HesperornithoidesEntity extends DinosaurEntity {
-	
+
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(HesperornithoidesEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(HesperornithoidesEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> ALBINO = EntityDataManager.createKey(HesperornithoidesEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> MELANISTIC = EntityDataManager.createKey(HesperornithoidesEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> NATURAL_LOVE = EntityDataManager.createKey(HesperornithoidesEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> DUST_BATH = EntityDataManager.createKey(HesperornithoidesEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Byte> CLIMBING = EntityDataManager.createKey(HesperornithoidesEntity.class, DataSerializers.BYTE);
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(PFItems.RAW_SMALL_REPTILE_MEAT.get());
 	private int currentHunger;
 	private int maxHunger = 10;
@@ -94,24 +101,27 @@ public class HesperornithoidesEntity extends DinosaurEntity {
 	private int isDigging;
 	private Goal attackAnimals;
 	int loveTick = 0;
-	
+	private int climbingTicks = 0;
+	private int climbingTickCooldown = 0;
+
 	public HesperornithoidesEntity(EntityType<? extends HesperornithoidesEntity> type, World world) {
 		super(type, world);
+		this.stepHeight = 1.0F;
 	}
-	
+
 	public boolean isDigging() {
 		return this.dataManager.get(IS_DIGGING);
 	}
-	
+
 	private void setDigging(boolean isDigging) {
 		this.isDigging = isDigging ? 1 : 0;
 		this.dataManager.set(IS_DIGGING, isDigging);
 	}
-	
+
 	public boolean hasEgg() {
 		return this.dataManager.get(HAS_EGG);
 	}
-	
+
 	private void setHasEgg(boolean hasEgg) {
 		this.dataManager.set(HAS_EGG, hasEgg);
 	}
@@ -139,11 +149,11 @@ public class HesperornithoidesEntity extends DinosaurEntity {
 	private void setInLoveNaturally(boolean isInLoveNaturally) {
 		this.dataManager.set(NATURAL_LOVE, isInLoveNaturally);
 	}
-	
+
 	public boolean isBreedingItem(ItemStack stack) {
 		return stack.getItem() == PFItems.RAW_SMALL_REPTILE_MEAT.get();
 	}
-	
+
 	public int getCurrentHunger() {
 		return this.currentHunger;
 	}
@@ -160,6 +170,14 @@ public class HesperornithoidesEntity extends DinosaurEntity {
 		return (maxHunger / 4) * 3;
 	}
 	
+	public boolean isDustBathing() {
+		return this.dataManager.get(DUST_BATH);
+	}
+
+	private void setDustBathing(boolean isDustBathing) {
+		this.dataManager.set(DUST_BATH, isDustBathing);
+	}
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	protected void registerGoals() {
 		super.registerGoals();
@@ -193,11 +211,12 @@ public class HesperornithoidesEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<MegapnosaurusEntity>(this, MegapnosaurusEntity.class, 10F, 1.2D, 1.5D));
 		this.goalSelector.addGoal(0, new HesperornithoidesEntity.LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new DiurnalSleepingGoal(this));
+		this.goalSelector.addGoal(1, new HesperornithoidesEntity.DustBathGoal(this));
 		this.targetSelector.addGoal(0, new HesperornithoidesEntity.CarnivoreHuntGoal(this, LivingEntity.class, 10, true, false, (p_213487_1_) -> {
 			return p_213487_1_ instanceof DidelphodonEntity || p_213487_1_ instanceof EilenodonEntity || p_213487_1_ instanceof HyperodapedonEntity || p_213487_1_ instanceof TelmasaurusEntity || p_213487_1_ instanceof RabbitEntity || p_213487_1_ instanceof ChickenEntity || p_213487_1_ instanceof ScutellosaurusEntity;
 		}));
 	}
-	
+
 	public void livingTick() {
 		super.livingTick();
 		if (this.isAsleep()) {
@@ -205,29 +224,44 @@ public class HesperornithoidesEntity extends DinosaurEntity {
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.26D);
 		}
-		List<HesperornithoidesEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
-		if (PrehistoricFaunaConfig.advancedHunger) {
-			hungerTick++;
-			if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
-				hungerTick = 0;
-				if (currentHunger != 0 || !this.isAsleep()) {
-					this.setHunger(currentHunger - 1);
+		if (!this.isAIDisabled()) {
+			List<HesperornithoidesEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
+			if (PrehistoricFaunaConfig.advancedHunger) {
+				hungerTick++;
+				if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
+					hungerTick = 0;
+					if (currentHunger != 0 || !this.isAsleep()) {
+						this.setHunger(currentHunger - 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
+					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getAttackTarget() == null && this.getRevengeTarget() == null) {
+						float currentHealth = this.getHealth();
+						this.setHealth(currentHealth + 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 4) {
+						loveTick = 600;
+						this.setInLoveNaturally(true);
+						this.setInLove(600);
+						lastInLove = 28800;
+					}
+					if (loveTick != 0) {
+						loveTick--;
+					} else {
+						this.setInLoveNaturally(false);
+					}
 				}
-			}
-			if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-				if (this.getHealth() < this.getMaxHealth()) {
-					float currentHealth = this.getHealth();
-					this.setHealth(currentHealth + 1);
-				}
-			}
-			if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 4) {
+			} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+				int naturalBreedingChance = rand.nextInt(1000);
+				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 4) {
 					loveTick = 600;
 					this.setInLoveNaturally(true);
 					this.setInLove(600);
@@ -239,45 +273,43 @@ public class HesperornithoidesEntity extends DinosaurEntity {
 					this.setInLoveNaturally(false);
 				}
 			}
-		} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-			int naturalBreedingChance = rand.nextInt(1000);
-			if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 4) {
-				loveTick = 600;
-				this.setInLoveNaturally(true);
-				this.setInLove(600);
-				lastInLove = 28800;
-			}
-			if (loveTick != 0) {
-				loveTick--;
-			} else {
-				this.setInLoveNaturally(false);
+			if (lastInLove != 0) {
+				lastInLove--;
 			}
 		}
-		if (lastInLove != 0) {
-			lastInLove--;
+		if (rand.nextInt(1000) == 0 && !this.isDustBathing() && !this.isAsleep() && (this.world.getBlockState(this.getPosition().down()).getBlock() == Blocks.SAND || this.world.getBlockState(this.getPosition().down()).getBlock() == Blocks.RED_SAND || this.world.getBlockState(this.getPosition().down()).getBlock() == PFBlocks.HARDENED_SILT)) {
+			this.setDustBathing(true);
+		}
+		
+		if (this.isDustBathing()) {
+			double d0 = (double)this.getPosition().getX() + rand.nextDouble();
+			double d1 = (double)this.getPosition().getY() + 0.5F;
+			double d2 = (double)this.getPosition().getZ() + rand.nextDouble();
+			this.world.addParticle(new BlockParticleData(ParticleTypes.FALLING_DUST, this.world.getBlockState(this.getPosition().down())), d0, d1, d2, 0.0D, 0.0D, 0.0D);
+			
 		}
 	}
-	
+
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
 		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 4.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.26D).createMutableAttribute(Attributes.FOLLOW_RANGE, 25.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0D);
 	}
-	
+
 	private void setAttackGoals() {
 		this.targetSelector.addGoal(4, attackAnimals);
 	}
-	
+
 	protected SoundEvent getAmbientSound() {
 		return this.isAsleep() ? null : SoundInit.HESPERORNITHOIDES_IDLE;
 	}
-	
+
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
 		return SoundInit.HESPERORNITHOIDES_HURT;
 	}
-	
+
 	protected SoundEvent getDeathSound() {
 		return SoundInit.HESPERORNITHOIDES_DEATH;
 	}
-	
+
 	protected void registerData() {
 		super.registerData();
 		this.dataManager.register(HAS_EGG, false);
@@ -285,8 +317,10 @@ public class HesperornithoidesEntity extends DinosaurEntity {
 		this.dataManager.register(ALBINO, false);
 		this.dataManager.register(MELANISTIC, false);
 		this.dataManager.register(NATURAL_LOVE, false);
+		this.dataManager.register(DUST_BATH, false);
+		this.dataManager.register(CLIMBING, (byte)0);
 	}
-	
+
 	public void writeAdditional(CompoundNBT compound) {
 		super.writeAdditional(compound);
 		compound.putBoolean("hasEgg", this.hasEgg());
@@ -294,8 +328,9 @@ public class HesperornithoidesEntity extends DinosaurEntity {
 		compound.putBoolean("IsMelanistic", this.isMelanistic());
 		compound.putInt("MaxHunger", this.currentHunger);
 		compound.putBoolean("InNaturalLove", this.isInLoveNaturally());
+		compound.putBoolean("DustBath", this.isDustBathing());
 	}
-	
+
 	public void readAdditional(CompoundNBT compound) {
 		super.readAdditional(compound);
 		this.setHasEgg(compound.getBoolean("hasEgg"));
@@ -304,8 +339,9 @@ public class HesperornithoidesEntity extends DinosaurEntity {
 		this.setAttackGoals();
 		this.setHunger(compound.getInt("MaxHunger"));
 		this.setInLoveNaturally(compound.getBoolean("InNaturalLove"));
+		this.setDustBathing(compound.getBoolean("DustBath"));
 	}
-	
+
 	@Nullable
 	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		Random rand = new Random();
@@ -315,14 +351,14 @@ public class HesperornithoidesEntity extends DinosaurEntity {
 		} else if (birthNumber >= 4 && birthNumber < 7) {
 			this.setMelanistic(true);
 		}
-		this.setHunger(10);
+		this.setHunger(this.maxHunger);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
-	
+
 	public boolean onLivingFall(float distance, float damageMultiplier) {
 		return false;
 	}
-	
+
 	public boolean attackEntityAsMob(Entity entity) {
 		boolean flag = super.attackEntityAsMob(entity);
 		if (flag) {
@@ -331,6 +367,60 @@ public class HesperornithoidesEntity extends DinosaurEntity {
 		return flag;
 	}
 	
+	public void tick() {
+		super.tick();
+		if (!this.world.isRemote) {
+			if (this.collidedHorizontally) {
+				Boolean logBlock;
+				BlockPos blockpos1 = new BlockPos(this.getPositionVec().getX() + 1, this.getPositionVec().getY() + 1, this.getPositionVec().getZ());
+				BlockPos blockpos2 = new BlockPos(this.getPositionVec().getX() - 1, this.getPositionVec().getY() + 1, this.getPositionVec().getZ());
+				BlockPos blockpos3 = new BlockPos(this.getPositionVec().getX(), this.getPositionVec().getY() + 1, this.getPositionVec().getZ() + 1);
+				BlockPos blockpos4 = new BlockPos(this.getPositionVec().getX(), this.getPositionVec().getY() + 1, this.getPositionVec().getZ() - 1);
+				BlockState blockstate1 = this.world.getBlockState(blockpos1);
+				BlockState blockstate2 = this.world.getBlockState(blockpos2);
+				BlockState blockstate3 = this.world.getBlockState(blockpos3);
+				BlockState blockstate4 = this.world.getBlockState(blockpos4);
+				if (blockstate1.getBlock().isIn(BlockTags.LOGS) || blockstate1.getBlock().isIn(BlockTags.PLANKS) || blockstate1.getBlock().isIn(BlockTags.WOODEN_DOORS) || blockstate1.getBlock().isIn(BlockTags.WOODEN_FENCES) || blockstate1.getBlock().isIn(BlockTags.WOODEN_SLABS) || blockstate1.getBlock().isIn(BlockTags.WOODEN_STAIRS) || blockstate2.getBlock().isIn(BlockTags.LOGS) || blockstate2.getBlock().isIn(BlockTags.PLANKS) || blockstate2.getBlock().isIn(BlockTags.WOODEN_DOORS) || blockstate2.getBlock().isIn(BlockTags.WOODEN_FENCES) || blockstate2.getBlock().isIn(BlockTags.WOODEN_SLABS) || blockstate2.getBlock().isIn(BlockTags.WOODEN_STAIRS)  || blockstate3.getBlock().isIn(BlockTags.LOGS) || blockstate3.getBlock().isIn(BlockTags.PLANKS) || blockstate3.getBlock().isIn(BlockTags.WOODEN_DOORS) || blockstate3.getBlock().isIn(BlockTags.WOODEN_FENCES) || blockstate3.getBlock().isIn(BlockTags.WOODEN_SLABS) || blockstate3.getBlock().isIn(BlockTags.WOODEN_STAIRS) || blockstate4.getBlock().isIn(BlockTags.LOGS) || blockstate4.getBlock().isIn(BlockTags.PLANKS) || blockstate4.getBlock().isIn(BlockTags.WOODEN_DOORS) || blockstate4.getBlock().isIn(BlockTags.WOODEN_FENCES) || blockstate4.getBlock().isIn(BlockTags.WOODEN_SLABS) || blockstate4.getBlock().isIn(BlockTags.WOODEN_STAIRS)) {
+					logBlock = true;
+					if (climbingTickCooldown == 0 && climbingTicks < 600) {
+				         this.setBesideClimbableBlock(logBlock);
+				         climbingTicks++;
+					}
+					if (climbingTicks >= 599 && climbingTickCooldown <= 300) {
+						climbingTickCooldown++;
+					}
+					if (climbingTickCooldown == 300) {
+						climbingTicks = 0;
+						climbingTickCooldown = 0;
+					}
+				}
+			}
+		}
+	}
+	
+	public boolean isOnLadder() {
+		return this.isBesideClimbableBlock();
+	}
+
+	public boolean isBesideClimbableBlock() {
+		return (this.dataManager.get(CLIMBING) & 1) != 0;
+	}
+
+	/**
+	 * Updates the WatchableObject (Byte) created in entityInit(), setting it to 0x01 if par1 is true or 0x00 if it is
+	 * false.
+	 */
+	public void setBesideClimbableBlock(boolean climbing) {
+		byte b0 = this.dataManager.get(CLIMBING);
+		if (climbing) {
+			b0 = (byte)(b0 | 1);
+		} else {
+			b0 = (byte)(b0 & -2);
+		}
+
+		this.dataManager.set(CLIMBING, b0);
+	}
+
 	class MeleeAttackGoal extends net.minecraft.entity.ai.goal.MeleeAttackGoal {
 		public MeleeAttackGoal() {
 			super(HesperornithoidesEntity.this, 1.25D, true);
@@ -369,23 +459,23 @@ public class HesperornithoidesEntity extends DinosaurEntity {
 			return (double)(4.0F + attackTarget.getWidth());
 		}
 	}
-	
+
 	class LayEggGoal extends MoveToBlockGoal {
 		private final HesperornithoidesEntity hesperornithoides;
-		
+
 		public LayEggGoal(HesperornithoidesEntity hesperornithoides, double speed) {
 			super(hesperornithoides, speed, 16);
 			this.hesperornithoides = hesperornithoides;
 		}
-		
+
 		public boolean shouldExecute() {
 			return this.hesperornithoides.hasEgg() ? super.shouldExecute() : false;
 		}
-		
+
 		public boolean shouldContinueExecuting() {
 			return super.shouldContinueExecuting() && this.hesperornithoides.hasEgg();
 		}
-		
+
 		public void tick() {
 			super.tick();
 			BlockPos blockpos = new BlockPos(this.hesperornithoides.getPositionVec());
@@ -405,7 +495,7 @@ public class HesperornithoidesEntity extends DinosaurEntity {
 				}
 			}
 		}
-		
+
 		protected boolean shouldMoveTo(IWorldReader world, BlockPos pos) {
 			if (!world.isAirBlock(pos.up())) {
 				return false;
@@ -414,21 +504,21 @@ public class HesperornithoidesEntity extends DinosaurEntity {
 				return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.MYCELIUM || block == Blocks.SAND || block == Blocks.RED_SAND || block == PFBlocks.MOSSY_DIRT || block == PFBlocks.MOSS_BLOCK || block == PFBlocks.LOAM || block == PFBlocks.PACKED_LOAM || block == PFBlocks.SILT || block == PFBlocks.PACKED_LOAM || block == BlockTags.LEAVES;
 			}
 		}
-		
+
 	}
-	
+
 	static class MateGoal extends BreedGoal {
 		private final HesperornithoidesEntity hesperornithoides;
-		
+
 		public MateGoal(HesperornithoidesEntity hesperornithoides, double speed) {
 			super(hesperornithoides, speed);
 			this.hesperornithoides = hesperornithoides;
 		}
-		
+
 		public boolean shouldExecute() {
 			return super.shouldExecute() && !this.hesperornithoides.hasEgg() && !this.hesperornithoides.isInLoveNaturally();
 		}
-		
+
 		protected void spawnBaby() {
 			ServerPlayerEntity serverPlayerEntity = this.animal.getLoveCause();
 			if (serverPlayerEntity == null && this.targetMate.getLoveCause() != null) {
@@ -446,7 +536,7 @@ public class HesperornithoidesEntity extends DinosaurEntity {
 				this.world.addEntity(new ExperienceOrbEntity(this.world, this.animal.getPosX(), this.animal.getPosY(), this.animal.getPosZ(), random.nextInt(7) + 1));
 			}
 		}
-		
+
 	}
 
 	static class NaturalMateGoal extends BreedGoal {
@@ -498,7 +588,7 @@ public class HesperornithoidesEntity extends DinosaurEntity {
 		entity.onInitialSpawn((IServerWorld) this.world, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
 		return entity;
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public class CarnivoreHuntGoal extends NearestAttackableTargetGoal {
 
@@ -548,5 +638,41 @@ public class HesperornithoidesEntity extends DinosaurEntity {
 		}
 
 	}
-	
+
+	class DustBathGoal extends Goal {
+
+		HesperornithoidesEntity hesperornithoides;
+		int tick = 0;
+
+		public DustBathGoal(HesperornithoidesEntity hesperornithoides) {
+			this.hesperornithoides = hesperornithoides;
+		}
+
+		@Override
+		public boolean shouldExecute() {
+			return hesperornithoides.isDustBathing();
+		}
+
+		private void spawnItem(ItemStack stack) {
+			ItemEntity itemEntity = new ItemEntity(HesperornithoidesEntity.this.world, HesperornithoidesEntity.this.getPosX(), HesperornithoidesEntity.this.getPosY(), HesperornithoidesEntity.this.getPosZ(), stack);
+			HesperornithoidesEntity.this.world.addEntity(itemEntity);
+		}
+
+		public void tick() {
+			tick++;
+			if (tick == 100) {
+				this.spawnItem(new ItemStack(Items.FEATHER));
+				resetTask();
+			}
+			super.tick();
+		}
+
+		public void resetTask() {
+			tick = 0;
+			hesperornithoides.setDustBathing(false);
+			super.resetTask();
+		}
+
+	}
+
 }

@@ -1,0 +1,105 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "prehistoricfauna:blocks/neocalamites_fence_gate",
+		"particle": "prehistoricfauna:blocks/neocalamites_fence_gate"
+	},
+	"elements": [
+		{
+			"name": "Left-hand post",
+			"from": [0, 5, 7],
+			"to": [2, 16, 9],
+			"faces": {
+				"north": {"uv": [14, 0, 16, 11], "texture": "#0"},
+				"east": {"uv": [14, 0, 16, 11], "texture": "#0"},
+				"south": {"uv": [14, 0, 16, 11], "texture": "#0"},
+				"west": {"uv": [14, 0, 16, 11], "texture": "#0", "cullface": "west"},
+				"up": {"uv": [0, 10, 2, 12], "texture": "#0"},
+				"down": {"uv": [0, 10, 2, 12], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Right-hand post",
+			"from": [14, 5, 7],
+			"to": [16, 16, 9],
+			"faces": {
+				"north": {"uv": [14, 0, 16, 11], "texture": "#0"},
+				"east": {"uv": [14, 0, 16, 11], "texture": "#0", "cullface": "east"},
+				"south": {"uv": [14, 0, 16, 11], "texture": "#0"},
+				"west": {"uv": [14, 0, 16, 11], "texture": "#0"},
+				"up": {"uv": [0, 10, 2, 12], "texture": "#0"},
+				"down": {"uv": [0, 10, 2, 12], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Inner vertical post of left-hand gate door",
+			"from": [0, 6, 13],
+			"to": [2, 15, 15],
+			"faces": {
+				"north": {"uv": [5, 0, 7, 9], "texture": "#0"},
+				"east": {"uv": [5, 0, 7, 9], "texture": "#0"},
+				"south": {"uv": [5, 0, 7, 9], "texture": "#0"},
+				"west": {"uv": [5, 0, 7, 9], "texture": "#0"},
+				"up": {"uv": [0, 10, 2, 12], "texture": "#0"},
+				"down": {"uv": [0, 10, 2, 12], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Inner vertical post of right-hand gate door",
+			"from": [14, 6, 13],
+			"to": [16, 15, 15],
+			"faces": {
+				"north": {"uv": [5, 0, 7, 9], "texture": "#0"},
+				"east": {"uv": [5, 0, 7, 9], "texture": "#0"},
+				"south": {"uv": [5, 0, 7, 9], "texture": "#0"},
+				"west": {"uv": [5, 0, 7, 9], "texture": "#0"},
+				"up": {"uv": [0, 10, 2, 12], "texture": "#0"},
+				"down": {"uv": [0, 10, 2, 12], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Lower horizontal bar of left-hand gate door",
+			"from": [0, 6, 9],
+			"to": [2, 9, 13],
+			"faces": {
+				"east": {"uv": [8, 13, 12, 16], "texture": "#0"},
+				"west": {"uv": [7, 13, 11, 16], "texture": "#0"},
+				"up": {"uv": [5, 2, 7, 6], "texture": "#0"},
+				"down": {"uv": [5, 3, 7, 7], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Upper horizontal bar of left-hand gate door",
+			"from": [0, 12, 9],
+			"to": [2, 15, 13],
+			"faces": {
+				"east": {"uv": [8, 13, 12, 16], "texture": "#0"},
+				"west": {"uv": [7, 13, 11, 16], "texture": "#0"},
+				"up": {"uv": [5, 2, 7, 6], "texture": "#0"},
+				"down": {"uv": [5, 3, 7, 7], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Lower horizontal bar of left-hand gate door",
+			"from": [14, 6, 9],
+			"to": [16, 9, 13],
+			"faces": {
+				"east": {"uv": [8, 13, 12, 16], "texture": "#0"},
+				"west": {"uv": [7, 13, 11, 16], "texture": "#0"},
+				"up": {"uv": [5, 2, 7, 6], "texture": "#0"},
+				"down": {"uv": [5, 3, 7, 7], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Upper horizontal bar of left-hand gate door",
+			"from": [14, 12, 9],
+			"to": [16, 15, 13],
+			"faces": {
+				"east": {"uv": [8, 13, 12, 16], "texture": "#0"},
+				"west": {"uv": [7, 13, 11, 16], "texture": "#0"},
+				"up": {"uv": [5, 2, 7, 6], "texture": "#0"},
+				"down": {"uv": [5, 3, 7, 7], "texture": "#0"}
+			}
+		}
+	]
+}

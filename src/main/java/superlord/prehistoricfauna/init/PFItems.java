@@ -2,7 +2,6 @@ package superlord.prehistoricfauna.init;
 
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.BannerPatternItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockNamedItem;
@@ -30,6 +29,7 @@ import superlord.prehistoricfauna.PrehistoricFauna.PFSkeleton;
 import superlord.prehistoricfauna.common.entities.PrehistoricBoatEntity;
 import superlord.prehistoricfauna.common.items.CretaceousTimeTotemItem;
 import superlord.prehistoricfauna.common.items.CustomArmorItem;
+import superlord.prehistoricfauna.common.items.CustomChestplateItem;
 import superlord.prehistoricfauna.common.items.FossilItem;
 import superlord.prehistoricfauna.common.items.HorsetailTeaItem;
 import superlord.prehistoricfauna.common.items.JurassicTimeTotemItem;
@@ -131,6 +131,7 @@ public class PFItems {
 	public static final RegistryObject<SpawnSkeletonItem> TRICERATOPS_SKULL = REGISTER.register("triceratops_skull", () -> new SpawnSkeletonItem(PFEntities.TRICERATOPS_SKULL, new Item.Properties().group(PFSkeleton.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> TYRANNOSAURUS_SKULL = REGISTER.register("tyrannosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.TYRANNOSAURUS_SKULL, new Item.Properties().group(PFSkeleton.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> DILOPHOSAURUS_SKULL = REGISTER.register("dilophosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.DILOPHOSAURUS_SKULL, new Item.Properties().group(PFSkeleton.instance)));
+	public static final RegistryObject<SpawnSkeletonItem> SARAHSAURUS_SKULL = REGISTER.register("sarahsaurus_skull", () -> new SpawnSkeletonItem(PFEntities.SARAHSAURUS_SKULL, new Item.Properties().group(PFSkeleton.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> SCELIDOSAURUS_SKULL = REGISTER.register("scelidosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.SCELIDOSAURUS_SKULL, new Item.Properties().group(PFSkeleton.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> ALLOSAURUS_SKULL = REGISTER.register("allosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.ALLOSAURUS_SKULL, new Item.Properties().group(PFSkeleton.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> CERATOSAURUS_SKULL = REGISTER.register("ceratosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.CERATOSAURUS_SKULL, new Item.Properties().group(PFSkeleton.instance)));
@@ -142,33 +143,97 @@ public class PFItems {
 	public static final RegistryObject<SpawnSkeletonItem> ISCHIGUALASTIA_SKULL = REGISTER.register("ischigualastia_skull", () -> new SpawnSkeletonItem(PFEntities.ISCHIGUALASTIA_SKULL, new Item.Properties().group(PFSkeleton.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> SAUROSUCHUS_SKULL = REGISTER.register("saurosuchus_skull", () -> new SpawnSkeletonItem(PFEntities.SAUROSUCHUS_SKULL, new Item.Properties().group(PFSkeleton.instance)));
 	//Skeletons
+	public static final RegistryObject<SpawnSkeletonItem> PLESIOHADROS_SKELETON = REGISTER.register("plesiohadros_skeleton", () -> new SpawnSkeletonItem(PFEntities.PLESIOHADROS_SKELETON, new Item.Properties().group(PFSkeleton.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> PROTOCERATOPS_SKELETON = REGISTER.register("protoceratops_skeleton", () -> new SpawnSkeletonItem(PFEntities.PROTOCERATOPS_SKELETON, new Item.Properties().group(PFSkeleton.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> VELOCIRAPTOR_SKELETON = REGISTER.register("velociraptor_skeleton", () -> new SpawnSkeletonItem(PFEntities.VELOCIRAPTOR_SKELETON, new Item.Properties().group(PFSkeleton.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> ANKYLOSAURUS_SKELETON = REGISTER.register("ankylosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.ANKYLOSAURUS_SKELETON, new Item.Properties().group(PFSkeleton.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> TRICERATOPS_SKELETON = REGISTER.register("triceratops_skeleton", () -> new SpawnSkeletonItem(PFEntities.TRICERATOPS_SKELETON, new Item.Properties().group(PFSkeleton.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> TYRANNOSAURUS_SKELETON = REGISTER.register("tyrannosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.TYRANNOSAURUS_SKELETON, new Item.Properties().group(PFSkeleton.instance)));
+	public static final RegistryObject<SpawnSkeletonItem> DILOPHOSAURUS_SKELETON = REGISTER.register("dilophosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.DILOPHOSAURUS_SKELETON, new Item.Properties().group(PFSkeleton.instance)));
+	public static final RegistryObject<SpawnSkeletonItem> SARAHSAURUS_SKELETON = REGISTER.register("sarahsaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.SARAHSAURUS_SKELETON, new Item.Properties().group(PFSkeleton.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> ALLOSAURUS_SKELETON = REGISTER.register("allosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.ALLOSAURUS_SKELETON, new Item.Properties().group(PFSkeleton.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> CERATOSAURUS_SKELETON = REGISTER.register("ceratosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.CERATOSAURUS_SKELETON, new Item.Properties().group(PFSkeleton.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> STEGOSAURUS_SKELETON = REGISTER.register("stegosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.STEGOSAURUS_SKELETON, new Item.Properties().group(PFSkeleton.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> COELOPHYSIS_SKELETON = REGISTER.register("coelophysis_skeleton", () -> new SpawnSkeletonItem(PFEntities.COELOPHYSIS_SKELETON, new Item.Properties().group(PFSkeleton.instance)));
+	public static final RegistryObject<SpawnSkeletonItem> DESMATOSUCHUS_SKELETON = REGISTER.register("desmatosuchus_skeleton", () -> new SpawnSkeletonItem(PFEntities.DESMATOSUCHUS_SKELETON, new Item.Properties().group(PFSkeleton.instance)));
+	public static final RegistryObject<SpawnSkeletonItem> POSTOSUCHUS_SKELETON = REGISTER.register("postosuchus_skeleton", () -> new SpawnSkeletonItem(PFEntities.POSTOSUCHUS_SKELETON, new Item.Properties().group(PFSkeleton.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> HERRERASAURUS_SKELETON = REGISTER.register("herrerasaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.HERRERASAURUS_SKELETON, new Item.Properties().group(PFSkeleton.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> ISCHIGUALASTIA_SKELETON = REGISTER.register("ischigualastia_skeleton", () -> new SpawnSkeletonItem(PFEntities.ISCHIGUALASTIA_SKELETON, new Item.Properties().group(PFSkeleton.instance)));
 	public static final RegistryObject<SpawnSkeletonItem> SAUROSUCHUS_SKELETON = REGISTER.register("saurosuchus_skeleton", () -> new SpawnSkeletonItem(PFEntities.SAUROSUCHUS_SKELETON, new Item.Properties().group(PFSkeleton.instance)));
 	
-	//Drops
+	//Misc Tab
+	public static final RegistryObject<Item> TIME_TOTEM = REGISTER.register("time_totem", () -> new Item(new Item.Properties().group(PFMisc.instance).rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<CretaceousTimeTotemItem> CRETACEOUS_TIME_TOTEM = REGISTER.register("cretaceous_time_totem", () -> new CretaceousTimeTotemItem(new Item.Properties().group(PFMisc.instance).maxDamage(8).rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<JurassicTimeTotemItem> JURASIC_TIME_TOTEM = REGISTER.register("jurassic_time_totem", () -> new JurassicTimeTotemItem(new Item.Properties().group(PFMisc.instance).maxDamage(8).rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<TriassicTimeTotemItem> TRIASSIC_TIME_TOTEM = REGISTER.register("triassic_time_totem", () -> new TriassicTimeTotemItem(new Item.Properties().group(PFMisc.instance).maxDamage(8).rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<Item> TIME_GEM_SHARD = REGISTER.register("time_gem_shard", () -> new Item(new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> TRIASSIC_FOSSIL = REGISTER.register("triassic_fossil", () -> new FossilItem(new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> JURASSIC_FOSSIL = REGISTER.register("jurassic_fossil", () -> new FossilItem(new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> CRETACEOUS_FOSSIL = REGISTER.register("cretaceous_fossil", () -> new FossilItem(new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> FOSSILIZED_BONES = REGISTER.register("fossilized_bones", () -> new Item(new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<PaleopediaItem> PALEOPEDIA = REGISTER.register("ancient_journal", () -> new PaleopediaItem());
+	public static final RegistryObject<Item> PALEOPAGE = REGISTER.register("ancient_journal_page", () -> new Item(new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> BANNER_PATTERN_CLAW = REGISTER.register("banner_pattern_claw", () -> new BannerPatternItem(registerPattern("claw"), new Item.Properties().maxStackSize(1).group(PFMisc.instance)));
+	public static final RegistryObject<Item> BANNER_PATTERN_OYSTER = REGISTER.register("banner_pattern_oyster", () -> new BannerPatternItem(registerPattern("oyster"), new Item.Properties().maxStackSize(1).group(PFMisc.instance)));
+	public static final RegistryObject<Item> BANNER_PATTERN_SPIRAL = REGISTER.register("banner_pattern_spiral", () -> new BannerPatternItem(registerPattern("spiral"), new Item.Properties().maxStackSize(1).group(PFMisc.instance)));
+	public static final RegistryObject<Item> BANNER_PATTERN_THAGOMIZER = REGISTER.register("banner_pattern_thagomizer", () -> new BannerPatternItem(registerPattern("thagomizer"), new Item.Properties().maxStackSize(1).group(PFMisc.instance)));
+	public static final RegistryObject<Item> BANNER_PATTERN_TRICERATOPS = REGISTER.register("banner_pattern_triceratops", () -> new BannerPatternItem(registerPattern("triceratops"), new Item.Properties().maxStackSize(1).group(PFMisc.instance)));
+	public static final RegistryObject<Item> BANNER_PATTERN_HENOS = REGISTER.register("banner_pattern_henos", () -> new BannerPatternItem(registerPattern("henos"), new Item.Properties().maxStackSize(1).group(PFMisc.instance)));
+	public static final RegistryObject<Item> BANNER_PATTERN_AETOSAUR = REGISTER.register("banner_pattern_aetosaur", () -> new BannerPatternItem(registerPattern("aetosaur"), new Item.Properties().maxStackSize(1).group(PFMisc.instance)));
 	public static final RegistryObject<Item> TYRANNOSAUR_TOOTH = REGISTER.register("tyrannosaur_tooth", () -> new Item(new Item.Properties().group(PFMisc.instance)));
 	public static final RegistryObject<Item> TAIL_CLUB = REGISTER.register("tail_club", () -> new SwordItem(PFItemTiers.ANKYLOSAURUS, 4, -3.5F, new Item.Properties().group(PFMisc.instance).maxDamage(6)));
-	public static final RegistryObject<Item> CERATOPSIAN_HORN = REGISTER.register("ceratopsian_horn", () -> new Item(new Item.Properties().group(PFMisc.instance)));
 	public static final RegistryObject<Item> ANKYLOSAURUS_SCUTE = REGISTER.register("ankylosaurus_scute", () -> new Item(new Item.Properties().group(PFMisc.instance)));
 	public static final RegistryObject<Item> THYREOPHORAN_SCUTE = REGISTER.register("thyreophoran_scute", () -> new Item(new Item.Properties().group(PFMisc.instance)));
-	public static final RegistryObject<Item> DROMAEOSAUR_CLAW = REGISTER.register("dromaeosaur_claw", () -> new Item(new Item.Properties().group(PFMisc.instance)));
-	public static final RegistryObject<Item> MOSS_BALL = REGISTER.register("moss_ball", () -> new Item(new Item.Properties().group(PFMisc.instance)));
-	public static final RegistryObject<Item> PTILOPHYLLUM_FRONDS = REGISTER.register("ptilophyllum_fronds", () -> new Item(new Item.Properties().group(PFMisc.instance)));
-	public static final RegistryObject<Item> DIDELPHODON_HIDE = REGISTER.register("didelphodon_hide", () -> new Item(new Item.Properties().group(PFMisc.instance)));
-	public static final RegistryObject<Item> EXAERETODON_HIDE = REGISTER.register("exaeretodon_hide", () -> new Item(new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> CERATOPSIAN_HORN = REGISTER.register("ceratopsian_horn", () -> new Item(new Item.Properties().group(PFMisc.instance)));
 	public static final RegistryObject<Item> THAGOMIZERS = REGISTER.register("thagomizer", () -> new Item(new Item.Properties().group(PFMisc.instance)));
 	public static final RegistryObject<Item> DESMATOSUCHUS_SPIKE = REGISTER.register("desmatosuchus_spike", () -> new Item(new Item.Properties().group(PFMisc.instance)));
-	public static final RegistryObject<Item> FOSSILIZED_BONES = REGISTER.register("fossilized_bones", () -> new Item(new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> DROMAEOSAUR_CLAW = REGISTER.register("dromaeosaur_claw", () -> new Item(new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> DIDELPHODON_HIDE = REGISTER.register("didelphodon_hide", () -> new Item(new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> EXAERETODON_HIDE = REGISTER.register("exaeretodon_hide", () -> new Item(new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> KAYENTATHERIUM_HIDE = REGISTER.register("kayentatherium_hide", () -> new Item(new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<CustomArmorItem> ANKYLOSAURUS_HELMET = REGISTER.register("ankylosaurus_helmet", () -> new CustomArmorItem(ArmorMaterialInit.ANKYLOSAURUS, EquipmentSlotType.HEAD, new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<CustomChestplateItem> DESMATOSUCHUS_CHESTPLATE = REGISTER.register("desmatosuchus_chestplate", () -> new CustomChestplateItem(ArmorMaterialInit.DESMATOSUCHUS, EquipmentSlotType.CHEST, new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> THAGOMIZER_PICKAXE = REGISTER.register("thagomizer_pickaxe", () -> new PickaxeItem(PFItemTiers.THAGOMIZER, 2, -2.8F, new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> DAKOTARAPTOR_CLAW_SCYTHE = REGISTER.register("dromaeosaur_claw_scythe", () -> new PFHoeItem(PFItemTiers.DAKOTARAPTOR, -1.0F, new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> TYRANNOSAUR_TOOTH_SWORD = REGISTER.register("tyrannosaur_tooth_sword", () -> new SwordItem(PFItemTiers.TYRANNOSAURUS, 3, -2.4F, new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> GEOLOGY_HAMMER = REGISTER.register("geological_hammer", () -> new Item(new Item.Properties().group(PFMisc.instance).maxStackSize(1).maxDamage(250)));
+	public static final RegistryObject<Item> CLADOPHEBLIS_STICK = REGISTER.register("cladophlebis_stick", () -> new Item(new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
+	public static final RegistryObject<Item> MOSS_BALL = REGISTER.register("moss_ball", () -> new Item(new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> PTILOPHYLLUM_FRONDS = REGISTER.register("ptilophyllum_fronds", () -> new Item(new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> PLANT_FIBER = REGISTER.register("plant_fiber", () -> new Item(new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> CRASSOSTREA_OYSTER = REGISTER.register("crassostrea_oyster", () -> new BlockItem(PFBlocks.CRASSOSTREA_OYSTER, new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<PrehistoricBoatItem> ARAUCARIA_BOAT = REGISTER.register("araucaria_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.ARAUCARIA, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
+	public static final RegistryObject<PrehistoricBoatItem> METASEQUOIA_BOAT = REGISTER.register("metasequoia_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.METASEQUOIA, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
+	public static final RegistryObject<PrehistoricBoatItem> PROTOPICEOXYLON_BOAT = REGISTER.register("protopiceoxylon_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.PROTOPICEOXYLON, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
+	public static final RegistryObject<PrehistoricBoatItem> ZAMITES_BOAT = REGISTER.register("zamites_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.ZAMITES, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
+	public static final RegistryObject<PrehistoricBoatItem> PROTOJUNIPER_BOAT = REGISTER.register("protojuniperoxylon_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.PROTOJUNIPER, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
+	public static final RegistryObject<PrehistoricBoatItem> HEIDIPHYLLUM_BOAT = REGISTER.register("heidiphyllum_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.HEIDIPHYLLUM, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
+	public static final RegistryObject<PrehistoricBoatItem> LIRIODENDRITES_BOAT = REGISTER.register("liriodendrites_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.LIRIODENDRITES, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
+	public static final RegistryObject<PrehistoricBoatItem> GINKGO_BOAT = REGISTER.register("ginkgo_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.GINKGO, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
+	public static final RegistryObject<PrehistoricBoatItem> TROCHODENDROIDES_BOAT = REGISTER.register("trochodendroides_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.TROCHODENDROIDES, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
+	public static final RegistryObject<PrehistoricBoatItem> BRACHYPHYLLUM_BOAT = REGISTER.register("brachyphyllum_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.BRACHYPHYLLUM, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
+	public static final RegistryObject<PrehistoricBoatItem> AGATHOXYLON_BOAT = REGISTER.register("agathoxylon_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.AGATHOXYLON, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
+	public static final RegistryObject<PrehistoricBoatItem> WOODWORTHIA_BOAT = REGISTER.register("woodworthia_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.WOODWORTHIA, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
+	public static final RegistryObject<PrehistoricBoatItem> SCHILDERIA_BOAT = REGISTER.register("schilderia_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.SCHILDERIA, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> MYLEDAPHUS_BUCKET = REGISTER.register("myledaphus_bucket", () -> new FishBucketItem(PFEntities.MYLEDAPHUS, Fluids.WATER, new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> GAR_BUCKET = REGISTER.register("gar_bucket", () -> new FishBucketItem(PFEntities.GAR, Fluids.WATER, new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> CYCLURUS_BUCKET = REGISTER.register("cyclurus_bucket", () -> new FishBucketItem(PFEntities.CYCLURUS, Fluids.WATER, new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> CERATODUS_BUCKET = REGISTER.register("ceratodus_bucket", () -> new FishBucketItem(PFEntities.CERATODUS, Fluids.WATER, new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> POTAMOCERATODUS_BUCKET = REGISTER.register("potamoceratodus_bucket", () -> new FishBucketItem(PFEntities.POTAMOCERATODUS, Fluids.WATER, new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> SAURICHTHYS_BUCKET = REGISTER.register("saurichthys_bucket", () -> new FishBucketItem(PFEntities.SAURICHTHYS_ENTITY, Fluids.WATER, new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> ARGANODUS_BUCKET = REGISTER.register("arganodus_bucket", () -> new FishBucketItem(PFEntities.ARGANODUS_ENTITY, Fluids.WATER, new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> CHINLEA_BUCKET = REGISTER.register("chinlea_bucket", () -> new FishBucketItem(PFEntities.CHINLEA_ENTITY, Fluids.WATER, new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> MOOREODONTUS_BUCKET = REGISTER.register("mooreodontus_bucket", () -> new FishBucketItem(PFEntities.MOOREODONTUS_ENTITY, Fluids.WATER, new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
+
 	//Meat
 	public static final RegistryObject<Item> RAW_SMALL_THYREOPHORAN_MEAT = REGISTER.register("raw_small_thyreophoran_meat", () -> new Item(new Item.Properties().group(PFFood.instance).food(new Food.Builder().hunger(2).saturation(0.3F).meat().build())));
 	public static final RegistryObject<Item> COOKED_SMALL_THYREOPHORAN_MEAT = REGISTER.register("cooked_small_thyreophoran_meat", () -> new Item(new Item.Properties().group(PFFood.instance).food(new Food.Builder().hunger(5).saturation(0.8F).meat().build())));
@@ -204,39 +269,10 @@ public class PFItems {
 	public static final RegistryObject<Item> TUBER = REGISTER.register("tuber", () -> new BlockNamedItem(PFBlocks.TUBER_CROP, new Item.Properties().group(PFFood.instance).food(new Food.Builder().hunger(3).saturation(0.6F).build())));
 	@SuppressWarnings("deprecation")
 	public static final RegistryObject<Item> RAW_OYSTER = REGISTER.register("raw_oyster", () -> new Item(new Item.Properties().group(PFFood.instance).food(new Food.Builder().hunger(2).saturation(0.3F).effect(new EffectInstance(Effects.HUNGER, 600, 0), 0.01F).build())));
-	//Armor	
-	public static final RegistryObject<CustomArmorItem> ANKYLOSAURUS_HELMET = REGISTER.register("ankylosaurus_helmet", () -> new CustomArmorItem(ArmorMaterialInit.ANKYLOSAURUS, EquipmentSlotType.HEAD, new Item.Properties().group(PFMisc.instance)));
-	public static final RegistryObject<ArmorItem> ANKYLOSAURUS_CHESTPLATE = REGISTER.register("thyreophoran_chestplate", () -> new ArmorItem(ArmorMaterialInit.ANKYLOSAURUS, EquipmentSlotType.CHEST, new Item.Properties().group(PFMisc.instance)));
-	//Paleopedia
-	public static final RegistryObject<PaleopediaItem> PALEOPEDIA = REGISTER.register("ancient_journal", () -> new PaleopediaItem());
-	public static final RegistryObject<Item> PALEOPAGE = REGISTER.register("ancient_journal_page", () -> new Item(new Item.Properties().group(PFMisc.instance)));
-	//Boats
-	public static final RegistryObject<PrehistoricBoatItem> ARAUCARIA_BOAT = REGISTER.register("araucaria_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.ARAUCARIA, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
-	public static final RegistryObject<PrehistoricBoatItem> METASEQUOIA_BOAT = REGISTER.register("metasequoia_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.METASEQUOIA, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
-	public static final RegistryObject<PrehistoricBoatItem> PROTOPICEOXYLON_BOAT = REGISTER.register("protopiceoxylon_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.PROTOPICEOXYLON, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
-	public static final RegistryObject<PrehistoricBoatItem> ZAMITES_BOAT = REGISTER.register("zamites_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.ZAMITES, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
-	public static final RegistryObject<PrehistoricBoatItem> PROTOJUNIPER_BOAT = REGISTER.register("protojuniperoxylon_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.PROTOJUNIPER, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
-	public static final RegistryObject<PrehistoricBoatItem> HEIDIPHYLLUM_BOAT = REGISTER.register("heidiphyllum_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.HEIDIPHYLLUM, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
-	public static final RegistryObject<PrehistoricBoatItem> LIRIODENDRITES_BOAT = REGISTER.register("liriodendrites_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.LIRIODENDRITES, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
-	public static final RegistryObject<PrehistoricBoatItem> GINKGO_BOAT = REGISTER.register("ginkgo_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.GINKGO, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
-	public static final RegistryObject<PrehistoricBoatItem> TROCHODENDROIDES_BOAT = REGISTER.register("trochodendroides_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.TROCHODENDROIDES, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
-	public static final RegistryObject<PrehistoricBoatItem> BRACHYPHYLLUM_BOAT = REGISTER.register("brachyphyllum_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.BRACHYPHYLLUM, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
-	public static final RegistryObject<PrehistoricBoatItem> AGATHOXYLON_BOAT = REGISTER.register("agathoxylon_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.AGATHOXYLON, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
-	public static final RegistryObject<PrehistoricBoatItem> WOODWORTHIA_BOAT = REGISTER.register("woodworthia_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.WOODWORTHIA, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
-	public static final RegistryObject<PrehistoricBoatItem> SCHILDERIA_BOAT = REGISTER.register("schilderia_boat", () -> new PrehistoricBoatItem(PrehistoricBoatEntity.PFType.SCHILDERIA, (new Item.Properties().maxStackSize(1).group(PFMisc.instance))));
-	//Misc 
-	public static final RegistryObject<Item> TIME_TOTEM = REGISTER.register("time_totem", () -> new Item(new Item.Properties().group(PFMisc.instance).rarity(Rarity.UNCOMMON)));
-	public static final RegistryObject<CretaceousTimeTotemItem> CRETACEOUS_TIME_TOTEM = REGISTER.register("cretaceous_time_totem", () -> new CretaceousTimeTotemItem(new Item.Properties().group(PFMisc.instance).maxDamage(8).rarity(Rarity.UNCOMMON)));
-	public static final RegistryObject<JurassicTimeTotemItem> JURASIC_TIME_TOTEM = REGISTER.register("jurassic_time_totem", () -> new JurassicTimeTotemItem(new Item.Properties().group(PFMisc.instance).maxDamage(8).rarity(Rarity.UNCOMMON)));
-	public static final RegistryObject<TriassicTimeTotemItem> TRIASSIC_TIME_TOTEM = REGISTER.register("triassic_time_totem", () -> new TriassicTimeTotemItem(new Item.Properties().group(PFMisc.instance).maxDamage(8).rarity(Rarity.UNCOMMON)));
-	public static final RegistryObject<Item> TRIASSIC_FOSSIL = REGISTER.register("triassic_fossil", () -> new FossilItem(new Item.Properties().group(PFMisc.instance)));
-	public static final RegistryObject<Item> JURASSIC_FOSSIL = REGISTER.register("jurassic_fossil", () -> new FossilItem(new Item.Properties().group(PFMisc.instance)));
-	public static final RegistryObject<Item> CRETACEOUS_FOSSIL = REGISTER.register("cretaceous_fossil", () -> new FossilItem(new Item.Properties().group(PFMisc.instance)));
-	public static final RegistryObject<Item> CLADOPHEBLIS_STICK = REGISTER.register("cladophlebis_stick", () -> new Item(new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
+
 	public static final RegistryObject<PaleopaintingItem> PALEOPAINTING = REGISTER.register("paleopainting", () -> new PaleopaintingItem(new Item.Properties().group(PFDecoration.instance)));
 	public static final RegistryObject<WallFossilItem> WALL_FOSSIL = REGISTER.register("wall_fossil", () -> new WallFossilItem(new Item.Properties().group(PFDecoration.instance)));
-	public static final RegistryObject<Item> GEOLOGY_HAMMER = REGISTER.register("geological_hammer", () -> new Item(new Item.Properties().group(PFMisc.instance).maxStackSize(1).maxDamage(250)));
-//	@SuppressWarnings("deprecation")
+	//	@SuppressWarnings("deprecation")
 //	public static final RegistryObject<Item> MARMARTHIA_BERRIES = REGISTER.register("marmarthia_berries", () -> new BlockNamedItem(PFBlocks.MARMARTHIA, (new Item.Properties()).group(PFFood.instance).food(new Food.Builder().hunger(2).saturation(0.1F).effect(new EffectInstance(Effects.POISON, 300), 1.0F).build())));
 
 	public static final RegistryObject<Item> HENOSTONE = REGISTER.register("henostone", () -> new BlockItem(PFBlocks.HENOSTONE, new Item.Properties().group(PFBuilding.instance)));
@@ -256,21 +292,6 @@ public class PFItems {
 	public static final RegistryObject<Item> MEDIUM_AMMONITE_FOSSIL = REGISTER.register("medium_ammonite_fossil", () -> new BlockItem(PFBlocks.MEDIUM_AMMONITE_FOSSIL, new Item.Properties().group(PFDecoration.instance)));
 	public static final RegistryObject<Item> LARGE_AMMONITE_FOSSIL = REGISTER.register("large_ammonite_fossil", () -> new BlockItem(PFBlocks.LARGE_AMMONITE_FOSSIL, new Item.Properties().group(PFDecoration.instance)));
 
-	public static final RegistryObject<Item> CRASSOSTREA_OYSTER = REGISTER.register("crassostrea_oyster", () -> new BlockItem(PFBlocks.CRASSOSTREA_OYSTER, new Item.Properties().group(PFMisc.instance)));
-	public static final RegistryObject<Item> PLANT_FIBER = REGISTER.register("plant_fiber", () -> new Item(new Item.Properties().group(PFMisc.instance)));
-
-	public static final RegistryObject<Item> TYRANNOSAUR_TOOTH_SWORD = REGISTER.register("tyrannosaur_tooth_sword", () -> new SwordItem(PFItemTiers.TYRANNOSAURUS, 3, -2.4F, new Item.Properties().group(PFMisc.instance)));
-	public static final RegistryObject<Item> DAKOTARAPTOR_CLAW_SCYTHE = REGISTER.register("dromaeosaur_claw_scythe", () -> new PFHoeItem(PFItemTiers.DAKOTARAPTOR, -1.0F, new Item.Properties().group(PFMisc.instance)));
-	public static final RegistryObject<Item> THAGOMIZER_PICKAXE = REGISTER.register("thagomizer_pickaxe", () -> new PickaxeItem(PFItemTiers.THAGOMIZER, 2, -2.8F, new Item.Properties().group(PFMisc.instance)));
-
-	//Banners
-	public static final RegistryObject<Item> BANNER_PATTERN_CLAW = REGISTER.register("banner_pattern_claw", () -> new BannerPatternItem(registerPattern("claw"), new Item.Properties().maxStackSize(1).group(PFMisc.instance)));
-	public static final RegistryObject<Item> BANNER_PATTERN_OYSTER = REGISTER.register("banner_pattern_oyster", () -> new BannerPatternItem(registerPattern("oyster"), new Item.Properties().maxStackSize(1).group(PFMisc.instance)));
-	public static final RegistryObject<Item> BANNER_PATTERN_SPIRAL = REGISTER.register("banner_pattern_spiral", () -> new BannerPatternItem(registerPattern("spiral"), new Item.Properties().maxStackSize(1).group(PFMisc.instance)));
-	public static final RegistryObject<Item> BANNER_PATTERN_THAGOMIZER = REGISTER.register("banner_pattern_thagomizer", () -> new BannerPatternItem(registerPattern("thagomizer"), new Item.Properties().maxStackSize(1).group(PFMisc.instance)));
-	public static final RegistryObject<Item> BANNER_PATTERN_TRICERATOPS = REGISTER.register("banner_pattern_triceratops", () -> new BannerPatternItem(registerPattern("triceratops"), new Item.Properties().maxStackSize(1).group(PFMisc.instance)));
-	public static final RegistryObject<Item> BANNER_PATTERN_HENOS = REGISTER.register("banner_pattern_henos", () -> new BannerPatternItem(registerPattern("henos"), new Item.Properties().maxStackSize(1).group(PFMisc.instance)));
-
 	public static final RegistryObject<Item> ARAURCARIA_SIGN = REGISTER.register("araucaria_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFDecoration.instance), PFBlocks.ARAUCARIA_SIGN, PFBlocks.ARAUCARIA_WALL_SIGN));
 	public static final RegistryObject<Item> METASEQUOIA_SIGN = REGISTER.register("metasequoia_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFDecoration.instance), PFBlocks.METASEQUOIA_SIGN, PFBlocks.METASEQUOIA_WALL_SIGN));
 	public static final RegistryObject<Item> HEIDIPHYLLUM_SIGN = REGISTER.register("heidiphyllum_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFDecoration.instance), PFBlocks.HEIDIPHYLLUM_SIGN, PFBlocks.HEIDIPHYLLUM_WALL_SIGN));
@@ -284,8 +305,7 @@ public class PFItems {
 	public static final RegistryObject<Item> AGATHOXYLON_SIGN = REGISTER.register("agathoxylon_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFDecoration.instance), PFBlocks.AGATHOXYLON_SIGN, PFBlocks.AGATHOXYLON_WALL_SIGN));
 	public static final RegistryObject<Item> WOODWORTHIA_SIGN = REGISTER.register("woodworthia_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFDecoration.instance), PFBlocks.WOODWORTHIA_SIGN, PFBlocks.WOODWORTHIA_WALL_SIGN));
 	public static final RegistryObject<Item> SCHILDERIA_SIGN = REGISTER.register("schilderia_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFDecoration.instance), PFBlocks.SCHILDERIA_SIGN, PFBlocks.SCHILDERIA_WALL_SIGN));
-
-	public static final RegistryObject<Item> TIME_GEM_SHARD = REGISTER.register("time_gem_shard", () -> new Item(new Item.Properties().group(PFMisc.instance)));
+	public static final RegistryObject<Item> NEOCALAMITES_SIGN = REGISTER.register("neocalamites_sign", () -> new PFSignItem(new Item.Properties().maxStackSize(16).group(PFDecoration.instance), PFBlocks.NEOCALAMITES_SIGN, PFBlocks.NEOCALAMITES_WALL_SIGN));
 
 	public static final RegistryObject<Item> CERATODUS = REGISTER.register("raw_ceratodus", () -> new Item(new Item.Properties().group(PFFood.instance).food(new Food.Builder().saturation(0.1F).hunger(2).build())));
 	public static final RegistryObject<Item> COOKED_CERATODUS = REGISTER.register("cooked_ceratodus", () -> new Item(new Item.Properties().group(PFFood.instance).food(new Food.Builder().saturation(0.8F).hunger(6).build())));
@@ -306,25 +326,6 @@ public class PFItems {
 
 	public static final RegistryObject<Item> HORSETAIL_TEA = REGISTER.register("horsetail_tea", () -> new HorsetailTeaItem(new Item.Properties().group(PFFood.instance).maxStackSize(16)));
 	
-	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> MYLEDAPHUS_BUCKET = REGISTER.register("myledaphus_bucket", () -> new FishBucketItem(PFEntities.MYLEDAPHUS, Fluids.WATER, new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
-	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> GAR_BUCKET = REGISTER.register("gar_bucket", () -> new FishBucketItem(PFEntities.GAR, Fluids.WATER, new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
-	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> CYCLURUS_BUCKET = REGISTER.register("cyclurus_bucket", () -> new FishBucketItem(PFEntities.CYCLURUS, Fluids.WATER, new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
-	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> CERATODUS_BUCKET = REGISTER.register("ceratodus_bucket", () -> new FishBucketItem(PFEntities.CERATODUS, Fluids.WATER, new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
-	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> POTAMOCERATODUS_BUCKET = REGISTER.register("potamoceratodus_bucket", () -> new FishBucketItem(PFEntities.POTAMOCERATODUS, Fluids.WATER, new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
-	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> SAURICHTHYS_BUCKET = REGISTER.register("saurichthys_bucket", () -> new FishBucketItem(PFEntities.SAURICHTHYS_ENTITY, Fluids.WATER, new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
-	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> ARGANODUS_BUCKET = REGISTER.register("arganodus_bucket", () -> new FishBucketItem(PFEntities.ARGANODUS_ENTITY, Fluids.WATER, new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
-	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> CHINLEA_BUCKET = REGISTER.register("chinlea_bucket", () -> new FishBucketItem(PFEntities.CHINLEA_ENTITY, Fluids.WATER, new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
-	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> MOOREODONTUS_BUCKET = REGISTER.register("mooreodontus_bucket", () -> new FishBucketItem(PFEntities.MOOREODONTUS_ENTITY, Fluids.WATER, new Item.Properties().group(PFMisc.instance).maxStackSize(1)));
-
 	private static BannerPattern registerPattern(String name) {
 		return BannerPattern.create(name.toUpperCase(), name, name, true);
 	}

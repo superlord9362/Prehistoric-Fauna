@@ -26,9 +26,11 @@ import superlord.prehistoricfauna.world.biome.cretaceous.HellCreekRiverBiome;
 import superlord.prehistoricfauna.world.biome.jurassic.KayentaButtesBiome;
 import superlord.prehistoricfauna.world.biome.jurassic.KayentaDesertBiome;
 import superlord.prehistoricfauna.world.biome.jurassic.KayentaDryForestBiome;
+import superlord.prehistoricfauna.world.biome.jurassic.KayentaRiverBiome;
 import superlord.prehistoricfauna.world.biome.jurassic.MorrisonSavannahBiome;
 import superlord.prehistoricfauna.world.biome.jurassic.MorrisonSavannahHillsBiome;
 import superlord.prehistoricfauna.world.biome.triassic.ChinleFlatsBiome;
+import superlord.prehistoricfauna.world.biome.triassic.ChinleRiverBiome;
 import superlord.prehistoricfauna.world.biome.triassic.ChinleSwampBiome;
 import superlord.prehistoricfauna.world.biome.triassic.ChinleWoodedMountainsBiome;
 import superlord.prehistoricfauna.world.biome.triassic.IschigualastoBiome;
@@ -58,9 +60,11 @@ public class PFBiomes {
 	public static final PFBiome KAYENTA_DRY_FOREST_BIOME = new KayentaDryForestBiome();
 	public static final PFBiome KAYENTA_BUTTES_BIOME = new KayentaButtesBiome();
 	public static final PFBiome KAYENTA_DESERT_BIOME = new KayentaDesertBiome();
+	public static final PFBiome KAYENTA_RIVER_BIOME = new KayentaRiverBiome();
 	public static final PFBiome CHINLE_SWAMP_BIOME = new ChinleSwampBiome();
 	public static final PFBiome CHINLE_FLATS_BIOME = new ChinleFlatsBiome();
 	public static final PFBiome CHINLE_WOODED_MOUNTAINS_BIOME = new ChinleWoodedMountainsBiome();
+	public static final PFBiome CHINLE_RIVER_BIOME = new ChinleRiverBiome();
 
 	//Cretaceous
 	public static final Biome HELL_CREEK = WorldGenRegistrationHelper.createBiome("hell_creek", HELL_CREEK_BIOME.getBiome(), 1);
@@ -78,6 +82,7 @@ public class PFBiomes {
 	public static final Biome KAYENTA_DRY_FOREST = WorldGenRegistrationHelper.createBiome("kayenta_dry_forest", KAYENTA_DRY_FOREST_BIOME.getBiome(), 14);
 	public static final Biome KAYENTA_BUTTES = WorldGenRegistrationHelper.createBiome("kayenta_canyon", KAYENTA_BUTTES_BIOME.getBiome(), 15);
 	public static final Biome KAYENTA_DESERT = WorldGenRegistrationHelper.createBiome("kayenta_desert", KAYENTA_DESERT_BIOME.getBiome(), 16);
+	public static final Biome KAYENTA_RIVER = WorldGenRegistrationHelper.createBiome("kayenta_river", KAYENTA_RIVER_BIOME.getBiome(), 21);
 
 	//Triassic
 	public static final Biome ISCHIGUALASTO_FOREST = WorldGenRegistrationHelper.createBiome("ischigualasto_forest", ISCHIGUALASTO_FOREST_BIOME.getBiome(), 3);
@@ -88,7 +93,8 @@ public class PFBiomes {
 	public static final Biome CHINLE_SWAMP = WorldGenRegistrationHelper.createBiome("chinle_swamp", CHINLE_SWAMP_BIOME.getBiome(), 17);
 	public static final Biome CHINLE_FLATS = WorldGenRegistrationHelper.createBiome("chinle_flats", CHINLE_FLATS_BIOME.getBiome(), 18);
 	public static final Biome CHINLE_WOODED_MOUNTAINS = WorldGenRegistrationHelper.createBiome("chinle_wooded_mountains", CHINLE_WOODED_MOUNTAINS_BIOME.getBiome(), 19);
-
+	public static final Biome CHINLE_RIVER = WorldGenRegistrationHelper.createBiome("chinle_river", CHINLE_RIVER_BIOME.getBiome(), 20);
+	
 	public static void init() {
 		Registry.register(Registry.BIOME_PROVIDER_CODEC, new ResourceLocation(PrehistoricFauna.MOD_ID, "prehistoric_world"), PrehistoricWorldTypeBiomeProvider.CODEC);
 	}

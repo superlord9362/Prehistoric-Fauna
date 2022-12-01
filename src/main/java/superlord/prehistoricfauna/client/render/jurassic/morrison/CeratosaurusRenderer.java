@@ -10,7 +10,9 @@ import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.CeratosaurusModel;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.CeratosaurusSleepingModel;
+import superlord.prehistoricfauna.client.render.layer.CeratosaurusEyeLayer;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.CeratosaurusEntity;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class CeratosaurusRenderer extends MobRenderer<CeratosaurusEntity,  EntityModel<CeratosaurusEntity>> {
 
@@ -18,13 +20,16 @@ public class CeratosaurusRenderer extends MobRenderer<CeratosaurusEntity,  Entit
 	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ceratosaurus/albino.png");
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ceratosaurus/melanistic.png");
 	private static final ResourceLocation CERATOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ceratosaurus/ceratosaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ceratosaurus/albin_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ceratosaurus/albino_sleeping.png");
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ceratosaurus/melanistic_sleeping.png");
 	private static final CeratosaurusModel CERATOSAURUS_MODEL = new CeratosaurusModel();
 	private static final CeratosaurusSleepingModel CERATOSAURUS_SLEEPING_MODEL = new CeratosaurusSleepingModel();
 
 	public CeratosaurusRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), CERATOSAURUS_MODEL, 0.75F);
+		if (PrehistoricFaunaConfig.eyeShine) {
+			this.addLayer(new CeratosaurusEyeLayer(this));
+		}
 	}
 
 	public void render(CeratosaurusEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
@@ -45,15 +50,15 @@ public class CeratosaurusRenderer extends MobRenderer<CeratosaurusEntity,  Entit
 	@Override
 	public ResourceLocation getEntityTexture(CeratosaurusEntity entity) {
 		if (entity.isMelanistic()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return MELANISTIC_SLEEPING;
 			} else return MELANISTIC;
 		} else if (entity.isAlbino()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return ALBINO_SLEEPING;
 			} else return ALBINO;
 		} else {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return CERATOSAURUS_SLEEPING;
 			} else return CERATOSAURUS;
 		}

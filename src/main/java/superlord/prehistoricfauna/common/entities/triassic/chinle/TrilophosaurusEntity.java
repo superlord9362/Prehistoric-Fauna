@@ -66,24 +66,27 @@ import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.SoundInit;
 
 public class TrilophosaurusEntity extends DinosaurEntity {
-	
+
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(TrilophosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(TrilophosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> ALBINO = EntityDataManager.createKey(TrilophosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> MELANISTIC = EntityDataManager.createKey(TrilophosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> EATING = EntityDataManager.createKey(TrilophosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> NATURAL_LOVE = EntityDataManager.createKey(TrilophosaurusEntity.class, DataSerializers.BOOLEAN);
-	private int maxHunger = 20;
+	   private static final DataParameter<Byte> CLIMBING = EntityDataManager.createKey(TrilophosaurusEntity.class, DataSerializers.BYTE);
+	private int maxHunger = 25;
 	private int currentHunger;
 	int hungerTick = 0;
 	private int lastInLove = 0;
 	private int isDigging;
 	int loveTick = 0;
+	private int climbingTicks = 0;
+	private int climbingTickCooldown = 0;
 
 	public TrilophosaurusEntity(EntityType<? extends TameableEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
-	
+
 	public boolean hasEgg() {
 		return this.dataManager.get(HAS_EGG);
 	}
@@ -128,7 +131,7 @@ public class TrilophosaurusEntity extends DinosaurEntity {
 	private void setInLoveNaturally(boolean isInLoveNaturally) {
 		this.dataManager.set(NATURAL_LOVE, isInLoveNaturally);
 	}
-	
+
 	public int getCurrentHunger() {
 		return this.currentHunger;
 	}
@@ -152,7 +155,7 @@ public class TrilophosaurusEntity extends DinosaurEntity {
 	private void setEating(boolean isEating) {
 		this.dataManager.set(EATING, isEating);
 	}
-	
+
 	protected void registerData() {
 		super.registerData();
 		this.dataManager.register(HAS_EGG, false);
@@ -161,6 +164,7 @@ public class TrilophosaurusEntity extends DinosaurEntity {
 		this.dataManager.register(MELANISTIC, false);
 		this.dataManager.register(EATING, false);
 		this.dataManager.register(NATURAL_LOVE, false);
+	      this.dataManager.register(CLIMBING, (byte)0);
 	}
 
 	public void writeAdditional(CompoundNBT compound) {
@@ -182,7 +186,7 @@ public class TrilophosaurusEntity extends DinosaurEntity {
 		this.setHunger(compound.getInt("MaxHunger"));
 		this.setInLoveNaturally(compound.getBoolean("InNaturalLove"));
 	}
-	
+
 	@Nullable
 	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		Random rand = new Random();
@@ -192,10 +196,10 @@ public class TrilophosaurusEntity extends DinosaurEntity {
 		} else if (birthNumber >= 4 && birthNumber < 7) {
 			this.setMelanistic(true);
 		}
-		this.setHunger(25);
+		this.setHunger(this.maxHunger);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
-	
+
 	protected SoundEvent getAmbientSound() {
 		return this.isAsleep() ? null : SoundInit.TRILOPHOSAURUS_IDLE;
 	}
@@ -207,7 +211,7 @@ public class TrilophosaurusEntity extends DinosaurEntity {
 	protected SoundEvent getDeathSound() {
 		return SoundInit.TRILOPHOSAURUS_DEATH;
 	}
-	
+
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
@@ -231,7 +235,7 @@ public class TrilophosaurusEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new TrilophosaurusEntity.HerbivoreEatGoal((double)1.2F, 12, 2));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<DilophosaurusEntity>(this, DilophosaurusEntity.class, 10F, 1.2D, 1.5D));
 	}
-	
+
 	@Override
 	public void livingTick() {
 		super.livingTick();
@@ -240,29 +244,44 @@ public class TrilophosaurusEntity extends DinosaurEntity {
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.23D);
 		}
-		List<TrilophosaurusEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
-		if (PrehistoricFaunaConfig.advancedHunger) {
-			hungerTick++;
-			if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
-				hungerTick = 0;
-				if (currentHunger != 0 || !this.isAsleep()) {
-					this.setHunger(currentHunger - 1);
+		if (!this.isAIDisabled()) {
+			List<TrilophosaurusEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
+			if (PrehistoricFaunaConfig.advancedHunger) {
+				hungerTick++;
+				if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
+					hungerTick = 0;
+					if (currentHunger != 0 || !this.isAsleep()) {
+						this.setHunger(currentHunger - 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
+					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getAttackTarget() == null && this.getRevengeTarget() == null) {
+						float currentHealth = this.getHealth();
+						this.setHealth(currentHealth + 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
+						loveTick = 600;
+						this.setInLoveNaturally(true);
+						this.setInLove(600);
+						lastInLove = 28800;
+					}
+					if (loveTick != 0) {
+						loveTick--;
+					} else {
+						this.setInLoveNaturally(false);
+					}
 				}
-			}
-			if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-				if (this.getHealth() < this.getMaxHealth()) {
-					float currentHealth = this.getHealth();
-					this.setHealth(currentHealth + 1);
-				}
-			}
-			if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
+			} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+				int naturalBreedingChance = rand.nextInt(1000);
+				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
 					loveTick = 600;
 					this.setInLoveNaturally(true);
 					this.setInLove(600);
@@ -274,27 +293,69 @@ public class TrilophosaurusEntity extends DinosaurEntity {
 					this.setInLoveNaturally(false);
 				}
 			}
-		} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-			int naturalBreedingChance = rand.nextInt(1000);
-			if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
-				loveTick = 600;
-				this.setInLoveNaturally(true);
-				this.setInLove(600);
-				lastInLove = 28800;
+			if (lastInLove != 0) {
+				lastInLove--;
 			}
-			if (loveTick != 0) {
-				loveTick--;
-			} else {
-				this.setInLoveNaturally(false);
-			}
-		}
-		if (lastInLove != 0) {
-			lastInLove--;
 		}
 	}
 	
+	public void tick() {
+		super.tick();
+		if (!this.world.isRemote) {
+			if (this.collidedHorizontally) {
+				Boolean logBlock;
+				BlockPos blockpos1 = new BlockPos(this.getPositionVec().getX() + 1, this.getPositionVec().getY() + 1, this.getPositionVec().getZ());
+				BlockPos blockpos2 = new BlockPos(this.getPositionVec().getX() - 1, this.getPositionVec().getY() + 1, this.getPositionVec().getZ());
+				BlockPos blockpos3 = new BlockPos(this.getPositionVec().getX(), this.getPositionVec().getY() + 1, this.getPositionVec().getZ() + 1);
+				BlockPos blockpos4 = new BlockPos(this.getPositionVec().getX(), this.getPositionVec().getY() + 1, this.getPositionVec().getZ() - 1);
+				BlockState blockstate1 = this.world.getBlockState(blockpos1);
+				BlockState blockstate2 = this.world.getBlockState(blockpos2);
+				BlockState blockstate3 = this.world.getBlockState(blockpos3);
+				BlockState blockstate4 = this.world.getBlockState(blockpos4);
+				if (blockstate1.getBlock() == PFBlocks.NEOCALAMITES || blockstate1.getBlock() == PFBlocks.NEOCALAMITES_TOP || blockstate2.getBlock() == PFBlocks.NEOCALAMITES || blockstate2.getBlock() == PFBlocks.NEOCALAMITES_TOP || blockstate3.getBlock() == PFBlocks.NEOCALAMITES || blockstate3.getBlock() == PFBlocks.NEOCALAMITES_TOP || blockstate4.getBlock() == PFBlocks.NEOCALAMITES || blockstate4.getBlock() == PFBlocks.NEOCALAMITES_TOP) {
+					logBlock = true;
+					if (climbingTickCooldown == 0 && climbingTicks < 600) {
+				         this.setBesideClimbableBlock(logBlock);
+				         climbingTicks++;
+					}
+					if (climbingTicks >= 599 && climbingTickCooldown <= 300) {
+						climbingTickCooldown++;
+					}
+					if (climbingTickCooldown == 300) {
+						climbingTicks = 0;
+						climbingTickCooldown = 0;
+					}
+				}
+			}
+		}
+
+	}
+	
+	public boolean isOnLadder() {
+		return this.isBesideClimbableBlock();
+	}
+
+	public boolean isBesideClimbableBlock() {
+		return (this.dataManager.get(CLIMBING) & 1) != 0;
+	}
+
+	/**
+	 * Updates the WatchableObject (Byte) created in entityInit(), setting it to 0x01 if par1 is true or 0x00 if it is
+	 * false.
+	 */
+	public void setBesideClimbableBlock(boolean climbing) {
+		byte b0 = this.dataManager.get(CLIMBING);
+		if (climbing) {
+			b0 = (byte)(b0 | 1);
+		} else {
+			b0 = (byte)(b0 & -2);
+		}
+
+		this.dataManager.set(CLIMBING, b0);
+	}
+
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 8.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23D);
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -347,6 +408,8 @@ public class TrilophosaurusEntity extends DinosaurEntity {
 					this.trilophosaurus.isDigging++;
 				}
 			}
+			
+			
 
 		}
 
@@ -393,7 +456,7 @@ public class TrilophosaurusEntity extends DinosaurEntity {
 
 		}
 	}
-	
+
 	static class NaturalMateGoal extends BreedGoal {
 		private final TrilophosaurusEntity trilophosaurus;
 
@@ -443,7 +506,7 @@ public class TrilophosaurusEntity extends DinosaurEntity {
 		entity.onInitialSpawn(p_241840_1_, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
 		return entity;
 	}
-	
+
 	public class HerbivoreEatGoal extends MoveToBlockGoal {
 		protected int field_220731_g;
 

@@ -10,9 +10,13 @@ import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.jurassic.kayenta.CalsoyasuchusModel;
 import superlord.prehistoricfauna.client.model.jurassic.kayenta.CalsoyasuchusSleepingModel;
+import superlord.prehistoricfauna.client.model.jurassic.kayenta.CalsoyasuchusSwimmingModel;
+import superlord.prehistoricfauna.client.render.layer.CalsoyasuchusEyeLayer;
+import superlord.prehistoricfauna.client.render.layer.CalsoyasuchusSwimmingEyeLayer;
 //import superlord.prehistoricfauna.client.model.jurassic.kayenta.CalsoyasuchusSleepingModel;
 import superlord.prehistoricfauna.common.entities.jurassic.kayenta.CalsoyasuchusEntity;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.CeratosaurusEntity;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class CalsoyasuchusRenderer extends MobRenderer<CalsoyasuchusEntity,  EntityModel<CalsoyasuchusEntity>> {
 
@@ -20,17 +24,24 @@ public class CalsoyasuchusRenderer extends MobRenderer<CalsoyasuchusEntity,  Ent
 	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/calsoyasuchus/albino.png");
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/calsoyasuchus/melanistic.png");
 	private static final ResourceLocation CALSOYASUCHUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/calsoyasuchus/calsoyasuchus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/calsoyasuchus/albin_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/calsoyasuchus/albino_sleeping.png");
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/calsoyasuchus/melanistic_sleeping.png");
 	private static final CalsoyasuchusModel CALSOYASUCHUS_MODEL = new CalsoyasuchusModel();
 	private static final CalsoyasuchusSleepingModel CALSOYASUCHUS_SLEEPING_MODEL = new CalsoyasuchusSleepingModel();
+	private static final CalsoyasuchusSwimmingModel CALSOYASUCHUS_SWIMMING_MODEL = new CalsoyasuchusSwimmingModel();
 
 	public CalsoyasuchusRenderer() {
-		super(Minecraft.getInstance().getRenderManager(), CALSOYASUCHUS_MODEL, 1.2F);
+		super(Minecraft.getInstance().getRenderManager(), CALSOYASUCHUS_MODEL, 0.5F);
+		if (PrehistoricFaunaConfig.eyeShine) {
+			this.addLayer(new CalsoyasuchusEyeLayer(this));
+			this.addLayer(new CalsoyasuchusSwimmingEyeLayer(this));
+		}
 	}
 
 	public void render(CalsoyasuchusEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-		if (entityIn.isAsleep()) {
+		if (entityIn.isInWater()) {
+			entityModel = CALSOYASUCHUS_SWIMMING_MODEL;
+		} else if (entityIn.isAsleep()) {
 			entityModel = CALSOYASUCHUS_SLEEPING_MODEL;
 		} else {
 			entityModel = CALSOYASUCHUS_MODEL;
@@ -47,15 +58,15 @@ public class CalsoyasuchusRenderer extends MobRenderer<CalsoyasuchusEntity,  Ent
 	@Override
 	public ResourceLocation getEntityTexture(CalsoyasuchusEntity entity) {
 		if (entity.isMelanistic()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return MELANISTIC_SLEEPING;
 			} else return MELANISTIC;
 		} else if (entity.isAlbino()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return ALBINO_SLEEPING;
 			} else return ALBINO;
 		} else {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return CALSOYASUCHUS_SLEEPING;
 			} else return CALSOYASUCHUS;
 		}

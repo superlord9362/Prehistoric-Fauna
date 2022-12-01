@@ -1,0 +1,124 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"0": "prehistoricfauna:blocks/neocalamites_fence_gate",
+		"particle": "prehistoricfauna:blocks/neocalamites_fence_gate"
+	},
+	"elements": [
+		{
+			"name": "Left-hand post",
+			"from": [0, 5, 7],
+			"to": [2, 16, 9],
+			"faces": {
+				"north": {"uv": [14, 0, 16, 11], "texture": "#0"},
+				"east": {"uv": [14, 0, 16, 11], "texture": "#0"},
+				"south": {"uv": [14, 0, 16, 11], "texture": "#0"},
+				"west": {"uv": [14, 0, 16, 11], "texture": "#0", "cullface": "west"},
+				"up": {"uv": [0, 10, 2, 12], "texture": "#0"},
+				"down": {"uv": [0, 10, 2, 12], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Right-hand post",
+			"from": [14, 5, 7],
+			"to": [16, 16, 9],
+			"faces": {
+				"north": {"uv": [14, 0, 16, 11], "texture": "#0"},
+				"east": {"uv": [14, 0, 16, 11], "texture": "#0", "cullface": "east"},
+				"south": {"uv": [14, 0, 16, 11], "texture": "#0"},
+				"west": {"uv": [14, 0, 16, 11], "texture": "#0"},
+				"up": {"uv": [0, 10, 2, 12], "texture": "#0"},
+				"down": {"uv": [0, 10, 2, 12], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Inner vertical post of left-hand gate door",
+			"from": [6, 6, 7],
+			"to": [8, 15, 9],
+			"faces": {
+				"north": {"uv": [5, 0, 7, 9], "texture": "#0"},
+				"east": {"uv": [5, 0, 7, 9], "texture": "#0"},
+				"south": {"uv": [5, 0, 7, 9], "texture": "#0"},
+				"west": {"uv": [5, 0, 7, 9], "texture": "#0"},
+				"up": {"uv": [0, 10, 2, 12], "texture": "#0"},
+				"down": {"uv": [0, 10, 2, 12], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Inner vertical post of right-hand gate door",
+			"from": [8, 6, 7],
+			"to": [10, 15, 9],
+			"faces": {
+				"north": {"uv": [5, 0, 7, 9], "texture": "#0"},
+				"east": {"uv": [5, 0, 7, 9], "texture": "#0"},
+				"south": {"uv": [5, 0, 7, 9], "texture": "#0"},
+				"west": {"uv": [5, 0, 7, 9], "texture": "#0"},
+				"up": {"uv": [0, 10, 2, 12], "texture": "#0"},
+				"down": {"uv": [0, 10, 2, 12], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Lower horizontal bar of left-hand gate door",
+			"from": [2, 6, 7],
+			"to": [6, 9, 9],
+			"faces": {
+				"north": {"uv": [12, 13, 16, 16], "texture": "#0"},
+				"east": {"uv": [10, 8, 12, 11], "texture": "#0"},
+				"south": {"uv": [11, 13, 15, 16], "texture": "#0"},
+				"west": {"uv": [10, 8, 12, 11], "texture": "#0"},
+				"up": {"uv": [7, 14, 11, 16], "texture": "#0"},
+				"down": {"uv": [7, 14, 11, 16], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Upper horizontal bar of left-hand gate door",
+			"from": [2, 12, 7],
+			"to": [6, 15, 9],
+			"faces": {
+				"north": {"uv": [12, 13, 16, 16], "texture": "#0"},
+				"east": {"uv": [10, 8, 12, 11], "texture": "#0"},
+				"south": {"uv": [11, 13, 15, 16], "texture": "#0"},
+				"west": {"uv": [10, 8, 12, 11], "texture": "#0"},
+				"up": {"uv": [7, 14, 11, 16], "texture": "#0"},
+				"down": {"uv": [7, 14, 11, 16], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Lower horizontal bar of right-hand gate door",
+			"from": [10, 6, 7],
+			"to": [14, 9, 9],
+			"faces": {
+				"north": {"uv": [7, 13, 11, 16], "texture": "#0"},
+				"east": {"uv": [10, 8, 12, 11], "texture": "#0"},
+				"south": {"uv": [8, 13, 12, 16], "texture": "#0"},
+				"west": {"uv": [10, 8, 12, 11], "texture": "#0"},
+				"up": {"uv": [8, 14, 12, 16], "texture": "#0"},
+				"down": {"uv": [8, 14, 12, 16], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Upper horizontal bar of right-hand gate door",
+			"from": [10, 12, 7],
+			"to": [14, 15, 9],
+			"faces": {
+				"north": {"uv": [7, 13, 11, 16], "texture": "#0"},
+				"east": {"uv": [10, 8, 12, 11], "texture": "#0"},
+				"south": {"uv": [8, 13, 12, 16], "texture": "#0"},
+				"west": {"uv": [10, 8, 12, 11], "texture": "#0"},
+				"up": {"uv": [8, 14, 12, 16], "texture": "#0"},
+				"down": {"uv": [8, 14, 12, 16], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"gui": {
+			"rotation": [30, 45, 0],
+			"translation": [0, -1, 0],
+			"scale": [0.8, 0.8, 0.8]
+		},
+		"head": {
+			"translation": [0, -3, -6]
+		}
+	}
+}

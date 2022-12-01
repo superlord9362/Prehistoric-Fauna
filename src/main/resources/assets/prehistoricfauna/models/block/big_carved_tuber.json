@@ -1,0 +1,6 @@
+{
+    "parent": "prehistoricfauna:block/small_tuber",
+    "textures": {
+        "2": "prehistoricfauna:blocks/carved_big_tuber"
+    }
+}

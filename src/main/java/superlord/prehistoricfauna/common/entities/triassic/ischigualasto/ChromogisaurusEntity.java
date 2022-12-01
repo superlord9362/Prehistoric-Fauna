@@ -2,6 +2,7 @@ package superlord.prehistoricfauna.common.entities.triassic.ischigualasto;
 
 import java.util.List;
 import java.util.Random;
+import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
@@ -12,6 +13,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -20,11 +22,14 @@ import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.ai.goal.BreedGoal;
 import net.minecraft.entity.ai.goal.FollowParentGoal;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.ai.goal.PanicGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
+import net.minecraft.entity.passive.ChickenEntity;
+import net.minecraft.entity.passive.RabbitEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -51,8 +56,10 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.common.blocks.ChromogisaurusEggBlock;
 import superlord.prehistoricfauna.common.entities.DinosaurEntity;
+import superlord.prehistoricfauna.common.entities.cretaceous.djadochta.TelmasaurusEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.AnkylosaurusEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.DakotaraptorEntity;
+import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.DidelphodonEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.ThescelosaurusEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.TriceratopsEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.TyrannosaurusEntity;
@@ -60,10 +67,12 @@ import superlord.prehistoricfauna.common.entities.goal.CathemeralSleepGoal;
 import superlord.prehistoricfauna.common.entities.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entities.goal.DinosaurRandomLookGoal;
 import superlord.prehistoricfauna.common.entities.jurassic.kayenta.DilophosaurusEntity;
+import superlord.prehistoricfauna.common.entities.jurassic.kayenta.ScutellosaurusEntity;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.AllosaurusEntity;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.CamarasaurusEntity;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.CeratosaurusEntity;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.DryosaurusEntity;
+import superlord.prehistoricfauna.common.entities.jurassic.morrison.EilenodonEntity;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.StegosaurusEntity;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
@@ -218,7 +227,9 @@ public class ChromogisaurusEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<SaurosuchusEntity>(this, SaurosuchusEntity.class, 10F, 2D, 2D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<DilophosaurusEntity>(this, DilophosaurusEntity.class, 10F, 1.2D, 1.5D));
 		this.goalSelector.addGoal(0, new ChromogisaurusEntity.LayEggGoal(this, 1.0D));
-		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
+		this.targetSelector.addGoal(0, new ChromogisaurusEntity.CarnivoreHuntGoal(this, LivingEntity.class, 10, true, false, (p_213487_1_) -> {
+			return p_213487_1_ instanceof DidelphodonEntity || p_213487_1_ instanceof EilenodonEntity || p_213487_1_ instanceof HyperodapedonEntity || p_213487_1_ instanceof TelmasaurusEntity || p_213487_1_ instanceof RabbitEntity || p_213487_1_ instanceof ChickenEntity || p_213487_1_ instanceof ScutellosaurusEntity;
+		}));		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
 		this.goalSelector.addGoal(0, new ChromogisaurusEntity.HerbivoreEatGoal((double)1.2F, 12, 2));
 	}
 
@@ -231,7 +242,7 @@ public class ChromogisaurusEntity extends DinosaurEntity {
 		} else if (birthNumber >= 4 && birthNumber < 7) {
 			this.setMelanistic(true);
 		}
-		this.setHunger(15);
+		this.setHunger(this.maxHunger);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
@@ -260,29 +271,44 @@ public class ChromogisaurusEntity extends DinosaurEntity {
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.22D);
 		}
-		List<ChromogisaurusEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
-		if (PrehistoricFaunaConfig.advancedHunger) {
-			hungerTick++;
-			if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
-				hungerTick = 0;
-				if (currentHunger != 0 || !this.isAsleep()) {
-					this.setHunger(currentHunger - 1);
+		if (!this.isAIDisabled()) {
+			List<ChromogisaurusEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
+			if (PrehistoricFaunaConfig.advancedHunger) {
+				hungerTick++;
+				if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
+					hungerTick = 0;
+					if (currentHunger != 0 || !this.isAsleep()) {
+						this.setHunger(currentHunger - 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
+					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getAttackTarget() == null && this.getRevengeTarget() == null) {
+						float currentHealth = this.getHealth();
+						this.setHealth(currentHealth + 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 10) {
+						loveTick = 600;
+						this.setInLoveNaturally(true);
+						this.setInLove(600);
+						lastInLove = 28800;
+					}
+					if (loveTick != 0) {
+						loveTick--;
+					} else {
+						this.setInLoveNaturally(false);
+					}
 				}
-			}
-			if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-				if (this.getHealth() < this.getMaxHealth()) {
-					float currentHealth = this.getHealth();
-					this.setHealth(currentHealth + 1);
-				}
-			}
-			if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 10) {
+			} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+				int naturalBreedingChance = rand.nextInt(1000);
+				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 10) {
 					loveTick = 600;
 					this.setInLoveNaturally(true);
 					this.setInLove(600);
@@ -294,22 +320,9 @@ public class ChromogisaurusEntity extends DinosaurEntity {
 					this.setInLoveNaturally(false);
 				}
 			}
-		} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-			int naturalBreedingChance = rand.nextInt(1000);
-			if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 10) {
-				loveTick = 600;
-				this.setInLoveNaturally(true);
-				this.setInLove(600);
-				lastInLove = 28800;
+			if (lastInLove != 0) {
+				lastInLove--;
 			}
-			if (loveTick != 0) {
-				loveTick--;
-			} else {
-				this.setInLoveNaturally(false);
-			}
-		}
-		if (lastInLove != 0) {
-			lastInLove--;
 		}
 	}
 
@@ -590,6 +603,56 @@ public class ChromogisaurusEntity extends DinosaurEntity {
 			this.field_220731_g = 0;
 			super.startExecuting();
 		}
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public class CarnivoreHuntGoal extends NearestAttackableTargetGoal {
+
+		@SuppressWarnings("unchecked")
+		public CarnivoreHuntGoal(MobEntity goalOwnerIn, Class targetClassIn, int targetChanceIn, boolean checkSight, boolean nearbyOnly, @Nullable Predicate<LivingEntity> targetPredicate) {
+			super(goalOwnerIn, targetClassIn, targetChanceIn, checkSight, nearbyOnly, targetPredicate);
+		}
+
+		public boolean shouldExecute() {
+			return super.shouldExecute() && ChromogisaurusEntity.this.getCurrentHunger() <= ChromogisaurusEntity.this.getHalfHunger();
+		}
+
+		public boolean shouldContinueExecuting() {
+			return ChromogisaurusEntity.this.getCurrentHunger() < ChromogisaurusEntity.this.maxHunger;
+		}
+
+		public void tick() {
+			LivingEntity target = ChromogisaurusEntity.this.getAttackTarget();
+			if (target instanceof RabbitEntity) {
+				if (target.getHealth() == 0) {
+					if (ChromogisaurusEntity.this.getCurrentHunger() + 3 >= ChromogisaurusEntity.this.maxHunger) {
+						ChromogisaurusEntity.this.setHunger(ChromogisaurusEntity.this.maxHunger);
+					} else {
+						ChromogisaurusEntity.this.setHunger(currentHunger + 3);
+					}
+				}
+			}
+			if (target instanceof DidelphodonEntity || target instanceof EilenodonEntity || target instanceof HyperodapedonEntity || target instanceof ChickenEntity || target instanceof ScutellosaurusEntity) {
+				if (target.getHealth() == 0) {
+					if (ChromogisaurusEntity.this.getCurrentHunger() + 4 >= ChromogisaurusEntity.this.maxHunger) {
+						ChromogisaurusEntity.this.setHunger(ChromogisaurusEntity.this.maxHunger);
+					} else {
+						ChromogisaurusEntity.this.setHunger(currentHunger + 4);
+					}
+				}
+			}
+			if (target instanceof TelmasaurusEntity) {
+				if (target.getHealth() == 0) {
+					if (ChromogisaurusEntity.this.getCurrentHunger() + 6 >= ChromogisaurusEntity.this.maxHunger) {
+						ChromogisaurusEntity.this.setHunger(ChromogisaurusEntity.this.maxHunger);
+					} else {
+						ChromogisaurusEntity.this.setHunger(currentHunger + 6);
+					}
+				}
+			}
+			super.tick();
+		}
+
 	}
 
 }

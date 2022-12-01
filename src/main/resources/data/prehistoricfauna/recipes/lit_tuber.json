@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:torch"
+    },
+	{
+		"item": "prehistoricfauna:carved_tuber"
+	}
+  ],
+  "result": {
+    "item": "prehistoricfauna:carved_tuber_lit"
+  }
+}

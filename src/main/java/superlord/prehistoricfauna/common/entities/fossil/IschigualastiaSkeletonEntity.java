@@ -24,6 +24,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import superlord.prehistoricfauna.common.entities.PrehistoricEntity;
@@ -113,11 +114,14 @@ public class IschigualastiaSkeletonEntity extends PrehistoricEntity {
 	    		this.setStretching(false);
 	    	} else if (player.isSneaking() && !this.isPushable() && !this.isLooking()) {
 	    		this.setPushable(true);
+				player.sendStatusMessage(new TranslationTextComponent("entity.prehistoricfauna.skeleton.pushable"), true);
 	    	} else if (player.isSneaking() && this.isPushable()) {
 	    		this.setPushable(false);
 	    		this.setLooking(true);
+				player.sendStatusMessage(new TranslationTextComponent("entity.prehistoricfauna.skeleton.rotating"), true);
 	    	} else if (player.isSneaking() && this.isLooking()) {
 	    		this.setLooking(false);
+				player.sendStatusMessage(new TranslationTextComponent("entity.prehistoricfauna.skeleton.neutral"), true);
 	    	}
 	    }
         return super.func_230254_b_(player, hand);

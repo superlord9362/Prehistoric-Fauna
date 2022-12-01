@@ -16,7 +16,7 @@ public class CathemeralSleepGoal extends Goal {
 
 	@Override
 	public boolean shouldExecute() {
-		if (PrehistoricFaunaConfig.sleeping = true && entity.getRNG().nextInt(1000) == 0 && entity.getRevengeTarget() == null) {
+		if (PrehistoricFaunaConfig.sleeping = true && entity.getRNG().nextInt(1000) == 0 && entity.getRevengeTarget() == null && entity.getAttackTarget() == null && !entity.isInWater() && !entity.isInLava()) {
 			return true;
 		} else {
 			return false;

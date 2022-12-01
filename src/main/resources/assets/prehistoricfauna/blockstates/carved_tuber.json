@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "prehistoricfauna:block/carved_tuber",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "prehistoricfauna:block/carved_tuber"
+    },
+    "facing=south": {
+      "model": "prehistoricfauna:block/carved_tuber",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "prehistoricfauna:block/carved_tuber",
+      "y": 270
+    }
+  }
+}

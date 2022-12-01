@@ -54,7 +54,7 @@
     {
       "item": "prehistoricfauna:fossilized_bones",
       "count": 1,
-      "weight": 5.0
+      "weight": 25.0
     },
 	{
 		"item": "prehistoricfauna:ceratosaurus_skull",
@@ -68,6 +68,11 @@
 	},
 	{
 		"item": "prehistoricfauna:dilophosaurus_skull",
+		"count": 1,
+		"weight": 1.25
+	},
+	{
+		"item": "prehistoricfauna:sarahsaurus_skull",
 		"count": 1,
 		"weight": 1.25
 	},

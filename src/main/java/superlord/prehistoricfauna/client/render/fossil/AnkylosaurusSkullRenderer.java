@@ -9,7 +9,7 @@ import superlord.prehistoricfauna.common.entities.fossil.AnkylosaurusSkullEntity
 
 public class AnkylosaurusSkullRenderer extends MobRenderer<AnkylosaurusSkullEntity, AnkylosaurusSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/ankylosaurus_skull.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/ankylosaurus_skeleton.png");
 
     public AnkylosaurusSkullRenderer(EntityRendererManager rm) {
         super(rm, new AnkylosaurusSkullModel(), 0F);

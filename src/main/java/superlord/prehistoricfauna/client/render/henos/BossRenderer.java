@@ -94,7 +94,6 @@ public class BossRenderer extends MobRenderer<TimeGuardianEntity, EntityModel<Ti
 		matrixStackIn.rotate(Vector3f.YN.rotationDegrees(f2 * f3));
 	}
 
-	@SuppressWarnings("unused")
 	public void render(TimeGuardianEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
 		if (entityIn.isSummoned()) {
             entityModel = SUMMONED;
@@ -104,7 +103,6 @@ public class BossRenderer extends MobRenderer<TimeGuardianEntity, EntityModel<Ti
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 		Entity livingentity = entityIn.getLaserTarget();
 		if (livingentity != null) {
-			float f = 0.0F;
 			float f1 = (float) entityIn.world.getGameTime() + partialTicks;
 			float f2 = f1 * -0.2F % 1.0F;
 			float f3 = entityIn.getHeight() * 0.625F;
@@ -119,7 +117,6 @@ public class BossRenderer extends MobRenderer<TimeGuardianEntity, EntityModel<Ti
 			float f6 = (float) Math.atan2(vector3d2.z, vector3d2.x);
 			matrixStackIn.rotate(Vector3f.YP.rotationDegrees((((float) Math.PI / 2F) - f6) * (180F / (float) Math.PI)));
 			matrixStackIn.rotate(Vector3f.XP.rotationDegrees(f5 * (180F / (float) Math.PI)));
-			int i = 1;
 			float f8 = 1F;
 			int j = (int) (f8 * 255.0F);
 			int k = (int) (f8 * 255.0F);

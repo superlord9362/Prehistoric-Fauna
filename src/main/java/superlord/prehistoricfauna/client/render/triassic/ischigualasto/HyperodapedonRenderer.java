@@ -10,7 +10,9 @@ import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.triassic.ischigualasto.HyperodapedonModel;
 import superlord.prehistoricfauna.client.model.triassic.ischigualasto.HyperodapedonSleepingModel;
+import superlord.prehistoricfauna.client.render.layer.HyperodapedonEyeLayer;
 import superlord.prehistoricfauna.common.entities.triassic.ischigualasto.HyperodapedonEntity;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class HyperodapedonRenderer extends MobRenderer<HyperodapedonEntity, EntityModel<HyperodapedonEntity>> {
 
@@ -25,6 +27,9 @@ public class HyperodapedonRenderer extends MobRenderer<HyperodapedonEntity, Enti
 
 	public HyperodapedonRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), HYPERODAPEDON_MODEL, 0.325F);
+		if (PrehistoricFaunaConfig.eyeShine) {
+			this.addLayer(new HyperodapedonEyeLayer(this));
+		}
 	}
 
 	public void render(HyperodapedonEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
@@ -45,15 +50,15 @@ public class HyperodapedonRenderer extends MobRenderer<HyperodapedonEntity, Enti
 	@Override
 	public ResourceLocation getEntityTexture(HyperodapedonEntity entity) {
 		if(entity.isAlbino()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return ALBINO_SLEEPING;
 			} else return ALBINO;
 		} else if (entity.isMelanistic()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return MELANISTIC_SLEEPING;
 			} else return MELANISTIC;
 		} else {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return HYPERODAPEDON_SLEEPING;
 			} else return HYPERODAPEDON;
 		}

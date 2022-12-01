@@ -4,13 +4,13 @@ import java.util.Random;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -34,7 +34,7 @@ public class LandSentinelEntity extends MonsterEntity {
 		this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
 		this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
 		this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.25D, true));
+		this.goalSelector.addGoal(1, new MeleeAttackGoal());
 	}
 
 	public boolean canBreatheUnderwater() {
@@ -65,6 +65,30 @@ public class LandSentinelEntity extends MonsterEntity {
 	
 	protected void playStepSound(BlockPos pos, BlockState blockIn) {
 		this.playSound(SoundEvents.BLOCK_STONE_STEP, 0.15F, 1.0F);
+	}
+	
+	class MeleeAttackGoal extends net.minecraft.entity.ai.goal.MeleeAttackGoal {
+		public MeleeAttackGoal() {
+			super(LandSentinelEntity.this, 1.25D, true);
+		}
+
+		public boolean shouldContinueExecuting() {
+			float f = this.attacker.getBrightness();
+			if (f >= 0.5F && this.attacker.getRNG().nextInt(100) == 0) {
+				this.attacker.setAttackTarget((LivingEntity)null);
+				return false;
+			} else {
+				return super.shouldContinueExecuting();
+			}
+		}
+
+		public void resetTask() {
+			super.resetTask();
+		}
+
+		protected double getAttackReachSqr(LivingEntity attackTarget) {
+			return (double)(6F + attackTarget.getWidth());
+		}
 	}
 
 }

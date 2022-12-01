@@ -101,6 +101,11 @@ import superlord.prehistoricfauna.common.entities.jurassic.morrison.DryosaurusEn
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.EilenodonEntity;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.HesperornithoidesEntity;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.StegosaurusEntity;
+import superlord.prehistoricfauna.common.entities.triassic.chinle.CoelophysisEntity;
+import superlord.prehistoricfauna.common.entities.triassic.chinle.DesmatosuchusEntity;
+import superlord.prehistoricfauna.common.entities.triassic.chinle.PlaceriasEntity;
+import superlord.prehistoricfauna.common.entities.triassic.chinle.TrilophosaurusEntity;
+import superlord.prehistoricfauna.common.entities.triassic.chinle.TypothoraxEntity;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEffects;
@@ -116,7 +121,7 @@ public class SaurosuchusEntity extends DinosaurEntity {
 	private static final DataParameter<Boolean> MELANISTIC = EntityDataManager.createKey(SaurosuchusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> NATURAL_LOVE = EntityDataManager.createKey(SaurosuchusEntity.class, DataSerializers.BOOLEAN);
 	private int currentHunger;
-	private int maxHunger = 50;
+	private int maxHunger = 75;
 	private int lastInLove = 0;
 	int hungerTick = 0;
 	private int warningSoundTicks;
@@ -152,7 +157,7 @@ public class SaurosuchusEntity extends DinosaurEntity {
 	private void setInLoveNaturally(boolean isInLoveNaturally) {
 		this.dataManager.set(NATURAL_LOVE, isInLoveNaturally);
 	}
-	
+
 	public boolean isAlbino() {
 		return this.dataManager.get(ALBINO);
 	}
@@ -193,7 +198,7 @@ public class SaurosuchusEntity extends DinosaurEntity {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.attackAnimals = new HuntGoal(this, AnimalEntity.class, 10, false, false, (p_213487_1_) -> {
-			return p_213487_1_ instanceof AepyornithomimusEntity || p_213487_1_ instanceof BasilemysEntity || p_213487_1_ instanceof ChromogisaurusEntity || p_213487_1_ instanceof CitipatiEntity || p_213487_1_ instanceof DidelphodonEntity || p_213487_1_ instanceof DryosaurusEntity || p_213487_1_ instanceof EilenodonEntity || p_213487_1_ instanceof ExaeretodonEntity || p_213487_1_ instanceof HerrerasaurusEntity || p_213487_1_ instanceof HesperornithoidesEntity || p_213487_1_ instanceof HyperodapedonEntity || p_213487_1_ instanceof IschigualastiaEntity || p_213487_1_ instanceof PlesiohadrosEntity || p_213487_1_ instanceof ProtoceratopsEntity || p_213487_1_ instanceof TelmasaurusEntity || p_213487_1_ instanceof ThescelosaurusEntity || p_213487_1_ instanceof VelociraptorEntity || p_213487_1_ instanceof CatEntity || p_213487_1_ instanceof OcelotEntity || p_213487_1_ instanceof ChickenEntity || p_213487_1_ instanceof CowEntity || p_213487_1_ instanceof AbstractHorseEntity || p_213487_1_ instanceof FoxEntity || p_213487_1_ instanceof MooshroomEntity || p_213487_1_ instanceof ParrotEntity || p_213487_1_ instanceof PigEntity || p_213487_1_ instanceof RabbitEntity || p_213487_1_ instanceof AbstractVillagerEntity || p_213487_1_ instanceof WanderingTraderEntity || p_213487_1_ instanceof AbstractIllagerEntity || p_213487_1_ instanceof PlayerEntity || p_213487_1_ instanceof LlamaEntity || p_213487_1_ instanceof WolfEntity || p_213487_1_ instanceof TurtleEntity || p_213487_1_ instanceof ScutellosaurusEntity || p_213487_1_ instanceof ScelidosaurusEntity || p_213487_1_ instanceof SheepEntity || p_213487_1_ instanceof SarahsaurusEntity || p_213487_1_ instanceof KayentatheriumEntity || p_213487_1_ instanceof MegapnosaurusEntity;
+			return p_213487_1_ instanceof AepyornithomimusEntity || p_213487_1_ instanceof BasilemysEntity || p_213487_1_ instanceof ChromogisaurusEntity || p_213487_1_ instanceof CitipatiEntity || p_213487_1_ instanceof DidelphodonEntity || p_213487_1_ instanceof DryosaurusEntity || p_213487_1_ instanceof EilenodonEntity || p_213487_1_ instanceof ExaeretodonEntity || p_213487_1_ instanceof HerrerasaurusEntity || p_213487_1_ instanceof HesperornithoidesEntity || p_213487_1_ instanceof HyperodapedonEntity || p_213487_1_ instanceof IschigualastiaEntity || p_213487_1_ instanceof PlesiohadrosEntity || p_213487_1_ instanceof ProtoceratopsEntity || p_213487_1_ instanceof TelmasaurusEntity || p_213487_1_ instanceof ThescelosaurusEntity || p_213487_1_ instanceof VelociraptorEntity || p_213487_1_ instanceof CatEntity || p_213487_1_ instanceof OcelotEntity || p_213487_1_ instanceof ChickenEntity || p_213487_1_ instanceof CowEntity || p_213487_1_ instanceof AbstractHorseEntity || p_213487_1_ instanceof FoxEntity || p_213487_1_ instanceof MooshroomEntity || p_213487_1_ instanceof ParrotEntity || p_213487_1_ instanceof PigEntity || p_213487_1_ instanceof RabbitEntity || p_213487_1_ instanceof AbstractVillagerEntity || p_213487_1_ instanceof WanderingTraderEntity || p_213487_1_ instanceof AbstractIllagerEntity || p_213487_1_ instanceof PlayerEntity || p_213487_1_ instanceof LlamaEntity || p_213487_1_ instanceof WolfEntity || p_213487_1_ instanceof TurtleEntity || p_213487_1_ instanceof ScutellosaurusEntity || p_213487_1_ instanceof ScelidosaurusEntity || p_213487_1_ instanceof SheepEntity || p_213487_1_ instanceof SarahsaurusEntity || p_213487_1_ instanceof KayentatheriumEntity || p_213487_1_ instanceof MegapnosaurusEntity || p_213487_1_ instanceof CoelophysisEntity || p_213487_1_ instanceof DesmatosuchusEntity || p_213487_1_ instanceof PlaceriasEntity || p_213487_1_ instanceof TrilophosaurusEntity || p_213487_1_ instanceof TypothoraxEntity;
 		});
 		this.goalSelector.addGoal(1, new SaurosuchusEntity.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new SaurosuchusEntity.PanicGoal());
@@ -216,13 +221,13 @@ public class SaurosuchusEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(9, new AvoidEntityGoal<TyrannosaurusEntity>(this, TyrannosaurusEntity.class, 7F, 1.25D, 1.25D));
 		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
 		this.targetSelector.addGoal(0, new SaurosuchusEntity.CarnivoreHuntGoal(this, LivingEntity.class, 10, true, false, (p_213487_1_) -> {
-			return p_213487_1_ instanceof AepyornithomimusEntity || p_213487_1_ instanceof BasilemysEntity || p_213487_1_ instanceof ChromogisaurusEntity || p_213487_1_ instanceof CitipatiEntity || p_213487_1_ instanceof DidelphodonEntity || p_213487_1_ instanceof DryosaurusEntity || p_213487_1_ instanceof EilenodonEntity || p_213487_1_ instanceof ExaeretodonEntity || p_213487_1_ instanceof HerrerasaurusEntity || p_213487_1_ instanceof HesperornithoidesEntity || p_213487_1_ instanceof HyperodapedonEntity || p_213487_1_ instanceof IschigualastiaEntity || p_213487_1_ instanceof PlesiohadrosEntity || p_213487_1_ instanceof ProtoceratopsEntity || p_213487_1_ instanceof TelmasaurusEntity || p_213487_1_ instanceof ThescelosaurusEntity || p_213487_1_ instanceof VelociraptorEntity || p_213487_1_ instanceof CatEntity || p_213487_1_ instanceof OcelotEntity || p_213487_1_ instanceof ChickenEntity || p_213487_1_ instanceof CowEntity || p_213487_1_ instanceof AbstractHorseEntity || p_213487_1_ instanceof FoxEntity || p_213487_1_ instanceof MooshroomEntity || p_213487_1_ instanceof ParrotEntity || p_213487_1_ instanceof PigEntity || p_213487_1_ instanceof RabbitEntity || p_213487_1_ instanceof AbstractVillagerEntity || p_213487_1_ instanceof WanderingTraderEntity || p_213487_1_ instanceof AbstractIllagerEntity || p_213487_1_ instanceof PlayerEntity || p_213487_1_ instanceof LlamaEntity || p_213487_1_ instanceof WolfEntity || p_213487_1_ instanceof TurtleEntity || p_213487_1_ instanceof ScutellosaurusEntity || p_213487_1_ instanceof ScelidosaurusEntity || p_213487_1_ instanceof SheepEntity || p_213487_1_ instanceof SarahsaurusEntity || p_213487_1_ instanceof KayentatheriumEntity || p_213487_1_ instanceof MegapnosaurusEntity;
+			return p_213487_1_ instanceof AepyornithomimusEntity || p_213487_1_ instanceof BasilemysEntity || p_213487_1_ instanceof ChromogisaurusEntity || p_213487_1_ instanceof CitipatiEntity || p_213487_1_ instanceof DidelphodonEntity || p_213487_1_ instanceof DryosaurusEntity || p_213487_1_ instanceof EilenodonEntity || p_213487_1_ instanceof ExaeretodonEntity || p_213487_1_ instanceof HerrerasaurusEntity || p_213487_1_ instanceof HesperornithoidesEntity || p_213487_1_ instanceof HyperodapedonEntity || p_213487_1_ instanceof IschigualastiaEntity || p_213487_1_ instanceof PlesiohadrosEntity || p_213487_1_ instanceof ProtoceratopsEntity || p_213487_1_ instanceof TelmasaurusEntity || p_213487_1_ instanceof ThescelosaurusEntity || p_213487_1_ instanceof VelociraptorEntity || p_213487_1_ instanceof CatEntity || p_213487_1_ instanceof OcelotEntity || p_213487_1_ instanceof ChickenEntity || p_213487_1_ instanceof CowEntity || p_213487_1_ instanceof AbstractHorseEntity || p_213487_1_ instanceof FoxEntity || p_213487_1_ instanceof MooshroomEntity || p_213487_1_ instanceof ParrotEntity || p_213487_1_ instanceof PigEntity || p_213487_1_ instanceof RabbitEntity || p_213487_1_ instanceof AbstractVillagerEntity || p_213487_1_ instanceof WanderingTraderEntity || p_213487_1_ instanceof AbstractIllagerEntity || p_213487_1_ instanceof PlayerEntity || p_213487_1_ instanceof LlamaEntity || p_213487_1_ instanceof WolfEntity || p_213487_1_ instanceof TurtleEntity || p_213487_1_ instanceof ScutellosaurusEntity || p_213487_1_ instanceof ScelidosaurusEntity || p_213487_1_ instanceof SheepEntity || p_213487_1_ instanceof SarahsaurusEntity || p_213487_1_ instanceof KayentatheriumEntity || p_213487_1_ instanceof MegapnosaurusEntity || p_213487_1_ instanceof CoelophysisEntity || p_213487_1_ instanceof DesmatosuchusEntity || p_213487_1_ instanceof PlaceriasEntity || p_213487_1_ instanceof TrilophosaurusEntity || p_213487_1_ instanceof TypothoraxEntity;
 		}));
 		this.targetSelector.addGoal(0, new BabyCarnivoreHuntGoal(this, LivingEntity.class, 10, true, false, (p_213487_1_) -> {
 			return p_213487_1_ instanceof DidelphodonEntity || p_213487_1_ instanceof EilenodonEntity || p_213487_1_ instanceof HyperodapedonEntity || p_213487_1_ instanceof TelmasaurusEntity || p_213487_1_ instanceof RabbitEntity || p_213487_1_ instanceof ChickenEntity || p_213487_1_ instanceof HesperornithoidesEntity || p_213487_1_ instanceof ScutellosaurusEntity;
 		}));
 	}
-	
+
 	public void livingTick() {
 		super.livingTick();
 		if (this.isAsleep()) {
@@ -230,29 +235,44 @@ public class SaurosuchusEntity extends DinosaurEntity {
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.25D);
 		}
-		List<SaurosuchusEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
-		if (PrehistoricFaunaConfig.advancedHunger) {
-			hungerTick++;
-			if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
-				hungerTick = 0;
-				if (currentHunger != 0 || !this.isAsleep()) {
-					this.setHunger(currentHunger - 1);
+		if (!this.isAIDisabled()) {
+			List<SaurosuchusEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
+			if (PrehistoricFaunaConfig.advancedHunger) {
+				hungerTick++;
+				if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
+					hungerTick = 0;
+					if (currentHunger != 0 || !this.isAsleep()) {
+						this.setHunger(currentHunger - 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
+					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getAttackTarget() == null && this.getRevengeTarget() == null) {
+						float currentHealth = this.getHealth();
+						this.setHealth(currentHealth + 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 3) {
+						loveTick = 600;
+						this.setInLoveNaturally(true);
+						this.setInLove(600);
+						lastInLove = 28800;
+					}
+					if (loveTick != 0) {
+						loveTick--;
+					} else {
+						this.setInLoveNaturally(false);
+					}
 				}
-			}
-			if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-				if (this.getHealth() < this.getMaxHealth()) {
-					float currentHealth = this.getHealth();
-					this.setHealth(currentHealth + 1);
-				}
-			}
-			if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 3) {
+			} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+				int naturalBreedingChance = rand.nextInt(1000);
+				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 3) {
 					loveTick = 600;
 					this.setInLoveNaturally(true);
 					this.setInLove(600);
@@ -264,29 +284,16 @@ public class SaurosuchusEntity extends DinosaurEntity {
 					this.setInLoveNaturally(false);
 				}
 			}
-		} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-			int naturalBreedingChance = rand.nextInt(1000);
-			if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 3) {
-				loveTick = 600;
-				this.setInLoveNaturally(true);
-				this.setInLove(600);
-				lastInLove = 28800;
+			if (lastInLove != 0) {
+				lastInLove--;
 			}
-			if (loveTick != 0) {
-				loveTick--;
-			} else {
-				this.setInLoveNaturally(false);
-			}
-		}
-		if (lastInLove != 0) {
-			lastInLove--;
 		}
 	}
-	
+
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 6.0D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.1D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 30.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 6.0D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.1D);
 	}
-	
+
 	protected SoundEvent getAmbientSound() {
 		return this.isAsleep() ? null : SoundInit.SAUROSUCHUS_IDLE;
 	}
@@ -313,7 +320,7 @@ public class SaurosuchusEntity extends DinosaurEntity {
 	public void setSleeping(boolean p_213485_1_) {
 		this.setSaurosuchusFlag(32, p_213485_1_);
 	}
-	
+
 	protected void registerData() {
 		super.registerData();
 		this.dataManager.register(HAS_EGG, false);
@@ -323,7 +330,7 @@ public class SaurosuchusEntity extends DinosaurEntity {
 		this.dataManager.register(MELANISTIC, false);
 		this.dataManager.register(NATURAL_LOVE, false);
 	}
-	
+
 	public void writeAdditional(CompoundNBT compound) {
 		super.writeAdditional(compound);
 		compound.putBoolean("IsSleeping", this.isSleeping());
@@ -334,7 +341,7 @@ public class SaurosuchusEntity extends DinosaurEntity {
 		compound.putInt("MaxHunger", this.currentHunger);
 		compound.putBoolean("InNaturalLove", this.isInLoveNaturally());
 	}
-	
+
 	private void setSaurosuchusFlag(int p_213505_1_, boolean p_213505_2_) {
 		if (p_213505_2_) {
 			this.dataManager.set(SAUROSUCHUS_FLAGS, (byte)(this.dataManager.get(SAUROSUCHUS_FLAGS) | p_213505_1_));
@@ -342,11 +349,11 @@ public class SaurosuchusEntity extends DinosaurEntity {
 			this.dataManager.set(SAUROSUCHUS_FLAGS, (byte)(this.dataManager.get(SAUROSUCHUS_FLAGS) & ~p_213505_1_));
 		}
 	}
-	
+
 	private boolean getSaurosuchusFlag(int p_213507_1_) {
 		return (this.dataManager.get(SAUROSUCHUS_FLAGS) & p_213507_1_) != 0;
 	}
-	
+
 	public void readAdditional(CompoundNBT compound) {
 		super.readAdditional(compound);
 		this.setSleeping(compound.getBoolean("IsSleeping"));
@@ -356,7 +363,7 @@ public class SaurosuchusEntity extends DinosaurEntity {
 		this.setHunger(compound.getInt("MaxHunger"));
 		this.setInLoveNaturally(compound.getBoolean("InNaturalLove"));
 	}
-	
+
 	@Nullable
 	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		Random rand = new Random();
@@ -366,10 +373,10 @@ public class SaurosuchusEntity extends DinosaurEntity {
 		} else if (birthNumber >= 4 && birthNumber < 7) {
 			this.setMelanistic(true);
 		}
-		this.setHunger(50);
+		this.setHunger(this.maxHunger);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
-	
+
 	public boolean onAttackAnimationFinish(Entity entityIn) {
 		boolean flag = super.onAttackAnimationFinish(entityIn);
 		if (flag) {
@@ -378,12 +385,12 @@ public class SaurosuchusEntity extends DinosaurEntity {
 		}
 		return flag;
 	}
-	
+
 	class AttackPlayerGoal extends NearestAttackableTargetGoal<PlayerEntity> {
 		public AttackPlayerGoal() {
 			super(SaurosuchusEntity.this, PlayerEntity.class, 20, true, true, (Predicate<LivingEntity>)null);
 		}
-		
+
 		public boolean shouldExecute() {
 			if (SaurosuchusEntity.this.isChild()) {
 				return false;
@@ -398,18 +405,18 @@ public class SaurosuchusEntity extends DinosaurEntity {
 				return false;
 			}
 		}
-		
+
 		protected double getTargetDistance() {
 			return super.getTargetDistance() * 0.5D;
 		}	
-		
+
 	}
-	
+
 	class HurtByTargetGoal extends net.minecraft.entity.ai.goal.HurtByTargetGoal {
 		public HurtByTargetGoal() {
 			super(SaurosuchusEntity.this);
 		}
-		
+
 		public void startExecuting() {
 			super.startExecuting();
 			if(SaurosuchusEntity.this.isChild()) {
@@ -417,15 +424,15 @@ public class SaurosuchusEntity extends DinosaurEntity {
 				this.resetTask();
 			}
 		}
-		
+
 		protected void setAttackTarget(MobEntity entity, LivingEntity target) {
 			if (entity instanceof SaurosuchusEntity && !entity.isChild()) {
 				super.setAttackTarget(entity, target);
 			}
 		}
-		
+
 	}
-	
+
 	class MeleeAttackGoal extends net.minecraft.entity.ai.goal.MeleeAttackGoal {
 		public MeleeAttackGoal() {
 			super(SaurosuchusEntity.this, 1.25D, true);
@@ -468,34 +475,34 @@ public class SaurosuchusEntity extends DinosaurEntity {
 			return (double)(6.0F + attackTarget.getWidth());
 		}
 	}
-	
+
 	class PanicGoal extends net.minecraft.entity.ai.goal.PanicGoal {
 		public PanicGoal() {
 			super(SaurosuchusEntity.this, 2.0D);
 		}
-		
+
 		public boolean shouldExecute() {
 			return !SaurosuchusEntity.this.isChild() && !SaurosuchusEntity.this.isBurning() ? false : super.shouldExecute();
 		}
-		
+
 	}
-	
+
 	static class LayEggGoal extends MoveToBlockGoal {
 		private final SaurosuchusEntity saurosuchus;
-		
+
 		LayEggGoal(SaurosuchusEntity saurosuchus, double speed) {
 			super(saurosuchus, speed, 16);
 			this.saurosuchus = saurosuchus;
 		}
-		
+
 		public boolean shouldExecute() {
 			return this.saurosuchus.hasEgg() ? super.shouldExecute() : false;
 		}
-		
+
 		public boolean shouldContinueExecuting() {
 			return super.shouldContinueExecuting() && saurosuchus.hasEgg();
 		}
-		
+
 		public void tick() {
 			super.tick();
 			BlockPos blockpos = new BlockPos(this.saurosuchus.getPositionVec());
@@ -515,7 +522,7 @@ public class SaurosuchusEntity extends DinosaurEntity {
 				}
 			}
 		}
-		
+
 		public boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
 			if (!worldIn.isAirBlock(pos.up())) {
 				return false;
@@ -524,21 +531,21 @@ public class SaurosuchusEntity extends DinosaurEntity {
 				return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.MYCELIUM || block == Blocks.SAND || block == Blocks.RED_SAND || block == PFBlocks.MOSSY_DIRT || block == PFBlocks.MOSS_BLOCK || block == PFBlocks.LOAM || block == PFBlocks.PACKED_LOAM || block == PFBlocks.SILT || block == PFBlocks.PACKED_LOAM || block == BlockTags.LEAVES;
 			}
 		}
-		
+
 	}
-	
+
 	static class MateGoal extends BreedGoal {
 		private final SaurosuchusEntity saurosuchus;
-		
+
 		MateGoal(SaurosuchusEntity saurosuchus, double speed) {
 			super(saurosuchus, speed);
 			this.saurosuchus = saurosuchus;
 		}
-		
+
 		public boolean shouldExecute() {
 			return super.shouldExecute() && !this.saurosuchus.hasEgg() && !this.saurosuchus.isInLoveNaturally();
 		}
-		
+
 		protected void spawnBaby() {
 			ServerPlayerEntity serverPlayerEntity = this.animal.getLoveCause();
 			if (serverPlayerEntity == null && this.targetMate.getLoveCause() == null) {
@@ -556,7 +563,7 @@ public class SaurosuchusEntity extends DinosaurEntity {
 				this.world.addEntity(new ExperienceOrbEntity(this.world, this.animal.getPosX(), this.animal.getPosY(), this.animal.getPosZ(), random.nextInt(7) + 1));
 			}
 		}
-		
+
 	}
 
 	static class NaturalMateGoal extends BreedGoal {
@@ -601,25 +608,25 @@ public class SaurosuchusEntity extends DinosaurEntity {
 		}
 
 	}
-	
+
 	abstract class BaseGoal extends Goal {
 		private final EntityPredicate field_220816_b = (new EntityPredicate()).setDistance(12.0D).setLineOfSiteRequired().setCustomPredicate(SaurosuchusEntity.this.new AlertablePredicate());
-		
+
 		private BaseGoal() {
-			
+
 		}
-		
+
 		protected boolean func_220813_g() {
 			BlockPos blockpos = new BlockPos(SaurosuchusEntity.this.getPositionVec());
 			return !SaurosuchusEntity.this.world.canSeeSky(blockpos) && SaurosuchusEntity.this.getBlockPathWeight(blockpos) >= 0.0F;
 		}
-		
+
 		protected boolean func_220814_h() {
 			return !SaurosuchusEntity.this.world.getTargettableEntitiesWithinAABB(LivingEntity.class, this.field_220816_b, SaurosuchusEntity.this, SaurosuchusEntity.this.getBoundingBox().grow(12.0D, 6.0D, 12.0D)).isEmpty();
 		}
-		
+
 	}
-	
+
 	public class AlertablePredicate implements Predicate<LivingEntity> {
 		public boolean test(LivingEntity p_test_1_) {
 			if (p_test_1_ instanceof SaurosuchusEntity) {
@@ -637,7 +644,7 @@ public class SaurosuchusEntity extends DinosaurEntity {
 			}
 		}
 	}
-	
+
 	class SleepGoal extends SaurosuchusEntity.BaseGoal {
 		private int field_220825_c = SaurosuchusEntity.this.rand.nextInt(140);
 
@@ -685,7 +692,7 @@ public class SaurosuchusEntity extends DinosaurEntity {
 		entity.onInitialSpawn(p_241840_1_, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
 		return entity;
 	}     
-	
+
 	@SuppressWarnings("rawtypes")
 	public class CarnivoreHuntGoal extends NearestAttackableTargetGoal {
 
@@ -722,7 +729,7 @@ public class SaurosuchusEntity extends DinosaurEntity {
 					}
 				}
 			}
-			if (target instanceof BasilemysEntity || target instanceof ChromogisaurusEntity || target instanceof ExaeretodonEntity || target instanceof TelmasaurusEntity || target instanceof ParrotEntity || target instanceof KayentatheriumEntity || target instanceof MegapnosaurusEntity) {
+			if (target instanceof ChromogisaurusEntity || target instanceof TelmasaurusEntity || target instanceof ParrotEntity || target instanceof KayentatheriumEntity || target instanceof MegapnosaurusEntity) {
 				if (target.getHealth() == 0) {
 					if (SaurosuchusEntity.this.getCurrentHunger() + 6 >= SaurosuchusEntity.this.maxHunger) {
 						SaurosuchusEntity.this.setHunger(SaurosuchusEntity.this.maxHunger);
@@ -731,7 +738,7 @@ public class SaurosuchusEntity extends DinosaurEntity {
 					}
 				}
 			}
-			if (target instanceof VelociraptorEntity || target instanceof WolfEntity || target instanceof SheepEntity) {
+			if (target instanceof BasilemysEntity || target instanceof ExaeretodonEntity || target instanceof VelociraptorEntity || target instanceof WolfEntity || target instanceof SheepEntity) {
 				if (target.getHealth() == 0) {
 					if (SaurosuchusEntity.this.getCurrentHunger() + 8 >= SaurosuchusEntity.this.maxHunger) {
 						SaurosuchusEntity.this.setHunger(SaurosuchusEntity.this.maxHunger);
@@ -740,7 +747,7 @@ public class SaurosuchusEntity extends DinosaurEntity {
 					}
 				}
 			}
-			if (target instanceof CatEntity || target instanceof FoxEntity || target instanceof CowEntity || target instanceof MooshroomEntity || target instanceof PigEntity || target instanceof OcelotEntity || target instanceof AepyornithomimusEntity || target instanceof DryosaurusEntity || target instanceof ProtoceratopsEntity || target instanceof ThescelosaurusEntity || target instanceof ScelidosaurusEntity || target instanceof SarahsaurusEntity) {
+			if (target instanceof CatEntity || target instanceof FoxEntity || target instanceof CowEntity || target instanceof MooshroomEntity || target instanceof PigEntity || target instanceof OcelotEntity || target instanceof AepyornithomimusEntity || target instanceof ProtoceratopsEntity || target instanceof CoelophysisEntity || target instanceof TrilophosaurusEntity || target instanceof TypothoraxEntity) {
 				if (target.getHealth() == 0) {
 					if (SaurosuchusEntity.this.getCurrentHunger() + 10 >= SaurosuchusEntity.this.maxHunger) {
 						SaurosuchusEntity.this.setHunger(SaurosuchusEntity.this.maxHunger);
@@ -749,7 +756,7 @@ public class SaurosuchusEntity extends DinosaurEntity {
 					}
 				}
 			}
-			if (target instanceof CitipatiEntity || target instanceof HerrerasaurusEntity) {
+			if (target instanceof CitipatiEntity || target instanceof ThescelosaurusEntity || target instanceof ScelidosaurusEntity || target instanceof SarahsaurusEntity || target instanceof DryosaurusEntity) {
 				if (target.getHealth() == 0) {
 					if (SaurosuchusEntity.this.getCurrentHunger() + 15 >= SaurosuchusEntity.this.maxHunger) {
 						SaurosuchusEntity.this.setHunger(SaurosuchusEntity.this.maxHunger);
@@ -758,7 +765,7 @@ public class SaurosuchusEntity extends DinosaurEntity {
 					}
 				}
 			}
-			if (target instanceof AbstractHorseEntity || target instanceof WanderingTraderEntity || target instanceof PlayerEntity || target instanceof AbstractVillagerEntity || target instanceof AbstractIllagerEntity || target instanceof LlamaEntity || target instanceof PandaEntity) {
+			if (target instanceof AbstractHorseEntity || target instanceof HerrerasaurusEntity || target instanceof PlaceriasEntity || target instanceof WanderingTraderEntity || target instanceof PlayerEntity || target instanceof AbstractVillagerEntity || target instanceof AbstractIllagerEntity || target instanceof LlamaEntity || target instanceof PandaEntity || target instanceof DesmatosuchusEntity) {
 				if (target.getHealth() == 0) {
 					if (SaurosuchusEntity.this.getCurrentHunger() + 20 >= SaurosuchusEntity.this.maxHunger) {
 						SaurosuchusEntity.this.setHunger(SaurosuchusEntity.this.maxHunger);
@@ -767,7 +774,7 @@ public class SaurosuchusEntity extends DinosaurEntity {
 					}
 				}
 			}
-			if (target instanceof IschigualastiaEntity || target instanceof PlesiohadrosEntity || target instanceof TurtleEntity) {
+			if (target instanceof TurtleEntity) {
 				if (target.getHealth() == 0) {
 					if (SaurosuchusEntity.this.getCurrentHunger() + 30 >= SaurosuchusEntity.this.maxHunger) {
 						SaurosuchusEntity.this.setHunger(SaurosuchusEntity.this.maxHunger);
@@ -776,11 +783,20 @@ public class SaurosuchusEntity extends DinosaurEntity {
 					}
 				}
 			}
+			if (target instanceof IschigualastiaEntity || target instanceof PlesiohadrosEntity) {
+				if (target.getHealth() == 0) {
+					if (SaurosuchusEntity.this.getCurrentHunger() + 40 >= SaurosuchusEntity.this.maxHunger) {
+						SaurosuchusEntity.this.setHunger(SaurosuchusEntity.this.maxHunger);
+					} else {
+						SaurosuchusEntity.this.setHunger(currentHunger + 40);
+					}
+				}
+			}
 			super.tick();
 		}
 
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public class BabyCarnivoreHuntGoal extends NearestAttackableTargetGoal {
 
@@ -830,5 +846,5 @@ public class SaurosuchusEntity extends DinosaurEntity {
 		}
 
 	}
-	
+
 }

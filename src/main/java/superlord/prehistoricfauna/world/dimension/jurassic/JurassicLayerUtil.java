@@ -12,6 +12,7 @@ import net.minecraft.world.gen.area.IAreaFactory;
 import net.minecraft.world.gen.area.LazyArea;
 import net.minecraft.world.gen.layer.Layer;
 import net.minecraft.world.gen.layer.LayerUtil;
+import net.minecraft.world.gen.layer.SmoothLayer;
 import net.minecraft.world.gen.layer.ZoomLayer;
 
 public class JurassicLayerUtil {
@@ -34,8 +35,12 @@ public class JurassicLayerUtil {
 		biomes = ZoomLayer.NORMAL.apply(contextFactory.apply(1003), biomes);
 		biomes = ZoomLayer.NORMAL.apply(contextFactory.apply(1004), biomes);
 		biomes = ZoomLayer.NORMAL.apply(contextFactory.apply(1005), biomes);
-
+		
 		biomes = LayerUtil.repeat(1000L, ZoomLayer.NORMAL, biomes, 1, contextFactory);
+		
+		IAreaFactory<T> riverLayer = JurassicRiverLayer.INSTANCE.apply(contextFactory.apply(1L), biomes);
+		riverLayer = SmoothLayer.INSTANCE.apply(contextFactory.apply(7000L), riverLayer);
+		biomes = JurassicRiverMixLayer.INSTANCE.apply(contextFactory.apply(100L), biomes, riverLayer);
 		
 		return biomes;
 	}

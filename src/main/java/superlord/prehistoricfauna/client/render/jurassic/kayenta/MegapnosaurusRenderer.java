@@ -10,7 +10,9 @@ import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.jurassic.kayenta.MegapnosaurusModel;
 import superlord.prehistoricfauna.client.model.jurassic.kayenta.MegapnosaurusSleepingModel;
+import superlord.prehistoricfauna.client.render.layer.MegapnosaurusEyeLayer;
 import superlord.prehistoricfauna.common.entities.jurassic.kayenta.MegapnosaurusEntity;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class MegapnosaurusRenderer extends MobRenderer<MegapnosaurusEntity, EntityModel<MegapnosaurusEntity>> {
 
@@ -25,6 +27,9 @@ public class MegapnosaurusRenderer extends MobRenderer<MegapnosaurusEntity, Enti
 
 	public MegapnosaurusRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), MEGAPNOSAURUS_MODEL, 0.625F);
+		if (PrehistoricFaunaConfig.eyeShine) {
+			this.addLayer(new MegapnosaurusEyeLayer(this));
+		}
 	}
 
 	public void render(MegapnosaurusEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
@@ -45,15 +50,15 @@ public class MegapnosaurusRenderer extends MobRenderer<MegapnosaurusEntity, Enti
 	@Override
 	public ResourceLocation getEntityTexture(MegapnosaurusEntity entity) {
 		if (entity.isAlbino()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return ALBINO_SLEEPING;
 			} else return ALBINO;
 		} else if (entity.isMelanistic()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return MELANISTIC_SLEEPING;
 			}else return MELANISTIC;
 		} else {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return MEGAPNOSAURUS_SLEEPING;
 			} else return MEGAPNOSAURUS;
 		}

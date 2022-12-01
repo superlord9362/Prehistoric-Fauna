@@ -45,15 +45,15 @@ public class HesperornithoidesRenderer extends MobRenderer<HesperornithoidesEnti
 	@Override
 	public ResourceLocation getEntityTexture(HesperornithoidesEntity entity) {
 		if (entity.isAlbino()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return ALBINO_SLEEPING;
 			} else return ALBINO;
 		} else if (entity.isMelanistic()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return MELANISTIC_SLEEPING;
 			} else return MELANISTIC;
 		} else {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return HESPERORNITHOIDES_SLEEPING;
 			} else return HESPERORNITHOIDES;
 		}

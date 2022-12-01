@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "prehistoricfauna:block/neocalamites_mosaic_slab" },
+        "type=top": { "model": "prehistoricfauna:block/neocalamites_mosaic_slab_top" },
+        "type=double": { "model": "prehistoricfauna:block/neocalamites_mosaic" }
+    }
+}

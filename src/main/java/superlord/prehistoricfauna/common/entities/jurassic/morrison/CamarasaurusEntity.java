@@ -88,7 +88,7 @@ public class CamarasaurusEntity extends DinosaurEntity {
 		this.isDigging = isDigging ? 1 : 0;
 		this.dataManager.set(IS_DIGGING, isDigging);
 	}
-	
+
 	public boolean isJuvenile() {
 		return this.dataManager.get(IS_JUVENILE);
 	}
@@ -128,7 +128,7 @@ public class CamarasaurusEntity extends DinosaurEntity {
 	private void setInLoveNaturally(boolean isInLoveNaturally) {
 		this.dataManager.set(NATURAL_LOVE, isInLoveNaturally);
 	}
-	
+
 	public int getCurrentHunger() {
 		return this.currentHunger;
 	}
@@ -176,7 +176,7 @@ public class CamarasaurusEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(1, new DiurnalSleepingGoal(this));
 		this.goalSelector.addGoal(0, new CamarasaurusEntity.HerbivoreEatGoal((double)1.2F, 12, 2));
 	}
-	
+
 	@Override
 	public void setGrowingAge(int age) {
 		super.setGrowingAge(age);
@@ -247,13 +247,20 @@ public class CamarasaurusEntity extends DinosaurEntity {
 			--this.warningSoundTicks;
 		}
 	}
-	
+
 	@Override
 	public void livingTick() {
+		if (this.isChild() && !this.isJuvenile()) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(50.0D);
+		} else if (this.isJuvenile()) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(100.0D);
+		} else {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(200.0D);
+		}
 		super.livingTick();
 		if (this.getMotion().x != 0 && !this.isChild() || this.getMotion().z != 0  && !this.isChild() || this.getMotion().y != 0 && !this.isChild() ) {
-			for (Entity entity : this.world.getEntitiesWithinAABB(LivingEntity.class, this.getBoundingBox().grow(1, 0, 1))) {
-				if (!(entity instanceof CamarasaurusEntity)) {
+			for (LivingEntity entity : this.world.getEntitiesWithinAABB(LivingEntity.class, this.getBoundingBox().grow(3, 0, 3))) {
+				if (!(entity instanceof CamarasaurusEntity) && entity.getMaxHealth() < 60) {
 					entity.attackEntityFrom(PFCustomDamageSource.SAUROPOD_TRAMPLING, (float) 5.0D);
 				}
 			}
@@ -263,29 +270,44 @@ public class CamarasaurusEntity extends DinosaurEntity {
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.22D);
 		}
-		List<CamarasaurusEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
-		if (PrehistoricFaunaConfig.advancedHunger) {
-			hungerTick++;
-			if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
-				hungerTick = 0;
-				if (currentHunger != 0 || !this.isAsleep()) {
-					this.setHunger(currentHunger - 1);
+		if (!this.isAIDisabled()) {
+			List<CamarasaurusEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
+			if (PrehistoricFaunaConfig.advancedHunger) {
+				hungerTick++;
+				if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
+					hungerTick = 0;
+					if (currentHunger != 0 || !this.isAsleep()) {
+						this.setHunger(currentHunger - 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
+					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getAttackTarget() == null && this.getRevengeTarget() == null) {
+						float currentHealth = this.getHealth();
+						this.setHealth(currentHealth + 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 10) {
+						loveTick = 600;
+						this.setInLoveNaturally(true);
+						this.setInLove(600);
+						lastInLove = 28800;
+					}
+					if (loveTick != 0) {
+						loveTick--;
+					} else {
+						this.setInLoveNaturally(false);
+					}
 				}
-			}
-			if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-				if (this.getHealth() < this.getMaxHealth()) {
-					float currentHealth = this.getHealth();
-					this.setHealth(currentHealth + 1);
-				}
-			}
-			if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 10) {
+			} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+				int naturalBreedingChance = rand.nextInt(1000);
+				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 10) {
 					loveTick = 600;
 					this.setInLoveNaturally(true);
 					this.setInLove(600);
@@ -297,26 +319,13 @@ public class CamarasaurusEntity extends DinosaurEntity {
 					this.setInLoveNaturally(false);
 				}
 			}
-		} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-			int naturalBreedingChance = rand.nextInt(1000);
-			if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 10) {
-				loveTick = 600;
-				this.setInLoveNaturally(true);
-				this.setInLove(600);
-				lastInLove = 28800;
+			if (lastInLove != 0) {
+				lastInLove--;
 			}
-			if (loveTick != 0) {
-				loveTick--;
-			} else {
-				this.setInLoveNaturally(false);
-			}
-		}
-		if (lastInLove != 0) {
-			lastInLove--;
 		}
 	}
 
- 
+
 	public boolean onAttackAnimationFinish(Entity entityIn) {
 		boolean flag = super.onAttackAnimationFinish(entityIn);
 		if (flag) {
@@ -360,7 +369,7 @@ public class CamarasaurusEntity extends DinosaurEntity {
 		} else if (birthNumber >= 4 && birthNumber < 7) {
 			this.setMelanistic(true);
 		}
-		this.setHunger(500);
+		this.setHunger(this.maxHunger);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
@@ -515,7 +524,7 @@ public class CamarasaurusEntity extends DinosaurEntity {
 			}
 		}
 	}
-	
+
 	static class NaturalMateGoal extends BreedGoal {
 		private final CamarasaurusEntity camarasaurus;
 
@@ -565,7 +574,7 @@ public class CamarasaurusEntity extends DinosaurEntity {
 		entity.onInitialSpawn((IServerWorld) world, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
 		return entity;
 	}
-	
+
 	class CamarasaurusFollowParentGoal extends Goal {
 		private final CamarasaurusEntity babyCamarasaurusEntity;
 		private CamarasaurusEntity parentCamarasaurusEntity;
@@ -632,7 +641,7 @@ public class CamarasaurusEntity extends DinosaurEntity {
 			}
 		}
 	}
-	
+
 	public class HerbivoreEatGoal extends MoveToBlockGoal {
 		protected int field_220731_g;
 

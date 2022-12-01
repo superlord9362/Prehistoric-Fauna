@@ -119,6 +119,36 @@
 				}
 			]
 		}
+	},
+	"agathoxylon": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:agathoxylon_log"
+				}
+			]
+		}
+	},
+	"woodworthia": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:woodworthia_log"
+				}
+			]
+		}
+	},
+	"schilderia": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:schilderia_log"
+				}
+			]
+		}
 	}
   },
   "requirements": [
@@ -151,6 +181,15 @@
 	],
 	[
 		"brachyphyllum"
+	],
+	[
+		"agathoxylon"
+	],
+	[
+		"woodworthia"
+	],
+	[
+		"schilderia"
 	]
   ]
 }

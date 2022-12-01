@@ -50,7 +50,79 @@
                   "predicate": {
                     "biome": "prehistoricfauna:morrison_hills"
                   }
-                }
+                },
+				{
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biome": "prehistoricfauna:djadochta_arroyo"
+					}
+				},
+				{
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biome": "prehistoricfauna:djadochta_dunes"
+					}
+				},
+				{
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biome": "prehistoricfauna:kayenta_dry_forest"
+					}
+				},
+				{
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biome": "prehistoricfauna:kayenta_canyon"
+					}
+				},
+				{
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biome": "prehistoricfauna:kayenta_desert"
+					}
+				},
+				{
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biome": "prehistoricfauna:ischigualasto_forest"
+					}
+				},
+				{
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biome": "prehistoricfauna:ischigualasto_clearing"
+					}
+				},
+				{
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biome": "prehistoricfauna:ischigualasto_river"
+					}
+				},
+				{
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biome": "prehistoricfauna:ischigualasto_hills"
+					}
+				},
+				{
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biome": "prehistoricfauna:chinle_flats"
+					}
+				},
+				{
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biome": "prehistoricfauna:chinle_swamp"
+					}
+				},
+				{
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biome": "prehistoricfauna:chinle_wooded_mountains"
+					}
+				}
               ]
             }
           ],
@@ -111,7 +183,31 @@
                   "predicate": {
                     "biome": "prehistoricfauna:hell_creek_river"
                   }
-                }
+                },
+				{
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biome": "prehistoricfauna:chinle_flats"
+					}
+				},
+				{
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biome": "prehistoricfauna:chinle_swamp"
+					}
+				},
+				{
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biome": "prehistoricfauna:chinle_wooded_mountains"
+					}
+				},
+				{
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biome": "prehistoricfauna:kayenta_dry_forest"
+					}
+				}
               ]
             }
           ],

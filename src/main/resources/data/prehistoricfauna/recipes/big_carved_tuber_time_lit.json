@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:time_gem_shard"
+    },
+	{
+		"item": "prehistoricfauna:big_carved_tuber"
+	}
+  ],
+  "result": {
+    "item": "prehistoricfauna:big_carved_tuber_time_lit"
+  }
+}

@@ -61,7 +61,7 @@ public class KayentaButtesBiome extends PFBiome {
 	
 	static {
         DefaultBiomeFeatures.withCavesAndCanyons(GENERATION_SETTINGS);
-		GENERATION_SETTINGS.withFeature(Decoration.UNDERGROUND_ORES, PFConfiguredFeatures.FOSSILIZED_SANDSTONE);
+		GENERATION_SETTINGS.withFeature(Decoration.UNDERGROUND_ORES, PFConfiguredFeatures.JURASSIC_FOSSILIZED_SANDSTONE);
 		PFConfiguredFeatures.addKayentaCanyonVegetation(GENERATION_SETTINGS);
 		if (PrehistoricFaunaConfig.calsoyasuchusKayentaButtesSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.CALSOYASUCHUS_ENTITY, PrehistoricFaunaConfig.calsoyasuchusKayentaButtesSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.dilophosaurusKayentaButtesSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.DILOPHOSAURUS_ENTITY, PrehistoricFaunaConfig.dilophosaurusKayentaButtesSpawnWeight, 1, 2));

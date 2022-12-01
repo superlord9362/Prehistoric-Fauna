@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "prehistoricfauna:thyreophoran_chestplate"
+      "prehistoricfauna:desmatosuchus_chestplate"
     ]
   },
   "criteria": {
@@ -16,17 +16,28 @@
         ]
       }
     },
+	"has_demsatosuchus_spike": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:desmatosuchus_spike"
+				}
+			]
+		}
+	},
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "prehistoricfauna:thyreophoran_chestplate"
+        "recipe": "prehistoricfauna:desmatosuchus_chestplate"
       }
     }
   },
   "requirements": [
     [
       "has_ankylosaurus_scute",
-      "has_the_recipe"
+      "has_the_recipe",
+		"has_demsatosuchus_spike"
     ]
   ]
 }

@@ -94,6 +94,36 @@ public class FossilCrateBlock extends Block {
 				stack.shrink(1);
 			}
 			return ActionResultType.func_233537_a_(world.isRemote);
+		} else if (item == PFItems.PLESIOHADROS_SKULL.get()) {
+			world.setBlockState(pos, PFBlocks.PLESIOHADROS_CRATE.getDefaultState());
+			if (!player.abilities.isCreativeMode) {
+				stack.shrink(1);
+			}
+			return ActionResultType.func_233537_a_(world.isRemote);
+		} else if (item == PFItems.DESMATOSUCHUS_SKULL.get()) {
+			world.setBlockState(pos, PFBlocks.DESMATOSUCHUS_CRATE.getDefaultState());
+			if (!player.abilities.isCreativeMode) {
+				stack.shrink(1);
+			}
+			return ActionResultType.func_233537_a_(world.isRemote);
+		} else if (item == PFItems.POSTOSUCHUS_SKULL.get()) {
+			world.setBlockState(pos, PFBlocks.POSTOSUCHUS_CRATE.getDefaultState());
+			if (!player.abilities.isCreativeMode) {
+				stack.shrink(1);
+			}
+			return ActionResultType.func_233537_a_(world.isRemote);
+		} else if (item == PFItems.SARAHSAURUS_SKULL.get()) {
+			world.setBlockState(pos, PFBlocks.SARAHSAURUS_CRATE.getDefaultState());
+			if (!player.abilities.isCreativeMode) {
+				stack.shrink(1);
+			}
+			return ActionResultType.func_233537_a_(world.isRemote);
+		} else if (item == PFItems.DILOPHOSAURUS_SKELETON.get()) {
+			world.setBlockState(pos, PFBlocks.DILOPHOSAURUS_CRATE.getDefaultState());
+			if (!player.abilities.isCreativeMode) {
+				stack.shrink(1);
+			}
+			return ActionResultType.func_233537_a_(world.isRemote);
 		} else {
 			return ActionResultType.PASS;
 		}

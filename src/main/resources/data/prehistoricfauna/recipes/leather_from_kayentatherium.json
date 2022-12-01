@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:kayentatherium_hide"
+    },
+	{
+		"item": "prehistoricfauna:kayentatherium_hide"
+	}
+  ],
+  "result": {
+    "item": "minecraft:leather"
+  }
+}

@@ -60,9 +60,9 @@ public class DjadochtaDunesBiome extends PFBiome {
 	}
 
 	static {
-		GENERATION_SETTINGS.withFeature(Decoration.UNDERGROUND_ORES, PFConfiguredFeatures.FOSSILIZED_SANDSTONE);
-		GENERATION_SETTINGS.withFeature(Decoration.UNDERGROUND_ORES, PFConfiguredFeatures.FOSSILIZED_SILTSTONE); 
-		PFConfiguredFeatures.withDeadPlants(GENERATION_SETTINGS);
+		GENERATION_SETTINGS.withFeature(Decoration.UNDERGROUND_ORES, PFConfiguredFeatures.CRETACEOUS_FOSSILIZED_SANDSTONE);
+		GENERATION_SETTINGS.withFeature(Decoration.UNDERGROUND_ORES, PFConfiguredFeatures.CRETACEOUS_FOSSILIZED_SILTSTONE); 
+		PFConfiguredFeatures.withRareDeadCycadeoid(GENERATION_SETTINGS);
 		DefaultBiomeFeatures.withCavesAndCanyons(GENERATION_SETTINGS);
 		if (PrehistoricFaunaConfig.caveSentinelDjadochtaDunesSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.TRILOBITE_SENTINEL_ENTITY, PrehistoricFaunaConfig.caveSentinelDjadochtaDunesSpawnWeight, 1, 1));
 		if (PrehistoricFaunaConfig.landSentinelDjadochtaDunesSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(PFEntities.LAND_SENTINEL_ENTITY, PrehistoricFaunaConfig.landSentinelDjadochtaDunesSpawnWeight, 1, 1));

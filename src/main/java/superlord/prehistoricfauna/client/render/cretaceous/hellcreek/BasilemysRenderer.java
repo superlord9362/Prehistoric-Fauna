@@ -8,7 +8,6 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.BasilemysHidingModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.BasilemysModel;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.BasilemysEntity;
 
@@ -17,37 +16,45 @@ public class BasilemysRenderer extends MobRenderer<BasilemysEntity,  EntityModel
 	private static final ResourceLocation BASILEMYS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/basilemys/basilemys.png");
 	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/basilemys/albino.png");
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/basilemys/melanistic.png");
+	private static final ResourceLocation BASILEMYS_SHELL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/basilemys/basilemys_shell.png");
+	private static final ResourceLocation ALBINO_SHELL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/basilemys/albino_shell.png");
+	private static final ResourceLocation MELANISTIC_SHELL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/basilemys/melanistic_shell.png");
 	private static final BasilemysModel BASILEMYS_MODEL = new BasilemysModel();
-	private static final BasilemysHidingModel BASILEMYS_HIDING_MODEL = new BasilemysHidingModel();
-	
+
 	public BasilemysRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), BASILEMYS_MODEL, 0.75F);
 	}
-	
+
 	public void render(BasilemysEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-    	if (entityIn.isPanicing() || entityIn.isAsleep()) {
-    		entityModel = BASILEMYS_HIDING_MODEL;
-    	} else {
-            entityModel = BASILEMYS_MODEL;
-        }
-        super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
-    }
-	
-	 protected void preRenderCallback(BasilemysEntity entity, MatrixStack matrixStackIn, float partialTickTime) {
-		 if(entity.isChild()) {
-			 matrixStackIn.scale(0.5F, 0.5F, 0.5F);
-		 }
-	 }
-	
-	@Override
-	public ResourceLocation getEntityTexture(BasilemysEntity entity) {
-		if (entity.isAlbino()) {
-			return ALBINO;
-		} else if (entity.isMelanistic()) {
-			return MELANISTIC;
-		} else {
-			return BASILEMYS;
+		entityModel = BASILEMYS_MODEL;
+		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
+	}
+
+	protected void preRenderCallback(BasilemysEntity entity, MatrixStack matrixStackIn, float partialTickTime) {
+		if(entity.isChild()) {
+			matrixStackIn.scale(0.5F, 0.5F, 0.5F);
 		}
 	}
-	
+
+	@Override
+	public ResourceLocation getEntityTexture(BasilemysEntity entity) {
+		if (entity.isPanicing() || entity.isAsleep()) {
+			if (entity.isAlbino()) {
+				return ALBINO_SHELL;
+			} else if (entity.isMelanistic()) {
+				return MELANISTIC_SHELL;
+			} else {
+				return BASILEMYS_SHELL;
+			}
+		} else {
+			if (entity.isAlbino()) {
+				return ALBINO;
+			} else if (entity.isMelanistic()) {
+				return MELANISTIC;
+			} else {
+				return BASILEMYS;
+			}
+		}
+	}
+
 }

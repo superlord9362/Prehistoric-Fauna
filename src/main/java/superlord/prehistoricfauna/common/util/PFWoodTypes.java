@@ -22,6 +22,7 @@ public class PFWoodTypes extends WoodType
 	public static final WoodType AGATHOXYLON = PFWoodTypes.register(new PFWoodTypes("agathoxylon"));
 	public static final WoodType WOODWORTHIA = PFWoodTypes.register(new PFWoodTypes("woodworthia"));
 	public static final WoodType SCHILDERIA = PFWoodTypes.register(new PFWoodTypes("schilderia"));
+	public static final WoodType NEOCALAMITES = PFWoodTypes.register(new PFWoodTypes("neocalamites"));
 	
 	private final String name;
 

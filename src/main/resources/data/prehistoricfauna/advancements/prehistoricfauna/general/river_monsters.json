@@ -55,6 +55,38 @@
 				"item": "prehistoricfauna:raw_potamoceratodus"
 			}
 		}
+	},
+	"saurichthys": {
+		"trigger": "minecraft:fishing_rod_hooked",
+		"conditions": {
+			"item": {
+				"item": "prehistoricfauna:raw_saurichthys"
+			}
+		}
+	},
+	"chinlea": {
+		"trigger": "minecraft:fishing_rod_hooked",
+		"conditions": {
+			"item": {
+				"item": "prehistoricfauna:raw_chinlea"
+			}
+		}
+	},
+	"arganodus": {
+		"trigger": "minecraft:fishing_rod_hooked",
+		"conditions": {
+			"item": {
+				"item": "prehistoricfauna:raw_arganodus"
+			}
+		}
+	},
+	"mooreodontus": {
+		"trigger": "minecraft:fishing_rod_hooked",
+		"conditions": {
+			"item": {
+				"item": "prehistoricfauna:raw_mooreodontus"
+			}
+		}
 	}
   },
   "requirements": [
@@ -63,7 +95,11 @@
 		"ceratodus",
 		"cyclurus",
 		"lepisosteus",
-		"potamoceratodus"
+		"potamoceratodus",
+		"chinlea",
+		"saurichthys",
+		"arganodus",
+		"mooreodontus"
     ]
   ]
 }

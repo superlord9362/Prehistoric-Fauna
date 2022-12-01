@@ -24,7 +24,7 @@ public class PlaceriasRenderer extends MobRenderer<PlaceriasEntity, EntityModel<
 	private static final PlaceriasSleepingModel PLACERIAS_SLEEPING_MODEL = new PlaceriasSleepingModel();
 
 	public PlaceriasRenderer() {
-		super(Minecraft.getInstance().getRenderManager(), PLACERIAS_MODEL, 1.25F);
+		super(Minecraft.getInstance().getRenderManager(), PLACERIAS_MODEL, 1F);
 	}
 
 	public void render(PlaceriasEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
@@ -44,18 +44,18 @@ public class PlaceriasRenderer extends MobRenderer<PlaceriasEntity, EntityModel<
 
 	@Override
 	public ResourceLocation getEntityTexture(PlaceriasEntity entity) {
-		if (entity.isAlbino() && !entity.getSaddled()) {
-			if (entity.isAsleep()) {
+		if (entity.isAlbino()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return ALBINO_SLEEPING;
 			} else return ALBINO;
-		} else if (entity.isMelanistic() && !entity.getSaddled()) {
-			if (entity.isAsleep()) {
+		} else if (entity.isMelanistic()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return MELANISTIC_SLEEPING;
 			} else {
 				return MELANISTIC;
 			}
 		} else {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return PLACERIAS_SLEEPING;
 			} else return PLACERIAS;
 		}

@@ -16,6 +16,9 @@ import java.util.function.Supplier;
 public enum ArmorMaterialInit implements IArmorMaterial {
 	
 	ANKYLOSAURUS(PrehistoricFauna.MOD_ID + ":ankylosaurus", 26, new int[] {2, 6, 7, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+		return Ingredient.fromItems(PFItems.ANKYLOSAURUS_SCUTE.get());
+	}),
+	DESMATOSUCHUS(PrehistoricFauna.MOD_ID + ":desmatosuchus", 26, new int[] {2, 6, 7, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
 		return Ingredient.fromItems(PFItems.THYREOPHORAN_SCUTE.get());
 	});
 	

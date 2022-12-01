@@ -40,16 +40,22 @@ import superlord.prehistoricfauna.common.entities.fossil.CeratosaurusSkeletonEnt
 import superlord.prehistoricfauna.common.entities.fossil.CeratosaurusSkullEntity;
 import superlord.prehistoricfauna.common.entities.fossil.CoelophysisSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.fossil.CoelophysisSkullEntity;
+import superlord.prehistoricfauna.common.entities.fossil.DesmatosuchusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.fossil.DesmatosuchusSkullEntity;
+import superlord.prehistoricfauna.common.entities.fossil.DilophosaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.fossil.DilophosaurusSkullEntity;
 import superlord.prehistoricfauna.common.entities.fossil.HerrerasaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.fossil.HerrerasaurusSkullEntity;
 import superlord.prehistoricfauna.common.entities.fossil.IschigualastiaSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.fossil.IschigualastiaSkullEntity;
+import superlord.prehistoricfauna.common.entities.fossil.PlesiohadrosSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.fossil.PlesiohadrosSkullEntity;
+import superlord.prehistoricfauna.common.entities.fossil.PostosuchusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.fossil.PostosuchusSkullEntity;
 import superlord.prehistoricfauna.common.entities.fossil.ProtoceratopsSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.fossil.ProtoceratopsSkullEntity;
+import superlord.prehistoricfauna.common.entities.fossil.SarahsaurusSkeletonEntity;
+import superlord.prehistoricfauna.common.entities.fossil.SarahsaurusSkullEntity;
 import superlord.prehistoricfauna.common.entities.fossil.SaurosuchusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.fossil.SaurosuchusSkullEntity;
 import superlord.prehistoricfauna.common.entities.fossil.ScelidosaurusSkullEntity;
@@ -106,7 +112,7 @@ public class PFEntities {
 	public static final EntityType<DakotaraptorEntity> DAKOTARAPTOR_ENTITY = register(EntityType.Builder.<DakotaraptorEntity>create(DakotaraptorEntity::new, EntityClassification.CREATURE).size(0.875F, 1.6875F), "dakotaraptor");
 	public static final EntityType<DidelphodonEntity> DIDELPHODON_ENTITY = register(EntityType.Builder.<DidelphodonEntity>create(DidelphodonEntity::new, EntityClassification.CREATURE).size(0.25F, 0.25F), "didelphodon");
 	//Djadochta
-	public static final EntityType<ProtoceratopsEntity> PROTOCERATOPS_ENTITY = register(EntityType.Builder.<ProtoceratopsEntity>create(ProtoceratopsEntity::new, EntityClassification.CREATURE).size(0.4375F, 0.875F), "protoceratops");
+	public static final EntityType<ProtoceratopsEntity> PROTOCERATOPS_ENTITY = register(EntityType.Builder.<ProtoceratopsEntity>create(ProtoceratopsEntity::new, EntityClassification.CREATURE).size(0.5F, 0.875F), "protoceratops");
 	public static final EntityType<VelociraptorEntity> VELOCIRAPTOR_ENTITY = register(EntityType.Builder.<VelociraptorEntity>create(VelociraptorEntity::new, EntityClassification.CREATURE).size(0.3125F, 0.625F), "velociraptor");
 	public static final EntityType<CitipatiEntity> CITIPATI_ENTITY = register(EntityType.Builder.<CitipatiEntity>create(CitipatiEntity::new, EntityClassification.CREATURE).size(0.5625F, 1.3125F), "citipati");
 	public static final EntityType<AepyornithomimusEntity> AEPYORNITHOMIMUS_ENTITY = register(EntityType.Builder.<AepyornithomimusEntity>create(AepyornithomimusEntity::new, EntityClassification.CREATURE).size(0.9375F, 1F), "aepyornithomimus");
@@ -123,7 +129,7 @@ public class PFEntities {
 	public static final EntityType<EilenodonEntity> EILENODON_ENTITY = register(EntityType.Builder.<EilenodonEntity>create(EilenodonEntity::new, EntityClassification.CREATURE).size(0.25F, 0.25F), "eilenodon");
 	public static final EntityType<CamarasaurusEntity> CAMARASAURUS_ENTITY = register(EntityType.Builder.<CamarasaurusEntity>create(CamarasaurusEntity::new, EntityClassification.CREATURE).size(3.125F, 5.3125F), "camarasaurus");
 	//Kayenta
-	public static final EntityType<CalsoyasuchusEntity> CALSOYASUCHUS_ENTITY = register(EntityType.Builder.<CalsoyasuchusEntity>create(CalsoyasuchusEntity::new, EntityClassification.CREATURE).size(1F, 1F), "calsoyasuchus");
+	public static final EntityType<CalsoyasuchusEntity> CALSOYASUCHUS_ENTITY = register(EntityType.Builder.<CalsoyasuchusEntity>create(CalsoyasuchusEntity::new, EntityClassification.CREATURE).size(0.5F, 0.25F), "calsoyasuchus");
 	public static final EntityType<DilophosaurusEntity> DILOPHOSAURUS_ENTITY = register(EntityType.Builder.<DilophosaurusEntity>create(DilophosaurusEntity::new, EntityClassification.CREATURE).size(1, 2F), "dilophosaurus");
 	public static final EntityType<SarahsaurusEntity> SARAHSAURUS_ENTITY = register(EntityType.Builder.<SarahsaurusEntity>create(SarahsaurusEntity::new, EntityClassification.CREATURE).size(1, 1.25F), "sarahsaurus");
 	public static final EntityType<ScelidosaurusEntity> SCELIDOSAURUS_ENTITY = register(EntityType.Builder.<ScelidosaurusEntity>create(ScelidosaurusEntity::new, EntityClassification.CREATURE).size(1, 1), "scelidosaurus");
@@ -132,30 +138,30 @@ public class PFEntities {
 	public static final EntityType<KayentatheriumEntity> KAYENTATHERIUM_ENTITY = register(EntityType.Builder.<KayentatheriumEntity>create(KayentatheriumEntity::new, EntityClassification.CREATURE).size(0.5F, 0.5F), "kayentatherium");
 	//Triassic
 	//Chinle
-	public static final EntityType<PostosuchusEntity> POSTOSUCHUS_ENTITY = register(EntityType.Builder.<PostosuchusEntity>create(PostosuchusEntity::new, EntityClassification.CREATURE).size(1, 1), "postosuchus");
-	public static final EntityType<DesmatosuchusEntity> DESMATOSUCHUS_ENTITY = register(EntityType.Builder.<DesmatosuchusEntity>create(DesmatosuchusEntity::new, EntityClassification.CREATURE).size(1, 1), "desmatosuchus");
-	public static final EntityType<TrilophosaurusEntity> TRILOPHOSAURUS_ENTITY = register(EntityType.Builder.<TrilophosaurusEntity>create(TrilophosaurusEntity::new, EntityClassification.CREATURE).size(0.5F, 1F), "trilophosaurus");
-	public static final EntityType<SaurichthysEntity> SAURICHTHYS_ENTITY = register(EntityType.Builder.<SaurichthysEntity>create(SaurichthysEntity::new, EntityClassification.CREATURE).size(0.5F, 1F), "saurichthys");
-	public static final EntityType<ArganodusEntity> ARGANODUS_ENTITY = register(EntityType.Builder.<ArganodusEntity>create(ArganodusEntity::new, EntityClassification.CREATURE).size(0.5F, 1F), "arganodus");
-	public static final EntityType<MooreodontusEntity> MOOREODONTUS_ENTITY = register(EntityType.Builder.<MooreodontusEntity>create(MooreodontusEntity::new, EntityClassification.CREATURE).size(0.5F, 1F), "mooreodontus");
-	public static final EntityType<ChinleaEntity> CHINLEA_ENTITY = register(EntityType.Builder.<ChinleaEntity>create(ChinleaEntity::new, EntityClassification.CREATURE).size(0.5F, 1F), "chinlea");
-	public static final EntityType<PlaceriasEntity> PLACERIAS_ENTITY = register(EntityType.Builder.<PlaceriasEntity>create(PlaceriasEntity::new, EntityClassification.CREATURE).size(1, 1), "placerias");
-	public static final EntityType<CoelophysisEntity> COELOPHYSIS_ENTITY = register(EntityType.Builder.<CoelophysisEntity>create(CoelophysisEntity::new, EntityClassification.CREATURE).size(1, 1), "coelophysis");
-	public static final EntityType<PoposaurusEntity> POPOSAURUS_ENTITY = register(EntityType.Builder.<PoposaurusEntity>create(PoposaurusEntity::new, EntityClassification.CREATURE).size(1, 1), "poposaurus");
-	public static final EntityType<TypothoraxEntity> TYPOTHORAX_ENTITY = register(EntityType.Builder.<TypothoraxEntity>create(TypothoraxEntity::new, EntityClassification.CREATURE).size(1, 1), "typothorax");
+	public static final EntityType<PostosuchusEntity> POSTOSUCHUS_ENTITY = register(EntityType.Builder.<PostosuchusEntity>create(PostosuchusEntity::new, EntityClassification.CREATURE).size(1, 1.5F), "postosuchus");
+	public static final EntityType<DesmatosuchusEntity> DESMATOSUCHUS_ENTITY = register(EntityType.Builder.<DesmatosuchusEntity>create(DesmatosuchusEntity::new, EntityClassification.CREATURE).size(1.25F, 1.25F), "desmatosuchus");
+	public static final EntityType<TrilophosaurusEntity> TRILOPHOSAURUS_ENTITY = register(EntityType.Builder.<TrilophosaurusEntity>create(TrilophosaurusEntity::new, EntityClassification.CREATURE).size(0.5F, 0.75F), "trilophosaurus");
+	public static final EntityType<SaurichthysEntity> SAURICHTHYS_ENTITY = register(EntityType.Builder.<SaurichthysEntity>create(SaurichthysEntity::new, EntityClassification.CREATURE).size(0.5F, 0.5F), "saurichthys");
+	public static final EntityType<ArganodusEntity> ARGANODUS_ENTITY = register(EntityType.Builder.<ArganodusEntity>create(ArganodusEntity::new, EntityClassification.CREATURE).size(0.5F, 0.5F), "arganodus");
+	public static final EntityType<MooreodontusEntity> MOOREODONTUS_ENTITY = register(EntityType.Builder.<MooreodontusEntity>create(MooreodontusEntity::new, EntityClassification.CREATURE).size(0.5F, 0.5F), "mooreodontus");
+	public static final EntityType<ChinleaEntity> CHINLEA_ENTITY = register(EntityType.Builder.<ChinleaEntity>create(ChinleaEntity::new, EntityClassification.CREATURE).size(0.5F, 0.5F), "chinlea");
+	public static final EntityType<PlaceriasEntity> PLACERIAS_ENTITY = register(EntityType.Builder.<PlaceriasEntity>create(PlaceriasEntity::new, EntityClassification.CREATURE).size(1, 1.25F), "placerias");
+	public static final EntityType<CoelophysisEntity> COELOPHYSIS_ENTITY = register(EntityType.Builder.<CoelophysisEntity>create(CoelophysisEntity::new, EntityClassification.CREATURE).size(0.75F, 1.25F), "coelophysis");
+	public static final EntityType<PoposaurusEntity> POPOSAURUS_ENTITY = register(EntityType.Builder.<PoposaurusEntity>create(PoposaurusEntity::new, EntityClassification.CREATURE).size(1, 1.5F), "poposaurus");
+	public static final EntityType<TypothoraxEntity> TYPOTHORAX_ENTITY = register(EntityType.Builder.<TypothoraxEntity>create(TypothoraxEntity::new, EntityClassification.CREATURE).size(1, 0.75F), "typothorax");
 	//Ischigualasto
 	public static final EntityType<ExaeretodonEntity> EXAERETODON_ENTITY = register(EntityType.Builder.<ExaeretodonEntity>create(ExaeretodonEntity::new, EntityClassification.CREATURE).size(0.75F, 0.5625F), "exaeretodon");
 	public static final EntityType<ChromogisaurusEntity> CHROMOGISAURUS_ENTITY = register(EntityType.Builder.<ChromogisaurusEntity>create(ChromogisaurusEntity::new, EntityClassification.CREATURE).size(0.375F, 0.625F), "chromogisaurus");
 	public static final EntityType<HerrerasaurusEntity> HERRERASAURUS_ENTITY = register(EntityType.Builder.<HerrerasaurusEntity>create(HerrerasaurusEntity::new, EntityClassification.CREATURE).size(0.625F, 1.375F), "herrerasaurus");
 	public static final EntityType<HyperodapedonEntity> HYPERODAPEDON_ENTITY = register(EntityType.Builder.<HyperodapedonEntity>create(HyperodapedonEntity::new, EntityClassification.CREATURE).size(0.375F, 0.3125F), "hyperodapedon");
-	public static final EntityType<SillosuchusEntity> SILLOSUCHUS_ENTITY = register(EntityType.Builder.<SillosuchusEntity>create(SillosuchusEntity::new, EntityClassification.CREATURE).size(1.0F, 2.3125F), "sillosuchus");
+	public static final EntityType<SillosuchusEntity> SILLOSUCHUS_ENTITY = register(EntityType.Builder.<SillosuchusEntity>create(SillosuchusEntity::new, EntityClassification.CREATURE).size(1.5F, 3.5F), "sillosuchus");
 	public static final EntityType<SaurosuchusEntity> SAUROSUCHUS_ENTITY = register(EntityType.Builder.<SaurosuchusEntity>create(SaurosuchusEntity::new, EntityClassification.CREATURE).size(0.75F, 1.5F), "saurosuchus");
 	public static final EntityType<IschigualastiaEntity> ISCHIGUALASTIA_ENTITY = register(EntityType.Builder.<IschigualastiaEntity>create(IschigualastiaEntity::new, EntityClassification.CREATURE).size(1.25F, 1.9375F), "ischigualastia");
     
     //Henos & Related
 	public static final EntityType<TimeGuardianEntity> TIME_GUARDIAN_ENTITY = register(EntityType.Builder.<TimeGuardianEntity>create(TimeGuardianEntity::new, EntityClassification.CREATURE).immuneToFire().size(1.3125F, 3.125F), "henos");
-    public static final EntityType<TrilobiteSentinelEntity> TRILOBITE_SENTINEL_ENTITY = register(EntityType.Builder.<TrilobiteSentinelEntity>create(TrilobiteSentinelEntity::new, EntityClassification.MONSTER).immuneToFire().size(1.5F, 0.5F), "trilobite_sentinel");
-    public static final EntityType<LandSentinelEntity> LAND_SENTINEL_ENTITY = register(EntityType.Builder.<LandSentinelEntity>create(LandSentinelEntity::new, EntityClassification.MONSTER).immuneToFire().size(1.5F, 0.5F), "land_sentinel");
+    public static final EntityType<TrilobiteSentinelEntity> TRILOBITE_SENTINEL_ENTITY = register(EntityType.Builder.<TrilobiteSentinelEntity>create(TrilobiteSentinelEntity::new, EntityClassification.MONSTER).immuneToFire().size(1.5F, 0.75F), "trilobite_sentinel");
+    public static final EntityType<LandSentinelEntity> LAND_SENTINEL_ENTITY = register(EntityType.Builder.<LandSentinelEntity>create(LandSentinelEntity::new, EntityClassification.MONSTER).immuneToFire().size(2F, 0.75F), "land_sentinel");
 
     //Skeletons and Skulls
     public static final EntityType<AnkylosaurusSkullEntity> ANKYLOSAURUS_SKULL = register(EntityType.Builder.<AnkylosaurusSkullEntity>create(AnkylosaurusSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "ankylosaurus_skull");
@@ -184,9 +190,15 @@ public class PFEntities {
 	public static final EntityType<PlesiohadrosSkullEntity> PLESIOHADROS_SKULL = register(EntityType.Builder.<PlesiohadrosSkullEntity>create(PlesiohadrosSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "plesiohadros_skull");
 	public static final EntityType<ScelidosaurusSkullEntity> SCELIDOSAURUS_SKULL = register(EntityType.Builder.<ScelidosaurusSkullEntity>create(ScelidosaurusSkullEntity::new, EntityClassification.MISC).size(1F, 1F), "scelidosaurus_skull");
 	public static final EntityType<CoelophysisSkullEntity> COELOPHYSIS_SKULL = register(EntityType.Builder.<CoelophysisSkullEntity>create(CoelophysisSkullEntity::new, EntityClassification.MISC).size(1, 1), "coelophysis_skull");
-	public static final EntityType<CoelophysisSkeletonEntity> COELOPHYSIS_SKELETON = register(EntityType.Builder.<CoelophysisSkeletonEntity>create(CoelophysisSkeletonEntity::new, EntityClassification.MISC).size(1, 1), "coelophysis_skeleton");
+	public static final EntityType<CoelophysisSkeletonEntity> COELOPHYSIS_SKELETON = register(EntityType.Builder.<CoelophysisSkeletonEntity>create(CoelophysisSkeletonEntity::new, EntityClassification.MISC).size(0.75F, 1.25F), "coelophysis_skeleton");
 	public static final EntityType<DilophosaurusSkullEntity> DILOPHOSAURUS_SKULL = register(EntityType.Builder.<DilophosaurusSkullEntity>create(DilophosaurusSkullEntity::new, EntityClassification.MISC).size(1, 1), "dilophosaurus_skull");
 	public static final EntityType<DesmatosuchusSkullEntity> DESMATOSUCHUS_SKULL = register(EntityType.Builder.<DesmatosuchusSkullEntity>create(DesmatosuchusSkullEntity::new, EntityClassification.MISC).size(1, 1), "desmatosuchus_skull");
+	public static final EntityType<PlesiohadrosSkeletonEntity> PLESIOHADROS_SKELETON = register(EntityType.Builder.<PlesiohadrosSkeletonEntity>create(PlesiohadrosSkeletonEntity::new, EntityClassification.MISC).size(1.5F, 2), "plesiohadros_skeleton");
+	public static final EntityType<DesmatosuchusSkeletonEntity> DESMATOSUCHUS_SKELETON = register(EntityType.Builder.<DesmatosuchusSkeletonEntity>create(DesmatosuchusSkeletonEntity::new, EntityClassification.MISC).size(1.25F, 1.25F), "desmatosuchus_skeleton");
+	public static final EntityType<PostosuchusSkeletonEntity> POSTOSUCHUS_SKELETON = register(EntityType.Builder.<PostosuchusSkeletonEntity>create(PostosuchusSkeletonEntity::new, EntityClassification.MISC).size(1F, 1.5F), "postosuchus_skeleton");
+	public static final EntityType<SarahsaurusSkullEntity> SARAHSAURUS_SKULL = register(EntityType.Builder.<SarahsaurusSkullEntity>create(SarahsaurusSkullEntity::new, EntityClassification.MISC).size(1, 1), "sarahsaurus_skull");
+	public static final EntityType<SarahsaurusSkeletonEntity> SARAHSAURUS_SKELETON = register(EntityType.Builder.<SarahsaurusSkeletonEntity>create(SarahsaurusSkeletonEntity::new, EntityClassification.MISC).size(1, 1.25F), "sarahsaurus_skeleton");
+	public static final EntityType<DilophosaurusSkeletonEntity> DILOPHOSAURUS_SKELETON = register(EntityType.Builder.<DilophosaurusSkeletonEntity>create(DilophosaurusSkeletonEntity::new, EntityClassification.MISC).size(1, 2F), "dilophosaurus_skeleton");
 	//Fish
 	public static final EntityType<MyledaphusEntity> MYLEDAPHUS = register(EntityType.Builder.<MyledaphusEntity>create(MyledaphusEntity::new, EntityClassification.WATER_AMBIENT).size(0.6875F, 0.0625F), "myledaphus");
 	public static final EntityType<GarEntity> GAR = register(EntityType.Builder.<GarEntity>create(GarEntity::new, EntityClassification.WATER_AMBIENT).size(0.6875F, 0.2F), "gar");

@@ -44,13 +44,6 @@ public class PrehistoricFaunaConfig {
 	public static int caveSentinelHellCreekHillsSpawnWeight = 5;
 	public static int landSentinelHellCreekHillsSpawnWeight = 2;
 	//Hell Creek River
-	public static int thescelosaurusHellCreekRiverSpawnWeight = 12;
-	public static int triceratopsHellCreekRiverSpawnWeight = 7;
-	public static int ankylosaurusHellCreekRiverSpawnWeight = 14;
-	public static int tyrannosaurusHellCreekRiverSpawnWeight = 10;
-	public static int basilemysHellCreekRiverSpawnWeight = 7;
-	public static int dakotaraptorHellCreekRiverSpawnWeight = 2;
-	public static int didelphodonHellCreekRiverSpawnWeight = 6;
 	public static int caveSentinelHellCreekRiverSpawnWeight = 5;
 	public static int landSentinelHellCreekRiverSpawnWeight = 2;
 	public static int myledaphusHellCreekRiverSpawnWeight = 2;
@@ -114,13 +107,6 @@ public class PrehistoricFaunaConfig {
 	public static int landSentinelIschigualastoHillsSpawnWeight = 2;
 	public static int ceratodusIschigualastoHillsSpawnWeight = 3;
 	//Ischigualasto River
-	public static int exaeretodonIschigualastoRiverSpawnWeight = 12;
-	public static int chromogisaurusIschigualastoRiverSpawnWeight = 10;
-	public static int herrerasaurusIschigualastoRiverSpawnWeight = 8;
-	public static int hyperodapedonIschigualastoRiverSpawnWeight = 15;
-	public static int sillosuchusIschigualastoRiverSpawnWeight = 6;
-	public static int saurosuchusIschigualastoRiverSpawnWeight = 4;
-	public static int ischigualastiaIschigualastoRiverSpawnWeight = 8;
 	public static int caveSentinelIschigualastoRiverSpawnWeight = 5;
 	public static int landSentinelIschigualastoRiverSpawnWeight = 2;
 	public static int ceratodusIschigualastoRiverSpawnWeight = 3;
@@ -208,6 +194,13 @@ public class PrehistoricFaunaConfig {
 	public static int saurichthysChinleFlatsSpawnWeight = 2;
 	public static int caveSentinelChinleFlatsSpawnWeight = 5;
 	public static int landSentinelChinleFlatsSpawnWeight = 2;
+	//Chinle River
+	public static int chinleaChinleRiverSpawnWeight = 4;
+	public static int mooreodontusChinleRiverSpawnWeight = 1;
+	public static int arganodusChinleRiverSpawnWeight = 3;
+	public static int saurichthysChinleRiverSpawnWeight = 2;
+	public static int caveSentinelChinleRiverSpawnWeight = 5;
+	public static int landSentinelChinleRiverSpawnWeight = 2;
 	//Chinle Wooded Mountains
 	public static int desmatosuchusChinleWoodedMountainsSpawnWeight = 7;
 	public static int coelophysisChinleWoodedMountainsSpawnWeight = 0;
@@ -238,6 +231,8 @@ public class PrehistoricFaunaConfig {
 	public static int djadochtaHutMaxDistance = 60;
 	public static int kayentaHutMinDistance = 40;
 	public static int kayentaHutMaxDistance = 60;
+	public static int chinleHutMinDistance = 40;
+	public static int chinleHutMaxDistance = 60;
 	public static int geologistCampMinDistance = 25;
 	public static int geologistCampMaxDistance = 50;
 	public static int timeTempleMinDistance = 75;
@@ -256,8 +251,10 @@ public class PrehistoricFaunaConfig {
 	public static boolean naturalEggBlockLaying = true;
 	public static boolean naturalEggItemLaying = false;
 	
+	public static boolean eyeShine = true;
+	
 	public static void bakeClient(final ModConfig config) {
-
+		eyeShine = PFConfigHolder.CLIENT.eyeShine.get();
 	}
 	
 	public static void bakeServer(final ModConfig config) {
@@ -302,13 +299,6 @@ public class PrehistoricFaunaConfig {
 			caveSentinelHellCreekHillsSpawnWeight = PFConfigHolder.SERVER.caveSentinelHellCreekHillsSpawnWeight.get();
 			landSentinelHellCreekHillsSpawnWeight = PFConfigHolder.SERVER.landSentinelHellCreekHillsSpawnWeight.get();
 			//Hell Creek River
-			thescelosaurusHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.thescelosaurusHellCreekClearingSpawnWeight.get();
-			triceratopsHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.triceratopsHellCreekClearingSpawnWeight.get();
-			ankylosaurusHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.ankylosaurusHellCreekClearingSpawnWeight.get();
-			basilemysHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.basilemysHellCreekClearingSpawnWeight.get();
-			dakotaraptorHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.dakotaraptorHellCreekClearingSpawnWeight.get();
-			didelphodonHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.dideldophodonHellCreekRiverSpawnWeight.get();
-			tyrannosaurusHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.tyrannosaurusHellCreekRiverSpawnWeight.get();
 			myledaphusHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.myledaphusHellCreekRiverSpawnWeight.get();
 			garHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.garHellCreekRiverSpawnWeight.get();
 			cyclurusHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.cyclurusHellCreekRiverSpawnWeight.get();
@@ -372,13 +362,6 @@ public class PrehistoricFaunaConfig {
 			caveSentinelIschigualastoHillsSpawnWeight = PFConfigHolder.SERVER.caveSentinelIschigualastoHillsSpawnWeight.get();
 			landSentinelIschigualastoHillsSpawnWeight = PFConfigHolder.SERVER.landSentinelIschigualastoHillsSpawnWeight.get();
 			//Ischigualasto River
-			exaeretodonIschigualastoRiverSpawnWeight = PFConfigHolder.SERVER.exaeretodonIschigualastoRiverSpawnWeight.get();
-			chromogisaurusIschigualastoRiverSpawnWeight = PFConfigHolder.SERVER.chromogisaurusIschigualastoRiverSpawnWeight.get();
-			herrerasaurusIschigualastoRiverSpawnWeight = PFConfigHolder.SERVER.herrerasaurusIschigualastoRiverSpawnWeight.get();
-			hyperodapedonIschigualastoRiverSpawnWeight = PFConfigHolder.SERVER.hyperodapedonIschigualastoRiverSpawnWeight.get();
-			sillosuchusIschigualastoRiverSpawnWeight = PFConfigHolder.SERVER.sillosuchusIschigualastoRiverSpawnWeight.get();
-			saurosuchusIschigualastoRiverSpawnWeight = PFConfigHolder.SERVER.saurosuchusIschigualastoRiverSpawnWeight.get();
-			ischigualastiaIschigualastoRiverSpawnWeight = PFConfigHolder.SERVER.ischigualastiaIschigualastoRiverSpawnWeight.get();
 			ceratodusIschigualastoRiverSpawnWeight = PFConfigHolder.SERVER.ceratodusIschigualastoRiverSpawnWeight.get();
 			caveSentinelIschigualastoRiverSpawnWeight = PFConfigHolder.SERVER.caveSentinelIschigualastoRiverSpawnWeight.get();
 			landSentinelIschigualastoRiverSpawnWeight = PFConfigHolder.SERVER.landSentinelIschigualastoRiverSpawnWeight.get();
@@ -466,6 +449,13 @@ public class PrehistoricFaunaConfig {
 			mooreodontusChinleFlatsSpawnWeight = PFConfigHolder.SERVER.mooreodontusChinleFlatsSpawnWeight.get();
 			caveSentinelChinleFlatsSpawnWeight = PFConfigHolder.SERVER.caveSentinelChinleFlatsSpawnWeight.get();
 			landSentinelChinleFlatsSpawnWeight = PFConfigHolder.SERVER.landSentinelChinleFlatsSpawnWeight.get();
+			//Chinle River
+			chinleaChinleRiverSpawnWeight = PFConfigHolder.SERVER.chinleaChinleRiverSpawnWeight.get();
+			arganodusChinleRiverSpawnWeight = PFConfigHolder.SERVER.arganodusChinleRiverSpawnWeight.get();
+			saurichthysChinleRiverSpawnWeight = PFConfigHolder.SERVER.saurichthysChinleRiverSpawnWeight.get();
+			mooreodontusChinleRiverSpawnWeight = PFConfigHolder.SERVER.mooreodontusChinleRiverSpawnWeight.get();
+			caveSentinelChinleRiverSpawnWeight = PFConfigHolder.SERVER.caveSentinelChinleRiverSpawnWeight.get();
+			landSentinelChinleRiverSpawnWeight = PFConfigHolder.SERVER.landSentinelChinleRiverSpawnWeight.get();
 			//Chinle Wooded Mountains
 			coelophysisChinleWoodedMountainsSpawnWeight = PFConfigHolder.SERVER.coelophysisChinleWoodedMountainsSpawnWeight.get();
 			desmatosuchusChinleWoodedMountainsSpawnWeight = PFConfigHolder.SERVER.desmatosuchusChinleWoodedMountainsSpawnWeight.get();
@@ -494,6 +484,8 @@ public class PrehistoricFaunaConfig {
 			djadochtaHutMaxDistance = PFConfigHolder.SERVER.djadochtaHutMaxDistance.get();
 			kayentaHutMinDistance = PFConfigHolder.SERVER.kayentaHutMinDistance.get();
 			kayentaHutMaxDistance = PFConfigHolder.SERVER.kayentaHutMaxDistance.get();
+			chinleHutMinDistance = PFConfigHolder.SERVER.chinleHutMinDistance.get();
+			chinleHutMaxDistance = PFConfigHolder.SERVER.chinleHutMaxDistance.get();
 			geologistCampMinDistance = PFConfigHolder.SERVER.geologistCampMinDistance.get();
 			geologistCampMaxDistance = PFConfigHolder.SERVER.geologistCampMaxDistance.get();
 			timeTempleMinDistance = PFConfigHolder.SERVER.timeTempleMinDistance.get();

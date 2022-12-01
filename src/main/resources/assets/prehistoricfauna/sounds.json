@@ -1862,5 +1862,313 @@
 				"stream": true
 			}
 		]
-	}
+	},
+	"citipati_warn": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.citipatiWarning",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/citipati/citipati_warning",
+				"stream": true
+			}
+		]
+	},
+	"scelidosaurus_warn": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.scelidosaurusWarning",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/scelidosaurus/scelidosaurus_warning",
+				"stream": true
+			}
+		]
+	},
+	"coelophysis_idle": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.coelophysisIdle",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/coelophysis/coelophysis_idle1",
+                "stream": true
+            },
+			{
+                "name": "prehistoricfauna:prehistoric/coelophysis/coelophysis_idle2",
+				"stream": true
+			}
+        ]
+    },
+	"coelophysis_hurt": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.coelophysisHurt",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/coelophysis/coelophysis_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"coelophysis_death": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.coelophysisDeath",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/coelophysis/coelophysis_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"coelophysis_warn": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.coelophysisWarning",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/coelophysis/coelophysis_warning",
+				"stream": true
+			}
+		]
+	},
+	"desmatosuchus_idle": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.desmatosuchusIdle",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/desmatosuchus/desmatosuchus_idle1",
+                "stream": true
+            },
+			{
+                "name": "prehistoricfauna:prehistoric/desmatosuchus/desmatosuchus_idle2",
+				"stream": true
+			}
+        ]
+    },
+	"desmatosuchus_hurt": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.desmatosuchusHurt",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/desmatosuchus/desmatosuchus_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"desmatosuchus_death": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.desmatosuchusDeath",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/desmatosuchus/desmatosuchus_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"desmatosuchus_warn": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.desmatosuchusWarning",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/desmatosuchus/desmatosuchus_warning",
+				"stream": true
+			}
+		]
+	},
+	"placerias_idle": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.placeriasIdle",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/placerias/placerias_idle1",
+                "stream": true
+            },
+			{
+                "name": "prehistoricfauna:prehistoric/placerias/placerias_idle2",
+				"stream": true
+			}
+        ]
+    },
+	"placerias_hurt": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.placeriasHurt",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/placerias/placerias_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"placerias_death": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.placeriasDeath",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/placerias/placerias_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"placerias_warn": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.placeriasWarning",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/placerias/placerias_warning",
+				"stream": true
+			}
+		]
+	},
+	"poposaurus_idle": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.poposaurusIdle",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/poposaurus/poposaurus_idle1",
+                "stream": true
+            },
+			{
+                "name": "prehistoricfauna:prehistoric/poposaurus/poposaurus_idle2",
+				"stream": true
+			}
+        ]
+    },
+	"poposaurus_hurt": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.poposaurusHurt",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/poposaurus/poposaurus_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"poposaurus_death": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.poposaurusDeath",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/poposaurus/poposaurus_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"poposaurus_warn": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.poposaurusWarning",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/poposaurus/poposaurus_warning",
+				"stream": true
+			}
+		]
+	},
+	"postosuchus_idle": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.postosuchusIdle",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/postosuchus/postosuchus_idle1",
+                "stream": true
+            },
+			{
+                "name": "prehistoricfauna:prehistoric/postosuchus/postosuchus_idle2",
+				"stream": true
+			}
+        ]
+    },
+	"postosuchus_hurt": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.postosuchusHurt",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/postosuchus/postosuchus_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"postosuchus_death": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.postosuchusDeath",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/postosuchus/postosuchus_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"postosuchus_warn": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.postosuchusWarning",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/postosuchus/postosuchus_warning",
+				"stream": true
+			}
+		]
+	},
+	"trilophosaurus_idle": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.trilophosaurusIdle",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/trilophosaurus/trilophosaurus_idle1",
+                "stream": true
+            },
+			{
+                "name": "prehistoricfauna:prehistoric/trilophosaurus/trilophosaurus_idle2",
+				"stream": true
+			}
+        ]
+    },
+	"trilophosaurus_hurt": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.trilophosaurusHurt",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/trilophosaurus/trilophosaurus_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"trilophosaurus_death": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.trilophosaurusDeath",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/trilophosaurus/trilophosaurus_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"typothorax_idle": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.typothoraxIdle",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/typothorax/typothorax_idle1",
+                "stream": true
+            },
+			{
+                "name": "prehistoricfauna:prehistoric/typothorax/typothorax_idle2",
+				"stream": true
+			}
+        ]
+    },
+	"typothorax_hurt": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.typothoraxHurt",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/typothorax/typothorax_hurt",
+                "stream": true
+            }
+        ]
+    },
+	"typothorax_death": {
+        "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.typothoraxDeath",
+        "sounds": [
+            {
+                "name": "prehistoricfauna:prehistoric/typothorax/typothorax_hurt",
+                "stream": true
+            }
+        ]
+    }
 }

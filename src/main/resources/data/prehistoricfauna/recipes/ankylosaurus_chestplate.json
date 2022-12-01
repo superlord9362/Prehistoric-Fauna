@@ -1,17 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "S S",
+    "D D",
     "SSS",
 	"SSS"
   ],
   "key": {
     "S": {
-      "item": "prehistoricfauna:ankylosaurus_scute"
-    }
+      "item": "prehistoricfauna:thyreophoran_scute"
+    },
+	"D": {
+		"item": "prehistoricfauna:desmatosuchus_spike"
+	}
   },
   "result": {
-    "item": "prehistoricfauna:thyreophoran_chestplate",
+    "item": "prehistoricfauna:desmatosuchus_chestplate",
     "count": 1
   }
 }

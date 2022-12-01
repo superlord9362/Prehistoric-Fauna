@@ -82,7 +82,7 @@ public class SarahsaurusEntity extends DinosaurEntity {
 	private static final DataParameter<Boolean> MELANISTIC = EntityDataManager.createKey(SarahsaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> EATING = EntityDataManager.createKey(SarahsaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> NATURAL_LOVE = EntityDataManager.createKey(SarahsaurusEntity.class, DataSerializers.BOOLEAN);
-	private int maxHunger = 25;
+	private int maxHunger = 38;
 	private int currentHunger;
 	private int lastInLove = 0;
 	int hungerTick = 0;
@@ -172,7 +172,7 @@ public class SarahsaurusEntity extends DinosaurEntity {
 		} else if (birthNumber >= 4 && birthNumber < 7) {
 			this.setMelanistic(true);
 		}
-		this.setHunger(25);
+		this.setHunger(this.maxHunger);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
@@ -258,14 +258,14 @@ public class SarahsaurusEntity extends DinosaurEntity {
 			this.warningSoundTicks = 40;
 		}
 	}
-	
+
 	public boolean onAttackAnimationFinish(Entity entityIn) {
 		boolean flag = super.onAttackAnimationFinish(entityIn);
 		if (flag) {
 			this.applyEnchantments(this, entityIn);
 		}
 		return flag;
-   }	
+	}	
 
 	@Override
 	protected void updateAITasks() {
@@ -273,9 +273,9 @@ public class SarahsaurusEntity extends DinosaurEntity {
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D).createMutableAttribute(Attributes.FOLLOW_RANGE, 15).createMutableAttribute(Attributes.ATTACK_DAMAGE, 4);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 15.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D).createMutableAttribute(Attributes.FOLLOW_RANGE, 15).createMutableAttribute(Attributes.ATTACK_DAMAGE, 4);
 	}
-	
+
 	public void tick() {
 		super.tick();
 		if (this.warningSoundTicks > 0) {
@@ -296,29 +296,44 @@ public class SarahsaurusEntity extends DinosaurEntity {
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.22D);
 		}
-		List<SarahsaurusEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
-		if (PrehistoricFaunaConfig.advancedHunger) {
-			hungerTick++;
-			if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
-				hungerTick = 0;
-				if (currentHunger != 0 || !this.isAsleep()) {
-					this.setHunger(currentHunger - 1);
+		if (!this.isAIDisabled()) {
+			List<SarahsaurusEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
+			if (PrehistoricFaunaConfig.advancedHunger) {
+				hungerTick++;
+				if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
+					hungerTick = 0;
+					if (currentHunger != 0 || !this.isAsleep()) {
+						this.setHunger(currentHunger - 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
+					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getAttackTarget() == null && this.getRevengeTarget() == null) {
+						float currentHealth = this.getHealth();
+						this.setHealth(currentHealth + 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 5) {
+						loveTick = 600;
+						this.setInLoveNaturally(true);
+						this.setInLove(600);
+						lastInLove = 28800;
+					}
+					if (loveTick != 0) {
+						loveTick--;
+					} else {
+						this.setInLoveNaturally(false);
+					}
 				}
-			}
-			if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-				if (this.getHealth() < this.getMaxHealth()) {
-					float currentHealth = this.getHealth();
-					this.setHealth(currentHealth + 1);
-				}
-			}
-			if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 5) {
+			} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+				int naturalBreedingChance = rand.nextInt(1000);
+				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 5) {
 					loveTick = 600;
 					this.setInLoveNaturally(true);
 					this.setInLove(600);
@@ -330,22 +345,9 @@ public class SarahsaurusEntity extends DinosaurEntity {
 					this.setInLoveNaturally(false);
 				}
 			}
-		} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-			int naturalBreedingChance = rand.nextInt(1000);
-			if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 5) {
-				loveTick = 600;
-				this.setInLoveNaturally(true);
-				this.setInLove(600);
-				lastInLove = 28800;
+			if (lastInLove != 0) {
+				lastInLove--;
 			}
-			if (loveTick != 0) {
-				loveTick--;
-			} else {
-				this.setInLoveNaturally(false);
-			}
-		}
-		if (lastInLove != 0) {
-			lastInLove--;
 		}
 	}
 
@@ -469,14 +471,14 @@ public class SarahsaurusEntity extends DinosaurEntity {
 		}
 
 	}
-	
+
 	@Override
 	public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
 		SarahsaurusEntity entity = new SarahsaurusEntity(PFEntities.SARAHSAURUS_ENTITY, this.world);
 		entity.onInitialSpawn((IServerWorld)this.world, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
 		return entity;
 	}
-	
+
 	public class HerbivoreEatGoal extends MoveToBlockGoal {
 		protected int field_220731_g;
 
@@ -620,7 +622,7 @@ public class SarahsaurusEntity extends DinosaurEntity {
 			super.startExecuting();
 		}
 	}
-	
+
 	class MeleeAttackGoal extends net.minecraft.entity.ai.goal.MeleeAttackGoal {
 		public MeleeAttackGoal() {
 			super(SarahsaurusEntity.this, 1.25D, true);
@@ -663,7 +665,7 @@ public class SarahsaurusEntity extends DinosaurEntity {
 			return (double)(4.0F + attackTarget.getWidth());
 		}
 	}
-	
+
 	class HurtByTargetGoal extends net.minecraft.entity.ai.goal.HurtByTargetGoal {
 		public HurtByTargetGoal() {
 			super(SarahsaurusEntity.this);
@@ -683,7 +685,7 @@ public class SarahsaurusEntity extends DinosaurEntity {
 			}
 		}
 	}
-	
+
 	class PanicGoal extends net.minecraft.entity.ai.goal.PanicGoal {
 		public PanicGoal() {
 			super(SarahsaurusEntity.this, 2.0D);
@@ -694,7 +696,7 @@ public class SarahsaurusEntity extends DinosaurEntity {
 		}
 
 	}
-	
+
 	class AttackPlayerGoal extends NearestAttackableTargetGoal<PlayerEntity> {
 		public AttackPlayerGoal() {
 			super(SarahsaurusEntity.this, PlayerEntity.class, 20, true, true, (Predicate<LivingEntity>)null);
@@ -714,7 +716,7 @@ public class SarahsaurusEntity extends DinosaurEntity {
 				return false;
 			}
 		}
-		
+
 		protected double getTargetDistance() {
 			return super.getTargetDistance() * 0.5D;
 		}

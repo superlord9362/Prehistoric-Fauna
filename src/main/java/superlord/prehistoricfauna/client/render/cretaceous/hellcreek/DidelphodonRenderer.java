@@ -10,8 +10,9 @@ import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.DidelphodonModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.DidelphodonSleepingModel;
+import superlord.prehistoricfauna.client.render.layer.DidelphodonEyeLayer;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.DidelphodonEntity;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class DidelphodonRenderer extends MobRenderer<DidelphodonEntity, EntityModel<DidelphodonEntity>> {
 
@@ -22,12 +23,14 @@ public class DidelphodonRenderer extends MobRenderer<DidelphodonEntity, EntityMo
 	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/didelphodon/albino_sleeping.png");
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/didelphodon/melanistic_sleeping.png");
 	private static final DidelphodonModel DIDELPHODON_MODEL = new DidelphodonModel();
-	private static final DidelphodonSleepingModel DIDELPHODON_SLEEPING_MODEL = new DidelphodonSleepingModel();
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public DidelphodonRenderer(EntityRendererManager rm) {
 		super(rm, DIDELPHODON_MODEL, 0.25F);
 		this.addLayer(new HeldItemLayer(this));
+		if (PrehistoricFaunaConfig.eyeShine) {
+			this.addLayer(new DidelphodonEyeLayer(this));
+		}
 	}
 
 	protected void preRenderCallback(DidelphodonEntity entity, MatrixStack matrixStackIn, float partialTickTime) {
@@ -35,28 +38,24 @@ public class DidelphodonRenderer extends MobRenderer<DidelphodonEntity, EntityMo
 			matrixStackIn.scale(0.5F, 0.5F, 0.5F);
 		}
 	}
-	
+
 	public void render(DidelphodonEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-		if (entityIn.isAsleep()) {
-			entityModel = DIDELPHODON_SLEEPING_MODEL;
-		} else {
-			entityModel = DIDELPHODON_MODEL;
-		}
+		entityModel = DIDELPHODON_MODEL;
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
 
 	@Override
 	public ResourceLocation getEntityTexture(DidelphodonEntity entity) {
 		if (entity.isMelanistic()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return MELANISTIC_SLEEPING;
 			} else return MELANISTIC;
 		} else if (entity.isAlbino()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return ALBINO_SLEEPING;
 			} else return ALBINO;
 		} else {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return DIDELPHODON_SLEEPING;
 			} else return DIDELPHODON;
 		}

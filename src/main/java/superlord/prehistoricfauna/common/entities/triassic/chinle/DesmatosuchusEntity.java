@@ -61,14 +61,14 @@ import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.SoundInit;
 
 public class DesmatosuchusEntity extends DinosaurEntity {
-	
+
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(DesmatosuchusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(DesmatosuchusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> ALBINO = EntityDataManager.createKey(DesmatosuchusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> MELANISTIC = EntityDataManager.createKey(DesmatosuchusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> EATING = EntityDataManager.createKey(DesmatosuchusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> NATURAL_LOVE = EntityDataManager.createKey(DesmatosuchusEntity.class, DataSerializers.BOOLEAN);
-	private int maxHunger = 25;
+	private int maxHunger = 50;
 	private int currentHunger;
 	int hungerTick = 0;
 	private int lastInLove = 0;
@@ -79,7 +79,7 @@ public class DesmatosuchusEntity extends DinosaurEntity {
 	public DesmatosuchusEntity(EntityType<? extends TameableEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
-	
+
 	public boolean hasEgg() {
 		return this.dataManager.get(HAS_EGG);
 	}
@@ -124,7 +124,7 @@ public class DesmatosuchusEntity extends DinosaurEntity {
 	private void setInLoveNaturally(boolean isInLoveNaturally) {
 		this.dataManager.set(NATURAL_LOVE, isInLoveNaturally);
 	}
-	
+
 	public int getCurrentHunger() {
 		return this.currentHunger;
 	}
@@ -148,7 +148,7 @@ public class DesmatosuchusEntity extends DinosaurEntity {
 	private void setEating(boolean isEating) {
 		this.dataManager.set(EATING, isEating);
 	}
-	
+
 	protected void registerData() {
 		super.registerData();
 		this.dataManager.register(HAS_EGG, false);
@@ -178,7 +178,7 @@ public class DesmatosuchusEntity extends DinosaurEntity {
 		this.setHunger(compound.getInt("MaxHunger"));
 		this.setInLoveNaturally(compound.getBoolean("InNaturalLove"));
 	}
-	
+
 	@Nullable
 	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		Random rand = new Random();
@@ -188,10 +188,10 @@ public class DesmatosuchusEntity extends DinosaurEntity {
 		} else if (birthNumber >= 4 && birthNumber < 7) {
 			this.setMelanistic(true);
 		}
-		this.setHunger(25);
+		this.setHunger(this.maxHunger);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
-	
+
 	protected SoundEvent getAmbientSound() {
 		return this.isAsleep() ? null : SoundInit.DESMATOSUCHUS_IDLE;
 	}
@@ -203,14 +203,14 @@ public class DesmatosuchusEntity extends DinosaurEntity {
 	protected SoundEvent getDeathSound() {
 		return SoundInit.DESMATOSUCHUS_DEATH;
 	}
-	
+
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
 			this.playSound(SoundInit.DESMATOSUCHUS_WARN, 1.0F, this.getSoundPitch());
 			this.warningSoundTicks = 40;
 		}
 	}
-	
+
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
@@ -229,7 +229,7 @@ public class DesmatosuchusEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
 		this.goalSelector.addGoal(0, new DesmatosuchusEntity.HerbivoreEatGoal((double)1.2F, 12, 2));
 	}
-	
+
 	@Override
 	public void livingTick() {
 		super.livingTick();
@@ -238,29 +238,44 @@ public class DesmatosuchusEntity extends DinosaurEntity {
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.23D);
 		}
-		List<DesmatosuchusEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
-		if (PrehistoricFaunaConfig.advancedHunger) {
-			hungerTick++;
-			if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
-				hungerTick = 0;
-				if (currentHunger != 0 || !this.isAsleep()) {
-					this.setHunger(currentHunger - 1);
+		if (!this.isAIDisabled()) {
+			List<DesmatosuchusEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
+			if (PrehistoricFaunaConfig.advancedHunger) {
+				hungerTick++;
+				if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
+					hungerTick = 0;
+					if (currentHunger != 0 || !this.isAsleep()) {
+						this.setHunger(currentHunger - 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
+					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getAttackTarget() == null && this.getRevengeTarget() == null) {
+						float currentHealth = this.getHealth();
+						this.setHealth(currentHealth + 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
+						loveTick = 600;
+						this.setInLoveNaturally(true);
+						this.setInLove(600);
+						lastInLove = 28800;
+					}
+					if (loveTick != 0) {
+						loveTick--;
+					} else {
+						this.setInLoveNaturally(false);
+					}
 				}
-			}
-			if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-				if (this.getHealth() < this.getMaxHealth()) {
-					float currentHealth = this.getHealth();
-					this.setHealth(currentHealth + 1);
-				}
-			}
-			if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
+			} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+				int naturalBreedingChance = rand.nextInt(1000);
+				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
 					loveTick = 600;
 					this.setInLoveNaturally(true);
 					this.setInLove(600);
@@ -272,36 +287,23 @@ public class DesmatosuchusEntity extends DinosaurEntity {
 					this.setInLoveNaturally(false);
 				}
 			}
-		} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-			int naturalBreedingChance = rand.nextInt(1000);
-			if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
-				loveTick = 600;
-				this.setInLoveNaturally(true);
-				this.setInLove(600);
-				lastInLove = 28800;
+			if (lastInLove != 0) {
+				lastInLove--;
 			}
-			if (loveTick != 0) {
-				loveTick--;
-			} else {
-				this.setInLoveNaturally(false);
-			}
-		}
-		if (lastInLove != 0) {
-			lastInLove--;
 		}
 	}
-	
+
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D).createMutableAttribute(Attributes.ARMOR, 4.0D).createMutableAttribute(Attributes.ARMOR_TOUGHNESS, 4.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 3).createMutableAttribute(Attributes.FOLLOW_RANGE, 15);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D).createMutableAttribute(Attributes.ARMOR, 4.0D).createMutableAttribute(Attributes.ARMOR_TOUGHNESS, 4.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 3).createMutableAttribute(Attributes.FOLLOW_RANGE, 15);
 	}
-	
+
 	public void tick() {
 		super.tick();
 		if (this.warningSoundTicks > 0) {
 			--this.warningSoundTicks;
 		}
 	}
-	
+
 	public boolean onAttackAnimationFinish(Entity entityIn) {
 		boolean flag = super.onAttackAnimationFinish(entityIn);
 		if (flag) {
@@ -311,7 +313,7 @@ public class DesmatosuchusEntity extends DinosaurEntity {
 
 		return flag;
 	}
-	
+
 	class HurtByTargetGoal extends net.minecraft.entity.ai.goal.HurtByTargetGoal {
 		public HurtByTargetGoal() {
 			super(DesmatosuchusEntity.this);
@@ -575,7 +577,7 @@ public class DesmatosuchusEntity extends DinosaurEntity {
 		entity.onInitialSpawn(p_241840_1_, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
 		return entity;
 	}
-	
+
 	public class HerbivoreEatGoal extends MoveToBlockGoal {
 		protected int field_220731_g;
 

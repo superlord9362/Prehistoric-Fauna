@@ -110,16 +110,21 @@ import superlord.prehistoricfauna.common.entities.fossil.CeratosaurusSkeletonEnt
 import superlord.prehistoricfauna.common.entities.fossil.CeratosaurusSkullEntity;
 import superlord.prehistoricfauna.common.entities.fossil.CoelophysisSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.fossil.CoelophysisSkullEntity;
+import superlord.prehistoricfauna.common.entities.fossil.DesmatosuchusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.fossil.DesmatosuchusSkullEntity;
+import superlord.prehistoricfauna.common.entities.fossil.DilophosaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.fossil.DilophosaurusSkullEntity;
 import superlord.prehistoricfauna.common.entities.fossil.HerrerasaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.fossil.HerrerasaurusSkullEntity;
 import superlord.prehistoricfauna.common.entities.fossil.IschigualastiaSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.fossil.IschigualastiaSkullEntity;
 import superlord.prehistoricfauna.common.entities.fossil.PlesiohadrosSkullEntity;
+import superlord.prehistoricfauna.common.entities.fossil.PostosuchusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.fossil.PostosuchusSkullEntity;
 import superlord.prehistoricfauna.common.entities.fossil.ProtoceratopsSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.fossil.ProtoceratopsSkullEntity;
+import superlord.prehistoricfauna.common.entities.fossil.SarahsaurusSkeletonEntity;
+import superlord.prehistoricfauna.common.entities.fossil.SarahsaurusSkullEntity;
 import superlord.prehistoricfauna.common.entities.fossil.SaurosuchusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.fossil.SaurosuchusSkullEntity;
 import superlord.prehistoricfauna.common.entities.fossil.StegosaurusSkeletonEntity;
@@ -253,6 +258,7 @@ public class PrehistoricFauna {
 					tempMap.put(PFStructures.ISCHIGUALASTO_HUT, DimensionStructuresSettings.field_236191_b_.get(PFStructures.ISCHIGUALASTO_HUT));
 					tempMap.put(PFStructures.DJADOCHTA_HUT, DimensionStructuresSettings.field_236191_b_.get(PFStructures.DJADOCHTA_HUT));
 					tempMap.put(PFStructures.KAYENTA_HUT, DimensionStructuresSettings.field_236191_b_.get(PFStructures.KAYENTA_HUT));
+					tempMap.put(PFStructures.CHINLE_HUT, DimensionStructuresSettings.field_236191_b_.get(PFStructures.CHINLE_HUT));
 					settings.getValue().getStructures().field_236193_d_ = tempMap;
 				} else {
 					structureMap.put(PFStructures.TIME_TEMPLE, DimensionStructuresSettings.field_236191_b_.get(PFStructures.TIME_TEMPLE));
@@ -263,6 +269,7 @@ public class PrehistoricFauna {
 					structureMap.put(PFStructures.ISCHIGUALASTO_HUT, DimensionStructuresSettings.field_236191_b_.get(PFStructures.ISCHIGUALASTO_HUT));
 					structureMap.put(PFStructures.DJADOCHTA_HUT, DimensionStructuresSettings.field_236191_b_.get(PFStructures.DJADOCHTA_HUT));
 					structureMap.put(PFStructures.KAYENTA_HUT, DimensionStructuresSettings.field_236191_b_.get(PFStructures.KAYENTA_HUT));
+					structureMap.put(PFStructures.CHINLE_HUT, DimensionStructuresSettings.field_236191_b_.get(PFStructures.CHINLE_HUT));
 				}
 			});
 			MinecraftForge.EVENT_BUS.register(new CommonEvents());
@@ -423,6 +430,12 @@ public class PrehistoricFauna {
 		GlobalEntityTypeAttributes.put(PFEntities.DILOPHOSAURUS_SKULL, DilophosaurusSkullEntity.createAttributes().create());
 		GlobalEntityTypeAttributes.put(PFEntities.TYPOTHORAX_ENTITY, TypothoraxEntity.createAttributes().create());
 		GlobalEntityTypeAttributes.put(PFEntities.DESMATOSUCHUS_SKULL, DesmatosuchusSkullEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.PLESIOHADROS_SKELETON, PlesiohadrosEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.DESMATOSUCHUS_SKELETON, DesmatosuchusSkeletonEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.POSTOSUCHUS_SKELETON, PostosuchusSkeletonEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.SARAHSAURUS_SKULL, SarahsaurusSkullEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.SARAHSAURUS_SKELETON, SarahsaurusSkeletonEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.DILOPHOSAURUS_SKELETON, DilophosaurusSkeletonEntity.createAttributes().create());
 	}
 
 	@SuppressWarnings("unlikely-arg-type")
@@ -437,7 +450,7 @@ public class PrehistoricFauna {
 		if ((event.getCategory() == Biome.Category.PLAINS || event.getCategory() == Biome.Category.FOREST || event.getCategory() == Biome.Category.SAVANNA || event.getCategory() == Biome.Category.TAIGA || event.getCategory() == Biome.Category.EXTREME_HILLS || name.equals("petrified_forest")) && (!name.equals("hell_creek") || !name.equals("hell_creek_clearing") || !name.equals("hell_creek_hills") || !name.equals(PFBiomes.HELL_CREEK_RIVER.getRegistryName()))) {
 			event.getGeneration().getStructures().add(() -> PFConfiguredStructures.CONFIGURED_GEOLOGIST_CAMP);
 		}
-		if (!name.equals("hell_creek") && !name.equals("hell_creek_clearing") && !name.equals("hell_creek_hills") && !name.equals("hell_creek_river") && !name.equals("morrison_savannah") && !name.equals("morrison_hills") && !name.equals("ischigualasto_forest") && !name.equals("ischigualasto_clearing") && !name.equals("ischigualasto_hills") && !name.equals("ischigualasto_river") && !name.equals("djadochta_dunes") && !name.equals("djadochta_arroyo") && !name.equals("kayenta_dry_forest") && !name.equals("kayenta_canyon") && !name.equals("kayenta_desert") && !name.equals("chinle_swamp") && !name.equals("chinle_flats") && !name.equals("chinle_wooded_mountains")) {
+		if (!name.equals("hell_creek") && !name.equals("hell_creek_clearing") && !name.equals("hell_creek_hills") && !name.equals("hell_creek_river") && !name.equals("morrison_savannah") && !name.equals("morrison_hills") && !name.equals("ischigualasto_forest") && !name.equals("ischigualasto_clearing") && !name.equals("ischigualasto_hills") && !name.equals("ischigualasto_river") && !name.equals("djadochta_dunes") && !name.equals("djadochta_arroyo") && !name.equals("kayenta_dry_forest") && !name.equals("kayenta_canyon") && !name.equals("kayenta_desert") && !name.equals("chinle_swamp") && !name.equals("chinle_flats") && !name.equals("chinle_wooded_mountains") && !name.equals("chinle_river") && (event.getCategory() == Biome.Category.BEACH || event.getCategory() == Biome.Category.DESERT || event.getCategory() == Biome.Category.EXTREME_HILLS || event.getCategory() == Biome.Category.FOREST || event.getCategory() == Biome.Category.ICY || event.getCategory() == Biome.Category.JUNGLE || event.getCategory() == Biome.Category.MESA || event.getCategory() == Biome.Category.MUSHROOM || event.getCategory() == Biome.Category.NONE || event.getCategory() == Biome.Category.OCEAN || event.getCategory() == Biome.Category.PLAINS || event.getCategory() == Biome.Category.RIVER || event.getCategory() == Biome.Category.SAVANNA || event.getCategory() == Biome.Category.SWAMP || event.getCategory() == Biome.Category.TAIGA	)) {
 			event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(() -> PFConfiguredFeatures.FOSSILIZED_CHALK);
 			event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(() -> PFConfiguredFeatures.FOSSILIZED_SILTSTONE);
 			event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(() -> PFConfiguredFeatures.FOSSILIZED_SANDSTONE);	
@@ -531,7 +544,7 @@ public class PrehistoricFauna {
 			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> PFConfiguredFeatures.PREHISTORIC_CLAY_DISKS);
 			event.getGeneration().getStructures().add(() -> PFConfiguredStructures.CONFIGURED_KAYENTA_HUT);
 		}
-		if (name.equals("chinle_swamp") || name.equals("chinle_flats") || name.equals("chinle_wooded_mountains")) {
+		if (name.equals("chinle_swamp") || name.equals("chinle_flats") || name.equals("chinle_wooded_mountains") || name.equals("chinle_river")) {
 			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_COAL);
 			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_IRON);
 			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> Features.ORE_GOLD);
@@ -546,6 +559,7 @@ public class PrehistoricFauna {
 			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> PFConfiguredFeatures.PREHISTORIC_SAND_DISKS);
 			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> PFConfiguredFeatures.PREHISTORIC_GRAVEL_DISKS);
 			event.getGeneration().getFeatures(Decoration.UNDERGROUND_DECORATION).add(() -> PFConfiguredFeatures.PREHISTORIC_CLAY_DISKS);
+			event.getGeneration().getStructures().add(() -> PFConfiguredStructures.CONFIGURED_CHINLE_HUT);
 		}
 	}
 
@@ -573,6 +587,7 @@ public class PrehistoricFauna {
 			tempMap.putIfAbsent(PFStructures.ISCHIGUALASTO_HUT, DimensionStructuresSettings.field_236191_b_.get(PFStructures.ISCHIGUALASTO_HUT));
 			tempMap.putIfAbsent(PFStructures.DJADOCHTA_HUT, DimensionStructuresSettings.field_236191_b_.get(PFStructures.DJADOCHTA_HUT));
 			tempMap.putIfAbsent(PFStructures.KAYENTA_HUT, DimensionStructuresSettings.field_236191_b_.get(PFStructures.KAYENTA_HUT));
+			tempMap.putIfAbsent(PFStructures.CHINLE_HUT, DimensionStructuresSettings.field_236191_b_.get(PFStructures.CHINLE_HUT));
 			serverWorld.getChunkProvider().generator.func_235957_b_().field_236193_d_ = tempMap;
 		}
 	}

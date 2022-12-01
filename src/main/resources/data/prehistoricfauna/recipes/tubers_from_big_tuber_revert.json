@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:big_tuber_block"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:tuber",
+	"count": 4
+  }
+}

@@ -226,6 +226,134 @@
           "type": "prehistoricfauna:citipati"
         }
       }
+    },
+    "pinacosaurus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:pinacosaurus"
+        }
+      }
+    },
+    "plesiohadros": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:plesiohadros"
+        }
+      }
+    },
+	"calsoyasuchus": {
+		"trigger": "minecraft:bred_animals",
+		"conditions": {
+			"parent": {
+				"type": "prehistoricfauna:calsoyasuchus"
+			}
+		}
+	},
+    "dilophosaurus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:dilophosaurus"
+        }
+      }
+    },
+    "kayentatherium": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:kayentatherium"
+        }
+      }
+    },
+    "megapnosaurus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:megapnosaurus"
+        }
+      }
+    },
+    "sarahsaurus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:sarahsaurus"
+        }
+      }
+    },
+    "scelidosaurus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:scelidosaurus"
+        }
+      }
+    },
+    "scutellosaurus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:scutellosaurus"
+        }
+      }
+    },
+    "coelophysis": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:coelophysis"
+        }
+      }
+    },
+    "desmatosuchus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:desmatosuchus"
+        }
+      }
+    },
+    "placerias": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:placerias"
+        }
+      }
+    },
+    "poposaurus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:poposaurus"
+        }
+      }
+    },
+    "postosuchus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:postosuchus"
+        }
+      }
+    },
+    "trilophosaurus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:trilophosaurus"
+        }
+      }
+    },
+    "typothorax": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:typothorax"
+        }
+      }
     }
   },
   "requirements": [
@@ -306,6 +434,54 @@
 	],
 	[
 		"aepyornithomimus"
+	],
+	[
+		"pinacosaurus"
+	],
+	[
+		"plesiohadros"
+	],
+	[
+		"calsoyasuchus"
+	],
+	[
+		"dilophosaurus"
+	],
+	[
+		"kayentatherium"
+	],
+	[
+		"megapnosaurus"
+	],
+	[
+		"sarahsaurus"
+	],
+	[
+		"scelidosaurus"
+	],
+	[
+		"scutellosaurus"
+	],
+	[
+		"coelophysis"
+	],
+	[
+		"desmatosuchus"
+	],
+	[
+		"placerias"
+	],
+	[
+		"poposaurus"
+	],
+	[
+		"postosuchus"
+	],
+	[
+		"trilophosaurus"
+	],
+	[
+		"typothorax"
 	]
   ]
 }

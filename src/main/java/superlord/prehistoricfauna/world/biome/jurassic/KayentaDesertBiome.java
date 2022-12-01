@@ -61,7 +61,7 @@ public class KayentaDesertBiome extends PFBiome {
 	
 	static {
         DefaultBiomeFeatures.withCavesAndCanyons(GENERATION_SETTINGS);
-		GENERATION_SETTINGS.withFeature(Decoration.UNDERGROUND_ORES, PFConfiguredFeatures.FOSSILIZED_SANDSTONE);
+		GENERATION_SETTINGS.withFeature(Decoration.UNDERGROUND_ORES, PFConfiguredFeatures.JURASSIC_FOSSILIZED_SANDSTONE);
 		PFConfiguredFeatures.withDeadPlants(GENERATION_SETTINGS);
 		PFConfiguredFeatures.addKayentaDesertRocks(GENERATION_SETTINGS);
 		GENERATION_SETTINGS.withFeature(Decoration.VEGETAL_DECORATION, PFConfiguredFeatures.ZAMITES_BUSH);

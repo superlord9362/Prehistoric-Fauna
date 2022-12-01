@@ -67,7 +67,7 @@
 					"type": "prehistoricfauna:tyrannosaurus_skeleton"
 				},
 				"killing_blow": {
-					"is_projectile": true
+					"is_explosion": true
 				}
 			}
 		},
@@ -147,6 +147,28 @@
 					"is_explosion": true
 				}
 			}
+		},
+		"blew_up_plesiohadros_skeleton": {
+			"trigger": "minecraft:player_killed_entity",
+			"conditions": {
+				"entity": {
+					"type": "prehistoricfauna:plesiohadros_skeleton"
+				},
+				"killing_blow": {
+					"is_explosion": true
+				}
+			}
+		},
+		"blew_up_desmatosuchus_skeleton": {
+			"trigger": "minecraft:player_killed_entity",
+			"conditions": {
+				"entity": {
+					"type": "prehistoricfauna:desmatosuchus_skeleton"
+				},
+				"killing_blow": {
+					"is_explosion": true
+				}
+			}
 		}
 	},
 	"requirements": [
@@ -162,7 +184,9 @@
 			"blew_up_coelophysis_skeleton",
 			"blew_up_herrerasaurus_skeleton",
 			"blew_up_ischigualastia_skeleton",
-			"blew_up_saurosuchus_skeleton"
+			"blew_up_saurosuchus_skeleton",
+			"blew_up_desmatosuchus_skeleton",
+			"blew_up_plesiohadros_skeleton"
 		]
 	]
 }

@@ -58,9 +58,9 @@ public class DjadochtaArroyoBiome extends PFBiome {
 	}
 
 	static {
-		GENERATION_SETTINGS.withFeature(Decoration.UNDERGROUND_ORES, PFConfiguredFeatures.FOSSILIZED_SANDSTONE);
-		GENERATION_SETTINGS.withFeature(Decoration.UNDERGROUND_ORES, PFConfiguredFeatures.FOSSILIZED_SILTSTONE); 
-		PFConfiguredFeatures.withDeadPlants(GENERATION_SETTINGS);
+		GENERATION_SETTINGS.withFeature(Decoration.UNDERGROUND_ORES, PFConfiguredFeatures.CRETACEOUS_FOSSILIZED_SANDSTONE);
+		GENERATION_SETTINGS.withFeature(Decoration.UNDERGROUND_ORES, PFConfiguredFeatures.CRETACEOUS_FOSSILIZED_SILTSTONE); 
+		PFConfiguredFeatures.withRareDeadCycadeoid(GENERATION_SETTINGS);
 		PFConfiguredFeatures.withDjadochtaPlants(GENERATION_SETTINGS);
 		DefaultBiomeFeatures.withCavesAndCanyons(GENERATION_SETTINGS);
 		PFConfiguredFeatures.withDjadochtaRocks(GENERATION_SETTINGS);

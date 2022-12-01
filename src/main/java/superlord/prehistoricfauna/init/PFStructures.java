@@ -16,6 +16,7 @@ import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
+import superlord.prehistoricfauna.world.structure.ChinleHutStructure;
 import superlord.prehistoricfauna.world.structure.DjadochtaHutStructure;
 import superlord.prehistoricfauna.world.structure.GeologistCampStructure;
 import superlord.prehistoricfauna.world.structure.HellCreekHutStructure;
@@ -37,6 +38,7 @@ public class PFStructures {
 	public static IStructurePieceType ISCHIGUALASTO_HUT_PIECE_TYPE = IschigualastoHutStructure.Piece::new;
 	public static IStructurePieceType DJADOCHTA_HUT_PIECE_TYPE = DjadochtaHutStructure.Piece::new;
 	public static IStructurePieceType KAYENTA_HUT_PIECE_TYPE = KayentaHutStructure.Piece::new;
+	public static IStructurePieceType CHINLE_HUT_PIECE_TYPE = ChinleHutStructure.Piece::new;
 	public static Structure<NoFeatureConfig> TIME_TEMPLE;
 	public static Structure<NoFeatureConfig> GEOLOGIST_CAMP;
 	public static Structure<NoFeatureConfig> PORTAL_CHAMBER;
@@ -45,6 +47,7 @@ public class PFStructures {
 	public static Structure<NoFeatureConfig> ISCHIGUALASTO_HUT;
 	public static Structure<NoFeatureConfig> DJADOCHTA_HUT;
 	public static Structure<NoFeatureConfig> KAYENTA_HUT;
+	public static Structure<NoFeatureConfig> CHINLE_HUT;
 
 	public static void setupStructures() {
 		Registry.register(Registry.STRUCTURE_PIECE, new ResourceLocation(PrehistoricFauna.MOD_ID, "time_temple"), TIME_TEMPLE_PIECE_TYPE);
@@ -55,6 +58,7 @@ public class PFStructures {
 		Registry.register(Registry.STRUCTURE_PIECE, new ResourceLocation(PrehistoricFauna.MOD_ID, "ischigualasto_hut"), ISCHIGUALASTO_HUT_PIECE_TYPE);
 		Registry.register(Registry.STRUCTURE_PIECE, new ResourceLocation(PrehistoricFauna.MOD_ID, "djadochta_hut"), DJADOCHTA_HUT_PIECE_TYPE);
 		Registry.register(Registry.STRUCTURE_PIECE, new ResourceLocation(PrehistoricFauna.MOD_ID, "kayenta_hut"), KAYENTA_HUT_PIECE_TYPE);
+		Registry.register(Registry.STRUCTURE_PIECE, new ResourceLocation(PrehistoricFauna.MOD_ID, "chinle_hut"), CHINLE_HUT_PIECE_TYPE);
 		TIME_TEMPLE = registerStructureFeature("prehistoricfauna:time_temple", new TimeTempleStructure(NoFeatureConfig.field_236558_a_));
 		GEOLOGIST_CAMP = registerStructureFeature("prehistoricfauna:geologist_camp", new GeologistCampStructure(NoFeatureConfig.field_236558_a_));
 		PORTAL_CHAMBER = registerStructureFeature("prehistoricfauna:portal_chamber", new PortalChamberStructure(NoFeatureConfig.field_236558_a_));
@@ -63,6 +67,7 @@ public class PFStructures {
 		ISCHIGUALASTO_HUT = registerStructureFeature("prehistoricfauna:ischigualasto_hut", new IschigualastoHutStructure(NoFeatureConfig.field_236558_a_));
 		DJADOCHTA_HUT = registerStructureFeature("prehistoricfauna:djadochta_hut", new DjadochtaHutStructure(NoFeatureConfig.field_236558_a_));
 		KAYENTA_HUT = registerStructureFeature("prehistoricfauna:kayenta_hut", new KayentaHutStructure(NoFeatureConfig.field_236558_a_));
+		CHINLE_HUT = registerStructureFeature("prehistoricfauna:chinle_hut", new ChinleHutStructure(NoFeatureConfig.field_236558_a_));
 		setupMapSpacingAndLand(TIME_TEMPLE, new StructureSeparationSettings(PrehistoricFaunaConfig.timeTempleMaxDistance, PrehistoricFaunaConfig.timeTempleMinDistance, 8237163), true);
 		setupMapSpacingAndLand(GEOLOGIST_CAMP, new StructureSeparationSettings(PrehistoricFaunaConfig.geologistCampMaxDistance, PrehistoricFaunaConfig.geologistCampMinDistance, 37126163), true);
 		setupMapSpacingAndLand(PORTAL_CHAMBER, new StructureSeparationSettings(PrehistoricFaunaConfig.portalHubMaxDistance, PrehistoricFaunaConfig.portalHubMinDistance, 2837462), true);
@@ -71,6 +76,7 @@ public class PFStructures {
 		setupMapSpacingAndLand(ISCHIGUALASTO_HUT, new StructureSeparationSettings(PrehistoricFaunaConfig.ischigualastoHutMaxDistance, PrehistoricFaunaConfig.ischigualastoHutMinDistance, 29578373), true);
 		setupMapSpacingAndLand(DJADOCHTA_HUT, new StructureSeparationSettings(PrehistoricFaunaConfig.djadochtaHutMaxDistance, PrehistoricFaunaConfig.djadochtaHutMinDistance, 294837281), true);
 		setupMapSpacingAndLand(KAYENTA_HUT, new StructureSeparationSettings(PrehistoricFaunaConfig.kayentaHutMaxDistance, PrehistoricFaunaConfig.kayentaHutMinDistance, 2847238), true);
+		setupMapSpacingAndLand(CHINLE_HUT, new StructureSeparationSettings(PrehistoricFaunaConfig.chinleHutMaxDistance, PrehistoricFaunaConfig.chinleHutMinDistance, 485726216), true);
 	}
 
 	private static Structure<NoFeatureConfig> registerStructureFeature(String registryName, Structure<NoFeatureConfig> feature) {

@@ -19,6 +19,7 @@ import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.world.feature.AlgaeFeature;
 import superlord.prehistoricfauna.world.feature.CrassostreaOystersFeature;
 import superlord.prehistoricfauna.world.feature.DicroidiumFeature;
+import superlord.prehistoricfauna.world.feature.DjadochtaHorsetailsFeature;
 import superlord.prehistoricfauna.world.feature.JohnstoniaFeature;
 import superlord.prehistoricfauna.world.feature.LandSphereReplaceFeature;
 import superlord.prehistoricfauna.world.feature.NeocalamitesFeature;
@@ -166,7 +167,8 @@ public class PFFeatures {
     public static final Feature<JohnstoniaConfig> NEOCALAMITES_FEATURE = createFeature("neocalamites_feature", new NeocalamitesFeature(JohnstoniaConfig.field_236558_a_.stable()));
     public static final Feature<SphereReplaceConfig> LAND_DISK_FEATURE = createFeature("land_disk_feature", new LandSphereReplaceFeature(SphereReplaceConfig.field_236516_a_.stable()));
     public static final Feature<JohnstoniaConfig> TALL_HORSETAILS_FEATURE = createFeature("tall_horsetails_feature", new WaterloggedHorsetailsFeature(JohnstoniaConfig.field_236558_a_.stable()));
-
+    public static final Feature<JohnstoniaConfig> DJADOCHTA_HORSETAILS_FEATURE = createFeature("djadochta_horsetails_feature", new DjadochtaHorsetailsFeature(JohnstoniaConfig.field_236558_a_.stable()));
+    
     public static final Feature<CrassostreaOystersConfig> CRASSOSTREA_OYSTERS_FEATURE = createFeature("crassostrea_oysters", new CrassostreaOystersFeature(CrassostreaOystersConfig.field_236558_a_.stable()));
     public static final Feature<CrassostreaOystersConfig> ALGAE_FEATURE = createFeature("algae", new AlgaeFeature(CrassostreaOystersConfig.field_236558_a_.stable()));
 

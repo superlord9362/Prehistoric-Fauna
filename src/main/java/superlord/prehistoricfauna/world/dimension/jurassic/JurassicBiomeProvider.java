@@ -30,7 +30,7 @@ public class JurassicBiomeProvider extends BiomeProvider {
 	private final long seed;
 	private final Registry<Biome> registry;
 	private final Layer genBiomes;
-	private static final List<RegistryKey<Biome>> biomes = ImmutableList.of(PFBiomes.MORRISON_SAVANNAH_BIOME.getKey(), PFBiomes.MORRISON_HILLS_BIOME.getKey(), PFBiomes.KAYENTA_DRY_FOREST_BIOME.getKey(), PFBiomes.KAYENTA_BUTTES_BIOME.getKey(), PFBiomes.KAYENTA_DESERT_BIOME.getKey());
+	private static final List<RegistryKey<Biome>> biomes = ImmutableList.of(PFBiomes.MORRISON_SAVANNAH_BIOME.getKey(), PFBiomes.MORRISON_HILLS_BIOME.getKey(), PFBiomes.KAYENTA_DRY_FOREST_BIOME.getKey(), PFBiomes.KAYENTA_BUTTES_BIOME.getKey(), PFBiomes.KAYENTA_DESERT_BIOME.getKey(), PFBiomes.KAYENTA_RIVER_BIOME.getKey());
 
 	public JurassicBiomeProvider(long seed, Registry<Biome> registry) {
 		super(biomes.stream().map(define -> () -> registry.getOrThrow(define)));

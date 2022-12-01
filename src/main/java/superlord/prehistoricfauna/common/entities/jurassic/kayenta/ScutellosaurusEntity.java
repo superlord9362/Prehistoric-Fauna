@@ -19,6 +19,7 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.ai.goal.BreedGoal;
 import net.minecraft.entity.ai.goal.FollowParentGoal;
+import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.entity.ai.goal.PanicGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
@@ -52,6 +53,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.common.blocks.ScutellosaurusEggBlock;
 import superlord.prehistoricfauna.common.entities.DinosaurEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.djadochta.CitipatiEntity;
+import superlord.prehistoricfauna.common.entities.cretaceous.djadochta.PinacosaurusEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.djadochta.PlesiohadrosEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.djadochta.TelmasaurusEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.djadochta.VelociraptorEntity;
@@ -208,13 +210,10 @@ public class ScutellosaurusEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, false, TEMPTATION_ITEMS));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<PlayerEntity>(this, PlayerEntity.class, 10F, 2D, 2D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<DilophosaurusEntity>(this, DilophosaurusEntity.class, 10, 1.2, 1.5));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<CitipatiEntity>(this, CitipatiEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<PlesiohadrosEntity>(this, PlesiohadrosEntity.class, 10, 1.2, 1.5));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<TelmasaurusEntity>(this, TelmasaurusEntity.class, 10, 1.2, 1.5));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<VelociraptorEntity>(this, VelociraptorEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<AnkylosaurusEntity>(this, AnkylosaurusEntity.class, 10, 1.2, 1.5));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<DakotaraptorEntity>(this, DakotaraptorEntity.class, 10, 1.2, 1.5));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<TriceratopsEntity>(this, TriceratopsEntity.class, 10, 1.2, 1.5));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<TyrannosaurusEntity>(this, TyrannosaurusEntity.class, 10, 1.2, 1.5));
@@ -223,14 +222,18 @@ public class ScutellosaurusEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<CamarasaurusEntity>(this, CamarasaurusEntity.class, 10, 1.2, 1.5));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<CeratosaurusEntity>(this, CeratosaurusEntity.class, 10, 1.2, 1.5));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<HesperornithoidesEntity>(this, HesperornithoidesEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<StegosaurusEntity>(this, StegosaurusEntity.class, 10, 1.2, 1.5));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<HerrerasaurusEntity>(this, HerrerasaurusEntity.class, 10, 1.2, 1.5));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<IschigualastiaEntity>(this, IschigualastiaEntity.class, 10, 1.2, 1.5));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<SaurosuchusEntity>(this, SaurosuchusEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<SillosuchusEntity>(this, SillosuchusEntity.class, 10, 1.2, 1.5));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<PlayerEntity>(this, PlayerEntity.class, 10, 1.2, 1.5));
 		this.goalSelector.addGoal(0, new ScutellosaurusEntity.LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
 		this.goalSelector.addGoal(0, new ScutellosaurusEntity.HerbivoreEatGoal((double)1.2F, 12, 2));
+		this.goalSelector.addGoal(8, new ScutellosaurusEntity.FollowHerbivoreGoal(AnkylosaurusEntity.class, this));
+		this.goalSelector.addGoal(8, new ScutellosaurusEntity.FollowHerbivoreGoal(PinacosaurusEntity.class, this));
+		this.goalSelector.addGoal(8, new ScutellosaurusEntity.FollowHerbivoreGoal(PlesiohadrosEntity.class, this));
+		this.goalSelector.addGoal(8, new ScutellosaurusEntity.FollowHerbivoreGoal(StegosaurusEntity.class, this));
+		this.goalSelector.addGoal(8, new ScutellosaurusEntity.FollowHerbivoreGoal(SillosuchusEntity.class, this));
 	}
 
 	@Nullable
@@ -242,7 +245,7 @@ public class ScutellosaurusEntity extends DinosaurEntity {
 		} else if (birthNumber >= 4 && birthNumber < 7) {
 			this.setMelanistic(true);
 		}
-		this.setHunger(15);
+		this.setHunger(this.maxHunger);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
@@ -271,29 +274,44 @@ public class ScutellosaurusEntity extends DinosaurEntity {
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.22D);
 		}
-		List<ScutellosaurusEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
-		if (PrehistoricFaunaConfig.advancedHunger) {
-			hungerTick++;
-			if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
-				hungerTick = 0;
-				if (currentHunger != 0 || !this.isAsleep()) {
-					this.setHunger(currentHunger - 1);
+		if (!this.isAIDisabled()) {
+			List<ScutellosaurusEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
+			if (PrehistoricFaunaConfig.advancedHunger) {
+				hungerTick++;
+				if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
+					hungerTick = 0;
+					if (currentHunger != 0 || !this.isAsleep()) {
+						this.setHunger(currentHunger - 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
+					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getAttackTarget() == null && this.getRevengeTarget() == null) {
+						float currentHealth = this.getHealth();
+						this.setHealth(currentHealth + 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 8) {
+						loveTick = 600;
+						this.setInLoveNaturally(true);
+						this.setInLove(600);
+						lastInLove = 28800;
+					}
+					if (loveTick != 0) {
+						loveTick--;
+					} else {
+						this.setInLoveNaturally(false);
+					}
 				}
-			}
-			if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-				if (this.getHealth() < this.getMaxHealth()) {
-					float currentHealth = this.getHealth();
-					this.setHealth(currentHealth + 1);
-				}
-			}
-			if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 8) {
+			} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+				int naturalBreedingChance = rand.nextInt(1000);
+				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 8) {
 					loveTick = 600;
 					this.setInLoveNaturally(true);
 					this.setInLove(600);
@@ -305,22 +323,9 @@ public class ScutellosaurusEntity extends DinosaurEntity {
 					this.setInLoveNaturally(false);
 				}
 			}
-		} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-			int naturalBreedingChance = rand.nextInt(1000);
-			if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 8) {
-				loveTick = 600;
-				this.setInLoveNaturally(true);
-				this.setInLove(600);
-				lastInLove = 28800;
+			if (lastInLove != 0) {
+				lastInLove--;
 			}
-			if (loveTick != 0) {
-				loveTick--;
-			} else {
-				this.setInLoveNaturally(false);
-			}
-		}
-		if (lastInLove != 0) {
-			lastInLove--;
 		}
 	}
 
@@ -601,6 +606,51 @@ public class ScutellosaurusEntity extends DinosaurEntity {
 			this.field_220731_g = 0;
 			super.startExecuting();
 		}
+	}
+
+	public class FollowHerbivoreGoal extends Goal {
+		private final Class<? extends DinosaurEntity> followCreature;
+		private final ScutellosaurusEntity scutellosaurus;
+
+		public FollowHerbivoreGoal(Class<? extends DinosaurEntity> followCreature, ScutellosaurusEntity scutellosaurus) {
+			this.followCreature = followCreature;
+			this.scutellosaurus = scutellosaurus;
+		}
+
+
+		public boolean shouldExecute() {
+			List<DinosaurEntity> list = this.scutellosaurus.world.getEntitiesWithinAABB(DinosaurEntity.class, this.scutellosaurus.getBoundingBox().grow(10.0D));
+			boolean flag = false;
+			for (DinosaurEntity dinosaur : list) {
+				if (dinosaur.getClass() == this.followCreature) {
+					if (dinosaur.getWidth() >= 1.5F) {
+						flag = true;
+						break;
+					}
+				}
+			}
+			return flag;
+		}
+
+		public boolean isPreemptible() {
+			return true;
+		}
+
+		public boolean shouldContinueExecuting() {
+			return scutellosaurus.getRevengeTarget() != null;
+		}
+
+		public void startExecuting() {
+
+		}
+
+		public void tick() {
+			List<DinosaurEntity> list = this.scutellosaurus.world.getEntitiesWithinAABB(DinosaurEntity.class, this.scutellosaurus.getBoundingBox().grow(10.0D));
+			for (DinosaurEntity dinosaur : list) {
+				this.scutellosaurus.getNavigator().tryMoveToEntityLiving(dinosaur, 1.0D);
+			}
+		}
+
 	}
 
 }

@@ -4,5 +4,11 @@
     "item": "prehistoricfauna:polished_siltstone"
   },
   "result": "prehistoricfauna:siltstone_brick_vertical_slab",
-  "count": 2
+  "count": 2,
+  "conditions": [
+    {
+      "type": "prehistoricfauna:quark_flag",
+      "flag": "vertical_slabs"
+    }
+  ]
 }

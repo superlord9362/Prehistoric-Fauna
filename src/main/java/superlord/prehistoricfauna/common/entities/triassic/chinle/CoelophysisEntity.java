@@ -127,16 +127,16 @@ public class CoelophysisEntity extends DinosaurEntity {
 	public CoelophysisEntity(EntityType<? extends CoelophysisEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
-   
+
 	public boolean isDigging() {
 		return this.dataManager.get(IS_DIGGING);
 	}
-	
+
 	private void setDigging(boolean isDigging) {
 		this.isDigging = isDigging ? 1 : 0;
 		this.dataManager.set(IS_DIGGING, isDigging);
 	}
-	
+
 	public boolean hasEgg() {
 		return this.dataManager.get(HAS_EGG);
 	}
@@ -146,9 +146,9 @@ public class CoelophysisEntity extends DinosaurEntity {
 	}
 
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == PFItems.RAW_SMALL_THYREOPHORAN_MEAT.get();
+		return stack.getItem() == PFItems.RAW_SMALL_ARCHOSAUROMORPH_MEAT.get();
 	}
-	
+
 	public boolean isAlbino() {
 		return this.dataManager.get(ALBINO);
 	}
@@ -193,7 +193,7 @@ public class CoelophysisEntity extends DinosaurEntity {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.attackAnimals = new HuntGoal(this, AnimalEntity.class, 10, false, false, (p_213487_0_) -> {
-	         return p_213487_0_ instanceof DryosaurusEntity || p_213487_0_ instanceof ThescelosaurusEntity || p_213487_0_ instanceof ChromogisaurusEntity || p_213487_0_ instanceof HyperodapedonEntity || p_213487_0_ instanceof HorseEntity || p_213487_0_ instanceof DonkeyEntity || p_213487_0_ instanceof MuleEntity || p_213487_0_ instanceof SheepEntity || p_213487_0_ instanceof CowEntity || p_213487_0_ instanceof PigEntity || p_213487_0_ instanceof OcelotEntity || p_213487_0_ instanceof PlayerEntity;
+			return p_213487_0_ instanceof DryosaurusEntity || p_213487_0_ instanceof ThescelosaurusEntity || p_213487_0_ instanceof ChromogisaurusEntity || p_213487_0_ instanceof HyperodapedonEntity || p_213487_0_ instanceof HorseEntity || p_213487_0_ instanceof DonkeyEntity || p_213487_0_ instanceof MuleEntity || p_213487_0_ instanceof SheepEntity || p_213487_0_ instanceof CowEntity || p_213487_0_ instanceof PigEntity || p_213487_0_ instanceof OcelotEntity || p_213487_0_ instanceof PlayerEntity;
 		});
 		this.goalSelector.addGoal(1, new CoelophysisEntity.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
@@ -206,7 +206,6 @@ public class CoelophysisEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new CoelophysisEntity.LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new CoelophysisEntity.MateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new CoelophysisEntity.NaturalMateGoal(this, 1.0D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal<PlayerEntity>(this, PlayerEntity.class, 7F, 1.25D, 1.25D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<DilophosaurusEntity>(this, DilophosaurusEntity.class, 10F, 1.2D, 1.5D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<CitipatiEntity>(this, CitipatiEntity.class, 10F, 1.2D, 1.5D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<PinacosaurusEntity>(this, PinacosaurusEntity.class, 10F, 1.2D, 1.5D));
@@ -237,7 +236,7 @@ public class CoelophysisEntity extends DinosaurEntity {
 			return p_213487_1_ instanceof DidelphodonEntity || p_213487_1_ instanceof EilenodonEntity || p_213487_1_ instanceof HyperodapedonEntity || p_213487_1_ instanceof TelmasaurusEntity || p_213487_1_ instanceof RabbitEntity || p_213487_1_ instanceof ChickenEntity || p_213487_1_ instanceof HesperornithoidesEntity || p_213487_1_ instanceof ScutellosaurusEntity;
 		}));
 	}
-	
+
 	public void livingTick() {
 		super.livingTick();
 		if (this.isAsleep()) {
@@ -245,29 +244,44 @@ public class CoelophysisEntity extends DinosaurEntity {
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.25D);
 		}
-		List<CoelophysisEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
-		if (PrehistoricFaunaConfig.advancedHunger) {
-			hungerTick++;
-			if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
-				hungerTick = 0;
-				if (currentHunger != 0 || !this.isAsleep()) {
-					this.setHunger(currentHunger - 1);
+		if (!this.isAIDisabled()) {
+			List<CoelophysisEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
+			if (PrehistoricFaunaConfig.advancedHunger) {
+				hungerTick++;
+				if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
+					hungerTick = 0;
+					if (currentHunger != 0 || !this.isAsleep()) {
+						this.setHunger(currentHunger - 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
+					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getAttackTarget() == null && this.getRevengeTarget() == null) {
+						float currentHealth = this.getHealth();
+						this.setHealth(currentHealth + 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 3) {
+						loveTick = 600;
+						this.setInLoveNaturally(true);
+						this.setInLove(600);
+						lastInLove = 28800;
+					}
+					if (loveTick != 0) {
+						loveTick--;
+					} else {
+						this.setInLoveNaturally(false);
+					}
 				}
-			}
-			if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-				if (this.getHealth() < this.getMaxHealth()) {
-					float currentHealth = this.getHealth();
-					this.setHealth(currentHealth + 1);
-				}
-			}
-			if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 3) {
+			} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+				int naturalBreedingChance = rand.nextInt(1000);
+				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 3) {
 					loveTick = 600;
 					this.setInLoveNaturally(true);
 					this.setInLove(600);
@@ -279,25 +293,12 @@ public class CoelophysisEntity extends DinosaurEntity {
 					this.setInLoveNaturally(false);
 				}
 			}
-		} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-			int naturalBreedingChance = rand.nextInt(1000);
-			if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 3) {
-				loveTick = 600;
-				this.setInLoveNaturally(true);
-				this.setInLove(600);
-				lastInLove = 28800;
+			if (lastInLove != 0) {
+				lastInLove--;
 			}
-			if (loveTick != 0) {
-				loveTick--;
-			} else {
-				this.setInLoveNaturally(false);
-			}
-		}
-		if (lastInLove != 0) {
-			lastInLove--;
 		}
 	}
-	
+
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
 		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0D);
 	}
@@ -305,7 +306,7 @@ public class CoelophysisEntity extends DinosaurEntity {
 	private void setAttackGoals() {
 		this.targetSelector.addGoal(4, this.attackAnimals);
 	}
-   
+
 	protected SoundEvent getAmbientSound() {
 		return this.isAsleep() ? null : SoundInit.COELOPHYSIS_IDLE;
 	}
@@ -333,7 +334,7 @@ public class CoelophysisEntity extends DinosaurEntity {
 		this.dataManager.register(MELANISTIC, false);
 		this.dataManager.register(NATURAL_LOVE, false);
 	}
-   
+
 	public void writeAdditional(CompoundNBT compound) {
 		super.writeAdditional(compound);
 		compound.putBoolean("HasEgg", this.hasEgg());
@@ -342,7 +343,7 @@ public class CoelophysisEntity extends DinosaurEntity {
 		compound.putInt("MaxHunger", this.currentHunger);
 		compound.putBoolean("InNaturalLove", this.isInLoveNaturally());
 	}
-   
+
 	public void readAdditional(CompoundNBT compound) {
 		super.readAdditional(compound);
 		this.setHasEgg(compound.getBoolean("HasEgg"));
@@ -369,7 +370,7 @@ public class CoelophysisEntity extends DinosaurEntity {
 		} else if (birthNumber >= 4 && birthNumber < 7) {
 			this.setMelanistic(true);
 		}
-		this.setHunger(15);
+		this.setHunger(this.maxHunger);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
@@ -379,7 +380,7 @@ public class CoelophysisEntity extends DinosaurEntity {
 			this.applyEnchantments(this, entityIn);
 		}
 		return flag;
-   }	
+	}	
 
 	class AttackPlayerGoal extends NearestAttackableTargetGoal<PlayerEntity> {
 		public AttackPlayerGoal() {
@@ -400,7 +401,7 @@ public class CoelophysisEntity extends DinosaurEntity {
 				return false;
 			}
 		}
-		
+
 		protected double getTargetDistance() {
 			return super.getTargetDistance() * 0.5D;
 		}
@@ -594,7 +595,7 @@ public class CoelophysisEntity extends DinosaurEntity {
 		entity.onInitialSpawn((IServerWorld) this.world, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
 		return entity;
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public class CarnivoreHuntGoal extends NearestAttackableTargetGoal {
 
@@ -631,7 +632,7 @@ public class CoelophysisEntity extends DinosaurEntity {
 					}
 				}
 			}
-			if (target instanceof BasilemysEntity || target instanceof ChromogisaurusEntity || target instanceof ExaeretodonEntity || target instanceof TelmasaurusEntity || target instanceof ParrotEntity || target instanceof KayentatheriumEntity || target instanceof VelociraptorEntity || target instanceof MegapnosaurusEntity) {
+			if (target instanceof ChromogisaurusEntity || target instanceof TelmasaurusEntity || target instanceof ParrotEntity || target instanceof KayentatheriumEntity || target instanceof VelociraptorEntity || target instanceof MegapnosaurusEntity) {
 				if (target.getHealth() == 0) {
 					if (CoelophysisEntity.this.getCurrentHunger() + 6 >= CoelophysisEntity.this.maxHunger) {
 						CoelophysisEntity.this.setHunger(CoelophysisEntity.this.maxHunger);
@@ -640,7 +641,7 @@ public class CoelophysisEntity extends DinosaurEntity {
 					}
 				}
 			}
-			if (target instanceof AepyornithomimusEntity || target instanceof ProtoceratopsEntity || target instanceof TrilophosaurusEntity || target instanceof TypothoraxEntity || target instanceof SheepEntity || target instanceof WolfEntity) {
+			if (target instanceof ExaeretodonEntity || target instanceof BasilemysEntity || target instanceof SheepEntity || target instanceof WolfEntity) {
 				if (target.getHealth() == 0) {
 					if (CoelophysisEntity.this.getCurrentHunger() + 8 >= CoelophysisEntity.this.maxHunger) {
 						CoelophysisEntity.this.setHunger(CoelophysisEntity.this.maxHunger);
@@ -649,7 +650,7 @@ public class CoelophysisEntity extends DinosaurEntity {
 					}
 				}
 			}
-			if (target instanceof CatEntity || target instanceof OcelotEntity || target instanceof PigEntity) {
+			if (target instanceof CatEntity || target instanceof OcelotEntity || target instanceof PigEntity || target instanceof AepyornithomimusEntity || target instanceof ProtoceratopsEntity || target instanceof TrilophosaurusEntity || target instanceof TypothoraxEntity) {
 				if (target.getHealth() == 0) {
 					if (CoelophysisEntity.this.getCurrentHunger() + 10 >= CoelophysisEntity.this.maxHunger) {
 						CoelophysisEntity.this.setHunger(CoelophysisEntity.this.maxHunger);
@@ -662,7 +663,7 @@ public class CoelophysisEntity extends DinosaurEntity {
 		}
 
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public class BabyCarnivoreHuntGoal extends NearestAttackableTargetGoal {
 

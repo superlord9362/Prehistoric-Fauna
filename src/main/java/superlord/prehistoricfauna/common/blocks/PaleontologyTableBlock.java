@@ -1,19 +1,27 @@
 package superlord.prehistoricfauna.common.blocks;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
@@ -92,6 +100,26 @@ public class PaleontologyTableBlock extends Block {
 			}
 		}
 		return ActionResultType.SUCCESS;
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+	      if (!state.isIn(newState.getBlock())) {
+	         TileEntity tileentity = worldIn.getTileEntity(pos);
+	         if (tileentity instanceof PaleontologyTableTileEntity) {
+	            InventoryHelper.dropInventoryItems(worldIn, pos, ((PaleontologyTableTileEntity) tileentity).getInventory());
+	            worldIn.updateComparatorOutputLevel(pos, this);
+	         }
+
+	         super.onReplaced(state, worldIn, pos, newState, isMoving);
+	      }
+	   }
+	
+	@Override
+	public void harvestBlock(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity te, ItemStack stack) {
+		player.addStat(Stats.BLOCK_MINED.get(this));
+		player.addExhaustion(0.005F);
+		spawnDrops(state, worldIn, pos, te, player, stack);
 	}
 
 }

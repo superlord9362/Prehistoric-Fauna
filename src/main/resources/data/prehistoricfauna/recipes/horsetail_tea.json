@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:potion"
+    },
+	{
+		"item": "prehistoricfauna:horsetail"
+	}
+  ],
+  "result": {
+    "item": "prehistoricfauna:horsetail_tea"
+  }
+}

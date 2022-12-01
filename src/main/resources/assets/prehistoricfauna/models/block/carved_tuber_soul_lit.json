@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "prehistoricfauna:blocks/tuber_block_top",
+    "front": "prehistoricfauna:blocks/tuber_block_carved_soul",
+    "side": "prehistoricfauna:blocks/tuber_block_side",
+	"bottom": "prehistoricfauna:blocks/tuber_block_bottom"
+  }
+}

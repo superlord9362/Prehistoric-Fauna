@@ -11,13 +11,16 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.triassic.chinle.PoposaurusModel;
+import superlord.prehistoricfauna.client.model.triassic.chinle.PoposaurusSleepingModel;
+import superlord.prehistoricfauna.client.render.layer.PoposaurusEyeLayer;
 import superlord.prehistoricfauna.common.entities.triassic.chinle.PoposaurusEntity;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 @OnlyIn(Dist.CLIENT)
 public class PoposaurusRenderer extends MobRenderer<PoposaurusEntity, EntityModel<PoposaurusEntity>> {
 
 	private static final PoposaurusModel POPOSAURUS_MODEL = new PoposaurusModel();
-	//private static final PoposaurusSleepingModel POPOSAURUS_SLEEPING_MODEL = new PoposaurusSleepingModel();
+	private static final PoposaurusSleepingModel POPOSAURUS_SLEEPING_MODEL = new PoposaurusSleepingModel();
 	private static final ResourceLocation POPOSAURUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/poposaurus/poposaurus.png");
 	private static final ResourceLocation POPOSAURUS_TEXTURE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/poposaurus/poposaurus_sleeping.png");
 	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/poposaurus/albino.png");
@@ -26,7 +29,10 @@ public class PoposaurusRenderer extends MobRenderer<PoposaurusEntity, EntityMode
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/poposaurus/melanistic_sleeping.png");
 
 	public PoposaurusRenderer() {
-		super(Minecraft.getInstance().getRenderManager(), POPOSAURUS_MODEL, 0.5F);
+		super(Minecraft.getInstance().getRenderManager(), POPOSAURUS_MODEL, 1F);
+		if (PrehistoricFaunaConfig.eyeShine) {
+			this.addLayer(new PoposaurusEyeLayer(this));
+		}
 	}
 
 	protected void preRenderCallback(PoposaurusEntity poposaurus, MatrixStack matrixStackIn, float partialTickTime) {
@@ -36,29 +42,29 @@ public class PoposaurusRenderer extends MobRenderer<PoposaurusEntity, EntityMode
 	}
 
 	public void render(PoposaurusEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-//		if (entityIn.isAsleep()) {
-//			entityModel = POPOSAURUS_SLEEPING_MODEL;
-//		} else {
+		if (entityIn.isAsleep()) {
+			entityModel = POPOSAURUS_SLEEPING_MODEL;
+		} else {
 			entityModel = POPOSAURUS_MODEL;
-//		}
+		}
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
 
 	public ResourceLocation getEntityTexture(PoposaurusEntity entity) {
 		if (entity.isAlbino()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return ALBINO_SLEEPING;
 			} else {
 				return ALBINO;
 			}
 		} else if(entity.isMelanistic()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return MELANISTIC_SLEEPING;
 			} else {
 				return MELANISTIC;
 			}
 		} else {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return POPOSAURUS_TEXTURE_SLEEPING;
 			} else {
 				return POPOSAURUS_TEXTURE;

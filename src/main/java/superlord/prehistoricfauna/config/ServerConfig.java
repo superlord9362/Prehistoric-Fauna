@@ -43,13 +43,6 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue caveSentinelHellCreekHillsSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelHellCreekHillsSpawnWeight;
 	//Hell Creek River
-	public final ForgeConfigSpec.IntValue thescelosaurusHellCreekRiverSpawnWeight;
-	public final ForgeConfigSpec.IntValue triceratopsHellCreekRiverSpawnWeight;
-	public final ForgeConfigSpec.IntValue ankylosaurusHellCreekRiverSpawnWeight;
-	public final ForgeConfigSpec.IntValue basilemysHellCreekRiverSpawnWeight;
-	public final ForgeConfigSpec.IntValue dakotaraptorHellCreekRiverSpawnWeight;
-	public final ForgeConfigSpec.IntValue dideldophodonHellCreekRiverSpawnWeight;
-	public final ForgeConfigSpec.IntValue tyrannosaurusHellCreekRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue myledaphusHellCreekRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue garHellCreekRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue cyclurusHellCreekRiverSpawnWeight;
@@ -113,13 +106,6 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue caveSentinelIschigualastoHillsSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelIschigualastoHillsSpawnWeight;
 	//Ischigualasto River
-	public final ForgeConfigSpec.IntValue exaeretodonIschigualastoRiverSpawnWeight;
-	public final ForgeConfigSpec.IntValue chromogisaurusIschigualastoRiverSpawnWeight;
-	public final ForgeConfigSpec.IntValue herrerasaurusIschigualastoRiverSpawnWeight;
-	public final ForgeConfigSpec.IntValue hyperodapedonIschigualastoRiverSpawnWeight;
-	public final ForgeConfigSpec.IntValue sillosuchusIschigualastoRiverSpawnWeight;
-	public final ForgeConfigSpec.IntValue saurosuchusIschigualastoRiverSpawnWeight;
-	public final ForgeConfigSpec.IntValue ischigualastiaIschigualastoRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue ceratodusIschigualastoRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelIschigualastoRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelIschigualastoRiverSpawnWeight;
@@ -207,6 +193,13 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue saurichthysChinleFlatsSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelChinleFlatsSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelChinleFlatsSpawnWeight;
+	//Chinle River
+	public final ForgeConfigSpec.IntValue chinleaChinleRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue arganodusChinleRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue mooreodontusChinleRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue saurichthysChinleRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue caveSentinelChinleRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue landSentinelChinleRiverSpawnWeight;
 	//Chinle Wooded Mountains
 	public final ForgeConfigSpec.IntValue coelophysisChinleWoodedMountainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue desmatosuchusChinleWoodedMountainsSpawnWeight;
@@ -236,6 +229,8 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue djadochtaHutMaxDistance;
 	public final ForgeConfigSpec.IntValue kayentaHutMinDistance;
 	public final ForgeConfigSpec.IntValue kayentaHutMaxDistance;
+	public final ForgeConfigSpec.IntValue chinleHutMinDistance;
+	public final ForgeConfigSpec.IntValue chinleHutMaxDistance;
 	public final ForgeConfigSpec.IntValue geologistCampMinDistance;
 	public final ForgeConfigSpec.IntValue geologistCampMaxDistance;
 	public final ForgeConfigSpec.IntValue timeTempleMinDistance;
@@ -316,16 +311,9 @@ public class ServerConfig {
 		this.caveSentinelHellCreekHillsSpawnWeight = buildInt(builder, "Cave Sentinel Hell Creek Liriodendrites Forest Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Hell Creek Liriodendrites Forest biome. Default is 5");
 		this.landSentinelHellCreekHillsSpawnWeight = buildInt(builder, "Land Sentinel Hell Creek Liriodendrites Forest Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Hell Creek Liriodendrites Forest biome. Default is 2");
 		builder.comment("Hell Creek River");
-		this.ankylosaurusHellCreekRiverSpawnWeight = buildInt(builder, "Ankylosaurus Hell Creek River Spawn Weight", "all", 14, 0, 300, "The weight of Ankylosaurus in vanilla's spawn rate in the Hell Creek River biome. Default is 14");
-		this.basilemysHellCreekRiverSpawnWeight = buildInt(builder, "Basilemys Hell Creek River Spawn Weight", "all", 7, 0, 300, "The weight of Basilemys in vanilla's spawn rate in the Hell Creek River biome. Default is 7");
 		this.cyclurusHellCreekRiverSpawnWeight = buildInt(builder, "Cyclurus Hell Creek River Spawn Weight", "all", 1, 0, 300, "The weight of Cyclurus in vanilla's spawn rate in the Hell Creek River biome. Default is 1");
-		this.dakotaraptorHellCreekRiverSpawnWeight = buildInt(builder, "Dakotaraptor Hell Creek River Spawn Weight", "all", 2, 0, 300, "The weight of Dakotaraptor in vanilla's spawn rate in the Hell Creek River biome. Default is 2");
-		this.dideldophodonHellCreekRiverSpawnWeight = buildInt(builder, "Didelphodon Hell Creek River Spawn Weight", "all", 6, 0, 300, "The weight of Didelphodon in vanilla's spawn rate in the Hell Creek River biome. Default is 6");
 		this.garHellCreekRiverSpawnWeight = buildInt(builder, "Gar Hell Creek River Spawn Weight", "all", 4, 0, 300, "The weight of Gar in vanilla's spawn rate in the Hell Creek River biome. Default is 4");
 		this.myledaphusHellCreekRiverSpawnWeight = buildInt(builder, "Myledaphus Hell Creek River Spawn Weight", "all", 2, 0, 300, "The weight of Myledaphus in vanilla's spawn rate in the Hell Creek River biome. Default is 2");
-		this.thescelosaurusHellCreekRiverSpawnWeight = buildInt(builder, "Thescelosaurus Hell Creek River Spawn Weight", "all", 12, 0, 300, "The weight of Thescelosaurus in vanilla's spawn rate in the Hell Creek River biome. Default is 12");
-		this.triceratopsHellCreekRiverSpawnWeight = buildInt(builder, "Triceratops Hell Creek River Spawn Weight", "all", 7, 0, 300, "The weight of Triceratops in vanilla's spawn rate in the Hell Creek River biome. Default is 7");
-		this.tyrannosaurusHellCreekRiverSpawnWeight = buildInt(builder, "Tyrannosaurus Hell Creek River Spawn Weight", "all", 10, 0, 300, "The weight of Tyrannosaurus in vanilla's spawn rate in the Hell Creek River biome. Default is 10");
 		this.caveSentinelHellCreekRiverSpawnWeight = buildInt(builder, "Cave Sentinel Hell Creek River Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Hell Creek River biome. Default is 5");
 		this.landSentinelHellCreekRiverSpawnWeight = buildInt(builder, "Land Sentinel Hell Creek River Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Hell Creek River biome. Default is 2");
 		builder.push("Kayenta Formation");
@@ -405,6 +393,13 @@ public class ServerConfig {
 		this.typothoraxChinleFlatsSpawnWeight = buildInt(builder, "Typothorax Chinle Flats Spawn Weight", "all", 8, 0, 300, "The weight of Typothorax in vanilla's spawn rate in the Chinle Flats biome. Default is 8");
 		this.caveSentinelChinleFlatsSpawnWeight = buildInt(builder, "Cave Sentinel Chinle Flats Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Chinle Flats biome. Default is 5");
 		this.landSentinelChinleFlatsSpawnWeight = buildInt(builder, "Land Sentinel Chinle Flats Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Chinle Flats biome. Default is 2");
+		builder.comment("Chinle River");
+		this.arganodusChinleRiverSpawnWeight = buildInt(builder, "Arganodus Chinle River Spawn Weight", "all", 3, 0, 300, "The weight of Arganodus in vanilla's spawn rate in the Chinle River biome. Default is 4");
+		this.chinleaChinleRiverSpawnWeight = buildInt(builder, "Chinlea Chinle River Spawn Weight", "all", 4, 0, 300, "The weight of Chinlea in vanilla's spawn rate in the Chinle River biome. Default is 4");
+		this.mooreodontusChinleRiverSpawnWeight = buildInt(builder, "Mooreodontus Chinle River Spawn Weight", "all", 1, 0, 300, "The weight of Mooreodontus in vanilla's spawn rate in the Chinle River biome. Default is 1");
+		this.saurichthysChinleRiverSpawnWeight = buildInt(builder, "Saurichthys Chinle River Spawn Weight", "all", 2, 0, 300, "The weight of Saurichthys in vanilla's spawn rate in the Chinle River biome. Default is 2");
+		this.caveSentinelChinleRiverSpawnWeight = buildInt(builder, "Cave Sentinel Chinle River Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Chinle River biome. Default is 5");
+		this.landSentinelChinleRiverSpawnWeight = buildInt(builder, "Land Sentinel Chinle River Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Chinle River biome. Default is 2");
 		builder.comment("Chinle Swamp");
 		this.arganodusChinleSwampSpawnWeight = buildInt(builder, "Arganodus Chinle Swamp Spawn Weight", "all", 4, 0, 300, "The weight of Arganodus in vanilla's spawn rate in the Chinle Swamp biome. Default is 4");
 		this.chinleaChinleSwampSpawnWeight = buildInt(builder, "Chinlea Chinle Swamp Spawn Weight", "all", 1, 0, 300, "The weight of Chinlea in vanilla's spawn rate in the Chinle Swamp biome. Default is 1");
@@ -469,13 +464,6 @@ public class ServerConfig {
 		this.landSentinelIschigualastoHillsSpawnWeight = buildInt(builder, "Land Sentinel Ischigualasto Hills Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Ischigualasto Hills biome. Default is 2");
 		builder.comment("Ischigualasto River");
 		this.ceratodusIschigualastoRiverSpawnWeight = buildInt(builder, "Ceratodus Ischigualasto River Spawn Weight", "all", 3, 0, 300, "The weight of Ceratodus in vanilla's spawn rate in the Ischigualasto River biome. Default is 3");
-		this.chromogisaurusIschigualastoRiverSpawnWeight = buildInt(builder, "Chromogisaurus Ischigualasto River Spawn Weight", "all", 10, 0, 300, "The weight of Chromogisaurus in vanilla's spawn rate in the Ischigualasto River biome. Default is 10");
-		this.exaeretodonIschigualastoRiverSpawnWeight = buildInt(builder, "Exaeretodon Ischigualasto River Spawn Weight", "all", 12, 0, 300, "The weight of Exaeretodon in vanilla's spawn rate in the Ischigualasto River biome. Default is 12");
-		this.herrerasaurusIschigualastoRiverSpawnWeight = buildInt(builder, "Herrerasaurus Ischigualasto River Spawn Weight", "all", 8, 0, 300, "The weight of Herrerasaurus in vanilla's spawn rate in the Ischigualasto River biome. Default is 8");
-		this.hyperodapedonIschigualastoRiverSpawnWeight = buildInt(builder, "Hyperodapedon Ischigualasto River Spawn Weight", "all", 15, 0, 300, "The weight of Hyperodapedon in vanilla's spawn rate in the Ischigualasto River biome. Default is 15");
-		this.ischigualastiaIschigualastoRiverSpawnWeight = buildInt(builder, "Ischigualastia Ischigualasto River Spawn Weight", "all", 8, 0, 300, "The weight of Ischigualastia in vanilla's spawn rate in the Ischigualasto River biome. Default is 8");
-		this.saurosuchusIschigualastoRiverSpawnWeight = buildInt(builder, "Saurosuchus Ischigualasto River Spawn Weight", "all", 4, 0, 300, "The weight of Saurosuchus in vanilla's spawn rate in the Ischigualasto River biome. Default is 4");
-		this.sillosuchusIschigualastoRiverSpawnWeight = buildInt(builder, "Sillosuchus Ischigualasto River Spawn Weight", "all", 6, 0, 300, "The weight of Sillosuchus in vanilla's spawn rate in the Ischigualasto River biome. Default is 6");
 		this.caveSentinelIschigualastoRiverSpawnWeight = buildInt(builder, "Cave Sentinel Ischigualasto River Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Ischigualasto River biome. Default is 5");
 		this.landSentinelIschigualastoRiverSpawnWeight = buildInt(builder, "Land Sentinel Ischigualasto River Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Ischigualasto River biome. Default is 2");
 		builder.push("Misc Settings");
@@ -496,6 +484,8 @@ public class ServerConfig {
 		this.djadochtaHutMaxDistance = buildInt(builder, "Djadochta Ruined Time Traveller's Hut Max Distance", "all", 60, 1, 300, "The farthest two Djadochta Ruined Time Traveller's Huts can spawn from eachother. Keep this value higher than the min. Default is 60");
 		this.kayentaHutMinDistance = buildInt(builder, "Kayenta Ruined Time Traveller's Hut Min Distance", "all", 40, 1, 300, "The closest two Kayenta Ruined Time Traveller's Huts can spawn from eachother. Keep this value lower than the max. Default is 40");
 		this.kayentaHutMaxDistance = buildInt(builder, "Kayenta Ruined Time Traveller's Hut Max Distance", "all", 60, 1, 300, "The farthest two Kayenta Ruined Time Traveller's Huts can spawn from eachother. Keep this value higher than the min. Default is 60");
+		this.chinleHutMinDistance = buildInt(builder, "Chinle Ruined Time Traveller's Hut Min Distance", "all", 40, 1, 300, "The closest two Chinle Ruined Time Traveller's Huts can spawn from eachother. Keep this value lower than the max. Default is 40");
+		this.chinleHutMaxDistance = buildInt(builder, "Chinle Ruined Time Traveller's Hut Max Distance", "all", 60, 1, 300, "The farthest two Chinle Ruined Time Traveller's Huts can spawn from eachother. Keep this value higher than the min. Default is 60");
 		this.geologistCampMinDistance = buildInt(builder, "Geologist Camp Min Distance", "all", 25, 1, 300, "The closest two Geologist Camps can spawn from eachother. Keep this value lower than the max. Default is 25");
 		this.geologistCampMaxDistance = buildInt(builder, "Geologist Camp Max Distance", "all", 50, 1, 300, "The farthest two Geologist Camps can spawn from eachother. Keep this value higher than the min. Default is 50");
 		this.timeTempleMinDistance = buildInt(builder, "Time Temple Min Distance", "all", 75, 1, 300, "The closest two Time Temples can spawn from eachother. Keep this value lower than the max. Default is 75");

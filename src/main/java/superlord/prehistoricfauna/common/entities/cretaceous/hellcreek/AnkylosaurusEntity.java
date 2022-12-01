@@ -72,6 +72,7 @@ public class AnkylosaurusEntity extends DinosaurEntity {
 	private static final DataParameter<Boolean> ALBINO = EntityDataManager.createKey(AnkylosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> MELANISTIC = EntityDataManager.createKey(AnkylosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> EATING = EntityDataManager.createKey(AnkylosaurusEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> TUBER_DIGGING = EntityDataManager.createKey(AnkylosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> NATURAL_LOVE = EntityDataManager.createKey(AnkylosaurusEntity.class, DataSerializers.BOOLEAN);
 	private int warningSoundTicks;
 	private int maxHunger = 150;
@@ -118,6 +119,14 @@ public class AnkylosaurusEntity extends DinosaurEntity {
 
 	private void setAlbino(boolean isAlbino) {
 		this.dataManager.set(ALBINO, isAlbino);
+	}
+	
+	public boolean isTuberDigging() {
+		return this.dataManager.get(TUBER_DIGGING);
+	}
+
+	private void setTuberDigging(boolean isTuberDigging) {
+		this.dataManager.set(TUBER_DIGGING, isTuberDigging);
 	}
 
 	public boolean isMelanistic() {
@@ -172,29 +181,44 @@ public class AnkylosaurusEntity extends DinosaurEntity {
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.2D);
 		}
-		List<AnkylosaurusEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
-		if (PrehistoricFaunaConfig.advancedHunger) {
-			hungerTick++;
-			if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
-				hungerTick = 0;
-				if (currentHunger != 0 || !this.isAsleep()) {
-					this.setHunger(currentHunger - 1);
+		if (!this.isAIDisabled()) {
+			List<AnkylosaurusEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
+			if (PrehistoricFaunaConfig.advancedHunger) {
+				hungerTick++;
+				if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
+					hungerTick = 0;
+					if (currentHunger != 0 || !this.isAsleep()) {
+						this.setHunger(currentHunger - 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
+					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getAttackTarget() == null && this.getRevengeTarget() == null) {
+						float currentHealth = this.getHealth();
+						this.setHealth(currentHealth + 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
+						loveTick = 600;
+						this.setInLoveNaturally(true);
+						this.setInLove(600);
+						lastInLove = 28800;
+					}
+					if (loveTick != 0) {
+						loveTick--;
+					} else {
+						this.setInLoveNaturally(false);
+					}
 				}
-			}
-			if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-				if (this.getHealth() < this.getMaxHealth()) {
-					float currentHealth = this.getHealth();
-					this.setHealth(currentHealth + 1);
-				}
-			}
-			if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
+			} else if ((PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && !PrehistoricFaunaConfig.advancedHunger) {
+				int naturalBreedingChance = rand.nextInt(1000);
+				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
 					loveTick = 600;
 					this.setInLoveNaturally(true);
 					this.setInLove(600);
@@ -206,22 +230,9 @@ public class AnkylosaurusEntity extends DinosaurEntity {
 					this.setInLoveNaturally(false);
 				}
 			}
-		} else if ((PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && !PrehistoricFaunaConfig.advancedHunger) {
-			int naturalBreedingChance = rand.nextInt(1000);
-			if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
-				loveTick = 600;
-				this.setInLoveNaturally(true);
-				this.setInLove(600);
-				lastInLove = 28800;
+			if (lastInLove != 0) {
+				lastInLove--;
 			}
-			if (loveTick != 0) {
-				loveTick--;
-			} else {
-				this.setInLoveNaturally(false);
-			}
-		}
-		if (lastInLove != 0) {
-			lastInLove--;
 		}
 	}
 
@@ -234,7 +245,7 @@ public class AnkylosaurusEntity extends DinosaurEntity {
 		} else if (birthNumber == 4) {
 			this.setMelanistic(true);
 		}
-		this.setHunger(150);
+		this.setHunger(this.maxHunger);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
@@ -292,6 +303,7 @@ public class AnkylosaurusEntity extends DinosaurEntity {
 		this.dataManager.register(MELANISTIC, false);
 		this.dataManager.register(EATING, false);
 		this.dataManager.register(NATURAL_LOVE, false);
+		this.dataManager.register(TUBER_DIGGING, false);
 	}
 
 	public void writeAdditional(CompoundNBT compound) {
@@ -302,6 +314,7 @@ public class AnkylosaurusEntity extends DinosaurEntity {
 		compound.putInt("MaxHunger", this.currentHunger);
 		compound.putBoolean("IsEating", this.isEating());
 		compound.putBoolean("InNaturalLove", this.isInLoveNaturally());
+		compound.putBoolean("TuberDigging", this.isTuberDigging());
 	}
 
 	public void readAdditional(CompoundNBT compound) {
@@ -312,6 +325,7 @@ public class AnkylosaurusEntity extends DinosaurEntity {
 		this.setEating(compound.getBoolean("IsEating"));
 		this.setHunger(compound.getInt("MaxHunger"));
 		this.setInLoveNaturally(compound.getBoolean("InNaturalLove"));
+		this.setTuberDigging(compound.getBoolean("TuberDigging"));
 	}
 
 	/**
@@ -333,7 +347,7 @@ public class AnkylosaurusEntity extends DinosaurEntity {
 		return flag;
 	}
 
-    class AttackPlayerGoal extends NearestAttackableTargetGoal<PlayerEntity> {
+	class AttackPlayerGoal extends NearestAttackableTargetGoal<PlayerEntity> {
 		public AttackPlayerGoal() {
 			super(AnkylosaurusEntity.this, PlayerEntity.class, 20, true, true, (Predicate<LivingEntity>)null);
 		}
@@ -574,7 +588,7 @@ public class AnkylosaurusEntity extends DinosaurEntity {
 
 		}
 	}
-	
+
 	static class NaturalMateGoal extends BreedGoal {
 		private final AnkylosaurusEntity ankylosaurus;
 
@@ -661,12 +675,14 @@ public class AnkylosaurusEntity extends DinosaurEntity {
 			diggingTimer = 40;
 			digTimer2 = 6000;
 			ankylosaurus.world.setEntityState(ankylosaurus, (byte) 10);
+			ankylosaurus.setTuberDigging(true);
 			ankylosaurus.getNavigator().clearPath();
 		}
 
 		@Override
 		public void resetTask() {
 			diggingTimer = 0;
+			ankylosaurus.setTuberDigging(false);
 		}
 
 		@Override

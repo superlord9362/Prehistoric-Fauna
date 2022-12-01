@@ -39,8 +39,13 @@
                       }
                     }
                   ],
-                  "name": "prehistoricfauna:moss_ball",
-					"count": 4
+                  "functions": [
+                    {
+                      "function": "minecraft:set_count",
+                      "count": 1
+                    }
+                  ],
+                  "name": "prehistoricfauna:moss_ball"
                 },
                 {
                   "type": "minecraft:item",
@@ -56,7 +61,7 @@
                   "functions": [
                     {
                       "function": "minecraft:set_count",
-                      "count": 8
+                      "count": 2
                     }
                   ],
                   "name": "prehistoricfauna:moss_ball"
@@ -75,7 +80,7 @@
                   "functions": [
                     {
                       "function": "minecraft:set_count",
-                      "count": 12
+                      "count": 3
                     }
                   ],
                   "name": "prehistoricfauna:moss_ball"
@@ -94,7 +99,7 @@
                   "functions": [
                     {
                       "function": "minecraft:set_count",
-                      "count": 16
+                      "count": 4
                     }
                   ],
                   "name": "prehistoricfauna:moss_ball"
@@ -113,7 +118,7 @@
                   "functions": [
                     {
                       "function": "minecraft:set_count",
-                      "count": 20
+                      "count": 5
                     }
                   ],
                   "name": "prehistoricfauna:moss_ball"
@@ -132,7 +137,7 @@
                   "functions": [
                     {
                       "function": "minecraft:set_count",
-                      "count": 24
+                      "count": 6
                     }
                   ],
                   "name": "prehistoricfauna:moss_ball"
@@ -151,7 +156,7 @@
                   "functions": [
                     {
                       "function": "minecraft:set_count",
-                      "count": 28
+                      "count": 7
                     }
                   ],
                   "name": "prehistoricfauna:moss_ball"
@@ -161,7 +166,7 @@
                   "functions": [
                     {
                       "function": "minecraft:set_count",
-                      "count": 32
+                      "count": 8
                     }
                   ],
                   "name": "prehistoricfauna:moss_ball"
@@ -201,7 +206,8 @@
                       "count": 2
                     }
                   ],
-                  "name": "prehistoricfauna:moss_carpet"
+                  "name": "prehistoricfauna:moss_carpet",
+					"count": 2
                 },
                 {
                   "type": "minecraft:item",

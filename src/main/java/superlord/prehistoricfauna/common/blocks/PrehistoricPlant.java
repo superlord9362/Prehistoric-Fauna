@@ -1,10 +1,12 @@
 package superlord.prehistoricfauna.common.blocks;
 
 import net.minecraft.block.*;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.IForgeShearable;
@@ -37,6 +39,17 @@ public class PrehistoricPlant extends BushBlock implements IGrowable, IForgeShea
 		DoublePlantBlock doubleplantblock = (DoublePlantBlock)(this == PFBlocks.HORSETAIL ? PFBlocks.TALL_HORSETAIL : PFBlocks.TALL_OSMUNDA);
 		if (doubleplantblock.getDefaultState().isValidPosition(world, pos) && world.isValid(pos.up())) {
 			doubleplantblock.placeAt(world, pos, 2);
+		}
+	}
+	
+	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+		BlockState soil = worldIn.getBlockState(pos.down());
+		if (state.getBlock() == PFBlocks.HORSETAIL) {
+			if (soil.canSustainPlant(worldIn, pos.down(), Direction.UP, this) && soil.getBlock() != PFBlocks.HARDENED_SILT || soil.getBlock() == Blocks.SAND || soil.getBlock() == Blocks.RED_SAND) return true;
+			else return false;
+		} else {
+			if (soil.canSustainPlant(worldIn, pos.down(), Direction.UP, this)) return true;
+			else return false;
 		}
 	}
 	

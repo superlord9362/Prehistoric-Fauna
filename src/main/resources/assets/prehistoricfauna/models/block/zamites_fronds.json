@@ -1,6 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
+		"missing": "prehistoricfauna:blocks/empty_texture",
 		"0": "prehistoricfauna:blocks/zamites_fronds",
 		"particle": "prehistoricfauna:blocks/zamites_fronds"
 	},

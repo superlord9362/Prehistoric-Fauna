@@ -131,8 +131,8 @@ public class ScelidosaurusModel extends EntityModel<ScelidosaurusEntity> {
     public void setRotationAngles(ScelidosaurusEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         float partialTick = ageInTicks - entityIn.ticksExisted;
         float attackProgress = entityIn.getMeleeProgress(partialTick);
-        float leftOrRight = entityIn.getMeleeDirection() ? 1.0F : -1.0F;
-
+        float speed = 1.0f;
+		float degree = 1.0f;
         if (entityIn.getRevengeTarget() != null || entityIn.isBipedal()) {
     		this.Body.rotateAngleX = -0.3F;
     		this.ArmLeft.rotateAngleX = 0.3F;
@@ -152,8 +152,9 @@ public class ScelidosaurusModel extends EntityModel<ScelidosaurusEntity> {
     		this.ArmLeft.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
     		this.ArmRight.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
     	}
-        this.Body.rotateAngleY = attackProgress * leftOrRight * (float)Math.toRadians(-200);
-    	this.LegRight.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+		this.Head.rotateAngleX = (-Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3))) + (MathHelper.cos(-1.0F + limbSwing * speed * 0.3F) * degree * 0.05F * limbSwingAmount + 0.25F) + attackProgress * (float) Math.toRadians(25F);
+		this.Body.rotationPointZ = 8F + attackProgress * -10F;
+		this.LegRight.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
 		this.LegLeft.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
 		this.Tail.rotateAngleY = -0.12F * MathHelper.sin(0.2F * ageInTicks / 5);
 		this.Tail2.rotateAngleY = -0.12F * MathHelper.sin(0.2F * ageInTicks / 5);

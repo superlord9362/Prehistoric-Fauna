@@ -18,6 +18,7 @@ public class PFConfiguredStructures {
 	public static StructureFeature<?, ?> CONFIGURED_ISCHIGUALASTO_HUT = PFStructures.ISCHIGUALASTO_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
 	public static StructureFeature<?, ?> CONFIGURED_DJADOCHTA_HUT = PFStructures.DJADOCHTA_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
 	public static StructureFeature<?, ?> CONFIGURED_KAYENTA_HUT = PFStructures.KAYENTA_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
+	public static StructureFeature<?, ?> CONFIGURED_CHINLE_HUT = PFStructures.CHINLE_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
 
 	public static void registerConfiguredStructures() {
 		Registry<StructureFeature<?, ?>> registry = WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE;
@@ -29,6 +30,7 @@ public class PFConfiguredStructures {
 		Registry.register(registry, new ResourceLocation(PrehistoricFauna.MOD_ID, "configured_ischigualasto_hut"), CONFIGURED_ISCHIGUALASTO_HUT);
 		Registry.register(registry, new ResourceLocation(PrehistoricFauna.MOD_ID, "configured_djadochta_hut"), CONFIGURED_DJADOCHTA_HUT);
 		Registry.register(registry, new ResourceLocation(PrehistoricFauna.MOD_ID, "configured_kayenta_hut"), CONFIGURED_KAYENTA_HUT);
+		Registry.register(registry, new ResourceLocation(PrehistoricFauna.MOD_ID, "configured_chinle_hut"), CONFIGURED_CHINLE_HUT);
 		
 		FlatGenerationSettings.STRUCTURES.put(PFStructures.TIME_TEMPLE, CONFIGURED_TIME_TEMPLE);
 		FlatGenerationSettings.STRUCTURES.put(PFStructures.GEOLOGIST_CAMP, CONFIGURED_GEOLOGIST_CAMP);
@@ -38,6 +40,7 @@ public class PFConfiguredStructures {
 		FlatGenerationSettings.STRUCTURES.put(PFStructures.ISCHIGUALASTO_HUT, CONFIGURED_ISCHIGUALASTO_HUT);
 		FlatGenerationSettings.STRUCTURES.put(PFStructures.DJADOCHTA_HUT, CONFIGURED_DJADOCHTA_HUT);
 		FlatGenerationSettings.STRUCTURES.put(PFStructures.KAYENTA_HUT, CONFIGURED_KAYENTA_HUT);
+		FlatGenerationSettings.STRUCTURES.put(PFStructures.CHINLE_HUT, CONFIGURED_CHINLE_HUT);
 	}	
 
 }

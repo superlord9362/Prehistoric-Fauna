@@ -45,7 +45,25 @@
                   "predicate": {
                     "biome": "prehistoricfauna:morrison_hills"
                   }
-                }
+                },
+				{
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biome": "prehistoricfauna:kayenta_dry_forest"
+					}
+				},
+				{
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biome": "prehistoricfauna:kayenta_canyon"
+					}
+				},
+				{
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biome": "prehistoricfauna:kayenta_desert"
+					}
+				}
               ]
             }
           ],
@@ -177,7 +195,25 @@
                   "predicate": {
                     "biome": "prehistoricfauna:morrison_hills"
                   }
-                }
+                },
+				{
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biome": "prehistoricfauna:kayenta_dry_forest"
+					}
+				},
+				{
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biome": "prehistoricfauna:kayenta_canyon"
+					}
+				},
+				{
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biome": "prehistoricfauna:kayenta_desert"
+					}
+				}
               ]
             }
           ],

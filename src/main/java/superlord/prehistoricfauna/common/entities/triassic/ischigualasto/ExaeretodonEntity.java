@@ -1,5 +1,6 @@
 package superlord.prehistoricfauna.common.entities.triassic.ischigualasto;
 
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
@@ -22,6 +23,7 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.ai.goal.BreedGoal;
 import net.minecraft.entity.ai.goal.FollowParentGoal;
+import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.ai.goal.TemptGoal;
@@ -29,15 +31,24 @@ import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.loot.LootContext;
+import net.minecraft.loot.LootParameterSets;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.Hand;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -49,6 +60,8 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.Tags;
+import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.blocks.ExaeretodonEggBlock;
 import superlord.prehistoricfauna.common.entities.DinosaurEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.AnkylosaurusEntity;
@@ -77,7 +90,8 @@ public class ExaeretodonEntity extends DinosaurEntity {
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(PFBlocks.CLADOPHLEBIS.asItem());
 	private static final DataParameter<Boolean> EATING = EntityDataManager.createKey(ExaeretodonEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> NATURAL_LOVE = EntityDataManager.createKey(ExaeretodonEntity.class, DataSerializers.BOOLEAN);
-	private int maxHunger = 15;
+	private static final DataParameter<Boolean> DIGGING_ROOTS = EntityDataManager.createKey(ExaeretodonEntity.class, DataSerializers.BOOLEAN);
+	private int maxHunger = 20;
 	private int currentHunger;
 	private int lastInLove = 0;
 	int hungerTick = 0;
@@ -122,6 +136,14 @@ public class ExaeretodonEntity extends DinosaurEntity {
 		this.dataManager.set(MELANISTIC, isMelanistic);
 	}
 
+	public boolean isDiggingForRoots() {
+		return this.dataManager.get(DIGGING_ROOTS);
+	}
+
+	private void setDiggingForRoots(boolean isDiggingForRoots) {
+		this.dataManager.set(DIGGING_ROOTS, isDiggingForRoots);
+	}
+
 	public boolean isBreedingItem(ItemStack stack) {
 		return stack.getItem() == PFBlocks.CLADOPHLEBIS.asItem();
 	}
@@ -133,7 +155,7 @@ public class ExaeretodonEntity extends DinosaurEntity {
 	private void setInLoveNaturally(boolean isInLoveNaturally) {
 		this.dataManager.set(NATURAL_LOVE, isInLoveNaturally);
 	}
-	
+
 	public int getCurrentHunger() {
 		return this.currentHunger;
 	}
@@ -186,8 +208,9 @@ public class ExaeretodonEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new ExaeretodonEntity.NaturalMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new NocturnalSleepGoal(this));
 		this.goalSelector.addGoal(0, new ExaeretodonEntity.HerbivoreEatGoal((double)1.2F, 12, 2));
+		this.goalSelector.addGoal(5, new ExaeretodonEntity.DiggingGoal(this));
 	}
-	
+
 	public void livingTick() {
 		super.livingTick();
 		if (this.isAsleep()) {
@@ -195,29 +218,44 @@ public class ExaeretodonEntity extends DinosaurEntity {
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.23D);
 		}
-		List<ExaeretodonEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
-		if (PrehistoricFaunaConfig.advancedHunger) {
-			hungerTick++;
-			if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
-				hungerTick = 0;
-				if (currentHunger != 0 || !this.isAsleep()) {
-					this.setHunger(currentHunger - 1);
+		if (!this.isAIDisabled()) {
+			List<ExaeretodonEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
+			if (PrehistoricFaunaConfig.advancedHunger) {
+				hungerTick++;
+				if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
+					hungerTick = 0;
+					if (currentHunger != 0 || !this.isAsleep()) {
+						this.setHunger(currentHunger - 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
+					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getAttackTarget() == null && this.getRevengeTarget() == null) {
+						float currentHealth = this.getHealth();
+						this.setHealth(currentHealth + 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 5) {
+						loveTick = 600;
+						this.setInLoveNaturally(true);
+						this.setInLove(600);
+						lastInLove = 28800;
+					}
+					if (loveTick != 0) {
+						loveTick--;
+					} else {
+						this.setInLoveNaturally(false);
+					}
 				}
-			}
-			if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-				if (this.getHealth() < this.getMaxHealth()) {
-					float currentHealth = this.getHealth();
-					this.setHealth(currentHealth + 1);
-				}
-			}
-			if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 5) {
+			} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+				int naturalBreedingChance = rand.nextInt(1000);
+				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 5) {
 					loveTick = 600;
 					this.setInLoveNaturally(true);
 					this.setInLove(600);
@@ -229,27 +267,14 @@ public class ExaeretodonEntity extends DinosaurEntity {
 					this.setInLoveNaturally(false);
 				}
 			}
-		} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-			int naturalBreedingChance = rand.nextInt(1000);
-			if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 5) {
-				loveTick = 600;
-				this.setInLoveNaturally(true);
-				this.setInLove(600);
-				lastInLove = 28800;
+			if (lastInLove != 0) {
+				lastInLove--;
 			}
-			if (loveTick != 0) {
-				loveTick--;
-			} else {
-				this.setInLoveNaturally(false);
-			}
-		}
-		if (lastInLove != 0) {
-			lastInLove--;
 		}
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 6.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23D).createMutableAttribute(Attributes.FOLLOW_RANGE, 15).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 8.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23D).createMutableAttribute(Attributes.FOLLOW_RANGE, 15).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0D);
 	}
 
 	protected SoundEvent getAmbientSound() {
@@ -279,6 +304,7 @@ public class ExaeretodonEntity extends DinosaurEntity {
 		this.dataManager.register(MELANISTIC, false);
 		this.dataManager.register(EATING, false);
 		this.dataManager.register(NATURAL_LOVE, false);
+		this.dataManager.register(DIGGING_ROOTS, false);
 	}
 
 	public void writeAdditional(CompoundNBT compound) {
@@ -289,6 +315,7 @@ public class ExaeretodonEntity extends DinosaurEntity {
 		compound.putInt("MaxHunger", this.currentHunger);
 		compound.putBoolean("IsEating", this.isEating());
 		compound.putBoolean("InNaturalLove", this.isInLoveNaturally());
+		compound.putBoolean("DiggingRoots", this.isDiggingForRoots());
 	}
 
 	public void readAdditional(CompoundNBT compound) {
@@ -299,6 +326,24 @@ public class ExaeretodonEntity extends DinosaurEntity {
 		this.setEating(compound.getBoolean("IsEating"));
 		this.setHunger(compound.getInt("MaxHunger"));
 		this.setInLoveNaturally(compound.getBoolean("InNaturalLove"));
+		this.setDiggingForRoots(compound.getBoolean("DiggingRoots"));
+	}
+
+	public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
+		if (world.isRemote) {
+			return ActionResultType.PASS;
+		} else {
+			ItemStack stack = player.getHeldItem(hand);
+			Item item = stack.getItem();
+			if (item == PFBlocks.MICHELILLOA.asItem()) {
+				if (!player.isCreative()) {
+					stack.shrink(1);
+				}
+				this.setDiggingForRoots(true);
+				return ActionResultType.SUCCESS;
+			}
+			return super.func_230254_b_(player, hand);
+		}
 	}
 
 	@Nullable
@@ -554,7 +599,7 @@ public class ExaeretodonEntity extends DinosaurEntity {
 		entity.onInitialSpawn((IServerWorld) this.world, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
 		return entity;
 	}
-	
+
 	public class HerbivoreEatGoal extends MoveToBlockGoal {
 		protected int field_220731_g;
 
@@ -694,6 +739,79 @@ public class ExaeretodonEntity extends DinosaurEntity {
 			this.field_220731_g = 0;
 			super.startExecuting();
 		}
+	}
+
+	static class DiggingGoal extends Goal {
+		private static final ResourceLocation DIGGING_LOOT = new ResourceLocation(PrehistoricFauna.MOD_ID, "entities/exaeretodon_digging");
+
+		private final ExaeretodonEntity exaeretodon;
+		private int diggingTimer;
+		private int digTimer2;
+
+		public DiggingGoal(ExaeretodonEntity entity) {
+			this.exaeretodon = entity;
+			setMutexFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK, Goal.Flag.JUMP));
+		}
+
+		@Override
+		public boolean shouldExecute() {
+			if (digTimer2 > 0) {
+				--digTimer2;
+				return false;
+			}
+			BlockPos blockpos = exaeretodon.getPosition();
+			BlockState state = exaeretodon.world.getBlockState(blockpos);
+			if (state.isIn(Tags.Blocks.DIRT) && exaeretodon.isDiggingForRoots()) {
+				return true;
+			} else {
+				return exaeretodon.world.getBlockState(blockpos.down()).isIn(Tags.Blocks.DIRT)&& exaeretodon.isDiggingForRoots();
+			}
+		}
+
+		@Override
+		public void startExecuting() {
+			diggingTimer = 40;
+			digTimer2 = 6000;
+			exaeretodon.world.setEntityState(exaeretodon, (byte) 10);
+			exaeretodon.getNavigator().clearPath();
+		}
+
+		@Override
+		public void resetTask() {
+			diggingTimer = 0;
+			exaeretodon.setDiggingForRoots(false);
+		}
+
+		@Override
+		public boolean shouldContinueExecuting() {
+			return diggingTimer > 0;
+		}
+
+		@Override
+		public void tick() {
+			if (digTimer2 > 0) {
+				--digTimer2;
+			}
+			if (diggingTimer > 0) {
+				--diggingTimer;
+			}
+			if (diggingTimer == 25) {
+				BlockPos blockpos = exaeretodon.getPosition();
+				BlockPos blockpos1 = blockpos.down();
+				if (exaeretodon.world.getBlockState(blockpos1).isIn(Tags.Blocks.DIRT)) {
+					BlockState state = exaeretodon.world.getBlockState(blockpos1);
+					exaeretodon.world.playEvent(2001, blockpos1, Block.getStateId(state));
+					MinecraftServer server = exaeretodon.world.getServer();
+					if (server != null) {
+						List<ItemStack> items = server.getLootTableManager().getLootTableFromLocation(DIGGING_LOOT).generate(new LootContext.Builder((ServerWorld) exaeretodon.world).withRandom(exaeretodon.getRNG()).build(LootParameterSets.EMPTY));
+						InventoryHelper.dropItems(exaeretodon.world, blockpos, NonNullList.from(ItemStack.EMPTY, items.toArray(new ItemStack[0])));
+					}
+				}
+			}
+		}
+		
+		
+
 	}
 
 }

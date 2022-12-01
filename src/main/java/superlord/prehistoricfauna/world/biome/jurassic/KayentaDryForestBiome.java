@@ -72,7 +72,7 @@ public class KayentaDryForestBiome extends PFBiome {
 	
 	static {
         DefaultBiomeFeatures.withCavesAndCanyons(GENERATION_SETTINGS);
-		GENERATION_SETTINGS.withFeature(Decoration.UNDERGROUND_ORES, PFConfiguredFeatures.FOSSILIZED_SANDSTONE);
+		GENERATION_SETTINGS.withFeature(Decoration.UNDERGROUND_ORES, PFConfiguredFeatures.JURASSIC_FOSSILIZED_SANDSTONE);
 		PFConfiguredFeatures.addKayentaDryForestVegetation(GENERATION_SETTINGS);
 		if (PrehistoricFaunaConfig.calsoyasuchusKayentaDryForestSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.CALSOYASUCHUS_ENTITY, PrehistoricFaunaConfig.calsoyasuchusKayentaDryForestSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.dilophosaurusKayentaDryForestSpawnWeight != 0) SPAWN_SETTINGS.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(PFEntities.DILOPHOSAURUS_ENTITY, PrehistoricFaunaConfig.dilophosaurusKayentaDryForestSpawnWeight, 1, 3));

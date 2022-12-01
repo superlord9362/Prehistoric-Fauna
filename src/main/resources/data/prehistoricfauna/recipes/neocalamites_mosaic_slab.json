@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_slab",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:neocalamites_mosaic"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:neocalamites_mosaic_slab",
+    "count": 6
+  }
+}

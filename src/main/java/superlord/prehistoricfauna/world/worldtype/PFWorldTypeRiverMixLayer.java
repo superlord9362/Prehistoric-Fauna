@@ -18,10 +18,16 @@ public enum PFWorldTypeRiverMixLayer implements IAreaTransformer2, IDimOffset0Tr
 	public int apply(INoiseRandom random, IArea area1, IArea area2, int val1, int val2) {
 		int i = area1.getValue(this.getOffsetX(val1), this.getOffsetZ(val2));
 		int j = area2.getValue(this.getOffsetX(val1), this.getOffsetZ(val2));
-		if (i == PFWorldTypeLayerUtil.getBiomeId(PFBiomes.ISCHIGUALASTO_RIVER_BIOME.getKey())) {
-			return i;
+		if (j == PFWorldTypeLayerUtil.getBiomeId(PFBiomes.CHINLE_RIVER_BIOME.getKey())) {
+			return j;
+		}
+		if (j == PFWorldTypeLayerUtil.getBiomeId(PFBiomes.ISCHIGUALASTO_RIVER_BIOME.getKey())) {
+			return j;
 		}
 		if (j == PFWorldTypeLayerUtil.getBiomeId(PFBiomes.HELL_CREEK_RIVER_BIOME.getKey())) {
+			return j;
+		}
+		if (j == PFWorldTypeLayerUtil.getBiomeId(PFBiomes.KAYENTA_RIVER_BIOME.getKey())) {
 			return j;
 		} else {
 			return i;

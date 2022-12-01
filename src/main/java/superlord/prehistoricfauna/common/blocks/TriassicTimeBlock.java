@@ -34,9 +34,7 @@ public class TriassicTimeBlock extends Block {
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean isMoving) {
 		if (oldState.getBlock() != state.getBlock()) {
 			if (!PFBlocks.TRIASSIC_PORTAL.get().tryToCreatePortal(world, pos)) {
-				if (!state.isValidPosition(world, pos)) {
-					world.removeBlock(pos, false);
-				}
+				world.removeBlock(pos, false);
 			}
 		}
 	}

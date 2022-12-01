@@ -78,35 +78,35 @@ public class DryosaurusEntity extends DinosaurEntity {
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(PFBlocks.CONIOPTERIS.asItem());
 	private static final DataParameter<Boolean> EATING = EntityDataManager.createKey(DryosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> NATURAL_LOVE = EntityDataManager.createKey(DryosaurusEntity.class, DataSerializers.BOOLEAN);
-	private int maxHunger = 25;
+	private int maxHunger = 38;
 	private int currentHunger;
 	private int lastInLove = 0;
 	int hungerTick = 0;
 	private int isDigging;
 	private int chewingTick;
 	int loveTick = 0;
-	
+
 	public DryosaurusEntity(EntityType<? extends DryosaurusEntity> type, World world) {
 		super(type, world);
 	}
-	
+
 	public boolean hasEgg() {
 		return this.dataManager.get(HAS_EGG);
 	}
-	
+
 	private void setHasEgg(boolean hasEgg) {
 		this.dataManager.set(HAS_EGG, hasEgg);
 	}
-	
+
 	public boolean isDigging() {
 		return this.dataManager.get(IS_DIGGING);
 	}
-	
+
 	private void setDigging(boolean isDigging) {
 		this.isDigging = isDigging ? 1 : 0;
 		this.dataManager.set(IS_DIGGING, isDigging);
 	}
-	
+
 	public boolean isBreedingItem(ItemStack stack) {
 		return stack.getItem() == PFBlocks.CONIOPTERIS.asItem();
 	}
@@ -126,7 +126,7 @@ public class DryosaurusEntity extends DinosaurEntity {
 	private void setMelanistic(boolean isMelanistic) {
 		this.dataManager.set(MELANISTIC, isMelanistic);
 	}
-	
+
 	public int getCurrentHunger() {
 		return this.currentHunger;
 	}
@@ -158,7 +158,7 @@ public class DryosaurusEntity extends DinosaurEntity {
 	private void setEating(boolean isEating) {
 		this.dataManager.set(EATING, isEating);
 	}
-	
+
 	@Nullable
 	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		Random rand = new Random();
@@ -168,15 +168,15 @@ public class DryosaurusEntity extends DinosaurEntity {
 		} else if (birthNumber >= 4 && birthNumber < 7) {
 			this.setMelanistic(true);
 		}
-		this.setHunger(25);
+		this.setHunger(this.maxHunger);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
-	
+
 	private void spawnItem(ItemStack stack) {
 		ItemEntity itemEntity = new ItemEntity(this.world, this.getPosX(), this.getPosY(), this.getPosZ(), stack);
 		this.world.addEntity(itemEntity);
 	}
-	
+
 	protected void registerData() {
 		super.registerData();
 		this.dataManager.register(HAS_EGG, false);
@@ -186,7 +186,7 @@ public class DryosaurusEntity extends DinosaurEntity {
 		this.dataManager.register(EATING, false);
 		this.dataManager.register(NATURAL_LOVE, false);
 	}
-	
+
 	public void writeAdditional(CompoundNBT compound) {
 		super.writeAdditional(compound);
 		compound.putBoolean("HasEgg", this.hasEgg());
@@ -196,7 +196,7 @@ public class DryosaurusEntity extends DinosaurEntity {
 		compound.putBoolean("IsEating", this.isEating());
 		compound.putBoolean("InNaturalLove", this.isInLoveNaturally());
 	}
-	
+
 	public void readAdditional(CompoundNBT compound) {
 		super.readAdditional(compound);
 		this.setHasEgg(compound.getBoolean("HasEgg"));
@@ -206,7 +206,7 @@ public class DryosaurusEntity extends DinosaurEntity {
 		this.setHunger(compound.getInt("MaxHunger"));
 		this.setInLoveNaturally(compound.getBoolean("InNaturalLove"));
 	}
-	
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	protected void registerGoals() {
@@ -233,24 +233,24 @@ public class DryosaurusEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(1, new DiurnalSleepingGoal(this));
 		this.goalSelector.addGoal(0, new DryosaurusEntity.HerbivoreEatGoal((double)1.2F, 12, 2));
 	}
-	
+
 	protected SoundEvent getAmbientSound() {
 		return this.isAsleep() ? null : SoundInit.DRYOSAURUS_IDLE;
 	}
-	
+
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
 		return SoundInit.DRYOSAURUS_HURT;
 	}
-	
+
 	protected SoundEvent getDeathSound() {
 		return SoundInit.DRYOSAURUS_DEATH;
 	}
-	
+
 	@Override
 	protected void updateAITasks() {
 		super.updateAITasks();
 	}
-	
+
 	public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
 		ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
 		Item item = itemstack.getItem();
@@ -259,36 +259,36 @@ public class DryosaurusEntity extends DinosaurEntity {
 			if (!p_230254_1_.abilities.isCreativeMode) {
 				itemstack.shrink(1);
 			}
-            return ActionResultType.SUCCESS;
+			return ActionResultType.SUCCESS;
 		}
-        return super.func_230254_b_(p_230254_1_, p_230254_2_);
+		return super.func_230254_b_(p_230254_1_, p_230254_2_);
 	}
-	
+
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 15.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D);
 	}
-	
+
 	@OnlyIn(Dist.CLIENT)
 	public void handleStatusUpdate(byte id) {
 		super.handleStatusUpdate(id);
 	}
-	
+
 	static class LayEggGoal extends MoveToBlockGoal {
 		private final DryosaurusEntity dryosaurus;
-		
+
 		LayEggGoal(DryosaurusEntity dryosaurus, double speed) {
 			super(dryosaurus, speed, 16);
 			this.dryosaurus = dryosaurus;
 		}
-		
+
 		public boolean shouldExecute() {
 			return this.dryosaurus.hasEgg() ? super.shouldExecute() : false;
 		}
-		
+
 		public boolean shouldContinueExecuting() {
 			return super.shouldContinueExecuting() && this.dryosaurus.hasEgg();
 		}
-		
+
 		public void tick() {
 			super.tick();
 			BlockPos blockpos = new BlockPos(this.dryosaurus.getPositionVec());
@@ -308,7 +308,7 @@ public class DryosaurusEntity extends DinosaurEntity {
 				}
 			}
 		}
-		
+
 		protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
 			if (!worldIn.isAirBlock(pos.up())) {
 				return false;
@@ -317,9 +317,9 @@ public class DryosaurusEntity extends DinosaurEntity {
 				return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.MYCELIUM || block == Blocks.SAND || block == Blocks.RED_SAND || block == PFBlocks.MOSSY_DIRT || block == PFBlocks.MOSS_BLOCK || block == PFBlocks.LOAM || block == PFBlocks.PACKED_LOAM || block == PFBlocks.SILT || block == PFBlocks.PACKED_LOAM || block == BlockTags.LEAVES;
 			}
 		}
-		
+
 	}
-	
+
 	@Override
 	public void livingTick() {
 		super.livingTick();
@@ -336,29 +336,44 @@ public class DryosaurusEntity extends DinosaurEntity {
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.22D);
 		}
-		List<DryosaurusEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
-		if (PrehistoricFaunaConfig.advancedHunger) {
-			hungerTick++;
-			if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
-				hungerTick = 0;
-				if (currentHunger != 0 || !this.isAsleep()) {
-					this.setHunger(currentHunger - 1);
+		if (!this.isAIDisabled()) {
+			List<DryosaurusEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
+			if (PrehistoricFaunaConfig.advancedHunger) {
+				hungerTick++;
+				if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
+					hungerTick = 0;
+					if (currentHunger != 0 || !this.isAsleep()) {
+						this.setHunger(currentHunger - 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
+					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getAttackTarget() == null && this.getRevengeTarget() == null) {
+						float currentHealth = this.getHealth();
+						this.setHealth(currentHealth + 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
+						loveTick = 600;
+						this.setInLoveNaturally(true);
+						this.setInLove(600);
+						lastInLove = 28800;
+					}
+					if (loveTick != 0) {
+						loveTick--;
+					} else {
+						this.setInLoveNaturally(false);
+					}
 				}
-			}
-			if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-				if (this.getHealth() < this.getMaxHealth()) {
-					float currentHealth = this.getHealth();
-					this.setHealth(currentHealth + 1);
-				}
-			}
-			if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
+			} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+				int naturalBreedingChance = rand.nextInt(1000);
+				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
 					loveTick = 600;
 					this.setInLoveNaturally(true);
 					this.setInLove(600);
@@ -370,37 +385,24 @@ public class DryosaurusEntity extends DinosaurEntity {
 					this.setInLoveNaturally(false);
 				}
 			}
-		} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-			int naturalBreedingChance = rand.nextInt(1000);
-			if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
-				loveTick = 600;
-				this.setInLoveNaturally(true);
-				this.setInLove(600);
-				lastInLove = 28800;
+			if (lastInLove != 0) {
+				lastInLove--;
 			}
-			if (loveTick != 0) {
-				loveTick--;
-			} else {
-				this.setInLoveNaturally(false);
-			}
-		}
-		if (lastInLove != 0) {
-			lastInLove--;
 		}
 	}
-	
+
 	static class MateGoal extends BreedGoal {
 		private final DryosaurusEntity dryosaurus;
-		
+
 		MateGoal(DryosaurusEntity dryosaurus, double speed) {
 			super(dryosaurus, speed);
 			this.dryosaurus = dryosaurus;
 		}
-		
+
 		public boolean shouldExecute() {
 			return super.shouldExecute() && !this.dryosaurus.hasEgg() && !this.dryosaurus.isInLoveNaturally();
 		}
-		
+
 		protected void spawnBaby() {
 			ServerPlayerEntity serverPlayerEntity = this.animal.getLoveCause();
 			if (serverPlayerEntity == null && this.targetMate.getLoveCause() != null) {
@@ -418,7 +420,7 @@ public class DryosaurusEntity extends DinosaurEntity {
 				this.world.addEntity(new ExperienceOrbEntity(this.world, this.animal.getPosX(), this.animal.getPosY(), this.animal.getPosZ(), random.nextInt(7) + 1));
 			}
 		}
-		
+
 	}
 
 	static class NaturalMateGoal extends BreedGoal {
@@ -470,7 +472,7 @@ public class DryosaurusEntity extends DinosaurEntity {
 		entity.onInitialSpawn((IServerWorld)this.world, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
 		return entity;
 	}
-	
+
 	public class HerbivoreEatGoal extends MoveToBlockGoal {
 		protected int field_220731_g;
 
@@ -639,5 +641,5 @@ public class DryosaurusEntity extends DinosaurEntity {
 			super.startExecuting();
 		}
 	}
-	
+
 }

@@ -1,5 +1,6 @@
 package superlord.prehistoricfauna.common.entities.triassic.chinle;
 
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Random;
 
@@ -18,6 +19,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.BreedGoal;
 import net.minecraft.entity.ai.goal.FollowParentGoal;
+import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.entity.ai.goal.PanicGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
@@ -26,14 +28,20 @@ import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootContext;
+import net.minecraft.loot.LootParameterSets;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -45,25 +53,27 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.Tags;
+import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.blocks.TypothoraxEggBlock;
 import superlord.prehistoricfauna.common.entities.DinosaurEntity;
-import superlord.prehistoricfauna.common.entities.goal.CathemeralSleepGoal;
 import superlord.prehistoricfauna.common.entities.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entities.goal.DinosaurRandomLookGoal;
+import superlord.prehistoricfauna.common.entities.goal.NocturnalSleepGoal;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.SoundInit;
 
 public class TypothoraxEntity extends DinosaurEntity {
-	
+
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(TypothoraxEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(TypothoraxEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> ALBINO = EntityDataManager.createKey(TypothoraxEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> MELANISTIC = EntityDataManager.createKey(TypothoraxEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> EATING = EntityDataManager.createKey(TypothoraxEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> NATURAL_LOVE = EntityDataManager.createKey(TypothoraxEntity.class, DataSerializers.BOOLEAN);
-	private int maxHunger = 20;
+	private int maxHunger = 25;
 	private int currentHunger;
 	int hungerTick = 0;
 	private int lastInLove = 0;
@@ -73,7 +83,7 @@ public class TypothoraxEntity extends DinosaurEntity {
 	public TypothoraxEntity(EntityType<? extends TameableEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
-	
+
 	public boolean hasEgg() {
 		return this.dataManager.get(HAS_EGG);
 	}
@@ -108,7 +118,7 @@ public class TypothoraxEntity extends DinosaurEntity {
 	}
 
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == PFBlocks.NEOCALAMITES.asItem();
+		return stack.getItem() == PFBlocks.HORSETAIL.asItem();
 	}
 
 	public boolean isInLoveNaturally() {
@@ -118,7 +128,7 @@ public class TypothoraxEntity extends DinosaurEntity {
 	private void setInLoveNaturally(boolean isInLoveNaturally) {
 		this.dataManager.set(NATURAL_LOVE, isInLoveNaturally);
 	}
-	
+
 	public int getCurrentHunger() {
 		return this.currentHunger;
 	}
@@ -142,7 +152,7 @@ public class TypothoraxEntity extends DinosaurEntity {
 	private void setEating(boolean isEating) {
 		this.dataManager.set(EATING, isEating);
 	}
-	
+
 	protected void registerData() {
 		super.registerData();
 		this.dataManager.register(HAS_EGG, false);
@@ -172,7 +182,7 @@ public class TypothoraxEntity extends DinosaurEntity {
 		this.setHunger(compound.getInt("MaxHunger"));
 		this.setInLoveNaturally(compound.getBoolean("InNaturalLove"));
 	}
-	
+
 	@Nullable
 	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		Random rand = new Random();
@@ -182,10 +192,10 @@ public class TypothoraxEntity extends DinosaurEntity {
 		} else if (birthNumber >= 4 && birthNumber < 7) {
 			this.setMelanistic(true);
 		}
-		this.setHunger(25);
+		this.setHunger(this.maxHunger);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
-	
+
 	protected SoundEvent getAmbientSound() {
 		return this.isAsleep() ? null : SoundInit.TYPOTHORAX_IDLE;
 	}
@@ -197,7 +207,7 @@ public class TypothoraxEntity extends DinosaurEntity {
 	protected SoundEvent getDeathSound() {
 		return SoundInit.TYPOTHORAX_DEATH;
 	}
-	
+
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
@@ -210,10 +220,11 @@ public class TypothoraxEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new TypothoraxEntity.LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new TypothoraxEntity.MateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new TypothoraxEntity.NaturalMateGoal(this, 1.0D));
-		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
+		this.goalSelector.addGoal(1, new NocturnalSleepGoal(this));
 		this.goalSelector.addGoal(0, new TypothoraxEntity.HerbivoreEatGoal((double)1.2F, 12, 2));
+		this.goalSelector.addGoal(4, new TypothoraxEntity.DiggingGoal(this));
 	}
-	
+
 	@Override
 	public void livingTick() {
 		super.livingTick();
@@ -222,29 +233,44 @@ public class TypothoraxEntity extends DinosaurEntity {
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.23D);
 		}
-		List<TypothoraxEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
-		if (PrehistoricFaunaConfig.advancedHunger) {
-			hungerTick++;
-			if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
-				hungerTick = 0;
-				if (currentHunger != 0 || !this.isAsleep()) {
-					this.setHunger(currentHunger - 1);
+		if (!this.isAIDisabled()) {
+			List<TypothoraxEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
+			if (PrehistoricFaunaConfig.advancedHunger) {
+				hungerTick++;
+				if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
+					hungerTick = 0;
+					if (currentHunger != 0 || !this.isAsleep()) {
+						this.setHunger(currentHunger - 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
+					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getAttackTarget() == null && this.getRevengeTarget() == null) {
+						float currentHealth = this.getHealth();
+						this.setHealth(currentHealth + 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
+						loveTick = 600;
+						this.setInLoveNaturally(true);
+						this.setInLove(600);
+						lastInLove = 28800;
+					}
+					if (loveTick != 0) {
+						loveTick--;
+					} else {
+						this.setInLoveNaturally(false);
+					}
 				}
-			}
-			if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-				if (this.getHealth() < this.getMaxHealth()) {
-					float currentHealth = this.getHealth();
-					this.setHealth(currentHealth + 1);
-				}
-			}
-			if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
+			} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+				int naturalBreedingChance = rand.nextInt(1000);
+				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
 					loveTick = 600;
 					this.setInLoveNaturally(true);
 					this.setInLove(600);
@@ -256,27 +282,14 @@ public class TypothoraxEntity extends DinosaurEntity {
 					this.setInLoveNaturally(false);
 				}
 			}
-		} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-			int naturalBreedingChance = rand.nextInt(1000);
-			if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
-				loveTick = 600;
-				this.setInLoveNaturally(true);
-				this.setInLove(600);
-				lastInLove = 28800;
+			if (lastInLove != 0) {
+				lastInLove--;
 			}
-			if (loveTick != 0) {
-				loveTick--;
-			} else {
-				this.setInLoveNaturally(false);
-			}
-		}
-		if (lastInLove != 0) {
-			lastInLove--;
 		}
 	}
-	
+
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 8.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D).createMutableAttribute(Attributes.ARMOR, 4.0D).createMutableAttribute(Attributes.ARMOR_TOUGHNESS, 4.0D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D).createMutableAttribute(Attributes.ARMOR, 4.0D).createMutableAttribute(Attributes.ARMOR_TOUGHNESS, 4.0D);
 	}
 
 	static class LayEggGoal extends MoveToBlockGoal {
@@ -430,7 +443,7 @@ public class TypothoraxEntity extends DinosaurEntity {
 		entity.onInitialSpawn(p_241840_1_, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
 		return entity;
 	}
-	
+
 	public class HerbivoreEatGoal extends MoveToBlockGoal {
 		protected int field_220731_g;
 
@@ -598,6 +611,80 @@ public class TypothoraxEntity extends DinosaurEntity {
 			this.field_220731_g = 0;
 			super.startExecuting();
 		}
+	}
+	
+	static class DiggingGoal extends Goal {
+		private static final ResourceLocation DIGGING_LOOT = new ResourceLocation(PrehistoricFauna.MOD_ID, "entities/typothorax_digging");
+
+		private final TypothoraxEntity typothorax;
+		private int diggingTimer;
+		private int digTimer2;
+
+		public DiggingGoal(TypothoraxEntity entity) {
+			this.typothorax = entity;
+			setMutexFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK, Goal.Flag.JUMP));
+		}
+
+		@Override
+		public boolean shouldExecute() {
+			if (digTimer2 > 0) {
+				--digTimer2;
+				return false;
+			}
+			if (typothorax.getRNG().nextInt(typothorax.isChild() ? 100 : 1000) != 0) {
+				return false;
+			} else {
+				BlockPos blockpos = typothorax.getPosition();
+				BlockState state = typothorax.world.getBlockState(blockpos);
+				if (state.isIn(Tags.Blocks.DIRT)) {
+					return true;
+				} else {
+					return typothorax.world.getBlockState(blockpos.down()).isIn(Tags.Blocks.DIRT);
+				}
+			}
+		}
+
+		@Override
+		public void startExecuting() {
+			diggingTimer = 40;
+			digTimer2 = 6000;
+			typothorax.world.setEntityState(typothorax, (byte) 10);
+			typothorax.getNavigator().clearPath();
+		}
+
+		@Override
+		public void resetTask() {
+			diggingTimer = 0;
+		}
+
+		@Override
+		public boolean shouldContinueExecuting() {
+			return diggingTimer > 0;
+		}
+
+		@Override
+		public void tick() {
+			if (digTimer2 > 0) {
+				--digTimer2;
+			}
+			if (diggingTimer > 0) {
+				--diggingTimer;
+			}
+			if (diggingTimer == 25) {
+				BlockPos blockpos = typothorax.getPosition();
+				BlockPos blockpos1 = blockpos.down();
+				if (typothorax.world.getBlockState(blockpos1).isIn(Tags.Blocks.DIRT)) {
+					BlockState state = typothorax.world.getBlockState(blockpos1);
+					typothorax.world.playEvent(2001, blockpos1, Block.getStateId(state));
+					MinecraftServer server = typothorax.world.getServer();
+					if (server != null) {
+						List<ItemStack> items = server.getLootTableManager().getLootTableFromLocation(DIGGING_LOOT).generate(new LootContext.Builder((ServerWorld) typothorax.world).withRandom(typothorax.getRNG()).build(LootParameterSets.EMPTY));
+						InventoryHelper.dropItems(typothorax.world, blockpos, NonNullList.from(ItemStack.EMPTY, items.toArray(new ItemStack[0])));
+					}
+				}
+			}
+		}
+
 	}
 
 }

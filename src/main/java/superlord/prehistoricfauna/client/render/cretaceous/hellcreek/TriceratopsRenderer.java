@@ -9,10 +9,11 @@ import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TriceratopsJuvenileModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TriceratopsJuvenileSleepingModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TriceratopsModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TriceratopsSleepingModel;
+import superlord.prehistoricfauna.client.render.layer.TriceratopsEyeLayer;
+import superlord.prehistoricfauna.client.render.layer.TriceratopsJuvEyeLayer;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.TriceratopsEntity;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class TriceratopsRenderer extends MobRenderer<TriceratopsEntity, EntityModel<TriceratopsEntity>> {
 
@@ -44,26 +45,20 @@ public class TriceratopsRenderer extends MobRenderer<TriceratopsEntity, EntityMo
 
 	private static final TriceratopsModel TRICERATOPS_MODEL = new TriceratopsModel();
 	private static final TriceratopsJuvenileModel BABY_TRICERATOPS_MODEL = new TriceratopsJuvenileModel();
-	private static final TriceratopsSleepingModel TRICERATOPS_SLEEPING_MODEL = new TriceratopsSleepingModel();
-	private static final TriceratopsJuvenileSleepingModel BABY_TRICERATOPS_SLEEPING_MODEL = new TriceratopsJuvenileSleepingModel();
 
 	public TriceratopsRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), TRICERATOPS_MODEL, 2F);
+		if (PrehistoricFaunaConfig.eyeShine) {
+			this.addLayer(new TriceratopsEyeLayer(this));
+			this.addLayer(new TriceratopsJuvEyeLayer(this));
+		}
 	}
 
 	public void render(TriceratopsEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
 		if (entityIn.isChild()) {
-			if (entityIn.isSleeping()) {
-				entityModel = BABY_TRICERATOPS_SLEEPING_MODEL;
-			} else {
-				entityModel = BABY_TRICERATOPS_MODEL;
-			}
+			entityModel = BABY_TRICERATOPS_MODEL;
 		} else {
-			if (entityIn.isSleeping()) {
-				entityModel = TRICERATOPS_SLEEPING_MODEL;
-			} else {
-				entityModel = TRICERATOPS_MODEL;
-			}
+			entityModel = TRICERATOPS_MODEL;
 		}
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
@@ -78,7 +73,7 @@ public class TriceratopsRenderer extends MobRenderer<TriceratopsEntity, EntityMo
 	public ResourceLocation getEntityTexture(TriceratopsEntity entity) {
 		if (entity.isAlbino()) {
 			if (entity.isChild()) {
-				if (entity.isSleeping()) {
+				if (entity.isSleeping() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 					return BABY_ALBINO_SLEEPING;
 				} else return BABY_ALBINO;
 			} else if (entity.hasChest() && !entity.isHorseSaddled()) {
@@ -88,13 +83,13 @@ public class TriceratopsRenderer extends MobRenderer<TriceratopsEntity, EntityMo
 			} else if (entity.isHorseSaddled() && entity.hasChest()) {
 				return SADDLED_CHESTED_ALBINO;
 			} else {
-				if (entity.isSleeping()) {
+				if (entity.isSleeping() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 					return ALBINO_SLEEPING;
 				} else return ALBINO;
 			}
 		} else if (entity.isMelanistic()) {
 			if (entity.isChild()) {
-				if (entity.isSleeping()) {
+				if (entity.isSleeping() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 					return BABY_MELANISTIC_SLEEPING;
 				} else return BABY_MELANISTIC;
 			} else if (entity.hasChest() && !entity.isHorseSaddled()) {
@@ -104,7 +99,7 @@ public class TriceratopsRenderer extends MobRenderer<TriceratopsEntity, EntityMo
 			} else if (entity.isHorseSaddled() && entity.hasChest()) {
 				return SADDLED_CHESTED_MELANISTIC;
 			} else {
-				if (entity.isSleeping()) {
+				if (entity.isSleeping() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 					return MELANISTIC_SLEEPING;
 				} else return MELANISTIC;
 			}
@@ -114,7 +109,7 @@ public class TriceratopsRenderer extends MobRenderer<TriceratopsEntity, EntityMo
 				return BABY_TRICERATOPS_SLEEPING;
 			} else return BABY_TRICERATOPS;
 		} else if (entity.isJuvenile()) {
-			if (entity.isSleeping()) {
+			if (entity.isSleeping() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return JUVENILE_TRICERATOPS_SLEEPING;
 			} else return JUVENILE_TRICERATOPS;
 		}else if(entity.isHorseSaddled() && !entity.hasChest()) {
@@ -124,7 +119,7 @@ public class TriceratopsRenderer extends MobRenderer<TriceratopsEntity, EntityMo
 		} else if(entity.hasChest() && entity.isHorseSaddled()) {
 			return SADDLED_CHESTED;
 		} else {
-			if (entity.isSleeping()) {
+			if (entity.isSleeping() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return TRICERATOPS_SLEEPING;
 			} else return TRICERATOPS;
 		}

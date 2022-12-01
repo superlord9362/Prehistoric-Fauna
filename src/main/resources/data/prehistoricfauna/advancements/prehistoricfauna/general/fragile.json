@@ -268,6 +268,166 @@
         		}
 			]     
 		 }
+    },
+    "pinacosaurus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+			"items": [
+				{
+          			"item": "prehistoricfauna:pinacosaurus_egg"
+        		}
+			]     
+		 }
+    },
+    "plesiohadros": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+			"items": [
+				{
+          			"item": "prehistoricfauna:plesiohadros_egg"
+        		}
+			]     
+		 }
+    },
+    "calsoyasuchus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+			"items": [
+				{
+          			"item": "prehistoricfauna:calsoyasuchus_egg"
+        		}
+			]     
+		 }
+    },
+    "dilophosaurus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+			"items": [
+				{
+          			"item": "prehistoricfauna:dilophosaurus_egg"
+        		}
+			]     
+		 }
+    },
+    "kayentatherium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+			"items": [
+				{
+          			"item": "prehistoricfauna:kayentatherium_egg"
+        		}
+			]     
+		 }
+    },
+    "megapnosaurus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+			"items": [
+				{
+          			"item": "prehistoricfauna:megapnosaurus_egg"
+        		}
+			]     
+		 }
+    },
+    "sarahsaurus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+			"items": [
+				{
+          			"item": "prehistoricfauna:sarahsaurus_egg"
+        		}
+			]     
+		 }
+    },
+    "scelidosaurus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+			"items": [
+				{
+          			"item": "prehistoricfauna:scelidosaurus_egg"
+        		}
+			]     
+		 }
+    },
+    "scutellosaurus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+			"items": [
+				{
+          			"item": "prehistoricfauna:scutellosaurus_egg"
+        		}
+			]     
+		 }
+    },
+    "coelophysis": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+			"items": [
+				{
+          			"item": "prehistoricfauna:coelophysis_egg"
+        		}
+			]     
+		 }
+    },
+    "desmatosuchus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+			"items": [
+				{
+          			"item": "prehistoricfauna:desmatosuchus_egg"
+        		}
+			]     
+		 }
+    },
+    "placerias": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+			"items": [
+				{
+          			"item": "prehistoricfauna:placerias_egg"
+        		}
+			]     
+		 }
+    },
+    "poposaurus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+			"items": [
+				{
+          			"item": "prehistoricfauna:poposaurus_egg"
+        		}
+			]     
+		 }
+    },
+    "postosuchus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+			"items": [
+				{
+          			"item": "prehistoricfauna:postosuchus_egg"
+        		}
+			]     
+		 }
+    },
+    "trilophosaurus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+			"items": [
+				{
+          			"item": "prehistoricfauna:trilophosaurus_egg"
+        		}
+			]     
+		 }
+    },
+    "typothorax": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+			"items": [
+				{
+          			"item": "prehistoricfauna:typothorax_egg"
+        		}
+			]     
+		 }
     }
   },
   "requirements": [
@@ -345,6 +505,54 @@
     ],
     [
       "aepyornithomimus"
-    ]
+    ],
+	[
+		"pinacosaurus"
+	],
+	[
+		"plesiohadros"
+	],
+	[
+		"calsoyasuchus"
+	],
+	[
+		"dilophosaurus"
+	],
+	[
+		"kayentatherium"
+	],
+	[
+		"megapnosaurus"
+	],
+	[
+		"sarahsaurus"
+	],
+	[
+		"scelidosaurus"
+	],
+	[
+		"scutellosaurus"
+	],
+	[
+		"coelophysis"
+	],
+	[
+		"desmatosuchus"
+	],
+	[
+		"placerias"
+	],
+	[
+		"poposaurus"
+	],
+	[
+		"postosuchus"
+	],
+	[
+		"trilophosaurus"
+	],
+	[
+		"typothorax"
+	]
   ]
 }

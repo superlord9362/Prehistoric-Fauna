@@ -10,7 +10,9 @@ import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.triassic.chinle.TypothoraxModel;
 import superlord.prehistoricfauna.client.model.triassic.chinle.TypothoraxSleepingModel;
+import superlord.prehistoricfauna.client.render.layer.TypothoraxEyeLayer;
 import superlord.prehistoricfauna.common.entities.triassic.chinle.TypothoraxEntity;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class TypothoraxRenderer extends MobRenderer<TypothoraxEntity, EntityModel<TypothoraxEntity>> {
 
@@ -24,7 +26,10 @@ public class TypothoraxRenderer extends MobRenderer<TypothoraxEntity, EntityMode
 	private static final TypothoraxSleepingModel TYPOTHORAX_SLEEPING_MODEL = new TypothoraxSleepingModel();
 
 	public TypothoraxRenderer() {
-		super(Minecraft.getInstance().getRenderManager(), TYPOTHORAX_MODEL, 0.625F);
+		super(Minecraft.getInstance().getRenderManager(), TYPOTHORAX_MODEL, 1F);
+		if (PrehistoricFaunaConfig.eyeShine) {
+			this.addLayer(new TypothoraxEyeLayer(this));
+		}
 	}
 
 	public void render(TypothoraxEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
@@ -32,7 +37,7 @@ public class TypothoraxRenderer extends MobRenderer<TypothoraxEntity, EntityMode
 			entityModel = TYPOTHORAX_SLEEPING_MODEL;
 		} else {
 			entityModel = TYPOTHORAX_MODEL;
-			}
+		}
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
 
@@ -45,15 +50,15 @@ public class TypothoraxRenderer extends MobRenderer<TypothoraxEntity, EntityMode
 	@Override
 	public ResourceLocation getEntityTexture(TypothoraxEntity entity) {
 		if (entity.isAlbino()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return ALBINO_SLEEPING;
 			} else return ALBINO;
 		} else if (entity.isMelanistic()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return MELANISTIC_SLEEPING;
 			}else return MELANISTIC;
 		} else {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return TYPOTHORAX_SLEEPING;
 			} else return TYPOTHORAX;
 		}

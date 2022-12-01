@@ -16,48 +16,48 @@ import superlord.prehistoricfauna.common.entities.fossil.AnkylosaurusSkullEntity
  */
 @OnlyIn(Dist.CLIENT)
 public class AnkylosaurusSkullModel extends EntityModel<AnkylosaurusSkullEntity> {
-    public ModelRenderer Head;
-    public ModelRenderer Snout;
-    public ModelRenderer LeftOsteoderm;
-    public ModelRenderer LeftCheekbone;
-    public ModelRenderer RightOsteoderm;
-    public ModelRenderer RightCheekbone;
+	public ModelRenderer Head1;
+    public ModelRenderer Head2;
+    public ModelRenderer Spike1;
+    public ModelRenderer Spike1_1;
+    public ModelRenderer Spike3;
+    public ModelRenderer Spike4;
 
     public AnkylosaurusSkullModel() {
-        this.textureWidth = 90;
-        this.textureHeight = 60;
-        this.Snout = new ModelRenderer(this, 40, 30);
-        this.Snout.setRotationPoint(0.0F, 1.0F, -13.0F);
-        this.Snout.addBox(-4.0F, -3.0F, -2.0F, 8.0F, 7.0F, 2.0F, 0.0F, 0.0F, 0.0F);
-        this.Head = new ModelRenderer(this, 0, 30);
-        this.Head.setRotationPoint(0.0F, 18.0F, 7.0F);
-        this.Head.addBox(-6.0F, -4.0F, -13.0F, 12.0F, 10.0F, 13.0F, 0.0F, 0.0F, 0.0F);
-        this.RightOsteoderm = new ModelRenderer(this, 63, 6);
-        this.RightOsteoderm.setRotationPoint(-3.0F, -3.0F, -2.0F);
-        this.RightOsteoderm.addBox(-4.0F, -2.0F, 0.0F, 4.0F, 4.0F, 5.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(RightOsteoderm, 0.12566370281464037F, -0.25132740562928074F, -0.0F);
-        this.LeftOsteoderm = new ModelRenderer(this, 41, 6);
-        this.LeftOsteoderm.setRotationPoint(3.0F, -3.0F, -2.0F);
-        this.LeftOsteoderm.addBox(0.0F, -2.0F, 0.0F, 4.0F, 4.0F, 5.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(LeftOsteoderm, 0.12566370281464037F, 0.25132740562928074F, -0.0F);
-        this.LeftCheekbone = new ModelRenderer(this, 45, 21);
-        this.LeftCheekbone.setRotationPoint(3.0F, 3.0F, -2.0F);
-        this.LeftCheekbone.addBox(0.0F, -2.0F, 0.0F, 4.0F, 3.0F, 4.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(LeftCheekbone, 0.0F, 0.18849556254433897F, -0.0F);
-        this.RightCheekbone = new ModelRenderer(this, 63, 22);
-        this.RightCheekbone.setRotationPoint(-3.0F, 3.0F, -2.0F);
-        this.RightCheekbone.addBox(-4.0F, -2.0F, 0.0F, 4.0F, 3.0F, 4.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(RightCheekbone, 0.0F, -0.18849556254433897F, -0.0F);
-        this.Head.addChild(this.Snout);
-        this.Head.addChild(this.RightOsteoderm);
-        this.Head.addChild(this.LeftOsteoderm);
-        this.Head.addChild(this.LeftCheekbone);
-        this.Head.addChild(this.RightCheekbone);
+        this.textureWidth = 256;
+        this.textureHeight = 256;
+        this.Head1 = new ModelRenderer(this, 152, 97);
+        this.Head1.setRotationPoint(0.0F, 17.0F, 4.0F);
+        this.Head1.addBox(-7.0F, -5.0F, -12.0F, 14.0F, 12.0F, 16.0F, 0.0F, 0.0F, 0.0F);
+        this.Head2 = new ModelRenderer(this, 200, 93);
+        this.Head2.setRotationPoint(0.0F, 0.0F, -12.0F);
+        this.Head2.addBox(-5.5F, -3.0F, -3.0F, 11.0F, 9.0F, 4.0F, 0.0F, 0.0F, 0.0F);
+        this.Spike4 = new ModelRenderer(this, 29, 32);
+        this.Spike4.setRotationPoint(-7.0F, 2.0F, -2.0F);
+        this.Spike4.addBox(0.0F, 0.0F, 0.0F, 4.0F, 4.0F, 5.0F, 0.0F, 0.0F, 0.0F);
+        this.setRotateAngle(Spike4, 0.0F, -0.9105382388075086F, 0.0F);
+        this.Spike3 = new ModelRenderer(this, 29, 32);
+        this.Spike3.setRotationPoint(7.0F, 2.0F, -2.0F);
+        this.Spike3.addBox(-4.0F, 0.0F, 0.0F, 4.0F, 4.0F, 5.0F, 0.0F, 0.0F, 0.0F);
+        this.setRotateAngle(Spike3, 0.0F, 0.9105382388075086F, 0.0F);
+        this.Spike1 = new ModelRenderer(this, 0, 33);
+        this.Spike1.setRotationPoint(7.0F, -3.0F, 0.0F);
+        this.Spike1.addBox(-4.0F, -3.0F, 0.0F, 5.0F, 5.0F, 7.0F, 0.0F, 0.0F, 0.0F);
+        this.setRotateAngle(Spike1, 0.0911061832922575F, 0.27314402127920984F, 0.0F);
+        this.Spike1_1 = new ModelRenderer(this, 0, 33);
+        this.Spike1_1.setRotationPoint(-7.0F, -3.0F, 0.0F);
+        this.Spike1_1.addBox(-1.0F, -3.0F, 0.0F, 5.0F, 5.0F, 7.0F, 0.0F, 0.0F, 0.0F);
+        this.setRotateAngle(Spike1_1, 0.0911061832922575F, -0.27314402127920984F, 0.0F);
+        this.Head1.addChild(this.Head2);
+        this.Head1.addChild(this.Spike4);
+        this.Head1.addChild(this.Spike3);
+        this.Head1.addChild(this.Spike1);
+        this.Head1.addChild(this.Spike1_1);
     }
 
     @Override
     public void render(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) { 
-        ImmutableList.of(this.Head).forEach((modelRenderer) -> { 
+        ImmutableList.of(this.Head1).forEach((modelRenderer) -> { 
             modelRenderer.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
         });
     }

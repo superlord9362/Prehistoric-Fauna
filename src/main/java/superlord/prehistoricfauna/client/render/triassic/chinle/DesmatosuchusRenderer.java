@@ -12,7 +12,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.triassic.chinle.DesmatosuchusModel;
 import superlord.prehistoricfauna.client.model.triassic.chinle.DesmatosuchusSleepingModel;
+import superlord.prehistoricfauna.client.render.layer.DesmatosuchusEyeLayer;
 import superlord.prehistoricfauna.common.entities.triassic.chinle.DesmatosuchusEntity;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 @OnlyIn(Dist.CLIENT)
 public class DesmatosuchusRenderer extends MobRenderer<DesmatosuchusEntity, EntityModel<DesmatosuchusEntity>> {
@@ -27,7 +29,10 @@ public class DesmatosuchusRenderer extends MobRenderer<DesmatosuchusEntity, Enti
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/desmatosuchus/melanistic_sleeping.png");
 
 	public DesmatosuchusRenderer() {
-		super(Minecraft.getInstance().getRenderManager(), DESMATOSUCHUS_MODEL, 0.5F);
+		super(Minecraft.getInstance().getRenderManager(), DESMATOSUCHUS_MODEL, 1.25F);
+		if (PrehistoricFaunaConfig.eyeShine) {
+			this.addLayer(new DesmatosuchusEyeLayer(this));
+		}
 	}
 
 	protected void preRenderCallback(DesmatosuchusEntity desmatosuchus, MatrixStack matrixStackIn, float partialTickTime) {
@@ -47,19 +52,19 @@ public class DesmatosuchusRenderer extends MobRenderer<DesmatosuchusEntity, Enti
 
 	public ResourceLocation getEntityTexture(DesmatosuchusEntity entity) {
 		if (entity.isAlbino()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return ALBINO_SLEEPING;
 			} else {
 				return ALBINO;
 			}
 		} else if(entity.isMelanistic()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return MELANISTIC_SLEEPING;
 			} else {
 				return MELANISTIC;
 			}
 		} else {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return DESMATOSUCHUS_TEXTURE_SLEEPING;
 			} else {
 				return DESMATOSUCHUS_TEXTURE;

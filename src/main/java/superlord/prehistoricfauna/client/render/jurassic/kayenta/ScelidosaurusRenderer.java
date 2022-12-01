@@ -10,7 +10,9 @@ import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.jurassic.kayenta.ScelidosaurusModel;
 import superlord.prehistoricfauna.client.model.jurassic.kayenta.ScelidosaurusSleepingModel;
+import superlord.prehistoricfauna.client.render.layer.ScelidosaurusEyeLayer;
 import superlord.prehistoricfauna.common.entities.jurassic.kayenta.ScelidosaurusEntity;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class ScelidosaurusRenderer extends MobRenderer<ScelidosaurusEntity, EntityModel<ScelidosaurusEntity>> {
 
@@ -24,7 +26,10 @@ public class ScelidosaurusRenderer extends MobRenderer<ScelidosaurusEntity, Enti
 	private static final ScelidosaurusSleepingModel SCELIDOSAURUS_SLEEPING_MODEL = new ScelidosaurusSleepingModel();
 
 	public ScelidosaurusRenderer(EntityRendererManager rm) {
-		super(rm, SCELIDOSAURUS_MODEL, 1F);
+		super(rm, SCELIDOSAURUS_MODEL, 1F);	
+		if (PrehistoricFaunaConfig.eyeShine) {
+			this.addLayer(new ScelidosaurusEyeLayer(this));
+		}
 	}
 
 	protected void preRenderCallback(ScelidosaurusEntity entity, MatrixStack matrixStackIn, float partialTickTime) {
@@ -45,15 +50,15 @@ public class ScelidosaurusRenderer extends MobRenderer<ScelidosaurusEntity, Enti
 	@Override
 	public ResourceLocation getEntityTexture(ScelidosaurusEntity entity) {
 		if (entity.isAlbino()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return ALBINO_SLEEPING;
 			} else return ALBINO;
 		} else if (entity.isMelanistic()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return MELANISTIC_SLEEPING;
 			} else return MELANISTIC;
 		} else {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return SCELIDOSAURUS_SLEEPING;
 			} else return SCELIDOSAURUS;
 		}

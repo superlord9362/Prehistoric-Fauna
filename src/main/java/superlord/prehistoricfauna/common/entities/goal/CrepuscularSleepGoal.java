@@ -17,7 +17,7 @@ public class CrepuscularSleepGoal extends Goal {
 	@Override
 	public boolean shouldExecute() {
 		World world = entity.world;
-		if (PrehistoricFaunaConfig.sleeping = true && (world.getDayTime() >= 2000 && world.getDayTime() <= 9000 || world.getDayTime() >= 14000 && world.getDayTime() <= 21000) && entity.getRevengeTarget() == null && entity.getAttackTarget() == null && !entity.isTamed()) {
+		if (PrehistoricFaunaConfig.sleeping = true && (world.getDayTime() >= 2000 && world.getDayTime() <= 9000 || world.getDayTime() >= 14000 && world.getDayTime() <= 21000) && entity.getRevengeTarget() == null && entity.getAttackTarget() == null && !entity.isTamed() && !entity.isInWater() && !entity.isInLava()) {
 			return true;
 		} else {
 			return false;
@@ -40,6 +40,16 @@ public class CrepuscularSleepGoal extends Goal {
 			entity.setAsleep(false);
 			return false;
 		} else if (entity.isTamed()) {
+			resetTask();
+			entity.setAsleep(false);
+			return false;
+		} else if (entity.isInWater()) {
+			resetTask();
+			entity.setAsleep(false);
+			return false;
+		} else if (entity.isInLava()) {
+			resetTask();
+			entity.setAsleep(false);
 			return false;
 		} else return true;
 	}
@@ -57,8 +67,15 @@ public class CrepuscularSleepGoal extends Goal {
 			resetTask();
 			entity.setAsleep(false);
 		} else if (entity.isTamed()) {
+			resetTask();
 			entity.setAsleep(false);
-		}else {
+		} else if (entity.isInWater()) {
+			resetTask();
+			entity.setAsleep(false);
+		} else if (entity.isInLava()) {
+			resetTask();
+			entity.setAsleep(false);
+		} else {
 			entity.setAsleep(true);
 		}
 	}

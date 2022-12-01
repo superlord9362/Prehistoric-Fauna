@@ -40,8 +40,63 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 2,
-          "name": "prehistoricfauna:triassic_time_totem"
+          "weight": 3,
+			"functions": [
+				{
+					"function": "minecraft:set_count",
+					"count": {
+						"min": 1.0,
+						"max": 5.0,
+						"type": "minecraft:uniform"
+					}
+				}
+			],
+          "name": "prehistoricfauna:time_gem_shard"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+			"functions": [
+				{
+					"function": "minecraft:set_count",
+					"count": {
+						"min": 1.0,
+						"max": 2.0,
+						"type": "minecraft:uniform"
+					}
+				}
+			],
+          "name": "prehistoricfauna:cretaceous_fossil"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+			"functions": [
+				{
+					"function": "minecraft:set_count",
+					"count": {
+						"min": 1.0,
+						"max": 2.0,
+						"type": "minecraft:uniform"
+					}
+				}
+			],
+          "name": "prehistoricfauna:jurassic_fossil"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+			"functions": [
+				{
+					"function": "minecraft:set_count",
+					"count": {
+						"min": 1.0,
+						"max": 2.0,
+						"type": "minecraft:uniform"
+					}
+				}
+			],
+          "name": "prehistoricfauna:triassic_fossil"
         },
         {
           "type": "minecraft:item",

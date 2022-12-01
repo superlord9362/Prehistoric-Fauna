@@ -10,9 +10,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.cretaceous.djadochta.VelociraptorModel;
-import superlord.prehistoricfauna.client.model.cretaceous.djadochta.VelociraptorSittingModel;
-import superlord.prehistoricfauna.client.model.cretaceous.djadochta.VelociraptorSleepingModel;
+import superlord.prehistoricfauna.client.render.layer.VelociraptorEyeLayer;
 import superlord.prehistoricfauna.common.entities.cretaceous.djadochta.VelociraptorEntity;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class VelociraptorRenderer extends MobRenderer<VelociraptorEntity, EntityModel<VelociraptorEntity>> {
 
@@ -25,11 +25,12 @@ public class VelociraptorRenderer extends MobRenderer<VelociraptorEntity, Entity
 	private static final ResourceLocation CROWBER = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/velociraptor/crowber.png");
 
 	private static final VelociraptorModel VELOCIRAPTOR_MODEL = new VelociraptorModel();
-	private static final VelociraptorSleepingModel VELOCIRAPTOR_SLEEPING_MODEL = new VelociraptorSleepingModel();
-	private static final VelociraptorSittingModel VELOCIRAPTOR_SITTING_MODEL = new VelociraptorSittingModel();
 
 	public VelociraptorRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), VELOCIRAPTOR_MODEL, 0.3125F);
+		if (PrehistoricFaunaConfig.eyeShine) {
+			this.addLayer(new VelociraptorEyeLayer(this));
+		}
 	}
 
 	protected void preRenderCallback(VelociraptorEntity entity, MatrixStack matrixStackIn, float partialTickTime) {
@@ -39,13 +40,7 @@ public class VelociraptorRenderer extends MobRenderer<VelociraptorEntity, Entity
 	}
 
 	public void render(VelociraptorEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-		if (entityIn.isSitting() && !entityIn.isAsleep()) {
-			entityModel = VELOCIRAPTOR_SITTING_MODEL;
-		} else if (entityIn.isAsleep()) {
-			entityModel = VELOCIRAPTOR_SLEEPING_MODEL;
-		} else {
-			entityModel = VELOCIRAPTOR_MODEL;
-		}
+		entityModel = VELOCIRAPTOR_MODEL;
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
 
@@ -55,19 +50,19 @@ public class VelociraptorRenderer extends MobRenderer<VelociraptorEntity, Entity
 		if ( s != null && "Crowber".equals(s)) {
 			return CROWBER;
 		} else if (entity.isAlbino()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return ALBINO_SLEEPING;
 			} else {
 				return ALBINO;
 			}
 		} else if (entity.isMelanistic()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return MELANISTIC_SLEEPING;
 			} else {
 				return MELANISTIC;
 			}
 		} else {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return VELOCIRAPTOR_SLEEPING;
 			} else {
 				return VELOCIRAPTOR;

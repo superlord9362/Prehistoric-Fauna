@@ -80,11 +80,12 @@ import superlord.prehistoricfauna.common.entities.fish.ArganodusEntity;
 import superlord.prehistoricfauna.common.entities.fish.CeratodusEntity;
 import superlord.prehistoricfauna.common.entities.fish.ChinleaEntity;
 import superlord.prehistoricfauna.common.entities.fish.CyclurusEntity;
+import superlord.prehistoricfauna.common.entities.fish.GarEntity;
 import superlord.prehistoricfauna.common.entities.fish.MooreodontusEntity;
 import superlord.prehistoricfauna.common.entities.fish.MyledaphusEntity;
 import superlord.prehistoricfauna.common.entities.fish.PotamoceratodusEntity;
 import superlord.prehistoricfauna.common.entities.fish.SaurichthysEntity;
-import superlord.prehistoricfauna.common.entities.goal.CrepuscularSleepGoal;
+import superlord.prehistoricfauna.common.entities.goal.CathemeralSleepGoal;
 import superlord.prehistoricfauna.common.entities.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entities.goal.DinosaurRandomLookGoal;
 import superlord.prehistoricfauna.common.entities.goal.HuntGoal;
@@ -101,7 +102,7 @@ import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.SoundInit;
 
 public class CalsoyasuchusEntity extends DinosaurEntity {
-	
+
 	private static final DataParameter<Boolean> HAS_EGG = EntityDataManager.createKey(CalsoyasuchusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(CalsoyasuchusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> ALBINO = EntityDataManager.createKey(CalsoyasuchusEntity.class, DataSerializers.BOOLEAN);
@@ -120,7 +121,7 @@ public class CalsoyasuchusEntity extends DinosaurEntity {
 		this.moveController = new CalsoyasuchusEntity.MoveHelperController(this);
 		this.stepHeight = 1.0F;
 	}
-	
+
 	public boolean isDigging() {
 		return this.getDataManager().get(IS_DIGGING);
 	}
@@ -161,7 +162,7 @@ public class CalsoyasuchusEntity extends DinosaurEntity {
 	private void setInLoveNaturally(boolean isInLoveNaturally) {
 		this.dataManager.set(NATURAL_LOVE, isInLoveNaturally);
 	}
-	
+
 	public int getCurrentHunger() {
 		return this.currentHunger;
 	}
@@ -190,7 +191,7 @@ public class CalsoyasuchusEntity extends DinosaurEntity {
 		this.setHunger(50);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
-	
+
 	public int getMaxAir() {
 		return 4800;
 	}
@@ -198,45 +199,45 @@ public class CalsoyasuchusEntity extends DinosaurEntity {
 	protected int determineNextAir(int currentAir) {
 		return this.getMaxAir();
 	}
-	
+
 	protected float getWaterSlowDown() {
-		return 1.1F;
+		return 1F;
 	}
 
 	public boolean isBreedingItem(ItemStack stack) {
 		return stack.getItem() == PFItems.CERATODUS.get();
 	}
-	
+
 	class WalkAndSwimPathNavigator extends SwimmerPathNavigator {
-		
+
 		WalkAndSwimPathNavigator(CalsoyasuchusEntity calsoyasuchus, World world) {
 			super(calsoyasuchus, world);
 		}
-		
+
 		protected boolean canNavigate() {
 			return true;
 		}
-		
+
 		protected PathFinder getPathFinder(int uncategorizedNumber) {
 			this.nodeProcessor = new WalkAndSwimNodeProcessor();
 			return new PathFinder(this.nodeProcessor, uncategorizedNumber);
 		}
-		
+
 		@SuppressWarnings("deprecation")
 		public boolean canEntityStandOnPos(BlockPos pos) {
 			return !this.world.getBlockState(pos.down()).isAir();
 		}
-		
+
 	}
-	
+
 	static class MoveHelperController extends MovementController {
 		private final CalsoyasuchusEntity calsoyasuchus;
-		
+
 		MoveHelperController(CalsoyasuchusEntity calsoyasuchus) {
 			super(calsoyasuchus);
 			this.calsoyasuchus = calsoyasuchus;
 		}
-		
+
 		public void tick() {
 			if (this.calsoyasuchus.areEyesInFluid(FluidTags.WATER)) {
 				this.calsoyasuchus.setMotion(this.calsoyasuchus.getMotion().add(0.0D, 0.005D, 0.0D));
@@ -260,20 +261,20 @@ public class CalsoyasuchusEntity extends DinosaurEntity {
 				this.calsoyasuchus.setAIMoveSpeed(0.0F);
 			}
 		}
-		
+
 	}
-	
+
 	protected PathNavigator createNavigator(World world) {
 		return new CalsoyasuchusEntity.WalkAndSwimPathNavigator(this, world);
 	}
-	
+
 	protected boolean func_212800_dy() {
 		return true;
 	}
-	
+
 	protected void registerGoals() {
 		super.registerGoals();
-		this.goalSelector.addGoal(1, new CrepuscularSleepGoal(this));
+		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
 		this.goalSelector.addGoal(1, new CalsoyasuchusEntity.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new CalsoyasuchusEntity.PanicGoal());
 		this.targetSelector.addGoal(1, new CalsoyasuchusEntity.HurtByTargetGoal());
@@ -298,7 +299,7 @@ public class CalsoyasuchusEntity extends DinosaurEntity {
 			return p_213487_1_ instanceof RabbitEntity || p_213487_1_ instanceof HyperodapedonEntity || p_213487_1_ instanceof HesperornithoidesEntity || p_213487_1_ instanceof EilenodonEntity || p_213487_1_ instanceof ScutellosaurusEntity || p_213487_1_ instanceof ChickenEntity || p_213487_1_ instanceof BasilemysEntity || p_213487_1_ instanceof ChromogisaurusEntity || p_213487_1_ instanceof ExaeretodonEntity || p_213487_1_ instanceof TelmasaurusEntity || p_213487_1_ instanceof KayentatheriumEntity || p_213487_1_ instanceof MegapnosaurusEntity || p_213487_1_ instanceof VelociraptorEntity || p_213487_1_ instanceof WolfEntity || p_213487_1_ instanceof ArganodusEntity || p_213487_1_ instanceof CeratodusEntity || p_213487_1_ instanceof ChinleaEntity || p_213487_1_ instanceof CyclurusEntity || p_213487_1_ instanceof MooreodontusEntity || p_213487_1_ instanceof MyledaphusEntity || p_213487_1_ instanceof PotamoceratodusEntity || p_213487_1_ instanceof SaurichthysEntity || p_213487_1_ instanceof CatEntity || p_213487_1_ instanceof FoxEntity || p_213487_1_ instanceof CowEntity || p_213487_1_ instanceof MooshroomEntity || p_213487_1_ instanceof PigEntity || p_213487_1_ instanceof OcelotEntity || p_213487_1_ instanceof AepyornithomimusEntity || p_213487_1_ instanceof DryosaurusEntity || p_213487_1_ instanceof ProtoceratopsEntity || p_213487_1_ instanceof ThescelosaurusEntity || p_213487_1_ instanceof SarahsaurusEntity;
 		}));
 	}
-	
+
 	public void livingTick() {
 		super.livingTick();
 		if (this.isAsleep()) {
@@ -306,29 +307,44 @@ public class CalsoyasuchusEntity extends DinosaurEntity {
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.25D);
 		}
-		List<CalsoyasuchusEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
-		if (PrehistoricFaunaConfig.advancedHunger) {
-			hungerTick++;
-			if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
-				hungerTick = 0;
-				if (currentHunger != 0 || !this.isAsleep()) {
-					this.setHunger(currentHunger - 1);
+		if (!this.isAIDisabled()) {
+			List<CalsoyasuchusEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
+			if (PrehistoricFaunaConfig.advancedHunger) {
+				hungerTick++;
+				if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild()) {
+					hungerTick = 0;
+					if (currentHunger != 0 || !this.isAsleep()) {
+						this.setHunger(currentHunger - 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
+					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getAttackTarget() == null && this.getRevengeTarget() == null) {
+						float currentHealth = this.getHealth();
+						this.setHealth(currentHealth + 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 3) {
+						loveTick = 600;
+						this.setInLoveNaturally(true);
+						this.setInLove(600);
+						lastInLove = 28800;
+					}
+					if (loveTick != 0) {
+						loveTick--;
+					} else {
+						this.setInLoveNaturally(false);
+					}
 				}
-			}
-			if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-				if (this.getHealth() < this.getMaxHealth()) {
-					float currentHealth = this.getHealth();
-					this.setHealth(currentHealth + 1);
-				}
-			}
-			if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 3) {
+			} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+				int naturalBreedingChance = rand.nextInt(1000);
+				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 3) {
 					loveTick = 600;
 					this.setInLoveNaturally(true);
 					this.setInLove(600);
@@ -340,29 +356,16 @@ public class CalsoyasuchusEntity extends DinosaurEntity {
 					this.setInLoveNaturally(false);
 				}
 			}
-		} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-			int naturalBreedingChance = rand.nextInt(1000);
-			if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isAsleep() && list.size() < 3) {
-				loveTick = 600;
-				this.setInLoveNaturally(true);
-				this.setInLove(600);
-				lastInLove = 28800;
+			if (lastInLove != 0) {
+				lastInLove--;
 			}
-			if (loveTick != 0) {
-				loveTick--;
-			} else {
-				this.setInLoveNaturally(false);
-			}
-		}
-		if (lastInLove != 0) {
-			lastInLove--;
 		}
 	}
-	
+
 	public static boolean canDinosaurSpawn(EntityType<? extends AnimalEntity> animal, IWorld worldIn, SpawnReason reason, BlockPos pos, Random random) {
 		return (worldIn.getBlockState(pos.down()).isIn(Tags.Blocks.DIRT) || worldIn.getBlockState(pos).isIn(Blocks.WATER) || worldIn.getBlockState(pos.down()).isIn(Tags.Blocks.SAND)) && worldIn.getLightSubtracted(pos, 0) > 8;
 	}
-	
+
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
 		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 6.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0D);
 	}
@@ -378,10 +381,10 @@ public class CalsoyasuchusEntity extends DinosaurEntity {
 	protected SoundEvent getDeathSound() {
 		return SoundInit.CALSOYASUCHUS_DEATH;
 	}
-	
+
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(SoundInit.CERATOSAURUS_WARN, 1.0F, this.getSoundPitch());
+			this.playSound(SoundInit.CALSOYASUCHUS_WARN, 1.0F, this.getSoundPitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -453,7 +456,7 @@ public class CalsoyasuchusEntity extends DinosaurEntity {
 		}	
 
 	}
-	
+
 	class TerritoryAttackGoal extends NearestAttackableTargetGoal<PlayerEntity> {
 		public TerritoryAttackGoal() {
 			super(CalsoyasuchusEntity.this, PlayerEntity.class, 20, true, true, (Predicate<LivingEntity>)null);
@@ -635,7 +638,7 @@ public class CalsoyasuchusEntity extends DinosaurEntity {
 		}
 
 	}
-	
+
 	static class NaturalMateGoal extends BreedGoal {
 		private final CalsoyasuchusEntity calsoyasuchus;
 
@@ -685,20 +688,20 @@ public class CalsoyasuchusEntity extends DinosaurEntity {
 		entity.onInitialSpawn((IServerWorld) this.world, this.world.getDifficultyForLocation(new BlockPos(entity.getPositionVec())), SpawnReason.BREEDING, (ILivingEntityData)null, (CompoundNBT)null);
 		return entity;
 	}
-	
+
 	static class SwimGoal extends RandomSwimmingGoal {
 		private final CalsoyasuchusEntity calsoyasuchus;
-		
+
 		public SwimGoal(CalsoyasuchusEntity calsoyasuchus) {
 			super(calsoyasuchus, 1.0D, 40);
 			this.calsoyasuchus = calsoyasuchus;
 		}
-		
+
 		public boolean shouldExecute() {
 			return this.calsoyasuchus.func_212800_dy() && super.shouldExecute();
 		}
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public class CarnivoreHuntGoal extends NearestAttackableTargetGoal {
 
@@ -714,7 +717,7 @@ public class CalsoyasuchusEntity extends DinosaurEntity {
 		public boolean shouldContinueExecuting() {
 			return CalsoyasuchusEntity.this.getCurrentHunger() < CalsoyasuchusEntity.this.maxHunger;
 		}
-		
+
 		public void tick() {
 			LivingEntity target = CalsoyasuchusEntity.this.getAttackTarget();
 			if (target instanceof RabbitEntity || target instanceof ArganodusEntity || target instanceof CeratodusEntity || target instanceof ChinleaEntity || target instanceof CyclurusEntity || target instanceof MooreodontusEntity || target instanceof MyledaphusEntity || target instanceof PotamoceratodusEntity || target instanceof SaurichthysEntity) {
@@ -765,7 +768,7 @@ public class CalsoyasuchusEntity extends DinosaurEntity {
 			super.tick();
 		}
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public class BabyCarnivoreHuntGoal extends NearestAttackableTargetGoal {
 
@@ -793,7 +796,7 @@ public class CalsoyasuchusEntity extends DinosaurEntity {
 					}
 				}
 			}
-			if (target instanceof DidelphodonEntity || target instanceof EilenodonEntity || target instanceof HyperodapedonEntity || target instanceof ChickenEntity || target instanceof HesperornithoidesEntity || target instanceof ScutellosaurusEntity) {
+			if (target instanceof DidelphodonEntity || target instanceof EilenodonEntity || target instanceof HyperodapedonEntity || target instanceof ChickenEntity || target instanceof HesperornithoidesEntity || target instanceof ScutellosaurusEntity || target instanceof ArganodusEntity || target instanceof CeratodusEntity || target instanceof ChinleaEntity || target instanceof CyclurusEntity || target instanceof GarEntity || target instanceof MooreodontusEntity || target instanceof MyledaphusEntity || target instanceof PotamoceratodusEntity || target instanceof SaurichthysEntity) {
 				if (target.getHealth() == 0) {
 					if (CalsoyasuchusEntity.this.getCurrentHunger() + 4 >= CalsoyasuchusEntity.this.maxHunger) {
 						CalsoyasuchusEntity.this.setHunger(CalsoyasuchusEntity.this.maxHunger);

@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "prehistoricfauna:blocks/neocalamites_mosaic",
+        "top": "prehistoricfauna:blocks/neocalamites_mosaic",
+        "side": "prehistoricfauna:blocks/neocalamites_mosaic"
+    }
+}

@@ -9,11 +9,10 @@ import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.DakotaraptorCrouchingModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.DakotaraptorModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.DakotaraptorSittingModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.DakotaraptorSleepingModel;
+import superlord.prehistoricfauna.client.render.layer.DakotaraptorEyeLayer;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.DakotaraptorEntity;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class DakotaraptorRenderer extends MobRenderer<DakotaraptorEntity, EntityModel<DakotaraptorEntity>> {
 
@@ -33,12 +32,12 @@ public class DakotaraptorRenderer extends MobRenderer<DakotaraptorEntity, Entity
 	private static final ResourceLocation MELANISTIC_MAN_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/melanistic_man_sleeping.png");
 
 	private static final DakotaraptorModel DAKOTARAPTOR_MODEL = new DakotaraptorModel();
-	private static final DakotaraptorSittingModel DAKOTARAPTOR_SITTING_MODEL = new DakotaraptorSittingModel();
-	private static final DakotaraptorSleepingModel DAKOTARAPTOR_SLEEPING_MODEL = new DakotaraptorSleepingModel();
-	private static final DakotaraptorCrouchingModel DAKOTARAPTOR_CROUCHING_MODEL = new DakotaraptorCrouchingModel();
 
 	public DakotaraptorRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), DAKOTARAPTOR_MODEL, 0.875F);
+		if (PrehistoricFaunaConfig.eyeShine) {
+			this.addLayer(new DakotaraptorEyeLayer(this));
+		}
 	}
 
 	protected void preRenderCallback(DakotaraptorEntity entity, MatrixStack matrixStackIn, float partialTickTime) {
@@ -48,15 +47,7 @@ public class DakotaraptorRenderer extends MobRenderer<DakotaraptorEntity, Entity
 	}
 
 	public void render(DakotaraptorEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-		if (entityIn.isSleeping() || entityIn.isAsleep()) {
-			entityModel = DAKOTARAPTOR_SLEEPING_MODEL;
-		} else if (entityIn.isCrouching()) {
-			entityModel = DAKOTARAPTOR_CROUCHING_MODEL;
-		} else if (entityIn.isSitting() && !entityIn.isAsleep()) {
-			entityModel = DAKOTARAPTOR_SITTING_MODEL;
-		} else {
-			entityModel = DAKOTARAPTOR_MODEL;
-		}
+		entityModel = DAKOTARAPTOR_MODEL;
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
 
@@ -64,7 +55,7 @@ public class DakotaraptorRenderer extends MobRenderer<DakotaraptorEntity, Entity
 	public ResourceLocation getEntityTexture(DakotaraptorEntity entity) {
 		String s = TextFormatting.getTextWithoutFormattingCodes(entity.getName().getString());
 		if (s != null && "A MAN".equals(s)) {
-			if (entity.isSleeping() || entity.isAsleep()) {
+			if (entity.isSleeping() || entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				if (entity.isAlbino()) {
 					return ALBINO_MAN_SLEEPING;
 				} else if (entity.isMelanistic()) {
@@ -81,7 +72,7 @@ public class DakotaraptorRenderer extends MobRenderer<DakotaraptorEntity, Entity
 					return MAN;
 				}
 			}
-		} else if(entity.isSleeping() || entity.isAsleep()) {
+		} else if(entity.isSleeping() || entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 			if (entity.isChild()) {
 				return CHILD_SLEEPING;
 			} else {

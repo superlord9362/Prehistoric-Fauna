@@ -179,12 +179,12 @@ public class LandSentinelModel extends EntityModel<LandSentinelEntity> {
 		this.ArmLeft.rotateAngleY = -(-0.025F * MathHelper.sin(0.1F * ageInTicks));
 		this.Arm2Left.rotateAngleZ = -(-0.025F * MathHelper.sin(0.1F * ageInTicks));
 		this.Arm2Left.rotateAngleY = -(-0.025F * MathHelper.sin(0.1F * ageInTicks));
-		this.LegLeftFront.rotateAngleZ = -Math.abs(MathHelper.cos(limbSwing * walkSpeed * 0.3F) * walkDegree * 1F * limbSwingAmount);
-		this.LegRightFront.rotateAngleZ = Math.abs(-(MathHelper.cos(limbSwing * walkSpeed * 0.3F) * walkDegree * 1F * limbSwingAmount));
-		this.LegLeftMid.rotateAngleZ = -Math.abs(MathHelper.cos(limbSwing * walkSpeed * 0.3F + 1) * walkDegree * 1F * limbSwingAmount);
-		this.LegRightMid.rotateAngleZ = Math.abs(-(MathHelper.cos(limbSwing * walkSpeed * 0.3F + 1) * walkDegree * 1F * limbSwingAmount));
-		this.LegLeftBack.rotateAngleZ = -Math.abs(MathHelper.cos(limbSwing * walkSpeed * 0.3F + 2) * walkDegree * 1F * limbSwingAmount);
-		this.LegRightBack.rotateAngleZ = Math.abs(-(MathHelper.cos(limbSwing * walkSpeed * 0.3F + 2) * walkDegree * 1F * limbSwingAmount));
+		this.LegLeftFront.rotateAngleZ = -Math.abs(MathHelper.cos(limbSwing * walkSpeed * 0.15F) * walkDegree * 1F * limbSwingAmount);
+		this.LegRightFront.rotateAngleZ = Math.abs(-(MathHelper.cos(limbSwing * walkSpeed * 0.15F) * walkDegree * 1F * limbSwingAmount));
+		this.LegLeftMid.rotateAngleZ = -Math.abs(MathHelper.cos(limbSwing * walkSpeed * 0.15F + 1) * walkDegree * 1F * limbSwingAmount);
+		this.LegRightMid.rotateAngleZ = Math.abs(-(MathHelper.cos(limbSwing * walkSpeed * 0.15F + 1) * walkDegree * 1F * limbSwingAmount));
+		this.LegLeftBack.rotateAngleZ = -Math.abs(MathHelper.cos(limbSwing * walkSpeed * 0.15F + 2) * walkDegree * 1F * limbSwingAmount);
+		this.LegRightBack.rotateAngleZ = Math.abs(-(MathHelper.cos(limbSwing * walkSpeed * 0.15F + 2) * walkDegree * 1F * limbSwingAmount));
     }
 
     /**

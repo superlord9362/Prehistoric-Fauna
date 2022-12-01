@@ -12,6 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.biome.BiomeGenerationSettings;
+import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.gen.DimensionSettings;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.blockplacer.DoublePlantBlockPlacer;
@@ -126,15 +127,21 @@ public class PFConfiguredFeatures {
 
 	public static final ConfiguredFeature<?, ?> DUMMY_TREE = createConfiguredFeature("dummy_trees", PFFeatures.DUMMY.withConfiguration(DecoratedFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(10000, 0.4F, 8))));
 
-	public static final ConfiguredFeature<?, ?> FOSSILIZED_CHALK = createConfiguredFeature("fossilized_chalk", PFFeatures.NOISY_SPHERE.withConfiguration(new NoisySphereConfig.Builder().setBlock(new WeightedBlockStateProvider().addWeightedBlockstate(PFBlocks.CHALK.getDefaultState(), PrehistoricFaunaConfig.baseStoneWeight).addWeightedBlockstate(PFBlocks.CHALK_FOSSIL.getDefaultState(), PrehistoricFaunaConfig.fossilWeight)).setMinRadius(4).setMaxRadius(10).setMinYRadius(3).setMaxYRadius(8).build()).withPlacement(Placement.DEPTH_AVERAGE.configure(new DepthAverageConfig(47, 5))).square().func_242731_b(1));
-	public static final ConfiguredFeature<?, ?> FOSSILIZED_SILTSTONE = createConfiguredFeature("fossilized_siltstone", PFFeatures.NOISY_SPHERE.withConfiguration(new NoisySphereConfig.Builder().setBlock(new WeightedBlockStateProvider().addWeightedBlockstate(PFBlocks.SILTSTONE.getDefaultState(), PrehistoricFaunaConfig.baseStoneWeight).addWeightedBlockstate(PFBlocks.SILTSTONE_FOSSIL.getDefaultState(), PrehistoricFaunaConfig.fossilWeight)).setMinRadius(4).setMaxRadius(10).setMinYRadius(3).setMaxYRadius(8).build()).withPlacement(Placement.DEPTH_AVERAGE.configure(new DepthAverageConfig(42, 5))).square().func_242731_b(1));
-	public static final ConfiguredFeature<?, ?> FOSSILIZED_SANDSTONE = createConfiguredFeature("fossilized_sandstone", PFFeatures.NOISY_SPHERE.withConfiguration(new NoisySphereConfig.Builder().setBlock(new WeightedBlockStateProvider().addWeightedBlockstate(PFBlocks.SANDSTONE.getDefaultState(), PrehistoricFaunaConfig.baseStoneWeight).addWeightedBlockstate(PFBlocks.SANDSTONE_FOSSIL.getDefaultState(), PrehistoricFaunaConfig.fossilWeight)).setMinRadius(4).setMaxRadius(10).setMinYRadius(3).setMaxYRadius(8).build()).withPlacement(Placement.DEPTH_AVERAGE.configure(new DepthAverageConfig(37, 5))).square().func_242731_b(1));
+	public static final ConfiguredFeature<?, ?> FOSSILIZED_CHALK = createConfiguredFeature("fossilized_chalk", PFFeatures.NOISY_SPHERE.withConfiguration(new NoisySphereConfig.Builder().setBlock(new WeightedBlockStateProvider().addWeightedBlockstate(PFBlocks.CHALK.getDefaultState(), PrehistoricFaunaConfig.baseStoneWeight).addWeightedBlockstate(PFBlocks.CHALK_FOSSIL.getDefaultState(), PrehistoricFaunaConfig.fossilWeight)).setMinRadius(4).setMaxRadius(10).setMinYRadius(3).setMaxYRadius(8).build()).withPlacement(Placement.DEPTH_AVERAGE.configure(new DepthAverageConfig(54, 5))).square().func_242731_b(1));
+	public static final ConfiguredFeature<?, ?> FOSSILIZED_SILTSTONE = createConfiguredFeature("fossilized_siltstone", PFFeatures.NOISY_SPHERE.withConfiguration(new NoisySphereConfig.Builder().setBlock(new WeightedBlockStateProvider().addWeightedBlockstate(PFBlocks.SILTSTONE.getDefaultState(), PrehistoricFaunaConfig.baseStoneWeight).addWeightedBlockstate(PFBlocks.SILTSTONE_FOSSIL.getDefaultState(), PrehistoricFaunaConfig.fossilWeight)).setMinRadius(4).setMaxRadius(10).setMinYRadius(3).setMaxYRadius(8).build()).withPlacement(Placement.DEPTH_AVERAGE.configure(new DepthAverageConfig(46, 7))).square().func_242731_b(1));
+	public static final ConfiguredFeature<?, ?> FOSSILIZED_SANDSTONE = createConfiguredFeature("fossilized_sandstone", PFFeatures.NOISY_SPHERE.withConfiguration(new NoisySphereConfig.Builder().setBlock(new WeightedBlockStateProvider().addWeightedBlockstate(PFBlocks.SANDSTONE.getDefaultState(), PrehistoricFaunaConfig.baseStoneWeight).addWeightedBlockstate(PFBlocks.SANDSTONE_FOSSIL.getDefaultState(), PrehistoricFaunaConfig.fossilWeight)).setMinRadius(4).setMaxRadius(10).setMinYRadius(3).setMaxYRadius(8).build()).withPlacement(Placement.DEPTH_AVERAGE.configure(new DepthAverageConfig(38, 5))).square().func_242731_b(1));
+	
+	public static final ConfiguredFeature<?, ?> JURASSIC_FOSSILIZED_SANDSTONE = createConfiguredFeature("fossilized_sandstone", PFFeatures.NOISY_SPHERE.withConfiguration(new NoisySphereConfig.Builder().setBlock(new WeightedBlockStateProvider().addWeightedBlockstate(PFBlocks.SANDSTONE.getDefaultState(), PrehistoricFaunaConfig.baseStoneWeight).addWeightedBlockstate(PFBlocks.SANDSTONE_FOSSIL.getDefaultState(), PrehistoricFaunaConfig.fossilWeight)).setMinRadius(4).setMaxRadius(10).setMinYRadius(3).setMaxYRadius(8).build()).withPlacement(Placement.DEPTH_AVERAGE.configure(new DepthAverageConfig(54, 5))).square().func_242731_b(1));
 
+	public static final ConfiguredFeature<?, ?> CRETACEOUS_FOSSILIZED_SILTSTONE = createConfiguredFeature("fossilized_siltstone", PFFeatures.NOISY_SPHERE.withConfiguration(new NoisySphereConfig.Builder().setBlock(new WeightedBlockStateProvider().addWeightedBlockstate(PFBlocks.SILTSTONE.getDefaultState(), PrehistoricFaunaConfig.baseStoneWeight).addWeightedBlockstate(PFBlocks.SILTSTONE_FOSSIL.getDefaultState(), PrehistoricFaunaConfig.fossilWeight)).setMinRadius(4).setMaxRadius(10).setMinYRadius(3).setMaxYRadius(8).build()).withPlacement(Placement.DEPTH_AVERAGE.configure(new DepthAverageConfig(54, 5))).square().func_242731_b(1));
+	public static final ConfiguredFeature<?, ?> CRETACEOUS_FOSSILIZED_SANDSTONE = createConfiguredFeature("fossilized_sandstone", PFFeatures.NOISY_SPHERE.withConfiguration(new NoisySphereConfig.Builder().setBlock(new WeightedBlockStateProvider().addWeightedBlockstate(PFBlocks.SANDSTONE.getDefaultState(), PrehistoricFaunaConfig.baseStoneWeight).addWeightedBlockstate(PFBlocks.SANDSTONE_FOSSIL.getDefaultState(), PrehistoricFaunaConfig.fossilWeight)).setMinRadius(4).setMaxRadius(10).setMinYRadius(3).setMaxYRadius(8).build()).withPlacement(Placement.DEPTH_AVERAGE.configure(new DepthAverageConfig(46, 7))).square().func_242731_b(1));
+	
 	public static final ConfiguredFeature<?, ?> DEAD_ARAUCARIA = createConfiguredFeature("dead_araucaria", Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.STRIPPED_ARAUCARIA_LOG.getDefaultState()), new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()), new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3), new StraightTrunkPlacer(6, 6, 0), new TwoLayerFeature(1, 0, 1))).setIgnoreVines().build()));
 	
 	//Hell Creek
 	public static final ConfiguredFeature<?, ?> MARCHANTIA = createConfiguredFeature("marchantia", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.MARCHANTIA.getDefaultState()), new SimpleBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(5)).func_242731_b(5));
 	public static final ConfiguredFeature<?, ?> HORSETAIL = createConfiguredFeature("horsetail", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.HORSETAIL.getDefaultState()), new SimpleBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(1)).func_242731_b(5));
+	public static final ConfiguredFeature<?, ?> DJADOCHTA_HORSETAILS = createConfiguredFeature("djadochta_horsetails", PFFeatures.DJADOCHTA_HORSETAILS_FEATURE.withConfiguration(new JohnstoniaConfig(15)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 	public static final ConfiguredFeature<?, ?> HORSETAIL_DOUBLE = createConfiguredFeature("double_horsetail", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.TALL_HORSETAIL.getDefaultState()), new DoublePlantBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(20)).func_242731_b(5));
 	public static final ConfiguredFeature<?, ?> CLUBMOSS = createConfiguredFeature("clubmoss", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.CLUBMOSS.getDefaultState()), new SimpleBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(10)).func_242731_b(5));
 	public static final ConfiguredFeature<?, ?> OSMUNDA = createConfiguredFeature("osmunda", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.OSMUNDA.getDefaultState()), new SimpleBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(2)).func_242731_b(5));
@@ -165,6 +172,8 @@ public class PFConfiguredFeatures {
 	public static final ConfiguredFeature<?, ?> OSMUNDACAULIS = createConfiguredFeature("osmundacaulis", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.OSMUNDACAULIS.getDefaultState()), new SimpleBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(25)).func_242731_b(5));
 	public static final ConfiguredFeature<?, ?> TALL_OSMUNDACAULIS = createConfiguredFeature("tall_osmundacaulist", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.TALL_OSMUNDACAULIS.getDefaultState()), new DoublePlantBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(35)).func_242731_b(5));
 	public static final ConfiguredFeature<?, ?> DEAD_OSMUNDACAULIS = createConfiguredFeature("dead_osmundacaulis", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.DEAD_OSMUNDACAULIS.getDefaultState()), SimpleBlockPlacer.PLACER)).tries(4).build()).withPlacement(Features.Placements.PATCH_PLACEMENT));
+	public static final ConfiguredFeature<?, ?> RARE_CLADOPHLEBIS = createConfiguredFeature("rare_cladophlebis", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.CLADOPHLEBIS.getDefaultState()), new SimpleBlockPlacer())).tries(64).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(70)).func_242731_b(5));
+	public static final ConfiguredFeature<?, ?> RARE_DEAD_OSMUNDACAULIS = createConfiguredFeature("dead_osmundacaulis", Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.DEAD_OSMUNDACAULIS.getDefaultState()), SimpleBlockPlacer.PLACER)).tries(4).build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(70)));
 
 	public static final ConfiguredFeature<?, ?> PETRIFIED_TREE = createConfiguredFeature("petrified_tree", Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(PFBlocks.PETRIFIED_WOOD.getDefaultState()), new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()), new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3), new StraightTrunkPlacer(4, 2, 0), new TwoLayerFeature(1, 0, 1))).setIgnoreVines().build()).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(15)).func_242731_b(5));
 	public static final ConfiguredFeature<?, ?> ZAMITES_BUSH = createConfiguredFeature("zamites_bush", PFFeatures.ZAMITES_BUSH.withConfiguration(new JohnstoniaConfig(1)).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(15)));
@@ -235,10 +244,6 @@ public class PFConfiguredFeatures {
 		builder.withFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, SANDSTONE_ROCK);
 		builder.withFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, BIG_SANDSTONE_ROCK);
 	}
-
-	public static void withWaterLakesAndSprings(BiomeGenerationSettings.Builder builder) {
-		builder.withFeature(GenerationStage.Decoration.LAKES, Features.LAKE_WATER);
-	}
 	
 	public static void withClayDisks(BiomeGenerationSettings.Builder builder) {
 		builder.withFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, CLAY_DISKS);
@@ -255,19 +260,34 @@ public class PFConfiguredFeatures {
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, OSMUNDA_DOUBLE);
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HELL_CREEK_GINKGOS);
 	}
+	
+	public static void withHellCreekRiverVegetation(BiomeGenerationSettings.Builder builder) {
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, MARCHANTIA);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HORSETAIL);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HORSETAIL_DOUBLE);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, CLUBMOSS);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ALGAE);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, OSMUNDA);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, OSMUNDA_DOUBLE);
+	}
 
 	public static void withDeadPlants(BiomeGenerationSettings.Builder builder) {
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DEAD_OSMUNDACAULIS);
 	}
+	
+	public static void withRareDeadCycadeoid(BiomeGenerationSettings.Builder builder) {
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, RARE_DEAD_OSMUNDACAULIS);
+	}
 
 	public static void withDjadochtaPlants(BiomeGenerationSettings.Builder builder) {
-		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HORSETAIL);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DJADOCHTA_HORSETAILS);
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HORSETAIL_DOUBLE);
 	}
 
 	public static void withArroyoPlants(BiomeGenerationSettings.Builder builder) {
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, COBBANIA);
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TROCHODENDROIDES_VEGETATION);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, WATERLOGGED_TALL_HORSETAILS);
 	}
 	
 	public static void withChinlePlants(BiomeGenerationSettings.Builder builder) {
@@ -292,7 +312,19 @@ public class PFConfiguredFeatures {
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, SPARSE_CLATHOPTERIS);
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, SPARSE_PHLEBOPTERIS);
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, SPARSE_OTOZAMITES);
-		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, SPARSE_HORSETAILS);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HORSETAIL);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, COMMON_ZAMITES_BUSH);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, WATERLOGGED_TALL_HORSETAILS);
+	}
+	
+	public static void withChinleRiverPlants(BiomeGenerationSettings.Builder builder) {
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, FREQUENT_NEOCALAMITES);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ALGAE);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, SPARSE_CLADOPHLEBIS);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, SPARSE_CLATHOPTERIS);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, SPARSE_PHLEBOPTERIS);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, SPARSE_OTOZAMITES);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HORSETAIL);
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, COMMON_ZAMITES_BUSH);
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, WATERLOGGED_TALL_HORSETAILS);
 	}
@@ -310,6 +342,7 @@ public class PFConfiguredFeatures {
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PHLEBOPTERIS);
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, FREQUENT_PHLEBOPTERIS);
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, MOSS);
+		DefaultBiomeFeatures.withForestRocks(builder);
 	}
 	
 	public static final ConfiguredFeature<?, ?> HELL_CREEK_VEGETATION = createConfiguredFeature("hell_creek_vegetation", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
@@ -409,30 +442,38 @@ public class PFConfiguredFeatures {
 			.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0.25F, 1))));
 
 	public static ConfiguredFeature<?, ?> ISCHIGUALASTO_VEGETATION = createConfiguredFeature("ischigualasto_vegetation", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
-			HEIDIPHYLLUM_TREE_1.withChance(0.1F),
-			HEIDIPHYLLUM_TREE_2.withChance(0.1F),
-			HEIDIPHYLLUM_TREE_3.withChance(0.1F),
-			HEIDIPHYLLUM_TREE_4.withChance(0.1F),
-			HEIDIPHYLLUM_TREE_5.withChance(0.1F),
-			ARAUCARIA_SMALL_TREE_1.withChance(0.05F),
-			ARAUCARIA_SMALL_TREE_2.withChance(0.05F),
-			ARAUCARIA_SMALL_TREE_3.withChance(0.05F),
-			ARAUCARIA_SMALL_TREE_4.withChance(0.05F),
-			PROTOJUNIPEROXYLON_TREE_1.withChance(0.15F)
+			HEIDIPHYLLUM_TREE_1.withChance(0.075F),
+			HEIDIPHYLLUM_TREE_2.withChance(0.075F),
+			HEIDIPHYLLUM_TREE_3.withChance(0.075F),
+			HEIDIPHYLLUM_TREE_4.withChance(0.075F),
+			HEIDIPHYLLUM_TREE_5.withChance(0.075F),
+			ARAUCARIA_SMALL_TREE_1.withChance(0.075F),
+			ARAUCARIA_SMALL_TREE_2.withChance(0.075F),
+			ARAUCARIA_SMALL_TREE_3.withChance(0.075F),
+			ARAUCARIA_SMALL_TREE_4.withChance(0.075F),
+			SMALL_AGATHOXYLON_TREE_1.withChance(0.03F),
+			SMALL_AGATHOXYLON_TREE_2.withChance(0.03F),
+			MEDIUM_AGATHOXYLON_TREE_1.withChance(0.004375F),
+			MEDIUM_AGATHOXYLON_TREE_2.withChance(0.004375F),
+			PROTOJUNIPEROXYLON_TREE_1.withChance(0.025F)
 			), PROTOJUNIPEROXYLON_TREE_2))
 			.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(8, 0.2F, 3))));
 
 	public static ConfiguredFeature<?, ?> SPARSE_ISCHIGUALASTO_VEGETATION = createConfiguredFeature("sparse_ischigualasto_vegetation", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
-			HEIDIPHYLLUM_TREE_1.withChance(0.1F),
-			HEIDIPHYLLUM_TREE_2.withChance(0.1F),
-			HEIDIPHYLLUM_TREE_3.withChance(0.1F),
-			HEIDIPHYLLUM_TREE_4.withChance(0.1F),
-			HEIDIPHYLLUM_TREE_5.withChance(0.1F),
-			ARAUCARIA_SMALL_TREE_1.withChance(0.05F),
-			ARAUCARIA_SMALL_TREE_2.withChance(0.05F),
-			ARAUCARIA_SMALL_TREE_3.withChance(0.05F),
-			ARAUCARIA_SMALL_TREE_4.withChance(0.05F),
-			PROTOJUNIPEROXYLON_TREE_1.withChance(0.15F)
+			HEIDIPHYLLUM_TREE_1.withChance(0.075F),
+			HEIDIPHYLLUM_TREE_2.withChance(0.075F),
+			HEIDIPHYLLUM_TREE_3.withChance(0.075F),
+			HEIDIPHYLLUM_TREE_4.withChance(0.075F),
+			HEIDIPHYLLUM_TREE_5.withChance(0.075F),
+			ARAUCARIA_SMALL_TREE_1.withChance(0.075F),
+			ARAUCARIA_SMALL_TREE_2.withChance(0.075F),
+			ARAUCARIA_SMALL_TREE_3.withChance(0.075F),
+			ARAUCARIA_SMALL_TREE_4.withChance(0.075F),
+			SMALL_AGATHOXYLON_TREE_1.withChance(0.03F),
+			SMALL_AGATHOXYLON_TREE_2.withChance(0.03F),
+			MEDIUM_AGATHOXYLON_TREE_1.withChance(0.004375F),
+			MEDIUM_AGATHOXYLON_TREE_2.withChance(0.004375F),
+			PROTOJUNIPEROXYLON_TREE_1.withChance(0.025F)
 			), PROTOJUNIPEROXYLON_TREE_2))
 			.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
 
@@ -541,6 +582,11 @@ public class PFConfiguredFeatures {
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, OSMUNDACAULIS);
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TALL_OSMUNDACAULIS);
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DEAD_OSMUNDACAULIS);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, RARE_CLADOPHLEBIS);
+	}
+	
+	public static void addMorrisonHillsVegetation(BiomeGenerationSettings.Builder builder) {
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, PFConfiguredFeatures.SPARSE_BRACHYPHYLLUM);
 	}
 
 	public static void addExtraIronOre(BiomeGenerationSettings.Builder builder) {
@@ -555,6 +601,9 @@ public class PFConfiguredFeatures {
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, SCYTOPHYLLUM);
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ISCHIGUALASTO_VEGETATION);
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ALGAE);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HORSETAIL);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HORSETAIL_DOUBLE);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, SPARSE_NEOCALAMITES);
 	}
 
 	public static void addSparseIschigualastoVegetation(BiomeGenerationSettings.Builder builder) {
@@ -565,6 +614,9 @@ public class PFConfiguredFeatures {
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, SPARSE_JOHNSTONIA);
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, SCYTOPHYLLUM);
 		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, SPARSE_ISCHIGUALASTO_VEGETATION);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HORSETAIL);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HORSETAIL_DOUBLE);
+		builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, SPARSE_NEOCALAMITES);
 	}
 
 	public static void registerConfiguredFeatures() {

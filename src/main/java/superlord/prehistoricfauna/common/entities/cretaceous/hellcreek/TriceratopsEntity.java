@@ -61,7 +61,6 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import superlord.prehistoricfauna.common.blocks.TriceratopsEggBlock;
-import superlord.prehistoricfauna.common.entities.DinosaurEntity;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
@@ -128,7 +127,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 	private void setHasEgg(boolean hasEgg) {
 		this.dataManager.set(HAS_EGG, hasEgg);
 	}
-	
+
 	public boolean isSleeping() {
 		return this.dataManager.get(SLEEPING);
 	}
@@ -173,7 +172,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 	private void setInLoveNaturally(boolean isInLoveNaturally) {
 		this.dataManager.set(NATURAL_LOVE, isInLoveNaturally);
 	}
-	
+
 	public int getCurrentHunger() {
 		return this.currentHunger;
 	}
@@ -218,8 +217,8 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
 		this.goalSelector.addGoal(0, new TriceratopsEntity.HerbivoreEatGoal((double)1.2F, 12, 2));
 	}
-	
-	
+
+
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
 		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 60.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.2F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 10.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.5D);
@@ -326,7 +325,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 		} else if (birthNumber >= 4 && birthNumber < 7) {
 			this.setMelanistic(true);
 		}
-		this.setHunger(150);
+		this.setHunger(this.maxHunger);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
@@ -443,6 +442,13 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 	@Override
 	public void livingTick() {
 		super.livingTick();
+		if (this.isChild() && !this.isJuvenile()) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(15.0D);
+		} else if (this.isJuvenile()) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(30.0D);
+		} else {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(60.0D);
+		}
 		if (this.isAlive()) {
 			if (this.attackTick > 0) {
 				--this.attackTick;
@@ -453,29 +459,44 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue((double) 0.2F);
 		}
-		List<TriceratopsEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
-		if (PrehistoricFaunaConfig.advancedHunger) {
-			hungerTick++;
-			if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild() && !this.isJuvenile() || hungerTick == 450 && this.isJuvenile()) {
-				hungerTick = 0;
-				if (currentHunger != 0 || !this.isSleeping()) {
-					this.setHunger(currentHunger - 1);
+		if (!this.isAIDisabled()) {
+			List<TriceratopsEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
+			if (PrehistoricFaunaConfig.advancedHunger) {
+				hungerTick++;
+				if (hungerTick == 600 && !this.isChild() || hungerTick == 300 && this.isChild() && !this.isJuvenile() || hungerTick == 450 && this.isJuvenile()) {
+					hungerTick = 0;
+					if (currentHunger != 0 || !this.isSleeping()) {
+						this.setHunger(currentHunger - 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
+					if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
+						this.damageEntity(DamageSource.STARVE, 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && this.getHealth() > (this.getMaxHealth() / 2)) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
+					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getAttackTarget() == null && this.getRevengeTarget() == null) {
+						float currentHealth = this.getHealth();
+						this.setHealth(currentHealth + 1);
+					}
 				}
-				if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage && world.getDifficulty() == Difficulty.HARD) {
-					this.damageEntity(DamageSource.STARVE, 1);
+				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isSleeping() && list.size() < 10) {
+						loveTick = 600;
+						this.setInLoveNaturally(true);
+						this.setInLove(600);
+						lastInLove = 28800;
+					}
+					if (loveTick != 0) {
+						loveTick--;
+					} else {
+						this.setInLoveNaturally(false);
+					}
 				}
-			}
-			if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-				if (this.getHealth() < this.getMaxHealth()) {
-					float currentHealth = this.getHealth();
-					this.setHealth(currentHealth + 1);
-				}
-			}
-			if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && ticksExisted % 900 == 0 && !this.isChild() && !this.isInLove() && !this.isSleeping() && list.size() < 10) {
+			} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
+				int naturalBreedingChance = rand.nextInt(1000);
+				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isSleeping() && list.size() < 10) {
 					loveTick = 600;
 					this.setInLoveNaturally(true);
 					this.setInLove(600);
@@ -487,22 +508,9 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 					this.setInLoveNaturally(false);
 				}
 			}
-		} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-			int naturalBreedingChance = rand.nextInt(1000);
-			if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isChild() && !this.isInLove() && !this.isSleeping() && list.size() < 10) {
-				loveTick = 600;
-				this.setInLoveNaturally(true);
-				this.setInLove(600);
-				lastInLove = 28800;
+			if (lastInLove != 0) {
+				lastInLove--;
 			}
-			if (loveTick != 0) {
-				loveTick--;
-			} else {
-				this.setInLoveNaturally(false);
-			}
-		}
-		if (lastInLove != 0) {
-			lastInLove--;
 		}
 	}
 
@@ -821,7 +829,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 
 		}
 	}
-	
+
 	static class NaturalMateGoal extends BreedGoal {
 		private final TriceratopsEntity triceratops;
 
@@ -978,11 +986,11 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 			}
 		}
 	}
-	
+
 	public class CathemeralSleepGoal extends Goal {
 
 		public TriceratopsEntity entity;
-		private int sleepTimer;
+		private int sleepTimer = 0;
 
 		public CathemeralSleepGoal(TriceratopsEntity sleeper) {
 			super();
@@ -991,7 +999,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 
 		@Override
 		public boolean shouldExecute() {
-			if (PrehistoricFaunaConfig.sleeping = true && entity.getRNG().nextInt(150) == 0 && entity.getRevengeTarget() != null && !entity.isTame()) {
+			if (PrehistoricFaunaConfig.sleeping = true && entity.getRNG().nextInt(1000) == 0 && entity.getRevengeTarget() == null) {
 				return true;
 			} else {
 				return false;
@@ -1000,15 +1008,18 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 
 		@Override
 		public boolean shouldContinueExecuting() {
-			if (sleepTimer >= 6000 && entity.getRevengeTarget() != null && super.shouldContinueExecuting() || entity.isTame()) {
+			if (sleepTimer >= 6000 || entity.getRevengeTarget() != null || super.shouldContinueExecuting()) {
 				resetTask();
 				return false;
 			} else return true;
 		}
-		
+
 		public void tick() {
 			super.tick();
 			sleepTimer++;
+			if (sleepTimer >= 6000 || entity.getRevengeTarget() != null) {
+				resetTask();
+			}
 		}
 
 		@Override
@@ -1017,18 +1028,19 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 			entity.setSleeping(true);
 			entity.moveStrafing = 0.0F;
 			entity.moveForward = 0.0F;
+			entity.moveVertical = 0.0F;
+			entity.getNavigator().clearPath();
+			entity.setMotion(0.0D, 0.0D, 0.0D);
 		}
 
 		@Override
 		public void resetTask() {
 			sleepTimer = 0;
 			entity.setSleeping(false);
-			entity.moveStrafing = 1.0F;
-			entity.moveForward = 1.0F;
 		}
 
 	}
-	
+
 	public class HerbivoreEatGoal extends MoveToBlockGoal {
 		protected int field_220731_g;
 
@@ -1197,31 +1209,31 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 			super.startExecuting();
 		}
 	}
-	
+
 	public class TriceratopsLookAtGoal extends LookAtGoal {
-		
+
 		TriceratopsEntity triceratops;
 
 		public TriceratopsLookAtGoal(TriceratopsEntity entityIn, Class<? extends LivingEntity> watchTargetClass, float maxDistance) {
 			super(entityIn, watchTargetClass, maxDistance);
 			triceratops = entityIn;
 		}
-		
+
 		public boolean shouldExecute() {
 			return super.shouldExecute() && !triceratops.isSleeping();
 		}
 
 	}
-	
+
 	public class TriceratopsRandomLookGoal extends LookRandomlyGoal {
-		
+
 		TriceratopsEntity dinosaur;
 
 		public TriceratopsRandomLookGoal(TriceratopsEntity entitylivingIn) {
 			super(entitylivingIn);
 			dinosaur = entitylivingIn;
 		}
-		
+
 		public boolean shouldExecute() {
 			return super.shouldExecute() && !dinosaur.isSleeping();
 		}

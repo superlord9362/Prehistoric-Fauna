@@ -10,7 +10,9 @@ import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.triassic.chinle.CoelophysisModel;
 import superlord.prehistoricfauna.client.model.triassic.chinle.CoelophysisSleepingModel;
+import superlord.prehistoricfauna.client.render.layer.CoelophysisEyeLayer;
 import superlord.prehistoricfauna.common.entities.triassic.chinle.CoelophysisEntity;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class CoelophysisRenderer extends MobRenderer<CoelophysisEntity, EntityModel<CoelophysisEntity>> {
 
@@ -24,7 +26,10 @@ public class CoelophysisRenderer extends MobRenderer<CoelophysisEntity, EntityMo
 	private static final CoelophysisSleepingModel COELOPHYSIS_SLEEPING_MODEL = new CoelophysisSleepingModel();
 
 	public CoelophysisRenderer() {
-		super(Minecraft.getInstance().getRenderManager(), COELOPHYSIS_MODEL, 0.625F);
+		super(Minecraft.getInstance().getRenderManager(), COELOPHYSIS_MODEL, 0.75F);
+		if (PrehistoricFaunaConfig.eyeShine) {
+			this.addLayer(new CoelophysisEyeLayer(this));
+		}
 	}
 
 	public void render(CoelophysisEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
@@ -32,7 +37,7 @@ public class CoelophysisRenderer extends MobRenderer<CoelophysisEntity, EntityMo
 			entityModel = COELOPHYSIS_SLEEPING_MODEL;
 		} else {
 			entityModel = COELOPHYSIS_MODEL;
-			}
+		}
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
 
@@ -45,15 +50,15 @@ public class CoelophysisRenderer extends MobRenderer<CoelophysisEntity, EntityMo
 	@Override
 	public ResourceLocation getEntityTexture(CoelophysisEntity entity) {
 		if (entity.isAlbino()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return ALBINO_SLEEPING;
 			} else return ALBINO;
 		} else if (entity.isMelanistic()) {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return MELANISTIC_SLEEPING;
 			}else return MELANISTIC;
 		} else {
-			if (entity.isAsleep()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return COELOPHYSIS_SLEEPING;
 			} else return COELOPHYSIS;
 		}

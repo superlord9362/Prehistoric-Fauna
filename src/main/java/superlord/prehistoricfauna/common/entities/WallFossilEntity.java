@@ -10,12 +10,14 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.item.HangingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
@@ -161,7 +163,8 @@ public class WallFossilEntity extends HangingEntity implements IEntityAdditional
         SMALL_FISH(16, 16),
         TRILOBITE(16, 16),
         XIPHACTINUS(96, 32),
-        HORSESHOE(32, 16);
+        HORSESHOE(32, 16),
+        LONGISQUAMA_FOSSIL(32, 32);
 
         public static final Fossil[] VALUES = values();
 
@@ -181,4 +184,10 @@ public class WallFossilEntity extends HangingEntity implements IEntityAdditional
             return height;
         }
     }
+    
+    @Override
+	public ItemStack getPickedResult(RayTraceResult target) {
+		return new ItemStack(PFItems.WALL_FOSSIL.get());
+	}
+    
 }
