@@ -36,6 +36,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.SoundCategory;
@@ -65,7 +66,7 @@ import superlord.prehistoricfauna.init.PFProfessions;
 
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID, bus = Bus.FORGE)
 public class CommonEvents {
-	
+
 	public static Map<Block, Block> BLOCK_STRIPPING_MAP = new HashMap<>();
 	public static Map<Block, Block> ROCK_SMASHING_MAP = new HashMap<>();
 	public static Map<Block, Block> VANILLA_ROCK_SMASHING_MAP = new HashMap<>();
@@ -74,11 +75,11 @@ public class CommonEvents {
 		FireBlock fire = (FireBlock) Blocks.FIRE;
 		fire.setFireInfo(block, encouragement, flammability);
 	}
-	
+
 	public static void registerCompostable(float chance, IItemProvider item) {
 		ComposterBlock.CHANCES.put(item.asItem(), chance);
 	}
-	
+
 	public static void setup() {
 		registerFlammable(PFBlocks.ARAUCARIA_PLANKS, 5, 20);
 		registerFlammable(PFBlocks.METASEQUOIA_PLANKS, 5, 20);
@@ -348,14 +349,14 @@ public class CommonEvents {
 		//BLOCK_STRIPPING_MAP.put(PFBlocks.CYPRESS_LOG, PFBlocks.STRIPPED_CYPRESS_LOG);
 		//BLOCK_STRIPPING_MAP.put(PFBlocks.CYPRESS_WOOD, PFBlocks.STRIPPED_CYPRESS_WOOD);
 	}
-	
+
 	@SubscribeEvent
 	public void onVillagerTrades(VillagerTradesEvent event) {
 		if (event.getType() == PFProfessions.GEOLOGIST) {
 			PFProfessions.addGeologistTrades(event.getTrades());
 		}
 	}
-	
+
 	@SubscribeEvent
 	public static void onBlockClicked(PlayerInteractEvent.RightClickBlock event) {
 		if(event.getItemStack().getItem() instanceof AxeItem) {
@@ -372,6 +373,31 @@ public class CommonEvents {
 						event.getItemStack().damageItem(1, entity, (p_220040_1_) -> {
 							p_220040_1_.sendBreakAnimation(event.getHand());
 						});
+					}
+				}
+			}
+		}
+		if (event.getItemStack().getItem() == Items.BONE_MEAL) {
+			boolean flag = false;
+			World world = event.getWorld();
+			BlockPos pos = event.getPos();
+			BlockState state = event.getWorld().getBlockState(event.getPos());
+			PlayerEntity player = event.getPlayer();
+			if (state.getBlock() == Blocks.DIRT) {
+				for(BlockPos blockpos : BlockPos.getAllInBoxMutable(event.getPos().add(-1, -1, -1), event.getPos().add(1, 1, 1))) {
+					BlockState blockstate = event.getWorld().getBlockState(blockpos);
+					if (blockstate.isIn(PFBlocks.MOSSY_DIRT)) {
+						flag = true;
+					}
+				}
+				if (flag) {
+					event.getWorld().setBlockState(event.getPos(), PFBlocks.MOSSY_DIRT.getDefaultState(), 3);
+					double d0 = (double)pos.getX() + 0.5D;
+					double d1 = (double)pos.getY() + 0.7D;
+					double d2 = (double)pos.getZ() + 0.5D;
+					world.addParticle(ParticleTypes.HAPPY_VILLAGER, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+					if (!player.isCreative()) {
+						event.getItemStack().shrink(1);
 					}
 				}
 			}
@@ -416,7 +442,7 @@ public class CommonEvents {
 			}
 		}
 	}
-	
+
 	public static boolean trySpawnGolem(final World world, final BlockPos headPos) {
 		if (world.isRemote) {
 			return false;
@@ -459,7 +485,7 @@ public class CommonEvents {
 		}
 		return false;
 	}
-	
+
 	public static void init() {
 		PrehistoricSpawnEggItem.initSpawnEggs();
 		if (PrehistoricFaunaConfig.geologyHammerMining == true) {
@@ -780,7 +806,7 @@ public class CommonEvents {
 			trySpawnGolem((World) event.getWorld(), event.getPos());
 		}
 	}
-	
+
 	public boolean deadBirds = false;
 	public boolean deadSauropods = false;
 	public boolean deadMammals = false;
@@ -805,7 +831,7 @@ public class CommonEvents {
 			}
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void killChickensFromSpaceTimeWarping(EntityJoinWorldEvent event) {
 		if (this.deadBirds == true) {

@@ -225,7 +225,7 @@ public class AllosaurusEntity extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : SoundInit.ALLOSAURUS_IDLE;
+		return this.isAsleep() ? SoundInit.ALLOSAURUS_SNORES : SoundInit.ALLOSAURUS_IDLE;
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {

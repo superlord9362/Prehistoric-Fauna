@@ -79,6 +79,7 @@ import superlord.prehistoricfauna.common.blocks.DryosaurusEggBlock;
 import superlord.prehistoricfauna.common.blocks.EilenodonEggBlock;
 import superlord.prehistoricfauna.common.blocks.ExaeretodonEggBlock;
 import superlord.prehistoricfauna.common.blocks.FossilCrateBlock;
+import superlord.prehistoricfauna.common.blocks.GrowingPrehistoricPlantBlock;
 import superlord.prehistoricfauna.common.blocks.HardenedSiltBlock;
 import superlord.prehistoricfauna.common.blocks.HerrerasaurusEggBlock;
 import superlord.prehistoricfauna.common.blocks.HesperornithoidesEggBlock;
@@ -488,7 +489,7 @@ public class PFBlocks {
 	public static final Block POTTED_BRACHYPHYLLUM_SAPLING = new FlowerPotBlock(BRACHYPHYLLUM_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_brachyphyllum_sapling");//Loot Table done
 	public static final Block BRACHYPHYLLUM_SIGN = new PFStandingSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.BRACHYPHYLLUM).setRegistryName("brachyphyllum_sign");
 	public static final Block BRACHYPHYLLUM_WALL_SIGN = new PFWallSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.TROCHODENDROIDES).setRegistryName("brachyphyllum_wall_sign");
-	public static final Block OTOZAMITES = new PrehistoricPlant(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("otozamites"); //Loot Table done
+	public static final Block OTOZAMITES = new GrowingPrehistoricPlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("otozamites"); //Loot Table done
 	public static final Block TALL_OTOZAMITES = new DoublePlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("tall_otozamites"); //Loot Table done
 	public static final Block LAUROZAMITES = new PrehistoricPlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("laurozamites");
 	public static final Block ZAMITES_FROND = new ZamitesFrondsBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("zamites_fronds");

@@ -225,7 +225,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isSleeping() ? null : SoundInit.TRICERATOPS_IDLE;
+		return this.isSleeping() ? SoundInit.TRICERATOPS_SNORES : SoundInit.TRICERATOPS_IDLE;
 	}
 
 	@Override

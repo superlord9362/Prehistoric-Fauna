@@ -240,7 +240,7 @@ public class SillosuchusEntity extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : SoundInit.SILLOSUCHUS_IDLE;
+		return this.isAsleep() ? SoundInit.SILLOSUCHUS_SNORES : SoundInit.SILLOSUCHUS_IDLE;
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {

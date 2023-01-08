@@ -154,6 +154,66 @@
           "weight": 10,
           "name": "minecraft:rotten_flesh"
         },
+		{
+			"type": "minecraft:item",
+			"conditions": [
+				{
+					"condition": "minecraft:alternative",
+					"terms": [
+						{
+							"condition": "minecraft:location_check",
+							"predicate": {
+								"biome": "prehistoricfauna:hell_creek_river"
+							}
+						},
+						{
+							"condition": "minecraft:location_check",
+							"predicate": {
+								"biome": "prehistoricfauna:djadochta_arroyo"
+							}
+						}
+					]
+				}
+			],
+			"weight": 10,
+			"name": "prehistoricfauna:cobbania"
+		},
+		{
+			"type": "minecraft:item",
+			"conditions": [
+				{
+					"condition": "minecraft:alternative",
+					"terms": [
+						{
+							"condition": "minecraft:location_check",
+							"predicate": {
+								"biome": "prehistoricfauna:chinle_flats"
+							}
+						},
+						{
+							"condition": "minecraft:location_check",
+							"predicate": {
+								"biome": "prehistoricfauna:chinle_swamp"
+							}
+						},
+						{
+							"condition": "minecraft:location_check",
+							"predicate": {
+								"biome": "prehistoricfauna:chinle_wooded_mountains"
+							}
+						},
+						{
+							"condition": "minecraft:location_check",
+							"predicate": {
+								"biome": "prehistoricfauna:ischigualasto_forest"
+							}
+						}
+					]
+				}
+			],
+			"weight": 10,
+			"name": "prehistoricfauna:neocalamites"
+		},
         {
           "type": "minecraft:item",
           "conditions": [

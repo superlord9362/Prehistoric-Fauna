@@ -43,6 +43,16 @@
             }
         ]
     },
+	"triceratops_snores": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.triceratopsSnores",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/snoring/large_snoring",
+				"stream": true
+			}
+		]
+	},
 	"tyrannosaurus_idle": {
         "category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.tyrannosaurusIdle",
@@ -87,6 +97,16 @@
             }
         ]
     },
+	"tyrannosaurus_snores": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.tyrannosaurusSnores",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/snoring/large_snoring",
+				"stream": true
+			}
+		]
+	},
 	"anklyosaurus_idle": {
         "category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.ankylosaurusIdle",
@@ -126,6 +146,16 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/ankylosaurus/ankylosaurus_hurt"
+			}
+		]
+	},
+	"ankylosaurus_snores": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.ankylosaurusSnores",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/snoring/large_snoring",
+				"stream": true
 			}
 		]
 	},
@@ -173,6 +203,16 @@
     		}
     	]
     },
+	"allosaurus_snores": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.allosaurusSnores",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/snoring/large_snoring",
+				"stream": true
+			}
+		]
+	},
 	"stegosaurus_idle": {
 		"category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.stegosaurusIdle",
@@ -213,6 +253,16 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/stegosaurus/stegosaurus_hurt",
+				"stream": true
+			}
+		]
+	},
+	"stegosaurus_snores": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.stegosaurusSnores",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/snoring/large_snoring",
 				"stream": true
 			}
 		]
@@ -451,6 +501,16 @@
 			}
 		]
 	},
+	"camarasaurus_snores": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.camarasaurusSnores",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/snoring/large_snoring",
+				"stream": true
+			}
+		]
+	},
 	"eilenodon_hurt": {
 		"category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.eilenodonHurt",
@@ -625,6 +685,16 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/sillosuchus/sillosuchus_hurt",
+				"stream": true
+			}
+		]
+	},
+	"sillosuchus_snores": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.sillosuchusSnores",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/snoring/large_snoring",
 				"stream": true
 			}
 		]

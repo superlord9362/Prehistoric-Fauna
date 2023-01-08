@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:bowl"
+    },
+    {
+      "item": "prehistoricfauna:tuber"
+    },
+    {
+      "item": "minecraft:bread"
+    },
+    {
+      "item": "minecraft:brown_mushroom"
+    },
+    {
+      "tag": "prehistoricfauna:oysters"
+    },
+    {
+      "tag": "prehistoricfauna:oysters"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:crassostrea_oyster_soup"
+  }
+}

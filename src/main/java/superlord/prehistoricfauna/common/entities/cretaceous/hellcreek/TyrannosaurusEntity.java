@@ -325,7 +325,11 @@ public class TyrannosaurusEntity extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : SoundInit.TYRANNOSAURUS_IDLE;
+		if (this.isAsleep() ) {
+			if (!this.isChild()) {
+				return SoundInit.TYRANNOSAURUS_SNORES;
+			} else return null;
+		} else return SoundInit.TYRANNOSAURUS_IDLE;
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {

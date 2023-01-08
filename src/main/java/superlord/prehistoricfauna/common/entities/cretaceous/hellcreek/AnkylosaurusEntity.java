@@ -273,7 +273,7 @@ public class AnkylosaurusEntity extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : SoundInit.ANKYLOSAURUS_IDLE;
+		return this.isAsleep() ? SoundInit.ANKYLOSAURUS_SNORES : SoundInit.ANKYLOSAURUS_IDLE;
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {

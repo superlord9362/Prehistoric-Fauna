@@ -233,7 +233,7 @@ public class StegosaurusEntity extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : SoundInit.STEGOSAURUS_IDLE;
+		return this.isAsleep() ? SoundInit.STEGOSAURUS_SNORES : SoundInit.STEGOSAURUS_IDLE;
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {

@@ -192,7 +192,7 @@ public class CamarasaurusEntity extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : SoundInit.CAMARASAURUS_IDLE;
+		return this.isAsleep() ? SoundInit.CAMARASAURUS_SNORES : SoundInit.CAMARASAURUS_IDLE;
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
