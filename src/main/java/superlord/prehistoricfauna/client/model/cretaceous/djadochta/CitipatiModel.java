@@ -119,6 +119,8 @@ public class CitipatiModel extends EntityModel<CitipatiEntity> {
 		this.LegLeft.rotateAngleX = 0;
 		this.LegLeft.rotateAngleY = 0;
 		this.LegLeft.rotateAngleZ = 0;
+		this.LegRight.rotateAngleX = 0;
+		this.LegRight.rotateAngleY = 0;
 		this.Tail.rotateAngleX = 0;
 		this.Tail.rotateAngleY = 0;
 		this.Body.rotationPointY = 6;

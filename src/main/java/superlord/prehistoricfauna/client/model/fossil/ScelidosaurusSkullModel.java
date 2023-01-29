@@ -22,7 +22,7 @@ public class ScelidosaurusSkullModel extends EntityModel<ScelidosaurusSkullEntit
 
     public ScelidosaurusSkullModel() {
         this.textureWidth = 160;
-        this.textureHeight = 75;
+        this.textureHeight = 150;
         this.Snout = new ModelRenderer(this, 0, 52);
         this.Snout.setRotationPoint(0.0F, 0.0F, -4.0F);
         this.Snout.addBox(-1.0F, -2.0F, -3.0F, 2.0F, 4.0F, 3.0F, 0.0F, 0.0F, 0.0F);

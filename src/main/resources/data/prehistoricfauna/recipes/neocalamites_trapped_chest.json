@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "prehistoricfauna:neocalamites_chest"
+		},
+		{
+			"item": "minecraft:tripwire_hook"
+		}
+	],
+	"result": {
+		"item": "prehistoricfauna:neocalamites_trapped_chest"
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:quark_flag",
+			"flag": "variant_chests"
+		}
+	]
+}

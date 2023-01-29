@@ -13,7 +13,6 @@ import superlord.prehistoricfauna.client.model.jurassic.kayenta.DilophosaurusMod
 import superlord.prehistoricfauna.client.model.jurassic.kayenta.DilophosaurusSleepingModel;
 import superlord.prehistoricfauna.client.render.layer.DilophosaurusEyeLayer;
 import superlord.prehistoricfauna.common.entities.jurassic.kayenta.DilophosaurusEntity;
-import superlord.prehistoricfauna.common.entities.jurassic.morrison.CeratosaurusEntity;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class DilophosaurusRenderer extends MobRenderer<DilophosaurusEntity,  EntityModel<DilophosaurusEntity>> {
@@ -24,6 +23,12 @@ public class DilophosaurusRenderer extends MobRenderer<DilophosaurusEntity,  Ent
 	private static final ResourceLocation DILOPHOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dilophosaurus/dilophosaurus_sleeping.png");
 	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dilophosaurus/albino_sleeping.png");
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dilophosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dilophosaurus/juvenile.png");
+	private static final ResourceLocation ALBINO_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dilophosaurus/albino_juvenile.png");
+	private static final ResourceLocation MELANISTIC_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dilophosaurus/melanistic_juvenile.png");
+	private static final ResourceLocation JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dilophosaurus/juvenile_sleeping.png");
+	private static final ResourceLocation ALBINO_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dilophosaurus/albino_juvenile_sleeping.png");
+	private static final ResourceLocation MELANISTIC_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dilophosaurus/melanistic_juvenile_sleeping.png");
 	private static final DilophosaurusModel DILOPHOSAURUS_MODEL = new DilophosaurusModel();
 	private static final DilophosaurusSleepingModel DILOPHOSAURUS_SLEEPING_MODEL = new DilophosaurusSleepingModel();
 	private static final ResourceLocation NAVAJO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dilophosaurus/navajo.png");
@@ -45,7 +50,7 @@ public class DilophosaurusRenderer extends MobRenderer<DilophosaurusEntity,  Ent
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
 
-	protected void preRenderCallback(CeratosaurusEntity entity, MatrixStack matrixStackIn, float partialTickTime) {
+	protected void preRenderCallback(DilophosaurusEntity entity, MatrixStack matrixStackIn, float partialTickTime) {
 		if(entity.isChild()) {
 			matrixStackIn.scale(0.5F, 0.5F, 0.5F);
 		}
@@ -60,17 +65,35 @@ public class DilophosaurusRenderer extends MobRenderer<DilophosaurusEntity,  Ent
 			} else return NAVAJO;
 		}
 		if (entity.isMelanistic()) {
-			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
-				return MELANISTIC_SLEEPING;
-			} else return MELANISTIC;
+			if (entity.isChild()) {
+				if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
+					return MELANISTIC_JUVENILE_SLEEPING;
+				} else return MELANISTIC_JUVENILE;
+			} else {
+				if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
+					return MELANISTIC_SLEEPING;
+				} else return MELANISTIC;
+			}
 		} else if (entity.isAlbino()) {
-			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
-				return ALBINO_SLEEPING;
-			} else return ALBINO;
+			if (entity.isChild()) {
+				if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
+					return ALBINO_JUVENILE_SLEEPING;
+				} else return ALBINO_JUVENILE;
+			} else {
+				if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
+					return ALBINO_SLEEPING;
+				} else return ALBINO;
+			}
 		} else {
-			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
-				return DILOPHOSAURUS_SLEEPING;
-			} else return DILOPHOSAURUS;
+			if (entity.isChild()) {
+				if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
+					return JUVENILE_SLEEPING;
+				} else return JUVENILE;
+			} else {
+				if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
+					return DILOPHOSAURUS_SLEEPING;
+				} else return DILOPHOSAURUS;
+			}
 		}
 	}
 

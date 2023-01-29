@@ -79,7 +79,7 @@ public class NeocalamitesBlock extends Block implements IPlantable, IWaterLoggab
 		}
 	}
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		if ((world.isAirBlock(pos.up()) || world.getBlockState(pos.up()).getBlock() == PFBlocks.NEOCALAMITES_TOP && world.isAirBlock(pos.up(2))) && state.get(PLAYER_PLACED)) {
+		if ((world.isAirBlock(pos.up()) || world.getBlockState(pos.up()).getBlock() == PFBlocks.NEOCALAMITES_TOP && world.isAirBlock(pos.up(2))) && state.get(PLAYER_PLACED) == true) {
 			int i;
 			for (i = 1; world.getBlockState(pos.down(i)).isIn(this); ++i) {
 			}

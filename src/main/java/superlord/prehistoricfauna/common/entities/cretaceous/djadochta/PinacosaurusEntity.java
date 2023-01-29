@@ -13,10 +13,12 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -165,6 +167,10 @@ public class PinacosaurusEntity extends DinosaurEntity {
 		}
 		this.setHunger(this.maxHunger);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+	}
+
+	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+		return 1.1F;
 	}
 
 	protected void registerGoals() {

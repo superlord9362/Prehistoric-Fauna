@@ -17,7 +17,6 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -30,6 +29,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFDimensions;
 import superlord.prehistoricfauna.init.PFParticles;
+import superlord.prehistoricfauna.init.SoundInit;
 import superlord.prehistoricfauna.world.dimension.JurassicTeleporter;
 
 public class JurassicPortalBlock extends BreakableBlock {
@@ -126,7 +126,7 @@ public class JurassicPortalBlock extends BreakableBlock {
 	@OnlyIn(Dist.CLIENT)
 	public void animateTick(BlockState state, World world, BlockPos pos, Random rand) {
 		if (rand.nextInt(100) == 0) {
-			world.playSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
+			world.playSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundInit.PORTAL, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
 		}
 		for (int i = 0; i < 2; ++i) {
 			double x = (float)pos.getX() + rand.nextFloat();

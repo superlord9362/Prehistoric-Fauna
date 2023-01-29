@@ -383,7 +383,7 @@ public class CommonEvents {
 			BlockPos pos = event.getPos();
 			BlockState state = event.getWorld().getBlockState(event.getPos());
 			PlayerEntity player = event.getPlayer();
-			if (state.getBlock() == Blocks.DIRT) {
+			if (state.getBlock() == Blocks.DIRT && world.getBlockState(pos.up()).getBlock() == Blocks.AIR) {
 				for(BlockPos blockpos : BlockPos.getAllInBoxMutable(event.getPos().add(-1, -1, -1), event.getPos().add(1, 1, 1))) {
 					BlockState blockstate = event.getWorld().getBlockState(blockpos);
 					if (blockstate.isIn(PFBlocks.MOSSY_DIRT)) {
@@ -393,7 +393,7 @@ public class CommonEvents {
 				if (flag) {
 					event.getWorld().setBlockState(event.getPos(), PFBlocks.MOSSY_DIRT.getDefaultState(), 3);
 					double d0 = (double)pos.getX() + 0.5D;
-					double d1 = (double)pos.getY() + 0.7D;
+					double d1 = (double)pos.getY() + 1.7D;
 					double d2 = (double)pos.getZ() + 0.5D;
 					world.addParticle(ParticleTypes.HAPPY_VILLAGER, d0, d1, d2, 0.0D, 0.0D, 0.0D);
 					if (!player.isCreative()) {

@@ -9,7 +9,7 @@ import superlord.prehistoricfauna.common.entities.fossil.HerrerasaurusSkullEntit
 
 public class HerrerasaurusSkullRenderer extends MobRenderer<HerrerasaurusSkullEntity, HerrerasaurusSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/herrerasaurus_skull.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/herrerasaurus_skeleton.png");
 
     public HerrerasaurusSkullRenderer(EntityRendererManager rm) {
         super(rm, new HerrerasaurusSkullModel(), 0F);

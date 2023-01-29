@@ -17,7 +17,7 @@ public class NocturnalSleepGoal extends Goal {
 	@Override
 	public boolean shouldExecute() {
 		World world = entity.world;
-		if (PrehistoricFaunaConfig.sleeping = true && world.getDayTime() >= 0 && world.getDayTime() <= 12000 && entity.getRevengeTarget() == null && entity.getAttackTarget() == null) {
+		if (PrehistoricFaunaConfig.sleeping = true && world.getDayTime() >= 0 && world.getDayTime() <= 12000 && entity.getRevengeTarget() == null && entity.getAttackTarget() == null && !entity.isInWater() && !entity.isInLava()) {
 			return true;
 		} else {
 			return false;
@@ -27,7 +27,7 @@ public class NocturnalSleepGoal extends Goal {
 	@Override
 	public boolean shouldContinueExecuting() {
 		World world = entity.world;
-		if (world.getDayTime() >= 12000 && world.getDayTime() < 24000 || entity.getRevengeTarget() != null || super.shouldContinueExecuting() || entity.getAttackTarget() != null) {
+		if (world.getDayTime() >= 12000 && world.getDayTime() < 24000 || entity.getRevengeTarget() != null || super.shouldContinueExecuting() || entity.getAttackTarget() != null || entity.isInWater() || entity.isInLava()) {
 			resetTask();
 			return false;
 		} else return true;
@@ -45,7 +45,7 @@ public class NocturnalSleepGoal extends Goal {
 	public void tick() {
 		super.tick();
 		World world = entity.world;
-		if (world.getDayTime() >= 12000 && world.getDayTime() < 24000 || entity.getRevengeTarget() != null || entity.getAttackTarget() != null) {
+		if (world.getDayTime() >= 12000 && world.getDayTime() < 24000 || entity.getRevengeTarget() != null || entity.getAttackTarget() != null || entity.isInWater() || entity.isInLava()) {
 			resetTask();
 		}
 	}

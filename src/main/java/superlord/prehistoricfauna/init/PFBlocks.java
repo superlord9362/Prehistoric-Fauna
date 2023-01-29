@@ -603,6 +603,7 @@ public class PFBlocks {
 	public static final Block POSTOSUCHUS_CRATE = new CrateBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("postosuchus_crate");
 	public static final Block DILOPHOSAURUS_CRATE = new CrateBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("dilophosaurus_crate");
 	public static final Block SARAHSAURUS_CRATE = new CrateBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("sarahsaurus_crate");
+	public static final Block SCELIDOSAURUS_CRATE = new CrateBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("scelidosaurus_crate");
 	public static final Block CALSOYASUCHUS_EGG = new CalsoyasuchusEggBlock(Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("calsoyasuchus_egg");
 	public static final Block DESMATOSUCHUS_EGG = new DesmatosuchusEggBlock(Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("desmatosuchus_egg");
 	public static final Block POSTOSUCHUS_EGG = new PostosuchusEggBlock(Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("postosuchus_egg");
@@ -646,6 +647,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> AGATHOXYLON_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "agathoxylon_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(AGATHOXYLON_SLAB)), PFBuilding.instance);
 	public static final RegistryObject<Block> WOODWORTHIA_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "woodworthia_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(WOODWORTHIA_SLAB)), PFBuilding.instance);
 	public static final RegistryObject<Block> SCHILDERIA_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "schilderia_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(SCHILDERIA_SLAB)), PFBuilding.instance);
+	public static final RegistryObject<Block> NEOCALAMITES_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "neocalamites_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(NEOCALAMITES_SLAB)), PFBuilding.instance);
 	public static final RegistryObject<Block> TRIASSIC_SANDSTONE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "sandstone_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(SANDSTONE_SLAB)), PFBuilding.instance);
 	public static final RegistryObject<Block> POLISHED_TRIASSIC_SANDSTONE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "polished_sandstone_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(POLISHED_SANDSTONE_SLAB)), PFBuilding.instance);
 	public static final RegistryObject<Block> TRIASSIC_SANDSTONE_BRICK_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "sandstone_brick_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(SANDSTONE_BRICK_SLAB)), PFBuilding.instance);
@@ -673,6 +675,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> AGATHOXYLON_VERTICAL_PLANKS = HELPER.createCompatBlock("quark", "agathoxylon_vertical_planks", () -> new Block(AbstractBlock.Properties.from(AGATHOXYLON_PLANKS)), PFBuilding.instance);
 	public static final RegistryObject<Block> WOODWORTHIA_VERTICAL_PLANKS = HELPER.createCompatBlock("quark", "woodworthia_vertical_planks", () -> new Block(AbstractBlock.Properties.from(WOODWORTHIA_PLANKS)), PFBuilding.instance);
 	public static final RegistryObject<Block> SCHILDERIA_VERTICAL_PLANKS = HELPER.createCompatBlock("quark", "schilderia_vertical_planks", () -> new Block(AbstractBlock.Properties.from(SCHILDERIA_PLANKS)), PFBuilding.instance);
+	public static final RegistryObject<Block> NEOCALAMITES_VERTICAL_PLANKS = HELPER.createCompatBlock("quark", "neocalamites_vertical_planks", () -> new Block(AbstractBlock.Properties.from(NEOCALAMITES_PLANKS)), PFBuilding.instance);
 
 	public static final RegistryObject<Block> METASEQUOIA_LEAF_CARPET = HELPER.createCompatBlock("quark", "metasequoia_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.create(Material.CARPET).hardnessAndResistance(0.0F).sound(SoundType.PLANT).notSolid()), PFDecoration.instance);
 	public static final RegistryObject<Block> ARAUCARIA_LEAF_CARPET = HELPER.createCompatBlock("quark", "araucaria_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.create(Material.CARPET).hardnessAndResistance(0.0F).sound(SoundType.PLANT).notSolid()), PFDecoration.instance);
@@ -700,7 +703,8 @@ public class PFBlocks {
 	public static final RegistryObject<Block> AGATHOXYLON_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "agathoxylon_beehive", () -> new PFBeehiveBlock(Properties.from(Blocks.BEEHIVE)), PFDecoration.instance);
 	public static final RegistryObject<Block> WOODWORTHIA_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "woodworthia_beehive", () -> new PFBeehiveBlock(Properties.from(Blocks.BEEHIVE)), PFDecoration.instance);
 	public static final RegistryObject<Block> SCHILDERIA_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "schilderia_beehive", () -> new PFBeehiveBlock(Properties.from(Blocks.BEEHIVE)), PFDecoration.instance);
-
+	public static final RegistryObject<Block> NEOCALAMITES_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "neocalamites_beehive", () -> new PFBeehiveBlock(Properties.from(Blocks.BEEHIVE)), PFDecoration.instance);
+	
 	public static final RegistryObject<Block> METASEQUOIA_BOOKSHELF = HELPER.createCompatBlock("quark", "metasequoia_bookshelf", () -> new PFBookshelfBlock(Properties.from(Blocks.BOOKSHELF)), PFBuilding.instance);
 	public static final RegistryObject<Block> ARAUCARIA_BOOKSHELF = HELPER.createCompatBlock("quark", "araucaria_bookshelf", () -> new PFBookshelfBlock(Properties.from(Blocks.BOOKSHELF)), PFBuilding.instance);
 	public static final RegistryObject<Block> LIRIODENDRITES_BOOKSHELF = HELPER.createCompatBlock("quark", "liriodendrites_bookshelf", () -> new PFBookshelfBlock(Properties.from(Blocks.BOOKSHELF)), PFBuilding.instance);
@@ -714,7 +718,8 @@ public class PFBlocks {
 	public static final RegistryObject<Block> AGATHOXYLON_BOOKSHELF = HELPER.createCompatBlock("quark", "agathoxylon_bookshelf", () -> new PFBookshelfBlock(Properties.from(Blocks.BOOKSHELF)), PFBuilding.instance);
 	public static final RegistryObject<Block> WOODWORTHIA_BOOKSHELF = HELPER.createCompatBlock("quark", "woodworthia_bookshelf", () -> new PFBookshelfBlock(Properties.from(Blocks.BOOKSHELF)), PFBuilding.instance);
 	public static final RegistryObject<Block> SCHILDERIA_BOOKSHELF = HELPER.createCompatBlock("quark", "schilderia_bookshelf", () -> new PFBookshelfBlock(Properties.from(Blocks.BOOKSHELF)), PFBuilding.instance);
-
+	public static final RegistryObject<Block> NEOCALAMITES_BOOKSHELF = HELPER.createCompatBlock("quark", "neocalamites_bookshelf", () -> new PFBookshelfBlock(Properties.from(Blocks.BOOKSHELF)), PFBuilding.instance);
+	
 	public static final RegistryObject<Block> METASEQUOIA_LADDER = HELPER.createCompatBlock("quark", "metasequoia_ladder", () -> new PFLadderBlock(Properties.from(Blocks.LADDER)), PFDecoration.instance);
 	public static final RegistryObject<Block> ARAUCARIA_LADDER = HELPER.createCompatBlock("quark", "araucaria_ladder", () -> new PFLadderBlock(Properties.from(Blocks.LADDER)), PFDecoration.instance);
 	public static final RegistryObject<Block> LIRIODENDRITES_LADDER = HELPER.createCompatBlock("quark", "liriodendrites_ladder", () -> new PFLadderBlock(Properties.from(Blocks.LADDER)), PFDecoration.instance);
@@ -728,6 +733,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> AGATHOXYLON_LADDER = HELPER.createCompatBlock("quark", "agathoxylon_ladder", () -> new PFLadderBlock(Properties.from(Blocks.LADDER)), PFDecoration.instance);
 	public static final RegistryObject<Block> WOODWORTHIA_LADDER = HELPER.createCompatBlock("quark", "woodworthia_ladder", () -> new PFLadderBlock(Properties.from(Blocks.LADDER)), PFDecoration.instance);
 	public static final RegistryObject<Block> SCHILDERIA_LADDER = HELPER.createCompatBlock("quark", "schilderia_ladder", () -> new PFLadderBlock(Properties.from(Blocks.LADDER)), PFDecoration.instance);
+	public static final RegistryObject<Block> NEOCALAMITES_LADDER = HELPER.createCompatBlock("quark", "neocalamites_ladder", () -> new PFLadderBlock(Properties.from(Blocks.LADDER)), PFDecoration.instance);
 
 	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> METASEQUOIA_CHEST 	= HELPER.createCompatChestBlocks("metasequoia", MaterialColor.WOOD);
 	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> ARAUCARIA_CHEST 	= HELPER.createCompatChestBlocks("araucaria", MaterialColor.WOOD);
@@ -742,6 +748,7 @@ public class PFBlocks {
 	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> AGATHOXYLON_CHEST = HELPER.createCompatChestBlocks("agathoxylon", MaterialColor.WOOD);
 	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> WOODWORTHIA_CHEST = HELPER.createCompatChestBlocks("woodworthia", MaterialColor.WOOD);
 	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> SCHILDERIA_CHEST = HELPER.createCompatChestBlocks("schilderia", MaterialColor.WOOD);
+	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> NEOCALAMITES_CHEST = HELPER.createCompatChestBlocks("neocalamites", MaterialColor.WOOD);
 
 	public static final RegistryObject<Block> CHALK_PAVEMENT = HELPER.createCompatBlock("quark", "chalk_pavement", () -> new Block(AbstractBlock.Properties.from(CHALK_BRICKS)), PFBuilding.instance);
 	public static final RegistryObject<Block> CHALK_PILLAR = HELPER.createCompatBlock("quark", "chalk_pillar", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(CHALK_BRICKS)), PFBuilding.instance);
@@ -776,7 +783,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> STRIPPED_WOODWORTHIA_POST = HELPER.createCompatBlock("quark", "stripped_woodworthia_post", () -> new WoodPostBlock(Properties.from(WOODWORTHIA_FENCE)), PFBuilding.instance);
 	public static final RegistryObject<Block> SCHILDERIA_POST = HELPER.createCompatBlock("quark", "schilderia_post", () -> new WoodPostBlock(Properties.from(SCHILDERIA_FENCE)), PFBuilding.instance);
 	public static final RegistryObject<Block> STRIPPED_SCHILDERIA_POST = HELPER.createCompatBlock("quark", "stripped_schilderia_post", () -> new WoodPostBlock(Properties.from(SCHILDERIA_FENCE)), PFBuilding.instance);
-
+	
 	public static final RegistryObject<Block> METASEQUOIA_HEDGE = HELPER.createCompatBlock("quark", "metasequoia_hedge", () -> new HedgeBlock(Properties.from(METASEQUOIA_PLANKS)), PFBuilding.instance);
 	public static final RegistryObject<Block> ARAUCARIA_HEDGE = HELPER.createCompatBlock("quark", "araucaria_hedge", () -> new HedgeBlock(Properties.from(ARAUCARIA_PLANKS)), PFBuilding.instance);
 	public static final RegistryObject<Block> LIRIODENDRITES_HEDGE = HELPER.createCompatBlock("quark", "liriodendrites_hedge", () -> new HedgeBlock(Properties.from(LIRIODENDRITES_PLANKS)), PFBuilding.instance);
@@ -1248,6 +1255,7 @@ public class PFBlocks {
 		event.getRegistry().register(NEOCALAMITES_MOSAIC_SLAB);
 		event.getRegistry().register(NEOCALAMITES_MOSAIC_STAIRS);
 		event.getRegistry().register(DILOPHOSAURUS_CRATE);
+		event.getRegistry().register(SCELIDOSAURUS_CRATE);
 		if (FMLEnvironment.dist == Dist.CLIENT) {
 			RenderType cutoutRenderType = RenderType.getCutout();
 			RenderType mippedRenderType = RenderType.getCutoutMipped();
@@ -1383,6 +1391,7 @@ public class PFBlocks {
 			RenderTypeLookup.setRenderLayer(WOODWORTHIA_LADDER.get(), cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(SCHILDERIA_LADDER.get(), cutoutRenderType);
 			RenderTypeLookup.setRenderLayer(GINKGO_LADDER.get(), cutoutRenderType);
+			RenderTypeLookup.setRenderLayer(NEOCALAMITES_LADDER.get(), cutoutRenderType);
 
 			RenderTypeLookup.setRenderLayer(ARAUCARIA_LEAF_CARPET.get(), mippedRenderType);
 			RenderTypeLookup.setRenderLayer(METASEQUOIA_LEAF_CARPET.get(), mippedRenderType);

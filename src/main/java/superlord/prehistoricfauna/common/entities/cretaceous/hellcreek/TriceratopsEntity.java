@@ -999,7 +999,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 
 		@Override
 		public boolean shouldExecute() {
-			if (PrehistoricFaunaConfig.sleeping = true && entity.getRNG().nextInt(1000) == 0 && entity.getRevengeTarget() == null) {
+			if (PrehistoricFaunaConfig.sleeping = true && entity.getRNG().nextInt(1000) == 0 && entity.getRevengeTarget() == null && !entity.isTame() && entity.getRidingEntity() == null) {
 				return true;
 			} else {
 				return false;
@@ -1008,7 +1008,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 
 		@Override
 		public boolean shouldContinueExecuting() {
-			if (sleepTimer >= 6000 || entity.getRevengeTarget() != null || super.shouldContinueExecuting()) {
+			if (sleepTimer >= 6000 || entity.getRevengeTarget() != null || entity.isTame() || entity.getRidingEntity() != null || super.shouldContinueExecuting()) {
 				resetTask();
 				return false;
 			} else return true;

@@ -16,6 +16,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -29,18 +30,28 @@ import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
+import net.minecraft.util.HandSide;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.TransportationHelper;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.GameRules;
@@ -66,12 +77,16 @@ public class PlesiohadrosEntity extends HerdDinosaurEntity {
 	private static final DataParameter<Boolean> DEOXIDATED = EntityDataManager.createKey(PlesiohadrosEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> EATING = EntityDataManager.createKey(PlesiohadrosEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> NATURAL_LOVE = EntityDataManager.createKey(PlesiohadrosEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> SADDLED = EntityDataManager.createKey(PlesiohadrosEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Integer> BOOST_TIME = EntityDataManager.createKey(PlesiohadrosEntity.class, DataSerializers.VARINT);
 	private int maxHunger = 100;
 	private int currentHunger;
 	private int lastInLove = 0;
 	int hungerTick = 0;
 	private int warningSoundTicks;
 	private int isDigging;
+	public float ridingXZ;
+	public float ridingY = 1F;
 	int loveTick = 0;
 
 	public PlesiohadrosEntity(EntityType<? extends PlesiohadrosEntity> type, World worldIn) {
@@ -112,6 +127,14 @@ public class PlesiohadrosEntity extends HerdDinosaurEntity {
 
 	private void setAlbino(boolean isAlbino) {
 		this.dataManager.set(ALBINO, isAlbino);
+	}
+
+	public boolean isSaddled() {
+		return this.dataManager.get(SADDLED);
+	}
+
+	private void setSaddled(boolean isSaddled) {
+		this.dataManager.set(SADDLED, isSaddled);
 	}
 
 	public boolean isDeoxidated() {
@@ -199,7 +222,7 @@ public class PlesiohadrosEntity extends HerdDinosaurEntity {
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 40.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2D).createMutableAttribute(Attributes.ARMOR, 10D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 8.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.5D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 40.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 8.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.5D);
 	}
 
 	protected SoundEvent getAmbientSound() {
@@ -234,6 +257,8 @@ public class PlesiohadrosEntity extends HerdDinosaurEntity {
 		this.dataManager.register(DEOXIDATED, false);
 		this.dataManager.register(EATING, false);
 		this.dataManager.register(NATURAL_LOVE, false);
+		this.dataManager.register(SADDLED, false);
+		this.dataManager.register(BOOST_TIME, 0);
 	}
 
 	public void writeAdditional(CompoundNBT compound) {
@@ -245,6 +270,7 @@ public class PlesiohadrosEntity extends HerdDinosaurEntity {
 		compound.putInt("MaxHunger", this.currentHunger);
 		compound.putBoolean("IsEating", this.isEating());
 		compound.putBoolean("InNaturalLove", this.isInLoveNaturally());
+		compound.putBoolean("IsSaddled", this.isSaddled());
 	}
 
 	public void readAdditional(CompoundNBT compound) {
@@ -256,6 +282,7 @@ public class PlesiohadrosEntity extends HerdDinosaurEntity {
 		this.setEating(compound.getBoolean("IsEating"));
 		this.setHunger(compound.getInt("MaxHunger"));
 		this.setInLoveNaturally(compound.getBoolean("InNaturalLove"));
+		this.setSaddled(compound.getBoolean("IsSaddled"));
 	}
 
 	/**
@@ -346,13 +373,120 @@ public class PlesiohadrosEntity extends HerdDinosaurEntity {
 		return flag;
 	}	
 
+	public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
+		ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
+		Item item = itemstack.getItem();
+		if (!this.isTamed()) {
+			if (item == PFBlocks.COBBANIA.asItem()) {
+				if (!p_230254_1_.abilities.isCreativeMode) {
+					itemstack.shrink(1);
+				}
+
+				if (this.rand.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, p_230254_1_)) {
+					this.setTamedBy(p_230254_1_);
+					this.navigator.clearPath();
+					this.setAttackTarget((LivingEntity)null);
+					this.func_233687_w_(true);
+					this.world.setEntityState(this, (byte)7);
+				} else {
+					this.world.setEntityState(this, (byte)6);
+				}
+				return ActionResultType.SUCCESS;
+			}
+		} 
+		if (!this.isSaddled() && !this.isChild() && this.isTamed()) {
+			if (item == Items.SADDLE) {
+				if (!p_230254_1_.abilities.isCreativeMode) {
+					itemstack.shrink(1);
+				}
+				this.setSaddled(true);
+				this.world.playSound(p_230254_1_, this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ENTITY_PIG_SADDLE, SoundCategory.NEUTRAL, 0.5F, 1.0F);
+				return ActionResultType.SUCCESS;
+			}
+		}
+		if (this.isSaddled() && !this.isBeingRidden() && !this.isChild()) {
+			p_230254_1_.startRiding(this);
+		}
+		return super.func_230254_b_(p_230254_1_, p_230254_2_);
+	}
+
+	protected void dropInventory() {
+		super.dropInventory();
+		if (this.isSaddled()) {
+			this.entityDropItem(Items.SADDLE);
+		}
+	}
+
+	public void travel(Vector3d travelVector) {
+	      if (this.isAlive()) {
+	         if (this.isBeingRidden() && this.canBeSteered() && this.isSaddled()) {
+	            LivingEntity livingentity = (LivingEntity)this.getControllingPassenger();
+	            this.rotationYaw = livingentity.rotationYaw;
+	            this.prevRotationYaw = this.rotationYaw;
+	            this.rotationPitch = livingentity.rotationPitch * 0.5F;
+	            this.setRotation(this.rotationYaw, this.rotationPitch);
+	            this.renderYawOffset = this.rotationYaw;
+	            this.rotationYawHead = this.renderYawOffset;
+	            float f = livingentity.moveStrafing * 0.5F;
+	            float f1 = livingentity.moveForward;
+				this.stepHeight = 1.0F;
+
+	            if (this.canPassengerSteer()) {
+	               this.setAIMoveSpeed((float)this.getAttributeValue(Attributes.MOVEMENT_SPEED));
+	               super.travel(new Vector3d((double)f, travelVector.y, (double)f1));
+	            } else if (livingentity instanceof PlayerEntity) {
+	               this.setMotion(Vector3d.ZERO);
+	            }
+
+	            if (this.onGround) {
+	            }
+
+	            this.func_233629_a_(this, false);
+	         } else {
+	            super.travel(travelVector);
+	         }
+	      }
+	   }
+
+	@Nullable
+	public Entity getControllingPassenger() {
+		return this.getPassengers().isEmpty() ? null : this.getPassengers().get(0);
+	}
+
+	public boolean canBeSteered() {
+		return this.getControllingPassenger() instanceof LivingEntity;
+	}
+
+	@Override
+	public void updatePassenger(Entity passenger) {
+		super.updatePassenger(passenger);
+
+		float radius = ridingXZ * 0.7F * -3 + 0.5F;
+		float angle = (0.01745329251F * this.renderYawOffset);
+		double extraX = radius * MathHelper.sin((float) (Math.PI + angle));
+		double extraZ = radius * MathHelper.cos(angle);
+		double extraY = ridingY * 4.1F;
+		this.getRidingPlayer().setPosition(this.getPosX() + extraX, this.getPosY() + extraY - 2.75F, this.getPosZ() + extraZ);
+	}
+
+	protected void func_230273_eI_() {
+	}
+
+	public PlayerEntity getRidingPlayer() {
+		if (this.getControllingPassenger() instanceof PlayerEntity) {
+			return (PlayerEntity) getControllingPassenger();
+		} else {
+			return null;
+		}
+	}
+
 	class AttackPlayerGoal extends NearestAttackableTargetGoal<PlayerEntity> {
 		public AttackPlayerGoal() {
 			super(PlesiohadrosEntity.this, PlayerEntity.class, 20, true, true, (Predicate<LivingEntity>)null);
 		}
 
 		public boolean shouldExecute() {
-			if (PlesiohadrosEntity.this.isChild()) {
+			if (PlesiohadrosEntity.this.isChild() || PlesiohadrosEntity.this.isTamed()) {
 				return false;
 			} else {
 				if (super.shouldExecute()) {
@@ -368,6 +502,54 @@ public class PlesiohadrosEntity extends HerdDinosaurEntity {
 
 		protected double getTargetDistance() {
 			return super.getTargetDistance() * 0.5D;
+		}
+	}
+
+	@Nullable
+	private Vector3d func_234236_a_(Vector3d p_234236_1_, LivingEntity p_234236_2_) {
+		double d0 = this.getPosX() + p_234236_1_.x;
+		double d1 = this.getBoundingBox().minY;
+		double d2 = this.getPosZ() + p_234236_1_.z;
+		BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
+
+		for(Pose pose : p_234236_2_.getAvailablePoses()) {
+			blockpos$mutable.setPos(d0, d1, d2);
+			double d3 = this.getBoundingBox().maxY + 0.75D;
+
+			while(true) {
+				double d4 = this.world.func_242403_h(blockpos$mutable);
+				if ((double)blockpos$mutable.getY() + d4 > d3) {
+					break;
+				}
+
+				if (TransportationHelper.func_234630_a_(d4)) {
+					AxisAlignedBB axisalignedbb = p_234236_2_.getPoseAABB(pose);
+					Vector3d vector3d = new Vector3d(d0, (double)blockpos$mutable.getY() + d4, d2);
+					if (TransportationHelper.func_234631_a_(this.world, p_234236_2_, axisalignedbb.offset(vector3d))) {
+						p_234236_2_.setPose(pose);
+						return vector3d;
+					}
+				}
+
+				blockpos$mutable.move(Direction.UP);
+				if (!((double)blockpos$mutable.getY() < d3)) {
+					break;
+				}
+			}
+		}
+
+		return null;
+	}
+
+	public Vector3d func_230268_c_(LivingEntity livingEntity) {
+		Vector3d vector3d = func_233559_a_((double)this.getWidth(), (double)livingEntity.getWidth(), this.rotationYaw + (livingEntity.getPrimaryHand() == HandSide.RIGHT ? 90.0F : -90.0F));
+		Vector3d vector3d1 = this.func_234236_a_(vector3d, livingEntity);
+		if (vector3d1 != null) {
+			return vector3d1;
+		} else {
+			Vector3d vector3d2 = func_233559_a_((double)this.getWidth(), (double)livingEntity.getWidth(), this.rotationYaw + (livingEntity.getPrimaryHand() == HandSide.LEFT ? 90.0F : -90.0F));
+			Vector3d vector3d3 = this.func_234236_a_(vector3d2, livingEntity);
+			return vector3d3 != null ? vector3d3 : this.getPositionVec();
 		}
 	}
 

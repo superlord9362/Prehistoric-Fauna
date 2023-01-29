@@ -442,6 +442,7 @@ public class SaurosuchusEntity extends DinosaurEntity {
 			double d0 = this.getAttackReachSqr(enemy);
 			if (distToEnemySqr <= d0 && this.func_234040_h_()) {
 				this.func_234039_g_();
+				SaurosuchusEntity.this.playSound(SoundInit.SAUROSUCHUS_BITE, 1.0F, SaurosuchusEntity.this.getSoundPitch());
 				this.attacker.attackEntityAsMob(enemy);
 			} else if (distToEnemySqr <= d0 * 2.0D) {
 				if (this.func_234040_h_()) {

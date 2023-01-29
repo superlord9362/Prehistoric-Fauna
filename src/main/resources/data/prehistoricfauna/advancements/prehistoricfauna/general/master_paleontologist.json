@@ -159,6 +159,16 @@
 			]
 		}
 	},
+	"sarahsaurus_skull": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:sarahsaurus_skull"
+				}
+			]
+		}
+	},
 	"coelophysis_skull": {
 		"trigger": "minecraft:inventory_changed",
 		"conditions": {
@@ -309,12 +319,62 @@
 			]
 		}
 	},
+	"dilophosaurus_skeleton": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:dilophosaurus_skeleton"
+				}
+			]
+		}
+	},
+	"sarahsaurus_skeleton": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:sarahsaurus_skeleton"
+				}
+			]
+		}
+	},
+	"scelidosaurus_skeleton": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:scelidosaurus_skeleton"
+				}
+			]
+		}
+	},
 	"coelophysis_skeleton": {
 		"trigger": "minecraft:inventory_changed",
 		"conditions": {
 			"items": [
 				{
 					"item": "prehistoricfauna:coelophysis_skeleton"
+				}
+			]
+		}
+	},
+	"desmatosuchus_skeleton": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:desmatosuchus_skeleton"
+				}
+			]
+		}
+	},
+	"postosuchus_skeleton": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"item": "prehistoricfauna:postosuchus_skeleton"
 				}
 			]
 		}
@@ -379,37 +439,55 @@
 		"protoceratops_skeleton"
 	],
 	[
+		"protoceratops_skull"
+	],
+	[
 		"velociraptor_skeleton"
 	],
 	[
 		"velociraptor_skull"
 	],
 	[
-		"protoceratops_skull"
-	],
-	[
 		"plesiohadros_skeleton"
-	],
-	[
-		"coelophysis_skeleton"
 	],
 	[
 		"plesiohadros_skull"
 	],
 	[
-		"dilophosaurus_skull"
-	],
-	[
-		"scelidosaurus_skull"
+		"coelophysis_skeleton"
 	],
 	[
 		"coelophysis_skull"
 	],
 	[
+		"dilophosaurus_skull"
+	],
+	[
+		"dilophosaurus_skeleton"
+	],
+	[
+		"scelidosaurus_skull"
+	],
+	[
+		"scelidosaurus_skeleton"
+	],
+	[
+		"sarahsaurus_skull"
+	],
+	[
+		"sarahsaurus_skeleton"
+	],
+	[
 		"desmatosuchus_skull"
 	],
 	[
+		"desmatosuchus_skeleton"
+	],
+	[
 		"postosuchus_skull"
+	],
+	[
+		"postosuchus_skeleton"
 	]
   ]
 }

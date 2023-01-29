@@ -9,7 +9,7 @@ import superlord.prehistoricfauna.common.entities.fossil.IschigualastiaSkullEnti
 
 public class IschigualastiaSkullRenderer extends MobRenderer<IschigualastiaSkullEntity, IschigualastiaSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/ischigualastia_skull.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/ischigualastia_skeleton.png");
 
     public IschigualastiaSkullRenderer(EntityRendererManager rm) {
         super(rm, new IschigualastiaSkullModel(), 0F);

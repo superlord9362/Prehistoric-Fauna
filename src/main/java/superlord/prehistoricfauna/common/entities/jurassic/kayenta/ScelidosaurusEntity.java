@@ -59,9 +59,9 @@ import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.Ankylosau
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.DakotaraptorEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.TriceratopsEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.TyrannosaurusEntity;
+import superlord.prehistoricfauna.common.entities.goal.CathemeralSleepGoal;
 import superlord.prehistoricfauna.common.entities.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entities.goal.DinosaurRandomLookGoal;
-import superlord.prehistoricfauna.common.entities.goal.NocturnalSleepGoal;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.AllosaurusEntity;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.CamarasaurusEntity;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.CeratosaurusEntity;
@@ -249,7 +249,7 @@ public class ScelidosaurusEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, SaurosuchusEntity.class, 10, 1.2, 1.5));
 		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, SillosuchusEntity.class, 10, 1.2, 1.5));
 		this.goalSelector.addGoal(0, new ScelidosaurusEntity.LayEggGoal(this, 1.0D));
-		this.goalSelector.addGoal(1, new NocturnalSleepGoal(this));
+		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
 		this.goalSelector.addGoal(0, new ScelidosaurusEntity.HerbivoreEatGoal((double)1.2F, 12, 2));
 	}
 
@@ -293,7 +293,7 @@ public class ScelidosaurusEntity extends DinosaurEntity {
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 15.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D).createMutableAttribute(Attributes.ARMOR, 4.0D).createMutableAttribute(Attributes.ARMOR_TOUGHNESS, 4.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE , 4).createMutableAttribute(Attributes.FOLLOW_RANGE, 15);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 15.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D).createMutableAttribute(Attributes.ARMOR, 6.0D).createMutableAttribute(Attributes.ARMOR_TOUGHNESS, 4.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE , 4).createMutableAttribute(Attributes.FOLLOW_RANGE, 15);
 	}
 
 	@OnlyIn(Dist.CLIENT)

@@ -22,12 +22,12 @@ public class HerrerasaurusSkullModel extends EntityModel<HerrerasaurusSkullEntit
     public HerrerasaurusSkullModel() {
         this.textureWidth = 128;
         this.textureHeight = 128;
-        this.Snout = new ModelRenderer(this, 0, 42);
+        this.Head = new ModelRenderer(this, 52, 0);
+        this.Head.setRotationPoint(0.0F, 21.0F, 2.5F);
+        this.Head.addBox(-2.0F, -2.0F, -3.0F, 4.0F, 5.0F, 6.0F, 0.0F, 0.0F, 0.0F);
+        this.Snout = new ModelRenderer(this, 0, 32);
         this.Snout.setRotationPoint(0.0F, 0.0F, -3.0F);
         this.Snout.addBox(-1.5F, -2.0F, -5.0F, 3.0F, 4.0F, 5.0F, 0.0F, 0.0F, 0.0F);
-        this.Head = new ModelRenderer(this, 49, 9);
-        this.Head.setRotationPoint(0.0F, 21.0F, 2.0F);
-        this.Head.addBox(-2.0F, -2.0F, -3.0F, 4.0F, 5.0F, 6.0F, 0.0F, 0.0F, 0.0F);
         this.Head.addChild(this.Snout);
     }
 

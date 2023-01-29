@@ -118,8 +118,14 @@ public class FossilCrateBlock extends Block {
 				stack.shrink(1);
 			}
 			return ActionResultType.func_233537_a_(world.isRemote);
-		} else if (item == PFItems.DILOPHOSAURUS_SKELETON.get()) {
+		} else if (item == PFItems.DILOPHOSAURUS_SKULL.get()) {
 			world.setBlockState(pos, PFBlocks.DILOPHOSAURUS_CRATE.getDefaultState());
+			if (!player.abilities.isCreativeMode) {
+				stack.shrink(1);
+			}
+			return ActionResultType.func_233537_a_(world.isRemote);
+		} else if (item == PFItems.SCELIDOSAURUS_SKULL.get()) {
+			world.setBlockState(pos, PFBlocks.SCELIDOSAURUS_CRATE.getDefaultState());
 			if (!player.abilities.isCreativeMode) {
 				stack.shrink(1);
 			}

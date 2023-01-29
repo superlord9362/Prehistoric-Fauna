@@ -26,12 +26,6 @@ public class AnkylosaurusSkullModel extends EntityModel<AnkylosaurusSkullEntity>
     public AnkylosaurusSkullModel() {
         this.textureWidth = 256;
         this.textureHeight = 256;
-        this.Head1 = new ModelRenderer(this, 152, 97);
-        this.Head1.setRotationPoint(0.0F, 17.0F, 4.0F);
-        this.Head1.addBox(-7.0F, -5.0F, -12.0F, 14.0F, 12.0F, 16.0F, 0.0F, 0.0F, 0.0F);
-        this.Head2 = new ModelRenderer(this, 200, 93);
-        this.Head2.setRotationPoint(0.0F, 0.0F, -12.0F);
-        this.Head2.addBox(-5.5F, -3.0F, -3.0F, 11.0F, 9.0F, 4.0F, 0.0F, 0.0F, 0.0F);
         this.Spike4 = new ModelRenderer(this, 29, 32);
         this.Spike4.setRotationPoint(-7.0F, 2.0F, -2.0F);
         this.Spike4.addBox(0.0F, 0.0F, 0.0F, 4.0F, 4.0F, 5.0F, 0.0F, 0.0F, 0.0F);
@@ -40,17 +34,23 @@ public class AnkylosaurusSkullModel extends EntityModel<AnkylosaurusSkullEntity>
         this.Spike3.setRotationPoint(7.0F, 2.0F, -2.0F);
         this.Spike3.addBox(-4.0F, 0.0F, 0.0F, 4.0F, 4.0F, 5.0F, 0.0F, 0.0F, 0.0F);
         this.setRotateAngle(Spike3, 0.0F, 0.9105382388075086F, 0.0F);
+        this.Head2 = new ModelRenderer(this, 200, 93);
+        this.Head2.setRotationPoint(0.0F, 0.0F, -12.0F);
+        this.Head2.addBox(-5.5F, -3.0F, -3.0F, 11.0F, 9.0F, 4.0F, 0.0F, 0.0F, 0.0F);
         this.Spike1 = new ModelRenderer(this, 0, 33);
         this.Spike1.setRotationPoint(7.0F, -3.0F, 0.0F);
         this.Spike1.addBox(-4.0F, -3.0F, 0.0F, 5.0F, 5.0F, 7.0F, 0.0F, 0.0F, 0.0F);
         this.setRotateAngle(Spike1, 0.0911061832922575F, 0.27314402127920984F, 0.0F);
+        this.Head1 = new ModelRenderer(this, 152, 97);
+        this.Head1.setRotationPoint(0.0F, 17.0F, 4.0F);
+        this.Head1.addBox(-7.0F, -5.0F, -12.0F, 14.0F, 12.0F, 16.0F, 0.0F, 0.0F, 0.0F);
         this.Spike1_1 = new ModelRenderer(this, 0, 33);
         this.Spike1_1.setRotationPoint(-7.0F, -3.0F, 0.0F);
         this.Spike1_1.addBox(-1.0F, -3.0F, 0.0F, 5.0F, 5.0F, 7.0F, 0.0F, 0.0F, 0.0F);
         this.setRotateAngle(Spike1_1, 0.0911061832922575F, -0.27314402127920984F, 0.0F);
-        this.Head1.addChild(this.Head2);
         this.Head1.addChild(this.Spike4);
         this.Head1.addChild(this.Spike3);
+        this.Head1.addChild(this.Head2);
         this.Head1.addChild(this.Spike1);
         this.Head1.addChild(this.Spike1_1);
     }

@@ -15,7 +15,6 @@ import superlord.prehistoricfauna.client.render.layer.CalsoyasuchusEyeLayer;
 import superlord.prehistoricfauna.client.render.layer.CalsoyasuchusSwimmingEyeLayer;
 //import superlord.prehistoricfauna.client.model.jurassic.kayenta.CalsoyasuchusSleepingModel;
 import superlord.prehistoricfauna.common.entities.jurassic.kayenta.CalsoyasuchusEntity;
-import superlord.prehistoricfauna.common.entities.jurassic.morrison.CeratosaurusEntity;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class CalsoyasuchusRenderer extends MobRenderer<CalsoyasuchusEntity,  EntityModel<CalsoyasuchusEntity>> {
@@ -49,7 +48,7 @@ public class CalsoyasuchusRenderer extends MobRenderer<CalsoyasuchusEntity,  Ent
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
 
-	protected void preRenderCallback(CeratosaurusEntity entity, MatrixStack matrixStackIn, float partialTickTime) {
+	protected void preRenderCallback(CalsoyasuchusEntity entity, MatrixStack matrixStackIn, float partialTickTime) {
 		if(entity.isChild()) {
 			matrixStackIn.scale(0.5F, 0.5F, 0.5F);
 		}

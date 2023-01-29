@@ -169,10 +169,55 @@
 					"is_explosion": true
 				}
 			}
+		},
+		"blew_up_postosuchus_skeleton": {
+			"trigger": "minecraft:player_killed_entity",
+			"conditions": {
+				"entity": {
+					"type": "prehistoricfauna:postosuchus_skeleton"
+				},
+				"killing_blow": {
+					"is_explosion": true
+				}
+			}
+		},
+		"blew_up_dilophosaurus_skeleton": {
+			"trigger": "minecraft:player_killed_entity",
+			"conditions": {
+				"entity": {
+					"type": "prehistoricfauna:dilophosaurus_skeleton"
+				},
+				"killing_blow": {
+					"is_explosion": true
+				}
+			}
+		},
+		"blew_up_sarahsaurus_skeleton": {
+			"trigger": "minecraft:player_killed_entity",
+			"conditions": {
+				"entity": {
+					"type": "prehistoricfauna:sarahsaurus_skeleton"
+				},
+				"killing_blow": {
+					"is_explosion": true
+				}
+			}
+		},
+		"blew_up_scelidosaurus_skeleton": {
+			"trigger": "minecraft:player_killed_entity",
+			"conditions": {
+				"entity": {
+					"type": "prehistoricfauna:scelidosaurus_skeleton"
+				},
+				"killing_blow": {
+					"is_explosion": true
+				}
+			}
 		}
 	},
 	"requirements": [
 		[
+			"blew_up_plesiohadros_skeleton",
 			"blew_up_protoceratops_skeleton",
 			"blew_up_velociraptor_skeleton",
 			"blew_up_ankylosaurus_skeleton",
@@ -181,12 +226,15 @@
 			"blew_up_allosaurus_skeleton",
 			"blew_up_stegosaurus_skeleton",
 			"blew_up_ceratosaurus_skeleton",
-			"blew_up_coelophysis_skeleton",
+			"blew_up_dilophosaurus_skeleton",
+			"blew_up_sarahsaurus_skeleton",
+			"blew_up_scelidosaurus_skeleton",
 			"blew_up_herrerasaurus_skeleton",
 			"blew_up_ischigualastia_skeleton",
 			"blew_up_saurosuchus_skeleton",
+			"blew_up_coelophysis_skeleton",
 			"blew_up_desmatosuchus_skeleton",
-			"blew_up_plesiohadros_skeleton"
+			"blew_up_postosuchus_skeleton"
 		]
 	]
 }

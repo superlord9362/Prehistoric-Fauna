@@ -19,9 +19,11 @@ public class CoelophysisRenderer extends MobRenderer<CoelophysisEntity, EntityMo
 	private static final ResourceLocation COELOPHYSIS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/coelophysis.png");
 	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/albino.png");
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/melanistic.png");
+	private static final ResourceLocation JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/juvenile.png");
 	private static final ResourceLocation COELOPHYSIS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/coelophysis_sleeping.png");
 	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/albino_sleeping.png");
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/melanistic_sleeping.png");
+	private static final ResourceLocation JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/juvenile_sleeping.png");
 	private static final CoelophysisModel COELOPHYSIS_MODEL = new CoelophysisModel();
 	private static final CoelophysisSleepingModel COELOPHYSIS_SLEEPING_MODEL = new CoelophysisSleepingModel();
 
@@ -58,9 +60,15 @@ public class CoelophysisRenderer extends MobRenderer<CoelophysisEntity, EntityMo
 				return MELANISTIC_SLEEPING;
 			}else return MELANISTIC;
 		} else {
-			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
-				return COELOPHYSIS_SLEEPING;
-			} else return COELOPHYSIS;
+			if (entity.isChild()) {
+				if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
+					return JUVENILE_SLEEPING;
+				} else return JUVENILE;
+			} else {
+				if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
+					return COELOPHYSIS_SLEEPING;
+				} else return COELOPHYSIS;
+			}
 		}
 	}
 

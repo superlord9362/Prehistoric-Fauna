@@ -612,7 +612,7 @@ public class TypothoraxEntity extends DinosaurEntity {
 			super.startExecuting();
 		}
 	}
-	
+
 	static class DiggingGoal extends Goal {
 		private static final ResourceLocation DIGGING_LOOT = new ResourceLocation(PrehistoricFauna.MOD_ID, "entities/typothorax_digging");
 
@@ -627,20 +627,24 @@ public class TypothoraxEntity extends DinosaurEntity {
 
 		@Override
 		public boolean shouldExecute() {
-			if (digTimer2 > 0) {
-				--digTimer2;
-				return false;
-			}
-			if (typothorax.getRNG().nextInt(typothorax.isChild() ? 100 : 1000) != 0) {
-				return false;
-			} else {
-				BlockPos blockpos = typothorax.getPosition();
-				BlockState state = typothorax.world.getBlockState(blockpos);
-				if (state.isIn(Tags.Blocks.DIRT)) {
-					return true;
-				} else {
-					return typothorax.world.getBlockState(blockpos.down()).isIn(Tags.Blocks.DIRT);
+			if (!typothorax.isAsleep()) {
+				if (digTimer2 > 0) {
+					--digTimer2;
+					return false;
 				}
+				if (typothorax.getRNG().nextInt(typothorax.isChild() ? 100 : 1000) != 0) {
+					return false;
+				} else {
+					BlockPos blockpos = typothorax.getPosition();
+					BlockState state = typothorax.world.getBlockState(blockpos);
+					if (state.isIn(Tags.Blocks.DIRT)) {
+						return true;
+					} else {
+						return typothorax.world.getBlockState(blockpos.down()).isIn(Tags.Blocks.DIRT);
+					}
+				}
+			} else {
+				return false;
 			}
 		}
 

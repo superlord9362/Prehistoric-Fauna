@@ -9,7 +9,7 @@ import superlord.prehistoricfauna.common.entities.fossil.AllosaurusSkullEntity;
 
 public class AllosaurusSkullRenderer extends MobRenderer<AllosaurusSkullEntity, AllosaurusSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/allosaurus_skull.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/allosaurus_skeleton.png");
 
     public AllosaurusSkullRenderer(EntityRendererManager rm) {
         super(rm, new AllosaurusSkullModel(), 0F);

@@ -25,7 +25,7 @@ public class CathemeralSleepGoal extends Goal {
 
 	@Override
 	public boolean shouldContinueExecuting() {
-		if (sleepTimer >= 6000 || entity.getRevengeTarget() != null || super.shouldContinueExecuting()) {
+		if (sleepTimer >= 6000 || entity.getRevengeTarget() != null || entity.getAttackTarget() != null || super.shouldContinueExecuting() || entity.isInWater() || entity.isInLava()) {
 			resetTask();
 			return false;
 		} else return true;
@@ -34,7 +34,7 @@ public class CathemeralSleepGoal extends Goal {
 	public void tick() {
 		super.tick();
 		sleepTimer++;
-		if (sleepTimer >= 6000 || entity.getRevengeTarget() != null) {
+		if (sleepTimer >= 6000 || entity.getRevengeTarget() != null || entity.getAttackTarget() != null || entity.isInWater() || entity.isInLava()) {
 			resetTask();
 		}
 	}

@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "minecraft:potion"
+      "item": "minecraft:glass_bottle"
     },
 	{
 		"item": "prehistoricfauna:horsetail"

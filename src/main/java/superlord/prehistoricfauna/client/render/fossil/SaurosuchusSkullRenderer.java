@@ -9,7 +9,7 @@ import superlord.prehistoricfauna.common.entities.fossil.SaurosuchusSkullEntity;
 
 public class SaurosuchusSkullRenderer extends MobRenderer<SaurosuchusSkullEntity, SaurosuchusSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/saurosuchus_skull.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/saurosuchus_skeleton.png");
 
     public SaurosuchusSkullRenderer(EntityRendererManager rm) {
         super(rm, new SaurosuchusSkullModel(), 0F);

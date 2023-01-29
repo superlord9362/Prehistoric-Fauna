@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"###",
+		"XXX",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:neocalamites_planks"
+		},
+		"X": {
+			"item": "minecraft:book"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:neocalamites_bookshelf"
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:quark_flag",
+			"flag": "variant_bookshelves"
+		}
+	]
+}

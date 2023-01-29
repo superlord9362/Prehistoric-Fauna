@@ -411,7 +411,7 @@ public class MegapnosaurusEntity extends DinosaurEntity {
 		}
 
 		protected void setAttackTarget(MobEntity mobIn, LivingEntity targetIn) {
-			if (mobIn instanceof MegapnosaurusEntity && !mobIn.isChild()) {
+			if (mobIn instanceof MegapnosaurusEntity && !mobIn.isChild() && targetIn.getHealth() <= (targetIn.getMaxHealth() / 2)) {
 				super.setAttackTarget(mobIn, targetIn);
 			}
 		}

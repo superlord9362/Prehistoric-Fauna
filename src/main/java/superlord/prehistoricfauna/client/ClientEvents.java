@@ -75,6 +75,7 @@ import superlord.prehistoricfauna.client.render.fossil.SarahsaurusSkeletonRender
 import superlord.prehistoricfauna.client.render.fossil.SarahsaurusSkullRenderer;
 import superlord.prehistoricfauna.client.render.fossil.SaurosuchusSkeletonRenderer;
 import superlord.prehistoricfauna.client.render.fossil.SaurosuchusSkullRenderer;
+import superlord.prehistoricfauna.client.render.fossil.ScelidosaurusSkeletonRenderer;
 import superlord.prehistoricfauna.client.render.fossil.ScelidosaurusSkullRenderer;
 import superlord.prehistoricfauna.client.render.fossil.StegosaurusSkeletonRenderer;
 import superlord.prehistoricfauna.client.render.fossil.StegosaurusSkullRenderer;
@@ -240,6 +241,7 @@ public class ClientEvents {
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.PLESIOHADROS_SKELETON, manager -> new PlesiohadrosSkeletonRenderer());
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.DESMATOSUCHUS_SKELETON, manager -> new DesmatosuchusSkeletonRenderer());
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.DILOPHOSAURUS_SKELETON, manager -> new DilophosaurusSkeletonRenderer());
+		RenderingRegistry.registerEntityRenderingHandler(PFEntities.SCELIDOSAURUS_SKELETON, manager -> new ScelidosaurusSkeletonRenderer());
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.ARGANODUS_ENTITY, manager -> new ArganodusRenderer());
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.CHINLEA_ENTITY, manager -> new ChinleaRenderer());
 		RenderingRegistry.registerEntityRenderingHandler(PFEntities.MOOREODONTUS_ENTITY, manager -> new MooreodontusRenderer());

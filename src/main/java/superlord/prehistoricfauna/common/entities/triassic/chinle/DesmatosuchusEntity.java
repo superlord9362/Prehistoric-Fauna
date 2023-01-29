@@ -294,7 +294,7 @@ public class DesmatosuchusEntity extends DinosaurEntity {
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D).createMutableAttribute(Attributes.ARMOR, 4.0D).createMutableAttribute(Attributes.ARMOR_TOUGHNESS, 4.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 3).createMutableAttribute(Attributes.FOLLOW_RANGE, 15);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.22D).createMutableAttribute(Attributes.ARMOR, 6.0D).createMutableAttribute(Attributes.ARMOR_TOUGHNESS, 4.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 3).createMutableAttribute(Attributes.FOLLOW_RANGE, 15);
 	}
 
 	public void tick() {

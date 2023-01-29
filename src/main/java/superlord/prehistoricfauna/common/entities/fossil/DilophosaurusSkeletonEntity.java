@@ -33,6 +33,9 @@ import superlord.prehistoricfauna.init.PFItems;
 public class DilophosaurusSkeletonEntity extends PrehistoricEntity {
 
 	private static final DataParameter<Boolean> STRUT = EntityDataManager.createKey(DilophosaurusSkeletonEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> GAZE = EntityDataManager.createKey(DilophosaurusSkeletonEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> ATTACK = EntityDataManager.createKey(DilophosaurusSkeletonEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> SITTING = EntityDataManager.createKey(DilophosaurusSkeletonEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> PUSHING = EntityDataManager.createKey(DilophosaurusSkeletonEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> LOOKING = EntityDataManager.createKey(DilophosaurusSkeletonEntity.class, DataSerializers.BOOLEAN);
 
@@ -42,6 +45,30 @@ public class DilophosaurusSkeletonEntity extends PrehistoricEntity {
 
 	private void setStrutting(boolean isStrutting) {
 		this.dataManager.set(STRUT, isStrutting);
+	}
+	
+	public boolean isGazing() {
+		return this.dataManager.get(GAZE);
+	}
+	
+	private void setGazing(boolean isGazing) {
+		this.dataManager.set(GAZE, isGazing);
+	}
+	
+	public boolean isAttacking() {
+		return this.dataManager.get(ATTACK);
+	}
+	
+	private void setAttacking(boolean isAttacking) {
+		this.dataManager.set(ATTACK, isAttacking);
+	}
+	
+	public boolean isSitting() {
+		return this.dataManager.get(SITTING);
+	}
+	
+	private void setSitting(boolean isSitting) {
+		this.dataManager.set(SITTING, isSitting);
 	}
 
 	public boolean isPushable() {
@@ -63,6 +90,9 @@ public class DilophosaurusSkeletonEntity extends PrehistoricEntity {
 	protected void registerData() {
 		super.registerData();
 		this.dataManager.register(STRUT, false);
+		this.dataManager.register(GAZE, false);
+		this.dataManager.register(ATTACK, false);
+		this.dataManager.register(SITTING, false);
 		this.dataManager.register(PUSHING, false);
 		this.dataManager.register(LOOKING, false);
 	}
@@ -70,6 +100,9 @@ public class DilophosaurusSkeletonEntity extends PrehistoricEntity {
 	public void writeAdditional(CompoundNBT compound) {
 		super.writeAdditional(compound);
 		compound.putBoolean("IsStrutting", this.isStrutting());
+		compound.putBoolean("IsGazing", this.isGazing());
+		compound.putBoolean("IsAttacking", this.isAttacking());
+		compound.putBoolean("IsSitting", this.isSitting());
 		compound.putBoolean("IsPushable", this.isPushable());
 		compound.putBoolean("IsLooking", this.isLooking());
 	}
@@ -77,6 +110,9 @@ public class DilophosaurusSkeletonEntity extends PrehistoricEntity {
 	public void readAdditional(CompoundNBT compound) {
 		super.readAdditional(compound); 
 		this.setStrutting(compound.getBoolean("IsStrutting"));
+		this.setGazing(compound.getBoolean("IsGazing"));
+		this.setAttacking(compound.getBoolean("IsAttacking"));
+		this.setSitting(compound.getBoolean("IsSitting"));
 		this.setPushable(compound.getBoolean("IsPushable"));
 		this.setLooking(compound.getBoolean("IsLooking"));
 	}
@@ -122,11 +158,19 @@ public class DilophosaurusSkeletonEntity extends PrehistoricEntity {
 	public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
 		ItemStack itemstack = player.getHeldItem(hand);
 		if (itemstack.getItem() == PFItems.GEOLOGY_HAMMER.get()) {
-			//Charging, Walking, dashing, dashing, sitting, sleeping
-			if (!this.isStrutting() && !player.isSneaking()) {
+			if (!this.isStrutting() && !this.isGazing() && !this.isAttacking() && !this.isSitting() && !player.isSneaking()) {
 				this.setStrutting(true);
 			} else if (this.isStrutting() && !player.isSneaking()) {
 				this.setStrutting(false);
+				this.setGazing(true);
+			} else if (this.isGazing() && !player.isSneaking()) {
+				this.setGazing(false);
+				this.setAttacking(true);
+			} else if (this.isAttacking() && !player.isSneaking()) {
+				this.setAttacking(false);
+				this.setSitting(true);
+			} else if (this.isSitting() && !player.isSneaking()) {
+				this.setSitting(false);
 			} else if (player.isSneaking() && !this.isPushable() && !this.isLooking()) {
 	    		this.setPushable(true);
 				player.sendStatusMessage(new TranslationTextComponent("entity.prehistoricfauna.skeleton.pushable"), true);

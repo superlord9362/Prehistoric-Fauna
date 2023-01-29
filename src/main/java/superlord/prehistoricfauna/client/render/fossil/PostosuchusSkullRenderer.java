@@ -9,7 +9,7 @@ import superlord.prehistoricfauna.common.entities.fossil.PostosuchusSkullEntity;
 
 public class PostosuchusSkullRenderer extends MobRenderer<PostosuchusSkullEntity, PostosuchusSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/postosuchus_skull.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/postosuchus_skeleton.png");
 
     public PostosuchusSkullRenderer(EntityRendererManager rm) {
         super(rm, new PostosuchusSkullModel(), 0F);

@@ -14,6 +14,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.DrinkHelper;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
+import superlord.prehistoricfauna.init.PFEffects;
 
 public class HorsetailTeaItem extends Item {
 
@@ -24,6 +25,7 @@ public class HorsetailTeaItem extends Item {
 	public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity entityLiving) {
 		if (!world.isRemote) {
 			entityLiving.removePotionEffect(Effects.POISON);
+			entityLiving.removePotionEffect(PFEffects.BLEEDING.get());
 		}
 		if (entityLiving instanceof ServerPlayerEntity) {
 			ServerPlayerEntity serverPlayer = (ServerPlayerEntity)entityLiving;

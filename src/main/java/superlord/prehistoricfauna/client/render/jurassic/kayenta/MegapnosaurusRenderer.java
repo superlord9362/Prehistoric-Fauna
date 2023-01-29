@@ -22,6 +22,12 @@ public class MegapnosaurusRenderer extends MobRenderer<MegapnosaurusEntity, Enti
 	private static final ResourceLocation MEGAPNOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/megapnosaurus_sleeping.png");
 	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/albino_sleeping.png");
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/juvenile.png");
+	private static final ResourceLocation ALBINO_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/albino_juvenile.png");
+	private static final ResourceLocation MELANISTIC_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/melanistic_juvenile.png");
+	private static final ResourceLocation JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/juvenile_sleeping.png");
+	private static final ResourceLocation ALBINO_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/albino_juvenile_sleeping.png");
+	private static final ResourceLocation MELANISTIC_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/melanistic_juvenile_sleeping.png");
 	private static final MegapnosaurusModel MEGAPNOSAURUS_MODEL = new MegapnosaurusModel();
 	private static final MegapnosaurusSleepingModel MEGAPNOSAURUS_SLEEPING_MODEL = new MegapnosaurusSleepingModel();
 
@@ -50,17 +56,35 @@ public class MegapnosaurusRenderer extends MobRenderer<MegapnosaurusEntity, Enti
 	@Override
 	public ResourceLocation getEntityTexture(MegapnosaurusEntity entity) {
 		if (entity.isAlbino()) {
-			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
-				return ALBINO_SLEEPING;
-			} else return ALBINO;
+			if (entity.isChild()) {
+				if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
+					return ALBINO_JUVENILE_SLEEPING;
+				} else return ALBINO_JUVENILE;
+			} else {
+				if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
+					return ALBINO_SLEEPING;
+				} else return ALBINO;
+			}
 		} else if (entity.isMelanistic()) {
-			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
-				return MELANISTIC_SLEEPING;
-			}else return MELANISTIC;
+			if (entity.isChild()) {
+				if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
+					return MELANISTIC_JUVENILE_SLEEPING;
+				} else return MELANISTIC_JUVENILE;
+			} else {
+				if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
+					return MELANISTIC_SLEEPING;
+				} else return MELANISTIC;
+			}
 		} else {
-			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
-				return MEGAPNOSAURUS_SLEEPING;
-			} else return MEGAPNOSAURUS;
+			if (entity.isChild()) {
+				if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
+					return JUVENILE_SLEEPING;
+				} else return JUVENILE;
+			} else {
+				if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
+					return MEGAPNOSAURUS_SLEEPING;
+				} else return MEGAPNOSAURUS;
+			}
 		}
 	}
 

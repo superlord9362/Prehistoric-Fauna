@@ -22,6 +22,14 @@ public class PlesiohadrosRenderer extends MobRenderer<PlesiohadrosEntity, Entity
 	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/albino_sleeping.png");
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/melanistic_sleeping.png");
 	private static final ResourceLocation DEOXIDATED_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/deoxidated_sleeping.png");
+	private static final ResourceLocation PLESIOHADROS_SADDLED = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/plesiohadros_saddle.png");
+	private static final ResourceLocation ALBINO_SADDLED = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/albino_saddled.png");
+	private static final ResourceLocation MELANISTIC_SADDLED = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/melanistic_saddled.png");
+	private static final ResourceLocation DEOXIDATED_SADDLED = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/deoxidated_saddled.png");
+	private static final ResourceLocation PLESIOHADROS_SADDLED_BLINKING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/plesiohadros_saddled_blinking.png");
+	private static final ResourceLocation ALBINO_SADDLED_BLINKING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/albino_saddled_blinking.png");
+	private static final ResourceLocation MELANISTIC_SADDLED_BLINKING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/melanistic_saddled_blinking.png");
+	private static final ResourceLocation DEOXIDATED_SADDLED_BLINKING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/deoxidated_saddled_blinking.png");
 
 	public PlesiohadrosRenderer(EntityRendererManager rm) {
 		super(rm, PLESIOHADROS_MODEL, 2F);
@@ -41,21 +49,37 @@ public class PlesiohadrosRenderer extends MobRenderer<PlesiohadrosEntity, Entity
 	@Override
 	public ResourceLocation getEntityTexture(PlesiohadrosEntity entity) {
 		if (entity.isAlbino()) {
-			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5 && !entity.isSaddled()) {
 				return ALBINO_SLEEPING;
-			} else return ALBINO;
+			} else if (entity.isSaddled()) {
+				if (entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) return ALBINO_SADDLED_BLINKING;
+				else return ALBINO_SADDLED;
+			}
+			else return ALBINO;
 		} else if (entity.isMelanistic()) {
-			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5 && !entity.isSaddled()) {
 				return MELANISTIC_SLEEPING;
-			} else return MELANISTIC;
+			} else if (entity.isSaddled()) {
+				if (entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) return MELANISTIC_SADDLED_BLINKING;
+				else return MELANISTIC_SADDLED;
+			}
+			 else return MELANISTIC;
 		} else if (!entity.isMelanistic() && !entity.isAlbino() && entity.isDeoxidated()) {
-			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5 && !entity.isSaddled()) {
 				return DEOXIDATED_SLEEPING;
-			} else return DEOXIDATED;
+			} else if (entity.isSaddled()) {
+				if (entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) return DEOXIDATED_SADDLED_BLINKING;
+				else return DEOXIDATED_SADDLED;
+			}
+			 else return DEOXIDATED;
 		} else {
-			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5 && !entity.isSaddled()) {
 				return PLESIOHADROS_SLEEPING;
-			} else return PLESIOHADROS;
+			} else if (entity.isSaddled()) {
+				if (entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) return PLESIOHADROS_SADDLED_BLINKING;
+				else return PLESIOHADROS_SADDLED;
+			}
+			 else return PLESIOHADROS;
 		}
 	}
 

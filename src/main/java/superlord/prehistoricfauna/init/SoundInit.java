@@ -18,6 +18,7 @@ public class SoundInit {
 	public static final SoundEvent TRICERATOPS_DEATH;
 	public static final SoundEvent TRICERATOPS_SNORES;
 	public static final SoundEvent TYRANNOSAURUS_IDLE; 
+	public static final SoundEvent TYRANNOSAURUS_BITE;
 	public static final SoundEvent TYRANNOSAURUS_HURT; 
 	public static final SoundEvent TYRANNOSAURUS_WARN; 
 	public static final SoundEvent TYRANNOSAURUS_DEATH;
@@ -75,6 +76,7 @@ public class SoundInit {
 	public static final SoundEvent PLESIOHADROS_WARNING;
 	//Morrison
 	public static final SoundEvent ALLOSAURUS_IDLE;
+	public static final SoundEvent ALLOSAURUS_BITE;
 	public static final SoundEvent ALLOSAURUS_HURT;
 	public static final SoundEvent ALLOSAURUS_WARN;
 	public static final SoundEvent ALLOSAURUS_DEATH;
@@ -85,6 +87,7 @@ public class SoundInit {
 	public static final SoundEvent STEGOSAURUS_DEATH;
 	public static final SoundEvent STEGOSAURUS_SNORES;
 	public static final SoundEvent CERATOSAURUS_IDLE; 
+	public static final SoundEvent CERATOSAURUS_BITE;
 	public static final SoundEvent CERATOSAURUS_HURT; 
 	public static final SoundEvent CERATOSAURUS_WARN;
 	public static final SoundEvent CERATOSAURUS_DEATH;
@@ -107,6 +110,7 @@ public class SoundInit {
 	public static final SoundEvent CERATODUS_DEATH;
 	//Kayenta
 	public static final SoundEvent DILOPHOSAURUS_IDLE;
+	public static final SoundEvent DILOPHOSAURUS_BITE;
 	public static final SoundEvent DILOPHOSAURUS_HURT;
 	public static final SoundEvent DILOPHOSAURUS_DEATH;
 	public static final SoundEvent DILOPHOSAURUS_WARN;
@@ -149,10 +153,12 @@ public class SoundInit {
 	public static final SoundEvent PLACERIAS_WARN;
 	public static final SoundEvent PLACERIAS_DEATH;
 	public static final SoundEvent POPOSAURUS_IDLE;
+	public static final SoundEvent POPOSAURUS_BITE;
 	public static final SoundEvent POPOSAURUS_HURT;
 	public static final SoundEvent POPOSAURUS_DEATH;
 	public static final SoundEvent POPOSAURUS_WARN;
 	public static final SoundEvent POSTOSUCHUS_IDLE;
+	public static final SoundEvent POSTOSUCHUS_BITE;
 	public static final SoundEvent POSTOSUCHUS_HURT;
 	public static final SoundEvent POSTOSUCHUS_WARN;
 	public static final SoundEvent POSTOSUCHUS_DEATH;
@@ -176,6 +182,7 @@ public class SoundInit {
 	public static final SoundEvent CHROMOGISAURUS_HURT;
 	public static final SoundEvent CHROMOGISAURUS_DEATH;
 	public static final SoundEvent HERRERASAURUS_IDLE;
+	public static final SoundEvent HERRERASAURUS_BITE;
 	public static final SoundEvent HERRERASAURUS_HURT;
 	public static final SoundEvent HERRERASAURUS_WARN;
 	public static final SoundEvent HERRERASAURUS_DEATH;
@@ -188,6 +195,7 @@ public class SoundInit {
 	public static final SoundEvent SILLOSUCHUS_DEATH;
 	public static final SoundEvent SILLOSUCHUS_SNORES;
 	public static final SoundEvent SAUROSUCHUS_IDLE;
+	public static final SoundEvent SAUROSUCHUS_BITE;
 	public static final SoundEvent SAUROSUCHUS_HURT;
 	public static final SoundEvent SAUROSUCHUS_WARN;
 	public static final SoundEvent SAUROSUCHUS_DEATH;
@@ -203,6 +211,7 @@ public class SoundInit {
 	public static final SoundEvent HENOS_LASER_LOOP;
 	//Misc
 	public static final SoundEvent FISH_FLOP;
+	public static final SoundEvent PORTAL;
 	
 	@SubscribeEvent
 	public static void registerSounds(final RegistryEvent.Register<SoundEvent> evt) {
@@ -213,6 +222,7 @@ public class SoundInit {
 		evt.getRegistry().register(TRICERATOPS_DEATH);
 		evt.getRegistry().register(TRICERATOPS_SNORES);
 		evt.getRegistry().register(TYRANNOSAURUS_HURT);
+		evt.getRegistry().register(TYRANNOSAURUS_BITE);
 		evt.getRegistry().register(TYRANNOSAURUS_IDLE);
 		evt.getRegistry().register(TYRANNOSAURUS_WARN);
 		evt.getRegistry().register(TYRANNOSAURUS_DEATH);
@@ -270,6 +280,7 @@ public class SoundInit {
 		evt.getRegistry().register(PLESIOHADROS_WARNING);
 		//Morrison
 		evt.getRegistry().register(ALLOSAURUS_IDLE);
+		evt.getRegistry().register(ALLOSAURUS_BITE);
 		evt.getRegistry().register(ALLOSAURUS_HURT);
 		evt.getRegistry().register(ALLOSAURUS_WARN);
 		evt.getRegistry().register(ALLOSAURUS_DEATH);
@@ -280,6 +291,7 @@ public class SoundInit {
 		evt.getRegistry().register(STEGOSAURUS_DEATH);
 		evt.getRegistry().register(STEGOSAURUS_SNORES);
 		evt.getRegistry().register(CERATOSAURUS_IDLE);
+		evt.getRegistry().register(CERATOSAURUS_BITE);
 		evt.getRegistry().register(CERATOSAURUS_HURT);
 		evt.getRegistry().register(CERATOSAURUS_WARN);
 		evt.getRegistry().register(CERATOSAURUS_DEATH);
@@ -302,6 +314,7 @@ public class SoundInit {
 		evt.getRegistry().register(CERATODUS_DEATH);
 		//Kayenta
 		evt.getRegistry().register(DILOPHOSAURUS_IDLE);
+		evt.getRegistry().register(DILOPHOSAURUS_BITE);
 		evt.getRegistry().register(DILOPHOSAURUS_HURT);
 		evt.getRegistry().register(DILOPHOSAURUS_DEATH);
 		evt.getRegistry().register(DILOPHOSAURUS_WARN);
@@ -341,10 +354,12 @@ public class SoundInit {
 		evt.getRegistry().register(PLACERIAS_DEATH);
 		evt.getRegistry().register(PLACERIAS_WARN);
 		evt.getRegistry().register(POPOSAURUS_IDLE);
+		evt.getRegistry().register(POPOSAURUS_BITE);
 		evt.getRegistry().register(POPOSAURUS_HURT);
 		evt.getRegistry().register(POPOSAURUS_DEATH);
 		evt.getRegistry().register(POPOSAURUS_WARN);
 		evt.getRegistry().register(POSTOSUCHUS_IDLE);
+		evt.getRegistry().register(POSTOSUCHUS_BITE);
 		evt.getRegistry().register(POSTOSUCHUS_HURT);
 		evt.getRegistry().register(POSTOSUCHUS_DEATH);
 		evt.getRegistry().register(POSTOSUCHUS_WARN);
@@ -371,6 +386,7 @@ public class SoundInit {
 		evt.getRegistry().register(CHROMOGISAURUS_HURT);
 		evt.getRegistry().register(CHROMOGISAURUS_DEATH);
 		evt.getRegistry().register(HERRERASAURUS_IDLE);
+		evt.getRegistry().register(HERRERASAURUS_BITE);
 		evt.getRegistry().register(HERRERASAURUS_HURT);
 		evt.getRegistry().register(HERRERASAURUS_WARN);
 		evt.getRegistry().register(HERRERASAURUS_DEATH);
@@ -383,6 +399,7 @@ public class SoundInit {
 		evt.getRegistry().register(SILLOSUCHUS_WARN);
 		evt.getRegistry().register(SILLOSUCHUS_SNORES);
 		evt.getRegistry().register(SAUROSUCHUS_IDLE);
+		evt.getRegistry().register(SAUROSUCHUS_BITE);
 		evt.getRegistry().register(SAUROSUCHUS_HURT);
 		evt.getRegistry().register(SAUROSUCHUS_WARN);
 		evt.getRegistry().register(SAUROSUCHUS_DEATH);
@@ -398,6 +415,7 @@ public class SoundInit {
 		evt.getRegistry().register(HENOS_LASER_LOOP);
 		//Misc
 		evt.getRegistry().register(FISH_FLOP);
+		evt.getRegistry().register(PORTAL);
 	}
 	
 	private static SoundEvent createEvent(final String soundName) {
@@ -413,6 +431,7 @@ public class SoundInit {
 		TRICERATOPS_DEATH = createEvent("triceratops_death");
 		TRICERATOPS_SNORES = createEvent("triceratops_snores");
 		TYRANNOSAURUS_IDLE = createEvent("tyrannosaurus_idle");
+		TYRANNOSAURUS_BITE = createEvent("tyrannosaurus_bite");
 		TYRANNOSAURUS_HURT = createEvent("tyrannosaurus_hurt");
 		TYRANNOSAURUS_WARN = createEvent("tyrannosaurus_warn");
 		TYRANNOSAURUS_DEATH = createEvent("tyrannosaurus_death");
@@ -470,6 +489,7 @@ public class SoundInit {
 		PLESIOHADROS_WARNING = createEvent("plesiohadros_warning");
 		//Morrison
 		ALLOSAURUS_IDLE = createEvent("allosaurus_idle");
+		ALLOSAURUS_BITE = createEvent("allosaurus_bite");
 		ALLOSAURUS_HURT = createEvent("allosaurus_hurt");
 		ALLOSAURUS_WARN = createEvent("allosaurus_warn");
 		ALLOSAURUS_DEATH = createEvent("allosaurus_death");
@@ -480,6 +500,7 @@ public class SoundInit {
 		STEGOSAURUS_DEATH = createEvent("stegosaurus_death");
 		STEGOSAURUS_SNORES = createEvent("stegosaurus_snores");
 		CERATOSAURUS_IDLE = createEvent("ceratosaurus_idle");
+		CERATOSAURUS_BITE = createEvent("ceratosaurus_bite");
 		CERATOSAURUS_HURT = createEvent("ceratosaurus_hurt");
 		CERATOSAURUS_WARN = createEvent("ceratosaurus_warn");
 		CERATOSAURUS_DEATH = createEvent("ceratosaurus_death");
@@ -502,6 +523,7 @@ public class SoundInit {
 		CERATODUS_DEATH = createEvent("ceratodus_death");
 		//Kayenta
 		DILOPHOSAURUS_IDLE = createEvent("dilophosaurus_idle");
+		DILOPHOSAURUS_BITE = createEvent("dilophosaurus_bite");
 		DILOPHOSAURUS_HURT = createEvent("dilophosaurus_hurt");
 		DILOPHOSAURUS_DEATH = createEvent("dilophosaurus_death");
 		DILOPHOSAURUS_WARN = createEvent("dilophosaurus_warn");
@@ -541,10 +563,12 @@ public class SoundInit {
 		PLACERIAS_DEATH = createEvent("placerias_death");
 		PLACERIAS_WARN = createEvent("placerias_warn");
 		POPOSAURUS_IDLE = createEvent("poposaurus_idle");
+		POPOSAURUS_BITE = createEvent("poposaurus_bite");
 		POPOSAURUS_HURT = createEvent("poposaurus_hurt");
 		POPOSAURUS_DEATH = createEvent("poposaurus_death");
 		POPOSAURUS_WARN = createEvent("poposaurus_warn");
 		POSTOSUCHUS_IDLE = createEvent("postosuchus_idle");
+		POSTOSUCHUS_BITE = createEvent("postosuchus_bite");
 		POSTOSUCHUS_HURT = createEvent("postosuchus_hurt");
 		POSTOSUCHUS_DEATH = createEvent("postosuchus_death");
 		POSTOSUCHUS_WARN = createEvent("postosuchus_warn");
@@ -571,6 +595,7 @@ public class SoundInit {
 		CHROMOGISAURUS_HURT = createEvent("chromogisaurus_hurt");
 		CHROMOGISAURUS_DEATH = createEvent("chromogisaurus_death");
 		HERRERASAURUS_IDLE = createEvent("herrerasaurus_idle");
+		HERRERASAURUS_BITE = createEvent("herrerasaurus_bite");
 		HERRERASAURUS_HURT = createEvent("herrerasaurus_hurt");
 		HERRERASAURUS_WARN = createEvent("herrerasaurus_warn");
 		HERRERASAURUS_DEATH = createEvent("herrerasaurus_death");
@@ -583,6 +608,7 @@ public class SoundInit {
 		SILLOSUCHUS_DEATH = createEvent("sillosuchus_death");
 		SILLOSUCHUS_SNORES = createEvent("sillosuchus_snores");
 		SAUROSUCHUS_IDLE = createEvent("saurosuchus_idle");
+		SAUROSUCHUS_BITE = createEvent("saurosuchus_bite");
 		SAUROSUCHUS_HURT = createEvent("saurosuchus_hurt");
 		SAUROSUCHUS_WARN = createEvent("saurosuchus_warn");
 		SAUROSUCHUS_DEATH = createEvent("saurosuchus_death");
@@ -598,6 +624,7 @@ public class SoundInit {
 		HENOS_LASER_LOOP = createEvent("henos_laser_loop");
 		//Misc
 		FISH_FLOP = createEvent("fish_flop");
+		PORTAL = createEvent("portal");
 	}
 
 }

@@ -67,6 +67,16 @@
 			}
         ]
     },
+	"tyrannosaurus_bite": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.tyrannosaurusBite",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/bite/large_bite",
+				"stream": true
+			}
+		]
+	},
 	"tyrannosaurus_hurt": {
         "category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.tyrannosaurusHurt",
@@ -173,6 +183,16 @@
 			}
     	]
     },
+	"allosaurus_bite": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.allosaurusBite",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/bite/large_bite",
+				"stream": true
+			}
+		]
+	},
     "allosaurus_hurt": {
     	"category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.allosaurusHurt",
@@ -277,6 +297,16 @@
 			},
 			{
 				"name": "prehistoricfauna:prehistoric/ceratosaurus/ceratosaurus_idle2",
+				"stream": true
+			}
+		]
+	},
+	"ceratosaurus_bite": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.ceratosaurusBite",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/bite/large_bite",
 				"stream": true
 			}
 		]
@@ -615,6 +645,16 @@
 			}
 		]
 	},
+	"herrerasaurus_bite": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.herrerasaurusBite",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/bite/small_bite",
+				"stream": true
+			}
+		]
+	},
 	"herrerasaurus_hurt": {
 		"category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.herrerasaurusHurt",
@@ -709,6 +749,16 @@
 			},
 			{
 				"name": "prehistoricfauna:prehistoric/saurosuchus/saurosuchus_idle2",
+				"stream": true
+			}
+		]
+	},
+	"saurosuchus_bite": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.saurosuchusBite",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/bite/small_bite",
 				"stream": true
 			}
 		]
@@ -1493,6 +1543,16 @@
 			}
         ]
     },
+	"dilophosaurus_bite": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.dilophosaurusBite",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/bite/small_bite",
+				"stream": true
+			}
+		]
+	},
 	"dilophosaurus_hurt": {
         "category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.dilophosaurusHurt",
@@ -2099,6 +2159,16 @@
 			}
         ]
     },
+	"poposaurus_bite": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.poposaurusBite",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/bite/small_bite",
+				"stream": true
+			}
+		]
+	},
 	"poposaurus_hurt": {
         "category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.poposaurusHurt",
@@ -2143,6 +2213,16 @@
 			}
         ]
     },
+	"postosuchus_bite": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.postosuchusBite",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/bite/small_bite",
+				"stream": true
+			}
+		]
+	},
 	"postosuchus_hurt": {
         "category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.postosuchusHurt",
@@ -2240,5 +2320,15 @@
                 "stream": true
             }
         ]
-    }
+    },
+	"portal": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.portal",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/portal/portal",
+				"stream": true
+			}
+		]
+	}
 }

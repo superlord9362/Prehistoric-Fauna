@@ -254,6 +254,9 @@ public class PinacosaurusModel extends EntityModel<PinacosaurusEntity> {
 			this.Body.rotateAngleY = attackProgress * leftOrRight * (float)Math.toRadians(-200);
 			this.Tail1.rotateAngleZ = attackProgress * leftOrRight * (float)Math.toRadians(15);
 			this.Body.rotationPointZ = 24 + attackProgress * -22;
+			if (entityIn.isInWater()) {
+				this.Neck.rotateAngleX = -0.1F;
+			}
 			if (entityIn.isEating()) {
 				this.Neck.rotateAngleX = Math.abs(MathHelper.sin(0.05F * ageInTicks) * 0.5F) + 0.25F;
 				this.Body.rotateAngleX = 0.1F;

@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.cretaceous.djadochta.CitipatiModel;
 import superlord.prehistoricfauna.common.entities.cretaceous.djadochta.CitipatiEntity;
@@ -16,9 +17,11 @@ public class CitipatiRenderer extends MobRenderer<CitipatiEntity, EntityModel<Ci
 	private static final ResourceLocation CITIPATI = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/citipati/citipati.png");
 	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/citipati/albino.png");
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/citipati/melanistic.png");
+	private static final ResourceLocation PALEOCRAFT = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/citipati/paleocraft.png");
 	private static final ResourceLocation CITIPATI_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/citipati/citipati_sleeping.png");
 	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/citipati/albino_sleeping.png");
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/citipati/melanistic_sleeping.png");
+	private static final ResourceLocation PALEOCRAFT_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/citipati/paleocraft_sleeping.png");
 	private static final CitipatiModel CITIPATI_MODEL = new CitipatiModel();
 
 	public CitipatiRenderer(EntityRendererManager rm) {
@@ -38,7 +41,12 @@ public class CitipatiRenderer extends MobRenderer<CitipatiEntity, EntityModel<Ci
 
 	@Override
 	public ResourceLocation getEntityTexture(CitipatiEntity entity) {
-		if (entity.isAlbino()) {
+		String s = TextFormatting.getTextWithoutFormattingCodes(entity.getName().getString());
+		if ( s != null && "Paleocraft".equals(s)) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
+				return PALEOCRAFT_SLEEPING;
+			} else return PALEOCRAFT;
+		} else if (entity.isAlbino()) {
 			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return ALBINO_SLEEPING;
 			} else return ALBINO;

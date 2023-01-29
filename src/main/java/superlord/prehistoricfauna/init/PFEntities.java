@@ -58,6 +58,7 @@ import superlord.prehistoricfauna.common.entities.fossil.SarahsaurusSkeletonEnti
 import superlord.prehistoricfauna.common.entities.fossil.SarahsaurusSkullEntity;
 import superlord.prehistoricfauna.common.entities.fossil.SaurosuchusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.fossil.SaurosuchusSkullEntity;
+import superlord.prehistoricfauna.common.entities.fossil.ScelidosaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.fossil.ScelidosaurusSkullEntity;
 import superlord.prehistoricfauna.common.entities.fossil.StegosaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.fossil.StegosaurusSkullEntity;
@@ -199,8 +200,9 @@ public class PFEntities {
 	public static final EntityType<SarahsaurusSkullEntity> SARAHSAURUS_SKULL = register(EntityType.Builder.<SarahsaurusSkullEntity>create(SarahsaurusSkullEntity::new, EntityClassification.MISC).size(1, 1), "sarahsaurus_skull");
 	public static final EntityType<SarahsaurusSkeletonEntity> SARAHSAURUS_SKELETON = register(EntityType.Builder.<SarahsaurusSkeletonEntity>create(SarahsaurusSkeletonEntity::new, EntityClassification.MISC).size(1, 1.25F), "sarahsaurus_skeleton");
 	public static final EntityType<DilophosaurusSkeletonEntity> DILOPHOSAURUS_SKELETON = register(EntityType.Builder.<DilophosaurusSkeletonEntity>create(DilophosaurusSkeletonEntity::new, EntityClassification.MISC).size(1, 2F), "dilophosaurus_skeleton");
+	public static final EntityType<ScelidosaurusSkeletonEntity> SCELIDOSAURUS_SKELETON = register(EntityType.Builder.<ScelidosaurusSkeletonEntity>create(ScelidosaurusSkeletonEntity:: new, EntityClassification.MISC).size(1, 1), "scelidosaurus_skeleton");
 	//Fish
-	public static final EntityType<MyledaphusEntity> MYLEDAPHUS = register(EntityType.Builder.<MyledaphusEntity>create(MyledaphusEntity::new, EntityClassification.WATER_AMBIENT).size(0.6875F, 0.0625F), "myledaphus");
+	public static final EntityType<MyledaphusEntity> MYLEDAPHUS = register(EntityType.Builder.<MyledaphusEntity>create(MyledaphusEntity::new, EntityClassification.WATER_AMBIENT).size(0.6875F, 0.2F), "myledaphus");
 	public static final EntityType<GarEntity> GAR = register(EntityType.Builder.<GarEntity>create(GarEntity::new, EntityClassification.WATER_AMBIENT).size(0.6875F, 0.2F), "gar");
 	public static final EntityType<CyclurusEntity> CYCLURUS = register(EntityType.Builder.<CyclurusEntity>create(CyclurusEntity::new, EntityClassification.WATER_AMBIENT).size(0.6875F, 0.2F), "cyclurus");
 	public static final EntityType<CeratodusEntity> CERATODUS = register(EntityType.Builder.<CeratodusEntity>create(CeratodusEntity::new, EntityClassification.WATER_AMBIENT).size(0.6875F, 0.2F), "ceratodus");

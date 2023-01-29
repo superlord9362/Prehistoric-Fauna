@@ -9,7 +9,7 @@ import superlord.prehistoricfauna.common.entities.fossil.StegosaurusSkullEntity;
 
 public class StegosaurusSkullRenderer extends MobRenderer<StegosaurusSkullEntity, StegosaurusSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/stegosaurus_skull.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/stegosaurus_skeleton.png");
 
     public StegosaurusSkullRenderer(EntityRendererManager rm) {
         super(rm, new StegosaurusSkullModel(), 0F);

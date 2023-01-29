@@ -127,6 +127,7 @@ import superlord.prehistoricfauna.common.entities.fossil.SarahsaurusSkeletonEnti
 import superlord.prehistoricfauna.common.entities.fossil.SarahsaurusSkullEntity;
 import superlord.prehistoricfauna.common.entities.fossil.SaurosuchusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.fossil.SaurosuchusSkullEntity;
+import superlord.prehistoricfauna.common.entities.fossil.ScelidosaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.fossil.StegosaurusSkeletonEntity;
 import superlord.prehistoricfauna.common.entities.fossil.StegosaurusSkullEntity;
 import superlord.prehistoricfauna.common.entities.fossil.TriceratopsSkeletonEntity;
@@ -436,6 +437,7 @@ public class PrehistoricFauna {
 		GlobalEntityTypeAttributes.put(PFEntities.SARAHSAURUS_SKULL, SarahsaurusSkullEntity.createAttributes().create());
 		GlobalEntityTypeAttributes.put(PFEntities.SARAHSAURUS_SKELETON, SarahsaurusSkeletonEntity.createAttributes().create());
 		GlobalEntityTypeAttributes.put(PFEntities.DILOPHOSAURUS_SKELETON, DilophosaurusSkeletonEntity.createAttributes().create());
+		GlobalEntityTypeAttributes.put(PFEntities.SCELIDOSAURUS_SKELETON, ScelidosaurusSkeletonEntity.createAttributes().create());
 	}
 
 	@SuppressWarnings("unlikely-arg-type")

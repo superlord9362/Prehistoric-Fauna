@@ -9,7 +9,7 @@ import superlord.prehistoricfauna.common.entities.fossil.DesmatosuchusSkullEntit
 
 public class DesmatosuchusSkullRenderer extends MobRenderer<DesmatosuchusSkullEntity, DesmatosuchusSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/desmatosuchus_skull.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/desmatosuchus_skeleton.png");
 
     public DesmatosuchusSkullRenderer(EntityRendererManager rm) {
         super(rm, new DesmatosuchusSkullModel(), 0F);
