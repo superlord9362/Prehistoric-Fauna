@@ -1,58 +1,32 @@
 package superlord.prehistoricfauna.client;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.util.InputMappings;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.common.Mod;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.render.tileentity.gui.GuiPaleo;
 import superlord.prehistoricfauna.common.CommonProxy;
+import superlord.prehistoricfauna.init.PFBlocks;
 
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-public class ClientProxy extends CommonProxy {
-
-	private TileEntity referencedTE = null;
-
-	@SuppressWarnings("unused")
-	private FontRenderer paleoFontRenderer;
-
-	@SuppressWarnings("resource")
-	@Override
+@Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID, value = Dist.CLIENT)
+public class ClientProxy extends CommonProxy { 
+	
 	public void init() {
-        this.paleoFontRenderer = Minecraft.getInstance().fontRenderer;
 	}
-
-	@Override
-	public void openPaleopediaGui(ItemStack book) {
-		Minecraft.getInstance().displayGuiScreen(new GuiPaleo(book));
-	}
-
-	public boolean shouldSeePaleopediaContents() {
-		return InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), 340) || InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), 344);
-	}
-
-	@SuppressWarnings("resource")
-	public Object getFontRenderer() {
-		return Minecraft.getInstance().fontRenderer;
-	}
-
-	public TileEntity getReferencedTE() {
-		return referencedTE;
-	}
-
-	public void setReferencedTE(TileEntity tileEntity) {
-		referencedTE = tileEntity;
-	}
-
-	@SuppressWarnings("resource")
-	public PlayerEntity getClientSidePlayer() {
-		return Minecraft.getInstance().player;
+	
+	public static void setupBlockRenders() {
+		RenderType cutoutRenderType = RenderType.cutout();
+		
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.HORSETAIL.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TALL_HORSETAIL.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.OSMUNDA.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TALL_OSMUNDA.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.CLUBMOSS.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.MARCHANTIA.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.METASEQUOIA_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.METASEQUOIA_LEAVES.get(), cutoutRenderType);
 	}
 
 }
