@@ -59,6 +59,13 @@ public class PrehistoricFauna {
 		}
 	};
 	
+	public final static CreativeModeTab PF_MISC = new CreativeModeTab("prehistoric_misc_tab") {
+		@Override
+		public ItemStack makeIcon() {
+			return new ItemStack(PFItems.CRASSOSTREA_OYSTER.get());
+		}
+	};
+	
 	private void doClientStuff(final FMLClientSetupEvent event) {
 		trySetRandomPanorama();
 	}
