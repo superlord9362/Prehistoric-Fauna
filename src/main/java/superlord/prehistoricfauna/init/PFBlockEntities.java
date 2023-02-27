@@ -6,6 +6,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.entity.block.PFSignBlockEntity;
+import superlord.prehistoricfauna.common.entity.block.PaleoscribeBlockEntity;
 
 public class PFBlockEntities {
 	
@@ -21,5 +22,6 @@ public class PFBlockEntities {
 			PFBlocks.HEIDIPHYLLUM_SIGN.get(), PFBlocks.HEIDIPHYLLUM_WALL_SIGN.get(),
 			PFBlocks.LIRIODENDRITES_SIGN.get(), PFBlocks.LIRIODENDRITES_WALL_SIGN.get()
 			).build(null));
+	public static final RegistryObject<BlockEntityType<PaleoscribeBlockEntity>> PALEOSCRIBE = REGISTER.register("paleoscribe", () -> BlockEntityType.Builder.of(PaleoscribeBlockEntity::new, PFBlocks.PALEOSCRIBE.get()).build(null)); 
 
 }

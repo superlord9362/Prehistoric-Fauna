@@ -47,6 +47,7 @@ import superlord.prehistoricfauna.common.blocks.MetasequoiaSaplingBlock;
 import superlord.prehistoricfauna.common.blocks.MossBlock;
 import superlord.prehistoricfauna.common.blocks.PFStandingSignBlock;
 import superlord.prehistoricfauna.common.blocks.PFWallSignBlock;
+import superlord.prehistoricfauna.common.blocks.PaleoscribeBlock;
 import superlord.prehistoricfauna.common.blocks.PrehistoricPlantBlock;
 import superlord.prehistoricfauna.common.blocks.PtilophyllumBaseBlock;
 import superlord.prehistoricfauna.common.blocks.PtilophyllumBlock;
@@ -323,6 +324,8 @@ public class PFBlocks {
 	public static final RegistryObject<Block> PLASTERED_AMMONITES = REGISTER.register("plastered_ammonites", () -> new Block(Properties.of(Material.STONE).strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> PETRIFIED_WOOD = REGISTER.register("petrified_wood", () -> new RotatedPillarBlock(Properties.of(Material.STONE).strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> POLISHED_PETRIFIED_WOOD = REGISTER.register("polished_petrified_wood", () -> new RotatedPillarBlock(Properties.of(Material.STONE).strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	
+	public static final RegistryObject<Block> PALEOSCRIBE = REGISTER.register("paleoscribe", () -> new PaleoscribeBlock(Properties.of(Material.WOOD).strength(2.0F).sound(SoundType.WOOD).noOcclusion()));
 	
 	private static RotatedPillarBlock createLog() {
 		return new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F).sound(SoundType.WOOD));

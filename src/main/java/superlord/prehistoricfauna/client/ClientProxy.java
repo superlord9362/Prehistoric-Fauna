@@ -9,11 +9,13 @@ import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -26,6 +28,8 @@ import superlord.prehistoricfauna.init.PFBlocks;
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID, value = Dist.CLIENT)
 public class ClientProxy extends CommonProxy { 
 	
+	private BlockEntity referencedBE = null;
+
 	public void init() {
 	}
 	
@@ -104,5 +108,19 @@ public class ClientProxy extends CommonProxy {
 	public boolean shouldSeePaleopediaContents() {
 		return InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 340) || InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 344);
 	}
+	
+	public BlockEntity getReferencedBE() {
+		return referencedBE;
+	}
+
+	public void setReferencedBE(BlockEntity blockEntity) {
+		referencedBE = blockEntity;
+	}
+
+	@SuppressWarnings("resource")
+	public Player getClientSidePlayer() {
+		return Minecraft.getInstance().player;
+	}
+
 
 }

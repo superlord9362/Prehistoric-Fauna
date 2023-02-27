@@ -2,11 +2,11 @@ package superlord.prehistoricfauna.common.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -29,8 +29,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.common.entities.tile.PaleoscribeContainer;
-import superlord.prehistoricfauna.common.entities.tile.PaleoscribeTileEntity;
+import superlord.prehistoricfauna.common.entity.block.PaleoscribeBlockEntity;
 import superlord.prehistoricfauna.init.PFItems;
 
 public class PaleoscribeBlock extends BaseEntityBlock {
@@ -82,8 +81,8 @@ public class PaleoscribeBlock extends BaseEntityBlock {
 	@SuppressWarnings("deprecation")
 	public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
 		BlockEntity tileentity = world.getBlockEntity(pos);
-		if(tileentity instanceof PaleoscribeTileEntity) {
-			Containers.dropContents(world, pos, (PaleoscribeTileEntity)tileentity);
+		if(tileentity instanceof PaleoscribeBlockEntity) {
+			Containers.dropContents(world, pos, (PaleoscribeBlockEntity)tileentity);
 			world.updateNeighbourForOutputSignal(pos, this);
 		}
 		super.onRemove(state, world, pos, newState, isMoving);
@@ -111,7 +110,7 @@ public class PaleoscribeBlock extends BaseEntityBlock {
 	      return RenderShape.MODEL;
 	   }
 
-	public static boolean tryPlacePaleopedia(Level worldIn, BlockPos pos, BlockState state, ItemStack stack, int i, PlayerInventory playerInventory) {
+	public static boolean tryPlacePaleopedia(Level worldIn, BlockPos pos, BlockState state, ItemStack stack, int i, Inventory playerInventory) {
 		if (!state.getValue(HAS_PALEOPEDIA)) {
 			if (!worldIn.isClientSide) {
 				placePaleopedia(worldIn, pos, state, stack, i, playerInventory);
@@ -122,10 +121,10 @@ public class PaleoscribeBlock extends BaseEntityBlock {
 		}
 	}
 
-	private static void placePaleopedia(Level worldIn, BlockPos pos, BlockState state, ItemStack stack, int i, PlayerInventory playerInventory) {
+	private static void placePaleopedia(Level worldIn, BlockPos pos, BlockState state, ItemStack stack, int i, Inventory playerInventory) {
 		BlockEntity tileentity = worldIn.getBlockEntity(pos);
 		PaleoscribeContainer container = new PaleoscribeContainer(i, playerInventory);
-		if (tileentity instanceof PaleoscribeTileEntity) {
+		if (tileentity instanceof PaleoscribeBlockEntity) {
 			if (container.getSlot(0).getStack().getItem() == PFItems.PALEOPEDIA.get()) {
 				setHasPaleopedia(worldIn, pos, state, true);
 				System.out.println("Has Ancient Journal!");
@@ -141,7 +140,7 @@ public class PaleoscribeBlock extends BaseEntityBlock {
 	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
 		if (!player.isShiftKeyDown()) {
 			if (worldIn.isClientSide) {
-				PrehistoricFauna.PROXY.setReferencedTE(worldIn.getBlockEntity(pos));
+				PrehistoricFauna.PROXY.setReferencedBE(worldIn.getBlockEntity(pos));
 			} else {
 				MenuProvider inamedcontainerprovider = this.getMenuProvider(state, worldIn, pos);
 				if (inamedcontainerprovider != null) {
@@ -156,7 +155,7 @@ public class PaleoscribeBlock extends BaseEntityBlock {
 
 	@Override
 	public BlockEntity newBlockEntity(BlockPos p_153573_, BlockState p_153574_) {
-		return new PaleoscribeTileEntity();
+		return new PaleoscribeBlockEntity();
 	}
 
 }

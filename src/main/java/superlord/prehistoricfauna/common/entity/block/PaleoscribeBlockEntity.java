@@ -13,13 +13,17 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.common.entity.block.messages.MessageUpdatePaleoscribe;
 import superlord.prehistoricfauna.common.util.EnumPaleoPages;
+import superlord.prehistoricfauna.init.PFBlockEntities;
 import superlord.prehistoricfauna.init.PFItems;
 
 public class PaleoscribeBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer {
@@ -57,7 +61,7 @@ public class PaleoscribeBlockEntity extends BaseContainerBlockEntity implements 
     private NonNullList<ItemStack> stacks = NonNullList.withSize(3, ItemStack.EMPTY);
 
     public PaleoscribeBlockEntity() {
-        super(PFTileEntities.PALEOSCRIBE.get());
+        super(PFBlockEntities.PALEOSCRIBE.get());
     }
 
     @Override
@@ -177,10 +181,10 @@ public class PaleoscribeBlockEntity extends BaseContainerBlockEntity implements 
     }
 
     public EnumPaleoPages[] randomizePages(ItemStack paleopedia, ItemStack paleopage) {
-        if (!world.isRemote) {
+        if (!level.isClientSide) {
             if (paleopedia.getItem() == PFItems.PALEOPEDIA.get()) {
                 List<EnumPaleoPages> possibleList = getPossiblePages();
-                localRand.setSeed(this.world.getGameTime());
+                localRand.setSeed(this.level.getGameTime());
                 Collections.shuffle(possibleList, localRand);
                 if (possibleList.size() > 0) {
                     selectedPages[0] = possibleList.get(0);
@@ -309,7 +313,7 @@ public class PaleoscribeBlockEntity extends BaseContainerBlockEntity implements 
     }
 
     @Override
-    protected Container createMenu(int id, PlayerInventory player) {
+    protected AbstractContainerMenu createMenu(int id, Inventory player) {
         return null;
     }
 
@@ -336,7 +340,7 @@ public class PaleoscribeBlockEntity extends BaseContainerBlockEntity implements 
 
     @Nullable
     @Override
-    public Container createMenu(int id, PlayerInventory playerInventory, Player player) {
+    public AbstractContainerMenu createMenu(int id, Inventory playerInventory, Player player) {
         return new PaleoscribeContainer(id, this, playerInventory, furnaceData, IWorldPosCallable.DUMMY);
     }
 

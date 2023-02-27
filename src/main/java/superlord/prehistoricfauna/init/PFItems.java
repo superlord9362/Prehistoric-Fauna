@@ -242,6 +242,7 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> DARK_HENOSTONE_BRICK_SLAB = REGISTER.register("dark_henostone_brick_slab", () -> new BlockItem(PFBlocks.DARK_HENOSTONE_BRICK_SLAB.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
 	public static final RegistryObject<BlockItem> DARK_HENOSTONE_BRICK_WALL = REGISTER.register("dark_henostone_brick_wall", () -> new BlockItem(PFBlocks.DARK_HENOSTONE_BRICK_WALL.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
 	public static final RegistryObject<BlockItem> HENOSTONE_TRAP = REGISTER.register("henostone_trap", () -> new BlockItem(PFBlocks.HENOSTONE_TRAP.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> PALEOSCRIBE = REGISTER.register("paleoscribe", () -> new BlockItem(PFBlocks.PALEOSCRIBE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	
 	public static final RegistryObject<BlockItem> LARGE_AMMONITE_FOSSIL = REGISTER.register("large_ammonite_fossil", () -> new BlockItem(PFBlocks.LARGE_AMMONITE_FOSSIL.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	public static final RegistryObject<BlockItem> MEDIUM_AMMONITE_FOSSIL = REGISTER.register("medium_ammonite_fossil", () -> new BlockItem(PFBlocks.MEDIUM_AMMONITE_FOSSIL.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
@@ -259,5 +260,6 @@ public class PFItems {
 	public static final RegistryObject<Item> CRETACEOUS_FOSSIL = REGISTER.register("cretaceous_fossil", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
 	
 	public static final RegistryObject<PaleopediaItem> PALEOPEDIA = REGISTER.register("ancient_journal", () -> new PaleopediaItem());
+	public static final RegistryObject<Item> PALEOPAGE = REGISTER.register("paleopage", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
 	
 }
