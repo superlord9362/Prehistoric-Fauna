@@ -21,6 +21,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.common.Mod;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.client.gui.GuiPaleopedia;
 import superlord.prehistoricfauna.common.CommonProxy;
 import superlord.prehistoricfauna.init.PFBlocks;
 
@@ -102,7 +103,7 @@ public class ClientProxy extends CommonProxy {
 	
 	@Override
 	public void openPaleopediaGui(ItemStack book) {
-		Minecraft.getInstance().setScreen(new GuiPaleo(book));
+		Minecraft.getInstance().setScreen(new GuiPaleopedia(book));
 	}
 
 	public boolean shouldSeePaleopediaContents() {

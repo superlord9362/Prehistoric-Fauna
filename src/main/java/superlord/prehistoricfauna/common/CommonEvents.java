@@ -1,8 +1,5 @@
 package superlord.prehistoricfauna.common;
 
-import com.google.common.collect.ImmutableMap;
-
-import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -13,7 +10,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.init.PFBlocks;
-import superlord.prehistoricfauna.init.PFItems;
 
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CommonEvents {
@@ -234,7 +230,8 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.MOSS_BLOCK.get(), 60, 20);
     }
     
-    public static void registerFlammable(Block block, int flameOdds, int burnOdds) {
+    @SuppressWarnings("unused")
+	public static void registerFlammable(Block block, int flameOdds, int burnOdds) {
         FireBlock fire = (FireBlock) Blocks.FIRE;
         //fire.setFlammable(block, flameOdds, burnOdds);
     }

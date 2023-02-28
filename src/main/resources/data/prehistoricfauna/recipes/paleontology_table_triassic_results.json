@@ -27,34 +27,9 @@
       "weight": 25.0
     },
 	{
-		"item": "prehistoricfauna:saurosuchus_skull",
-		"count": 1,
-		"weight": 1.25
-	},
-	{
 		"item": "prehistoricfauna:herrerasaurus_skull",
 		"count": 1,
 		"weight": 1.25
-	},
-	{
-		"item": "prehistoricfauna:postosuchus_skull",
-		"count": 1,
-		"weight": 1.25
-	},
-	{
-		"item": "prehistoricfauna:coelophysis_skull",
-		"count": 1,
-		"weight": 1.25
-	},
-	{
-		"item": "prehistoricfauna:ischigualastia_skull",
-		"count": 1,
-		"weight": 2.5
-	},
-	{
-		"item": "prehistoricfauna:desmatosuchus_skull",
-		"count": 1,
-		"weight": 2.5
 	}
   ]
 }

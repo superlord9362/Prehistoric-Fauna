@@ -65,11 +65,11 @@ public class MessageUpdatePaleoscribe {
                         if (player.level.getBlockEntity(pos) instanceof PaleoscribeBlockEntity) {
                         	PaleoscribeBlockEntity paleoscribe = (PaleoscribeBlockEntity) player.level.getBlockEntity(pos);
                             if(message.updateStack){
-                                ItemStack bookStack = paleoscribe.getStackInSlot(0);
+                                ItemStack bookStack = paleoscribe.getItem(0);
                                 if(bookStack.getItem() == PFItems.PALEOPEDIA.get()){
                                     EnumPaleoPages.addPage(EnumPaleoPages.fromInt(message.pageOrdinal), bookStack);
                                 }
-                                paleoscribe.randomizePages(bookStack, paleoscribe.getStackInSlot(1));
+                                paleoscribe.randomizePages(bookStack, paleoscribe.getItem(1));
                             }else{
                                 paleoscribe.selectedPages[0] = EnumPaleoPages.fromInt(message.selectedPages1);
                                 paleoscribe.selectedPages[1] = EnumPaleoPages.fromInt(message.selectedPages2);

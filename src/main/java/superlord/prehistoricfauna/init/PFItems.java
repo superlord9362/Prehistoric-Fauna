@@ -7,7 +7,9 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.common.items.FossilItem;
 import superlord.prehistoricfauna.common.items.PaleopediaItem;
+import superlord.prehistoricfauna.common.items.SpawnSkeletonItem;
 
 public class PFItems {
 	
@@ -243,7 +245,8 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> DARK_HENOSTONE_BRICK_WALL = REGISTER.register("dark_henostone_brick_wall", () -> new BlockItem(PFBlocks.DARK_HENOSTONE_BRICK_WALL.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
 	public static final RegistryObject<BlockItem> HENOSTONE_TRAP = REGISTER.register("henostone_trap", () -> new BlockItem(PFBlocks.HENOSTONE_TRAP.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	public static final RegistryObject<BlockItem> PALEOSCRIBE = REGISTER.register("paleoscribe", () -> new BlockItem(PFBlocks.PALEOSCRIBE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
-	
+	public static final RegistryObject<BlockItem> PALEONTOLOGY_TABLE = REGISTER.register("paleontology_table", () -> new BlockItem(PFBlocks.PALEONTOLOGY_TABLE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+
 	public static final RegistryObject<BlockItem> LARGE_AMMONITE_FOSSIL = REGISTER.register("large_ammonite_fossil", () -> new BlockItem(PFBlocks.LARGE_AMMONITE_FOSSIL.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	public static final RegistryObject<BlockItem> MEDIUM_AMMONITE_FOSSIL = REGISTER.register("medium_ammonite_fossil", () -> new BlockItem(PFBlocks.MEDIUM_AMMONITE_FOSSIL.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	public static final RegistryObject<BlockItem> SMALL_AMMONITE_FOSSIL = REGISTER.register("small_ammonite_fossil", () -> new BlockItem(PFBlocks.SMALL_AMMONITE_FOSSIL.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
@@ -255,9 +258,15 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> PETRIFIED_WOOD = REGISTER.register("petrified_wood", () -> new BlockItem(PFBlocks.PETRIFIED_WOOD.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	public static final RegistryObject<BlockItem> POLISHED_PETRIFIED_WOOD = REGISTER.register("polished_petrified_wood", () -> new BlockItem(PFBlocks.POLISHED_PETRIFIED_WOOD.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	
-	public static final RegistryObject<Item> TRIASSIC_FOSSIL = REGISTER.register("triassic_fossil", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
-	public static final RegistryObject<Item> JURASSIC_FOSSIL = REGISTER.register("jurassic_fossil", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
-	public static final RegistryObject<Item> CRETACEOUS_FOSSIL = REGISTER.register("cretaceous_fossil", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> TRIASSIC_FOSSIL = REGISTER.register("triassic_fossil", () -> new FossilItem(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> JURASSIC_FOSSIL = REGISTER.register("jurassic_fossil", () -> new FossilItem(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> CRETACEOUS_FOSSIL = REGISTER.register("cretaceous_fossil", () -> new FossilItem(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	
+	public static final RegistryObject<Item> FOSSILIZED_BONES = REGISTER.register("fossilized_bones", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> GEOLOGY_HAMMER = REGISTER.register("geological_hammer", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC).durability(250).stacksTo(1)));
+	
+	public static final RegistryObject<Item> HERRERASAURUS_SKULL = REGISTER.register("herrerasaurus_skull", () -> new SpawnSkeletonItem(PFEntities.HERRERASAURUS_SKULL, new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+
 	
 	public static final RegistryObject<PaleopediaItem> PALEOPEDIA = REGISTER.register("ancient_journal", () -> new PaleopediaItem());
 	public static final RegistryObject<Item> PALEOPAGE = REGISTER.register("paleopage", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));

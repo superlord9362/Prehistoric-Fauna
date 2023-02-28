@@ -1,8 +1,11 @@
 package superlord.prehistoricfauna.common.items;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.NonNullList;
@@ -73,7 +76,7 @@ public class PaleopediaItem extends Item {
         if (stack.getTag() != null) {
         	if (PrehistoricFauna.PROXY.shouldSeePaleopediaContents()) {
                 tooltip.add(new TranslatableComponent("paleopedia.contains").withStyle(ChatFormatting.GRAY));
-                List<EnumPaleoPages> pages = EnumPaleoPages.containedPages(EnumPaleoPages.toList(stack.getTag().getIntArray("Pages")));
+                final Set<EnumPaleoPages> pages = EnumPaleoPages.containedPages(Ints.asList(stack.getTag().getIntArray("Pages")));  
                 for (EnumPaleoPages page : pages) {
                     tooltip.add(new TranslatableComponent(ChatFormatting.WHITE + "-").append(new TranslatableComponent("paleopedia." + EnumPaleoPages.values()[page.ordinal()].toString().toLowerCase())).withStyle(ChatFormatting.GRAY));
                 }

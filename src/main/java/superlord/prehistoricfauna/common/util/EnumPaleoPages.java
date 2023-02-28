@@ -1,12 +1,19 @@
 package superlord.prehistoricfauna.common.util;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
-import java.util.Random;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import javax.annotation.Nullable;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.primitives.Ints;
+
+import io.netty.util.internal.ThreadLocalRandom;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import superlord.prehistoricfauna.common.items.PaleopediaItem;
@@ -63,95 +70,51 @@ public enum EnumPaleoPages {
 	EXAERETODON(0),
 	HERRERASAURUS(0);
 
-	public int pages;
+	public static final ImmutableList<EnumPaleoPages> ALL_PAGES = ImmutableList.copyOf(EnumPaleoPages.values());
+    public static final ImmutableList<Integer> ALL_INDEXES = ImmutableList
+        .copyOf(IntStream.range(0, EnumPaleoPages.values().length).iterator());
+
+    public int pages;
 
     EnumPaleoPages(int pages) {
         this.pages = pages;
     }
 
-    public static List<Integer> toList(int[] containedpages) {
-        List<Integer> intList = new ArrayList<Integer>();
-        for (int containedpage : containedpages) {
-            if (containedpage >= 0 && containedpage < EnumPaleoPages.values().length) {
-                intList.add(containedpage);
-            }
-        }
-        return intList;
-    }
-
-    public static int[] fromList(List<Integer> containedpages) {
-        int[] pages = new int[containedpages.size()];
-        for (int i = 0; i < pages.length; i++)
-            pages[i] = containedpages.get(i);
-        return pages;
-    }
-
-    @SuppressWarnings("unused")
-	public static List<EnumPaleoPages> containedPages(List<Integer> pages) {
-        Iterator<Integer> itr = pages.iterator();
-        List<EnumPaleoPages> list = new ArrayList<>();
-        for (Integer page : pages) {
-            if (page >= 0 && page < EnumPaleoPages.values().length) {
-                list.add(EnumPaleoPages.values()[page]);
-            }
-        }
-        return list;
+    public static Set<EnumPaleoPages> containedPages(Collection<Integer> pages) {
+        return pages.stream().map(ALL_PAGES::get).collect(Collectors.toSet());
     }
 
     public static boolean hasAllPages(ItemStack book) {
-        List<EnumPaleoPages> allPages = new ArrayList<EnumPaleoPages>();
-        for (int i = 0; i < EnumPaleoPages.values().length; i++) {
-            allPages.add(EnumPaleoPages.values()[i]);
-        }
-        List<EnumPaleoPages> pages = containedPages(EnumPaleoPages.toList(book.getTag().getIntArray("Pages")));
-        for (EnumPaleoPages page : allPages) {
-            return !pages.contains(page);
-        }
-        return false;
+        return Ints.asList(book.getTag().getIntArray("Pages")).containsAll(ALL_INDEXES);
     }
 
     public static List<Integer> enumToInt(List<EnumPaleoPages> pages) {
-        Iterator<superlord.prehistoricfauna.common.util.EnumPaleoPages> itr = pages.iterator();
-        List<Integer> list = new ArrayList<Integer>();
-        while (itr.hasNext()) {
-            list.add(EnumPaleoPages.values()[(itr.next()).ordinal()].ordinal());
-        }
-        return list;
+        return pages.stream().map(EnumPaleoPages::ordinal).collect(Collectors.toList());
     }
 
     public static EnumPaleoPages getRand() {
-        return EnumPaleoPages.values()[new Random().nextInt(EnumPaleoPages.values().length)];
+        return EnumPaleoPages.values()[ThreadLocalRandom.current().nextInt(EnumPaleoPages.values().length)];
 
     }
 
     public static void addRandomPage(ItemStack book) {
         if (book.getItem() instanceof PaleopediaItem) {
             List<EnumPaleoPages> list = EnumPaleoPages.possiblePages(book);
-            if (list != null && !list.isEmpty()) {
-                addPage(list.get(new Random().nextInt(list.size())), book);
+            if (!list.isEmpty()) {
+                addPage(list.get(ThreadLocalRandom.current().nextInt(list.size())), book);
             }
         }
     }
 
     public static List<EnumPaleoPages> possiblePages(ItemStack book) {
         if (book.getItem() instanceof PaleopediaItem) {
-        	CompoundTag tag = book.getTag();
-            List<EnumPaleoPages> allPages = new ArrayList<EnumPaleoPages>();
-            for (EnumPaleoPages page : EnumPaleoPages.values()) {
-                allPages.add(page);
-            }
-            List<EnumPaleoPages> containedPages = containedPages(toList(tag.getIntArray("Pages")));
-            List<EnumPaleoPages> possiblePages = new ArrayList<EnumPaleoPages>();
-            Iterator<superlord.prehistoricfauna.common.util.EnumPaleoPages> itr = allPages.iterator();
-            while (itr.hasNext()) {
-                EnumPaleoPages page = itr.next();
-                if (!containedPages.contains(page)) {
-                    possiblePages.add(page);
-                }
-            }
+            CompoundTag tag = book.getTag();
+            Collection<EnumPaleoPages> containedPages = containedPages(Ints.asList(tag.getIntArray("Pages")));
+            List<EnumPaleoPages> possiblePages = new ArrayList<>(ALL_PAGES);
+            possiblePages.removeAll(containedPages);
             return possiblePages;
         }
-        return null;
+        return Collections.emptyList();
     }
 
 
@@ -159,12 +122,12 @@ public enum EnumPaleoPages {
         boolean flag = false;
         if (book.getItem() instanceof PaleopediaItem) {
             CompoundTag tag = book.getTag();
-            List<EnumPaleoPages> enumlist = containedPages(toList(tag.getIntArray("Pages")));
-            if (!enumlist.contains(page)) {
-                enumlist.add(page);
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(page.ordinal())) {
+                already.add(page.ordinal());
                 flag = true;
             }
-            tag.putIntArray("Pages", fromList(enumToInt(enumlist)));
+            tag.putIntArray("Pages", Ints.toArray(already));
         }
         return flag;
     }
@@ -172,7 +135,7 @@ public enum EnumPaleoPages {
 
     @Nullable
     public static EnumPaleoPages fromInt(int index) {
-        if(index < 0){
+        if (index < 0) {
             return null;
         }
         int length = values().length;

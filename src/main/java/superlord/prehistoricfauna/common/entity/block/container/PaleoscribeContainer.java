@@ -1,60 +1,73 @@
 package superlord.prehistoricfauna.common.entity.block.container;
 
-import org.antlr.runtime.misc.IntArray;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.entity.block.PaleoscribeBlockEntity;
+import superlord.prehistoricfauna.common.entity.block.inventory.PaleoscribeSlot;
 import superlord.prehistoricfauna.common.entity.block.messages.MessageUpdatePaleoscribe;
 import superlord.prehistoricfauna.common.items.PaleopediaItem;
 import superlord.prehistoricfauna.common.util.EnumPaleoPages;
+import superlord.prehistoricfauna.init.PFContainers;
 import superlord.prehistoricfauna.init.PFItems;
 
 public class PaleoscribeContainer extends AbstractContainerMenu {
-    private IInventory tileFurnace;
-    private int[] possiblePagesInt = new int[3];
-    private final IWorldPosCallable worldPosCallable;
-    
-    public PaleoscribeContainer(int i, Inventory Inventory) {
-        this(i, new Inventory(2), Inventory, new IntArray(0), IWorldPosCallable.DUMMY);
+	private final Container tileFurnace;
+    private final int[] possiblePagesInt = new int[3];
+
+    public PaleoscribeContainer(int i, Inventory playerInventory) {
+        this(i, new SimpleContainer(2), playerInventory, new SimpleContainerData(0));
     }
 
 
-    public PaleoscribeContainer(int id, IInventory furnaceInventory, Inventory Inventory, IIntArray vars, IWorldPosCallable worldPosCallable) {
-        super(PFContainers.PALEOSCRIBE_CONTAINER, id);
+    public PaleoscribeContainer(int id, Container furnaceInventory, Inventory playerInventory, ContainerData vars) {
+        super(PFContainers.PALEOSCRIBE.get(), id);
         this.tileFurnace = furnaceInventory;
-        this.worldPosCallable = worldPosCallable;
-        this.addSlot(new PaleoscribeSlot(Inventory.player, furnaceInventory, 0, 15, 47) {
+        this.addSlot(new PaleoscribeSlot(furnaceInventory, 0, 15, 47) {
             @Override
-            public boolean isItemValid(ItemStack stack) {
-                return super.isItemValid(stack) && !stack.isEmpty() && stack.getItem() instanceof PaleopediaItem;
+            public boolean mayPlace(@NotNull ItemStack stack) {
+                return super.mayPlace(stack) && !stack.isEmpty() && stack.getItem() instanceof PaleopediaItem;
             }
         });
         this.addSlot(new Slot(furnaceInventory, 1, 35, 47) {
             @Override
-            public boolean isItemValid(ItemStack stack) {
-                return super.isItemValid(stack) && !stack.isEmpty() && stack.getItem() == PFItems.PALEOPAGE.get();
+            public boolean mayPlace(@NotNull ItemStack stack) {
+                return super.mayPlace(stack) && !stack.isEmpty() && stack.getItem() == PFItems.PALEOPAGE.get();
             }
         });
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 9; ++j) {
-                this.addSlot(new Slot(Inventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+                this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
             }
         }
         for (int k = 0; k < 9; ++k) {
-            this.addSlot(new Slot(Inventory, k, 8 + k * 18, 142));
+            this.addSlot(new Slot(playerInventory, k, 8 + k * 18, 142));
         }
     }
 
+    private static int getPageField(int i) {
+        if (PrehistoricFauna.PROXY.getReferencedBE() instanceof PaleoscribeBlockEntity) {
+        	PaleoscribeBlockEntity paleoscribe = (PaleoscribeBlockEntity) PrehistoricFauna.PROXY.getReferencedBE();
+            return paleoscribe.selectedPages[i] == null ? -1 : paleoscribe.selectedPages[i].ordinal();
+        }
+        return -1;
+    }
+
     @Override
-    public void detectAndSendChanges() {
-        super.detectAndSendChanges();
+    public void broadcastChanges() {
+        super.broadcastChanges();
     }
 
     public void onUpdate() {
@@ -64,60 +77,44 @@ public class PaleoscribeContainer extends AbstractContainerMenu {
     }
 
     @Override
-    public boolean canInteractWith(Player playerIn) {
-        return this.tileFurnace.isUsableByPlayer(playerIn);
+    public boolean stillValid(@NotNull Player playerIn) {
+        return this.tileFurnace.stillValid(playerIn);
     }
 
     @Override
-    public ItemStack transferStackInSlot(Player playerIn, int index) {
+    public @NotNull ItemStack quickMoveStack(@NotNull Player playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = this.inventorySlots.get(index);
-        if (slot != null && slot.getHasStack()) {
-           ItemStack itemstack1 = slot.getStack();
-           itemstack = itemstack1.copy();
-           if (index == 0) {
-              if (!this.mergeItemStack(itemstack1, 2, 38, true)) {
-                 return ItemStack.EMPTY;
-              }
-           } else if (index == 1) {
-              if (!this.mergeItemStack(itemstack1, 2, 38, true)) {
-                 return ItemStack.EMPTY;
-              }
-           } else if (itemstack1.getItem() == PFItems.PALEOPAGE.get()) {
-              if (!this.mergeItemStack(itemstack1, 1, 2, true)) {
-                 return ItemStack.EMPTY;
-              }
-           } else {
-              if (this.inventorySlots.get(0).getHasStack() || !this.inventorySlots.get(0).isItemValid(itemstack1)) {
-                 return ItemStack.EMPTY;
-              }
+        Slot slot = this.slots.get(index);
+        if (slot != null && slot.hasItem()) {
+            ItemStack itemstack1 = slot.getItem();
+            itemstack = itemstack1.copy();
+            if (index < this.tileFurnace.getContainerSize()) {
+                if (!this.moveItemStackTo(itemstack1, this.tileFurnace.getContainerSize(), this.slots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (this.getSlot(0).mayPlace(itemstack1) && !this.getSlot(0).hasItem()) {
+                if (!this.moveItemStackTo(itemstack1, 0, 1, false)) {
+                    return ItemStack.EMPTY;
+                }
 
-              if (itemstack1.hasTag()) { // Forge: Fix MC-17431
-                 ((Slot)this.inventorySlots.get(0)).putStack(itemstack1.split(1));
-              } else if (!itemstack1.isEmpty()) {
-                 this.inventorySlots.get(0).putStack(new ItemStack(itemstack1.getItem()));
-                 itemstack1.shrink(1);
-              }
-           }
-
-           if (itemstack1.isEmpty()) {
-              slot.putStack(ItemStack.EMPTY);
-           } else {
-              slot.onSlotChanged();
-           }
-
-           if (itemstack1.getCount() == itemstack.getCount()) {
-              return ItemStack.EMPTY;
-           }
-
-           slot.onTake(playerIn, itemstack1);
+            } else if (this.getSlot(1).mayPlace(itemstack1) && !this.getSlot(1).hasItem()) {
+                if (!this.moveItemStackTo(itemstack1, 1, 2, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (this.tileFurnace.getContainerSize() <= 5 || !this.moveItemStackTo(itemstack1, 5, this.tileFurnace.getContainerSize(), false)) {
+                return ItemStack.EMPTY;
+            }
+            if (itemstack1.isEmpty()) {
+                slot.set(ItemStack.EMPTY);
+            } else {
+                slot.setChanged();
+            }
         }
-
         return itemstack;
-     }
+    }
 
-    public int getPaleopageAmount() {
-        ItemStack itemstack = this.tileFurnace.getStackInSlot(1);
+    public int getManuscriptAmount() {
+        ItemStack itemstack = this.tileFurnace.getItem(1);
         return itemstack.isEmpty() || itemstack.getItem() != PFItems.PALEOPAGE.get() ? 0 : itemstack.getCount();
     }
 
@@ -126,7 +123,7 @@ public class PaleoscribeContainer extends AbstractContainerMenu {
         possiblePagesInt[1] = getPageField(1);
         possiblePagesInt[2] = getPageField(2);
         EnumPaleoPages[] pages = new EnumPaleoPages[3];
-        if (this.tileFurnace.getStackInSlot(0).getItem() == PFItems.PALEOPEDIA.get()) {
+        if (this.tileFurnace.getItem(0).getItem() == PFItems.PALEOPEDIA.get()) {
             if (possiblePagesInt[0] < 0) {
                 pages[0] = null;
             } else {
@@ -146,47 +143,45 @@ public class PaleoscribeContainer extends AbstractContainerMenu {
         return pages;
     }
 
-    private int getPageField(int i) {
-        if(PrehistoricFauna.PROXY.getReferencedBE() instanceof PaleoscribeBlockEntity){
-            PaleoscribeBlockEntity paleoscribe = (PaleoscribeBlockEntity) PrehistoricFauna.PROXY.getReferencedBE();
-            return paleoscribe.selectedPages[i] == null ? -1 : paleoscribe.selectedPages[i].ordinal();
-        }
-        return -1;
-    }
-    
-    public boolean enchantItem(Player playerIn, int id) {
+    @Override
+    public boolean clickMenuButton(Player playerIn, int id) {
         possiblePagesInt[0] = getPageField(0);
         possiblePagesInt[1] = getPageField(1);
         possiblePagesInt[2] = getPageField(2);
-        ItemStack itemstack = this.tileFurnace.getStackInSlot(0);
-        ItemStack itemstack1 = this.tileFurnace.getStackInSlot(1);
+        ItemStack itemstack = this.tileFurnace.getItem(0);
+        ItemStack itemstack1 = this.tileFurnace.getItem(1);
         int i = 3;
-        boolean didEnchant = false;
-        if ((itemstack1.isEmpty() || itemstack1.getCount() < i) && !playerIn.isCreative()) {
+
+        if (!playerIn.level.isClientSide && !playerIn.isCreative()) {
+            itemstack1.shrink(i);
+            if (itemstack1.isEmpty()) {
+                this.tileFurnace.setItem(1, ItemStack.EMPTY);
+            }
+            return false;
+        }
+
+        if ((itemstack1.isEmpty() ||
+            itemstack1.getCount() < i ||
+            itemstack1.getItem() != PFItems.PALEOPAGE.get())
+            && !playerIn.isCreative()) {
             return false;
         } else if (this.possiblePagesInt[id] > 0 && !itemstack.isEmpty()) {
             EnumPaleoPages page = getPossiblePages()[Mth.clamp(id, 0, 2)];
             if (page != null) {
                 if (itemstack.getItem() == PFItems.PALEOPEDIA.get()) {
-                    didEnchant = EnumPaleoPages.addPage(page, itemstack);
-                    this.tileFurnace.setInventorySlotContents(0, itemstack);
+                    this.tileFurnace.setItem(0, itemstack);
                     if (PrehistoricFauna.PROXY.getReferencedBE() instanceof PaleoscribeBlockEntity) {
-                        if(playerIn.world.isRemote){
-                        	PrehistoricFauna.sendMSGToServer(new MessageUpdatePaleoscribe(((PaleoscribeBlockEntity)PrehistoricFauna.PROXY.getReferencedBE()).getBlockPos().asLong(), 0, 0, 0, true, page.ordinal()));
+                        if (playerIn.level.isClientSide) {
+                        	PrehistoricFauna.sendMSGToServer(new MessageUpdatePaleoscribe(PrehistoricFauna.PROXY.getReferencedBE().getBlockPos().asLong(), 0, 0, 0, true, page.ordinal()));
                         }
                         ((PaleoscribeBlockEntity) PrehistoricFauna.PROXY.getReferencedBE()).randomizePages(itemstack, itemstack1);
                     }
                 }
-                if (!playerIn.isCreative() && didEnchant) {
-                    itemstack1.shrink(i);
-                    if (itemstack1.isEmpty()) {
-                        this.tileFurnace.setInventorySlotContents(1, ItemStack.EMPTY);
-                    }
-                }
-                this.tileFurnace.markDirty();
+
+                this.tileFurnace.setChanged();
                 //this.xpSeed = playerIn.getXPSeed();
-                this.onCraftMatrixChanged(this.tileFurnace);
-                playerIn.world.playSound(null, playerIn.getPosition(), SoundEvents.BOOK_PAGE_TURN, SoundCategory.BLOCKS, 1.0F, playerIn.world.rand.nextFloat() * 0.1F + 0.9F);
+                this.slotsChanged(this.tileFurnace);
+                playerIn.level.playSound(null, playerIn.blockPosition(), SoundEvents.BOOK_PAGE_TURN, SoundSource.BLOCKS, 1.0F, playerIn.level.random.nextFloat() * 0.1F + 0.9F);
             }
             onUpdate();
             return true;
@@ -194,13 +189,5 @@ public class PaleoscribeContainer extends AbstractContainerMenu {
             return false;
         }
     }
- 
-    @Override
-    public void onContainerClosed(Player playerIn) {
-        super.onContainerClosed(playerIn);
-        this.worldPosCallable.consume((p_217004_2_, p_217004_3_) -> {
-           this.clearContainer(playerIn, playerIn.world, this.tileFurnace);
-        });
-     }
     
 }

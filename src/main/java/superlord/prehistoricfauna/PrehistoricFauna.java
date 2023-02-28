@@ -16,6 +16,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
@@ -32,8 +33,13 @@ import net.minecraftforge.server.ServerLifecycleHooks;
 import superlord.prehistoricfauna.client.ClientProxy;
 import superlord.prehistoricfauna.common.CommonProxy;
 import superlord.prehistoricfauna.common.entity.block.messages.MessageUpdatePaleoscribe;
+import superlord.prehistoricfauna.common.entity.fossil.triassic.HerrerasaurusSkull;
+import superlord.prehistoricfauna.init.PFBlockEntities;
 import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFContainers;
+import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
+import superlord.prehistoricfauna.init.PFRecipes;
 
 @Mod(PrehistoricFauna.MOD_ID)
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID)
@@ -56,10 +62,19 @@ public class PrehistoricFauna {
 		
 		bus.addListener(this::doClientStuff);
 		bus.addListener(this::setup);
-		
+		bus.addListener(this::registerEntityAttributes);
+
 		PFBlocks.REGISTER.register(bus);
 		PFItems.REGISTER.register(bus);
+		PFRecipes.REGISTER.register(bus);
+		PFBlockEntities.REGISTER.register(bus);
+		PFContainers.REGISTER.register(bus);
 	}
+
+	private void registerEntityAttributes(EntityAttributeCreationEvent event) {
+		event.put(PFEntities.HERRERASAURUS_SKULL.get(), HerrerasaurusSkull.createAttributes().build());
+	}
+
 	
 	public final static CreativeModeTab PF_DECORATION = new CreativeModeTab("prehistoric_decoration_tab") {
 		@Override

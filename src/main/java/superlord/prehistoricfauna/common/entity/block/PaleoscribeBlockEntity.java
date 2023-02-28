@@ -7,27 +7,37 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import org.jetbrains.annotations.NotNull;
+
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.util.Mth;
-import net.minecraft.world.Container;
+import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.common.entity.block.container.PaleoscribeContainer;
 import superlord.prehistoricfauna.common.entity.block.messages.MessageUpdatePaleoscribe;
+import superlord.prehistoricfauna.common.items.PaleopediaItem;
 import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.init.PFBlockEntities;
 import superlord.prehistoricfauna.init.PFItems;
 
 public class PaleoscribeBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer {
-    private static final int[] slotsTop = new int[]{0};
+	private static final int[] slotsTop = new int[]{0};
     private static final int[] slotsSides = new int[]{1};
     private static final int[] slotsBottom = new int[]{0};
     private static final Random RANDOM = new Random();
@@ -53,88 +63,52 @@ public class PaleoscribeBlockEntity extends BaseContainerBlockEntity implements 
     public float pageHelp1;
     public float pageHelp2;
     public EnumPaleoPages[] selectedPages = new EnumPaleoPages[3];
-    net.minecraftforge.items.IItemHandler handlerUp = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, Direction.UP);
-    net.minecraftforge.items.IItemHandler handlerDown = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, Direction.DOWN);
     net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlers =
-            net.minecraftforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN);
-    private Random localRand = new Random();
+        net.minecraftforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN);
+    private final Random localRand = new Random();
     private NonNullList<ItemStack> stacks = NonNullList.withSize(3, ItemStack.EMPTY);
 
-    public PaleoscribeBlockEntity() {
-        super(PFBlockEntities.PALEOSCRIBE.get());
+    public PaleoscribeBlockEntity(BlockPos pos, BlockState state) {
+        super(PFBlockEntities.PALEOSCRIBE.get(), pos, state);
+    }
+    
+    public static String getGuiID() {
+        return PrehistoricFauna.MOD_ID + ":paleoscribe";
     }
 
-    @Override
-    public void tick() {
-        float f1 = this.pageHelp1;
+    public static void bookAnimationTick(Level p_155504_, BlockPos p_155505_, BlockState p_155506_, PaleoscribeBlockEntity p_155507_) {
+        float f1 = p_155507_.pageHelp1;
         do {
-            this.pageHelp1 += RANDOM.nextInt(4) - RANDOM.nextInt(4);
-        } while (f1 == this.pageHelp1);
-        this.pageFlipPrev = this.pageFlip;
-        float f = (this.pageHelp1 - this.pageFlip) * 0.04F;
+            p_155507_.pageHelp1 += RANDOM.nextInt(4) - RANDOM.nextInt(4);
+        } while (f1 == p_155507_.pageHelp1);
+        p_155507_.pageFlipPrev = p_155507_.pageFlip;
+        float f = (p_155507_.pageHelp1 - p_155507_.pageFlip) * 0.04F;
         float f3 = 0.02F;
         f = Mth.clamp(f, -f3, f3);
-        this.pageHelp2 += (f - this.pageHelp2) * 0.9F;
-        this.pageFlip += this.pageHelp2;
+        p_155507_.pageHelp2 += (f - p_155507_.pageHelp2) * 0.9F;
+        p_155507_.pageFlip += p_155507_.pageHelp2;
     }
-
+    
     @Override
-    public int getSizeInventory() {
+    public int getContainerSize() {
         return 2;
     }
 
     @Override
-    public ItemStack getStackInSlot(int index) {
+    public @NotNull ItemStack getItem(int index) {
         return this.stacks.get(index);
     }
 
-    @SuppressWarnings({ "rawtypes", "unused" })
-	private boolean canAddPage() {
-        if (this.stacks.get(0).isEmpty()) {
-            return false;
-        } else {
-            ItemStack itemstack = this.stacks.get(0).copy();
-
-            if (itemstack.isEmpty()) {
-                return false;
-            }
-            if (itemstack.getItem() != PFItems.PALEOPEDIA.get()) {
-                return false;
-            }
-
-            if (itemstack.getItem() == PFItems.PALEOPEDIA.get()) {
-                List list = EnumPaleoPages.possiblePages(itemstack);
-                if (list == null || list.isEmpty()) {
-                    return false;
-                }
-            }
-            if (this.stacks.get(2).isEmpty())
-                return true;
-            int result = stacks.get(2).getCount() + itemstack.getCount();
-            return result <= getInventoryStackLimit() && result <= this.stacks.get(2).getMaxStackSize();
-        }
-    }
-    
-    public boolean hasPaleopedia() {
-        if (this.getStackInSlot(0).getItem() == PFItems.PALEOPEDIA.get()) {
-        	System.out.println("Paleopedia");
-        	return true;
-        } else {
-        	return false;
-        }
-    }
-
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-	private ArrayList<EnumPaleoPages> getPossiblePages() {
-        List list = EnumPaleoPages.possiblePages(this.stacks.get(0));
+    private List<EnumPaleoPages> getPossiblePages() {
+        final List<EnumPaleoPages> list = EnumPaleoPages.possiblePages(this.stacks.get(0));
         if (list != null && !list.isEmpty()) {
-            return (ArrayList<EnumPaleoPages>) list;
+            return list;
         }
         return EMPTY_LIST;
     }
 
     @Override
-    public ItemStack decrStackSize(int index, int count) {
+    public @NotNull ItemStack removeItem(int index, int count) {
         if (!this.stacks.get(index).isEmpty()) {
             ItemStack itemstack;
 
@@ -167,26 +141,26 @@ public class PaleoscribeBlockEntity extends BaseContainerBlockEntity implements 
     }
 
     @Override
-    public void setInventorySlotContents(int index, ItemStack stack) {
-        boolean flag = !stack.isEmpty() && stack.isItemEqual(this.stacks.get(index)) && ItemStack.areItemStackTagsEqual(stack, this.stacks.get(index));
+    public void setItem(int index, ItemStack stack) {
+        boolean flag = !stack.isEmpty() && stack.sameItem(this.stacks.get(index)) && ItemStack.tagMatches(stack, this.stacks.get(index));
         this.stacks.set(index, stack);
 
-        if (!stack.isEmpty() && stack.getCount() > this.getInventoryStackLimit()) {
-            stack.setCount(this.getInventoryStackLimit());
+        if (!stack.isEmpty() && stack.getCount() > this.getMaxStackSize()) {
+            stack.setCount(this.getMaxStackSize());
         }
         if (index == 0 && !flag) {
-            this.markDirty();
-            selectedPages = randomizePages(getStackInSlot(0), getStackInSlot(1));
+            this.setChanged();
+            selectedPages = randomizePages(getItem(0), getItem(1));
         }
     }
 
-    public EnumPaleoPages[] randomizePages(ItemStack paleopedia, ItemStack paleopage) {
+    public EnumPaleoPages[] randomizePages(ItemStack paleopedia, ItemStack manuscript) {
         if (!level.isClientSide) {
             if (paleopedia.getItem() == PFItems.PALEOPEDIA.get()) {
                 List<EnumPaleoPages> possibleList = getPossiblePages();
                 localRand.setSeed(this.level.getGameTime());
                 Collections.shuffle(possibleList, localRand);
-                if (possibleList.size() > 0) {
+                if (!possibleList.isEmpty()) {
                     selectedPages[0] = possibleList.get(0);
                 } else {
                     selectedPages[0] = null;
@@ -205,67 +179,65 @@ public class PaleoscribeBlockEntity extends BaseContainerBlockEntity implements 
             int page1 = selectedPages[0] == null ? -1 : selectedPages[0].ordinal();
             int page2 = selectedPages[1] == null ? -1 : selectedPages[1].ordinal();
             int page3 = selectedPages[2] == null ? -1 : selectedPages[2].ordinal();
-            PrehistoricFauna.sendMSGToAll(new MessageUpdatePaleoscribe(pos.toLong(), page1, page2, page3, false, 0));
+            PrehistoricFauna.sendMSGToAll(new MessageUpdatePaleoscribe(worldPosition.asLong(), page1, page2, page3, false, 0));
         }
         return selectedPages;
     }
 
     @Override
-    public void read(BlockState state, CompoundTag compound) {
-        super.read(state, compound);
-        this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(compound, this.stacks);
-
-    }
-    
-    public void read2(BlockState blockstate, CompoundTag compound) {
-        super.read(blockstate, compound);
-        this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(compound, this.stacks);
+    public void load(@NotNull CompoundTag compound) {
+        super.load(compound);
+        this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+        ContainerHelper.loadAllItems(compound, this.stacks);
 
     }
 
     @Override
-    public CompoundTag write(CompoundTag compound) {
-        super.write(compound);
-        ItemStackHelper.saveAllItems(compound, this.stacks);
-        return compound;
+    public void saveAdditional(@NotNull CompoundTag compound) {
+        ContainerHelper.saveAllItems(compound, this.stacks);
     }
 
     @Override
-    public void openInventory(Player player) {
+    public void startOpen(@NotNull Player player) {
     }
 
     @Override
-    public void closeInventory(Player player) {
+    public void stopOpen(@NotNull Player player) {
     }
 
     @Override
-    public boolean isItemValidForSlot(int index, ItemStack stack) {
-        return true;
+    public boolean canPlaceItem(int index, ItemStack stack) {
+        if (stack.isEmpty())
+            return false;
+        if (index == 0)
+            return stack.getItem() instanceof PaleopediaItem;
+        if (index == 1)
+            return stack.getItem() == PFItems.PALEOPAGE.get();
+        return false;
     }
 
     @Override
-    public int getInventoryStackLimit() {
+    public int getMaxStackSize() {
         return 64;
     }
 
     @Override
-    public boolean isUsableByPlayer(Player player) {
+    public boolean stillValid(@NotNull Player player) {
         return true;
     }
 
     @Override
-    public void clear() {
+    public void clearContent() {
         this.stacks.clear();
     }
 
-    public ITextComponent getName() {
-        return new TranslationTextComponent("block.prehistoricfauna.paleoscribe");
+    @Override
+    public @NotNull Component getName() {
+        return new TranslatableComponent("block.prehistoricfauna.paleoscribe");
     }
 
     @Override
-    public boolean canExtractItem(int index, ItemStack stack, Direction direction) {
+    public boolean canTakeItemThroughFace(int index, @NotNull ItemStack stack, @NotNull Direction direction) {
         return false;
     }
 
@@ -275,45 +247,42 @@ public class PaleoscribeBlockEntity extends BaseContainerBlockEntity implements 
     }
 
     @Override
-    public int[] getSlotsForFace(Direction side) {
+    public int @NotNull [] getSlotsForFace(@NotNull Direction side) {
         return side == Direction.DOWN ? slotsBottom : (side == Direction.UP ? slotsTop : slotsSides);
     }
 
     @Override
-    public boolean canInsertItem(int index, ItemStack itemStackIn, Direction direction) {
-        return this.isItemValidForSlot(index, itemStackIn);
-    }
-
-    public String getGuiID() {
-        return "prehistoricfauna:paleoscribe";
+    public boolean canPlaceItemThroughFace(int index, @NotNull ItemStack itemStackIn, Direction direction) {
+        return this.canPlaceItem(index, itemStackIn);
     }
 
     @Override
-    public ItemStack removeStackFromSlot(int index) {
+    public @NotNull ItemStack removeItemNoUpdate(int index) {
         return ItemStack.EMPTY;
     }
 
     @Override
-    public SUpdateTileEntityPacket getUpdatePacket() {
-        return new SUpdateTileEntityPacket(pos, 1, getUpdateTag());
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket packet) {
-        read2(this.getBlockState(), packet.getNbtCompound());
-    }
-
-    public CompoundTag getUpdateTag() {
-        return this.write(new CompoundTag());
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket packet) {
+        load(packet.getTag());
     }
 
     @Override
-    protected ITextComponent getDefaultName() {
+    public @NotNull CompoundTag getUpdateTag() {
+        return this.saveWithFullMetadata();
+    }
+
+    @Override
+    protected @NotNull Component getDefaultName() {
         return getName();
     }
 
     @Override
-    protected AbstractContainerMenu createMenu(int id, Inventory player) {
+    protected @NotNull AbstractContainerMenu createMenu(int id, @NotNull Inventory player) {
         return null;
     }
 
@@ -328,8 +297,8 @@ public class PaleoscribeBlockEntity extends BaseContainerBlockEntity implements 
     }
 
     @Override
-    public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
-        if (!this.removed && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+    public <T> net.minecraftforge.common.util.@NotNull LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.@NotNull Capability<T> capability, @Nullable Direction facing) {
+        if (!this.remove && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             if (facing == Direction.DOWN)
                 return handlers[1].cast();
             else
@@ -340,9 +309,8 @@ public class PaleoscribeBlockEntity extends BaseContainerBlockEntity implements 
 
     @Nullable
     @Override
-    public AbstractContainerMenu createMenu(int id, Inventory playerInventory, Player player) {
-        return new PaleoscribeContainer(id, this, playerInventory, furnaceData, IWorldPosCallable.DUMMY);
+    public AbstractContainerMenu createMenu(int id, @NotNull Inventory playerInventory, @NotNull Player player) {
+        return new PaleoscribeContainer(id, this, playerInventory, furnaceData);
     }
-
 
 }
