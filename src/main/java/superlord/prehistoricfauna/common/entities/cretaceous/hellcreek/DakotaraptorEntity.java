@@ -93,7 +93,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.common.blocks.DakotaraptorEggBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entities.DinosaurEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.djadochta.AepyornithomimusEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.djadochta.CitipatiEntity;
@@ -1136,7 +1136,7 @@ public class DakotaraptorEntity extends DinosaurEntity {
 				} else if (this.dakotaraptor.isDigging > 200) {
 					World world = this.dakotaraptor.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), PFBlocks.DAKOTARAPTOR_EGG.getDefaultState().with(DakotaraptorEggBlock.EGGS, Integer.valueOf(this.dakotaraptor.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.DAKOTARAPTOR_EGG.getDefaultState().with(DinosaurEggBlock.EGGS, Integer.valueOf(this.dakotaraptor.rand.nextInt(4) + 1)), 3);
 					this.dakotaraptor.setHasEgg(false);
 					this.dakotaraptor.setDigging(false);
 					this.dakotaraptor.setInLove(600);

@@ -50,7 +50,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.common.blocks.ScutellosaurusEggBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entities.DinosaurEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.djadochta.CitipatiEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.djadochta.PinacosaurusEntity;
@@ -363,7 +363,7 @@ public class ScutellosaurusEntity extends DinosaurEntity {
 				} else if (this.scutellosaurus.isDigging > 200) {
 					World world = this.scutellosaurus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), PFBlocks.SCUTELLOSAURUS_EGG.getDefaultState().with(ScutellosaurusEggBlock.EGGS, Integer.valueOf(this.scutellosaurus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.SCUTELLOSAURUS_EGG.getDefaultState().with(DinosaurEggBlock.EGGS, Integer.valueOf(this.scutellosaurus.rand.nextInt(4) + 1)), 3);
 					this.scutellosaurus.setHasEgg(false);
 					this.scutellosaurus.setDigging(false);
 					this.scutellosaurus.setInLove(600);

@@ -60,7 +60,7 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import superlord.prehistoricfauna.common.blocks.TriceratopsEggBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
@@ -763,7 +763,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 				} else if (this.triceratops.isDigging > 200) {
 					World world = this.triceratops.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), PFBlocks.TRICERATOPS_EGG.getDefaultState().with(TriceratopsEggBlock.EGGS, Integer.valueOf(this.triceratops.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.TRICERATOPS_EGG.getDefaultState().with(DinosaurEggBlock.EGGS, Integer.valueOf(this.triceratops.rand.nextInt(4) + 1)), 3);
 					this.triceratops.setHasEgg(false);
 					this.triceratops.setDigging(false);
 					this.triceratops.setInLove(600);

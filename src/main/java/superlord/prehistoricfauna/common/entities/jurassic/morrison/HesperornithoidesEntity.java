@@ -59,7 +59,7 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import superlord.prehistoricfauna.common.blocks.HesperornithoidesEggBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entities.DinosaurEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.djadochta.TelmasaurusEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.AnkylosaurusEntity;
@@ -485,7 +485,7 @@ public class HesperornithoidesEntity extends DinosaurEntity {
 				} else if (this.hesperornithoides.isDigging > 200) {
 					World world = this.hesperornithoides.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), PFBlocks.HESPERORNITHOIDES_EGG.getDefaultState().with(HesperornithoidesEggBlock.EGGS, Integer.valueOf(this.hesperornithoides.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.HESPERORNITHOIDES_EGG.getDefaultState().with(DinosaurEggBlock.EGGS, Integer.valueOf(this.hesperornithoides.rand.nextInt(4) + 1)), 3);
 					this.hesperornithoides.setHasEgg(false);
 					this.hesperornithoides.setDigging(false);
 					this.hesperornithoides.setInLove(600);

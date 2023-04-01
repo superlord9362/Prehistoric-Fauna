@@ -47,7 +47,7 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import superlord.prehistoricfauna.common.blocks.CamarasaurusEggBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entities.DinosaurEntity;
 import superlord.prehistoricfauna.common.entities.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entities.goal.DinosaurRandomLookGoal;
@@ -471,7 +471,7 @@ public class CamarasaurusEntity extends DinosaurEntity {
 				} else if (this.camarasaurus.isDigging > 200) {
 					World world = this.camarasaurus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), PFBlocks.CAMARASAURUS_EGG.getDefaultState().with(CamarasaurusEggBlock.EGGS, Integer.valueOf(this.camarasaurus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.CAMARASAURUS_EGG.getDefaultState().with(DinosaurEggBlock.EGGS, Integer.valueOf(this.camarasaurus.rand.nextInt(4) + 1)), 3);
 					this.camarasaurus.setHasEgg(false);
 					this.camarasaurus.setDigging(false);
 					this.camarasaurus.setInLove(600);

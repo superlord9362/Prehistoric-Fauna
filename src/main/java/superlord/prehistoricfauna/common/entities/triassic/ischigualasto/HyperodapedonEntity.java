@@ -49,7 +49,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.common.blocks.HyperodapedonEggBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entities.DinosaurEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.AnkylosaurusEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.DakotaraptorEntity;
@@ -352,7 +352,7 @@ public class HyperodapedonEntity extends DinosaurEntity {
 				} else if (this.hyperodapedon.isDigging > 200) {
 					World world = this.hyperodapedon.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), PFBlocks.HYPERODAPEDON_EGG.getDefaultState().with(HyperodapedonEggBlock.EGGS, Integer.valueOf(this.hyperodapedon.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.HYPERODAPEDON_EGG.getDefaultState().with(DinosaurEggBlock.EGGS, Integer.valueOf(this.hyperodapedon.rand.nextInt(4) + 1)), 3);
 					this.hyperodapedon.setHasEgg(false);
 					this.hyperodapedon.setDigging(false);
 					this.hyperodapedon.setInLove(600);

@@ -49,7 +49,7 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import superlord.prehistoricfauna.common.blocks.DesmatosuchusEggBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entities.DinosaurEntity;
 import superlord.prehistoricfauna.common.entities.goal.CathemeralSleepGoal;
 import superlord.prehistoricfauna.common.entities.goal.DinosaurLookAtGoal;
@@ -461,7 +461,7 @@ public class DesmatosuchusEntity extends DinosaurEntity {
 				} else if (this.desmatosuchus.isDigging > 200) {
 					World world = this.desmatosuchus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), PFBlocks.DESMATOSUCHUS_EGG.getDefaultState().with(DesmatosuchusEggBlock.EGGS, Integer.valueOf(this.desmatosuchus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.DESMATOSUCHUS_EGG.getDefaultState().with(DinosaurEggBlock.EGGS, Integer.valueOf(this.desmatosuchus.rand.nextInt(4) + 1)), 3);
 					this.desmatosuchus.setHasEgg(false);
 					this.desmatosuchus.setDigging(false);
 					this.desmatosuchus.setInLove(600);

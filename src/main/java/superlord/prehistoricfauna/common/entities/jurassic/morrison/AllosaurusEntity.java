@@ -67,7 +67,7 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import superlord.prehistoricfauna.common.blocks.AllosaurusEggBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entities.DinosaurEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.djadochta.AepyornithomimusEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.djadochta.CitipatiEntity;
@@ -544,7 +544,7 @@ public class AllosaurusEntity extends DinosaurEntity {
 				} else if (this.allosaurus.isDigging > 200) {
 					World world = this.allosaurus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), PFBlocks.ALLOSAURUS_EGG.getDefaultState().with(AllosaurusEggBlock.EGGS, Integer.valueOf(this.allosaurus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.ALLOSAURUS_EGG.getDefaultState().with(DinosaurEggBlock.EGGS, Integer.valueOf(this.allosaurus.rand.nextInt(4) + 1)), 3);
 					this.allosaurus.setHasEgg(false);
 					this.allosaurus.setDigging(false);
 					this.allosaurus.setInLove(600);

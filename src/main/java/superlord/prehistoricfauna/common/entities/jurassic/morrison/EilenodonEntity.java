@@ -58,7 +58,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.common.blocks.EilenodonEggBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entities.DinosaurEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.AnkylosaurusEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.DakotaraptorEntity;
@@ -383,7 +383,7 @@ public class EilenodonEntity extends DinosaurEntity {
 				} else if (this.eilenodon.isDigging > 200) {
 					World world = this.eilenodon.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), PFBlocks.EILENODON_EGG.getDefaultState().with(EilenodonEggBlock.EGGS, Integer.valueOf(this.eilenodon.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.EILENODON_EGG.getDefaultState().with(DinosaurEggBlock.EGGS, Integer.valueOf(this.eilenodon.rand.nextInt(4) + 1)), 3);
 					this.eilenodon.setHasEgg(false);
 					this.eilenodon.setDigging(false);
 					this.eilenodon.setInLove(600);

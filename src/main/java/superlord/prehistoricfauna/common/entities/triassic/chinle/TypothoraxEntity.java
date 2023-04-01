@@ -55,7 +55,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.Tags;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.common.blocks.TypothoraxEggBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entities.DinosaurEntity;
 import superlord.prehistoricfauna.common.entities.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entities.goal.DinosaurRandomLookGoal;
@@ -327,7 +327,7 @@ public class TypothoraxEntity extends DinosaurEntity {
 				} else if (this.typothorax.isDigging > 200) {
 					World world = this.typothorax.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), PFBlocks.TYPOTHORAX_EGG.getDefaultState().with(TypothoraxEggBlock.EGGS, Integer.valueOf(this.typothorax.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.TYPOTHORAX_EGG.getDefaultState().with(DinosaurEggBlock.EGGS, Integer.valueOf(this.typothorax.rand.nextInt(4) + 1)), 3);
 					this.typothorax.setHasEgg(false);
 					this.typothorax.setDigging(false);
 					this.typothorax.setInLove(600);

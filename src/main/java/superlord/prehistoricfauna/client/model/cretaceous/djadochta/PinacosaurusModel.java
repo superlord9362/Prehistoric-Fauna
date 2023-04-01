@@ -206,6 +206,9 @@ public class PinacosaurusModel extends EntityModel<PinacosaurusEntity> {
 		this.TailClub.rotateAngleY = 0;
 		this.Neck.rotateAngleX = 0;
 		this.Body.rotationPointY = 11;
+		this.Body.rotateAngleX = 0;
+		this.RightArm.rotateAngleZ = 0F;
+		this.LeftArm.rotateAngleZ = 0F;
 		if (entityIn.isAsleep()) {
 			this.Body.rotationPointY = 17;
 			this.LeftFoot.rotateAngleX = 1.0220648339363292F;

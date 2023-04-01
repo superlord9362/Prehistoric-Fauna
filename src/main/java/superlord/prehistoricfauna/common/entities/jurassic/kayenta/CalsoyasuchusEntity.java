@@ -70,7 +70,7 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.Tags;
-import superlord.prehistoricfauna.common.blocks.DilophosaurusEggBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entities.DinosaurEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.djadochta.AepyornithomimusEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.djadochta.ProtoceratopsEntity;
@@ -588,7 +588,7 @@ public class CalsoyasuchusEntity extends DinosaurEntity {
 				} else if (this.calsoyasuchus.isDigging > 200) {
 					World world = this.calsoyasuchus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), PFBlocks.CALSOYASUCHUS_EGG.getDefaultState().with(DilophosaurusEggBlock.EGGS, Integer.valueOf(this.calsoyasuchus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.CALSOYASUCHUS_EGG.getDefaultState().with(DinosaurEggBlock.EGGS, Integer.valueOf(this.calsoyasuchus.rand.nextInt(4) + 1)), 3);
 					this.calsoyasuchus.setHasEgg(false);
 					this.calsoyasuchus.setDigging(false);
 					this.calsoyasuchus.setInLove(600);

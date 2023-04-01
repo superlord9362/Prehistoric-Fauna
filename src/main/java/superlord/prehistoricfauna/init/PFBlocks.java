@@ -46,52 +46,31 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.PrehistoricFauna.PFBuilding;
 import superlord.prehistoricfauna.PrehistoricFauna.PFDecoration;
 import superlord.prehistoricfauna.PrehistoricFauna.PFMisc;
-import superlord.prehistoricfauna.common.blocks.AepyornithomimusEggBlock;
 import superlord.prehistoricfauna.common.blocks.AlgaeBlock;
-import superlord.prehistoricfauna.common.blocks.AllosaurusEggBlock;
 import superlord.prehistoricfauna.common.blocks.AmmoniteGiantShellBlock;
 import superlord.prehistoricfauna.common.blocks.AmmoniteLargeShellBlock;
 import superlord.prehistoricfauna.common.blocks.AmmoniteMediumShellBlock;
 import superlord.prehistoricfauna.common.blocks.AmmoniteSmallShellBlock;
-import superlord.prehistoricfauna.common.blocks.AnkylosaurusEggBlock;
-import superlord.prehistoricfauna.common.blocks.BasilemysEggBlock;
 import superlord.prehistoricfauna.common.blocks.BigTuberBlock;
-import superlord.prehistoricfauna.common.blocks.CalsoyasuchusEggBlock;
-import superlord.prehistoricfauna.common.blocks.CamarasaurusEggBlock;
 import superlord.prehistoricfauna.common.blocks.CarvedSmallTuberBlock;
 import superlord.prehistoricfauna.common.blocks.CarvedTuberBlock;
-import superlord.prehistoricfauna.common.blocks.CeratosaurusEggBlock;
-import superlord.prehistoricfauna.common.blocks.ChromogisaurusEggBlock;
-import superlord.prehistoricfauna.common.blocks.CitipatiEggBlock;
 import superlord.prehistoricfauna.common.blocks.ClathopterisBlock;
 import superlord.prehistoricfauna.common.blocks.CobbaniaBlock;
-import superlord.prehistoricfauna.common.blocks.CoelophysisEggBlock;
 import superlord.prehistoricfauna.common.blocks.CrassostreaOysterBlock;
 import superlord.prehistoricfauna.common.blocks.CrateBlock;
 import superlord.prehistoricfauna.common.blocks.CretaceousPortalBlock;
 import superlord.prehistoricfauna.common.blocks.CretaceousTimeBlock;
-import superlord.prehistoricfauna.common.blocks.DakotaraptorEggBlock;
 import superlord.prehistoricfauna.common.blocks.DeadCycadBlock;
-import superlord.prehistoricfauna.common.blocks.DesmatosuchusEggBlock;
 import superlord.prehistoricfauna.common.blocks.DicroidiumBlock;
-import superlord.prehistoricfauna.common.blocks.DilophosaurusEggBlock;
-import superlord.prehistoricfauna.common.blocks.DryosaurusEggBlock;
-import superlord.prehistoricfauna.common.blocks.EilenodonEggBlock;
-import superlord.prehistoricfauna.common.blocks.ExaeretodonEggBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.blocks.FossilCrateBlock;
 import superlord.prehistoricfauna.common.blocks.GrowingPrehistoricPlantBlock;
 import superlord.prehistoricfauna.common.blocks.HardenedSiltBlock;
-import superlord.prehistoricfauna.common.blocks.HerrerasaurusEggBlock;
-import superlord.prehistoricfauna.common.blocks.HesperornithoidesEggBlock;
-import superlord.prehistoricfauna.common.blocks.HyperodapedonEggBlock;
-import superlord.prehistoricfauna.common.blocks.IschigualastiaEggBlock;
 import superlord.prehistoricfauna.common.blocks.JohnstoniaBlock;
 import superlord.prehistoricfauna.common.blocks.JurassicPortalBlock;
 import superlord.prehistoricfauna.common.blocks.JurassicTimeBlock;
-import superlord.prehistoricfauna.common.blocks.KayentatheriumEggBlock;
 import superlord.prehistoricfauna.common.blocks.LeafCarpetBlock;
 import superlord.prehistoricfauna.common.blocks.LiriodendritesLeavesBlock;
-import superlord.prehistoricfauna.common.blocks.MegapnosaurusEggBlock;
 import superlord.prehistoricfauna.common.blocks.MossBlock;
 import superlord.prehistoricfauna.common.blocks.MossyDirtBlock;
 import superlord.prehistoricfauna.common.blocks.NeocalamitesBlock;
@@ -101,38 +80,19 @@ import superlord.prehistoricfauna.common.blocks.PFStandingSignBlock;
 import superlord.prehistoricfauna.common.blocks.PFWallSignBlock;
 import superlord.prehistoricfauna.common.blocks.PaleontologyTableBlock;
 import superlord.prehistoricfauna.common.blocks.PaleoscribeBlock;
-import superlord.prehistoricfauna.common.blocks.PinacosaurusEggBlock;
-import superlord.prehistoricfauna.common.blocks.PlaceriasEggBlock;
 import superlord.prehistoricfauna.common.blocks.PlantFiberBlock;
-import superlord.prehistoricfauna.common.blocks.PlesiohadrosEggBlock;
-import superlord.prehistoricfauna.common.blocks.PoposaurusEggBlock;
 import superlord.prehistoricfauna.common.blocks.PortalFrameBlock;
-import superlord.prehistoricfauna.common.blocks.PostosuchusEggBlock;
 import superlord.prehistoricfauna.common.blocks.PrehistoricPlant;
 import superlord.prehistoricfauna.common.blocks.PrehistoricPlantBlock;
-import superlord.prehistoricfauna.common.blocks.ProtoceratopsEggBlock;
 import superlord.prehistoricfauna.common.blocks.PtilophyllumBaseBlock;
 import superlord.prehistoricfauna.common.blocks.PtilophyllumBlock;
-import superlord.prehistoricfauna.common.blocks.SarahsaurusEggBlock;
-import superlord.prehistoricfauna.common.blocks.SaurosuchusEggBlock;
-import superlord.prehistoricfauna.common.blocks.ScelidosaurusEggBlock;
-import superlord.prehistoricfauna.common.blocks.ScutellosaurusEggBlock;
 import superlord.prehistoricfauna.common.blocks.ShortOsmundacaulisBlock;
-import superlord.prehistoricfauna.common.blocks.SillosuchusEggBlock;
-import superlord.prehistoricfauna.common.blocks.StegosaurusEggBlock;
 import superlord.prehistoricfauna.common.blocks.TallHorsetailsBlock;
-import superlord.prehistoricfauna.common.blocks.TelmasaurusEggBlock;
-import superlord.prehistoricfauna.common.blocks.ThescelosaurusEggBlock;
 import superlord.prehistoricfauna.common.blocks.TrapBlock;
 import superlord.prehistoricfauna.common.blocks.TriassicPortalBlock;
 import superlord.prehistoricfauna.common.blocks.TriassicTimeBlock;
-import superlord.prehistoricfauna.common.blocks.TriceratopsEggBlock;
-import superlord.prehistoricfauna.common.blocks.TrilophosaurusEggBlock;
 import superlord.prehistoricfauna.common.blocks.TuberBlock;
 import superlord.prehistoricfauna.common.blocks.TuberCropBlock;
-import superlord.prehistoricfauna.common.blocks.TypothoraxEggBlock;
-import superlord.prehistoricfauna.common.blocks.TyrannosaurusEggBlock;
-import superlord.prehistoricfauna.common.blocks.VelociraptorEggBlock;
 import superlord.prehistoricfauna.common.blocks.VerticalSlabBlock;
 import superlord.prehistoricfauna.common.blocks.ZamitesFrondsBlock;
 import superlord.prehistoricfauna.common.blocks.ZamitesSaplingBlock;
@@ -201,29 +161,29 @@ public class PFBlocks {
 	public static final Block MOSSY_DIRT = new Block(Block.Properties.create(Material.EARTH).hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)).setRegistryName("mossy_dirt"); //Loot Table done
 	public static final Block LOAM = new MossyDirtBlock(Block.Properties.create(Material.EARTH, MaterialColor.BROWN).hardnessAndResistance(0.6F).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL)).setRegistryName("loam");//Loot Table done
 	public static final Block PACKED_LOAM = new Block(Block.Properties.create(Material.EARTH, MaterialColor.BROWN).hardnessAndResistance(0.6F).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL)).setRegistryName("packed_loam");
-	public static final Block THESCELOSAURUS_EGG = new ThescelosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("thescelosaurus_egg");//Loot Table done
-	public static final Block TRICERATOPS_EGG = new TriceratopsEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("triceratops_egg");//Loot Table done
-	public static final Block ANKYLOSAURUS_EGG = new AnkylosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("ankylosaurus_egg");//Loot Table done
-	public static final Block TYRANNOSAURUS_EGG = new TyrannosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("tyrannosaurus_egg");//Loot Table done
-	public static final Block DAKOTARAPTOR_EGG = new DakotaraptorEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("dakotaraptor_egg");//Loot Table done
-	public static final Block BASILEMYS_EGG = new BasilemysEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("basilemys_egg");//Loot Table done
-	public static final Block CAMARASAURUS_EGG = new CamarasaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("camarasaurus_egg");//Loot Table done
-	public static final Block ALLOSAURUS_EGG = new AllosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("allosaurus_egg");//Loot Table done
-	public static final Block CERATOSAURUS_EGG = new CeratosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("ceratosaurus_egg");//Loot Table done
-	public static final Block CHROMOGISAURUS_EGG = new ChromogisaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("chromogisaurus_egg");//Loot Table done
-	public static final Block DRYOSAURUS_EGG = new DryosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("dryosaurus_egg");//Loot Table done
-	public static final Block EILENODON_EGG = new EilenodonEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("eilenodon_egg");//Loot Table done
-	public static final Block HERRERASAURUS_EGG = new HerrerasaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("herrerasaurus_egg");//Loot Table done
-	public static final Block HESPERORNITHOIDES_EGG = new HesperornithoidesEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("hesperornithoides_egg");//Loot Table done
-	public static final Block HYPERODAPEDON_EGG = new HyperodapedonEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("hyperodapedon_egg");//Loot Table done
-	public static final Block STEGOSAURUS_EGG = new StegosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("stegosaurus_egg");//Loot Table done
-	public static final Block PROTOCERATOPS_EGG = new ProtoceratopsEggBlock(AbstractBlock.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly()).setRegistryName("protoceratops_egg");
-	public static final Block VELOCIRAPTOR_EGG = new VelociraptorEggBlock(AbstractBlock.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("velociraptor_egg");
-	public static final Block CITIPATI_EGG = new CitipatiEggBlock(AbstractBlock.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).tickRandomly().notSolid().sound(SoundType.METAL)).setRegistryName("citipati_egg");
-	public static final Block AEPYORNITHOMIMUS_EGG = new AepyornithomimusEggBlock(AbstractBlock.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).tickRandomly().notSolid().sound(SoundType.METAL)).setRegistryName("aepyornithomimus_egg");
-	public static final Block TELMASAURUS_EGG = new TelmasaurusEggBlock(AbstractBlock.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).tickRandomly().sound(SoundType.METAL).notSolid()).setRegistryName("telmasaurus_egg");
-	public static final Block PINACOSAURUS_EGG = new PinacosaurusEggBlock(AbstractBlock.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).tickRandomly().sound(SoundType.METAL).notSolid()).setRegistryName("pinacosaurus_egg");
-	public static final Block PLESIOHADROS_EGG = new PlesiohadrosEggBlock(AbstractBlock.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).tickRandomly().sound(SoundType.METAL).notSolid()).setRegistryName("plesiohadros_egg");
+	public static final Block THESCELOSAURUS_EGG = new DinosaurEggBlock(PFEntities.THESCELOSAURUS_ENTITY, Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("thescelosaurus_egg");//Loot Table done
+	public static final Block TRICERATOPS_EGG = new DinosaurEggBlock(PFEntities.TRICERATOPS_ENTITY, Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("triceratops_egg");//Loot Table done
+	public static final Block ANKYLOSAURUS_EGG = new DinosaurEggBlock(PFEntities.ANKYLOSAURUS_ENTITY, Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("ankylosaurus_egg");//Loot Table done
+	public static final Block TYRANNOSAURUS_EGG = new DinosaurEggBlock(PFEntities.TYRANNOSAURUS_ENTITY, Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("tyrannosaurus_egg");//Loot Table done
+	public static final Block DAKOTARAPTOR_EGG = new DinosaurEggBlock(PFEntities.DAKOTARAPTOR_ENTITY, Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("dakotaraptor_egg");//Loot Table done
+	public static final Block BASILEMYS_EGG = new DinosaurEggBlock(PFEntities.BASILEMYS_ENTITY, Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("basilemys_egg");//Loot Table done
+	public static final Block CAMARASAURUS_EGG = new DinosaurEggBlock(PFEntities.CAMARASAURUS_ENTITY, Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("camarasaurus_egg");//Loot Table done
+	public static final Block ALLOSAURUS_EGG = new DinosaurEggBlock(PFEntities.ALLOSAURUS_ENTITY, Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("allosaurus_egg");//Loot Table done
+	public static final Block CERATOSAURUS_EGG = new DinosaurEggBlock(PFEntities.CERATOSAURUS_ENTITY, Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("ceratosaurus_egg");//Loot Table done
+	public static final Block CHROMOGISAURUS_EGG = new DinosaurEggBlock(PFEntities.CHROMOGISAURUS_ENTITY, Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("chromogisaurus_egg");//Loot Table done
+	public static final Block DRYOSAURUS_EGG = new DinosaurEggBlock(PFEntities.DRYOSAURUS_ENTITY, Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("dryosaurus_egg");//Loot Table done
+	public static final Block EILENODON_EGG = new DinosaurEggBlock(PFEntities.EILENODON_ENTITY, Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("eilenodon_egg");//Loot Table done
+	public static final Block HERRERASAURUS_EGG = new DinosaurEggBlock(PFEntities.HERRERASAURUS_ENTITY, Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("herrerasaurus_egg");//Loot Table done
+	public static final Block HESPERORNITHOIDES_EGG = new DinosaurEggBlock(PFEntities.HESPERORNITHOIDES_ENTITY, Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("hesperornithoides_egg");//Loot Table done
+	public static final Block HYPERODAPEDON_EGG = new DinosaurEggBlock(PFEntities.HYPERODAPEDON_ENTITY, Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("hyperodapedon_egg");//Loot Table done
+	public static final Block STEGOSAURUS_EGG = new DinosaurEggBlock(PFEntities.STEGOSAURUS_ENTITY, Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("stegosaurus_egg");//Loot Table done
+	public static final Block PROTOCERATOPS_EGG = new DinosaurEggBlock(PFEntities.PROTOCERATOPS_ENTITY, AbstractBlock.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly()).setRegistryName("protoceratops_egg");
+	public static final Block VELOCIRAPTOR_EGG = new DinosaurEggBlock(PFEntities.VELOCIRAPTOR_ENTITY, AbstractBlock.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("velociraptor_egg");
+	public static final Block CITIPATI_EGG = new DinosaurEggBlock(PFEntities.CITIPATI_ENTITY, AbstractBlock.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).tickRandomly().notSolid().sound(SoundType.METAL)).setRegistryName("citipati_egg");
+	public static final Block AEPYORNITHOMIMUS_EGG = new DinosaurEggBlock(PFEntities.AEPYORNITHOMIMUS_ENTITY, AbstractBlock.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).tickRandomly().notSolid().sound(SoundType.METAL)).setRegistryName("aepyornithomimus_egg");
+	public static final Block TELMASAURUS_EGG = new DinosaurEggBlock(PFEntities.TELMASAURUS_ENTITY, AbstractBlock.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).tickRandomly().sound(SoundType.METAL).notSolid()).setRegistryName("telmasaurus_egg");
+	public static final Block PINACOSAURUS_EGG = new DinosaurEggBlock(PFEntities.PINACOSAURUS_ENTITY, AbstractBlock.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).tickRandomly().sound(SoundType.METAL).notSolid()).setRegistryName("pinacosaurus_egg");
+	public static final Block PLESIOHADROS_EGG = new DinosaurEggBlock(PFEntities.PLESIOHADROS_ENTITY, AbstractBlock.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).tickRandomly().sound(SoundType.METAL).notSolid()).setRegistryName("plesiohadros_egg");
 	public static final Block MOSS_BLOCK = new Block(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.2F).sound(SoundType.PLANT)).setRegistryName("moss_block"); //Loot Table done
 	public static final Block CONIOPTERIS = new PrehistoricPlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("coniopteris");//Loot Table done
 	public static final Block TALL_OSMUNDACAULIS = new DoublePlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).doesNotBlockMovement().sound(SoundType.PLANT)).setRegistryName("tall_osmundacaulis"); //Loot Table done
@@ -363,7 +323,6 @@ public class PFBlocks {
 	public static final Block CHALK_BRICK_STAIRS = new StairsBlock(CHALK_BRICKS.getDefaultState(), Block.Properties.from(CHALK_BRICKS)).setRegistryName("chalk_brick_stairs");//Loot Table done
 	public static final Block POLISHED_CHALK_SLAB = new SlabBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_chalk_slab");//Loot Table done
 	public static final Block POLISHED_CHALK_STAIRS = new StairsBlock(POLISHED_CHALK.getDefaultState(), Block.Properties.from(POLISHED_CHALK)).setRegistryName("polished_chalk_stairs");//Loot Table done
-	public static final Block SILLOSUCHUS_EGG = new SillosuchusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("sillosuchus_egg");//Loot Table done
 	public static final Block PORTAL_FRAME = new PortalFrameBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).setLightLevel((state) -> {
 		return 9;
 	})).setRegistryName("portal_frame");//Loot Table done
@@ -398,9 +357,9 @@ public class PFBlocks {
 	public static final Block PLASTERED_AMMONITES = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("plastered_ammonites");
 	public static final Block PETRIFIED_WOOD = new RotatedPillarBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).setRequiresTool().hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("petrified_wood");
 	public static final Block POLISHED_PETRIFIED_WOOD = new RotatedPillarBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).setRequiresTool().hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE)).setRegistryName("polished_petrified_wood");
-	public static final Block SAUROSUCHUS_EGG = new SaurosuchusEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("saurosuchus_egg");//Loot Table done
-	public static final Block ISCHIGUALASTIA_EGG = new IschigualastiaEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("ischigualastia_egg");
-	public static final Block EXAERETODON_EGG = new ExaeretodonEggBlock(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("exaeretodon_egg");//Loot Table done
+	public static final Block SAUROSUCHUS_EGG = new DinosaurEggBlock(PFEntities.SAUROSUCHUS_ENTITY, Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("saurosuchus_egg");//Loot Table done
+	public static final Block ISCHIGUALASTIA_EGG = new DinosaurEggBlock(PFEntities.ISCHIGUALASTIA_ENTITY, Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("ischigualastia_egg");
+	public static final Block EXAERETODON_EGG = new DinosaurEggBlock(PFEntities.EXAERETODON_ENTITY, Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("exaeretodon_egg");//Loot Table done
 	public static final Block PALEONTOLOGY_TABLE = new PaleontologyTableBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("paleontology_table");//Loot Table done
 	public static final Block ALGAE_CARPET = new AlgaeBlock(Block.Properties.create(Material.OCEAN_PLANT).hardnessAndResistance(0.2F).sound(SoundType.SLIME).notSolid()).setRegistryName("algae_carpet");
 	public static final Block ARAUCARIA_SIGN = new PFStandingSignBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), PFWoodTypes.ARAUCARIA).setRegistryName("araucaria_sign");
@@ -494,12 +453,12 @@ public class PFBlocks {
 	public static final Block LAUROZAMITES = new PrehistoricPlantBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("laurozamites");
 	public static final Block ZAMITES_FROND = new ZamitesFrondsBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("zamites_fronds");
 	public static final Block CLATHOPTERIS = new ClathopterisBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("clathopteris");
-	public static final Block DILOPHOSAURUS_EGG = new DilophosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("dilophosaurus_egg");
-	public static final Block SARAHSAURUS_EGG = new SarahsaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("sarahsaurus_egg");
-	public static final Block SCELIDOSAURUS_EGG = new ScelidosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("scelidosaurus_egg");
-	public static final Block SCUTELLOSAURUS_EGG = new ScutellosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("scutellosaurus_egg");
-	public static final Block MEGAPNOSAURUS_EGG = new MegapnosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("megapnosaurus_egg");
-	public static final Block KAYENTATHERIUM_EGG = new KayentatheriumEggBlock(Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("kayentatherium_egg");
+	public static final Block DILOPHOSAURUS_EGG = new DinosaurEggBlock(PFEntities.DILOPHOSAURUS_ENTITY, Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("dilophosaurus_egg");
+	public static final Block SARAHSAURUS_EGG = new DinosaurEggBlock(PFEntities.SARAHSAURUS_ENTITY, Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("sarahsaurus_egg");
+	public static final Block SCELIDOSAURUS_EGG = new DinosaurEggBlock(PFEntities.SCELIDOSAURUS_ENTITY, Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("scelidosaurus_egg");
+	public static final Block SCUTELLOSAURUS_EGG = new DinosaurEggBlock(PFEntities.SCUTELLOSAURUS_ENTITY, Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("scutellosaurus_egg");
+	public static final Block MEGAPNOSAURUS_EGG = new DinosaurEggBlock(PFEntities.MEGAPNOSAURUS_ENTITY, Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("megapnosaurus_egg");
+	public static final Block KAYENTATHERIUM_EGG = new DinosaurEggBlock(PFEntities.KAYENTATHERIUM_ENTITY, Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("kayentatherium_egg");
 	public static final Block POTTED_LAUROZAMITES = new FlowerPotBlock(LAUROZAMITES, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_laurozamites");
 	public static final Block POTTED_OTOZAMITES = new FlowerPotBlock(OTOZAMITES, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_otozamites");
 	public static final Block POTTED_CLATHOPTERIS = new FlowerPotBlock(CLATHOPTERIS, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).notSolid()).setRegistryName("potted_clathopteris");
@@ -585,7 +544,7 @@ public class PFBlocks {
 	
 	//public static final Block MARMARTHIA = new MarmarthiaBlock(Block.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD).tickRandomly()).setRegistryName("marmarthia");
 	public static final Block FOSSIL_CRATE = new FossilCrateBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("fossil_crate");
-	public static final Block TRILOPHOSAURUS_EGG = new TrilophosaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("trilophosaurus_egg");
+	public static final Block TRILOPHOSAURUS_EGG = new DinosaurEggBlock(PFEntities.TRILOPHOSAURUS_ENTITY, Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("trilophosaurus_egg");
 	public static final Block PLESIOHADROS_CRATE = new CrateBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("plesiohadros_crate");
 	public static final Block PROTOCERATOPS_CRATE = new CrateBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("protoceratops_crate");
 	public static final Block VELOCIRAPTOR_CRATE = new CrateBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("velociraptor_crate");
@@ -604,13 +563,13 @@ public class PFBlocks {
 	public static final Block DILOPHOSAURUS_CRATE = new CrateBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("dilophosaurus_crate");
 	public static final Block SARAHSAURUS_CRATE = new CrateBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("sarahsaurus_crate");
 	public static final Block SCELIDOSAURUS_CRATE = new CrateBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)).setRegistryName("scelidosaurus_crate");
-	public static final Block CALSOYASUCHUS_EGG = new CalsoyasuchusEggBlock(Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("calsoyasuchus_egg");
-	public static final Block DESMATOSUCHUS_EGG = new DesmatosuchusEggBlock(Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("desmatosuchus_egg");
-	public static final Block POSTOSUCHUS_EGG = new PostosuchusEggBlock(Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("postosuchus_egg");
-	public static final Block PLACERIAS_EGG = new PlaceriasEggBlock(Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("placerias_egg");
-	public static final Block COELOPHYSIS_EGG = new CoelophysisEggBlock(Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("coelophysis_egg");
-	public static final Block POPOSAURUS_EGG = new PoposaurusEggBlock(Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("poposaurus_egg");
-	public static final Block TYPOTHORAX_EGG = new TypothoraxEggBlock(Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("typothorax_egg");
+	public static final Block CALSOYASUCHUS_EGG = new DinosaurEggBlock(PFEntities.CALSOYASUCHUS_ENTITY, Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("calsoyasuchus_egg");
+	public static final Block DESMATOSUCHUS_EGG = new DinosaurEggBlock(PFEntities.DESMATOSUCHUS_ENTITY, Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("desmatosuchus_egg");
+	public static final Block POSTOSUCHUS_EGG = new DinosaurEggBlock(PFEntities.POSTOSUCHUS_ENTITY, Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("postosuchus_egg");
+	public static final Block PLACERIAS_EGG = new DinosaurEggBlock(PFEntities.PLACERIAS_ENTITY, Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("placerias_egg");
+	public static final Block COELOPHYSIS_EGG = new DinosaurEggBlock(PFEntities.COELOPHYSIS_ENTITY, Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("coelophysis_egg");
+	public static final Block POPOSAURUS_EGG = new DinosaurEggBlock(PFEntities.POPOSAURUS_ENTITY, Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("poposaurus_egg");
+	public static final Block TYPOTHORAX_EGG = new DinosaurEggBlock(PFEntities.TYPOTHORAX_ENTITY, Block.Properties.create(Material.DRAGON_EGG).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("typothorax_egg");
 	public static final Block CARVED_TUBER = new CarvedTuberBlock(AbstractBlock.Properties.create(Material.GOURD, MaterialColor.ADOBE).hardnessAndResistance(1.0F).sound(SoundType.WOOD)).setRegistryName("carved_tuber");
 	public static final Block CARVED_TUBER_SOUL_LIT = new CarvedTuberBlock(AbstractBlock.Properties.create(Material.GOURD, MaterialColor.ADOBE).hardnessAndResistance(1.0F).sound(SoundType.WOOD).setLightLevel((state) -> {
 		return 10;
@@ -796,6 +755,9 @@ public class PFBlocks {
 	public static final RegistryObject<Block> AGATHOXYLON_HEDGE = HELPER.createCompatBlock("quark", "agathoxylon_hedge", () -> new HedgeBlock(Properties.from(AGATHOXYLON_PLANKS)), PFBuilding.instance);
 	public static final RegistryObject<Block> WOODWORTHIA_HEDGE = HELPER.createCompatBlock("quark", "woodworthia_hedge", () -> new HedgeBlock(Properties.from(WOODWORTHIA_PLANKS)), PFBuilding.instance);
 	public static final RegistryObject<Block> SCHILDERIA_HEDGE = HELPER.createCompatBlock("quark", "schilderia_hedge", () -> new HedgeBlock(Properties.from(SCHILDERIA_PLANKS)), PFBuilding.instance);
+
+	
+	public static final Block SILLOSUCHUS_EGG = new DinosaurEggBlock(PFEntities.SILLOSUCHUS_ENTITY, Block.Properties.create(Material.DRAGON_EGG, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.METAL).tickRandomly().notSolid()).setRegistryName("sillosuchus_egg");//Loot Table done
 
 	private static RotatedPillarBlock createLogBlock(MaterialColor topColor, MaterialColor barkColor) {
 		return new RotatedPillarBlock(AbstractBlock.Properties.create(Material.WOOD, (state) -> {

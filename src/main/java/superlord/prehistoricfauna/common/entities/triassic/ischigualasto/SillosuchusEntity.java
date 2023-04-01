@@ -48,7 +48,7 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import superlord.prehistoricfauna.common.blocks.SillosuchusEggBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entities.DinosaurEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.TyrannosaurusEntity;
 import superlord.prehistoricfauna.common.entities.goal.CathemeralSleepGoal;
@@ -499,7 +499,7 @@ public class SillosuchusEntity extends DinosaurEntity {
 				} else if (this.sillosuchus.isDigging > 200) {
 					World world = this.sillosuchus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), PFBlocks.SILLOSUCHUS_EGG.getDefaultState().with(SillosuchusEggBlock.EGGS, Integer.valueOf(this.sillosuchus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.SILLOSUCHUS_EGG.getDefaultState().with(DinosaurEggBlock.EGGS, Integer.valueOf(this.sillosuchus.rand.nextInt(4) + 1)), 3);
 					this.sillosuchus.setHasEgg(false);
 					this.sillosuchus.setDigging(false);
 					this.sillosuchus.setInLove(600);

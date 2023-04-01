@@ -1460,7 +1460,7 @@
 		"subtitle": "prehistoricfauna.subtitle.pinacosaurusWarning",
 		"sounds": [
 			{
-				"name": "prehistoricfauna:prehistorc/pinacosaurus/pinacosaurus_warning",
+				"name": "prehistoricfauna:prehistoric/pinacosaurus/pinacosaurus_warning",
 				"stream": true
 			}
 		]
@@ -1504,7 +1504,7 @@
 		"subtitle": "prehistoricfauna.subtitle.plesiohadrosWarning",
 		"sounds": [
 			{
-				"name": "prehistoricfauna:prehistorc/plesiohadros/plesiohadros_warning",
+				"name": "prehistoricfauna:prehistoric/plesiohadros/plesiohadros_warning",
 				"stream": true
 			}
 		]

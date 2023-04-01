@@ -22,6 +22,7 @@ import net.minecraft.entity.ai.goal.BreedGoal;
 import net.minecraft.entity.ai.goal.FollowParentGoal;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.entity.ai.goal.PanicGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
@@ -47,7 +48,7 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import superlord.prehistoricfauna.common.blocks.KayentatheriumEggBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entities.DinosaurEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.djadochta.CitipatiEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.djadochta.PinacosaurusEntity;
@@ -165,7 +166,7 @@ public class KayentatheriumEntity extends DinosaurEntity {
 
 	protected void registerGoals() {
 		super.registerGoals();
-
+		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.2D));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, false, TEMPTATION_ITEMS));
@@ -370,7 +371,7 @@ public class KayentatheriumEntity extends DinosaurEntity {
 				} else if (this.kayentatherium.isDigging > 200) {
 					World world = this.kayentatherium.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), PFBlocks.KAYENTATHERIUM_EGG.getDefaultState().with(KayentatheriumEggBlock.EGGS, Integer.valueOf(this.kayentatherium.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.KAYENTATHERIUM_EGG.getDefaultState().with(DinosaurEggBlock.EGGS, Integer.valueOf(this.kayentatherium.rand.nextInt(4) + 1)), 3);
 					this.kayentatherium.setHasEgg(false);
 					this.kayentatherium.setDigging(false);
 					this.kayentatherium.setInLove(600);

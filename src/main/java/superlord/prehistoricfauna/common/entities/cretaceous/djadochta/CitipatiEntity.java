@@ -60,30 +60,7 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import superlord.prehistoricfauna.common.blocks.AepyornithomimusEggBlock;
-import superlord.prehistoricfauna.common.blocks.AllosaurusEggBlock;
-import superlord.prehistoricfauna.common.blocks.AnkylosaurusEggBlock;
-import superlord.prehistoricfauna.common.blocks.BasilemysEggBlock;
-import superlord.prehistoricfauna.common.blocks.CamarasaurusEggBlock;
-import superlord.prehistoricfauna.common.blocks.CeratosaurusEggBlock;
-import superlord.prehistoricfauna.common.blocks.ChromogisaurusEggBlock;
-import superlord.prehistoricfauna.common.blocks.CitipatiEggBlock;
-import superlord.prehistoricfauna.common.blocks.DakotaraptorEggBlock;
-import superlord.prehistoricfauna.common.blocks.DryosaurusEggBlock;
-import superlord.prehistoricfauna.common.blocks.EilenodonEggBlock;
-import superlord.prehistoricfauna.common.blocks.ExaeretodonEggBlock;
-import superlord.prehistoricfauna.common.blocks.HerrerasaurusEggBlock;
-import superlord.prehistoricfauna.common.blocks.HesperornithoidesEggBlock;
-import superlord.prehistoricfauna.common.blocks.HyperodapedonEggBlock;
-import superlord.prehistoricfauna.common.blocks.IschigualastiaEggBlock;
-import superlord.prehistoricfauna.common.blocks.ProtoceratopsEggBlock;
-import superlord.prehistoricfauna.common.blocks.SaurosuchusEggBlock;
-import superlord.prehistoricfauna.common.blocks.SillosuchusEggBlock;
-import superlord.prehistoricfauna.common.blocks.StegosaurusEggBlock;
-import superlord.prehistoricfauna.common.blocks.ThescelosaurusEggBlock;
-import superlord.prehistoricfauna.common.blocks.TriceratopsEggBlock;
-import superlord.prehistoricfauna.common.blocks.TyrannosaurusEggBlock;
-import superlord.prehistoricfauna.common.blocks.VelociraptorEggBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entities.DinosaurEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.AnkylosaurusEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.DakotaraptorEntity;
@@ -454,7 +431,7 @@ public class CitipatiEntity extends DinosaurEntity {
 				} else if (this.citipati.isDigging > 200) {
 					World world = this.citipati.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), PFBlocks.CITIPATI_EGG.getDefaultState().with(CitipatiEggBlock.EGGS, Integer.valueOf(this.citipati.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.CITIPATI_EGG.getDefaultState().with(DinosaurEggBlock.EGGS, Integer.valueOf(this.citipati.rand.nextInt(4) + 1)), 3);
 					this.citipati.setHasEgg(false);
 					this.citipati.setDigging(false);
 					this.citipati.setInLove(600);
@@ -769,7 +746,8 @@ public class CitipatiEntity extends DinosaurEntity {
 		 */
 		protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
 			BlockState blockstate = worldIn.getBlockState(pos);
-			return (blockstate.isIn(PFBlocks.AEPYORNITHOMIMUS_EGG) && blockstate.get(AepyornithomimusEggBlock.EGGS) >= 1) || (blockstate.isIn(PFBlocks.THESCELOSAURUS_EGG) && blockstate.get(ThescelosaurusEggBlock.EGGS) >= 1) || (blockstate.isIn(PFBlocks.TRICERATOPS_EGG) && blockstate.get(TriceratopsEggBlock.EGGS) >= 1) || (blockstate.isIn(PFBlocks.ANKYLOSAURUS_EGG) && blockstate.get(AnkylosaurusEggBlock.EGGS) >= 1) || (blockstate.isIn(PFBlocks.TYRANNOSAURUS_EGG) && blockstate.get(TyrannosaurusEggBlock.EGGS) >= 1) || (blockstate.isIn(PFBlocks.BASILEMYS_EGG) && blockstate.get(BasilemysEggBlock.EGGS) >= 1) || (blockstate.isIn(PFBlocks.DAKOTARAPTOR_EGG) && blockstate.get(DakotaraptorEggBlock.EGGS) >= 1) || (blockstate.isIn(PFBlocks.PROTOCERATOPS_EGG) && blockstate.get(ProtoceratopsEggBlock.EGGS) >= 1) || (blockstate.isIn(PFBlocks.VELOCIRAPTOR_EGG) && blockstate.get(VelociraptorEggBlock.EGGS) >= 1) || (blockstate.isIn(PFBlocks.CITIPATI_EGG) && blockstate.get(CitipatiEggBlock.EGGS) >= 1) || (blockstate.isIn(PFBlocks.ALLOSAURUS_EGG) && blockstate.get(AllosaurusEggBlock.EGGS) >= 1) || (blockstate.isIn(PFBlocks.STEGOSAURUS_EGG) && blockstate.get(StegosaurusEggBlock.EGGS) >= 1) || (blockstate.isIn(PFBlocks.CERATOSAURUS_EGG) && blockstate.get(CeratosaurusEggBlock.EGGS) >= 1) || (blockstate.isIn(PFBlocks.DRYOSAURUS_EGG) && blockstate.get(DryosaurusEggBlock.EGGS) >= 1) || (blockstate.isIn(PFBlocks.HESPERORNITHOIDES_EGG) && blockstate.get(HesperornithoidesEggBlock.EGGS) >= 1) || (blockstate.isIn(PFBlocks.EILENODON_EGG) && blockstate.get(EilenodonEggBlock.EGGS) >= 1) || (blockstate.isIn(PFBlocks.CAMARASAURUS_EGG) && blockstate.get(CamarasaurusEggBlock.EGGS) >= 1) || (blockstate.isIn(PFBlocks.EXAERETODON_EGG) && blockstate.get(ExaeretodonEggBlock.EGGS) >= 1) || (blockstate.isIn(PFBlocks.CHROMOGISAURUS_EGG) && blockstate.get(ChromogisaurusEggBlock.EGGS) >= 1) || (blockstate.isIn(PFBlocks.HERRERASAURUS_EGG) && blockstate.get(HerrerasaurusEggBlock.EGGS) >= 1) || (blockstate.isIn(PFBlocks.HYPERODAPEDON_EGG) && blockstate.get(HyperodapedonEggBlock.EGGS) >= 1) || (blockstate.isIn(PFBlocks.SILLOSUCHUS_EGG) && blockstate.get(SillosuchusEggBlock.EGGS) >= 1) || (blockstate.isIn(PFBlocks.SAUROSUCHUS_EGG) && blockstate.get(SaurosuchusEggBlock.EGGS) >= 1) || (blockstate.isIn(PFBlocks.ISCHIGUALASTIA_EGG) && blockstate.get(IschigualastiaEggBlock.EGGS) >= 1);
+			Block egg = blockstate.getBlock();
+			return egg instanceof DinosaurEggBlock && blockstate.get(DinosaurEggBlock.EGGS) >= 1;
 		}
 
 		/**
@@ -798,194 +776,12 @@ public class CitipatiEntity extends DinosaurEntity {
 			if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(CitipatiEntity.this.world, CitipatiEntity.this)) {
 				BlockState blockstate = CitipatiEntity.this.world.getBlockState(this.destinationBlock);
 				world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, blockstate), destinationBlock.getX(), destinationBlock.getY(), destinationBlock.getZ(), 0.0D, 0.0D, 0.0D);
-				if (blockstate.isIn(PFBlocks.THESCELOSAURUS_EGG)) {
-					int eggs = blockstate.get(ThescelosaurusEggBlock.EGGS);
-					int hatch = blockstate.get(ThescelosaurusEggBlock.HATCH);
-					blockstate.with(ThescelosaurusEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(ThescelosaurusEggBlock.EGGS, eggs).with(ThescelosaurusEggBlock.HATCH, hatch).with(ThescelosaurusEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
-				}
-				if (blockstate.isIn(PFBlocks.TRICERATOPS_EGG)) {
-					int eggs = blockstate.get(TriceratopsEggBlock.EGGS);
-					int hatch = blockstate.get(TriceratopsEggBlock.HATCH);
-					blockstate.with(TriceratopsEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(TriceratopsEggBlock.EGGS, eggs).with(TriceratopsEggBlock.HATCH, hatch).with(TriceratopsEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
-				}
-
-				if (blockstate.isIn(PFBlocks.ANKYLOSAURUS_EGG)) {
-					int eggs = blockstate.get(AnkylosaurusEggBlock.EGGS);
-					int hatch = blockstate.get(AnkylosaurusEggBlock.HATCH);
-					blockstate.with(AnkylosaurusEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(AnkylosaurusEggBlock.EGGS, eggs).with(AnkylosaurusEggBlock.HATCH, hatch).with(AnkylosaurusEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
-				}
-				if (blockstate.isIn(PFBlocks.TYRANNOSAURUS_EGG)) {
-					int eggs = blockstate.get(TyrannosaurusEggBlock.EGGS);
-					int hatch = blockstate.get(TyrannosaurusEggBlock.HATCH);
-					blockstate.with(TyrannosaurusEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(TyrannosaurusEggBlock.EGGS, eggs).with(TyrannosaurusEggBlock.HATCH, hatch).with(TyrannosaurusEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
-				}
-
-				if (blockstate.isIn(PFBlocks.BASILEMYS_EGG)) {
-					int eggs = blockstate.get(BasilemysEggBlock.EGGS);
-					int hatch = blockstate.get(BasilemysEggBlock.HATCH);
-					blockstate.with(BasilemysEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(BasilemysEggBlock.EGGS, eggs).with(BasilemysEggBlock.HATCH, hatch).with(BasilemysEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
-				}
-
-				if (blockstate.isIn(PFBlocks.DAKOTARAPTOR_EGG)) {
-					int eggs = blockstate.get(DakotaraptorEggBlock.EGGS);
-					int hatch = blockstate.get(DakotaraptorEggBlock.HATCH);
-					blockstate.with(DakotaraptorEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(DakotaraptorEggBlock.EGGS, eggs).with(DakotaraptorEggBlock.HATCH, hatch).with(DakotaraptorEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
-				}
-
-				if (blockstate.isIn(PFBlocks.PROTOCERATOPS_EGG)) {
-					int eggs = blockstate.get(ProtoceratopsEggBlock.EGGS);
-					int hatch = blockstate.get(ProtoceratopsEggBlock.HATCH);
-					blockstate.with(ProtoceratopsEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(ProtoceratopsEggBlock.EGGS, eggs).with(ProtoceratopsEggBlock.HATCH, hatch).with(ProtoceratopsEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
-				}
-
-				if (blockstate.isIn(PFBlocks.VELOCIRAPTOR_EGG)) {
-					int eggs = blockstate.get(VelociraptorEggBlock.EGGS);
-					int hatch = blockstate.get(VelociraptorEggBlock.HATCH);
-					blockstate.with(VelociraptorEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(VelociraptorEggBlock.EGGS, eggs).with(VelociraptorEggBlock.HATCH, hatch).with(VelociraptorEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
-				}
-
-				if (blockstate.isIn(PFBlocks.CITIPATI_EGG)) {
-					int eggs = blockstate.get(CitipatiEggBlock.EGGS);
-					int hatch = blockstate.get(CitipatiEggBlock.HATCH);
-					blockstate.with(CitipatiEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(CitipatiEggBlock.EGGS, eggs).with(CitipatiEggBlock.HATCH, hatch).with(CitipatiEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
-				}
-
-				if (blockstate.isIn(PFBlocks.AEPYORNITHOMIMUS_EGG)) {
-					int eggs = blockstate.get(AepyornithomimusEggBlock.EGGS);
-					int hatch = blockstate.get(AepyornithomimusEggBlock.HATCH);
-					blockstate.with(AepyornithomimusEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(AepyornithomimusEggBlock.EGGS, eggs).with(AepyornithomimusEggBlock.HATCH, hatch).with(AepyornithomimusEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
-				}
-
-				if (blockstate.isIn(PFBlocks.ALLOSAURUS_EGG)) {
-					int eggs = blockstate.get(AllosaurusEggBlock.EGGS);
-					int hatch = blockstate.get(AllosaurusEggBlock.HATCH);
-					blockstate.with(AllosaurusEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(AllosaurusEggBlock.EGGS, eggs).with(AllosaurusEggBlock.HATCH, hatch).with(AllosaurusEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
-				}
-
-				if (blockstate.isIn(PFBlocks.STEGOSAURUS_EGG)) {
-					int eggs = blockstate.get(StegosaurusEggBlock.EGGS);
-					int hatch = blockstate.get(AllosaurusEggBlock.HATCH);
-					blockstate.with(StegosaurusEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(StegosaurusEggBlock.EGGS, eggs).with(StegosaurusEggBlock.HATCH, hatch).with(StegosaurusEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
-				}
-
-				if (blockstate.isIn(PFBlocks.CERATOSAURUS_EGG)) {
-					int eggs = blockstate.get(CeratosaurusEggBlock.EGGS);
-					int hatch = blockstate.get(CeratosaurusEggBlock.HATCH);
-					blockstate.with(CeratosaurusEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(CeratosaurusEggBlock.EGGS, eggs).with(CeratosaurusEggBlock.HATCH, hatch).with(CeratosaurusEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
-				}
-
-				if (blockstate.isIn(PFBlocks.DRYOSAURUS_EGG)) {
-					int eggs = blockstate.get(DryosaurusEggBlock.EGGS);
-					int hatch = blockstate.get(DryosaurusEggBlock.HATCH);
-					blockstate.with(DryosaurusEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(DryosaurusEggBlock.EGGS, eggs).with(DryosaurusEggBlock.HATCH, hatch).with(DryosaurusEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
-				}
-
-				if (blockstate.isIn(PFBlocks.HESPERORNITHOIDES_EGG)) {
-					int eggs = blockstate.get(HesperornithoidesEggBlock.EGGS);
-					int hatch = blockstate.get(HesperornithoidesEggBlock.HATCH);
-					blockstate.with(HesperornithoidesEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(HesperornithoidesEggBlock.EGGS, eggs).with(HesperornithoidesEggBlock.HATCH, hatch).with(HesperornithoidesEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
-				}
-
-				if (blockstate.isIn(PFBlocks.EILENODON_EGG)) {
-					int eggs = blockstate.get(EilenodonEggBlock.EGGS);
-					int hatch = blockstate.get(EilenodonEggBlock.HATCH);
-					blockstate.with(EilenodonEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(EilenodonEggBlock.EGGS, eggs).with(EilenodonEggBlock.HATCH, hatch).with(EilenodonEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
-				}
-
-				if (blockstate.isIn(PFBlocks.CAMARASAURUS_EGG)) {
-					int eggs = blockstate.get(CamarasaurusEggBlock.EGGS);
-					int hatch = blockstate.get(CamarasaurusEggBlock.HATCH);
-					blockstate.with(CamarasaurusEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(CamarasaurusEggBlock.EGGS, eggs).with(CamarasaurusEggBlock.HATCH, hatch).with(CamarasaurusEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
-				}
-
-				if (blockstate.isIn(PFBlocks.EXAERETODON_EGG)) {
-					int eggs = blockstate.get(ExaeretodonEggBlock.EGGS);
-					int hatch = blockstate.get(ExaeretodonEggBlock.HATCH);
-					blockstate.with(ExaeretodonEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(ExaeretodonEggBlock.EGGS, eggs).with(ExaeretodonEggBlock.HATCH, hatch).with(ExaeretodonEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
-				}
-
-				if (blockstate.isIn(PFBlocks.CHROMOGISAURUS_EGG)) {
-					int eggs = blockstate.get(ChromogisaurusEggBlock.EGGS);
-					int hatch = blockstate.get(ChromogisaurusEggBlock.HATCH);
-					blockstate.with(ChromogisaurusEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(ChromogisaurusEggBlock.EGGS, eggs).with(ChromogisaurusEggBlock.HATCH, hatch).with(ChromogisaurusEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
-				}
-
-				if (blockstate.isIn(PFBlocks.HERRERASAURUS_EGG)) {
-					int eggs = blockstate.get(HerrerasaurusEggBlock.EGGS);
-					int hatch = blockstate.get(HerrerasaurusEggBlock.HATCH);
-					blockstate.with(HerrerasaurusEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(HerrerasaurusEggBlock.EGGS, eggs).with(HerrerasaurusEggBlock.HATCH, hatch).with(HerrerasaurusEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
-				}
-
-				if (blockstate.isIn(PFBlocks.HYPERODAPEDON_EGG)) {
-					int eggs = blockstate.get(HyperodapedonEggBlock.EGGS);
-					int hatch = blockstate.get(HyperodapedonEggBlock.HATCH);
-					blockstate.with(HyperodapedonEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(HyperodapedonEggBlock.EGGS, eggs).with(HyperodapedonEggBlock.HATCH, hatch).with(HyperodapedonEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
-				}
-
-				if (blockstate.isIn(PFBlocks.SILLOSUCHUS_EGG)) {
-					int eggs = blockstate.get(SillosuchusEggBlock.EGGS);
-					int hatch = blockstate.get(SillosuchusEggBlock.HATCH);
-					blockstate.with(SillosuchusEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(SillosuchusEggBlock.EGGS, eggs).with(SillosuchusEggBlock.HATCH, hatch).with(SillosuchusEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
-				}
-
-				if (blockstate.isIn(PFBlocks.SAUROSUCHUS_EGG)) {
-					int eggs = blockstate.get(SaurosuchusEggBlock.EGGS);
-					int hatch = blockstate.get(SaurosuchusEggBlock.HATCH);
-					blockstate.with(SaurosuchusEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(SaurosuchusEggBlock.EGGS, eggs).with(SaurosuchusEggBlock.HATCH, hatch).with(SaurosuchusEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
-				}
-
-				if (blockstate.isIn(PFBlocks.ISCHIGUALASTIA_EGG)) {
-					int eggs = blockstate.get(IschigualastiaEggBlock.EGGS);
-					int hatch = blockstate.get(IschigualastiaEggBlock.HATCH);
-					blockstate.with(IschigualastiaEggBlock.EGGS, Integer.valueOf(1));
-					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(IschigualastiaEggBlock.EGGS, eggs).with(IschigualastiaEggBlock.HATCH, hatch).with(IschigualastiaEggBlock.CITIPATIFIED, true));
-					world.playEvent(2005, destinationBlock, 0);
+				Block egg = blockstate.getBlock();
+				if (egg instanceof DinosaurEggBlock) {
+					int eggs = blockstate.get(DinosaurEggBlock.EGGS);
+					int hatch = blockstate.get(DinosaurEggBlock.HATCH);
+					blockstate.with(DinosaurEggBlock.EGGS, Integer.valueOf(1));
+					CitipatiEntity.this.world.setBlockState(this.destinationBlock, blockstate.with(DinosaurEggBlock.EGGS, eggs).with(DinosaurEggBlock.HATCH, hatch).with(DinosaurEggBlock.CITIPATIFIED, true));
 				}
 			}
 		}

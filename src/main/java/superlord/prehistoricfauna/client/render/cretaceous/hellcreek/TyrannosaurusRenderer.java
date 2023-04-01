@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TyrannosaurusrexModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TyrannosaurusrexjuvenileModel;
@@ -35,6 +36,8 @@ public class TyrannosaurusRenderer extends MobRenderer<TyrannosaurusEntity, Enti
 	private static final ResourceLocation SUB_ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/albino_sub_sleeping.png");
 	private static final TyrannosaurusrexModel TYRANNOSAURUS_MODEL = new TyrannosaurusrexModel();
 	private static final TyrannosaurusrexjuvenileModel BABY_TYRANNOSAURUS_MODEL = new TyrannosaurusrexjuvenileModel();
+	private static final ResourceLocation RETRO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/retro.png");
+	private static final ResourceLocation RETRO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/retro_sleeping.png");
 
 	public TyrannosaurusRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), TYRANNOSAURUS_MODEL, 2F);
@@ -61,6 +64,12 @@ public class TyrannosaurusRenderer extends MobRenderer<TyrannosaurusEntity, Enti
 
 	@Override
 	public ResourceLocation getEntityTexture(TyrannosaurusEntity entity) {
+		String s = TextFormatting.getTextWithoutFormattingCodes(entity.getName().getString());
+		if ( s != null && "Retro".equals(s) && !entity.isChild()) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
+				return RETRO_SLEEPING;
+			} else return RETRO;
+		}
 		if (entity.isAlbino() && !entity.isChild()) {
 			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return ALBINO_SLEEPING;

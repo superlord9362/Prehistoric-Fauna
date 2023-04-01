@@ -10,9 +10,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
+import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -53,7 +55,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.common.blocks.AepyornithomimusEggBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entities.HerdDinosaurEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.DakotaraptorEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.TyrannosaurusEntity;
@@ -161,6 +163,9 @@ public class AepyornithomimusEntity extends HerdDinosaurEntity {
 
 	private void setMelanistic(boolean isMelanistic) {
 		this.dataManager.set(MELANISTIC, isMelanistic);
+	}
+	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+		return 1.1F;
 	}
 
 	@Nullable
@@ -303,7 +308,7 @@ public class AepyornithomimusEntity extends HerdDinosaurEntity {
 				} else if (this.aepyornithomimus.isDigging > 200) {
 					World world = this.aepyornithomimus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), PFBlocks.AEPYORNITHOMIMUS_EGG.getDefaultState().with(AepyornithomimusEggBlock.EGGS, Integer.valueOf(this.aepyornithomimus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.AEPYORNITHOMIMUS_EGG.getDefaultState().with(DinosaurEggBlock.EGGS, Integer.valueOf(this.aepyornithomimus.rand.nextInt(4) + 1)), 3);
 					this.aepyornithomimus.setHasEgg(false);
 					this.aepyornithomimus.setDigging(false);
 					this.aepyornithomimus.setInLove(600);

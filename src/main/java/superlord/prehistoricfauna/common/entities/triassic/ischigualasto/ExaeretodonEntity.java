@@ -62,7 +62,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.Tags;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.common.blocks.ExaeretodonEggBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entities.DinosaurEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.AnkylosaurusEntity;
 import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.DakotaraptorEntity;
@@ -496,7 +496,7 @@ public class ExaeretodonEntity extends DinosaurEntity {
 				} else if (this.exaeretodon.isDigging > 200) {
 					World world = this.exaeretodon.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), PFBlocks.EXAERETODON_EGG.getDefaultState().with(ExaeretodonEggBlock.EGGS, Integer.valueOf(this.exaeretodon.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.EXAERETODON_EGG.getDefaultState().with(DinosaurEggBlock.EGGS, Integer.valueOf(this.exaeretodon.rand.nextInt(4) + 1)), 3);
 					this.exaeretodon.setHasEgg(false);
 					this.exaeretodon.setDigging(false);
 					this.exaeretodon.setInLove(600);

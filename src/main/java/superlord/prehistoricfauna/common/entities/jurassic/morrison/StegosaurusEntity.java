@@ -48,7 +48,7 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import superlord.prehistoricfauna.common.blocks.StegosaurusEggBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entities.DinosaurEntity;
 import superlord.prehistoricfauna.common.entities.goal.CathemeralSleepGoal;
 import superlord.prehistoricfauna.common.entities.goal.DinosaurLookAtGoal;
@@ -494,7 +494,7 @@ public class StegosaurusEntity extends DinosaurEntity {
 				} else if (this.stegosaurus.isDigging > 200) {
 					World world = this.stegosaurus.world;
 					world.playSound((PlayerEntity)null, blockpos, SoundEvents.ENTITY_TURTLE_LAY_EGG, SoundCategory.BLOCKS, 0.3F, 0.9F + world.rand.nextFloat() * 0.2F);
-					world.setBlockState(this.destinationBlock.up(), PFBlocks.STEGOSAURUS_EGG.getDefaultState().with(StegosaurusEggBlock.EGGS, Integer.valueOf(this.stegosaurus.rand.nextInt(4) + 1)), 3);
+					world.setBlockState(this.destinationBlock.up(), PFBlocks.STEGOSAURUS_EGG.getDefaultState().with(DinosaurEggBlock.EGGS, Integer.valueOf(this.stegosaurus.rand.nextInt(4) + 1)), 3);
 					this.stegosaurus.setHasEgg(false);
 					this.stegosaurus.setDigging(false);
 					this.stegosaurus.setInLove(600);
