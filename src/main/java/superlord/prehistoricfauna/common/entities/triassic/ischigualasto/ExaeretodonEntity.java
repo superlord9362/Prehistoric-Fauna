@@ -26,6 +26,7 @@ import net.minecraft.entity.ai.goal.FollowParentGoal;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
@@ -76,6 +77,8 @@ import superlord.prehistoricfauna.common.entities.jurassic.morrison.AllosaurusEn
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.CamarasaurusEntity;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.CeratosaurusEntity;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.StegosaurusEntity;
+import superlord.prehistoricfauna.common.entities.triassic.chinle.PoposaurusEntity;
+import superlord.prehistoricfauna.common.entities.triassic.chinle.PostosuchusEntity;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
@@ -182,7 +185,7 @@ public class ExaeretodonEntity extends DinosaurEntity {
 
 	protected void registerGoals() {
 		super.registerGoals();
-
+		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(1, new ExaeretodonEntity.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new ExaeretodonEntity.PanicGoal());
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
@@ -202,7 +205,9 @@ public class ExaeretodonEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(8, new AvoidEntityGoal<CamarasaurusEntity>(this, CamarasaurusEntity.class, 7F, 1.25D, 1.25D));
 		this.goalSelector.addGoal(8, new AvoidEntityGoal<StegosaurusEntity>(this, StegosaurusEntity.class, 7F, 1.25D, 1.25D));
 		this.goalSelector.addGoal(8, new AvoidEntityGoal<SaurosuchusEntity>(this, SaurosuchusEntity.class, 7F, 1.25D, 1.25D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<DilophosaurusEntity>(this, DilophosaurusEntity.class, 10F, 1.2D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<DilophosaurusEntity>(this, DilophosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<PoposaurusEntity>(this, PoposaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<PostosuchusEntity>(this, PostosuchusEntity.class, 10F, 1.75D, 1.5D));
 		this.goalSelector.addGoal(0, new ExaeretodonEntity.LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new ExaeretodonEntity.MateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new ExaeretodonEntity.NaturalMateGoal(this, 1.0D));
@@ -474,23 +479,33 @@ public class ExaeretodonEntity extends DinosaurEntity {
 	static class LayEggGoal extends MoveToBlockGoal {
 		private final ExaeretodonEntity exaeretodon;
 
-		LayEggGoal(ExaeretodonEntity exaeretodon, double speed) {
-			super(exaeretodon, speed, 16);
+		LayEggGoal(ExaeretodonEntity exaeretodon, double speedIn) {
+			super(exaeretodon, speedIn, 16);
 			this.exaeretodon = exaeretodon;
 		}
 
+		/**
+		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+		 * method as well.
+		 */
 		public boolean shouldExecute() {
 			return this.exaeretodon.hasEgg() ? super.shouldExecute() : false;
 		}
 
+		/**
+		 * Returns whether an in-progress EntityAIBase should continue executing
+		 */
 		public boolean shouldContinueExecuting() {
 			return super.shouldContinueExecuting() && this.exaeretodon.hasEgg();
 		}
 
+		/**
+		 * Keep ticking a continuous task that has already been started
+		 */
 		public void tick() {
 			super.tick();
 			BlockPos blockpos = new BlockPos(this.exaeretodon.getPositionVec());
-			if (this.exaeretodon.isInWater() && this.getIsAboveDestination()) {
+			if (!this.exaeretodon.isInWater() && this.getIsAboveDestination()) {
 				if (this.exaeretodon.isDigging < 1) {
 					this.exaeretodon.setDigging(true);
 				} else if (this.exaeretodon.isDigging > 200) {
@@ -501,12 +516,17 @@ public class ExaeretodonEntity extends DinosaurEntity {
 					this.exaeretodon.setDigging(false);
 					this.exaeretodon.setInLove(600);
 				}
+
 				if (this.exaeretodon.isDigging()) {
 					this.exaeretodon.isDigging++;
 				}
 			}
+
 		}
 
+		/**
+		 * Return true to set given position as destination
+		 */
 		protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
 			if (!worldIn.isAirBlock(pos.up())) {
 				return false;

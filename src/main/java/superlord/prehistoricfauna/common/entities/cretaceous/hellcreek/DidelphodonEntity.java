@@ -8,11 +8,14 @@ import javax.annotation.Nullable;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
+import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -40,6 +43,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ItemParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
@@ -70,6 +74,9 @@ import superlord.prehistoricfauna.common.entities.jurassic.morrison.Ceratosaurus
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.DryosaurusEntity;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.HesperornithoidesEntity;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.StegosaurusEntity;
+import superlord.prehistoricfauna.common.entities.triassic.chinle.CoelophysisEntity;
+import superlord.prehistoricfauna.common.entities.triassic.chinle.PoposaurusEntity;
+import superlord.prehistoricfauna.common.entities.triassic.chinle.PostosuchusEntity;
 import superlord.prehistoricfauna.common.entities.triassic.ischigualasto.ExaeretodonEntity;
 import superlord.prehistoricfauna.common.entities.triassic.ischigualasto.HerrerasaurusEntity;
 import superlord.prehistoricfauna.common.entities.triassic.ischigualasto.SaurosuchusEntity;
@@ -105,6 +112,10 @@ public class DidelphodonEntity extends DinosaurEntity {
 	private void spawnItem(ItemStack stack) {
 		ItemEntity itemEntity = new ItemEntity(this.world, this.getPosX(), this.getPosY(), this.getPosZ(), stack);
 		this.world.addEntity(itemEntity);
+	}
+	
+	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+		return 0.35F;
 	}
 
 	public boolean isInLoveNaturally() {
@@ -396,24 +407,27 @@ public class DidelphodonEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, false, TEMPTATION_ITEMS));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, PlayerEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, TyrannosaurusEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, DakotaraptorEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, AllosaurusEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, CeratosaurusEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, CamarasaurusEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, TriceratopsEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, AnkylosaurusEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, StegosaurusEntity.class, 10F, 2D, 2D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, PlayerEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, TyrannosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, DakotaraptorEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, AllosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, CeratosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, CamarasaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, TriceratopsEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, AnkylosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, StegosaurusEntity.class, 10F, 1.75D, 1.5D));
 		this.goalSelector.addGoal(10, new EatBerriesGoal((double)1.2F, 12, 2));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, ThescelosaurusEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, DryosaurusEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, HesperornithoidesEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, HerrerasaurusEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, ExaeretodonEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<SaurosuchusEntity>(this, SaurosuchusEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<DilophosaurusEntity>(this, DilophosaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<MegapnosaurusEntity>(this, MegapnosaurusEntity.class, 10F, 1.2D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, ThescelosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, DryosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, HesperornithoidesEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, HerrerasaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, ExaeretodonEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<SaurosuchusEntity>(this, SaurosuchusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<DilophosaurusEntity>(this, DilophosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<MegapnosaurusEntity>(this, MegapnosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<PoposaurusEntity>(this, PoposaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<PostosuchusEntity>(this, PostosuchusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<CoelophysisEntity>(this, CoelophysisEntity.class, 10F, 1.7D, 1.5D));
 		this.goalSelector.addGoal(0, new DidelphodonEntity.CarryYoungGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new CrepuscularSleepGoal(this));
 	}
@@ -528,42 +542,69 @@ public class DidelphodonEntity extends DinosaurEntity {
 		}
 	}
 
-	static class CarryYoungGoal extends Goal {
+	static class CarryYoungGoal extends MoveToBlockGoal {
 		private final DidelphodonEntity didelphodon;
 
-		CarryYoungGoal(DidelphodonEntity didelphodon, double speed) {
-			super();
-			this.didelphodon = didelphodon;
+		CarryYoungGoal(DidelphodonEntity ankylosaurus, double speedIn) {
+			super(ankylosaurus, speedIn, 16);
+			this.didelphodon = ankylosaurus;
 		}
 
+		/**
+		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+		 * method as well.
+		 */
 		public boolean shouldExecute() {
-			return this.didelphodon.isPregnant();
+			return this.didelphodon.isPregnant() ? super.shouldExecute() : false;
 		}
 
+		/**
+		 * Returns whether an in-progress EntityAIBase should continue executing
+		 */
 		public boolean shouldContinueExecuting() {
-			return this.didelphodon.isPregnant();
+			return super.shouldContinueExecuting() && this.didelphodon.isPregnant();
 		}
 
+		/**
+		 * Keep ticking a continuous task that has already been started
+		 */
 		public void tick() {
 			super.tick();
-			if (!this.didelphodon.isInWater()) {
+			if (!this.didelphodon.isInWater() && this.getIsAboveDestination()) {
 				if (this.didelphodon.isReady < 1) {
 					this.didelphodon.setReady(true);
 				} else if (this.didelphodon.isReady > 200) {
 					World world = this.didelphodon.world;
-					AgeableEntity ageable = new DidelphodonEntity(PFEntities.DIDELPHODON_ENTITY, world);
-					ageable.setGrowingAge(-24000);
-					world.addEntity(ageable);
+					int amount = world.rand.nextInt(4) + 1;
+					for (int i = 0; i < amount; i++) {
+						DidelphodonEntity baby = new DidelphodonEntity(PFEntities.DIDELPHODON_ENTITY, world);
+						baby.setGrowingAge(-24000);
+						baby.setPosition(didelphodon.getPosX(), didelphodon.getPosY(), didelphodon.getPosZ());
+						world.addEntity(baby);
+					}
 					this.didelphodon.setPregnant(false);
 					this.didelphodon.setReady(false);
 					this.didelphodon.setInLove(600);
 				}
+
 				if (this.didelphodon.isReady()) {
 					this.didelphodon.isReady++;
 				}
 			}
+
 		}
 
+		/**
+		 * Return true to set given position as destination
+		 */
+		protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
+			if (!worldIn.isAirBlock(pos.up())) {
+				return false;
+			} else {
+				Block block = worldIn.getBlockState(pos).getBlock();
+				return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.MYCELIUM || block == Blocks.SAND || block == Blocks.RED_SAND || block == PFBlocks.MOSSY_DIRT || block == PFBlocks.MOSS_BLOCK || block == PFBlocks.LOAM || block == PFBlocks.PACKED_LOAM || block == PFBlocks.SILT || block == PFBlocks.PACKED_LOAM || block == BlockTags.LEAVES;
+			}
+		}
 	}
 
 	@Override

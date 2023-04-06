@@ -11,12 +11,15 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
+import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.ai.goal.BreedGoal;
 import net.minecraft.entity.ai.goal.FollowParentGoal;
 import net.minecraft.entity.ai.goal.Goal;
@@ -57,9 +60,16 @@ import net.minecraftforge.common.Tags;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entities.DinosaurEntity;
+import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.DakotaraptorEntity;
+import superlord.prehistoricfauna.common.entities.cretaceous.hellcreek.TyrannosaurusEntity;
 import superlord.prehistoricfauna.common.entities.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entities.goal.DinosaurRandomLookGoal;
 import superlord.prehistoricfauna.common.entities.goal.NocturnalSleepGoal;
+import superlord.prehistoricfauna.common.entities.jurassic.kayenta.DilophosaurusEntity;
+import superlord.prehistoricfauna.common.entities.jurassic.morrison.AllosaurusEntity;
+import superlord.prehistoricfauna.common.entities.jurassic.morrison.CamarasaurusEntity;
+import superlord.prehistoricfauna.common.entities.jurassic.morrison.CeratosaurusEntity;
+import superlord.prehistoricfauna.common.entities.triassic.ischigualasto.SaurosuchusEntity;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
@@ -82,6 +92,13 @@ public class TypothoraxEntity extends DinosaurEntity {
 
 	public TypothoraxEntity(EntityType<? extends TameableEntity> type, World worldIn) {
 		super(type, worldIn);
+	}
+	
+	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+		if (this.isChild()) {
+			return 0.225F;
+		}
+		return 0.45F;
 	}
 
 	public boolean hasEgg() {
@@ -223,6 +240,15 @@ public class TypothoraxEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(1, new NocturnalSleepGoal(this));
 		this.goalSelector.addGoal(0, new TypothoraxEntity.HerbivoreEatGoal((double)1.2F, 12, 2));
 		this.goalSelector.addGoal(4, new TypothoraxEntity.DiggingGoal(this));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<DilophosaurusEntity>(this, DilophosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<TyrannosaurusEntity>(this, TyrannosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<DakotaraptorEntity>(this, DakotaraptorEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<AllosaurusEntity>(this, AllosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<CeratosaurusEntity>(this, CeratosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<CamarasaurusEntity>(this, CamarasaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<SaurosuchusEntity>(this, SaurosuchusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<PoposaurusEntity>(this, PoposaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<PostosuchusEntity>(this, PostosuchusEntity.class, 10F, 1.75D, 1.5D));
 	}
 
 	@Override

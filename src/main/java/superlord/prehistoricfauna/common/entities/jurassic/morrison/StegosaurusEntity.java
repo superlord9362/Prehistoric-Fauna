@@ -12,10 +12,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -66,7 +68,7 @@ public class StegosaurusEntity extends DinosaurEntity {
 	private static final DataParameter<Boolean> MELANISTIC = EntityDataManager.createKey(StegosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> EATING = EntityDataManager.createKey(StegosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> NATURAL_LOVE = EntityDataManager.createKey(StegosaurusEntity.class, DataSerializers.BOOLEAN);
-	private int maxHunger = 150;
+	private int maxHunger = 200;
 	private int currentHunger;
 	private int lastInLove = 0;
 	int hungerTick = 0;
@@ -76,6 +78,11 @@ public class StegosaurusEntity extends DinosaurEntity {
 
 	public StegosaurusEntity(EntityType<? extends StegosaurusEntity> type, World worldIn) {
 		super(type, worldIn);
+	}
+	
+	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+		if (this.isChild()) return 1.125F;
+		else return 2.25F;
 	}
 
 	public boolean isDigging() {
@@ -229,7 +236,7 @@ public class StegosaurusEntity extends DinosaurEntity {
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 60.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 10).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.5D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 80.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 10).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.5D);
 	}
 
 	protected SoundEvent getAmbientSound() {
@@ -329,7 +336,7 @@ public class StegosaurusEntity extends DinosaurEntity {
 		 * method as well.
 		 */
 		public boolean shouldExecute() {
-			if (StegosaurusEntity.this.isChild()) {
+			if (StegosaurusEntity.this.isChild() || StegosaurusEntity.this.isAsleep()) {
 				return false;
 			} else {
 				if (super.shouldExecute()) {

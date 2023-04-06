@@ -180,6 +180,25 @@ public class TyrannosaurusrexjuvenileModel extends EntityModel<TyrannosaurusEnti
 				this.RightLeg1.rotateAngleX = MathHelper.cos(1.0F + (limbSwing / 3) * speed * 0.3F) * degree * -0.6F * limbSwingAmount - 0.05F;
 				this.RightLeg2.rotateAngleX = MathHelper.cos(1.0F + (limbSwing / 3) * speed * 0.3F) * degree * -0.4F * limbSwingAmount + 0.05F;
 				this.RightFeet.rotateAngleX = MathHelper.cos(2.0F + (limbSwing / 3) * speed * 0.3F) * degree * -0.3F * limbSwingAmount;
+				if (entityIn.isInWater()) {
+					this.LeftLeg1.rotationPointY = 20;
+					this.RightLeg1.rotationPointY = 20;
+					this.Body1.rotationPointY = 20;
+					this.Body1.rotateAngleX = -0.25F;
+					this.Tail1.rotateAngleX = 0.125F;
+					this.Tail2.rotateAngleX = 0.125F;
+					this.Neck.rotateAngleX = 0.25F;
+					this.LeftLeg1.rotateAngleX = -0.25F * MathHelper.sin(0.15F * ageInTicks / 1.5F);
+					this.RightLeg1.rotateAngleX = 0.25F * MathHelper.sin(0.15F * ageInTicks / 1.5F);
+					this.RightArm.rotateAngleX = 0.25F;
+					this.LeftArm.rotateAngleX = 0.25F;
+					this.Tail1.rotateAngleY = (MathHelper.cos((limbSwing / 3) * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * MathHelper.sin(0.15F * ageInTicks / 1.5F));
+					this.Tail2.rotateAngleY = (MathHelper.cos((limbSwing / 3) * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * MathHelper.sin(0.15F * ageInTicks / 1.5F));
+					this.LeftLeg2.rotateAngleX = -0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+					this.RightLeg2.rotateAngleX = 0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+					this.LeftFeet.rotateAngleX = 0.5F - (0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F));
+					this.RightFeet.rotateAngleX = 0.5F + (0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F));
+				}
 			} else {
 				float speed = 0.8f;
 				float degree = 1.0f;
@@ -199,7 +218,27 @@ public class TyrannosaurusrexjuvenileModel extends EntityModel<TyrannosaurusEnti
 				this.RightLeg1.rotateAngleX = MathHelper.cos(1.0F + limbSwing * speed * 0.3F) * degree * -0.6F * limbSwingAmount - 0.05F;
 				this.RightLeg2.rotateAngleX = MathHelper.cos(1.0F + limbSwing * speed * 0.3F) * degree * -0.4F * limbSwingAmount + 0.05F;
 				this.RightFeet.rotateAngleX = MathHelper.cos(2.0F + limbSwing * speed * 0.3F) * degree * -0.3F * limbSwingAmount;
+				if (entityIn.isInWater()) {
+					this.LeftLeg1.rotationPointY = 20;
+					this.RightLeg1.rotationPointY = 20;
+					this.Body1.rotationPointY = 20;
+					this.Body1.rotateAngleX = -0.25F;
+					this.Tail1.rotateAngleX = 0.125F;
+					this.Tail2.rotateAngleX = 0.125F;
+					this.Neck.rotateAngleX = 0.25F;
+					this.LeftLeg1.rotateAngleX = -0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+					this.RightLeg1.rotateAngleX = 0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+					this.LeftLeg2.rotateAngleX = -0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+					this.RightLeg2.rotateAngleX = 0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+					this.LeftFeet.rotateAngleX = 0.5F - (0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F));
+					this.RightFeet.rotateAngleX = 0.5F + (0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F));
+					this.RightArm.rotateAngleX = 0.25F;
+					this.LeftArm.rotateAngleX = 0.25F;
+					this.Tail1.rotateAngleY = (MathHelper.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * MathHelper.sin(0.15F * ageInTicks / 1.5F));
+					this.Tail2.rotateAngleY = (MathHelper.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * MathHelper.sin(0.15F * ageInTicks / 1.5F));
+				}
 			}
+			
 		}
 	}
 	

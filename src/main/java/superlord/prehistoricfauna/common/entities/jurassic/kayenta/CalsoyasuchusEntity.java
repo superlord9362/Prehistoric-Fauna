@@ -11,10 +11,12 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -127,6 +129,10 @@ public class CalsoyasuchusEntity extends DinosaurEntity {
 
 	public boolean isDigging() {
 		return this.getDataManager().get(IS_DIGGING);
+	}
+	
+	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+		return 0.3F;
 	}
 
 	private void setDigging(boolean isDigging) {
@@ -714,11 +720,11 @@ public class CalsoyasuchusEntity extends DinosaurEntity {
 		}
 
 		public boolean shouldExecute() {
-			return super.shouldExecute() && CalsoyasuchusEntity.this.getCurrentHunger() <= CalsoyasuchusEntity.this.getHalfHunger() && !CalsoyasuchusEntity.this.isChild();
+			return super.shouldExecute() && CalsoyasuchusEntity.this.getCurrentHunger() <= CalsoyasuchusEntity.this.getHalfHunger() && !CalsoyasuchusEntity.this.isChild() && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public boolean shouldContinueExecuting() {
-			return CalsoyasuchusEntity.this.getCurrentHunger() < CalsoyasuchusEntity.this.maxHunger;
+			return CalsoyasuchusEntity.this.getCurrentHunger() < CalsoyasuchusEntity.this.maxHunger && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public void tick() {
@@ -781,11 +787,11 @@ public class CalsoyasuchusEntity extends DinosaurEntity {
 		}
 
 		public boolean shouldExecute() {
-			return super.shouldExecute() && CalsoyasuchusEntity.this.getCurrentHunger() <= CalsoyasuchusEntity.this.getHalfHunger() && CalsoyasuchusEntity.this.isChild();
+			return super.shouldExecute() && CalsoyasuchusEntity.this.getCurrentHunger() <= CalsoyasuchusEntity.this.getHalfHunger() && CalsoyasuchusEntity.this.isChild() && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public boolean shouldContinueExecuting() {
-			return CalsoyasuchusEntity.this.getCurrentHunger() < CalsoyasuchusEntity.this.maxHunger || !CalsoyasuchusEntity.this.isChild();
+			return CalsoyasuchusEntity.this.getCurrentHunger() < CalsoyasuchusEntity.this.maxHunger && PrehistoricFaunaConfig.advancedHunger == true || !CalsoyasuchusEntity.this.isChild() && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public void tick() {

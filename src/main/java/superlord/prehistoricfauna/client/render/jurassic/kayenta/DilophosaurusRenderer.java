@@ -3,14 +3,12 @@ package superlord.prehistoricfauna.client.render.jurassic.kayenta;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.jurassic.kayenta.DilophosaurusModel;
-import superlord.prehistoricfauna.client.model.jurassic.kayenta.DilophosaurusSleepingModel;
 import superlord.prehistoricfauna.client.render.layer.DilophosaurusEyeLayer;
 import superlord.prehistoricfauna.common.entities.jurassic.kayenta.DilophosaurusEntity;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
@@ -30,7 +28,6 @@ public class DilophosaurusRenderer extends MobRenderer<DilophosaurusEntity,  Ent
 	private static final ResourceLocation ALBINO_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dilophosaurus/albino_juvenile_sleeping.png");
 	private static final ResourceLocation MELANISTIC_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dilophosaurus/melanistic_juvenile_sleeping.png");
 	private static final DilophosaurusModel DILOPHOSAURUS_MODEL = new DilophosaurusModel();
-	private static final DilophosaurusSleepingModel DILOPHOSAURUS_SLEEPING_MODEL = new DilophosaurusSleepingModel();
 	private static final ResourceLocation NAVAJO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dilophosaurus/navajo.png");
 	private static final ResourceLocation NAVAJO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dilophosaurus/navajo_sleeping.png");
 
@@ -39,15 +36,6 @@ public class DilophosaurusRenderer extends MobRenderer<DilophosaurusEntity,  Ent
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new DilophosaurusEyeLayer(this));
 		}
-	}
-
-	public void render(DilophosaurusEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-		if (entityIn.isAsleep()) {
-			entityModel = DILOPHOSAURUS_SLEEPING_MODEL;
-		} else {
-			entityModel = DILOPHOSAURUS_MODEL;
-		}
-		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
 
 	protected void preRenderCallback(DilophosaurusEntity entity, MatrixStack matrixStackIn, float partialTickTime) {

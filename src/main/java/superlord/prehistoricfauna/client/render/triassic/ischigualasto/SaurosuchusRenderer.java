@@ -3,13 +3,11 @@ package superlord.prehistoricfauna.client.render.triassic.ischigualasto;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.triassic.ischigualasto.SaurosuchusModel;
-import superlord.prehistoricfauna.client.model.triassic.ischigualasto.SaurosuchusSleepingModel;
 import superlord.prehistoricfauna.client.render.layer.SaurosuchusEyeLayer;
 import superlord.prehistoricfauna.common.entities.triassic.ischigualasto.SaurosuchusEntity;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
@@ -23,7 +21,6 @@ public class SaurosuchusRenderer extends MobRenderer<SaurosuchusEntity, EntityMo
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/saurosuchus/melanistic.png");
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/saurosuchus/melanistic_sleeping.png");
 	private static final SaurosuchusModel SAUROSUCHUS_MODEL = new SaurosuchusModel();
-	private static final SaurosuchusSleepingModel SAUROSUCHUS_SLEEPING_MODEL = new SaurosuchusSleepingModel();
 
 	public SaurosuchusRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), SAUROSUCHUS_MODEL, 0.75F);
@@ -36,15 +33,6 @@ public class SaurosuchusRenderer extends MobRenderer<SaurosuchusEntity, EntityMo
 		if(entity.isChild()) {
 			matrixStackIn.scale(0.5F, 0.5F, 0.5F);
 		}
-	}
-
-	public void render(SaurosuchusEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-		if (entityIn.isSleeping() || entityIn.isAsleep()) {
-			entityModel = SAUROSUCHUS_SLEEPING_MODEL;
-		} else {
-			entityModel = SAUROSUCHUS_MODEL;
-		}
-		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
 
 	@Override

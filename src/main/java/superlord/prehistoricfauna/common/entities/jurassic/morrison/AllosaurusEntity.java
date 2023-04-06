@@ -12,10 +12,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -125,6 +127,11 @@ public class AllosaurusEntity extends DinosaurEntity {
 	public AllosaurusEntity(EntityType<? extends AllosaurusEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
+	
+	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+		if (this.isChild()) return 1.5F;
+		else return 3.0F;
+	}
 
 	public boolean isDigging() {
 		return this.dataManager.get(IS_DIGGING);
@@ -205,7 +212,7 @@ public class AllosaurusEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new AllosaurusEntity.LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(2, new AllosaurusEntity.MateGoal(this, 1.0D));
 		this.goalSelector.addGoal(2, new AllosaurusEntity.NaturalMateGoal(this, 1.0D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal<CamarasaurusEntity>(this, CamarasaurusEntity.class, 7F, 1.25D, 1.25D));
+		this.goalSelector.addGoal(8, new AvoidEntityGoal<CamarasaurusEntity>(this, CamarasaurusEntity.class, 7F, 1.75D, 1.5D));
 		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
 		this.targetSelector.addGoal(0, new CarnivoreHuntGoal(this, LivingEntity.class, 10, true, false, (p_213487_0_) -> {
 			return p_213487_0_ instanceof AepyornithomimusEntity || p_213487_0_ instanceof AnkylosaurusEntity || p_213487_0_ instanceof CitipatiEntity || p_213487_0_ instanceof DakotaraptorEntity || p_213487_0_ instanceof DryosaurusEntity || p_213487_0_ instanceof HerrerasaurusEntity || p_213487_0_ instanceof IschigualastiaEntity || p_213487_0_ instanceof PinacosaurusEntity || p_213487_0_ instanceof PlesiohadrosEntity || p_213487_0_ instanceof ProtoceratopsEntity || p_213487_0_ instanceof SaurosuchusEntity || p_213487_0_ instanceof SillosuchusEntity || p_213487_0_ instanceof StegosaurusEntity || p_213487_0_ instanceof ThescelosaurusEntity || p_213487_0_ instanceof TriceratopsEntity || p_213487_0_ instanceof CatEntity || p_213487_0_ instanceof OcelotEntity || p_213487_0_ instanceof CowEntity || p_213487_0_ instanceof AbstractHorseEntity || p_213487_0_ instanceof FoxEntity || p_213487_0_ instanceof MooshroomEntity || p_213487_0_ instanceof PigEntity || p_213487_0_ instanceof AbstractVillagerEntity || p_213487_0_ instanceof WanderingTraderEntity || p_213487_0_ instanceof AbstractIllagerEntity || p_213487_0_ instanceof LlamaEntity || p_213487_0_ instanceof PandaEntity || p_213487_0_ instanceof PolarBearEntity || p_213487_0_ instanceof TurtleEntity || p_213487_0_ instanceof PlayerEntity || p_213487_0_ instanceof SarahsaurusEntity || p_213487_0_ instanceof ScelidosaurusEntity || p_213487_0_ instanceof CoelophysisEntity || p_213487_0_ instanceof DesmatosuchusEntity || p_213487_0_ instanceof PlaceriasEntity || p_213487_0_ instanceof PoposaurusEntity || p_213487_0_ instanceof PostosuchusEntity || p_213487_0_ instanceof TypothoraxEntity || p_213487_0_ instanceof TrilophosaurusEntity;
@@ -670,11 +677,11 @@ public class AllosaurusEntity extends DinosaurEntity {
 		}
 
 		public boolean shouldExecute() {
-			return super.shouldExecute() && AllosaurusEntity.this.getCurrentHunger() <= AllosaurusEntity.this.getHalfHunger() && !AllosaurusEntity.this.isChild();
+			return super.shouldExecute() && AllosaurusEntity.this.getCurrentHunger() <= AllosaurusEntity.this.getHalfHunger() && !AllosaurusEntity.this.isChild() && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public boolean shouldContinueExecuting() {
-			return AllosaurusEntity.this.getCurrentHunger() > AllosaurusEntity.this.maxHunger;
+			return AllosaurusEntity.this.getCurrentHunger() > AllosaurusEntity.this.maxHunger && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public void tick() {
@@ -747,11 +754,11 @@ public class AllosaurusEntity extends DinosaurEntity {
 		}
 
 		public boolean shouldExecute() {
-			return super.shouldExecute() && AllosaurusEntity.this.getCurrentHunger() <= AllosaurusEntity.this.getHalfHunger() && AllosaurusEntity.this.isChild();
+			return super.shouldExecute() && AllosaurusEntity.this.getCurrentHunger() <= AllosaurusEntity.this.getHalfHunger() && AllosaurusEntity.this.isChild() && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public boolean shouldContinueExecuting() {
-			return AllosaurusEntity.this.getCurrentHunger() > AllosaurusEntity.this.maxHunger || !AllosaurusEntity.this.isChild();
+			return AllosaurusEntity.this.getCurrentHunger() > AllosaurusEntity.this.maxHunger && PrehistoricFaunaConfig.advancedHunger == true || !AllosaurusEntity.this.isChild() && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public void tick() {

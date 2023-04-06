@@ -223,13 +223,13 @@ public class PostosuchusEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.goalSelector.addGoal(0, new PostosuchusEntity.LayEggGoal(this, 1.0D));
-		this.goalSelector.addGoal(5, new AvoidEntityGoal(this, AllosaurusEntity.class, 7F, 1.25D, 1.25D));
-		this.goalSelector.addGoal(5, new AvoidEntityGoal(this, StegosaurusEntity.class, 7F, 1.25D, 1.25D));
-		this.goalSelector.addGoal(5, new AvoidEntityGoal(this, CamarasaurusEntity.class, 7F, 1.25D, 1.25D));
-		this.goalSelector.addGoal(5, new AvoidEntityGoal(this, TriceratopsEntity.class, 7F, 1.25D, 1.25D));
-		this.goalSelector.addGoal(5, new AvoidEntityGoal(this, AnkylosaurusEntity.class, 7F, 1.25D, 1.25D));
-		this.goalSelector.addGoal(5, new AvoidEntityGoal(this, TyrannosaurusEntity.class, 7F, 1.25D, 1.25D));
-		this.goalSelector.addGoal(5, new AvoidEntityGoal(this, SillosuchusEntity.class, 7F, 1.25D, 1.25D));
+		this.goalSelector.addGoal(5, new AvoidEntityGoal(this, AllosaurusEntity.class, 7F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(5, new AvoidEntityGoal(this, StegosaurusEntity.class, 7F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(5, new AvoidEntityGoal(this, CamarasaurusEntity.class, 7F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(5, new AvoidEntityGoal(this, TriceratopsEntity.class, 7F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(5, new AvoidEntityGoal(this, AnkylosaurusEntity.class, 7F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(5, new AvoidEntityGoal(this, TyrannosaurusEntity.class, 7F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(5, new AvoidEntityGoal(this, SillosuchusEntity.class, 7F, 1.75D, 1.5D));
 		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
 		this.goalSelector.addGoal(0, new PostosuchusEntity.CarnivoreHuntGoal(this, LivingEntity.class, 10, false, false, (p_213487_1_) -> {
 			return p_213487_1_ instanceof AepyornithomimusEntity || p_213487_1_ instanceof CitipatiEntity || p_213487_1_ instanceof ProtoceratopsEntity || p_213487_1_ instanceof TelmasaurusEntity || p_213487_1_ instanceof VelociraptorEntity || p_213487_1_ instanceof BasilemysEntity || p_213487_1_ instanceof DidelphodonEntity || p_213487_1_ instanceof ThescelosaurusEntity || p_213487_1_ instanceof KayentatheriumEntity || p_213487_1_ instanceof MegapnosaurusEntity || p_213487_1_ instanceof SarahsaurusEntity || p_213487_1_ instanceof ScelidosaurusEntity || p_213487_1_ instanceof ScutellosaurusEntity || p_213487_1_ instanceof DryosaurusEntity || p_213487_1_ instanceof EilenodonEntity || p_213487_1_ instanceof HesperornithoidesEntity || p_213487_1_ instanceof ChromogisaurusEntity || p_213487_1_ instanceof ExaeretodonEntity || p_213487_1_ instanceof HerrerasaurusEntity || p_213487_1_ instanceof HyperodapedonEntity || p_213487_1_ instanceof CoelophysisEntity || p_213487_1_ instanceof DesmatosuchusEntity || p_213487_1_ instanceof PlaceriasEntity || p_213487_1_ instanceof TrilophosaurusEntity || p_213487_1_ instanceof TypothoraxEntity || p_213487_1_ instanceof CatEntity || p_213487_1_ instanceof ChickenEntity || p_213487_1_ instanceof CowEntity || p_213487_1_ instanceof FoxEntity || p_213487_1_ instanceof MooshroomEntity || p_213487_1_ instanceof OcelotEntity || p_213487_1_ instanceof ParrotEntity || p_213487_1_ instanceof PigEntity || p_213487_1_ instanceof RabbitEntity || p_213487_1_ instanceof SheepEntity || p_213487_1_ instanceof WolfEntity;

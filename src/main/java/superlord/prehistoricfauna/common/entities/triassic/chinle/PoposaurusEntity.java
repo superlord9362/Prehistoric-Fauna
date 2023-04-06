@@ -12,10 +12,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -128,6 +130,11 @@ public class PoposaurusEntity extends DinosaurEntity {
 	public PoposaurusEntity(EntityType<? extends PoposaurusEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
+	
+	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+		if (this.isChild()) return 0.725F;
+		else return 1.45F;
+	}
 
 	public boolean isDigging() {
 		return this.getDataManager().get(IS_DIGGING);
@@ -222,13 +229,13 @@ public class PoposaurusEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.goalSelector.addGoal(0, new PoposaurusEntity.LayEggGoal(this, 1.0D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, AllosaurusEntity.class, 7F, 1.25D, 1.25D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, StegosaurusEntity.class, 7F, 1.25D, 1.25D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, CamarasaurusEntity.class, 7F, 1.25D, 1.25D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, TriceratopsEntity.class, 7F, 1.25D, 1.25D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, AnkylosaurusEntity.class, 7F, 1.25D, 1.25D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, TyrannosaurusEntity.class, 7F, 1.25D, 1.25D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, SillosuchusEntity.class, 7F, 1.25D, 1.25D));
+		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, AllosaurusEntity.class, 7F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, StegosaurusEntity.class, 7F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, CamarasaurusEntity.class, 7F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, TriceratopsEntity.class, 7F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, AnkylosaurusEntity.class, 7F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, TyrannosaurusEntity.class, 7F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, SillosuchusEntity.class, 7F, 1.75D, 1.5D));
 		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
 		this.goalSelector.addGoal(0, new PoposaurusEntity.CarnivoreHuntGoal(this, LivingEntity.class, 10, false, false, (p_213487_1_) -> {
 			return p_213487_1_ instanceof AepyornithomimusEntity || p_213487_1_ instanceof CitipatiEntity || p_213487_1_ instanceof ProtoceratopsEntity || p_213487_1_ instanceof TelmasaurusEntity || p_213487_1_ instanceof VelociraptorEntity || p_213487_1_ instanceof BasilemysEntity || p_213487_1_ instanceof DidelphodonEntity || p_213487_1_ instanceof ThescelosaurusEntity || p_213487_1_ instanceof KayentatheriumEntity || p_213487_1_ instanceof MegapnosaurusEntity || p_213487_1_ instanceof SarahsaurusEntity || p_213487_1_ instanceof ScelidosaurusEntity || p_213487_1_ instanceof ScutellosaurusEntity || p_213487_1_ instanceof DryosaurusEntity || p_213487_1_ instanceof EilenodonEntity || p_213487_1_ instanceof HesperornithoidesEntity || p_213487_1_ instanceof ChromogisaurusEntity || p_213487_1_ instanceof ExaeretodonEntity || p_213487_1_ instanceof HerrerasaurusEntity || p_213487_1_ instanceof HyperodapedonEntity || p_213487_1_ instanceof CoelophysisEntity || p_213487_1_ instanceof DesmatosuchusEntity || p_213487_1_ instanceof PlaceriasEntity || p_213487_1_ instanceof TrilophosaurusEntity || p_213487_1_ instanceof TypothoraxEntity || p_213487_1_ instanceof CatEntity || p_213487_1_ instanceof ChickenEntity || p_213487_1_ instanceof CowEntity || p_213487_1_ instanceof FoxEntity || p_213487_1_ instanceof MooshroomEntity || p_213487_1_ instanceof OcelotEntity || p_213487_1_ instanceof ParrotEntity || p_213487_1_ instanceof PigEntity || p_213487_1_ instanceof RabbitEntity || p_213487_1_ instanceof SheepEntity || p_213487_1_ instanceof WolfEntity;
@@ -642,11 +649,11 @@ public class PoposaurusEntity extends DinosaurEntity {
 		}
 
 		public boolean shouldExecute() {
-			return super.shouldExecute() && PoposaurusEntity.this.getCurrentHunger() <= PoposaurusEntity.this.getHalfHunger() && !PoposaurusEntity.this.isChild();
+			return super.shouldExecute() && PoposaurusEntity.this.getCurrentHunger() <= PoposaurusEntity.this.getHalfHunger() && !PoposaurusEntity.this.isChild() && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public boolean shouldContinueExecuting() {
-			return PoposaurusEntity.this.getCurrentHunger() < PoposaurusEntity.this.maxHunger;
+			return PoposaurusEntity.this.getCurrentHunger() < PoposaurusEntity.this.maxHunger && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public void tick() {
@@ -728,11 +735,11 @@ public class PoposaurusEntity extends DinosaurEntity {
 		}
 
 		public boolean shouldExecute() {
-			return super.shouldExecute() && PoposaurusEntity.this.getCurrentHunger() <= PoposaurusEntity.this.getHalfHunger() && PoposaurusEntity.this.isChild();
+			return super.shouldExecute() && PoposaurusEntity.this.getCurrentHunger() <= PoposaurusEntity.this.getHalfHunger() && PoposaurusEntity.this.isChild() && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public boolean shouldContinueExecuting() {
-			return PoposaurusEntity.this.getCurrentHunger() < PoposaurusEntity.this.maxHunger || !PoposaurusEntity.this.isChild();
+			return PoposaurusEntity.this.getCurrentHunger() < PoposaurusEntity.this.maxHunger && PrehistoricFaunaConfig.advancedHunger == true || !PoposaurusEntity.this.isChild() && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public void tick() {

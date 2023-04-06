@@ -3,7 +3,6 @@ package superlord.prehistoricfauna.client.render.jurassic.morrison;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
@@ -11,7 +10,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.AllosaurusModel;
-import superlord.prehistoricfauna.client.model.jurassic.morrison.AllosaurusSleepingModel;
 import superlord.prehistoricfauna.client.render.layer.AllosaurusEyeLayer;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.AllosaurusEntity;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
@@ -20,7 +18,6 @@ import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 public class AllosaurusRenderer extends MobRenderer<AllosaurusEntity, EntityModel<AllosaurusEntity>> {
 
 	private static final AllosaurusModel ALLOSAURUS_MODEL = new AllosaurusModel();
-	private static final AllosaurusSleepingModel ALLOSAURUS_SLEEPING_MODEL = new AllosaurusSleepingModel();
 	private static final ResourceLocation ALLOSAURUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/allosaurus/allosaurus.png");
 	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/allosaurus/albino.png");
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/allosaurus/melanistic.png");
@@ -39,15 +36,6 @@ public class AllosaurusRenderer extends MobRenderer<AllosaurusEntity, EntityMode
 		if(allosaurus.isChild()) {
 			matrixStackIn.scale(0.5F, 0.5F, 0.5F);
 		}
-	}
-
-	public void render(AllosaurusEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-		if (entityIn.isAsleep()) {
-			entityModel = ALLOSAURUS_SLEEPING_MODEL;
-		} else {
-			entityModel = ALLOSAURUS_MODEL;
-		}
-		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
 
 	public ResourceLocation getEntityTexture(AllosaurusEntity entity) {

@@ -75,7 +75,7 @@ public class PFItems {
 	public static final RegistryObject<PrehistoricSpawnEggItem> MYLEDAPHUS_SPAWN_EGG = REGISTER.register("myledaphus_spawn_egg", () -> new PrehistoricSpawnEggItem(PFEntities.MYLEDAPHUS, 0x896D48, 0xC4B087, new Item.Properties().group(PFEggs.instance)));
 	public static final RegistryObject<PrehistoricSpawnEggItem> THESCELOSAURUS_SPAWN_EGG = REGISTER.register("thescelosaurus_spawn_egg", () -> new PrehistoricSpawnEggItem(PFEntities.THESCELOSAURUS_ENTITY, 0x582C20, 0x496659, new Item.Properties().group(PFEggs.instance)));
 	public static final RegistryObject<PrehistoricSpawnEggItem> TRICERATOPS_SPAWN_EGG = REGISTER.register("triceratops_spawn_egg", () -> new PrehistoricSpawnEggItem(PFEntities.TRICERATOPS_ENTITY, 0x494427, 0xABA37B, new Item.Properties().group(PFEggs.instance)));
-	public static final RegistryObject<PrehistoricSpawnEggItem> TYRANNOSAURUS_SPAWN_EGG = REGISTER.register("tyrannosaurus_spawn_egg", () -> new PrehistoricSpawnEggItem(PFEntities.TYRANNOSAURUS_ENTITY, 0x56483E, 0x614C38, new Item.Properties().group(PFEggs.instance)));
+	public static final RegistryObject<PrehistoricSpawnEggItem> TYRANNOSAURUS_SPAWN_EGG = REGISTER.register("tyrannosaurus_spawn_egg", () -> new PrehistoricSpawnEggItem(PFEntities.TYRANNOSAURUS_ENTITY, 0x56483E, 0x541714, new Item.Properties().group(PFEggs.instance)));
 
 	//Kayenta
 	public static final RegistryObject<PrehistoricSpawnEggItem> CALSOYASUCHUS_SPAWN_EGG = REGISTER.register("calsoyasuchus_spawn_egg", () -> new PrehistoricSpawnEggItem(PFEntities.CALSOYASUCHUS_ENTITY, 0xCBC1AB, 0x573E2E, new Item.Properties().group(PFEggs.instance)));

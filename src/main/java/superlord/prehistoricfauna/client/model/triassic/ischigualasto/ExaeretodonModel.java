@@ -73,15 +73,77 @@ public class ExaeretodonModel extends EntityModel<ExaeretodonEntity> {
 
 	@Override
 	public void setRotationAngles(ExaeretodonEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.Head.rotateAngleX = headPitch * ((float)Math.PI / 180F);
-		this.Head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
-		this.RightBackLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-		this.LeftBackLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-		this.RightFrontLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-		this.LeftFrontLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-		if (entityIn.isEating()) {
-			this.Head.rotateAngleX = Math.abs(MathHelper.sin(0.05F * ageInTicks) * 0.45F) + 0.15F;
+		resetModel();
+		if (entityIn.isAsleep()) {
+			this.RightBackLeg.rotateAngleX = 1.6816247076649256F;
+			this.RightBackLeg.rotateAngleY = -0.40125119103875473F;
+			this.Tail.rotationPointZ = 9.1F;
+			this.Tail.rotateAngleX = -0.07295475973730675F;
+			this.Tail.rotateAngleY = 0.36477380700891215F;
+			this.Tail.rotateAngleZ = 0.01902408942930468F;
+			this.Head.rotationPointY = -2.6F;
+			this.Head.rotationPointZ = 0.0F;
+			this.Head.rotateAngleX = 0.3284709598990106F;
+			this.Head.rotateAngleY = -0.40194933871851896F;
+			this.Head.rotateAngleZ = -0.291819038949227F;
+			this.Body.rotationPointY = 23.6F;
+			this.Body.rotateAngleX = -0.1459095194746135F;
+			this.RightFrontLeg.rotationPointX = -2.6F;
+			this.RightFrontLeg.rotationPointY = -0.1F;
+			this.RightFrontLeg.rotationPointZ = -0.6F;
+			this.RightFrontLeg.rotateAngleX = -1.314407417066352F;
+			this.RightFrontLeg.rotateAngleY = -1.1299261204568736F;
+			this.RightFrontLeg.rotateAngleZ = -0.2556907287592666F;
+			this.LeftBackLeg.rotateAngleX = 1.605702911834783F;
+			this.LeftBackLeg.rotateAngleY = 0.291819038949227F;
+			this.LeftFrontLeg.rotateAngleX = -0.8030259595478191F;
+			this.LeftFrontLeg.rotateAngleY = 1.1311478456069475F;
+			this.LeftFrontLeg.rotateAngleZ = 0.6201154619282966F;
+		} else {
+			this.Head.rotateAngleX = headPitch * ((float)Math.PI / 180F);
+			this.Head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
+			this.RightBackLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+			this.LeftBackLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+			this.RightFrontLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+			this.LeftFrontLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+			if (entityIn.isEating()) {
+				this.Head.rotateAngleX = Math.abs(MathHelper.sin(0.05F * ageInTicks) * 0.45F) + 0.15F;
+			}
+			if (entityIn.isInWater()) {
+				this.RightFrontLeg.rotateAngleX = 0.25F * MathHelper.sin(0.15F * ageInTicks / 1.5F);
+				this.LeftFrontLeg.rotateAngleX = -0.25F * MathHelper.sin(0.15F * ageInTicks / 1.5F);
+				this.RightBackLeg.rotateAngleX = -0.25F * MathHelper.sin(0.15F * ageInTicks / 1.5F);
+				this.LeftBackLeg.rotateAngleX = 0.25F * MathHelper.sin(0.15F * ageInTicks / 1.5F);
+				this.Tail.rotateAngleX = (MathHelper.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.25F * MathHelper.sin(0.15F * ageInTicks / 1.5F));
+			}
 		}
+	}
+
+	public void resetModel() {
+		this.RightBackLeg.rotateAngleX = 0;
+		this.RightBackLeg.rotateAngleY = 0;
+		this.Tail.rotationPointZ = 10.0F;
+		this.Tail.rotateAngleX = 0;
+		this.Tail.rotateAngleY = 0;
+		this.Tail.rotateAngleZ = 0;
+		this.Head.rotationPointY = -3.0F;
+		this.Head.rotationPointZ = -2.0F;
+		this.Head.rotateAngleX = 0;
+		this.Head.rotateAngleY = 0;
+		this.Head.rotateAngleZ = 0;
+		this.Body.rotationPointY = 21.0F;
+		this.Body.rotateAngleX = 0;
+		this.RightFrontLeg.rotationPointX = -3.0F;
+		this.RightFrontLeg.rotationPointY = -0.5F;
+		this.RightFrontLeg.rotationPointZ = -0.5F;
+		this.RightFrontLeg.rotateAngleX = 0;
+		this.RightFrontLeg.rotateAngleY = 0;
+		this.RightFrontLeg.rotateAngleZ = 0;
+		this.LeftBackLeg.rotateAngleX = 0;
+		this.LeftBackLeg.rotateAngleY = 0;
+		this.LeftFrontLeg.rotateAngleX = 0;
+		this.LeftFrontLeg.rotateAngleY = 0;
+		this.LeftFrontLeg.rotateAngleZ = 0;
 	}
 
 	/**

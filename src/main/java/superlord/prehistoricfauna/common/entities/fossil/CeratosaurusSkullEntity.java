@@ -128,10 +128,17 @@ public class CeratosaurusSkullEntity extends PrehistoricEntity {
 
 	public boolean attackEntityFrom(DamageSource source, float amount) {
 		if (source.getTrueSource() instanceof PlayerEntity) {
-			this.remove();
+			if (source.isExplosion()) {
+				return super.attackEntityFrom(source, amount);
+			} else {
+				this.remove();
+			}
 			this.playBrokenSound();
 			this.playParticles();
-			this.spawnFossil(source);
+			PlayerEntity player = (PlayerEntity)source.getTrueSource();
+			if (!player.isCreative()) {
+				this.spawnFossil(source);
+			}
 		}
 		return false;
 	}

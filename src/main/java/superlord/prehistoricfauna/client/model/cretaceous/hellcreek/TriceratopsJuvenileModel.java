@@ -157,7 +157,6 @@ public class TriceratopsJuvenileModel extends EntityModel<TriceratopsEntity> {
 			this.RightFrontLeg.rotationPointY = 19;
 			this.LeftHindLeg1.rotationPointY = 15;
 			this.RightHindLeg1.rotationPointY = 15;
-			
 		} else {
 			if (entityIn.isJuvenile()) {
 				float speed = 1.0f;
@@ -177,6 +176,27 @@ public class TriceratopsJuvenileModel extends EntityModel<TriceratopsEntity> {
 				this.Tail1.rotateAngleY = MathHelper.cos(-1.0F + (limbSwing / 3) * speed * 0.15F) * degree * 0.05F * limbSwingAmount;
 				this.Tail2.rotateAngleX = MathHelper.cos(-1.0F + (limbSwing / 3) * speed * 0.3F) * degree * 0.15F * limbSwingAmount + 0.15F;
 				this.Tail2.rotateAngleY = MathHelper.cos(-1.0F + (limbSwing / 3) * speed * 0.15F) * degree * 0.15F * limbSwingAmount;
+				if (entityIn.isInWater()) {
+					this.Body.rotationPointY = 8;
+					this.Body.rotateAngleX = -0.25F;
+					this.Tail1.rotateAngleX = 0.125F;
+					this.Tail2.rotateAngleX = 0.125F;
+					this.LeftHindLeg1.rotationPointY = 8;
+					this.RightHindLeg1.rotationPointY = 8;
+					this.LeftFrontLeg.rotationPointY = 10;
+					this.RightFrontLeg.rotationPointY = 10;
+					this.LeftHindLeg1.rotateAngleX = -0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+					this.RightHindLeg1.rotateAngleX = 0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+					this.RightFrontLeg.rotateAngleX = -0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+					this.LeftFrontLeg.rotateAngleX = 0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+					this.LeftHindLeg2.rotateAngleX = -0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+					this.RightHindLeg2.rotateAngleX = 0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+					this.LeftHindLeg3.rotateAngleX = 0.5F - (0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F));
+					this.RightHindLeg3.rotateAngleX = 0.5F + (0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F));
+					this.Neck.rotateAngleX = 0.0625F;
+					this.Tail1.rotateAngleY = (MathHelper.cos((limbSwing / 3) * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * MathHelper.sin(0.15F * ageInTicks / 1.5F));
+					this.Tail2.rotateAngleY = (MathHelper.cos((limbSwing / 3) * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * MathHelper.sin(0.15F * ageInTicks / 1.5F));
+				}
 			} else {
 				float speed = 1.0f;
 				float degree = 1.0f;
@@ -195,6 +215,27 @@ public class TriceratopsJuvenileModel extends EntityModel<TriceratopsEntity> {
 				this.Tail1.rotateAngleY = MathHelper.cos(-1.0F + limbSwing * speed * 0.15F) * degree * 0.05F * limbSwingAmount;
 				this.Tail2.rotateAngleX = MathHelper.cos(-1.0F + limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount + 0.15F;
 				this.Tail2.rotateAngleY = MathHelper.cos(-1.0F + limbSwing * speed * 0.15F) * degree * 0.15F * limbSwingAmount;
+				if (entityIn.isInWater()) {
+					this.Body.rotationPointY = 8;
+					this.Body.rotateAngleX = -0.25F;
+					this.Tail1.rotateAngleX = 0.125F;
+					this.Tail2.rotateAngleX = 0.125F;
+					this.LeftHindLeg1.rotationPointY = 8;
+					this.RightHindLeg1.rotationPointY = 8;
+					this.LeftFrontLeg.rotationPointY = 10;
+					this.RightFrontLeg.rotationPointY = 10;
+					this.LeftHindLeg1.rotateAngleX = -0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+					this.RightHindLeg1.rotateAngleX = 0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+					this.RightFrontLeg.rotateAngleX = -0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+					this.LeftFrontLeg.rotateAngleX = 0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+					this.LeftHindLeg2.rotateAngleX = -0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+					this.RightHindLeg2.rotateAngleX = 0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+					this.LeftHindLeg3.rotateAngleX = 0.5F - (0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F));
+					this.RightHindLeg3.rotateAngleX = 0.5F + (0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F));
+					this.Neck.rotateAngleX = 0.0625F;
+					this.Tail1.rotateAngleY = (MathHelper.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * MathHelper.sin(0.15F * ageInTicks / 1.5F));
+					this.Tail2.rotateAngleY = (MathHelper.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * MathHelper.sin(0.15F * ageInTicks / 1.5F));
+				}
 			}
 			if (entityIn.isEating()) {
 				this.Neck.rotateAngleX = Math.abs(MathHelper.sin(0.05F * ageInTicks) * 0.25F) + 0.15F;
@@ -229,6 +270,7 @@ public class TriceratopsJuvenileModel extends EntityModel<TriceratopsEntity> {
 		this.RightFrontLeg.rotationPointY = 7;
 		this.LeftHindLeg1.rotationPointY = 3;
 		this.RightHindLeg1.rotationPointY = 3;
+		this.Body.rotateAngleX = 0;
 	}
 
 	/**

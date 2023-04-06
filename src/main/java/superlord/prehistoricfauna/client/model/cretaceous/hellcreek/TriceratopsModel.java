@@ -210,8 +210,8 @@ public class TriceratopsModel extends EntityModel<TriceratopsEntity> {
 			this.RightFrontLeg.rotationPointY = 12;
 			this.LeftFrontLeg.rotationPointY = 12;
 		} else {
-			this.LeftFrontLeg.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.3F) * degree * 0.8F * limbSwingAmount + attackProgress * (float) Math.toRadians(15F);
-			this.RightFrontLeg.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.3F) * degree * -0.8F * limbSwingAmount + attackProgress * (float) Math.toRadians(15F);
+			this.RightFrontLeg.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.3F) * degree * 0.8F * limbSwingAmount + attackProgress * (float) Math.toRadians(15F);
+			this.LeftFrontLeg.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.3F) * degree * -0.8F * limbSwingAmount + attackProgress * (float) Math.toRadians(15F);
 			this.LeftHindLeg1.rotateAngleX = MathHelper.cos(1.0F + limbSwing * speed * 0.3F) * degree * 0.4F * limbSwingAmount + attackProgress * (float) Math.toRadians(7F);
 			this.LeftHindLeg2.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.3F) * degree * 0.3F * limbSwingAmount;
 			this.LeftHindLeg3.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.3F) * degree * -0.3F * limbSwingAmount;
@@ -233,6 +233,27 @@ public class TriceratopsModel extends EntityModel<TriceratopsEntity> {
 			if (entityIn.isEating()) {
 				this.Neck.rotateAngleX = Math.abs(MathHelper.sin(0.05F * ageInTicks) * 0.25F) + 0.15F;
 				this.Body.rotateAngleX = 0.1F;
+			}
+			if (entityIn.isInWater()) {
+				this.Body.rotationPointY = 8;
+				this.Body.rotateAngleX = -0.25F;
+				this.Tail1.rotateAngleX = 0.125F;
+				this.Tail2.rotateAngleX = 0.125F;
+				this.LeftHindLeg1.rotationPointY = 14;
+				this.RightHindLeg1.rotationPointY = 14;
+				this.LeftFrontLeg.rotationPointY = 17;
+				this.RightFrontLeg.rotationPointY = 17;
+				this.LeftHindLeg1.rotateAngleX = -0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.RightHindLeg1.rotateAngleX = 0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.RightFrontLeg.rotateAngleX = -0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.LeftFrontLeg.rotateAngleX = 0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.LeftHindLeg2.rotateAngleX = -0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.RightHindLeg2.rotateAngleX = 0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.LeftHindLeg3.rotateAngleX = 0.5F - (0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F));
+				this.RightHindLeg3.rotateAngleX = 0.5F + (0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F));
+				this.Neck.rotateAngleX = 0.0625F;
+				this.Tail1.rotateAngleY = (MathHelper.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * MathHelper.sin(0.15F * ageInTicks / 1.5F));
+				this.Tail2.rotateAngleY = (MathHelper.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * MathHelper.sin(0.15F * ageInTicks / 1.5F));
 			}
 		}
 	}

@@ -3,13 +3,11 @@ package superlord.prehistoricfauna.client.render.jurassic.morrison;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.CeratosaurusModel;
-import superlord.prehistoricfauna.client.model.jurassic.morrison.CeratosaurusSleepingModel;
 import superlord.prehistoricfauna.client.render.layer.CeratosaurusEyeLayer;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.CeratosaurusEntity;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
@@ -23,22 +21,12 @@ public class CeratosaurusRenderer extends MobRenderer<CeratosaurusEntity,  Entit
 	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ceratosaurus/albino_sleeping.png");
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ceratosaurus/melanistic_sleeping.png");
 	private static final CeratosaurusModel CERATOSAURUS_MODEL = new CeratosaurusModel();
-	private static final CeratosaurusSleepingModel CERATOSAURUS_SLEEPING_MODEL = new CeratosaurusSleepingModel();
 
 	public CeratosaurusRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), CERATOSAURUS_MODEL, 0.75F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new CeratosaurusEyeLayer(this));
 		}
-	}
-
-	public void render(CeratosaurusEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-		if (entityIn.isAsleep()) {
-			entityModel = CERATOSAURUS_SLEEPING_MODEL;
-		} else {
-			entityModel = CERATOSAURUS_MODEL;
-		}
-		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
 
 	protected void preRenderCallback(CeratosaurusEntity entity, MatrixStack matrixStackIn, float partialTickTime) {

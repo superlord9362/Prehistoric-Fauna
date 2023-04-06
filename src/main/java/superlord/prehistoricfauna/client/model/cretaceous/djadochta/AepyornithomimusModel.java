@@ -117,6 +117,9 @@ public class AepyornithomimusModel extends EntityModel<AepyornithomimusEntity> {
 		this.Body.rotationPointY = 12;
 		this.Thighleft.rotationPointY = 12;
 		this.Thighleft_1.rotationPointY = 12;
+		this.Body.rotateAngleX = 0;
+		this.legleft.rotateAngleX = 0;
+		this.legleft_1.rotateAngleX = 0;
 		if (entityIn.isAsleep()) {
 			this.Body.rotationPointY = 21;
 			this.Thighleft.rotationPointY = 21;
@@ -148,6 +151,23 @@ public class AepyornithomimusModel extends EntityModel<AepyornithomimusEntity> {
 			this.HeadNeck.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
 			if (entityIn.isEating()) {
 				this.HeadNeck.rotateAngleX = Math.abs(MathHelper.sin(0.15F * ageInTicks) * 0.75F) + 1.5F;
+			}
+			if (entityIn.isInWater()) {
+				this.Thighleft.rotationPointY = 17;
+				this.Thighleft_1.rotationPointY = 17;
+				this.Body.rotationPointY = 17;
+				this.Body.rotateAngleX = -0.5F;
+				this.Tailbase.rotateAngleX = 0.25F;
+				this.Tailtip.rotateAngleX = 0.25F;
+				this.HeadNeck.rotateAngleX = 0.5F;
+				this.Wingleft.rotateAngleZ = -1.5F + Math.abs(-1F * MathHelper.sin(0.2F * ageInTicks / 2));
+				this.Wingright.rotateAngleZ = 1.5F - Math.abs(-1F * MathHelper.sin(0.2F * ageInTicks / 2));
+				this.Thighleft.rotateAngleX = -0.5F * MathHelper.sin(0.15F * ageInTicks / 1.5F);
+				this.Thighleft_1.rotateAngleX = 0.5F * MathHelper.sin(0.15F * ageInTicks / 1.5F);
+				this.Tailbase.rotateAngleY = MathHelper.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;
+				this.Tailtip.rotateAngleY = MathHelper.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;
+				this.legleft_1.rotateAngleX = -0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.legleft.rotateAngleX = 0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
 			}
 		}
 	}

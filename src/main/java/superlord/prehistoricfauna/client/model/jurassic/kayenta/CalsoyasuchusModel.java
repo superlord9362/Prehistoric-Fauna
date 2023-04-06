@@ -102,14 +102,96 @@ public class CalsoyasuchusModel extends EntityModel<CalsoyasuchusEntity> {
 
 	@Override
 	public void setRotationAngles(CalsoyasuchusEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.tail.rotateAngleX = -Math.abs(-0.05F * MathHelper.sin(0.1F * ageInTicks / 5));
-		this.BackL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-		this.FrontR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-		this.BackR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-		this.BackL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-		this.tail.rotateAngleY = -0.12F * MathHelper.sin(0.2F * ageInTicks / 5);
-		this.head.rotateAngleX = (headPitch * ((float)Math.PI / 180F)) + (Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3)));
-		this.head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
+		resetModel();
+		if (entityIn.isAsleep()) {
+			this.belly.rotationPointY = 22.0F;
+			this.belly.rotationPointZ = -1.0F;
+			this.FrontL.rotationPointX = 1.0F;
+			this.FrontL.rotationPointY = 23.3F;
+			this.FrontL.rotationPointZ = -3.0F;
+			this.BackL.rotationPointX = 1.0F;
+			this.BackL.rotationPointY = 23.0F;
+			this.BackL.rotationPointZ = 4.0F;
+			this.FrontR.rotationPointX = 1.0F;
+			this.FrontR.rotationPointY = 23.3F;
+			this.FrontR.rotationPointZ = -3.0F;
+			this.BackR.rotationPointX = -1.0F;
+			this.BackR.rotationPointY = 23.0F;
+			this.BackR.rotationPointZ = 4.0F;
+			this.tail.rotateAngleX = -0.0572467989660713F;
+			this.tail.rotateAngleY = 0.3909537457888271F;
+			this.FrontR.rotateAngleZ = 1.0946705281561322F;
+			this.head.rotateAngleX = 0.11728612207217244F;
+			this.head.rotateAngleY = -0.3909537457888271F;
+			this.hand.rotateAngleZ = 1.1728612040769677F;
+			this.hand_1.rotateAngleZ = -1.0946705281561322F;
+			this.feet.rotateAngleZ = 0.9382889765773795F;
+			this.feet_1.rotateAngleZ = -0.9382889765773795F;
+			this.BackR.rotateAngleZ = 0.9382889765773795F;
+			this.BackL.rotateAngleZ = -0.9382889765773795F;
+			this.FrontL.rotateAngleZ = -1.1728612040769677F;
+		} else {
+			this.tail.rotateAngleX = -Math.abs(-0.05F * MathHelper.sin(0.1F * ageInTicks / 5));
+			this.BackL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+			this.FrontR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+			this.BackR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+			this.FrontL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+			this.tail.rotateAngleY = -0.12F * MathHelper.sin(0.2F * ageInTicks / 5);
+			this.head.rotateAngleX = (headPitch * ((float)Math.PI / 180F)) + (Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3)));
+			this.head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
+			if (entityIn.isInWater()) {
+				this.hand_1.rotateAngleX = 1.5707963267948966F;
+				this.FrontR.rotateAngleX = 0.8726646259971648F;
+				this.hand.rotateAngleX = 1.5707963267948966F;
+				this.FrontL.rotateAngleX = 0.8726646259971648F;
+				this.BackR.rotateAngleX = 1.0471975511965976F;
+				this.BackL.rotateAngleX = 1.0471975511965976F;
+				this.feet.rotateAngleZ = 1.5707963267948966F;
+				this.feet_1.rotateAngleZ = -1.5707963267948966F;
+				this.tail.rotateAngleX = -Math.abs(-0.05F * MathHelper.sin(0.1F * ageInTicks / 5));
+				this.tail.rotateAngleY = -0.12F * MathHelper.sin(0.2F * ageInTicks / 5) + (MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
+				this.belly.rotateAngleX = (headPitch * ((float)Math.PI / 180F)) + (Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3)));
+				this.head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
+			}
+		}
+	}
+
+	public void resetModel() {
+		this.tail.rotateAngleX = -0.17453292519943295F;
+		this.tail.rotateAngleY = 0;
+		this.FrontR.rotateAngleX = 0;
+		this.FrontR.rotateAngleZ = 0;
+		this.FrontL.rotateAngleX = 0;
+		this.head.rotateAngleX = 0;
+		this.head.rotateAngleY = 0;
+		this.hand.rotateAngleZ = 0;
+		this.hand_1.rotateAngleX = 0;
+		this.hand_1.rotateAngleZ = 0;
+		this.feet.rotateAngleZ = 0;
+		this.feet_1.rotateAngleZ = 0;
+		this.BackR.rotateAngleZ = 0;
+		this.BackL.rotateAngleZ = 0;
+		this.FrontL.rotateAngleZ = 0;
+		this.hand.rotateAngleX = 0;
+		this.BackR.rotateAngleX = 0;
+		this.BackL.rotateAngleX = 0;
+		this.feet.rotateAngleZ = 0;
+		this.feet_1.rotateAngleZ = 0;
+		this.FrontL.rotationPointX = 1.0F;
+		this.FrontL.rotationPointY = 21.0F;
+		this.FrontL.rotationPointZ = -3.0F;
+		this.BackL.rotationPointX = 1.0F;
+		this.BackL.rotationPointY = 21.0F;
+		this.BackL.rotationPointZ = 4.0F;
+		this.FrontR.rotationPointX = -1.0F;
+		this.FrontR.rotationPointY = 21.0F;
+		this.FrontR.rotationPointZ = -3.0F;
+		this.belly.rotationPointX = 0.0F;
+		this.belly.rotationPointY = 20.0F;
+		this.belly.rotationPointZ = -1.0F;
+		this.BackR.rotationPointX = -1.0F;
+		this.BackR.rotationPointY = 21.0F;
+		this.BackR.rotationPointZ = 4.0F;
 	}
 
 	/**

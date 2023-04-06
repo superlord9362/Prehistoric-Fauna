@@ -17,30 +17,35 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.ai.goal.BreedGoal;
 import net.minecraft.entity.ai.goal.FollowParentGoal;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.entity.ai.goal.PanicGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.TemptGoal;
+import net.minecraft.entity.ai.goal.RandomSwimmingGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.pathfinding.PathFinder;
+import net.minecraft.pathfinding.PathNavigator;
+import net.minecraft.pathfinding.SwimmerPathNavigator;
+import net.minecraft.pathfinding.WalkAndSwimNodeProcessor;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.GameRules;
@@ -65,6 +70,9 @@ import superlord.prehistoricfauna.common.entities.jurassic.morrison.AllosaurusEn
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.CamarasaurusEntity;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.CeratosaurusEntity;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.StegosaurusEntity;
+import superlord.prehistoricfauna.common.entities.triassic.chinle.CoelophysisEntity;
+import superlord.prehistoricfauna.common.entities.triassic.chinle.PoposaurusEntity;
+import superlord.prehistoricfauna.common.entities.triassic.chinle.PostosuchusEntity;
 import superlord.prehistoricfauna.common.entities.triassic.ischigualasto.HerrerasaurusEntity;
 import superlord.prehistoricfauna.common.entities.triassic.ischigualasto.IschigualastiaEntity;
 import superlord.prehistoricfauna.common.entities.triassic.ischigualasto.SaurosuchusEntity;
@@ -80,7 +88,6 @@ public class KayentatheriumEntity extends DinosaurEntity {
 	private static final DataParameter<Boolean> IS_DIGGING = EntityDataManager.createKey(KayentatheriumEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> ALBINO = EntityDataManager.createKey(KayentatheriumEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> MELANISTIC = EntityDataManager.createKey(KayentatheriumEntity.class, DataSerializers.BOOLEAN);
-	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(PFBlocks.HORSETAIL.asItem());
 	private static final DataParameter<Boolean> EATING = EntityDataManager.createKey(KayentatheriumEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> NATURAL_LOVE = EntityDataManager.createKey(KayentatheriumEntity.class, DataSerializers.BOOLEAN);
 	private int maxHunger = 15;
@@ -93,6 +100,8 @@ public class KayentatheriumEntity extends DinosaurEntity {
 
 	public KayentatheriumEntity(EntityType<? extends KayentatheriumEntity> type, World worldIn) {
 		super(type, worldIn);
+		this.moveController = new KayentatheriumEntity.MoveHelperController(this);
+		this.stepHeight = 1.0F;
 	}
 
 	public boolean hasEgg() {
@@ -169,29 +178,31 @@ public class KayentatheriumEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.2D));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
-		this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, false, TEMPTATION_ITEMS));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.goalSelector.addGoal(8, new AvoidEntityGoal<PlayerEntity>(this, PlayerEntity.class, 7F, 1.25D, 1.25D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<DilophosaurusEntity>(this, DilophosaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<CitipatiEntity>(this, CitipatiEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<PinacosaurusEntity>(this, PinacosaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<PlesiohadrosEntity>(this, PlesiohadrosEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<VelociraptorEntity>(this, VelociraptorEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<AnkylosaurusEntity>(this, AnkylosaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<DakotaraptorEntity>(this, DakotaraptorEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<TriceratopsEntity>(this, TriceratopsEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<TyrannosaurusEntity>(this, TyrannosaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<MegapnosaurusEntity>(this, MegapnosaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<AllosaurusEntity>(this, AllosaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<CamarasaurusEntity>(this, CamarasaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<CeratosaurusEntity>(this, CeratosaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<StegosaurusEntity>(this, StegosaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<HerrerasaurusEntity>(this, HerrerasaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<IschigualastiaEntity>(this, IschigualastiaEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<SaurosuchusEntity>(this, SaurosuchusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<SillosuchusEntity>(this, SillosuchusEntity.class, 10F, 1.2D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<DilophosaurusEntity>(this, DilophosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<CitipatiEntity>(this, CitipatiEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<PinacosaurusEntity>(this, PinacosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<PlesiohadrosEntity>(this, PlesiohadrosEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<VelociraptorEntity>(this, VelociraptorEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<AnkylosaurusEntity>(this, AnkylosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<DakotaraptorEntity>(this, DakotaraptorEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<TriceratopsEntity>(this, TriceratopsEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<TyrannosaurusEntity>(this, TyrannosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<MegapnosaurusEntity>(this, MegapnosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<AllosaurusEntity>(this, AllosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<CamarasaurusEntity>(this, CamarasaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<CeratosaurusEntity>(this, CeratosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<StegosaurusEntity>(this, StegosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<HerrerasaurusEntity>(this, HerrerasaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<IschigualastiaEntity>(this, IschigualastiaEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<SaurosuchusEntity>(this, SaurosuchusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<SillosuchusEntity>(this, SillosuchusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<PoposaurusEntity>(this, PoposaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<PostosuchusEntity>(this, PostosuchusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<CoelophysisEntity>(this, CoelophysisEntity.class, 10F, 1.7D, 1.5D));
 		this.goalSelector.addGoal(0, new KayentatheriumEntity.LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new KayentatheriumEntity.MateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new KayentatheriumEntity.NaturalMateGoal(this, 1.0D));
@@ -349,23 +360,33 @@ public class KayentatheriumEntity extends DinosaurEntity {
 	static class LayEggGoal extends MoveToBlockGoal {
 		private final KayentatheriumEntity kayentatherium;
 
-		LayEggGoal(KayentatheriumEntity kayentatherium, double speed) {
-			super(kayentatherium, speed, 16);
+		LayEggGoal(KayentatheriumEntity kayentatherium, double speedIn) {
+			super(kayentatherium, speedIn, 16);
 			this.kayentatherium = kayentatherium;
 		}
 
+		/**
+		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+		 * method as well.
+		 */
 		public boolean shouldExecute() {
 			return this.kayentatherium.hasEgg() ? super.shouldExecute() : false;
 		}
 
+		/**
+		 * Returns whether an in-progress EntityAIBase should continue executing
+		 */
 		public boolean shouldContinueExecuting() {
 			return super.shouldContinueExecuting() && this.kayentatherium.hasEgg();
 		}
 
+		/**
+		 * Keep ticking a continuous task that has already been started
+		 */
 		public void tick() {
 			super.tick();
 			BlockPos blockpos = new BlockPos(this.kayentatherium.getPositionVec());
-			if (this.kayentatherium.isInWater() && this.getIsAboveDestination()) {
+			if (!this.kayentatherium.isInWater() && this.getIsAboveDestination()) {
 				if (this.kayentatherium.isDigging < 1) {
 					this.kayentatherium.setDigging(true);
 				} else if (this.kayentatherium.isDigging > 200) {
@@ -376,12 +397,17 @@ public class KayentatheriumEntity extends DinosaurEntity {
 					this.kayentatherium.setDigging(false);
 					this.kayentatherium.setInLove(600);
 				}
+
 				if (this.kayentatherium.isDigging()) {
 					this.kayentatherium.isDigging++;
 				}
 			}
+
 		}
 
+		/**
+		 * Return true to set given position as destination
+		 */
 		protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
 			if (!worldIn.isAirBlock(pos.up())) {
 				return false;
@@ -617,6 +643,83 @@ public class KayentatheriumEntity extends DinosaurEntity {
 			this.field_220731_g = 0;
 			super.startExecuting();
 		}
+	}
+	
+	static class SwimGoal extends RandomSwimmingGoal {
+		private final KayentatheriumEntity kayentatherium;
+
+		public SwimGoal(KayentatheriumEntity kayentatherium) {
+			super(kayentatherium, 1.0D, 40);
+			this.kayentatherium = kayentatherium;
+		}
+
+		public boolean shouldExecute() {
+			return this.kayentatherium.func_212800_dy() && super.shouldExecute();
+		}
+	}
+	
+	protected boolean func_212800_dy() {
+		return true;
+	}
+	
+	class WalkAndSwimPathNavigator extends SwimmerPathNavigator {
+
+		WalkAndSwimPathNavigator(KayentatheriumEntity kayentatherium, World world) {
+			super(kayentatherium, world);
+		}
+
+		protected boolean canNavigate() {
+			return true;
+		}
+
+		protected PathFinder getPathFinder(int uncategorizedNumber) {
+			this.nodeProcessor = new WalkAndSwimNodeProcessor();
+			return new PathFinder(this.nodeProcessor, uncategorizedNumber);
+		}
+
+		@SuppressWarnings("deprecation")
+		public boolean canEntityStandOnPos(BlockPos pos) {
+			return !this.world.getBlockState(pos.down()).isAir();
+		}
+
+	}
+
+	static class MoveHelperController extends MovementController {
+		private final KayentatheriumEntity kayentatherium;
+
+		MoveHelperController(KayentatheriumEntity kayentatherium) {
+			super(kayentatherium);
+			this.kayentatherium = kayentatherium;
+		}
+
+		public void tick() {
+			if (this.kayentatherium.areEyesInFluid(FluidTags.WATER)) {
+				this.kayentatherium.setMotion(this.kayentatherium.getMotion().add(0.0D, 0.005D, 0.0D));
+			}
+			if (this.action == MovementController.Action.MOVE_TO && !this.kayentatherium.getNavigator().noPath()) {
+				float f = (float)(this.speed * this.kayentatherium.getAttributeValue(Attributes.MOVEMENT_SPEED));
+				this.kayentatherium.setAIMoveSpeed(MathHelper.lerp(0.125F, this.kayentatherium.getAIMoveSpeed(), f));
+				double d0 = this.posX - this.kayentatherium.getPosX();
+				double d1 = this.posY - this.kayentatherium.getPosY();
+				double d2 = this.posZ - this.kayentatherium.getPosZ();
+				if (d1 != 0.0D) {
+					double d3 = (double)MathHelper.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
+					this.kayentatherium.setMotion(this.kayentatherium.getMotion().add(0.0D, (double)this.kayentatherium.getAIMoveSpeed() * (d1 / d3) * 0.1D, 0.0D));
+				}
+				if (d0 != 0.0D || d2 != 0.0D) {
+					float f1 = (float)(MathHelper.atan2(d2, d0) * (double)(180F / (float)Math.PI)) - 90.0F;
+					this.kayentatherium.rotationYaw = this.limitAngle(this.kayentatherium.rotationYaw, f1, 90.0F);
+					this.kayentatherium.renderYawOffset = this.kayentatherium.rotationYaw;
+				}
+			} else {
+				this.kayentatherium.setAIMoveSpeed(0.0F);
+			}
+		}
+
+	}
+
+	protected PathNavigator createNavigator(World world) {
+		return new KayentatheriumEntity.WalkAndSwimPathNavigator(this, world);
 	}
 
 }

@@ -23,6 +23,9 @@ public class VelociraptorRenderer extends MobRenderer<VelociraptorEntity, Entity
 	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/velociraptor/albino_sleeping.png");
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/velociraptor/melanistic_sleeping.png");
 	private static final ResourceLocation CROWBER = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/velociraptor/crowber.png");
+	private static final ResourceLocation CROWBER_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/velociraptor/crowber_sleeping.png");
+	private static final ResourceLocation RETRO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/velociraptor/retro.png");
+	private static final ResourceLocation RETRO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/velociraptor/retro_sleeping.png");
 
 	private static final VelociraptorModel VELOCIRAPTOR_MODEL = new VelociraptorModel();
 
@@ -48,7 +51,13 @@ public class VelociraptorRenderer extends MobRenderer<VelociraptorEntity, Entity
 	public ResourceLocation getEntityTexture(VelociraptorEntity entity) {
 		String s = TextFormatting.getTextWithoutFormattingCodes(entity.getName().getString());
 		if ( s != null && "Crowber".equals(s)) {
-			return CROWBER;
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
+				return CROWBER_SLEEPING;
+			} else return CROWBER;
+		} else if ( s != null && "Retro".equals(s)) {
+			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
+				return RETRO_SLEEPING;
+			} else return RETRO;
 		} else if (entity.isAlbino()) {
 			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return ALBINO_SLEEPING;

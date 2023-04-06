@@ -13,10 +13,12 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -77,7 +79,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 	private static final DataParameter<Boolean> EATING = EntityDataManager.createKey(TriceratopsEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> NATURAL_LOVE = EntityDataManager.createKey(TriceratopsEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Integer> ATTACK_TICK = EntityDataManager.createKey(TriceratopsEntity.class, DataSerializers.VARINT);
-	private int maxHunger = 150;
+	private int maxHunger = 200;
 	private int currentHunger;
 	int hungerTick = 0;
 	private int lastInLove = 0;
@@ -93,6 +95,11 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 
 	public TriceratopsEntity(EntityType<? extends TriceratopsEntity> type, World worldIn) {
 		super(type, worldIn);
+	}
+	
+	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+		if (this.isChild()) return 0.75F;
+		else return 2.2F;
 	}
 
 	public AgeableEntity createChild(AgeableEntity ageable) {
@@ -221,7 +228,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 60.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.2F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 10.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.5D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 80.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.2F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 10.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.5D);
 	}
 
 	protected SoundEvent getAmbientSound() {
@@ -999,7 +1006,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 
 		@Override
 		public boolean shouldExecute() {
-			if (PrehistoricFaunaConfig.sleeping = true && entity.getRNG().nextInt(1000) == 0 && entity.getRevengeTarget() == null && !entity.isTame() && entity.getRidingEntity() == null) {
+			if (PrehistoricFaunaConfig.sleeping = true && entity.getRNG().nextInt(1000) == 0 && entity.getRevengeTarget() == null && !entity.isTame() && entity.getRidingEntity() == null && !entity.isInWater() && !entity.isInLava()) {
 				return true;
 			} else {
 				return false;
@@ -1008,7 +1015,7 @@ public class TriceratopsEntity extends AbstractChestedHorseEntity  {
 
 		@Override
 		public boolean shouldContinueExecuting() {
-			if (sleepTimer >= 6000 || entity.getRevengeTarget() != null || entity.isTame() || entity.getRidingEntity() != null || super.shouldContinueExecuting()) {
+			if (sleepTimer >= 6000 || entity.getRevengeTarget() != null || entity.isTame() || entity.getRidingEntity() != null || super.shouldContinueExecuting() || entity.isInWater() || entity.isInLava()) {
 				resetTask();
 				return false;
 			} else return true;

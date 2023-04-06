@@ -10,7 +10,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.cretaceous.djadochta.ProtoceratopsBabyModel;
-import superlord.prehistoricfauna.client.model.cretaceous.djadochta.ProtoceratopsBabySleepingModel;
 import superlord.prehistoricfauna.client.model.cretaceous.djadochta.ProtoceratopsModel;
 import superlord.prehistoricfauna.client.render.layer.ProtoceratopsBabyEyeLayer;
 import superlord.prehistoricfauna.client.render.layer.ProtoceratopsEyeLayer;
@@ -37,7 +36,6 @@ public class ProtoceratopsRenderer extends MobRenderer<ProtoceratopsEntity, Enti
 	private static final ResourceLocation PALEOCRAFT_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/paleocraft_juvenile_sleeping.png");
 	private static final ProtoceratopsModel PROTOCERATOPS_MODEL = new ProtoceratopsModel();
 	private static final ProtoceratopsBabyModel BABY_MODEL = new ProtoceratopsBabyModel();
-	private static final ProtoceratopsBabySleepingModel BABY_SLEEPING_MODEL = new ProtoceratopsBabySleepingModel();
 
 	public ProtoceratopsRenderer(EntityRendererManager rm) {
 		super(rm, PROTOCERATOPS_MODEL, 0.25F);
@@ -55,9 +53,7 @@ public class ProtoceratopsRenderer extends MobRenderer<ProtoceratopsEntity, Enti
 
 	public void render(ProtoceratopsEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
 		if (entityIn.isChild()) {
-			if (entityIn.isAsleep()) {
-				entityModel = BABY_SLEEPING_MODEL;
-			} else entityModel = BABY_MODEL;
+			entityModel = BABY_MODEL;
 		} else entityModel = PROTOCERATOPS_MODEL;
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}

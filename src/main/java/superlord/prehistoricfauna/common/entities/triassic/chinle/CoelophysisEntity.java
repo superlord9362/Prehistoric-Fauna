@@ -11,10 +11,12 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -127,6 +129,11 @@ public class CoelophysisEntity extends DinosaurEntity {
 	public CoelophysisEntity(EntityType<? extends CoelophysisEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
+	
+	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+		if (this.isChild()) return 0.575F;
+		else return 1.15F;
+	}
 
 	public boolean isDigging() {
 		return this.dataManager.get(IS_DIGGING);
@@ -206,28 +213,26 @@ public class CoelophysisEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new CoelophysisEntity.LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new CoelophysisEntity.MateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new CoelophysisEntity.NaturalMateGoal(this, 1.0D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<DilophosaurusEntity>(this, DilophosaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<CitipatiEntity>(this, CitipatiEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<PinacosaurusEntity>(this, PinacosaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<PlesiohadrosEntity>(this, PlesiohadrosEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<VelociraptorEntity>(this, VelociraptorEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<AnkylosaurusEntity>(this, AnkylosaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<DakotaraptorEntity>(this, DakotaraptorEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<TriceratopsEntity>(this, TriceratopsEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<TyrannosaurusEntity>(this, TyrannosaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<AllosaurusEntity>(this, AllosaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<CamarasaurusEntity>(this, CamarasaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<CeratosaurusEntity>(this, CeratosaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<StegosaurusEntity>(this, StegosaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<HerrerasaurusEntity>(this, HerrerasaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<IschigualastiaEntity>(this, IschigualastiaEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<SaurosuchusEntity>(this, SaurosuchusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<SillosuchusEntity>(this, SillosuchusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<AepyornithomimusEntity>(this, AepyornithomimusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<ThescelosaurusEntity>(this, ThescelosaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<SarahsaurusEntity>(this, SarahsaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<ScelidosaurusEntity>(this, ScelidosaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<DryosaurusEntity>(this, DryosaurusEntity.class, 10F, 1.2D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<DilophosaurusEntity>(this, DilophosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<CitipatiEntity>(this, CitipatiEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<PinacosaurusEntity>(this, PinacosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<PlesiohadrosEntity>(this, PlesiohadrosEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<AnkylosaurusEntity>(this, AnkylosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<DakotaraptorEntity>(this, DakotaraptorEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<TriceratopsEntity>(this, TriceratopsEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<TyrannosaurusEntity>(this, TyrannosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<AllosaurusEntity>(this, AllosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<CamarasaurusEntity>(this, CamarasaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<CeratosaurusEntity>(this, CeratosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<StegosaurusEntity>(this, StegosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<HerrerasaurusEntity>(this, HerrerasaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<IschigualastiaEntity>(this, IschigualastiaEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<SaurosuchusEntity>(this, SaurosuchusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<SillosuchusEntity>(this, SillosuchusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<SarahsaurusEntity>(this, SarahsaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<ScelidosaurusEntity>(this, ScelidosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<PoposaurusEntity>(this, PoposaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<PostosuchusEntity>(this, PostosuchusEntity.class, 10F, 1.75D, 1.5D));
 		this.goalSelector.addGoal(1, new NocturnalSleepGoal(this));
 		this.targetSelector.addGoal(0, new CoelophysisEntity.CarnivoreHuntGoal(this, LivingEntity.class, 10, true, false, (p_213487_1_) -> {
 			return p_213487_1_ instanceof BasilemysEntity || p_213487_1_ instanceof AepyornithomimusEntity || p_213487_1_ instanceof ProtoceratopsEntity || p_213487_1_ instanceof TelmasaurusEntity || p_213487_1_ instanceof VelociraptorEntity || p_213487_1_ instanceof DidelphodonEntity || p_213487_1_ instanceof KayentatheriumEntity || p_213487_1_ instanceof MegapnosaurusEntity || p_213487_1_ instanceof ScutellosaurusEntity || p_213487_1_ instanceof EilenodonEntity || p_213487_1_ instanceof HesperornithoidesEntity || p_213487_1_ instanceof ChromogisaurusEntity || p_213487_1_ instanceof ExaeretodonEntity || p_213487_1_ instanceof HyperodapedonEntity || p_213487_1_ instanceof TrilophosaurusEntity || p_213487_1_ instanceof TypothoraxEntity || p_213487_1_ instanceof CatEntity || p_213487_1_ instanceof ChickenEntity || p_213487_1_ instanceof OcelotEntity || p_213487_1_ instanceof ParrotEntity || p_213487_1_ instanceof PigEntity || p_213487_1_ instanceof RabbitEntity || p_213487_1_ instanceof SheepEntity || p_213487_1_ instanceof WolfEntity;
@@ -605,11 +610,11 @@ public class CoelophysisEntity extends DinosaurEntity {
 		}
 
 		public boolean shouldExecute() {
-			return super.shouldExecute() && CoelophysisEntity.this.getCurrentHunger() <= CoelophysisEntity.this.getHalfHunger() && !CoelophysisEntity.this.isChild();
+			return super.shouldExecute() && CoelophysisEntity.this.getCurrentHunger() <= CoelophysisEntity.this.getHalfHunger() && !CoelophysisEntity.this.isChild() && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public boolean shouldContinueExecuting() {
-			return CoelophysisEntity.this.getCurrentHunger() < CoelophysisEntity.this.maxHunger;
+			return CoelophysisEntity.this.getCurrentHunger() < CoelophysisEntity.this.maxHunger && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public void tick() {
@@ -673,11 +678,11 @@ public class CoelophysisEntity extends DinosaurEntity {
 		}
 
 		public boolean shouldExecute() {
-			return super.shouldExecute() && CoelophysisEntity.this.getCurrentHunger() <= CoelophysisEntity.this.getHalfHunger() && CoelophysisEntity.this.isChild();
+			return super.shouldExecute() && CoelophysisEntity.this.getCurrentHunger() <= CoelophysisEntity.this.getHalfHunger() && CoelophysisEntity.this.isChild() && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public boolean shouldContinueExecuting() {
-			return CoelophysisEntity.this.getCurrentHunger() < CoelophysisEntity.this.maxHunger || !CoelophysisEntity.this.isChild();
+			return CoelophysisEntity.this.getCurrentHunger() < CoelophysisEntity.this.maxHunger && PrehistoricFaunaConfig.advancedHunger == true || !CoelophysisEntity.this.isChild() && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public void tick() {

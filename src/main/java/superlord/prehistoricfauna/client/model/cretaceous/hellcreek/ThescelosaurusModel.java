@@ -148,6 +148,23 @@ public class ThescelosaurusModel extends EntityModel<ThescelosaurusEntity> {
 				this.Head.rotateAngleX = Math.abs(MathHelper.sin(0.05F * ageInTicks) * 0.5F) + 0.25F;
 				this.Body.rotateAngleX = 0.2F;
 			}
+			if (entityIn.isInWater()) {
+				this.LeftLeg1.rotationPointY = 20;
+				this.RightLeg1.rotationPointY = 20;
+				this.Body.rotationPointY = 20;
+				this.Body.rotateAngleX = -0.5F;
+				this.Tail1.rotateAngleX = 0.25F;
+				this.Tail2.rotateAngleX = 0.25F;
+				this.Head.rotateAngleX = 0.5F;
+				this.LeftLeg1.rotateAngleX = -0.5F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.RightLeg1.rotateAngleX = 0.5F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.LeftLeg2.rotateAngleX = -0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.RightLeg2.rotateAngleX = 0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.RightArm.rotateAngleX = 0.5F;
+				this.LeftArm.rotateAngleX = 0.5F;
+				this.Tail1.rotateAngleY = (MathHelper.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * MathHelper.sin(0.15F * ageInTicks / 1.5F));
+				this.Tail2.rotateAngleY = (MathHelper.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * MathHelper.sin(0.15F * ageInTicks / 1.5F));
+			}
 		}
 	}
 
@@ -180,7 +197,7 @@ public class ThescelosaurusModel extends EntityModel<ThescelosaurusEntity> {
 		this.Body.rotationPointY = 10.9F;
 		this.RightLeg1.rotationPointY = 10.9F;
 		this.RightLeg1.rotationPointZ = 0;
-		this.RightLeg2.rotationPointX = 1;
+		this.RightLeg2.rotationPointX = 0;
 		this.RightLeg2.rotationPointY = 7F;
 		this.RightLeg2.rotationPointZ = 4F;
 		this.LeftLeg1.rotationPointY = 10.9F;

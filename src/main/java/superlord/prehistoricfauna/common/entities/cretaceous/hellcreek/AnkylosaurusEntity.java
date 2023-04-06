@@ -13,10 +13,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -75,7 +77,7 @@ public class AnkylosaurusEntity extends DinosaurEntity {
 	private static final DataParameter<Boolean> TUBER_DIGGING = EntityDataManager.createKey(AnkylosaurusEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> NATURAL_LOVE = EntityDataManager.createKey(AnkylosaurusEntity.class, DataSerializers.BOOLEAN);
 	private int warningSoundTicks;
-	private int maxHunger = 150;
+	private int maxHunger = 200;
 	private int currentHunger;
 	private int lastInLove = 0;
 	int hungerTick = 0;
@@ -159,6 +161,11 @@ public class AnkylosaurusEntity extends DinosaurEntity {
 
 	public int getHalfHunger() {
 		return maxHunger / 2;
+	}
+	
+	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+		if (this.isChild()) return 0.76F;
+		else return 1.5F;
 	}
 
 	public int getThreeQuartersHunger() {
@@ -269,7 +276,7 @@ public class AnkylosaurusEntity extends DinosaurEntity {
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 60.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2D).createMutableAttribute(Attributes.ARMOR, 10D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 10.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.5D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 80.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2D).createMutableAttribute(Attributes.ARMOR, 10D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 10.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.5D);
 	}
 
 	protected SoundEvent getAmbientSound() {
@@ -357,7 +364,7 @@ public class AnkylosaurusEntity extends DinosaurEntity {
 		 * method as well.
 		 */
 		public boolean shouldExecute() {
-			if (AnkylosaurusEntity.this.isChild()) {
+			if (AnkylosaurusEntity.this.isChild() || AnkylosaurusEntity.this.isAsleep()) {
 				return false;
 			} else {
 				if (super.shouldExecute()) {

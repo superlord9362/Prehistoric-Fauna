@@ -3,13 +3,11 @@ package superlord.prehistoricfauna.client.render.jurassic.morrison;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.HesperornithoidesModel;
-import superlord.prehistoricfauna.client.model.jurassic.morrison.HesperornithoidesSleepingModel;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.HesperornithoidesEntity;
 
 public class HesperornithoidesRenderer extends MobRenderer<HesperornithoidesEntity, EntityModel<HesperornithoidesEntity>> {
@@ -21,7 +19,6 @@ public class HesperornithoidesRenderer extends MobRenderer<HesperornithoidesEnti
 	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hesperornithoides/albino_sleeping.png");
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hesperornithoides/melanistic_sleeping.png");
 	private static final HesperornithoidesModel HESPERORNITHOIDES_MODEL = new HesperornithoidesModel();
-	private static final HesperornithoidesSleepingModel HESPERORNITHOIDES_SLEEPING_MODEL = new HesperornithoidesSleepingModel();
 	
 	public HesperornithoidesRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), HESPERORNITHOIDES_MODEL, 0.375F);
@@ -31,15 +28,6 @@ public class HesperornithoidesRenderer extends MobRenderer<HesperornithoidesEnti
 		if(entity.isChild()) {
 			matrixStackIn.scale(0.5F, 0.5F, 0.5F);
 		}
-	}
-	
-	public void render(HesperornithoidesEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-		if (entityIn.isAsleep()) {
-			entityModel = HESPERORNITHOIDES_SLEEPING_MODEL;
-		} else {
-			entityModel = HESPERORNITHOIDES_MODEL;
-		}
-		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
 	
 	@Override

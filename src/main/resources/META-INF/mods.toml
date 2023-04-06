@@ -3,7 +3,7 @@ loaderVersion="[35,)" #mandatory This is typically bumped every Minecraft versio
 license="All rights reserved"
 [[mods]] #mandatory
 modId="prehistoricfauna" #mandatory
-version="2.2.0" #mandatory
+version="2.2.1" #mandatory
 displayName="Prehistoric Fauna" #mandatory
 credits="AGSuko, Antlion, Bastion, Baular, Coda, Corgi Taco, Obsolerus, RafaMv, Ralof, Seal, superlord9362, Weastian, Mayonnaise Eater, Crydigo" #optional
 authors="superlord9362, Corgi Taco, RafaMv, AlexThe668" #optional

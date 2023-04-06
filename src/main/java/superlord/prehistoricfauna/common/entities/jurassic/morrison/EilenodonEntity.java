@@ -13,10 +13,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityPredicate;
+import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -70,6 +72,9 @@ import superlord.prehistoricfauna.common.entities.goal.DinosaurRandomLookGoal;
 import superlord.prehistoricfauna.common.entities.goal.NocturnalSleepGoal;
 import superlord.prehistoricfauna.common.entities.jurassic.kayenta.DilophosaurusEntity;
 import superlord.prehistoricfauna.common.entities.jurassic.kayenta.MegapnosaurusEntity;
+import superlord.prehistoricfauna.common.entities.triassic.chinle.CoelophysisEntity;
+import superlord.prehistoricfauna.common.entities.triassic.chinle.PoposaurusEntity;
+import superlord.prehistoricfauna.common.entities.triassic.chinle.PostosuchusEntity;
 import superlord.prehistoricfauna.common.entities.triassic.ischigualasto.ExaeretodonEntity;
 import superlord.prehistoricfauna.common.entities.triassic.ischigualasto.HerrerasaurusEntity;
 import superlord.prehistoricfauna.common.entities.triassic.ischigualasto.SaurosuchusEntity;
@@ -97,6 +102,11 @@ public class EilenodonEntity extends DinosaurEntity {
 
 	public EilenodonEntity(EntityType<? extends EilenodonEntity> type, World world) {
 		super(type, world);
+	}
+	
+	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+		if (this.isChild()) return 0.125F;
+		else return 0.25F;
 	}
 
 	public boolean hasEgg() {
@@ -255,23 +265,26 @@ public class EilenodonEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, false, TEMPTATION_ITEMS));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, PlayerEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, AllosaurusEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, CeratosaurusEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, StegosaurusEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, DryosaurusEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, HesperornithoidesEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, CamarasaurusEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, TyrannosaurusEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, TriceratopsEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, AnkylosaurusEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, ThescelosaurusEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, DakotaraptorEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, HerrerasaurusEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, ExaeretodonEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<SaurosuchusEntity>(this, SaurosuchusEntity.class, 10F, 2D, 2D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<DilophosaurusEntity>(this, DilophosaurusEntity.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<MegapnosaurusEntity>(this, MegapnosaurusEntity.class, 10F, 1.2D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, PlayerEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, AllosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, CeratosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, StegosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, DryosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, HesperornithoidesEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, CamarasaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, TyrannosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, TriceratopsEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, AnkylosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, ThescelosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, DakotaraptorEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, HerrerasaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, ExaeretodonEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<SaurosuchusEntity>(this, SaurosuchusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<DilophosaurusEntity>(this, DilophosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<MegapnosaurusEntity>(this, MegapnosaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<PoposaurusEntity>(this, PoposaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<CoelophysisEntity>(this, CoelophysisEntity.class, 10F, 1.7D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<PostosuchusEntity>(this, PostosuchusEntity.class, 10F, 1.75D, 1.5D));
 		this.goalSelector.addGoal(0, new EilenodonEntity.LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(9, new EilenodonEntity.SitAndLookGoal());
 		this.goalSelector.addGoal(1, new NocturnalSleepGoal(this));
@@ -361,23 +374,33 @@ public class EilenodonEntity extends DinosaurEntity {
 	static class LayEggGoal extends MoveToBlockGoal {
 		private final EilenodonEntity eilenodon;
 
-		LayEggGoal(EilenodonEntity eilenodon, double speed) {
-			super(eilenodon, speed, 16);
+		LayEggGoal(EilenodonEntity eilenodon, double speedIn) {
+			super(eilenodon, speedIn, 16);
 			this.eilenodon = eilenodon;
 		}
 
+		/**
+		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+		 * method as well.
+		 */
 		public boolean shouldExecute() {
 			return this.eilenodon.hasEgg() ? super.shouldExecute() : false;
 		}
 
+		/**
+		 * Returns whether an in-progress EntityAIBase should continue executing
+		 */
 		public boolean shouldContinueExecuting() {
 			return super.shouldContinueExecuting() && this.eilenodon.hasEgg();
 		}
 
+		/**
+		 * Keep ticking a continuous task that has already been started
+		 */
 		public void tick() {
 			super.tick();
 			BlockPos blockpos = new BlockPos(this.eilenodon.getPositionVec());
-			if (this.eilenodon.isInWater() && this.getIsAboveDestination()) {
+			if (!this.eilenodon.isInWater() && this.getIsAboveDestination()) {
 				if (this.eilenodon.isDigging < 1) {
 					this.eilenodon.setDigging(true);
 				} else if (this.eilenodon.isDigging > 200) {
@@ -388,12 +411,17 @@ public class EilenodonEntity extends DinosaurEntity {
 					this.eilenodon.setDigging(false);
 					this.eilenodon.setInLove(600);
 				}
+
 				if (this.eilenodon.isDigging()) {
 					this.eilenodon.isDigging++;
 				}
 			}
+
 		}
 
+		/**
+		 * Return true to set given position as destination
+		 */
 		protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
 			if (!worldIn.isAirBlock(pos.up())) {
 				return false;
@@ -527,7 +555,7 @@ public class EilenodonEntity extends DinosaurEntity {
 		}
 
 		public boolean shouldExecute() {
-			return EilenodonEntity.this.getRevengeTarget() == null && EilenodonEntity.this.getRNG().nextFloat() < 0.02F && !EilenodonEntity.this.isSleeping() && EilenodonEntity.this.getAttackTarget() == null && EilenodonEntity.this.getNavigator().noPath() && !this.func_220814_h() && !EilenodonEntity.this.func_213480_dY() && !EilenodonEntity.this.isCrouching() && world.getDayTime() <= 10 || EilenodonEntity.this.getRevengeTarget() == null && EilenodonEntity.this.getRNG().nextFloat() < 0.02F && !EilenodonEntity.this.isSleeping() && EilenodonEntity.this.getAttackTarget() == null && EilenodonEntity.this.getNavigator().noPath() && !this.func_220814_h() && !EilenodonEntity.this.func_213480_dY() && !EilenodonEntity.this.isCrouching() && world.getDayTime() >= 1110 && world.getDayTime() <= 1310 || EilenodonEntity.this.getRevengeTarget() == null && EilenodonEntity.this.getRNG().nextFloat() < 0.02F && !EilenodonEntity.this.isSleeping() && EilenodonEntity.this.getAttackTarget() == null && EilenodonEntity.this.getNavigator().noPath() && !this.func_220814_h() && !EilenodonEntity.this.func_213480_dY() && !EilenodonEntity.this.isCrouching() && world.getDayTime() >= 2210;
+			return EilenodonEntity.this.getRevengeTarget() == null && EilenodonEntity.this.getRNG().nextFloat() < 0.02F && !EilenodonEntity.this.isAsleep() && EilenodonEntity.this.getAttackTarget() == null && EilenodonEntity.this.getNavigator().noPath() && !this.func_220814_h() && !EilenodonEntity.this.func_213480_dY() && !EilenodonEntity.this.isCrouching() && world.getDayTime() <= 10 || EilenodonEntity.this.getRevengeTarget() == null && EilenodonEntity.this.getRNG().nextFloat() < 0.02F && !EilenodonEntity.this.isSleeping() && EilenodonEntity.this.getAttackTarget() == null && EilenodonEntity.this.getNavigator().noPath() && !this.func_220814_h() && !EilenodonEntity.this.func_213480_dY() && !EilenodonEntity.this.isCrouching() && world.getDayTime() >= 1110 && world.getDayTime() <= 1310 || EilenodonEntity.this.getRevengeTarget() == null && EilenodonEntity.this.getRNG().nextFloat() < 0.02F && !EilenodonEntity.this.isSleeping() && EilenodonEntity.this.getAttackTarget() == null && EilenodonEntity.this.getNavigator().noPath() && !this.func_220814_h() && !EilenodonEntity.this.func_213480_dY() && !EilenodonEntity.this.isCrouching() && world.getDayTime() >= 2210;
 		}
 
 		public boolean shouldContinueExecuting() {

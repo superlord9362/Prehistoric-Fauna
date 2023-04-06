@@ -260,6 +260,27 @@ public class PlesiohadrosModel extends EntityModel<PlesiohadrosEntity> {
 				this.LegFrontL.rotateAngleZ = -0.2F;
 				this.LegFrontR.rotateAngleZ = 0.2F;
 			}
+			if (entityIn.isInWater()) {
+				this.Body.rotationPointY = 10;
+				this.Body.rotateAngleX = -0.25F;
+				this.TailBase.rotateAngleX = 0.125F;
+				this.TailTip.rotateAngleX = 0.125F;
+				this.ThighL.rotationPointY = 14;
+				this.ThighR.rotationPointY = 14;
+				this.LegFrontL.rotationPointY = 15;
+				this.LegFrontR.rotationPointY = 15;
+				this.ThighL.rotateAngleX = -0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.ThighR.rotateAngleX = 0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.LegBackL.rotateAngleX = -0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.LegBackR.rotateAngleX = 0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.FeetL.rotateAngleX = 0.5F - (0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F));
+				this.FeetR.rotateAngleX = 0.5F + (0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F));
+				this.LegFrontR.rotateAngleX = -0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.LegFrontL.rotateAngleX = 0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.Neck.rotateAngleX = 0.25F;
+				this.TailBase.rotateAngleY = (MathHelper.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * MathHelper.sin(0.15F * ageInTicks / 1.5F));
+				this.TailTip.rotateAngleY = (MathHelper.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * MathHelper.sin(0.15F * ageInTicks / 1.5F));
+			}
 		}
 	}
 

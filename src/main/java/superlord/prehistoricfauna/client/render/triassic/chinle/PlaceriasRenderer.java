@@ -3,13 +3,11 @@ package superlord.prehistoricfauna.client.render.triassic.chinle;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.triassic.chinle.PlaceriasModel;
-import superlord.prehistoricfauna.client.model.triassic.chinle.PlaceriasSleepingModel;
 import superlord.prehistoricfauna.common.entities.triassic.chinle.PlaceriasEntity;
 
 public class PlaceriasRenderer extends MobRenderer<PlaceriasEntity, EntityModel<PlaceriasEntity>> {
@@ -21,19 +19,9 @@ public class PlaceriasRenderer extends MobRenderer<PlaceriasEntity, EntityModel<
 	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/placerias/albino_sleeping.png");
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/placerias/melanistic_sleeping.png");
 	private static final PlaceriasModel PLACERIAS_MODEL = new PlaceriasModel();
-	private static final PlaceriasSleepingModel PLACERIAS_SLEEPING_MODEL = new PlaceriasSleepingModel();
 
 	public PlaceriasRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), PLACERIAS_MODEL, 1F);
-	}
-
-	public void render(PlaceriasEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-		if (entityIn.isAsleep()) {
-			entityModel = PLACERIAS_SLEEPING_MODEL;
-		} else {
-			entityModel = PLACERIAS_MODEL;
-		}
-		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
 
 	protected void preRenderCallback(PlaceriasEntity placerias, MatrixStack matrixStackIn, float partialTickTime) {

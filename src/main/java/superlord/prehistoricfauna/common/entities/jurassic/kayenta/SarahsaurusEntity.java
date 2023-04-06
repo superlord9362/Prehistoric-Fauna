@@ -12,10 +12,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -96,6 +98,11 @@ public class SarahsaurusEntity extends DinosaurEntity {
 
 	public boolean hasEgg() {
 		return this.dataManager.get(HAS_EGG);
+	}
+	
+	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+		if (this.isChild()) return 0.725F;
+		else return 1.45F;
 	}
 
 	private void setHasEgg(boolean hasEgg) {
@@ -220,21 +227,21 @@ public class SarahsaurusEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<DilophosaurusEntity>(this, DilophosaurusEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<PinacosaurusEntity>(this, PinacosaurusEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<PlesiohadrosEntity>(this, PlesiohadrosEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<AnkylosaurusEntity>(this, AnkylosaurusEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<DakotaraptorEntity>(this, DakotaraptorEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<TriceratopsEntity>(this, TriceratopsEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<TyrannosaurusEntity>(this, TyrannosaurusEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<AllosaurusEntity>(this, AllosaurusEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<CamarasaurusEntity>(this, CamarasaurusEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<CeratosaurusEntity>(this, CeratosaurusEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<StegosaurusEntity>(this, StegosaurusEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<HerrerasaurusEntity>(this, HerrerasaurusEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<IschigualastiaEntity>(this, IschigualastiaEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<SaurosuchusEntity>(this, SaurosuchusEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<SillosuchusEntity>(this, SillosuchusEntity.class, 10, 1.2, 1.5));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<DilophosaurusEntity>(this, DilophosaurusEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<PinacosaurusEntity>(this, PinacosaurusEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<PlesiohadrosEntity>(this, PlesiohadrosEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<AnkylosaurusEntity>(this, AnkylosaurusEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<DakotaraptorEntity>(this, DakotaraptorEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<TriceratopsEntity>(this, TriceratopsEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<TyrannosaurusEntity>(this, TyrannosaurusEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<AllosaurusEntity>(this, AllosaurusEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<CamarasaurusEntity>(this, CamarasaurusEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<CeratosaurusEntity>(this, CeratosaurusEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<StegosaurusEntity>(this, StegosaurusEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<HerrerasaurusEntity>(this, HerrerasaurusEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<IschigualastiaEntity>(this, IschigualastiaEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<SaurosuchusEntity>(this, SaurosuchusEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<SillosuchusEntity>(this, SillosuchusEntity.class, 10, 1.75D, 1.5D));
 		this.goalSelector.addGoal(0, new SarahsaurusEntity.LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
 		this.goalSelector.addGoal(0, new SarahsaurusEntity.HerbivoreEatGoal((double)1.2F, 12, 2));
@@ -354,23 +361,33 @@ public class SarahsaurusEntity extends DinosaurEntity {
 	static class LayEggGoal extends MoveToBlockGoal {
 		private final SarahsaurusEntity sarahsaurus;
 
-		LayEggGoal(SarahsaurusEntity sarahsaurus, double speed) {
-			super(sarahsaurus, speed, 16);
+		LayEggGoal(SarahsaurusEntity sarahsaurus, double speedIn) {
+			super(sarahsaurus, speedIn, 16);
 			this.sarahsaurus = sarahsaurus;
 		}
 
+		/**
+		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+		 * method as well.
+		 */
 		public boolean shouldExecute() {
 			return this.sarahsaurus.hasEgg() ? super.shouldExecute() : false;
 		}
 
+		/**
+		 * Returns whether an in-progress EntityAIBase should continue executing
+		 */
 		public boolean shouldContinueExecuting() {
 			return super.shouldContinueExecuting() && this.sarahsaurus.hasEgg();
 		}
 
+		/**
+		 * Keep ticking a continuous task that has already been started
+		 */
 		public void tick() {
 			super.tick();
 			BlockPos blockpos = new BlockPos(this.sarahsaurus.getPositionVec());
-			if (this.sarahsaurus.isInWater() && this.getIsAboveDestination()) {
+			if (!this.sarahsaurus.isInWater() && this.getIsAboveDestination()) {
 				if (this.sarahsaurus.isDigging < 1) {
 					this.sarahsaurus.setDigging(true);
 				} else if (this.sarahsaurus.isDigging > 200) {
@@ -381,12 +398,17 @@ public class SarahsaurusEntity extends DinosaurEntity {
 					this.sarahsaurus.setDigging(false);
 					this.sarahsaurus.setInLove(600);
 				}
+
 				if (this.sarahsaurus.isDigging()) {
 					this.sarahsaurus.isDigging++;
 				}
 			}
+
 		}
 
+		/**
+		 * Return true to set given position as destination
+		 */
 		protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
 			if (!worldIn.isAirBlock(pos.up())) {
 				return false;

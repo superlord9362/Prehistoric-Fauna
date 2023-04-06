@@ -297,6 +297,7 @@ public class PlesiohadrosEntity extends HerdDinosaurEntity {
 
 	public void livingTick() {
 		super.livingTick();
+		System.out.println(world.getGameTime());
 		int ticks = 0;
 		if (this.isDeoxidated()) {
 			ticks++;

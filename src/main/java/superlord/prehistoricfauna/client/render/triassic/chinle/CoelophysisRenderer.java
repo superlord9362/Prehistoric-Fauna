@@ -3,13 +3,11 @@ package superlord.prehistoricfauna.client.render.triassic.chinle;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.triassic.chinle.CoelophysisModel;
-import superlord.prehistoricfauna.client.model.triassic.chinle.CoelophysisSleepingModel;
 import superlord.prehistoricfauna.client.render.layer.CoelophysisEyeLayer;
 import superlord.prehistoricfauna.common.entities.triassic.chinle.CoelophysisEntity;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
@@ -25,22 +23,12 @@ public class CoelophysisRenderer extends MobRenderer<CoelophysisEntity, EntityMo
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/melanistic_sleeping.png");
 	private static final ResourceLocation JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/juvenile_sleeping.png");
 	private static final CoelophysisModel COELOPHYSIS_MODEL = new CoelophysisModel();
-	private static final CoelophysisSleepingModel COELOPHYSIS_SLEEPING_MODEL = new CoelophysisSleepingModel();
 
 	public CoelophysisRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), COELOPHYSIS_MODEL, 0.75F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new CoelophysisEyeLayer(this));
 		}
-	}
-
-	public void render(CoelophysisEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-		if (entityIn.isAsleep()) {
-			entityModel = COELOPHYSIS_SLEEPING_MODEL;
-		} else {
-			entityModel = COELOPHYSIS_MODEL;
-		}
-		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
 
 	protected void preRenderCallback(CoelophysisEntity coelophysis, MatrixStack matrixStackIn, float partialTickTime) {

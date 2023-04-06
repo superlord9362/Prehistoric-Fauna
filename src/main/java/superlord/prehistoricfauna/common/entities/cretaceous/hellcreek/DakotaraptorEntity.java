@@ -264,13 +264,13 @@ public class DakotaraptorEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.goalSelector.addGoal(13, new DakotaraptorEntity.SitAndLookGoal());
 		this.goalSelector.addGoal(0, new DakotaraptorEntity.LayEggGoal(this, 1.0D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, AnkylosaurusEntity.class, 7F, 1.25D, 1.25D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, TriceratopsEntity.class, 7F, 1.25D, 1.25D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, TyrannosaurusEntity.class, 7F, 1.25D, 1.25D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, CamarasaurusEntity.class, 7F, 1.25D, 1.25D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, StegosaurusEntity.class, 7F, 1.25D, 1.25D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, AllosaurusEntity.class, 7F, 1.25D, 1.25D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, CeratosaurusEntity.class, 7F, 1.25D, 1.25D));
+		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, AnkylosaurusEntity.class, 7F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, TriceratopsEntity.class, 7F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, TyrannosaurusEntity.class, 7F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, CamarasaurusEntity.class, 7F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, StegosaurusEntity.class, 7F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, AllosaurusEntity.class, 7F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, CeratosaurusEntity.class, 7F, 1.75D, 1.5D));
 		this.goalSelector.addGoal(1, new CrepuscularSleepGoal(this));
 		this.targetSelector.addGoal(0, new DakotaraptorEntity.CarnivoreHuntGoal(this, LivingEntity.class, 10, true, false, (p_213487_1_) -> {
 			return p_213487_1_ instanceof AepyornithomimusEntity || p_213487_1_ instanceof BasilemysEntity || p_213487_1_ instanceof ChromogisaurusEntity || p_213487_1_ instanceof CitipatiEntity || p_213487_1_ instanceof DidelphodonEntity || p_213487_1_ instanceof DryosaurusEntity || p_213487_1_ instanceof EilenodonEntity || p_213487_1_ instanceof ExaeretodonEntity || p_213487_1_ instanceof HesperornithoidesEntity || p_213487_1_ instanceof HyperodapedonEntity || p_213487_1_ instanceof ProtoceratopsEntity || p_213487_1_ instanceof TelmasaurusEntity || p_213487_1_ instanceof ThescelosaurusEntity || p_213487_1_ instanceof VelociraptorEntity || p_213487_1_ instanceof CatEntity || p_213487_1_ instanceof OcelotEntity || p_213487_1_ instanceof ChickenEntity || p_213487_1_ instanceof CowEntity || p_213487_1_ instanceof AbstractHorseEntity || p_213487_1_ instanceof FoxEntity || p_213487_1_ instanceof MooshroomEntity || p_213487_1_ instanceof ParrotEntity || p_213487_1_ instanceof PigEntity || p_213487_1_ instanceof RabbitEntity || p_213487_1_ instanceof AbstractVillagerEntity || p_213487_1_ instanceof WanderingTraderEntity || p_213487_1_ instanceof PlayerEntity || p_213487_1_ instanceof AbstractIllagerEntity || p_213487_1_ instanceof LlamaEntity || p_213487_1_ instanceof WolfEntity || p_213487_1_ instanceof TurtleEntity || p_213487_1_ instanceof KayentatheriumEntity || p_213487_1_ instanceof MegapnosaurusEntity || p_213487_1_ instanceof SarahsaurusEntity || p_213487_1_ instanceof ScelidosaurusEntity || p_213487_1_ instanceof ScutellosaurusEntity || p_213487_1_ instanceof SheepEntity || p_213487_1_ instanceof CoelophysisEntity || p_213487_1_ instanceof DesmatosuchusEntity || p_213487_1_ instanceof PlaceriasEntity || p_213487_1_ instanceof TrilophosaurusEntity || p_213487_1_ instanceof TypothoraxEntity;
@@ -758,7 +758,8 @@ public class DakotaraptorEntity extends DinosaurEntity {
 	}
 
 	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
-		return this.isChild() ? sizeIn.height * 0.95F : 1.5F;
+		if (this.isChild()) return 1.075F;
+		else return 2.15F;
 	}
 	
 	protected void playWarningSound() {
@@ -1463,11 +1464,11 @@ public class DakotaraptorEntity extends DinosaurEntity {
 		}
 
 		public boolean shouldExecute() {
-			return super.shouldExecute() && DakotaraptorEntity.this.getCurrentHunger() <= DakotaraptorEntity.this.getHalfHunger() && !DakotaraptorEntity.this.isChild();
+			return super.shouldExecute() && DakotaraptorEntity.this.getCurrentHunger() <= DakotaraptorEntity.this.getHalfHunger() && !DakotaraptorEntity.this.isChild() && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public boolean shouldContinueExecuting() {
-			return DakotaraptorEntity.this.getCurrentHunger() < DakotaraptorEntity.this.maxHunger;
+			return DakotaraptorEntity.this.getCurrentHunger() < DakotaraptorEntity.this.maxHunger && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public void tick() {
@@ -1558,11 +1559,11 @@ public class DakotaraptorEntity extends DinosaurEntity {
 		}
 
 		public boolean shouldExecute() {
-			return super.shouldExecute() && DakotaraptorEntity.this.getCurrentHunger() <= DakotaraptorEntity.this.getHalfHunger() && DakotaraptorEntity.this.isChild();
+			return super.shouldExecute() && DakotaraptorEntity.this.getCurrentHunger() <= DakotaraptorEntity.this.getHalfHunger() && DakotaraptorEntity.this.isChild() && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public boolean shouldContinueExecuting() {
-			return DakotaraptorEntity.this.getCurrentHunger() < DakotaraptorEntity.this.maxHunger || !DakotaraptorEntity.this.isChild();
+			return DakotaraptorEntity.this.getCurrentHunger() < DakotaraptorEntity.this.maxHunger && PrehistoricFaunaConfig.advancedHunger == true || !DakotaraptorEntity.this.isChild() && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public void tick() {

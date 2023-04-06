@@ -78,17 +78,101 @@ public class PlaceriasModel extends EntityModel<PlaceriasEntity> {
 		float degree = 1.0f;
 		float partialTick = ageInTicks - entityIn.ticksExisted;
 		float attackProgress = entityIn.getMeleeProgress(partialTick) * 2.0F;
-		this.neck.rotateAngleX = (-Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3))) + (MathHelper.cos(-1.0F + limbSwing * speed * 0.3F) * degree * 0.05F * limbSwingAmount + 0.1F) + attackProgress * (float) Math.toRadians(25F);
-    	this.neck.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
-		this.Leg_back_right.rotateAngleX = (MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
-		this.Leg_back_right_1.rotateAngleX = (MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount);
-		this.Leg_front_left.rotateAngleX = (MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
-		this.Leg_front_right.rotateAngleX = (MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount);
-		this.tail.rotateAngleY = (-0.12F * MathHelper.sin(0.2F * ageInTicks / 5));
-		this.tail.rotateAngleX = (-Math.abs(-0.05F * MathHelper.sin(0.1F * ageInTicks / 5))) - 0.25F;
-		if (entityIn.isEating()) {
-			this.neck.rotateAngleX = Math.abs(MathHelper.sin(0.05F * ageInTicks) * 0.45F) + 0.15F;
+		resetModel();
+		if (entityIn.isAsleep()) {
+			this.Leg_back_right_1.rotationPointY = 20.0F;
+			this.Leg_back_right_1.rotateAngleX = 1.2906709285865847F;
+			this.Leg_back_right_1.rotateAngleY = -0.03909537541112055F;
+			this.Leg_back_right_1.rotateAngleZ = 0.1563815016444822F;
+			this.Body.rotationPointY = 16.1F;
+			this.Body.rotationPointZ = 0.0F;
+			this.Body.rotateAngleX = -0.03909537541112055F;
+			this.Leg_front_left.rotationPointX = -3.8F;
+			this.Leg_front_left.rotationPointY = 19.6F;
+			this.Leg_front_left.rotationPointZ = -6;
+			this.Leg_front_left.rotateAngleX = -1.1344640137963142F;
+			this.Leg_front_left.rotateAngleY = -0.4300491170387584F;
+			this.Leg_front_left.rotateAngleZ = -0.1563815016444822F;
+			this.Leg_back_right.rotationPointX = 3F;
+			this.Leg_back_right.rotationPointY = 21;
+			this.Leg_back_right.rotationPointZ = 5;
+			this.Leg_back_right.rotateAngleX = 1.3685127304046198F;
+			this.Leg_back_right.rotateAngleY = 0.03909537541112055F;
+			this.Leg_back_right.rotateAngleZ = -0.19547687289441354F;
+			this.neck.rotateAngleX = 0.03909537541112055F;
+			this.neck.rotateAngleY = 0.35185837453889574F;
+			this.neck.rotateAngleZ = -0.4300491170387584F;
+			this.tail.rotateAngleX = -0.3522074483787779F;
+			this.tail.rotateAngleY = -0.0781907508222411F;
+			this.tail.rotateAngleZ = 0.11728612207217244F;
+			this.Leg_front_right.rotationPointX = 4.3F;
+			this.Leg_front_right.rotationPointY = 18;
+			this.Leg_front_right.rotationPointZ = -6;
+			this.Leg_front_right.rotateAngleX = -1.1728612040769677F;
+			this.Leg_front_right.rotateAngleY = 0.1563815016444822F;
+			this.Leg_front_right.rotateAngleZ = 0.038920842652368684F;
+		} else {
+			this.neck.rotateAngleX = (-Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3))) + (MathHelper.cos(-1.0F + limbSwing * speed * 0.3F) * degree * 0.05F * limbSwingAmount + 0.1F) + attackProgress * (float) Math.toRadians(25F);
+			this.neck.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
+			this.Leg_back_right.rotateAngleX = (MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
+			this.Leg_back_right_1.rotateAngleX = (MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount);
+			this.Leg_front_left.rotateAngleX = (MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
+			this.Leg_front_right.rotateAngleX = (MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount);
+			this.tail.rotateAngleY = (-0.12F * MathHelper.sin(0.2F * ageInTicks / 5));
+			this.tail.rotateAngleX = (-Math.abs(-0.05F * MathHelper.sin(0.1F * ageInTicks / 5))) - 0.25F;
+			if (entityIn.isEating()) {
+				this.neck.rotateAngleX = Math.abs(MathHelper.sin(0.05F * ageInTicks) * 0.45F) + 0.15F;
+			}
+			if (entityIn.isInWater()) {
+				this.Body.rotationPointY = 10;
+				this.Body.rotateAngleX = -0.125F;
+				this.tail.rotateAngleX = 0.0625F;
+				this.Leg_back_right_1.rotationPointY = 13;
+				this.Leg_back_right.rotationPointY = 13;
+				this.Leg_front_left.rotationPointY = 13;
+				this.Leg_front_right.rotationPointY = 13;
+				this.Leg_back_right_1.rotateAngleX = -0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.Leg_back_right.rotateAngleX = 0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.Leg_front_right.rotateAngleX = -0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.Leg_front_left.rotateAngleX = 0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.neck.rotateAngleX = 0.25F;
+				this.tail.rotateAngleX = (-Math.abs(-0.05F * MathHelper.sin(0.1F * ageInTicks / 5))) - 0.25F;
+			}
 		}
+	}
+
+	public void resetModel() {
+		this.Leg_back_right_1.rotationPointY = 10.0F;
+		this.Leg_back_right_1.rotateAngleX = 0;
+		this.Leg_back_right_1.rotateAngleY = 0;
+		this.Leg_back_right_1.rotateAngleZ = 0;
+		this.Body.rotationPointY = 8.0F;
+		this.Body.rotationPointZ = -3.0F;
+		this.Body.rotateAngleX = 0;
+		this.Leg_front_left.rotationPointX = -3.5F;
+		this.Leg_front_left.rotationPointY = 12;
+		this.Leg_front_left.rotationPointZ = -9;
+		this.Leg_front_left.rotateAngleX = 0;
+		this.Leg_front_left.rotateAngleY = 0;
+		this.Leg_front_left.rotateAngleZ = 0;
+		this.Leg_back_right.rotationPointX = 3.5F;
+		this.Leg_back_right.rotationPointY = 12;
+		this.Leg_back_right.rotationPointZ = 5;
+		this.Leg_back_right.rotateAngleX = 0;
+		this.Leg_back_right.rotateAngleY = 0;
+		this.Leg_back_right.rotateAngleZ = 0;
+		this.neck.rotateAngleX = 0;
+		this.neck.rotateAngleY = 0;
+		this.neck.rotateAngleZ = 0;
+		this.tail.rotateAngleX = -0.4305727277985816F;
+		this.tail.rotateAngleY = 0;
+		this.tail.rotateAngleZ = 0;
+		this.Leg_front_right.rotationPointX = 3.5F;
+		this.Leg_front_right.rotationPointY = 12;
+		this.Leg_front_right.rotationPointZ = -9;
+		this.Leg_front_right.rotateAngleX = 0;
+		this.Leg_front_right.rotateAngleY = 0;
+		this.Leg_front_right.rotateAngleZ = 0;
 	}
 
 	/**

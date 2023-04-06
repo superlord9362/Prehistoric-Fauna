@@ -3,49 +3,32 @@ package superlord.prehistoricfauna.client.render.triassic.ischigualasto;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.triassic.ischigualasto.IschigualastiaModel;
-import superlord.prehistoricfauna.client.model.triassic.ischigualasto.IschigualastiaSleepingModel;
 import superlord.prehistoricfauna.client.render.layer.IschigualastiaEyeLayer;
+import superlord.prehistoricfauna.client.render.layer.IschigualastiaSaddleLayer;
 import superlord.prehistoricfauna.common.entities.triassic.ischigualasto.IschigualastiaEntity;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class IschigualastiaRenderer extends MobRenderer<IschigualastiaEntity, EntityModel<IschigualastiaEntity>> {
 
 	private static final ResourceLocation ISCHIGUALASTIA = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/ischigualastia.png");
-	private static final ResourceLocation ISCHIGUALASTIA_SADDLED = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/ischigualastia_saddled.png");
 	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/albino.png");
-	private static final ResourceLocation ALBINO_SADDLED = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/albino_saddled.png");
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/melanistic.png");
-	private static final ResourceLocation MELANISTIC_SADDLED = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/melanistic_saddled.png");
 	private static final ResourceLocation ISCHIGUALASTIA_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/ischigualastia_sleeping.png");
-	private static final ResourceLocation ISCHIGUALASTIA_SADDLED_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/ischigualastia_saddled_sleeping.png");
 	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/albino_sleeping.png");
-	private static final ResourceLocation ALBINO_SADDLED_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/albino_saddled_sleeping.png");
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/melanistic_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SADDLED_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/melanistic_saddled_sleeping.png");
 	private static final IschigualastiaModel ISCHIGUALASTIA_MODEL = new IschigualastiaModel();
-	private static final IschigualastiaSleepingModel ISCHIGUALASTIA_SLEEPING_MODEL = new IschigualastiaSleepingModel();
 
 	public IschigualastiaRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), ISCHIGUALASTIA_MODEL, 1.25F);
 		if (PrehistoricFaunaConfig.eyeShine) {
-
 			this.addLayer(new IschigualastiaEyeLayer(this));
 		}
-	}
-
-	public void render(IschigualastiaEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-		if (entityIn.isAsleep()) {
-			entityModel = ISCHIGUALASTIA_SLEEPING_MODEL;
-		} else {
-			entityModel = ISCHIGUALASTIA_MODEL;
-		}
-		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
+		this.addLayer(new IschigualastiaSaddleLayer(this));
 	}
 
 	protected void preRenderCallback(IschigualastiaEntity ischigualastia, MatrixStack matrixStackIn, float partialTickTime) {
@@ -56,28 +39,16 @@ public class IschigualastiaRenderer extends MobRenderer<IschigualastiaEntity, En
 
 	@Override
 	public ResourceLocation getEntityTexture(IschigualastiaEntity entity) {
-		if (entity.isAlbino() && !entity.getSaddled()) {
+		if (entity.isAlbino()) {
 			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return ALBINO_SLEEPING;
 			} else return ALBINO;
-		} else if (entity.isAlbino() && entity.getSaddled()) {
-			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
-				return ALBINO_SADDLED_SLEEPING;
-			} else return ALBINO_SADDLED;
-		} else if (entity.isMelanistic() && !entity.getSaddled()) {
+		} else if (entity.isMelanistic()) {
 			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return MELANISTIC_SLEEPING;
 			} else {
 				return MELANISTIC;
 			}
-		} else if (entity.isMelanistic() && entity.getSaddled()) {
-			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
-				return MELANISTIC_SADDLED_SLEEPING;
-			} else return MELANISTIC_SADDLED;
-		} else if(entity.getSaddled()) {
-			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
-				return ISCHIGUALASTIA_SADDLED_SLEEPING;
-			} else return ISCHIGUALASTIA_SADDLED;
 		} else {
 			if (entity.isAsleep() || entity.ticksExisted % 50 >= 0 && entity.ticksExisted % 50 <= 5) {
 				return ISCHIGUALASTIA_SLEEPING;

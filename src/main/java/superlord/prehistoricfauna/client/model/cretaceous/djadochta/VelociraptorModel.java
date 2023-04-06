@@ -184,6 +184,22 @@ public class VelociraptorModel extends EntityModel<VelociraptorEntity> {
 			this.Head.rotateAngleX = (headPitch * ((float)Math.PI / 180F)) + (Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3)));
 			this.WingLeft.rotateAngleZ = (-Math.abs(-0.05F * MathHelper.sin(0.15F * ageInTicks / 3))) + (MathHelper.cos(limbSwing * speed * 0.4F) * degree * 0.1F * limbSwingAmount) + attackProgress * (float) Math.toRadians(-85F);
 			this.WingRight.rotateAngleZ = (Math.abs(-0.05F * MathHelper.sin(0.15F * ageInTicks / 3))) + (MathHelper.cos(3.0F + limbSwing * speed * 0.4F) * degree * 0.1F * limbSwingAmount) + attackProgress * (float) Math.toRadians(85F);
+			if (entity.isInWater()) {
+				this.Body.rotationPointY = 17;
+				this.ThighLeft.rotationPointY = 17F;
+				this.ThighRight.rotationPointY = 17F;
+				this.Body.rotateAngleX = -0.25F;
+				this.Tail.rotateAngleX = 0.25F;
+				this.Neck.rotateAngleX = 0.25F;
+				this.WingLeft.rotateAngleZ = -1.5F + Math.abs(-1F * MathHelper.sin(0.15F * ageInTicks / 2));
+				this.WingRight.rotateAngleZ = 1.5F - Math.abs(-1F * MathHelper.sin(0.15F * ageInTicks / 2));
+				this.ThighLeft.rotateAngleX = -0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.ThighRight.rotateAngleX = 0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.Tail.rotateAngleY = MathHelper.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;
+				this.TailFan.rotateAngleY = MathHelper.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;
+				this.LegLeft.rotateAngleX = -0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.LegRight.rotateAngleX = 0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+			}
 		}
 	}
 

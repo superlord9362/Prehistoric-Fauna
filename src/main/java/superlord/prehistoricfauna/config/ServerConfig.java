@@ -250,7 +250,7 @@ public class ServerConfig {
 	
 	public ServerConfig(final ForgeConfigSpec.Builder builder) {
 		builder.push("Djadochta Formation");
-		builder.comment("Djadochta Arroyo");
+		builder.push("Djadochta Arroyo");
 		this.aepyornithomimusDjadochtaArroyoSpawnWeight = buildInt(builder, "Aepyornithomimus Djadochta Arroyo Spawn Weight", "all", 12, 0, 300, "The weight of Aepyornithomimus in vanilla's spawn rate in the Djadochta Arroyo biome. Default is 12");
 		this.citipatiDjadochtaArroyoSpawnWeight = buildInt(builder, "Citipati Djadochta Arroyo Spawn Weight", "all", 5, 0, 300, "The weight of Citipati in vanilla's spawn rate in the Djadochta Arroyo biome. Default is 5");
 		this.pinacosaurusDjadochtaArroyoSpawnWeight = buildInt(builder, "Pinacosaurus Djadochta Arroyo Spawn Weight", "all", 7, 0, 300, "The weight of Pinacosaurus in vanilla's spawn rate in the Djadochta Arroyo biome. Default is 7");
@@ -260,7 +260,8 @@ public class ServerConfig {
 		this.velociraptorDjadochtaArroyoSpawnWeight = buildInt(builder, "Velociraptor Djadochta Arroyo Spawn Weight", "all", 3, 0, 300, "The weight of Velociraptor in vanilla's spawn rate in the Djadochta Arroyo biome. Default is 3");
 		this.caveSentinelDjadochtaArroyoSpawnWeight = buildInt(builder, "Cave Sentinel Djaodochta Arroyo Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Djadochta Arroyo biome. Default is 5");
 		this.landSentinelDjadochtaArroyoSpawnWeight = buildInt(builder, "Land Sentinel Djadochta Arroyo Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Djadochta Arroyo biome. Default is 2");
-		builder.comment("Djadochta Dunes");
+		builder.pop();
+		builder.push("Djadochta Dunes");
 		this.aepyornithomimusDjadochtaDunesSpawnWeight = buildInt(builder, "Aepyornithomimus Djadochta Dunes Spawn Weight", "all", 2, 0, 300, "The weight of Aepyornithomimus in vanilla's spawn rate in the Djadochta Dunes biome. Default is 3");
 		this.citipatiDjadochtaDunesSpawnWeight = buildInt(builder, "Citipati Djadochta Dunes Spawn Weight", "all", 5, 0, 300, "The weight of Citipati in vanilla's spawn rate in the Djadochta Dunes biome. Default is 5");
 		this.pinacosaurusDjadochtaDunesSpawnWeight = buildInt(builder, "Pinacosaurus Djadochta Dunes Spawn Weight", "all", 5, 0, 300, "The weight of Pinacosaurus in vanilla's spawn rate in the Djadochta Dunes biome. Default is 5");
@@ -270,8 +271,9 @@ public class ServerConfig {
 		this.velociraptorDjadochtaDunesSpawnWeight = buildInt(builder, "Velociraptor Djadochta Dunes Spawn Weight", "all", 6, 0, 300, "The weight of Velociraptor in vanilla's spawn rate in the Djadochta Dunes biome. Default is 6");
 		this.caveSentinelDjadochtaDunesSpawnWeight = buildInt(builder, "Cave Sentinel Djaodochta Dunes Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Djadochta Dunes biome. Default is 5");
 		this.landSentinelDjadochtaDunesSpawnWeight = buildInt(builder, "Land Sentinel Djadochta Dunes Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Djadochta Dunes biome. Default is 2");
+		builder.pop(2);
 		builder.push("Hell Creek Formation");
-		builder.comment("Hell Creek Forest");
+		builder.push("Hell Creek Forest");
 		this.ankylosaurusHellCreekForestSpawnWeight = buildInt(builder, "Ankylosaurus Hell Creek Forest Spawn Weight", "all", 14, 0, 300, "The weight of Ankylosaurus in vanilla's spawn rate in the Hell Creek Forest biome. Default is 14");
 		this.basilemysHellCreekForestSpawnWeight = buildInt(builder, "Basilemys Hell Creek Forest Spawn Weight", "all", 7, 0, 300, "The weight of Basilemys in vanilla's spawn rate in the Hell Creek Forest biome. Default is 7");
 		this.cyclurusHellCreekForestSpawnWeight = buildInt(builder, "Cyclurus Hell Creek Forest Spawn Weight", "all", 1, 0, 300, "The weight of Cyclurus in vanilla's spawn rate in the Hell Creek Forest biome. Default is 1");
@@ -284,7 +286,8 @@ public class ServerConfig {
 		this.tyrannosaurusHellCreekForestSpawnWeight = buildInt(builder, "Tyrannosaurus Hell Creek Forest Spawn Weight", "all", 10, 0, 300, "The weight of Tyrannosaurus in vanilla's spawn rate in the Hell Creek Forest biome. Default is 10");
 		this.caveSentinelHellCreekForestSpawnWeight = buildInt(builder, "Cave Sentinel Hell Creek Forest Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Hell Creek Forest biome. Default is 5");
 		this.landSentinelHellCreekForestSpawnWeight = buildInt(builder, "Land Sentinel Hell Creek Forest Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Hell Creek Forest biome. Default is 2");
-		builder.comment("Hell Creek Fern Prairie");
+		builder.pop();
+		builder.push("Hell Creek Fern Prairie");
 		this.ankylosaurusHellCreekClearingSpawnWeight = buildInt(builder, "Ankylosaurus Hell Creek Fern Prairie Spawn Weight", "all", 7, 0, 300, "The weight of Ankylosaurus in vanilla's spawn rate in the Hell Creek Fern Prairie biome. Default is 7");
 		this.basilemysHellCreekClearingSpawnWeight = buildInt(builder, "Basilemys Hell Creek Fern Prairie Spawn Weight", "all", 9, 0, 300, "The weight of Basilemys in vanilla's spawn rate in the Hell Creek Fern Prairie biome. Default is 9");
 		this.cyclurusHellCreekClearingSpawnWeight = buildInt(builder, "Cyclurus Hell Creek Fern Prairie Spawn Weight", "all", 1, 0, 300, "The weight of Cyclurus in vanilla's spawn rate in the Hell Creek Fern Prairie biome. Default is 1");
@@ -297,7 +300,8 @@ public class ServerConfig {
 		this.tyrannosaurusHellCreekClearingSpawnWeight = buildInt(builder, "Tyrannosaurus Hell Creek Fern Prairie Spawn Weight", "all", 10, 0, 300, "The weight of Tyrannosaurus in vanilla's spawn rate in the Hell Creek Fern Prairie biome. Default is 10");
 		this.caveSentinelHellCreekClearingSpawnWeight = buildInt(builder, "Cave Sentinel Hell Creek Fern Prairie Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Hell Creek Fern Prairie biome. Default is 5");
 		this.landSentinelHellCreekClearingSpawnWeight = buildInt(builder, "Land Sentinel Hell Creek Fern Prairie Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Hell Creek Fern Prairie biome. Default is 2");
-		builder.comment("Hell Creek Liriodendrites Forest");
+		builder.pop();
+		builder.push("Hell Creek Liriodendrites Forest");
 		this.ankylosaurusHellCreekHillsSpawnWeight = buildInt(builder, "Ankylosaurus Hell Creek Liriodendrites Forest Spawn Weight", "all", 14, 0, 300, "The weight of Ankylosaurus in vanilla's spawn rate in the Hell Creek Liriodendrites Forest biome. Default is 14");
 		this.basilemysHellCreekHillsSpawnWeight = buildInt(builder, "Basilemys Hell Creek Liriodendrites Forest Spawn Weight", "all", 7, 0, 300, "The weight of Basilemys in vanilla's spawn rate in the Hell Creek Liriodendrites Forest biome. Default is 7");
 		this.cyclurusHellCreekHillsSpawnWeight = buildInt(builder, "Cyclurus Hell Creek Liriodendrites Forest Spawn Weight", "all", 1, 0, 300, "The weight of Cyclurus in vanilla's spawn rate in the Hell Creek Liriodendrites Forest biome. Default is 1");
@@ -310,14 +314,16 @@ public class ServerConfig {
 		this.tyrannosaurusHellCreekHillsSpawnWeight = buildInt(builder, "Tyrannosaurus Hell Creek Forest Liriodendrites Spawn Weight", "all", 10, 0, 300, "The weight of Tyrannosaurus in vanilla's spawn rate in the Hell Creek Liriodendrites Forest biome. Default is 10");
 		this.caveSentinelHellCreekHillsSpawnWeight = buildInt(builder, "Cave Sentinel Hell Creek Liriodendrites Forest Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Hell Creek Liriodendrites Forest biome. Default is 5");
 		this.landSentinelHellCreekHillsSpawnWeight = buildInt(builder, "Land Sentinel Hell Creek Liriodendrites Forest Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Hell Creek Liriodendrites Forest biome. Default is 2");
-		builder.comment("Hell Creek River");
+		builder.pop();
+		builder.push("Hell Creek River");
 		this.cyclurusHellCreekRiverSpawnWeight = buildInt(builder, "Cyclurus Hell Creek River Spawn Weight", "all", 1, 0, 300, "The weight of Cyclurus in vanilla's spawn rate in the Hell Creek River biome. Default is 1");
 		this.garHellCreekRiverSpawnWeight = buildInt(builder, "Gar Hell Creek River Spawn Weight", "all", 4, 0, 300, "The weight of Gar in vanilla's spawn rate in the Hell Creek River biome. Default is 4");
 		this.myledaphusHellCreekRiverSpawnWeight = buildInt(builder, "Myledaphus Hell Creek River Spawn Weight", "all", 2, 0, 300, "The weight of Myledaphus in vanilla's spawn rate in the Hell Creek River biome. Default is 2");
 		this.caveSentinelHellCreekRiverSpawnWeight = buildInt(builder, "Cave Sentinel Hell Creek River Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Hell Creek River biome. Default is 5");
 		this.landSentinelHellCreekRiverSpawnWeight = buildInt(builder, "Land Sentinel Hell Creek River Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Hell Creek River biome. Default is 2");
+		builder.pop(2);
 		builder.push("Kayenta Formation");
-		builder.comment("Kayenta Canyon");
+		builder.push("Kayenta Canyon");
 		this.calsoyasuchusKayentaButtesSpawnWeight = buildInt(builder, "Calsoyasuchus Kayenta Canyon Spawn Weight", "all", 2, 0, 300, "The weight of Calsoyasuchus in vanilla's spawn rate in the Kayenta Canyon biome. Default is 2");
 		this.ceratodusKayentaButtesSpawnWeight = buildInt(builder, "Ceratodus Kayenta Canyon Spawn Weight", "all", 0, 0, 300, "The weight of Ceratodus in vanilla's spawn rate in the Kayenta Canyon biome. Default is 0");
 		this.dilophosaurusKayentaButtesSpawnWeight = buildInt(builder, "Dilophosaurus Kayenta Canyon Spawn Weight", "all", 5, 0, 300, "The weight of Dilophosaurus in vanilla's spawn rate in the Kayenta Canyon biome. Default is 5");
@@ -329,7 +335,8 @@ public class ServerConfig {
 		this.scutellosaurusKayentaButtesSpawnWeight = buildInt(builder, "Scutellosaurus Kayenta Canyon Spawn Weight", "all", 7, 0, 300, "The weight of Scutellosaurus in vanilla's spawn rate in the Kayenta Canyon biome. Default is 7");
 		this.caveSentinelKayentaButtesSpawnWeight = buildInt(builder, "Cave Sentinel Kayenta Canyon Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Kayenta Canyon biome. Default is 5");
 		this.landSentinelKayentaButtesSpawnWeight = buildInt(builder, "Land Sentinel Kayenta Canyon Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Kayenta Canyon biome. Default is 2");
-		builder.comment("Kayenta Desert");
+		builder.pop();
+		builder.push("Kayenta Desert");
 		this.calsoyasuchusKayentaDesertSpawnWeight = buildInt(builder, "Calsoyasuchus Kayenta Desert Spawn Weight", "all", 1, 0, 300, "The weight of Calsoyasuchus in vanilla's spawn rate in the Kayenta Desert biome. Default is 1");
 		this.ceratodusKayentaDesertSpawnWeight = buildInt(builder, "Ceratodus Kayenta Desert Spawn Weight", "all", 2, 0, 300, "The weight of Ceratodus in vanilla's spawn rate in the Kayenta Desert biome. Default is 2");
 		this.dilophosaurusKayentaDesertSpawnWeight = buildInt(builder, "Dilophosaurus Kayenta Desert Spawn Weight", "all", 3, 0, 300, "The weight of Dilophosaurus in vanilla's spawn rate in the Kayenta Desert biome. Default is 3");
@@ -341,7 +348,8 @@ public class ServerConfig {
 		this.scutellosaurusKayentaDesertSpawnWeight = buildInt(builder, "Scutellosaurus Kayenta Desert Spawn Weight", "all", 2, 0, 300, "The weight of Scutellosaurus in vanilla's spawn rate in the Kayenta Desert biome. Default is 2");
 		this.caveSentinelKayentaDesertSpawnWeight = buildInt(builder, "Cave Sentinel Kayenta Desert Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Kayenta Desert biome. Default is 5");
 		this.landSentinelKayentaDesertSpawnWeight = buildInt(builder, "Land Sentinel Kayenta Desert Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Kayenta Desert biome. Default is 2");
-		builder.comment("Kayenta Dry Forest");
+		builder.pop();
+		builder.push("Kayenta Dry Forest");
 		this.calsoyasuchusKayentaDryForestSpawnWeight = buildInt(builder, "Calsoyasuchus Kayenta Dry Forest Spawn Weight", "all", 5, 0, 300, "The weight of Calsoyasuchus in vanilla's spawn rate in the Kayenta Dry Forest biome. Default is 5");
 		this.ceratodusKayentaDryForestSpawnWeight = buildInt(builder, "Ceratodus Kayenta Dry Forest Spawn Weight", "all", 3, 0, 300, "The weight of Ceratodus in vanilla's spawn rate in the Kayenta Dry Forest biome. Default is 3");
 		this.dilophosaurusKayentaDryForestSpawnWeight = buildInt(builder, "Dilophosaurus Kayenta Dry Forest Spawn Weight", "all", 4, 0, 300, "The weight of Dilophosaurus in vanilla's spawn rate in the Kayenta Dry Forest biome. Default is 4");
@@ -353,8 +361,9 @@ public class ServerConfig {
 		this.scutellosaurusKayentaDryForestSpawnWeight = buildInt(builder, "Scutellosaurus Kayenta Dry Forest Spawn Weight", "all", 8, 0, 300, "The weight of Scutellosaurus in vanilla's spawn rate in the Kayenta Dry Forest biome. Default is 8");
 		this.caveSentinelKayentaDryForestSpawnWeight = buildInt(builder, "Cave Sentinel Kayenta Dry Forest Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Kayenta Dry Forest biome. Default is 5");
 		this.landSentinelKayentaDryForestSpawnWeight = buildInt(builder, "Land Sentinel Kayenta Dry Forest Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Kayenta Dry Forest biome. Default is 2");
+		builder.pop(2);
 		builder.push("Morrison Formation");
-		builder.comment("Morrison Hills");
+		builder.push("Morrison Hills");
 		this.allosaurusMorrisonHillsSpawnWeight = buildInt(builder, "Allosaurus Morrison Hills Spawn Weight", "all", 3, 0, 300, "The weight of Allosaurus in vanilla's spawn rate in the Morrison Hills biome. Default is 3");
 		this.camarasaurusMorrisonHillsSpawnWeight = buildInt(builder, "Camarasaurus Morrison Hills Spawn Weight", "all", 2, 0, 300, "The weight of Camarasaurus in vanilla's spawn rate in the Morrison Hills biome. Default is 2");
 		this.ceratodusMorrisonHillsSpawnWeight = buildInt(builder, "Ceratodus Morrison Hills Spawn Weight", "all", 1, 0, 300, "The weight of Ceratodus in vanilla's spawn rate in the Morrison Hills biome. Default is 1");
@@ -366,7 +375,8 @@ public class ServerConfig {
 		this.stegosaurusMorrisonHillsSpawnWeight = buildInt(builder, "Stegosaurus Morrison Hills Spawn Weight", "all", 10, 0, 300, "The weight of Stegosaurus in vanilla's spawn rate in the Morrison Hills biome. Default is 10");
 		this.caveSentinelMorrisonHillsSpawnWeight = buildInt(builder, "Cave Sentinel Morrison Hills Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Morrison Hills biome. Default is 5");
 		this.landSentinelMorrisonHillsSpawnWeight = buildInt(builder, "Land Sentinel Morrison Hills Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Morrison Hills biome. Default is 2");
-		builder.comment("Morrison Savanna");
+		builder.pop();
+		builder.push("Morrison Savanna");
 		this.allosaurusMorrisonSavannahSpawnWeight = buildInt(builder, "Allosaurus Morrison Savanna Spawn Weight", "all", 3, 0, 300, "The weight of Allosaurus in vanilla's spawn rate in the Morrison Savanna biome. Default is 3");
 		this.camarasaurusMorrisonSavannahSpawnWeight = buildInt(builder, "Camarasaurus Morrison Savanna Spawn Weight", "all", 2, 0, 300, "The weight of Camarasaurus in vanilla's spawn rate in the Morrison Savanna biome. Default is 2");
 		this.ceratodusMorrisonSavannahSpawnWeight = buildInt(builder, "Ceratodus Morrison Savanna Spawn Weight", "all", 1, 0, 300, "The weight of Ceratodus in vanilla's spawn rate in the Morrison Savanna biome. Default is 1");
@@ -378,8 +388,9 @@ public class ServerConfig {
 		this.stegosaurusMorrisonSavannahSpawnWeight = buildInt(builder, "Stegosaurus Morrison Savanna Spawn Weight", "all", 10, 0, 300, "The weight of Stegosaurus in vanilla's spawn rate in the Morrison Savanna biome. Default is 10");
 		this.caveSentinelMorrisonSavannahSpawnWeight = buildInt(builder, "Cave Sentinel Morrison Savanna Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Morrison Savanna biome. Default is 5");
 		this.landSentinelMorrisonSavannahSpawnWeight = buildInt(builder, "Land Sentinel Morrison Savanna Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Morrison Savanna biome. Default is 2");
+		builder.pop(2);
 		builder.push("Chinle Formation");
-		builder.comment("Chinle Flats");
+		builder.push("Chinle Flats");
 		this.arganodusChinleFlatsSpawnWeight = buildInt(builder, "Arganodus Chinle Flats Spawn Weight", "all", 3, 0, 300, "The weight of Arganodus in vanilla's spawn rate in the Chinle Flats biome. Default is 4");
 		this.chinleaChinleFlatsSpawnWeight = buildInt(builder, "Chinlea Chinle Flats Spawn Weight", "all", 4, 0, 300, "The weight of Chinlea in vanilla's spawn rate in the Chinle Flats biome. Default is 4");
 		this.coelophysisChinleFlatsSpawnWeight = buildInt(builder, "Coelophysis Chinle Flats Spawn Weight", "all", 10, 0, 300, "The weight of Coelophysis in vanilla's spawn rate in the Chinle Flats biome. Default is 10");
@@ -393,14 +404,16 @@ public class ServerConfig {
 		this.typothoraxChinleFlatsSpawnWeight = buildInt(builder, "Typothorax Chinle Flats Spawn Weight", "all", 8, 0, 300, "The weight of Typothorax in vanilla's spawn rate in the Chinle Flats biome. Default is 8");
 		this.caveSentinelChinleFlatsSpawnWeight = buildInt(builder, "Cave Sentinel Chinle Flats Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Chinle Flats biome. Default is 5");
 		this.landSentinelChinleFlatsSpawnWeight = buildInt(builder, "Land Sentinel Chinle Flats Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Chinle Flats biome. Default is 2");
-		builder.comment("Chinle River");
+		builder.pop();
+		builder.push("Chinle River");
 		this.arganodusChinleRiverSpawnWeight = buildInt(builder, "Arganodus Chinle River Spawn Weight", "all", 3, 0, 300, "The weight of Arganodus in vanilla's spawn rate in the Chinle River biome. Default is 4");
 		this.chinleaChinleRiverSpawnWeight = buildInt(builder, "Chinlea Chinle River Spawn Weight", "all", 4, 0, 300, "The weight of Chinlea in vanilla's spawn rate in the Chinle River biome. Default is 4");
 		this.mooreodontusChinleRiverSpawnWeight = buildInt(builder, "Mooreodontus Chinle River Spawn Weight", "all", 1, 0, 300, "The weight of Mooreodontus in vanilla's spawn rate in the Chinle River biome. Default is 1");
 		this.saurichthysChinleRiverSpawnWeight = buildInt(builder, "Saurichthys Chinle River Spawn Weight", "all", 2, 0, 300, "The weight of Saurichthys in vanilla's spawn rate in the Chinle River biome. Default is 2");
 		this.caveSentinelChinleRiverSpawnWeight = buildInt(builder, "Cave Sentinel Chinle River Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Chinle River biome. Default is 5");
 		this.landSentinelChinleRiverSpawnWeight = buildInt(builder, "Land Sentinel Chinle River Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Chinle River biome. Default is 2");
-		builder.comment("Chinle Swamp");
+		builder.pop();
+		builder.push("Chinle Swamp");
 		this.arganodusChinleSwampSpawnWeight = buildInt(builder, "Arganodus Chinle Swamp Spawn Weight", "all", 4, 0, 300, "The weight of Arganodus in vanilla's spawn rate in the Chinle Swamp biome. Default is 4");
 		this.chinleaChinleSwampSpawnWeight = buildInt(builder, "Chinlea Chinle Swamp Spawn Weight", "all", 1, 0, 300, "The weight of Chinlea in vanilla's spawn rate in the Chinle Swamp biome. Default is 1");
 		this.coelophysisChinleSwampSpawnWeight = buildInt(builder, "Coelophysis Chinle Swamp Spawn Weight", "all", 12, 0, 300, "The weight of Coelophysis in vanilla's spawn rate in the Chinle Swamp biome. Default is 12");
@@ -414,7 +427,8 @@ public class ServerConfig {
 		this.typothoraxChinleSwampSpawnWeight = buildInt(builder, "Typothorax Chinle Swamp Spawn Weight", "all", 7, 0, 300, "The weight of Typothorax in vanilla's spawn rate in the Chinle Swamp biome. Default is 7");
 		this.caveSentinelChinleSwampSpawnWeight = buildInt(builder, "Cave Sentinel Chinle Swamp Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Chinle Swamp biome. Default is 5");
 		this.landSentinelChinleSwampSpawnWeight = buildInt(builder, "Land Sentinel Chinle Swamp Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Chinle Swamp biome. Default is 2");
-		builder.comment("Chinle Wooded Mountains");
+		builder.pop();
+		builder.push("Chinle Wooded Mountains");
 		this.arganodusChinleWoodedMountainsSpawnWeight = buildInt(builder, "Arganodus Chinle Wooded Mountains Spawn Weight", "all", 0, 0, 300, "The weight of Arganodus in vanilla's spawn rate in the Chinle Wooded Mountains biome. Default is 0");
 		this.chinleaChinleWoodedMountainsSpawnWeight = buildInt(builder, "Chinlea Chinle Wooded Mountains Spawn Weight", "all", 0, 0, 300, "The weight of Chinlea in vanilla's spawn rate in the Chinle Wooded Mountains biome. Default is 0");
 		this.coelophysisChinleWoodedMountainsSpawnWeight = buildInt(builder, "Coelophysis Chinle Wooded Mountains Spawn Weight", "all", 0, 0, 300, "The weight of Coelophysis in vanilla's spawn rate in the Chinle Wooded Mountains biome. Default is 0");
@@ -428,8 +442,9 @@ public class ServerConfig {
 		this.typothoraxChinleWoodedMountainsSpawnWeight = buildInt(builder, "Typothorax Chinle Wooded Mountains Spawn Weight", "all", 5, 0, 300, "The weight of Typothorax in the vanilla's spawn rate in the Chinle Wooded Mountains biome. Default is 5");
 		this.caveSentinelChinleWoodedMountainsSpawnWeight = buildInt(builder, "Cave Sentinel Chinle Wooded Mountains Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Chinle Wooded Mountains biome. Default is 5");
 		this.landSentinelChinleWoodedMountainsSpawnWeight = buildInt(builder, "Land Sentinel Chinle Wooded Mountains Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Chinle Wooded Mountains biome. Default is 2");
+		builder.pop(2);
 		builder.push("Ischigualasto Formation");
-		builder.comment("Ischigualasto Forest");
+		builder.push("Ischigualasto Forest");
 		this.ceratodusIschigualastoForestSpawnWeight = buildInt(builder, "Ceratodus Ischigualasto Forest Spawn Weight", "all", 3, 0, 300, "The weight of Ceratodus in vanilla's spawn rate in the Ischigualasto Forest biome. Default is 3");
 		this.chromogisaurusIschigualastoForestSpawnWeight = buildInt(builder, "Chromogisaurus Ischigualasto Forest Spawn Weight", "all", 10, 0, 300, "The weight of Chromogisaurus in vanilla's spawn rate in the Ischigualasto Forest biome. Default is 10");
 		this.exaeretodonIschigualastoForestSpawnWeight = buildInt(builder, "Exaeretodon Ischigualasto Forest Spawn Weight", "all", 12, 0, 300, "The weight of Exaeretodon in vanilla's spawn rate in the Ischigualasto Forest biome. Default is 12");
@@ -440,7 +455,8 @@ public class ServerConfig {
 		this.sillosuchusIschigualastoForestSpawnWeight = buildInt(builder, "Sillosuchus Ischigualasto Forest Spawn Weight", "all", 6, 0, 300, "The weight of Sillosuchus in vanilla's spawn rate in the Ischigualasto Forest biome. Default is 6");
 		this.caveSentinelIschigualastoForestSpawnWeight = buildInt(builder, "Cave Sentinel Ischigualasto Forest Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Ischigualasto Forest biome. Default is 5");
 		this.landSentinelIschigualastoForestSpawnWeight = buildInt(builder, "Land Sentinel Ischigualasto Forest Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Ischigualasto Forest biome. Default is 2");
-		builder.comment("Ischigualasto Clearing");
+		builder.pop();
+		builder.push("Ischigualasto Clearing");
 		this.ceratodusIschigualastoClearingSpawnWeight = buildInt(builder, "Ceratodus Ischigualasto Clearing Spawn Weight", "all", 3, 0, 300, "The weight of Ceratodus in vanilla's spawn rate in the Ischigualasto Clearing biome. Default is 3");
 		this.chromogisaurusIschigualastoClearingSpawnWeight = buildInt(builder, "Chromogisaurus Ischigualasto Clearing Spawn Weight", "all", 10, 0, 300, "The weight of Chromogisaurus in vanilla's spawn rate in the Ischigualasto Clearing biome. Default is 10");
 		this.exaeretodonIschigualastoClearingSpawnWeight = buildInt(builder, "Exaeretodon Ischigualasto Clearing Spawn Weight", "all", 12, 0, 300, "The weight of Exaeretodon in vanilla's spawn rate in the Ischigualasto Clearing biome. Default is 12");
@@ -451,7 +467,8 @@ public class ServerConfig {
 		this.sillosuchusIschigualastoClearingSpawnWeight = buildInt(builder, "Sillosuchus Ischigualasto Clearing Spawn Weight", "all", 6, 0, 300, "The weight of Sillosuchus in vanilla's spawn rate in the Ischigualasto Clearing biome. Default is 6");
 		this.caveSentinelIschigualastoClearingSpawnWeight = buildInt(builder, "Cave Sentinel Ischigualasto Clearing Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Ischigualasto Clearing biome. Default is 5");
 		this.landSentinelIschigualastoClearingSpawnWeight = buildInt(builder, "Land Sentinel Ischigualasto Clearing Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Ischigualasto Clearing biome. Default is 2");
-		builder.comment("Ischigualasto Hills");
+		builder.pop();
+		builder.push("Ischigualasto Hills");
 		this.ceratodusIschigualastoHillsSpawnWeight = buildInt(builder, "Ceratodus Ischigualasto Hills Spawn Weight", "all", 3, 0, 300, "The weight of Ceratodus in vanilla's spawn rate in the Ischigualasto Hills biome. Default is 3");
 		this.chromogisaurusIschigualastoHillsSpawnWeight = buildInt(builder, "Chromogisaurus Ischigualasto Hills Spawn Weight", "all", 10, 0, 300, "The weight of Chromogisaurus in vanilla's spawn rate in the Ischigualasto Hills biome. Default is 10");
 		this.exaeretodonIschigualastoHillsSpawnWeight = buildInt(builder, "Exaeretodon Ischigualasto Hills Spawn Weight", "all", 12, 0, 300, "The weight of Exaeretodon in vanilla's spawn rate in the Ischigualasto Hills biome. Default is 12");
@@ -462,10 +479,12 @@ public class ServerConfig {
 		this.saurosuchusIschigualastoHillsSpawnWeight = buildInt(builder, "Saurosuchus Ischigualasto Hills Spawn Weight", "all", 4, 0, 300, "The weight of Saurosuchus in vanilla's spawn rate in the Ischigualasto Hills biome. Default is 4");
 		this.caveSentinelIschigualastoHillsSpawnWeight = buildInt(builder, "Cave Sentinel Ischigualasto Hills Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Ischigualasto Hills biome. Default is 5");
 		this.landSentinelIschigualastoHillsSpawnWeight = buildInt(builder, "Land Sentinel Ischigualasto Hills Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Ischigualasto Hills biome. Default is 2");
-		builder.comment("Ischigualasto River");
+		builder.pop();
+		builder.push("Ischigualasto River");
 		this.ceratodusIschigualastoRiverSpawnWeight = buildInt(builder, "Ceratodus Ischigualasto River Spawn Weight", "all", 3, 0, 300, "The weight of Ceratodus in vanilla's spawn rate in the Ischigualasto River biome. Default is 3");
 		this.caveSentinelIschigualastoRiverSpawnWeight = buildInt(builder, "Cave Sentinel Ischigualasto River Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Ischigualasto River biome. Default is 5");
 		this.landSentinelIschigualastoRiverSpawnWeight = buildInt(builder, "Land Sentinel Ischigualasto River Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Ischigualasto River biome. Default is 2");
+		builder.pop(2);
 		builder.push("Misc Settings");
 		this.superSecretSetting = buildBoolean(builder, "Super Secret Setting", "all", false, "Even I don't know what it does. Default is false");
 		this.cretaceousDimensionID = buildInt(builder, "Cretaceous Dimension ID", "all", 9, Integer.MIN_VALUE, Integer.MAX_VALUE, "Cretaceous Dimension ID. Default is 9");
@@ -473,6 +492,7 @@ public class ServerConfig {
 		this.triassicDimensionID = buildInt(builder, "Triassic Dimension ID", "all", 7, Integer.MIN_VALUE, Integer.MAX_VALUE, "Triassic Dimension ID. Default is 7");
 		this.spaceTimeContinuumWarping = buildBoolean(builder, "Space Time Continuum Warping", "all", false, "Warning: Messing with the time space continuum may lead to unforseen consequences. Recommended to keep false for servers. Default is false");
 		this.geologyHammerMining = buildBoolean(builder, "Geological Hammer Stone Breaking", "all", true, "Toggles whether stones can be broken down using the Geological Hammer. Default is true");
+		builder.pop();
 		builder.push("Structures");
 		this.hellCreekHutMinDistance = buildInt(builder, "Hell Creek Ruined Time Traveller's Hut Min Distance", "all", 40, 1, 300, "The closest two Hell Creek Ruined Time Traveller's Huts can spawn from eachother. Keep this value lower than the max. Default is 40");
 		this.hellCreekHutMaxDistance = buildInt(builder, "Hell Creek Ruined Time Traveller's Hut Max Distance", "all", 60, 1, 300, "The farthest two Hell Creek Ruined Time Traveller's Huts can spawn from eachother. Keep this value higher than the min. Default is 60");
@@ -492,16 +512,19 @@ public class ServerConfig {
 		this.timeTempleMaxDistance = buildInt(builder, "Time Temple Max Distance", "all", 100, 1, 300, "The farthest two Time Temples can spawn from eachother. Keep this value higher than the min. Default is 100");
 		this.portalHubMinDistance = buildInt(builder, "Portal Hub Min Distance", "all", 40, 1, 300, "The closest two Portal Hubs can spawn from eachother. Keep this value lower than the max. Default is 40");
 		this.portalHubMaxDistance = buildInt(builder, "Portal Hub Hut Max Distance", "all", 60, 1, 300, "The farthest two Portal Hubs can spawn from eachother. Keep this value higher than the min. Default is 60");
+		builder.pop();
 		builder.push("World Generation");
 		this.baseStoneWeight = buildInt(builder, "Base Stone Weight", "all", 97, 1, 300, "The probability of an ancient stone deposit is made up of the base stone. To find the percentage probability, add the base stone weight with the fossil weight, and then divide the base stone weight by the combined weights. Default is 97");
 		this.fossilWeight = buildInt(builder, "Fossil Weight", "all", 3, 1, 300, "The probability of an ancient stone deposit is made up of the fossilized stone. To find the percentage probability, add the base stone weight with the fossil weight, and then divide the fossil stone weight by the combined weights. Default is 3");
 		this.petrifiedForestWeight = buildInt(builder, "Petrified Forest Weight", "all", 6, 0, 300, "The probability for the Petrified Forest biome to generate in the overworld. Default is 6");
+		builder.pop();
 		builder.push("AI Config");
 		this.sleeping = buildBoolean(builder, "Sleeping AI", "all", true, "Toggles whether all prehistoric animals sleep or not. Default is true");
 		this.advancedHunger = buildBoolean(builder, "Advanced Hunger AI", "all", true, "Toggles whether all prehistoric animals are affected by hunger. Default is true");
 		this.hungerDamage = buildBoolean(builder, "Hunger Damage", "all", false, "Toggles whether entities take damage from being hungry. Default is false");
 		this.naturalEggBlockLaying = buildBoolean(builder, "Natural Egg Laying AI - Blocks", "all", true, "Toggles whether entities lay their eggs as blocks naturally when full. Default is true");
 		this.naturalEggItemLaying = buildBoolean(builder, "Natural Egg Laying AI - Items", "all", false, "Toggles whether entities lay their eggs as items naturally when full. Default is false");
+		builder.pop();
 	}
 	
 	private static ForgeConfigSpec.BooleanValue buildBoolean(ForgeConfigSpec.Builder builder, String name, String catagory, boolean defaultValue, String comment){

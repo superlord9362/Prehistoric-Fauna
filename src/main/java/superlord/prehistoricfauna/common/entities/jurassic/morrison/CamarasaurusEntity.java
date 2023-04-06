@@ -12,10 +12,13 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityPredicate;
+import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -26,6 +29,7 @@ import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -78,6 +82,15 @@ public class CamarasaurusEntity extends DinosaurEntity {
 
 	public CamarasaurusEntity(EntityType<? extends CamarasaurusEntity> type, World world) {
 		super(type, world);
+	}
+
+	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+		if (this.isChild() && !this.isJuvenile()) {
+			return 2.75F;
+		} else if (this.isJuvenile() && this.isChild()) {
+			return 5.5F;
+		}
+		else return 8.5F;
 	}
 
 	public boolean isDigging() {
@@ -454,14 +467,24 @@ public class CamarasaurusEntity extends DinosaurEntity {
 			this.camarasaurus = camarasaurus;
 		}
 
+		/**
+		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+		 * method as well.
+		 */
 		public boolean shouldExecute() {
 			return this.camarasaurus.hasEgg() ? super.shouldExecute() : false;
 		}
 
+		/**
+		 * Returns whether an in-progress EntityAIBase should continue executing
+		 */
 		public boolean shouldContinueExecuting() {
 			return super.shouldContinueExecuting() && this.camarasaurus.hasEgg();
 		}
 
+		/**
+		 * Keep ticking a continuous task that has already been started
+		 */
 		public void tick() {
 			super.tick();
 			BlockPos blockpos = new BlockPos(this.camarasaurus.getPositionVec());
@@ -476,12 +499,17 @@ public class CamarasaurusEntity extends DinosaurEntity {
 					this.camarasaurus.setDigging(false);
 					this.camarasaurus.setInLove(600);
 				}
+
 				if (this.camarasaurus.isDigging()) {
 					this.camarasaurus.isDigging++;
 				}
 			}
+
 		}
 
+		/**
+		 * Return true to set given position as destination
+		 */
 		protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
 			if (!worldIn.isAirBlock(pos.up())) {
 				return false;
@@ -490,31 +518,77 @@ public class CamarasaurusEntity extends DinosaurEntity {
 				return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.MYCELIUM || block == Blocks.SAND || block == Blocks.RED_SAND || block == PFBlocks.MOSSY_DIRT || block == PFBlocks.MOSS_BLOCK || block == PFBlocks.LOAM || block == PFBlocks.PACKED_LOAM || block == PFBlocks.SILT || block == PFBlocks.PACKED_LOAM || block == BlockTags.LEAVES;
 			}
 		}
+
+	}
+
+	/**
+	 * Return true to set given position as destination
+	 */
+	protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
+		if (!worldIn.isAirBlock(pos.up())) {
+			return false;
+		} else {
+			Block block = worldIn.getBlockState(pos).getBlock();
+			return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.MYCELIUM || block == Blocks.SAND || block == Blocks.RED_SAND || block == PFBlocks.MOSSY_DIRT || block == PFBlocks.MOSS_BLOCK || block == PFBlocks.LOAM || block == PFBlocks.PACKED_LOAM || block == PFBlocks.SILT || block == PFBlocks.PACKED_LOAM || block == BlockTags.LEAVES;
+		}
 	}
 
 	static class MateGoal extends BreedGoal {
 		private final CamarasaurusEntity camarasaurus;
+		private static final EntityPredicate field_220689_d = (new EntityPredicate()).setDistance(8.0D).allowInvulnerable().allowFriendlyFire().setLineOfSiteRequired();
+		private int spawnBabyDelay;
+		private final double moveSpeed;
 
-		MateGoal(CamarasaurusEntity camarasaurus, double speedIn) {
-			super(camarasaurus, speedIn);
+		MateGoal(CamarasaurusEntity camarasaurus, double speed) {
+			super(camarasaurus, speed);
 			this.camarasaurus = camarasaurus;
+			this.moveSpeed = speed;
+		}
+
+		@Nullable
+		private AnimalEntity getNearbyMate() {
+			List<AnimalEntity> list = this.world.getTargettableEntitiesWithinAABB(CamarasaurusEntity.class, field_220689_d, this.animal, this.animal.getBoundingBox().grow(24.0D));
+			double d0 = Double.MAX_VALUE;
+			AnimalEntity animalentity = null;
+
+			for(AnimalEntity animalentity1 : list) {
+				if (this.animal.canMateWith(animalentity1) && this.animal.getDistanceSq(animalentity1) < d0) {
+					animalentity = animalentity1;
+					d0 = this.animal.getDistanceSq(animalentity1);
+				}
+			}
+
+			return animalentity;
 		}
 
 		public boolean shouldExecute() {
 			return super.shouldExecute() && !this.camarasaurus.hasEgg() && !this.camarasaurus.isInLoveNaturally();
 		}
 
+		public void resetTask() {
+			this.targetMate = null;
+			this.spawnBabyDelay = 0;
+		}
+
+		public void tick() {
+			super.tick();
+			this.animal.getLookController().setLookPositionWithEntity(this.targetMate, 10.0F, (float)this.animal.getVerticalFaceSpeed());
+			this.animal.getNavigator().tryMoveToEntityLiving(this.targetMate, this.moveSpeed);
+			++this.spawnBabyDelay;
+			if (this.spawnBabyDelay >= 60 && this.animal.getDistanceSq(this.targetMate) < 20.0D) {
+				this.spawnBaby();
+			}
+		}
+
 		protected void spawnBaby() {
-			ServerPlayerEntity serverplayerentity = this.animal.getLoveCause();
-			if (serverplayerentity == null && this.targetMate.getLoveCause() != null) {
-				serverplayerentity = this.targetMate.getLoveCause();
+			ServerPlayerEntity serverPlayerEntity = this.animal.getLoveCause();
+			if (serverPlayerEntity == null && this.targetMate.getLoveCause() != null) {
+				serverPlayerEntity = this.targetMate.getLoveCause();
 			}
-
-			if (serverplayerentity != null) {
-				serverplayerentity.addStat(Stats.ANIMALS_BRED);
-				CriteriaTriggers.BRED_ANIMALS.trigger(serverplayerentity, this.animal, this.targetMate, (AgeableEntity)null);
+			if (serverPlayerEntity != null) {
+				serverPlayerEntity.addStat(Stats.ANIMALS_BRED);
+				CriteriaTriggers.BRED_ANIMALS.trigger(serverPlayerEntity, this.animal, this.targetMate, (AgeableEntity)null);
 			}
-
 			this.camarasaurus.setHasEgg(true);
 			this.animal.resetInLove();
 			this.targetMate.resetInLove();

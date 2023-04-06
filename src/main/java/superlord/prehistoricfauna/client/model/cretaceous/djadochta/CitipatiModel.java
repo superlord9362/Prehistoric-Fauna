@@ -174,6 +174,20 @@ public class CitipatiModel extends EntityModel<CitipatiEntity> {
 				this.ThighRight.rotationPointY = 4F;
 				this.Neck.rotateAngleX = Math.abs(MathHelper.sin(0.05F * ageInTicks) * 0.75F) + 0.5F;
 			}
+			if (entityIn.isInWater()) {
+				this.Body.rotationPointY = 17;
+				this.Body.rotateAngleX = -0.25F;
+				this.Tail.rotateAngleX = 0.25F;
+				this.Neck.rotateAngleX = 0.25F;
+				this.WingLeft.rotateAngleZ = -1.5F + Math.abs(-1F * MathHelper.sin(0.15F * ageInTicks / 2));
+				this.WingRight.rotateAngleZ = 1.5F - Math.abs(-1F * MathHelper.sin(0.15F * ageInTicks / 2));
+				this.ThighLeft.rotateAngleX = -0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.ThighRight.rotateAngleX = 0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.Tail.rotateAngleY = MathHelper.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;
+				this.TailFan.rotateAngleY = MathHelper.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;
+				this.LegLeft.rotateAngleX = -0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.LegRight.rotateAngleX = 0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+			}
 		}
 	}
 

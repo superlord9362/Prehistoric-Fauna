@@ -3,15 +3,11 @@ package superlord.prehistoricfauna.client.render.jurassic.morrison;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.model.jurassic.morrison.EilenodonBaskingModel;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.EilenodonModel;
-import superlord.prehistoricfauna.client.model.jurassic.morrison.EilenodonSleepingModel;
-import superlord.prehistoricfauna.client.render.layer.EilenodonBaskingEyeLayer;
 import superlord.prehistoricfauna.client.render.layer.EilenodonEyeLayer;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.EilenodonEntity;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
@@ -25,26 +21,12 @@ public class EilenodonRenderer extends MobRenderer<EilenodonEntity, EntityModel<
 	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/eilenodon/albino_sleeping.png");
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/eilenodon/melanistic_sleeping.png");
 	private final static EilenodonModel EILENODON_MODEL = new EilenodonModel();
-	private final static EilenodonBaskingModel EILENODON_BASKING = new EilenodonBaskingModel();
-	private final static EilenodonSleepingModel EILENODON_SLEEPING = new EilenodonSleepingModel();
 
 	public EilenodonRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), EILENODON_MODEL, 0.25F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new EilenodonEyeLayer(this));
-			this.addLayer(new EilenodonBaskingEyeLayer(this));
 		}
-	}
-
-	public void render(EilenodonEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-		if (entityIn.isAsleep()) {
-			entityModel = EILENODON_SLEEPING;
-		} else if (entityIn.isSitting() && !entityIn.isAsleep()) {
-			entityModel = EILENODON_BASKING;
-		} else {
-			entityModel = EILENODON_MODEL;
-		}
-		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
 
 	protected void preRenderCallback(EilenodonEntity eilenodon, MatrixStack matrixStackIn, float partialTickTime) {

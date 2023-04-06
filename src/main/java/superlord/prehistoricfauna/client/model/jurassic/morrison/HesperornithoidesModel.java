@@ -80,23 +80,82 @@ public class HesperornithoidesModel extends EntityModel<HesperornithoidesEntity>
 	public void setRotationAngles(HesperornithoidesEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		float partialTick = ageInTicks - entityIn.ticksExisted;
 		float attackProgress = entityIn.getMeleeProgress(partialTick);
-		this.Head.rotateAngleX = (headPitch * ((float) Math.PI / 180F)) + (Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3))) + attackProgress * (float) Math.toRadians(40F);
-		this.LeftWing.rotateAngleZ = -Math.abs(-0.05F * MathHelper.sin(0.15F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(-50F);
-		this.RightWing.rotateAngleZ = Math.abs(-0.05F * MathHelper.sin(0.15F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(50F);
-		this.Fluff.rotateAngleX = -Math.abs(-0.05F * MathHelper.sin(0.1F * ageInTicks / 3));
-		this.Head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
-		this.RightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-		this.LeftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-		this.Tail.rotateAngleY = -0.12F * MathHelper.sin(0.2F * ageInTicks / 5);
-		this.Tail.rotateAngleX = -Math.abs(-0.05F * MathHelper.sin(0.1F * ageInTicks / 5));
-		this.LeftWing.rotateAngleY = Math.abs(-0.05F * MathHelper.sin(0.15F * ageInTicks / 3));
-		this.RightWing.rotateAngleY = -Math.abs(-0.05F * MathHelper.sin(0.15F * ageInTicks / 3));
-		if (entityIn.isDustBathing()) {
-			this.LeftWing.rotateAngleY = Math.abs(-0.25F * MathHelper.sin(0.3F * ageInTicks));
-			this.RightWing.rotateAngleY = -Math.abs(-0.25F * MathHelper.sin(0.3F * ageInTicks));
-			this.LeftWing.rotateAngleZ = -Math.abs(-0.5F * MathHelper.sin(0.3F * ageInTicks));
-			this.RightWing.rotateAngleZ = Math.abs(-0.5F * MathHelper.sin(0.3F * ageInTicks));
+		resetModel();
+		if (entityIn.isAsleep()) {
+			this.LeftLeg.rotationPointY = 0;
+			this.RightLeg.rotationPointY = 0;
+			this.LeftWing.rotationPointY = 0.3F;
+			this.LeftWing.rotateAngleX = -0.33004175888896664F;
+			this.LeftWing.rotateAngleY = -0.21537363235926135F;
+			this.RightWing.rotationPointY = 0.3F;
+			this.RightWing.rotateAngleX = -0.33004175888896664F;
+			this.RightWing.rotateAngleY = 0.21537363235926135F;
+			this.Head.rotationPointY = 2.4F;
+			this.Head.rotateAngleX = -0.182212366584515F;
+			this.Tail.rotationPointY = 0.6F;
+			this.Tail.rotateAngleX = -0.21938788164936507F;
+			this.Tail.rotateAngleY = -0.1096066806870904F;
+			this.Tail.rotateAngleZ = -0.07295475973730675F;
+			this.Body.rotationPointY = 20.8F;
+			this.Body.rotateAngleX = 0.07278023113974408F;
+			this.Fluff.rotateAngleX = -1.058367647756717F;
+			this.Fluff.rotationPointY = -4.5F;
+			this.Fluff.rotationPointZ = -0.1F;
+		} else {
+			this.Head.rotateAngleX = (headPitch * ((float) Math.PI / 180F)) + (Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3))) + attackProgress * (float) Math.toRadians(40F);
+			this.LeftWing.rotateAngleZ = -Math.abs(-0.05F * MathHelper.sin(0.15F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(-50F);
+			this.RightWing.rotateAngleZ = Math.abs(-0.05F * MathHelper.sin(0.15F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(50F);
+			this.Fluff.rotateAngleX = -Math.abs(-0.05F * MathHelper.sin(0.1F * ageInTicks / 3));
+			this.Head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
+			this.RightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+			this.LeftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+			this.Tail.rotateAngleY = -0.12F * MathHelper.sin(0.2F * ageInTicks / 5);
+			this.Tail.rotateAngleX = -Math.abs(-0.05F * MathHelper.sin(0.1F * ageInTicks / 5));
+			this.LeftWing.rotateAngleY = Math.abs(-0.05F * MathHelper.sin(0.15F * ageInTicks / 3));
+			this.RightWing.rotateAngleY = -Math.abs(-0.05F * MathHelper.sin(0.15F * ageInTicks / 3));
+			if (entityIn.isDustBathing()) {
+				this.LeftWing.rotateAngleY = Math.abs(-0.25F * MathHelper.sin(0.3F * ageInTicks));
+				this.RightWing.rotateAngleY = -Math.abs(-0.25F * MathHelper.sin(0.3F * ageInTicks));
+				this.LeftWing.rotateAngleZ = -Math.abs(-0.5F * MathHelper.sin(0.3F * ageInTicks));
+				this.RightWing.rotateAngleZ = Math.abs(-0.5F * MathHelper.sin(0.3F * ageInTicks));
+			}
+			if (entityIn.isInWater()) {
+				this.Body.rotationPointY = 17;
+				this.Body.rotateAngleX = -0.25F;
+				this.Tail.rotateAngleX = 0.25F;
+				this.Head.rotateAngleX = 0.25F;
+				this.LeftWing.rotateAngleZ = -1.5F + Math.abs(-1F * MathHelper.sin(0.15F * ageInTicks / 2));
+				this.RightWing.rotateAngleZ = 1.5F - Math.abs(-1F * MathHelper.sin(0.15F * ageInTicks / 2));
+				this.LeftLeg.rotateAngleX = -0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.RightLeg.rotateAngleX = 0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.Tail.rotateAngleY = MathHelper.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;
+			}
 		}
+	}
+
+	public void resetModel() {
+		this.LeftLeg.rotationPointY = 3.0F;
+		this.RightLeg.rotationPointY = 3.0F;
+		this.LeftWing.rotationPointY = 0.0F;
+		this.LeftWing.rotateAngleX = 0;
+		this.LeftWing.rotateAngleY = 0;
+		this.LeftWing.rotateAngleZ = 0;
+		this.RightWing.rotationPointY = 0.0F;
+		this.RightWing.rotateAngleX = 0;
+		this.RightWing.rotateAngleY = 0;
+		this.RightWing.rotateAngleZ = 0;
+		this.Head.rotationPointY = 2.0F;
+		this.Head.rotateAngleX = 0;
+		this.Head.rotateAngleY = 0;
+		this.Tail.rotationPointY = 0;
+		this.Tail.rotateAngleX = 0;
+		this.Tail.rotateAngleY = 0;
+		this.Tail.rotateAngleZ = 0;
+		this.Body.rotationPointY = 17.0F;
+		this.Body.rotateAngleX = 0;
+		this.Fluff.rotationPointY = -4;
+		this.Fluff.rotationPointZ = -1;
+		this.Fluff.rotateAngleX = 0;
 	}
 
 	/**

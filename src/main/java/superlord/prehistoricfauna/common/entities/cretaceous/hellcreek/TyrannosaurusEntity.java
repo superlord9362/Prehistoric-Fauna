@@ -11,10 +11,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -134,6 +136,14 @@ public class TyrannosaurusEntity extends DinosaurEntity {
 	public TyrannosaurusEntity(EntityType<? extends TyrannosaurusEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
+	
+	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+		if (this.isJuvenile()) {
+			return 1.4F;
+		} else if (this.isJuvenile()) {
+			return 2.8F;
+		} else return 4.0F;
+	}
 
 	public boolean isDigging() {
 		return this.dataManager.get(IS_DIGGING);
@@ -251,9 +261,7 @@ public class TyrannosaurusEntity extends DinosaurEntity {
 			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(100.0D);
 		}
 		if (this.isAsleep()) {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
-		} else {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.25D);
+			this.navigator.setSpeed(0);;
 		}
 		if (!this.isAIDisabled()) {
 			List<TyrannosaurusEntity> list = this.world.getEntitiesWithinAABB(this.getClass(), this.getBoundingBox().grow(20.0D, 20.0D, 20.0D));
@@ -311,7 +319,7 @@ public class TyrannosaurusEntity extends DinosaurEntity {
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 100.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 14.0D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.75D);
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 100.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 35.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 14.0D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.75D);
 	}
 
 	@Override
@@ -774,11 +782,11 @@ public class TyrannosaurusEntity extends DinosaurEntity {
 		}
 
 		public boolean shouldExecute() {
-			return super.shouldExecute() && TyrannosaurusEntity.this.getCurrentHunger() <= TyrannosaurusEntity.this.getHalfHunger() && !TyrannosaurusEntity.this.isChild();
+			return super.shouldExecute() && TyrannosaurusEntity.this.getCurrentHunger() <= TyrannosaurusEntity.this.getHalfHunger() && !TyrannosaurusEntity.this.isChild() && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public boolean shouldContinueExecuting() {
-			return TyrannosaurusEntity.this.getCurrentHunger() > TyrannosaurusEntity.this.maxHunger;
+			return TyrannosaurusEntity.this.getCurrentHunger() > TyrannosaurusEntity.this.maxHunger && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public void tick() {
@@ -851,11 +859,11 @@ public class TyrannosaurusEntity extends DinosaurEntity {
 		}
 
 		public boolean shouldExecute() {
-			return super.shouldExecute() && TyrannosaurusEntity.this.getCurrentHunger() <= TyrannosaurusEntity.this.getHalfHunger() && TyrannosaurusEntity.this.isJuvenile();
+			return super.shouldExecute() && TyrannosaurusEntity.this.getCurrentHunger() <= TyrannosaurusEntity.this.getHalfHunger() && TyrannosaurusEntity.this.isJuvenile() && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public boolean shouldContinueExecuting() {
-			return TyrannosaurusEntity.this.getCurrentHunger() > TyrannosaurusEntity.this.maxHunger || !TyrannosaurusEntity.this.isJuvenile();
+			return TyrannosaurusEntity.this.getCurrentHunger() > TyrannosaurusEntity.this.maxHunger && PrehistoricFaunaConfig.advancedHunger == true || !TyrannosaurusEntity.this.isJuvenile() && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public void tick() {
@@ -946,11 +954,11 @@ public class TyrannosaurusEntity extends DinosaurEntity {
 		}
 
 		public boolean shouldExecute() {
-			return super.shouldExecute() && TyrannosaurusEntity.this.getCurrentHunger() <= TyrannosaurusEntity.this.getHalfHunger() && TyrannosaurusEntity.this.isChild() && !TyrannosaurusEntity.this.isJuvenile();
+			return super.shouldExecute() && TyrannosaurusEntity.this.getCurrentHunger() <= TyrannosaurusEntity.this.getHalfHunger() && TyrannosaurusEntity.this.isChild() && !TyrannosaurusEntity.this.isJuvenile() && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public boolean shouldContinueExecuting() {
-			return TyrannosaurusEntity.this.getCurrentHunger() > TyrannosaurusEntity.this.maxHunger || TyrannosaurusEntity.this.isJuvenile();
+			return TyrannosaurusEntity.this.getCurrentHunger() > TyrannosaurusEntity.this.maxHunger && PrehistoricFaunaConfig.advancedHunger == true || TyrannosaurusEntity.this.isJuvenile() && PrehistoricFaunaConfig.advancedHunger == true;
 		}
 
 		public void tick() {

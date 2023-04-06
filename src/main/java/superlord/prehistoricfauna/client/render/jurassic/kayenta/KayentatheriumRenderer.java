@@ -3,13 +3,11 @@ package superlord.prehistoricfauna.client.render.jurassic.kayenta;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.jurassic.kayenta.KayentatheriumModel;
-import superlord.prehistoricfauna.client.model.jurassic.kayenta.KayentatheriumSleepingModel;
 import superlord.prehistoricfauna.client.render.layer.KayentatheriumEyeLayer;
 import superlord.prehistoricfauna.common.entities.jurassic.kayenta.KayentatheriumEntity;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
@@ -24,7 +22,6 @@ public class KayentatheriumRenderer extends MobRenderer<KayentatheriumEntity, En
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/kayentatherium/melanistic_sleeping.png");
 
 	private final static KayentatheriumModel KAYENTATHERIUM_MODEL = new KayentatheriumModel();
-	private final static KayentatheriumSleepingModel KAYENTATHERIUM_SLEEPING_MODEL = new KayentatheriumSleepingModel();
 
 	public KayentatheriumRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), KAYENTATHERIUM_MODEL, 0.75F);
@@ -32,16 +29,7 @@ public class KayentatheriumRenderer extends MobRenderer<KayentatheriumEntity, En
 			this.addLayer(new KayentatheriumEyeLayer(this));
 		}
 	}
-
-	public void render(KayentatheriumEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-		if (entityIn.isAsleep()) {
-			entityModel = KAYENTATHERIUM_SLEEPING_MODEL;
-		} else {
-			entityModel = KAYENTATHERIUM_MODEL;
-		}
-		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
-	}
-
+	
 	protected void preRenderCallback(KayentatheriumEntity kayentatherium, MatrixStack matrixStackIn, float partialTickTime) {
 		if(kayentatherium.isChild()) {
 			matrixStackIn.scale(0.5F, 0.5F, 0.5F);

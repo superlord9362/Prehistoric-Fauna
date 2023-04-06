@@ -108,7 +108,7 @@ public class PotamoceratodusEntity extends AbstractFishEntity {
 	}
 	
 	public static boolean func_223363_b(EntityType<? extends AbstractFishEntity> type, IWorld worldIn, SpawnReason reason, BlockPos p_223363_3_, Random randomIn) {
-		return worldIn.getBlockState(p_223363_3_).isIn(Blocks.WATER) && randomIn.nextFloat() > 0.95F;
+		return worldIn.getBlockState(p_223363_3_).isIn(Blocks.WATER) && randomIn.nextFloat() > 0.99F;
 	}
 
 	protected ItemStack getFishBucket() {

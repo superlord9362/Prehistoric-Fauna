@@ -13,10 +13,12 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -66,6 +68,8 @@ import superlord.prehistoricfauna.common.entities.jurassic.morrison.AllosaurusEn
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.CamarasaurusEntity;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.CeratosaurusEntity;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.StegosaurusEntity;
+import superlord.prehistoricfauna.common.entities.triassic.chinle.PoposaurusEntity;
+import superlord.prehistoricfauna.common.entities.triassic.chinle.PostosuchusEntity;
 import superlord.prehistoricfauna.common.entities.triassic.ischigualasto.HerrerasaurusEntity;
 import superlord.prehistoricfauna.common.entities.triassic.ischigualasto.IschigualastiaEntity;
 import superlord.prehistoricfauna.common.entities.triassic.ischigualasto.SaurosuchusEntity;
@@ -98,6 +102,11 @@ public class ScelidosaurusEntity extends DinosaurEntity {
 
 	public boolean hasEgg() {
 		return this.dataManager.get(HAS_EGG);
+	}
+	
+	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+		if (this.isChild()) return 0.4F;
+		else return 0.8F;
 	}
 
 	private void setHasEgg(boolean hasEgg) {
@@ -233,21 +242,23 @@ public class ScelidosaurusEntity extends DinosaurEntity {
 		this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, DilophosaurusEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, PinacosaurusEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, PlesiohadrosEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, AnkylosaurusEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, DakotaraptorEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, TriceratopsEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, TyrannosaurusEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, AllosaurusEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, CamarasaurusEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, CeratosaurusEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, StegosaurusEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, HerrerasaurusEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, IschigualastiaEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, SaurosuchusEntity.class, 10, 1.2, 1.5));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, SillosuchusEntity.class, 10, 1.2, 1.5));
+		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, DilophosaurusEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, PinacosaurusEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, PlesiohadrosEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, AnkylosaurusEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, DakotaraptorEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, TriceratopsEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, TyrannosaurusEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, AllosaurusEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, CamarasaurusEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, CeratosaurusEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, StegosaurusEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, HerrerasaurusEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, IschigualastiaEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, SaurosuchusEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, SillosuchusEntity.class, 10, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, PoposaurusEntity.class, 10F, 1.75D, 1.5D));
+		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, PostosuchusEntity.class, 10F, 1.75D, 1.5D));
 		this.goalSelector.addGoal(0, new ScelidosaurusEntity.LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
 		this.goalSelector.addGoal(0, new ScelidosaurusEntity.HerbivoreEatGoal((double)1.2F, 12, 2));
@@ -367,23 +378,33 @@ public class ScelidosaurusEntity extends DinosaurEntity {
 	static class LayEggGoal extends MoveToBlockGoal {
 		private final ScelidosaurusEntity scelidosaurus;
 
-		LayEggGoal(ScelidosaurusEntity scelidosaurus, double speed) {
-			super(scelidosaurus, speed, 16);
+		LayEggGoal(ScelidosaurusEntity scelidosaurus, double speedIn) {
+			super(scelidosaurus, speedIn, 16);
 			this.scelidosaurus = scelidosaurus;
 		}
 
+		/**
+		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+		 * method as well.
+		 */
 		public boolean shouldExecute() {
 			return this.scelidosaurus.hasEgg() ? super.shouldExecute() : false;
 		}
 
+		/**
+		 * Returns whether an in-progress EntityAIBase should continue executing
+		 */
 		public boolean shouldContinueExecuting() {
 			return super.shouldContinueExecuting() && this.scelidosaurus.hasEgg();
 		}
 
+		/**
+		 * Keep ticking a continuous task that has already been started
+		 */
 		public void tick() {
 			super.tick();
 			BlockPos blockpos = new BlockPos(this.scelidosaurus.getPositionVec());
-			if (this.scelidosaurus.isInWater() && this.getIsAboveDestination()) {
+			if (!this.scelidosaurus.isInWater() && this.getIsAboveDestination()) {
 				if (this.scelidosaurus.isDigging < 1) {
 					this.scelidosaurus.setDigging(true);
 				} else if (this.scelidosaurus.isDigging > 200) {
@@ -394,12 +415,17 @@ public class ScelidosaurusEntity extends DinosaurEntity {
 					this.scelidosaurus.setDigging(false);
 					this.scelidosaurus.setInLove(600);
 				}
+
 				if (this.scelidosaurus.isDigging()) {
 					this.scelidosaurus.isDigging++;
 				}
 			}
+
 		}
 
+		/**
+		 * Return true to set given position as destination
+		 */
 		protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
 			if (!worldIn.isAirBlock(pos.up())) {
 				return false;
@@ -408,7 +434,6 @@ public class ScelidosaurusEntity extends DinosaurEntity {
 				return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.MYCELIUM || block == Blocks.SAND || block == Blocks.RED_SAND || block == PFBlocks.MOSSY_DIRT || block == PFBlocks.MOSS_BLOCK || block == PFBlocks.LOAM || block == PFBlocks.PACKED_LOAM || block == PFBlocks.SILT || block == PFBlocks.PACKED_LOAM || block == BlockTags.LEAVES;
 			}
 		}
-
 	}
 
 	static class MateGoal extends BreedGoal {

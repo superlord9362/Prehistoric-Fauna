@@ -3,7 +3,6 @@ package superlord.prehistoricfauna.client.render.triassic.ischigualasto;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
@@ -11,7 +10,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.triassic.ischigualasto.SillosuchusModel;
-import superlord.prehistoricfauna.client.model.triassic.ischigualasto.SillosuchusSleepingModel;
 import superlord.prehistoricfauna.client.render.layer.SillosuchusEyeLayer;
 import superlord.prehistoricfauna.common.entities.triassic.ischigualasto.SillosuchusEntity;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
@@ -20,7 +18,6 @@ import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 public class SillosuchusRenderer extends MobRenderer<SillosuchusEntity, EntityModel<SillosuchusEntity>>{
 
 	private static final SillosuchusModel SILLOSUCHUS_MODEL = new SillosuchusModel();
-	private static final SillosuchusSleepingModel SILLOSUCHUS_SLEEPING_MODEL = new SillosuchusSleepingModel();
 	private static final ResourceLocation SILLOSUCHUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sillosuchus/sillosuchus.png");
 	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sillosuchus/albino.png");
 	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sillosuchus/melanistic.png");
@@ -39,15 +36,6 @@ public class SillosuchusRenderer extends MobRenderer<SillosuchusEntity, EntityMo
 		if (sillosuchus.isChild()) {
 			matrixStackIn.scale(0.5F, 0.5F, 0.5F);
 		}
-	}
-
-	public void render(SillosuchusEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-		if (entityIn.isAsleep()) {
-			entityModel = SILLOSUCHUS_SLEEPING_MODEL;
-		} else {
-			entityModel = SILLOSUCHUS_MODEL;
-		}
-		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
 
 

@@ -3,13 +3,11 @@ package superlord.prehistoricfauna.client.render.jurassic.kayenta;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.jurassic.kayenta.ScutellosaurusModel;
-import superlord.prehistoricfauna.client.model.jurassic.kayenta.ScutellosaurusSleepingModel;
 import superlord.prehistoricfauna.client.render.layer.ScutellosaurusEyeLayer;
 import superlord.prehistoricfauna.common.entities.jurassic.kayenta.ScutellosaurusEntity;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
@@ -23,22 +21,12 @@ public class ScutellosaurusRenderer extends MobRenderer<ScutellosaurusEntity, En
 	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/scutellosaurus/albino_sleeping.png");
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/scutellosaurus/melanistic_sleeping.png");
 	private static final ScutellosaurusModel SCUTELLOSAURUS_MODEL = new ScutellosaurusModel();
-	private static final ScutellosaurusSleepingModel SCUTELLOSAURUS_SLEEPING_MODEL = new ScutellosaurusSleepingModel();
 
 	public ScutellosaurusRenderer() {
 		super(Minecraft.getInstance().getRenderManager(), SCUTELLOSAURUS_MODEL, 0.375F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new ScutellosaurusEyeLayer(this));
 		}
-	}
-
-	public void render(ScutellosaurusEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-		if (entityIn.isAsleep()) {
-			entityModel = SCUTELLOSAURUS_SLEEPING_MODEL;
-		} else {
-			entityModel = SCUTELLOSAURUS_MODEL;
-		}
-		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
 
 	protected void preRenderCallback(ScutellosaurusEntity entity, MatrixStack matrixStackIn, float partialTickTime) {

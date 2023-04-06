@@ -121,6 +121,7 @@ public class ProtoceratopsModel extends EntityModel<ProtoceratopsEntity> {
 		this.BLegRight.rotateAngleZ = 0;
 		this.FLegLeft.rotateAngleX = 0;
 		this.FLegLeft.rotateAngleY = 0;
+		this.FLegLeft.rotateAngleZ = 0;
 		this.FLegRight.rotateAngleZ = 0;
 		this.Body.rotateAngleX = 0;
 		this.Body.rotateAngleY = 0;
@@ -211,6 +212,22 @@ public class ProtoceratopsModel extends EntityModel<ProtoceratopsEntity> {
 			this.Head.rotateAngleX = (-Math.abs(-0.025F * MathHelper.sin(0.1F * ageInTicks / 3))) + (MathHelper.cos(-1.0F + limbSwing * speed * 0.3F) * degree * 0.05F * limbSwingAmount) + attackProgress * (float) Math.toRadians(25F);
 			if (entityIn.isEating()) {
 				this.Neck.rotateAngleX = Math.abs(MathHelper.sin(0.05F * ageInTicks) * 0.45F) + 0.15F;
+			}
+			if (entityIn.isInWater()) {
+				this.Body.rotationPointY = 15;
+				this.Body.rotateAngleX = -0.125F;
+				this.Tail.rotateAngleX = 0.0625F;
+				this.Tailtip.rotateAngleX = 0.0625F;
+				this.BLegLeft.rotateAngleX = -0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.BLegRight.rotateAngleX = 0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.FLegLeft.rotateAngleX = -0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.FLegRight.rotateAngleX = 0.25F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.FeetLeft.rotateAngleX = -0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.FeetRight.rotateAngleX = 0.3F * MathHelper.sin(0.2F * ageInTicks / 1.5F);
+				this.Neck.rotateAngleX = 0.125F;
+				this.Tail.rotateAngleY = (MathHelper.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * MathHelper.sin(0.15F * ageInTicks / 1.5F));
+				this.Tailtip.rotateAngleY = (MathHelper.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * MathHelper.sin(0.15F * ageInTicks / 1.5F));
+
 			}
 		}
 	}

@@ -2,14 +2,12 @@ package superlord.prehistoricfauna.client.render.jurassic.morrison;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.DryosaurusModel;
-import superlord.prehistoricfauna.client.model.jurassic.morrison.DryosaurusSleepingModel;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.DryosaurusEntity;
 
 public class DryosaurusRenderer extends MobRenderer<DryosaurusEntity, EntityModel<DryosaurusEntity>> {
@@ -27,7 +25,6 @@ public class DryosaurusRenderer extends MobRenderer<DryosaurusEntity, EntityMode
     private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dryosaurus/melanistic_sleeping.png");
     private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dryosaurus/melanistic_baby_sleeping.png");
     private static final DryosaurusModel DRYOSAURUS_MODEL = new DryosaurusModel();
-    private static final DryosaurusSleepingModel DRYOSAURUS_SLEEPING_MODEL = new DryosaurusSleepingModel();
     
     public DryosaurusRenderer(EntityRendererManager rm) {
         super(rm, DRYOSAURUS_MODEL, 0.375F);
@@ -37,15 +34,6 @@ public class DryosaurusRenderer extends MobRenderer<DryosaurusEntity, EntityMode
     	if(dryosaurus.isChild()) {
     		  matrixStackIn.scale(0.5F, 0.5F, 0.5F);
     	}
-    }
-    
-    public void render(DryosaurusEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-		if (entityIn.isAsleep()) {
-			entityModel = DRYOSAURUS_SLEEPING_MODEL;
-		} else {
-			entityModel = DRYOSAURUS_MODEL;
-		}
-    	super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
     }
 
     @Override

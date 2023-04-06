@@ -252,9 +252,11 @@ public class PrehistoricFaunaConfig {
 	public static boolean naturalEggItemLaying = false;
 	
 	public static boolean eyeShine = true;
+	public static boolean customMenuBackground = true;
 	
 	public static void bakeClient(final ModConfig config) {
 		eyeShine = PFConfigHolder.CLIENT.eyeShine.get();
+		customMenuBackground = PFConfigHolder.CLIENT.customMenuBackground.get();
 	}
 	
 	public static void bakeServer(final ModConfig config) {

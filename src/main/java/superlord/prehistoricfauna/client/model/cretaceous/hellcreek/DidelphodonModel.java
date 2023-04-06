@@ -120,6 +120,13 @@ public class DidelphodonModel extends EntityModel<DidelphodonEntity> implements 
 			this.Frontlegleft.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
 			this.Tail.rotateAngleY = -0.25F * MathHelper.sin(0.2F * ageInTicks / 5);
 			this.Tail.rotateAngleX = -Math.abs(-0.05F * MathHelper.sin(0.1F * ageInTicks / 5)) - 0.2F;
+			if (entityIn.isInWater()) {
+				this.Frontlegleft.rotateAngleX = 0.25F * MathHelper.sin(0.15F * ageInTicks / 1.5F);
+				this.Hindlegright.rotateAngleX = 0.25F * MathHelper.sin(0.15F * ageInTicks / 1.5F);
+				this.Frontlegright.rotateAngleX = -0.25F * MathHelper.sin(0.15F * ageInTicks / 1.5F);
+				this.Hindlegleft.rotateAngleX = -0.25F * MathHelper.sin(0.15F * ageInTicks / 1.5F);
+				this.Tail.rotateAngleY = (MathHelper.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * MathHelper.sin(0.15F * ageInTicks / 1.5F));
+			}
 		}
 	}
 	

@@ -170,7 +170,7 @@ public class PinacosaurusEntity extends DinosaurEntity {
 	}
 
 	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
-		return 1.1F;
+		return 0.85F;
 	}
 
 	protected void registerGoals() {

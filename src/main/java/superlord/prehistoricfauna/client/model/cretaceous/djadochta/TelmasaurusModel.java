@@ -121,6 +121,14 @@ public class TelmasaurusModel extends EntityModel<TelmasaurusEntity> implements 
 		this.Backlegright.rotationPointY = 20.7F;
 		this.Frontlegleft.rotationPointY = 20.7F;
 		this.Frontlegright.rotationPointY = 20.7F;
+		this.Frontfootleft.rotateAngleZ =  0;
+		this.Frontfootright.rotateAngleZ = 0;
+		this.Backfootleft.rotateAngleX = 0;
+		this.Backfootleft.rotateAngleY = 0;
+		this.Backfootleft.rotateAngleZ = 0;
+		this.Backfootright.rotateAngleX = 0;
+		this.Backfootright.rotateAngleY = 0;
+		this.Backfootright.rotateAngleZ = 0;
 		if (entityIn.isAsleep()) {
 			this.Body.rotationPointY = 22.2F;
 			this.Backlegleft.rotationPointY = 23.7F;
@@ -155,6 +163,30 @@ public class TelmasaurusModel extends EntityModel<TelmasaurusEntity> implements 
 			this.Backlegright.rotateAngleX = MathHelper.cos(4.0F + limbSwing * speed * 0.3F) * degree * 0.5F * limbSwingAmount;
 			this.Frontlegleft.rotateAngleX = MathHelper.cos(4.0F + limbSwing * speed * 0.3F) * degree * 0.5F * limbSwingAmount;
 			this.Frontlegright.rotateAngleX = MathHelper.cos(limbSwing * speed * 0.3F) * degree * 0.5F * limbSwingAmount;
+			if (entityIn.isInWater()) {
+				this.Body.rotationPointY = 17.2F;
+				this.Backlegleft.rotationPointY  =  18.7F;
+				this.Backlegright.rotationPointY = 18.7F;
+				this.Frontlegleft.rotationPointY = 18.7F;
+				this.Frontlegright.rotationPointY = 18.7F;
+				this.Frontlegleft.rotateAngleX = 1.25F;
+				this.Frontlegleft.rotateAngleY = 0.25F;
+				this.Frontlegright.rotateAngleX = 1.25F;
+				this.Frontlegright.rotateAngleY = -0.25F;
+				this.Backlegright.rotateAngleX = 1.25F;
+				this.Backlegright.rotateAngleY = -0.25F + (0.25F * MathHelper.sin(0.25F * ageInTicks / 1F));
+				this.Backlegleft.rotateAngleX = 1.25F;
+				this.Backlegleft.rotateAngleY = 0.25F + (0.25F * MathHelper.sin(0.25F * ageInTicks / 1F));
+				this.Tail.rotateAngleY = 0.25F * MathHelper.sin(0.25F * ageInTicks / 1F);
+				this.Frontfootleft.rotateAngleZ =  1.3688617376654748F;
+				this.Frontfootright.rotateAngleZ = -1.3683381601951652F;
+				this.Backfootleft.rotateAngleX = -0.11728612207217244F;
+				this.Backfootleft.rotateAngleY = 0.03909537541112055F;
+				this.Backfootleft.rotateAngleZ = 1.2510520131558576F;
+				this.Backfootright.rotateAngleX = -0.11728612207217244F;
+				this.Backfootright.rotateAngleY = 0.03909537541112055F;
+				this.Backfootright.rotateAngleZ = -1.2510520131558576F;
+			}
 		}
 	}
 

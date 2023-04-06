@@ -12,9 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.CamarasaurusBabyModel;
-import superlord.prehistoricfauna.client.model.jurassic.morrison.CamarasaurusBabySleepingModel;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.CamarasaurusModel;
-import superlord.prehistoricfauna.client.model.jurassic.morrison.CamarasaurusSleepingModel;
 import superlord.prehistoricfauna.common.entities.jurassic.morrison.CamarasaurusEntity;
 
 public class CamarasaurusRenderer extends MobRenderer<CamarasaurusEntity, EntityModel<CamarasaurusEntity>> {
@@ -35,8 +33,6 @@ public class CamarasaurusRenderer extends MobRenderer<CamarasaurusEntity, Entity
 	private static final ResourceLocation FROSTY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/camarasaurus/camarasaurus_snowy_sleeping.png");
 	private static final CamarasaurusModel CAMARASAURUS_MODEL = new CamarasaurusModel();
 	private static final CamarasaurusBabyModel CAMARASAURUS_BABY_MODEL = new CamarasaurusBabyModel();
-	private static final CamarasaurusSleepingModel CAMARASAURUS_SLEEPING_MODEL = new CamarasaurusSleepingModel();
-	private static final CamarasaurusBabySleepingModel CAMARASAURUS_BABY_SLEEPING_MODEL = new CamarasaurusBabySleepingModel();
 	private boolean isChristmas;
 
 	public CamarasaurusRenderer() {
@@ -50,11 +46,6 @@ public class CamarasaurusRenderer extends MobRenderer<CamarasaurusEntity, Entity
 	public void render(CamarasaurusEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
 		if (entityIn.isChild()) {
 			entityModel = CAMARASAURUS_BABY_MODEL;
-		} else if (entityIn.isAsleep()) {
-			if (entityIn.isChild()) {
-				entityModel = CAMARASAURUS_BABY_SLEEPING_MODEL;
-
-			} else entityModel = CAMARASAURUS_SLEEPING_MODEL;
 		} else {
 			entityModel = CAMARASAURUS_MODEL;
 		}

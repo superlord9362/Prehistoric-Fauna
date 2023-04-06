@@ -340,23 +340,33 @@ public class BasilemysEntity extends DinosaurEntity {
 	static class LayEggGoal extends MoveToBlockGoal {
 		private final BasilemysEntity basilemys;
 
-		LayEggGoal(BasilemysEntity basilemys, double speed) {
-			super(basilemys, speed, 16);
+		LayEggGoal(BasilemysEntity basilemys, double speedIn) {
+			super(basilemys, speedIn, 16);
 			this.basilemys = basilemys;
 		}
 
+		/**
+		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+		 * method as well.
+		 */
 		public boolean shouldExecute() {
 			return this.basilemys.hasEgg() ? super.shouldExecute() : false;
 		}
 
+		/**
+		 * Returns whether an in-progress EntityAIBase should continue executing
+		 */
 		public boolean shouldContinueExecuting() {
-			return super.shouldContinueExecuting()  && this.basilemys.hasEgg();
+			return super.shouldContinueExecuting() && this.basilemys.hasEgg();
 		}
 
+		/**
+		 * Keep ticking a continuous task that has already been started
+		 */
 		public void tick() {
 			super.tick();
 			BlockPos blockpos = new BlockPos(this.basilemys.getPositionVec());
-			if(this.basilemys.isInWater() && this.getIsAboveDestination()) {
+			if (!this.basilemys.isInWater() && this.getIsAboveDestination()) {
 				if (this.basilemys.isDigging < 1) {
 					this.basilemys.setDigging(true);
 				} else if (this.basilemys.isDigging > 200) {
@@ -367,21 +377,25 @@ public class BasilemysEntity extends DinosaurEntity {
 					this.basilemys.setDigging(false);
 					this.basilemys.setInLove(600);
 				}
-				if(this.basilemys.isDigging()) {
+
+				if (this.basilemys.isDigging()) {
 					this.basilemys.isDigging++;
 				}
 			}
+
 		}
 
-		protected boolean shouldMoveTo(IWorldReader world, BlockPos pos) {
-			if (!world.isAirBlock(pos.up())) {
+		/**
+		 * Return true to set given position as destination
+		 */
+		protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
+			if (!worldIn.isAirBlock(pos.up())) {
 				return false;
 			} else {
-				Block block = world.getBlockState(pos).getBlock();
+				Block block = worldIn.getBlockState(pos).getBlock();
 				return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.MYCELIUM || block == Blocks.SAND || block == Blocks.RED_SAND || block == PFBlocks.MOSSY_DIRT || block == PFBlocks.MOSS_BLOCK || block == PFBlocks.LOAM || block == PFBlocks.PACKED_LOAM || block == PFBlocks.SILT || block == PFBlocks.PACKED_LOAM || block == BlockTags.LEAVES;
 			}
 		}
-
 	}
 
 	static class MateGoal extends BreedGoal {
