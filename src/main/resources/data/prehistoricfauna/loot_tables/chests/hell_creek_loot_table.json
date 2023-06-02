@@ -109,7 +109,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 10,
+          "weight": 5,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -121,6 +121,21 @@
             }
           ],
           "name": "prehistoricfauna:paleopainting"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 1.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:saddle"
         }
       ]
     }

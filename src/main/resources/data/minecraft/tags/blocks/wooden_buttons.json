@@ -1,0 +1,19 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:araucaria_button",
+		"prehistoricfauna:metasequoia_button",
+		"prehistoricfauna:protopiceoxylon_button",
+		"prehistoricfauna:zamites_button",
+		"prehistoricfauna:protojuniperoxylon_button",
+		"prehistoricfauna:agathoxylon_button",
+		"prehistoricfauna:heidiphyllum_button",
+		"prehistoricfauna:liriodendrites_button",
+		"prehistoricfauna:ginkgo_button",
+		"prehistoricfauna:trochodendroides_button",
+		"prehistoricfauna:woodworthia_button",
+		"prehistoricfauna:schilderia_button",
+		"prehistoricfauna:brachyphyllum_button",
+		"prehistoricfauna:neocalamites_button"
+	]
+}

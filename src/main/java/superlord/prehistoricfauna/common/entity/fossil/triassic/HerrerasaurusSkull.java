@@ -33,7 +33,7 @@ public class HerrerasaurusSkull extends PrehistoricEntity {
 	private static final EntityDataAccessor<Boolean> PUSHING = SynchedEntityData.defineId(HerrerasaurusSkull.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> LOOKING = SynchedEntityData.defineId(HerrerasaurusSkull.class, EntityDataSerializers.BOOLEAN);
 
-	public boolean isPushable() {
+	public boolean isPushableState() {
 		return this.entityData.get(PUSHING);
 	}
 
@@ -56,7 +56,7 @@ public class HerrerasaurusSkull extends PrehistoricEntity {
 	}
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
-		compound.putBoolean("IsPushable", this.isPushable());
+		compound.putBoolean("IsPushable", this.isPushableState());
 		compound.putBoolean("IsLooking", this.isLooking());
 	}
 	
@@ -87,29 +87,29 @@ public class HerrerasaurusSkull extends PrehistoricEntity {
 		return true;
 	}
 
-	public boolean canBePushed() {
-		return this.isPushable();
+	public boolean isPushable() {
+		return this.isPushableState();
 	}
 	
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 	    if (itemstack.getItem() == PFItems.GEOLOGY_HAMMER.get()) {
-	    	if (player.isShiftKeyDown() && !this.isPushable() && !this.isLooking()) {
+	    	if (player.isShiftKeyDown() && !this.isPushableState() && !this.isLooking()) {
 	    		this.setPushable(true);
-				player.sendMessage(new TranslatableComponent("entity.prehistoricfauna.skeleton.pushable"), player.getUUID());
-	    	} else if (player.isShiftKeyDown() && this.isPushable()) {
+				player.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.skeleton.pushable"), true);
+	    	} else if (player.isShiftKeyDown() && this.isPushableState()) {
 	    		this.setPushable(false);
 	    		this.setLooking(true);
-				player.sendMessage(new TranslatableComponent("entity.prehistoricfauna.skeleton.rotating"), player.getUUID());
+				player.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.skeleton.rotating"), true);
 	    	} else if (player.isShiftKeyDown() && this.isLooking()) {
 	    		this.setLooking(false);
-				player.sendMessage(new TranslatableComponent("entity.prehistoricfauna.skeleton.neutral"), player.getUUID());
+				player.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.skeleton.neutral"), true);
 	    	}
 	    }
         return super.mobInteract(player, hand);
 	}
 
-	protected void collideWithEntity(Entity entityIn) {
+	protected void doPush(Entity entityIn) {
 	}
 
 	private void playBrokenSound() {
@@ -125,13 +125,13 @@ public class HerrerasaurusSkull extends PrehistoricEntity {
 
 	public boolean hurt(DamageSource source, float amount) {
 		if (source.getDirectEntity() instanceof Player) {
-			this.kill();
 			this.playBrokenSound();
 			this.playParticles();
 			Player player = (Player)source.getDirectEntity();
 			if (!player.isCreative()) {
 				this.spawnFossil(source);
 			}
+			this.remove(RemovalReason.KILLED);
 		}
 		return false;
 	}

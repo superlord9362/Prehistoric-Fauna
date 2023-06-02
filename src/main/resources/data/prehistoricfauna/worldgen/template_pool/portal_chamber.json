@@ -1,0 +1,15 @@
+{
+	"name": "prehistoricfauna:portal_chamber",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:portal_chamber",
+				"projection": "rigid",
+				"processors": "minecraft:empty"
+			}
+		}
+	]
+}

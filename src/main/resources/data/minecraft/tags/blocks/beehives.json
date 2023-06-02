@@ -1,0 +1,19 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:araucaria_beehive",
+		"prehistoricfauna:metasequoia_beehive",
+		"prehistoricfauna:protopiceoxylon_beehive",
+		"prehistoricfauna:zamites_beehive",
+		"prehistoricfauna:protojuniperoxylon_beehive",
+		"prehistoricfauna:agathoxylon_beehive",
+		"prehistoricfauna:heidiphyllum_beehive",
+		"prehistoricfauna:liriodendrites_beehive",
+		"prehistoricfauna:ginkgo_beehive",
+		"prehistoricfauna:trochodendroides_beehive",
+		"prehistoricfauna:woodworthia_beehive",
+		"prehistoricfauna:schilderia_beehive",
+		"prehistoricfauna:brachyphyllum_beehive",
+		"prehistoricfauna:neocalamites_beehive"
+	]
+}

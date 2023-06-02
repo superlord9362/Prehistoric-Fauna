@@ -1,0 +1,9 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:schilderia_log",
+		"prehistoricfauna:stripped_schilderia_log",
+		"prehistoricfauna:schilderia_wood",
+		"prehistoricfauna:stripped_schilderia_wood"
+	]
+}

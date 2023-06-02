@@ -1,5 +1,36 @@
 {
     "variants": {
-        "": { "model": "prehistoricfauna:block/horsetail" }
+        "": [
+			{
+				"model": "prehistoricfauna:block/horsetail"
+			},
+			{
+				"model": "prehistoricfauna:block/horsetail",
+				"y": 90
+			},
+			{
+				"model": "prehistoricfauna:block/horsetail",
+				"y": 180
+			},
+			{
+				"model": "prehistoricfauna:block/horsetail",
+				"y": 270
+			},
+			{
+				"model": "prehistoricfauna:block/sterile_horsetails"
+			},
+			{
+				"model": "prehistoricfauna:block/sterile_horsetails",
+				"y": 90
+			},
+			{
+				"model": "prehistoricfauna:block/sterile_horsetails",
+				"y": 180
+			},
+			{
+				"model": "prehistoricfauna:block/sterile_horsetails",
+				"y": 270
+			}
+		]
     }
 }

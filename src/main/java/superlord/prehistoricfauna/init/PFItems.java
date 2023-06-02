@@ -1,15 +1,40 @@
 package superlord.prehistoricfauna.init;
 
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.BannerPatternItem;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.BowlFoodItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SignItem;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.level.block.entity.BannerPattern;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.common.entity.PFBoat;
+import superlord.prehistoricfauna.common.items.ArmorMaterialInit;
+import superlord.prehistoricfauna.common.items.CobbaniaBlockItem;
+import superlord.prehistoricfauna.common.items.CustomArmorItem;
+import superlord.prehistoricfauna.common.items.CustomChestplateItem;
 import superlord.prehistoricfauna.common.items.FossilItem;
+import superlord.prehistoricfauna.common.items.HorsetailTeaItem;
+import superlord.prehistoricfauna.common.items.PFBoatItem;
+import superlord.prehistoricfauna.common.items.PFBucketItem;
+import superlord.prehistoricfauna.common.items.PFHoeItem;
+import superlord.prehistoricfauna.common.items.PFItemTiers;
+import superlord.prehistoricfauna.common.items.PFSpawnEggItem;
+import superlord.prehistoricfauna.common.items.PaleopaintingItem;
 import superlord.prehistoricfauna.common.items.PaleopediaItem;
 import superlord.prehistoricfauna.common.items.SpawnSkeletonItem;
+import superlord.prehistoricfauna.common.items.WallFossilItem;
 
 public class PFItems {
 	
@@ -30,12 +55,21 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> SCYTOPHYLLUM = REGISTER.register("scytophyllum", () -> new BlockItem(PFBlocks.SCYTOPHYLLUM.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	public static final RegistryObject<BlockItem> MICHELILLOA = REGISTER.register("michelilloa", () -> new BlockItem(PFBlocks.MICHELILLOA.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	public static final RegistryObject<BlockItem> DEAD_OSMUNDACAULIS = REGISTER.register("dead_osmundacaulis", () -> new BlockItem(PFBlocks.DEAD_OSMUNDACAULIS.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> COBBANIA = REGISTER.register("cobbania", () -> new CobbaniaBlockItem(PFBlocks.COBBANIA.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	public static final RegistryObject<BlockItem> MOSSY_DIRT = REGISTER.register("mossy_dirt", () -> new BlockItem(PFBlocks.MOSSY_DIRT.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
 	public static final RegistryObject<BlockItem> LOAM = REGISTER.register("loam", () -> new BlockItem(PFBlocks.LOAM.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
 	public static final RegistryObject<BlockItem> PACKED_LOAM = REGISTER.register("packed_loam", () -> new BlockItem(PFBlocks.PACKED_LOAM.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
 	public static final RegistryObject<BlockItem> SILT = REGISTER.register("silt", () -> new BlockItem(PFBlocks.SILT.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
 	public static final RegistryObject<BlockItem> HARDENED_SILT = REGISTER.register("hardened_silt", () -> new BlockItem(PFBlocks.HARDENED_SILT.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
 	public static final RegistryObject<BlockItem> MOSS_BLOCK = REGISTER.register("moss_block", () -> new BlockItem(PFBlocks.MOSS_BLOCK.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> TUBER = REGISTER.register("tuber", () -> new BlockItem(PFBlocks.TUBER_CROP.get(), new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(3).saturationMod(0.6F).build())));
+	public static final RegistryObject<BlockItem> NEOCALAMITES = REGISTER.register("neocalamites", () -> new BlockItem(PFBlocks.NEOCALAMITES.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> OTOZAMITES = REGISTER.register("otozamites", () -> new BlockItem(PFBlocks.OTOZAMITES.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> TALL_OTOZAMITES = REGISTER.register("tall_otozamites", () -> new BlockItem(PFBlocks.TALL_OTOZAMITES.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> LAUROZAMITES = REGISTER.register("laurozamites", () -> new BlockItem(PFBlocks.LAUROZAMITES.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> CLATHOPTERIS = REGISTER.register("clathopteris", () -> new BlockItem(PFBlocks.CLATHOPTERIS.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> PHLEBOPTERIS = REGISTER.register("phlebopteris", () -> new BlockItem(PFBlocks.PHLEBOPTERIS.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> ZAMITES_FROND = REGISTER.register("zamites_fronds", () -> new BlockItem(PFBlocks.ZAMITES_FROND.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	public static final RegistryObject<BlockItem> CRASSOSTREA_OYSTER = REGISTER.register("crassostrea_oyster", () -> new BlockItem(PFBlocks.CRASSOSTREA_OYSTER.get(), new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
 	public static final RegistryObject<BlockItem> ALGAE_CARPET = REGISTER.register("algae_carpet", () -> new BlockItem(PFBlocks.ALGAE_CARPET.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	
@@ -175,6 +209,105 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> LIRIODENDRITES_STAIRS = REGISTER.register("liriodendrites_stairs", () -> new BlockItem(PFBlocks.LIRIODENDRITES_STAIRS.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
 	public static final RegistryObject<Item> LIRIODENDRITES_SIGN = REGISTER.register("liriodendrites_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(PrehistoricFauna.PF_DECORATION), PFBlocks.LIRIODENDRITES_SIGN.get(), PFBlocks.LIRIODENDRITES_WALL_SIGN.get()));
 
+	public static final RegistryObject<BlockItem> GINKGO_PLANKS = REGISTER.register("ginkgo_planks", () -> new BlockItem(PFBlocks.GINKGO_PLANKS.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> GINKGO_LOG = REGISTER.register("ginkgo_log", () -> new BlockItem(PFBlocks.GINKGO_LOG.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> STRIPPED_GINKGO_LOG = REGISTER.register("stripped_ginkgo_log", () -> new BlockItem(PFBlocks.STRIPPED_GINKGO_LOG.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> GINKGO_WOOD = REGISTER.register("ginkgo_wood", () -> new BlockItem(PFBlocks.GINKGO_WOOD.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> STRIPPED_GINKGO_WOOD = REGISTER.register("stripped_ginkgo_wood", () -> new BlockItem(PFBlocks.STRIPPED_GINKGO_WOOD.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> GINKGO_LEAVES = REGISTER.register("ginkgo_leaves", () -> new BlockItem(PFBlocks.GINKGO_LEAVES.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> GINKGO_SAPLING = REGISTER.register("ginkgo_sapling", () -> new BlockItem(PFBlocks.GINKGO_SAPLING.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> GINKGO_DOOR = REGISTER.register("ginkgo_door", () -> new BlockItem(PFBlocks.GINKGO_DOOR.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> GINKGO_PRESSURE_PLATE = REGISTER.register("ginkgo_pressure_plate", () -> new BlockItem(PFBlocks.GINKGO_PRESSURE_PLATE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> GINKGO_FENCE = REGISTER.register("ginkgo_fence", () -> new BlockItem(PFBlocks.GINKGO_FENCE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> GINKGO_TRAPDOOR = REGISTER.register("ginkgo_trapdoor", () -> new BlockItem(PFBlocks.GINKGO_TRAPDOOR.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> GINKGO_FENCE_GATE = REGISTER.register("ginkgo_fence_gate", () -> new BlockItem(PFBlocks.GINKGO_FENCE_GATE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> GINKGO_BUTTON = REGISTER.register("ginkgo_button", () -> new BlockItem(PFBlocks.GINKGO_BUTTON.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> GINKGO_SLAB = REGISTER.register("ginkgo_slab", () -> new BlockItem(PFBlocks.GINKGO_SLAB.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> GINKGO_STAIRS = REGISTER.register("ginkgo_stairs", () -> new BlockItem(PFBlocks.GINKGO_STAIRS.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<Item> GINKGO_SIGN = REGISTER.register("ginkgo_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(PrehistoricFauna.PF_DECORATION), PFBlocks.GINKGO_SIGN.get(), PFBlocks.GINKGO_WALL_SIGN.get()));
+
+	public static final RegistryObject<BlockItem> TROCHODENDROIDES_PLANKS = REGISTER.register("trochodendroides_planks", () -> new BlockItem(PFBlocks.TROCHODENDROIDES_PLANKS.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> TROCHODENDROIDES_LOG = REGISTER.register("trochodendroides_log", () -> new BlockItem(PFBlocks.TROCHODENDROIDES_LOG.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> STRIPPED_TROCHODENDROIDES_LOG = REGISTER.register("stripped_trochodendroides_log", () -> new BlockItem(PFBlocks.STRIPPED_TROCHODENDROIDES_LOG.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> TROCHODENDROIDES_WOOD = REGISTER.register("trochodendroides_wood", () -> new BlockItem(PFBlocks.TROCHODENDROIDES_WOOD.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> STRIPPED_TROCHODENDROIDES_WOOD = REGISTER.register("stripped_trochodendroides_wood", () -> new BlockItem(PFBlocks.STRIPPED_TROCHODENDROIDES_WOOD.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> TROCHODENDROIDES_LEAVES = REGISTER.register("trochodendroides_leaves", () -> new BlockItem(PFBlocks.TROCHODENDROIDES_LEAVES.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> TROCHODENDROIDES_SAPLING = REGISTER.register("trochodendroides_sapling", () -> new BlockItem(PFBlocks.TROCHODENDROIDES_SAPLING.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> TROCHODENDROIDES_DOOR = REGISTER.register("trochodendroides_door", () -> new BlockItem(PFBlocks.TROCHODENDROIDES_DOOR.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> TROCHODENDROIDES_PRESSURE_PLATE = REGISTER.register("trochodendroides_pressure_plate", () -> new BlockItem(PFBlocks.TROCHODENDROIDES_PRESSURE_PLATE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> TROCHODENDROIDES_FENCE = REGISTER.register("trochodendroides_fence", () -> new BlockItem(PFBlocks.TROCHODENDROIDES_FENCE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> TROCHODENDROIDES_TRAPDOOR = REGISTER.register("trochodendroides_trapdoor", () -> new BlockItem(PFBlocks.TROCHODENDROIDES_TRAPDOOR.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> TROCHODENDROIDES_FENCE_GATE = REGISTER.register("trochodendroides_fence_gate", () -> new BlockItem(PFBlocks.TROCHODENDROIDES_FENCE_GATE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> TROCHODENDROIDES_BUTTON = REGISTER.register("trochodendroides_button", () -> new BlockItem(PFBlocks.TROCHODENDROIDES_BUTTON.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> TROCHODENDROIDES_SLAB = REGISTER.register("trochodendroides_slab", () -> new BlockItem(PFBlocks.TROCHODENDROIDES_SLAB.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> TROCHODENDROIDES_STAIRS = REGISTER.register("trochodendroides_stairs", () -> new BlockItem(PFBlocks.TROCHODENDROIDES_STAIRS.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<Item> TROCHODENDROIDES_SIGN = REGISTER.register("trochodendroides_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(PrehistoricFauna.PF_DECORATION), PFBlocks.TROCHODENDROIDES_SIGN.get(), PFBlocks.TROCHODENDROIDES_WALL_SIGN.get()));
+
+	public static final RegistryObject<BlockItem> WOODWORTHIA_PLANKS = REGISTER.register("woodworthia_planks", () -> new BlockItem(PFBlocks.WOODWORTHIA_PLANKS.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> WOODWORTHIA_LOG = REGISTER.register("woodworthia_log", () -> new BlockItem(PFBlocks.WOODWORTHIA_LOG.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> STRIPPED_WOODWORTHIA_LOG = REGISTER.register("stripped_woodworthia_log", () -> new BlockItem(PFBlocks.STRIPPED_WOODWORTHIA_LOG.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> WOODWORTHIA_WOOD = REGISTER.register("woodworthia_wood", () -> new BlockItem(PFBlocks.WOODWORTHIA_WOOD.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> STRIPPED_WOODWORTHIA_WOOD = REGISTER.register("stripped_woodworthia_wood", () -> new BlockItem(PFBlocks.STRIPPED_WOODWORTHIA_WOOD.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> WOODWORTHIA_LEAVES = REGISTER.register("woodworthia_leaves", () -> new BlockItem(PFBlocks.WOODWORTHIA_LEAVES.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> WOODWORTHIA_SAPLING = REGISTER.register("woodworthia_sapling", () -> new BlockItem(PFBlocks.WOODWORTHIA_SAPLING.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> WOODWORTHIA_DOOR = REGISTER.register("woodworthia_door", () -> new BlockItem(PFBlocks.WOODWORTHIA_DOOR.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> WOODWORTHIA_PRESSURE_PLATE = REGISTER.register("woodworthia_pressure_plate", () -> new BlockItem(PFBlocks.WOODWORTHIA_PRESSURE_PLATE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> WOODWORTHIA_FENCE = REGISTER.register("woodworthia_fence", () -> new BlockItem(PFBlocks.WOODWORTHIA_FENCE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> WOODWORTHIA_TRAPDOOR = REGISTER.register("woodworthia_trapdoor", () -> new BlockItem(PFBlocks.WOODWORTHIA_TRAPDOOR.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> WOODWORTHIA_FENCE_GATE = REGISTER.register("woodworthia_fence_gate", () -> new BlockItem(PFBlocks.WOODWORTHIA_FENCE_GATE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> WOODWORTHIA_BUTTON = REGISTER.register("woodworthia_button", () -> new BlockItem(PFBlocks.WOODWORTHIA_BUTTON.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> WOODWORTHIA_SLAB = REGISTER.register("woodworthia_slab", () -> new BlockItem(PFBlocks.WOODWORTHIA_SLAB.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> WOODWORTHIA_STAIRS = REGISTER.register("woodworthia_stairs", () -> new BlockItem(PFBlocks.WOODWORTHIA_STAIRS.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<Item> WOODWORTHIA_SIGN = REGISTER.register("woodworthia_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(PrehistoricFauna.PF_DECORATION), PFBlocks.WOODWORTHIA_SIGN.get(), PFBlocks.WOODWORTHIA_WALL_SIGN.get()));
+
+	public static final RegistryObject<BlockItem> SCHILDERIA_PLANKS = REGISTER.register("schilderia_planks", () -> new BlockItem(PFBlocks.SCHILDERIA_PLANKS.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> SCHILDERIA_LOG = REGISTER.register("schilderia_log", () -> new BlockItem(PFBlocks.SCHILDERIA_LOG.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> STRIPPED_SCHILDERIA_LOG = REGISTER.register("stripped_schilderia_log", () -> new BlockItem(PFBlocks.STRIPPED_SCHILDERIA_LOG.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> SCHILDERIA_WOOD = REGISTER.register("schilderia_wood", () -> new BlockItem(PFBlocks.SCHILDERIA_WOOD.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> STRIPPED_SCHILDERIA_WOOD = REGISTER.register("stripped_schilderia_wood", () -> new BlockItem(PFBlocks.STRIPPED_SCHILDERIA_WOOD.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> SCHILDERIA_LEAVES = REGISTER.register("schilderia_leaves", () -> new BlockItem(PFBlocks.SCHILDERIA_LEAVES.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> SCHILDERIA_SAPLING = REGISTER.register("schilderia_sapling", () -> new BlockItem(PFBlocks.SCHILDERIA_SAPLING.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> SCHILDERIA_DOOR = REGISTER.register("schilderia_door", () -> new BlockItem(PFBlocks.SCHILDERIA_DOOR.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> SCHILDERIA_PRESSURE_PLATE = REGISTER.register("schilderia_pressure_plate", () -> new BlockItem(PFBlocks.SCHILDERIA_PRESSURE_PLATE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> SCHILDERIA_FENCE = REGISTER.register("schilderia_fence", () -> new BlockItem(PFBlocks.SCHILDERIA_FENCE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> SCHILDERIA_TRAPDOOR = REGISTER.register("schilderia_trapdoor", () -> new BlockItem(PFBlocks.SCHILDERIA_TRAPDOOR.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> SCHILDERIA_FENCE_GATE = REGISTER.register("schilderia_fence_gate", () -> new BlockItem(PFBlocks.SCHILDERIA_FENCE_GATE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> SCHILDERIA_BUTTON = REGISTER.register("schilderia_button", () -> new BlockItem(PFBlocks.SCHILDERIA_BUTTON.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> SCHILDERIA_SLAB = REGISTER.register("schilderia_slab", () -> new BlockItem(PFBlocks.SCHILDERIA_SLAB.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> SCHILDERIA_STAIRS = REGISTER.register("schilderia_stairs", () -> new BlockItem(PFBlocks.SCHILDERIA_STAIRS.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<Item> SCHILDERIA_SIGN = REGISTER.register("schilderia_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(PrehistoricFauna.PF_DECORATION), PFBlocks.SCHILDERIA_SIGN.get(), PFBlocks.SCHILDERIA_WALL_SIGN.get()));
+
+	public static final RegistryObject<BlockItem> BRACHYPHYLLUM_PLANKS = REGISTER.register("brachyphyllum_planks", () -> new BlockItem(PFBlocks.BRACHYPHYLLUM_PLANKS.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> BRACHYPHYLLUM_LOG = REGISTER.register("brachyphyllum_log", () -> new BlockItem(PFBlocks.BRACHYPHYLLUM_LOG.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> STRIPPED_BRACHYPHYLLUM_LOG = REGISTER.register("stripped_brachyphyllum_log", () -> new BlockItem(PFBlocks.STRIPPED_BRACHYPHYLLUM_LOG.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> BRACHYPHYLLUM_WOOD = REGISTER.register("brachyphyllum_wood", () -> new BlockItem(PFBlocks.BRACHYPHYLLUM_WOOD.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> STRIPPED_BRACHYPHYLLUM_WOOD = REGISTER.register("stripped_brachyphyllum_wood", () -> new BlockItem(PFBlocks.STRIPPED_BRACHYPHYLLUM_WOOD.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> BRACHYPHYLLUM_LEAVES = REGISTER.register("brachyphyllum_leaves", () -> new BlockItem(PFBlocks.BRACHYPHYLLUM_LEAVES.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> BRACHYPHYLLUM_SAPLING = REGISTER.register("brachyphyllum_sapling", () -> new BlockItem(PFBlocks.BRACHYPHYLLUM_SAPLING.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> BRACHYPHYLLUM_DOOR = REGISTER.register("brachyphyllum_door", () -> new BlockItem(PFBlocks.BRACHYPHYLLUM_DOOR.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> BRACHYPHYLLUM_PRESSURE_PLATE = REGISTER.register("brachyphyllum_pressure_plate", () -> new BlockItem(PFBlocks.BRACHYPHYLLUM_PRESSURE_PLATE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> BRACHYPHYLLUM_FENCE = REGISTER.register("brachyphyllum_fence", () -> new BlockItem(PFBlocks.BRACHYPHYLLUM_FENCE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> BRACHYPHYLLUM_TRAPDOOR = REGISTER.register("brachyphyllum_trapdoor", () -> new BlockItem(PFBlocks.BRACHYPHYLLUM_TRAPDOOR.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> BRACHYPHYLLUM_FENCE_GATE = REGISTER.register("brachyphyllum_fence_gate", () -> new BlockItem(PFBlocks.BRACHYPHYLLUM_FENCE_GATE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> BRACHYPHYLLUM_BUTTON = REGISTER.register("brachyphyllum_button", () -> new BlockItem(PFBlocks.BRACHYPHYLLUM_BUTTON.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> BRACHYPHYLLUM_SLAB = REGISTER.register("brachyphyllum_slab", () -> new BlockItem(PFBlocks.BRACHYPHYLLUM_SLAB.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> BRACHYPHYLLUM_STAIRS = REGISTER.register("brachyphyllum_stairs", () -> new BlockItem(PFBlocks.BRACHYPHYLLUM_STAIRS.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<Item> BRACHYPHYLLUM_SIGN = REGISTER.register("brachyphyllum_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(PrehistoricFauna.PF_DECORATION), PFBlocks.BRACHYPHYLLUM_SIGN.get(), PFBlocks.BRACHYPHYLLUM_WALL_SIGN.get()));
+	
+	public static final RegistryObject<BlockItem> NEOCALAMITES_PLANKS = REGISTER.register("neocalamites_planks", () -> new BlockItem(PFBlocks.NEOCALAMITES_PLANKS.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> NEOCALAMITES_DOOR = REGISTER.register("neocalamites_door", () -> new BlockItem(PFBlocks.NEOCALAMITES_DOOR.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> NEOCALAMITES_PRESSURE_PLATE = REGISTER.register("neocalamites_pressure_plate", () -> new BlockItem(PFBlocks.NEOCALAMITES_PRESSURE_PLATE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> NEOCALAMITES_FENCE = REGISTER.register("neocalamites_fence", () -> new BlockItem(PFBlocks.NEOCALAMITES_FENCE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> NEOCALAMITES_TRAPDOOR = REGISTER.register("neocalamites_trapdoor", () -> new BlockItem(PFBlocks.NEOCALAMITES_TRAPDOOR.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> NEOCALAMITES_FENCE_GATE = REGISTER.register("neocalamites_fence_gate", () -> new BlockItem(PFBlocks.NEOCALAMITES_FENCE_GATE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> NEOCALAMITES_BUTTON = REGISTER.register("neocalamites_button", () -> new BlockItem(PFBlocks.NEOCALAMITES_BUTTON.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> NEOCALAMITES_SLAB = REGISTER.register("neocalamites_slab", () -> new BlockItem(PFBlocks.NEOCALAMITES_SLAB.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> NEOCALAMITES_STAIRS = REGISTER.register("neocalamites_stairs", () -> new BlockItem(PFBlocks.NEOCALAMITES_STAIRS.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<Item> NEOCALAMITES_SIGN = REGISTER.register("neocalamites_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(PrehistoricFauna.PF_DECORATION), PFBlocks.NEOCALAMITES_SIGN.get(), PFBlocks.NEOCALAMITES_WALL_SIGN.get()));
+	public static final RegistryObject<BlockItem> NEOCALAMITES_MOSAIC = REGISTER.register("neocalamites_mosaic", () -> new BlockItem(PFBlocks.NEOCALAMITES_MOSAIC.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> NEOCALAMITES_MOSAIC_SLAB = REGISTER.register("neocalamites_mosaic_slab", () -> new BlockItem(PFBlocks.NEOCALAMITES_MOSAIC_SLAB.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> NEOCALAMITES_MOSAIC_STAIRS = REGISTER.register("neocalamites_mosaic_stairs", () -> new BlockItem(PFBlocks.NEOCALAMITES_MOSAIC_STAIRS.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	
 	public static final RegistryObject<BlockItem> PTILOPHYLLUM_WOOD = REGISTER.register("ptilophyllum_wood", () -> new BlockItem(PFBlocks.PTILOPHYLLUM_WOOD.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	public static final RegistryObject<BlockItem> PTILOPHYLLUM_BASE = REGISTER.register("ptilophyllum_base", () -> new BlockItem(PFBlocks.PTILOPHYLLUM_BASE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	public static final RegistryObject<BlockItem> DICROIDIUM = REGISTER.register("dicroidium", () -> new BlockItem(PFBlocks.DICROIDIUM.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
@@ -244,6 +377,7 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> DARK_HENOSTONE_BRICK_SLAB = REGISTER.register("dark_henostone_brick_slab", () -> new BlockItem(PFBlocks.DARK_HENOSTONE_BRICK_SLAB.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
 	public static final RegistryObject<BlockItem> DARK_HENOSTONE_BRICK_WALL = REGISTER.register("dark_henostone_brick_wall", () -> new BlockItem(PFBlocks.DARK_HENOSTONE_BRICK_WALL.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
 	public static final RegistryObject<BlockItem> HENOSTONE_TRAP = REGISTER.register("henostone_trap", () -> new BlockItem(PFBlocks.HENOSTONE_TRAP.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> PORTAL_FRAME = REGISTER.register("portal_frame", () -> new BlockItem(PFBlocks.PORTAL_FRAME.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	public static final RegistryObject<BlockItem> PALEOSCRIBE = REGISTER.register("paleoscribe", () -> new BlockItem(PFBlocks.PALEOSCRIBE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	public static final RegistryObject<BlockItem> PALEONTOLOGY_TABLE = REGISTER.register("paleontology_table", () -> new BlockItem(PFBlocks.PALEONTOLOGY_TABLE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 
@@ -258,17 +392,288 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> PETRIFIED_WOOD = REGISTER.register("petrified_wood", () -> new BlockItem(PFBlocks.PETRIFIED_WOOD.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	public static final RegistryObject<BlockItem> POLISHED_PETRIFIED_WOOD = REGISTER.register("polished_petrified_wood", () -> new BlockItem(PFBlocks.POLISHED_PETRIFIED_WOOD.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	
+	public static final RegistryObject<BlockItem> PLANT_FIBER_BLOCK = REGISTER.register("plant_fiber_block", () -> new BlockItem(PFBlocks.PLANT_FIBER_BLOCK.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> THATCH = REGISTER.register("thatch", () -> new BlockItem(PFBlocks.THATCH.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> THATCH_STAIRS = REGISTER.register("thatch_stairs", () -> new BlockItem(PFBlocks.THATCH_STAIRS.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> THATCH_SLAB = REGISTER.register("thatch_slab", () -> new BlockItem(PFBlocks.THATCH_SLAB.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	public static final RegistryObject<BlockItem> THATCH_CARPET = REGISTER.register("thatch_carpet", () -> new BlockItem(PFBlocks.THATCH_CARPET.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	
 	public static final RegistryObject<Item> TRIASSIC_FOSSIL = REGISTER.register("triassic_fossil", () -> new FossilItem(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
 	public static final RegistryObject<Item> JURASSIC_FOSSIL = REGISTER.register("jurassic_fossil", () -> new FossilItem(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
 	public static final RegistryObject<Item> CRETACEOUS_FOSSIL = REGISTER.register("cretaceous_fossil", () -> new FossilItem(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
 	
 	public static final RegistryObject<Item> FOSSILIZED_BONES = REGISTER.register("fossilized_bones", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
-	public static final RegistryObject<Item> GEOLOGY_HAMMER = REGISTER.register("geological_hammer", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC).durability(250).stacksTo(1)));
+	public static final RegistryObject<Item> GEOLOGY_HAMMER = REGISTER.register("geological_hammer", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC).durability(250)));
 	
-	public static final RegistryObject<Item> HERRERASAURUS_SKULL = REGISTER.register("herrerasaurus_skull", () -> new SpawnSkeletonItem(PFEntities.HERRERASAURUS_SKULL, new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
-
+	public static final RegistryObject<Item> PLESIOHADROS_SKULL = REGISTER.register("plesiohadros_skull", () -> new SpawnSkeletonItem(PFEntities.PLESIOHADROS_SKULL, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> PROTOCERATOPS_SKULL = REGISTER.register("protoceratops_skull", () -> new SpawnSkeletonItem(PFEntities.PROTOCERATOPS_SKULL, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> VELOCIRAPTOR_SKULL = REGISTER.register("velociraptor_skull", () -> new SpawnSkeletonItem(PFEntities.VELOCIRAPTOR_SKULL, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> ANKYLOSAURUS_SKULL = REGISTER.register("ankylosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.ANKYLOSAURUS_SKULL, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> TRICERATOPS_SKULL = REGISTER.register("triceratops_skull", () -> new SpawnSkeletonItem(PFEntities.TRICERATOPS_SKULL, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> TYRANNOSAURUS_SKULL = REGISTER.register("tyrannosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.TYRANNOSAURUS_SKULL, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> DILOPHOSAURUS_SKULL = REGISTER.register("dilophosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.DILOPHOSAURUS_SKULL, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> SARAHSAURUS_SKULL = REGISTER.register("sarahsaurus_skull", () -> new SpawnSkeletonItem(PFEntities.SARAHSAURUS_SKULL, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> SCELIDOSAURUS_SKULL = REGISTER.register("scelidosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.SCELIDOSAURUS_SKULL, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> ALLOSAURUS_SKULL = REGISTER.register("allosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.ALLOSAURUS_SKULL, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> CERATOSAURUS_SKULL = REGISTER.register("ceratosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.CERATOSAURUS_SKULL, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> STEGOSAURUS_SKULL = REGISTER.register("stegosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.STEGOSAURUS_SKULL, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> COELOPHYSIS_SKULL = REGISTER.register("coelophysis_skull", () -> new SpawnSkeletonItem(PFEntities.COELOPHYSIS_SKULL, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> DESMATOSUCHUS_SKULL = REGISTER.register("desmatosuchus_skull", () -> new SpawnSkeletonItem(PFEntities.DESMATOSUCHUS_SKULL, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> POSTOSUCHUS_SKULL = REGISTER.register("postosuchus_skull", () -> new SpawnSkeletonItem(PFEntities.POSTOSUCHUS_SKULL, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> HERRERASAURUS_SKULL = REGISTER.register("herrerasaurus_skull", () -> new SpawnSkeletonItem(PFEntities.HERRERASAURUS_SKULL, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> ISCHIGUALASTIA_SKULL = REGISTER.register("ischigualastia_skull", () -> new SpawnSkeletonItem(PFEntities.ISCHIGUALASTIA_SKULL, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> SAUROSUCHUS_SKULL = REGISTER.register("saurosuchus_skull", () -> new SpawnSkeletonItem(PFEntities.SAUROSUCHUS_SKULL, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	
+	public static final RegistryObject<Item> PLESIOHADROS_SKELETON = REGISTER.register("plesiohadros_skeleton", () -> new SpawnSkeletonItem(PFEntities.PLESIOHADROS_SKELETON, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> PROTOCERATOPS_SKELETON = REGISTER.register("protoceratops_skeleton", () -> new SpawnSkeletonItem(PFEntities.PROTOCERATOPS_SKELETON, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> VELOCIRAPTOR_SKELETON = REGISTER.register("velociraptor_skeleton", () -> new SpawnSkeletonItem(PFEntities.VELOCIRAPTOR_SKELETON, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> ANKYLOSAURUS_SKELETON = REGISTER.register("ankylosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.ANKYLOSAURUS_SKELETON, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> TRICERATOPS_SKELETON = REGISTER.register("triceratops_skeleton", () -> new SpawnSkeletonItem(PFEntities.TRICERATOPS_SKELETON, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> TYRANNOSAURUS_SKELETON = REGISTER.register("tyrannosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.TYRANNOSAURUS_SKELETON, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> DILOPHOSAURUS_SKELETON = REGISTER.register("dilophosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.DILOPHOSAURUS_SKELETON, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> SARAHSAURUS_SKELETON = REGISTER.register("sarahsaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.SARAHSAURUS_SKELETON, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> SCELIDOSAURUS_SKELETON = REGISTER.register("scelidosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.SCELIDOSAURUS_SKELETON, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> ALLOSAURUS_SKELETON = REGISTER.register("allosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.ALLOSAURUS_SKELETON, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> CERATOSAURUS_SKELETON = REGISTER.register("ceratosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.CERATOSAURUS_SKELETON, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> STEGOSAURUS_SKELETON = REGISTER.register("stegosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.STEGOSAURUS_SKELETON, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> COELOPHYSIS_SKELETON = REGISTER.register("coelophysis_skeleton", () -> new SpawnSkeletonItem(PFEntities.COELOPHYSIS_SKELETON, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> DESMATOSUCHUS_SKELETON = REGISTER.register("desmatosuchus_skeleton", () -> new SpawnSkeletonItem(PFEntities.DESMATOSUCHUS_SKELETON, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> POSTOSUCHUS_SKELETON = REGISTER.register("postosuchus_skeleton", () -> new SpawnSkeletonItem(PFEntities.POSTOSUCHUS_SKELETON, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> HERRERASAURUS_SKELETON = REGISTER.register("herrerasaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.HERRERASAURUS_SKELETON, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> ISCHIGUALASTIA_SKELETON = REGISTER.register("ischigualastia_skeleton", () -> new SpawnSkeletonItem(PFEntities.ISCHIGUALASTIA_SKELETON, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	public static final RegistryObject<Item> SAUROSUCHUS_SKELETON = REGISTER.register("saurosuchus_skeleton", () -> new SpawnSkeletonItem(PFEntities.SAUROSUCHUS_SKELETON, new Item.Properties().tab(PrehistoricFauna.PF_SKELETON)));
+	
+	public static final RegistryObject<Item> SMALL_TUBER = REGISTER.register("big_tuber_block", () -> new BlockItem(PFBlocks.SMALL_TUBER_BLOCK.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<Item> SMALL_CARVED_TUBER = REGISTER.register("big_carved_tuber", () -> new BlockItem(PFBlocks.SMALL_CARVED_TUBER.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<Item> SMALL_CARVED_TUBER_LIT = REGISTER.register("big_carved_tuber_lit", () -> new BlockItem(PFBlocks.SMALL_CARVED_TUBER_LIT.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<Item> SMALL_CARVED_TUBER_SOUL_LIT = REGISTER.register("big_carved_tuber_soul_lit", () -> new BlockItem(PFBlocks.SMALL_CARVED_TUBER_SOUL_LIT.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<Item> SMALL_CARVED_TUBER_TIME_LIT = REGISTER.register("big_carved_tuber_time_lit", () -> new BlockItem(PFBlocks.SMALL_CARVED_TUBER_TIME_LIT.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<Item> TUBER_BLOCK = REGISTER.register("tuber_block", () -> new BlockItem(PFBlocks.TUBER_BLOCK.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<Item> CARVED_TUBER = REGISTER.register("carved_tuber", () -> new BlockItem(PFBlocks.CARVED_TUBER.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<Item> CARVED_TUBER_LIT = REGISTER.register("carved_tuber_lit", () -> new BlockItem(PFBlocks.CARVED_TUBER_LIT.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<Item> CARVED_TUBER_SOUL_LIT = REGISTER.register("carved_tuber_soul_lit", () -> new BlockItem(PFBlocks.CARVED_TUBER_SOUL_LIT.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<Item> CARVED_TUBER_TIME_LIT = REGISTER.register("carved_tuber_time_lit", () -> new BlockItem(PFBlocks.CARVED_TUBER_TIME_LIT.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<Item> FOSSIL_CRATE = REGISTER.register("fossil_crate", () -> new BlockItem(PFBlocks.FOSSIL_CRATE.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	
+	public static final RegistryObject<Item> TIME_TOTEM = REGISTER.register("time_totem", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC).rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<Item> TIME_GEM_SHARD = REGISTER.register("time_gem_shard", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
 	
 	public static final RegistryObject<PaleopediaItem> PALEOPEDIA = REGISTER.register("ancient_journal", () -> new PaleopediaItem());
-	public static final RegistryObject<Item> PALEOPAGE = REGISTER.register("paleopage", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> PALEOPAGE = REGISTER.register("ancient_journal_page", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> BANNER_PATTERN_CLAW = REGISTER.register("banner_pattern_claw", () -> new BannerPatternItem(registerPattern("claw"), new Item.Properties().stacksTo(1).tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> BANNER_PATTERN_OYSTER = REGISTER.register("banner_pattern_oyster", () -> new BannerPatternItem(registerPattern("oyster"), new Item.Properties().stacksTo(1).tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> BANNER_PATTERN_SPIRAL = REGISTER.register("banner_pattern_spiral", () -> new BannerPatternItem(registerPattern("spiral"), new Item.Properties().stacksTo(1).tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> BANNER_PATTERN_THAGOMIZER = REGISTER.register("banner_pattern_thagomizer", () -> new BannerPatternItem(registerPattern("thagomizer"), new Item.Properties().stacksTo(1).tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> BANNER_PATTERN_TRICERATOPS = REGISTER.register("banner_pattern_triceratops", () -> new BannerPatternItem(registerPattern("triceratops"), new Item.Properties().stacksTo(1).tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> BANNER_PATTERN_HENOS = REGISTER.register("banner_pattern_henos", () -> new BannerPatternItem(registerPattern("henos"), new Item.Properties().stacksTo(1).tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> BANNER_PATTERN_AETOSAUR = REGISTER.register("banner_pattern_aetosaur", () -> new BannerPatternItem(registerPattern("aetosaur"), new Item.Properties().stacksTo(1).tab(PrehistoricFauna.PF_MISC)));
+	
+	public static final RegistryObject<Item> TYRANNOSAUR_TOOTH = REGISTER.register("tyrannosaur_tooth", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> TAIL_CLUB = REGISTER.register("tail_club", () -> new SwordItem(PFItemTiers.ANKYLOSAURUS, 4, -3.5F, new Item.Properties().tab(PrehistoricFauna.PF_MISC).stacksTo(1).durability(6)));
+	public static final RegistryObject<Item> ANKYLOSAURUS_SCUTE = REGISTER.register("ankylosaurus_scute", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> THYREOPHORAN_SCUTE = REGISTER.register("thyreophoran_scute", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> CERATOPSIAN_HORN = REGISTER.register("ceratopsian_horn", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> THAGOMIZERS = REGISTER.register("thagomizer", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> DESMATOSUCHUS_SPIKE = REGISTER.register("desmatosuchus_spike", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> DROMAEOSAUR_CLAW = REGISTER.register("dromaeosaur_claw", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> DIDELPHODON_HIDE = REGISTER.register("didelphodon_hide", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> EXAERETODON_HIDE = REGISTER.register("exaeretodon_hide", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> KAYENTATHERIUM_HIDE = REGISTER.register("kayentatherium_hide", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> ANKYLOSAURUS_HELMET = REGISTER.register("ankylosaurus_helmet", () -> new CustomArmorItem(ArmorMaterialInit.ANKYLOSAURUS, EquipmentSlot.HEAD, new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> DESMATOSUCHUS_CHESTPLACE = REGISTER.register("desmatosuchus_chestplate", () -> new CustomChestplateItem(ArmorMaterialInit.DESMATOSUCHUS, EquipmentSlot.CHEST, new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	
+	public static final RegistryObject<Item> MYLEDAPHUS_BUCKET = REGISTER.register("myledaphus_bucket", () -> new PFBucketItem(PFEntities.MYLEDAPHUS, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> GAR_BUCKET = REGISTER.register("gar_bucket", () -> new PFBucketItem(PFEntities.GAR, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> CYCLURUS_BUCKET = REGISTER.register("cyclurus_bucket", () -> new PFBucketItem(PFEntities.CYCLURUS, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> CERATODUS_BUCKET = REGISTER.register("ceratodus_bucket", () -> new PFBucketItem(PFEntities.CERATODUS, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> POTAMOCERATODUS_BUCKET = REGISTER.register("potamoceratodus_bucket", () -> new PFBucketItem(PFEntities.POTAMOCERATODUS, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> SAURICHTHYS_BUCKET = REGISTER.register("saurichthys_bucket", () -> new PFBucketItem(PFEntities.SAURICHTHYS, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> ARGANODUS_BUCKET = REGISTER.register("arganodus_bucket", () -> new PFBucketItem(PFEntities.ARGANODUS, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> CHINLEA_BUCKET = REGISTER.register("chinlea_bucket", () -> new PFBucketItem(PFEntities.CHINLEA, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> MOOREODONTUS_BUCKET = REGISTER.register("mooreodontus_bucket", () -> new PFBucketItem(PFEntities.MOOREODONTUS, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> MELVIUS_BUCKET = REGISTER.register("melvius_bucket", () -> new PFBucketItem(PFEntities.MELVIUS, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+
+	public static final RegistryObject<Item> TYRANNOSAUR_TOOTH_SWORD = REGISTER.register("tyrannosaur_tooth_sword", () -> new SwordItem(PFItemTiers.TYRANNOSAURUS, 3, -2.4F, new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> THAGOMIZER_PICKAXE = REGISTER.register("thagomizer_pickaxe", () -> new PickaxeItem(PFItemTiers.THAGOMIZER, 2, -2.8F, new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> DROMAEOSAUR_CLAW_SCYTHE = REGISTER.register("dromaeosaur_claw_scythe", () -> new PFHoeItem(PFItemTiers.DAKOTARAPTOR, new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> CLADOPHLEBIS_STICK = REGISTER.register("cladophlebis_stick", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> PTILOPHYLLUM_FRONDS = REGISTER.register("ptilophyllum_fronds", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> PLANT_FIBER = REGISTER.register("plant_fiber", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> MOSS_BALL = REGISTER.register("moss_ball", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	
+	public static final RegistryObject<Item> TRIASSIC_TIME_TOTEM = REGISTER.register("triassic_time_totem", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC).durability(8).rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<Item> JURASIC_TIME_TOTEM = REGISTER.register("jurassic_time_totem", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC).durability(8).rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<Item> CRETACEOUS_TIME_TOTEM = REGISTER.register("cretaceous_time_totem", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC).durability(8).rarity(Rarity.UNCOMMON)));
+	
+	public static final RegistryObject<PFBoatItem> ARAUCARIA_BOAT = REGISTER.register("araucaria_boat", () -> new PFBoatItem(PFBoat.PFBoatTypes.ARAUCARIA, new Item.Properties().stacksTo(1).tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<PFBoatItem> METASEQUOIA_BOAT = REGISTER.register("metasequoia_boat", () -> new PFBoatItem(PFBoat.PFBoatTypes.METASEQUOIA, new Item.Properties().stacksTo(1).tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<PFBoatItem> PROTOPICEOXYLON_BOAT = REGISTER.register("protopiceoxylon_boat", () -> new PFBoatItem(PFBoat.PFBoatTypes.PROTOPICEOXYLON, new Item.Properties().stacksTo(1).tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<PFBoatItem> ZAMITES_BOAT = REGISTER.register("zamites_boat", () -> new PFBoatItem(PFBoat.PFBoatTypes.ZAMITES, new Item.Properties().stacksTo(1).tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<PFBoatItem> PROTOJUNIPEROXYLON_BOAT = REGISTER.register("protojuniperoxylon_boat", () -> new PFBoatItem(PFBoat.PFBoatTypes.PROTOJUNIPEROXYLON, new Item.Properties().stacksTo(1).tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<PFBoatItem> HEIDIPHYLLUM_BOAT = REGISTER.register("heidiphyllum_boat", () -> new PFBoatItem(PFBoat.PFBoatTypes.HEIDIPHYLLUM, new Item.Properties().stacksTo(1).tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<PFBoatItem> LIRIODENDRITES_BOAT = REGISTER.register("liriodendrites_boat", () -> new PFBoatItem(PFBoat.PFBoatTypes.LIRIODENDRITES, new Item.Properties().stacksTo(1).tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<PFBoatItem> GINKGO_BOAT = REGISTER.register("ginkgo_boat", () -> new PFBoatItem(PFBoat.PFBoatTypes.GINKGO, new Item.Properties().stacksTo(1).tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<PFBoatItem> TROCHODENDROIDES_BOAT = REGISTER.register("trochodendroides_boat", () -> new PFBoatItem(PFBoat.PFBoatTypes.TROCHODENDROIDES, new Item.Properties().stacksTo(1).tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<PFBoatItem> BRACHYPHYLLUM_BOAT = REGISTER.register("brachyphyllum_boat", () -> new PFBoatItem(PFBoat.PFBoatTypes.BRACHYPHYLLUM, new Item.Properties().stacksTo(1).tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<PFBoatItem> AGATHOXYLON_BOAT = REGISTER.register("agathoxylon_boat", () -> new PFBoatItem(PFBoat.PFBoatTypes.AGATHOXYLON, new Item.Properties().stacksTo(1).tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<PFBoatItem> WOODWORTHIA_BOAT = REGISTER.register("woodworthia_boat", () -> new PFBoatItem(PFBoat.PFBoatTypes.WOODWORTHIA, new Item.Properties().stacksTo(1).tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<PFBoatItem> SCHILDERIA_BOAT = REGISTER.register("schilderia_boat", () -> new PFBoatItem(PFBoat.PFBoatTypes.SCHILDERIA, new Item.Properties().stacksTo(1).tab(PrehistoricFauna.PF_MISC)));
+
+	public static final RegistryObject<Item> RAW_SMALL_THYREOPHORAN_MEAT = REGISTER.register("raw_small_thyreophoran_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.3F).meat().build())));
+	public static final RegistryObject<Item> COOKED_SMALL_THYREOPHORAN_MEAT = REGISTER.register("cooked_small_thyreophoran_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(5).saturationMod(0.8F).meat().build())));
+	public static final RegistryObject<Item> RAW_LARGE_THYREOPHORAN_MEAT = REGISTER.register("raw_large_thyreophoran_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.3F).meat().build()))); //Ankylosaurus, Stegosaurus
+	public static final RegistryObject<Item> COOKED_LARGE_THYREOPHORAN_MEAT = REGISTER.register("cooked_large_thyreophoran_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(8).saturationMod(0.8F).meat().build()))); 
+	public static final RegistryObject<Item> RAW_SMALL_MARGINOCEPHALIAN_MEAT = REGISTER.register("raw_small_marginocephalian_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.3F).meat().build())));
+	public static final RegistryObject<Item> COOKED_SMALL_MARGINOCEPHALIAN_MEAT = REGISTER.register("cooked_small_marginocephalian_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(5).saturationMod(0.8F).meat().build())));
+	public static final RegistryObject<Item> RAW_LARGE_MARGINOCEPHALIAN_MEAT = REGISTER.register("raw_large_marginocephalian_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(5).saturationMod(0.3F).meat().build()))); //Triceratops
+	public static final RegistryObject<Item> COOKED_LARGE_MARGINOCEPHALIAN_MEAT = REGISTER.register("cooked_large_marginocephalian_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(10).saturationMod(0.8F).meat().build())));
+	public static final RegistryObject<Item> RAW_SMALL_ORNITHISCHIAN_MEAT = REGISTER.register("raw_small_ornithischian_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.3F).meat().build()))); //Dryosaurus, Thescelosaurus
+	public static final RegistryObject<Item> COOKED_SMALL_ORNITHISCHIAN_MEAT = REGISTER.register("cooked_small_ornithischian_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(6).saturationMod(0.8F).meat().build())));
+	public static final RegistryObject<Item> RAW_LARGE_ORNITHISCHIAN_MEAT = REGISTER.register("raw_large_ornithischian_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.3F).meat().build())));//Plesiohadros
+	public static final RegistryObject<Item> COOKED_LARGE_ORNITHISCHIAN_MEAT = REGISTER.register("cooked_large_ornithischian_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(8).saturationMod(0.8F).meat().build())));//Plesiohadros
+	public static final RegistryObject<Item> RAW_LARGE_SAUROPOD_MEAT = REGISTER.register("raw_large_sauropod_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(6).saturationMod(0.3F).meat().build()))); //Camarasaurus
+	public static final RegistryObject<Item> COOKED_LARGE_SAUROPOD_MEAT = REGISTER.register("cooked_large_sauropod_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(12).saturationMod(0.8F).meat().build())));
+	public static final RegistryObject<Item> RAW_SMALL_SAUROPOD_MEAT = REGISTER.register("raw_small_sauropod_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.3F).meat().build()))); //Chromogisaurus
+	public static final RegistryObject<Item> COOKED_SMALL_SAUROPOD_MEAT = REGISTER.register("cooked_small_sauropod_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.6F).meat().build())));
+	public static final RegistryObject<Item> RAW_LARGE_THEROPOD_MEAT = REGISTER.register("raw_large_theropod_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.3F).meat().build()))); //Dakotaraptor, Ceratosaurus, Allosaurus, Tyrannosaurus
+	public static final RegistryObject<Item> COOKED_LARGE_THEROPOD_MEAT = REGISTER.register("cooked_large_theropod_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(8).saturationMod(0.8F).meat().build())));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> RAW_SMALL_THEROPOD_MEAT = REGISTER.register("raw_small_theropod_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.3F).effect(new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).meat().build()))); //Hesperornithoides, Herrerasaurus
+	public static final RegistryObject<Item> COOKED_SMALL_THEROPOD_MEAT = REGISTER.register("cooked_small_theropod_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(6).saturationMod(0.6F).meat().build())));
+	public static final RegistryObject<Item> RAW_SMALL_ARCHOSAUROMORPH_MEAT = REGISTER.register("raw_small_archosauromorph_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(1).saturationMod(0.3F).meat().build()))); //Hyperodapedon
+	public static final RegistryObject<Item> COOKED_SMALL_ARCHOSAUROMORPH_MEAT = REGISTER.register("cooked_small_archosauromorph_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.6F).meat().build())));
+	public static final RegistryObject<Item> RAW_LARGE_ARCHOSAUROMORPH_MEAT = REGISTER.register("raw_large_archosauromorph_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.3F).meat().build())));//Saurosuchus, Sillosuchus
+	public static final RegistryObject<Item> COOKED_LARGE_ARCHOSAUROMORPH_MEAT = REGISTER.register("cooked_large_archosauromorph_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(8).saturationMod(0.8F).meat().build())));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> RAW_SMALL_REPTILE_MEAT = REGISTER.register("raw_small_reptile_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.3F).effect(new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).meat().build()))); //Eilenodon
+	public static final RegistryObject<Item> COOKED_SMALL_REPTILE_MEAT = REGISTER.register("cooked_small_reptile_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.6F).meat().build())));
+	public static final RegistryObject<Item> RAW_LARGE_SYNAPSID_MEAT = REGISTER.register("raw_large_synapsid_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(3).saturationMod(0.4F).meat().build()))); //Ischigualastia
+	public static final RegistryObject<Item> COOKED_LARGE_SYNAPSID_MEAT = REGISTER.register("cooked_large_synapsid_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(8).saturationMod(0.8F).meat().build())));
+	public static final RegistryObject<BowlFoodItem> CRASSOSTREA_OYSTER_SOUP = REGISTER.register("crassostrea_oyster_soup", () -> new BowlFoodItem(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(8).saturationMod(0.6F).build())));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> RAW_OYSTER = REGISTER.register("raw_oyster", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.3F).effect(new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.01F).build())));
+	public static final RegistryObject<Item> CERATODUS = REGISTER.register("raw_ceratodus", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(2).build())));
+	public static final RegistryObject<Item> COOKED_CERATODUS = REGISTER.register("cooked_ceratodus", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.8F).nutrition(6).build())));
+	public static final RegistryObject<Item> CYCLURUS = REGISTER.register("raw_cyclurus", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(2).build())));
+	public static final RegistryObject<Item> COOKED_CYCLURUS = REGISTER.register("cooked_cyclurus", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.8F).nutrition(6).build())));
+	public static final RegistryObject<Item> LEPISOSTEUS = REGISTER.register("raw_gar", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(2).build())));
+	public static final RegistryObject<Item> COOKED_LEPISOSTEUS = REGISTER.register("cooked_gar", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.8F).nutrition(6).build())));
+	public static final RegistryObject<Item> MYLEDAPHUS = REGISTER.register("raw_myledaphus", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.2F).nutrition(2).build())));
+	public static final RegistryObject<Item> POTAMOCERATODUS = REGISTER.register("raw_potamoceratodus", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(2).build())));
+	public static final RegistryObject<Item> COOKED_POTAMOCERATODUS = REGISTER.register("cooked_potamoceratodus", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.8F).nutrition(6).build())));
+	public static final RegistryObject<Item> SAURICHTHYS = REGISTER.register("raw_saurichthys", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(2).build())));
+	public static final RegistryObject<Item> COOKED_SAURICHTHYS = REGISTER.register("cooked_saurichthys", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.8F).nutrition(6).build())));
+	public static final RegistryObject<Item> CHINLEA = REGISTER.register("raw_chinlea", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(2).build())));
+	public static final RegistryObject<Item> COOKED_CHINLEA = REGISTER.register("cooked_chinlea", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.8F).nutrition(6).build())));
+	public static final RegistryObject<Item> MOOREODONTUS = REGISTER.register("raw_mooreodontus", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(2).build())));
+	public static final RegistryObject<Item> ARGANODUS = REGISTER.register("raw_arganodus", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(2).build())));
+	public static final RegistryObject<Item> COOKED_ARGANODUS = REGISTER.register("cooked_arganodus", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.8F).nutrition(6).build())));
+	public static final RegistryObject<Item> MELVIUS = REGISTER.register("raw_melvius", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(2).build())));
+	public static final RegistryObject<Item> COOKED_MELVIUS = REGISTER.register("cooked_melvius", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.8F).nutrition(6).build())));
+
+	public static final RegistryObject<Item> PALEOPAINTING = REGISTER.register("paleopainting", () -> new PaleopaintingItem(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	public static final RegistryObject<Item> WALL_FOSSIL = REGISTER.register("wall_fossil", () -> new WallFossilItem(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
+	
+	public static final RegistryObject<Item> HORSETAIL_TEA = REGISTER.register("horsetail_tea", () -> new HorsetailTeaItem(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).stacksTo(16)));
+
+	public static final RegistryObject<BlockItem> THESCELOSAURUS_EGG = REGISTER.register("thescelosaurus_egg", () -> new BlockItem(PFBlocks.THESCELOSAURUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> TRICERATOPS_EGG = REGISTER.register("triceratops_egg", () -> new BlockItem(PFBlocks.TRICERATOPS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> ANKYLOSAURUS_EGG = REGISTER.register("ankylosaurus_egg", () -> new BlockItem(PFBlocks.ANKYLOSAURUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> TYRANNOSAURUS_EGG = REGISTER.register("tyrannosaurus_egg", () -> new BlockItem(PFBlocks.TYRANNOSAURUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> BASILEMYS_EGG = REGISTER.register("basilemys_egg", () -> new BlockItem(PFBlocks.BASILEMYS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> DAKOTARAPTOR_EGG = REGISTER.register("dakotaraptor_egg", () -> new BlockItem(PFBlocks.DAKOTARAPTOR_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> PROTOCERATOPS_EGG = REGISTER.register("protoceratops_egg", () -> new BlockItem(PFBlocks.PROTOCERATOPS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> VELOCIRAPTOR_EGG = REGISTER.register("velociraptor_egg", () -> new BlockItem(PFBlocks.VELOCIRAPTOR_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> CITIPATI_EGG = REGISTER.register("citipati_egg", () -> new BlockItem(PFBlocks.CITIPATI_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> AEPYORNITHOMIMUS_EGG = REGISTER.register("aepyornithomimus_egg", () -> new BlockItem(PFBlocks.AEPYORNITHOMIMUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> TELMASAURUS_EGG = REGISTER.register("telmasaurus_egg", () -> new BlockItem(PFBlocks.TELMASAURUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> PINACOSAURUS_EGG = REGISTER.register("pinacosaurus_egg", () -> new BlockItem(PFBlocks.PINACOSAURUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> PLESIOHADROS_EGG = REGISTER.register("plesiohadros_egg", () -> new BlockItem(PFBlocks.PLESIOHADROS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> ALLOSAURUS_EGG = REGISTER.register("allosaurus_egg", () -> new BlockItem(PFBlocks.ALLOSAURUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> STEGOSAURUS_EGG = REGISTER.register("stegosaurus_egg", () -> new BlockItem(PFBlocks.STEGOSAURUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> CERATOSAURUS_EGG = REGISTER.register("ceratosaurus_egg", () -> new BlockItem(PFBlocks.CERATOSAURUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> DRYOSAURUS_EGG = REGISTER.register("dryosaurus_egg", () -> new BlockItem(PFBlocks.DRYOSAURUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> HESPERORNITHOIDES_EGG = REGISTER.register("hesperornithoides_egg", () -> new BlockItem(PFBlocks.HESPERORNITHOIDES_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> EILENODON_EGG = REGISTER.register("eilenodon_egg", () -> new BlockItem(PFBlocks.EILENODON_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> CAMARASAURUS_EGG = REGISTER.register("camarasaurus_egg", () -> new BlockItem(PFBlocks.CAMARASAURUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> CALSOYASUCHUS_EGG = REGISTER.register("calsoyasuchus_egg", () -> new BlockItem(PFBlocks.CALSOYASUCHUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> DILOPHOSAURUS_EGG = REGISTER.register("dilophosaurus_egg", () -> new BlockItem(PFBlocks.DILOPHOSAURUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> SARAHSAURUS_EGG = REGISTER.register("sarahsaurus_egg", () -> new BlockItem(PFBlocks.SARAHSAURUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> SCELIDOSAURUS_EGG = REGISTER.register("scelidosaurus_egg", () -> new BlockItem(PFBlocks.SCELIDOSAURUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> SCUTELLOSAURUS_EGG = REGISTER.register("scutellosaurus_egg", () -> new BlockItem(PFBlocks.SCUTELLOSAURUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> MEGAPNOSAURUS_EGG = REGISTER.register("megapnosaurus_egg", () -> new BlockItem(PFBlocks.MEGAPNOSAURUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> KAYENTATHERIUM_EGG = REGISTER.register("kayentatherium_egg", () -> new BlockItem(PFBlocks.KAYENTATHERIUM_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> POSTOSUCHUS_EGG = REGISTER.register("postosuchus_egg", () -> new BlockItem(PFBlocks.POSTOSUCHUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> DESMATOSUCHUS_EGG = REGISTER.register("desmatosuchus_egg", () -> new BlockItem(PFBlocks.DESMATOSUCHUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> TRILOPHOSAURUS_EGG = REGISTER.register("trilophosaurus_egg", () -> new BlockItem(PFBlocks.TRILOPHOSAURUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> PLACERIAS_EGG = REGISTER.register("placerias_egg", () -> new BlockItem(PFBlocks.PLACERIAS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> COELOPHYSIS_EGG = REGISTER.register("coelophysis_egg", () -> new BlockItem(PFBlocks.COELOPHYSIS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> POPOSAURUS_EGG = REGISTER.register("poposaurus_egg", () -> new BlockItem(PFBlocks.POPOSAURUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> TYPOTHORAX_EGG = REGISTER.register("typothorax_egg", () -> new BlockItem(PFBlocks.TYPOTHORAX_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> EXAERETODON_EGG = REGISTER.register("exaeretodon_egg", () -> new BlockItem(PFBlocks.EXAERETODON_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> CHROMOGISAURUS_EGG = REGISTER.register("chromogisaurus_egg", () -> new BlockItem(PFBlocks.CHROMOGISAURUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> HERRERASAURUS_EGG = REGISTER.register("herrerasaurus_egg", () -> new BlockItem(PFBlocks.HERRERASAURUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> HYPERODAPEDON_EGG = REGISTER.register("hyperodapedon_egg", () -> new BlockItem(PFBlocks.HYPERODAPEDON_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> SILLOSUCHUS_EGG = REGISTER.register("sillosuchus_egg", () -> new BlockItem(PFBlocks.SILLOSUCHUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> SAUROSUCHUS_EGG = REGISTER.register("saurosuchus_egg", () -> new BlockItem(PFBlocks.SAUROSUCHUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> ISCHIGUALASTIA_EGG = REGISTER.register("ischigualastia_egg", () -> new BlockItem(PFBlocks.ISCHIGUALASTIA_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+
+	public static final RegistryObject<Item> AEPYORNITHOMIMUS_SPAWN_EGG = REGISTER.register("aepyornithomimus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.AEPYORNITHOMIMUS, 0x1E1E23, 0x512626, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> CITIPATI_SPAWN_EGG = REGISTER.register("citipati_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CITIPATI, 0x704121, 0xD5AA7C, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> PINACOSAURUS_SPAWN_EGG = REGISTER.register("pinacosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.PINACOSAURUS, 0xAB583F, 0x7CA2B5, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> PLESIOHADROS_SPAWN_EGG = REGISTER.register("plesiohadros_spawn_egg", () -> new PFSpawnEggItem(PFEntities.PLESIOHADROS, 0x4FAB90, 0x55614D, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> PROTOCERATOPS_SPAWN_EGG = REGISTER.register("protoceratops_spawn_egg", () -> new PFSpawnEggItem(PFEntities.PROTOCERATOPS, 0x855030, 0xC6BCAB, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> TELMASAURUS_SPAWN_EGG = REGISTER.register("telmasaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.TELMASAURUS, 0xCCA572, 0x60524D, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> VELOCIRAPTOR_SPAWN_EGG = REGISTER.register("velociraptor_spawn_egg", () -> new PFSpawnEggItem(PFEntities.VELOCIRAPTOR, 0x3A332D, 0xE9E3D3, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> ANKYLOSAURUS_SPAWN_EGG = REGISTER.register("ankylosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.ANKYLOSAURUS, 0x202C0C, 0x908730, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> BASILEMYS_SPAWN_EGG = REGISTER.register("basilemys_spawn_egg", () -> new PFSpawnEggItem(PFEntities.BASILEMYS, 0x6B3727, 0x373519, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> CYCLURUS_SPAWN_EGG = REGISTER.register("cyclurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CYCLURUS, 0x5E6B3B, 0x968B53, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> DAKOTARAPTOR_SPAWN_EGG = REGISTER.register("dakotaraptor_spawn_egg", () -> new PFSpawnEggItem(PFEntities.DAKOTARAPTOR, 0x453018, 0x986529, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> DIDELPHODON_SPAWN_EGG = REGISTER.register("didelphodon_spawn_egg", () -> new PFSpawnEggItem(PFEntities.DIDELPHODON, 0x3E2419, 0xAF9663, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> GAR_SPAWN_EGG = REGISTER.register("gar_spawn_egg", () -> new PFSpawnEggItem(PFEntities.GAR, 0x442E1E, 0x947442, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> MELVIUS_SPAWN_EGG = REGISTER.register("melvius_spawn_egg", () -> new PFSpawnEggItem(PFEntities.MELVIUS, 0x737A4D, 0xA89F7C, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> MYLEDAPHUS_SPAWN_EGG = REGISTER.register("myledaphus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.MYLEDAPHUS, 0x896D48, 0xC4B087, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> THESCELOSAURUS_SPAWN_EGG = REGISTER.register("thescelosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.THESCELOSAURUS, 0x582C20, 0x496659, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> TRICERATOPS_SPAWN_EGG = REGISTER.register("triceratops_spawn_egg", () -> new PFSpawnEggItem(PFEntities.TRICERATOPS, 0x494427, 0xABA37B, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> TYRANNOSAURUS_SPAWN_EGG = REGISTER.register("tyrannosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.TYRANNOSAURUS, 0x56483E, 0x541714, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> CALSOYASUCHUS_SPAWN_EGG = REGISTER.register("calsoyasuchus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CALSOYASUCHUS, 0xCBC1AB, 0x573E2E, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> DILOPHOSAURUS_SPAWN_EGG = REGISTER.register("dilophosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.DILOPHOSAURUS, 0x603524, 0x06112D, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> KAYENTATHERIUM_SPAWN_EGG = REGISTER.register("kayentatherium_spawn_egg", () -> new PFSpawnEggItem(PFEntities.KAYENTATHERIUM, 0x513D34, 0xA59E8B, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> MEGAPNOSAURUS_SPAWN_EGG = REGISTER.register("megapnosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.MEGAPNOSAURUS, 0x4C3028, 0x22242D, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> SARAHSAURUS_SPAWN_EGG = REGISTER.register("sarahsaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.SARAHSAURUS, 0x8C6547, 0x512123, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> SCELIDOSAURUS_SPAWN_EGG = REGISTER.register("scelidosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.SCELIDOSAURUS, 0x4C190E, 0x221713, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> SCUTELLOSAURUS_SPAWN_EGG = REGISTER.register("scutellosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.SCUTELLOSAURUS, 0xCAD51C, 0x6A5942, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> ALLOSAURUS_SPAWN_EGG = REGISTER.register("allosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.ALLOSAURUS, 0x5E5D2D, 0x643F23, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> CAMARASAURUS_SPAWN_EGG = REGISTER.register("camarasaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CAMARASAURUS, 0x7E5E2D, 0x7E311C, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> CERATODUS_SPAWN_EGG = REGISTER.register("ceratodus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CERATODUS, 0x3A3822, 0x969373, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> CERATOSAURUS_SPAWN_EGG = REGISTER.register("ceratosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CERATOSAURUS, 0x352217, 0x4056A0, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> DRYOSAURUS_SPAWN_EGG = REGISTER.register("dryosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.DRYOSAURUS, 0x8E6746, 0x629698, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> EILENODON_SPAWN_EGG = REGISTER.register("eilenodon_spawn_egg", () -> new PFSpawnEggItem(PFEntities.EILENODON, 0xA57B48, 0x84A36A, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> HESPERORNITHOIDES_SPAWN_EGG = REGISTER.register("hesperornithoides_spawn_egg", () -> new PFSpawnEggItem(PFEntities.HESPERORNITHOIDES, 0x1F667D, 0x6F97A5, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> POTAMOCERATODUS_SPAWN_EGG = REGISTER.register("potamoceratodus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.POTAMOCERATODUS, 0x302418, 0xAF621A, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> STEGOSAURUS_SPAWN_EGG = REGISTER.register("stegosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.STEGOSAURUS, 0xB0A047, 0x875D2A, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> ARGANODUS_SPAWN_EGG = REGISTER.register("arganodus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.ARGANODUS, 0x212638, 0x936B63, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> CHINLEA_SPAWN_EGG = REGISTER.register("chinlea_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CHINLEA, 0x657A4B, 0x965951, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> COELOPHYSIS_SPAWN_EGG = REGISTER.register("coelophysis_spawn_egg", () -> new PFSpawnEggItem(PFEntities.COELOPHYSIS, 0xB17114, 0x432018, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> DESMATOSUCHUS_SPAWN_EGG = REGISTER.register("desmatosuchus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.DESMATOSUCHUS, 0xA78973, 0x321F1C, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> MOOREODONTUS_SPAWN_EGG = REGISTER.register("mooreodontus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.MOOREODONTUS, 0xAD4137, 0x381A16, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> PLACERIAS_SPAWN_EGG = REGISTER.register("placerias_spawn_egg", () -> new PFSpawnEggItem(PFEntities.PLACERIAS, 0x8D573F, 0x24B775, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> POPOSAURUS_SPAWN_EGG = REGISTER.register("poposaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.POPOSAURUS, 0x57654A, 0xBAA582, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> POSTOSUCHUS_SPAWN_EGG = REGISTER.register("postosuchus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.POSTOSUCHUS, 0x746A56, 0x392621, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> SAURICHTHYS_SPAWN_EGG = REGISTER.register("saurichthys_spawn_egg", () -> new PFSpawnEggItem(PFEntities.SAURICHTHYS, 0x556D3F, 0x776933, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> TRILOPHOSAURUS_SPAWN_EGG = REGISTER.register("trilophosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.TRILOPHOSAURUS, 0x8D9652, 0xB5713F, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> TYPOTHORAX_SPAWN_EGG = REGISTER.register("typothorax_spawn_egg", () -> new PFSpawnEggItem(PFEntities.TYPOTHORAX, 0xE0C174, 0x7A9157, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> CHROMOGISAURUS_SPAWN_EGG = REGISTER.register("chromogisaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CHROMOGISAURUS, 0x513935, 0x4E594B, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> EXAERETODON_SPAWN_EGG = REGISTER.register("exaeretodon_spawn_egg", () -> new PFSpawnEggItem(PFEntities.EXAERETODON, 0x473023, 0xDBC7BA, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> HERRERASAURUS_SPAWN_EGG = REGISTER.register("herrerasaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.HERRERASAURUS, 0x372721, 0xE7E0C9, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> HYPERODAPEDON_SPAWN_EGG = REGISTER.register("hyperodapedon_spawn_egg", () -> new PFSpawnEggItem(PFEntities.HYPERODAPEDON, 0x3A1F18, 0xAF9586, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> ISCHIGUALASTIA_SPAWN_EGG = REGISTER.register("ischigualastia_spawn_egg", () -> new PFSpawnEggItem(PFEntities.ISCHIGUALASTIA, 0x242820, 0x808776, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> SAUROSUCHUS_SPAWN_EGG = REGISTER.register("saurosuchus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.SAUROSUCHUS, 0x4F2622, 0x8E4F34, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> SILLOSUCHUS_SPAWN_EGG = REGISTER.register("sillosuchus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.SILLOSUCHUS, 0x2F2E27, 0x58301B, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> HENOS_SPAWN_EGG = REGISTER.register("time_guardian_spawn_egg", () -> new PFSpawnEggItem(PFEntities.HENOS, 0x55735F, 0x3B4B45, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+
+	private static BannerPattern registerPattern(String name) {
+		return BannerPattern.create(name.toUpperCase(), name, name, true);
+	}
 	
 }

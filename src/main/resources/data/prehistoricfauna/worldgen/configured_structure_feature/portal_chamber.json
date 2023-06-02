@@ -1,0 +1,11 @@
+{
+	"type": "minecraft:bastion_remnant",
+	"config": {
+    	"start_pool": "prehistoricfauna:portal_chamber",
+    	"size": 1
+	},
+	"biomes": "#prehistoricfauna:has_structure/portal_chamber",
+	"adapt_noise": false,
+	"spawn_overrides": {
+	}
+}

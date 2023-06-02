@@ -1,0 +1,14 @@
+{
+	"required": true,
+	"minVersion": "0.8",
+	"package": "superlord.prehistoricfauna.mixin",
+	"compatibilityLevel": "JAVA_8",
+	"refmap": "prehistoricfauna.refmap.json",
+	"mixins": [
+		"GuiMixin",
+		"ItemInvokerMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

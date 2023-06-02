@@ -1,90 +1,9 @@
 {
-  "type": "prehistoricfauna:recipe_paleontology_table",
-  "group": "prehistoricfauna",
-  "input": {
-    "item": "prehistoricfauna:cretaceous_fossil"
-  },
-  "results": [
-    {
-      "item": "prehistoricfauna:chalk",
-      "count": 1,
-      "weight": 10.0
-    },
-	{
-		"item": "prehistoricfauna:large_ammonite_fossil",
-		"count": 1,
-		"weight": 7.5
-	},
-	{
-		"item": "prehistoricfauna:medium_ammonite_fossil",
-		"count": 1,
-		"weight": 7.5
-	},
-	{
-		"item": "prehistoricfauna:small_ammonite_fossil",
-		"count": 1,
-		"weight": 7.5
-	},
-	{
-      "item": "prehistoricfauna:petrified_wood",
-      "count": 1,
-      "weight": 5.0
-    },
-	{
-      "item": "prehistoricfauna:giant_ammonite_fossil_piece_bb",
-      "count": 1,
-      "weight": 1.0
-    },
-	{
-      "item": "prehistoricfauna:giant_ammonite_fossil_piece_bf",
-      "count": 1,
-      "weight": 1.0
-    },
-	{
-      "item": "prehistoricfauna:giant_ammonite_fossil_piece_tb",
-      "count": 1,
-      "weight": 1.0
-    },
-	{
-      "item": "prehistoricfauna:giant_ammonite_fossil_piece_tf",
-      "count": 1,
-      "weight": 1.0
-    },
-
-    {
-      "item": "prehistoricfauna:fossilized_bones",
-      "count": 1,
-      "weight": 25.0
-    },
-	{
-		"item": "prehistoricfauna:tyrannosaurus_skull",
-		"count": 1,
-		"weight": 1.25
-	},
-	{
-		"item": "prehistoricfauna:ankylosaurus_skull",
-		"count": 1,
-		"weight": 1.25
-	},
-	{
-		"item": "prehistoricfauna:triceratops_skull",
-		"count": 1,
-		"weight": 2.5
-	},
-	{
-		"item": "prehistoricfauna:velociraptor_skull",
-		"count": 1,
-		"weight": 1.25
-	},
-	{
-		"item": "prehistoricfauna:plesiohadros_skull",
-		"count": 1,
-		"weight": 1.25
-	},
-	{
-		"item": "prehistoricfauna:protoceratops_skull",
-		"count": 1,
-		"weight": 2.5
-	}
-  ]
+	"type": "prehistoricfauna:paleontology_table",
+	"ingredients": [
+ 		{
+ 			"item": "prehistoricfauna:cretaceous_fossil"
+ 		}
+	],
+	"output": "prehistoricfauna:gameplay/paleontology_table/cretaceous_fossil"
 }

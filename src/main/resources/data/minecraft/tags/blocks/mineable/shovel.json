@@ -1,0 +1,10 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:mossy_dirt",
+		"prehistoricfauna:loam",
+		"prehistoricfauna:packed_loam",
+		"prehistoricfauna:silt",
+		"prehistoricfauna:hardened_silt"
+	]
+}

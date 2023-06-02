@@ -22,6 +22,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.common.Mod;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.gui.GuiPaleopedia;
+import superlord.prehistoricfauna.client.render.item.AnkylosaurusHelmetRenderProperties;
 import superlord.prehistoricfauna.common.CommonProxy;
 import superlord.prehistoricfauna.init.PFBlocks;
 
@@ -99,6 +100,63 @@ public class ClientProxy extends CommonProxy {
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.LIRIODENDRITES_DOOR.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.LIRIODENDRITES_TRAPDOOR.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.HENOSTONE_TRAP.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TUBER_CROP.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.THATCH.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.THATCH_SLAB.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.ALGAE_CARPET.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.AGATHOXYLON_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.GINKGO_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.GINKGO_DOOR.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TROCHODENDROIDES_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.WOODWORTHIA_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.WOODWORTHIA_DOOR.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.SCHILDERIA_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.SCHILDERIA_DOOR.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.SCHILDERIA_TRAPDOOR.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.BRACHYPHYLLUM_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.NEOCALAMITES.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.OTOZAMITES.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TALL_OTOZAMITES.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.LAUROZAMITES.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.CLATHOPTERIS.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.PHLEBOPTERIS.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.CRASSOSTREA_OYSTER.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.ZAMITES_FROND.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_HORSRTAIL.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_OSMUNDA.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_MARCHANTIA.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_CLUBMOSS.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_CONIOPTERIS.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_CLADOPHLEBIS.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_MICHELILLOA.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_OSMUNDACAULIS.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_DEAD_CYCAD.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_ARAUCARIA_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_METASEQUOIA_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_PROTOPICEOXYLON_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_ZAMITES_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_PROTOJUNIPEROXYLON_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_HEIDIPHYLLUM_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_LIRIODENDRITES_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_AGATHOXYLON_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_GINKGO_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_TROCHODENDROIDES_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_WOODWORTHIA_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_SCHILDERIA_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_BRACHYPHYLLUM_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_OTOZAMITES.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_LAUROZAMITES.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_NEOCALAMITES.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_PHLEBOPTERIS.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_CLATHOPTERIS.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.NEOCALAMITES_TOP.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.SMALL_TUBER_BLOCK.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.SMALL_CARVED_TUBER.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.SMALL_CARVED_TUBER_LIT.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.SMALL_CARVED_TUBER_SOUL_LIT.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.SMALL_CARVED_TUBER_TIME_LIT.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.NEOCALAMITES_DOOR.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.NEOCALAMITES_TRAPDOOR.get(), cutoutRenderType);
 	}
 	
 	@Override
@@ -122,6 +180,10 @@ public class ClientProxy extends CommonProxy {
 	public Player getClientSidePlayer() {
 		return Minecraft.getInstance().player;
 	}
-
+	
+	@Override
+    public Object getArmorRenderProperties() {
+        return new AnkylosaurusHelmetRenderProperties();
+    }
 
 }

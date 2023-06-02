@@ -1,0 +1,21 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:henostone",
+		"prehistoricfauna:carved_henostone",
+		"prehistoricfauna:henostone_brick_slab",
+		"prehistoricfauna:dark_henostone_bricks",
+		"prehistoricfauna:henostone_pillar",
+		"prehistoricfauna:chiseled_henostone_pillar",
+		"prehistoricfauna:henostone_stairs",
+		"prehistoricfauna:henostone_slab",
+		"prehistoricfauna:henostone_wall",
+		"prehistoricfauna:henostone_brick_stairs",
+		"prehistoricfauna:henostone_brick_slab",
+		"prehistoricfauna:henostone_brick_wall",
+		"prehistoricfauna:dark_henostone_brick_stairs",
+		"prehistoricfauna:dark_henostone_brick_slab",
+		"prehistoricfauna:dark_henostone_brick_wall",
+		"prehistoricfauna:henostone_trap"
+	]
+}

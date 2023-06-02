@@ -1,0 +1,14 @@
+{
+	"structures": [
+		{
+			"structure": "prehistoricfauna:portal_chamber",
+			"weight": 1
+		}
+	],
+	"placement": {
+		"salt": 3718287,
+		"spacing": 60,
+		"separation": 30,
+		"type": "minecraft:random_spread"
+	}
+}

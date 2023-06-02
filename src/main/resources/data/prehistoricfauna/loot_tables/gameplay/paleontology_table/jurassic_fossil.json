@@ -1,0 +1,90 @@
+{
+	"type": "minecraft:chest",
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"weight": 10,
+					"name": "prehistoricfauna:siltstone"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 7.5,
+					"name": "prehistoricfauna:small_ammonite_fossil"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 7.5,
+					"name": "prehistoricfauna:medium_ammonite_fossil"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 7.5,
+					"name": "prehistoricfauna:large_ammonite_fossil"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 5,
+					"name": "prehistoricfauna:petrified_wood"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 1,
+					"name": "prehistoricfauna:giant_ammonite_fossil_piece_bb"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 1,
+					"name": "prehistoricfauna:giant_ammonite_fossil_piece_bf"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 1,
+					"name": "prehistoricfauna:giant_ammonite_fossil_piece_tb"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 1,
+					"name": "prehistoricfauna:giant_ammonite_fossil_piece_tf"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 25,
+					"name": "prehistoricfauna:fossilized_bones"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 1.25,
+					"name": "prehistoricfauna:ceratosaurus_skull"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 1.25,
+					"name": "prehistoricfauna:allosaurus_skull"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 1.25,
+					"name": "prehistoricfauna:dilophosaurus_skull"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 1.25,
+					"name": "prehistoricfauna:sarahsaurus_skull"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 2.5,
+					"name": "prehistoricfauna:stegosaurus_skull"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 2.5,
+					"name": "prehistoricfauna:scelidosaurus_skull"
+				}
+			]
+		}
+	]
+}

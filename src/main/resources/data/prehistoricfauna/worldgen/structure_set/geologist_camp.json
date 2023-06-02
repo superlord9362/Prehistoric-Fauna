@@ -1,0 +1,14 @@
+{
+	"structures": [
+		{
+			"structure": "prehistoricfauna:geologist_camp",
+			"weight": 1
+		}
+	],
+	"placement": {
+		"salt": 3819281,
+		"spacing": 60,
+		"separation": 30,
+		"type": "minecraft:random_spread"
+	}
+}

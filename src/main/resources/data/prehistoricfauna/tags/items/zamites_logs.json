@@ -1,0 +1,9 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:zamites_log",
+		"prehistoricfauna:stripped_zamites_log",
+		"prehistoricfauna:zamites_wood",
+		"prehistoricfauna:stripped_zamites_wood"
+	]
+}

@@ -13,25 +13,7 @@
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "prehistoricfauna:ischigualasto_forest"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:ischigualasto_clearing"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:ischigualasto_hills"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:ischigualasto_river"
+                    "biome": "prehistoricfauna:morrison_hills"
                   }
                 },
                 {
@@ -43,25 +25,49 @@
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "prehistoricfauna:morrison_hills"
+                    "biome": "prehistoricfauna:kayenta_canyon"
                   }
                 },
-				{
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:kayenta_dry_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:kayenta_desert"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:kayenta_river"
+                  }
+                },
+                {
 					"condition": "minecraft:location_check",
 					"predicate": {
-						"biome": "prehistoricfauna:kayenta_dry_forest"
+						"biome": "prehistoricfauna:ischigualasto_clearing"
 					}
 				},
-				{
+                {
 					"condition": "minecraft:location_check",
 					"predicate": {
-						"biome": "prehistoricfauna:kayenta_canyon"
+						"biome": "prehistoricfauna:ischigualasto_forest"
 					}
 				},
-				{
+                {
 					"condition": "minecraft:location_check",
 					"predicate": {
-						"biome": "prehistoricfauna:kayenta_desert"
+						"biome": "prehistoricfauna:ischigualasto_hills"
+					}
+				},
+                {
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biome": "prehistoricfauna:ischigualasto_river"
 					}
 				}
               ]
@@ -139,7 +145,7 @@
               ]
             }
           ],
-          "weight": 2,
+          "weight": 10,
           "name": "prehistoricfauna:raw_myledaphus"
         },
         {
@@ -175,7 +181,7 @@
               ]
             }
           ],
-          "weight": 13,
+          "weight": 25,
           "name": "prehistoricfauna:raw_cyclurus"
         },
 		{
@@ -184,6 +190,12 @@
             {
               "condition": "minecraft:alternative",
               "terms": [
+				  {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:morrison_hills"
+                  }
+                },
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
@@ -193,27 +205,27 @@
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "prehistoricfauna:morrison_hills"
+                    "biome": "prehistoricfauna:kayenta_canyon"
                   }
                 },
-				{
-					"condition": "minecraft:location_check",
-					"predicate": {
-						"biome": "prehistoricfauna:kayenta_dry_forest"
-					}
-				},
-				{
-					"condition": "minecraft:location_check",
-					"predicate": {
-						"biome": "prehistoricfauna:kayenta_canyon"
-					}
-				},
-				{
-					"condition": "minecraft:location_check",
-					"predicate": {
-						"biome": "prehistoricfauna:kayenta_desert"
-					}
-				}
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:kayenta_dry_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:kayenta_desert"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:kayenta_river"
+                  }
+                }
               ]
             }
           ],
@@ -230,6 +242,12 @@
                   "condition": "minecraft:location_check",
                   "predicate": {
                     "biome": "prehistoricfauna:chinle_swamp"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:chinle_river"
                   }
                 },
                 {
@@ -265,6 +283,12 @@
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
+                    "biome": "prehistoricfauna:chinle_river"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
                     "biome": "prehistoricfauna:chinle_wooded_mountains"
                   }
                 },
@@ -277,7 +301,7 @@
               ]
             }
           ],
-          "weight": 13,
+          "weight": 20,
           "name": "prehistoricfauna:raw_arganodus"
         },
         {
@@ -295,6 +319,12 @@
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
+                    "biome": "prehistoricfauna:chinle_river"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
                     "biome": "prehistoricfauna:chinle_wooded_mountains"
                   }
                 },
@@ -307,7 +337,7 @@
               ]
             }
           ],
-          "weight": 13,
+          "weight": 20,
           "name": "prehistoricfauna:raw_chinlea"
         },
         {
@@ -325,6 +355,12 @@
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
+                    "biome": "prehistoricfauna:chinle_river"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
                     "biome": "prehistoricfauna:chinle_wooded_mountains"
                   }
                 },
@@ -337,7 +373,7 @@
               ]
             }
           ],
-          "weight": 13,
+          "weight": 50,
           "name": "prehistoricfauna:raw_saurichthys"
         }
       ]

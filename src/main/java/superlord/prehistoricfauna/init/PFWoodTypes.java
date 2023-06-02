@@ -14,5 +14,11 @@ public class PFWoodTypes {
 	public static WoodType AGATHOXYLON = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "agathoxylon").toString());
 	public static WoodType HEIDIPHYLLUM = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "heidiphyllum").toString());
 	public static WoodType LIRIODENDRITES = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "liriodendrites").toString());
+	public static WoodType GINKGO = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "ginkgo").toString());
+	public static WoodType TROCHODENDROIDES = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "trochodendroides").toString());
+	public static WoodType BRACHYPHYLLUM = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "brachyphyllum").toString());
+	public static WoodType WOODWORTHIA = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "woodworthia").toString());
+	public static WoodType SCHILDERIA = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "schilderia").toString());
+	public static WoodType NEOCALAMITES = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "neocalamites").toString());
 
 }

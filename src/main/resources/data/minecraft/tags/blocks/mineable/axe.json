@@ -1,0 +1,17 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:tuber_block",
+		"prehistoricfauna:carved_tuber",
+		"prehistoricfauna:carved_tuber_lit",
+		"prehistoricfauna:carved_tuber_soul_lit",
+		"prehistoricfauna:carved_tuber_time_lit",
+		"prehistoricfauna:big_tuber_block",
+		"prehistoricfauna:big_carved_tuber",
+		"prehistoricfauna:big_carved_tuber_lit",
+		"prehistoricfauna:big_carved_tuber_soul_lit",
+		"prehistoricfauna:big_carved_tuber_time_lit",
+		"prehistoricfauna:paleoscribe",
+		"prehistoricfauna:paleontology_table"
+	]
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "prehistoricfauna:raw_melvius"
+  },
+  "result": "prehistoricfauna:cooked_melvius",
+  "experience": 0.35,
+  "cookingtime": 200
+}

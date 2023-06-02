@@ -9,6 +9,11 @@ public class PFDamageSources {
 	
 	public static final DamageSource HENOSTONE_TRAP = new DamageCustomDeathMessage("trap");
 
+    public static final DamageSource SAUROPOD_TRAMPLING = new DamageCustomDeathMessage("trample");
+	
+    public static final DamageSource BLEEDING = new DamageCustomDeathMessage("bleeding");
+
+	
 	static class DamageCustomDeathMessage extends DamageSource {
 		
 		public DamageCustomDeathMessage(String damageTypeIn) {

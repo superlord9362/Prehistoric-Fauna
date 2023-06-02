@@ -28,5 +28,9 @@ public class CommonProxy {
 	public Player getClientSidePlayer() {
 		return null;
 	}
+	
+	public Object getArmorRenderProperties() {
+        return null;
+    }
 
 }

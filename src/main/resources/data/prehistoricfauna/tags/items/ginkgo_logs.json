@@ -1,0 +1,9 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:ginkgo_log",
+		"prehistoricfauna:stripped_ginkgo_log",
+		"prehistoricfauna:ginkgo_wood",
+		"prehistoricfauna:stripped_ginkgo_wood"
+	]
+}

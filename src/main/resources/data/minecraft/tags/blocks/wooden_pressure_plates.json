@@ -1,0 +1,19 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:araucaria_pressure_plate",
+		"prehistoricfauna:metasequoia_pressure_plate",
+		"prehistoricfauna:protopiceoxylon_pressure_plate",
+		"prehistoricfauna:zamites_pressure_plate",
+		"prehistoricfauna:protojuniperoxylon_pressure_plate",
+		"prehistoricfauna:agathoxylon_pressure_plate",
+		"prehistoricfauna:heidiphyllum_pressure_plate",
+		"prehistoricfauna:liriodendrites_pressure_plate",
+		"prehistoricfauna:ginkgo_pressure_plate",
+		"prehistoricfauna:trochodendroides_pressure_plate",
+		"prehistoricfauna:woodworthia_pressure_plate",
+		"prehistoricfauna:schilderia_pressure_plate",
+		"prehistoricfauna:brachyphyllum_pressure_plate",
+		"prehistoricfauna:neocalamites_pressure_plate"
+	]
+}

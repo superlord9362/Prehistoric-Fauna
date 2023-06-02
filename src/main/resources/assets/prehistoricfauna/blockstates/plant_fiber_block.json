@@ -1,19 +1,16 @@
 {
   "variants": {
-    "facing=east": {
-      "model": "prehistoricfauna:block/plant_fiber_block",
+    "axis=x": {
+      "model": "prehistoricfauna:block/plant_fiber_horizontal",
+      "x": 90,
       "y": 90
     },
-    "facing=north": {
+    "axis=y": {
       "model": "prehistoricfauna:block/plant_fiber_block"
     },
-    "facing=south": {
-      "model": "prehistoricfauna:block/plant_fiber_block",
-      "y": 180
-    },
-    "facing=west": {
-      "model": "prehistoricfauna:block/plant_fiber_block",
-      "y": 270
+    "axis=z": {
+      "model": "prehistoricfauna:block/plant_fiber_horizontal",
+      "x": 90
     }
   }
 }

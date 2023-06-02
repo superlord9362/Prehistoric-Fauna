@@ -1,0 +1,60 @@
+{
+	"type": "minecraft:chest",
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"weight": 10,
+					"name": "prehistoricfauna:sandstone"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 7.5,
+					"name": "prehistoricfauna:small_ammonite_fossil"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 5,
+					"name": "prehistoricfauna:petrified_wood"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 25,
+					"name": "prehistoricfauna:fossilized_bones"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 1.25,
+					"name": "prehistoricfauna:saurosuchus_skull"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 1.25,
+					"name": "prehistoricfauna:herrerasaurus_skull"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 1.25,
+					"name": "prehistoricfauna:postosuchus_skull"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 1.25,
+					"name": "prehistoricfauna:coelophysis_skull"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 2.5,
+					"name": "prehistoricfauna:ischigualastia_skull"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 2.5,
+					"name": "prehistoricfauna:desmatosuchus_skull"
+				}
+			]
+		}
+	]
+}

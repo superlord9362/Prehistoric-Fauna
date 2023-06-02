@@ -1,0 +1,20 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:araucaria_slab",
+		"prehistoricfauna:metasequoia_slab",
+		"prehistoricfauna:protopiceoxylon_slab",
+		"prehistoricfauna:zamites_slab",
+		"prehistoricfauna:protojuniperoxylon_slab",
+		"prehistoricfauna:agathoxylon_slab",
+		"prehistoricfauna:heidiphyllum_slab",
+		"prehistoricfauna:liriodendrites_slab",
+		"prehistoricfauna:ginkgo_slab",
+		"prehistoricfauna:trochodendroides_slab",
+		"prehistoricfauna:woodworthia_slab",
+		"prehistoricfauna:schilderia_slab",
+		"prehistoricfauna:brachyphyllum_slab",
+		"prehistoricfauna:neocalamites_slab",
+		"prehistoricfauna:neocalamites_mosaic_slab"
+	]
+}

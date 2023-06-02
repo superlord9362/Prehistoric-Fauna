@@ -1,6 +1,25 @@
 {
     "variants": {
-        "half=lower": { "model": "prehistoricfauna:block/double_horsetail_bottom" },
-        "half=upper":    { "model": "prehistoricfauna:block/double_horsetail_top" }
+		"": [
+			{
+				"half=lower": { "model": "prehistoricfauna:block/double_horsetail_bottom" },
+       			"half=upper":    { "model": "prehistoricfauna:block/double_horsetail_top" }
+   			},
+			{
+				"half=lower": { "model": "prehistoricfauna:block/double_horsetail_bottom" },
+       			"half=upper":    { "model": "prehistoricfauna:block/double_horsetail_top" },
+				"y": 90
+			},
+			{
+				"half=lower": { "model": "prehistoricfauna:block/double_horsetail_bottom" },
+       			"half=upper":    { "model": "prehistoricfauna:block/double_horsetail_top" },
+				"y": 180
+			},
+			{
+				"half=lower": { "model": "prehistoricfauna:block/double_horsetail_bottom" },
+       			"half=upper":    { "model": "prehistoricfauna:block/double_horsetail_top" },
+				"y": 270
+			}
+		]
     }
 }

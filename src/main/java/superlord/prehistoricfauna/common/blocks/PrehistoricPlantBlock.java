@@ -41,10 +41,6 @@ public class PrehistoricPlantBlock extends BushBlock implements BonemealableBloc
 		if (doubleplantblock.defaultBlockState().canSurvive(p_57320_, p_57322_) && p_57320_.isEmptyBlock(p_57322_.above())) {
 			DoublePlantBlock.placeAt(p_57320_, doubleplantblock.defaultBlockState(), p_57322_, 2);
 		}
-		DoublePlantBlock doubleplantblock1 = (DoublePlantBlock)(p_57323_.is(PFBlocks.OSMUNDACAULIS.get()) ? PFBlocks.TALL_OSMUNDACAULIS.get() : null);
-		if (doubleplantblock1.defaultBlockState().canSurvive(p_57320_, p_57322_) && p_57320_.isEmptyBlock(p_57322_.above())) {
-			DoublePlantBlock.placeAt(p_57320_, doubleplantblock1.defaultBlockState(), p_57322_, 2);
-		}
 	}
 
 	public BlockBehaviour.OffsetType getOffsetType() {

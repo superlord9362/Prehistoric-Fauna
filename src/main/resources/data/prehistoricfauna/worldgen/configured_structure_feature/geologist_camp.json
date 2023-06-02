@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:village",
+	"config": {
+    	"start_pool": "prehistoricfauna:geologist_camp",
+    	"size": 1
+	},
+	"biomes": "#prehistoricfauna:has_structure/geologist_camp",
+	"adapt_noise": false,
+	"spawn_overrides": {
+		"ambient": {
+      "bounding_box": "piece",
+      "spawns": [
+        {
+          "type": "minecraft:villager",
+          "weight": 100,
+          "minCount": 1,
+          "maxCount": 1
+        }
+      ]
+    }
+	}
+}

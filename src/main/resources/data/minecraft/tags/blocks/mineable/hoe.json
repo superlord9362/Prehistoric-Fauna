@@ -1,0 +1,26 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:moss_block",
+		"prehistoricfauna:moss_carpet",
+		"prehistoricfauna:algae_carpet",
+		"prehistoricfauna:plant_fiber_block",
+		"prehistoricfauna:thatch",
+		"prehistoricfauna:thatch_stairs",
+		"prehistoricfauna:thatch_slab",
+		"prehistoricfauna:thatch_carpet",
+		"prehistoricfauna:metasequoia_leaves",
+		"prehistoricfauna:araucaria_leaves",
+		"prehistoricfauna:protopiceoxylon_leaves",
+		"prehistoricfauna:protojuniperoxylon_leaves",
+		"prehistoricfauna:agathoxylon_leaves",
+		"prehistoricfauna:heidiphyllum_leaves",
+		"prehistoricfauna:liriodendrites_leaves",
+		"prehistoricfauna:ginkgo_leaves",
+		"prehistoricfauna:trochodendroides_leaves",
+		"prehistoricfauna:woodworthia_leaves",
+		"prehistoricfauna:schilderia_leaves",
+		"prehistoricfauna:brachyphyllum_leaves",
+		"prehistoricfauna:zamites_leaves"
+	]
+}

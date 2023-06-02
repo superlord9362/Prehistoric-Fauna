@@ -1,0 +1,20 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:araucaria_stairs",
+		"prehistoricfauna:metasequoia_stairs",
+		"prehistoricfauna:protopiceoxylon_stairs",
+		"prehistoricfauna:zamites_stairs",
+		"prehistoricfauna:protojuniperoxylon_stairs",
+		"prehistoricfauna:agathoxylon_stairs",
+		"prehistoricfauna:heidiphyllum_stairs",
+		"prehistoricfauna:liriodendrites_stairs",
+		"prehistoricfauna:ginkgo_stairs",
+		"prehistoricfauna:trochodendroides_stairs",
+		"prehistoricfauna:woodworthia_stairs",
+		"prehistoricfauna:schilderia_stairs",
+		"prehistoricfauna:brachyphyllum_stairs",
+		"prehistoricfauna:neocalamites_stairs",
+		"prehistoricfauna:neocalamites_mosaic_stairs"
+	]
+}

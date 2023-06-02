@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -51,23 +50,17 @@ public class TallHorsetailBlock extends DoublePlantBlock {
 	}
 	
 	public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
-		BlockState blockstate = world.getBlockState(pos.below());
 		if (state.getValue(HALF) != DoubleBlockHalf.UPPER) {
-			if (blockstate.is(Blocks.GRASS_BLOCK) || blockstate.is(Blocks.DIRT) || blockstate.is(Blocks.COARSE_DIRT) || blockstate.is(Blocks.PODZOL) || blockstate.is(Blocks.SAND) || blockstate.is(Blocks.RED_SAND)) {
-				BlockPos blockpos = pos.below();
-				for (Direction direction : Direction.Plane.HORIZONTAL) {
-					BlockState blockstate1 = world.getBlockState(blockpos.relative(direction));
-					FluidState fluidstate = world.getFluidState(blockpos.relative(direction));
-					if (fluidstate.is(FluidTags.WATER) || blockstate1.is(Blocks.FROSTED_ICE)) {
-						return true;
-					}
-				}
-			}
+			BlockState soil = world.getBlockState(pos.below());
+			BlockState waterState = world.getBlockState(pos);
+			BlockState aboveWaterState = world.getBlockState(pos.above());
+			if (soil.canSustainPlant(world, pos.below(), Direction.UP, this) || soil.getBlock() == Blocks.SAND || soil.getBlock() == Blocks.RED_SAND|| waterState.getBlock() == Blocks.WATER && (aboveWaterState.getBlock() == Blocks.AIR || aboveWaterState.getBlock() == this)) return true;
+			else return false;
 		} else {
-			if (state.getBlock() != this) return super.canSurvive(state, world, pos);
+			BlockState blockstate = world.getBlockState(pos.below());
+			if (state.getBlock() != this) return super.canSurvive(state, world, pos); //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
 			return blockstate.is(this) && blockstate.getValue(HALF) == DoubleBlockHalf.LOWER;
 		}
-		return false;
 	}
 	
 	@Nullable

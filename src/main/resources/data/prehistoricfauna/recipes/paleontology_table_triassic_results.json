@@ -1,35 +1,9 @@
 {
-  "type": "prehistoricfauna:recipe_paleontology_table",
-  "group": "prehistoricfauna",
-  "input": {
-    "item": "prehistoricfauna:triassic_fossil"
-  },
-  "results": [
-    {
-      "item": "prehistoricfauna:sandstone",
-      "count": 1,
-      "weight": 10.0
-    },
-	{
-		"item": "prehistoricfauna:small_ammonite_fossil",
-		"count": 1,
-		"weight": 7.5
-	},
-	{
-      "item": "prehistoricfauna:petrified_wood",
-      "count": 1,
-      "weight": 5.0
-    },
-   
-    {
-      "item": "prehistoricfauna:fossilized_bones",
-      "count": 1,
-      "weight": 25.0
-    },
-	{
-		"item": "prehistoricfauna:herrerasaurus_skull",
-		"count": 1,
-		"weight": 1.25
-	}
-  ]
+	"type": "prehistoricfauna:paleontology_table",
+	"ingredients": [
+ 		{
+ 			"item": "prehistoricfauna:triassic_fossil"
+ 		}
+	],
+	"output": "prehistoricfauna:gameplay/paleontology_table/triassic_fossil"
 }
