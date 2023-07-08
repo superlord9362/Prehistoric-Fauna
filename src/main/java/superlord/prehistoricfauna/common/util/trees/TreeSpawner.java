@@ -14,10 +14,10 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 public abstract class TreeSpawner {
 
 	@Nullable
-	protected abstract ConfiguredFeature<PFTreeConfig, ?> getTreeFeature(Random random);
+	protected abstract ConfiguredFeature<?, ?> getTreeFeature(Random random);
 
 	public boolean spawn(WorldGenLevel world, ChunkGenerator chunkGenerator, BlockPos pos, BlockState blockUnder, Random random) {
-		ConfiguredFeature<PFTreeConfig, ?> treeFeature = this.getTreeFeature(random);
+		ConfiguredFeature<?, ?> treeFeature = this.getTreeFeature(random);
 		if (treeFeature == null) {
 			return false;
 		} else {

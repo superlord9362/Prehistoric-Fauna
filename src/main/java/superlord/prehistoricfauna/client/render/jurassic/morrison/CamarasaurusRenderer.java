@@ -37,7 +37,7 @@ public class CamarasaurusRenderer extends MobRenderer<Camarasaurus, EntityModel<
 
 	
 	public CamarasaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new CamarasaurusModel(renderManagerIn.bakeLayer(ClientEvents.CAMARASAURUS)), 0.5F);
+		super(renderManagerIn, new CamarasaurusModel(renderManagerIn.bakeLayer(ClientEvents.CAMARASAURUS)), 3.125F);
 		CAMARASAURUS_MODEL = new CamarasaurusModel(renderManagerIn.bakeLayer(ClientEvents.CAMARASAURUS));
 		BABY_CAMARASAURUS_MODEL = new CamarasaurusJuvenileModel(renderManagerIn.bakeLayer(ClientEvents.CAMARASAURUS_JUVENILE));
 		Calendar calendar = Calendar.getInstance();

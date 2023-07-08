@@ -21,7 +21,7 @@ public class TypothoraxRenderer extends MobRenderer<Typothorax, TypothoraxModel>
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/typothorax/melanistic_sleeping.png");
 
 	public TypothoraxRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new TypothoraxModel(renderManagerIn.bakeLayer(ClientEvents.TYPOTHORAX)), 0.5F);
+		super(renderManagerIn, new TypothoraxModel(renderManagerIn.bakeLayer(ClientEvents.TYPOTHORAX)), 1F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new TypothoraxEyeLayer(this));
 		}

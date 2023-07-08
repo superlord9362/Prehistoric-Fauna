@@ -25,7 +25,7 @@ public class DryosaurusRenderer extends MobRenderer<Dryosaurus, DryosaurusModel>
     private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dryosaurus/melanistic_baby_sleeping.png");
 
 	public DryosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new DryosaurusModel(renderManagerIn.bakeLayer(ClientEvents.DRYOSAURUS)), 0.5F);
+		super(renderManagerIn, new DryosaurusModel(renderManagerIn.bakeLayer(ClientEvents.DRYOSAURUS)), 0.375F);
 	}
 
 	protected void scale(Dryosaurus thescelosaurus, PoseStack matrixStackIn, float partialTickTime) {

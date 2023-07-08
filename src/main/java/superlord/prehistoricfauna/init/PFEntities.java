@@ -70,7 +70,9 @@ import superlord.prehistoricfauna.common.entity.fossil.triassic.PostosuchusSkele
 import superlord.prehistoricfauna.common.entity.fossil.triassic.PostosuchusSkull;
 import superlord.prehistoricfauna.common.entity.fossil.triassic.SaurosuchusSkeleton;
 import superlord.prehistoricfauna.common.entity.fossil.triassic.SaurosuchusSkull;
+import superlord.prehistoricfauna.common.entity.henos.CaveSentinel;
 import superlord.prehistoricfauna.common.entity.henos.Henos;
+import superlord.prehistoricfauna.common.entity.henos.LandSentinel;
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Calsoyasuchus;
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Dilophosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Kayentatherium;
@@ -209,6 +211,8 @@ public class PFEntities {
 	public static final RegistryObject<EntityType<Sillosuchus>> SILLOSUCHUS = REGISTER.register("sillosuchus", () -> EntityType.Builder.<Sillosuchus>of(Sillosuchus::new, MobCategory.CREATURE).sized(1.5F, 3.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "sillosuchus").toString()));
 	
 	public static final RegistryObject<EntityType<Henos>> HENOS = REGISTER.register("henos", () -> EntityType.Builder.<Henos>of(Henos::new, MobCategory.MONSTER).sized(1.3125F, 3.125F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "henos").toString()));
+	public static final RegistryObject<EntityType<CaveSentinel>> CAVE_SENTINEL = REGISTER.register("cave_sentinel", () -> EntityType.Builder.<CaveSentinel>of(CaveSentinel::new, MobCategory.MONSTER).sized(1.5F, 0.75F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "cave_sentinel").toString()));
+	public static final RegistryObject<EntityType<LandSentinel>> LAND_SENTINEL = REGISTER.register("land_sentinel", () -> EntityType.Builder.<LandSentinel>of(LandSentinel::new, MobCategory.MONSTER).sized(2F, 0.75F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "land_sentinel").toString()));
 	
 	public static final RegistryObject<EntityType<PFBoat>> BOAT = REGISTER.register("boat", () -> EntityType.Builder.<PFBoat>of(PFBoat::new, MobCategory.MISC).sized(1.375F, 0.5625F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "boat").toString()));
 	public static final RegistryObject<EntityType<Paleopainting>> PALEOPAINTING = REGISTER.register("paleopainting", () -> EntityType.Builder.<Paleopainting>of(Paleopainting::new, MobCategory.MISC).sized(0.5F, 0.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "paleopainting").toString()));

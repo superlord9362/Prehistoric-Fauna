@@ -23,7 +23,7 @@ public class CoelophysisRenderer extends MobRenderer<Coelophysis, CoelophysisMod
 	private static final ResourceLocation JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/juvenile_sleeping.png");
 
 	public CoelophysisRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new CoelophysisModel(renderManagerIn.bakeLayer(ClientEvents.COELOPHYSIS)), 0.5F);
+		super(renderManagerIn, new CoelophysisModel(renderManagerIn.bakeLayer(ClientEvents.COELOPHYSIS)), 0.75F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new CoelophysisEyeLayer(this));
 		}

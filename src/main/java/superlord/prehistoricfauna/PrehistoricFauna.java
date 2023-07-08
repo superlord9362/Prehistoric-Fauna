@@ -109,7 +109,9 @@ import superlord.prehistoricfauna.common.entity.fossil.triassic.PostosuchusSkele
 import superlord.prehistoricfauna.common.entity.fossil.triassic.PostosuchusSkull;
 import superlord.prehistoricfauna.common.entity.fossil.triassic.SaurosuchusSkeleton;
 import superlord.prehistoricfauna.common.entity.fossil.triassic.SaurosuchusSkull;
+import superlord.prehistoricfauna.common.entity.henos.CaveSentinel;
 import superlord.prehistoricfauna.common.entity.henos.Henos;
+import superlord.prehistoricfauna.common.entity.henos.LandSentinel;
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Calsoyasuchus;
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Dilophosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Kayentatherium;
@@ -142,6 +144,7 @@ import superlord.prehistoricfauna.common.util.QuarkFlagRecipeCondition;
 import superlord.prehistoricfauna.common.util.RegistryHelper;
 import superlord.prehistoricfauna.config.PFConfigHolder;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
+import superlord.prehistoricfauna.init.PFBiomes;
 import superlord.prehistoricfauna.init.PFBlockEntities;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFConfiguredFeatures;
@@ -195,6 +198,7 @@ public class PrehistoricFauna {
 		PFConfiguredFeatures.REGISTER.register(bus);
 		PFPlacedFeatures.REGISTER.register(bus);
 		PFEffects.REGISTER.register(bus);
+		PFBiomes.REGISTER.register(bus);
 		modLoadingContext.registerConfig(ModConfig.Type.CLIENT, PFConfigHolder.CLIENT_SPEC);
 		modLoadingContext.registerConfig(ModConfig.Type.COMMON, PFConfigHolder.SERVER_SPEC);
 		CraftingHelper.register(new QuarkFlagRecipeCondition.Serializer());
@@ -206,9 +210,11 @@ public class PrehistoricFauna {
 	public void biomeModification(final BiomeLoadingEvent event) {
 		String name = event.getName().getPath();
 		if (name.equals("badlands")) event.getGeneration().getFeatures(Decoration.VEGETAL_DECORATION).add(PFPlacedFeatures.PLACED_PETRIFIED_TREE.getHolder().orElseThrow());
-		event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(PFPlacedFeatures.FOSSILIZED_CHALK);
-		event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(PFPlacedFeatures.FOSSILIZED_SILTSTONE);
-		event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(PFPlacedFeatures.FOSSILIZED_SANDSTONE);
+		if (!name.equals("chinle_flats") && !name.equals("chinle_swamp") && !name.equals("chinle_wooded_mountains") && !name.equals("ischigualasto_forest") && !name.equals("ischigualasto_clearing") && !name.equals("ischigualasto_hills")) {
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(PFPlacedFeatures.FOSSILIZED_CHALK);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(PFPlacedFeatures.FOSSILIZED_SILTSTONE);
+			event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(PFPlacedFeatures.FOSSILIZED_SANDSTONE);
+		}
 	}
 	
 	@SubscribeEvent
@@ -312,6 +318,8 @@ public class PrehistoricFauna {
 		event.put(PFEntities.ISCHIGUALASTIA.get(), Ischigualastia.createAttributes().build());
 		event.put(PFEntities.SAUROSUCHUS.get(), Saurosuchus.createAttributes().build());
 		event.put(PFEntities.SILLOSUCHUS.get(), Sillosuchus.createAttributes().build());
+		event.put(PFEntities.CAVE_SENTINEL.get(), CaveSentinel.createAttributes().build());
+		event.put(PFEntities.LAND_SENTINEL.get(), LandSentinel.createAttributes().build());
 	}
 
 	public final static CreativeModeTab PF_MISC = new CreativeModeTab("prehistoric_misc_tab") {
@@ -432,6 +440,8 @@ public class PrehistoricFauna {
 		SpawnPlacements.register(PFEntities.ISCHIGUALASTIA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.SAUROSUCHUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.SILLOSUCHUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.LAND_SENTINEL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, LandSentinel::canSpawn);
+		SpawnPlacements.register(PFEntities.CAVE_SENTINEL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, CaveSentinel::canSpawn);
 	}
 	
 	@OnlyIn(Dist.CLIENT)

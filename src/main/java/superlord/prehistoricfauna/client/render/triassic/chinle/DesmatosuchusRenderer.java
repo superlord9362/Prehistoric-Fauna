@@ -21,7 +21,7 @@ public class DesmatosuchusRenderer extends MobRenderer<Desmatosuchus, Desmatosuc
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/desmatosuchus/melanistic_sleeping.png");
 
 	public DesmatosuchusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new DesmatosuchusModel(renderManagerIn.bakeLayer(ClientEvents.DESMATOSUCHUS)), 0.5F);
+		super(renderManagerIn, new DesmatosuchusModel(renderManagerIn.bakeLayer(ClientEvents.DESMATOSUCHUS)), 1.25F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new DesmatosuchusEyeLayer(this));
 		}

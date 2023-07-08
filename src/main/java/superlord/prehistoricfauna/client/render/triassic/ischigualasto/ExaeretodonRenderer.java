@@ -21,7 +21,7 @@ public class ExaeretodonRenderer extends MobRenderer<Exaeretodon, ExaeretodonMod
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/exaeretodon/melanistic_sleeping.png");
 
 	public ExaeretodonRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new ExaeretodonModel(renderManagerIn.bakeLayer(ClientEvents.EXAERETODON)), 0.5F);
+		super(renderManagerIn, new ExaeretodonModel(renderManagerIn.bakeLayer(ClientEvents.EXAERETODON)), 0.75F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new ExaeretodonEyeLayer(this));
 		}

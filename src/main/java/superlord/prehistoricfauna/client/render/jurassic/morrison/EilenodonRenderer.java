@@ -21,7 +21,7 @@ public class EilenodonRenderer extends MobRenderer<Eilenodon, EilenodonModel> {
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/eilenodon/melanistic_sleeping.png");
 
 	public EilenodonRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new EilenodonModel(renderManagerIn.bakeLayer(ClientEvents.EILENODON)), 0.5F);
+		super(renderManagerIn, new EilenodonModel(renderManagerIn.bakeLayer(ClientEvents.EILENODON)), 0.25F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new EilenodonEyeLayer(this));
 		}

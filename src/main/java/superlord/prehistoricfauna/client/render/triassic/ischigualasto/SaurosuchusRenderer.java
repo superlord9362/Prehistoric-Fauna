@@ -21,7 +21,7 @@ public class SaurosuchusRenderer extends MobRenderer<Saurosuchus, SaurosuchusMod
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/saurosuchus/melanistic_sleeping.png");
 
 	public SaurosuchusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new SaurosuchusModel(renderManagerIn.bakeLayer(ClientEvents.SAUROSUCHUS)), 0.5F);
+		super(renderManagerIn, new SaurosuchusModel(renderManagerIn.bakeLayer(ClientEvents.SAUROSUCHUS)), 0.75F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new SaurosuchusEyeLayer(this));
 		}

@@ -21,7 +21,7 @@ public class HyperodapedonRenderer extends MobRenderer<Hyperodapedon, Hyperodape
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hyperodapedon/melanistic_sleeping.png");
 
 	public HyperodapedonRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new HyperodapedonModel(renderManagerIn.bakeLayer(ClientEvents.HYPERODAPEDON)), 0.5F);
+		super(renderManagerIn, new HyperodapedonModel(renderManagerIn.bakeLayer(ClientEvents.HYPERODAPEDON)), 0.325F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new HyperodapedonEyeLayer(this));
 		}

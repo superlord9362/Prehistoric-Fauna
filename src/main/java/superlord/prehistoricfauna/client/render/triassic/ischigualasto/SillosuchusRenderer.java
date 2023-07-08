@@ -21,7 +21,7 @@ public class SillosuchusRenderer extends MobRenderer<Sillosuchus, SillosuchusMod
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sillosuchus/melanistic_sleeping.png");
 
 	public SillosuchusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new SillosuchusModel(renderManagerIn.bakeLayer(ClientEvents.SILLOSUCHUS)), 0.5F);
+		super(renderManagerIn, new SillosuchusModel(renderManagerIn.bakeLayer(ClientEvents.SILLOSUCHUS)), 1.7F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new SillosuchusEyeLayer(this));
 		}

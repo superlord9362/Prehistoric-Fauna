@@ -155,8 +155,10 @@ import superlord.prehistoricfauna.client.model.fossil.triassic.SaurosuchusSkelet
 import superlord.prehistoricfauna.client.model.fossil.triassic.SaurosuchusSkeletonModel;
 import superlord.prehistoricfauna.client.model.fossil.triassic.SaurosuchusSkeletonSleepingModel;
 import superlord.prehistoricfauna.client.model.fossil.triassic.SaurosuchusSkullModel;
+import superlord.prehistoricfauna.client.model.henos.CaveSentinelModel;
 import superlord.prehistoricfauna.client.model.henos.HenosModel;
 import superlord.prehistoricfauna.client.model.henos.HenosSummonedModel;
+import superlord.prehistoricfauna.client.model.henos.LandSentinelModel;
 import superlord.prehistoricfauna.client.model.jurassic.kayenta.CalsoyasuchusModel;
 import superlord.prehistoricfauna.client.model.jurassic.kayenta.DilophosaurusModel;
 import superlord.prehistoricfauna.client.model.jurassic.kayenta.KayentatheriumModel;
@@ -249,7 +251,9 @@ import superlord.prehistoricfauna.client.render.fossil.triassic.PostosuchusSkele
 import superlord.prehistoricfauna.client.render.fossil.triassic.PostosuchusSkullRenderer;
 import superlord.prehistoricfauna.client.render.fossil.triassic.SaurosuchusSkeletonRenderer;
 import superlord.prehistoricfauna.client.render.fossil.triassic.SaurosuchusSkullRenderer;
+import superlord.prehistoricfauna.client.render.henos.CaveSentinelRenderer;
 import superlord.prehistoricfauna.client.render.henos.HenosRenderer;
+import superlord.prehistoricfauna.client.render.henos.LandSentinelRenderer;
 import superlord.prehistoricfauna.client.render.jurassic.kayenta.CalsoyasuchusRenderer;
 import superlord.prehistoricfauna.client.render.jurassic.kayenta.DilophosaurusRenderer;
 import superlord.prehistoricfauna.client.render.jurassic.kayenta.KayentatheriumRenderer;
@@ -502,7 +506,9 @@ public class ClientEvents {
 	//Henos
 	public static ModelLayerLocation HENOS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "henos"), "henos");
 	public static ModelLayerLocation SUMMONED_HENOS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "summoned_henos"), "summoned_henos");
-
+	public static ModelLayerLocation CAVE_SENTINEL = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "cave_sentinel"), "cave_sentinel");
+	public static ModelLayerLocation LAND_SENTINEL = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "land_sentinel"), "land_sentinel");
+	
 	@SubscribeEvent
 	public static void registerEntityRenders(EntityRenderersEvent.RegisterRenderers event) {
 		event.registerEntityRenderer(PFEntities.HERRERASAURUS_SKULL.get(), HerrerasaurusSkullRenderer::new);
@@ -597,12 +603,16 @@ public class ClientEvents {
 		event.registerEntityRenderer(PFEntities.ISCHIGUALASTIA.get(), IschigualastiaRenderer::new);
 		event.registerEntityRenderer(PFEntities.SAUROSUCHUS.get(), SaurosuchusRenderer::new);
 		event.registerEntityRenderer(PFEntities.SILLOSUCHUS.get(), SillosuchusRenderer::new);
+		event.registerEntityRenderer(PFEntities.CAVE_SENTINEL.get(), CaveSentinelRenderer::new);
+		event.registerEntityRenderer(PFEntities.LAND_SENTINEL.get(), LandSentinelRenderer::new);
 	}
 
 	@SubscribeEvent
 	public static void registerLayerDefinition(EntityRenderersEvent.RegisterLayerDefinitions event) {
 		event.registerLayerDefinition(HENOS, HenosModel::createBodyLayer);
 		event.registerLayerDefinition(SUMMONED_HENOS, HenosSummonedModel::createBodyLayer);
+		event.registerLayerDefinition(CAVE_SENTINEL, CaveSentinelModel::createBodyLayer);
+		event.registerLayerDefinition(LAND_SENTINEL, LandSentinelModel::createBodyLayer);
 		event.registerLayerDefinition(ANKYLOSAURUS_HELMET, () -> AnkylosaurusHelmetModel.createArmorLayer(new CubeDeformation(1)));
 		event.registerLayerDefinition(DESMATOSUCHUS_CHESTPLATE, () -> DesmatosuchusChestplateModel.createArmorLayer(new CubeDeformation(0)));
 

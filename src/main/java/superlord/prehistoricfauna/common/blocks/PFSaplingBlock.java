@@ -6,7 +6,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -16,6 +18,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import superlord.prehistoricfauna.common.util.trees.TreeSpawner;
+import superlord.prehistoricfauna.init.PFBlocks;
 
 public class PFSaplingBlock extends BushBlock implements BonemealableBlock {
 	public static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
@@ -26,6 +29,11 @@ public class PFSaplingBlock extends BushBlock implements BonemealableBlock {
 		super(properties);
 		this.tree = tree;
 		this.registerDefaultState(this.stateDefinition.any().setValue(STAGE, Integer.valueOf(0)));
+	}
+	
+	public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
+	      Block block = state.getBlock();
+	      return super.canSurvive(state, worldIn, pos) || block == PFBlocks.HARDENED_SILT.get() || block == PFBlocks.SILT.get() || block == Blocks.SAND;
 	}
 
 	public VoxelShape getShape(BlockState p_56008_, BlockGetter p_56009_, BlockPos p_56010_, CollisionContext p_56011_) {

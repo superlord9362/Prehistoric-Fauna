@@ -10,6 +10,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
@@ -51,9 +52,27 @@ public class ZamitesBushFeature extends Feature<JohnstoniaConfig>
 		int frondsHeight = rand.nextInt(3) + 1;
 		int frondsDirection = rand.nextInt(4);
 		int x = pos.getX();
+		int y = pos.getY();
 		int z = pos.getZ();
 		for (int i = pos.getY(); i <= pos.getY() + height; i++) {
-			if (isAir(worldgenlevel, new BlockPos(x, i, z))) setBlock(worldgenlevel, new BlockPos(x, i, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+			if (height == 2) {
+				if (isAir(worldgenlevel, new BlockPos(x, y, z))) setBlock(worldgenlevel, new BlockPos(x, y, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+				if (isAir(worldgenlevel, new BlockPos(x, y + 1, z))) setBlock(worldgenlevel, new BlockPos(x, y + 1, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+				if (isAir(worldgenlevel, new BlockPos(x, y + 2, z))) setBlock(worldgenlevel, new BlockPos(x, y + 2, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+			}
+			if (height == 3) {
+				if (isAir(worldgenlevel, new BlockPos(x, y, z))) setBlock(worldgenlevel, new BlockPos(x, y, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+				if (isAir(worldgenlevel, new BlockPos(x, y + 1, z))) setBlock(worldgenlevel, new BlockPos(x, y + 1, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+				if (isAir(worldgenlevel, new BlockPos(x, y + 2, z))) setBlock(worldgenlevel, new BlockPos(x, y + 2, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+				if (isAir(worldgenlevel, new BlockPos(x, y + 3, z))) setBlock(worldgenlevel, new BlockPos(x, y + 3, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+			}
+			if (height == 4) {
+				if (isAir(worldgenlevel, new BlockPos(x, y, z))) setBlock(worldgenlevel, new BlockPos(x, y, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+				if (isAir(worldgenlevel, new BlockPos(x, y + 1, z))) setBlock(worldgenlevel, new BlockPos(x, y + 1, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+				if (isAir(worldgenlevel, new BlockPos(x, y + 2, z))) setBlock(worldgenlevel, new BlockPos(x, y + 2, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+				if (isAir(worldgenlevel, new BlockPos(x, y + 3, z))) setBlock(worldgenlevel, new BlockPos(x, y + 3, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+				if (isAir(worldgenlevel, new BlockPos(x, y + 4, z))) setBlock(worldgenlevel, new BlockPos(x, y + 4, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+			}
 			if (frondsChance == 0) {
 				if (frondsDirection == 0) {
 					if (isAir(worldgenlevel, new BlockPos(x + 1, pos.getY() + frondsHeight, z))) setBlock(worldgenlevel, new BlockPos(x + 1, pos.getY() + frondsHeight, z), PFBlocks.ZAMITES_FROND.get().defaultBlockState().setValue(ZamitesFrondsBlock.FACING, Direction.WEST));
@@ -82,7 +101,7 @@ public class ZamitesBushFeature extends Feature<JohnstoniaConfig>
 					if (isAir(worldgenlevel, new BlockPos(x - 1, pos.getY() + secondFrondsHeight, z - 0))) setBlock(worldgenlevel, new BlockPos(x - 1, pos.getY() + secondFrondsHeight, z - 0), PFBlocks.ZAMITES_FROND.get().defaultBlockState().setValue(ZamitesFrondsBlock.FACING, Direction.EAST));
 				}
 			}
-			if (isAir(worldgenlevel, new BlockPos(x, pos.getY() + height + 1, z))) setBlock(worldgenlevel, new BlockPos(x, pos.getY() + height + 1, z), PFBlocks.ZAMITES_LEAVES.get().defaultBlockState());
+			if (isAir(worldgenlevel, new BlockPos(x, pos.getY() + height + 1, z))) setBlock(worldgenlevel, new BlockPos(x, pos.getY() + height + 1, z), PFBlocks.ZAMITES_LEAVES.get().defaultBlockState().setValue(LeavesBlock.DISTANCE, 1));
 			return true;
 		}
 		return false;

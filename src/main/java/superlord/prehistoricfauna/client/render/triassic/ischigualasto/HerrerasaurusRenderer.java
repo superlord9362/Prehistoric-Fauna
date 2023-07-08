@@ -19,7 +19,7 @@ public class HerrerasaurusRenderer extends MobRenderer<Herrerasaurus, Herrerasau
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/herrerasaurus/melanistic_sleeping.png");
 
 	public HerrerasaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new HerrerasaurusModel(renderManagerIn.bakeLayer(ClientEvents.HERRERASAURUS)), 0.5F);
+		super(renderManagerIn, new HerrerasaurusModel(renderManagerIn.bakeLayer(ClientEvents.HERRERASAURUS)), 0.625F);
 	}
 
 	protected void scale(Herrerasaurus thescelosaurus, PoseStack matrixStackIn, float partialTickTime) {

@@ -1,0 +1,86 @@
+{
+	"type": "prehistoricfauna:triassic",
+	"forge:use_server_seed": true,
+	"generator": {
+		"type": "minecraft:noise",
+		"seed": 9,
+		"settings": "prehistoricfauna:triassic_noise_settings",
+		"biome_source": {
+			"type": "minecraft:multi_noise",
+			"biomes": [
+				{
+					"biome": "prehistoricfauna:chinle_flats",
+					"parameters": {
+						"temperature": 0.9,
+						"humidity": 0.9,
+						"depth": 0,
+						"weirdness": -1.8,
+						"continentalness": -0.2,
+						"erosion": 1.7,
+						"offset": 0
+					}
+				},
+				{
+					"biome": "prehistoricfauna:chinle_swamp",
+					"parameters": {
+						"temperature": 0.9,
+						"humidity": 0.9,
+						"depth": 0,
+						"weirdness": -1.5,
+						"continentalness": -0.5,
+						"erosion": 1.7,
+						"offset": 0
+					}
+				},
+				{
+					"biome": "prehistoricfauna:chinle_wooded_mountains",
+					"parameters": {
+						"temperature": 0.75,
+						"humidity": 0.9,
+						"depth": 0.1,
+						"weirdness": 0.2,
+						"continentalness": 2,
+						"erosion": 0.2,
+						"offset": 0
+					}
+				},
+				{
+					"biome": "prehistoricfauna:ischigualasto_forest",
+					"parameters": {
+						"temperature": 0.75,
+						"humidity": 0.9,
+						"depth": 0.1,
+						"weirdness": 0,
+						"continentalness": 2,
+						"erosion": 0,
+						"offset": 0
+					}
+				},
+				{
+					"biome": "prehistoricfauna:ischigualasto_clearing",
+					"parameters": {
+						"temperature": 0.75,
+						"humidity": 0.9,
+						"depth": 0.1,
+						"weirdness": 0,
+						"continentalness": 2,
+						"erosion": 1,
+						"offset": 0
+					}
+				},
+				{
+					"biome": "prehistoricfauna:ischigualasto_hills",
+					"parameters": {
+						"temperature": 0.75,
+						"humidity": 0.9,
+						"depth": 0.1,
+						"weirdness": 0,
+						"continentalness": 2,
+						"erosion": -0.5,
+						"offset": 0
+					}
+				}
+			]
+		}
+	}
+}

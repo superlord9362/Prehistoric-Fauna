@@ -32,10 +32,10 @@ public abstract class HugeTreeSpawner extends TreeSpawner {
 	}
 	
 	@Nullable
-	protected abstract ConfiguredFeature<PFTreeConfig, ?> getBigTreeFeature(Random random);
+	protected abstract ConfiguredFeature<?, ?> getBigTreeFeature(Random random);
 	
 	public boolean bigTree(WorldGenLevel world, ChunkGenerator chunkGenerator, BlockPos pos, BlockState blockUnder, Random random, int xOffset, int zOffset) {
-		ConfiguredFeature<PFTreeConfig, ?> configuredTreeFeature = this.getBigTreeFeature(random);
+		ConfiguredFeature<?, ?> configuredTreeFeature = this.getBigTreeFeature(random);
 		if (configuredTreeFeature == null) {
 			return false;
 		} else {

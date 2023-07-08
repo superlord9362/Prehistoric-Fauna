@@ -21,7 +21,7 @@ public class PostosuchusRenderer extends MobRenderer<Postosuchus, PostosuchusMod
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/postosuchus/melanistic_sleeping.png");
 
 	public PostosuchusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new PostosuchusModel(renderManagerIn.bakeLayer(ClientEvents.POSTOSUCHUS)), 0.5F);
+		super(renderManagerIn, new PostosuchusModel(renderManagerIn.bakeLayer(ClientEvents.POSTOSUCHUS)), 1F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new PostosuchusEyeLayer(this));
 		}

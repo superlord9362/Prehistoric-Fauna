@@ -21,7 +21,7 @@ public class ScutellosaurusRenderer extends MobRenderer<Scutellosaurus, Scutello
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/scutellosaurus/melanistic_sleeping.png");
 
 	public ScutellosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new ScutellosaurusModel(renderManagerIn.bakeLayer(ClientEvents.SCUTELLOSAURUS)), 1F);
+		super(renderManagerIn, new ScutellosaurusModel(renderManagerIn.bakeLayer(ClientEvents.SCUTELLOSAURUS)), 0.375F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new ScutellosaurusEyeLayer(this));
 		}

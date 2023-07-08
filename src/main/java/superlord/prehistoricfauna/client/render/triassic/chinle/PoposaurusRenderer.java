@@ -21,7 +21,7 @@ public class PoposaurusRenderer extends MobRenderer<Poposaurus, PoposaurusModel>
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/poposaurus/melanistic_sleeping.png");
 
 	public PoposaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new PoposaurusModel(renderManagerIn.bakeLayer(ClientEvents.POPOSAURUS)), 0.5F);
+		super(renderManagerIn, new PoposaurusModel(renderManagerIn.bakeLayer(ClientEvents.POPOSAURUS)), 1F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new PoposaurusEyeLayer(this));
 		}

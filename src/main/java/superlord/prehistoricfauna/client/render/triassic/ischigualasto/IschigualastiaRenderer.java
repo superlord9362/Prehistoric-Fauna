@@ -22,7 +22,7 @@ public class IschigualastiaRenderer extends MobRenderer<Ischigualastia, Ischigua
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/melanistic_sleeping.png");
 
 	public IschigualastiaRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new IschigualastiaModel(renderManagerIn.bakeLayer(ClientEvents.ISCHIGUALASTIA)), 0.5F);
+		super(renderManagerIn, new IschigualastiaModel(renderManagerIn.bakeLayer(ClientEvents.ISCHIGUALASTIA)), 1.25F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new IschigualastiaEyeLayer(this));
 		}

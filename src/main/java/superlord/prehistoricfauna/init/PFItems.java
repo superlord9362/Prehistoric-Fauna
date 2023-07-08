@@ -671,7 +671,9 @@ public class PFItems {
 	public static final RegistryObject<Item> SAUROSUCHUS_SPAWN_EGG = REGISTER.register("saurosuchus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.SAUROSUCHUS, 0x4F2622, 0x8E4F34, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
 	public static final RegistryObject<Item> SILLOSUCHUS_SPAWN_EGG = REGISTER.register("sillosuchus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.SILLOSUCHUS, 0x2F2E27, 0x58301B, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
 	public static final RegistryObject<Item> HENOS_SPAWN_EGG = REGISTER.register("time_guardian_spawn_egg", () -> new PFSpawnEggItem(PFEntities.HENOS, 0x55735F, 0x3B4B45, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
-
+	public static final RegistryObject<Item> CAVE_SENTINEL_SPAWN_EGG = REGISTER.register("trilobite_sentinel_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CAVE_SENTINEL,  0x4C785D, 0x4AEE7D, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> LAND_SENTINEL_SPAWN_EGG = REGISTER.register("land_sentinel_spawn_egg", () -> new PFSpawnEggItem(PFEntities.LAND_SENTINEL,  0x638B6D, 0x31413B, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	
 	private static BannerPattern registerPattern(String name) {
 		return BannerPattern.create(name.toUpperCase(), name, name, true);
 	}

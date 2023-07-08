@@ -21,7 +21,7 @@ public class AllosaurusRenderer extends MobRenderer<Allosaurus, AllosaurusModel>
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/allosaurus/melanistic_sleeping.png");
 
 	public AllosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new AllosaurusModel(renderManagerIn.bakeLayer(ClientEvents.ALLOSAURUS)), 0.5F);
+		super(renderManagerIn, new AllosaurusModel(renderManagerIn.bakeLayer(ClientEvents.ALLOSAURUS)), 1.25F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new AllosaurusEyeLayer(this));
 		}

@@ -62,13 +62,15 @@ public class NeocalamitesBlock extends Block implements IPlantable, LiquidBlockC
 		return false;
 	}
 
-	public VoxelShape getValueShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+	@Override
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		VoxelShape voxelShape = SHAPE_NORMAL;
 		Vec3 vector3d = state.getOffset(world, pos);
 		return voxelShape.move(vector3d.x, vector3d.y, vector3d.z);
 	}
 
-	public VoxelShape getValueCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+	@Override
+	public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		Vec3 vector3d = state.getOffset(world, pos);
 		return SHAPE_COLLISION.move(vector3d.x, vector3d.y, vector3d.z);
 	}

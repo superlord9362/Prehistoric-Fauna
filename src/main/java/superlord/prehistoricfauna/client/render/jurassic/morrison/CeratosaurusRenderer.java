@@ -21,7 +21,7 @@ public class CeratosaurusRenderer extends MobRenderer<Ceratosaurus, Ceratosaurus
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ceratosaurus/melanistic_sleeping.png");
 
 	public CeratosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new CeratosaurusModel(renderManagerIn.bakeLayer(ClientEvents.CERATOSAURUS)), 0.5F);
+		super(renderManagerIn, new CeratosaurusModel(renderManagerIn.bakeLayer(ClientEvents.CERATOSAURUS)), 0.75F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new CeratosaurusEyeLayer(this));
 		}

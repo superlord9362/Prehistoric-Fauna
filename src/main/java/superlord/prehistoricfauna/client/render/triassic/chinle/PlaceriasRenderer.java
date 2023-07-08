@@ -21,7 +21,7 @@ public class PlaceriasRenderer extends MobRenderer<Placerias, PlaceriasModel> {
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/placerias/melanistic_sleeping.png");
 
 	public PlaceriasRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new PlaceriasModel(renderManagerIn.bakeLayer(ClientEvents.PLACERIAS)), 0.5F);
+		super(renderManagerIn, new PlaceriasModel(renderManagerIn.bakeLayer(ClientEvents.PLACERIAS)), 1F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new PlaceriasEyeLayer(this));
 		}

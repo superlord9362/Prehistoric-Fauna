@@ -21,7 +21,7 @@ public class ChromogisaurusRenderer extends MobRenderer<Chromogisaurus, Chromogi
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/chromogisaurus/melanistic_sleeping.png");
 
 	public ChromogisaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new ChromogisaurusModel(renderManagerIn.bakeLayer(ClientEvents.CHROMOGISAURUS)), 0.5F);
+		super(renderManagerIn, new ChromogisaurusModel(renderManagerIn.bakeLayer(ClientEvents.CHROMOGISAURUS)), 0.375F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new ChromogisaurusEyeLayer(this));
 		}

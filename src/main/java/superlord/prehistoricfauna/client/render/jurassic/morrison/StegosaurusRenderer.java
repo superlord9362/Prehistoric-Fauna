@@ -21,7 +21,7 @@ public class StegosaurusRenderer extends MobRenderer<Stegosaurus, StegosaurusMod
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/melanistic_sleeping.png");
 
 	public StegosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new StegosaurusModel(renderManagerIn.bakeLayer(ClientEvents.STEGOSAURUS)), 0.5F);
+		super(renderManagerIn, new StegosaurusModel(renderManagerIn.bakeLayer(ClientEvents.STEGOSAURUS)), 1.25F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new StegosaurusEyeLayer(this));
 		}
