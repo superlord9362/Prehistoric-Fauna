@@ -149,6 +149,7 @@ import superlord.prehistoricfauna.init.PFBlockEntities;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFConfiguredFeatures;
 import superlord.prehistoricfauna.init.PFContainers;
+import superlord.prehistoricfauna.init.PFDimensions;
 import superlord.prehistoricfauna.init.PFEffects;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFFeatures;
@@ -199,6 +200,7 @@ public class PrehistoricFauna {
 		PFPlacedFeatures.REGISTER.register(bus);
 		PFEffects.REGISTER.register(bus);
 		PFBiomes.REGISTER.register(bus);
+		PFDimensions.POI_TYPES.register(bus);
 		modLoadingContext.registerConfig(ModConfig.Type.CLIENT, PFConfigHolder.CLIENT_SPEC);
 		modLoadingContext.registerConfig(ModConfig.Type.COMMON, PFConfigHolder.SERVER_SPEC);
 		CraftingHelper.register(new QuarkFlagRecipeCondition.Serializer());

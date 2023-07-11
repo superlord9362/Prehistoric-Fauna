@@ -34,6 +34,7 @@ import superlord.prehistoricfauna.common.items.PFSpawnEggItem;
 import superlord.prehistoricfauna.common.items.PaleopaintingItem;
 import superlord.prehistoricfauna.common.items.PaleopediaItem;
 import superlord.prehistoricfauna.common.items.SpawnSkeletonItem;
+import superlord.prehistoricfauna.common.items.TriassicTimeTotemItem;
 import superlord.prehistoricfauna.common.items.WallFossilItem;
 
 public class PFItems {
@@ -501,7 +502,7 @@ public class PFItems {
 	public static final RegistryObject<Item> PLANT_FIBER = REGISTER.register("plant_fiber", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
 	public static final RegistryObject<Item> MOSS_BALL = REGISTER.register("moss_ball", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
 	
-	public static final RegistryObject<Item> TRIASSIC_TIME_TOTEM = REGISTER.register("triassic_time_totem", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC).durability(8).rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<Item> TRIASSIC_TIME_TOTEM = REGISTER.register("triassic_time_totem", () -> new TriassicTimeTotemItem(new Item.Properties().tab(PrehistoricFauna.PF_MISC).durability(8).rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> JURASIC_TIME_TOTEM = REGISTER.register("jurassic_time_totem", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC).durability(8).rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> CRETACEOUS_TIME_TOTEM = REGISTER.register("cretaceous_time_totem", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC).durability(8).rarity(Rarity.UNCOMMON)));
 	

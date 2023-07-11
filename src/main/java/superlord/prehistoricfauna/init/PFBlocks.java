@@ -70,6 +70,8 @@ import superlord.prehistoricfauna.common.blocks.SmallCarvedTuberBlock;
 import superlord.prehistoricfauna.common.blocks.SmallTuberBlock;
 import superlord.prehistoricfauna.common.blocks.TallHorsetailBlock;
 import superlord.prehistoricfauna.common.blocks.TrapBlock;
+import superlord.prehistoricfauna.common.blocks.TriassicPortalBlock;
+import superlord.prehistoricfauna.common.blocks.TriassicTimeBlock;
 import superlord.prehistoricfauna.common.blocks.TuberBlock;
 import superlord.prehistoricfauna.common.blocks.TuberCropBlock;
 import superlord.prehistoricfauna.common.blocks.ZamitesFrondsBlock;
@@ -540,6 +542,9 @@ public class PFBlocks {
 	public static final RegistryObject<Block> NEOCALAMITES_MOSAIC = REGISTER.register("neocalamites_mosaic", () -> new Block(Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.BAMBOO)));
 	public static final RegistryObject<Block> NEOCALAMITES_MOSAIC_STAIRS = REGISTER.register("neocalamites_mosaic_stairs", () -> new StairBlock(NEOCALAMITES_MOSAIC.get().defaultBlockState(), Properties.copy(NEOCALAMITES_MOSAIC.get())));
 	public static final RegistryObject<Block> NEOCALAMITES_MOSAIC_SLAB = REGISTER.register("neocalamites_mosaic_slab", () -> new SlabBlock(Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.BAMBOO)));
+
+	public static final RegistryObject<TriassicPortalBlock> TRIASSIC_PORTAL = REGISTER.register("triassic_portal", () -> new TriassicPortalBlock(Block.Properties.of(Material.PORTAL).noCollission().randomTicks().strength(-1.0F).sound(SoundType.GLASS).noDrops()));
+	public static final RegistryObject<Block> TRIASSIC_TIME_BLOCK = REGISTER.register("triassic_time_block", () -> new TriassicTimeBlock());
 
 	public static final RegistryObject<Block> METASEQUOIA_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "metasequoia_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(METASEQUOIA_SLAB.get())), PrehistoricFauna.PF_BUILDING);
 	public static final RegistryObject<Block> ARAUCARIA_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "araucaria_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(ARAUCARIA_SLAB.get())), PrehistoricFauna.PF_BUILDING);
