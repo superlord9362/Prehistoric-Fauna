@@ -1,0 +1,12 @@
+{
+	"required": true,
+	"minVersion": "0.8",
+	"package": "superlord.prehistoricfauna.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"refmap": "prehistoricfauna.refmap.json",
+	"mixins": [
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
