@@ -10,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -23,6 +24,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -86,6 +88,7 @@ import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
+import superlord.prehistoricfauna.init.PFTags;
 
 public class Telmasaurus extends DinosaurEntity {
 
@@ -187,21 +190,21 @@ public class Telmasaurus extends DinosaurEntity {
 			timer++;
 			if (timer == 600) {
 				if (PrehistoricFaunaConfig.advancedHunger) {
-					if (stack.getItem() == PFBlocks.TELMASAURUS_EGG.get().asItem() || stack.getItem() == PFBlocks.CITIPATI_EGG.get().asItem() || stack.getItem() == PFBlocks.VELOCIRAPTOR_EGG.get().asItem() || stack.getItem() == PFBlocks.EXAERETODON_EGG.get().asItem() || stack.getItem() == PFBlocks.CHROMOGISAURUS_EGG.get().asItem() || stack.getItem() == PFBlocks.HYPERODAPEDON_EGG.get().asItem() || stack.getItem() == PFBlocks.HESPERORNITHOIDES_EGG.get().asItem() || stack.getItem() == PFBlocks.EILENODON_EGG.get().asItem() || stack.getItem() == PFBlocks.DRYOSAURUS_EGG.get().asItem() || stack.getItem() == PFBlocks.BASILEMYS_EGG.get().asItem() || stack.getItem() == PFBlocks.THESCELOSAURUS_EGG.get().asItem()) {
+					if (stack.is(PFTags.EGGS_5_HUNGER)) {
 						if (this.getCurrentHunger() + 5 >= this.maxHunger) {
 							this.setHunger(this.maxHunger);
 						} else {
 							this.setHunger(currentHunger + 5);
 						}
 					}
-					if (stack.getItem() == PFBlocks.HERRERASAURUS_EGG.get().asItem() || stack.getItem() == PFBlocks.PLESIOHADROS_EGG.get().asItem() || stack.getItem() == PFBlocks.AEPYORNITHOMIMUS_EGG.get().asItem() || stack.getItem() == PFBlocks.PROTOCERATOPS_EGG.get().asItem() || stack.getItem() == PFBlocks.SILLOSUCHUS_EGG.get().asItem() || stack.getItem() == PFBlocks.CERATOSAURUS_EGG.get().asItem() || stack.getItem() == PFBlocks.ALLOSAURUS_EGG.get().asItem() || stack.getItem() == PFBlocks.DAKOTARAPTOR_EGG.get().asItem()) {
+					if (stack.is(PFTags.EGGS_10_HUNGER)) {
 						if (this.getCurrentHunger() + 10 >= this.maxHunger) {
 							this.setHunger(this.maxHunger);
 						} else {
 							this.setHunger(currentHunger + 10);
 						}
 					}
-					if (stack.getItem() == PFBlocks.PINACOSAURUS_EGG.get().asItem() || stack.getItem() == PFBlocks.ISCHIGUALASTIA_EGG.get().asItem() || stack.getItem() == PFBlocks.SAUROSUCHUS_EGG.get().asItem() || stack.getItem() == PFBlocks.STEGOSAURUS_EGG.get().asItem() || stack.getItem() == PFBlocks.CAMARASAURUS_EGG.get().asItem() || stack.getItem() == PFBlocks.TYRANNOSAURUS_EGG.get().asItem() || stack.getItem() == PFBlocks.ANKYLOSAURUS_EGG.get().asItem() || stack.getItem() == PFBlocks.TRICERATOPS_EGG.get().asItem()) {
+					if (stack.is(PFTags.EGGS_15_HUNGER)) {
 						if (this.getCurrentHunger() + 15 >= this.maxHunger) {
 							this.setHunger(this.maxHunger);
 						} else {
@@ -276,6 +279,46 @@ public class Telmasaurus extends DinosaurEntity {
 				lastInLove--;
 			}
 		}
+	}
+	
+	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
+		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
+		if (PrehistoricFaunaConfig.advancedHunger) {
+			int hunger = this.getCurrentHunger();
+			if (hunger < this.maxHunger) {
+				if (this.isFood(itemstack) && (!this.isInLove() || !this.isInLoveNaturally())) {
+					this.setInLove(p_230254_1_);
+					itemstack.shrink(1);
+				} else {
+					if (itemstack.is(PFTags.EGGS_5_HUNGER)) {
+						if (this.getCurrentHunger() + 5 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(currentHunger + 5);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.EGGS_10_HUNGER)) {
+						if (this.getCurrentHunger() + 10 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(currentHunger + 10);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.EGGS_15_HUNGER)) {
+						if (this.getCurrentHunger() + 15 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(currentHunger + 15);
+						}
+						itemstack.shrink(1);
+					}
+				}
+			}
+			else p_230254_1_.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.fullHunger"), true);
+		}
+		return super.mobInteract(p_230254_1_, p_230254_2_);
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })

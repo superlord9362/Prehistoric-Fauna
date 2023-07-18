@@ -12,6 +12,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -195,7 +196,25 @@ public class Didelphodon extends DinosaurEntity {
 				}
 				return InteractionResult.SUCCESS;
 			}
-
+			if (PrehistoricFaunaConfig.advancedHunger) {
+				int hunger = this.getCurrentHunger();
+				if (hunger < this.maxHunger) {
+					if (this.isFood(itemstack) && (!this.isInLove() || !this.isInLoveNaturally())) {
+						this.setInLove(p_230254_1_);
+						itemstack.shrink(1);
+					} else {
+						if (itemstack.is(PFTags.SHELLFISH_3_HUNGER)) {
+							if (hunger + 3 >= this.maxHunger) {
+								this.setHunger(this.maxHunger);
+							} else {
+								this.setHunger(hunger + 3);
+							}
+							itemstack.shrink(1);
+						}	
+					}
+				}
+				else p_230254_1_.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.fullHunger"), true);
+			}
 			return super.mobInteract(p_230254_1_, p_230254_2_);
 		}
 
@@ -313,7 +332,7 @@ public class Didelphodon extends DinosaurEntity {
 	}
 
 	public boolean canEatItem(ItemStack stack) {
-		return stack.getItem() == PFItems.CRASSOSTREA_OYSTER.get();
+		return stack.is(PFTags.SHELLFISH_3_HUNGER);
 	}
 
 	public boolean canEquipItem(ItemStack stack) {

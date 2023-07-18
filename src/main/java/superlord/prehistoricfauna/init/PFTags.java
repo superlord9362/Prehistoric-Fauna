@@ -54,9 +54,10 @@ public class PFTags {
 	public static final TagKey<Item> MEATS_12_HUNGER = registerItemTag("twelve_hunger_meats");
 	public static final TagKey<Item> FISH_2_HUNGER = registerItemTag("two_hunger_fish");
 	public static final TagKey<Item> FISH_4_HUNGER = registerItemTag("four_hunger_fish");
-	public static final TagKey<Item> EGGS_2_HUNGER = registerItemTag("two_hunger_eggs");
-	public static final TagKey<Item> EGGS_4_HUNGER = registerItemTag("four_hunger_eggs");
-	public static final TagKey<Item> EGGS_6_HUNGER = registerItemTag("six_hunger_eggs");
+	public static final TagKey<Item> EGGS_5_HUNGER = registerItemTag("five_hunger_eggs");
+	public static final TagKey<Item> EGGS_10_HUNGER = registerItemTag("ten_hunger_eggs");
+	public static final TagKey<Item> EGGS_15_HUNGER = registerItemTag("fifteen_hunger_eggs");
+	public static final TagKey<Item> SHELLFISH_3_HUNGER = registerItemTag("three_hunger_shellfish");
 
 	private static TagKey<Item> registerItemTag(String name) {
 		return TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation(PrehistoricFauna.MOD_ID, name));
