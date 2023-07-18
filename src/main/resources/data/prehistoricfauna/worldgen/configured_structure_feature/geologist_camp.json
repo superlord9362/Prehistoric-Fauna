@@ -5,7 +5,7 @@
     	"size": 1
 	},
 	"biomes": "#prehistoricfauna:has_structure/geologist_camp",
-	"adapt_noise": false,
+	"adapt_noise": true,
 	"spawn_overrides": {
 		"ambient": {
       "bounding_box": "piece",

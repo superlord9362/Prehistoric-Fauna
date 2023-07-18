@@ -1,0 +1,11 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:didelphodon",
+		"prehistoricfauna:eilenodon",
+		"prehistoricfauna:hyperodapedon",
+		"minecraft:chicken",
+		"prehistoricfauna:hesperornithoides",
+		"prehistorifauna:scutellosaurus"
+	]
+}

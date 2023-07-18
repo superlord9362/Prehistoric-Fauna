@@ -46,6 +46,7 @@ public class DiurnalSleepingGoal extends Goal {
 		super.tick();
 		Level level = entity.level;
 		if (level.getDayTime() % 24000 >= 0 && level.getDayTime() % 24000 < 12000 || entity.getTarget() != null || entity.isTame() || entity.isInWater() || entity.isInLava() || entity.getLastHurtByMob() != null) {
+			entity.setAsleep(false);
 			stop();
 		}
 	}

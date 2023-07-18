@@ -1,0 +1,10 @@
+{
+	"replace": false,
+	"values": [
+		"minecraft:grass",
+		"minecraft:tall_grass",
+		"#minecraft:flowers",
+		"prehistoricfauna:moss_carpet",
+		"minecraft:bamboo"
+	]
+}

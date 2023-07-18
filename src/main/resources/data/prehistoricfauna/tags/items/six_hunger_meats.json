@@ -1,0 +1,9 @@
+{
+	"replace": false,
+	"values": [
+		"minecraft:rabbit",
+		"minecraft:porkchop",
+		"minecraft:beef",
+		"prehistoricfauna:raw_large_synapsid_meat"
+	]
+}

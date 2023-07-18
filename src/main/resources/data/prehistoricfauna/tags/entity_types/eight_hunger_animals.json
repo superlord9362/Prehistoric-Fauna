@@ -1,0 +1,10 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:basilemys",
+		"prehistoricfauna:exaeretodon",
+		"prehistoricfauna:velociraptor",
+		"minecraft:wolf",
+		"minecraft:sheep"
+	]
+}

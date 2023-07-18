@@ -1470,5 +1470,6 @@
 	"entity.prehistoricfauna.velociraptor.following": "Following",
 	"entity.prehistoricfauna.skeleton.neutral": "Neutral",
 	"entity.prehistoricfauna.skeleton.rotating": "Rotating",
-	"entity.prehistoricfauna.skeleton.pushable": "Pushable"
+	"entity.prehistoricfauna.skeleton.pushable": "Pushable",
+	"entity.prehistoricfauna.fullHunger": "This animal's hunger is full!"
 }

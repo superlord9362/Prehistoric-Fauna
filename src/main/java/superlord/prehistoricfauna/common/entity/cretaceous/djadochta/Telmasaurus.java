@@ -634,7 +634,7 @@ public class Telmasaurus extends DinosaurEntity {
 		/**
 		 * Spawns a baby animal of the same type.
 		 */
-		protected void spawnBaby() {
+		protected void breed() {
 			ServerPlayer serverplayerentity = this.animal.getLoveCause();
 			if (serverplayerentity == null && this.partner.getLoveCause() != null) {
 				serverplayerentity = this.partner.getLoveCause();
@@ -668,7 +668,7 @@ public class Telmasaurus extends DinosaurEntity {
 			return super.canUse() && !this.telmasaurus.hasEgg() && this.telmasaurus.getCurrentHunger() >= this.telmasaurus.getThreeQuartersHunger() && this.telmasaurus.tickCount % 60 == 0 && (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && this.telmasaurus.isInLoveNaturally();
 		}
 
-		protected void spawnBaby() {
+		protected void breed() {
 			if (PrehistoricFaunaConfig.naturalEggItemLaying) {
 				this.telmasaurus.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.telmasaurus.random.nextFloat() - this.telmasaurus.random.nextFloat()) * 0.2F + 1.0F);
 				int eggAmount = this.telmasaurus.random.nextInt(4);

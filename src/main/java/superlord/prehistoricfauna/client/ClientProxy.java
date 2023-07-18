@@ -56,8 +56,10 @@ public class ClientProxy extends CommonProxy {
 		}, PFBlocks.ARAUCARIA_LEAVES.get(), PFBlocks.METASEQUOIA_LEAVES.get(), PFBlocks.CONIOPTERIS.get(), PFBlocks.PROTOPICEOXYLON_LEAVES.get(), PFBlocks.PROTOJUNIPEROXYLON_LEAVES.get(), PFBlocks.CLADOPHLEBIS.get(), PFBlocks.AGATHOXYLON_LEAVES.get(), PFBlocks.CLADOPHLEBIS.get());
 
 		RenderType cutoutRenderType = RenderType.cutout();
+		RenderType translucentRenderType = RenderType.translucent();
 		
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.HORSETAIL.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.COBBANIA.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TALL_HORSETAIL.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.OSMUNDA.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TALL_OSMUNDA.get(), cutoutRenderType);
@@ -157,6 +159,8 @@ public class ClientProxy extends CommonProxy {
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.SMALL_CARVED_TUBER_TIME_LIT.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.NEOCALAMITES_DOOR.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.NEOCALAMITES_TRAPDOOR.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TRIASSIC_PORTAL.get(), translucentRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TRIASSIC_TIME_BLOCK.get(), translucentRenderType);
 	}
 	
 	@Override

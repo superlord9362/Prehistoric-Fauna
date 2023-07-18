@@ -1,0 +1,16 @@
+{
+	"replace": false,
+	"values": [
+		"minecraft:cat",
+		"prehistoricfauna:trilophosaurus",
+		"prehistoricfauna:typothorax",
+		"minecraft:fox",
+		"minecraft:cow",
+		"minecraft:mooshroom",
+		"minecraft:pig",
+		"minecraft:ocelot",
+		"prehistoricfauna:aepyornithomimus",
+		"prehistoricfauna:protoceratops",
+		"prehistoricfauna:coelophysis"
+	]
+}

@@ -95,6 +95,7 @@ import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
+import superlord.prehistoricfauna.init.PFTags;
 
 public class Didelphodon extends DinosaurEntity {
 
@@ -504,7 +505,7 @@ public class Didelphodon extends DinosaurEntity {
 			return super.canUse() && !this.didelphodon.isPregnant() && !this.didelphodon.isInLoveNaturally();
 		}
 
-		protected void spawnBaby() {
+		protected void breed() {
 			ServerPlayer serverplayerentity = this.animal.getLoveCause();
 			if (serverplayerentity == null && this.partner.getLoveCause() != null) {
 				serverplayerentity = this.partner.getLoveCause();
@@ -535,7 +536,7 @@ public class Didelphodon extends DinosaurEntity {
 			return super.canUse() && !this.didelphodon.isPregnant() && this.didelphodon.getCurrentHunger() >= this.didelphodon.getThreeQuartersHunger() && this.didelphodon.tickCount % 60 == 0 && (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && this.didelphodon.isInLoveNaturally();
 		}
 
-		protected void spawnBaby() {
+		protected void breed() {
 			this.didelphodon.setPregnant(true);
 			this.animal.resetLove();
 			this.partner.resetLove();
@@ -727,14 +728,16 @@ public class Didelphodon extends DinosaurEntity {
 	@SuppressWarnings("rawtypes")
 	public class CarnivoreHuntGoal extends NearestAttackableTargetGoal {
 		double huntSpeed;
+		Predicate<LivingEntity> targetPredicate;
 		@SuppressWarnings("unchecked")
 		public CarnivoreHuntGoal(Mob goalOwnerIn, Class targetClassIn, int targetChanceIn, boolean checkSight, boolean nearbyOnly, double huntSpeed, @Nullable Predicate<LivingEntity> targetPredicate) {
 			super(goalOwnerIn, targetClassIn, targetChanceIn, checkSight, nearbyOnly, targetPredicate);
 			this.huntSpeed = huntSpeed;
+			this.targetPredicate = targetPredicate;
 		}
 
 		public boolean canUse() {
-			return super.canUse() && Didelphodon.this.getCurrentHunger() <= Didelphodon.this.getHalfHunger() && PrehistoricFaunaConfig.advancedHunger == true;
+			return super.canUse() && Didelphodon.this.getCurrentHunger() <= Didelphodon.this.getHalfHunger() && PrehistoricFaunaConfig.advancedHunger == true && !targetPredicate.test(Didelphodon.this);
 		}
 
 		public boolean canContinueToUse() {
@@ -744,7 +747,7 @@ public class Didelphodon extends DinosaurEntity {
 		public void tick() {
 			Didelphodon.this.getNavigation().setSpeedModifier(huntSpeed);
 			LivingEntity target = Didelphodon.this.getTarget();
-			if (target instanceof Rabbit) {
+			if (target.getType().is(PFTags.ANIMALS_3_HUNGER)) {
 				if (target.getHealth() == 0) {
 					if (Didelphodon.this.getCurrentHunger() + 3 >= Didelphodon.this.maxHunger) {
 						Didelphodon.this.setHunger(Didelphodon.this.maxHunger);
@@ -753,7 +756,7 @@ public class Didelphodon extends DinosaurEntity {
 					}
 				}
 			}
-			if (target instanceof Eilenodon || target instanceof Hesperornithoides || target instanceof Hyperodapedon || target instanceof Chicken || target instanceof Scutellosaurus) {
+			if (target.getType().is(PFTags.ANIMALS_4_HUNGER)) {
 				if (target.getHealth() == 0) {
 					if (Didelphodon.this.getCurrentHunger() + 4 >= Didelphodon.this.maxHunger) {
 						Didelphodon.this.setHunger(Didelphodon.this.maxHunger);
@@ -762,7 +765,7 @@ public class Didelphodon extends DinosaurEntity {
 					}
 				}
 			}
-			if (target instanceof Telmasaurus) {
+			if (target.getType().is(PFTags.ANIMALS_6_HUNGER)) {
 				if (target.getHealth() == 0) {
 					if (Didelphodon.this.getCurrentHunger() + 6 >= Didelphodon.this.maxHunger) {
 						Didelphodon.this.setHunger(Didelphodon.this.maxHunger);

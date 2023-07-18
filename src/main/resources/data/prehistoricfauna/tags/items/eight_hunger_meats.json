@@ -1,0 +1,9 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:raw_large_thyreophoran_meat",
+		"prehistoricfauna:raw_large_ornithischian_meat",
+		"prehistoricfauna:raw_large_theropod_meat",
+		"prehistoricfauna:raw_large_archosauromorph_meat"
+	]
+}

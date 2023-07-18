@@ -10,6 +10,7 @@ import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -72,6 +73,7 @@ import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
+import superlord.prehistoricfauna.init.PFTags;
 
 public class Triceratops extends AbstractChestedHorse  {
 	private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.BOOLEAN);
@@ -402,8 +404,97 @@ public class Triceratops extends AbstractChestedHorse  {
 				return InteractionResult.sidedSuccess(this.level.isClientSide);
 			}
 		}
-
-
+		if (PrehistoricFaunaConfig.advancedHunger) {
+			int hunger = this.getCurrentHunger();
+			if (hunger < this.maxHunger) {
+				if (this.isFood(itemstack) && (!this.isInLove() || !this.isLoveNaturally())) {
+					this.setInLove(p_230254_1_);
+					itemstack.shrink(1);
+				} else {
+					if (itemstack.is(PFTags.PLANTS_2_HUNGER_ITEM)) {
+						if (hunger + 2 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 2);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.PLANTS_4_HUNGER_ITEM)) {
+						if (hunger + 4 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 4);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.PLANTS_6_HUNGER_ITEM)) {
+						if (hunger + 6 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 6);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.PLANTS_8_HUNGER_ITEM)) {
+						if (hunger + 8 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 8);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.PLANTS_10_HUNGER_ITEM)) {
+						if (hunger + 10 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 10);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.PLANTS_12_HUNGER_ITEM)) {
+						if (hunger + 12 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 12);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.PLANTS_15_HUNGER_ITEM)) {
+						if (hunger + 15 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 15);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.PLANTS_20_HUNGER_ITEM)) {
+						if (hunger + 20 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 20);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.PLANTS_25_HUNGER_ITEM)) {
+						if (hunger + 25 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 25);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.PLANTS_30_HUNGER_ITEM)) {
+						if (hunger + 30 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 30);
+						}
+						itemstack.shrink(1);
+					}
+				}
+			}
+			else p_230254_1_.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.fullHunger"), true);
+		}
 		if (this.isBaby()) {
 			if (item == PFItems.TRICERATOPS_SPAWN_EGG.get()) {
 				Triceratops triceratopsentity = PFEntities.TRICERATOPS.get().create(world);
@@ -563,60 +654,60 @@ public class Triceratops extends AbstractChestedHorse  {
 
 	public void travel(Vec3 p_30633_) {
 		if (this.isAlive()) {
-	         if (this.isVehicle() && this.canBeControlledByRider() && this.isSaddled()) {
-	            LivingEntity livingentity = (LivingEntity)this.getControllingPassenger();
-	            this.setYRot(livingentity.getYRot());
-	            this.yRotO = this.getYRot();
-	            this.setXRot(livingentity.getXRot() * 0.5F);
-	            this.setRot(this.getYRot(), this.getXRot());
-	            this.yBodyRot = this.getYRot();
-	            this.yHeadRot = this.yBodyRot;
-	            float f = livingentity.xxa * 0.5F;
-	            float f1 = livingentity.zza;
-	            if (f1 <= 0.0F) {
-	               f1 *= 0.25F;
-	               this.gallopSoundCounter = 0;
-	            }
+			if (this.isVehicle() && this.canBeControlledByRider() && this.isSaddled()) {
+				LivingEntity livingentity = (LivingEntity)this.getControllingPassenger();
+				this.setYRot(livingentity.getYRot());
+				this.yRotO = this.getYRot();
+				this.setXRot(livingentity.getXRot() * 0.5F);
+				this.setRot(this.getYRot(), this.getXRot());
+				this.yBodyRot = this.getYRot();
+				this.yHeadRot = this.yBodyRot;
+				float f = livingentity.xxa * 0.5F;
+				float f1 = livingentity.zza;
+				if (f1 <= 0.0F) {
+					f1 *= 0.25F;
+					this.gallopSoundCounter = 0;
+				}
 
-	            if (this.onGround && this.playerJumpPendingScale == 0.0F && this.isStanding() && !this.allowStandSliding) {
-	               f = 0.0F;
-	               f1 = 0.0F;
-	            }
+				if (this.onGround && this.playerJumpPendingScale == 0.0F && this.isStanding() && !this.allowStandSliding) {
+					f = 0.0F;
+					f1 = 0.0F;
+				}
 
-	            if (this.playerJumpPendingScale > 0.0F && !this.isJumping() && this.onGround) {
-	               double d1 = 0;
-	               Vec3 vec3 = this.getDeltaMovement();
-	               this.setDeltaMovement(vec3.x, d1, vec3.z);
-	               this.hasImpulse = true;
-	               if (f1 > 0.0F) {
-	                  float f2 = Mth.sin(this.getYRot() * ((float)Math.PI / 180F));
-	                  float f3 = Mth.cos(this.getYRot() * ((float)Math.PI / 180F));
-	                  this.setDeltaMovement(this.getDeltaMovement().add((double)(-0.4F * f2 * this.playerJumpPendingScale), 0.0D, (double)(0.4F * f3 * this.playerJumpPendingScale)));
-	               }
+				if (this.playerJumpPendingScale > 0.0F && !this.isJumping() && this.onGround) {
+					double d1 = 0;
+					Vec3 vec3 = this.getDeltaMovement();
+					this.setDeltaMovement(vec3.x, d1, vec3.z);
+					this.hasImpulse = true;
+					if (f1 > 0.0F) {
+						float f2 = Mth.sin(this.getYRot() * ((float)Math.PI / 180F));
+						float f3 = Mth.cos(this.getYRot() * ((float)Math.PI / 180F));
+						this.setDeltaMovement(this.getDeltaMovement().add((double)(-0.4F * f2 * this.playerJumpPendingScale), 0.0D, (double)(0.4F * f3 * this.playerJumpPendingScale)));
+					}
 
-	               this.playerJumpPendingScale = 0.0F;
-	            }
+					this.playerJumpPendingScale = 0.0F;
+				}
 
-	            this.flyingSpeed = this.getSpeed() * 0.1F;
-	            if (this.isControlledByLocalInstance()) {
-	               this.setSpeed((float)this.getAttributeValue(Attributes.MOVEMENT_SPEED));
-	               super.travel(new Vec3((double)f, p_30633_.y, (double)f1));
-	            } else if (livingentity instanceof Player) {
-	               this.setDeltaMovement(Vec3.ZERO);
-	            }
+				this.flyingSpeed = this.getSpeed() * 0.1F;
+				if (this.isControlledByLocalInstance()) {
+					this.setSpeed((float)this.getAttributeValue(Attributes.MOVEMENT_SPEED));
+					super.travel(new Vec3((double)f, p_30633_.y, (double)f1));
+				} else if (livingentity instanceof Player) {
+					this.setDeltaMovement(Vec3.ZERO);
+				}
 
-	            if (this.onGround) {
-	               this.playerJumpPendingScale = 0.0F;
-	               this.setIsJumping(false);
-	            }
+				if (this.onGround) {
+					this.playerJumpPendingScale = 0.0F;
+					this.setIsJumping(false);
+				}
 
-	            this.calculateEntityAnimation(this, false);
-	            this.tryCheckInsideBlocks();
-	         } else {
-	            this.flyingSpeed = 0.02F;
-	            super.travel(p_30633_);
-	         }
-	      }
+				this.calculateEntityAnimation(this, false);
+				this.tryCheckInsideBlocks();
+			} else {
+				this.flyingSpeed = 0.02F;
+				super.travel(p_30633_);
+			}
+		}
 	}
 
 	@Override
@@ -805,7 +896,7 @@ public class Triceratops extends AbstractChestedHorse  {
 	static class MateGoal extends BreedGoal {
 		private final Triceratops triceratops;
 		private static final TargetingConditions PARTNER_TARGETING = TargetingConditions.forNonCombat().range(8.0D).ignoreLineOfSight();
-		private int spawnBabyDelay;
+		private int breedDelay;
 		private final double moveSpeed;
 
 		MateGoal(Triceratops triceratops, double speed) {
@@ -836,20 +927,20 @@ public class Triceratops extends AbstractChestedHorse  {
 
 		public void stop() {
 			this.partner = null;
-			this.spawnBabyDelay = 0;
+			this.breedDelay = 0;
 		}
 
 		public void tick() {
 			super.tick();
 			this.animal.getLookControl().setLookAt(this.partner, 10.0F, (float)this.animal.getMaxHeadXRot());
 			this.animal.getNavigation().moveTo(this.partner, this.moveSpeed);
-			++this.spawnBabyDelay;
-			if (this.spawnBabyDelay >= 60 && this.animal.distanceToSqr(this.partner) < 20.0D) {
-				this.spawnBaby();
+			++this.breedDelay;
+			if (this.breedDelay >= 60 && this.animal.distanceToSqr(this.partner) < 20.0D) {
+				this.breed();
 			}
 		}
 
-		protected void spawnBaby() {
+		protected void breed() {
 			ServerPlayer serverPlayer = this.animal.getLoveCause();
 			if (serverPlayer == null && this.partner.getLoveCause() != null) {
 				serverPlayer = this.partner.getLoveCause();
@@ -880,7 +971,7 @@ public class Triceratops extends AbstractChestedHorse  {
 			return super.canUse() && !this.triceratops.hasEgg() && this.triceratops.getCurrentHunger() >= this.triceratops.getThreeQuartersHunger() && this.triceratops.tickCount % 60 == 0 && (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && this.triceratops.isLoveNaturally();
 		}
 
-		protected void spawnBaby() {
+		protected void breed() {
 			if (PrehistoricFaunaConfig.naturalEggItemLaying) {
 				this.triceratops.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.triceratops.random.nextFloat() - this.triceratops.random.nextFloat()) * 0.2F + 1.0F);
 				int eggAmount = this.triceratops.random.nextInt(4);
@@ -1099,7 +1190,7 @@ public class Triceratops extends AbstractChestedHorse  {
 		 */
 		protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 			BlockState blockstate = worldIn.getBlockState(pos);
-			return blockstate.is(PFBlocks.HORSETAIL.get()) || blockstate.is(PFBlocks.TALL_HORSETAIL.get()) || blockstate.is(PFBlocks.OSMUNDA.get()) || blockstate.is(PFBlocks.TALL_OSMUNDA.get()) || blockstate.is(PFBlocks.CLUBMOSS.get()) || blockstate.is(PFBlocks.MARCHANTIA.get()) || blockstate.is(PFBlocks.CONIOPTERIS.get()) || blockstate.is(PFBlocks.OSMUNDACAULIS.get()) || blockstate.is(PFBlocks.TALL_OSMUNDACAULIS.get()) || blockstate.is(PFBlocks.DICROIDIUM.get()) || blockstate.is(PFBlocks.JOHNSTONIA.get()) || blockstate.is(PFBlocks.CLADOPHLEBIS.get()) || blockstate.is(PFBlocks.SCYTOPHYLLUM.get()) || blockstate.is(PFBlocks.MICHELILLOA.get()) || blockstate.is(PFBlocks.DEAD_OSMUNDACAULIS.get()) || blockstate.is(PFBlocks.COBBANIA.get()) || blockstate.is(PFBlocks.OTOZAMITES.get()) || blockstate.is(PFBlocks.TALL_OTOZAMITES.get()) || blockstate.is(PFBlocks.LAUROZAMITES.get()) || blockstate.is(Blocks.GRASS) || blockstate.is(Blocks.VINE) || blockstate.is(BlockTags.FLOWERS) || blockstate.is(Blocks.TALL_GRASS) || blockstate.is(Blocks.FERN) || blockstate.is(Blocks.LARGE_FERN);
+			return blockstate.is(PFTags.PLANTS_2_HUNGER) || blockstate.is(PFTags.PLANTS_4_HUNGER) || blockstate.is(PFTags.PLANTS_6_HUNGER) || blockstate.is(PFTags.PLANTS_8_HUNGER) || blockstate.is(PFTags.PLANTS_10_HUNGER) || blockstate.is(PFTags.PLANTS_12_HUNGER) || blockstate.is(PFTags.PLANTS_15_HUNGER) || blockstate.is(PFTags.PLANTS_20_HUNGER) || blockstate.is(PFTags.PLANTS_25_HUNGER) || blockstate.is(PFTags.PLANTS_30_HUNGER);
 		}
 
 		/**
@@ -1111,11 +1202,14 @@ public class Triceratops extends AbstractChestedHorse  {
 					this.eatBerry();
 				} else {
 					++this.field_220731_g;
-					Triceratops.this.setTriceratopsEating(true);
+					Triceratops.this.setEating(true);
 				}
 				if (this.field_220731_g % 5 == 1) {
 					Triceratops.this.level.playSound((Player)null, this.blockPos, SoundEvents.GRASS_HIT, SoundSource.NEUTRAL, 1, 1);
 				}
+			}
+			if (Triceratops.this.getCurrentHunger() >= 13) {
+				Triceratops.this.setEating(false);
 			}
 			super.tick();
 		}
@@ -1123,104 +1217,104 @@ public class Triceratops extends AbstractChestedHorse  {
 		protected void eatBerry() {
 			BlockState blockstate = Triceratops.this.level.getBlockState(this.blockPos);
 
-			if (blockstate.is(PFBlocks.DEAD_OSMUNDACAULIS.get())) {
+			if (blockstate.is(PFTags.PLANTS_2_HUNGER)) {
 				int hunger = Triceratops.this.getCurrentHunger();
 				if (hunger + 2 >= Triceratops.this.maxHunger) {
 					Triceratops.this.setHunger(Triceratops.this.maxHunger);
-					Triceratops.this.setTriceratopsEating(false);
+					Triceratops.this.setEating(false);
 				} else {
 					Triceratops.this.setHunger(hunger + 2);
-					Triceratops.this.setTriceratopsEating(false);
+					Triceratops.this.setEating(false);
 				}
 			}
-			if (blockstate.is(Blocks.GRASS) || blockstate.is(Blocks.TALL_GRASS) || blockstate.is(BlockTags.FLOWERS)) {
+			if (blockstate.is(PFTags.PLANTS_4_HUNGER)) {
 				int hunger = Triceratops.this.getCurrentHunger();
 				if (hunger + 4 >= Triceratops.this.maxHunger) {
 					Triceratops.this.setHunger(Triceratops.this.maxHunger);
-					Triceratops.this.setTriceratopsEating(false);
+					Triceratops.this.setEating(false);
 				} else {
 					Triceratops.this.setHunger(hunger + 4);
-					Triceratops.this.setTriceratopsEating(false);
+					Triceratops.this.setEating(false);
 				}
 			}
-			if (blockstate.is(Blocks.VINE)) {
+			if (blockstate.is(PFTags.PLANTS_6_HUNGER)) {
 				int hunger = Triceratops.this.getCurrentHunger();
 				if (hunger + 6 >= Triceratops.this.maxHunger) {
 					Triceratops.this.setHunger(Triceratops.this.maxHunger);
-					Triceratops.this.setTriceratopsEating(false);
+					Triceratops.this.setEating(false);
 				} else {
 					Triceratops.this.setHunger(hunger + 6);
-					Triceratops.this.setTriceratopsEating(false);
+					Triceratops.this.setEating(false);
 				}
 			}
-			if (blockstate.is(PFBlocks.MARCHANTIA.get()) || blockstate.is(PFBlocks.OSMUNDACAULIS.get()) || blockstate.is(PFBlocks.OTOZAMITES.get())) {
+			if (blockstate.is(PFTags.PLANTS_8_HUNGER)) {
 				int hunger = Triceratops.this.getCurrentHunger();
 				if (hunger + 8 >= Triceratops.this.maxHunger) {
 					Triceratops.this.setHunger(Triceratops.this.maxHunger);
-					Triceratops.this.setTriceratopsEating(false);
+					Triceratops.this.setEating(false);
 				} else {
 					Triceratops.this.setHunger(hunger + 8);
-					Triceratops.this.setTriceratopsEating(false);
+					Triceratops.this.setEating(false);
 				}
 			}
-			if (blockstate.is(PFBlocks.HORSETAIL.get()) || blockstate.is(PFBlocks.CLUBMOSS.get()) || blockstate.is(PFBlocks.MICHELILLOA.get()) || blockstate.is(PFBlocks.COBBANIA.get()) || blockstate.is(PFBlocks.LAUROZAMITES.get()) || blockstate.is(PFBlocks.CLATHOPTERIS.get())) {
+			if (blockstate.is(PFTags.PLANTS_10_HUNGER)) {
 				int hunger = Triceratops.this.getCurrentHunger();
 				if (hunger + 10 >= Triceratops.this.maxHunger) {
 					Triceratops.this.setHunger(Triceratops.this.maxHunger);
-					Triceratops.this.setTriceratopsEating(false);
+					Triceratops.this.setEating(false);
 				} else {
 					Triceratops.this.setHunger(hunger + 10);
-					Triceratops.this.setTriceratopsEating(false);
+					Triceratops.this.setEating(false);
 				}
 			}
-			if (blockstate.is(PFBlocks.TALL_OSMUNDACAULIS.get()) || blockstate.is(PFBlocks.TALL_OTOZAMITES.get())) {
+			if (blockstate.is(PFTags.PLANTS_12_HUNGER)) {
 				int hunger = Triceratops.this.getCurrentHunger();
 				if (hunger + 12 >= Triceratops.this.maxHunger) {
 					Triceratops.this.setHunger(Triceratops.this.maxHunger);
-					Triceratops.this.setTriceratopsEating(false);
+					Triceratops.this.setEating(false);
 				} else {
 					Triceratops.this.setHunger(hunger + 12);
-					Triceratops.this.setTriceratopsEating(false);
+					Triceratops.this.setEating(false);
 				}
 			}
-			if (blockstate.is(PFBlocks.OSMUNDA.get()) || blockstate.is(Blocks.FERN) || blockstate.is(PFBlocks.CONIOPTERIS.get()) || blockstate.is(PFBlocks.CLADOPHLEBIS.get())) {
+			if (blockstate.is(PFTags.PLANTS_15_HUNGER)) {
 				int hunger = Triceratops.this.getCurrentHunger();
 				if (hunger + 15 >= Triceratops.this.maxHunger) {
 					Triceratops.this.setHunger(Triceratops.this.maxHunger);
-					Triceratops.this.setTriceratopsEating(false);
+					Triceratops.this.setEating(false);
 				} else {
 					Triceratops.this.setHunger(hunger + 15);
-					Triceratops.this.setTriceratopsEating(false);
+					Triceratops.this.setEating(false);
 				}
 			}
-			if (blockstate.is(PFBlocks.TALL_HORSETAIL.get()) || blockstate.is(PFBlocks.SCYTOPHYLLUM.get())) {
+			if (blockstate.is(PFTags.PLANTS_20_HUNGER)) {
 				int hunger = Triceratops.this.getCurrentHunger();
 				if (hunger + 20 >= Triceratops.this.maxHunger) {
 					Triceratops.this.setHunger(Triceratops.this.maxHunger);
-					Triceratops.this.setTriceratopsEating(false);
+					Triceratops.this.setEating(false);
 				} else {
 					Triceratops.this.setHunger(hunger + 20);
-					Triceratops.this.setTriceratopsEating(false);
+					Triceratops.this.setEating(false);
 				}
 			}
-			if (blockstate.is(PFBlocks.TALL_OSMUNDA.get()) || blockstate.is(Blocks.LARGE_FERN) || blockstate.is(PFBlocks.JOHNSTONIA.get())) {
+			if (blockstate.is(PFTags.PLANTS_25_HUNGER)) {
 				int hunger = Triceratops.this.getCurrentHunger();
 				if (hunger + 25 >= Triceratops.this.maxHunger) {
 					Triceratops.this.setHunger(Triceratops.this.maxHunger);
-					Triceratops.this.setTriceratopsEating(false);
+					Triceratops.this.setEating(false);
 				} else {
 					Triceratops.this.setHunger(hunger + 25);
-					Triceratops.this.setTriceratopsEating(false);
+					Triceratops.this.setEating(false);
 				}
 			}
-			if (blockstate.is(PFBlocks.DICROIDIUM.get())) {
+			if (blockstate.is(PFTags.PLANTS_30_HUNGER)) {
 				int hunger = Triceratops.this.getCurrentHunger();
 				if (hunger + 30 >= Triceratops.this.maxHunger) {
 					Triceratops.this.setHunger(Triceratops.this.maxHunger);
-					Triceratops.this.setTriceratopsEating(false);
+					Triceratops.this.setEating(false);
 				} else {
 					Triceratops.this.setHunger(hunger + 30);
-					Triceratops.this.setTriceratopsEating(false);
+					Triceratops.this.setEating(false);
 				}
 			}
 		}

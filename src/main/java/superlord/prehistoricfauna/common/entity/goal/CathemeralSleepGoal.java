@@ -26,6 +26,8 @@ public class CathemeralSleepGoal extends Goal {
 	@Override
 	public boolean canContinueToUse() {
 		if (sleepTimer >= 6000 || entity.getLastHurtByMob() != null || entity.getTarget() != null || super.canContinueToUse() || entity.isInWater() || entity.isInLava()) {
+			entity.setAsleep(false);
+			sleepTimer = 0;
 			stop();
 			return false;
 		} else return true;
@@ -35,6 +37,8 @@ public class CathemeralSleepGoal extends Goal {
 		super.tick();
 		sleepTimer++;
 		if (sleepTimer >= 6000 || entity.getLastHurtByMob() != null || entity.getTarget() != null || entity.isInWater() || entity.isInLava()) {
+			entity.setAsleep(false);
+			sleepTimer = 0;
 			stop();
 		}
 	}

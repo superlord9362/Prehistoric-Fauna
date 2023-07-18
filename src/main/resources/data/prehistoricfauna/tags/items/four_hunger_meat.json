@@ -1,0 +1,13 @@
+{
+	"replace": false,
+	"values": [
+		"minecraft:chicken",
+		"minecraft:mutton",
+		"prehistoricfauna:raw_small_thyreophoran_meat",
+		"prehistoricfauna:raw_small_marginocephalian_meat",
+		"prehistoricfauna:raw_small_ornithischian_meat",
+		"prehistoricfauna:raw_small_sauropod_meat",
+		"prehistoricfauna:raw_small_theropod_meat",
+		"prehistoricfauna:raw_small_reptile_meat"
+	]
+}

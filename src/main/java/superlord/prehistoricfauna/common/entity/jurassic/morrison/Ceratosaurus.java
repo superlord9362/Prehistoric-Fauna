@@ -9,6 +9,7 @@ import javax.annotation.Nullable;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -21,6 +22,8 @@ import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
@@ -43,23 +46,6 @@ import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.Cat;
-import net.minecraft.world.entity.animal.Chicken;
-import net.minecraft.world.entity.animal.Cow;
-import net.minecraft.world.entity.animal.Fox;
-import net.minecraft.world.entity.animal.MushroomCow;
-import net.minecraft.world.entity.animal.Ocelot;
-import net.minecraft.world.entity.animal.Panda;
-import net.minecraft.world.entity.animal.Pig;
-import net.minecraft.world.entity.animal.Rabbit;
-import net.minecraft.world.entity.animal.Sheep;
-import net.minecraft.world.entity.animal.Turtle;
-import net.minecraft.world.entity.animal.Wolf;
-import net.minecraft.world.entity.animal.horse.AbstractHorse;
-import net.minecraft.world.entity.animal.horse.Llama;
-import net.minecraft.world.entity.monster.AbstractIllager;
-import net.minecraft.world.entity.npc.AbstractVillager;
-import net.minecraft.world.entity.npc.WanderingTrader;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameRules;
@@ -72,43 +58,19 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
-import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Aepyornithomimus;
-import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Citipati;
-import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Plesiohadros;
-import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Protoceratops;
-import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Telmasaurus;
-import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Velociraptor;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ankylosaurus;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Basilemys;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Didelphodon;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Thescelosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
 import superlord.prehistoricfauna.common.entity.goal.CrepuscularSleepGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
 import superlord.prehistoricfauna.common.entity.goal.HuntGoal;
-import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Kayentatherium;
-import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Megapnosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Sarahsaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Scelidosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Scutellosaurus;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Coelophysis;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Desmatosuchus;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Placerias;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Trilophosaurus;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Typothorax;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Chromogisaurus;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Exaeretodon;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Herrerasaurus;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Hyperodapedon;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Ischigualastia;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Saurosuchus;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
+import superlord.prehistoricfauna.init.PFTags;
 
 public class Ceratosaurus extends DinosaurEntity {
 
@@ -216,7 +178,7 @@ public class Ceratosaurus extends DinosaurEntity {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.attackAnimals = new HuntGoal(this, Animal.class, 10, false, false, (p_213487_1_) -> {
-			return p_213487_1_ instanceof Aepyornithomimus || p_213487_1_ instanceof Basilemys || p_213487_1_ instanceof Chromogisaurus || p_213487_1_ instanceof Citipati || p_213487_1_ instanceof Dryosaurus || p_213487_1_ instanceof Exaeretodon || p_213487_1_ instanceof Herrerasaurus || p_213487_1_ instanceof Ischigualastia || p_213487_1_ instanceof Plesiohadros || p_213487_1_ instanceof Protoceratops || p_213487_1_ instanceof Saurosuchus || p_213487_1_ instanceof Telmasaurus || p_213487_1_ instanceof Thescelosaurus || p_213487_1_ instanceof Velociraptor || p_213487_1_ instanceof Cat || p_213487_1_ instanceof Ocelot || p_213487_1_ instanceof Cow || p_213487_1_ instanceof AbstractHorse || p_213487_1_ instanceof Fox || p_213487_1_ instanceof MushroomCow || p_213487_1_ instanceof Pig || p_213487_1_ instanceof AbstractVillager || p_213487_1_ instanceof WanderingTrader || p_213487_1_ instanceof AbstractIllager || p_213487_1_ instanceof Llama || p_213487_1_ instanceof Panda || p_213487_1_ instanceof Wolf || p_213487_1_ instanceof Turtle || p_213487_1_ instanceof Player || p_213487_1_ instanceof Scelidosaurus || p_213487_1_ instanceof Sarahsaurus || p_213487_1_ instanceof Megapnosaurus || p_213487_1_ instanceof Kayentatherium || p_213487_1_ instanceof Sheep || p_213487_1_ instanceof Coelophysis || p_213487_1_ instanceof Desmatosuchus || p_213487_1_ instanceof Placerias || p_213487_1_ instanceof Trilophosaurus || p_213487_1_ instanceof Typothorax;
+			return p_213487_1_.getType().is(PFTags.ANIMALS_6_HUNGER) || p_213487_1_.getType().is(PFTags.ANIMALS_8_HUNGER) || p_213487_1_.getType().is(PFTags.ANIMALS_10_HUNGER) || p_213487_1_.getType().is(PFTags.ANIMALS_15_HUNGER) || p_213487_1_.getType().is(PFTags.ANIMALS_20_HUNGER) || p_213487_1_.getType().is(PFTags.ANIMALS_30_HUNGER) || p_213487_1_.getType().is(PFTags.ANIMALS_40_HUNGER);
 		});
 		this.goalSelector.addGoal(1, new Ceratosaurus.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new Ceratosaurus.PanicGoal());
@@ -238,11 +200,75 @@ public class Ceratosaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, Tyrannosaurus.class, 7F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(1, new CrepuscularSleepGoal(this));
 		this.goalSelector.addGoal(0, new Ceratosaurus.CarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213487_1_) -> {
-			return p_213487_1_ instanceof Aepyornithomimus || p_213487_1_ instanceof Basilemys || p_213487_1_ instanceof Chromogisaurus || p_213487_1_ instanceof Citipati || p_213487_1_ instanceof Dryosaurus || p_213487_1_ instanceof Exaeretodon || p_213487_1_ instanceof Herrerasaurus || p_213487_1_ instanceof Ischigualastia || p_213487_1_ instanceof Plesiohadros || p_213487_1_ instanceof Protoceratops || p_213487_1_ instanceof Saurosuchus || p_213487_1_ instanceof Telmasaurus || p_213487_1_ instanceof Thescelosaurus || p_213487_1_ instanceof Velociraptor || p_213487_1_ instanceof Cat || p_213487_1_ instanceof Ocelot || p_213487_1_ instanceof Cow || p_213487_1_ instanceof AbstractHorse || p_213487_1_ instanceof Fox || p_213487_1_ instanceof MushroomCow || p_213487_1_ instanceof Pig || p_213487_1_ instanceof AbstractVillager || p_213487_1_ instanceof WanderingTrader || p_213487_1_ instanceof AbstractIllager || p_213487_1_ instanceof Llama || p_213487_1_ instanceof Panda || p_213487_1_ instanceof Wolf || p_213487_1_ instanceof Turtle || p_213487_1_ instanceof Player || p_213487_1_ instanceof Scelidosaurus || p_213487_1_ instanceof Sarahsaurus || p_213487_1_ instanceof Megapnosaurus || p_213487_1_ instanceof Kayentatherium || p_213487_1_ instanceof Sheep || p_213487_1_ instanceof Coelophysis || p_213487_1_ instanceof Desmatosuchus || p_213487_1_ instanceof Placerias || p_213487_1_ instanceof Trilophosaurus || p_213487_1_ instanceof Typothorax;
+			return p_213487_1_.getType().is(PFTags.ANIMALS_6_HUNGER) || p_213487_1_.getType().is(PFTags.ANIMALS_8_HUNGER) || p_213487_1_.getType().is(PFTags.ANIMALS_10_HUNGER) || p_213487_1_.getType().is(PFTags.ANIMALS_15_HUNGER) || p_213487_1_.getType().is(PFTags.ANIMALS_20_HUNGER) || p_213487_1_.getType().is(PFTags.ANIMALS_30_HUNGER) || p_213487_1_.getType().is(PFTags.ANIMALS_40_HUNGER);
 		}));
 		this.targetSelector.addGoal(0, new BabyCarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213487_1_) -> {
-			return p_213487_1_ instanceof Didelphodon || p_213487_1_ instanceof Eilenodon || p_213487_1_ instanceof Hyperodapedon || p_213487_1_ instanceof Telmasaurus || p_213487_1_ instanceof Rabbit || p_213487_1_ instanceof Chicken || p_213487_1_ instanceof Hesperornithoides || p_213487_1_ instanceof Scutellosaurus;
+			return p_213487_1_.getType().is(PFTags.ANIMALS_3_HUNGER) || p_213487_1_.getType().is(PFTags.ANIMALS_4_HUNGER) || p_213487_1_.getType().is(PFTags.ANIMALS_6_HUNGER);
 		}));
+	}
+	
+	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
+		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
+		if (PrehistoricFaunaConfig.advancedHunger) {
+			int hunger = this.getCurrentHunger();
+			if (hunger < this.maxHunger) {
+				if (this.isFood(itemstack) && (!this.isInLove() || !this.isInLoveNaturally())) {
+					this.setInLove(p_230254_1_);
+					itemstack.shrink(1);
+				} else {
+					if (itemstack.is(PFTags.MEATS_2_HUNGER)) {
+						if (hunger + 2 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 2);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.MEATS_4_HUNGER)) {
+						if (hunger + 4 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 4);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.MEATS_6_HUNGER)) {
+						if (hunger + 6 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 6);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.MEATS_8_HUNGER)) {
+						if (hunger + 8 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 8);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.MEATS_10_HUNGER)) {
+						if (hunger + 10 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 10);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.MEATS_12_HUNGER)) {
+						if (hunger + 12 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 12);
+						}
+						itemstack.shrink(1);
+					}
+				}
+			}
+			else p_230254_1_.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.fullHunger"), true);
+		}
+		return super.mobInteract(p_230254_1_, p_230254_2_);
 	}
 
 	public void aiStep() {
@@ -567,7 +593,7 @@ public class Ceratosaurus extends DinosaurEntity {
 			return super.canUse() && !this.ceratosaurus.hasEgg() && !this.ceratosaurus.isInLoveNaturally();
 		}
 
-		protected void spawnBaby() {
+		protected void breed() {
 			ServerPlayer serverPlayer = this.animal.getLoveCause();
 			if (serverPlayer == null && this.partner.getLoveCause() == null) {
 				serverPlayer = this.partner.getLoveCause();
@@ -599,7 +625,7 @@ public class Ceratosaurus extends DinosaurEntity {
 			return super.canUse() && !this.ceratosaurus.hasEgg() && this.ceratosaurus.getCurrentHunger() >= this.ceratosaurus.getThreeQuartersHunger() && this.ceratosaurus.tickCount % 60 == 0 && (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && this.ceratosaurus.isInLoveNaturally();
 		}
 
-		protected void spawnBaby() {
+		protected void breed() {
 			if (PrehistoricFaunaConfig.naturalEggItemLaying) {
 				this.ceratosaurus.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.ceratosaurus.random.nextFloat() - this.ceratosaurus.random.nextFloat()) * 0.2F + 1.0F);
 				int eggAmount = this.ceratosaurus.random.nextInt(4);
@@ -639,17 +665,18 @@ public class Ceratosaurus extends DinosaurEntity {
 
 	@SuppressWarnings("rawtypes")
 	public class CarnivoreHuntGoal extends NearestAttackableTargetGoal {
-		
+		Predicate<LivingEntity> targetPredicate;
 		double huntSpeed;
 
 		@SuppressWarnings("unchecked")
 		public CarnivoreHuntGoal(Mob goalOwnerIn, Class targetClassIn, int targetChanceIn, double huntSpeed, boolean checkSight, boolean nearbyOnly, @Nullable Predicate<LivingEntity> targetPredicate) {
 			super(goalOwnerIn, targetClassIn, targetChanceIn, checkSight, nearbyOnly, targetPredicate);
 			this.huntSpeed = huntSpeed;
+			this.targetPredicate = targetPredicate;
 		}
 
 		public boolean canUse() {
-			return super.canUse() && Ceratosaurus.this.getCurrentHunger() <= Ceratosaurus.this.getHalfHunger() && !Ceratosaurus.this.isBaby() && PrehistoricFaunaConfig.advancedHunger == true;
+			return super.canUse() && Ceratosaurus.this.getCurrentHunger() <= Ceratosaurus.this.getHalfHunger() && !Ceratosaurus.this.isBaby() && PrehistoricFaunaConfig.advancedHunger == true && !targetPredicate.test(Ceratosaurus.this);
 		}
 
 		public boolean canContinueToUse() {
@@ -659,7 +686,7 @@ public class Ceratosaurus extends DinosaurEntity {
 		public void tick() {
 			Ceratosaurus.this.getNavigation().setSpeedModifier(huntSpeed);
 			LivingEntity target = Ceratosaurus.this.getTarget();
-			if (target instanceof Chromogisaurus || target instanceof Telmasaurus || target instanceof Megapnosaurus || target instanceof Kayentatherium) {
+			if (target.getType().is(PFTags.ANIMALS_6_HUNGER)) {
 				if (target.getHealth() == 0) {
 					if (Ceratosaurus.this.getCurrentHunger() + 6 >= Ceratosaurus.this.maxHunger) {
 						Ceratosaurus.this.setHunger(Ceratosaurus.this.maxHunger);
@@ -668,7 +695,7 @@ public class Ceratosaurus extends DinosaurEntity {
 					}
 				}
 			}
-			if (target instanceof Velociraptor || target instanceof Exaeretodon || target instanceof Basilemys || target instanceof Wolf || target instanceof Sheep) {
+			if (target.getType().is(PFTags.ANIMALS_8_HUNGER)) {
 				if (target.getHealth() == 0) {
 					if (Ceratosaurus.this.getCurrentHunger() + 8 >= Ceratosaurus.this.maxHunger) {
 						Ceratosaurus.this.setHunger(Ceratosaurus.this.maxHunger);
@@ -677,7 +704,7 @@ public class Ceratosaurus extends DinosaurEntity {
 					}
 				}
 			}
-			if (target instanceof Cat || target instanceof Fox || target instanceof Cow || target instanceof MushroomCow || target instanceof Pig || target instanceof Aepyornithomimus || target instanceof Ocelot || target instanceof Coelophysis || target instanceof Protoceratops || target instanceof Trilophosaurus || target instanceof Typothorax) {
+			if (target.getType().is(PFTags.ANIMALS_10_HUNGER)) {
 				if (target.getHealth() == 0) {
 					if (Ceratosaurus.this.getCurrentHunger() + 10 >= Ceratosaurus.this.maxHunger) {
 						Ceratosaurus.this.setHunger(Ceratosaurus.this.maxHunger);
@@ -686,7 +713,7 @@ public class Ceratosaurus extends DinosaurEntity {
 					}
 				}
 			}
-			if (target instanceof Citipati || target instanceof Dryosaurus || target instanceof Thescelosaurus || target instanceof Sarahsaurus || target instanceof Scelidosaurus) {
+			if (target.getType().is(PFTags.ANIMALS_15_HUNGER)) {
 				if (target.getHealth() == 0) {
 					if (Ceratosaurus.this.getCurrentHunger() + 15 >= Ceratosaurus.this.maxHunger) {
 						Ceratosaurus.this.setHunger(Ceratosaurus.this.maxHunger);
@@ -695,7 +722,7 @@ public class Ceratosaurus extends DinosaurEntity {
 					}
 				}
 			}
-			if (target instanceof Saurosuchus || target instanceof AbstractHorse || target instanceof Desmatosuchus || target instanceof WanderingTrader || target instanceof Player || target instanceof AbstractVillager || target instanceof AbstractIllager || target instanceof Llama || target instanceof Panda || target instanceof Herrerasaurus || target instanceof Placerias) {
+			if (target.getType().is(PFTags.ANIMALS_20_HUNGER)) {
 				if (target.getHealth() == 0) {
 					if (Ceratosaurus.this.getCurrentHunger() + 20 >= Ceratosaurus.this.maxHunger) {
 						Ceratosaurus.this.setHunger(Ceratosaurus.this.maxHunger);
@@ -704,7 +731,7 @@ public class Ceratosaurus extends DinosaurEntity {
 					}
 				}
 			}
-			if (target instanceof Turtle) {
+			if (target.getType().is(PFTags.ANIMALS_30_HUNGER)) {
 				if (target.getHealth() == 0) {
 					if (Ceratosaurus.this.getCurrentHunger() + 30 >= Ceratosaurus.this.maxHunger) {
 						Ceratosaurus.this.setHunger(Ceratosaurus.this.maxHunger);
@@ -713,7 +740,7 @@ public class Ceratosaurus extends DinosaurEntity {
 					}
 				}
 			}
-			if (target instanceof Ischigualastia || target instanceof Plesiohadros) {
+			if (target.getType().is(PFTags.ANIMALS_40_HUNGER)) {
 				if (target.getHealth() == 0) {
 					if (Ceratosaurus.this.getCurrentHunger() + 40 >= Ceratosaurus.this.maxHunger) {
 						Ceratosaurus.this.setHunger(Ceratosaurus.this.maxHunger);
@@ -729,17 +756,18 @@ public class Ceratosaurus extends DinosaurEntity {
 
 	@SuppressWarnings("rawtypes")
 	public class BabyCarnivoreHuntGoal extends NearestAttackableTargetGoal {
-
+		Predicate<LivingEntity> targetPredicate;
 		double huntSpeed;
 		
 		@SuppressWarnings("unchecked")
 		public BabyCarnivoreHuntGoal(Mob goalOwnerIn, Class targetClassIn, int targetChanceIn, double huntSpeed, boolean checkSight, boolean nearbyOnly, @Nullable Predicate<LivingEntity> targetPredicate) {
 			super(goalOwnerIn, targetClassIn, targetChanceIn, checkSight, nearbyOnly, targetPredicate);
 			this.huntSpeed = huntSpeed;
+			this.targetPredicate = targetPredicate;
 		}
 
 		public boolean canUse() {
-			return super.canUse() && Ceratosaurus.this.getCurrentHunger() <= Ceratosaurus.this.getHalfHunger() && Ceratosaurus.this.isBaby() && PrehistoricFaunaConfig.advancedHunger == true;
+			return super.canUse() && Ceratosaurus.this.getCurrentHunger() <= Ceratosaurus.this.getHalfHunger() && Ceratosaurus.this.isBaby() && PrehistoricFaunaConfig.advancedHunger == true && !targetPredicate.test(Ceratosaurus.this);
 		}
 
 		public boolean canContinueToUse() {
@@ -749,7 +777,7 @@ public class Ceratosaurus extends DinosaurEntity {
 		public void tick() {
 			Ceratosaurus.this.getNavigation().setSpeedModifier(huntSpeed);
 			LivingEntity target = Ceratosaurus.this.getTarget();
-			if (target instanceof Rabbit) {
+			if (target.getType().is(PFTags.ANIMALS_3_HUNGER)) {
 				if (target.getHealth() == 0) {
 					if (Ceratosaurus.this.getCurrentHunger() + 3 >= Ceratosaurus.this.maxHunger) {
 						Ceratosaurus.this.setHunger(Ceratosaurus.this.maxHunger);
@@ -758,7 +786,7 @@ public class Ceratosaurus extends DinosaurEntity {
 					}
 				}
 			}
-			if (target instanceof Didelphodon || target instanceof Eilenodon || target instanceof Hyperodapedon || target instanceof Chicken || target instanceof Hesperornithoides || target instanceof Scutellosaurus) {
+			if (target.getType().is(PFTags.ANIMALS_4_HUNGER)) {
 				if (target.getHealth() == 0) {
 					if (Ceratosaurus.this.getCurrentHunger() + 4 >= Ceratosaurus.this.maxHunger) {
 						Ceratosaurus.this.setHunger(Ceratosaurus.this.maxHunger);
@@ -767,7 +795,7 @@ public class Ceratosaurus extends DinosaurEntity {
 					}
 				}
 			}
-			if (target instanceof Telmasaurus) {
+			if (target.getType().is(PFTags.ANIMALS_6_HUNGER)) {
 				if (target.getHealth() == 0) {
 					if (Ceratosaurus.this.getCurrentHunger() + 6 >= Ceratosaurus.this.maxHunger) {
 						Ceratosaurus.this.setHunger(Ceratosaurus.this.maxHunger);

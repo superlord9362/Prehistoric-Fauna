@@ -1,0 +1,9 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:osmunda",
+		"prehistoricfauna:coniopteris",
+		"prehistoricfauna:cladophlebis",
+		"minecraft:fern"
+	]
+}

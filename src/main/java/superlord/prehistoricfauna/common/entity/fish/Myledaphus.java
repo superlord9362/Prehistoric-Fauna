@@ -48,8 +48,11 @@ public class Myledaphus extends AbstractBottomDwellerFish {
 		return PFSounds.MYLEDAPHUS_DEATH;
 	}
 
+	@SuppressWarnings("deprecation")
 	public static boolean checkAncientFishSpawnRules(EntityType<? extends AbstractFish> type, LevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random randomIn) {
-		return worldIn.getBlockState(pos).is(Blocks.WATER) && randomIn.nextFloat() > 0.95F;
+		int i = worldIn.getSeaLevel();
+		int j = i - 13;
+		return pos.getY() >= j && worldIn.getBlockState(pos).is(Blocks.WATER) && randomIn.nextFloat() > 0.95F;
 	}		
 	@Override
 	public ItemStack getPickedResult(HitResult target) {

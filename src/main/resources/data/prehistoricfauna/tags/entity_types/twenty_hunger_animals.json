@@ -1,0 +1,24 @@
+{
+	"replace": false,
+	"values": [
+		"minecraft:horse",
+		"minecraft:donkey",
+		"minecraft:mule",
+		"prehistoricfauna:placerias",
+		"minecraft:wandering_trader",
+		"minecraft:villager",
+		"minecraft:illusioner",
+		"minecraft:pillager",
+		"minecraft:vindicator",
+		"minecraft:evoker",
+		"minecraft:witch",
+		"minecraft:llama",
+		"minecraft:trader_llama",
+		"prehistoricfauna:desmatosuchus",
+		"prehistoricfauna:poposaurus",
+		"prehistoricfauna:postosuchus",
+		"prehistoricfauna:herrerasaurus",
+		"minecraft:player",
+		"minecraft:panda"
+	]
+}

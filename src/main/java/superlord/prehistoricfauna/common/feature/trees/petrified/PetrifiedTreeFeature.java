@@ -15,6 +15,7 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import superlord.prehistoricfauna.common.feature.trees.util.JohnstoniaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFTags;
 
 public class PetrifiedTreeFeature extends Feature<JohnstoniaConfig>
 {
@@ -45,7 +46,7 @@ public class PetrifiedTreeFeature extends Feature<JohnstoniaConfig>
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();
-		if (world.getBlockState(pos.below()).getBlock() != Blocks.WATER) {
+		if (world.getBlockState(pos.below()).getBlock() != Blocks.WATER && world.getBlockState(pos.below()).isCollisionShapeFullBlock(world, pos.below()) && world.getBlockState(pos.below()).is(PFTags.HENOSTONE)) {
 			if (height == 3) {
 				if (isAir(world, new BlockPos(x, y, z))) setBlock(world, new BlockPos(x, y, z), PFBlocks.PETRIFIED_WOOD.get().defaultBlockState());
 				if (isAir(world, new BlockPos(x, y + 1, z))) setBlock(world, new BlockPos(x, y + 1, z), PFBlocks.PETRIFIED_WOOD.get().defaultBlockState());

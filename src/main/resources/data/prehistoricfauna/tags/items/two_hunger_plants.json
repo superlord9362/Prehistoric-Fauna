@@ -1,0 +1,10 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:dead_osmundacaulis",
+		"minecraft:dead_bush",
+		"minecraft:potato",
+		"minecraft:beetroot",
+		"prehistoricfauna:moss_ball"
+	]
+}

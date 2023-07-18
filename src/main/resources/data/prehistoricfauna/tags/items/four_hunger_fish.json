@@ -1,0 +1,17 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:raw_cyclurus",
+		"prehistoricfauna:raw_ceratodus",
+		"prehistoricfauna:raw_gar",
+		"prehistoricfauna:raw_potamoceratodus",
+		"prehistoricfauna:raw_saurichthys",
+		"prehistoricfauna:raw_chinlea",
+		"prehistoricfauna:raw_myledaphus",
+		"minecraft:cod",
+		"minecraft:salmon",
+		"prehistoricfauna:raw_melvius",
+		"prehistoricfauna:raw_arganodus",
+		"prehistoricfauna:raw_mooreodontus"
+	]
+}

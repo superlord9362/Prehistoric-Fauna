@@ -9,6 +9,7 @@ import javax.annotation.Nullable;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -21,6 +22,8 @@ import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
@@ -64,6 +67,7 @@ import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
+import superlord.prehistoricfauna.init.PFTags;
 
 public class Sillosuchus extends DinosaurEntity {
 
@@ -183,6 +187,102 @@ public class Sillosuchus extends DinosaurEntity {
 		this.goalSelector.addGoal(8, new AvoidEntityGoal<Camarasaurus>(this, Camarasaurus.class, 7F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
 		this.goalSelector.addGoal(0, new Sillosuchus.HerbivoreEatGoal((double)1.2F, 12, 2));
+	}
+	
+	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
+		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
+		if (PrehistoricFaunaConfig.advancedHunger) {
+			int hunger = this.getCurrentHunger();
+			if (hunger < this.maxHunger) {
+				if (this.isFood(itemstack) && (!this.isInLove() || !this.isInLoveNaturally())) {
+					this.setInLove(p_230254_1_);
+					itemstack.shrink(1);
+				} else {
+					if (itemstack.is(PFTags.PLANTS_2_HUNGER_ITEM)) {
+						if (hunger + 2 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 2);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.PLANTS_4_HUNGER_ITEM)) {
+						if (hunger + 4 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 4);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.PLANTS_6_HUNGER_ITEM)) {
+						if (hunger + 6 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 6);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.PLANTS_8_HUNGER_ITEM)) {
+						if (hunger + 8 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 8);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.PLANTS_10_HUNGER_ITEM)) {
+						if (hunger + 10 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 10);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.PLANTS_12_HUNGER_ITEM)) {
+						if (hunger + 12 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 12);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.PLANTS_15_HUNGER_ITEM)) {
+						if (hunger + 15 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 15);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.PLANTS_20_HUNGER_ITEM)) {
+						if (hunger + 20 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 20);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.PLANTS_25_HUNGER_ITEM)) {
+						if (hunger + 25 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 25);
+						}
+						itemstack.shrink(1);
+					}
+					if (itemstack.is(PFTags.PLANTS_30_HUNGER_ITEM)) {
+						if (hunger + 30 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 30);
+						}
+						itemstack.shrink(1);
+					}
+				}
+			}
+			else p_230254_1_.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.fullHunger"), true);
+		}
+		return super.mobInteract(p_230254_1_, p_230254_2_);
 	}
 
 	public void aiStep() {
@@ -553,7 +653,7 @@ public class Sillosuchus extends DinosaurEntity {
 		/**
 		 * Spawns a baby animal of the same type.
 		 */
-		protected void spawnBaby() {
+		protected void breed() {
 			ServerPlayer serverplayerentity = this.animal.getLoveCause();
 			if (serverplayerentity == null && this.partner.getLoveCause() != null) {
 				serverplayerentity = this.partner.getLoveCause();
@@ -587,7 +687,7 @@ public class Sillosuchus extends DinosaurEntity {
 			return super.canUse() && !this.sillosuchus.hasEgg() && this.sillosuchus.getCurrentHunger() >= this.sillosuchus.getThreeQuartersHunger() && this.sillosuchus.tickCount % 60 == 0 && (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && this.sillosuchus.isInLoveNaturally();
 		}
 
-		protected void spawnBaby() {
+		protected void breed() {
 			if (PrehistoricFaunaConfig.naturalEggItemLaying) {
 				this.sillosuchus.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.sillosuchus.random.nextFloat() - this.sillosuchus.random.nextFloat()) * 0.2F + 1.0F);
 				int eggAmount = this.sillosuchus.random.nextInt(4);
@@ -645,7 +745,7 @@ public class Sillosuchus extends DinosaurEntity {
 		 */
 		protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 			BlockState blockstate = worldIn.getBlockState(pos);
-			return blockstate.is(PFBlocks.HORSETAIL.get()) || blockstate.is(PFBlocks.TALL_HORSETAIL.get()) || blockstate.is(PFBlocks.OSMUNDA.get()) || blockstate.is(PFBlocks.TALL_OSMUNDA.get()) || blockstate.is(PFBlocks.CLUBMOSS.get()) || blockstate.is(PFBlocks.MARCHANTIA.get()) || blockstate.is(PFBlocks.CONIOPTERIS.get()) || blockstate.is(PFBlocks.OSMUNDACAULIS.get()) || blockstate.is(PFBlocks.TALL_OSMUNDACAULIS.get()) || blockstate.is(PFBlocks.DICROIDIUM.get()) || blockstate.is(PFBlocks.JOHNSTONIA.get()) || blockstate.is(PFBlocks.CLADOPHLEBIS.get()) || blockstate.is(PFBlocks.SCYTOPHYLLUM.get()) || blockstate.is(PFBlocks.MICHELILLOA.get()) || blockstate.is(PFBlocks.DEAD_OSMUNDACAULIS.get()) || blockstate.is(PFBlocks.COBBANIA.get()) || blockstate.is(PFBlocks.OTOZAMITES.get()) || blockstate.is(PFBlocks.TALL_OTOZAMITES.get()) || blockstate.is(PFBlocks.LAUROZAMITES.get()) || blockstate.is(Blocks.GRASS) || blockstate.is(Blocks.VINE) || blockstate.is(BlockTags.FLOWERS) || blockstate.is(Blocks.TALL_GRASS) || blockstate.is(Blocks.FERN) || blockstate.is(Blocks.LARGE_FERN);
+			return blockstate.is(PFTags.PLANTS_2_HUNGER) || blockstate.is(PFTags.PLANTS_4_HUNGER) || blockstate.is(PFTags.PLANTS_6_HUNGER) || blockstate.is(PFTags.PLANTS_8_HUNGER) || blockstate.is(PFTags.PLANTS_10_HUNGER) || blockstate.is(PFTags.PLANTS_12_HUNGER) || blockstate.is(PFTags.PLANTS_15_HUNGER) || blockstate.is(PFTags.PLANTS_20_HUNGER) || blockstate.is(PFTags.PLANTS_25_HUNGER) || blockstate.is(PFTags.PLANTS_30_HUNGER);
 		}
 
 		/**
@@ -672,7 +772,7 @@ public class Sillosuchus extends DinosaurEntity {
 		protected void eatBerry() {
 			BlockState blockstate = Sillosuchus.this.level.getBlockState(this.blockPos);
 
-			if (blockstate.is(PFBlocks.DEAD_OSMUNDACAULIS.get())) {
+			if (blockstate.is(PFTags.PLANTS_2_HUNGER)) {
 				int hunger = Sillosuchus.this.getCurrentHunger();
 				if (hunger + 2 >= Sillosuchus.this.maxHunger) {
 					Sillosuchus.this.setHunger(Sillosuchus.this.maxHunger);
@@ -682,7 +782,7 @@ public class Sillosuchus extends DinosaurEntity {
 					Sillosuchus.this.setEating(false);
 				}
 			}
-			if (blockstate.is(Blocks.GRASS) || blockstate.is(Blocks.TALL_GRASS) || blockstate.is(BlockTags.FLOWERS)) {
+			if (blockstate.is(PFTags.PLANTS_4_HUNGER)) {
 				int hunger = Sillosuchus.this.getCurrentHunger();
 				if (hunger + 4 >= Sillosuchus.this.maxHunger) {
 					Sillosuchus.this.setHunger(Sillosuchus.this.maxHunger);
@@ -692,7 +792,7 @@ public class Sillosuchus extends DinosaurEntity {
 					Sillosuchus.this.setEating(false);
 				}
 			}
-			if (blockstate.is(Blocks.VINE)) {
+			if (blockstate.is(PFTags.PLANTS_6_HUNGER)) {
 				int hunger = Sillosuchus.this.getCurrentHunger();
 				if (hunger + 6 >= Sillosuchus.this.maxHunger) {
 					Sillosuchus.this.setHunger(Sillosuchus.this.maxHunger);
@@ -702,7 +802,7 @@ public class Sillosuchus extends DinosaurEntity {
 					Sillosuchus.this.setEating(false);
 				}
 			}
-			if (blockstate.is(PFBlocks.MARCHANTIA.get()) || blockstate.is(PFBlocks.OSMUNDACAULIS.get()) || blockstate.is(PFBlocks.OTOZAMITES.get())) {
+			if (blockstate.is(PFTags.PLANTS_8_HUNGER)) {
 				int hunger = Sillosuchus.this.getCurrentHunger();
 				if (hunger + 8 >= Sillosuchus.this.maxHunger) {
 					Sillosuchus.this.setHunger(Sillosuchus.this.maxHunger);
@@ -712,7 +812,7 @@ public class Sillosuchus extends DinosaurEntity {
 					Sillosuchus.this.setEating(false);
 				}
 			}
-			if (blockstate.is(PFBlocks.HORSETAIL.get()) || blockstate.is(PFBlocks.CLUBMOSS.get()) || blockstate.is(PFBlocks.MICHELILLOA.get()) || blockstate.is(PFBlocks.COBBANIA.get()) || blockstate.is(PFBlocks.LAUROZAMITES.get()) || blockstate.is(PFBlocks.CLATHOPTERIS.get())) {
+			if (blockstate.is(PFTags.PLANTS_10_HUNGER)) {
 				int hunger = Sillosuchus.this.getCurrentHunger();
 				if (hunger + 10 >= Sillosuchus.this.maxHunger) {
 					Sillosuchus.this.setHunger(Sillosuchus.this.maxHunger);
@@ -722,7 +822,7 @@ public class Sillosuchus extends DinosaurEntity {
 					Sillosuchus.this.setEating(false);
 				}
 			}
-			if (blockstate.is(PFBlocks.TALL_OSMUNDACAULIS.get()) || blockstate.is(PFBlocks.TALL_OTOZAMITES.get())) {
+			if (blockstate.is(PFTags.PLANTS_12_HUNGER)) {
 				int hunger = Sillosuchus.this.getCurrentHunger();
 				if (hunger + 12 >= Sillosuchus.this.maxHunger) {
 					Sillosuchus.this.setHunger(Sillosuchus.this.maxHunger);
@@ -732,7 +832,7 @@ public class Sillosuchus extends DinosaurEntity {
 					Sillosuchus.this.setEating(false);
 				}
 			}
-			if (blockstate.is(PFBlocks.OSMUNDA.get()) || blockstate.is(Blocks.FERN) || blockstate.is(PFBlocks.CONIOPTERIS.get()) || blockstate.is(PFBlocks.CLADOPHLEBIS.get())) {
+			if (blockstate.is(PFTags.PLANTS_15_HUNGER)) {
 				int hunger = Sillosuchus.this.getCurrentHunger();
 				if (hunger + 15 >= Sillosuchus.this.maxHunger) {
 					Sillosuchus.this.setHunger(Sillosuchus.this.maxHunger);
@@ -742,7 +842,7 @@ public class Sillosuchus extends DinosaurEntity {
 					Sillosuchus.this.setEating(false);
 				}
 			}
-			if (blockstate.is(PFBlocks.TALL_HORSETAIL.get()) || blockstate.is(PFBlocks.SCYTOPHYLLUM.get())) {
+			if (blockstate.is(PFTags.PLANTS_20_HUNGER)) {
 				int hunger = Sillosuchus.this.getCurrentHunger();
 				if (hunger + 20 >= Sillosuchus.this.maxHunger) {
 					Sillosuchus.this.setHunger(Sillosuchus.this.maxHunger);
@@ -752,7 +852,7 @@ public class Sillosuchus extends DinosaurEntity {
 					Sillosuchus.this.setEating(false);
 				}
 			}
-			if (blockstate.is(PFBlocks.TALL_OSMUNDA.get()) || blockstate.is(Blocks.LARGE_FERN) || blockstate.is(PFBlocks.JOHNSTONIA.get())) {
+			if (blockstate.is(PFTags.PLANTS_25_HUNGER)) {
 				int hunger = Sillosuchus.this.getCurrentHunger();
 				if (hunger + 25 >= Sillosuchus.this.maxHunger) {
 					Sillosuchus.this.setHunger(Sillosuchus.this.maxHunger);
@@ -762,7 +862,7 @@ public class Sillosuchus extends DinosaurEntity {
 					Sillosuchus.this.setEating(false);
 				}
 			}
-			if (blockstate.is(PFBlocks.DICROIDIUM.get())) {
+			if (blockstate.is(PFTags.PLANTS_30_HUNGER)) {
 				int hunger = Sillosuchus.this.getCurrentHunger();
 				if (hunger + 30 >= Sillosuchus.this.maxHunger) {
 					Sillosuchus.this.setHunger(Sillosuchus.this.maxHunger);
