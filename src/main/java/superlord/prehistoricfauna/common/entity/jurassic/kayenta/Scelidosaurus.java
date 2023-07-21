@@ -1,10 +1,7 @@
 package superlord.prehistoricfauna.common.entity.jurassic.kayenta;
 
-import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
-
-import javax.annotation.Nullable;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
@@ -20,8 +17,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -50,7 +45,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -58,6 +52,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
+import superlord.prehistoricfauna.common.blocks.FeederBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Pinacosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Plesiohadros;
@@ -68,6 +63,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaur
 import superlord.prehistoricfauna.common.entity.goal.CathemeralSleepGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
+import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatGoal;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Ceratosaurus;
@@ -86,30 +82,15 @@ import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
 public class Scelidosaurus extends DinosaurEntity {
-
-	private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(Scelidosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> IS_DIGGING = SynchedEntityData.defineId(Scelidosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> ALBINO = SynchedEntityData.defineId(Scelidosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> MELANISTIC = SynchedEntityData.defineId(Scelidosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> EATING = SynchedEntityData.defineId(Scelidosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> NATURAL_LOVE = SynchedEntityData.defineId(Scelidosaurus.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> BIPEDAL = SynchedEntityData.defineId(Scelidosaurus.class, EntityDataSerializers.BOOLEAN);
 	private int maxHunger = 38;
-	private int lastInLove = 0;
-	private int currentHunger = 38;
-	int hungerTick = 0;
-	private int isDigging;
-	int loveTick = 0;
 	private int warningSoundTicks;
 
 	@SuppressWarnings("deprecation")
 	public Scelidosaurus(EntityType<? extends Scelidosaurus> type, Level worldIn) {
 		super(type, worldIn);
 		this.maxUpStep = 1.0F;
-	}
-
-	public boolean hasEgg() {
-		return this.entityData.get(HAS_EGG);
+		super.maxHunger = maxHunger;
 	}
 	
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
@@ -117,29 +98,8 @@ public class Scelidosaurus extends DinosaurEntity {
 		else return 0.8F;
 	}
 
-	private void setHasEgg(boolean hasEgg) {
-		this.entityData.set(HAS_EGG, hasEgg);
-	}
-
-	public boolean isDigging() {
-		return this.entityData.get(IS_DIGGING);
-	}
-
-	private void setDigging(boolean isDigging) {
-		this.isDigging = isDigging ? 1 : 0;
-		this.entityData.set(IS_DIGGING, isDigging);
-	}
-
 	public boolean isFood(ItemStack stack) {
 		return stack.getItem() == PFBlocks.CLATHOPTERIS.get().asItem();
-	}
-
-	public boolean isAlbino() {
-		return this.entityData.get(ALBINO);
-	}
-
-	private void setAlbino(boolean isAlbino) {
-		this.entityData.set(ALBINO, isAlbino);
 	}
 
 	public boolean isBipedal() {
@@ -150,89 +110,18 @@ public class Scelidosaurus extends DinosaurEntity {
 		this.entityData.set(BIPEDAL, isBipedal);
 	}
 
-	public boolean isMelanistic() {
-		return this.entityData.get(MELANISTIC);
-	}
-
-	private void setMelanistic(boolean isMelanistic) {
-		this.entityData.set(MELANISTIC, isMelanistic);
-	}
-
-	public boolean isInLoveNaturally() {
-		return this.entityData.get(NATURAL_LOVE);
-	}
-
-	private void setInLoveNaturally(boolean isInLoveNaturally) {
-		this.entityData.set(NATURAL_LOVE, isInLoveNaturally);
-	}
-
-	public int getCurrentHunger() {
-		return this.currentHunger;
-	}
-
-	private void setHunger(int currentHunger) {
-		this.currentHunger = currentHunger;
-	}
-
-	public int getHalfHunger() {
-		return maxHunger / 2;
-	}
-
-	public int getThreeQuartersHunger() {
-		return (maxHunger / 4) * 3;
-	}
-
-	public boolean isEating() {
-		return this.entityData.get(EATING);
-	}
-
-	private void setEating(boolean isEating) {
-		this.entityData.set(EATING, isEating);
-	}
-
-	@Nullable
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
-		Random random = new Random();
-		int birthNumber = random.nextInt(799);
-		if (birthNumber >= 0 && birthNumber < 4) {
-			this.setAlbino(true);
-		} else if (birthNumber >= 4 && birthNumber < 7) {
-			this.setMelanistic(true);
-		}
-		this.setHunger(this.maxHunger);
-		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-	}
-
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(HAS_EGG, false);
-		this.entityData.define(IS_DIGGING, false);
-		this.entityData.define(ALBINO, false);
-		this.entityData.define(MELANISTIC, false);
-		this.entityData.define(EATING, false);
-		this.entityData.define(NATURAL_LOVE, false);
 		this.entityData.define(BIPEDAL, false);
 	}
 
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
-		compound.putBoolean("HasEgg", this.hasEgg());
-		compound.putBoolean("IsAlbino", this.isAlbino());
-		compound.putBoolean("IsMelanistic", this.isMelanistic());
-		compound.putInt("MaxHunger", this.currentHunger);
-		compound.putBoolean("IsEating", this.isEating());
-		compound.putBoolean("InNaturalLove", this.isInLoveNaturally());
 		compound.putBoolean("IsBipedal", this.isBipedal());
 	}
 
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
-		this.setHasEgg(compound.getBoolean("HasEgg"));
-		this.setAlbino(compound.getBoolean("IsAlbino"));
-		this.setMelanistic(compound.getBoolean("IsMelanistic"));
-		this.setEating(compound.getBoolean("IsEating"));
-		this.setHunger(compound.getInt("MaxHunger"));
-		this.setInLoveNaturally(compound.getBoolean("InNaturalLove"));
 		this.setBipedal(compound.getBoolean("IsBipedal"));
 	}
 
@@ -269,7 +158,7 @@ public class Scelidosaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, Postosuchus.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(0, new Scelidosaurus.LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
-		this.goalSelector.addGoal(0, new Scelidosaurus.HerbivoreEatGoal((double)1.2F, 12, 2));
+		this.goalSelector.addGoal(0, new HerbivoreEatGoal(this, (double)1.2F, 12, 2));
 	}
 
 	protected SoundEvent getAmbientSound() {
@@ -424,61 +313,6 @@ public class Scelidosaurus extends DinosaurEntity {
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.22D);
 		}
-		if (!this.isNoAi()) {
-			List<? extends Scelidosaurus> list = this.level.getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(20.0D, 20.0D, 20.0D));
-			if (PrehistoricFaunaConfig.advancedHunger) {
-				hungerTick++;
-				if (hungerTick == 600 && !this.isBaby() || hungerTick == 300 && this.isBaby()) {
-					if (!this.isAsleep()) {
-						if (currentHunger != 0) {
-							this.setHunger(currentHunger - 1);
-						}
-						if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage == true && this.getHealth() > (this.getMaxHealth() / 2)) {
-							this.hurt(DamageSource.STARVE, 1);
-						}
-						if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage == true && level.getDifficulty() == Difficulty.HARD && this.getHealth() <= (this.getMaxHealth() / 2)) {
-							this.hurt(DamageSource.STARVE, 1);
-						}
-					}
-					hungerTick = 0;
-				}
-				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getTarget() == null && this.getLastHurtByMob() == null) {
-						float currentHealth = this.getHealth();
-						this.setHealth(currentHealth + 1);
-					}
-				}
-				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && tickCount % 900 == 0 && !this.isBaby() && !this.isInLove() && !this.isAsleep() && list.size() < 5) {
-						loveTick = 600;
-						this.setInLoveNaturally(true);
-						this.setInLoveTime(600);
-						lastInLove = 28800;
-					}
-					if (loveTick != 0) {
-						loveTick--;
-					} else {
-						this.setInLoveNaturally(false);
-					}
-				}
-			} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				int naturalBreedingChance = random.nextInt(1000);
-				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isBaby() && !this.isInLove() && !this.isAsleep() && list.size() < 5) {
-					loveTick = 600;
-					this.setInLoveNaturally(true);
-					this.setInLoveTime(600);
-					lastInLove = 28800;
-				}
-				if (loveTick != 0) {
-					loveTick--;
-				} else {
-					this.setInLoveNaturally(false);
-				}
-			}
-			if (lastInLove != 0) {
-				lastInLove--;
-			}
-		}
 	}
 
 	static class LayEggGoal extends MoveToBlockGoal {
@@ -494,14 +328,14 @@ public class Scelidosaurus extends DinosaurEntity {
 		 * method as well.
 		 */
 		public boolean canUse() {
-			return this.scelidosaurus.hasEgg() ? super.canUse() : false;
+			return this.scelidosaurus.hasBaby() ? super.canUse() : false;
 		}
 
 		/**
 		 * Returns whether an in-progress AIBase should continue executing
 		 */
 		public boolean canContinueToUse() {
-			return super.canContinueToUse() && this.scelidosaurus.hasEgg();
+			return super.canContinueToUse() && this.scelidosaurus.hasBaby();
 		}
 
 		/**
@@ -511,19 +345,19 @@ public class Scelidosaurus extends DinosaurEntity {
 			super.tick();
 			BlockPos blockpos = new BlockPos(this.scelidosaurus.position());
 			if (!this.scelidosaurus.isInWater() && this.isReachedTarget()) {
-				if (this.scelidosaurus.isDigging < 1) {
-					this.scelidosaurus.setDigging(true);
-				} else if (this.scelidosaurus.isDigging > 200) {
+				if (this.scelidosaurus.isBirthing < 1) {
+					this.scelidosaurus.setBirthing(true);
+				} else if (this.scelidosaurus.isBirthing > 200) {
 					Level world = this.scelidosaurus.level;
 					world.playSound((Player)null, blockpos, SoundEvents.TURTLE_LAY_EGG, SoundSource.BLOCKS, 0.3F, 0.9F + world.random.nextFloat() * 0.2F);
 					world.setBlock(this.blockPos.above(), PFBlocks.SCELIDOSAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.scelidosaurus.random.nextInt(4) + 1)), 3);
-					this.scelidosaurus.setHasEgg(false);
-					this.scelidosaurus.setDigging(false);
+					this.scelidosaurus.setHasBaby(false);
+					this.scelidosaurus.setBirthing(false);
 					this.scelidosaurus.setInLoveTime(600);
 				}
 
-				if (this.scelidosaurus.isDigging()) {
-					this.scelidosaurus.isDigging++;
+				if (this.scelidosaurus.isBirthing()) {
+					this.scelidosaurus.isBirthing++;
 				}
 			}
 
@@ -552,7 +386,7 @@ public class Scelidosaurus extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			return super.canUse() && !this.scelidosaurus.hasEgg() && !this.scelidosaurus.isInLoveNaturally();
+			return super.canUse() && !this.scelidosaurus.hasBaby() && !this.scelidosaurus.isInLoveNaturally();
 		}
 
 		protected void breed() {
@@ -564,7 +398,7 @@ public class Scelidosaurus extends DinosaurEntity {
 				serverPlayer.awardStat(Stats.ANIMALS_BRED);
 				CriteriaTriggers.BRED_ANIMALS.trigger(serverPlayer, this.animal, this.partner, (AgeableMob)null);
 			}
-			this.scelidosaurus.setHasEgg(true);
+			this.scelidosaurus.setHasBaby(true);
 			this.animal.resetLove();
 			this.partner.resetLove();
 			Random random = this.animal.getRandom();
@@ -583,7 +417,7 @@ public class Scelidosaurus extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			return super.canUse() && !this.scelidosaurus.hasEgg() && this.scelidosaurus.getCurrentHunger() >= this.scelidosaurus.getThreeQuartersHunger() && this.scelidosaurus.tickCount % 60 == 0 && (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && this.scelidosaurus.isInLoveNaturally();
+			return super.canUse() && !this.scelidosaurus.hasBaby() && this.scelidosaurus.getCurrentHunger() >= this.scelidosaurus.getThreeQuartersHunger() && this.scelidosaurus.tickCount % 60 == 0 && (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && this.scelidosaurus.isInLoveNaturally();
 		}
 
 		protected void breed() {
@@ -609,7 +443,7 @@ public class Scelidosaurus extends DinosaurEntity {
 					this.scelidosaurus.spawnAtLocation(PFBlocks.SCELIDOSAURUS_EGG.get().asItem());
 				}
 			} else {
-				this.scelidosaurus.setHasEgg(true);
+				this.scelidosaurus.setHasBaby(true);
 			}
 			this.animal.resetLove();
 			this.partner.resetLove();
@@ -622,178 +456,6 @@ public class Scelidosaurus extends DinosaurEntity {
 		Scelidosaurus entity = new Scelidosaurus(PFEntities.SCELIDOSAURUS.get(), this.level);
 		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.position())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
-	}
-
-	public class HerbivoreEatGoal extends MoveToBlockGoal {
-		protected int field_220731_g;
-
-		public HerbivoreEatGoal(double p_i50737_2_, int p_i50737_4_, int p_i50737_5_) {
-			super(Scelidosaurus.this, p_i50737_2_, p_i50737_4_, p_i50737_5_);
-		}
-
-		public double getTargetDistanceSq() {
-			return 2.0D;
-		}
-
-		public boolean shouldMove() {
-			return this.tryTicks % 100 == 0;
-		}
-
-		/**
-		 * Return true to set given position as destination
-		 */
-		protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
-			BlockState blockstate = worldIn.getBlockState(pos);
-			return blockstate.is(PFTags.PLANTS_2_HUNGER) || blockstate.is(PFTags.PLANTS_4_HUNGER) || blockstate.is(PFTags.PLANTS_6_HUNGER) || blockstate.is(PFTags.PLANTS_8_HUNGER) || blockstate.is(PFTags.PLANTS_10_HUNGER) || blockstate.is(PFTags.PLANTS_12_HUNGER) || blockstate.is(PFTags.PLANTS_15_HUNGER) || blockstate.is(PFTags.PLANTS_20_HUNGER) || blockstate.is(PFTags.PLANTS_25_HUNGER) || blockstate.is(PFTags.PLANTS_30_HUNGER);
-		}
-
-		/**
-		 * Keep ticking a continuous task that has already been started
-		 */
-		public void tick() {
-			if (this.isReachedTarget()) {
-				if (this.field_220731_g >= 20) {
-					this.eatBerry();
-				} else {
-					++this.field_220731_g;
-					Scelidosaurus.this.setEating(true);
-				}
-				if (this.field_220731_g % 5 == 1) {
-					Scelidosaurus.this.level.playSound((Player)null, this.blockPos, SoundEvents.GRASS_HIT, SoundSource.NEUTRAL, 1, 1);
-				}
-			}
-			if (Scelidosaurus.this.getCurrentHunger() >= 13) {
-				Scelidosaurus.this.setEating(false);
-			}
-			super.tick();
-		}
-
-		protected void eatBerry() {
-			BlockState blockstate = Scelidosaurus.this.level.getBlockState(this.blockPos);
-
-			if (blockstate.is(PFTags.PLANTS_2_HUNGER)) {
-				int hunger = Scelidosaurus.this.getCurrentHunger();
-				if (hunger + 2 >= Scelidosaurus.this.maxHunger) {
-					Scelidosaurus.this.setHunger(Scelidosaurus.this.maxHunger);
-					Scelidosaurus.this.setEating(false);
-				} else {
-					Scelidosaurus.this.setHunger(hunger + 2);
-					Scelidosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_4_HUNGER)) {
-				int hunger = Scelidosaurus.this.getCurrentHunger();
-				if (hunger + 4 >= Scelidosaurus.this.maxHunger) {
-					Scelidosaurus.this.setHunger(Scelidosaurus.this.maxHunger);
-					Scelidosaurus.this.setEating(false);
-				} else {
-					Scelidosaurus.this.setHunger(hunger + 4);
-					Scelidosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_6_HUNGER)) {
-				int hunger = Scelidosaurus.this.getCurrentHunger();
-				if (hunger + 6 >= Scelidosaurus.this.maxHunger) {
-					Scelidosaurus.this.setHunger(Scelidosaurus.this.maxHunger);
-					Scelidosaurus.this.setEating(false);
-				} else {
-					Scelidosaurus.this.setHunger(hunger + 6);
-					Scelidosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_8_HUNGER)) {
-				int hunger = Scelidosaurus.this.getCurrentHunger();
-				if (hunger + 8 >= Scelidosaurus.this.maxHunger) {
-					Scelidosaurus.this.setHunger(Scelidosaurus.this.maxHunger);
-					Scelidosaurus.this.setEating(false);
-				} else {
-					Scelidosaurus.this.setHunger(hunger + 8);
-					Scelidosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_10_HUNGER)) {
-				int hunger = Scelidosaurus.this.getCurrentHunger();
-				if (hunger + 10 >= Scelidosaurus.this.maxHunger) {
-					Scelidosaurus.this.setHunger(Scelidosaurus.this.maxHunger);
-					Scelidosaurus.this.setEating(false);
-				} else {
-					Scelidosaurus.this.setHunger(hunger + 10);
-					Scelidosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_12_HUNGER)) {
-				int hunger = Scelidosaurus.this.getCurrentHunger();
-				if (hunger + 12 >= Scelidosaurus.this.maxHunger) {
-					Scelidosaurus.this.setHunger(Scelidosaurus.this.maxHunger);
-					Scelidosaurus.this.setEating(false);
-				} else {
-					Scelidosaurus.this.setHunger(hunger + 12);
-					Scelidosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_15_HUNGER)) {
-				int hunger = Scelidosaurus.this.getCurrentHunger();
-				if (hunger + 15 >= Scelidosaurus.this.maxHunger) {
-					Scelidosaurus.this.setHunger(Scelidosaurus.this.maxHunger);
-					Scelidosaurus.this.setEating(false);
-				} else {
-					Scelidosaurus.this.setHunger(hunger + 15);
-					Scelidosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_20_HUNGER)) {
-				int hunger = Scelidosaurus.this.getCurrentHunger();
-				if (hunger + 20 >= Scelidosaurus.this.maxHunger) {
-					Scelidosaurus.this.setHunger(Scelidosaurus.this.maxHunger);
-					Scelidosaurus.this.setEating(false);
-				} else {
-					Scelidosaurus.this.setHunger(hunger + 20);
-					Scelidosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_25_HUNGER)) {
-				int hunger = Scelidosaurus.this.getCurrentHunger();
-				if (hunger + 25 >= Scelidosaurus.this.maxHunger) {
-					Scelidosaurus.this.setHunger(Scelidosaurus.this.maxHunger);
-					Scelidosaurus.this.setEating(false);
-				} else {
-					Scelidosaurus.this.setHunger(hunger + 25);
-					Scelidosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_30_HUNGER)) {
-				int hunger = Scelidosaurus.this.getCurrentHunger();
-				if (hunger + 30 >= Scelidosaurus.this.maxHunger) {
-					Scelidosaurus.this.setHunger(Scelidosaurus.this.maxHunger);
-					Scelidosaurus.this.setEating(false);
-				} else {
-					Scelidosaurus.this.setHunger(hunger + 30);
-					Scelidosaurus.this.setEating(false);
-				}
-			}
-		}
-
-		/**
-		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-		 * method as well.
-		 */
-		public boolean canUse() {
-			return !Scelidosaurus.this.isAsleep() && super.canUse() && Scelidosaurus.this.getCurrentHunger() < Scelidosaurus.this.getHalfHunger();
-		}
-
-		public boolean canContinueToUse() {
-			if (Scelidosaurus.this.getCurrentHunger() >= Scelidosaurus.this.maxHunger || Scelidosaurus.this.isAsleep()) {
-				return false;
-			} else return super.canContinueToUse();
-		}
-
-		/**
-		 * Execute a one shot task or start executing a continuous task
-		 */
-		public void start() {
-			this.field_220731_g = 0;
-			super.start();
-		}
 	}
 
 	class MeleeAttackGoal extends net.minecraft.world.entity.ai.goal.MeleeAttackGoal {
@@ -907,6 +569,129 @@ public class Scelidosaurus extends DinosaurEntity {
 			super.stop();
 		}
 
+	}
+	
+	public class EatFromFeederGoal extends MoveToBlockGoal {
+		protected int field_220731_g;
+
+		public EatFromFeederGoal(double p_i50737_2_, int p_i50737_4_, int p_i50737_5_) {
+			super(Scelidosaurus.this, p_i50737_2_, p_i50737_4_, p_i50737_5_);
+		}
+
+		public double getTargetDistanceSq() {
+			return 2.0D;
+		}
+
+		public boolean shouldMove() {
+			return this.tryTicks % 100 == 0;
+		}
+
+		/**
+		 * Return true to set given position as destination
+		 */
+		protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
+			BlockState blockstate = worldIn.getBlockState(pos);
+			return blockstate.getBlock() instanceof FeederBlock && blockstate.getValue(FeederBlock.PLANT) == true;
+		}
+
+		protected BlockPos getMoveToTarget() {
+			if (!Scelidosaurus.this.level.getBlockState(blockPos.north()).isCollisionShapeFullBlock(level, blockPos.north())) {
+				return this.blockPos.north();
+			} else {
+				if (!Scelidosaurus.this.level.getBlockState(blockPos.south()).isCollisionShapeFullBlock(level, blockPos.south())) {
+					return this.blockPos.south();
+				} else {
+					if (!Scelidosaurus.this.level.getBlockState(blockPos.east()).isCollisionShapeFullBlock(level, blockPos.east())) {
+						return this.blockPos.east();
+					} else {
+						if (!Scelidosaurus.this.level.getBlockState(blockPos.west()).isCollisionShapeFullBlock(level, blockPos.west())) {
+							return this.blockPos.west();
+						} else {
+							if (!Scelidosaurus.this.level.getBlockState(blockPos.north().east()).isCollisionShapeFullBlock(level, blockPos.north().east())) {
+								return this.blockPos.north().east();
+							} else {
+								if (!Scelidosaurus.this.level.getBlockState(blockPos.north().west()).isCollisionShapeFullBlock(level, blockPos.north().west())) {
+									return this.blockPos.north().west();
+								} else {
+									if (!Scelidosaurus.this.level.getBlockState(blockPos.south().east()).isCollisionShapeFullBlock(level, blockPos.south().east())) {
+										return this.blockPos.south().east();
+									} else {
+										if (!Scelidosaurus.this.level.getBlockState(blockPos.south().west()).isCollisionShapeFullBlock(level, blockPos.south().west())) {
+											return this.blockPos.south().west();
+										} else return blockPos.above();
+									}
+								}
+							}
+						}
+					}
+				}
+			} 
+		}
+
+		/**
+		 * Keep ticking a continuous task that has already been started
+		 */
+		public void tick() {
+			if (this.isReachedTarget()) {
+				if (this.field_220731_g >= 20) {
+					this.eatBerry();
+				} else {
+					++this.field_220731_g;
+					Scelidosaurus.this.setEating(true);
+				}
+				if (this.field_220731_g % 5 == 1) {
+					Scelidosaurus.this.level.playSound((Player)null, this.blockPos, SoundEvents.GRASS_HIT, SoundSource.NEUTRAL, 1, 1);
+				}
+			}
+			if (Scelidosaurus.this.getCurrentHunger() >= 13) {
+				Scelidosaurus.this.setEating(false);
+			}
+			super.tick();
+		}
+
+		protected void eatBerry() {
+			int missingHunger = Scelidosaurus.this.maxHunger - Scelidosaurus.this.getCurrentHunger();
+			int hunger = Scelidosaurus.this.getCurrentHunger();
+			FeederBlock block = (FeederBlock) Scelidosaurus.this.level.getBlockState(this.blockPos).getBlock();
+			int foodContained = block.getFoodAmount(Scelidosaurus.this.level, this.blockPos);
+			if (missingHunger <= foodContained) {
+				block.setFoodAmount(foodContained - missingHunger, level, this.blockPos);
+				Scelidosaurus.this.setHunger(Scelidosaurus.this.maxHunger);
+				Scelidosaurus.this.setEating(false);
+				System.out.println(foodContained);
+			} else if (foodContained - missingHunger < 0) {
+				block.setFoodAmount(0, level, this.blockPos);
+				Scelidosaurus.this.setHunger(hunger + foodContained);
+				Scelidosaurus.this.setEating(false);
+			}
+		}
+
+		/**
+		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+		 * method as well.
+		 */
+		public boolean canUse() {
+			return !Scelidosaurus.this.isAsleep() && super.canUse() && Scelidosaurus.this.getCurrentHunger() < Scelidosaurus.this.getHalfHunger();
+		}
+		
+		public void stop() {
+			super.stop();
+			Scelidosaurus.this.setEating(false);
+		}
+
+		public boolean canContinueToUse() {
+			if (Scelidosaurus.this.getCurrentHunger() >= Scelidosaurus.this.maxHunger || Scelidosaurus.this.isAsleep()) {
+				return false;
+			} else return super.canContinueToUse();
+		}
+
+		/**
+		 * Execute a one shot task or start executing a continuous task
+		 */
+		public void start() {
+			this.field_220731_g = 0;
+			super.start();
+		}
 	}
 	
 	@Override

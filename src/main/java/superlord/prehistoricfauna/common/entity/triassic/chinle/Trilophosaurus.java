@@ -1,9 +1,6 @@
 package superlord.prehistoricfauna.common.entity.triassic.chinle;
 
-import java.util.List;
 import java.util.Random;
-
-import javax.annotation.Nullable;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
@@ -19,8 +16,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -47,7 +42,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -55,12 +49,14 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
+import superlord.prehistoricfauna.common.blocks.FeederBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
 import superlord.prehistoricfauna.common.entity.goal.DiurnalSleepingGoal;
+import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatGoal;
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Dilophosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
@@ -74,142 +70,29 @@ import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
 public class Trilophosaurus extends DinosaurEntity {
-
-	private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(Trilophosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> IS_DIGGING = SynchedEntityData.defineId(Trilophosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> ALBINO = SynchedEntityData.defineId(Trilophosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> MELANISTIC = SynchedEntityData.defineId(Trilophosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> EATING = SynchedEntityData.defineId(Trilophosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> NATURAL_LOVE = SynchedEntityData.defineId(Trilophosaurus.class, EntityDataSerializers.BOOLEAN);
-	   private static final EntityDataAccessor<Byte> CLIMBING = SynchedEntityData.defineId(Trilophosaurus.class, EntityDataSerializers.BYTE);
+	private static final EntityDataAccessor<Byte> CLIMBING = SynchedEntityData.defineId(Trilophosaurus.class, EntityDataSerializers.BYTE);
 	private int maxHunger = 25;
-	private int currentHunger = 25;
-	int hungerTick = 0;
-	private int lastInLove = 0;
-	private int isDigging;
-	int loveTick = 0;
 	private int climbingTicks = 0;
 	private int climbingTickCooldown = 0;
 
+	@SuppressWarnings("deprecation")
 	public Trilophosaurus(EntityType<? extends TamableAnimal> type, Level levelIn) {
 		super(type, levelIn);
+		super.maxUpStep = 1.0F;
+		super.maxHunger = maxHunger;
 	}
-	
+
 	protected PathNavigation createNavigation(Level levelIn) {
 		return new WallClimberNavigation(this, levelIn);
-	}
-
-	public boolean hasEgg() {
-		return this.entityData.get(HAS_EGG);
-	}
-
-	private void setHasEgg(boolean hasEgg) {
-		this.entityData.set(HAS_EGG, hasEgg);
-	}
-
-	public boolean isDigging() {
-		return this.entityData.get(IS_DIGGING);
-	}
-
-	private void setDigging(boolean isDigging) {
-		this.isDigging = isDigging ? 1 : 0;
-		this.entityData.set(IS_DIGGING, isDigging);
-	}
-
-	public boolean isAlbino() {
-		return this.entityData.get(ALBINO);
-	}
-
-	private void setAlbino(boolean isAlbino) {
-		this.entityData.set(ALBINO, isAlbino);
-	}
-
-	public boolean isMelanistic() {
-		return this.entityData.get(MELANISTIC);
-	}
-
-	private void setMelanistic(boolean isMelanistic) {
-		this.entityData.set(MELANISTIC, isMelanistic);
 	}
 
 	public boolean isFood(ItemStack stack) {
 		return stack.getItem() == PFBlocks.NEOCALAMITES.get().asItem();
 	}
 
-	public boolean isInLoveNaturally() {
-		return this.entityData.get(NATURAL_LOVE);
-	}
-
-	private void setInLoveNaturally(boolean isInLoveNaturally) {
-		this.entityData.set(NATURAL_LOVE, isInLoveNaturally);
-	}
-
-	public int getCurrentHunger() {
-		return this.currentHunger;
-	}
-
-	private void setHunger(int currentHunger) {
-		this.currentHunger = currentHunger;
-	}
-
-	public int getHalfHunger() {
-		return maxHunger / 2;
-	}
-
-	public int getThreeQuartersHunger() {
-		return (maxHunger / 4) * 3;
-	}
-
-	public boolean isEating() {
-		return this.entityData.get(EATING);
-	}
-
-	private void setEating(boolean isEating) {
-		this.entityData.set(EATING, isEating);
-	}
-
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(HAS_EGG, false);
-		this.entityData.define(IS_DIGGING, false);
-		this.entityData.define(ALBINO, false);
-		this.entityData.define(MELANISTIC, false);
-		this.entityData.define(EATING, false);
-		this.entityData.define(NATURAL_LOVE, false);
-	      this.entityData.define(CLIMBING, (byte)0);
-	}
-
-	public void addAdditionalSaveData(CompoundTag compound) {
-		super.addAdditionalSaveData(compound);
-		compound.putBoolean("HasEgg", this.hasEgg());
-		compound.putBoolean("IsAlbino", this.isAlbino());
-		compound.putBoolean("IsMelanistic", this.isMelanistic());
-		compound.putInt("MaxHunger", this.currentHunger);
-		compound.putBoolean("IsEating", this.isEating());
-		compound.putBoolean("InNaturalLove", this.isInLoveNaturally());
-	}
-
-	public void readAdditionalSaveData(CompoundTag compound) {
-		super.readAdditionalSaveData(compound);
-		this.setHasEgg(compound.getBoolean("HasEgg"));
-		this.setAlbino(compound.getBoolean("IsAlbino"));
-		this.setMelanistic(compound.getBoolean("IsMelanistic"));
-		this.setEating(compound.getBoolean("IsEating"));
-		this.setHunger(compound.getInt("MaxHunger"));
-		this.setInLoveNaturally(compound.getBoolean("InNaturalLove"));
-	}
-
-	@Nullable
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
-		Random random = new Random();
-		int birthNumber = random.nextInt(799);
-		if (birthNumber >= 0 && birthNumber < 4) {
-			this.setAlbino(true);
-		} else if (birthNumber >= 4 && birthNumber < 7) {
-			this.setMelanistic(true);
-		}
-		this.setHunger(this.maxHunger);
-		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+		this.entityData.define(CLIMBING, (byte)0);
 	}
 
 	protected SoundEvent getAmbientSound() {
@@ -238,7 +121,7 @@ public class Trilophosaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new Trilophosaurus.MateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new Trilophosaurus.NaturalMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new DiurnalSleepingGoal(this));
-		this.goalSelector.addGoal(0, new Trilophosaurus.HerbivoreEatGoal((double)1.2F, 12, 2));
+		this.goalSelector.addGoal(0, new HerbivoreEatGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<Dilophosaurus>(this, Dilophosaurus.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<Tyrannosaurus>(this, Tyrannosaurus.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<Dakotaraptor>(this, Dakotaraptor.class, 10F, 1.5D, 1.75D));
@@ -249,7 +132,7 @@ public class Trilophosaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<Poposaurus>(this, Poposaurus.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<Postosuchus>(this, Postosuchus.class, 10F, 1.5D, 1.75D));
 	}
-	
+
 	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
 		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
 		if (PrehistoricFaunaConfig.advancedHunger) {
@@ -354,63 +237,8 @@ public class Trilophosaurus extends DinosaurEntity {
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.23D);
 		}
-		if (!this.isNoAi()) {
-			List<? extends Trilophosaurus> list = this.level.getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(20.0D, 20.0D, 20.0D));
-			if (PrehistoricFaunaConfig.advancedHunger) {
-				hungerTick++;
-				if (hungerTick == 600 && !this.isBaby() || hungerTick == 300 && this.isBaby()) {
-					if (!this.isAsleep()) {
-						if (currentHunger != 0) {
-							this.setHunger(currentHunger - 1);
-						}
-						if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage == true && this.getHealth() > (this.getMaxHealth() / 2)) {
-							this.hurt(DamageSource.STARVE, 1);
-						}
-						if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage == true && level.getDifficulty() == Difficulty.HARD && this.getHealth() <= (this.getMaxHealth() / 2)) {
-							this.hurt(DamageSource.STARVE, 1);
-						}
-					}
-					hungerTick = 0;
-				}
-				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getTarget() == null && this.getLastHurtByMob() == null) {
-						float currentHealth = this.getHealth();
-						this.setHealth(currentHealth + 1);
-					}
-				}
-				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && tickCount % 900 == 0 && !this.isBaby() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
-						loveTick = 600;
-						this.setInLoveNaturally(true);
-						this.setInLoveTime(600);
-						lastInLove = 28800;
-					}
-					if (loveTick != 0) {
-						loveTick--;
-					} else {
-						this.setInLoveNaturally(false);
-					}
-				}
-			} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				int naturalBreedingChance = random.nextInt(1000);
-				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isBaby() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
-					loveTick = 600;
-					this.setInLoveNaturally(true);
-					this.setInLoveTime(600);
-					lastInLove = 28800;
-				}
-				if (loveTick != 0) {
-					loveTick--;
-				} else {
-					this.setInLoveNaturally(false);
-				}
-			}
-			if (lastInLove != 0) {
-				lastInLove--;
-			}
-		}
 	}
-	
+
 	public void tick() {
 		super.tick();
 		if (!this.level.isClientSide) {
@@ -427,8 +255,8 @@ public class Trilophosaurus extends DinosaurEntity {
 				if (blockstate1.getBlock() == PFBlocks.NEOCALAMITES.get() || blockstate1.getBlock() == PFBlocks.NEOCALAMITES_TOP.get() || blockstate2.getBlock() == PFBlocks.NEOCALAMITES.get() || blockstate2.getBlock() == PFBlocks.NEOCALAMITES_TOP.get() || blockstate3.getBlock() == PFBlocks.NEOCALAMITES.get() || blockstate3.getBlock() == PFBlocks.NEOCALAMITES_TOP.get() || blockstate4.getBlock() == PFBlocks.NEOCALAMITES.get() || blockstate4.getBlock() == PFBlocks.NEOCALAMITES_TOP.get()) {
 					logBlock = true;
 					if (climbingTickCooldown == 0 && climbingTicks < 600) {
-				         this.setBesideClimbableBlock(logBlock);
-				         climbingTicks++;
+						this.setBesideClimbableBlock(logBlock);
+						climbingTicks++;
 					}
 					if (climbingTicks >= 599 && climbingTickCooldown <= 300) {
 						climbingTickCooldown++;
@@ -442,7 +270,7 @@ public class Trilophosaurus extends DinosaurEntity {
 		}
 
 	}
-	
+
 	public boolean isOnLadder() {
 		return this.isBesideClimbableBlock();
 	}
@@ -488,14 +316,14 @@ public class Trilophosaurus extends DinosaurEntity {
 		 * method as well.
 		 */
 		public boolean canUse() {
-			return this.trilophosaurus.hasEgg() ? super.canUse() : false;
+			return this.trilophosaurus.hasBaby() ? super.canUse() : false;
 		}
 
 		/**
 		 * Returns whether an in-progress AIBase should continue executing
 		 */
 		public boolean canContinueToUse() {
-			return super.canContinueToUse() && this.trilophosaurus.hasEgg();
+			return super.canContinueToUse() && this.trilophosaurus.hasBaby();
 		}
 
 		/**
@@ -505,23 +333,23 @@ public class Trilophosaurus extends DinosaurEntity {
 			super.tick();
 			BlockPos blockpos = new BlockPos(this.trilophosaurus.position());
 			if (!this.trilophosaurus.isInWater() && this.isReachedTarget()) {
-				if (this.trilophosaurus.isDigging < 1) {
-					this.trilophosaurus.setDigging(true);
-				} else if (this.trilophosaurus.isDigging > 200) {
+				if (this.trilophosaurus.isBirthing < 1) {
+					this.trilophosaurus.setBirthing(true);
+				} else if (this.trilophosaurus.isBirthing > 200) {
 					Level level = this.trilophosaurus.level;
 					level.playSound((Player)null, blockpos, SoundEvents.TURTLE_LAY_EGG, SoundSource.BLOCKS, 0.3F, 0.9F + level.random.nextFloat() * 0.2F);
 					level.setBlock(this.blockPos.above(), PFBlocks.TRILOPHOSAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.trilophosaurus.random.nextInt(4) + 1)), 3);
-					this.trilophosaurus.setHasEgg(false);
-					this.trilophosaurus.setDigging(false);
+					this.trilophosaurus.setHasBaby(false);
+					this.trilophosaurus.setBirthing(false);
 					this.trilophosaurus.setInLoveTime(600);
 				}
 
-				if (this.trilophosaurus.isDigging()) {
-					this.trilophosaurus.isDigging++;
+				if (this.trilophosaurus.isBirthing()) {
+					this.trilophosaurus.isBirthing++;
 				}
 			}
-			
-			
+
+
 
 		}
 
@@ -545,7 +373,7 @@ public class Trilophosaurus extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			return super.canUse() && !this.trilophosaurus.hasEgg() && !this.trilophosaurus.isInLoveNaturally();
+			return super.canUse() && !this.trilophosaurus.hasBaby() && !this.trilophosaurus.isInLoveNaturally();
 		}
 
 		protected void breed() {
@@ -559,7 +387,7 @@ public class Trilophosaurus extends DinosaurEntity {
 				CriteriaTriggers.BRED_ANIMALS.trigger(serverplayerentity, this.animal, this.partner, (AgeableMob)null);
 			}
 
-			this.trilophosaurus.setHasEgg(true);
+			this.trilophosaurus.setHasBaby(true);
 			this.animal.resetLove();
 			this.partner.resetLove();
 			Random random = this.animal.getRandom();
@@ -579,7 +407,7 @@ public class Trilophosaurus extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			return super.canUse() && !this.trilophosaurus.hasEgg() && this.trilophosaurus.getCurrentHunger() >= this.trilophosaurus.getThreeQuartersHunger() && this.trilophosaurus.tickCount % 60 == 0 && (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && this.trilophosaurus.isInLoveNaturally();
+			return super.canUse() && !this.trilophosaurus.hasBaby() && this.trilophosaurus.getCurrentHunger() >= this.trilophosaurus.getThreeQuartersHunger() && this.trilophosaurus.tickCount % 60 == 0 && (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && this.trilophosaurus.isInLoveNaturally();
 		}
 
 		protected void breed() {
@@ -605,7 +433,7 @@ public class Trilophosaurus extends DinosaurEntity {
 					this.trilophosaurus.spawnAtLocation(PFBlocks.TRILOPHOSAURUS_EGG.get().asItem());
 				}
 			} else {
-				this.trilophosaurus.setHasEgg(true);
+				this.trilophosaurus.setHasBaby(true);
 			}
 			this.animal.resetLove();
 			this.partner.resetLove();
@@ -620,10 +448,10 @@ public class Trilophosaurus extends DinosaurEntity {
 		return entity;
 	}
 
-	public class HerbivoreEatGoal extends MoveToBlockGoal {
+	public class EatFromFeederGoal extends MoveToBlockGoal {
 		protected int field_220731_g;
 
-		public HerbivoreEatGoal(double p_i50737_2_, int p_i50737_4_, int p_i50737_5_) {
+		public EatFromFeederGoal(double p_i50737_2_, int p_i50737_4_, int p_i50737_5_) {
 			super(Trilophosaurus.this, p_i50737_2_, p_i50737_4_, p_i50737_5_);
 		}
 
@@ -640,7 +468,41 @@ public class Trilophosaurus extends DinosaurEntity {
 		 */
 		protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 			BlockState blockstate = worldIn.getBlockState(pos);
-			return blockstate.is(PFTags.PLANTS_2_HUNGER) || blockstate.is(PFTags.PLANTS_4_HUNGER) || blockstate.is(PFTags.PLANTS_6_HUNGER) || blockstate.is(PFTags.PLANTS_8_HUNGER) || blockstate.is(PFTags.PLANTS_10_HUNGER) || blockstate.is(PFTags.PLANTS_12_HUNGER) || blockstate.is(PFTags.PLANTS_15_HUNGER) || blockstate.is(PFTags.PLANTS_20_HUNGER) || blockstate.is(PFTags.PLANTS_25_HUNGER) || blockstate.is(PFTags.PLANTS_30_HUNGER);
+			return blockstate.getBlock() instanceof FeederBlock && blockstate.getValue(FeederBlock.PLANT) == true;
+		}
+
+		protected BlockPos getMoveToTarget() {
+			if (!Trilophosaurus.this.level.getBlockState(blockPos.north()).isCollisionShapeFullBlock(level, blockPos.north())) {
+				return this.blockPos.north();
+			} else {
+				if (!Trilophosaurus.this.level.getBlockState(blockPos.south()).isCollisionShapeFullBlock(level, blockPos.south())) {
+					return this.blockPos.south();
+				} else {
+					if (!Trilophosaurus.this.level.getBlockState(blockPos.east()).isCollisionShapeFullBlock(level, blockPos.east())) {
+						return this.blockPos.east();
+					} else {
+						if (!Trilophosaurus.this.level.getBlockState(blockPos.west()).isCollisionShapeFullBlock(level, blockPos.west())) {
+							return this.blockPos.west();
+						} else {
+							if (!Trilophosaurus.this.level.getBlockState(blockPos.north().east()).isCollisionShapeFullBlock(level, blockPos.north().east())) {
+								return this.blockPos.north().east();
+							} else {
+								if (!Trilophosaurus.this.level.getBlockState(blockPos.north().west()).isCollisionShapeFullBlock(level, blockPos.north().west())) {
+									return this.blockPos.north().west();
+								} else {
+									if (!Trilophosaurus.this.level.getBlockState(blockPos.south().east()).isCollisionShapeFullBlock(level, blockPos.south().east())) {
+										return this.blockPos.south().east();
+									} else {
+										if (!Trilophosaurus.this.level.getBlockState(blockPos.south().west()).isCollisionShapeFullBlock(level, blockPos.south().west())) {
+											return this.blockPos.south().west();
+										} else return blockPos.above();
+									}
+								}
+							}
+						}
+					}
+				}
+			} 
 		}
 
 		/**
@@ -665,107 +527,19 @@ public class Trilophosaurus extends DinosaurEntity {
 		}
 
 		protected void eatBerry() {
-			BlockState blockstate = Trilophosaurus.this.level.getBlockState(this.blockPos);
-
-			if (blockstate.is(PFTags.PLANTS_2_HUNGER)) {
-				int hunger = Trilophosaurus.this.getCurrentHunger();
-				if (hunger + 2 >= Trilophosaurus.this.maxHunger) {
-					Trilophosaurus.this.setHunger(Trilophosaurus.this.maxHunger);
-					Trilophosaurus.this.setEating(false);
-				} else {
-					Trilophosaurus.this.setHunger(hunger + 2);
-					Trilophosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_4_HUNGER)) {
-				int hunger = Trilophosaurus.this.getCurrentHunger();
-				if (hunger + 4 >= Trilophosaurus.this.maxHunger) {
-					Trilophosaurus.this.setHunger(Trilophosaurus.this.maxHunger);
-					Trilophosaurus.this.setEating(false);
-				} else {
-					Trilophosaurus.this.setHunger(hunger + 4);
-					Trilophosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_6_HUNGER)) {
-				int hunger = Trilophosaurus.this.getCurrentHunger();
-				if (hunger + 6 >= Trilophosaurus.this.maxHunger) {
-					Trilophosaurus.this.setHunger(Trilophosaurus.this.maxHunger);
-					Trilophosaurus.this.setEating(false);
-				} else {
-					Trilophosaurus.this.setHunger(hunger + 6);
-					Trilophosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_8_HUNGER)) {
-				int hunger = Trilophosaurus.this.getCurrentHunger();
-				if (hunger + 8 >= Trilophosaurus.this.maxHunger) {
-					Trilophosaurus.this.setHunger(Trilophosaurus.this.maxHunger);
-					Trilophosaurus.this.setEating(false);
-				} else {
-					Trilophosaurus.this.setHunger(hunger + 8);
-					Trilophosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_10_HUNGER)) {
-				int hunger = Trilophosaurus.this.getCurrentHunger();
-				if (hunger + 10 >= Trilophosaurus.this.maxHunger) {
-					Trilophosaurus.this.setHunger(Trilophosaurus.this.maxHunger);
-					Trilophosaurus.this.setEating(false);
-				} else {
-					Trilophosaurus.this.setHunger(hunger + 10);
-					Trilophosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_12_HUNGER)) {
-				int hunger = Trilophosaurus.this.getCurrentHunger();
-				if (hunger + 12 >= Trilophosaurus.this.maxHunger) {
-					Trilophosaurus.this.setHunger(Trilophosaurus.this.maxHunger);
-					Trilophosaurus.this.setEating(false);
-				} else {
-					Trilophosaurus.this.setHunger(hunger + 12);
-					Trilophosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_15_HUNGER)) {
-				int hunger = Trilophosaurus.this.getCurrentHunger();
-				if (hunger + 15 >= Trilophosaurus.this.maxHunger) {
-					Trilophosaurus.this.setHunger(Trilophosaurus.this.maxHunger);
-					Trilophosaurus.this.setEating(false);
-				} else {
-					Trilophosaurus.this.setHunger(hunger + 15);
-					Trilophosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_20_HUNGER)) {
-				int hunger = Trilophosaurus.this.getCurrentHunger();
-				if (hunger + 20 >= Trilophosaurus.this.maxHunger) {
-					Trilophosaurus.this.setHunger(Trilophosaurus.this.maxHunger);
-					Trilophosaurus.this.setEating(false);
-				} else {
-					Trilophosaurus.this.setHunger(hunger + 20);
-					Trilophosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_25_HUNGER)) {
-				int hunger = Trilophosaurus.this.getCurrentHunger();
-				if (hunger + 25 >= Trilophosaurus.this.maxHunger) {
-					Trilophosaurus.this.setHunger(Trilophosaurus.this.maxHunger);
-					Trilophosaurus.this.setEating(false);
-				} else {
-					Trilophosaurus.this.setHunger(hunger + 25);
-					Trilophosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_30_HUNGER)) {
-				int hunger = Trilophosaurus.this.getCurrentHunger();
-				if (hunger + 30 >= Trilophosaurus.this.maxHunger) {
-					Trilophosaurus.this.setHunger(Trilophosaurus.this.maxHunger);
-					Trilophosaurus.this.setEating(false);
-				} else {
-					Trilophosaurus.this.setHunger(hunger + 30);
-					Trilophosaurus.this.setEating(false);
-				}
+			int missingHunger = Trilophosaurus.this.maxHunger - Trilophosaurus.this.getCurrentHunger();
+			int hunger = Trilophosaurus.this.getCurrentHunger();
+			FeederBlock block = (FeederBlock) Trilophosaurus.this.level.getBlockState(this.blockPos).getBlock();
+			int foodContained = block.getFoodAmount(Trilophosaurus.this.level, this.blockPos);
+			if (missingHunger <= foodContained) {
+				block.setFoodAmount(foodContained - missingHunger, level, this.blockPos);
+				Trilophosaurus.this.setHunger(Trilophosaurus.this.maxHunger);
+				Trilophosaurus.this.setEating(false);
+				System.out.println(foodContained);
+			} else if (foodContained - missingHunger < 0) {
+				block.setFoodAmount(0, level, this.blockPos);
+				Trilophosaurus.this.setHunger(hunger + foodContained);
+				Trilophosaurus.this.setEating(false);
 			}
 		}
 
@@ -775,7 +549,12 @@ public class Trilophosaurus extends DinosaurEntity {
 		 */
 		public boolean canUse() {
 			return !Trilophosaurus.this.isAsleep() && super.canUse() && Trilophosaurus.this.getCurrentHunger() < Trilophosaurus.this.getHalfHunger();
-		}		
+		}
+
+		public void stop() {
+			super.stop();
+			Trilophosaurus.this.setEating(false);
+		}
 
 		public boolean canContinueToUse() {
 			if (Trilophosaurus.this.getCurrentHunger() >= Trilophosaurus.this.maxHunger || Trilophosaurus.this.isAsleep()) {
@@ -791,7 +570,7 @@ public class Trilophosaurus extends DinosaurEntity {
 			super.start();
 		}
 	}
-	
+
 	@Override
 	public ItemStack getPickedResult(HitResult target) {
 		return new ItemStack(PFItems.TRILOPHOSAURUS_SPAWN_EGG.get());

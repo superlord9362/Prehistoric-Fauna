@@ -8,6 +8,7 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.blocks.compat.PFBeehiveBlock;
 import superlord.prehistoricfauna.common.blocks.compat.PFChestBlock;
 import superlord.prehistoricfauna.common.blocks.compat.PFTrappedChestBlock;
+import superlord.prehistoricfauna.common.entity.block.FeederBlockEntity;
 import superlord.prehistoricfauna.common.entity.block.PFSignBlockEntity;
 import superlord.prehistoricfauna.common.entity.block.PaleontologyTableBlockEntity;
 import superlord.prehistoricfauna.common.entity.block.PaleoscribeBlockEntity;
@@ -42,6 +43,6 @@ public class PFBlockEntities {
     public static final RegistryObject<BlockEntityType<PFBeehiveBlockEntity>> BEEHIVE = HELPER.createBlockEntity("beehive", PFBeehiveBlockEntity::new, PFBeehiveBlock.class);
 	public static final RegistryObject<BlockEntityType<PFChestBlockEntity>> CHEST = HELPER.createBlockEntity("chest", PFChestBlockEntity::new, PFChestBlock.class);
 	public static final RegistryObject<BlockEntityType<PFTrappedChestBlockEntity>> TRAPPED_CHEST = HELPER.createBlockEntity("trapped_chest", PFTrappedChestBlockEntity::new, PFTrappedChestBlock.class);
-
+	public static final RegistryObject<BlockEntityType<FeederBlockEntity>> FEEDER = REGISTER.register("feeder", () -> BlockEntityType.Builder.of(FeederBlockEntity::new, PFBlocks.OAK_FEEDER.get()).build(null));
     
 }

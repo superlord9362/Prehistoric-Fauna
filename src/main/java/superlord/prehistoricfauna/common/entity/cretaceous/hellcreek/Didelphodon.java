@@ -1,6 +1,5 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.hellcreek;
 
-import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Nullable;
@@ -13,9 +12,6 @@ import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -23,8 +19,6 @@ import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -60,7 +54,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -100,27 +93,18 @@ import superlord.prehistoricfauna.init.PFTags;
 
 public class Didelphodon extends DinosaurEntity {
 
-	private static final EntityDataAccessor<Boolean> IS_PREGNANT = SynchedEntityData.defineId(Didelphodon.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> IS_READY = SynchedEntityData.defineId(Didelphodon.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> ALBINO = SynchedEntityData.defineId(Didelphodon.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> MELANISTIC = SynchedEntityData.defineId(Didelphodon.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> NATURAL_LOVE = SynchedEntityData.defineId(Didelphodon.class, EntityDataSerializers.BOOLEAN);
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(PFBlocks.CRASSOSTREA_OYSTER.get().asItem());
-	private int currentHunger = 10;
 	private int maxHunger = 10;
-	private int lastInLove = 0;
-	int hungerTick = 0;
-	private int isReady;
 	public int eatTicks;
 	private float interestedAngle;
 	private float interestedAngleO;
-	int loveTick = 0;
 
 	@SuppressWarnings("deprecation")
 	public Didelphodon(EntityType<? extends Didelphodon> type, Level level) {
 		super(type, level);
 		this.setCanPickUpLoot(true);
 		this.maxUpStep = 1.0F;
+		super.maxHunger = maxHunger;
 	}
 
 	private void spawnItem(ItemStack stack) {
@@ -131,30 +115,6 @@ public class Didelphodon extends DinosaurEntity {
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
 		if (this.isBaby()) return 0.175F;
 		else return 0.35F;
-	}
-
-	public boolean isInLoveNaturally() {
-		return this.entityData.get(NATURAL_LOVE);
-	}
-
-	private void setInLoveNaturally(boolean isInLoveNaturally) {
-		this.entityData.set(NATURAL_LOVE, isInLoveNaturally);
-	}
-
-	public int getCurrentHunger() {
-		return this.currentHunger;
-	}
-
-	private void setHunger(int currentHunger) {
-		this.currentHunger = currentHunger;
-	}
-
-	public int getHalfHunger() {
-		return maxHunger / 2;
-	}
-
-	public int getThreeQuartersHunger() {
-		return (maxHunger / 4) * 3;
 	}
 
 	protected void updateEquipmentIfNeeded(ItemEntity item) {
@@ -274,60 +234,6 @@ public class Didelphodon extends DinosaurEntity {
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.23D);
 		}
-		if (!this.isNoAi()) {
-			List<? extends Didelphodon> list = this.level.getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(20.0D, 20.0D, 20.0D));
-			if (PrehistoricFaunaConfig.advancedHunger) {
-				hungerTick++;
-				if (hungerTick == 600 && !this.isBaby() || hungerTick == 300 && this.isBaby()) {
-					if (!this.isAsleep()) {
-						if (currentHunger != 0) {
-							this.setHunger(currentHunger - 1);
-						}
-						if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage == true && this.getHealth() > (this.getMaxHealth() / 2)) {
-							this.hurt(DamageSource.STARVE, 1);
-						}
-						if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage == true && level.getDifficulty() == Difficulty.HARD && this.getHealth() <= (this.getMaxHealth() / 2)) {
-							this.hurt(DamageSource.STARVE, 1);
-						}
-					}
-					hungerTick = 0;
-				}if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getTarget() == null && this.getLastHurtByMob() == null) {
-						float currentHealth = this.getHealth();
-						this.setHealth(currentHealth + 1);
-					}
-				}
-				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && tickCount % 900 == 0 && !this.isBaby() && !this.isInLove() && !this.isAsleep() && list.size() < 4) {
-						loveTick = 600;
-						this.setInLoveNaturally(true);
-						this.setInLoveTime(600);
-						lastInLove = 28800;
-					}
-					if (loveTick != 0) {
-						loveTick--;
-					} else {
-						this.setInLoveNaturally(false);
-					}
-				}
-			} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				int naturalBreedingChance = random.nextInt(1000);
-				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isBaby() && !this.isInLove() && !this.isAsleep() && list.size() < 4) {
-					loveTick = 600;
-					this.setInLoveNaturally(true);
-					this.setInLoveTime(600);
-					lastInLove = 28800;
-				}
-				if (loveTick != 0) {
-					loveTick--;
-				} else {
-					this.setInLoveNaturally(false);
-				}
-			}
-			if (lastInLove != 0) {
-				lastInLove--;
-			}
-		}
 		super.aiStep();
 	}
 
@@ -351,81 +257,9 @@ public class Didelphodon extends DinosaurEntity {
 		return this.getMaxAir();
 	}
 
-	public boolean isPregnant() {
-		return this.entityData.get(IS_PREGNANT);
-	}
-
-	private void setPregnant(boolean isPregnant) {
-		this.entityData.set(IS_PREGNANT, isPregnant);
-	}
-
-	public boolean isReady() {
-		return this.entityData.get(IS_READY);
-	}
-
-	private void setReady(boolean isReady) {
-		this.isReady = isReady ? 1 : 0;
-		this.entityData.set(IS_READY, isReady);
-	}
-
-	public boolean isAlbino() {
-		return this.entityData.get(ALBINO);
-	}
-
-	private void setAlbino(boolean isAlbino) {
-		this.entityData.set(ALBINO, isAlbino);
-	}
-
-	public boolean isMelanistic() {
-		return this.entityData.get(MELANISTIC);
-	}
-
-	private void setMelanistic(boolean isMelanistic) {
-		this.entityData.set(MELANISTIC, isMelanistic);
-	}
 
 	public boolean isFood(ItemStack stack) {
 		return stack.getItem() == PFBlocks.CRASSOSTREA_OYSTER.get().asItem();
-	}
-
-	public void defineSynchedData() {
-		super.defineSynchedData();
-		this.entityData.define(IS_PREGNANT, false);
-		this.entityData.define(IS_READY, false);
-		this.entityData.define(ALBINO, false);
-		this.entityData.define(MELANISTIC, false);
-		this.entityData.define(NATURAL_LOVE, false);
-	}
-
-	public void addAdditionalSaveData(CompoundTag compound) {
-		super.addAdditionalSaveData(compound);
-		compound.putBoolean("IsPregnant", this.isPregnant());
-		compound.putBoolean("IsAlbino", this.isAlbino());
-		compound.putBoolean("IsMelanistic", this.isMelanistic());
-		compound.putInt("MaxHunger", this.currentHunger);
-		compound.putBoolean("InNaturalLove", this.isInLoveNaturally());
-	}
-
-	public void readAdditionalSaveData(CompoundTag compound) {
-		super.readAdditionalSaveData(compound);
-		this.setPregnant(compound.getBoolean("IsPregnant"));
-		this.setAlbino(compound.getBoolean("IsAlbino"));
-		this.setMelanistic(compound.getBoolean("IsMelanistic"));
-		this.setHunger(compound.getInt("MaxHunger"));
-		this.setInLoveNaturally(compound.getBoolean("InNaturalLove"));
-	}
-
-	@Nullable
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
-		Random random = new Random();
-		int birthNumber = random.nextInt(799);
-		if (birthNumber >= 0 && birthNumber < 4) {
-			this.setAlbino(true);
-		} else if (birthNumber == 4) {
-			this.setMelanistic(true);
-		}
-		this.setHunger(this.maxHunger);
-		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -521,7 +355,7 @@ public class Didelphodon extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			return super.canUse() && !this.didelphodon.isPregnant() && !this.didelphodon.isInLoveNaturally();
+			return super.canUse() && !this.didelphodon.hasBaby() && !this.didelphodon.isInLoveNaturally();
 		}
 
 		protected void breed() {
@@ -533,7 +367,7 @@ public class Didelphodon extends DinosaurEntity {
 				serverplayerentity.awardStat(Stats.ANIMALS_BRED);
 				CriteriaTriggers.BRED_ANIMALS.trigger(serverplayerentity, this.animal, this.partner, (AgeableMob)null);
 			}
-			this.didelphodon.setPregnant(true);
+			this.didelphodon.setHasBaby(true);
 			this.animal.resetLove();
 			this.partner.resetLove();
 			Random random = this.animal.getRandom();
@@ -552,11 +386,11 @@ public class Didelphodon extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			return super.canUse() && !this.didelphodon.isPregnant() && this.didelphodon.getCurrentHunger() >= this.didelphodon.getThreeQuartersHunger() && this.didelphodon.tickCount % 60 == 0 && (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && this.didelphodon.isInLoveNaturally();
+			return super.canUse() && !this.didelphodon.hasBaby() && this.didelphodon.getCurrentHunger() >= this.didelphodon.getThreeQuartersHunger() && this.didelphodon.tickCount % 60 == 0 && (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && this.didelphodon.isInLoveNaturally();
 		}
 
 		protected void breed() {
-			this.didelphodon.setPregnant(true);
+			this.didelphodon.setHasBaby(true);
 			this.animal.resetLove();
 			this.partner.resetLove();
 		}
@@ -593,14 +427,14 @@ public class Didelphodon extends DinosaurEntity {
 		 * method as well.
 		 */
 		public boolean canUse() {
-			return this.didelphodon.isPregnant() ? super.canUse() : false;
+			return this.didelphodon.hasBaby() ? super.canUse() : false;
 		}
 
 		/**
 		 * Returns whether an in-progress AIBase should continue executing
 		 */
 		public boolean canContinueToUse() {
-			return super.canContinueToUse() && this.didelphodon.isPregnant();
+			return super.canContinueToUse() && this.didelphodon.hasBaby();
 		}
 
 		/**
@@ -609,9 +443,9 @@ public class Didelphodon extends DinosaurEntity {
 		public void tick() {
 			super.tick();
 			if (!this.didelphodon.isInWater() && this.isReachedTarget()) {
-				if (this.didelphodon.isReady < 1) {
-					this.didelphodon.setReady(true);
-				} else if (this.didelphodon.isReady > 200) {
+				if (this.didelphodon.isBirthing < 1) {
+					this.didelphodon.setBirthing(true);
+				} else if (this.didelphodon.isBirthing > 200) {
 					Level level = this.didelphodon.level;
 					int amount = level.random.nextInt(4) + 1;
 					for (int i = 0; i < amount; i++) {
@@ -620,13 +454,13 @@ public class Didelphodon extends DinosaurEntity {
 						baby.setPos(didelphodon.getX(), didelphodon.getY(), didelphodon.getZ());
 						level.addFreshEntity(baby);
 					}
-					this.didelphodon.setPregnant(false);
-					this.didelphodon.setReady(false);
+					this.didelphodon.setHasBaby(false);
+					this.didelphodon.setBirthing(false);
 					this.didelphodon.setInLoveTime(600);
 				}
 
-				if (this.didelphodon.isReady()) {
-					this.didelphodon.isReady++;
+				if (this.didelphodon.isBirthing()) {
+					this.didelphodon.isBirthing++;
 				}
 			}
 

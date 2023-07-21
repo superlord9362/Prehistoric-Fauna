@@ -68,6 +68,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
+import superlord.prehistoricfauna.common.blocks.FeederBlock;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
@@ -1371,6 +1372,129 @@ public class Triceratops extends AbstractChestedHorse  {
 		}
 
 
+	}
+	
+	public class EatFromFeederGoal extends MoveToBlockGoal {
+		protected int field_220731_g;
+
+		public EatFromFeederGoal(double p_i50737_2_, int p_i50737_4_, int p_i50737_5_) {
+			super(Triceratops.this, p_i50737_2_, p_i50737_4_, p_i50737_5_);
+		}
+
+		public double getTargetDistanceSq() {
+			return 2.0D;
+		}
+
+		public boolean shouldMove() {
+			return this.tryTicks % 100 == 0;
+		}
+
+		/**
+		 * Return true to set given position as destination
+		 */
+		protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
+			BlockState blockstate = worldIn.getBlockState(pos);
+			return blockstate.getBlock() instanceof FeederBlock && blockstate.getValue(FeederBlock.PLANT) == true;
+		}
+
+		protected BlockPos getMoveToTarget() {
+			if (!Triceratops.this.level.getBlockState(blockPos.north()).isCollisionShapeFullBlock(level, blockPos.north())) {
+				return this.blockPos.north();
+			} else {
+				if (!Triceratops.this.level.getBlockState(blockPos.south()).isCollisionShapeFullBlock(level, blockPos.south())) {
+					return this.blockPos.south();
+				} else {
+					if (!Triceratops.this.level.getBlockState(blockPos.east()).isCollisionShapeFullBlock(level, blockPos.east())) {
+						return this.blockPos.east();
+					} else {
+						if (!Triceratops.this.level.getBlockState(blockPos.west()).isCollisionShapeFullBlock(level, blockPos.west())) {
+							return this.blockPos.west();
+						} else {
+							if (!Triceratops.this.level.getBlockState(blockPos.north().east()).isCollisionShapeFullBlock(level, blockPos.north().east())) {
+								return this.blockPos.north().east();
+							} else {
+								if (!Triceratops.this.level.getBlockState(blockPos.north().west()).isCollisionShapeFullBlock(level, blockPos.north().west())) {
+									return this.blockPos.north().west();
+								} else {
+									if (!Triceratops.this.level.getBlockState(blockPos.south().east()).isCollisionShapeFullBlock(level, blockPos.south().east())) {
+										return this.blockPos.south().east();
+									} else {
+										if (!Triceratops.this.level.getBlockState(blockPos.south().west()).isCollisionShapeFullBlock(level, blockPos.south().west())) {
+											return this.blockPos.south().west();
+										} else return blockPos.above();
+									}
+								}
+							}
+						}
+					}
+				}
+			} 
+		}
+
+		/**
+		 * Keep ticking a continuous task that has already been started
+		 */
+		public void tick() {
+			if (this.isReachedTarget()) {
+				if (this.field_220731_g >= 20) {
+					this.eatBerry();
+				} else {
+					++this.field_220731_g;
+					Triceratops.this.setEating(true);
+				}
+				if (this.field_220731_g % 5 == 1) {
+					Triceratops.this.level.playSound((Player)null, this.blockPos, SoundEvents.GRASS_HIT, SoundSource.NEUTRAL, 1, 1);
+				}
+			}
+			if (Triceratops.this.getCurrentHunger() >= 13) {
+				Triceratops.this.setEating(false);
+			}
+			super.tick();
+		}
+
+		protected void eatBerry() {
+			int missingHunger = Triceratops.this.maxHunger - Triceratops.this.getCurrentHunger();
+			int hunger = Triceratops.this.getCurrentHunger();
+			FeederBlock block = (FeederBlock) Triceratops.this.level.getBlockState(this.blockPos).getBlock();
+			int foodContained = block.getFoodAmount(Triceratops.this.level, this.blockPos);
+			if (missingHunger <= foodContained) {
+				block.setFoodAmount(foodContained - missingHunger, level, this.blockPos);
+				Triceratops.this.setHunger(Triceratops.this.maxHunger);
+				Triceratops.this.setEating(false);
+				System.out.println(foodContained);
+			} else if (foodContained - missingHunger < 0) {
+				block.setFoodAmount(0, level, this.blockPos);
+				Triceratops.this.setHunger(hunger + foodContained);
+				Triceratops.this.setEating(false);
+			}
+		}
+
+		/**
+		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+		 * method as well.
+		 */
+		public boolean canUse() {
+			return !Triceratops.this.isSleeping() && super.canUse() && Triceratops.this.getCurrentHunger() < Triceratops.this.getHalfHunger();
+		}
+		
+		public void stop() {
+			super.stop();
+			Triceratops.this.setEating(false);
+		}
+
+		public boolean canContinueToUse() {
+			if (Triceratops.this.getCurrentHunger() >= Triceratops.this.maxHunger || Triceratops.this.isSleeping()) {
+				return false;
+			} else return super.canContinueToUse();
+		}
+
+		/**
+		 * Execute a one shot task or start executing a continuous task
+		 */
+		public void start() {
+			this.field_220731_g = 0;
+			super.start();
+		}
 	}
 
 

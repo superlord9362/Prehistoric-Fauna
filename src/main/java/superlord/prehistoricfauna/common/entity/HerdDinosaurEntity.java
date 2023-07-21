@@ -15,7 +15,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 
 public class HerdDinosaurEntity extends DinosaurEntity {
-
 	private HerdDinosaurEntity groupLeader;
 	private int groupSize = 1;
 

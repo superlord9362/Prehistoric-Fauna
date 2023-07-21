@@ -1,18 +1,12 @@
 package superlord.prehistoricfauna.common.entity.triassic.chinle;
 
-import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
-
-import javax.annotation.Nullable;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -20,8 +14,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -49,18 +41,19 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
+import superlord.prehistoricfauna.common.blocks.FeederBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
 import superlord.prehistoricfauna.common.entity.goal.CathemeralSleepGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
+import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatGoal;
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Dilophosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
@@ -74,88 +67,14 @@ import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
 public class Placerias extends DinosaurEntity {
-
-	private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(Placerias.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> IS_DIGGING = SynchedEntityData.defineId(Placerias.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> ALBINO = SynchedEntityData.defineId(Placerias.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> MELANISTIC = SynchedEntityData.defineId(Placerias.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> EATING = SynchedEntityData.defineId(Placerias.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> NATURAL_LOVE = SynchedEntityData.defineId(Placerias.class, EntityDataSerializers.BOOLEAN);
 	private int maxHunger = 50;
-	private int lastInLove = 0;
-	private int currentHunger = 50;
-	int hungerTick = 0;
 	private int warningSoundTicks;
-	private int isDigging;
-	int loveTick = 0;
 
+	@SuppressWarnings("deprecation")
 	public Placerias(EntityType<? extends Placerias> type, Level level) {
 		super(type, level);
-	}
-
-	public boolean isDigging() {
-		return this.entityData.get(IS_DIGGING);
-	}
-
-	private void setDigging(boolean isDigging) {
-		this.isDigging = isDigging ? 1 : 0;
-		this.entityData.set(IS_DIGGING, isDigging);
-	}
-
-	public boolean hasEgg() {
-		return this.entityData.get(HAS_EGG);
-	}
-
-	private void setHasEgg(boolean hasEgg) {
-		this.entityData.set(HAS_EGG, hasEgg);
-	}
-
-	public boolean isAlbino() {
-		return this.entityData.get(ALBINO);
-	}
-
-	private void setAlbino(boolean isAlbino) {
-		this.entityData.set(ALBINO, isAlbino);
-	}
-
-	public boolean isMelanistic() {
-		return this.entityData.get(MELANISTIC);
-	}
-
-	private void setMelanistic(boolean isMelanistic) {
-		this.entityData.set(MELANISTIC, isMelanistic);
-	}
-
-	public boolean isInLoveNaturally() {
-		return this.entityData.get(NATURAL_LOVE);
-	}
-
-	private void setInLoveNaturally(boolean isInLoveNaturally) {
-		this.entityData.set(NATURAL_LOVE, isInLoveNaturally);
-	}
-
-	public int getCurrentHunger() {
-		return this.currentHunger;
-	}
-
-	private void setHunger(int currentHunger) {
-		this.currentHunger = currentHunger;
-	}
-
-	public int getHalfHunger() {
-		return maxHunger / 2;
-	}
-
-	public boolean isEating() {
-		return this.entityData.get(EATING);
-	}
-
-	private void setEating(boolean isEating) {
-		this.entityData.set(EATING, isEating);
-	}
-
-	public int getThreeQuartersHunger() {
-		return (maxHunger / 4) * 3;
+		super.maxUpStep = 1.0F;
+		super.maxHunger = maxHunger;
 	}
 
 	@Override
@@ -189,7 +108,7 @@ public class Placerias extends DinosaurEntity {
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<Poposaurus>(this, Poposaurus.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<Postosuchus>(this, Postosuchus.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
-		this.goalSelector.addGoal(0, new Placerias.HerbivoreEatGoal((double)1.2F, 12, 2));
+		this.goalSelector.addGoal(0, new HerbivoreEatGoal(this, (double)1.2F, 12, 2));
 	}
 	
 	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
@@ -295,61 +214,6 @@ public class Placerias extends DinosaurEntity {
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.22D);
 		}
-		if (!this.isNoAi()) {
-			List<? extends Placerias> list = this.level.getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(20.0D, 20.0D, 20.0D));
-			if (PrehistoricFaunaConfig.advancedHunger) {
-				hungerTick++;
-				if (hungerTick == 600 && !this.isBaby() || hungerTick == 300 && this.isBaby()) {
-					if (!this.isAsleep()) {
-						if (currentHunger != 0) {
-							this.setHunger(currentHunger - 1);
-						}
-						if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage == true && this.getHealth() > (this.getMaxHealth() / 2)) {
-							this.hurt(DamageSource.STARVE, 1);
-						}
-						if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage == true && level.getDifficulty() == Difficulty.HARD && this.getHealth() <= (this.getMaxHealth() / 2)) {
-							this.hurt(DamageSource.STARVE, 1);
-						}
-					}
-					hungerTick = 0;
-				}
-				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getTarget() == null && this.getLastHurtByMob() == null) {
-						float currentHealth = this.getHealth();
-						this.setHealth(currentHealth + 1);
-					}
-				}
-				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && tickCount % 900 == 0 && !this.isBaby() && !this.isInLove() && !this.isAsleep() && list.size() < 10) {
-						loveTick = 600;
-						this.setInLoveNaturally(true);
-						this.setInLoveTime(600);
-						lastInLove = 28800;
-					}
-					if (loveTick != 0) {
-						loveTick--;
-					} else {
-						this.setInLoveNaturally(false);
-					}
-				}
-			} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				int naturalBreedingChance = random.nextInt(1000);
-				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isBaby() && !this.isInLove() && !this.isAsleep() && list.size() < 10) {
-					loveTick = 600;
-					this.setInLoveNaturally(true);
-					this.setInLoveTime(600);
-					lastInLove = 28800;
-				}
-				if (loveTick != 0) {
-					loveTick--;
-				} else {
-					this.setInLoveNaturally(false);
-				}
-			}
-			if (lastInLove != 0) {
-				lastInLove--;
-			}
-		}
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -373,49 +237,6 @@ public class Placerias extends DinosaurEntity {
 			this.playSound(PFSounds.PLACERIAS_WARN, 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
-	}
-
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.entityData.define(HAS_EGG, false);
-		this.entityData.define(IS_DIGGING, false);
-		this.entityData.define(ALBINO, false);
-		this.entityData.define(MELANISTIC, false);
-		this.entityData.define(EATING, false);
-		this.entityData.define(NATURAL_LOVE, false);
-	}
-
-	public void addAdditionalSaveData(CompoundTag compound) {
-		super.addAdditionalSaveData(compound);
-		compound.putBoolean("HasEgg", this.hasEgg());
-		compound.putBoolean("IsAlbino", this.isAlbino());
-		compound.putBoolean("IsMelanistic", this.isMelanistic());
-		compound.putInt("MaxHunger", this.currentHunger);
-		compound.putBoolean("IsEating", this.isEating());
-		compound.putBoolean("InNaturalLove", this.isInLoveNaturally());
-	}
-
-	public void readAdditionalSaveData(CompoundTag compound) {
-		super.readAdditionalSaveData(compound);
-		this.setHasEgg(compound.getBoolean("HasEgg"));
-		this.setAlbino(compound.getBoolean("IsAlbino"));
-		this.setMelanistic(compound.getBoolean("IsMelanistic"));
-		this.setEating(compound.getBoolean("IsEating"));
-		this.setHunger(compound.getInt("MaxHunger"));
-		this.setInLoveNaturally(compound.getBoolean("InNaturalLove"));
-	}
-
-	@Nullable
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
-		Random random = new Random();
-		int birthNumber = random.nextInt(799);
-		if (birthNumber >= 0 && birthNumber < 4) {
-			this.setAlbino(true);
-		} else if (birthNumber >= 4 && birthNumber < 7) {
-			this.setMelanistic(true);
-		}
-		this.setHunger(this.maxHunger);
-		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
 	public void tick() {
@@ -535,29 +356,29 @@ public class Placerias extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			return this.placerias.hasEgg() ? super.canUse() : false;
+			return this.placerias.hasBaby() ? super.canUse() : false;
 		}
 
 		public boolean canContinueToUse() {
-			return super.canContinueToUse() && this.placerias.hasEgg();
+			return super.canContinueToUse() && this.placerias.hasBaby();
 		}
 
 		public void tick() {
 			super.tick();
 			BlockPos blockpos = new BlockPos(this.placerias.position());
 			if (!this.placerias.isInWater() && this.isReachedTarget()) {
-				if (this.placerias.isDigging < 1) {
-					this.placerias.setDigging(true);
-				} else if (this.placerias.isDigging > 200) {
+				if (this.placerias.isBirthing < 1) {
+					this.placerias.setBirthing(true);
+				} else if (this.placerias.isBirthing > 200) {
 					Level level = this.placerias.level;
 					level.playSound((Player)null, blockpos, SoundEvents.TURTLE_LAY_EGG, SoundSource.BLOCKS, 0.3F, 0.9F + level.random.nextFloat() * 0.2F);
 					level.setBlock(this.blockPos.above(), PFBlocks.PLACERIAS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.placerias.random.nextInt(4) + 1)), 3);
-					this.placerias.setHasEgg(false);
-					this.placerias.setDigging(false);
+					this.placerias.setHasBaby(false);
+					this.placerias.setBirthing(false);
 					this.placerias.setInLoveTime(600);
 				}
-				if (this.placerias.isDigging()) {
-					this.placerias.isDigging++;
+				if (this.placerias.isBirthing()) {
+					this.placerias.isBirthing++;
 				}
 			}
 		}
@@ -582,7 +403,7 @@ public class Placerias extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			return super.canUse() && !this.placerias.hasEgg() && !this.placerias.isInLoveNaturally();
+			return super.canUse() && !this.placerias.hasBaby() && !this.placerias.isInLoveNaturally();
 		}
 
 		protected void breed() {
@@ -596,7 +417,7 @@ public class Placerias extends DinosaurEntity {
 				CriteriaTriggers.BRED_ANIMALS.trigger(serverplayerentity, this.animal, this.partner, (AgeableMob)null);
 			}
 
-			this.placerias.setHasEgg(true);
+			this.placerias.setHasBaby(true);
 			this.animal.resetLove();
 			this.partner.resetLove();
 			Random random = this.animal.getRandom();
@@ -615,7 +436,7 @@ public class Placerias extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			return super.canUse() && !this.placerias.hasEgg() && this.placerias.getCurrentHunger() >= this.placerias.getThreeQuartersHunger() && this.placerias.tickCount % 60 == 0 && (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && this.placerias.isInLoveNaturally();
+			return super.canUse() && !this.placerias.hasBaby() && this.placerias.getCurrentHunger() >= this.placerias.getThreeQuartersHunger() && this.placerias.tickCount % 60 == 0 && (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && this.placerias.isInLoveNaturally();
 		}
 
 		protected void breed() {
@@ -641,7 +462,7 @@ public class Placerias extends DinosaurEntity {
 					this.placerias.spawnAtLocation(PFBlocks.PLACERIAS_EGG.get().asItem());
 				}
 			} else {
-				this.placerias.setHasEgg(true);
+				this.placerias.setHasBaby(true);
 			}
 			this.animal.resetLove();
 			this.partner.resetLove();
@@ -655,11 +476,11 @@ public class Placerias extends DinosaurEntity {
 		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
-
-	public class HerbivoreEatGoal extends MoveToBlockGoal {
+	
+	public class EatFromFeederGoal extends MoveToBlockGoal {
 		protected int field_220731_g;
 
-		public HerbivoreEatGoal(double p_i50737_2_, int p_i50737_4_, int p_i50737_5_) {
+		public EatFromFeederGoal(double p_i50737_2_, int p_i50737_4_, int p_i50737_5_) {
 			super(Placerias.this, p_i50737_2_, p_i50737_4_, p_i50737_5_);
 		}
 
@@ -676,7 +497,41 @@ public class Placerias extends DinosaurEntity {
 		 */
 		protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 			BlockState blockstate = worldIn.getBlockState(pos);
-			return blockstate.is(PFTags.PLANTS_2_HUNGER) || blockstate.is(PFTags.PLANTS_4_HUNGER) || blockstate.is(PFTags.PLANTS_6_HUNGER) || blockstate.is(PFTags.PLANTS_8_HUNGER) || blockstate.is(PFTags.PLANTS_10_HUNGER) || blockstate.is(PFTags.PLANTS_12_HUNGER) || blockstate.is(PFTags.PLANTS_15_HUNGER) || blockstate.is(PFTags.PLANTS_20_HUNGER) || blockstate.is(PFTags.PLANTS_25_HUNGER) || blockstate.is(PFTags.PLANTS_30_HUNGER);
+			return blockstate.getBlock() instanceof FeederBlock && blockstate.getValue(FeederBlock.PLANT) == true;
+		}
+
+		protected BlockPos getMoveToTarget() {
+			if (!Placerias.this.level.getBlockState(blockPos.north()).isCollisionShapeFullBlock(level, blockPos.north())) {
+				return this.blockPos.north();
+			} else {
+				if (!Placerias.this.level.getBlockState(blockPos.south()).isCollisionShapeFullBlock(level, blockPos.south())) {
+					return this.blockPos.south();
+				} else {
+					if (!Placerias.this.level.getBlockState(blockPos.east()).isCollisionShapeFullBlock(level, blockPos.east())) {
+						return this.blockPos.east();
+					} else {
+						if (!Placerias.this.level.getBlockState(blockPos.west()).isCollisionShapeFullBlock(level, blockPos.west())) {
+							return this.blockPos.west();
+						} else {
+							if (!Placerias.this.level.getBlockState(blockPos.north().east()).isCollisionShapeFullBlock(level, blockPos.north().east())) {
+								return this.blockPos.north().east();
+							} else {
+								if (!Placerias.this.level.getBlockState(blockPos.north().west()).isCollisionShapeFullBlock(level, blockPos.north().west())) {
+									return this.blockPos.north().west();
+								} else {
+									if (!Placerias.this.level.getBlockState(blockPos.south().east()).isCollisionShapeFullBlock(level, blockPos.south().east())) {
+										return this.blockPos.south().east();
+									} else {
+										if (!Placerias.this.level.getBlockState(blockPos.south().west()).isCollisionShapeFullBlock(level, blockPos.south().west())) {
+											return this.blockPos.south().west();
+										} else return blockPos.above();
+									}
+								}
+							}
+						}
+					}
+				}
+			} 
 		}
 
 		/**
@@ -701,108 +556,20 @@ public class Placerias extends DinosaurEntity {
 		}
 
 		protected void eatBerry() {
-			BlockState blockstate = Placerias.this.level.getBlockState(this.blockPos);
-
-			if (blockstate.is(PFTags.PLANTS_2_HUNGER)) {
-				int hunger = Placerias.this.getCurrentHunger();
-				if (hunger + 2 >= Placerias.this.maxHunger) {
-					Placerias.this.setHunger(Placerias.this.maxHunger);
-					Placerias.this.setEating(false);
-				} else {
-					Placerias.this.setHunger(hunger + 2);
-					Placerias.this.setEating(false);
-				}
+			int missingHunger = Placerias.this.maxHunger - Placerias.this.getCurrentHunger();
+			int hunger = Placerias.this.getCurrentHunger();
+			FeederBlock block = (FeederBlock) Placerias.this.level.getBlockState(this.blockPos).getBlock();
+			int foodContained = block.getFoodAmount(Placerias.this.level, this.blockPos);
+			if (missingHunger <= foodContained) {
+				block.setFoodAmount(foodContained - missingHunger, level, this.blockPos);
+				Placerias.this.setHunger(Placerias.this.maxHunger);
+				Placerias.this.setEating(false);
+				System.out.println(foodContained);
+			} else if (foodContained - missingHunger < 0) {
+				block.setFoodAmount(0, level, this.blockPos);
+				Placerias.this.setHunger(hunger + foodContained);
+				Placerias.this.setEating(false);
 			}
-			if (blockstate.is(PFTags.PLANTS_4_HUNGER)) {
-				int hunger = Placerias.this.getCurrentHunger();
-				if (hunger + 4 >= Placerias.this.maxHunger) {
-					Placerias.this.setHunger(Placerias.this.maxHunger);
-					Placerias.this.setEating(false);
-				} else {
-					Placerias.this.setHunger(hunger + 4);
-					Placerias.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_6_HUNGER)) {
-				int hunger = Placerias.this.getCurrentHunger();
-				if (hunger + 6 >= Placerias.this.maxHunger) {
-					Placerias.this.setHunger(Placerias.this.maxHunger);
-					Placerias.this.setEating(false);
-				} else {
-					Placerias.this.setHunger(hunger + 6);
-					Placerias.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_8_HUNGER)) {
-				int hunger = Placerias.this.getCurrentHunger();
-				if (hunger + 8 >= Placerias.this.maxHunger) {
-					Placerias.this.setHunger(Placerias.this.maxHunger);
-					Placerias.this.setEating(false);
-				} else {
-					Placerias.this.setHunger(hunger + 8);
-					Placerias.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_10_HUNGER)) {
-				int hunger = Placerias.this.getCurrentHunger();
-				if (hunger + 10 >= Placerias.this.maxHunger) {
-					Placerias.this.setHunger(Placerias.this.maxHunger);
-					Placerias.this.setEating(false);
-				} else {
-					Placerias.this.setHunger(hunger + 10);
-					Placerias.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_12_HUNGER)) {
-				int hunger = Placerias.this.getCurrentHunger();
-				if (hunger + 12 >= Placerias.this.maxHunger) {
-					Placerias.this.setHunger(Placerias.this.maxHunger);
-					Placerias.this.setEating(false);
-				} else {
-					Placerias.this.setHunger(hunger + 12);
-					Placerias.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_15_HUNGER)) {
-				int hunger = Placerias.this.getCurrentHunger();
-				if (hunger + 15 >= Placerias.this.maxHunger) {
-					Placerias.this.setHunger(Placerias.this.maxHunger);
-					Placerias.this.setEating(false);
-				} else {
-					Placerias.this.setHunger(hunger + 15);
-					Placerias.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_20_HUNGER)) {
-				int hunger = Placerias.this.getCurrentHunger();
-				if (hunger + 20 >= Placerias.this.maxHunger) {
-					Placerias.this.setHunger(Placerias.this.maxHunger);
-					Placerias.this.setEating(false);
-				} else {
-					Placerias.this.setHunger(hunger + 20);
-					Placerias.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_25_HUNGER)) {
-				int hunger = Placerias.this.getCurrentHunger();
-				if (hunger + 25 >= Placerias.this.maxHunger) {
-					Placerias.this.setHunger(Placerias.this.maxHunger);
-					Placerias.this.setEating(false);
-				} else {
-					Placerias.this.setHunger(hunger + 25);
-					Placerias.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_30_HUNGER)) {
-				int hunger = Placerias.this.getCurrentHunger();
-				if (hunger + 30 >= Placerias.this.maxHunger) {
-					Placerias.this.setHunger(Placerias.this.maxHunger);
-					Placerias.this.setEating(false);
-				} else {
-					Placerias.this.setHunger(hunger + 30);
-					Placerias.this.setEating(false);
-				}
-			}		
 		}
 
 		/**
@@ -811,6 +578,11 @@ public class Placerias extends DinosaurEntity {
 		 */
 		public boolean canUse() {
 			return !Placerias.this.isAsleep() && super.canUse() && Placerias.this.getCurrentHunger() < Placerias.this.getHalfHunger();
+		}
+		
+		public void stop() {
+			super.stop();
+			Placerias.this.setEating(false);
 		}
 
 		public boolean canContinueToUse() {

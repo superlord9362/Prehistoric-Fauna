@@ -1,18 +1,12 @@
 package superlord.prehistoricfauna.common.entity.jurassic.morrison;
 
-import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
-
-import javax.annotation.Nullable;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -20,8 +14,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -49,16 +41,17 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
+import superlord.prehistoricfauna.common.blocks.FeederBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.CathemeralSleepGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
+import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatGoal;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEffects;
@@ -68,24 +61,14 @@ import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
 public class Stegosaurus extends DinosaurEntity {
-	private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(Stegosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> IS_DIGGING = SynchedEntityData.defineId(Stegosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> ALBINO = SynchedEntityData.defineId(Stegosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> MELANISTIC = SynchedEntityData.defineId(Stegosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> EATING = SynchedEntityData.defineId(Stegosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> NATURAL_LOVE = SynchedEntityData.defineId(Stegosaurus.class, EntityDataSerializers.BOOLEAN);
 	private int maxHunger = 200;
-	private int currentHunger = 200;
-	private int lastInLove = 0;
-	int hungerTick = 0;
 	private int warningSoundTicks;
-	private int isDigging;
-	int loveTick = 0;
 
 	@SuppressWarnings("deprecation")
 	public Stegosaurus(EntityType<? extends Stegosaurus> type, Level levelIn) {
 		super(type, levelIn);
 		this.maxUpStep = 1.0F;
+		super.maxHunger = maxHunger;
 	}
 	
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
@@ -93,73 +76,8 @@ public class Stegosaurus extends DinosaurEntity {
 		else return 2.25F;
 	}
 
-	public boolean isDigging() {
-		return this.entityData.get(IS_DIGGING);
-	}
-
-	private void setDigging(boolean isDigging) {
-		this.isDigging = isDigging ? 1 : 0;
-		this.entityData.set(IS_DIGGING, isDigging);
-	}
-
-	public boolean hasEgg() {
-		return this.entityData.get(HAS_EGG);
-	}
-
-	private void setHasEgg(boolean hasEgg) {
-		this.entityData.set(HAS_EGG, hasEgg);
-	}
-
 	public boolean isFood(ItemStack stack) {
 		return stack.getItem() == PFBlocks.ZAMITES_LEAVES.get().asItem();
-	}
-
-	public boolean isAlbino() {
-		return this.entityData.get(ALBINO);
-	}
-
-	private void setAlbino(boolean isAlbino) {
-		this.entityData.set(ALBINO, isAlbino);
-	}
-
-	public boolean isMelanistic() {
-		return this.entityData.get(MELANISTIC);
-	}
-
-	private void setMelanistic(boolean isMelanistic) {
-		this.entityData.set(MELANISTIC, isMelanistic);
-	}
-
-	public boolean isInLoveNaturally() {
-		return this.entityData.get(NATURAL_LOVE);
-	}
-
-	private void setInLoveNaturally(boolean isInLoveNaturally) {
-		this.entityData.set(NATURAL_LOVE, isInLoveNaturally);
-	}
-
-	public int getCurrentHunger() {
-		return this.currentHunger;
-	}
-
-	private void setHunger(int currentHunger) {
-		this.currentHunger = currentHunger;
-	}
-
-	public int getHalfHunger() {
-		return maxHunger / 2;
-	}
-
-	public int getThreeQuartersHunger() {
-		return (maxHunger / 4) * 3;
-	}
-
-	public boolean isEating() {
-		return this.entityData.get(EATING);
-	}
-
-	private void setEating(boolean isEating) {
-		this.entityData.set(EATING, isEating);
 	}
 
 	protected void registerGoals() {
@@ -178,7 +96,7 @@ public class Stegosaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new Stegosaurus.MateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new Stegosaurus.NaturalMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
-		this.goalSelector.addGoal(0, new Stegosaurus.HerbivoreEatGoal((double)1.2F, 12, 2));
+		this.goalSelector.addGoal(0, new HerbivoreEatGoal(this, (double)1.2F, 12, 2));
 	}
 
 	public void aiStep() {
@@ -187,61 +105,6 @@ public class Stegosaurus extends DinosaurEntity {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.2D);
-		}
-		if (!this.isNoAi()) {
-			List<? extends Stegosaurus> list = this.level.getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(20.0D, 20.0D, 20.0D));
-			if (PrehistoricFaunaConfig.advancedHunger) {
-				hungerTick++;
-				if (hungerTick == 600 && !this.isBaby() || hungerTick == 300 && this.isBaby()) {
-					if (!this.isAsleep()) {
-						if (currentHunger != 0) {
-							this.setHunger(currentHunger - 1);
-						}
-						if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage == true && this.getHealth() > (this.getMaxHealth() / 2)) {
-							this.hurt(DamageSource.STARVE, 1);
-						}
-						if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage == true && level.getDifficulty() == Difficulty.HARD && this.getHealth() <= (this.getMaxHealth() / 2)) {
-							this.hurt(DamageSource.STARVE, 1);
-						}
-					}
-					hungerTick = 0;
-				}
-				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getTarget() == null && this.getLastHurtByMob() == null) {
-						float currentHealth = this.getHealth();
-						this.setHealth(currentHealth + 1);
-					}
-				}
-				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && tickCount % 900 == 0 && !this.isBaby() && !this.isInLove() && !this.isAsleep() && list.size() < 3) {
-						loveTick = 600;
-						this.setInLoveNaturally(true);
-						this.setInLoveTime(600);
-						lastInLove = 28800;
-					}
-					if (loveTick != 0) {
-						loveTick--;
-					} else {
-						this.setInLoveNaturally(false);
-					}
-				}
-			} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				int naturalBreedingChance = random.nextInt(1000);
-				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isBaby() && !this.isInLove() && !this.isAsleep() && list.size() < 3) {
-					loveTick = 600;
-					this.setInLoveNaturally(true);
-					this.setInLoveTime(600);
-					lastInLove = 28800;
-				}
-				if (loveTick != 0) {
-					loveTick--;
-				} else {
-					this.setInLoveNaturally(false);
-				}
-			}
-			if (lastInLove != 0) {
-				lastInLove--;
-			}
 		}
 	}
 
@@ -270,50 +133,6 @@ public class Stegosaurus extends DinosaurEntity {
 			this.playSound(PFSounds.STEGOSAURUS_WARN, 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
-	}
-
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.entityData.define(HAS_EGG, false);
-		this.entityData.define(IS_DIGGING, false);
-		this.entityData.define(ALBINO, false);
-		this.entityData.define(MELANISTIC, false);
-		this.entityData.define(EATING, false);
-		this.entityData.define(NATURAL_LOVE, false);
-	}
-
-	public void addAdditionalSaveData(CompoundTag compound) {
-		super.addAdditionalSaveData(compound);
-		compound.putBoolean("HasEgg", this.hasEgg());
-		compound.putBoolean("IsAlbino", this.isAlbino());
-		compound.putBoolean("IsMelanistic", this.isMelanistic());
-		compound.putInt("MaxHunger", this.currentHunger);
-		compound.putBoolean("IsEating", this.isEating());
-		compound.putBoolean("InNaturalLove", this.isInLoveNaturally());
-	}
-
-	public void readAdditionalSaveData(CompoundTag compound) {
-		super.readAdditionalSaveData(compound);
-		this.setHasEgg(compound.getBoolean("HasEgg"));
-		this.setAlbino(compound.getBoolean("IsAlbino"));
-		this.setMelanistic(compound.getBoolean("IsMelanistic"));
-		this.setEating(compound.getBoolean("isEating"));
-		this.setEating(compound.getBoolean("IsEating"));
-		this.setHunger(compound.getInt("MaxHunger"));
-		this.setInLoveNaturally(compound.getBoolean("InNaturalLove"));
-	}
-
-	@Nullable
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
-		Random random = new Random();
-		int birthNumber = random.nextInt(799);
-		if (birthNumber >= 0 && birthNumber < 4) {
-			this.setAlbino(true);
-		} else if (birthNumber >= 4 && birthNumber < 7) {
-			this.setMelanistic(true);
-		}
-		this.setHunger(this.maxHunger);
-		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
 	/**
@@ -579,14 +398,14 @@ public class Stegosaurus extends DinosaurEntity {
 		 * method as well.
 		 */
 		public boolean canUse() {
-			return this.stegosaurus.hasEgg() ? super.canUse() : false;
+			return this.stegosaurus.hasBaby() ? super.canUse() : false;
 		}
 
 		/**
 		 * Returns whether an in-progress AIBase should continue executing
 		 */
 		public boolean canContinueToUse() {
-			return super.canContinueToUse() && this.stegosaurus.hasEgg();
+			return super.canContinueToUse() && this.stegosaurus.hasBaby();
 		}
 
 		/**
@@ -596,19 +415,19 @@ public class Stegosaurus extends DinosaurEntity {
 			super.tick();
 			BlockPos blockpos = new BlockPos(this.stegosaurus.position());
 			if (!this.stegosaurus.isInWater() && this.isReachedTarget()) {
-				if (this.stegosaurus.isDigging < 1) {
-					this.stegosaurus.setDigging(true);
-				} else if (this.stegosaurus.isDigging > 200) {
+				if (this.stegosaurus.isBirthing < 1) {
+					this.stegosaurus.setBirthing(true);
+				} else if (this.stegosaurus.isBirthing > 200) {
 					Level level = this.stegosaurus.level;
 					level.playSound((Player)null, blockpos, SoundEvents.TURTLE_LAY_EGG, SoundSource.BLOCKS, 0.3F, 0.9F + level.random.nextFloat() * 0.2F);
 					level.setBlock(this.blockPos.above(), PFBlocks.STEGOSAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.stegosaurus.random.nextInt(4) + 1)), 3);
-					this.stegosaurus.setHasEgg(false);
-					this.stegosaurus.setDigging(false);
+					this.stegosaurus.setHasBaby(false);
+					this.stegosaurus.setBirthing(false);
 					this.stegosaurus.setInLoveTime(600);
 				}
 
-				if (this.stegosaurus.isDigging()) {
-					this.stegosaurus.isDigging++;
+				if (this.stegosaurus.isBirthing()) {
+					this.stegosaurus.isBirthing++;
 				}
 			}
 
@@ -641,7 +460,7 @@ public class Stegosaurus extends DinosaurEntity {
 		 * method as well.
 		 */
 		public boolean canUse() {
-			return super.canUse() && !this.stegosaurus.hasEgg() && !this.stegosaurus.isInLoveNaturally();
+			return super.canUse() && !this.stegosaurus.hasBaby() && !this.stegosaurus.isInLoveNaturally();
 		}
 
 		/**
@@ -658,7 +477,7 @@ public class Stegosaurus extends DinosaurEntity {
 				CriteriaTriggers.BRED_ANIMALS.trigger(serverplayerentity, this.animal, this.partner, (AgeableMob)null);
 			}
 
-			this.stegosaurus.setHasEgg(true);
+			this.stegosaurus.setHasBaby(true);
 			this.animal.resetLove();
 			this.partner.resetLove();
 			Random random = this.animal.getRandom();
@@ -678,7 +497,7 @@ public class Stegosaurus extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			return super.canUse() && !this.stegosaurus.hasEgg() && this.stegosaurus.getCurrentHunger() >= this.stegosaurus.getThreeQuartersHunger() && this.stegosaurus.tickCount % 60 == 0 && (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && this.stegosaurus.isInLoveNaturally();
+			return super.canUse() && !this.stegosaurus.hasBaby() && this.stegosaurus.getCurrentHunger() >= this.stegosaurus.getThreeQuartersHunger() && this.stegosaurus.tickCount % 60 == 0 && (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && this.stegosaurus.isInLoveNaturally();
 		}
 
 		protected void breed() {
@@ -704,7 +523,7 @@ public class Stegosaurus extends DinosaurEntity {
 					this.stegosaurus.spawnAtLocation(PFBlocks.STEGOSAURUS_EGG.get().asItem());
 				}
 			} else {
-				this.stegosaurus.setHasEgg(true);
+				this.stegosaurus.setHasBaby(true);
 			}
 			this.animal.resetLove();
 			this.partner.resetLove();
@@ -718,11 +537,11 @@ public class Stegosaurus extends DinosaurEntity {
 		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
-
-	public class HerbivoreEatGoal extends MoveToBlockGoal {
+	
+	public class EatFromFeederGoal extends MoveToBlockGoal {
 		protected int field_220731_g;
 
-		public HerbivoreEatGoal(double p_i50737_2_, int p_i50737_4_, int p_i50737_5_) {
+		public EatFromFeederGoal(double p_i50737_2_, int p_i50737_4_, int p_i50737_5_) {
 			super(Stegosaurus.this, p_i50737_2_, p_i50737_4_, p_i50737_5_);
 		}
 
@@ -739,7 +558,41 @@ public class Stegosaurus extends DinosaurEntity {
 		 */
 		protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 			BlockState blockstate = worldIn.getBlockState(pos);
-			return blockstate.is(PFTags.PLANTS_2_HUNGER) || blockstate.is(PFTags.PLANTS_4_HUNGER) || blockstate.is(PFTags.PLANTS_6_HUNGER) || blockstate.is(PFTags.PLANTS_8_HUNGER) || blockstate.is(PFTags.PLANTS_10_HUNGER) || blockstate.is(PFTags.PLANTS_12_HUNGER) || blockstate.is(PFTags.PLANTS_15_HUNGER) || blockstate.is(PFTags.PLANTS_20_HUNGER) || blockstate.is(PFTags.PLANTS_25_HUNGER) || blockstate.is(PFTags.PLANTS_30_HUNGER);
+			return blockstate.getBlock() instanceof FeederBlock && blockstate.getValue(FeederBlock.PLANT) == true;
+		}
+
+		protected BlockPos getMoveToTarget() {
+			if (!Stegosaurus.this.level.getBlockState(blockPos.north()).isCollisionShapeFullBlock(level, blockPos.north())) {
+				return this.blockPos.north();
+			} else {
+				if (!Stegosaurus.this.level.getBlockState(blockPos.south()).isCollisionShapeFullBlock(level, blockPos.south())) {
+					return this.blockPos.south();
+				} else {
+					if (!Stegosaurus.this.level.getBlockState(blockPos.east()).isCollisionShapeFullBlock(level, blockPos.east())) {
+						return this.blockPos.east();
+					} else {
+						if (!Stegosaurus.this.level.getBlockState(blockPos.west()).isCollisionShapeFullBlock(level, blockPos.west())) {
+							return this.blockPos.west();
+						} else {
+							if (!Stegosaurus.this.level.getBlockState(blockPos.north().east()).isCollisionShapeFullBlock(level, blockPos.north().east())) {
+								return this.blockPos.north().east();
+							} else {
+								if (!Stegosaurus.this.level.getBlockState(blockPos.north().west()).isCollisionShapeFullBlock(level, blockPos.north().west())) {
+									return this.blockPos.north().west();
+								} else {
+									if (!Stegosaurus.this.level.getBlockState(blockPos.south().east()).isCollisionShapeFullBlock(level, blockPos.south().east())) {
+										return this.blockPos.south().east();
+									} else {
+										if (!Stegosaurus.this.level.getBlockState(blockPos.south().west()).isCollisionShapeFullBlock(level, blockPos.south().west())) {
+											return this.blockPos.south().west();
+										} else return blockPos.above();
+									}
+								}
+							}
+						}
+					}
+				}
+			} 
 		}
 
 		/**
@@ -764,107 +617,19 @@ public class Stegosaurus extends DinosaurEntity {
 		}
 
 		protected void eatBerry() {
-			BlockState blockstate = Stegosaurus.this.level.getBlockState(this.blockPos);
-
-			if (blockstate.is(PFTags.PLANTS_2_HUNGER)) {
-				int hunger = Stegosaurus.this.getCurrentHunger();
-				if (hunger + 2 >= Stegosaurus.this.maxHunger) {
-					Stegosaurus.this.setHunger(Stegosaurus.this.maxHunger);
-					Stegosaurus.this.setEating(false);
-				} else {
-					Stegosaurus.this.setHunger(hunger + 2);
-					Stegosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_4_HUNGER)) {
-				int hunger = Stegosaurus.this.getCurrentHunger();
-				if (hunger + 4 >= Stegosaurus.this.maxHunger) {
-					Stegosaurus.this.setHunger(Stegosaurus.this.maxHunger);
-					Stegosaurus.this.setEating(false);
-				} else {
-					Stegosaurus.this.setHunger(hunger + 4);
-					Stegosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_6_HUNGER)) {
-				int hunger = Stegosaurus.this.getCurrentHunger();
-				if (hunger + 6 >= Stegosaurus.this.maxHunger) {
-					Stegosaurus.this.setHunger(Stegosaurus.this.maxHunger);
-					Stegosaurus.this.setEating(false);
-				} else {
-					Stegosaurus.this.setHunger(hunger + 6);
-					Stegosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_8_HUNGER)) {
-				int hunger = Stegosaurus.this.getCurrentHunger();
-				if (hunger + 8 >= Stegosaurus.this.maxHunger) {
-					Stegosaurus.this.setHunger(Stegosaurus.this.maxHunger);
-					Stegosaurus.this.setEating(false);
-				} else {
-					Stegosaurus.this.setHunger(hunger + 8);
-					Stegosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_10_HUNGER)) {
-				int hunger = Stegosaurus.this.getCurrentHunger();
-				if (hunger + 10 >= Stegosaurus.this.maxHunger) {
-					Stegosaurus.this.setHunger(Stegosaurus.this.maxHunger);
-					Stegosaurus.this.setEating(false);
-				} else {
-					Stegosaurus.this.setHunger(hunger + 10);
-					Stegosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_12_HUNGER)) {
-				int hunger = Stegosaurus.this.getCurrentHunger();
-				if (hunger + 12 >= Stegosaurus.this.maxHunger) {
-					Stegosaurus.this.setHunger(Stegosaurus.this.maxHunger);
-					Stegosaurus.this.setEating(false);
-				} else {
-					Stegosaurus.this.setHunger(hunger + 12);
-					Stegosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_15_HUNGER)) {
-				int hunger = Stegosaurus.this.getCurrentHunger();
-				if (hunger + 15 >= Stegosaurus.this.maxHunger) {
-					Stegosaurus.this.setHunger(Stegosaurus.this.maxHunger);
-					Stegosaurus.this.setEating(false);
-				} else {
-					Stegosaurus.this.setHunger(hunger + 15);
-					Stegosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_20_HUNGER)) {
-				int hunger = Stegosaurus.this.getCurrentHunger();
-				if (hunger + 20 >= Stegosaurus.this.maxHunger) {
-					Stegosaurus.this.setHunger(Stegosaurus.this.maxHunger);
-					Stegosaurus.this.setEating(false);
-				} else {
-					Stegosaurus.this.setHunger(hunger + 20);
-					Stegosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_25_HUNGER)) {
-				int hunger = Stegosaurus.this.getCurrentHunger();
-				if (hunger + 25 >= Stegosaurus.this.maxHunger) {
-					Stegosaurus.this.setHunger(Stegosaurus.this.maxHunger);
-					Stegosaurus.this.setEating(false);
-				} else {
-					Stegosaurus.this.setHunger(hunger + 25);
-					Stegosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_30_HUNGER)) {
-				int hunger = Stegosaurus.this.getCurrentHunger();
-				if (hunger + 30 >= Stegosaurus.this.maxHunger) {
-					Stegosaurus.this.setHunger(Stegosaurus.this.maxHunger);
-					Stegosaurus.this.setEating(false);
-				} else {
-					Stegosaurus.this.setHunger(hunger + 30);
-					Stegosaurus.this.setEating(false);
-				}
+			int missingHunger = Stegosaurus.this.maxHunger - Stegosaurus.this.getCurrentHunger();
+			int hunger = Stegosaurus.this.getCurrentHunger();
+			FeederBlock block = (FeederBlock) Stegosaurus.this.level.getBlockState(this.blockPos).getBlock();
+			int foodContained = block.getFoodAmount(Stegosaurus.this.level, this.blockPos);
+			if (missingHunger <= foodContained) {
+				block.setFoodAmount(foodContained - missingHunger, level, this.blockPos);
+				Stegosaurus.this.setHunger(Stegosaurus.this.maxHunger);
+				Stegosaurus.this.setEating(false);
+				System.out.println(foodContained);
+			} else if (foodContained - missingHunger < 0) {
+				block.setFoodAmount(0, level, this.blockPos);
+				Stegosaurus.this.setHunger(hunger + foodContained);
+				Stegosaurus.this.setEating(false);
 			}
 		}
 
@@ -874,6 +639,11 @@ public class Stegosaurus extends DinosaurEntity {
 		 */
 		public boolean canUse() {
 			return !Stegosaurus.this.isAsleep() && super.canUse() && Stegosaurus.this.getCurrentHunger() < Stegosaurus.this.getHalfHunger();
+		}
+		
+		public void stop() {
+			super.stop();
+			Stegosaurus.this.setEating(false);
 		}
 
 		public boolean canContinueToUse() {

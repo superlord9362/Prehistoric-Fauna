@@ -49,6 +49,7 @@ import superlord.prehistoricfauna.common.blocks.CrateBlock;
 import superlord.prehistoricfauna.common.blocks.DeadCycadBlock;
 import superlord.prehistoricfauna.common.blocks.DicroidiumBlock;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
+import superlord.prehistoricfauna.common.blocks.FeederBlock;
 import superlord.prehistoricfauna.common.blocks.FossilCrateBlock;
 import superlord.prehistoricfauna.common.blocks.HardenedSiltBlock;
 import superlord.prehistoricfauna.common.blocks.JohnstoniaBlock;
@@ -546,6 +547,8 @@ public class PFBlocks {
 	public static final RegistryObject<TriassicPortalBlock> TRIASSIC_PORTAL = REGISTER.register("triassic_portal", () -> new TriassicPortalBlock(Block.Properties.of(Material.PORTAL).noCollission().randomTicks().strength(-1.0F).sound(SoundType.GLASS).noDrops()));
 	public static final RegistryObject<Block> TRIASSIC_TIME_BLOCK = REGISTER.register("triassic_time_block", () -> new TriassicTimeBlock());
 
+	public static final RegistryObject<FeederBlock> OAK_FEEDER = REGISTER.register("oak_feeder", () -> new FeederBlock(Properties.of(Material.METAL).strength(2.0F, 3.0F).sound(SoundType.METAL)));
+	
 	public static final RegistryObject<Block> METASEQUOIA_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "metasequoia_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(METASEQUOIA_SLAB.get())), PrehistoricFauna.PF_BUILDING);
 	public static final RegistryObject<Block> ARAUCARIA_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "araucaria_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(ARAUCARIA_SLAB.get())), PrehistoricFauna.PF_BUILDING);
 	public static final RegistryObject<Block> LIRIODENDRITES_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "liriodendrites_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(LIRIODENDRITES_SLAB.get())), PrehistoricFauna.PF_BUILDING);

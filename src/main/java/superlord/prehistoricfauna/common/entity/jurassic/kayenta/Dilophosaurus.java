@@ -1,6 +1,5 @@
 package superlord.prehistoricfauna.common.entity.jurassic.kayenta;
 
-import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
 
@@ -10,9 +9,6 @@ import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -20,8 +16,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -51,7 +45,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -77,99 +70,20 @@ import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
 public class Dilophosaurus extends DinosaurEntity {
-	private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(Dilophosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> IS_DIGGING = SynchedEntityData.defineId(Dilophosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> ALBINO = SynchedEntityData.defineId(Dilophosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> MELANISTIC = SynchedEntityData.defineId(Dilophosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> NATURAL_LOVE = SynchedEntityData.defineId(Dilophosaurus.class, EntityDataSerializers.BOOLEAN);
 	private int maxHunger = 75;
-	private int currentHunger = 75;
-	int hungerTick = 0;
-	private int lastInLove = 0;
 	private int warningSoundTicks;
-	private int isDigging;
 	private Goal attackAnimals;
-	int loveTick = 0;
 
 	@SuppressWarnings("deprecation")
 	public Dilophosaurus(EntityType<? extends Dilophosaurus> type, Level worldIn) {
 		super(type, worldIn);
 		this.maxUpStep = 1.0F;
-	}
-
-	public boolean isDigging() {
-		return this.getEntityData().get(IS_DIGGING);
+		super.maxHunger = maxHunger;
 	}
 	
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
 		if (this.isBaby()) return 1.1F;
 		else return 2.2F;
-	}
-
-	private void setDigging(boolean isDigging) {
-		this.isDigging = isDigging ? 1 : 0;
-		this.entityData.set(IS_DIGGING, isDigging);
-	}
-
-	public boolean hasEgg() {
-		return this.getEntityData().get(HAS_EGG);
-	}
-
-	private void setHasEgg(boolean hasEgg) {
-		this.entityData.set(HAS_EGG, hasEgg);
-	}
-
-	public boolean isAlbino() {
-		return this.entityData.get(ALBINO);
-	}
-
-	private void setAlbino(boolean isAlbino) {
-		this.entityData.set(ALBINO, isAlbino);
-	}
-
-	public boolean isMelanistic() {
-		return this.entityData.get(MELANISTIC);
-	}
-
-	private void setMelanistic(boolean isMelanistic) {
-		this.entityData.set(MELANISTIC, isMelanistic);
-	}
-
-	public boolean isInLoveNaturally() {
-		return this.entityData.get(NATURAL_LOVE);
-	}
-
-	private void setInLoveNaturally(boolean isInLoveNaturally) {
-		this.entityData.set(NATURAL_LOVE, isInLoveNaturally);
-	}
-
-	public int getCurrentHunger() {
-		return this.currentHunger;
-	}
-
-	private void setHunger(int currentHunger) {
-		this.currentHunger = currentHunger;
-	}
-
-	public int getHalfHunger() {
-		return maxHunger / 2;
-	}
-
-	public int getThreeQuartersHunger() {
-		return (maxHunger / 4) * 3;
-	}
-
-	@Nullable
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
-		Random random = new Random();
-		int birthNumber = random.nextInt(799);
-		if (birthNumber >= 0 && birthNumber < 4) {
-			this.setAlbino(true);
-		} else if (birthNumber >= 4 && birthNumber < 7) {
-			this.setMelanistic(true);
-		}
-		this.setHunger(this.maxHunger);
-		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
 	public boolean isFood(ItemStack stack) {
@@ -218,61 +132,6 @@ public class Dilophosaurus extends DinosaurEntity {
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.25D);
 		}
-		if (!this.isNoAi()) {
-			List<? extends Dilophosaurus> list = this.level.getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(20.0D, 20.0D, 20.0D));
-			if (PrehistoricFaunaConfig.advancedHunger) {
-				hungerTick++;
-				if (hungerTick == 600 && !this.isBaby() || hungerTick == 300 && this.isBaby()) {
-					if (!this.isAsleep()) {
-						if (currentHunger != 0) {
-							this.setHunger(currentHunger - 1);
-						}
-						if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage == true && this.getHealth() > (this.getMaxHealth() / 2)) {
-							this.hurt(DamageSource.STARVE, 1);
-						}
-						if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage == true && level.getDifficulty() == Difficulty.HARD && this.getHealth() <= (this.getMaxHealth() / 2)) {
-							this.hurt(DamageSource.STARVE, 1);
-						}
-					}
-					hungerTick = 0;
-				}
-				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getTarget() == null && this.getLastHurtByMob() == null) {
-						float currentHealth = this.getHealth();
-						this.setHealth(currentHealth + 1);
-					}
-				}
-				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && tickCount % 900 == 0 && !this.isBaby() && !this.isInLove() && !this.isAsleep() && list.size() < 3) {
-						loveTick = 600;
-						this.setInLoveNaturally(true);
-						this.setInLoveTime(600);
-						lastInLove = 28800;
-					}
-					if (loveTick != 0) {
-						loveTick--;
-					} else {
-						this.setInLoveNaturally(false);
-					}
-				}
-			} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				int naturalBreedingChance = random.nextInt(1000);
-				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isBaby() && !this.isInLove() && !this.isAsleep() && list.size() < 3) {
-					loveTick = 600;
-					this.setInLoveNaturally(true);
-					this.setInLoveTime(600);
-					lastInLove = 28800;
-				}
-				if (loveTick != 0) {
-					loveTick--;
-				} else {
-					this.setInLoveNaturally(false);
-				}
-			}
-			if (lastInLove != 0) {
-				lastInLove--;
-			}
-		}
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -306,32 +165,9 @@ public class Dilophosaurus extends DinosaurEntity {
 		}
 	}
 
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.entityData.define(HAS_EGG, false);
-		this.entityData.define(IS_DIGGING, false);
-		this.entityData.define(ALBINO, false);
-		this.entityData.define(MELANISTIC, false);
-		this.entityData.define(NATURAL_LOVE, false);
-	}
-
-	public void addAdditionalSaveData(CompoundTag compound) {
-		super.addAdditionalSaveData(compound);
-		compound.putBoolean("HasEgg", this.hasEgg());
-		compound.putBoolean("IsAlbino", this.isAlbino());
-		compound.putBoolean("IsMelanistic", this.isMelanistic());
-		compound.putInt("MaxHunger", this.currentHunger);
-		compound.putBoolean("InNaturalLove", this.isInLoveNaturally());
-	}
-
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
-		this.setHasEgg(compound.getBoolean("HasEgg"));
-		this.setAlbino(compound.getBoolean("IsAlbino"));
-		this.setMelanistic(compound.getBoolean("IsMelanistic"));
 		this.setAttackGoals();
-		this.setHunger(compound.getInt("MaxHunger"));
-		this.setInLoveNaturally(compound.getBoolean("InNaturalLove"));
 	}
 
 	public void tick() {
@@ -550,14 +386,14 @@ public class Dilophosaurus extends DinosaurEntity {
 		 * method as well.
 		 */
 		public boolean canUse() {
-			return this.dilophosaurus.hasEgg() ? super.canUse() : false;
+			return this.dilophosaurus.hasBaby() ? super.canUse() : false;
 		}
 
 		/**
 		 * Returns whether an in-progress AIBase should continue executing
 		 */
 		public boolean canContinueToUse() {
-			return super.canContinueToUse() && this.dilophosaurus.hasEgg();
+			return super.canContinueToUse() && this.dilophosaurus.hasBaby();
 		}
 
 		/**
@@ -567,19 +403,19 @@ public class Dilophosaurus extends DinosaurEntity {
 			super.tick();
 			BlockPos blockpos = new BlockPos(this.dilophosaurus.position());
 			if (!this.dilophosaurus.isInWater() && this.isReachedTarget()) {
-				if (this.dilophosaurus.isDigging < 1) {
-					this.dilophosaurus.setDigging(true);
-				} else if (this.dilophosaurus.isDigging > 200) {
+				if (this.dilophosaurus.isBirthing < 1) {
+					this.dilophosaurus.setBirthing(true);
+				} else if (this.dilophosaurus.isBirthing > 200) {
 					Level world = this.dilophosaurus.level;
 					world.playSound((Player)null, blockpos, SoundEvents.TURTLE_LAY_EGG, SoundSource.BLOCKS, 0.3F, 0.9F + world.random.nextFloat() * 0.2F);
 					world.setBlock(this.blockPos.above(), PFBlocks.DILOPHOSAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.dilophosaurus.random.nextInt(4) + 1)), 3);
-					this.dilophosaurus.setHasEgg(false);
-					this.dilophosaurus.setDigging(false);
+					this.dilophosaurus.setHasBaby(false);
+					this.dilophosaurus.setBirthing(false);
 					this.dilophosaurus.setInLoveTime(600);
 				}
 
-				if (this.dilophosaurus.isDigging()) {
-					this.dilophosaurus.isDigging++;
+				if (this.dilophosaurus.isBirthing()) {
+					this.dilophosaurus.isBirthing++;
 				}
 			}
 
@@ -609,7 +445,7 @@ public class Dilophosaurus extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			return super.canUse() && !this.dilophosaurus.hasEgg() && !this.dilophosaurus.isInLoveNaturally();
+			return super.canUse() && !this.dilophosaurus.hasBaby() && !this.dilophosaurus.isInLoveNaturally();
 		}
 
 		protected void breed() {
@@ -621,7 +457,7 @@ public class Dilophosaurus extends DinosaurEntity {
 				serverPlayer.awardStat(Stats.ANIMALS_BRED);
 				CriteriaTriggers.BRED_ANIMALS.trigger(serverPlayer, this.animal, this.partner, (AgeableMob)null);
 			}
-			this.dilophosaurus.setHasEgg(true);
+			this.dilophosaurus.setHasBaby(true);
 			this.animal.resetLove();
 			this.partner.resetLove();
 			Random random = this.animal.getRandom();
@@ -641,7 +477,7 @@ public class Dilophosaurus extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			return super.canUse() && !this.dilophosaurus.hasEgg() && this.dilophosaurus.getCurrentHunger() >= this.dilophosaurus.getThreeQuartersHunger() && this.dilophosaurus.tickCount % 60 == 0 && (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && this.dilophosaurus.isInLoveNaturally();
+			return super.canUse() && !this.dilophosaurus.hasBaby() && this.dilophosaurus.getCurrentHunger() >= this.dilophosaurus.getThreeQuartersHunger() && this.dilophosaurus.tickCount % 60 == 0 && (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && this.dilophosaurus.isInLoveNaturally();
 		}
 
 		protected void breed() {
@@ -667,7 +503,7 @@ public class Dilophosaurus extends DinosaurEntity {
 					this.dilophosaurus.spawnAtLocation(PFBlocks.DILOPHOSAURUS_EGG.get().asItem());
 				}
 			} else {
-				this.dilophosaurus.setHasEgg(true);
+				this.dilophosaurus.setHasBaby(true);
 			}
 			this.animal.resetLove();
 			this.partner.resetLove();

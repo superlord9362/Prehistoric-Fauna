@@ -675,6 +675,8 @@ public class PFItems {
 	public static final RegistryObject<Item> CAVE_SENTINEL_SPAWN_EGG = REGISTER.register("trilobite_sentinel_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CAVE_SENTINEL,  0x4C785D, 0x4AEE7D, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
 	public static final RegistryObject<Item> LAND_SENTINEL_SPAWN_EGG = REGISTER.register("land_sentinel_spawn_egg", () -> new PFSpawnEggItem(PFEntities.LAND_SENTINEL,  0x638B6D, 0x31413B, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
 	
+	public static final RegistryObject<BlockItem> OAK_FEEDER = REGISTER.register("oak_feeder", () -> new BlockItem(PFBlocks.OAK_FEEDER.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	
 	private static BannerPattern registerPattern(String name) {
 		return BannerPattern.create(name.toUpperCase(), name, name, true);
 	}

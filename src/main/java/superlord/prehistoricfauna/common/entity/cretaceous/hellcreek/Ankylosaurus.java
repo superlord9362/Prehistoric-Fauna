@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -25,8 +23,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.Containers;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -53,7 +49,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -62,10 +57,12 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
+import superlord.prehistoricfauna.common.blocks.FeederBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
 import superlord.prehistoricfauna.common.entity.goal.DiurnalSleepingGoal;
+import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatGoal;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
@@ -74,25 +71,15 @@ import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
 public class Ankylosaurus extends DinosaurEntity {
-	private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(Ankylosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> IS_DIGGING = SynchedEntityData.defineId(Ankylosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> ALBINO = SynchedEntityData.defineId(Ankylosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> MELANISTIC = SynchedEntityData.defineId(Ankylosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> EATING = SynchedEntityData.defineId(Ankylosaurus.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> TUBER_DIGGING = SynchedEntityData.defineId(Ankylosaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> NATURAL_LOVE = SynchedEntityData.defineId(Ankylosaurus.class, EntityDataSerializers.BOOLEAN);
 	private int warningSoundTicks = 200;
 	private int maxHunger = 200;
-	private int currentHunger;
-	private int lastInLove = 0;
-	int hungerTick = 0;
-	private int isDigging;
-	int loveTick = 0;
 
 	@SuppressWarnings("deprecation")
 	public Ankylosaurus(EntityType<? extends Ankylosaurus> type, Level worldIn) {
 		super(type, worldIn);
 		this.maxUpStep = 1.0F;
+		super.maxHunger = maxHunger;
 	}
 
 	@Override
@@ -102,33 +89,8 @@ public class Ankylosaurus extends DinosaurEntity {
 		return entity;
 	}
 
-	public boolean isDigging() {
-		return this.entityData.get(IS_DIGGING);
-	}
-
-	private void setDigging(boolean isDigging) {
-		this.isDigging = isDigging ? 1 : 0;
-		this.entityData.set(IS_DIGGING, isDigging);
-	}
-
-	public boolean hasEgg() {
-		return this.entityData.get(HAS_EGG);
-	}
-
 	public int getMaxAir() {
 		return 0;
-	}
-
-	private void setHasEgg(boolean hasEgg) {
-		this.entityData.set(HAS_EGG, hasEgg);
-	}
-
-	public boolean isAlbino() {
-		return this.entityData.get(ALBINO);
-	}
-
-	private void setAlbino(boolean isAlbino) {
-		this.entityData.set(ALBINO, isAlbino);
 	}
 	
 	public boolean isTuberDigging() {
@@ -139,14 +101,6 @@ public class Ankylosaurus extends DinosaurEntity {
 		this.entityData.set(TUBER_DIGGING, isTuberDigging);
 	}
 
-	public boolean isMelanistic() {
-		return this.entityData.get(MELANISTIC);
-	}
-
-	private void setMelanistic(boolean isMelanistic) {
-		this.entityData.set(MELANISTIC, isMelanistic);
-	}
-
 	public boolean isFood(ItemStack stack) {
 		return stack.getItem() == PFBlocks.CLUBMOSS.get().asItem();
 	}
@@ -154,38 +108,10 @@ public class Ankylosaurus extends DinosaurEntity {
 	public int getCurrentHunger() {
 		return this.currentHunger;
 	}
-
-	public boolean isLoveNaturally() {
-		return this.entityData.get(NATURAL_LOVE);
-	}
-
-	private void setInLoveNaturally(boolean isLoveNaturally) {
-		this.entityData.set(NATURAL_LOVE, isLoveNaturally);
-	}
-
-	private void setHunger(int currentHunger) {
-		this.currentHunger = currentHunger;
-	}
-
-	public int getHalfHunger() {
-		return maxHunger / 2;
-	}
 	
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
 		if (this.isBaby()) return 0.76F;
 		else return 1.5F;
-	}
-
-	public int getThreeQuartersHunger() {
-		return (maxHunger / 4) * 3;
-	}
-
-	public boolean isEating() {
-		return this.entityData.get(EATING);
-	}
-
-	private void setEating(boolean isEating) {
-		this.entityData.set(EATING, isEating);
 	}
 
 	@Override
@@ -196,74 +122,6 @@ public class Ankylosaurus extends DinosaurEntity {
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.2D);
 		}
-		if (!this.isNoAi()) {
-			List<? extends Ankylosaurus> list = this.level.getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(20.0D, 20.0D, 20.0D));
-			if (PrehistoricFaunaConfig.advancedHunger) {
-				hungerTick++;
-				if (hungerTick == 600 && !this.isBaby() || hungerTick == 300 && this.isBaby()) {
-					if (!this.isAsleep()) {
-						if (currentHunger != 0) {
-							this.setHunger(currentHunger - 1);
-						}
-						if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage == true && this.getHealth() > (this.getMaxHealth() / 2)) {
-							this.hurt(DamageSource.STARVE, 1);
-						}
-						if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage == true && level.getDifficulty() == Difficulty.HARD && this.getHealth() <= (this.getMaxHealth() / 2)) {
-							this.hurt(DamageSource.STARVE, 1);
-						}
-					}
-					hungerTick = 0;
-				}
-				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getTarget() == null && this.getLastHurtByMob() == null) {
-						float currentHealth = this.getHealth();
-						this.setHealth(currentHealth + 1);
-					}
-				}
-				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && tickCount % 900 == 0 && !this.isBaby() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
-						loveTick = 600;
-						this.setInLoveNaturally(true);
-						this.setInLoveTime(600);
-						lastInLove = 28800;
-					}
-					if (loveTick != 0) {
-						loveTick--;
-					} else {
-						this.setInLoveNaturally(false);
-					}
-				}
-			} else if ((PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && !PrehistoricFaunaConfig.advancedHunger) {
-				int naturalBreedingChance = random.nextInt(1000);
-				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isBaby() && !this.isInLove() && !this.isAsleep() && list.size() < 6) {
-					loveTick = 600;
-					this.setInLoveNaturally(true);
-					this.setInLoveTime(600);
-					lastInLove = 28800;
-				}
-				if (loveTick != 0) {
-					loveTick--;
-				} else {
-					this.setInLoveNaturally(false);
-				}
-			}
-			if (lastInLove != 0) {
-				lastInLove--;
-			}
-		}
-	}
-
-	@Nullable
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
-		Random random = new Random();
-		int birthNumber = random.nextInt(799);
-		if (birthNumber >= 0 && birthNumber < 4) {
-			this.setAlbino(true);
-		} else if (birthNumber == 4) {
-			this.setMelanistic(true);
-		}
-		this.setHunger(this.maxHunger);
-		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
 	protected void registerGoals() {
@@ -274,7 +132,7 @@ public class Ankylosaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
-		this.goalSelector.addGoal(6, new DiggingGoal(this));
+		this.goalSelector.addGoal(6, new BirthingGoal(this));
 		this.targetSelector.addGoal(1, new Ankylosaurus.HurtByTargetGoal());
 		this.targetSelector.addGoal(2, new Ankylosaurus.AttackPlayerGoal());
 		this.targetSelector.addGoal(3, new Ankylosaurus.ProtectBabyGoal());
@@ -282,7 +140,7 @@ public class Ankylosaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new Ankylosaurus.MateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new Ankylosaurus.NaturalMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new DiurnalSleepingGoal(this));
-		this.goalSelector.addGoal(0, new Ankylosaurus.HerbivoreEatGoal((double)1.2F, 12, 2));
+		this.goalSelector.addGoal(0, new HerbivoreEatGoal(this, (double)1.2F, 12, 2));
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -314,34 +172,16 @@ public class Ankylosaurus extends DinosaurEntity {
 
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(HAS_EGG, false);
-		this.entityData.define(IS_DIGGING, false);
-		this.entityData.define(ALBINO, false);
-		this.entityData.define(MELANISTIC, false);
-		this.entityData.define(EATING, false);
-		this.entityData.define(NATURAL_LOVE, false);
 		this.entityData.define(TUBER_DIGGING, false);
 	}
 
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
-		compound.putBoolean("HasEgg", this.hasEgg());
-		compound.putBoolean("IsAlbino", this.isAlbino());
-		compound.putBoolean("IsMelanistic", this.isMelanistic());
-		compound.putInt("MaxHunger", this.currentHunger);
-		compound.putBoolean("IsEating", this.isEating());
-		compound.putBoolean("InNaturalLove", this.isLoveNaturally());
 		compound.putBoolean("TuberDigging", this.isTuberDigging());
 	}
 
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
-		this.setHasEgg(compound.getBoolean("HasEgg"));
-		this.setAlbino(compound.getBoolean("IsAlbino"));
-		this.setMelanistic(compound.getBoolean("IsMelanistic"));
-		this.setEating(compound.getBoolean("IsEating"));
-		this.setHunger(compound.getInt("MaxHunger"));
-		this.setInLoveNaturally(compound.getBoolean("InNaturalLove"));
 		this.setTuberDigging(compound.getBoolean("TuberDigging"));
 	}
 
@@ -459,7 +299,7 @@ public class Ankylosaurus extends DinosaurEntity {
 		if (PrehistoricFaunaConfig.advancedHunger) {
 			int hunger = this.getCurrentHunger();
 			if (hunger < this.maxHunger) {
-				if (this.isFood(itemstack) && (!this.isInLove() || !this.isLoveNaturally())) {
+				if (this.isFood(itemstack) && (!this.isInLove() || !this.isInLoveNaturally())) {
 					this.setInLove(p_230254_1_);
 					itemstack.shrink(1);
 				} else {
@@ -607,14 +447,14 @@ public class Ankylosaurus extends DinosaurEntity {
 		 * method as well.
 		 */
 		public boolean canUse() {
-			return this.ankylosaurus.hasEgg() ? super.canUse() : false;
+			return this.ankylosaurus.hasBaby() ? super.canUse() : false;
 		}
 
 		/**
 		 * Returns whether an in-progress EntityAIBase should continue executing
 		 */
 		public boolean canContinueToUse() {
-			return super.canContinueToUse() && this.ankylosaurus.hasEgg();
+			return super.canContinueToUse() && this.ankylosaurus.hasBaby();
 		}
 
 		/**
@@ -624,19 +464,19 @@ public class Ankylosaurus extends DinosaurEntity {
 			super.tick();
 			BlockPos blockpos = new BlockPos(this.ankylosaurus.blockPosition());
 			if (!this.ankylosaurus.isInWater() && this.isReachedTarget()) {
-				if (this.ankylosaurus.isDigging < 1) {
-					this.ankylosaurus.setDigging(true);
-				} else if (this.ankylosaurus.isDigging > 200) {
+				if (this.ankylosaurus.isBirthing < 1) {
+					this.ankylosaurus.setBirthing(true);
+				} else if (this.ankylosaurus.isBirthing > 200) {
 					Level level = this.ankylosaurus.level;
 					level.playSound((Player)null, blockpos, SoundEvents.TURTLE_LAY_EGG, SoundSource.BLOCKS, 0.3F, 0.9F + level.random.nextFloat() * 0.2F);
 					level.setBlock(this.blockPos.above(), PFBlocks.ANKYLOSAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.ankylosaurus.random.nextInt(4) + 1)), 3);
-					this.ankylosaurus.setHasEgg(false);
-					this.ankylosaurus.setDigging(false);
+					this.ankylosaurus.setHasBaby(false);
+					this.ankylosaurus.setBirthing(false);
 					this.ankylosaurus.setInLoveTime(600);
 				}
 
-				if (this.ankylosaurus.isDigging()) {
-					this.ankylosaurus.isDigging++;
+				if (this.ankylosaurus.isBirthing()) {
+					this.ankylosaurus.isBirthing++;
 				}
 			}
 
@@ -669,7 +509,7 @@ public class Ankylosaurus extends DinosaurEntity {
 		 * method as well.
 		 */
 		public boolean canUse() {
-			return super.canUse() && !this.ankylosaurus.hasEgg() && !this.ankylosaurus.isLoveNaturally();
+			return super.canUse() && !this.ankylosaurus.hasBaby() && !this.ankylosaurus.isInLoveNaturally();
 		}
 
 		/**
@@ -686,7 +526,7 @@ public class Ankylosaurus extends DinosaurEntity {
 				CriteriaTriggers.BRED_ANIMALS.trigger(serverplayerentity, this.animal, this.partner, (AgeableMob)null);
 			}
 
-			this.ankylosaurus.setHasEgg(true);
+			this.ankylosaurus.setHasBaby(true);
 			this.animal.resetLove();
 			this.partner.resetLove();
 			Random random = this.animal.getRandom();
@@ -706,7 +546,7 @@ public class Ankylosaurus extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			return super.canUse() && !this.ankylosaurus.hasEgg() && this.ankylosaurus.getCurrentHunger() >= this.ankylosaurus.getThreeQuartersHunger() && this.ankylosaurus.tickCount % 60 == 0 && (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && this.ankylosaurus.isLoveNaturally();
+			return super.canUse() && !this.ankylosaurus.hasBaby() && this.ankylosaurus.getCurrentHunger() >= this.ankylosaurus.getThreeQuartersHunger() && this.ankylosaurus.tickCount % 60 == 0 && (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && this.ankylosaurus.isInLoveNaturally();
 		}
 
 		protected void breed() {
@@ -732,7 +572,7 @@ public class Ankylosaurus extends DinosaurEntity {
 					this.ankylosaurus.spawnAtLocation(PFBlocks.ANKYLOSAURUS_EGG.get().asItem());
 				}
 			} else {
-				this.ankylosaurus.setHasEgg(true);
+				this.ankylosaurus.setHasBaby(true);
 			}
 			this.animal.resetLove();
 			this.partner.resetLove();
@@ -740,14 +580,14 @@ public class Ankylosaurus extends DinosaurEntity {
 
 	}
 
-	static class DiggingGoal extends Goal {
+	static class BirthingGoal extends Goal {
 		private static final ResourceLocation DIGGING_LOOT = new ResourceLocation(PrehistoricFauna.MOD_ID, "entities/ankylosaurus_digging");
 
 		private final Ankylosaurus ankylosaurus;
 		private int diggingTimer;
 		private int digTimer2;
 
-		public DiggingGoal(Ankylosaurus entity) {
+		public BirthingGoal(Ankylosaurus entity) {
 			this.ankylosaurus = entity;
 			setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK, Goal.Flag.JUMP));
 		}
@@ -815,11 +655,11 @@ public class Ankylosaurus extends DinosaurEntity {
 		}
 
 	}
-
-	public class HerbivoreEatGoal extends MoveToBlockGoal {
+	
+	public class EatFromFeederGoal extends MoveToBlockGoal {
 		protected int field_220731_g;
 
-		public HerbivoreEatGoal(double p_i50737_2_, int p_i50737_4_, int p_i50737_5_) {
+		public EatFromFeederGoal(double p_i50737_2_, int p_i50737_4_, int p_i50737_5_) {
 			super(Ankylosaurus.this, p_i50737_2_, p_i50737_4_, p_i50737_5_);
 		}
 
@@ -836,7 +676,41 @@ public class Ankylosaurus extends DinosaurEntity {
 		 */
 		protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 			BlockState blockstate = worldIn.getBlockState(pos);
-			return blockstate.is(PFTags.PLANTS_2_HUNGER) || blockstate.is(PFTags.PLANTS_4_HUNGER) || blockstate.is(PFTags.PLANTS_6_HUNGER) || blockstate.is(PFTags.PLANTS_8_HUNGER) || blockstate.is(PFTags.PLANTS_10_HUNGER) || blockstate.is(PFTags.PLANTS_12_HUNGER) || blockstate.is(PFTags.PLANTS_15_HUNGER) || blockstate.is(PFTags.PLANTS_20_HUNGER) || blockstate.is(PFTags.PLANTS_25_HUNGER) || blockstate.is(PFTags.PLANTS_30_HUNGER);
+			return blockstate.getBlock() instanceof FeederBlock && blockstate.getValue(FeederBlock.PLANT) == true;
+		}
+
+		protected BlockPos getMoveToTarget() {
+			if (!Ankylosaurus.this.level.getBlockState(blockPos.north()).isCollisionShapeFullBlock(level, blockPos.north())) {
+				return this.blockPos.north();
+			} else {
+				if (!Ankylosaurus.this.level.getBlockState(blockPos.south()).isCollisionShapeFullBlock(level, blockPos.south())) {
+					return this.blockPos.south();
+				} else {
+					if (!Ankylosaurus.this.level.getBlockState(blockPos.east()).isCollisionShapeFullBlock(level, blockPos.east())) {
+						return this.blockPos.east();
+					} else {
+						if (!Ankylosaurus.this.level.getBlockState(blockPos.west()).isCollisionShapeFullBlock(level, blockPos.west())) {
+							return this.blockPos.west();
+						} else {
+							if (!Ankylosaurus.this.level.getBlockState(blockPos.north().east()).isCollisionShapeFullBlock(level, blockPos.north().east())) {
+								return this.blockPos.north().east();
+							} else {
+								if (!Ankylosaurus.this.level.getBlockState(blockPos.north().west()).isCollisionShapeFullBlock(level, blockPos.north().west())) {
+									return this.blockPos.north().west();
+								} else {
+									if (!Ankylosaurus.this.level.getBlockState(blockPos.south().east()).isCollisionShapeFullBlock(level, blockPos.south().east())) {
+										return this.blockPos.south().east();
+									} else {
+										if (!Ankylosaurus.this.level.getBlockState(blockPos.south().west()).isCollisionShapeFullBlock(level, blockPos.south().west())) {
+											return this.blockPos.south().west();
+										} else return blockPos.above();
+									}
+								}
+							}
+						}
+					}
+				}
+			} 
 		}
 
 		/**
@@ -861,107 +735,19 @@ public class Ankylosaurus extends DinosaurEntity {
 		}
 
 		protected void eatBerry() {
-			BlockState blockstate = Ankylosaurus.this.level.getBlockState(this.blockPos);
-
-			if (blockstate.is(PFTags.PLANTS_2_HUNGER)) {
-				int hunger = Ankylosaurus.this.getCurrentHunger();
-				if (hunger + 2 >= Ankylosaurus.this.maxHunger) {
-					Ankylosaurus.this.setHunger(Ankylosaurus.this.maxHunger);
-					Ankylosaurus.this.setEating(false);
-				} else {
-					Ankylosaurus.this.setHunger(hunger + 2);
-					Ankylosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_4_HUNGER)) {
-				int hunger = Ankylosaurus.this.getCurrentHunger();
-				if (hunger + 4 >= Ankylosaurus.this.maxHunger) {
-					Ankylosaurus.this.setHunger(Ankylosaurus.this.maxHunger);
-					Ankylosaurus.this.setEating(false);
-				} else {
-					Ankylosaurus.this.setHunger(hunger + 4);
-					Ankylosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_6_HUNGER)) {
-				int hunger = Ankylosaurus.this.getCurrentHunger();
-				if (hunger + 6 >= Ankylosaurus.this.maxHunger) {
-					Ankylosaurus.this.setHunger(Ankylosaurus.this.maxHunger);
-					Ankylosaurus.this.setEating(false);
-				} else {
-					Ankylosaurus.this.setHunger(hunger + 6);
-					Ankylosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_8_HUNGER)) {
-				int hunger = Ankylosaurus.this.getCurrentHunger();
-				if (hunger + 8 >= Ankylosaurus.this.maxHunger) {
-					Ankylosaurus.this.setHunger(Ankylosaurus.this.maxHunger);
-					Ankylosaurus.this.setEating(false);
-				} else {
-					Ankylosaurus.this.setHunger(hunger + 8);
-					Ankylosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_10_HUNGER)) {
-				int hunger = Ankylosaurus.this.getCurrentHunger();
-				if (hunger + 10 >= Ankylosaurus.this.maxHunger) {
-					Ankylosaurus.this.setHunger(Ankylosaurus.this.maxHunger);
-					Ankylosaurus.this.setEating(false);
-				} else {
-					Ankylosaurus.this.setHunger(hunger + 10);
-					Ankylosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_12_HUNGER)) {
-				int hunger = Ankylosaurus.this.getCurrentHunger();
-				if (hunger + 12 >= Ankylosaurus.this.maxHunger) {
-					Ankylosaurus.this.setHunger(Ankylosaurus.this.maxHunger);
-					Ankylosaurus.this.setEating(false);
-				} else {
-					Ankylosaurus.this.setHunger(hunger + 12);
-					Ankylosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_15_HUNGER)) {
-				int hunger = Ankylosaurus.this.getCurrentHunger();
-				if (hunger + 15 >= Ankylosaurus.this.maxHunger) {
-					Ankylosaurus.this.setHunger(Ankylosaurus.this.maxHunger);
-					Ankylosaurus.this.setEating(false);
-				} else {
-					Ankylosaurus.this.setHunger(hunger + 15);
-					Ankylosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_20_HUNGER)) {
-				int hunger = Ankylosaurus.this.getCurrentHunger();
-				if (hunger + 20 >= Ankylosaurus.this.maxHunger) {
-					Ankylosaurus.this.setHunger(Ankylosaurus.this.maxHunger);
-					Ankylosaurus.this.setEating(false);
-				} else {
-					Ankylosaurus.this.setHunger(hunger + 20);
-					Ankylosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_25_HUNGER)) {
-				int hunger = Ankylosaurus.this.getCurrentHunger();
-				if (hunger + 25 >= Ankylosaurus.this.maxHunger) {
-					Ankylosaurus.this.setHunger(Ankylosaurus.this.maxHunger);
-					Ankylosaurus.this.setEating(false);
-				} else {
-					Ankylosaurus.this.setHunger(hunger + 25);
-					Ankylosaurus.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_30_HUNGER)) {
-				int hunger = Ankylosaurus.this.getCurrentHunger();
-				if (hunger + 30 >= Ankylosaurus.this.maxHunger) {
-					Ankylosaurus.this.setHunger(Ankylosaurus.this.maxHunger);
-					Ankylosaurus.this.setEating(false);
-				} else {
-					Ankylosaurus.this.setHunger(hunger + 30);
-					Ankylosaurus.this.setEating(false);
-				}
+			int missingHunger = Ankylosaurus.this.maxHunger - Ankylosaurus.this.getCurrentHunger();
+			int hunger = Ankylosaurus.this.getCurrentHunger();
+			FeederBlock block = (FeederBlock) Ankylosaurus.this.level.getBlockState(this.blockPos).getBlock();
+			int foodContained = block.getFoodAmount(Ankylosaurus.this.level, this.blockPos);
+			if (missingHunger <= foodContained) {
+				block.setFoodAmount(foodContained - missingHunger, level, this.blockPos);
+				Ankylosaurus.this.setHunger(Ankylosaurus.this.maxHunger);
+				Ankylosaurus.this.setEating(false);
+				System.out.println(foodContained);
+			} else if (foodContained - missingHunger < 0) {
+				block.setFoodAmount(0, level, this.blockPos);
+				Ankylosaurus.this.setHunger(hunger + foodContained);
+				Ankylosaurus.this.setEating(false);
 			}
 		}
 
@@ -971,6 +757,11 @@ public class Ankylosaurus extends DinosaurEntity {
 		 */
 		public boolean canUse() {
 			return !Ankylosaurus.this.isAsleep() && super.canUse() && Ankylosaurus.this.getCurrentHunger() < Ankylosaurus.this.getHalfHunger();
+		}
+		
+		public void stop() {
+			super.stop();
+			Ankylosaurus.this.setEating(false);
 		}
 
 		public boolean canContinueToUse() {

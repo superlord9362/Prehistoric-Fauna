@@ -1,0 +1,6 @@
+{
+    "parent": "prehistoricfauna:block/feeder_empty",
+    "textures": {
+        "planks": "minecraft:block/oak_planks"
+    }
+}

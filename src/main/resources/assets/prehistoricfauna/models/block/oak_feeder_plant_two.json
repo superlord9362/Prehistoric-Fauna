@@ -1,0 +1,7 @@
+{
+    "parent": "prehistoricfauna:block/feeder_two",
+    "textures": {
+        "planks": "minecraft:block/oak_planks",
+        "food": "prehistoricfauna:blocks/plants"
+    }
+}

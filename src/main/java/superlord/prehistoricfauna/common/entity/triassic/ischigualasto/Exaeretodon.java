@@ -4,8 +4,6 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -24,8 +22,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.Containers;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -55,7 +51,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -64,6 +59,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
+import superlord.prehistoricfauna.common.blocks.FeederBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ankylosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
@@ -71,6 +67,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
+import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatGoal;
 import superlord.prehistoricfauna.common.entity.goal.NocturnalSleepGoal;
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Dilophosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
@@ -87,58 +84,16 @@ import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
 public class Exaeretodon extends DinosaurEntity {
-
-	private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(Exaeretodon.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> IS_DIGGING = SynchedEntityData.defineId(Exaeretodon.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> ALBINO = SynchedEntityData.defineId(Exaeretodon.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> MELANISTIC = SynchedEntityData.defineId(Exaeretodon.class, EntityDataSerializers.BOOLEAN);
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(PFBlocks.CLADOPHLEBIS.get().asItem());
-	private static final EntityDataAccessor<Boolean> EATING = SynchedEntityData.defineId(Exaeretodon.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> NATURAL_LOVE = SynchedEntityData.defineId(Exaeretodon.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> DIGGING_ROOTS = SynchedEntityData.defineId(Exaeretodon.class, EntityDataSerializers.BOOLEAN);
 	private int maxHunger = 20;
-	private int currentHunger = 20;
-	private int lastInLove = 0;
-	int hungerTick = 0;
-	private int isDigging;
 	private int warningSoundTicks;
-	int loveTick = 0;
 
+	@SuppressWarnings("deprecation")
 	public Exaeretodon(EntityType<? extends Exaeretodon> type, Level levelIn) {
 		super(type, levelIn);
-	}
-
-	public boolean hasEgg() {
-		return this.entityData.get(HAS_EGG);
-	}
-
-	private void setHasEgg(boolean hasEgg) {
-		this.entityData.set(HAS_EGG, hasEgg);
-	}
-
-	public boolean isDigging() {
-		return this.entityData.get(IS_DIGGING);
-	}
-
-	private void setDigging(boolean isDigging) {
-		this.isDigging = isDigging ? 1 : 0;
-		this.entityData.set(IS_DIGGING, isDigging);
-	}
-
-	public boolean isAlbino() {
-		return this.entityData.get(ALBINO);
-	}
-
-	private void setAlbino(boolean isAlbino) {
-		this.entityData.set(ALBINO, isAlbino);
-	}
-
-	public boolean isMelanistic() {
-		return this.entityData.get(MELANISTIC);
-	}
-
-	private void setMelanistic(boolean isMelanistic) {
-		this.entityData.set(MELANISTIC, isMelanistic);
+		super.maxUpStep = 1.0F;
+		super.maxHunger = maxHunger;
 	}
 
 	public boolean isDiggingForRoots() {
@@ -151,38 +106,6 @@ public class Exaeretodon extends DinosaurEntity {
 
 	public boolean isFood(ItemStack stack) {
 		return stack.getItem() == PFBlocks.CLADOPHLEBIS.get().asItem();
-	}
-
-	public boolean isInLoveNaturally() {
-		return this.entityData.get(NATURAL_LOVE);
-	}
-
-	private void setInLoveNaturally(boolean isInLoveNaturally) {
-		this.entityData.set(NATURAL_LOVE, isInLoveNaturally);
-	}
-
-	public int getCurrentHunger() {
-		return this.currentHunger;
-	}
-
-	private void setHunger(int currentHunger) {
-		this.currentHunger = currentHunger;
-	}
-
-	public int getHalfHunger() {
-		return maxHunger / 2;
-	}
-
-	public int getThreeQuartersHunger() {
-		return (maxHunger / 4) * 3;
-	}
-
-	public boolean isEating() {
-		return this.entityData.get(EATING);
-	}
-
-	private void setEating(boolean isEating) {
-		this.entityData.set(EATING, isEating);
 	}
 
 	protected void registerGoals() {
@@ -214,7 +137,7 @@ public class Exaeretodon extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new Exaeretodon.MateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new Exaeretodon.NaturalMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new NocturnalSleepGoal(this));
-		this.goalSelector.addGoal(0, new Exaeretodon.HerbivoreEatGoal((double)1.2F, 12, 2));
+		this.goalSelector.addGoal(0, new HerbivoreEatGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(5, new Exaeretodon.DiggingGoal(this));
 	}
 
@@ -224,61 +147,6 @@ public class Exaeretodon extends DinosaurEntity {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.23D);
-		}
-		if (!this.isNoAi()) {
-			List<? extends Exaeretodon> list = this.level.getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(20.0D, 20.0D, 20.0D));
-			if (PrehistoricFaunaConfig.advancedHunger) {
-				hungerTick++;
-				if (hungerTick == 600 && !this.isBaby() || hungerTick == 300 && this.isBaby()) {
-					if (!this.isAsleep()) {
-						if (currentHunger != 0) {
-							this.setHunger(currentHunger - 1);
-						}
-						if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage == true && this.getHealth() > (this.getMaxHealth() / 2)) {
-							this.hurt(DamageSource.STARVE, 1);
-						}
-						if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage == true && level.getDifficulty() == Difficulty.HARD && this.getHealth() <= (this.getMaxHealth() / 2)) {
-							this.hurt(DamageSource.STARVE, 1);
-						}
-					}
-					hungerTick = 0;
-				}
-				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
-					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getTarget() == null && this.getLastHurtByMob() == null) {
-						float currentHealth = this.getHealth();
-						this.setHealth(currentHealth + 1);
-					}
-				}
-				if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-					if (lastInLove == 0 && currentHunger >= getThreeQuartersHunger() && tickCount % 900 == 0 && !this.isBaby() && !this.isInLove() && !this.isAsleep() && list.size() < 5) {
-						loveTick = 600;
-						this.setInLoveNaturally(true);
-						this.setInLoveTime(600);
-						lastInLove = 28800;
-					}
-					if (loveTick != 0) {
-						loveTick--;
-					} else {
-						this.setInLoveNaturally(false);
-					}
-				}
-			} else if (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) {
-				int naturalBreedingChance = random.nextInt(1000);
-				if (lastInLove == 0 && naturalBreedingChance == 0 && !this.isBaby() && !this.isInLove() && !this.isAsleep() && list.size() < 5) {
-					loveTick = 600;
-					this.setInLoveNaturally(true);
-					this.setInLoveTime(600);
-					lastInLove = 28800;
-				}
-				if (loveTick != 0) {
-					loveTick--;
-				} else {
-					this.setInLoveNaturally(false);
-				}
-			}
-			if (lastInLove != 0) {
-				lastInLove--;
-			}
 		}
 	}
 
@@ -307,34 +175,16 @@ public class Exaeretodon extends DinosaurEntity {
 
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(HAS_EGG, false);
-		this.entityData.define(IS_DIGGING, false);
-		this.entityData.define(ALBINO, false);
-		this.entityData.define(MELANISTIC, false);
-		this.entityData.define(EATING, false);
-		this.entityData.define(NATURAL_LOVE, false);
 		this.entityData.define(DIGGING_ROOTS, false);
 	}
 
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
-		compound.putBoolean("HasEgg", this.hasEgg());
-		compound.putBoolean("IsAlbino", this.isAlbino());
-		compound.putBoolean("IsMelanistic", this.isMelanistic());
-		compound.putInt("MaxHunger", this.currentHunger);
-		compound.putBoolean("IsEating", this.isEating());
-		compound.putBoolean("InNaturalLove", this.isInLoveNaturally());
 		compound.putBoolean("DiggingRoots", this.isDiggingForRoots());
 	}
 
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
-		this.setHasEgg(compound.getBoolean("HasEgg"));
-		this.setAlbino(compound.getBoolean("IsAlbino"));
-		this.setMelanistic(compound.getBoolean("IsMelanistic"));
-		this.setEating(compound.getBoolean("IsEating"));
-		this.setHunger(compound.getInt("MaxHunger"));
-		this.setInLoveNaturally(compound.getBoolean("InNaturalLove"));
 		this.setDiggingForRoots(compound.getBoolean("DiggingRoots"));
 	}
 
@@ -445,18 +295,6 @@ public class Exaeretodon extends DinosaurEntity {
 			}
 			return super.mobInteract(player, hand);
 		}
-	}
-
-	@Nullable
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
-		Random random = new Random();
-		int birthNumber = random.nextInt(799);
-		if (birthNumber >= 0 && birthNumber < 4) {
-			this.setAlbino(true);
-		} else if (birthNumber >= 4 && birthNumber < 7) {
-			this.setMelanistic(true);
-		}
-		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
 	public void tick() {
@@ -579,14 +417,14 @@ public class Exaeretodon extends DinosaurEntity {
 		 * method as well.
 		 */
 		public boolean canUse() {
-			return this.exaeretodon.hasEgg() ? super.canUse() : false;
+			return this.exaeretodon.hasBaby() ? super.canUse() : false;
 		}
 
 		/**
 		 * Returns whether an in-progress AIBase should continue executing
 		 */
 		public boolean canContinueToUse() {
-			return super.canContinueToUse() && this.exaeretodon.hasEgg();
+			return super.canContinueToUse() && this.exaeretodon.hasBaby();
 		}
 
 		/**
@@ -596,19 +434,19 @@ public class Exaeretodon extends DinosaurEntity {
 			super.tick();
 			BlockPos blockpos = new BlockPos(this.exaeretodon.position());
 			if (!this.exaeretodon.isInWater() && this.isReachedTarget()) {
-				if (this.exaeretodon.isDigging < 1) {
-					this.exaeretodon.setDigging(true);
-				} else if (this.exaeretodon.isDigging > 200) {
+				if (this.exaeretodon.isBirthing < 1) {
+					this.exaeretodon.setBirthing(true);
+				} else if (this.exaeretodon.isBirthing > 200) {
 					Level level = this.exaeretodon.level;
 					level.playSound((Player)null, blockpos, SoundEvents.TURTLE_LAY_EGG, SoundSource.BLOCKS, 0.3F, 0.9F + level.random.nextFloat() * 0.2F);
 					level.setBlock(this.blockPos.above(), PFBlocks.EXAERETODON_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.exaeretodon.random.nextInt(4) + 1)), 3);
-					this.exaeretodon.setHasEgg(false);
-					this.exaeretodon.setDigging(false);
+					this.exaeretodon.setHasBaby(false);
+					this.exaeretodon.setBirthing(false);
 					this.exaeretodon.setInLoveTime(600);
 				}
 
-				if (this.exaeretodon.isDigging()) {
-					this.exaeretodon.isDigging++;
+				if (this.exaeretodon.isBirthing()) {
+					this.exaeretodon.isBirthing++;
 				}
 			}
 
@@ -638,7 +476,7 @@ public class Exaeretodon extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			return super.canUse() && !this.exaeretodon.hasEgg() && !this.exaeretodon.isInLoveNaturally();
+			return super.canUse() && !this.exaeretodon.hasBaby() && !this.exaeretodon.isInLoveNaturally();
 		}
 
 		protected void breed() {
@@ -650,7 +488,7 @@ public class Exaeretodon extends DinosaurEntity {
 				serverPlayer.awardStat(Stats.ANIMALS_BRED);
 				CriteriaTriggers.BRED_ANIMALS.trigger(serverPlayer, this.animal, this.partner, (AgeableMob)null);
 			}
-			this.exaeretodon.setHasEgg(true);
+			this.exaeretodon.setHasBaby(true);
 			this.animal.resetLove();
 			this.partner.resetLove();
 			Random random = this.animal.getRandom();
@@ -670,7 +508,7 @@ public class Exaeretodon extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			return super.canUse() && !this.exaeretodon.hasEgg() && this.exaeretodon.getCurrentHunger() >= this.exaeretodon.getThreeQuartersHunger() && this.exaeretodon.tickCount % 60 == 0 && (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && this.exaeretodon.isInLoveNaturally();
+			return super.canUse() && !this.exaeretodon.hasBaby() && this.exaeretodon.getCurrentHunger() >= this.exaeretodon.getThreeQuartersHunger() && this.exaeretodon.tickCount % 60 == 0 && (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && this.exaeretodon.isInLoveNaturally();
 		}
 
 		protected void breed() {
@@ -696,7 +534,7 @@ public class Exaeretodon extends DinosaurEntity {
 					this.exaeretodon.spawnAtLocation(PFBlocks.EXAERETODON_EGG.get().asItem());
 				}
 			} else {
-				this.exaeretodon.setHasEgg(true);
+				this.exaeretodon.setHasBaby(true);
 			}
 			this.animal.resetLove();
 			this.partner.resetLove();
@@ -709,178 +547,6 @@ public class Exaeretodon extends DinosaurEntity {
 		Exaeretodon entity = new Exaeretodon(PFEntities.EXAERETODON.get(), this.level);
 		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
-	}
-
-	public class HerbivoreEatGoal extends MoveToBlockGoal {
-		protected int field_220731_g;
-
-		public HerbivoreEatGoal(double p_i50737_2_, int p_i50737_4_, int p_i50737_5_) {
-			super(Exaeretodon.this, p_i50737_2_, p_i50737_4_, p_i50737_5_);
-		}
-
-		public double getTargetDistanceSq() {
-			return 2.0D;
-		}
-
-		public boolean shouldMove() {
-			return this.tryTicks % 100 == 0;
-		}
-
-		/**
-		 * Return true to set given position as destination
-		 */
-		protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
-			BlockState blockstate = worldIn.getBlockState(pos);
-			return blockstate.is(PFTags.PLANTS_2_HUNGER) || blockstate.is(PFTags.PLANTS_4_HUNGER) || blockstate.is(PFTags.PLANTS_6_HUNGER) || blockstate.is(PFTags.PLANTS_8_HUNGER) || blockstate.is(PFTags.PLANTS_10_HUNGER) || blockstate.is(PFTags.PLANTS_12_HUNGER) || blockstate.is(PFTags.PLANTS_15_HUNGER) || blockstate.is(PFTags.PLANTS_20_HUNGER) || blockstate.is(PFTags.PLANTS_25_HUNGER) || blockstate.is(PFTags.PLANTS_30_HUNGER);
-		}
-
-		/**
-		 * Keep ticking a continuous task that has already been started
-		 */
-		public void tick() {
-			if (this.isReachedTarget()) {
-				if (this.field_220731_g >= 20) {
-					this.eatBerry();
-				} else {
-					++this.field_220731_g;
-					Exaeretodon.this.setEating(true);
-				}
-				if (this.field_220731_g % 5 == 1) {
-					Exaeretodon.this.level.playSound((Player)null, this.blockPos, SoundEvents.GRASS_HIT, SoundSource.NEUTRAL, 1, 1);
-				}
-			}
-			if (Exaeretodon.this.getCurrentHunger() >= 13) {
-				Exaeretodon.this.setEating(false);
-			}
-			super.tick();
-		}
-
-		protected void eatBerry() {
-			BlockState blockstate = Exaeretodon.this.level.getBlockState(this.blockPos);
-
-			if (blockstate.is(PFTags.PLANTS_2_HUNGER)) {
-				int hunger = Exaeretodon.this.getCurrentHunger();
-				if (hunger + 2 >= Exaeretodon.this.maxHunger) {
-					Exaeretodon.this.setHunger(Exaeretodon.this.maxHunger);
-					Exaeretodon.this.setEating(false);
-				} else {
-					Exaeretodon.this.setHunger(hunger + 2);
-					Exaeretodon.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_4_HUNGER)) {
-				int hunger = Exaeretodon.this.getCurrentHunger();
-				if (hunger + 4 >= Exaeretodon.this.maxHunger) {
-					Exaeretodon.this.setHunger(Exaeretodon.this.maxHunger);
-					Exaeretodon.this.setEating(false);
-				} else {
-					Exaeretodon.this.setHunger(hunger + 4);
-					Exaeretodon.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_6_HUNGER)) {
-				int hunger = Exaeretodon.this.getCurrentHunger();
-				if (hunger + 6 >= Exaeretodon.this.maxHunger) {
-					Exaeretodon.this.setHunger(Exaeretodon.this.maxHunger);
-					Exaeretodon.this.setEating(false);
-				} else {
-					Exaeretodon.this.setHunger(hunger + 6);
-					Exaeretodon.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_8_HUNGER)) {
-				int hunger = Exaeretodon.this.getCurrentHunger();
-				if (hunger + 8 >= Exaeretodon.this.maxHunger) {
-					Exaeretodon.this.setHunger(Exaeretodon.this.maxHunger);
-					Exaeretodon.this.setEating(false);
-				} else {
-					Exaeretodon.this.setHunger(hunger + 8);
-					Exaeretodon.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_10_HUNGER)) {
-				int hunger = Exaeretodon.this.getCurrentHunger();
-				if (hunger + 10 >= Exaeretodon.this.maxHunger) {
-					Exaeretodon.this.setHunger(Exaeretodon.this.maxHunger);
-					Exaeretodon.this.setEating(false);
-				} else {
-					Exaeretodon.this.setHunger(hunger + 10);
-					Exaeretodon.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_12_HUNGER)) {
-				int hunger = Exaeretodon.this.getCurrentHunger();
-				if (hunger + 12 >= Exaeretodon.this.maxHunger) {
-					Exaeretodon.this.setHunger(Exaeretodon.this.maxHunger);
-					Exaeretodon.this.setEating(false);
-				} else {
-					Exaeretodon.this.setHunger(hunger + 12);
-					Exaeretodon.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_15_HUNGER)) {
-				int hunger = Exaeretodon.this.getCurrentHunger();
-				if (hunger + 15 >= Exaeretodon.this.maxHunger) {
-					Exaeretodon.this.setHunger(Exaeretodon.this.maxHunger);
-					Exaeretodon.this.setEating(false);
-				} else {
-					Exaeretodon.this.setHunger(hunger + 15);
-					Exaeretodon.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_20_HUNGER)) {
-				int hunger = Exaeretodon.this.getCurrentHunger();
-				if (hunger + 20 >= Exaeretodon.this.maxHunger) {
-					Exaeretodon.this.setHunger(Exaeretodon.this.maxHunger);
-					Exaeretodon.this.setEating(false);
-				} else {
-					Exaeretodon.this.setHunger(hunger + 20);
-					Exaeretodon.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_25_HUNGER)) {
-				int hunger = Exaeretodon.this.getCurrentHunger();
-				if (hunger + 25 >= Exaeretodon.this.maxHunger) {
-					Exaeretodon.this.setHunger(Exaeretodon.this.maxHunger);
-					Exaeretodon.this.setEating(false);
-				} else {
-					Exaeretodon.this.setHunger(hunger + 25);
-					Exaeretodon.this.setEating(false);
-				}
-			}
-			if (blockstate.is(PFTags.PLANTS_30_HUNGER)) {
-				int hunger = Exaeretodon.this.getCurrentHunger();
-				if (hunger + 30 >= Exaeretodon.this.maxHunger) {
-					Exaeretodon.this.setHunger(Exaeretodon.this.maxHunger);
-					Exaeretodon.this.setEating(false);
-				} else {
-					Exaeretodon.this.setHunger(hunger + 30);
-					Exaeretodon.this.setEating(false);
-				}
-			}
-		}
-
-		/**
-		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-		 * method as well.
-		 */
-		public boolean canUse() {
-			return !Exaeretodon.this.isAsleep() && super.canUse() && Exaeretodon.this.getCurrentHunger() < Exaeretodon.this.getHalfHunger();
-		}
-
-		public boolean canContinueToUse() {
-			if (Exaeretodon.this.getCurrentHunger() >= Exaeretodon.this.maxHunger || Exaeretodon.this.isAsleep()) {
-				return false;
-			} else return super.canContinueToUse();
-		}
-
-		/**
-		 * Execute a one shot task or start executing a continuous task
-		 */
-		public void start() {
-			this.field_220731_g = 0;
-			super.start();
-		}
 	}
 
 	static class DiggingGoal extends Goal {
@@ -951,9 +617,129 @@ public class Exaeretodon extends DinosaurEntity {
 				}
 			}
 		}
+	}
+	
+	public class EatFromFeederGoal extends MoveToBlockGoal {
+		protected int field_220731_g;
 
+		public EatFromFeederGoal(double p_i50737_2_, int p_i50737_4_, int p_i50737_5_) {
+			super(Exaeretodon.this, p_i50737_2_, p_i50737_4_, p_i50737_5_);
+		}
 
+		public double getTargetDistanceSq() {
+			return 2.0D;
+		}
 
+		public boolean shouldMove() {
+			return this.tryTicks % 100 == 0;
+		}
+
+		/**
+		 * Return true to set given position as destination
+		 */
+		protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
+			BlockState blockstate = worldIn.getBlockState(pos);
+			return blockstate.getBlock() instanceof FeederBlock && blockstate.getValue(FeederBlock.PLANT) == true;
+		}
+
+		protected BlockPos getMoveToTarget() {
+			if (!Exaeretodon.this.level.getBlockState(blockPos.north()).isCollisionShapeFullBlock(level, blockPos.north())) {
+				return this.blockPos.north();
+			} else {
+				if (!Exaeretodon.this.level.getBlockState(blockPos.south()).isCollisionShapeFullBlock(level, blockPos.south())) {
+					return this.blockPos.south();
+				} else {
+					if (!Exaeretodon.this.level.getBlockState(blockPos.east()).isCollisionShapeFullBlock(level, blockPos.east())) {
+						return this.blockPos.east();
+					} else {
+						if (!Exaeretodon.this.level.getBlockState(blockPos.west()).isCollisionShapeFullBlock(level, blockPos.west())) {
+							return this.blockPos.west();
+						} else {
+							if (!Exaeretodon.this.level.getBlockState(blockPos.north().east()).isCollisionShapeFullBlock(level, blockPos.north().east())) {
+								return this.blockPos.north().east();
+							} else {
+								if (!Exaeretodon.this.level.getBlockState(blockPos.north().west()).isCollisionShapeFullBlock(level, blockPos.north().west())) {
+									return this.blockPos.north().west();
+								} else {
+									if (!Exaeretodon.this.level.getBlockState(blockPos.south().east()).isCollisionShapeFullBlock(level, blockPos.south().east())) {
+										return this.blockPos.south().east();
+									} else {
+										if (!Exaeretodon.this.level.getBlockState(blockPos.south().west()).isCollisionShapeFullBlock(level, blockPos.south().west())) {
+											return this.blockPos.south().west();
+										} else return blockPos.above();
+									}
+								}
+							}
+						}
+					}
+				}
+			} 
+		}
+
+		/**
+		 * Keep ticking a continuous task that has already been started
+		 */
+		public void tick() {
+			if (this.isReachedTarget()) {
+				if (this.field_220731_g >= 20) {
+					this.eatBerry();
+				} else {
+					++this.field_220731_g;
+					Exaeretodon.this.setEating(true);
+				}
+				if (this.field_220731_g % 5 == 1) {
+					Exaeretodon.this.level.playSound((Player)null, this.blockPos, SoundEvents.GRASS_HIT, SoundSource.NEUTRAL, 1, 1);
+				}
+			}
+			if (Exaeretodon.this.getCurrentHunger() >= 13) {
+				Exaeretodon.this.setEating(false);
+			}
+			super.tick();
+		}
+
+		protected void eatBerry() {
+			int missingHunger = Exaeretodon.this.maxHunger - Exaeretodon.this.getCurrentHunger();
+			int hunger = Exaeretodon.this.getCurrentHunger();
+			FeederBlock block = (FeederBlock) Exaeretodon.this.level.getBlockState(this.blockPos).getBlock();
+			int foodContained = block.getFoodAmount(Exaeretodon.this.level, this.blockPos);
+			if (missingHunger <= foodContained) {
+				block.setFoodAmount(foodContained - missingHunger, level, this.blockPos);
+				Exaeretodon.this.setHunger(Exaeretodon.this.maxHunger);
+				Exaeretodon.this.setEating(false);
+				System.out.println(foodContained);
+			} else if (foodContained - missingHunger < 0) {
+				block.setFoodAmount(0, level, this.blockPos);
+				Exaeretodon.this.setHunger(hunger + foodContained);
+				Exaeretodon.this.setEating(false);
+			}
+		}
+
+		/**
+		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+		 * method as well.
+		 */
+		public boolean canUse() {
+			return !Exaeretodon.this.isAsleep() && super.canUse() && Exaeretodon.this.getCurrentHunger() < Exaeretodon.this.getHalfHunger();
+		}
+		
+		public void stop() {
+			super.stop();
+			Exaeretodon.this.setEating(false);
+		}
+
+		public boolean canContinueToUse() {
+			if (Exaeretodon.this.getCurrentHunger() >= Exaeretodon.this.maxHunger || Exaeretodon.this.isAsleep()) {
+				return false;
+			} else return super.canContinueToUse();
+		}
+
+		/**
+		 * Execute a one shot task or start executing a continuous task
+		 */
+		public void start() {
+			this.field_220731_g = 0;
+			super.start();
+		}
 	}
 
 	@Override
