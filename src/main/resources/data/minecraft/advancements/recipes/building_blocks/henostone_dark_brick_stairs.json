@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:dark_henostone_bricks"
+            "items": [
+				"prehistoricfauna:dark_henostone_bricks"
+			] 
           }
         ]
       }

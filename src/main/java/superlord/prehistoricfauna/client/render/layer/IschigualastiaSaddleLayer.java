@@ -3,6 +3,7 @@ package superlord.prehistoricfauna.client.render.layer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
@@ -13,12 +14,12 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.triassic.ischigualasto.IschigualastiaModel;
 import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Ischigualastia;
 
-public class IschigualastiaSaddleLayer extends RenderLayer<Ischigualastia, IschigualastiaModel> {
+public class IschigualastiaSaddleLayer extends RenderLayer<Ischigualastia, EntityModel<Ischigualastia>> {
 	
 	private static final RenderType TEXTURE = RenderType.entityCutoutNoCull(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/ischigualastia_saddle_layer.png"));
-	private final RenderLayerParent<Ischigualastia, IschigualastiaModel> ischigualastiaRenderer;
+	private final RenderLayerParent<Ischigualastia, EntityModel<Ischigualastia>> ischigualastiaRenderer;
 	
-	public IschigualastiaSaddleLayer(RenderLayerParent<Ischigualastia, IschigualastiaModel> ischigualastiaRenderer) {
+	public IschigualastiaSaddleLayer(RenderLayerParent<Ischigualastia, EntityModel<Ischigualastia>> ischigualastiaRenderer) {
 		super(ischigualastiaRenderer);
 		this.ischigualastiaRenderer = ischigualastiaRenderer;
 	}

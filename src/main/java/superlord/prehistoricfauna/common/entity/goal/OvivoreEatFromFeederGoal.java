@@ -1,10 +1,7 @@
 package superlord.prehistoricfauna.common.entity.goal;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 import superlord.prehistoricfauna.common.blocks.FeederBlock;
@@ -32,7 +29,7 @@ public class OvivoreEatFromFeederGoal extends MoveToBlockGoal {
 	 */
 	protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 		BlockState blockstate = worldIn.getBlockState(pos);
-		return blockstate.getBlock() instanceof FeederBlock && blockstate.getValue(FeederBlock.MEAT) == true;
+		return blockstate.getBlock() instanceof FeederBlock && blockstate.getValue(FeederBlock.EGG) == true;
 	}
 
 	protected BlockPos getMoveToTarget() {
@@ -81,7 +78,7 @@ public class OvivoreEatFromFeederGoal extends MoveToBlockGoal {
 				dinosaur.setEating(true);
 			}
 			if (this.field_220731_g % 5 == 1) {
-				dinosaur.level.playSound((Player)null, this.blockPos, SoundEvents.GRASS_HIT, SoundSource.NEUTRAL, 1, 1);
+				//dinosaur.level.playSound((Player)null, this.blockPos, SoundEvents.GRASS_HIT, SoundSource.NEUTRAL, 1, 1);
 			}
 		}
 		if (dinosaur.getCurrentHunger() >= 13) {
@@ -103,6 +100,7 @@ public class OvivoreEatFromFeederGoal extends MoveToBlockGoal {
 			block.setFoodAmount(0, dinosaur.level, this.blockPos);
 			dinosaur.setHunger(hunger + foodContained);
 			dinosaur.setEating(false);
+			dinosaur.level.setBlock(blockPos, block.defaultBlockState(), 0);
 		}
 	}
 

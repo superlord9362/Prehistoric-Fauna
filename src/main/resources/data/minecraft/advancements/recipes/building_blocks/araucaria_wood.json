@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:araucaria_log"
+            "items": [
+				 "prehistoricfauna:araucaria_log"
+          	]
           }
         ]
       }

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:heidiphyllum_planks"
+            "items": [
+				"prehistoricfauna:heidiphyllum_planks"
+          	]
           }
         ]
       }

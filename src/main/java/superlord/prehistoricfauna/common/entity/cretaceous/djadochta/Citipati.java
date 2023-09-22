@@ -2,20 +2,16 @@ package superlord.prehistoricfauna.common.entity.cretaceous.djadochta;
 
 import javax.annotation.Nullable;
 
-import com.google.common.base.Predicate;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
@@ -36,13 +32,13 @@ import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
@@ -52,15 +48,20 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ankylosauru
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
+import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
+import superlord.prehistoricfauna.common.entity.goal.CarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurTerritorialAttackGoal;
 import superlord.prehistoricfauna.common.entity.goal.DiurnalSleepingGoal;
 import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatGoal;
 import superlord.prehistoricfauna.common.entity.goal.HuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.OmnivoreEatFromFeederGoal;
+import superlord.prehistoricfauna.common.entity.goal.ProtectBabyGoal;
+import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Ceratosaurus;
@@ -69,7 +70,6 @@ import superlord.prehistoricfauna.common.entity.triassic.chinle.Poposaurus;
 import superlord.prehistoricfauna.common.entity.triassic.chinle.Postosuchus;
 import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Herrerasaurus;
 import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Saurosuchus;
-import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
@@ -111,7 +111,7 @@ public class Citipati extends DinosaurEntity {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.attackAnimals = new HuntGoal(this, LivingEntity.class, 10, false, false, (p_237491_0_) -> {
-			return p_237491_0_.getType().is(PFTags.ANIMALS_3_HUNGER) || p_237491_0_.getType().is(PFTags.ANIMALS_4_HUNGER) || p_237491_0_.getType().is(PFTags.ANIMALS_6_HUNGER);
+			return p_237491_0_.getType().is(PFTags.CITIPATI_HUNTING);
 		});
 		this.goalSelector.addGoal(1, new Citipati.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25F));
@@ -122,7 +122,8 @@ public class Citipati extends DinosaurEntity {
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Player.class, 10F, 1.5D, 1.75D));
+		this.targetSelector.addGoal(2, new ProtectBabyGoal(this));
+		this.targetSelector.addGoal(2, new DinosaurTerritorialAttackGoal(this));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Allosaurus.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Ceratosaurus.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Stegosaurus.class, 10F, 1.5D, 1.75D));
@@ -137,16 +138,25 @@ public class Citipati extends DinosaurEntity {
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<Postosuchus>(this, Postosuchus.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new DiurnalSleepingGoal(this));
+		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 		this.goalSelector.addGoal(0, new OmnivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(0, new HerbivoreEatGoal(this, (double)1.2F, 12, 2));
-		this.targetSelector.addGoal(0, new Citipati.CarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_237491_0_) -> {
-			return p_237491_0_.getType().is(PFTags.ANIMALS_3_HUNGER) || p_237491_0_.getType().is(PFTags.ANIMALS_4_HUNGER) || p_237491_0_.getType().is(PFTags.ANIMALS_6_HUNGER);
+		this.targetSelector.addGoal(0, new CarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_237491_0_) -> {
+			return p_237491_0_.getType().is(PFTags.CITIPATI_HUNTING);
+		}));
+		this.targetSelector.addGoal(0, new BabyCarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_237491_0_) -> {
+			return p_237491_0_.getType().is(PFTags.CITIPATI_BABY_HUNTING);
 		}));
 		this.goalSelector.addGoal(5, new Citipati.SitOnEggGoal((double)1.2F, 12, 2));
 	}
 
 	public void aiStep() {
 		super.aiStep();
+		if (this.isBaby()) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(7);
+		} else {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(15);
+		}
 		if (this.isAsleep() || this.isSitting()) {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
 		} else {
@@ -181,7 +191,7 @@ public class Citipati extends DinosaurEntity {
 
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
-		compound.putBoolean("InNaturalLove", this.isInLoveNaturally());
+		compound.putBoolean("IsSitting", this.isSitting());
 	}
 
 	public void readAdditionalSaveData(CompoundTag compound) {
@@ -200,6 +210,19 @@ public class Citipati extends DinosaurEntity {
 			this.doEnchantDamageEffects(this, entity);
 		}
 		return flag;
+	}
+
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+		int temperment = random.nextInt(100);
+		this.setOmnivorous(true);
+		if (temperment < 80) {
+			this.setProtective(true);
+		} else if (temperment >= 80 && temperment < 95) {
+			this.setPassive(true);
+		} else if (temperment >= 95) {
+			this.setTerritorial(true);
+		}
+		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
 	class MeleeAttackGoal extends net.minecraft.world.entity.ai.goal.MeleeAttackGoal {
@@ -234,162 +257,12 @@ public class Citipati extends DinosaurEntity {
 			return (double)(4.0F + attackTarget.getBbWidth());
 		}
 	}
-	
-	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
-		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
-		if (PrehistoricFaunaConfig.advancedHunger) {
-			int hunger = this.getCurrentHunger();
-			if (hunger < this.maxHunger) {
-				if (this.isFood(itemstack) && (!this.isInLove() || !this.isInLoveNaturally())) {
-					this.setInLove(p_230254_1_);
-					itemstack.shrink(1);
-				} else {
-					if (itemstack.is(PFTags.PLANTS_2_HUNGER_ITEM) || itemstack.is(PFTags.MEATS_2_HUNGER)) {
-						if (hunger + 2 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 2);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.PLANTS_4_HUNGER_ITEM) || itemstack.is(PFTags.MEATS_4_HUNGER)) {
-						if (hunger + 4 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 4);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.PLANTS_6_HUNGER_ITEM) || itemstack.is(PFTags.MEATS_6_HUNGER)) {
-						if (hunger + 6 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 6);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.PLANTS_8_HUNGER_ITEM) || itemstack.is(PFTags.MEATS_8_HUNGER)) {
-						if (hunger + 8 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 8);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.PLANTS_10_HUNGER_ITEM) || itemstack.is(PFTags.MEATS_10_HUNGER)) {
-						if (hunger + 10 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 10);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.PLANTS_12_HUNGER_ITEM) || itemstack.is(PFTags.MEATS_12_HUNGER)) {
-						if (hunger + 12 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 12);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.PLANTS_15_HUNGER_ITEM)) {
-						if (hunger + 15 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 15);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.PLANTS_20_HUNGER_ITEM)) {
-						if (hunger + 20 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 20);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.PLANTS_25_HUNGER_ITEM)) {
-						if (hunger + 25 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 25);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.PLANTS_30_HUNGER_ITEM)) {
-						if (hunger + 30 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 30);
-						}
-						itemstack.shrink(1);
-					}
-				}
-			}
-			else p_230254_1_.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.fullHunger"), true);
-		}
-		return super.mobInteract(p_230254_1_, p_230254_2_);
-	}
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
 		Citipati entity = new Citipati(PFEntities.CITIPATI.get(), this.level);
 		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
-	}
-
-	@SuppressWarnings("rawtypes")
-	public class CarnivoreHuntGoal extends NearestAttackableTargetGoal {
-		Predicate<LivingEntity> targetPredicate;
-		double huntSpeed;
-		@SuppressWarnings("unchecked")
-		public CarnivoreHuntGoal(Mob goalOwnerIn, Class targetClassIn, int targetChanceIn, double huntSpeed, boolean checkSight, boolean nearbyOnly, @Nullable Predicate<LivingEntity> targetPredicate) {
-			super(goalOwnerIn, targetClassIn, targetChanceIn, checkSight, nearbyOnly, targetPredicate);
-			this.huntSpeed = huntSpeed;
-			this.targetPredicate = targetPredicate;
-		}
-
-		public boolean canUse() {
-			return super.canUse() && Citipati.this.getCurrentHunger() <= Citipati.this.getHalfHunger() && Citipati.this.isBaby() && PrehistoricFaunaConfig.advancedHunger == true && !targetPredicate.test(Citipati.this);
-		}
-
-		public boolean canContinueToUse() {
-			return Citipati.this.getCurrentHunger() < Citipati.this.maxHunger || !Citipati.this.isBaby() && PrehistoricFaunaConfig.advancedHunger == true;
-		}
-
-		public void tick() {
-			Citipati.this.getNavigation().setSpeedModifier(huntSpeed);
-			LivingEntity target = Citipati.this.getTarget();
-			if (target.getType().is(PFTags.ANIMALS_3_HUNGER)) {
-				if (target.getHealth() == 0) {
-					if (Citipati.this.getCurrentHunger() + 3 >= Citipati.this.maxHunger) {
-						Citipati.this.setHunger(Citipati.this.maxHunger);
-					} else {
-						Citipati.this.setHunger(currentHunger + 3);
-					}
-				}
-			}
-			if (target.getType().is(PFTags.ANIMALS_4_HUNGER)) {
-				if (target.getHealth() == 0) {
-					if (Citipati.this.getCurrentHunger() + 4 >= Citipati.this.maxHunger) {
-						Citipati.this.setHunger(Citipati.this.maxHunger);
-					} else {
-						Citipati.this.setHunger(currentHunger + 4);
-					}
-				}
-			}
-			if (target.getType().is(PFTags.ANIMALS_6_HUNGER)) {
-				if (target.getHealth() == 0) {
-					if (Citipati.this.getCurrentHunger() + 6 >= Citipati.this.maxHunger) {
-						Citipati.this.setHunger(Citipati.this.maxHunger);
-					} else {
-						Citipati.this.setHunger(currentHunger + 6);
-					}
-				}
-			}
-			super.tick();
-		}
-
 	}
 
 	class SitOnEggGoal extends MoveToBlockGoal {
@@ -475,18 +348,18 @@ public class Citipati extends DinosaurEntity {
 		}
 
 	}
-	
+
 	@Override
 	public ItemStack getPickedResult(HitResult target) {
 		return new ItemStack(PFItems.CITIPATI_SPAWN_EGG.get());
 	}
-	
+
 	public Item getEggItem() {
 		return PFItems.CITIPATI_EGG.get();
 	}
-    
-    public BlockState getEggBlock() {
-    	return PFBlocks.CITIPATI_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
-    }
+
+	public BlockState getEggBlock() {
+		return PFBlocks.CITIPATI_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
+	}
 
 }

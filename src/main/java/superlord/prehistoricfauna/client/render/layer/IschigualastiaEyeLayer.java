@@ -3,6 +3,7 @@ package superlord.prehistoricfauna.client.render.layer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
@@ -15,12 +16,12 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.triassic.ischigualasto.IschigualastiaModel;
 import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Ischigualastia;
 
-public class IschigualastiaEyeLayer extends RenderLayer<Ischigualastia, IschigualastiaModel> {
+public class IschigualastiaEyeLayer extends RenderLayer<Ischigualastia, EntityModel<Ischigualastia>> {
 	
 	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/ischigualastia_eyeglow.png"));
-	private final RenderLayerParent<Ischigualastia, IschigualastiaModel> ischigualastiaRenderer;
+	private final RenderLayerParent<Ischigualastia, EntityModel<Ischigualastia>> ischigualastiaRenderer;
 	
-	public IschigualastiaEyeLayer(RenderLayerParent<Ischigualastia, IschigualastiaModel> rendererIn) {
+	public IschigualastiaEyeLayer(RenderLayerParent<Ischigualastia, EntityModel<Ischigualastia>> rendererIn) {
 		super(rendererIn);
 		this.ischigualastiaRenderer = rendererIn;
 	}

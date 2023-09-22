@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:ginkgo_log"
+            "items": [
+				 "prehistoricfauna:ginkgo_log"
+          	]
           }
         ]
       }

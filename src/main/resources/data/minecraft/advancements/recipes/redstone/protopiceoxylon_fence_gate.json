@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:protopiceoxylon_planks"
+            "items": [
+				"prehistoricfauna:protopiceoxylon_planks"
+          	]
           }
         ]
       }

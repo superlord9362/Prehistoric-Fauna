@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:medium_ammonite_fossil"
+            "items": [
+				"prehistoricfauna:medium_ammonite_fossil"
+          	]
           }
         ]
       }

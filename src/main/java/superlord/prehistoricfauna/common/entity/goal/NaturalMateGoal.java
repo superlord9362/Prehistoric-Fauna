@@ -1,5 +1,7 @@
 package superlord.prehistoricfauna.common.entity.goal;
 
+import java.util.Random;
+
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.ai.goal.BreedGoal;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
@@ -7,6 +9,7 @@ import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class NaturalMateGoal  extends BreedGoal {
 	private final DinosaurEntity dinosaur;
+	Random random = new Random();
 
 	public NaturalMateGoal(DinosaurEntity dinosaur, double speed) {
 		super(dinosaur, speed);
@@ -19,8 +22,8 @@ public class NaturalMateGoal  extends BreedGoal {
 
 	protected void breed() {
 		if (PrehistoricFaunaConfig.naturalEggItemLaying) {
-			this.dinosaur.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.dinosaur.random.nextFloat() - this.dinosaur.random.nextFloat()) * 0.2F + 1.0F);
-			int eggAmount = this.dinosaur.random.nextInt(4);
+			this.dinosaur.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F);
+			int eggAmount = random.nextInt(4);
 			for (int i = 0; i <= eggAmount; i++) {
 				this.dinosaur.spawnAtLocation(dinosaur.getEggItem());
 			}

@@ -3,6 +3,7 @@ package superlord.prehistoricfauna.client.render.layer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
@@ -15,12 +16,12 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.jurassic.kayenta.DilophosaurusModel;
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Dilophosaurus;
 
-public class DilophosaurusEyeLayer extends RenderLayer<Dilophosaurus, DilophosaurusModel> {
+public class DilophosaurusEyeLayer extends RenderLayer<Dilophosaurus, EntityModel<Dilophosaurus>> {
 	
 	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dilophosaurus/dilophosaurus_eyeglow.png"));
-	private final RenderLayerParent<Dilophosaurus, DilophosaurusModel> dilophosaurusRenderer;
+	private final RenderLayerParent<Dilophosaurus, EntityModel<Dilophosaurus>> dilophosaurusRenderer;
 	
-	public DilophosaurusEyeLayer(RenderLayerParent<Dilophosaurus, DilophosaurusModel> rendererIn) {
+	public DilophosaurusEyeLayer(RenderLayerParent<Dilophosaurus, EntityModel<Dilophosaurus>> rendererIn) {
 		super(rendererIn);
 		this.dilophosaurusRenderer = rendererIn;
 	}

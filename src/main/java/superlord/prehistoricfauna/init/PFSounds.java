@@ -214,6 +214,16 @@ public class PFSounds {
 	//Misc
 	public static final SoundEvent FISH_FLOP;
 	public static final SoundEvent PORTAL;
+	public static final SoundEvent MEAT_EATING;
+	public static final SoundEvent SMALL_MEAT_GULP;
+	public static final SoundEvent LARGE_MEAT_GULP;
+	
+	//Music
+	public static final SoundEvent AMBIENCE_1;
+	public static final SoundEvent CAVE_1;
+	public static final SoundEvent NIGHT_1;
+	public static final SoundEvent NIGHT_2;
+	public static final SoundEvent STRUCTURE_1;
 	
 	@SubscribeEvent
 	public static void registerSounds(final RegistryEvent.Register<SoundEvent> evt) {
@@ -420,6 +430,15 @@ public class PFSounds {
 		//Misc
 		evt.getRegistry().register(FISH_FLOP);
 		evt.getRegistry().register(PORTAL);
+		evt.getRegistry().register(MEAT_EATING);
+		evt.getRegistry().register(SMALL_MEAT_GULP);
+		evt.getRegistry().register(LARGE_MEAT_GULP);
+		//Music
+		evt.getRegistry().register(AMBIENCE_1);
+		evt.getRegistry().register(CAVE_1);
+		evt.getRegistry().register(NIGHT_1);
+		evt.getRegistry().register(NIGHT_2);
+		evt.getRegistry().register(STRUCTURE_1);
 	}
 	
 	private static SoundEvent createEvent(final String soundName) {
@@ -631,6 +650,16 @@ public class PFSounds {
 		//Misc
 		FISH_FLOP = createEvent("fish_flop");
 		PORTAL = createEvent("portal");
+		MEAT_EATING = createEvent("meat_eating");
+		SMALL_MEAT_GULP = createEvent("small_meat_gulp");
+		LARGE_MEAT_GULP = createEvent("large_meat_gulp");
+		
+		//Music
+		AMBIENCE_1 = createEvent("ambience_1");
+		NIGHT_1 = createEvent("night_1");
+		NIGHT_2 = createEvent("night_2");
+		CAVE_1 = createEvent("cave_1");
+		STRUCTURE_1 = createEvent("structure_1");
 	}
 
 }

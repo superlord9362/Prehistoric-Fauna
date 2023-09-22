@@ -246,7 +246,8 @@ public class ServerConfig {
 	public final ForgeConfigSpec.BooleanValue hungerDamage;
 	public final ForgeConfigSpec.BooleanValue naturalEggBlockLaying;
 	public final ForgeConfigSpec.BooleanValue naturalEggItemLaying;
-	public final ForgeConfigSpec.IntValue petrifiedForestWeight;
+	public final ForgeConfigSpec.BooleanValue hostileCarnivores;
+	public final ForgeConfigSpec.BooleanValue unscheduledSleeping;
 	
 	public ServerConfig(final ForgeConfigSpec.Builder builder) {
 		builder.push("Djadochta Formation");
@@ -516,7 +517,6 @@ public class ServerConfig {
 		builder.push("World Generation");
 		this.baseStoneWeight = buildInt(builder, "Base Stone Weight", "all", 97, 1, 300, "The probability of an ancient stone deposit is made up of the base stone. To find the percentage probability, add the base stone weight with the fossil weight, and then divide the base stone weight by the combined weights. Default is 97");
 		this.fossilWeight = buildInt(builder, "Fossil Weight", "all", 3, 1, 300, "The probability of an ancient stone deposit is made up of the fossilized stone. To find the percentage probability, add the base stone weight with the fossil weight, and then divide the fossil stone weight by the combined weights. Default is 3");
-		this.petrifiedForestWeight = buildInt(builder, "Petrified Forest Weight", "all", 6, 0, 300, "The probability for the Petrified Forest biome to generate in the overworld. Default is 6");
 		builder.pop();
 		builder.push("AI Config");
 		this.sleeping = buildBoolean(builder, "Sleeping AI", "all", true, "Toggles whether all prehistoric animals sleep or not. Default is true");
@@ -524,6 +524,8 @@ public class ServerConfig {
 		this.hungerDamage = buildBoolean(builder, "Hunger Damage", "all", false, "Toggles whether entities take damage from being hungry. Default is false");
 		this.naturalEggBlockLaying = buildBoolean(builder, "Natural Egg Laying AI - Blocks", "all", true, "Toggles whether entities lay their eggs as blocks naturally when full. Default is true");
 		this.naturalEggItemLaying = buildBoolean(builder, "Natural Egg Laying AI - Items", "all", false, "Toggles whether entities lay their eggs as items naturally when full. Default is false");
+		this.hostileCarnivores = buildBoolean(builder, "Hostile Carnivores", "all", false, "Toggles whether carnivorous entities will attack the player on sight or not, creating a more difficult environment. Default is false");
+		this.unscheduledSleeping = buildBoolean(builder, "Unscheduled Sleeping", "all", false, "Toggles whether prehistoric entities sleep randomly, instead of being diurnal, nocturnal, crepuscular, or cathemeral. Default is false");
 		builder.pop();
 	}
 	

@@ -32,6 +32,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.registries.RegistryObject;
+import superlord.prehistoricfauna.common.entity.DinosaurEntity;
+import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
 import superlord.prehistoricfauna.init.PFBlocks;
 
 public class DinosaurEggBlock extends Block {
@@ -101,6 +103,18 @@ public class DinosaurEggBlock extends Block {
 					worldIn.levelEvent(2001, pos, Block.getId(state));
 					Entity dinosaurEntity = this.entityTypeSupplier.get().create(worldIn);
 					((Animal)dinosaurEntity).setAge(-24000);
+					if (dinosaurEntity instanceof DinosaurEntity) {
+						DinosaurEntity dinosaur = (DinosaurEntity)dinosaurEntity;
+						for(Player player : dinosaur.level.getEntitiesOfClass(Player.class, dinosaur.getBoundingBox().inflate(8.0D, 8.0D, 8.0D))) {
+							dinosaur.addTrustedUUID(player.getUUID());
+						}
+					}
+					if (dinosaurEntity instanceof Triceratops) {
+						Triceratops dinosaur = (Triceratops)dinosaurEntity;
+						for(Player player : dinosaur.level.getEntitiesOfClass(Player.class, dinosaur.getBoundingBox().inflate(8.0D, 8.0D, 8.0D))) {
+							dinosaur.addTrustedUUID(player.getUUID());
+						}
+					}
 					dinosaurEntity.moveTo((double) pos.getX() + 0.3D + (double) j * 0.2D,
 							(double) pos.getY(), (double) pos.getZ() + 0.3D, 0.0F, 0.0F);
 					worldIn.addFreshEntity(dinosaurEntity);

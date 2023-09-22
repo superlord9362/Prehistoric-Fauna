@@ -1,0 +1,6 @@
+{
+    "parent": "prehistoricfauna:block/vertical_planks",
+    "textures": {
+        "all": "prehistoricfauna:blocks/dryophyllum_planks"
+    }
+}

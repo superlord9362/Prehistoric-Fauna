@@ -72,8 +72,8 @@ public class SaurosuchusModel extends EntityModel<Saurosuchus> {
 
 		PartDefinition Body = All.addOrReplaceChild("Body", CubeListBuilder.create().texOffs(0, 0).addBox(-6.0F, -8.0F, -21.0F, 12.0F, 13.0F, 35.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -16.0F, 6.0F));
 
-		PartDefinition Tail = Body.addOrReplaceChild("Tail", CubeListBuilder.create().texOffs(101, 23).addBox(-4.0F, -3.0F, 0.0F, 8.0F, 9.0F, 21.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -4.0F, 14.0F, -0.1F, 0.0F, 0.0F));
-
+		PartDefinition Tail = Body.addOrReplaceChild("Tail", CubeListBuilder.create().texOffs(100, 23).addBox(-4.0F, -3.0F, -1.0F, 8.0F, 9.0F, 22.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -4.0F, 14.0F, -0.1F, 0.0F, 0.0F));
+		
 		PartDefinition Tail2 = Tail.addOrReplaceChild("Tail2", CubeListBuilder.create().texOffs(0, 48).addBox(-2.0F, -3.0F, 0.0F, 4.0F, 6.0F, 40.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, 21.0F));
 
 		PartDefinition osteos3 = Tail.addOrReplaceChild("osteos3", CubeListBuilder.create().texOffs(0, 84).addBox(0.0F, 0.0F, 0.0F, 0.0F, 1.0F, 21.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -4.0F, 0.0F));
@@ -90,7 +90,7 @@ public class SaurosuchusModel extends EntityModel<Saurosuchus> {
 
 		PartDefinition JawSnout = Jaw.addOrReplaceChild("JawSnout", CubeListBuilder.create().texOffs(125, 13).addBox(-2.0F, -1.0F, -7.0F, 4.0F, 2.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 2.0F, -9.0F));
 
-		PartDefinition JawTeeth = JawSnout.addOrReplaceChild("JawTeeth", CubeListBuilder.create().texOffs(141, 13).addBox(-1.5F, -1.0F, -7.0F, 3.0F, 1.0F, 7.0F, new CubeDeformation(-0.1F, 0.0F, 0.0F)), PartPose.offset(0.0F, -1.0F, 0.1F));
+		PartDefinition JawTeeth = JawSnout.addOrReplaceChild("JawTeeth", CubeListBuilder.create().texOffs(141, 13).addBox(-1.5F, -1.0F, -7.0F, 3.0F, 1.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.0F, 0.1F));
 
 		PartDefinition Cheek = Jaw.addOrReplaceChild("Cheek", CubeListBuilder.create().texOffs(161, 13).addBox(-2.5F, -2.0F, -7.01F, 5.0F, 4.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.85F, 0.0F));
 

@@ -1,39 +1,29 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.hellcreek;
 
 import java.util.EnumSet;
-import java.util.Random;
 import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
@@ -46,20 +36,17 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.LookControl;
 import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.world.entity.ai.goal.BreedGoal;
 import net.minecraft.world.entity.ai.goal.FleeSunGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowParentGoal;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.LeapAtTargetGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.animal.Rabbit;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -68,9 +55,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -81,10 +67,21 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
+import superlord.prehistoricfauna.common.entity.goal.AggressiveTempermentAttackGoal;
+import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
+import superlord.prehistoricfauna.common.entity.goal.CarnivoreEatFromFeederGoal;
+import superlord.prehistoricfauna.common.entity.goal.CarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.CrepuscularSleepGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurTerritorialAttackGoal;
+import superlord.prehistoricfauna.common.entity.goal.HostileCarnivoreGoal;
 import superlord.prehistoricfauna.common.entity.goal.HuntGoal;
+import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
+import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
+import superlord.prehistoricfauna.common.entity.goal.ProtectBabyGoal;
+import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Ceratosaurus;
@@ -140,28 +137,31 @@ public class Dakotaraptor extends DinosaurEntity {
 	}
 
 	protected void registerGoals() {
-		this.attackAnimals = new HuntGoal(this, Animal.class, 10, false, false, (p_213498_0_) -> {
-			return p_213498_0_.getType().is(PFTags.ANIMALS_3_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_4_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_6_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_8_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_10_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_15_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_20_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_30_HUNGER);
+		this.attackAnimals = new HuntGoal(this, LivingEntity.class, 10, false, false, (p_213498_0_) -> {
+			return p_213498_0_.getType().is(PFTags.DAKOTARAPTOR_HUNTING);
 		});
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new Dakotaraptor.JumpGoal());
 		this.goalSelector.addGoal(2, new Dakotaraptor.PanicGoal());
-		this.goalSelector.addGoal(0, new Dakotaraptor.MateGoal(this, 1.0D));
-		this.goalSelector.addGoal(0, new Dakotaraptor.NaturalMateGoal(this, 1.0D));
-		this.targetSelector.addGoal(2, new Dakotaraptor.AttackPlayerGoal());
+		this.goalSelector.addGoal(0, new DinosaurMateGoal(this, 1.0D));
+		this.goalSelector.addGoal(0, new NaturalMateGoal(this, 1.0D));
+		this.targetSelector.addGoal(2, new ProtectBabyGoal(this));
+		this.targetSelector.addGoal(2, new DinosaurTerritorialAttackGoal(this));
+		this.targetSelector.addGoal(2, new AggressiveTempermentAttackGoal(this));
 		this.goalSelector.addGoal(5, new Dakotaraptor.FollowTargetGoal());
 		this.goalSelector.addGoal(1, new Dakotaraptor.PounceGoal());
 		this.goalSelector.addGoal(6, new Dakotaraptor.FindShelterGoal(1.25D));
 		this.goalSelector.addGoal(7, new Dakotaraptor.BiteGoal((double)1.2F, true));
 		this.goalSelector.addGoal(7, new Dakotaraptor.SleepGoal());
 		this.goalSelector.addGoal(8, new Dakotaraptor.FollowGoal(this, 1.25D));
-		this.targetSelector.addGoal(1, new Dakotaraptor.HurtByTargetGoal());
+		this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
 		this.goalSelector.addGoal(10, new LeapAtTargetGoal(this, 0.4F));
 		this.goalSelector.addGoal(11, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.goalSelector.addGoal(13, new Dakotaraptor.SitAndLookGoal());
-		this.goalSelector.addGoal(0, new Dakotaraptor.LayEggGoal(this, 1.0D));
+		this.targetSelector.addGoal(0, new HostileCarnivoreGoal(this, Player.class, false));
+		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, Ankylosaurus.class, 7F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, Triceratops.class, 7F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, Tyrannosaurus.class, 7F, 1.5D, 1.75D));
@@ -170,15 +170,22 @@ public class Dakotaraptor extends DinosaurEntity {
 		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, Allosaurus.class, 7F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, Ceratosaurus.class, 7F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(1, new CrepuscularSleepGoal(this));
-		this.targetSelector.addGoal(0, new Dakotaraptor.CarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213498_0_) -> {
-			return p_213498_0_.getType().is(PFTags.ANIMALS_3_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_4_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_6_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_8_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_10_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_15_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_20_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_30_HUNGER);
+		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
+		this.targetSelector.addGoal(0, new CarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213498_0_) -> {
+			return p_213498_0_.getType().is(PFTags.DAKOTARAPTOR_HUNTING);
 		}));
 		this.targetSelector.addGoal(0, new BabyCarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213498_0_) -> {
-			return p_213498_0_.getType().is(PFTags.ANIMALS_3_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_4_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_6_HUNGER);
+			return p_213498_0_.getType().is(PFTags.DAKOTARAPTOR_HUNTING);
 		}));
+		this.goalSelector.addGoal(0, new CarnivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 	}
 
 	public void aiStep() {
+		if (this.isBaby()) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(15);
+		} else {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(30);
+		}
 		if (!this.level.isClientSide && this.isAlive()) {
 			++this.eatTicks;
 			ItemStack itemstack = this.getItemBySlot(EquipmentSlot.MAINHAND);
@@ -226,70 +233,6 @@ public class Dakotaraptor extends DinosaurEntity {
 			if (this.isDakotaraptorAggroed() && this.random.nextFloat() < 0.05F) {
 			}
 		}
-	}
-
-	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
-		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
-		if (PrehistoricFaunaConfig.advancedHunger) {
-			int hunger = this.getCurrentHunger();
-			if (hunger < this.maxHunger) {
-				if (this.isFood(itemstack) && (!this.isInLove() || !this.isInLoveNaturally())) {
-					this.setInLove(p_230254_1_);
-					itemstack.shrink(1);
-				} else {
-					if (itemstack.is(PFTags.MEATS_2_HUNGER)) {
-						if (hunger + 2 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 2);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.MEATS_4_HUNGER)) {
-						if (hunger + 4 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 4);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.MEATS_6_HUNGER)) {
-						if (hunger + 6 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 6);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.MEATS_8_HUNGER)) {
-						if (hunger + 8 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 8);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.MEATS_10_HUNGER)) {
-						if (hunger + 10 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 10);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.MEATS_12_HUNGER)) {
-						if (hunger + 12 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 12);
-						}
-						itemstack.shrink(1);
-					}
-				}
-			}
-			else p_230254_1_.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.fullHunger"), true);
-		}
-		return super.mobInteract(p_230254_1_, p_230254_2_);
 	}
 
 	@SuppressWarnings("deprecation")
@@ -387,6 +330,20 @@ public class Dakotaraptor extends DinosaurEntity {
 			}
 		}
 	}
+
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+		int temperment = random.nextInt(100);
+		if (temperment < 80) {
+			this.setProtective(true);
+		} else if (temperment >= 80 && temperment < 95) {
+			this.setAggressive(true);
+		} else if (temperment >= 95) {
+			this.setTerritorial(true);
+		}
+		this.setCarnivorous(true);
+		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+	}
+
 
 	@Override
 	public boolean hurt(DamageSource dmg, float i) {
@@ -992,130 +949,6 @@ public class Dakotaraptor extends DinosaurEntity {
 
 	}
 
-	static class LayEggGoal extends MoveToBlockGoal {
-		private final Dakotaraptor dakotaraptor;
-
-		LayEggGoal(Dakotaraptor dakotaraptor, double speed) {
-			super(dakotaraptor, speed, 16);
-			this.dakotaraptor = dakotaraptor;
-		}
-
-		public boolean canUse() {
-			return this.dakotaraptor.hasBaby() ? super.canUse() : false;
-		}
-
-		public boolean canContinueToUse() {
-			return super.canContinueToUse() && dakotaraptor.hasBaby();
-		}
-
-		public void tick() {
-			super.tick();
-			BlockPos blockpos = new BlockPos(this.dakotaraptor.position());
-			if (!this.dakotaraptor.isInWater() && this.isReachedTarget()) {
-				if (this.dakotaraptor.isBirthing < 1) {
-					this.dakotaraptor.setBirthing(true);
-				} else if (this.dakotaraptor.isBirthing > 200) {
-					Level level = this.dakotaraptor.level;
-					level.playSound((Player)null, blockpos, SoundEvents.TURTLE_LAY_EGG, SoundSource.BLOCKS, 0.3F, 0.9F + level.random.nextFloat() * 0.2F);
-					level.setBlock(this.blockPos.above(), PFBlocks.DAKOTARAPTOR_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.dakotaraptor.random.nextInt(4) + 1)), 3);
-					this.dakotaraptor.setHasBaby(false);
-					this.dakotaraptor.setBirthing(false);
-					this.dakotaraptor.setInLoveTime(600);
-				}
-				if (this.dakotaraptor.isBirthing()) {
-					this.dakotaraptor.isBirthing++;
-				}
-			}
-		}
-
-		protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
-			if (!worldIn.isEmptyBlock(pos.above())) {
-				return false;
-			} else {
-				Block block = worldIn.getBlockState(pos).getBlock();
-				BlockState state = worldIn.getBlockState(pos);
-				return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.MYCELIUM || block == Blocks.SAND || block == Blocks.RED_SAND || block == PFBlocks.MOSSY_DIRT.get() || block == PFBlocks.MOSS_BLOCK.get() || block == PFBlocks.LOAM.get() || block == PFBlocks.PACKED_LOAM.get() || block == PFBlocks.SILT.get() || block == PFBlocks.PACKED_LOAM.get() || state.is(BlockTags.LEAVES);
-			}
-		}
-
-	}
-
-	static class MateGoal extends BreedGoal {
-		private final Dakotaraptor dakotaraptor;
-
-		MateGoal(Dakotaraptor dakotaraptor, double speed) {
-			super(dakotaraptor, speed);
-			this.dakotaraptor = dakotaraptor;
-		}
-
-		public boolean canUse() {
-			return super.canUse() && !this.dakotaraptor.hasBaby() && !this.dakotaraptor.isInLoveNaturally();
-		}
-
-		protected void breed() {
-			ServerPlayer serverPlayer = this.animal.getLoveCause();
-			if (serverPlayer == null && this.partner.getLoveCause() == null) {
-				serverPlayer = this.partner.getLoveCause();
-			}
-			if (serverPlayer != null) {
-				serverPlayer.awardStat(Stats.ANIMALS_BRED);
-				CriteriaTriggers.BRED_ANIMALS.trigger(serverPlayer, this.animal, this.partner, (AgeableMob)null);
-			}
-			this.dakotaraptor.setHasBaby(true);
-			this.animal.resetLove();
-			this.partner.resetLove();
-			Random random = this.animal.getRandom();
-			if (this.level.getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
-				this.level.addFreshEntity(new ExperienceOrb(this.level, this.animal.getX(), this.animal.getY(), this.animal.getZ(), random.nextInt(7) + 1));
-			}
-		}
-
-	}
-
-
-	static class NaturalMateGoal extends BreedGoal {
-		private final Dakotaraptor dakotaraptor;
-
-		NaturalMateGoal(Dakotaraptor dakotaraptor, double speed) {
-			super(dakotaraptor, speed);
-			this.dakotaraptor = dakotaraptor;
-		}
-
-		public boolean canUse() {
-			return super.canUse() && !this.dakotaraptor.hasBaby() && this.dakotaraptor.getCurrentHunger() >= this.dakotaraptor.getThreeQuartersHunger() && this.dakotaraptor.tickCount % 60 == 0 && (PrehistoricFaunaConfig.naturalEggBlockLaying || PrehistoricFaunaConfig.naturalEggItemLaying) && this.dakotaraptor.isInLoveNaturally();
-		}
-
-		protected void breed() {
-			if (PrehistoricFaunaConfig.naturalEggItemLaying) {
-				this.dakotaraptor.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.dakotaraptor.random.nextFloat() - this.dakotaraptor.random.nextFloat()) * 0.2F + 1.0F);
-				int eggAmount = this.dakotaraptor.random.nextInt(4);
-				if (eggAmount == 0) {
-					this.dakotaraptor.spawnAtLocation(PFBlocks.DAKOTARAPTOR_EGG.get().asItem());
-				}
-				if (eggAmount == 1) {
-					this.dakotaraptor.spawnAtLocation(PFBlocks.DAKOTARAPTOR_EGG.get().asItem());
-					this.dakotaraptor.spawnAtLocation(PFBlocks.DAKOTARAPTOR_EGG.get().asItem());
-				}
-				if (eggAmount == 2) {
-					this.dakotaraptor.spawnAtLocation(PFBlocks.DAKOTARAPTOR_EGG.get().asItem());
-					this.dakotaraptor.spawnAtLocation(PFBlocks.DAKOTARAPTOR_EGG.get().asItem());
-					this.dakotaraptor.spawnAtLocation(PFBlocks.DAKOTARAPTOR_EGG.get().asItem());
-				}
-				if (eggAmount == 3) {
-					this.dakotaraptor.spawnAtLocation(PFBlocks.DAKOTARAPTOR_EGG.get().asItem());
-					this.dakotaraptor.spawnAtLocation(PFBlocks.DAKOTARAPTOR_EGG.get().asItem());
-					this.dakotaraptor.spawnAtLocation(PFBlocks.DAKOTARAPTOR_EGG.get().asItem());
-					this.dakotaraptor.spawnAtLocation(PFBlocks.DAKOTARAPTOR_EGG.get().asItem());
-				}
-			} else {
-				this.dakotaraptor.setHasBaby(true);
-			}
-			this.animal.resetLove();
-			this.partner.resetLove();
-		}
-
-	}
-
 	class SitAndLookGoal extends Dakotaraptor.BaseGoal {
 		private double field_220819_c;
 		private double field_220820_d;
@@ -1164,7 +997,8 @@ public class Dakotaraptor extends DinosaurEntity {
 	}
 
 	class SleepGoal extends Dakotaraptor.BaseGoal {
-		private int field_220825_c = Dakotaraptor.this.random.nextInt(140);
+		private static final int WAIT_TIME_BEFORE_SLEEP = reducedTickDelay(140);
+		private int countdown = Dakotaraptor.this.random.nextInt(WAIT_TIME_BEFORE_SLEEP);
 
 		public SleepGoal() {
 			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK, Goal.Flag.JUMP));
@@ -1172,27 +1006,27 @@ public class Dakotaraptor extends DinosaurEntity {
 
 		public boolean canUse() {
 			if (Dakotaraptor.this.xxa == 0.0F && Dakotaraptor.this.yya == 0.0F && Dakotaraptor.this.zza == 0.0F && !PrehistoricFaunaConfig.sleeping) {
-				return this.func_220823_j() || Dakotaraptor.this.isSleeping();
+				return this.canSleep() || Dakotaraptor.this.isSleeping();
 			} else {
 				return false;
 			}
 		}
 
 		public boolean canContinueToUse() {
-			return this.func_220823_j();
+			return this.canSleep();
 		}
 
-		private boolean func_220823_j() {
-			if (this.field_220825_c > 0) {
-				--this.field_220825_c;
+		private boolean canSleep() {
+			if (this.countdown > 0) {
+				--this.countdown;
 				return false;
 			} else {
-				return Dakotaraptor.this.level.isDay() && this.alertable() && !this.hasShelter();
+				return Dakotaraptor.this.level.isDay() && this.hasShelter() && !this.alertable() && !Dakotaraptor.this.isInPowderSnow;
 			}
 		}
 
 		public void stop() {
-			this.field_220825_c = Dakotaraptor.this.random.nextInt(140);
+			this.countdown = Dakotaraptor.this.random.nextInt(WAIT_TIME_BEFORE_SLEEP);
 			Dakotaraptor.this.func_213499_en();
 		}
 
@@ -1219,54 +1053,6 @@ public class Dakotaraptor extends DinosaurEntity {
 		public boolean canContinueToUse() {
 			return super.canContinueToUse() && !Dakotaraptor.this.isStuck() && !Dakotaraptor.this.func_213467_eg();
 		}
-	}
-
-	class AttackPlayerGoal extends NearestAttackableTargetGoal<Player> {
-		public AttackPlayerGoal() {
-			super(Dakotaraptor.this, Player.class, 20, true, true, (Predicate<LivingEntity>)null);
-		}
-
-		@SuppressWarnings({"unused"})
-		public boolean canUse() {
-			if (Dakotaraptor.this.isBaby()) {
-				return false;
-			} else {
-				if (super.canUse()) {
-					for (Dakotaraptor dakotaraptor : Dakotaraptor.this.level.getEntitiesOfClass(Dakotaraptor.class, Dakotaraptor.this.getBoundingBox().inflate(8.0D, 4.0D, 8.0D))) {
-						if (Dakotaraptor.this.isBaby()) {
-							return true;
-						}
-					}
-				}
-			}
-			return false;
-		}
-
-		protected double getFollowDistance() {
-			return super.getFollowDistance() * 0.5D;
-		}
-
-	}
-
-	class HurtByTargetGoal extends net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal {
-		public HurtByTargetGoal() {
-			super(Dakotaraptor.this);
-		}
-
-		public void start() {
-			super.start();
-			if(Dakotaraptor.this.isBaby()) {
-				this.alertOthers();
-				this.stop();
-			}
-		}
-
-		protected void alertOther(Mob entity, LivingEntity target) {
-			if (entity instanceof Dakotaraptor && !entity.isBaby()) {
-				super.alertOther(entity, target);
-			}
-		}
-
 	}
 
 	class MeleeAttackGoal extends net.minecraft.world.entity.ai.goal.MeleeAttackGoal {
@@ -1330,161 +1116,16 @@ public class Dakotaraptor extends DinosaurEntity {
 		return entity;
 	}
 
-	@SuppressWarnings("rawtypes")
-	public class CarnivoreHuntGoal extends NearestAttackableTargetGoal {
-		double huntSpeed;
-		Predicate<LivingEntity> targetPredicate;
-		@SuppressWarnings("unchecked")
-		public CarnivoreHuntGoal(Mob goalOwnerIn, Class targetClassIn, int targetChanceIn, double huntSpeed, boolean checkSight, boolean nearbyOnly, @Nullable Predicate<LivingEntity> targetPredicate) {
-			super(goalOwnerIn, targetClassIn, targetChanceIn, checkSight, nearbyOnly, targetPredicate);
-			this.huntSpeed = huntSpeed;
-			this.targetPredicate = targetPredicate;
-		}
-
-		public boolean canUse() {
-			return super.canUse() && Dakotaraptor.this.getCurrentHunger() <= Dakotaraptor.this.getHalfHunger() && !Dakotaraptor.this.isBaby() && PrehistoricFaunaConfig.advancedHunger == true && !targetPredicate.test(Dakotaraptor.this);
-		}
-
-		public boolean canContinueToUse() {
-			return Dakotaraptor.this.getCurrentHunger() < Dakotaraptor.this.maxHunger && PrehistoricFaunaConfig.advancedHunger == true;
-		}
-
-		public void tick() {
-			Dakotaraptor.this.getNavigation().setSpeedModifier(huntSpeed);
-			LivingEntity target = Dakotaraptor.this.getTarget();
-			if (target.getType().is(PFTags.ANIMALS_3_HUNGER)) {
-				if (target.getHealth() == 0) {
-					if (Dakotaraptor.this.getCurrentHunger() + 3 >= Dakotaraptor.this.maxHunger) {
-						Dakotaraptor.this.setHunger(Dakotaraptor.this.maxHunger);
-					} else {
-						Dakotaraptor.this.setHunger(currentHunger + 3);
-					}
-				}
-			}
-			if (target.getType().is(PFTags.ANIMALS_4_HUNGER)) {
-				if (target.getHealth() == 0) {
-					if (Dakotaraptor.this.getCurrentHunger() + 4 >= Dakotaraptor.this.maxHunger) {
-						Dakotaraptor.this.setHunger(Dakotaraptor.this.maxHunger);
-					} else {
-						Dakotaraptor.this.setHunger(currentHunger + 4);
-					}
-				}
-			}
-			if (target.getType().is(PFTags.ANIMALS_6_HUNGER)) {
-				if (target.getHealth() == 0) {
-					if (Dakotaraptor.this.getCurrentHunger() + 6 >= Dakotaraptor.this.maxHunger) {
-						Dakotaraptor.this.setHunger(Dakotaraptor.this.maxHunger);
-					} else {
-						Dakotaraptor.this.setHunger(currentHunger + 6);
-					}
-				}
-			}
-			if (target.getType().is(PFTags.ANIMALS_8_HUNGER)) {
-				if (target.getHealth() == 0) {
-					if (Dakotaraptor.this.getCurrentHunger() + 8 >= Dakotaraptor.this.maxHunger) {
-						Dakotaraptor.this.setHunger(Dakotaraptor.this.maxHunger);
-					} else {
-						Dakotaraptor.this.setHunger(currentHunger + 8);
-					}
-				}
-			}
-			if (target.getType().is(PFTags.ANIMALS_10_HUNGER)) {
-				if (target.getHealth() == 0) {
-					if (Dakotaraptor.this.getCurrentHunger() + 10 >= Dakotaraptor.this.maxHunger) {
-						Dakotaraptor.this.setHunger(Dakotaraptor.this.maxHunger);
-					} else {
-						Dakotaraptor.this.setHunger(currentHunger + 10);
-					}
-				}
-			}
-			if (target.getType().is(PFTags.ANIMALS_15_HUNGER)) {
-				if (target.getHealth() == 0) {
-					if (Dakotaraptor.this.getCurrentHunger() + 15 >= Dakotaraptor.this.maxHunger) {
-						Dakotaraptor.this.setHunger(Dakotaraptor.this.maxHunger);
-					} else {
-						Dakotaraptor.this.setHunger(currentHunger + 15);
-					}
-				}
-			}
-			if (target.getType().is(PFTags.ANIMALS_20_HUNGER)) {
-				if (target.getHealth() == 0) {
-					if (Dakotaraptor.this.getCurrentHunger() + 20 >= Dakotaraptor.this.maxHunger) {
-						Dakotaraptor.this.setHunger(Dakotaraptor.this.maxHunger);
-					} else {
-						Dakotaraptor.this.setHunger(currentHunger + 20);
-					}
-				}
-			}
-			if (target.getType().is(PFTags.ANIMALS_30_HUNGER)) {
-				if (target.getHealth() == 0) {
-					if (Dakotaraptor.this.getCurrentHunger() + 30 >= Dakotaraptor.this.maxHunger) {
-						Dakotaraptor.this.setHunger(Dakotaraptor.this.maxHunger);
-					} else {
-						Dakotaraptor.this.setHunger(currentHunger + 30);
-					}
-				}
-			}
-			super.tick();
-		}
-
-	}
-
-	@SuppressWarnings("rawtypes")
-	public class BabyCarnivoreHuntGoal extends NearestAttackableTargetGoal {
-		double huntSpeed;
-		Predicate<LivingEntity> targetPredicate;
-		@SuppressWarnings("unchecked")
-		public BabyCarnivoreHuntGoal(Mob goalOwnerIn, Class targetClassIn, int targetChanceIn, double huntSpeed, boolean checkSight, boolean nearbyOnly, @Nullable Predicate<LivingEntity> targetPredicate) {
-			super(goalOwnerIn, targetClassIn, targetChanceIn, checkSight, nearbyOnly, targetPredicate);
-			this.huntSpeed = huntSpeed;
-			this.targetPredicate = targetPredicate;
-		}
-
-		public boolean canUse() {
-			return super.canUse() && Dakotaraptor.this.getCurrentHunger() <= Dakotaraptor.this.getHalfHunger() && Dakotaraptor.this.isBaby() && PrehistoricFaunaConfig.advancedHunger == true && !targetPredicate.test(Dakotaraptor.this);
-		}
-
-		public boolean canContinueToUse() {
-			return Dakotaraptor.this.getCurrentHunger() < Dakotaraptor.this.maxHunger && PrehistoricFaunaConfig.advancedHunger == true || !Dakotaraptor.this.isBaby() && PrehistoricFaunaConfig.advancedHunger == true;
-		}
-
-		public void tick() {
-			Dakotaraptor.this.getNavigation().setSpeedModifier(huntSpeed);
-			LivingEntity target = Dakotaraptor.this.getTarget();
-			if (target.getType().is(PFTags.ANIMALS_3_HUNGER)) {
-				if (target.getHealth() == 0) {
-					if (Dakotaraptor.this.getCurrentHunger() + 3 >= Dakotaraptor.this.maxHunger) {
-						Dakotaraptor.this.setHunger(Dakotaraptor.this.maxHunger);
-					} else {
-						Dakotaraptor.this.setHunger(currentHunger + 3);
-					}
-				}
-			}
-			if (target.getType().is(PFTags.ANIMALS_4_HUNGER)) {
-				if (target.getHealth() == 0) {
-					if (Dakotaraptor.this.getCurrentHunger() + 4 >= Dakotaraptor.this.maxHunger) {
-						Dakotaraptor.this.setHunger(Dakotaraptor.this.maxHunger);
-					} else {
-						Dakotaraptor.this.setHunger(currentHunger + 4);
-					}
-				}
-			}
-			if (target.getType().is(PFTags.ANIMALS_6_HUNGER)) {
-				if (target.getHealth() == 0) {
-					if (Dakotaraptor.this.getCurrentHunger() + 6 >= Dakotaraptor.this.maxHunger) {
-						Dakotaraptor.this.setHunger(Dakotaraptor.this.maxHunger);
-					} else {
-						Dakotaraptor.this.setHunger(currentHunger + 6);
-					}
-				}
-			}
-			super.tick();
-		}
-
-	}
-
 	@Override
 	public ItemStack getPickedResult(HitResult target) {
 		return new ItemStack(PFItems.DAKOTARAPTOR_SPAWN_EGG.get());
+	}
+
+	public Item getEggItem() {
+		return PFItems.DAKOTARAPTOR_EGG.get();
+	}
+
+	public BlockState getEggBlock() {
+		return PFBlocks.DAKOTARAPTOR_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 }

@@ -1,0 +1,60 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/general/cretaceous_time_travel",
+  "display": {
+    "icon": {
+      "item": "prehistoricfauna:dromaeosaur_claw_scythe"
+    },
+    "title": {
+      "translate": "advancements.prehistoricfauna.reap_what_you_sow.title"
+    },
+    "description": {
+      "translate": "advancements.prehistoricfauna.reap_what_you_sow.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+     "killed_something": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+	"entity": {
+          "type": "prehistoricfauna:dakotaraptor"
+        },
+		"killing_blow": {
+			"source_entity": {
+				"equipment": {
+					"mainhand": {
+						"item": "prehistoricfauna:dromaeosaur_claw_scythe"
+					}
+				}
+			}
+		}
+      }
+    },
+    "killed_velociraptor": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:velociraptor"
+			},
+			"killing_blow": {
+				"source_entity": {
+					"equipment": {
+						"mainhand": {
+							"item": "prehistoricfauna:dromaeosaur_claw_scythe"
+						}
+					}
+				}
+			}
+		}
+	}
+  },
+  "requirements": [
+    [
+      "killed_something",
+      "killed_velocirpator"
+    ]
+  ]
+}

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:agathoxylon_planks"
+            "items": [
+				"prehistoricfauna:agathoxylon_planks"
+            ] 
           }
         ]
       }

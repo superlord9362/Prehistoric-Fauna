@@ -1,10 +1,7 @@
 {
 	"replace": false,
 	"values": [
-		"prehistoricfauna:ankylosaurus",
 		"prehistoricfauna:sillosuchus",
-		"prehistoricfauna:stegosaurus",
-		"prehistoricfauna:triceratops",
 		"prehistoricfauna:allosaurus"
 	]
 }

@@ -24,7 +24,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:tyrannosaurus_skull"
+            "items": [
+				"prehistoricfauna:tyrannosaurus_skull"
+          	]
           }
         ]
       }
@@ -34,7 +36,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:triceratops_skull"
+            "items": [
+				"prehistoricfauna:triceratops_skull"
+          	]
           }
         ]
       }
@@ -44,7 +48,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:ankylosaurus_skull"
+            "items": [
+				"prehistoricfauna:ankylosaurus_skull"
+          	]
           }
         ]
       }
@@ -54,7 +60,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:stegosaurus_skull"
+            "items": [
+				"prehistoricfauna:stegosaurus_skull"
+          	]
           }
         ]
       }
@@ -64,7 +72,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:ceratosaurus_skull"
+            "items": [
+				"prehistoricfauna:ceratosaurus_skull"
+          	]
           }
         ]
       }
@@ -74,7 +84,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:allosaurus_skull"
+            "items": [
+				"prehistoricfauna:allosaurus_skull"
+          	]
           }
         ]
       }
@@ -84,7 +96,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:herrerasaurus_skull"
+            "items": [
+				"prehistoricfauna:herrerasaurus_skull"
+          	]
           }
         ]
       }
@@ -94,7 +108,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:saurosuchus_skull"
+            "items": [
+				"prehistoricfauna:saurosuchus_skull"
+          	]
           }
         ]
       }
@@ -104,7 +120,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:ischigualastia_skull"
+            "items": [
+				"prehistoricfauna:ischigualastia_skull"
+          	]
           }
         ]
       }
@@ -114,7 +132,9 @@
 		"conditions": {
 			"items": [
 				{
-					"item": "prehistoricfauna:velociraptor_skull"
+					"items": [
+						"prehistoricfauna:velociraptor_skull"
+					]
 				}
 			]
 		}
@@ -124,7 +144,9 @@
 		"conditions": {
 			"items": [
 				{
-					"item": "prehistoricfauna:protoceratops_skull"
+					"items": [
+						"prehistoricfauna:protoceratops_skull"
+					]
 				}
 			]
 		}
@@ -134,7 +156,9 @@
 		"conditions": {
 			"items": [
 				{
-					"item": "prehistoricfauna:plesiohadros_skull"
+					"items": [
+						"prehistoricfauna:plesiohadros_skull"
+					]
 				}
 			]
 		}
@@ -144,7 +168,9 @@
 		"conditions": {
 			"items": [
 				{
-					"item": "prehistoricfauna:dilophosaurus_skull"
+					"items": [
+						"prehistoricfauna:dilophosaurus_skull"
+					]
 				}
 			]
 		}
@@ -154,7 +180,9 @@
 		"conditions": {
 			"items": [
 				{
-					"item": "prehistoricfauna:scelidosaurus_skull"
+					"items": [
+						"prehistoricfauna:scelidosaurus_skull"
+					]
 				}
 			]
 		}
@@ -164,7 +192,9 @@
 		"conditions": {
 			"items": [
 				{
-					"item": "prehistoricfauna:coelophysis_skull"
+					"items": [
+						"prehistoricfauna:coelophysis_skull"
+					]
 				}
 			]
 		}
@@ -174,7 +204,9 @@
 		"conditions": {
 			"items": [
 				{
-					"item": "prehistoricfauna:desmatosuchus_skull"
+					"items": [
+						"prehistoricfauna:desmatosuchus_skull"
+					]
 				}
 			]
 		}
@@ -184,7 +216,9 @@
 		"conditions": {
 			"items": [
 				{
-					"item": "prehistoricfauna:postosuchus_skull"
+					"items": [
+						"prehistoricfauna:postosuchus_skull"
+					]
 				}
 			]
 		}
@@ -194,7 +228,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:tyrannosaurus_skeleton"
+            "items": [
+				"prehistoricfauna:tyrannosaurus_skeleton"
+          	]
           }
         ]
       }
@@ -204,7 +240,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:triceratops_skeleton"
+            "items": [
+				"prehistoricfauna:triceratops_skeleton"
+          	]
           }
         ]
       }
@@ -214,7 +252,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:ankylosaurus_skeleton"
+            "items": [
+				"prehistoricfauna:ankylosaurus_skeleton"
+          	]
           }
         ]
       }
@@ -224,7 +264,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:stegosaurus_skeleton"
+            "items": [
+				"prehistoricfauna:stegosaurus_skeleton"
+          	]
           }
         ]
       }
@@ -234,7 +276,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:allosaurus_skeleton"
+            "items": [
+				"prehistoricfauna:allosaurus_skeleton"
+          	]
           }
         ]
       }
@@ -244,7 +288,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:ceratosaurus_skeleton"
+            "items": [
+				"prehistoricfauna:ceratosaurus_skeleton"
+          	]
           }
         ]
       }
@@ -254,7 +300,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:herrerasaurus_skeleton"
+            "items": [
+				"prehistoricfauna:herrerasaurus_skeleton"
+          	]
           }
         ]
       }
@@ -264,7 +312,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:saurosuchus_skeleton"
+            "items": [
+				"prehistoricfauna:saurosuchus_skeleton"
+          	]
           }
         ]
       }
@@ -274,7 +324,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:ischigualastia_skeleton"
+            "items": [
+				"prehistoricfauna:ischigualastia_skeleton"
+          	]
           }
         ]
       }
@@ -284,7 +336,9 @@
 		"conditions": {
 			"items": [
 				{
-					"item": "prehistoricfauna:velociraptor_skeleton"
+					"items": [
+						"prehistoricfauna:velociraptor_skeleton"
+					]
 				}
 			]
 		}
@@ -294,7 +348,9 @@
 		"conditions": {
 			"items": [
 				{
-					"item": "prehistoricfauna:protoceratops_skeleton"
+					"items": [
+						"prehistoricfauna:protoceratops_skeleton"
+					]
 				}
 			]
 		}
@@ -304,7 +360,9 @@
 		"conditions": {
 			"items": [
 				{
-					"item": "prehistoricfauna:plesiohadros_skeleton"
+					"items": [
+						"prehistoricfauna:plesiohadros_skeleton"
+					]
 				}
 			]
 		}
@@ -314,7 +372,9 @@
 		"conditions": {
 			"items": [
 				{
-					"item": "prehistoricfauna:coelophysis_skeleton"
+					"items": [
+						"prehistoricfauna:coelophysis_skeleton"
+					]
 				}
 			]
 		}

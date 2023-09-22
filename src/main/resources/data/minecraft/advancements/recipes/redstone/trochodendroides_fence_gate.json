@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:trochodendroides_planks"
+            "items": [
+				"prehistoricfauna:trochodendroides_planks"
+          	]
           }
         ]
       }

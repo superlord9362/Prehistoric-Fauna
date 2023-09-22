@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "prehistoricfauna:araucaria_bookshelf",
+    "prehistoricfauna:metasequoia_bookshelf",
+    "prehistoricfauna:protopiceoxylon_bookshelf",
+    "prehistoricfauna:zamites_bookshelf",
+    "prehistoricfauna:protojuniperoxylon_bookshelf",
+    "prehistoricfauna:agathoxylon_bookshelf",
+    "prehistoricfauna:heidiphyllum_bookshelf",
+    "prehistoricfauna:liriodendrites_bookshelf",
+    "prehistoricfauna:ginkgo_bookshelf",
+    "prehistoricfauna:trochodendroides_bookshelf",
+    "prehistoricfauna:woodworthia_bookshelf",
+    "prehistoricfauna:schilderia_bookshelf",
+    "prehistoricfauna:brachyphyllum_bookshelf",
+    "prehistoricfauna:dryophyllum_bookshelf",
+    "prehistoricfauna:taxodium_bookshelf",
+    "prehistoricfauna:neocalamites_bookshelf",
+    "prehistoricfauna:sabalites_bookshelf"
+  ]
+}

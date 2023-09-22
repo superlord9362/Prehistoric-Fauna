@@ -1,0 +1,9 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:taxodium_log",
+		"prehistoricfauna:stripped_taxodium_log",
+		"prehistoricfauna:taxodium_wood",
+		"prehistoricfauna:stripped_taxodium_wood"
+	]
+}

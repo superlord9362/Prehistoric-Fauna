@@ -13,7 +13,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:raw_large_theropod_meat"
+            "items": [
+				"prehistoricfauna:raw_large_theropod_meat"
+          	]
           }
         ]
       }

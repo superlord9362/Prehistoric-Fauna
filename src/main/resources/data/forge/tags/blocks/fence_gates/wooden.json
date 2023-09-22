@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "prehistoricfauna:araucaria_fence_gate",
+    "prehistoricfauna:metasequoia_fence_gate",
+    "prehistoricfauna:protopiceoxylon_fence_gate",
+    "prehistoricfauna:zamites_fence_gate",
+    "prehistoricfauna:protojuniperoxylon_fence_gate",
+    "prehistoricfauna:agathoxylon_fence_gate",
+    "prehistoricfauna:heidiphyllum_fence_gate",
+    "prehistoricfauna:liriodendrites_fence_gate",
+    "prehistoricfauna:ginkgo_fence_gate",
+    "prehistoricfauna:trochodendroides_fence_gate",
+    "prehistoricfauna:woodworthia_fence_gate",
+    "prehistoricfauna:schilderia_fence_gate",
+    "prehistoricfauna:brachyphyllum_fence_gate",
+    "prehistoricfauna:dryophyllum_fence_gate",
+    "prehistoricfauna:taxodium_fence_gate",
+    "prehistoricfauna:neocalamites_fence_gate",
+    "prehistoricfauna:sabalites_fence_gate"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_bottom",
+    "textures": {
+        "bottom": "prehistoricfauna:blocks/sabalites_door_bottom",
+        "top": "prehistoricfauna:blocks/sabalites_door_top"
+    }
+}

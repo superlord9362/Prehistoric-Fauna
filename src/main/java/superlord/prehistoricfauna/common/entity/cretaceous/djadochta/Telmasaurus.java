@@ -1,16 +1,17 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.djadochta;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -39,6 +40,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TurtleEggBlock;
@@ -51,7 +53,9 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotarapto
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Thescelosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
+import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
+import superlord.prehistoricfauna.common.entity.goal.CarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
@@ -59,7 +63,13 @@ import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
 import superlord.prehistoricfauna.common.entity.goal.DiurnalSleepingGoal;
 import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
+import superlord.prehistoricfauna.common.entity.goal.OpportunistAttackGoal;
+import superlord.prehistoricfauna.common.entity.goal.OpportunistBabyHuntGoal;
+import superlord.prehistoricfauna.common.entity.goal.OpportunistHuntingGoal;
 import superlord.prehistoricfauna.common.entity.goal.OvivoreEatFromFeederGoal;
+import superlord.prehistoricfauna.common.entity.goal.ProtectBabyGoal;
+import superlord.prehistoricfauna.common.entity.goal.SkittishFleeGoal;
+import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Dilophosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
@@ -106,6 +116,11 @@ public class Telmasaurus extends DinosaurEntity {
 	}
 
 	public void aiStep() {
+		if (this.isBaby()) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(3);
+		} else {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(6);
+		}
 		super.aiStep();
 		ItemStack stack = this.getMainHandItem();
 		ItemStack newStack = new ItemStack(Items.AIR);
@@ -148,46 +163,6 @@ public class Telmasaurus extends DinosaurEntity {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue((double)0.25F);
 		}
 	}
-	
-	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
-		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
-		if (PrehistoricFaunaConfig.advancedHunger) {
-			int hunger = this.getCurrentHunger();
-			if (hunger < this.maxHunger) {
-				if (this.isFood(itemstack) && (!this.isInLove() || !this.isInLoveNaturally())) {
-					this.setInLove(p_230254_1_);
-					itemstack.shrink(1);
-				} else {
-					if (itemstack.is(PFTags.EGGS_5_HUNGER)) {
-						if (this.getCurrentHunger() + 5 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(currentHunger + 5);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.EGGS_10_HUNGER)) {
-						if (this.getCurrentHunger() + 10 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(currentHunger + 10);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.EGGS_15_HUNGER)) {
-						if (this.getCurrentHunger() + 15 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(currentHunger + 15);
-						}
-						itemstack.shrink(1);
-					}
-				}
-			}
-			else p_230254_1_.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.fullHunger"), true);
-		}
-		return super.mobInteract(p_230254_1_, p_230254_2_);
-	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	protected void registerGoals() {
@@ -201,13 +176,15 @@ public class Telmasaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.targetSelector.addGoal(1, new DinosaurHurtByTargetGoal(this));
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
+		this.targetSelector.addGoal(2, new ProtectBabyGoal(this));
 		this.goalSelector.addGoal(2, new DinosaurMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(2, new NaturalMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(9, new Telmasaurus.EatEggGoal((double)1.2F, 12, 2));
 		this.goalSelector.addGoal(0, new Telmasaurus.HungerEatEggGoal((double)1.2F, 12, 2));
 		this.goalSelector.addGoal(8, new AvoidEntityGoal(this, Camarasaurus.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(8, new AvoidEntityGoal(this, Allosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal(this, Player.class, 10F, 1.5D, 1.75D));
+		this.goalSelector.addGoal(8, new SkittishFleeGoal(this, Player.class, 10F, 1.5D, 1.75D));
+		this.targetSelector.addGoal(2, new OpportunistAttackGoal(this, Player.class, true));
 		this.goalSelector.addGoal(8, new AvoidEntityGoal(this, Citipati.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(8, new AvoidEntityGoal(this, Tyrannosaurus.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(8, new AvoidEntityGoal(this, Velociraptor.class, 10F, 1.5D, 1.75D));
@@ -229,6 +206,19 @@ public class Telmasaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Coelophysis.class, 10F, 1.7D, 1.5D));
 		this.goalSelector.addGoal(1, new DiurnalSleepingGoal(this));
 		this.goalSelector.addGoal(0, new OvivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
+		this.goalSelector.addGoal(0, new OpportunistHuntingGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_237491_0_) -> {
+			return p_237491_0_.getType().is(PFTags.TELMASAURUS_HUNTING);
+		}));
+		this.goalSelector.addGoal(0, new OpportunistBabyHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_237491_0_) -> {
+			return p_237491_0_.getType().is(PFTags.TELMASAURUS_BABY_HUNTING);
+		}));
+		this.goalSelector.addGoal(0, new CarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_237491_0_) -> {
+			return p_237491_0_.getType().is(PFTags.TELMASAURUS_HUNTING);
+		}));
+		this.goalSelector.addGoal(0, new BabyCarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_237491_0_) -> {
+			return p_237491_0_.getType().is(PFTags.TELMASAURUS_BABY_HUNTING);
+		}));
+		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -245,6 +235,19 @@ public class Telmasaurus extends DinosaurEntity {
 
 	protected SoundEvent getDeathSound() {
 		return PFSounds.TELMASAURUS_DEATH;
+	}
+	
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+		int temperment = random.nextInt(100);
+		if (temperment < 80) {
+			this.setOpportunist(true);
+		} else if (temperment >= 80 && temperment < 95) {
+			this.setSkittish(true);
+		} else if (temperment >= 95) {
+			this.setProtective(true);
+		}
+		this.setOvivorous(true);
+		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
 	public boolean onAttackAnimationFinish(Entity entityIn) {

@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:chiseled_sandstone"
+            "items": [
+				"prehistoricfauna:chiseled_sandstone"
+          	]
           }
         ]
       }
@@ -31,7 +33,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:chiseled_siltstone"
+            "items": [
+				"prehistoricfauna:chiseled_siltstone"
+          	]
           }
         ]
       }
@@ -41,7 +45,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:chiseled_chalk"
+            "items": [
+				"prehistoricfauna:chiseled_chalk"
+          	]
           }
         ]
       }

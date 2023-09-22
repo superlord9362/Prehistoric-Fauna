@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:metasequoia_log"
+            "items": [
+				"prehistoricfauna:metasequoia_log"
+          	]
           }
         ]
       }

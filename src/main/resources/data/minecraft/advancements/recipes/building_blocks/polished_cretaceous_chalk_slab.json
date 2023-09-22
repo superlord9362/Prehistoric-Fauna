@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:polished_chalk"
+            "items": [
+				"prehistoricfauna:polished_chalk"
+          	]
           }
         ]
       }

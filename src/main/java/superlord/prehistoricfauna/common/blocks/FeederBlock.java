@@ -182,7 +182,6 @@ public class FeederBlock extends BaseEntityBlock {
 				}
 				if (stack.is(PFTags.PLANTS_30_HUNGER_ITEM)) {
 					setFoodAmount(getFoodAmount(world, pos) + 30, world, pos);
-					world.getBlockState(pos);
 				}
 				if (!player.isCreative()) {
 					stack.shrink(1);
@@ -190,54 +189,54 @@ public class FeederBlock extends BaseEntityBlock {
 				return InteractionResult.sidedSuccess(world.isClientSide);
 			}
 		}
-		if (getFoodAmount(world, pos) < 156) {
+		if (getFoodAmount(world, pos) < 1001) {
 			BlockState currentState = world.getBlockState(pos);
 			if (hasMeat(currentState)) {
 				if (stack.is(PFTags.MEATS_2_HUNGER)) {
-					if (getFoodAmount(world, pos) + 2 < 156) {
+					if (getFoodAmount(world, pos) + 2 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 2, world, pos);
 					} else {
-						setFoodAmount(156, world, pos);
+						setFoodAmount(1001, world, pos);
 					}
 					world.getBlockState(pos);
 				}
 				if (stack.is(PFTags.MEATS_4_HUNGER)) {
-					if (getFoodAmount(world, pos) + 4 < 156) {
+					if (getFoodAmount(world, pos) + 4 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 4, world, pos);
 					} else {
-						setFoodAmount(156, world, pos);
+						setFoodAmount(1001, world, pos);
 					}
 					world.getBlockState(pos);
 				}
 				if (stack.is(PFTags.MEATS_6_HUNGER)) {
-					if (getFoodAmount(world, pos) + 6 < 156) {
+					if (getFoodAmount(world, pos) + 6 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 6, world, pos);
 					} else {
-						setFoodAmount(156, world, pos);
+						setFoodAmount(1001, world, pos);
 					}
 					world.getBlockState(pos);
 				}
 				if (stack.is(PFTags.MEATS_8_HUNGER)) {
-					if (getFoodAmount(world, pos) + 8 < 156) {
+					if (getFoodAmount(world, pos) + 8 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 8, world, pos);
 					} else {
-						setFoodAmount(156, world, pos);
+						setFoodAmount(1001, world, pos);
 					}
 					world.getBlockState(pos);
 				}
 				if (stack.is(PFTags.MEATS_10_HUNGER)) {
-					if (getFoodAmount(world, pos) + 10 < 156) {
+					if (getFoodAmount(world, pos) + 10 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 10, world, pos);
 					} else {
-						setFoodAmount(156, world, pos);
+						setFoodAmount(1001, world, pos);
 					}
 					world.getBlockState(pos);
 				}
 				if (stack.is(PFTags.MEATS_12_HUNGER)) {
-					if (getFoodAmount(world, pos) + 12 < 156) {
+					if (getFoodAmount(world, pos) + 12 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 12, world, pos);
 					} else {
-						setFoodAmount(156, world, pos);
+						setFoodAmount(1001, world, pos);
 					}
 					world.getBlockState(pos);
 				}
@@ -248,73 +247,73 @@ public class FeederBlock extends BaseEntityBlock {
 			}
 			if (hasPlants(currentState)) {
 				if (stack.is(PFTags.PLANTS_2_HUNGER_ITEM)) {
-					if (getFoodAmount(world, pos) + 2 < 156) {
+					if (getFoodAmount(world, pos) + 2 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 2, world, pos);
 					} else {
-						setFoodAmount(156, world, pos);
+						setFoodAmount(1001, world, pos);
 					}
 				}
 				if (stack.is(PFTags.PLANTS_4_HUNGER_ITEM)) {
-					if (getFoodAmount(world, pos) + 4 < 156) {
+					if (getFoodAmount(world, pos) + 4 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 4, world, pos);
 					} else {
-						setFoodAmount(156, world, pos);
+						setFoodAmount(1001, world, pos);
 					}
 				}
 				if (stack.is(PFTags.PLANTS_6_HUNGER_ITEM)) {
-					if (getFoodAmount(world, pos) + 2 < 156) {
+					if (getFoodAmount(world, pos) + 2 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 6, world, pos);
 					} else {
-						setFoodAmount(156, world, pos);
+						setFoodAmount(1001, world, pos);
 					}
 				}
 				if (stack.is(PFTags.PLANTS_8_HUNGER_ITEM)) {
-					if (getFoodAmount(world, pos) + 8 < 156) {
+					if (getFoodAmount(world, pos) + 8 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 8, world, pos);
 					} else {
-						setFoodAmount(156, world, pos);
+						setFoodAmount(1001, world, pos);
 					}
 				}
 				if (stack.is(PFTags.PLANTS_10_HUNGER_ITEM)) {
-					if (getFoodAmount(world, pos) + 10 < 156) {
+					if (getFoodAmount(world, pos) + 10 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 10, world, pos);
 					} else {
-						setFoodAmount(156, world, pos);
+						setFoodAmount(1001, world, pos);
 					}
 				}
 				if (stack.is(PFTags.PLANTS_12_HUNGER_ITEM)) {
-					if (getFoodAmount(world, pos) + 12 < 156) {
+					if (getFoodAmount(world, pos) + 12 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 12, world, pos);
 					} else {
-						setFoodAmount(156, world, pos);
+						setFoodAmount(1001, world, pos);
 					}
 				}
 				if (stack.is(PFTags.PLANTS_15_HUNGER_ITEM)) {
-					if (getFoodAmount(world, pos) + 15 < 156) {
+					if (getFoodAmount(world, pos) + 15 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 15, world, pos);
 					} else {
-						setFoodAmount(156, world, pos);
+						setFoodAmount(1001, world, pos);
 					}
 				}
 				if (stack.is(PFTags.PLANTS_20_HUNGER_ITEM)) {
-					if (getFoodAmount(world, pos) + 20 < 156) {
+					if (getFoodAmount(world, pos) + 20 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 20, world, pos);
 					} else {
-						setFoodAmount(156, world, pos);
+						setFoodAmount(1001, world, pos);
 					}
 				}
 				if (stack.is(PFTags.PLANTS_25_HUNGER_ITEM)) {
-					if (getFoodAmount(world, pos) + 25 < 156) {
+					if (getFoodAmount(world, pos) + 25 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 25, world, pos);
 					} else {
-						setFoodAmount(156, world, pos);
+						setFoodAmount(1001, world, pos);
 					}
 				}
 				if (stack.is(PFTags.PLANTS_30_HUNGER_ITEM)) {
-					if (getFoodAmount(world, pos) + 30 < 156) {
+					if (getFoodAmount(world, pos) + 30 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 30, world, pos);
 					} else {
-						setFoodAmount(156, world, pos);
+						setFoodAmount(1001, world, pos);
 					}
 				}
 				if (!player.isCreative()) {
@@ -324,24 +323,24 @@ public class FeederBlock extends BaseEntityBlock {
 			}
 			if (hasEggs(currentState)) {
 				if (stack.is(PFTags.EGGS_5_HUNGER)) {
-					if (getFoodAmount(world, pos) + 5 < 156) {
+					if (getFoodAmount(world, pos) + 5 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 5, world, pos);
 					} else {
-						setFoodAmount(156, world, pos);
+						setFoodAmount(1001, world, pos);
 					}
 				}
 				if (stack.is(PFTags.EGGS_10_HUNGER)) {
-					if (getFoodAmount(world, pos) + 10 < 156) {
+					if (getFoodAmount(world, pos) + 10 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 10, world, pos);
 					} else {
-						setFoodAmount(156, world, pos);
+						setFoodAmount(1001, world, pos);
 					}
 				}
 				if (stack.is(PFTags.EGGS_15_HUNGER)) {
-					if (getFoodAmount(world, pos) + 15 < 156) {
+					if (getFoodAmount(world, pos) + 15 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 15, world, pos);
 					} else {
-						setFoodAmount(156, world, pos);
+						setFoodAmount(1001, world, pos);
 					}
 				}
 				if (!player.isCreative()) {
@@ -351,17 +350,17 @@ public class FeederBlock extends BaseEntityBlock {
 			}
 			if (hasFish(currentState)) {
 				if (stack.is(PFTags.FISH_2_HUNGER)) {
-					if (getFoodAmount(world, pos) + 2 < 156) {
+					if (getFoodAmount(world, pos) + 2 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 2, world, pos);
 					} else {
-						setFoodAmount(156, world, pos);
+						setFoodAmount(1001, world, pos);
 					}
 				}
 				if (stack.is(PFTags.FISH_4_HUNGER)) {
-					if (getFoodAmount(world, pos) + 4 < 156) {
+					if (getFoodAmount(world, pos) + 4 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 4, world, pos);
 					} else {
-						setFoodAmount(156, world, pos);
+						setFoodAmount(1001, world, pos);
 					}
 				}
 				if (!player.isCreative()) {
@@ -371,10 +370,10 @@ public class FeederBlock extends BaseEntityBlock {
 			}
 			if (hasShellfish(currentState)) {
 				if(stack.is(PFTags.SHELLFISH_3_HUNGER)) {
-					if (getFoodAmount(world, pos) + 3 < 156) {
+					if (getFoodAmount(world, pos) + 3 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 3, world, pos);
 					} else {
-						setFoodAmount(156, world, pos);
+						setFoodAmount(1001, world, pos);
 					}
 				}
 				if (!player.isCreative()) {
@@ -386,26 +385,25 @@ public class FeederBlock extends BaseEntityBlock {
 		return InteractionResult.PASS;
 	}
 
-	
+
 	@Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return createTickerHelper(pBlockEntityType, PFBlockEntities.FEEDER.get(), FeederBlockEntity::tick);
-    }
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+		return pLevel.isClientSide ? null :  createTickerHelper(pBlockEntityType, PFBlockEntities.FEEDER.get(), FeederBlockEntity::tick);
+	}
 
 	public int getFoodAmount(Level level, BlockPos pos) {
 		BlockEntity blockentity = level.getBlockEntity(pos);
 		if (blockentity instanceof FeederBlockEntity) {
-			return FeederBlockEntity.getFoodAmount();
-		}
-		else return 0;
+			return ((FeederBlockEntity)blockentity).getFoodAmount();
+		} else return 0;
 	}
 
 	public void setFoodAmount(int amount, Level level, BlockPos pos) {
 		BlockEntity blockentity = level.getBlockEntity(pos);
 		if (blockentity instanceof FeederBlockEntity) {
-			FeederBlockEntity feederblockentity = (FeederBlockEntity)blockentity;
-			feederblockentity.setFoodAmount(amount);
+			((FeederBlockEntity)blockentity).setFoodAmount(amount);
+			blockentity.setChanged();
 		}
 	}
 

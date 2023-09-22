@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:dryophyllum_planks"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:dryophyllum_boat"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/general/cretaceous_time_travel",
+  "display": {
+    "icon": {
+      "item": "prehistoricfauna:tyrannosaur_tooth_sword"
+    },
+    "title": {
+      "translate": "advancements.prehistoricfauna.sore_tooth.title"
+    },
+    "description": {
+      "translate": "advancements.prehistoricfauna.sore_tooth.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+     "killed_something": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+	"entity": {
+          "type": "prehistoricfauna:tyrannosaurus"
+        },
+		"killing_blow": {
+			"source_entity": {
+				"equipment": {
+					"mainhand": {
+						"item": "prehistoricfauna:tyrannosaur_tooth_sword"
+					}
+				}
+			}
+		}
+      }
+    }
+  },
+  "requirements": [
+    [
+      "killed_something"
+    ]
+  ]
+}

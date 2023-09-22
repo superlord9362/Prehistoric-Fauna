@@ -243,13 +243,14 @@ public class PrehistoricFaunaConfig {
 	public static boolean geologyHammerMining = true;
 	public static int baseStoneWeight = 97;
 	public static int fossilWeight = 3;
-	public static int petrifiedForestWeight = 6;
 	
 	public static boolean sleeping = true;
 	public static boolean advancedHunger = true;
 	public static boolean hungerDamage = false;
 	public static boolean naturalEggBlockLaying = true;
 	public static boolean naturalEggItemLaying = false;
+	public static boolean hostileCarnivores = false;
+	public static boolean unscheduledSleeping = false;
 	
 	public static boolean eyeShine = true;
 	public static boolean customMenuBackground = true;
@@ -503,7 +504,8 @@ public class PrehistoricFaunaConfig {
 			hungerDamage = PFConfigHolder.SERVER.hungerDamage.get();
 			naturalEggBlockLaying = PFConfigHolder.SERVER.naturalEggBlockLaying.get();
 			naturalEggItemLaying = PFConfigHolder.SERVER.naturalEggItemLaying.get();
-			petrifiedForestWeight = PFConfigHolder.SERVER.petrifiedForestWeight.get();
+			hostileCarnivores = PFConfigHolder.SERVER.hostileCarnivores.get();
+			unscheduledSleeping = PFConfigHolder.SERVER.unscheduledSleeping.get();
 		} catch (Exception e) {
 			PrehistoricFauna.LOGGER.warn("An exception was caused trying to load the config for Prehistoric Fauna");
 			e.printStackTrace();

@@ -2374,5 +2374,89 @@
 				"stream": true
 			}
 		]
+	},
+	"meat_eating": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.meatEating",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/feeder/meat_eating_1",
+				"stream": true
+			},
+			{
+                "name": "prehistoricfauna:prehistoric/feeder/meat_eating_2",
+				"stream": true
+			}
+		]
+	},
+	"small_meat_gulp": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.smallMeatGulp",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/feeder/meat_gulp_small",
+				"stream": true
+			}
+		]
+	},
+	"large_meat_gulp": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.largeMeatGulp",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/feeder/meat_gulp_big",
+				"stream": true
+			}
+		]
+	},
+	"ambience_1": {
+		"category": "music",
+		"subtitle": "prehistoricfauna.subtitle.ambience_1",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:music/ambience_1",
+				"stream": true
+			}
+		]
+	},
+	"cave_1": {
+		"category": "music",
+		"subtitle": "prehistoricfauna.subtitle.cave_1",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:music/cave_1",
+				"stream": true
+			}
+		]
+	},
+	"night_1": {
+		"category": "music",
+		"subtitle": "prehistoricfauna.subtitle.night_1",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:music/night_1",
+				"stream": true
+			}
+		]
+	},
+	"night_2": {
+		"category": "music",
+		"subtitle": "prehistoricfauna.subtitle.night_2",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:music/night_2",
+				"stream": true
+			}
+		]
+	},
+	"structure_1": {
+		"category": "music",
+		"subtitle": "prehistoricfauna.subtitle.structure_1",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:music/structure_1",
+				"stream": true
+			}
+		]
 	}
 }

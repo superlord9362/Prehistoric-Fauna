@@ -9,6 +9,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 import superlord.prehistoricfauna.common.blocks.FeederBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
+import superlord.prehistoricfauna.init.PFSounds;
 
 public class OmnivoreEatFromFeederGoal extends MoveToBlockGoal {
 	DinosaurEntity dinosaur;
@@ -81,6 +82,9 @@ public class OmnivoreEatFromFeederGoal extends MoveToBlockGoal {
 				dinosaur.setEating(true);
 			}
 			if (this.field_220731_g % 5 == 1) {
+				if (dinosaur.level.getBlockState(blockPos).getValue(FeederBlock.MEAT)) {
+					dinosaur.level.playSound((Player)null, this.blockPos, PFSounds.MEAT_EATING, SoundSource.NEUTRAL, 1, 1);
+				}
 				dinosaur.level.playSound((Player)null, this.blockPos, SoundEvents.GRASS_HIT, SoundSource.NEUTRAL, 1, 1);
 			}
 		}
@@ -103,6 +107,14 @@ public class OmnivoreEatFromFeederGoal extends MoveToBlockGoal {
 			block.setFoodAmount(0, dinosaur.level, this.blockPos);
 			dinosaur.setHunger(hunger + foodContained);
 			dinosaur.setEating(false);
+			dinosaur.level.setBlock(blockPos, block.defaultBlockState(), 0);
+		}
+		if (dinosaur.level.getBlockState(blockPos).getValue(FeederBlock.MEAT)) {
+			if (dinosaur.getBbHeight() >= 1.5F) {
+				dinosaur.level.playSound((Player)null, this.blockPos, PFSounds.LARGE_MEAT_GULP, SoundSource.NEUTRAL, 1, 1);
+			} else {
+				dinosaur.level.playSound((Player)null, this.blockPos, PFSounds.SMALL_MEAT_GULP, SoundSource.NEUTRAL, 1, 1);
+			}
 		}
 	}
 
@@ -113,7 +125,7 @@ public class OmnivoreEatFromFeederGoal extends MoveToBlockGoal {
 	public boolean canUse() {
 		return !dinosaur.isAsleep() && super.canUse() && dinosaur.getCurrentHunger() < dinosaur.getHalfHunger();
 	}
-	
+
 	public void stop() {
 		super.stop();
 		dinosaur.setEating(false);

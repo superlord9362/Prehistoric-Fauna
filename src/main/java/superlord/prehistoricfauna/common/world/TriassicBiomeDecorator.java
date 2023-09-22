@@ -22,6 +22,7 @@ public class TriassicBiomeDecorator {
 		if (name.equals("chinle_flats")) {
 			builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PFPlacedFeatures.DEAD_OSMUNDACAULIS.getHolder().orElseThrow());
 			PFPlacedFeatures.withChinleFlatsPlants(builder);
+			builder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, PFPlacedFeatures.SILT_DISK.getHolder().orElseThrow());
 			if (PrehistoricFaunaConfig.caveSentinelChinleFlatsSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.CAVE_SENTINEL.get(), PrehistoricFaunaConfig.caveSentinelChinleFlatsSpawnWeight, 1, 1));
 			if (PrehistoricFaunaConfig.landSentinelChinleFlatsSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.LAND_SENTINEL.get(), PrehistoricFaunaConfig.landSentinelChinleFlatsSpawnWeight, 1, 1));
 			if (PrehistoricFaunaConfig.trilophosaurusChinleFlatsSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.TRILOPHOSAURUS.get(), PrehistoricFaunaConfig.trilophosaurusChinleFlatsSpawnWeight, 1, 3));
@@ -38,6 +39,7 @@ public class TriassicBiomeDecorator {
 		}
 		if (name.equals("chinle_swamp")) {
 			PFPlacedFeatures.withChinleSwampPlants(builder);
+			builder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, PFPlacedFeatures.SILT_DISK.getHolder().orElseThrow());
 			if (PrehistoricFaunaConfig.caveSentinelChinleSwampSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.CAVE_SENTINEL.get(), PrehistoricFaunaConfig.caveSentinelChinleSwampSpawnWeight, 1, 1));
 	        if (PrehistoricFaunaConfig.landSentinelChinleSwampSpawnWeight != 0)event.getSpawns().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.LAND_SENTINEL.get(), PrehistoricFaunaConfig.landSentinelChinleSwampSpawnWeight, 1, 1));
 			if (PrehistoricFaunaConfig.desmatosuchusChinleSwampSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.DESMATOSUCHUS.get(), PrehistoricFaunaConfig.desmatosuchusChinleSwampSpawnWeight, 2, 4));
@@ -54,6 +56,7 @@ public class TriassicBiomeDecorator {
 		}
 		if (name.equals("chinle_wooded_mountains")) {
 			PFPlacedFeatures.withChinleWoodedMountainsPlants(builder);
+			builder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, PFPlacedFeatures.SILT_DISK.getHolder().orElseThrow());
 			if (PrehistoricFaunaConfig.caveSentinelChinleWoodedMountainsSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.CAVE_SENTINEL.get(), PrehistoricFaunaConfig.caveSentinelChinleWoodedMountainsSpawnWeight, 1, 1));
 	        if (PrehistoricFaunaConfig.landSentinelChinleWoodedMountainsSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.LAND_SENTINEL.get(), PrehistoricFaunaConfig.landSentinelChinleWoodedMountainsSpawnWeight, 1, 1));
 	        if (PrehistoricFaunaConfig.desmatosuchusChinleWoodedMountainsSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.DESMATOSUCHUS.get(), PrehistoricFaunaConfig.desmatosuchusChinleWoodedMountainsSpawnWeight, 2, 4));
@@ -70,6 +73,7 @@ public class TriassicBiomeDecorator {
 		}
 		if (name.equals("ischigualasto_forest")) {
 			PFPlacedFeatures.withIschigualastoVegetation(builder);
+			builder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, PFPlacedFeatures.SILT_DISK.getHolder().orElseThrow());
 			if (PrehistoricFaunaConfig.exaeretodonIschigualastoForestSpawnWeight != 0)event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.EXAERETODON.get(), PrehistoricFaunaConfig.exaeretodonIschigualastoForestSpawnWeight, 1, 3));
 			if (PrehistoricFaunaConfig.chromogisaurusIschigualastoForestSpawnWeight != 0)event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.CHROMOGISAURUS.get(), PrehistoricFaunaConfig.chromogisaurusIschigualastoForestSpawnWeight, 1, 4));
 			if (PrehistoricFaunaConfig.herrerasaurusIschigualastoForestSpawnWeight != 0)event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.HERRERASAURUS.get(), PrehistoricFaunaConfig.herrerasaurusIschigualastoForestSpawnWeight, 1, 2));
@@ -83,6 +87,7 @@ public class TriassicBiomeDecorator {
 		}
 		if (name.equals("ischigualasto_hills")) {
 			PFPlacedFeatures.withIschigualastoVegetation(builder);
+			builder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, PFPlacedFeatures.SILT_DISK.getHolder().orElseThrow());
 			if (PrehistoricFaunaConfig.exaeretodonIschigualastoHillsSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.EXAERETODON.get(), PrehistoricFaunaConfig.exaeretodonIschigualastoHillsSpawnWeight, 1, 3));
 			if (PrehistoricFaunaConfig.chromogisaurusIschigualastoHillsSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.CHROMOGISAURUS.get(), PrehistoricFaunaConfig.chromogisaurusIschigualastoHillsSpawnWeight, 1, 4));
 			if (PrehistoricFaunaConfig.herrerasaurusIschigualastoHillsSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.HERRERASAURUS.get(), PrehistoricFaunaConfig.herrerasaurusIschigualastoHillsSpawnWeight, 1, 2));
@@ -96,6 +101,7 @@ public class TriassicBiomeDecorator {
 		}
 		if (name.equals("ischigualasto_clearing")) {
 			PFPlacedFeatures.withSparseIschigualastoVegetation(builder);
+			builder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, PFPlacedFeatures.SILT_DISK.getHolder().orElseThrow());
 			if (PrehistoricFaunaConfig.exaeretodonIschigualastoClearingSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.EXAERETODON.get(), PrehistoricFaunaConfig.exaeretodonIschigualastoClearingSpawnWeight, 1, 3));
 			if (PrehistoricFaunaConfig.chromogisaurusIschigualastoClearingSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.CHROMOGISAURUS.get(), PrehistoricFaunaConfig.chromogisaurusIschigualastoClearingSpawnWeight, 1, 4));
 			if (PrehistoricFaunaConfig.herrerasaurusIschigualastoClearingSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.HERRERASAURUS.get(), PrehistoricFaunaConfig.herrerasaurusIschigualastoClearingSpawnWeight, 1, 2));

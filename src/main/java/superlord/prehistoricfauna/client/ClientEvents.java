@@ -23,19 +23,24 @@ import superlord.prehistoricfauna.client.model.armor.AnkylosaurusHelmetModel;
 import superlord.prehistoricfauna.client.model.armor.DesmatosuchusChestplateModel;
 import superlord.prehistoricfauna.client.model.cretaceous.djadochta.AepyornithomimusModel;
 import superlord.prehistoricfauna.client.model.cretaceous.djadochta.CitipatiModel;
+import superlord.prehistoricfauna.client.model.cretaceous.djadochta.PinacosaurusBabyModel;
 import superlord.prehistoricfauna.client.model.cretaceous.djadochta.PinacosaurusModel;
 import superlord.prehistoricfauna.client.model.cretaceous.djadochta.PlesiohadrosModel;
 import superlord.prehistoricfauna.client.model.cretaceous.djadochta.ProtoceratopsJuvenileModel;
 import superlord.prehistoricfauna.client.model.cretaceous.djadochta.ProtoceratopsModel;
 import superlord.prehistoricfauna.client.model.cretaceous.djadochta.TelmasaurusModel;
 import superlord.prehistoricfauna.client.model.cretaceous.djadochta.VelociraptorModel;
+import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.AnkylosaurusBabyModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.AnkylosaurusModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.BasilemysModel;
+import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.DakotaraptorBabyModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.DakotaraptorModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.DidelphodonModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.ThescelosaurusModel;
+import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TriceratopsBabyModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TriceratopsJuvenileModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TriceratopsModel;
+import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TyrannosaurusBabyModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TyrannosaurusJuvenileModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TyrannosaurusModel;
 import superlord.prehistoricfauna.client.model.fish.ArganodusModel;
@@ -73,12 +78,14 @@ import superlord.prehistoricfauna.client.model.fossil.cretaceous.TriceratopsSkel
 import superlord.prehistoricfauna.client.model.fossil.cretaceous.TriceratopsSkeletonRetroModel;
 import superlord.prehistoricfauna.client.model.fossil.cretaceous.TriceratopsSkeletonSleepingModel;
 import superlord.prehistoricfauna.client.model.fossil.cretaceous.TriceratopsSkullModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.TyrannosaurusSkeletonActionLeftModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.TyrannosaurusSkeletonActionRightModel;
 import superlord.prehistoricfauna.client.model.fossil.cretaceous.TyrannosaurusSkeletonJPModel;
 import superlord.prehistoricfauna.client.model.fossil.cretaceous.TyrannosaurusSkeletonModel;
 import superlord.prehistoricfauna.client.model.fossil.cretaceous.TyrannosaurusSkeletonRetroModel;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.TyrannosaurusSkeletonRunningModel;
 import superlord.prehistoricfauna.client.model.fossil.cretaceous.TyrannosaurusSkeletonSittingModel;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.TyrannosaurusSkeletonSleepingModel;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.TyrannosaurusSkeletonStalkingModel;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.TyrannosaurusSkeletonStompingModel;
 import superlord.prehistoricfauna.client.model.fossil.cretaceous.TyrannosaurusSkullModel;
 import superlord.prehistoricfauna.client.model.fossil.cretaceous.VelociraptorSkeletonFlashingModel;
 import superlord.prehistoricfauna.client.model.fossil.cretaceous.VelociraptorSkeletonLayFightingModel;
@@ -160,15 +167,20 @@ import superlord.prehistoricfauna.client.model.henos.HenosModel;
 import superlord.prehistoricfauna.client.model.henos.HenosSummonedModel;
 import superlord.prehistoricfauna.client.model.henos.LandSentinelModel;
 import superlord.prehistoricfauna.client.model.jurassic.kayenta.CalsoyasuchusModel;
+import superlord.prehistoricfauna.client.model.jurassic.kayenta.DilophosaurusBabyModel;
 import superlord.prehistoricfauna.client.model.jurassic.kayenta.DilophosaurusModel;
 import superlord.prehistoricfauna.client.model.jurassic.kayenta.KayentatheriumModel;
 import superlord.prehistoricfauna.client.model.jurassic.kayenta.MegapnosaurusModel;
 import superlord.prehistoricfauna.client.model.jurassic.kayenta.SarahsaurusModel;
 import superlord.prehistoricfauna.client.model.jurassic.kayenta.ScelidosaurusModel;
 import superlord.prehistoricfauna.client.model.jurassic.kayenta.ScutellosaurusModel;
+import superlord.prehistoricfauna.client.model.jurassic.morrison.AllosaurusBabyModel;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.AllosaurusModel;
+import superlord.prehistoricfauna.client.model.jurassic.morrison.CamarasaurusBabyModel;
+import superlord.prehistoricfauna.client.model.jurassic.morrison.CamarasaurusHatchlingModel;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.CamarasaurusJuvenileModel;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.CamarasaurusModel;
+import superlord.prehistoricfauna.client.model.jurassic.morrison.CeratosaurusBabyModel;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.CeratosaurusModel;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.DryosaurusModel;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.EilenodonModel;
@@ -185,8 +197,11 @@ import superlord.prehistoricfauna.client.model.triassic.ischigualasto.Chromogisa
 import superlord.prehistoricfauna.client.model.triassic.ischigualasto.ExaeretodonModel;
 import superlord.prehistoricfauna.client.model.triassic.ischigualasto.HerrerasaurusModel;
 import superlord.prehistoricfauna.client.model.triassic.ischigualasto.HyperodapedonModel;
+import superlord.prehistoricfauna.client.model.triassic.ischigualasto.IschigualastiaBabyModel;
 import superlord.prehistoricfauna.client.model.triassic.ischigualasto.IschigualastiaModel;
+import superlord.prehistoricfauna.client.model.triassic.ischigualasto.SaurosuchusBabyModel;
 import superlord.prehistoricfauna.client.model.triassic.ischigualasto.SaurosuchusModel;
+import superlord.prehistoricfauna.client.model.triassic.ischigualasto.SillosuchusBabyModel;
 import superlord.prehistoricfauna.client.model.triassic.ischigualasto.SillosuchusModel;
 import superlord.prehistoricfauna.client.render.PFBoatRenderer;
 import superlord.prehistoricfauna.client.render.PaleopaintingRenderer;
@@ -310,6 +325,9 @@ public class ClientEvents {
 			Sheets.addWoodType(PFWoodTypes.SCHILDERIA);
 			Sheets.addWoodType(PFWoodTypes.NEOCALAMITES);
 			Sheets.addWoodType(PFWoodTypes.WOODWORTHIA);
+			Sheets.addWoodType(PFWoodTypes.DRYOPHYLLUM);
+			Sheets.addWoodType(PFWoodTypes.TAXODIUM);
+			Sheets.addWoodType(PFWoodTypes.SABALITES);
 		});
 		MenuScreens.register(PFContainers.PALEOSCRIBE.get(), GuiPaleo::new);
 		MenuScreens.register(PFContainers.PALEONTOLOGY_TABLE.get(), GuiPaleontologyTable::new);
@@ -364,8 +382,10 @@ public class ClientEvents {
 	public static ModelLayerLocation TRICERATOPS_SKELETON_RETRO = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "triceratops_skeleton_retro"), "triceratops_skeleton_retro");
 	public static ModelLayerLocation TRICERATOPS_SKELETON_SLEEPING = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "triceratops_skeleton_sleeping"), "triceratops_skeleton_sleeping");
 	public static ModelLayerLocation TYRANNOSAURUS_SKELETON = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "tyrannosaurus_skeleton"), "tyrannosaurus_skeleton");
-	public static ModelLayerLocation TYRANNOSAURUS_SKELETON_ACTION_LEFT = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "tyrannosaurus_skeleton_action_left"), "tyrannosaurus_skeleton_action_left");
-	public static ModelLayerLocation TYRANNOSAURUS_SKELETON_ACTION_RIGHT = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "tyrannosaurus_skeleton_action_right"), "tyrannosaurus_skeleton_action_right");
+	public static ModelLayerLocation TYRANNOSAURUS_SKELETON_SLEEPING = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "tyrannosaurus_skeleton_sleeping"), "tyrannosaurus_skeleton_sleeping");
+	public static ModelLayerLocation TYRANNOSAURUS_SKELETON_STOMPING = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "tyrannosaurus_skeleton_stomping"), "tyrannosaurus_skeleton_stomping");
+	public static ModelLayerLocation TYRANNOSAURUS_SKELETON_STALKING = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "tyrannosaurus_skeleton_stalking"), "tyrannosaurus_skeleton_stalking");
+	public static ModelLayerLocation TYRANNOSAURUS_SKELETON_RUNNING = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "tyrannosaurus_skeleton_running"), "tyrannosaurus_skeleton_running");
 	public static ModelLayerLocation TYRANNOSAURUS_SKELETON_RETRO = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "tyrannosaurus_skeleton_retro"), "tyrannosaurus_skeleton_retro");
 	public static ModelLayerLocation TYRANNOSAURUS_SKELETON_SITTING = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "tyrannosaurus_skeleton_sitting"), "tyrannosaurus_skeleton_sitting");
 	public static ModelLayerLocation TYRANNOSAURUS_SKELETON_JP = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "tyrannosaurus_skeleton_jp"), "tyrannosaurus_skeleton_jp");
@@ -427,9 +447,11 @@ public class ClientEvents {
 	public static ModelLayerLocation SAUROSUCHUS_SKELETON_SLEEPING = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "saurosuchus_skeleton_sleeping"), "saurosuchus_skeleton_sleeping");
 	//Hell Creek
 	public static ModelLayerLocation ANKYLOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "ankylosaurus"), "ankylosaurus");
+	public static ModelLayerLocation ANKYLOSAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "ankylosaurus_baby"), "ankylosaurus_baby");
 	public static ModelLayerLocation ANZU = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "anzu"), "anzu");
 	public static ModelLayerLocation BASILEMYS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "basilemys"), "basilemys");
 	public static ModelLayerLocation DAKOTARAPTOR = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "dakotaraptor"), "dakotaraptor");
+	public static ModelLayerLocation DAKOTARAPTOR_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "dakotaraptor_baby"), "dakotaraptor_baby");
 	public static ModelLayerLocation DIDELPHODON = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "didelphodon"), "didelphodon");
 	public static ModelLayerLocation EDMONTOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "edmontosaurus"), "edmontosaurus");
 	public static ModelLayerLocation PACHYCEPHALOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "pachycephalosaurus"), "pachycephalosaurus");
@@ -438,8 +460,10 @@ public class ClientEvents {
 	public static ModelLayerLocation THORACOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "thoracosaurus"), "thoracosaurus");
 	public static ModelLayerLocation TRICERATOPS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "triceratops"), "triceratops");
 	public static ModelLayerLocation TRICERATOPS_JUVENILE = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "triceratops_juvenile"), "triceratops_juvenile");
+	public static ModelLayerLocation TRICERATOPS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "triceratops_baby"), "triceratops_baby");
 	public static ModelLayerLocation TYRANNOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "tyrannosaurus"), "tyrannosaurus");
 	public static ModelLayerLocation TYRANNOSAURUS_JUVENILE = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "tyrannosaurus_juvenile"), "tyrannosaurus_juvenile");
+	public static ModelLayerLocation TYRANNOSAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "tyrannosaurus_baby"), "tyrannosaurus_baby");
 	//Djadochta
 	public static ModelLayerLocation AEPYORNITHOMIMUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "aepyornithomimus"), "aepyornithomimus");
 	public static ModelLayerLocation BYRONOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "byronosaurus"), "byronosaurus");
@@ -449,6 +473,7 @@ public class ClientEvents {
 	public static ModelLayerLocation KOL = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "kol"), "kol");
 	public static ModelLayerLocation OVIRAPTOR = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "oviraptor"), "oviraptor");
 	public static ModelLayerLocation PINACOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "pinacosaurus"), "pinacosaurus");
+	public static ModelLayerLocation PINACOSAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "pinacosaurus_baby"), "pinacosaurus_baby");
 	public static ModelLayerLocation PLESIOHADROS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "plesiohadros"), "plesiohadros");
 	public static ModelLayerLocation PROTOCERATOPS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "protoceratops"), "protoceratops");
 	public static ModelLayerLocation PROTOCERATOPS_JUVENILE = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "protoceratops_juvenile"), "protoceratops_juvenile");
@@ -458,6 +483,7 @@ public class ClientEvents {
 	//Kayenta
 	public static ModelLayerLocation CALSOYASUCHUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "calsoyasuchus"), "calsoyasuchus");
 	public static ModelLayerLocation DILOPHOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "dilophosaurus"), "dilophosaurus");
+	public static ModelLayerLocation DILOPHOSAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "dilophosaurus_baby"), "dilophosaurus_baby");
 	public static ModelLayerLocation KAYENTATHERIUM = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "kayentatherium"), "kayentatherium");
 	public static ModelLayerLocation MEGAPNOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "megapnosaurus"), "megapnosaurus");
 	public static ModelLayerLocation SARAHSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "sarahsaurus"), "sarahsaurus");
@@ -465,9 +491,13 @@ public class ClientEvents {
 	public static ModelLayerLocation SCUTELLOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "scutellosaurus"), "scutellosaurus");
 	//Morrison
 	public static ModelLayerLocation ALLOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "allosaurus"), "allosaurus");
+	public static ModelLayerLocation ALLOSAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "allosaurus_baby"), "allosaurus_baby");
 	public static ModelLayerLocation CAMARASAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "camarasaurus"), "camarasaurus");
 	public static ModelLayerLocation CAMARASAURUS_JUVENILE = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "camarasaurus_juvenile"), "camarasaurus_juvenile");
+	public static ModelLayerLocation CAMARASAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "camarasaurus_baby"), "camarasaurus_baby");
+	public static ModelLayerLocation CAMARASAURUS_HATCHLING = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "camarasaurus_hatchling"), "camarasaurus_hatchling");
 	public static ModelLayerLocation CERATOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "ceratosaurus"), "ceratosaurus");
+	public static ModelLayerLocation CERATOSAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "ceratosaurus_baby"), "ceratosaurus_baby");
 	public static ModelLayerLocation DRYOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "dryosaurus"), "dryosaurus");
 	public static ModelLayerLocation EILENODON = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "eilenodon"), "eilenodon");
 	public static ModelLayerLocation HESPERORNITHOIDES = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "hesperornithoides"), "hesperornithoides");
@@ -486,8 +516,11 @@ public class ClientEvents {
 	public static ModelLayerLocation HERRERASAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "herrerasaurus"), "herrerasaurus");
 	public static ModelLayerLocation HYPERODAPEDON = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "hyperodapedon"), "hyperodapedon");
 	public static ModelLayerLocation ISCHIGUALASTIA = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "ischigualastia"), "ischigualastia");
+	public static ModelLayerLocation ISCHIGUALASTIA_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "ischigualastia_baby"), "ischigualastia_baby");
 	public static ModelLayerLocation SAUROSUCHUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "saurosuchus"), "saurosuchus");
+	public static ModelLayerLocation SAUROSUCHUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "saurosuchus_baby"), "saurosuchus_baby");
 	public static ModelLayerLocation SILLOSUCHUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "sillosuchus"), "sillosuchus");
+	public static ModelLayerLocation SILLOSUCHUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "sillosuchus_baby"), "sillosuchus_baby");
 	//Fish
 	public static ModelLayerLocation ARGANODUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "arganodous"), "arganodus");
 	public static ModelLayerLocation CERATODUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "ceratodus"), "ceratodus");
@@ -727,8 +760,10 @@ public class ClientEvents {
 		event.registerLayerDefinition(TRICERATOPS_SKULL, TriceratopsSkullModel::createBodyLayer);
 		//Tyrannosaurus Skeleton and Skull
 		event.registerLayerDefinition(TYRANNOSAURUS_SKELETON, TyrannosaurusSkeletonModel::createBodyLayer);
-		event.registerLayerDefinition(TYRANNOSAURUS_SKELETON_ACTION_LEFT, TyrannosaurusSkeletonActionLeftModel::createBodyLayer);
-		event.registerLayerDefinition(TYRANNOSAURUS_SKELETON_ACTION_RIGHT, TyrannosaurusSkeletonActionRightModel::createBodyLayer);
+		event.registerLayerDefinition(TYRANNOSAURUS_SKELETON_STOMPING, TyrannosaurusSkeletonStompingModel::createBodyLayer);
+		event.registerLayerDefinition(TYRANNOSAURUS_SKELETON_STALKING, TyrannosaurusSkeletonStalkingModel::createBodyLayer);
+		event.registerLayerDefinition(TYRANNOSAURUS_SKELETON_SLEEPING, TyrannosaurusSkeletonSleepingModel::createBodyLayer);
+		event.registerLayerDefinition(TYRANNOSAURUS_SKELETON_RUNNING, TyrannosaurusSkeletonRunningModel::createBodyLayer);
 		event.registerLayerDefinition(TYRANNOSAURUS_SKELETON_SITTING, TyrannosaurusSkeletonSittingModel::createBodyLayer);
 		event.registerLayerDefinition(TYRANNOSAURUS_SKELETON_RETRO, TyrannosaurusSkeletonRetroModel::createBodyLayer);
 		event.registerLayerDefinition(TYRANNOSAURUS_SKELETON_JP, TyrannosaurusSkeletonJPModel::createBodyLayer);
@@ -756,16 +791,21 @@ public class ClientEvents {
 		event.registerLayerDefinition(THESCELOSAURUS, ThescelosaurusModel::createBodyLayer);
 		event.registerLayerDefinition(BASILEMYS, BasilemysModel::createBodyLayer);
 		event.registerLayerDefinition(ANKYLOSAURUS, AnkylosaurusModel::createBodyLayer);
+		event.registerLayerDefinition(ANKYLOSAURUS_BABY, AnkylosaurusBabyModel::createBodyLayer);
 		event.registerLayerDefinition(DAKOTARAPTOR, DakotaraptorModel::createBodyLayer);
+		event.registerLayerDefinition(DAKOTARAPTOR_BABY, DakotaraptorBabyModel::createBodyLayer);
 		event.registerLayerDefinition(DIDELPHODON, DidelphodonModel::createBodyLayer);
 		event.registerLayerDefinition(TRICERATOPS, TriceratopsModel::createBodyLayer);
 		event.registerLayerDefinition(TRICERATOPS_JUVENILE, TriceratopsJuvenileModel::createBodyLayer);
+		event.registerLayerDefinition(TRICERATOPS_BABY, TriceratopsBabyModel::createBodyLayer);
 		event.registerLayerDefinition(TYRANNOSAURUS, TyrannosaurusModel::createBodyLayer);
 		event.registerLayerDefinition(TYRANNOSAURUS_JUVENILE, TyrannosaurusJuvenileModel::createBodyLayer);
+		event.registerLayerDefinition(TYRANNOSAURUS_BABY, TyrannosaurusBabyModel::createBodyLayer);
 		//Djadochta
 		event.registerLayerDefinition(AEPYORNITHOMIMUS, AepyornithomimusModel::createBodyLayer);
 		event.registerLayerDefinition(CITIPATI, CitipatiModel::createBodyLayer);
 		event.registerLayerDefinition(PINACOSAURUS, PinacosaurusModel::createBodyLayer);
+		event.registerLayerDefinition(PINACOSAURUS_BABY, PinacosaurusBabyModel::createBodyLayer);
 		event.registerLayerDefinition(PLESIOHADROS, PlesiohadrosModel::createBodyLayer);
 		event.registerLayerDefinition(PROTOCERATOPS, ProtoceratopsModel::createBodyLayer);
 		event.registerLayerDefinition(PROTOCERATOPS_JUVENILE, ProtoceratopsJuvenileModel::createBodyLayer);
@@ -774,6 +814,7 @@ public class ClientEvents {
 		//Kayenta
 		event.registerLayerDefinition(CALSOYASUCHUS, CalsoyasuchusModel::createBodyLayer);
 		event.registerLayerDefinition(DILOPHOSAURUS, DilophosaurusModel::createBodyLayer);
+		event.registerLayerDefinition(DILOPHOSAURUS_BABY, DilophosaurusBabyModel::createBodyLayer);
 		event.registerLayerDefinition(KAYENTATHERIUM, KayentatheriumModel::createBodyLayer);
 		event.registerLayerDefinition(MEGAPNOSAURUS, MegapnosaurusModel::createBodyLayer);
 		event.registerLayerDefinition(SARAHSAURUS, SarahsaurusModel::createBodyLayer);
@@ -781,9 +822,13 @@ public class ClientEvents {
 		event.registerLayerDefinition(SCUTELLOSAURUS, ScutellosaurusModel::createBodyLayer);
 		//Morrison
 		event.registerLayerDefinition(ALLOSAURUS, AllosaurusModel::createBodyLayer);
+		event.registerLayerDefinition(ALLOSAURUS_BABY, AllosaurusBabyModel::createBodyLayer);
 		event.registerLayerDefinition(CAMARASAURUS, CamarasaurusModel::createBodyLayer);
 		event.registerLayerDefinition(CAMARASAURUS_JUVENILE, CamarasaurusJuvenileModel::createBodyLayer);
+		event.registerLayerDefinition(CAMARASAURUS_BABY, CamarasaurusBabyModel::createTorsoLayer);
+		event.registerLayerDefinition(CAMARASAURUS_HATCHLING, CamarasaurusHatchlingModel::createBodyLayer);
 		event.registerLayerDefinition(CERATOSAURUS, CeratosaurusModel::createBodyLayer);
+		event.registerLayerDefinition(CERATOSAURUS_BABY, CeratosaurusBabyModel::createBodyLayer);
 		event.registerLayerDefinition(DRYOSAURUS, DryosaurusModel::createBodyLayer);
 		event.registerLayerDefinition(EILENODON, EilenodonModel::createBodyLayer);
 		event.registerLayerDefinition(HESPERORNITHOIDES, HesperornithoidesModel::createBodyLayer);
@@ -802,8 +847,11 @@ public class ClientEvents {
 		event.registerLayerDefinition(HERRERASAURUS, HerrerasaurusModel::createBodyLayer);
 		event.registerLayerDefinition(HYPERODAPEDON, HyperodapedonModel::createBodyLayer);
 		event.registerLayerDefinition(ISCHIGUALASTIA, IschigualastiaModel::createBodyLayer);
+		event.registerLayerDefinition(ISCHIGUALASTIA_BABY, IschigualastiaBabyModel::createBodyLayer);
 		event.registerLayerDefinition(SAUROSUCHUS, SaurosuchusModel::createBodyLayer);
+		event.registerLayerDefinition(SAUROSUCHUS_BABY, SaurosuchusBabyModel::createBodyLayer);
 		event.registerLayerDefinition(SILLOSUCHUS, SillosuchusModel::createBodyLayer);
+		event.registerLayerDefinition(SILLOSUCHUS_BABY, SillosuchusBabyModel::createBodyLayer);
 	}
 
 	@SubscribeEvent

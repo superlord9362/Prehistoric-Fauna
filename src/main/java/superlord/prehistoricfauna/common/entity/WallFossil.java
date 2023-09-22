@@ -141,7 +141,8 @@ public class WallFossil extends HangingEntity implements IEntityAdditionalSpawnD
          TRILOBITE(16, 16),
          XIPHACTINUS(96, 32),
          HORSESHOE(32, 16),
-         LONGISQUAMA_FOSSIL(32, 32);
+         LONGISQUAMA_FOSSIL(32, 32),
+         HYPHALOSAURUS(16, 32);
 
         public static final WallFossilType[] VALUES = values();
 

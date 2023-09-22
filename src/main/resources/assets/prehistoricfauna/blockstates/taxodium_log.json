@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":  { "model": "prehistoricfauna:block/taxodium_log" },
+        "axis=z":   { "model": "prehistoricfauna:block/taxodium_log", "x": 90 },
+        "axis=x":   { "model": "prehistoricfauna:block/taxodium_log", "x": 90, "y": 90 }
+    }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "prehistoricfauna:block/sabalites_diagonal_leaves",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "prehistoricfauna:block/sabalites_diagonal_leaves"
+    },
+    "facing=south": {
+      "model": "prehistoricfauna:block/sabalites_diagonal_leaves",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "prehistoricfauna:block/sabalites_diagonal_leaves",
+      "y": 270
+    }
+  }
+}

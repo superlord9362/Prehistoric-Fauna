@@ -50,9 +50,14 @@ public class GarModel extends EntityModel<Gar> {
 	@Override
 	public void setupAnim(Gar entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     	float f = 1.0F;
-        if (!entity.isInWater()) {
-           f = 1.5F;
-        }
+    	if (!entity.isInWater()) {
+			f = 1.5F;
+			this.Head.y = 24;
+			this.Head.zRot = 1.6F;
+		} else {
+			this.Head.zRot = 0;
+			this.Head.y = 20;
+		}
 
         this.Body.yRot = -f * 0.45F * Mth.sin(0.6F * ageInTicks);
         this.Tail.yRot = -f * 0.45F * Mth.sin(0.6F * ageInTicks);

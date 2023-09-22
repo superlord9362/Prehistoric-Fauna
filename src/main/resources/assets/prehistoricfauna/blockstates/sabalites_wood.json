@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":  { "model": "prehistoricfauna:block/sabalites_wood" },
+        "axis=z":   { "model": "prehistoricfauna:block/sabalites_wood", "x": 90 },
+        "axis=x":   { "model": "prehistoricfauna:block/sabalites_wood", "x": 90, "y": 90 }
+    }
+}

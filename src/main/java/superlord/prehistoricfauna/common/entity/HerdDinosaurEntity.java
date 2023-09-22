@@ -10,7 +10,6 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
-import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 
@@ -18,11 +17,11 @@ public class HerdDinosaurEntity extends DinosaurEntity {
 	private HerdDinosaurEntity groupLeader;
 	private int groupSize = 1;
 
-	protected HerdDinosaurEntity(EntityType<? extends TamableAnimal> type, Level worldIn) {
+	protected HerdDinosaurEntity(EntityType<? extends HerdDinosaurEntity> type, Level worldIn) {
 		super(type, worldIn);
 	}
 
-	public int getMaxSpawnedInChunk() {
+	public int getMaxSpawnClusterSize() {
 		return this.getMaxGroupSize();
 	}
 
@@ -30,11 +29,11 @@ public class HerdDinosaurEntity extends DinosaurEntity {
 		return super.getMaxSpawnClusterSize();
 	}
 
-	protected boolean func_212800_dy() {
-		return !this.hasGroupLeader();
+	protected boolean canRandomWalk() {
+		return !this.isFollower();
 	}
 
-	public boolean hasGroupLeader() {
+	   public boolean isFollower() {
 		return this.groupLeader != null && this.groupLeader.isAlive();
 	}
 
@@ -72,7 +71,6 @@ public class HerdDinosaurEntity extends DinosaurEntity {
 				this.groupSize = 1;
 			}
 		}
-
 	}
 
 	public boolean hasFollowers() {
@@ -84,7 +82,7 @@ public class HerdDinosaurEntity extends DinosaurEntity {
 	}
 
 	public void pathToLeader() {
-		if (this.hasGroupLeader()) {
+		if (this.isFollower()) {
 			this.getNavigation().moveTo(this.groupLeader, 1.0D);
 		}
 
@@ -99,23 +97,23 @@ public class HerdDinosaurEntity extends DinosaurEntity {
 	}
 
 	@Nullable
-	   public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_27528_, DifficultyInstance p_27529_, MobSpawnType p_27530_, @Nullable SpawnGroupData p_27531_, @Nullable CompoundTag p_27532_) {
-	      super.finalizeSpawn(p_27528_, p_27529_, p_27530_, p_27531_, p_27532_);
-	      if (p_27531_ == null) {
-	         p_27531_ = new HerdDinosaurEntity.SchoolSpawnGroupData(this);
-	      } else {
-	         this.startFollowing(((HerdDinosaurEntity.SchoolSpawnGroupData)p_27531_).leader);
-	      }
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_27528_, DifficultyInstance p_27529_, MobSpawnType p_27530_, @Nullable SchoolSpawnGroupData p_27531_, @Nullable CompoundTag p_27532_) {
+		super.finalizeSpawn(p_27528_, p_27529_, p_27530_, p_27531_, p_27532_);
+		if (p_27531_ == null) {
+			p_27531_ = new HerdDinosaurEntity.SchoolSpawnGroupData(this);
+		} else {
+			this.startFollowing(((HerdDinosaurEntity.SchoolSpawnGroupData)p_27531_).leader);
+		}
 
-	      return p_27531_;
-	   }
+		return p_27531_;
+	}
 
-	   public static class SchoolSpawnGroupData implements SpawnGroupData {
-	      public final HerdDinosaurEntity leader;
+	public static class SchoolSpawnGroupData implements SpawnGroupData {
+		public final HerdDinosaurEntity leader;
 
-	      public SchoolSpawnGroupData(HerdDinosaurEntity p_27553_) {
-	         this.leader = p_27553_;
-	      }
-	   }
+		public SchoolSpawnGroupData(HerdDinosaurEntity p_27553_) {
+			this.leader = p_27553_;
+		}
+	}
 
 }

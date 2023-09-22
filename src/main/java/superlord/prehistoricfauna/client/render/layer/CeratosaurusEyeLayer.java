@@ -3,6 +3,7 @@ package superlord.prehistoricfauna.client.render.layer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
@@ -15,12 +16,12 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.CeratosaurusModel;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Ceratosaurus;
 
-public class CeratosaurusEyeLayer extends RenderLayer<Ceratosaurus, CeratosaurusModel> {
+public class CeratosaurusEyeLayer extends RenderLayer<Ceratosaurus, EntityModel<Ceratosaurus>> {
 	
 	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ceratosaurus/ceratosaurus_eyeglow.png"));
-	private final RenderLayerParent<Ceratosaurus, CeratosaurusModel> ceratosaurusRenderer;
+	private final RenderLayerParent<Ceratosaurus, EntityModel<Ceratosaurus>> ceratosaurusRenderer;
 	
-	public CeratosaurusEyeLayer(RenderLayerParent<Ceratosaurus, CeratosaurusModel> rendererIn) {
+	public CeratosaurusEyeLayer(RenderLayerParent<Ceratosaurus, EntityModel<Ceratosaurus>> rendererIn) {
 		super(rendererIn);
 		this.ceratosaurusRenderer = rendererIn;
 	}

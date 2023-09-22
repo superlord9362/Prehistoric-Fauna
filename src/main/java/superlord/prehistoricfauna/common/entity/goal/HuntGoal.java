@@ -3,22 +3,24 @@ package superlord.prehistoricfauna.common.entity.goal;
 import java.util.function.Predicate;
 
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 @SuppressWarnings("rawtypes")
 public class HuntGoal extends NearestAttackableTargetGoal {
 	Predicate<LivingEntity> targetPredicate;
+	DinosaurEntity dinosaur;
 	
 	@SuppressWarnings("unchecked")
-	public HuntGoal(Mob goalOwnerIn, Class targetClassIn, int targetChanceIn, boolean checkSight, boolean nearbyOnlyIn, Predicate<LivingEntity> targetPredicate) {
+	public HuntGoal(DinosaurEntity goalOwnerIn, Class targetClassIn, int targetChanceIn, boolean checkSight, boolean nearbyOnlyIn, Predicate<LivingEntity> targetPredicate) {
 		super(goalOwnerIn, targetClassIn, targetChanceIn, checkSight, nearbyOnlyIn, targetPredicate);
 		this.targetPredicate = targetPredicate;
+		this.dinosaur = goalOwnerIn;
 	}
 	
 	public boolean canUse() {
-		if (super.canUse() && this.mob.getRandom().nextInt(249) == 0 && !this.mob.isBaby() && !PrehistoricFaunaConfig.advancedHunger && !targetPredicate.test(this.mob)) {
+		if (super.canUse() && this.mob.getRandom().nextInt(249) == 0 && !this.mob.isBaby() && !PrehistoricFaunaConfig.advancedHunger && !targetPredicate.test(this.mob) && !dinosaur.trusts(target.getUUID())) {
 			return true;
 		} else {
 			return false;

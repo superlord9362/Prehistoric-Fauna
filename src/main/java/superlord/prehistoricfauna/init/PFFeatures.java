@@ -36,6 +36,18 @@ import superlord.prehistoricfauna.common.feature.trees.brachyphyllum.Brachyphyll
 import superlord.prehistoricfauna.common.feature.trees.brachyphyllum.Brachyphyllum2;
 import superlord.prehistoricfauna.common.feature.trees.brachyphyllum.Brachyphyllum3;
 import superlord.prehistoricfauna.common.feature.trees.brachyphyllum.Brachyphyllum4;
+import superlord.prehistoricfauna.common.feature.trees.dryophyllum.Dryophyllum1;
+import superlord.prehistoricfauna.common.feature.trees.dryophyllum.Dryophyllum2;
+import superlord.prehistoricfauna.common.feature.trees.dryophyllum.Dryophyllum3;
+import superlord.prehistoricfauna.common.feature.trees.dryophyllum.Dryophyllum4;
+import superlord.prehistoricfauna.common.feature.trees.dryophyllum.Dryophyllum5;
+import superlord.prehistoricfauna.common.feature.trees.dryophyllum.Dryophyllum6;
+import superlord.prehistoricfauna.common.feature.trees.dryophyllum.Dryophyllum7;
+import superlord.prehistoricfauna.common.feature.trees.dryophyllum.Dryophyllum8;
+import superlord.prehistoricfauna.common.feature.trees.ginkgo.BigGinkgo1;
+import superlord.prehistoricfauna.common.feature.trees.ginkgo.BigGinkgo2;
+import superlord.prehistoricfauna.common.feature.trees.ginkgo.BigGinkgo3;
+import superlord.prehistoricfauna.common.feature.trees.ginkgo.BigGinkgo4;
 import superlord.prehistoricfauna.common.feature.trees.ginkgo.Ginkgo1;
 import superlord.prehistoricfauna.common.feature.trees.ginkgo.Ginkgo2;
 import superlord.prehistoricfauna.common.feature.trees.ginkgo.Ginkgo3;
@@ -66,6 +78,12 @@ import superlord.prehistoricfauna.common.feature.trees.schilderia.Schilderia1;
 import superlord.prehistoricfauna.common.feature.trees.schilderia.Schilderia2;
 import superlord.prehistoricfauna.common.feature.trees.schilderia.Schilderia3;
 import superlord.prehistoricfauna.common.feature.trees.schilderia.Schilderia4;
+import superlord.prehistoricfauna.common.feature.trees.taxodium.Taxodium1;
+import superlord.prehistoricfauna.common.feature.trees.taxodium.Taxodium2;
+import superlord.prehistoricfauna.common.feature.trees.taxodium.Taxodium3;
+import superlord.prehistoricfauna.common.feature.trees.taxodium.Taxodium4;
+import superlord.prehistoricfauna.common.feature.trees.taxodium.Taxodium5;
+import superlord.prehistoricfauna.common.feature.trees.taxodium.Taxodium6;
 import superlord.prehistoricfauna.common.feature.trees.trochodendroides.Trochodendroides1;
 import superlord.prehistoricfauna.common.feature.trees.trochodendroides.Trochodendroides2;
 import superlord.prehistoricfauna.common.feature.trees.trochodendroides.Trochodendroides3;
@@ -108,6 +126,10 @@ public class PFFeatures {
     public static final RegistryObject<Ginkgo2> GINKGO_TREE_2 = REGISTER.register("ginkgo_tree_2", () -> new Ginkgo2(PFTreeConfig.CODEC.stable()));
     public static final RegistryObject<Ginkgo3> GINKGO_TREE_3 = REGISTER.register("ginkgo_tree_3", () -> new Ginkgo3(PFTreeConfig.CODEC.stable()));
     public static final RegistryObject<Ginkgo4> GINKGO_TREE_4 = REGISTER.register("ginkgo_tree_4", () -> new Ginkgo4(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<BigGinkgo1> BIG_GINKGO_TREE_1 = REGISTER.register("big_ginkgo_tree_1", () -> new BigGinkgo1(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<BigGinkgo2> BIG_GINKGO_TREE_2 = REGISTER.register("big_ginkgo_tree_2", () -> new BigGinkgo2(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<BigGinkgo3> BIG_GINKGO_TREE_3 = REGISTER.register("big_ginkgo_tree_3", () -> new BigGinkgo3(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<BigGinkgo4> BIG_GINKGO_TREE_4 = REGISTER.register("big_ginkgo_tree_4", () -> new BigGinkgo4(PFTreeConfig.CODEC.stable()));
 
     public static final RegistryObject<HeidiphyllumTree1> HEIDIPHYLLUM_TREE_1 = REGISTER.register("heidiphyllum_tree_1", () -> new HeidiphyllumTree1(PFTreeConfig.CODEC.stable()));
     public static final RegistryObject<HeidiphyllumTree2> HEIDIPHYLLUM_TREE_2 = REGISTER.register("heidiphyllum_tree_2", () -> new HeidiphyllumTree2(PFTreeConfig.CODEC.stable()));
@@ -148,6 +170,22 @@ public class PFFeatures {
     public static final RegistryObject<Woodworthia2> WOODWORTHIA_TREE_2 = REGISTER.register("woodworthia_tree_2", () -> new Woodworthia2(PFTreeConfig.CODEC.stable()));
     public static final RegistryObject<Woodworthia3> WOODWORTHIA_TREE_3 = REGISTER.register("woodworthia_tree_3", () -> new Woodworthia3(PFTreeConfig.CODEC.stable()));
     public static final RegistryObject<Woodworthia4> WOODWORTHIA_TREE_4 = REGISTER.register("woodworthia_tree_4", () -> new Woodworthia4(PFTreeConfig.CODEC.stable()));
+
+    public static final RegistryObject<Dryophyllum1> DRYOPHYLLUM_TREE_1 = REGISTER.register("dryophyllum_tree_1", () -> new Dryophyllum1(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Dryophyllum2> DRYOPHYLLUM_TREE_2 = REGISTER.register("dryophyllum_tree_2", () -> new Dryophyllum2(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Dryophyllum3> DRYOPHYLLUM_TREE_3 = REGISTER.register("dryophyllum_tree_3", () -> new Dryophyllum3(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Dryophyllum4> DRYOPHYLLUM_TREE_4 = REGISTER.register("dryophyllum_tree_4", () -> new Dryophyllum4(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Dryophyllum5> DRYOPHYLLUM_TREE_5 = REGISTER.register("dryophyllum_tree_5", () -> new Dryophyllum5(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Dryophyllum6> DRYOPHYLLUM_TREE_6 = REGISTER.register("dryophyllum_tree_6", () -> new Dryophyllum6(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Dryophyllum7> DRYOPHYLLUM_TREE_7 = REGISTER.register("dryophyllum_tree_7", () -> new Dryophyllum7(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Dryophyllum8> DRYOPHYLLUM_TREE_8 = REGISTER.register("dryophyllum_tree_8", () -> new Dryophyllum8(PFTreeConfig.CODEC.stable()));
+    
+    public static final RegistryObject<Taxodium1> TAXODIUM_TREE_1 = REGISTER.register("taxodium_tree_1", () -> new Taxodium1(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Taxodium2> TAXODIUM_TREE_2 = REGISTER.register("taxodium_tree_2", () -> new Taxodium2(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Taxodium3> TAXODIUM_TREE_3 = REGISTER.register("taxodium_tree_3", () -> new Taxodium3(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Taxodium4> TAXODIUM_TREE_4 = REGISTER.register("taxodium_tree_4", () -> new Taxodium4(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Taxodium5> TAXODIUM_TREE_5 = REGISTER.register("taxodium_tree_5", () -> new Taxodium5(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Taxodium6> TAXODIUM_TREE_6 = REGISTER.register("taxodium_tree_6", () -> new Taxodium6(PFTreeConfig.CODEC.stable()));
 
     public static final RegistryObject<ZamitesBushFeature> ZAMITES_BUSH = REGISTER.register("zamites_bush", () -> new ZamitesBushFeature(JohnstoniaConfig.CODEC.stable()));
     

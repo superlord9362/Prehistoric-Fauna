@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "prehistoricfauna:block/dryophyllum_slab" },
+        "type=top": { "model": "prehistoricfauna:block/dryophyllum_slab_top" },
+        "type=double": { "model": "prehistoricfauna:block/dryophyllum_planks" }
+    }
+}

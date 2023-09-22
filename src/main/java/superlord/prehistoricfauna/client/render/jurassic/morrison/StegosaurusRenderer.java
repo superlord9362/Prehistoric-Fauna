@@ -2,6 +2,7 @@ package superlord.prehistoricfauna.client.render.jurassic.morrison;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -19,6 +20,8 @@ public class StegosaurusRenderer extends MobRenderer<Stegosaurus, StegosaurusMod
 	private static final ResourceLocation STEGOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/stegosaurus_sleeping.png");
 	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/albino_sleeping.png");
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation ZOO_TYCOON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/stegosaurus_ztc.png");
+	private static final ResourceLocation ZOO_TYCOON_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/stegosaurus_ztc_sleeping.png");
 
 	public StegosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new StegosaurusModel(renderManagerIn.bakeLayer(ClientEvents.STEGOSAURUS)), 1.25F);
@@ -36,7 +39,12 @@ public class StegosaurusRenderer extends MobRenderer<Stegosaurus, StegosaurusMod
 
 	@Override
 	public ResourceLocation getTextureLocation(Stegosaurus entity) {
-		if (entity.isAlbino()) {
+		String s = ChatFormatting.stripFormatting(entity.getName().getString());
+		if ( s != null && ("Zoo Tycoon".equals(s) || "Zoo tycoon".equals(s) || "zoo tycoon".equals(s))) {
+			if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+				return ZOO_TYCOON_SLEEPING;
+			} else return ZOO_TYCOON;
+		} else if (entity.isAlbino()) {
 			if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
 				return ALBINO_SLEEPING;
 			} else {

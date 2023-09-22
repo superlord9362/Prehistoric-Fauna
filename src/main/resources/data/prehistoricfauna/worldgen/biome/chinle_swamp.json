@@ -16,7 +16,13 @@
 	"grass_color": 8242525,
 	"fog_color": 13622197,
 	"water_color": 7372597,
-	"water_fog_color": 5267523
+	"water_fog_color": 5267523,
+	"music": {
+		"sound": "prehistoricfauna:ambience_1",
+		"min_delay": 20,
+		"max_delay": 20,
+		"replace_current_music": true
+	}
 	},
 	"carvers": {
 		"air": [

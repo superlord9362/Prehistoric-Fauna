@@ -1,15 +1,21 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.hellcreek;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Lists;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -27,6 +33,8 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
@@ -86,6 +94,11 @@ public class Triceratops extends AbstractChestedHorse  {
 	private static final EntityDataAccessor<Boolean> EATING = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> NATURAL_LOVE = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Integer> ATTACK_TICK = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Optional<UUID>> DATA_TRUSTED_ID_0 = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.OPTIONAL_UUID);
+	private static final EntityDataAccessor<Optional<UUID>> DATA_TRUSTED_ID_1 = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.OPTIONAL_UUID);
+	private static final EntityDataAccessor<Boolean> PROTECTIVE = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> TERRITORIAL = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> AGGRESSIVE = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.BOOLEAN);
 	private int maxHunger = 200;
 	private int currentHunger = 200;
 	int hungerTick = 0;
@@ -213,6 +226,50 @@ public class Triceratops extends AbstractChestedHorse  {
 		this.entityData.set(EATING, isEating);
 	}
 
+	public boolean isProtective() {
+		return this.entityData.get(PROTECTIVE);
+	}
+
+	public void setProtective(boolean isProtective) {
+		this.entityData.set(PROTECTIVE, isProtective);
+	}
+
+	public boolean isTerritorial() {
+		return this.entityData.get(TERRITORIAL);
+	}
+
+	public void setTerritorial(boolean isTerritorial) {
+		this.entityData.set(TERRITORIAL, isTerritorial);
+	}
+
+	public boolean isAggressive() {
+		return this.entityData.get(AGGRESSIVE);
+	}
+
+	public void setAggressive(boolean isAggressive) {
+		this.entityData.set(AGGRESSIVE, isAggressive);
+	}
+
+	List<UUID> getTrustedUUIDs() {
+		List<UUID> list = Lists.newArrayList();
+		list.add(this.entityData.get(DATA_TRUSTED_ID_0).orElse((UUID)null));
+		list.add(this.entityData.get(DATA_TRUSTED_ID_1).orElse((UUID)null));
+		return list;
+	}
+
+	public void addTrustedUUID(@Nullable UUID p_28516_) {
+		if (this.entityData.get(DATA_TRUSTED_ID_0).isPresent()) {
+			this.entityData.set(DATA_TRUSTED_ID_1, Optional.ofNullable(p_28516_));
+		} else {
+			this.entityData.set(DATA_TRUSTED_ID_0, Optional.ofNullable(p_28516_));
+		}
+	}
+
+	public void removeTrustedUUID(@Nullable UUID p_28516_) {
+		this.entityData.set(DATA_TRUSTED_ID_1, null);
+		this.entityData.set(DATA_TRUSTED_ID_0, null);
+	}
+
 	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
@@ -224,10 +281,13 @@ public class Triceratops extends AbstractChestedHorse  {
 		this.goalSelector.addGoal(6, new TriceratopsRandomLookGoal(this));
 		this.targetSelector.addGoal(1, new Triceratops.HurtByTargetGoal());
 		this.targetSelector.addGoal(2, new Triceratops.AttackPlayerGoal());
+		this.targetSelector.addGoal(2, new Triceratops.TriceratopsTerritorialAttackGoal(this));
+		this.targetSelector.addGoal(2, new Triceratops.TriceratopsAggressiveTempermentAttackGoal(this));
 		this.goalSelector.addGoal(0, new Triceratops.LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new Triceratops.MateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new Triceratops.NaturalMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
+		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 		this.goalSelector.addGoal(0, new Triceratops.HerbivoreEatGoal((double)1.2F, 12, 2));
 		this.goalSelector.addGoal(1, new RunAroundLikeCrazyGoal(this, 1.2F));
 	}
@@ -304,10 +364,23 @@ public class Triceratops extends AbstractChestedHorse  {
 		this.entityData.define(EATING, false);
 		this.entityData.define(NATURAL_LOVE, false);
 		this.entityData.define(ATTACK_TICK, 0);
+		this.entityData.define(DATA_TRUSTED_ID_0, Optional.empty());
+		this.entityData.define(DATA_TRUSTED_ID_1, Optional.empty());
+		this.entityData.define(PROTECTIVE, false);
+		this.entityData.define(TERRITORIAL, false);
+		this.entityData.define(AGGRESSIVE, false);
 	}
 
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
+		List<UUID> list = this.getTrustedUUIDs();
+		ListTag listtag = new ListTag();
+		for(UUID uuid : list) {
+			if (uuid != null) {
+				listtag.add(NbtUtils.createUUID(uuid));
+			}
+		}
+		compound.put("Trusted", listtag);
 		compound.putBoolean("HasEgg", this.hasEgg());
 		compound.putBoolean("IsAlbino", this.isAlbino());
 		compound.putBoolean("IsMelanistic", this.isMelanistic());
@@ -316,10 +389,17 @@ public class Triceratops extends AbstractChestedHorse  {
 		compound.putInt("MaxHunger", this.currentHunger);
 		compound.putBoolean("IsEating", this.isEating());
 		compound.putBoolean("InNaturalLove", this.isLoveNaturally());
+		compound.putBoolean("IsProtective", this.isProtective());
+		compound.putBoolean("IsTerritorial", this.isTerritorial());
+		compound.putBoolean("IsAggressive", this.isAggressive());
 	}
 
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
+		ListTag listtag = compound.getList("Trusted", 11);
+		for(int i = 0; i < listtag.size(); ++i) {
+			this.addTrustedUUID(NbtUtils.loadUUID(listtag.get(i)));
+		}
 		this.setHasEgg(compound.getBoolean("HasEgg"));
 		this.setAlbino(compound.getBoolean("IsAlbino"));
 		this.setMelanistic(compound.getBoolean("IsMelanistic"));
@@ -328,12 +408,23 @@ public class Triceratops extends AbstractChestedHorse  {
 		this.setTriceratopsEating(compound.getBoolean("IsEating"));
 		this.setHunger(compound.getInt("MaxHunger"));
 		this.setInLoveNaturally(compound.getBoolean("InNaturalLove"));
+		this.setProtective(compound.getBoolean("IsProtective"));
+		this.setTerritorial(compound.getBoolean("IsTerritorial"));
+		this.setAggressive(compound.getBoolean("IsAggressive"));
 	}
 
 	@Nullable
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		Random random = new Random();
 		int birthNumber = random.nextInt(799);
+		int temperment = random.nextInt(100);
+		if (temperment < 80) {
+			this.setProtective(true);
+		} else if (temperment >= 80 && temperment < 95) {
+			this.setTerritorial(true);
+		} else {
+			this.setAggressive(true);
+		}
 		if (birthNumber >= 0 && birthNumber < 4) {
 			this.setAlbino(true);
 		} else if (birthNumber >= 4 && birthNumber < 7) {
@@ -410,7 +501,9 @@ public class Triceratops extends AbstractChestedHorse  {
 			if (hunger < this.maxHunger) {
 				if (this.isFood(itemstack) && (!this.isInLove() || !this.isLoveNaturally())) {
 					this.setInLove(p_230254_1_);
-					itemstack.shrink(1);
+					if (!p_230254_1_.isCreative()) {
+						itemstack.shrink(1);
+					}
 				} else {
 					if (itemstack.is(PFTags.PLANTS_2_HUNGER_ITEM)) {
 						if (hunger + 2 >= this.maxHunger) {
@@ -418,7 +511,9 @@ public class Triceratops extends AbstractChestedHorse  {
 						} else {
 							this.setHunger(hunger + 2);
 						}
-						itemstack.shrink(1);
+						if (!p_230254_1_.isCreative()) {
+							itemstack.shrink(1);
+						}
 					}
 					if (itemstack.is(PFTags.PLANTS_4_HUNGER_ITEM)) {
 						if (hunger + 4 >= this.maxHunger) {
@@ -426,7 +521,9 @@ public class Triceratops extends AbstractChestedHorse  {
 						} else {
 							this.setHunger(hunger + 4);
 						}
-						itemstack.shrink(1);
+						if (!p_230254_1_.isCreative()) {
+							itemstack.shrink(1);
+						}
 					}
 					if (itemstack.is(PFTags.PLANTS_6_HUNGER_ITEM)) {
 						if (hunger + 6 >= this.maxHunger) {
@@ -434,7 +531,9 @@ public class Triceratops extends AbstractChestedHorse  {
 						} else {
 							this.setHunger(hunger + 6);
 						}
-						itemstack.shrink(1);
+						if (!p_230254_1_.isCreative()) {
+							itemstack.shrink(1);
+						}
 					}
 					if (itemstack.is(PFTags.PLANTS_8_HUNGER_ITEM)) {
 						if (hunger + 8 >= this.maxHunger) {
@@ -442,7 +541,9 @@ public class Triceratops extends AbstractChestedHorse  {
 						} else {
 							this.setHunger(hunger + 8);
 						}
-						itemstack.shrink(1);
+						if (!p_230254_1_.isCreative()) {
+							itemstack.shrink(1);
+						}
 					}
 					if (itemstack.is(PFTags.PLANTS_10_HUNGER_ITEM)) {
 						if (hunger + 10 >= this.maxHunger) {
@@ -450,7 +551,9 @@ public class Triceratops extends AbstractChestedHorse  {
 						} else {
 							this.setHunger(hunger + 10);
 						}
-						itemstack.shrink(1);
+						if (!p_230254_1_.isCreative()) {
+							itemstack.shrink(1);
+						}
 					}
 					if (itemstack.is(PFTags.PLANTS_12_HUNGER_ITEM)) {
 						if (hunger + 12 >= this.maxHunger) {
@@ -458,7 +561,9 @@ public class Triceratops extends AbstractChestedHorse  {
 						} else {
 							this.setHunger(hunger + 12);
 						}
-						itemstack.shrink(1);
+						if (!p_230254_1_.isCreative()) {
+							itemstack.shrink(1);
+						}
 					}
 					if (itemstack.is(PFTags.PLANTS_15_HUNGER_ITEM)) {
 						if (hunger + 15 >= this.maxHunger) {
@@ -466,7 +571,9 @@ public class Triceratops extends AbstractChestedHorse  {
 						} else {
 							this.setHunger(hunger + 15);
 						}
-						itemstack.shrink(1);
+						if (!p_230254_1_.isCreative()) {
+							itemstack.shrink(1);
+						}
 					}
 					if (itemstack.is(PFTags.PLANTS_20_HUNGER_ITEM)) {
 						if (hunger + 20 >= this.maxHunger) {
@@ -474,7 +581,9 @@ public class Triceratops extends AbstractChestedHorse  {
 						} else {
 							this.setHunger(hunger + 20);
 						}
-						itemstack.shrink(1);
+						if (!p_230254_1_.isCreative()) {
+							itemstack.shrink(1);
+						}
 					}
 					if (itemstack.is(PFTags.PLANTS_25_HUNGER_ITEM)) {
 						if (hunger + 25 >= this.maxHunger) {
@@ -482,7 +591,9 @@ public class Triceratops extends AbstractChestedHorse  {
 						} else {
 							this.setHunger(hunger + 25);
 						}
-						itemstack.shrink(1);
+						if (!p_230254_1_.isCreative()) {
+							itemstack.shrink(1);
+						}
 					}
 					if (itemstack.is(PFTags.PLANTS_30_HUNGER_ITEM)) {
 						if (hunger + 30 >= this.maxHunger) {
@@ -490,11 +601,26 @@ public class Triceratops extends AbstractChestedHorse  {
 						} else {
 							this.setHunger(hunger + 30);
 						}
-						itemstack.shrink(1);
+						if (!p_230254_1_.isCreative()) {
+							itemstack.shrink(1);
+						}
+					}
+					if (itemstack.is(PFItems.MARMARTHIA_BERRIES.get())) {
+						if (hunger + 2 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(hunger + 2);
+						}
+						if (!p_230254_1_.isCreative()) {
+							itemstack.shrink(1);
+						}
+						this.addEffect(new MobEffectInstance(MobEffects.POISON, 300));
 					}
 				}
 			}
-			else p_230254_1_.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.fullHunger"), true);
+			if ((itemstack.is(PFTags.PLANTS_2_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_4_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_6_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_8_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_10_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_12_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_15_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_20_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_25_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_30_HUNGER_ITEM))) {
+				p_230254_1_.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.fullHunger"), true);
+			}
 		}
 		if (this.isBaby()) {
 			if (item == PFItems.TRICERATOPS_SPAWN_EGG.get()) {
@@ -592,6 +718,11 @@ public class Triceratops extends AbstractChestedHorse  {
 					}
 					hungerTick = 0;
 				}
+				if (currentHunger == 0 && !this.isBaby()) {
+					if (!this.getTrustedUUIDs().isEmpty()) {
+						this.getTrustedUUIDs().clear();
+					}
+				}
 				if (this.getCurrentHunger() >= this.getThreeQuartersHunger() && hungerTick % 150 == 0) {
 					if (this.getHealth() < this.getMaxHealth() && this.getHealth() != 0 && this.getTarget() == null && this.getLastHurtByMob() == null) {
 						float currentHealth = this.getHealth();
@@ -629,6 +760,14 @@ public class Triceratops extends AbstractChestedHorse  {
 				lastInLove--;
 			}
 		}
+	}
+
+	protected void onOffspringSpawnedFromEgg(Player p_28481_, Mob p_28482_) {
+		((Triceratops)p_28482_).addTrustedUUID(p_28481_.getUUID());
+	}
+
+	public boolean trusts(UUID p_28530_) {
+		return this.getTrustedUUIDs().contains(p_28530_);
 	}
 
 	public Player getRidingPlayer() {
@@ -739,8 +878,10 @@ public class Triceratops extends AbstractChestedHorse  {
 			} else {
 				if (super.canUse()) {
 					for(Triceratops triceratops : Triceratops.this.level.getEntitiesOfClass(Triceratops.class, Triceratops.this.getBoundingBox().inflate(8.0D, 4.0D, 8.0D))) {
-						if (triceratops.isBaby() && !triceratops.isJuvenile()) {
-							return true;
+						if (!triceratops.trusts(this.target.getUUID()) && (triceratops.isProtective() || triceratops.isTerritorial())) {
+							if (triceratops.isBaby() && !triceratops.isJuvenile()) {
+								return true;
+							}
 						}
 					}
 				}
@@ -770,7 +911,9 @@ public class Triceratops extends AbstractChestedHorse  {
 				this.alertOthers();
 				this.stop();
 			}
-
+			if (Triceratops.this.trusts(this.targetMob.getUUID())) {
+				Triceratops.this.removeTrustedUUID(this.targetMob.getUUID());
+			}
 		}
 
 		protected void alertOther(Mob mobIn, LivingEntity targetIn) {
@@ -1117,6 +1260,70 @@ public class Triceratops extends AbstractChestedHorse  {
 		}
 	}
 
+	public class UnscheduledSleepingGoal extends Goal {
+
+		public Triceratops entity;
+		private int sleepTimer = 0;
+
+		public UnscheduledSleepingGoal(Triceratops sleeper) {
+			super();
+			this.entity = sleeper;
+		}
+
+		@Override
+		public boolean canUse() {
+			Level level = entity.level;
+			List<? extends Player> list = level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D));
+			if (PrehistoricFaunaConfig.unscheduledSleeping = true && entity.getRandom().nextInt(1000) == 0 && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isInWater() && !entity.isInLava() && !list.isEmpty()) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		@Override
+		public boolean canContinueToUse() {
+			Level level = entity.level;
+			List<? extends Player> list = level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D));
+			if (sleepTimer >= 6000 || entity.getLastHurtByMob() != null || entity.getTarget() != null || super.canContinueToUse() || entity.isInWater() || entity.isInLava() || !list.isEmpty()) {
+				entity.setSleeping(false);
+				sleepTimer = 0;
+				stop();
+				return false;
+			} else return true;
+		}
+
+		public void tick() {
+			super.tick();
+			Level level = entity.level;
+			List<? extends Player> list = level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D));
+			sleepTimer++;
+			if (sleepTimer >= 6000 || entity.getLastHurtByMob() != null || entity.getTarget() != null || entity.isInWater() || entity.isInLava() || !list.isEmpty()) {
+				entity.setSleeping(false);
+				sleepTimer = 0;
+				stop();
+			}
+		}
+
+		@Override
+		public void start() {
+			sleepTimer = 0;
+			entity.setSleeping(true);
+			entity.xxa = 0.0F;
+			entity.yya = 0.0F;
+			entity.zza = 0.0F;
+			entity.getNavigation().stop();
+			entity.lerpMotion(0.0D, 0.0D, 0.0D);
+		}
+
+		@Override
+		public void stop() {
+			sleepTimer = 0;
+			entity.setSleeping(false);
+		}
+
+	}
+
 	public class CathemeralSleepGoal extends Goal {
 
 		public Triceratops entity;
@@ -1129,15 +1336,21 @@ public class Triceratops extends AbstractChestedHorse  {
 
 		@Override
 		public boolean canUse() {
-			if (PrehistoricFaunaConfig.sleeping = true && entity.getRandom().nextInt(1000) == 0 && entity.getLastHurtByMob() == null && !entity.isTamed() && entity.getRidingPlayer() == null && !entity.isInWater() && !entity.isInLava()) {
-				return true;
-			} else {
-				return false;
+			for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
+				if (!player.isShiftKeyDown()) return false;
+				else return (PrehistoricFaunaConfig.sleeping = true && entity.getRandom().nextInt(1000) == 0 && entity.getLastHurtByMob() == null && !entity.isTamed() && entity.getRidingPlayer() == null && !entity.isInWater() && !entity.isInLava() && !PrehistoricFaunaConfig.unscheduledSleeping);
 			}
+			return (PrehistoricFaunaConfig.sleeping = true && entity.getRandom().nextInt(1000) == 0 && entity.getLastHurtByMob() == null && !entity.isTamed() && entity.getRidingPlayer() == null && !entity.isInWater() && !entity.isInLava() && !PrehistoricFaunaConfig.unscheduledSleeping);
 		}
 
 		@Override
 		public boolean canContinueToUse() {
+			for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
+				if (!player.isShiftKeyDown()) {
+					stop();
+					return false;
+				} else return (sleepTimer >= 6000 || entity.getLastHurtByMob() != null || entity.isTamed() || entity.getRidingPlayer() != null || super.canContinueToUse() || entity.isInWater() || entity.isInLava());
+			}
 			if (sleepTimer >= 6000 || entity.getLastHurtByMob() != null || entity.isTamed() || entity.getRidingPlayer() != null || super.canContinueToUse() || entity.isInWater() || entity.isInLava()) {
 				stop();
 				return false;
@@ -1147,7 +1360,12 @@ public class Triceratops extends AbstractChestedHorse  {
 		public void tick() {
 			super.tick();
 			sleepTimer++;
-			if (sleepTimer >= 6000 || entity.getLastHurtByMob() != null) {
+			for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
+				if (!player.isShiftKeyDown()) {
+					stop();
+				}
+			}
+			if (sleepTimer >= 6000 || entity.getLastHurtByMob() != null || entity.isTamed() || entity.getRidingPlayer() != null || super.canContinueToUse() || entity.isInWater() || entity.isInLava()) {
 				stop();
 			}
 		}
@@ -1373,7 +1591,7 @@ public class Triceratops extends AbstractChestedHorse  {
 
 
 	}
-	
+
 	public class EatFromFeederGoal extends MoveToBlockGoal {
 		protected int field_220731_g;
 
@@ -1476,7 +1694,7 @@ public class Triceratops extends AbstractChestedHorse  {
 		public boolean canUse() {
 			return !Triceratops.this.isSleeping() && super.canUse() && Triceratops.this.getCurrentHunger() < Triceratops.this.getHalfHunger();
 		}
-		
+
 		public void stop() {
 			super.stop();
 			Triceratops.this.setEating(false);
@@ -1494,6 +1712,68 @@ public class Triceratops extends AbstractChestedHorse  {
 		public void start() {
 			this.field_220731_g = 0;
 			super.start();
+		}
+	}
+
+	public class TriceratopsTerritorialAttackGoal extends NearestAttackableTargetGoal<Player> {
+		Triceratops dinosaur;
+
+		public TriceratopsTerritorialAttackGoal(Triceratops dinosaur) {
+			super(dinosaur, Player.class, true, true);
+			this.dinosaur = dinosaur;
+		}
+
+		/**
+		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+		 * method as well.
+		 */
+		public boolean canUse() {
+			if (dinosaur.isBaby()) {
+				return false;
+			} else {
+				if (super.canUse()) {
+					for(Triceratops dinosaur : dinosaur.level.getEntitiesOfClass(Triceratops.class, dinosaur.getBoundingBox().inflate(24.0D, 4.0D, 24.0D))) {
+						if (!dinosaur.trusts(this.target.getUUID()) && dinosaur.isTerritorial() && !dinosaur.isTamed()) {
+							return true;
+						}
+					}
+				}
+				return false;
+			}
+		}
+
+		protected double getFollowDistance() {
+			return super.getFollowDistance() * 0.5D;
+		}
+	}
+
+	public class TriceratopsAggressiveTempermentAttackGoal extends NearestAttackableTargetGoal<Player> {
+		Triceratops dinosaur;
+
+		public TriceratopsAggressiveTempermentAttackGoal(Triceratops dinosaur) {
+			super(dinosaur, Player.class, true, true);
+			this.dinosaur = dinosaur;
+		}
+
+		/**
+		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+		 * method as well.
+		 */
+		public boolean canUse() {
+			if (dinosaur.isBaby()) {
+				return false;
+			} else {
+				if (super.canUse()) {
+					if (!dinosaur.trusts(this.target.getUUID()) && dinosaur.isAggressive() && !dinosaur.isTamed()) {
+						return true;
+					}
+				}
+				return false;
+			}
+		}
+
+		protected double getFollowDistance() {
+			return super.getFollowDistance() * 0.5D;
 		}
 	}
 

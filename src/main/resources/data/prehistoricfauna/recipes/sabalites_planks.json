@@ -1,0 +1,13 @@
+{
+  "type": "crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "prehistoricfauna:sabalites_logs"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:sabalites_planks",
+    "count": 4
+  }
+}

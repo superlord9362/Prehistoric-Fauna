@@ -6,7 +6,7 @@ import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 
 public class DinosaurTerritorialAttackGoal extends NearestAttackableTargetGoal<Player> {
 	DinosaurEntity dinosaur;
-	
+
 	public DinosaurTerritorialAttackGoal(DinosaurEntity dinosaur) {
 		super(dinosaur, Player.class, true, true);
 		this.dinosaur = dinosaur;
@@ -21,11 +21,12 @@ public class DinosaurTerritorialAttackGoal extends NearestAttackableTargetGoal<P
 			return false;
 		} else {
 			if (super.canUse()) {
-				for(@SuppressWarnings("unused") DinosaurEntity dinosaur : dinosaur.level.getEntitiesOfClass(DinosaurEntity.class, dinosaur.getBoundingBox().inflate(24.0D, 4.0D, 24.0D))) {
-					return true;
+				for(DinosaurEntity dinosaur : dinosaur.level.getEntitiesOfClass(DinosaurEntity.class, dinosaur.getBoundingBox().inflate(24.0D, 4.0D, 24.0D))) {
+					if (!dinosaur.trusts(this.target.getUUID()) && dinosaur.isTerritorial() && !dinosaur.isTame()) {
+						return true;
+					}
 				}
 			}
-
 			return false;
 		}
 	}

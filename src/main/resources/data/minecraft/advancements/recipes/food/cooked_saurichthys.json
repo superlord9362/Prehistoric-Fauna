@@ -13,7 +13,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:raw_saurichthys"
+            "items": [
+				"prehistoricfauna:raw_saurichthys"
+          	]
           }
         ]
       }

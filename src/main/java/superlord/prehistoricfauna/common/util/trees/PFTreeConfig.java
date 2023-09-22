@@ -25,6 +25,7 @@ public class PFTreeConfig implements FeatureConfiguration {
 			return config.maxHeight;
 		})).apply(codecRecorder, PFTreeConfig::new);
 	});
+	private boolean forcedPlacement = false;
 	
 	private final BlockStateProvider trunkProvider;
 	private final BlockStateProvider leavesProvider;
@@ -36,6 +37,10 @@ public class PFTreeConfig implements FeatureConfiguration {
 		this.leavesProvider = leavesProvider;
 		this.minHeight = minHeight;
 		this.maxHeight = maxHeight;
+	}
+	
+	public void forcePlacement() {
+		forcedPlacement = true;
 	}
 	
 	public BlockStateProvider getTrunkProvider() {
@@ -75,6 +80,11 @@ public class PFTreeConfig implements FeatureConfiguration {
 	public Mirror getMirror() {
 		return mirror;
 	}
+	
+	public boolean isPlacementForced() {
+		return forcedPlacement;
+	}
+
 	
 	public static class Builder {
 		private BlockStateProvider trunkProvider = SimpleStateProvider.simple(Blocks.OAK_LOG.defaultBlockState());

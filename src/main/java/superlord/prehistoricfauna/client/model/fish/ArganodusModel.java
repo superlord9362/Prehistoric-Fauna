@@ -52,9 +52,14 @@ public class ArganodusModel extends EntityModel<Arganodus> {
 	@Override
 	public void setupAnim(Arganodus entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     	float f = 1.0F;
-        if (!entity.isInWater()) {
-           f = 1.5F;
-        }
+    	if (!entity.isInWater()) {
+			f = 1.5F;
+			this.FrontTorso.y = 22;
+			this.FrontTorso.zRot = 1.6F;
+		} else {
+			this.FrontTorso.zRot = 0;
+			this.FrontTorso.y = 20;
+		}
         this.FrontTorso.xRot = headPitch * ((float)Math.PI / 180F);
         this.FrontTorso.yRot = netHeadYaw * ((float)Math.PI / 180F);
         this.BackTorso.yRot = -f * 0.45F * Mth.sin(0.6F * ageInTicks);

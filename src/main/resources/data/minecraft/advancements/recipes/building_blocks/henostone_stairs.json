@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:henostone"
+            "items": [ 
+				"prehistoricfauna:henostone"
+          	]
           }
         ]
       }

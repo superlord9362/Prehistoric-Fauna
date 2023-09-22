@@ -56,7 +56,7 @@ public class PlesiohadrosModel extends EntityModel<Plesiohadros> {
 
 		PartDefinition LegFrontL = partdefinition.addOrReplaceChild("LegFrontL", CubeListBuilder.create().texOffs(89, 70).mirror().addBox(-3.0F, -1.0F, -2.0F, 3.0F, 20.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-4.0F, 5.0F, -9.0F));
 
-		PartDefinition ThighL = partdefinition.addOrReplaceChild("ThighL", CubeListBuilder.create().texOffs(94, 0).addBox(-4.0F, -3.0F, -3.0F, 5.0F, 20.0F, 11.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-5.0F, -2.0F, 6.0F));
+		PartDefinition ThighL = partdefinition.addOrReplaceChild("ThighL", CubeListBuilder.create().texOffs(94, 0).mirror().addBox(-4.0F, -3.0F, -3.0F, 5.0F, 20.0F, 11.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-5.0F, -2.0F, 6.0F));
 
 		PartDefinition LegBackL = ThighL.addOrReplaceChild("LegBackL", CubeListBuilder.create().texOffs(130, 0).mirror().addBox(-2.0F, -1.0F, -1.0F, 4.0F, 13.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-1.5F, 13.0F, 7.0F));
 
@@ -90,7 +90,7 @@ public class PlesiohadrosModel extends EntityModel<Plesiohadros> {
 
 		PartDefinition Sadle = Saddle.addOrReplaceChild("Sadle", CubeListBuilder.create().texOffs(164, 37).addBox(-5.5F, -1.5F, -4.0F, 11.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.5F, 9.0F));
 
-		PartDefinition ThighR = partdefinition.addOrReplaceChild("ThighR", CubeListBuilder.create().texOffs(94, 0).mirror().addBox(-1.0F, -3.0F, -3.0F, 5.0F, 20.0F, 11.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(5.0F, -2.0F, 6.0F));
+		PartDefinition ThighR = partdefinition.addOrReplaceChild("ThighR", CubeListBuilder.create().texOffs(94, 0).addBox(-1.0F, -3.0F, -3.0F, 5.0F, 20.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offset(5.0F, -2.0F, 6.0F));
 
 		PartDefinition LegBackR = ThighR.addOrReplaceChild("LegBackR", CubeListBuilder.create().texOffs(130, 0).addBox(-2.0F, -1.0F, -1.0F, 4.0F, 13.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(1.5F, 13.0F, 7.0F));
 
@@ -98,6 +98,7 @@ public class PlesiohadrosModel extends EntityModel<Plesiohadros> {
 
 		return LayerDefinition.create(meshdefinition, 256, 128);
 	}
+
 
 	@Override
 	public void setupAnim(Plesiohadros entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {

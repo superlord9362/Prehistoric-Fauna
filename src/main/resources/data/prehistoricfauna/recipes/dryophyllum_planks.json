@@ -1,0 +1,13 @@
+{
+  "type": "crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "prehistoricfauna:dryophyllum_logs"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:dryophyllum_planks",
+    "count": 4
+  }
+}

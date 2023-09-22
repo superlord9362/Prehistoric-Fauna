@@ -1,0 +1,10 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:sabalites_log",
+		"prehistoricfauna:sabalites_grassy_log",
+		"prehistoricfauna:stripped_sabalites_log",
+		"prehistoricfauna:sabalites_wood",
+		"prehistoricfauna:stripped_sabalites_wood"
+	]
+}

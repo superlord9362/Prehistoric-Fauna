@@ -1,12 +1,12 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.djadochta;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
@@ -27,6 +27,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
@@ -35,6 +36,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ankylosauru
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
+import superlord.prehistoricfauna.common.entity.goal.AggressiveTempermentAttackGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
@@ -47,6 +49,7 @@ import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.NocturnalSleepGoal;
 import superlord.prehistoricfauna.common.entity.goal.ProtectBabyGoal;
+import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Dilophosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
@@ -56,12 +59,10 @@ import superlord.prehistoricfauna.common.entity.triassic.chinle.Coelophysis;
 import superlord.prehistoricfauna.common.entity.triassic.chinle.Poposaurus;
 import superlord.prehistoricfauna.common.entity.triassic.chinle.Postosuchus;
 import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Saurosuchus;
-import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
-import superlord.prehistoricfauna.init.PFTags;
 
 public class Protoceratops extends DinosaurEntity {
 	private int maxHunger = 25;
@@ -102,6 +103,7 @@ public class Protoceratops extends DinosaurEntity {
 		this.targetSelector.addGoal(1, (new DinosaurHurtByTargetGoal(this)).setAlertOthers());
 		this.targetSelector.addGoal(3, new ProtectBabyGoal(this));
 		this.targetSelector.addGoal(2, new DinosaurTerritorialAttackGoal(this));
+		this.targetSelector.addGoal(2, new AggressiveTempermentAttackGoal(this));
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new DinosaurMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new NaturalMateGoal(this, 1.0D));
@@ -122,106 +124,27 @@ public class Protoceratops extends DinosaurEntity {
 		this.goalSelector.addGoal(1, new NocturnalSleepGoal(this));
 		this.goalSelector.addGoal(0, new HerbivoreEatGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(0, new HerbivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
+		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 	}
 	
-	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
-		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
-		if (PrehistoricFaunaConfig.advancedHunger) {
-			int hunger = this.getCurrentHunger();
-			if (hunger < this.maxHunger) {
-				if (this.isFood(itemstack) && (!this.isInLove() || !this.isInLoveNaturally())) {
-					this.setInLove(p_230254_1_);
-					itemstack.shrink(1);
-				} else {
-					if (itemstack.is(PFTags.PLANTS_2_HUNGER_ITEM)) {
-						if (hunger + 2 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 2);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.PLANTS_4_HUNGER_ITEM)) {
-						if (hunger + 4 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 4);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.PLANTS_6_HUNGER_ITEM)) {
-						if (hunger + 6 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 6);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.PLANTS_8_HUNGER_ITEM)) {
-						if (hunger + 8 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 8);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.PLANTS_10_HUNGER_ITEM)) {
-						if (hunger + 10 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 10);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.PLANTS_12_HUNGER_ITEM)) {
-						if (hunger + 12 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 12);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.PLANTS_15_HUNGER_ITEM)) {
-						if (hunger + 15 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 15);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.PLANTS_20_HUNGER_ITEM)) {
-						if (hunger + 20 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 20);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.PLANTS_25_HUNGER_ITEM)) {
-						if (hunger + 25 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 25);
-						}
-						itemstack.shrink(1);
-					}
-					if (itemstack.is(PFTags.PLANTS_30_HUNGER_ITEM)) {
-						if (hunger + 30 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(hunger + 30);
-						}
-						itemstack.shrink(1);
-					}
-				}
-			}
-			else p_230254_1_.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.fullHunger"), true);
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+		int temperment = random.nextInt(100);
+		if (temperment < 85) {
+			this.setAggressive(true);
+		} else {
+			this.setTerritorial(true);
 		}
-		return super.mobInteract(p_230254_1_, p_230254_2_);
+		this.setHerbivorous(true);
+		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
 	public void aiStep() {
 		super.aiStep();
+		if (this.isBaby()) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(5);
+		} else {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(10);
+		}
 		if (this.isAsleep()) {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
 		} else {

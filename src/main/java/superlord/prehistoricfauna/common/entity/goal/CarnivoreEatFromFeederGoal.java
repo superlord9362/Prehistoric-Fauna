@@ -1,7 +1,6 @@
 package superlord.prehistoricfauna.common.entity.goal;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.player.Player;
@@ -9,6 +8,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 import superlord.prehistoricfauna.common.blocks.FeederBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
+import superlord.prehistoricfauna.init.PFSounds;
 
 public class CarnivoreEatFromFeederGoal extends MoveToBlockGoal {
 	DinosaurEntity dinosaur;
@@ -81,7 +81,7 @@ public class CarnivoreEatFromFeederGoal extends MoveToBlockGoal {
 				dinosaur.setEating(true);
 			}
 			if (this.field_220731_g % 5 == 1) {
-				dinosaur.level.playSound((Player)null, this.blockPos, SoundEvents.GRASS_HIT, SoundSource.NEUTRAL, 1, 1);
+				dinosaur.level.playSound((Player)null, this.blockPos, PFSounds.MEAT_EATING, SoundSource.NEUTRAL, 1, 1);
 			}
 		}
 		if (dinosaur.getCurrentHunger() >= 13) {
@@ -103,6 +103,12 @@ public class CarnivoreEatFromFeederGoal extends MoveToBlockGoal {
 			block.setFoodAmount(0, dinosaur.level, this.blockPos);
 			dinosaur.setHunger(hunger + foodContained);
 			dinosaur.setEating(false);
+			dinosaur.level.setBlock(blockPos, block.defaultBlockState(), 0);
+		}
+		if (dinosaur.getBbHeight() >= 1.5F) {
+			dinosaur.level.playSound((Player)null, this.blockPos, PFSounds.LARGE_MEAT_GULP, SoundSource.NEUTRAL, 1, 1);
+		} else {
+			dinosaur.level.playSound((Player)null, this.blockPos, PFSounds.SMALL_MEAT_GULP, SoundSource.NEUTRAL, 1, 1);
 		}
 	}
 

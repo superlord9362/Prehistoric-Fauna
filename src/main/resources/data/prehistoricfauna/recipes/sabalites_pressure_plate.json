@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_pressure_plate",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:sabalites_planks"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:sabalites_pressure_plate"
+  }
+}

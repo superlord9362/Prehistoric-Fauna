@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:ancient_journal"
+            "items": [
+				"prehistoricfauna:ancient_journal"
+          	]
           }
         ]
       }

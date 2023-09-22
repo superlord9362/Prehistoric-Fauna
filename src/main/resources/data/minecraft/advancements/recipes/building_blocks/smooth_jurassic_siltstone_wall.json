@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:smooth_siltstone"
+            "items": [
+				"prehistoricfauna:smooth_siltstone"
+          	]
           }
         ]
       }

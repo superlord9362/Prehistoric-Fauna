@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:plant_fiber"
+            "items": [
+				"prehistoricfauna:plant_fiber"
+          	]
           }
         ]
       }

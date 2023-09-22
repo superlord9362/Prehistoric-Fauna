@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "prehistoricfauna:chalk",
+    "prehistoricfauna:chalk_fossil",
+    "prehistoricfauna:siltstone",
+    "prehistoricfauna:siltstone_fossil",
+    "prehistoricfauna:sandstone",
+    "prehistoricfauna:sandstone_fossil"
+  ]
+}

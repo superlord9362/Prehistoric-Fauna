@@ -15,6 +15,7 @@ import net.minecraftforge.registries.RegistryObject;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import java.util.List;
 
+@SuppressWarnings("deprecation")
 public class PFPlacedFeatures {
 
 	public static final DeferredRegister<PlacedFeature> REGISTER = DeferredRegister.create(Registry.PLACED_FEATURE_REGISTRY, PrehistoricFauna.MOD_ID);
@@ -94,6 +95,8 @@ public class PFPlacedFeatures {
 	public static final RegistryObject<PlacedFeature> ISCHIGUALASTO_TREES = register("placed_ischigualasto_trees", PFConfiguredFeatures.ISCHIGUALASTO_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(8, 0.1F, 3)));
 	public static final RegistryObject<PlacedFeature> SPARSE_ISCHIGUALASTO_TREES = register("placed_sparse_ischigualasto_trees", PFConfiguredFeatures.ISCHIGUALASTO_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.1F, 1)));
 
+	public static final RegistryObject<PlacedFeature> SILT_DISK = REGISTER.register("placed_silt_disk", () -> new PlacedFeature(PFConfiguredFeatures.DISK_SILT.getHolder().orElseThrow(), List.of(CountOnEveryLayerPlacement.of(4), BiomeFilter.biome())));
+	
 	public static RegistryObject<PlacedFeature> register(String name, RegistryObject<ConfiguredFeature<?, ?>> feature, List<PlacementModifier> modifiers) {
 		return REGISTER.register(name, () -> new PlacedFeature(feature.getHolder().orElseThrow(), modifiers));
 	}

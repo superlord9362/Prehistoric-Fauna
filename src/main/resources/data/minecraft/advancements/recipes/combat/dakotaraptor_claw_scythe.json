@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:dromaeosaur_claw"
+            "items": [
+				"prehistoricfauna:dromaeosaur_claw"
+          	]
           }
         ]
       }

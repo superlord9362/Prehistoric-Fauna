@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:thatch"
+            "items": [
+				"prehistoricfauna:thatch"
+          	]
           }
         ]
       }

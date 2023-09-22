@@ -3,6 +3,7 @@ package superlord.prehistoricfauna.client.render.layer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
@@ -15,12 +16,12 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.AllosaurusModel;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
 
-public class AllosaurusEyeLayer extends RenderLayer<Allosaurus, AllosaurusModel> {
+public class AllosaurusEyeLayer extends RenderLayer<Allosaurus, EntityModel<Allosaurus>> {
 	
 	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/allosaurus/allosaurus_eyeglow.png"));
-	private final RenderLayerParent<Allosaurus, AllosaurusModel> allosaurusRenderer;
+	private final RenderLayerParent<Allosaurus, EntityModel<Allosaurus>> allosaurusRenderer;
 	
-	public AllosaurusEyeLayer(RenderLayerParent<Allosaurus, AllosaurusModel> rendererIn) {
+	public AllosaurusEyeLayer(RenderLayerParent<Allosaurus, EntityModel<Allosaurus>> rendererIn) {
 		super(rendererIn);
 		this.allosaurusRenderer = rendererIn;
 	}

@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:desmatosuchus_chestplate"
+            "items": [
+				"prehistoricfauna:desmatosuchus_chestplate"
+          	]
           }
         ]
       }

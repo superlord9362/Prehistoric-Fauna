@@ -4,14 +4,11 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import com.google.common.base.Predicate;
-
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -19,6 +16,7 @@ import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -42,9 +40,6 @@ import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.animal.Chicken;
-import net.minecraft.world.entity.animal.Rabbit;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -54,6 +49,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -63,18 +59,20 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.common.blocks.CrassostreaOysterBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
-import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Telmasaurus;
+import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
+import superlord.prehistoricfauna.common.entity.goal.CarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.CrepuscularSleepGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
+import superlord.prehistoricfauna.common.entity.goal.ShellfishEatFromFeederGoal;
+import superlord.prehistoricfauna.common.entity.goal.SkittishFleeGoal;
+import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Dilophosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Megapnosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Scutellosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Ceratosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Dryosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Eilenodon;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Hesperornithoides;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Stegosaurus;
 import superlord.prehistoricfauna.common.entity.triassic.chinle.Coelophysis;
@@ -82,7 +80,6 @@ import superlord.prehistoricfauna.common.entity.triassic.chinle.Poposaurus;
 import superlord.prehistoricfauna.common.entity.triassic.chinle.Postosuchus;
 import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Exaeretodon;
 import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Herrerasaurus;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Hyperodapedon;
 import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Saurosuchus;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
@@ -111,7 +108,7 @@ public class Didelphodon extends DinosaurEntity {
 		ItemEntity item = new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), stack);
 		this.level.addFreshEntity(item);
 	}
-	
+
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
 		if (this.isBaby()) return 0.175F;
 		else return 0.35F;
@@ -156,25 +153,6 @@ public class Didelphodon extends DinosaurEntity {
 				}
 				return InteractionResult.SUCCESS;
 			}
-			if (PrehistoricFaunaConfig.advancedHunger) {
-				int hunger = this.getCurrentHunger();
-				if (hunger < this.maxHunger) {
-					if (this.isFood(itemstack) && (!this.isInLove() || !this.isInLoveNaturally())) {
-						this.setInLove(p_230254_1_);
-						itemstack.shrink(1);
-					} else {
-						if (itemstack.is(PFTags.SHELLFISH_3_HUNGER)) {
-							if (hunger + 3 >= this.maxHunger) {
-								this.setHunger(this.maxHunger);
-							} else {
-								this.setHunger(hunger + 3);
-							}
-							itemstack.shrink(1);
-						}	
-					}
-				}
-				else p_230254_1_.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.fullHunger"), true);
-			}
 			return super.mobInteract(p_230254_1_, p_230254_2_);
 		}
 
@@ -186,6 +164,11 @@ public class Didelphodon extends DinosaurEntity {
 	}
 
 	public void aiStep() {
+		if (this.isBaby()) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(3);
+		} else {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(6);
+		}
 		if (!this.level.isClientSide && this.isAlive() && this.isEffectiveAi()) {
 			++this.eatTicks;
 			ItemStack stack = this.getItemBySlot(EquipmentSlot.MAINHAND);
@@ -261,7 +244,7 @@ public class Didelphodon extends DinosaurEntity {
 	public boolean isFood(ItemStack stack) {
 		return stack.getItem() == PFBlocks.CRASSOSTREA_OYSTER.get().asItem();
 	}
-	
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	protected void registerGoals() {
@@ -276,7 +259,7 @@ public class Didelphodon extends DinosaurEntity {
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.goalSelector.addGoal(1, new Didelphodon.MeleeAttackGoal());
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Player.class, 10F, 1.5D, 1.75D));
+		this.goalSelector.addGoal(7, new SkittishFleeGoal(this, Player.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Tyrannosaurus.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Dakotaraptor.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Allosaurus.class, 10F, 1.5D, 1.75D));
@@ -299,8 +282,13 @@ public class Didelphodon extends DinosaurEntity {
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<Coelophysis>(this, Coelophysis.class, 10F, 1.7D, 1.5D));
 		this.goalSelector.addGoal(0, new Didelphodon.CarryYoungGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new CrepuscularSleepGoal(this));
-		this.targetSelector.addGoal(0, new Didelphodon.CarnivoreHuntGoal(this, LivingEntity.class, 10, true, false, 1.75D, (p_213487_1_) -> {
-			return p_213487_1_ instanceof Eilenodon || p_213487_1_ instanceof Hesperornithoides || p_213487_1_ instanceof Hyperodapedon || p_213487_1_ instanceof Telmasaurus || p_213487_1_ instanceof Rabbit || p_213487_1_ instanceof Chicken || p_213487_1_ instanceof Scutellosaurus;
+		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
+		this.goalSelector.addGoal(0, new ShellfishEatFromFeederGoal(this, (double)1.2F, 12, 2));
+		this.targetSelector.addGoal(0, new CarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213487_1_) -> {
+			return p_213487_1_.getType().is(PFTags.DIDELPHODON_HUNTING);
+		}));
+		this.targetSelector.addGoal(0, new BabyCarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213487_1_) -> {
+			return p_213487_1_.getType().is(PFTags.DIDELPHODON_BABY_HUNTING);
 		}));
 	}
 
@@ -338,6 +326,17 @@ public class Didelphodon extends DinosaurEntity {
 		} else {
 			super.handleEntityEvent(id);
 		}
+	}
+
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+		int temperment = random.nextInt(100);
+		if (temperment < 80) {
+			this.setSkittish(true);
+		} else {
+			this.setPassive(true);
+		}
+		this.setMolluscivorous(true);
+		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
 	public void tick() {
@@ -577,61 +576,7 @@ public class Didelphodon extends DinosaurEntity {
 			super.start();
 		}
 	}
-	
-	@SuppressWarnings("rawtypes")
-	public class CarnivoreHuntGoal extends NearestAttackableTargetGoal {
-		double huntSpeed;
-		Predicate<LivingEntity> targetPredicate;
-		@SuppressWarnings("unchecked")
-		public CarnivoreHuntGoal(Mob goalOwnerIn, Class targetClassIn, int targetChanceIn, boolean checkSight, boolean nearbyOnly, double huntSpeed, @Nullable Predicate<LivingEntity> targetPredicate) {
-			super(goalOwnerIn, targetClassIn, targetChanceIn, checkSight, nearbyOnly, targetPredicate);
-			this.huntSpeed = huntSpeed;
-			this.targetPredicate = targetPredicate;
-		}
 
-		public boolean canUse() {
-			return super.canUse() && Didelphodon.this.getCurrentHunger() <= Didelphodon.this.getHalfHunger() && PrehistoricFaunaConfig.advancedHunger == true && !targetPredicate.test(Didelphodon.this);
-		}
-
-		public boolean canContinueToUse() {
-			return Didelphodon.this.getCurrentHunger() < Didelphodon.this.maxHunger && PrehistoricFaunaConfig.advancedHunger == true;
-		}
-
-		public void tick() {
-			Didelphodon.this.getNavigation().setSpeedModifier(huntSpeed);
-			LivingEntity target = Didelphodon.this.getTarget();
-			if (target.getType().is(PFTags.ANIMALS_3_HUNGER)) {
-				if (target.getHealth() == 0) {
-					if (Didelphodon.this.getCurrentHunger() + 3 >= Didelphodon.this.maxHunger) {
-						Didelphodon.this.setHunger(Didelphodon.this.maxHunger);
-					} else {
-						Didelphodon.this.setHunger(currentHunger + 3);
-					}
-				}
-			}
-			if (target.getType().is(PFTags.ANIMALS_4_HUNGER)) {
-				if (target.getHealth() == 0) {
-					if (Didelphodon.this.getCurrentHunger() + 4 >= Didelphodon.this.maxHunger) {
-						Didelphodon.this.setHunger(Didelphodon.this.maxHunger);
-					} else {
-						Didelphodon.this.setHunger(currentHunger + 4);
-					}
-				}
-			}
-			if (target.getType().is(PFTags.ANIMALS_6_HUNGER)) {
-				if (target.getHealth() == 0) {
-					if (Didelphodon.this.getCurrentHunger() + 6 >= Didelphodon.this.maxHunger) {
-						Didelphodon.this.setHunger(Didelphodon.this.maxHunger);
-					} else {
-						Didelphodon.this.setHunger(currentHunger + 6);
-					}
-				}
-			}
-			super.tick();
-		}
-
-	}
-	
 	class MeleeAttackGoal extends net.minecraft.world.entity.ai.goal.MeleeAttackGoal {
 		public MeleeAttackGoal() {
 			super(Didelphodon.this, 1.25D, true);

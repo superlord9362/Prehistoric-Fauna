@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:woodworthia_planks"
+            "items": [
+				"prehistoricfauna:woodworthia_planks"
+          	]
           }
         ]
       }

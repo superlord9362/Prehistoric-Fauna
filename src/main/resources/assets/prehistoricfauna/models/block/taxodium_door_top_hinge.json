@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_top_rh",
+    "textures": {
+        "bottom": "prehistoricfauna:blocks/taxodium_door_bottom",
+        "top": "prehistoricfauna:blocks/taxodium_door_top"
+    }
+}

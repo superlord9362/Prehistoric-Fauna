@@ -2,8 +2,7 @@
 	"type": "prehistoricfauna:triassic",
 	"forge:use_server_seed": true,
 	"generator": {
-		"type": "minecraft:noise",
-		"seed": 9,
+		"type": "prehistoricfauna:triassic_chunk_generator",
 		"settings": "prehistoricfauna:triassic_noise_settings",
 		"biome_source": {
 			"type": "minecraft:multi_noise",

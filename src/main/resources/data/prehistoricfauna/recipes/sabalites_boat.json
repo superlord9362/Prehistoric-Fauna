@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:sabalites_planks"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:sabalites_boat"
+  }
+}

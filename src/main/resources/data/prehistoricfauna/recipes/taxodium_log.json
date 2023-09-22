@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:taxodium_log"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:taxodium_wood",
+    "count": 3
+  }
+}

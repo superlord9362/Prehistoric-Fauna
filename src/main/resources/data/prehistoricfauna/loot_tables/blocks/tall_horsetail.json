@@ -3,24 +3,26 @@
   "pools": [
     {
       "rolls": 1.0,
+      "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
+          "conditions": [
             {
-              "function": "minecraft:set_count",
-              "count": 2
+              "condition": "minecraft:block_state_property",
+              "block": "prehistoricfauna:tall_horsetail",
+              "properties": {
+                "half": "lower"
+              }
             }
           ],
-          "name": "prehistoricfauna:horsetail"
+          "name": "prehistoricfauna:horsetail",
+          "count": 2
         }
       ],
       "conditions": [
         {
-          "condition": "minecraft:match_tool",
-          "predicate": {
-            "item": "minecraft:shears"
-          }
+          "condition": "minecraft:survives_explosion"
         }
       ]
     }

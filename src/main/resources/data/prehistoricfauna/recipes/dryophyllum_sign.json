@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+	" S "
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:dryophyllum_planks"
+    },
+	"S": {
+		"item": "minecraft:stick"
+	}
+  },
+  "result": {
+    "item": "prehistoricfauna:dryophyllum_sign",
+    "count": 3
+  }
+}

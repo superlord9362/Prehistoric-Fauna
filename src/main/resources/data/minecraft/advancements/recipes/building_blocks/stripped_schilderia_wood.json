@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:stripped_schilderia_log"
+            "items": [
+				"prehistoricfauna:stripped_schilderia_log"
+          	]
           }
         ]
       }

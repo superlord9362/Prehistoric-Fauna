@@ -1,0 +1,7 @@
+{
+	"parent": "block/cube_column",
+	"textures": {
+		"end": "prehistoricfauna:blocks/sabalites_planks",
+		"side": "prehistoricfauna:blocks/sabalites_bookshelf"
+	}
+}

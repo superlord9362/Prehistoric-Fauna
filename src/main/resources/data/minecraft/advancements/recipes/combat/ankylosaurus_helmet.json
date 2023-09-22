@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:thyreophoran_scute"
+            "items": [
+				"prehistoricfauna:thyreophoran_scute"
+          	]
           }
         ]
       }

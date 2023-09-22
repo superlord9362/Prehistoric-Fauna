@@ -20,7 +20,7 @@
       "trigger": "minecraft:player_killed_entity",
       "conditions": {
         "entity": {
-          "type": "prehistoricfauna:trilobite_sentinel"
+          "type": "prehistoricfauna:cave_sentinel"
         }
       }
     },

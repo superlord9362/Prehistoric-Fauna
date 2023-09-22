@@ -91,18 +91,20 @@ public class HerbivoreEatFromFeederGoal extends MoveToBlockGoal {
 	}
 
 	protected void eatBerry() {
-		int missingHunger = dinosaur.maxHunger - dinosaur.getCurrentHunger();
-		int hunger = dinosaur.getCurrentHunger();
-		FeederBlock block = (FeederBlock) dinosaur.level.getBlockState(this.blockPos).getBlock();
-		int foodContained = block.getFoodAmount(dinosaur.level, this.blockPos);
-		if (missingHunger <= foodContained) {
-			block.setFoodAmount(foodContained - missingHunger, dinosaur.level, this.blockPos);
-			dinosaur.setHunger(dinosaur.maxHunger);
-			dinosaur.setEating(false);
-		} else if (foodContained - missingHunger < 0) {
-			block.setFoodAmount(0, dinosaur.level, this.blockPos);
-			dinosaur.setHunger(hunger + foodContained);
-			dinosaur.setEating(false);
+		if (!dinosaur.level.isClientSide) {
+			int missingHunger = dinosaur.maxHunger - dinosaur.getCurrentHunger();
+			int hunger = dinosaur.getCurrentHunger();
+			FeederBlock block = (FeederBlock) dinosaur.level.getBlockState(this.blockPos).getBlock();
+			int foodContained = block.getFoodAmount(dinosaur.level, this.blockPos);
+			if (missingHunger <= foodContained) {
+				block.setFoodAmount(foodContained - missingHunger, dinosaur.level, this.blockPos);
+				dinosaur.setHunger(dinosaur.maxHunger);
+				dinosaur.setEating(false);
+			} else if (foodContained - missingHunger < 0) {
+				block.setFoodAmount(0, dinosaur.level, this.blockPos);
+				dinosaur.setHunger(hunger + foodContained);
+				dinosaur.setEating(false);
+			}
 		}
 	}
 
@@ -113,7 +115,7 @@ public class HerbivoreEatFromFeederGoal extends MoveToBlockGoal {
 	public boolean canUse() {
 		return !dinosaur.isAsleep() && super.canUse() && dinosaur.getCurrentHunger() < dinosaur.getHalfHunger();
 	}
-	
+
 	public void stop() {
 		super.stop();
 		dinosaur.setEating(false);

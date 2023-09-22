@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "prehistoricfauna:block/sabalites_slab" },
+        "type=top": { "model": "prehistoricfauna:block/sabalites_slab_top" },
+        "type=double": { "model": "prehistoricfauna:block/sabalites_planks" }
+    }
+}

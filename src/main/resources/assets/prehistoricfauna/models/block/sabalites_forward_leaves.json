@@ -1,0 +1,78 @@
+{
+	"credit": "Made with Blockbench",
+    "ambientocclusion": false,
+    "parent": "block/cross",
+	"textures": {
+		"0": "prehistoricfauna:blocks/sabalites_leaves_big",
+		"1": "prehistoricfauna:blocks/sabalites_leaves_small",
+		"particle": "prehistoricfauna:blocks/sabalites_leaves_big"
+	},
+	"elements": [
+		{
+			"from": [-1.5, 8, -16],
+			"to": [17.5, 8, 17],
+			"rotation": {"angle": 0, "axis": "x", "origin": [11, 8, 16]},
+            "shade": false,
+			"faces": {
+				"north": {"uv": [0, 0, 16, 0], "texture": "#0"},
+				"east": {"uv": [0, 0, 16, 0], "texture": "#0"},
+				"south": {"uv": [0, 0, 16, 0], "texture": "#0"},
+				"west": {"uv": [0, 0, 16, 0], "texture": "#0"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#0"}
+			}
+		},
+		{
+			"from": [0.5, 8, -11],
+			"to": [15.5, 8, 16],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [11, 8, 16]},
+            "shade": false,
+			"faces": {
+				"north": {"uv": [0, 0, 16, 0], "texture": "#missing"},
+				"east": {"uv": [0, 0, 16, 0], "texture": "#missing"},
+				"south": {"uv": [0, 0, 16, 0], "texture": "#missing"},
+				"west": {"uv": [0, 0, 16, 0], "texture": "#missing"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"down": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#1"}
+			}
+		},
+		{
+			"from": [0.5, 8, -11],
+			"to": [15.5, 8, 16],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [11, 8, 16]},
+            "shade": false,
+			"faces": {
+				"north": {"uv": [0, 0, 16, 0], "texture": "#1"},
+				"east": {"uv": [0, 0, 16, 0], "texture": "#1"},
+				"south": {"uv": [0, 0, 16, 0], "texture": "#1"},
+				"west": {"uv": [0, 0, 16, 0], "texture": "#1"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"down": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#1"}
+			}
+		}
+	],
+	"display": {},
+	"groups": [
+		{
+			"name": "group",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"nbt": "{}",
+			"children": [0]
+		},
+		{
+			"name": "group",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"nbt": "{}",
+			"children": [1]
+		},
+		{
+			"name": "group",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"nbt": "{}",
+			"children": [2]
+		}
+	]
+}

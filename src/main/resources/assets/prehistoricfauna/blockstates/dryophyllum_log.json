@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":  { "model": "prehistoricfauna:block/dryophyllum_log" },
+        "axis=z":   { "model": "prehistoricfauna:block/dryophyllum_log", "x": 90 },
+        "axis=x":   { "model": "prehistoricfauna:block/dryophyllum_log", "x": 90, "y": 90 }
+    }
+}

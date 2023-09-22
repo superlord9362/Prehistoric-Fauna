@@ -50,7 +50,7 @@ public class PFSpawnEggItem extends SpawnEggItem {
     }
 
     public static void initSpawnEggs() {
-        final Map<EntityType<?>, SpawnEggItem> EGGS = ObfuscationReflectionHelper.getPrivateValue(SpawnEggItem.class, null, "field_195987_b");
+        final Map<EntityType<?>, SpawnEggItem> EGGS = ObfuscationReflectionHelper.getPrivateValue(SpawnEggItem.class, null, "f_43201_");
         DefaultDispenseItemBehavior dispenseBehaviour = new DefaultDispenseItemBehavior() {
         	@Override
             protected ItemStack execute(BlockSource source, ItemStack stack) {
@@ -99,34 +99,6 @@ public class PFSpawnEggItem extends SpawnEggItem {
 			tooltip.add(new TranslatableComponent("mk").withStyle(ChatFormatting.GRAY));
 			tooltip.add(new TranslatableComponent("jurassic").withStyle(ChatFormatting.DARK_GRAY));
 		}
-		if (stack.getItem() == PFItems.TYRANNOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.SCELIDOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.TRICERATOPS_SPAWN_EGG.get() || stack.getItem() == PFItems.ALLOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.STEGOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.AEPYORNITHOMIMUS_SPAWN_EGG.get() || stack.getItem() == PFItems.DILOPHOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.SARAHSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.CALSOYASUCHUS_SPAWN_EGG.get() || stack.getItem() == PFItems.SAUROSUCHUS_SPAWN_EGG.get() || stack.getItem() == PFItems.SILLOSUCHUS_SPAWN_EGG.get() || stack.getItem() == PFItems.ISCHIGUALASTIA_SPAWN_EGG.get() || stack.getItem() == PFItems.CHROMOGISAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.POSTOSUCHUS_SPAWN_EGG.get() || stack.getItem() == PFItems.POPOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.DESMATOSUCHUS_SPAWN_EGG.get() || stack.getItem() == PFItems.PLACERIAS_SPAWN_EGG.get()) {
-			if(InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 340) || InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 344)) {
-				tooltip.add(new TranslatableComponent("cathemeral").withStyle(ChatFormatting.GREEN));
-			} else {
-				tooltip.add(new TranslatableComponent("egg.hold_shift").withStyle(ChatFormatting.GRAY));
-			}
-		}
-		if (stack.getItem() == PFItems.ANKYLOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.THESCELOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.BASILEMYS_SPAWN_EGG.get() || stack.getItem() == PFItems.CAMARASAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.DRYOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.HESPERORNITHOIDES_SPAWN_EGG.get() || stack.getItem() == PFItems.PINACOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.PLESIOHADROS_SPAWN_EGG.get() || stack.getItem() == PFItems.CITIPATI_SPAWN_EGG.get() || stack.getItem() == PFItems.TELMASAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.HERRERASAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.TRILOPHOSAURUS_SPAWN_EGG.get()) {
-			if(InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 340) || InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 344)) {
-				tooltip.add(new TranslatableComponent("diurnal").withStyle(ChatFormatting.GOLD));
-			} else {
-				tooltip.add(new TranslatableComponent("egg.hold_shift").withStyle(ChatFormatting.GRAY));
-			}
-		}
-		if (stack.getItem() == PFItems.DAKOTARAPTOR_SPAWN_EGG.get() || stack.getItem() == PFItems.DIDELPHODON_SPAWN_EGG.get() || stack.getItem() == PFItems.CERATOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.VELOCIRAPTOR_SPAWN_EGG.get() || stack.getItem() == PFItems.KAYENTATHERIUM_SPAWN_EGG.get() || stack.getItem() == PFItems.HYPERODAPEDON_SPAWN_EGG.get()) {
-			if(InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 340) || InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 344)) {
-				tooltip.add(new TranslatableComponent("crepuscular").withStyle(ChatFormatting.LIGHT_PURPLE));
-			} else {
-				tooltip.add(new TranslatableComponent("egg.hold_shift").withStyle(ChatFormatting.GRAY));
-			}
-		}
-		if (stack.getItem() == PFItems.EILENODON_SPAWN_EGG.get() || stack.getItem() == PFItems.SCUTELLOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.PROTOCERATOPS_SPAWN_EGG.get() || stack.getItem() == PFItems.MEGAPNOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.COELOPHYSIS_SPAWN_EGG.get() || stack.getItem() == PFItems.TYPOTHORAX_SPAWN_EGG.get() || stack.getItem() == PFItems.EXAERETODON_SPAWN_EGG.get()) {
-			if(InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 340) || InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 344)) {
-				tooltip.add(new TranslatableComponent("nocturnal").withStyle(ChatFormatting.DARK_BLUE));
-			} else {
-				tooltip.add(new TranslatableComponent("egg.hold_shift").withStyle(ChatFormatting.GRAY));
-			}
-		}
 		if (stack.getItem() == PFItems.TYRANNOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.ALLOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.DILOPHOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.SAUROSUCHUS_SPAWN_EGG.get() || stack.getItem() == PFItems.POSTOSUCHUS_SPAWN_EGG.get() || stack.getItem() == PFItems.POPOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.HESPERORNITHOIDES_SPAWN_EGG.get() || stack.getItem() == PFItems.HERRERASAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.DAKOTARAPTOR_SPAWN_EGG.get() || stack.getItem() == PFItems.CERATOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.VELOCIRAPTOR_SPAWN_EGG.get() || stack.getItem() == PFItems.MEGAPNOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.COELOPHYSIS_SPAWN_EGG.get()) {
 			if(InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 340) || InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 344)) {
 				tooltip.add(new TranslatableComponent("carnivore").withStyle(ChatFormatting.RED));
@@ -155,6 +127,34 @@ public class PFSpawnEggItem extends SpawnEggItem {
 		if (stack.getItem() == PFItems.CALSOYASUCHUS_SPAWN_EGG.get()) {
 			if(InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 340) || InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 344)) {
 				tooltip.add(new TranslatableComponent("piscivore").withStyle(ChatFormatting.DARK_AQUA));
+			}
+		}
+		if (stack.getItem() == PFItems.TYRANNOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.SCELIDOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.TRICERATOPS_SPAWN_EGG.get() || stack.getItem() == PFItems.ALLOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.STEGOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.AEPYORNITHOMIMUS_SPAWN_EGG.get() || stack.getItem() == PFItems.DILOPHOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.SARAHSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.CALSOYASUCHUS_SPAWN_EGG.get() || stack.getItem() == PFItems.SAUROSUCHUS_SPAWN_EGG.get() || stack.getItem() == PFItems.SILLOSUCHUS_SPAWN_EGG.get() || stack.getItem() == PFItems.ISCHIGUALASTIA_SPAWN_EGG.get() || stack.getItem() == PFItems.CHROMOGISAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.POSTOSUCHUS_SPAWN_EGG.get() || stack.getItem() == PFItems.POPOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.DESMATOSUCHUS_SPAWN_EGG.get() || stack.getItem() == PFItems.PLACERIAS_SPAWN_EGG.get()) {
+			if(InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 340) || InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 344)) {
+				tooltip.add(new TranslatableComponent("cathemeral").withStyle(ChatFormatting.GREEN));
+			} else {
+				tooltip.add(new TranslatableComponent("egg.hold_shift").withStyle(ChatFormatting.GRAY));
+			}
+		}
+		if (stack.getItem() == PFItems.ANKYLOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.THESCELOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.BASILEMYS_SPAWN_EGG.get() || stack.getItem() == PFItems.CAMARASAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.DRYOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.HESPERORNITHOIDES_SPAWN_EGG.get() || stack.getItem() == PFItems.PINACOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.PLESIOHADROS_SPAWN_EGG.get() || stack.getItem() == PFItems.CITIPATI_SPAWN_EGG.get() || stack.getItem() == PFItems.TELMASAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.HERRERASAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.TRILOPHOSAURUS_SPAWN_EGG.get()) {
+			if(InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 340) || InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 344)) {
+				tooltip.add(new TranslatableComponent("diurnal").withStyle(ChatFormatting.GOLD));
+			} else {
+				tooltip.add(new TranslatableComponent("egg.hold_shift").withStyle(ChatFormatting.GRAY));
+			}
+		}
+		if (stack.getItem() == PFItems.DAKOTARAPTOR_SPAWN_EGG.get() || stack.getItem() == PFItems.DIDELPHODON_SPAWN_EGG.get() || stack.getItem() == PFItems.CERATOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.VELOCIRAPTOR_SPAWN_EGG.get() || stack.getItem() == PFItems.KAYENTATHERIUM_SPAWN_EGG.get() || stack.getItem() == PFItems.HYPERODAPEDON_SPAWN_EGG.get()) {
+			if(InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 340) || InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 344)) {
+				tooltip.add(new TranslatableComponent("crepuscular").withStyle(ChatFormatting.LIGHT_PURPLE));
+			} else {
+				tooltip.add(new TranslatableComponent("egg.hold_shift").withStyle(ChatFormatting.GRAY));
+			}
+		}
+		if (stack.getItem() == PFItems.EILENODON_SPAWN_EGG.get() || stack.getItem() == PFItems.SCUTELLOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.PROTOCERATOPS_SPAWN_EGG.get() || stack.getItem() == PFItems.MEGAPNOSAURUS_SPAWN_EGG.get() || stack.getItem() == PFItems.COELOPHYSIS_SPAWN_EGG.get() || stack.getItem() == PFItems.TYPOTHORAX_SPAWN_EGG.get() || stack.getItem() == PFItems.EXAERETODON_SPAWN_EGG.get()) {
+			if(InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 340) || InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 344)) {
+				tooltip.add(new TranslatableComponent("nocturnal").withStyle(ChatFormatting.DARK_BLUE));
+			} else {
+				tooltip.add(new TranslatableComponent("egg.hold_shift").withStyle(ChatFormatting.GRAY));
 			}
 		}
     }

@@ -1,0 +1,7 @@
+{
+	"parent": "block/ladder",
+	"textures": {
+		"particle": "prehistoricfauna:blocks/sabalites_ladder",
+		"texture": "prehistoricfauna:blocks/sabalites_ladder"
+	}
+}

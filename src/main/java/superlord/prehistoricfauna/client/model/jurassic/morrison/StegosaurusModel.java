@@ -50,55 +50,71 @@ public class StegosaurusModel extends EntityModel<Stegosaurus> {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition RightArm = partdefinition.addOrReplaceChild("RightArm", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, -4.0F, -4.0F, 7.0F, 27.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(8.0F, 1.0F, -14.0F));
+		PartDefinition RightArm = partdefinition.addOrReplaceChild("RightArm", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(-2.0F, -4.0F, -4.0F, 7.0F, 27.0F, 8.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(8.0F, 1.0F, -14.0F));
 
-		PartDefinition RightThigh = partdefinition.addOrReplaceChild("RightThigh", CubeListBuilder.create().texOffs(0, 71).addBox(-3.0F, -3.0F, -7.5F, 9.0F, 21.0F, 15.0F, new CubeDeformation(0.0F)), PartPose.offset(8.0F, -8.0F, 15.0F));
+		PartDefinition RightThigh = partdefinition.addOrReplaceChild("RightThigh", CubeListBuilder.create().texOffs(0, 71).mirror().addBox(-3.0F, -3.0F, -7.0F, 9.0F, 21.0F, 15.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(8.0F, -8.0F, 13.0F));
 
-		PartDefinition RightLeg = RightThigh.addOrReplaceChild("RightLeg", CubeListBuilder.create().texOffs(0, 107).addBox(-3.0F, -1.0F, -4.0F, 6.0F, 15.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(1.5F, 17.0F, 2.0F));
+		PartDefinition RightLeg = RightThigh.addOrReplaceChild("RightLeg", CubeListBuilder.create().texOffs(0, 107).mirror().addBox(-3.0F, -1.0F, -4.0F, 6.0F, 15.0F, 8.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(1.5F, 17.0F, 2.0F));
 
-		PartDefinition RightFoot = RightLeg.addOrReplaceChild("RightFoot", CubeListBuilder.create().texOffs(0, 130).addBox(-3.5F, 0.0F, -6.0F, 7.0F, 3.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 12.0F, 0.1F));
+		PartDefinition RightFoot = RightLeg.addOrReplaceChild("RightFoot", CubeListBuilder.create().texOffs(0, 130).mirror().addBox(-3.5F, 0.0F, -6.0F, 7.0F, 3.0F, 10.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 12.0F, 0.1F));
 
-		PartDefinition LeftThigh = partdefinition.addOrReplaceChild("LeftThigh", CubeListBuilder.create().texOffs(0, 71).mirror().addBox(-7.0F, -3.0F, -7.5F, 9.0F, 21.0F, 15.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-7.0F, -8.0F, 15.0F));
+		PartDefinition LeftThigh = partdefinition.addOrReplaceChild("LeftThigh", CubeListBuilder.create().texOffs(0, 71).addBox(-7.0F, -3.0F, -7.0F, 9.0F, 21.0F, 15.0F, new CubeDeformation(0.0F)), PartPose.offset(-7.0F, -8.0F, 13.0F));
 
-		PartDefinition LeftLeg = LeftThigh.addOrReplaceChild("LeftLeg", CubeListBuilder.create().texOffs(0, 107).mirror().addBox(-3.0F, -1.0F, -4.0F, 6.0F, 15.0F, 8.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-2.5F, 17.0F, 2.0F));
+		PartDefinition LeftLeg = LeftThigh.addOrReplaceChild("LeftLeg", CubeListBuilder.create().texOffs(0, 107).addBox(-3.0F, -1.0F, -4.0F, 6.0F, 15.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.5F, 17.0F, 2.0F));
 
-		PartDefinition LeftFoot = LeftLeg.addOrReplaceChild("LeftFoot", CubeListBuilder.create().texOffs(0, 130).mirror().addBox(-3.5F, 0.0F, -6.0F, 7.0F, 3.0F, 10.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 12.0F, 0.1F));
+		PartDefinition LeftFoot = LeftLeg.addOrReplaceChild("LeftFoot", CubeListBuilder.create().texOffs(0, 130).addBox(-3.5F, 0.0F, -6.0F, 7.0F, 3.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 12.0F, 0.1F));
 
-		PartDefinition LeftArm = partdefinition.addOrReplaceChild("LeftArm", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(-4.0F, -4.0F, -4.0F, 7.0F, 27.0F, 8.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-9.0F, 1.0F, -14.0F));
+		PartDefinition LeftArm = partdefinition.addOrReplaceChild("LeftArm", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -4.0F, -4.0F, 7.0F, 27.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(-9.0F, 1.0F, -14.0F));
 
 		PartDefinition Body = partdefinition.addOrReplaceChild("Body", CubeListBuilder.create().texOffs(0, 0).addBox(-12.0F, 0.0F, 0.0F, 24.0F, 26.0F, 45.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -18.0F, -21.0F));
 
-		PartDefinition LeftBackPlates = Body.addOrReplaceChild("LeftBackPlates", CubeListBuilder.create().texOffs(157, 50).addBox(0.0F, 0.0F, 0.0F, 0.0F, 22.0F, 46.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.0F, -21.0F, 3.0F));
+		PartDefinition LeftBackPlates = Body.addOrReplaceChild("LeftBackPlates", CubeListBuilder.create().texOffs(153, 24).mirror().addBox(0.0F, -21.0F, -1.0F, 0.0F, 22.0F, 46.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-2.0F, 0.0F, 4.0F, 0.0F, 0.0F, -0.1396F));
 
-		PartDefinition RightBackPlates = Body.addOrReplaceChild("RightBackPlates", CubeListBuilder.create().texOffs(106, 77).mirror().addBox(0.0F, 0.0F, 0.0F, 0.0F, 21.0F, 42.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(2.0F, -21.0F, 0.0F));
+		PartDefinition InsideLeftBackPlates = LeftBackPlates.addOrReplaceChild("InsideLeftBackPlates", CubeListBuilder.create().texOffs(153, 47).mirror().addBox(0.0F, -21.0F, -1.0F, 0.0F, 22.0F, 46.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.1F, 0.0F, 0.0F));
 
-		PartDefinition Neck = Body.addOrReplaceChild("Neck", CubeListBuilder.create().texOffs(83, 73).addBox(-3.5F, -5.0F, -23.0F, 7.0F, 10.0F, 23.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 10.0F, 0.0F));
+		PartDefinition RightBackPlates = Body.addOrReplaceChild("RightBackPlates", CubeListBuilder.create().texOffs(153, 74).addBox(0.0F, -21.0F, 0.0F, 0.0F, 21.0F, 42.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.1396F));
+
+		PartDefinition InsideRightBackPlates = RightBackPlates.addOrReplaceChild("InsideRightBackPlates", CubeListBuilder.create().texOffs(153, 96).addBox(0.0F, -21.0F, 0.0F, 0.0F, 21.0F, 42.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.1F, 0.0F, 0.0F));
+
+		PartDefinition Neck = Body.addOrReplaceChild("Neck", CubeListBuilder.create().texOffs(83, 73).addBox(-3.5F, -5.0F, -23.0F, 7.0F, 10.0F, 23.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 12.0F, 0.0F));
 
 		PartDefinition Head = Neck.addOrReplaceChild("Head", CubeListBuilder.create().texOffs(94, 2).addBox(-3.5F, -3.5F, -5.0F, 7.0F, 7.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.5F, -23.0F));
 
 		PartDefinition Snout = Head.addOrReplaceChild("Snout", CubeListBuilder.create().texOffs(96, 16).addBox(-2.0F, -3.0F, -6.0F, 4.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.5F, -5.0F));
 
-		PartDefinition RightNeckPlates = Neck.addOrReplaceChild("RightNeckPlates", CubeListBuilder.create().texOffs(70, 101).mirror().addBox(2.0F, -10.0F, -18.0F, 0.0F, 10.0F, 18.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-1.0F, -5.0F, -3.0F));
+		PartDefinition RightNeckPlates = Neck.addOrReplaceChild("RightNeckPlates", CubeListBuilder.create().texOffs(137, -18).addBox(0.0F, -11.0F, -18.0F, 0.0F, 11.0F, 18.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, -5.0F, -3.0F, 0.0F, 0.0F, 0.0698F));
 
-		PartDefinition LeftNeckPlates = Neck.addOrReplaceChild("LeftNeckPlates", CubeListBuilder.create().texOffs(70, 113).addBox(-2.0F, 0.0F, 0.0F, 0.0F, 10.0F, 18.0F, new CubeDeformation(0.0F)), PartPose.offset(1.0F, -15.0F, -18.0F));
+		PartDefinition InsideRightNeckPlates = RightNeckPlates.addOrReplaceChild("InsideRightNeckPlates", CubeListBuilder.create().texOffs(137, -6).addBox(0.0F, -11.0F, -18.0F, 0.0F, 11.0F, 18.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.1F, 0.0F, 0.0F));
 
-		PartDefinition Tail1 = Body.addOrReplaceChild("Tail1", CubeListBuilder.create().texOffs(28, 73).addBox(-5.0F, -6.0F, 0.0F, 10.0F, 12.0F, 34.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 7.0F, 45.0F, -0.15F, 0.0F, 0.0F));
+		PartDefinition LeftNeckPlates = Neck.addOrReplaceChild("LeftNeckPlates", CubeListBuilder.create().texOffs(40, 120).mirror().addBox(0.0F, -10.0F, 0.0F, 0.0F, 10.0F, 18.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-1.0F, -5.0F, -18.0F, 0.0F, 0.0F, -0.0698F));
 
-		PartDefinition LeftTail1Plates = Tail1.addOrReplaceChild("LeftTail1Plates", CubeListBuilder.create().texOffs(138, 27).addBox(0.0F, 0.0F, 0.0F, 0.0F, 20.0F, 24.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.0F, -26.0F, 10.0F));
+		PartDefinition InsideLeftNeckPlates = LeftNeckPlates.addOrReplaceChild("InsideLeftNeckPlates", CubeListBuilder.create().texOffs(40, 131).mirror().addBox(0.0F, -10.0F, 0.0F, 0.0F, 10.0F, 18.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.1F, 0.0F, 0.0F));
 
-		PartDefinition RightTail1Plates = Tail1.addOrReplaceChild("RightTail1Plates", CubeListBuilder.create().texOffs(120, 38).mirror().addBox(0.0F, 0.0F, 0.0F, 0.0F, 19.0F, 33.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(2.0F, -25.0F, -3.0F));
+		PartDefinition Tail1 = Body.addOrReplaceChild("Tail1", CubeListBuilder.create().texOffs(28, 73).addBox(-5.0F, -6.0F, 0.0F, 10.0F, 12.0F, 34.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 6.5F, 44.0F, -0.0698F, 0.0F, 0.0F));
 
-		PartDefinition Tail2 = Tail1.addOrReplaceChild("Tail2", CubeListBuilder.create().texOffs(94, 7).addBox(-3.0F, -3.0F, 0.0F, 6.0F, 7.0F, 30.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.0F, 34.0F));
+		PartDefinition LeftTail1Plates = Tail1.addOrReplaceChild("LeftTail1Plates", CubeListBuilder.create().texOffs(172, 4).mirror().addBox(0.0F, -20.0F, 0.0F, 0.0F, 20.0F, 24.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-2.0F, -6.0F, 9.0F, 0.0F, 0.0F, -0.1396F));
 
-		PartDefinition LeftThagomizers = Tail2.addOrReplaceChild("LeftThagomizers", CubeListBuilder.create().texOffs(41, 119).mirror().addBox(-21.0F, 0.0F, 0.0F, 21.0F, 0.0F, 8.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-3.0F, -2.0F, 19.0F, 0.0F, 0.0F, 0.754F));
+		PartDefinition InsideLeftTail1Plates = LeftTail1Plates.addOrReplaceChild("InsideLeftTail1Plates", CubeListBuilder.create().texOffs(172, 25).mirror().addBox(0.0F, -20.0F, 0.0F, 0.0F, 20.0F, 24.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.1F, 0.0F, 0.0F));
 
-		PartDefinition RightTail2Plates = Tail2.addOrReplaceChild("RightTail2Plates", CubeListBuilder.create().texOffs(166, 13).mirror().addBox(0.0F, 0.0F, 0.0F, 0.0F, 13.0F, 25.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(1.0F, -16.0F, 0.0F));
+		PartDefinition RightTail1Plates = Tail1.addOrReplaceChild("RightTail1Plates", CubeListBuilder.create().texOffs(88, 87).addBox(0.0F, -19.0F, -5.0F, 0.0F, 19.0F, 33.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.0F, -6.0F, 1.0F, 0.0F, 0.0F, 0.1396F));
 
-		PartDefinition RightThagomizers = Tail2.addOrReplaceChild("RightThagomizers", CubeListBuilder.create().texOffs(41, 119).addBox(0.0F, 0.0F, 0.0F, 21.0F, 0.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.0F, -2.0F, 19.0F, 0.0F, 0.0F, -0.754F));
+		PartDefinition InsideRightTail1Plates = RightTail1Plates.addOrReplaceChild("InsideRightTail1Plates", CubeListBuilder.create().texOffs(85, 107).addBox(0.0F, -19.0F, 0.0F, 0.0F, 19.0F, 33.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.1F, 0.0F, 0.0F));
 
-		PartDefinition LeftTail2Plates = Tail2.addOrReplaceChild("LeftTail2Plates", CubeListBuilder.create().texOffs(166, 10).addBox(0.0F, 0.0F, 0.0F, 0.0F, 9.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.0F, -12.0F, 5.0F));
+		PartDefinition Tail2 = Tail1.addOrReplaceChild("Tail2", CubeListBuilder.create().texOffs(94, 7).addBox(-3.0F, -3.0F, 0.0F, 6.0F, 7.0F, 30.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -2.0F, 33.0F, -0.0698F, 0.0F, 0.0F));
 
-		return LayerDefinition.create(meshdefinition, 256, 148);
+		PartDefinition RightTail2Plates = Tail2.addOrReplaceChild("RightTail2Plates", CubeListBuilder.create().texOffs(174, -25).addBox(0.0F, -13.0F, 0.0F, 0.0F, 13.0F, 25.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, -3.0F, 0.0F, 0.0F, 0.0F, 0.0698F));
+
+		PartDefinition InsideRightTail2Plates = RightTail2Plates.addOrReplaceChild("InsideRightTail2Plates", CubeListBuilder.create().texOffs(174, -11).addBox(0.0F, -13.0F, 0.0F, 0.0F, 13.0F, 25.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.1F, 0.0F, 0.0F));
+
+		PartDefinition LeftTail2Plates = Tail2.addOrReplaceChild("LeftTail2Plates", CubeListBuilder.create().texOffs(139, 29).mirror().addBox(0.0F, -9.0F, 0.0F, 0.0F, 9.0F, 16.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-1.0F, -3.0F, 5.0F, 0.0F, 0.0F, -0.0698F));
+
+		PartDefinition InsideLeftTail2Plates = LeftTail2Plates.addOrReplaceChild("InsideLeftTail2Plates", CubeListBuilder.create().texOffs(139, 39).mirror().addBox(0.0F, -9.0F, 0.0F, 0.0F, 9.0F, 16.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.1F, 0.0F, 0.0F));
+
+		PartDefinition RightThagomizers = Tail2.addOrReplaceChild("RightThagomizers", CubeListBuilder.create().texOffs(39, 119).addBox(0.0F, 0.0F, 0.0F, 21.0F, 0.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.0F, -2.0F, 20.0F, 0.0F, 0.0F, -0.6632F));
+
+		PartDefinition LeftThagomizers = Tail2.addOrReplaceChild("LeftThagomizers", CubeListBuilder.create().texOffs(39, 119).mirror().addBox(-21.0F, 0.0F, 0.0F, 21.0F, 0.0F, 8.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-3.0F, -2.0F, 20.0F, 0.0F, 0.0F, 0.6632F));
+
+		return LayerDefinition.create(meshdefinition, 256, 160);
 	}
 
 	@Override
@@ -220,7 +236,7 @@ public class StegosaurusModel extends EntityModel<Stegosaurus> {
 		this.RightLeg.xRot = 0;
 		this.RightLeg.zRot = 0;
 		this.Tail1.y = 7.0F;
-		this.Tail1.z = 45;
+		this.Tail1.z = 44;
 		this.Tail1.xRot = 0;
 		this.Tail1.yRot = 0;
 		this.Tail1.zRot = 0;

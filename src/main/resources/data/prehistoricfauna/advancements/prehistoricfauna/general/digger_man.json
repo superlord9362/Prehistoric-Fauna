@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:cretaceous_fossil"
+            "items": [
+				"prehistoricfauna:cretaceous_fossil"
+          	]
           }
         ]
       }
@@ -31,7 +33,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:jurassic_fossil"
+            "items": [
+				"prehistoricfauna:jurassic_fossil"
+          	]
           }
         ]
       }
@@ -41,7 +45,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:triassic_fossil"
+            "items": [
+				"prehistoricfauna:triassic_fossil"
+          	]
           }
         ]
       }

@@ -13,7 +13,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:raw_small_ornithischian_meat"
+            "items": [
+				"prehistoricfauna:raw_small_ornithischian_meat"
+          	]
           }
         ]
       }

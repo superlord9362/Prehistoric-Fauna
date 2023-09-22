@@ -56,9 +56,14 @@ public class MelviusModel extends EntityModel<Melvius> {
 	@Override
 	public void setupAnim(Melvius entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		float f = 1.0F;
-        if (!entity.isInWater()) {
-           f = 1.5F;
-        }
+		if (!entity.isInWater()) {
+			f = 1.5F;
+			this.Body.y = 24;
+			this.Body.zRot = 1.6F;
+		} else {
+			this.Body.zRot = 0;
+			this.Body.y = 20;
+		}
         this.Body.xRot = headPitch * ((float)Math.PI / 180F);
         this.Body.yRot = netHeadYaw * ((float)Math.PI / 180F);
         this.Body_back.yRot = -f * 0.45F * Mth.sin(0.6F * ageInTicks);

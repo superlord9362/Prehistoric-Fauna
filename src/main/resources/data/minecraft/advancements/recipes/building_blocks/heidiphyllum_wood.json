@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:heidiphyllum_log"
+            "items": [
+				 "prehistoricfauna:heidiphyllum_log"
+          	]
           }
         ]
       }

@@ -52,9 +52,14 @@ public class PotamoceratodusModel extends EntityModel<Potamoceratodus> {
 	@Override
 	public void setupAnim(Potamoceratodus entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		float f = 1.0F;
-        if (!entity.isInWater()) {
-           f = 1.5F;
-        }
+		if (!entity.isInWater()) {
+			f = 1.5F;
+			this.Torso.y = 24;
+			this.Torso.zRot = 1.6F;
+		} else {
+			this.Torso.zRot = 0;
+			this.Torso.y = 20;
+		}
         this.Torso.xRot = headPitch * ((float)Math.PI / 180F);
         this.Torso.yRot = netHeadYaw * ((float)Math.PI / 180F);
         this.Hip.yRot = -f * 0.45F * Mth.sin(0.6F * ageInTicks);

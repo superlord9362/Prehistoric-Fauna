@@ -28,15 +28,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class TallHorsetailBlock extends DoublePlantBlock {
-	
+
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-	
+
 	public TallHorsetailBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(HALF,  DoubleBlockHalf.LOWER).setValue(WATERLOGGED, Boolean.valueOf(false)));
 	}
-	
+
 	public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingpos) {
 		DoubleBlockHalf doubleblockhalf = state.getValue(HALF);
 		if (state.getValue(WATERLOGGED)) {
@@ -48,7 +48,7 @@ public class TallHorsetailBlock extends DoublePlantBlock {
 			return Blocks.AIR.defaultBlockState();
 		}
 	}
-	
+
 	public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
 		if (state.getValue(HALF) != DoubleBlockHalf.UPPER) {
 			BlockState soil = world.getBlockState(pos.below());
@@ -62,7 +62,7 @@ public class TallHorsetailBlock extends DoublePlantBlock {
 			return blockstate.is(this) && blockstate.getValue(HALF) == DoubleBlockHalf.LOWER;
 		}
 	}
-	
+
 	@Nullable
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		BlockPos blockpos = context.getClickedPos();
@@ -70,7 +70,7 @@ public class TallHorsetailBlock extends DoublePlantBlock {
 		FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
 		return blockpos.getY() < 255 && context.getLevel().getBlockState(blockpos.above()).canBeReplaced(context) ? blockstate.setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER)) : super.getStateForPlacement(context);
 	}
-	
+
 	public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
 		if (world.isClientSide()) {
 			if (state.getValue(WATERLOGGED)) {
@@ -78,29 +78,37 @@ public class TallHorsetailBlock extends DoublePlantBlock {
 			}
 		}
 	}
-	
+
 	public void onBlockPlacedBy(Level world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
 		world.setBlock(pos.above(), this.defaultBlockState().setValue(HALF, DoubleBlockHalf.UPPER), 3);
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public FluidState getFluidState(BlockState state) {
 		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
 	}
-	
+
 	public void setPlacedBy(Level world, BlockPos pos, int flags) {
 		world.setBlock(pos,  this.defaultBlockState().setValue(HALF, DoubleBlockHalf.LOWER), flags);
 		world.setBlock(pos.above(), this.defaultBlockState().setValue(HALF, DoubleBlockHalf.UPPER), flags);
 	}
-	
-	public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
-		super.playerWillDestroy(world, pos, state, player);
+
+	public void playerWillDestroy(Level p_52878_, BlockPos p_52879_, BlockState p_52880_, Player p_52881_) {
+		if (!p_52878_.isClientSide) {
+			if (p_52881_.isCreative()) {
+				preventCreativeDropFromBottomPart(p_52878_, p_52879_, p_52880_, p_52881_);
+			} else {
+				dropResources(p_52880_, p_52878_, p_52879_, (BlockEntity)null, p_52881_, p_52881_.getMainHandItem());
+			}
+		}
+
+		super.playerWillDestroy(p_52878_, p_52879_, p_52880_, p_52881_);
 	}
-	
-	public void playerDestroy(Level world, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
-		super.playerDestroy(world, player, pos, Blocks.AIR.defaultBlockState(), blockEntity, stack);
+
+	public void playerDestroy(Level p_52865_, Player p_52866_, BlockPos p_52867_, BlockState p_52868_, @Nullable BlockEntity p_52869_, ItemStack p_52870_) {
+		super.playerDestroy(p_52865_, p_52866_, p_52867_, Blocks.AIR.defaultBlockState(), p_52869_, p_52870_);
 	}
-	
+
 	protected static void preventCreativeDropFromBottomPart(Level world, BlockPos pos, BlockState state, Player player) {
 		DoubleBlockHalf doubleblockhalf = state.getValue(HALF);
 		if (doubleblockhalf == DoubleBlockHalf.UPPER) {
@@ -113,15 +121,15 @@ public class TallHorsetailBlock extends DoublePlantBlock {
 			}
 		}
 	}
-	
+
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(HALF, WATERLOGGED);
 	}
-	
+
 	public Block.OffsetType getOffsetType() {
 		return Block.OffsetType.XZ;
 	}
-	
+
 	@OnlyIn(Dist.CLIENT)
 	public long getSeed(BlockState state, BlockPos pos) {
 		return Mth.getSeed(pos.getX(), pos.below(state.getValue(HALF) == DoubleBlockHalf.LOWER ? 0 : 1).getY(), pos.getZ());

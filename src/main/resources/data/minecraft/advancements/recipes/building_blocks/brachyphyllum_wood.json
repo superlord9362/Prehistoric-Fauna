@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:brachyphyllum_log"
+            "items": [ 
+				"prehistoricfauna:brachyphyllum_log"
+          	]
           }
         ]
       }

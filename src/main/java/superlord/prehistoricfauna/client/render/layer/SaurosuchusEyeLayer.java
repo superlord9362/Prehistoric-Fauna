@@ -3,6 +3,7 @@ package superlord.prehistoricfauna.client.render.layer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
@@ -15,12 +16,12 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.triassic.ischigualasto.SaurosuchusModel;
 import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Saurosuchus;
 
-public class SaurosuchusEyeLayer extends RenderLayer<Saurosuchus, SaurosuchusModel> {
+public class SaurosuchusEyeLayer extends RenderLayer<Saurosuchus, EntityModel<Saurosuchus>> {
 	
 	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/saurosuchus/saurosuchus_eyeglow.png"));
-	private final RenderLayerParent<Saurosuchus, SaurosuchusModel> saurosuchusRenderer;
+	private final RenderLayerParent<Saurosuchus, EntityModel<Saurosuchus>> saurosuchusRenderer;
 	
-	public SaurosuchusEyeLayer(RenderLayerParent<Saurosuchus, SaurosuchusModel> rendererIn) {
+	public SaurosuchusEyeLayer(RenderLayerParent<Saurosuchus, EntityModel<Saurosuchus>> rendererIn) {
 		super(rendererIn);
 		this.saurosuchusRenderer = rendererIn;
 	}

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:sandstone_slab"
+            "items": [
+				 "prehistoricfauna:sandstone_slab"
+          	]
           }
         ]
       }

@@ -2,22 +2,24 @@ package superlord.prehistoricfauna.common.blocks;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.LiquidBlockContainer;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
@@ -26,7 +28,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.IPlantable;
 import superlord.prehistoricfauna.init.PFBlocks;
 
-public class NeocalamitesBlock extends Block implements IPlantable, LiquidBlockContainer {
+public class NeocalamitesBlock extends Block implements IPlantable, SimpleWaterloggedBlock {
 	protected static final VoxelShape SHAPE_NORMAL = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 16.0D, 11.0D);
 	protected static final VoxelShape SHAPE_COLLISION = Block.box(6.5D, 0.0D, 6.5D, 9.5D, 16.0D, 9.5D);
 	public static final IntegerProperty PROPERTY_AGE = BlockStateProperties.AGE_1;
@@ -49,17 +51,8 @@ public class NeocalamitesBlock extends Block implements IPlantable, LiquidBlockC
 	}
 
 	@SuppressWarnings("deprecation")
-	public FluidState getValueFluidState(BlockState state) {
-		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
-	}
-
-	public boolean canPlaceLiquid(BlockGetter p_154505_, BlockPos p_154506_, BlockState p_154507_, Fluid p_154508_) {
-		return false;
-	}
-
-	@Override
-	public boolean placeLiquid(LevelAccessor p_154520_, BlockPos p_154521_, BlockState p_154522_, FluidState p_154523_) {
-		return false;
+	public FluidState getFluidState(BlockState p_56131_) {
+		return p_56131_.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(p_56131_);
 	}
 
 	@Override
@@ -76,7 +69,7 @@ public class NeocalamitesBlock extends Block implements IPlantable, LiquidBlockC
 	}
 
 	public void tick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
-		if (!state.canSurvive(world, pos)) {
+		if (!this.canSurvive(world, pos)) {
 			world.destroyBlock(pos, true);
 		}
 	}
@@ -88,33 +81,34 @@ public class NeocalamitesBlock extends Block implements IPlantable, LiquidBlockC
 			}
 			if (i < 3) {
 				int j = state.getValue(PROPERTY_AGE);
+				BlockState currentState = world.getBlockState(pos);
 				if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(world, pos, state, true)) {
 					if (state.getValue(PROPERTY_STAGE) == 0) {
 						if (j == 1) {
 							world.setBlockAndUpdate(pos.above(), PFBlocks.NEOCALAMITES_TOP.get().defaultBlockState().setValue(PROPERTY_STAGE, 1).setValue(PROPERTY_NEOCALAMITES_LEAVES, 1));
-							world.setBlockAndUpdate(pos, this.defaultBlockState().setValue(PROPERTY_STAGE, 1));
+							world.setBlockAndUpdate(pos, currentState.setValue(PROPERTY_STAGE, 1));
 						} else {
 							world.setBlock(pos, state.setValue(PROPERTY_AGE, Integer.valueOf(j + 1)), 4);
 						}
 					} else if (state.getValue(PROPERTY_STAGE) == 1) {
 						if (j == 1 && this.getNumNeocalamitesBlocksAbove(world, pos) == 0) {
 							world.setBlockAndUpdate(pos.above(), PFBlocks.NEOCALAMITES_TOP.get().defaultBlockState().setValue(PROPERTY_STAGE, 1).setValue(PROPERTY_NEOCALAMITES_LEAVES, 1));
-							world.setBlockAndUpdate(pos, this.defaultBlockState().setValue(PROPERTY_STAGE, 1));
+							world.setBlockAndUpdate(pos, currentState.setValue(PROPERTY_STAGE, 1));
 						} else if (j == 1 && this.getNumNeocalamitesBlocksAbove(world, pos) == 1) {
 							world.setBlockAndUpdate(pos.above(2), PFBlocks.NEOCALAMITES_TOP.get().defaultBlockState().setValue(PROPERTY_STAGE, 2).setValue(PROPERTY_NEOCALAMITES_LEAVES, 2));
 							world.setBlockAndUpdate(pos.above(), PFBlocks.NEOCALAMITES_TOP.get().defaultBlockState().setValue(PROPERTY_STAGE, 2).setValue(PROPERTY_NEOCALAMITES_LEAVES, 1));
-							world.setBlockAndUpdate(pos, this.defaultBlockState().setValue(PROPERTY_STAGE, 2));
+							world.setBlockAndUpdate(pos, currentState.setValue(PROPERTY_STAGE, 2));
 						} else {
 							world.setBlock(pos, state.setValue(PROPERTY_AGE, Integer.valueOf(j + 1)), 4);
 						}
 					} else if (state.getValue(PROPERTY_STAGE) == 2) {
 						if (j == 1 && this.getNumNeocalamitesBlocksAbove(world, pos) == 0) {
-							world.setBlockAndUpdate(pos, this.defaultBlockState().setValue(PROPERTY_STAGE, 2).setValue(PROPERTY_NEOCALAMITES_LEAVES, 0));
+							world.setBlockAndUpdate(pos, currentState.setValue(PROPERTY_STAGE, 2).setValue(PROPERTY_NEOCALAMITES_LEAVES, 0));
 							world.setBlockAndUpdate(pos.above(), PFBlocks.NEOCALAMITES_TOP.get().defaultBlockState().setValue(PROPERTY_STAGE, 2).setValue(PROPERTY_NEOCALAMITES_LEAVES, 1));
 						} else if (j == 1 && this.getNumNeocalamitesBlocksAbove(world, pos) == 1) {
 							world.setBlockAndUpdate(pos.above(2), PFBlocks.NEOCALAMITES_TOP.get().defaultBlockState().setValue(PROPERTY_STAGE, 2).setValue(PROPERTY_NEOCALAMITES_LEAVES, 2));
 							world.setBlockAndUpdate(pos.above(), PFBlocks.NEOCALAMITES_TOP.get().defaultBlockState().setValue(PROPERTY_STAGE, 2).setValue(PROPERTY_NEOCALAMITES_LEAVES, 1));
-							world.setBlockAndUpdate(pos, this.defaultBlockState().setValue(PROPERTY_STAGE, 2));
+							world.setBlockAndUpdate(pos, currentState.setValue(PROPERTY_STAGE, 2));
 						} else {
 							world.setBlock(pos, state.setValue(PROPERTY_AGE, Integer.valueOf(j + 1)), 4);
 						}
@@ -131,12 +125,19 @@ public class NeocalamitesBlock extends Block implements IPlantable, LiquidBlockC
 		return i;
 	}
 
-	public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+	public boolean canSurvive(LevelReader world, BlockPos pos) {
 		BlockState soil = world.getBlockState(pos.below());
 		BlockState waterState = world.getBlockState(pos);
 		BlockState aboveWaterState = world.getBlockState(pos.above());
 		if (soil.canSustainPlant(world, pos.below(), Direction.UP, this) || soil.getBlock() == Blocks.RED_SAND || soil.getBlock() == Blocks.SAND || waterState.getBlock() == Blocks.WATER && (aboveWaterState.getBlock() == Blocks.AIR || aboveWaterState.getBlock() == this)) return true;
 		else return false;
+	}
+
+	@Nullable
+	public BlockState getStateForPlacement(BlockPlaceContext p_56089_) {
+		FluidState fluidstate = p_56089_.getLevel().getFluidState(p_56089_.getClickedPos());
+		boolean flag = fluidstate.getType() == Fluids.WATER;
+		return super.getStateForPlacement(p_56089_).setValue(WATERLOGGED, Boolean.valueOf(flag));
 	}
 
 	@Override

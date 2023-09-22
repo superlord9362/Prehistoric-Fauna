@@ -24,7 +24,9 @@
       "conditions": {
         "items": [
 	{
-          "item": "prehistoricfauna:thescelosaurus_egg"
+          "items": [
+			  "prehistoricfauna:thescelosaurus_egg"
+        	]
         }
 ]
       }
@@ -34,7 +36,9 @@
       "conditions": {
         "items": [
 	{
-          "item": "prehistoricfauna:triceratops_egg"
+          "items": [
+			  "prehistoricfauna:triceratops_egg"
+        	]
         }
 ]
       }
@@ -44,7 +48,9 @@
       "conditions": {
         "items": [
 	{
-          "item": "prehistoricfauna:ankylosaurus_egg"
+          "items": [
+			  "prehistoricfauna:ankylosaurus_egg"
+        	]
         }
 ]
       }
@@ -54,7 +60,9 @@
       "conditions": {
         "items": [
 	{
-          "item": "prehistoricfauna:tyrannosaurus_egg"
+          "items": [
+			  "prehistoricfauna:tyrannosaurus_egg"
+        	]
         }
 ]
       }
@@ -64,7 +72,9 @@
       "conditions": {
         "items": [
 	{
-          "item": "prehistoricfauna:basilemys_egg"
+          "items": [
+			  "prehistoricfauna:basilemys_egg"
+        	]
         }
 ]
       }
@@ -74,7 +84,9 @@
       "conditions": {
         "items": [
 	{
-          "item": "prehistoricfauna:dakotaraptor_egg"
+          "items": [
+			  "prehistoricfauna:dakotaraptor_egg"
+        	]
         }
 ]
       }
@@ -84,7 +96,9 @@
       "conditions": {
         "items": [
 	{
-          "item": "prehistoricfauna:allosaurus_egg"
+          "items": [
+			  "prehistoricfauna:allosaurus_egg"
+        	]
         }
 ]
       }
@@ -94,7 +108,9 @@
       "conditions": {
         "items": [
 	{
-          "item": "prehistoricfauna:stegosaurus_egg"
+          "items": [
+			  "prehistoricfauna:stegosaurus_egg"
+        	]
         }
 ]
       }
@@ -104,7 +120,9 @@
       "conditions": {
         "items": [
 	{
-          "item": "prehistoricfauna:ceratosaurus_egg"
+          "items": [
+			  "prehistoricfauna:ceratosaurus_egg"
+        	]
         }
 ]
       }
@@ -114,7 +132,9 @@
       "conditions": {
         "items": [
 	{
-          "item": "prehistoricfauna:dryosaurus_egg"
+          "items": [
+			  "prehistoricfauna:dryosaurus_egg"
+        	]
         }
 ]
       }
@@ -124,7 +144,9 @@
       "conditions": {
         "items": [
 	{
-          "item": "prehistoricfauna:hesperornithoides_egg"
+          "items": [
+			  "prehistoricfauna:hesperornithoides_egg"
+        	]
         }
 ]
       }
@@ -134,7 +156,9 @@
       "conditions": {
         "items": [
 				{
-          			"item": "prehistoricfauna:eilenodon_egg"
+          			"items": [
+						  "prehistoricfauna:eilenodon_egg"
+        			]
         		}
 			]     
  		}
@@ -144,7 +168,9 @@
       "conditions": {
         "items": [
 	{
-          "item": "prehistoricfauna:camarasaurus_egg"
+          "items": [
+			  "prehistoricfauna:camarasaurus_egg"
+        	]
         }
 ]
       }
@@ -154,7 +180,9 @@
       "conditions": {
         "items": [
 	{
-          "item": "prehistoricfauna:exaeretodon_egg"
+          "items": [
+			  "prehistoricfauna:exaeretodon_egg"
+        	]
         }
 ]     
  }
@@ -164,7 +192,9 @@
       "conditions": {
         "items": [
 	{
-          "item": "prehistoricfauna:chromogisaurus_egg"
+          "items": [
+			  "prehistoricfauna:chromogisaurus_egg"
+        	]
         }
 ]     
  }
@@ -174,7 +204,9 @@
       "conditions": {
         "items": [
 {          
-"item": "prehistoricfauna:herrerasaurus_egg"
+"items": [
+	"prehistoricfauna:herrerasaurus_egg"
+ 	]
         }
 ]  
     }
@@ -184,7 +216,9 @@
       "conditions": {
         "items": [
 	{
-          "item": "prehistoricfauna:hyperodapedon_egg"
+          "items": [
+			  "prehistoricfauna:hyperodapedon_egg"
+	]
         }
 ]
       }
@@ -194,7 +228,9 @@
       "conditions": {
         "items": [
 	{
-          "item": "prehistoricfauna:sillosuchus_egg"
+          "items": [
+			  "prehistoricfauna:sillosuchus_egg"
+			]
         }
 ]
       }
@@ -204,7 +240,9 @@
       "conditions": {
         "items": [
 			{
-          "item": "prehistoricfauna:saurosuchus_egg"
+          "items": [
+			  "prehistoricfauna:saurosuchus_egg"
+        	]
         }
 	]
       }
@@ -214,7 +252,9 @@
       "conditions": {
         "items": [
 			{
-         	 	"item": "prehistoricfauna:ischigualastia_egg"
+         	 	"items": [
+					  "prehistoricfauna:ischigualastia_egg"
+        		]
         	}
 		]
       }
@@ -224,7 +264,9 @@
       "conditions": {
 			"items": [
 				{
-          			"item": "prehistoricfauna:velociraptor_egg"
+          			"items": [
+						  "prehistoricfauna:velociraptor_egg"
+        			]
         		}
 			]     
 		 }
@@ -234,7 +276,9 @@
       "conditions": {
 			"items": [
 				{
-          			"item": "prehistoricfauna:telmasaurus_egg"
+          			"items": [
+						  "prehistoricfauna:telmasaurus_egg"
+        			]
         		}
 			]     
 		 }
@@ -244,7 +288,9 @@
       "conditions": {
 			"items": [
 				{
-          			"item": "prehistoricfauna:aepyornithomimus_egg"
+          			"items": [
+						  "prehistoricfauna:aepyornithomimus_egg"
+        			]
         		}
 			]     
 		 }
@@ -254,7 +300,9 @@
       "conditions": {
 			"items": [
 				{
-          			"item": "prehistoricfauna:citipati_egg"
+          			"items": [
+						  "prehistoricfauna:citipati_egg"
+        			]
         		}
 			]     
 		 }
@@ -264,7 +312,9 @@
       "conditions": {
 			"items": [
 				{
-          			"item": "prehistoricfauna:protoceratops_egg"
+          			"items": [
+						  "prehistoricfauna:protoceratops_egg"
+        			]
         		}
 			]     
 		 }
@@ -274,7 +324,9 @@
       "conditions": {
 			"items": [
 				{
-          			"item": "prehistoricfauna:pinacosaurus_egg"
+          			"items": [
+						  "prehistoricfauna:pinacosaurus_egg"
+        			]
         		}
 			]     
 		 }
@@ -284,7 +336,9 @@
       "conditions": {
 			"items": [
 				{
-          			"item": "prehistoricfauna:plesiohadros_egg"
+          			"items": [
+						  "prehistoricfauna:plesiohadros_egg"
+        			]
         		}
 			]     
 		 }
@@ -294,7 +348,9 @@
       "conditions": {
 			"items": [
 				{
-          			"item": "prehistoricfauna:calsoyasuchus_egg"
+          			"items": [
+						  "prehistoricfauna:calsoyasuchus_egg"
+        			]
         		}
 			]     
 		 }
@@ -304,7 +360,9 @@
       "conditions": {
 			"items": [
 				{
-          			"item": "prehistoricfauna:dilophosaurus_egg"
+          			"items": [
+						  "prehistoricfauna:dilophosaurus_egg"
+        			]
         		}
 			]     
 		 }
@@ -314,7 +372,9 @@
       "conditions": {
 			"items": [
 				{
-          			"item": "prehistoricfauna:kayentatherium_egg"
+          			"items": [
+						  "prehistoricfauna:kayentatherium_egg"
+        			]
         		}
 			]     
 		 }
@@ -324,7 +384,9 @@
       "conditions": {
 			"items": [
 				{
-          			"item": "prehistoricfauna:megapnosaurus_egg"
+          			"items": [
+						  "prehistoricfauna:megapnosaurus_egg"
+        			]
         		}
 			]     
 		 }
@@ -334,7 +396,9 @@
       "conditions": {
 			"items": [
 				{
-          			"item": "prehistoricfauna:sarahsaurus_egg"
+          			"items": [
+						  "prehistoricfauna:sarahsaurus_egg"
+        			]
         		}
 			]     
 		 }
@@ -344,7 +408,9 @@
       "conditions": {
 			"items": [
 				{
-          			"item": "prehistoricfauna:scelidosaurus_egg"
+          			"items": [
+						  "prehistoricfauna:scelidosaurus_egg"
+        			]
         		}
 			]     
 		 }
@@ -354,7 +420,9 @@
       "conditions": {
 			"items": [
 				{
-          			"item": "prehistoricfauna:scutellosaurus_egg"
+          			"items": [
+						  "prehistoricfauna:scutellosaurus_egg"
+        			]
         		}
 			]     
 		 }
@@ -364,7 +432,9 @@
       "conditions": {
 			"items": [
 				{
-          			"item": "prehistoricfauna:coelophysis_egg"
+          			"items": [
+						  "prehistoricfauna:coelophysis_egg"
+        			]
         		}
 			]     
 		 }
@@ -374,7 +444,9 @@
       "conditions": {
 			"items": [
 				{
-          			"item": "prehistoricfauna:desmatosuchus_egg"
+          			"items": [
+						  "prehistoricfauna:desmatosuchus_egg"
+        			]
         		}
 			]     
 		 }
@@ -384,7 +456,7 @@
       "conditions": {
 			"items": [
 				{
-          			"item": "prehistoricfauna:placerias_egg"
+          			"items": "prehistoricfauna:placerias_egg"
         		}
 			]     
 		 }
@@ -394,7 +466,9 @@
       "conditions": {
 			"items": [
 				{
-          			"item": "prehistoricfauna:poposaurus_egg"
+          			"items": [
+						  "prehistoricfauna:poposaurus_egg"
+        			]
         		}
 			]     
 		 }
@@ -404,7 +478,9 @@
       "conditions": {
 			"items": [
 				{
-          			"item": "prehistoricfauna:postosuchus_egg"
+          			"items": [
+						  "prehistoricfauna:postosuchus_egg"
+        			]
         		}
 			]     
 		 }
@@ -414,7 +490,9 @@
       "conditions": {
 			"items": [
 				{
-          			"item": "prehistoricfauna:trilophosaurus_egg"
+          			"items": [
+						  "prehistoricfauna:trilophosaurus_egg"
+        			]
         		}
 			]     
 		 }
@@ -424,7 +502,9 @@
       "conditions": {
 			"items": [
 				{
-          			"item": "prehistoricfauna:typothorax_egg"
+          			"items": [
+						  "prehistoricfauna:typothorax_egg"
+        			]
         		}
 			]     
 		 }

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:schilderia_log"
+            "items": [
+				"prehistoricfauna:schilderia_log"
+          	]
           }
         ]
       }

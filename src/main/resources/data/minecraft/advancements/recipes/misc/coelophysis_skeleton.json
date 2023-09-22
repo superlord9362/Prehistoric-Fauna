@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:fossilized_bones"
+            "items": [
+				"prehistoricfauna:fossilized_bones"
+          	]
           }
         ]
       }

@@ -6,7 +6,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.player.Player;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
-import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Pinacosaurus;
 
 public class ProtectBabyGoal extends NearestAttackableTargetGoal<Player> {
 	DinosaurEntity dinosaur;
@@ -25,9 +24,11 @@ public class ProtectBabyGoal extends NearestAttackableTargetGoal<Player> {
 			return false;
 		} else {
 			if (super.canUse()) {
-				for(Pinacosaurus pinacosaurus : dinosaur.level.getEntitiesOfClass(Pinacosaurus.class, dinosaur.getBoundingBox().inflate(8.0D, 4.0D, 8.0D))) {
-					if (pinacosaurus.isBaby()) {
-						return true;
+				for(DinosaurEntity pinacosaurus : dinosaur.level.getEntitiesOfClass(DinosaurEntity.class, dinosaur.getBoundingBox().inflate(8.0D, 4.0D, 8.0D))) {
+					if (!dinosaur.trusts(this.target.getUUID()) && (dinosaur.isProtective() || dinosaur.isTerritorial() || dinosaur.isOpportunist() || dinosaur.isAggressive()) && !dinosaur.isTame()) {
+						if (pinacosaurus.isBaby()) {
+							return true;
+						}	
 					}
 				}
 			}

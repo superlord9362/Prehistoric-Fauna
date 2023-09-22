@@ -1,14 +1,17 @@
 package superlord.prehistoricfauna.common.entity.goal;
 
+import java.util.List;
+
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class CrepuscularSleepGoal extends Goal {
-	
+
 	public DinosaurEntity entity;
-	
+
 	public CrepuscularSleepGoal(DinosaurEntity sleeper) {
 		super();
 		this.entity = sleeper;
@@ -17,16 +20,41 @@ public class CrepuscularSleepGoal extends Goal {
 	@Override
 	public boolean canUse() {
 		Level level = entity.level;
-		if (PrehistoricFaunaConfig.sleeping = true && (level.getDayTime() % 24000 >= 2000 && level.getDayTime() % 24000 <= 9000 || level.getDayTime() % 24000 >= 14000 && level.getDayTime() % 24000 <= 21000) && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isTame() && !entity.isInWater() && !entity.isInLava()) {
-			return true;
-		} else {
+		List<? extends Player> list = level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D));
+		if (!list.isEmpty()) {
+			for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
+				if (player.isShiftKeyDown()) {
+					if (PrehistoricFaunaConfig.sleeping = true && (level.getDayTime() % 24000 >= 2000 && level.getDayTime() % 24000 <= 9000 || level.getDayTime() % 24000 >= 14000 && level.getDayTime() % 24000 <= 21000) && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isTame() && !entity.isInWater() && !entity.isInLava() && !PrehistoricFaunaConfig.unscheduledSleeping) {
+						return true;
+					} else {
+						return false;
+					}
+				} else {
+					return false;
+				}
+			}
 			return false;
+		} else {
+			if (PrehistoricFaunaConfig.sleeping = true && (level.getDayTime() % 24000 >= 2000 && level.getDayTime() % 24000 <= 9000 || level.getDayTime() % 24000 >= 14000 && level.getDayTime() % 24000 <= 21000) && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isTame() && !entity.isInWater() && !entity.isInLava() && !PrehistoricFaunaConfig.unscheduledSleeping) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 	}
-	
+
 	@Override
 	public boolean canContinueToUse() {
 		Level level = entity.level;
+		for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
+			if (player.isShiftKeyDown()) {
+				return true;
+			} else {
+				stop();
+				entity.setAsleep(false);
+				return false;
+			}
+		}
 		if (level.getDayTime() % 24000 <= 2000 || level.getDayTime() % 24000 >= 9000 && level.getDayTime() % 24000 <= 14000 || level.getDayTime() % 24000 >= 21000 && level.getDayTime() % 24000 <= 24000) {
 			stop();
 			entity.setAsleep(false);
@@ -53,10 +81,16 @@ public class CrepuscularSleepGoal extends Goal {
 			return false;
 		} else return true;
 	}
-	
+
 	public void tick() {
 		super.tick();
 		Level level = entity.level;
+		for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
+			if (!player.isShiftKeyDown()) {
+				stop();
+				entity.setAsleep(false);
+			}
+		}
 		if (level.getDayTime() % 24000 <= 2000 || level.getDayTime() % 24000 >= 9000 && level.getDayTime() % 24000 <= 14000 || level.getDayTime() % 24000 >= 21000 && level.getDayTime() % 24000 <= 24000) {
 			stop();
 			entity.setAsleep(false);
@@ -79,7 +113,7 @@ public class CrepuscularSleepGoal extends Goal {
 			entity.setAsleep(true);
 		}
 	}
-	
+
 	@Override
 	public void start() {
 		entity.setAsleep(true);
@@ -88,10 +122,10 @@ public class CrepuscularSleepGoal extends Goal {
 		entity.zza = 0.0F;
 		entity.getNavigation().stop();
 	}
-	
+
 	@Override
 	public void stop() {
 		entity.setAsleep(false);
 	}
-	
+
 }

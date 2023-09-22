@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:ankylosaurus_helmet"
+            "items": [
+				"prehistoricfauna:ankylosaurus_helmet"
+          	]
           }
         ]
       }

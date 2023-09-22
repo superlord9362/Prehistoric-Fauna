@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:araucaria_planks"
+            "items": [
+				"prehistoricfauna:araucaria_planks"
+          	]
           }
         ]
       }

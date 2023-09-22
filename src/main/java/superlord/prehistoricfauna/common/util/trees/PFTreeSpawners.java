@@ -86,19 +86,96 @@ public class PFTreeSpawners {
 		}
 	}
 	
-	public static class Ginkgo extends TreeSpawner {
+	public static class Dryophyllum extends TreeSpawner {
 		@Nullable
 		public ConfiguredFeature<?, ?> getTreeFeature(Random random) {
-			int number = random.nextInt(4);
+			int number = random.nextInt(8);
+			if (number == 0) {
+				return PFConfiguredFeatures.DRYOPHYLLUM_TREE_1.get();
+			} else if (number == 1) {
+				return PFConfiguredFeatures.DRYOPHYLLUM_TREE_2.get();
+			} else if (number == 2) {
+				return PFConfiguredFeatures.DRYOPHYLLUM_TREE_3.get();
+			} else if (number == 3) {
+				return PFConfiguredFeatures.DRYOPHYLLUM_TREE_4.get();
+			} else if (number == 4) {
+				return PFConfiguredFeatures.DRYOPHYLLUM_TREE_5.get();
+			} else if (number == 5) {
+				return PFConfiguredFeatures.DRYOPHYLLUM_TREE_6.get();
+			} else if (number == 6) {
+				return PFConfiguredFeatures.DRYOPHYLLUM_TREE_7.get();
+			} else {
+				return PFConfiguredFeatures.DRYOPHYLLUM_TREE_8.get();
+			}
+		}
+	}
+	
+	public static class Ginkgo extends HugeTreeSpawner {
+		@Nullable
+		public ConfiguredFeature<?, ?> getTreeFeature(Random random) {
+			int number = random.nextInt(8);
 			if (number == 0) {
 				return PFConfiguredFeatures.GINKGO_TREE_1.get();
 			} else if (number == 1) {
 				return PFConfiguredFeatures.GINKGO_TREE_2.get();
 			} else if (number == 2) {
 				return PFConfiguredFeatures.GINKGO_TREE_3.get();
-			} else {
+			} else if (number == 3) {
 				return PFConfiguredFeatures.GINKGO_TREE_4.get();
+			} else if (number == 4) {
+				return PFConfiguredFeatures.YELLOW_GINKGO_TREE_1.get();
+			} else if (number == 5) {
+				return PFConfiguredFeatures.YELLOW_GINKGO_TREE_2.get();
+			} else if (number == 6) {
+				return PFConfiguredFeatures.YELLOW_GINKGO_TREE_3.get();
+			} else {
+				return PFConfiguredFeatures.YELLOW_GINKGO_TREE_4.get();
 			}
+		}
+		
+		@Override
+		protected ConfiguredFeature<?, ?> getBigTreeFeature(Random random) {
+			int number = random.nextInt(8);
+			if (number == 0) {
+				return PFConfiguredFeatures.BIG_GINKGO_TREE_1.get();
+			} else if (number == 1) {
+				return PFConfiguredFeatures.BIG_GINKGO_TREE_2.get();
+			} else if (number == 2) {
+				return PFConfiguredFeatures.BIG_GINKGO_TREE_3.get();
+			} else if (number == 3) {
+				return PFConfiguredFeatures.BIG_GINKGO_TREE_4.get();
+			} else if (number == 4) {
+				return PFConfiguredFeatures.YELLOW_BIG_GINKGO_TREE_1.get();
+			} else if (number == 5) {
+				return PFConfiguredFeatures.YELLOW_BIG_GINKGO_TREE_2.get();
+			} else if (number == 6) {
+				return PFConfiguredFeatures.YELLOW_BIG_GINKGO_TREE_3.get();
+			} else {
+				return PFConfiguredFeatures.YELLOW_BIG_GINKGO_TREE_4.get();
+			}
+		}
+	}
+	
+	public static class Taxodium extends HugeTreeSpawner {
+		@Nullable
+		public ConfiguredFeature<?, ?> getTreeFeature(Random random) {
+			int number = random.nextInt(5);
+			if (number == 0) {
+				return PFConfiguredFeatures.TAXODIUM_TREE_1.get();
+			} else if (number == 1) {
+				return PFConfiguredFeatures.TAXODIUM_TREE_2.get();
+			} else if (number == 2) {
+				return PFConfiguredFeatures.TAXODIUM_TREE_3.get();
+			} else if (number == 3) {
+				return PFConfiguredFeatures.TAXODIUM_TREE_4.get();
+			} else {
+				return PFConfiguredFeatures.TAXODIUM_TREE_5.get();
+			}
+		}
+		
+		@Override
+		protected ConfiguredFeature<?, ?> getBigTreeFeature(Random random) {
+			return PFConfiguredFeatures.TAXODIUM_TREE_6.get();
 		}
 	}
 	

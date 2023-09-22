@@ -107,6 +107,12 @@ public class PFBoat extends Boat {
 			return PFItems.WOODWORTHIA_BOAT.get();
 		case SCHILDERIA:
 			return PFItems.SCHILDERIA_BOAT.get();
+		case DRYOPHYLLUM:
+			return PFItems.DRYOPHYLLUM_BOAT.get();
+		case TAXODIUM:
+			return PFItems.TAXODIUM_BOAT.get();
+		case SABALITES:
+			return PFItems.SABALITES_BOAT.get();
 		}
 	}
 	
@@ -123,7 +129,10 @@ public class PFBoat extends Boat {
 		BRACHYPHYLLUM(PFBlocks.BRACHYPHYLLUM_PLANKS.get(), "brachyphyllum"),
 		AGATHOXYLON(PFBlocks.AGATHOXYLON_PLANKS.get(), "agathoxylon"),
 		WOODWORTHIA(PFBlocks.WOODWORTHIA_PLANKS.get(), "woodworthia"),
-		SCHILDERIA(PFBlocks.SCHILDERIA_PLANKS.get(), "schilderia");
+		SCHILDERIA(PFBlocks.SCHILDERIA_PLANKS.get(), "schilderia"),
+		DRYOPHYLLUM(PFBlocks.DRYOPHYLLUM_PLANKS.get(), "dryophyllum"),
+		TAXODIUM(PFBlocks.TAXODIUM_PLANKS.get(), "taxodium"),
+		SABALITES(PFBlocks.SABALITES_PLANKS.get(), "sabalites");
 		
 		private final String name;
 		private final Block planks;

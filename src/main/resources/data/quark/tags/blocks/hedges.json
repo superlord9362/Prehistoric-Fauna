@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "prehistoricfauna:araucaria_hedge",
+    "prehistoricfauna:metasequoia_hedge",
+    "prehistoricfauna:protopiceoxylon_hedge",
+    "prehistoricfauna:protojuniperoxylon_hedge",
+    "prehistoricfauna:agathoxylon_hedge",
+    "prehistoricfauna:heidiphyllum_hedge",
+    "prehistoricfauna:liriodendrites_hedge",
+    "prehistoricfauna:ginkgo_hedge",
+    "prehistoricfauna:yellow_ginkgo_hedge",
+    "prehistoricfauna:trochodendroides_hedge",
+    "prehistoricfauna:woodworthia_hedge",
+    "prehistoricfauna:schilderia_hedge",
+    "prehistoricfauna:brachyphyllum_hedge",
+    "prehistoricfauna:dryophyllum_hedge",
+    "prehistoricfauna:taxodium_hedge"
+  ]
+}

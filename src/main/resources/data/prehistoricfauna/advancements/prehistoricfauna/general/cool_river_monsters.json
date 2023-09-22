@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:myledaphus_bucket"
+            "items": [
+				"prehistoricfauna:myledaphus_bucket"
+          	]
           }
         ]
       }
@@ -31,7 +33,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:gar_bucket"
+            "items": [
+				"prehistoricfauna:gar_bucket"
+          	]
           }
         ]
       }
@@ -41,7 +45,9 @@
 		"conditions": {
 			"items": [
 				{
-					"item": "prehistoricfauna:cyclurus_bucket"
+					"items": [
+						"prehistoricfauna:cyclurus_bucket"
+					]
 				}
 			]
 		}
@@ -51,7 +57,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:ceratodus_bucket"
+            "items": [
+				"prehistoricfauna:ceratodus_bucket"
+          	]
           }
         ]
       }
@@ -61,7 +69,9 @@
       "conditions": {
         "items": [
           {
-            "item": "prehistoricfauna:potamoceratodus_bucket"
+            "items": [
+				"prehistoricfauna:potamoceratodus_bucket"
+          	]
           }
         ]
       }
@@ -71,7 +81,9 @@
 		"conditions": {
 			"items": [
 				{
-					"item": "prehistoricfauna:saurichthys_bucket"
+					"items": [
+						"prehistoricfauna:saurichthys_bucket"
+					]
 				}
 			]
 		}
@@ -81,7 +93,9 @@
 		"conditions": {
 			"items": [
 				{
-					"item": "prehistoricfauna:chinlea_bucket"
+					"items": [
+						"prehistoricfauna:chinlea_bucket"
+					]
 				}
 			]
 		}
@@ -91,7 +105,9 @@
 		"conditions": {
 			"items": [
 				{
-					"item": "prehistoricfauna:arganodus_bucket"
+					"items": [
+						"prehistoricfauna:arganodus_bucket"
+					]
 				}
 			]
 		}
@@ -101,7 +117,9 @@
 		"conditions": {
 			"items": [
 				{
-					"item": "prehistoricfauna:mooreodontus_bucket"
+					"items": [
+						"prehistoricfauna:mooreodontus_bucket"
+					]
 				}
 			]
 		}

@@ -1,0 +1,10 @@
+{
+    "parent": "block/orientable_with_bottom",
+    "textures": {
+        "particle": "prehistoricfauna:blocks/dryophyllum_beehive_side",
+        "bottom": "prehistoricfauna:blocks/dryophyllum_beehive_end",
+        "top": "prehistoricfauna:blocks/dryophyllum_beehive_end",
+        "front": "prehistoricfauna:blocks/dryophyllum_beehive_front_honey",
+        "side": "prehistoricfauna:blocks/dryophyllum_beehive_side"
+    }
+}

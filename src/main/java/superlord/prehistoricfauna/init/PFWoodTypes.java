@@ -20,5 +20,8 @@ public class PFWoodTypes {
 	public static WoodType WOODWORTHIA = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "woodworthia").toString());
 	public static WoodType SCHILDERIA = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "schilderia").toString());
 	public static WoodType NEOCALAMITES = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "neocalamites").toString());
-
+	public static WoodType DRYOPHYLLUM = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "dryophyllum").toString());
+	public static WoodType TAXODIUM = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "taxodium").toString());
+	public static WoodType SABALITES = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "sabalites").toString());
+	
 }
