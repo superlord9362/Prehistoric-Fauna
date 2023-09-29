@@ -1,0 +1,9 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:platanites_log",
+		"prehistoricfauna:stripped_platanites_log",
+		"prehistoricfauna:platanites_wood",
+		"prehistoricfauna:stripped_platanites_wood"
+	]
+}

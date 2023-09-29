@@ -1,48 +1,87 @@
 {
-  "type": "minecraft:block",
-  "pools": [
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:alternatives",
-          "children": [
-            {
-              "type": "minecraft:item",
-              "conditions": [
-                {
-                  "condition": "minecraft:match_tool",
-                  "predicate": {
-                    "enchantments": [
-                      {
-                        "enchantment": "minecraft:silk_touch",
-                        "levels": {
-                          "min": 1
-                        }
-                      }
-                    ]
-                  }
-                }
-              ],
-              "name": "prehistoricfauna:siltstone_fossil"
-            },
-            {
-              "type": "minecraft:item",
-              "functions": [
-                {
-                  "function": "minecraft:apply_bonus",
-                  "enchantment": "minecraft:fortune",
-                  "formula": "minecraft:ore_drops"
-                },
-                {
-                  "function": "minecraft:explosion_decay"
-                }
-              ],
-              "name": "prehistoricfauna:jurassic_fossil"
-            }
-          ]
-        }
-      ]
-    }
-  ]
+	"type": "minecraft:block",
+	"pools": [
+		{
+			"rolls": 1.0,
+			"bonus_rolls": 0.0,
+			"entries": [
+				{
+					"type": "minecraft:alternatives",
+					"children": [
+						{
+							"type": "minecraft:item",
+							"conditions": [
+								{
+									"condition": "minecraft:match_tool",
+									"predicate": {
+										"enchantments": [
+											{
+												"enchantment": "minecraft:silk_touch",
+												"levels": {
+													"min": 1 
+												}
+											}
+										]
+									}
+								}
+							],
+							"name": "prehistoricfauna:siltstone_fossil"
+						},
+						{
+							"type": "minecraft:item",
+							"name": "prehistoricfauna:siltstone"
+						}	
+					]
+				}
+			]
+		},
+		{
+			"rolls": 1.0,
+			"bonus_rolls": 0.0,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"conditions": [
+						{
+							"condition": "minecraft:match_tool",
+								"predicate": {
+									"items": [
+										"prehistoricfauna:geological_hammer"
+								]
+							}
+						}
+					],
+					"name": "prehistoricfauna:jurassic_fossil"
+				}
+			]
+		},
+		{
+			"rolls": 1.0,
+			"bonus_rolls": 0.0,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"functions": [
+						{
+							"function": "minecraft:apply_bonus",
+                  			"enchantment": "minecraft:fortune",
+                  			"formula": "minecraft:ore_drops"
+						}
+					],
+					"conditions": [
+						{
+							"condition": "minecraft:random_chance",
+							"chance": 0.4
+						}
+					],
+					"name": "prehistoricfauna:jurassic_fossil"
+				}
+			]
+		}
+	],
+	"functions": [
+		{
+			"function": "minecraft:explosion_decay"
+		}
+	]
 }

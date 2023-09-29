@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:platanites_planks"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:platanites_button"
+  }
+}

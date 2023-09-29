@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"##",
+		"##"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:siltstone_regolith"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:siltstone",
+		"count": 4
+	}
+}

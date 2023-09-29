@@ -113,6 +113,8 @@ public class PFBoat extends Boat {
 			return PFItems.TAXODIUM_BOAT.get();
 		case SABALITES:
 			return PFItems.SABALITES_BOAT.get();
+		case PLATANITES:
+			return PFItems.PLATANITES_BOAT.get();
 		}
 	}
 	
@@ -132,7 +134,8 @@ public class PFBoat extends Boat {
 		SCHILDERIA(PFBlocks.SCHILDERIA_PLANKS.get(), "schilderia"),
 		DRYOPHYLLUM(PFBlocks.DRYOPHYLLUM_PLANKS.get(), "dryophyllum"),
 		TAXODIUM(PFBlocks.TAXODIUM_PLANKS.get(), "taxodium"),
-		SABALITES(PFBlocks.SABALITES_PLANKS.get(), "sabalites");
+		SABALITES(PFBlocks.SABALITES_PLANKS.get(), "sabalites"),
+		PLATANITES(PFBlocks.PLATANITES_PLANKS.get(), "platanites");
 		
 		private final String name;
 		private final Block planks;

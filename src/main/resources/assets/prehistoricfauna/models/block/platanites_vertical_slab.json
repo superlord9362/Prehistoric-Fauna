@@ -1,0 +1,8 @@
+{
+    "parent": "prehistoricfauna:block/vertical_slab",
+    "textures": {
+        "side": "prehistoricfauna:blocks/platanites_planks",
+        "top": "prehistoricfauna:blocks/platanites_planks",
+        "bottom": "prehistoricfauna:blocks/platanites_planks"
+    }
+}

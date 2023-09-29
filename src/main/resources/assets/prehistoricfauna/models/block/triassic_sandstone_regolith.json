@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "bottom": "prehistoricfauna:blocks/triassic_sandstone_regolith",
+        "top": "prehistoricfauna:blocks/triassic_sandstone_regolith",
+        "side": "prehistoricfauna:blocks/triassic_sandstone_regolith"
+    }
+}

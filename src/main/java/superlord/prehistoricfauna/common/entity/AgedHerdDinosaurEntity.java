@@ -34,7 +34,7 @@ public class AgedHerdDinosaurEntity extends DinosaurEntity {
 	}
 
 	public boolean hasGroupLeader() {
-		return this.groupLeader != null && this.groupLeader.isAlive();
+		return this.groupLeader != null && this.groupLeader.isAlive() && !groupLeader.isBaby();
 	}
 
 	public AgedHerdDinosaurEntity startFollowing(AgedHerdDinosaurEntity groupLeaderIn) {
@@ -93,9 +93,7 @@ public class AgedHerdDinosaurEntity extends DinosaurEntity {
 		p_212810_1_.limit((long)(this.getMaxGroupSize() - this.groupSize)).filter((p_212801_1_) -> {
 			return p_212801_1_ != this;
 		}).forEach((p_212804_1_) -> {
-			if (!p_212804_1_.isBaby() && !this.groupLeader.isBaby()) {
-				p_212804_1_.startFollowing(this);
-			} else if (p_212804_1_.isBaby() && this.groupLeader.isBaby()) {
+			if (!p_212804_1_.isBaby()) {
 				p_212804_1_.startFollowing(this);
 			}
 		});

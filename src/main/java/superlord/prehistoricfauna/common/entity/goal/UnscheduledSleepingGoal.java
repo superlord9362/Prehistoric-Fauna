@@ -17,16 +17,18 @@ public class UnscheduledSleepingGoal extends Goal {
 
 	@Override
 	public boolean canUse() {
-		for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
-			if (!player.isShiftKeyDown()) {
+		if (PrehistoricFaunaConfig.unscheduledSleeping) {
+			for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
+				if (!player.isShiftKeyDown()) {
+					return false;
+				} else return (PrehistoricFaunaConfig.unscheduledSleeping = true && entity.getRandom().nextInt(1000) == 0 && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isInWater() && !entity.isInLava());
+			}
+			if (PrehistoricFaunaConfig.unscheduledSleeping = true && entity.getRandom().nextInt(1000) == 0 && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isInWater() && !entity.isInLava()) {
+				return true;
+			} else {
 				return false;
-			} else return (PrehistoricFaunaConfig.unscheduledSleeping = true && entity.getRandom().nextInt(1000) == 0 && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isInWater() && !entity.isInLava());
-		}
-		if (PrehistoricFaunaConfig.unscheduledSleeping = true && entity.getRandom().nextInt(1000) == 0 && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isInWater() && !entity.isInLava()) {
-			return true;
-		} else {
-			return false;
-		}
+			}
+		} else return false;
 	}
 
 	@Override

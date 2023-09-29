@@ -32,6 +32,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
@@ -100,7 +102,7 @@ public class Pinacosaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 		this.goalSelector.addGoal(0, new HerbivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 	}
-	
+
 	public boolean hurt(DamageSource p_33421_, float p_33422_) {
 		Entity entity = p_33421_.getDirectEntity();
 		if (entity instanceof AbstractArrow) {
@@ -140,7 +142,15 @@ public class Pinacosaurus extends DinosaurEntity {
 	}
 
 	protected void playStepSound(BlockPos pos, BlockState blockIn) {
-		this.playSound(SoundEvents.COW_STEP, 0.15F, 1.0F);
+		if (this.isBaby()) {
+			if (!blockIn.getMaterial().isLiquid()) {
+				BlockState blockstate = this.level.getBlockState(pos.above());
+				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level, pos, this) : blockIn.getSoundType(level, pos, this);
+				this.playSound(soundtype.getStepSound(), soundtype.getVolume() * 0.15F, soundtype.getPitch());
+			}
+		} else {
+			this.playSound(SoundEvents.COW_STEP, 0.15F, 1F);
+		}
 	}
 
 	protected void playWarningSound() {
@@ -149,7 +159,7 @@ public class Pinacosaurus extends DinosaurEntity {
 			this.warningSoundTicks = 40;
 		}
 	}
-	
+
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		int temperment = random.nextInt(100);
 		this.setHerbivorous(true);
@@ -278,18 +288,18 @@ public class Pinacosaurus extends DinosaurEntity {
 			}
 		}
 	}
-	
+
 	@Override
 	public ItemStack getPickedResult(HitResult target) {
 		return new ItemStack(PFItems.PINACOSAURUS_SPAWN_EGG.get());
 	}
-	
+
 	public Item getEggItem() {
 		return PFItems.PINACOSAURUS_EGG.get();
 	}
-    
-    public BlockState getEggBlock() {
-    	return PFBlocks.PINACOSAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
-    }
+
+	public BlockState getEggBlock() {
+		return PFBlocks.PINACOSAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
+	}
 
 }

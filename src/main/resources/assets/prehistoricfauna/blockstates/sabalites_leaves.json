@@ -1,18 +1,33 @@
 {
   "variants": {
-    "facing=east": {
+    "facing=east,leaf_direction=straight": {
       "model": "prehistoricfauna:block/sabalites_forward_leaves",
       "y": 90
     },
-    "facing=north": {
+    "facing=north,leaf_direction=straight": {
       "model": "prehistoricfauna:block/sabalites_forward_leaves"
     },
-    "facing=south": {
+    "facing=south,leaf_direction=straight": {
       "model": "prehistoricfauna:block/sabalites_forward_leaves",
       "y": 180
     },
-    "facing=west": {
+    "facing=west,leaf_direction=straight": {
       "model": "prehistoricfauna:block/sabalites_forward_leaves",
+      "y": 270
+    },
+    "facing=east,leaf_direction=corner": {
+      "model": "prehistoricfauna:block/sabalites_diagonal_leaves",
+      "y": 90
+    },
+    "facing=north,leaf_direction=corner": {
+      "model": "prehistoricfauna:block/sabalites_diagonal_leaves"
+    },
+    "facing=south,leaf_direction=corner": {
+      "model": "prehistoricfauna:block/sabalites_diagonal_leaves",
+      "y": 180
+    },
+    "facing=west,leaf_direction=corner": {
+      "model": "prehistoricfauna:block/sabalites_diagonal_leaves",
       "y": 270
     }
   }

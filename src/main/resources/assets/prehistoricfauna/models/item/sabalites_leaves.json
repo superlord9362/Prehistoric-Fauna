@@ -1,3 +1,6 @@
 {
-    "parent": "prehistoricfauna:block/sabalites_leaves"
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "prehistoricfauna:items/sabalites_leaves"
+    }
 }

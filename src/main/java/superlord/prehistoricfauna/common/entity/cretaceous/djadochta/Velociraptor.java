@@ -179,50 +179,50 @@ public class Velociraptor extends DinosaurEntity {
 		this.attackAnimals = new Velociraptor.TamedHuntGoal(this, Animal.class, 10, false, false, (p_213487_0_) -> {
 			return p_213487_0_.getType().is(PFTags.VELOCIRAPTOR_HUNTING);
 		});
-			this.goalSelector.addGoal(0, new FloatGoal(this));
-			this.goalSelector.addGoal(1, new Velociraptor.JumpGoal());
-			this.goalSelector.addGoal(2, new BabyPanicGoal(this));
-			this.goalSelector.addGoal(0, new DinosaurMateGoal(this, 1.0D));
-			this.goalSelector.addGoal(0, new NaturalMateGoal(this, 1.0D));
-			this.targetSelector.addGoal(2, new ProtectBabyGoal(this));
-			this.targetSelector.addGoal(2, new OpportunistAttackGoal(this, Player.class, true));
-			this.targetSelector.addGoal(2, new DinosaurTerritorialAttackGoal(this));
-			this.goalSelector.addGoal(5, new Velociraptor.FollowTargetGoal());
-			this.goalSelector.addGoal(1, new Velociraptor.PounceGoal());
-			this.goalSelector.addGoal(6, new Velociraptor.FindShelterGoal(1.25D));
-			this.goalSelector.addGoal(7, new Velociraptor.BiteGoal((double)1.2F, true));
-			this.goalSelector.addGoal(8, new Velociraptor.FollowGoal(this, 1.25D));
-			this.targetSelector.addGoal(1, new DinosaurHurtByTargetGoal(this));
-			this.goalSelector.addGoal(10, new LeapAtTargetGoal(this, 0.4F));
-			this.goalSelector.addGoal(11, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-			this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
-			this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
-			this.goalSelector.addGoal(13, new Velociraptor.SitAndLookGoal());
-			this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
-			this.goalSelector.addGoal(9, new AvoidEntityGoal(this, Ankylosaurus.class, 7F, 1.5D, 1.75D));
-			this.goalSelector.addGoal(9, new AvoidEntityGoal(this, Triceratops.class, 7F, 1.5D, 1.75D));
-			this.goalSelector.addGoal(9, new AvoidEntityGoal(this, Tyrannosaurus.class, 7F, 1.5D, 1.75D));
-			this.goalSelector.addGoal(9, new AvoidEntityGoal(this, Camarasaurus.class, 7F, 1.5D, 1.75D));
-			this.goalSelector.addGoal(9, new AvoidEntityGoal(this, Stegosaurus.class, 7F, 1.5D, 1.75D));
-			this.goalSelector.addGoal(9, new AvoidEntityGoal(this, Allosaurus.class, 7F, 1.5D, 1.75D));
-			this.goalSelector.addGoal(9, new AvoidEntityGoal(this, Ceratosaurus.class, 7F, 1.5D, 1.75D));
-			this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Dilophosaurus.class, 10F, 1.5D, 1.75D));
-			this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Poposaurus.class, 10F, 1.5D, 1.75D));
-			this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Postosuchus.class, 10F, 1.5D, 1.75D));
-			this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
-			this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
-			this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
-			this.goalSelector.addGoal(6, new VelociraptorFollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
-			this.goalSelector.addGoal(1, new CrepuscularSleepGoal(this));
-			this.targetSelector.addGoal(0, new HostileCarnivoreGoal(this, Player.class, false));
-			this.goalSelector.addGoal(0, new CarnivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
-			this.targetSelector.addGoal(0, new CarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213487_0_) -> {
-				return p_213487_0_.getType().is(PFTags.VELOCIRAPTOR_HUNTING);
-			}));
-			this.targetSelector.addGoal(0, new BabyCarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213487_0_) -> {
-				return p_213487_0_.getType().is(PFTags.VELOCIRAPTOR_BABY_HUNTING);
-			}));
-			this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
+		this.goalSelector.addGoal(0, new FloatGoal(this));
+		this.goalSelector.addGoal(1, new Velociraptor.JumpGoal());
+		this.goalSelector.addGoal(2, new BabyPanicGoal(this));
+		this.goalSelector.addGoal(0, new DinosaurMateGoal(this, 1.0D));
+		this.goalSelector.addGoal(0, new NaturalMateGoal(this, 1.0D));
+		this.targetSelector.addGoal(2, new ProtectBabyGoal(this));
+		this.targetSelector.addGoal(2, new OpportunistAttackGoal(this, Player.class, true));
+		this.targetSelector.addGoal(2, new DinosaurTerritorialAttackGoal(this));
+		this.goalSelector.addGoal(5, new Velociraptor.FollowTargetGoal());
+		this.goalSelector.addGoal(1, new Velociraptor.PounceGoal());
+		this.goalSelector.addGoal(6, new Velociraptor.FindShelterGoal(1.25D));
+		this.goalSelector.addGoal(7, new Velociraptor.BiteGoal((double)1.2F, true));
+		this.goalSelector.addGoal(8, new Velociraptor.FollowGoal(this, 1.25D));
+		this.targetSelector.addGoal(1, new DinosaurHurtByTargetGoal(this));
+		this.goalSelector.addGoal(10, new LeapAtTargetGoal(this, 0.4F));
+		this.goalSelector.addGoal(11, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
+		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
+		this.goalSelector.addGoal(13, new Velociraptor.SitAndLookGoal());
+		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
+		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, Ankylosaurus.class, 7F, 1.5D, 1.75D));
+		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, Triceratops.class, 7F, 1.5D, 1.75D));
+		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, Tyrannosaurus.class, 7F, 1.5D, 1.75D));
+		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, Camarasaurus.class, 7F, 1.5D, 1.75D));
+		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, Stegosaurus.class, 7F, 1.5D, 1.75D));
+		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, Allosaurus.class, 7F, 1.5D, 1.75D));
+		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, Ceratosaurus.class, 7F, 1.5D, 1.75D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Dilophosaurus.class, 10F, 1.5D, 1.75D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Poposaurus.class, 10F, 1.5D, 1.75D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Postosuchus.class, 10F, 1.5D, 1.75D));
+		this.goalSelector.addGoal(0, new SitWhenOrderedToGoal(this));
+		this.targetSelector.addGoal(0, new OwnerHurtByTargetGoal(this));
+		this.targetSelector.addGoal(0, new OwnerHurtTargetGoal(this));
+		this.goalSelector.addGoal(0, new VelociraptorFollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, true));
+		this.goalSelector.addGoal(1, new CrepuscularSleepGoal(this));
+		this.targetSelector.addGoal(0, new HostileCarnivoreGoal(this, Player.class, false));
+		this.goalSelector.addGoal(0, new CarnivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
+		this.targetSelector.addGoal(0, new CarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213487_0_) -> {
+			return p_213487_0_.getType().is(PFTags.VELOCIRAPTOR_HUNTING);
+		}));
+		this.targetSelector.addGoal(0, new BabyCarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213487_0_) -> {
+			return p_213487_0_.getType().is(PFTags.VELOCIRAPTOR_BABY_HUNTING);
+		}));
+		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 	}
 
 	public void aiStep() {
@@ -1108,64 +1108,74 @@ public class Velociraptor extends DinosaurEntity {
 	}
 
 	@SuppressWarnings("deprecation")
-	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
-		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
+	@Override
+	public InteractionResult mobInteract(Player player, InteractionHand p_230254_2_) {
+		ItemStack itemstack = player.getItemInHand(p_230254_2_);
 		Item item = itemstack.getItem();
 		if (this.level.isClientSide) {
-			boolean flag = this.isOwnedBy(p_230254_1_) || this.isTame() || item == Items.BONE && !this.isTame() && this.getTarget() == null;
+			boolean flag = this.isOwnedBy(player) || this.isTame() || this.isFood(itemstack) && !this.isTame();
 			return flag ? InteractionResult.CONSUME : InteractionResult.PASS;
 		} else {
 			if (this.isTame()) {
-				if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
-					if (!p_230254_1_.getAbilities().instabuild) {
+				if (this.isFood(itemstack)) {
+					if (this.getHealth() < this.getMaxHealth()) {
+						if (!player.getAbilities().instabuild) {
+							itemstack.shrink(1);
+						}
+						this.heal((float)item.getFoodProperties().getNutrition());
+						return InteractionResult.SUCCESS;
+					} else {
+						if (this.canFallInLove()) {
+							this.setInLove(player);
+							if (!player.isCreative()) {
+								itemstack.shrink(1);
+							}
+						}
+					}
+				} else {
+					if (this.isTameSitting()) {
+						this.setTameSitting(false);
+						this.setTameWandering(true);
+						player.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.velociraptor.wandering"), true);
+					} else if(this.isTameWandering()) {
+						this.setTameWandering(false);
+						player.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.velociraptor.following"), true);
+					} else {
+						this.setTameSitting(true);
+						player.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.velociraptor.sitting"), true);
+					}
+				}
+			} else {
+				if (this.isFood(itemstack)) {
+					if (!player.getAbilities().instabuild) {
 						itemstack.shrink(1);
 					}
 
-					this.heal((float)item.getFoodProperties().getNutrition());
+					if (this.random.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
+						this.tame(player);
+						this.navigation.stop();
+						this.setTarget((LivingEntity)null);
+						this.setTameSitting(true);
+						this.level.broadcastEntityEvent(this, (byte)7);
+					} else {
+						this.level.broadcastEntityEvent(this, (byte)6);
+					}
+
 					return InteractionResult.SUCCESS;
-				} else if (this.isFood(itemstack) && this.getHealth() >= this.getMaxHealth()) {
-					return InteractionResult.PASS;
-				} else if (this.isTameSitting()) {
-					this.setTameSitting(false);
-					this.setTameWandering(true);
-					p_230254_1_.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.velociraptor.wandering"), true);
-				} else if(this.isTameWandering()) {
-					this.setTameWandering(false);
-					p_230254_1_.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.velociraptor.following"), true);
-				} else {
-					this.setTameSitting(true);
-					p_230254_1_.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.velociraptor.sitting"), true);
 				}
-			} else if (item == PFItems.RAW_SMALL_MARGINOCEPHALIAN_MEAT.get()) {
-				if (!p_230254_1_.getAbilities().instabuild) {
-					itemstack.shrink(1);
-				}
-
-				if (this.random.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, p_230254_1_)) {
-					this.tame(p_230254_1_);
-					this.navigation.stop();
-					this.setTarget((LivingEntity)null);
-					this.setOrderedToSit(true);
-					this.level.broadcastEntityEvent(this, (byte)7);
-				} else {
-					this.level.broadcastEntityEvent(this, (byte)6);
-				}
-
-				return InteractionResult.SUCCESS;
 			}
-			return super.mobInteract(p_230254_1_, p_230254_2_);
+			return super.mobInteract(player, p_230254_2_);
 		}
 	}
 
 	public class VelociraptorFollowOwnerGoal extends FollowOwnerGoal {
 
-		public VelociraptorFollowOwnerGoal(TamableAnimal tameable, double speed, float minDist, float maxDist,
-				boolean teleportToLeaves) {
+		public VelociraptorFollowOwnerGoal(TamableAnimal tameable, double speed, float minDist, float maxDist, boolean teleportToLeaves) {
 			super(tameable, speed, minDist, maxDist, teleportToLeaves);
 		}
 
 		public boolean canUse() {
-			return super.canUse() && !Velociraptor.this.isTameWandering() && !Velociraptor.this.isTameSitting();
+			return super.canUse();
 		}
 
 	}

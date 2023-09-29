@@ -1,7 +1,10 @@
 {
     "variants": {
-        "axis=y":  { "model": "prehistoricfauna:block/sabalites_grassy_log" },
-        "axis=z":   { "model": "prehistoricfauna:block/sabalites_grassy_log", "x": 90 },
-        "axis=x":   { "model": "prehistoricfauna:block/sabalites_grassy_log", "x": 90, "y": 90 }
+        "axis=y,end_log=true":  { "model": "prehistoricfauna:block/sabalites_grassy_log" },
+        "axis=z,end_log=true":   { "model": "prehistoricfauna:block/sabalites_grassy_log", "x": 90 },
+        "axis=x,end_log=true":   { "model": "prehistoricfauna:block/sabalites_grassy_log", "x": 90, "y": 90 },
+        "axis=y,end_log=false":  { "model": "prehistoricfauna:block/sabalites_log_inside" },
+        "axis=z,end_log=false":   { "model": "prehistoricfauna:block/sabalites_log_inside", "x": 90 },
+        "axis=x,end_log=false":   { "model": "prehistoricfauna:block/sabalites_log_inside", "x": 90, "y": 90 }
     }
 }

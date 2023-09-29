@@ -1,10 +1,7 @@
 package superlord.prehistoricfauna.common.entity.goal;
 
-import java.util.List;
-
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
@@ -20,35 +17,17 @@ public class CathemeralSleepGoal extends Goal {
 
 	@Override
 	public boolean canUse() {
-		Level level = entity.level;
-		List<? extends Player> list = level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D));
-		if (!list.isEmpty()) {
-			for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
-				if (player.isShiftKeyDown()) {
-					if (PrehistoricFaunaConfig.sleeping = true && entity.getRandom().nextInt(1000) == 0 && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isInWater() && !entity.isInLava() && !PrehistoricFaunaConfig.unscheduledSleeping) {
-						return true;
-					} else {
-						return false;
-					}
-				} else {
-					return false;
-				}
-			}
-			return false;
-		} else {
-			if (PrehistoricFaunaConfig.sleeping = true && entity.getRandom().nextInt(1000) == 0 && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isInWater() && !entity.isInLava() && !PrehistoricFaunaConfig.unscheduledSleeping) {
-				return true;
-			} else {
-				return false;
-			}
+		for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
+			if (!player.isShiftKeyDown()) return false;
 		}
+		return (PrehistoricFaunaConfig.sleeping = true && entity.getRandom().nextInt(1000) == 0 && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isInWater() && !entity.isInLava() && !PrehistoricFaunaConfig.unscheduledSleeping && entity.warryTicks == 100);
 	}
 
 	@Override
 	public boolean canContinueToUse() {
 		for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
 			if (player.isShiftKeyDown()) {
-				if (sleepTimer >= 6000 || entity.getLastHurtByMob() != null || entity.getTarget() != null || super.canContinueToUse() || entity.isInWater() || entity.isInLava()) {
+				if (sleepTimer >= 6000 || entity.getLastHurtByMob() != null || entity.getTarget() != null || !super.canContinueToUse() || entity.isInWater() || entity.isInLava()) {
 					entity.setAsleep(false);
 					sleepTimer = 0;
 					stop();
@@ -61,7 +40,7 @@ public class CathemeralSleepGoal extends Goal {
 				return false; 
 			}
 		}
-		if (sleepTimer >= 6000 || entity.getLastHurtByMob() != null || entity.getTarget() != null || super.canContinueToUse() || entity.isInWater() || entity.isInLava()) {
+		if (sleepTimer >= 6000 || entity.getLastHurtByMob() != null || entity.getTarget() != null || !super.canContinueToUse() || entity.isInWater() || entity.isInLava()) {
 			entity.setAsleep(false);
 			sleepTimer = 0;
 			stop();
@@ -105,6 +84,7 @@ public class CathemeralSleepGoal extends Goal {
 
 	@Override
 	public void stop() {
+		entity.setAwakeTicks(100);
 		sleepTimer = 0;
 		entity.setAsleep(false);
 	}

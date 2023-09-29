@@ -86,6 +86,7 @@ public class DinosaurEntity extends TamableAnimal {
 	public int maxHunger;
 	private int lastInLove = 0;
 	public int currentHunger;
+	public int warryTicks = 0;
 	int hungerTick = 0;
 
 	protected DinosaurEntity(EntityType<? extends TamableAnimal> p_21803_, Level p_21804_) {
@@ -711,6 +712,16 @@ public class DinosaurEntity extends TamableAnimal {
 			if (lastInLove != 0) {
 				lastInLove--;
 			}
+		}
+		if (!this.level.isClientSide) {
+			if (this.warryTicks != 0) warryTicks--;
+			//System.out.println(warryTicks);
+		}
+	}
+	
+	public void setAwakeTicks(int ticks) {
+		if (!this.level.isClientSide) {
+			this.warryTicks = ticks;
 		}
 	}
 

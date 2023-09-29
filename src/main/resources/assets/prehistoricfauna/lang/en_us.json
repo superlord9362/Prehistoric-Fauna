@@ -65,6 +65,7 @@
 	"block.prehistoricfauna.dryophyllum_planks": "Dryophyllum Planks",
 	"block.prehistoricfauna.sabalites_planks": "Sabalites Planks",
 	"block.prehistoricfauna.taxodium_planks": "Taxodium Planks",
+	"block.prehistoricfauna.platanites_planks": "Platanites Planks",
 	
 	"block.prehistoricfauna.araucaria_sign": "Araucaria Sign",
 	"block.prehistoricfauna.araucaria_wall_sign": "Araucaria Sign",
@@ -99,7 +100,9 @@
 	"block.prehistoricfauna.taxodium_sign": "Taxodium Sign",
 	"block.prehistoricfauna.taxodium_wall_sign": "Taxodium Sign",
 	"block.prehistoricfauna.sabalites_sign": "Sabalites Sign",
-	"block.prehistoricfauna.sabalites_wall_sign": "Sabalites Wall Sign",
+	"block.prehistoricfauna.sabalites_wall_sign": "Sabalites Sign",
+	"block.prehistoricfauna.platanites_sign": "Platanites Sign",
+	"block.prehistoricfauna.platanites_wall_sign": "Platanites Sign",
 	
 	"block.prehistoricfauna.stripped_liriodendrites_log": "Stripped Liriodendrites Log",
 	"block.prehistoricfauna.liriodendrites_wood": "Liriodendrites Wood",
@@ -172,6 +175,10 @@
 	"block.prehistoricfauna.sabalites_wood": "Sabalites Wood",
 	"block.prehistoricfauna.stripped_sabalites_log": "Stripped Sabalites Log",
 	"block.prehistoricfauna.stripped_sabalites_wood": "Stripped Sabalites Wood",
+	"block.prehistoricfauna.platanites_log": "Platanites Log",
+	"block.prehistoricfauna.platanites_wood": "Platanites Wood",
+	"block.prehistoircfauna.stripped_platanites_log": "Stripped Platanites Log",
+	"block.prehistoricfauna.stripped_platanites_wood": "Stripped Platanites Wood",
 	
 	"block.prehistoricfauna.liriodendrites_slab": "Liriodendrites Slab",
 	"block.prehistoricfauna.heidiphyllum_slab": "Heidiphyllum Slab",
@@ -192,6 +199,7 @@
 	"block.prehistoricfauna.dryophyllum_slab": "Dryophyllum Slab",
 	"block.prehistoricfauna.taxodium_slab": "Taxodium Slab",
 	"block.prehistoricfauna.sabalites_slab": "Sabalites Slab",
+	"block.prehistoricfauna.platanites_slab": "Platanites Slab",
 	
 	"block.prehistoricfauna.liriodendrites_stairs": "Liriodendrites Stairs",
 	"block.prehistoricfauna.heidiphyllum_stairs": "Heidiphyllum Stairs",
@@ -212,6 +220,7 @@
 	"block.prehistoricfauna.dryophyllum_stairs": "Dryophyllum Stairs",
 	"block.prehistoricfauna.taxodium_stairs": "Taxodium Stairs",
 	"block.prehistoricfauna.sabalites_stairs": "Sabalites Stairs",
+	"block.prehistoricfauna.platanites_stairs": "Platanites Stairs",
 		
 	"block.prehistoricfauna.liriodendrites_leaves": "Liriodendrites Leaves",
 	"block.prehistoricfauna.liriodendrites_leaves_flower": "Flowering Liriodendrites Leaves",
@@ -234,6 +243,7 @@
 	"block.prehistoricfauna.sabalites_leaves": "Sabalites Leaves",
 	"block.prehistoricfauna.sabalites_top_leaves": "Sabalites Leaves",
 	"block.prehistoricfauna.sabalites_diagonal_leaves": "Sabalites Leaves",
+	"block.prehistoricfauna.platanites_leaves": "Platanites Leaves",
 	
 	"block.prehistoricfauna.liriodendrites_pressure_plate": "Liriodendrites Pressure Plate",
 	"block.prehistoricfauna.heidiphyllum_pressure_plate": "Heidiphyllum Pressure Plate",
@@ -253,6 +263,7 @@
 	"block.prehistoricfauna.dryophyllum_pressure_plate": "Dryophyllum Pressure Plate",
 	"block.prehistoricfauna.taxodium_pressure_plate": "Taxodium Pressure Plate",
 	"block.prehistoricfauna.sabalites_pressure_plate": "Sabalites Pressure Plate",
+	"block.prehistoricfauna.platanites_pressure_plate": "Platanites Pressure Plate",
 	
 	"block.prehistoricfauna.liriodendrites_trapdoor": "Liriodendrites Trapdoor",
 	"block.prehistoricfauna.liriodendrites_door": "Liriodendrites Door",
@@ -290,6 +301,8 @@
 	"block.prehistoricfauna.taxodium_trapdoor": "Taxodium Trapdoor",
 	"block.prehistoricfauna.sabalites_door": "Sabalites Door",
 	"block.prehistoricfauna.sabalites_trapdoor": "Sabalites Trapdoor",
+	"block.prehistoricfauna.platanites_door": "Platanites Door",
+	"block.prehistoricfauna.platanites_trapdoor": "Platanites Trapdoor",
 	
 	"block.prehistoricfauna.liriodendrites_fence": "Liriodendrites Fence",
 	"block.prehistoricfauna.liriodendrites_fence_gate": "Liriodendrites Fence Gate",
@@ -327,6 +340,8 @@
 	"block.prehistoricfauna.taxodium_fence_gate": "Taxodium Fence Gate",
 	"block.prehistoricfauna.sabalites_fence": "Sabalites Fence",
 	"block.prehistoricfauna.sabalites_fence_gate": "Sabalites Fence Gate",
+	"block.prehistoricfauna.platanites_fence": "Platanites Fence",
+	"block.prehistoricfauna.platanites_fence_gate": "Platanites Fence Gate",
 	
 	"block.prehistoricfauna.liriodendrites_sapling": "Liriodendrites Sapling",
 	"block.prehistoricfauna.heidiphyllum_sapling": "Heidiphyllum Sapling",
@@ -345,6 +360,7 @@
 	"block.prehistoricfauna.dryophyllum_sapling": "Dryophyllum Sapling",
 	"block.prehistoricfauna.taxodium_sapling": "Taxodium Sapling",
 	"block.prehistoricfauna.sabalites_sapling": "Sabalites Sapling",
+	"block.prehistoricfauna.platanites_sapling": "Platanites Sapling",
 	
 	"block.prehistoricfauna.liriodendrites_button": "Liriodendrites Button",
 	"block.prehistoricfauna.heidiphyllum_button": "Heidiphyllum Button",
@@ -364,6 +380,7 @@
 	"block.prehistoricfauna.dryophyllum_button": "Dryophyllum Button",
 	"block.prehistoricfauna.taxodium_button": "Taxodium Button",
 	"block.prehistoricfauna.sabalites_button": "Sabalites Button",
+	"block.prehistoricfauna.platanites_button": "Platanites Button",
 	
 	"block.prehistoricfauna.cretaceous_portal": "Cretaceous Warp Block",
 	"block.prehistoricfauna.portal_frame": "Time Machine Frame",
@@ -397,6 +414,7 @@
 	"block.prehistoricfauna.dark_henostone_brick_stairs": "Dark Henostone Brick Stairs",
 	"block.prehistoricfauna.henostone_trap": "Henostone Trap",
 	"block.prehistoricfauna.chalk": "Chalk",
+	"block.prehistoricfauna.chalk_regolith": "Chalk Regolith",
 	"block.prehistoricfauna.chalk_fossil": "Chalk Fossil",
 	"block.prehistoricfauna.chiseled_chalk": "Chiseled Chalk",
 	"block.prehistoricfauna.chalk_brick_stairs": "Chalk Brick Stairs",
@@ -410,6 +428,7 @@
 	"block.prehistoricfauna.polished_chalk_stairs": "Polished Chalk Stairs",
 	"block.prehistoricfauna.polished_chalk_slab": "Polished Chalk Slab",
 	"block.prehistoricfauna.sandstone": "Sandstone",
+	"block.prehistoricfauna.sandstone_regolith": "Sandstone Regolith",
 	"block.prehistoricfauna.sandstone_fossil": "Sandstone Fossil",
 	"block.prehistoricfauna.chiseled_sandstone": "Chiseled Sandstone",
 	"block.prehistoricfauna.sandstone_brick_stairs": "Sandstone Brick Stairs",
@@ -423,6 +442,7 @@
 	"block.prehistoricfauna.polished_sandstone_stairs": "Polished Sandstone Stairs",
 	"block.prehistoricfauna.polished_sandstone_slab": "Polished Sandstone Slab",
 	"block.prehistoricfauna.siltstone": "Siltstone",
+	"block.prehistoricfauna.siltstone_regolith": "Siltstone Regolith",
 	"block.prehistoricfauna.siltstone_fossil": "Siltstone Fossil",
 	"block.prehistoricfauna.chiseled_siltstone": "Chiseled Siltstone",
 	"block.prehistoricfauna.siltstone_brick_stairs": "Siltstone Brick Stairs",
@@ -603,6 +623,7 @@
 	"item.prehistoricfauna.dryophyllum_boat": "Dryophyllum Boat",
 	"item.prehistoricfauna.taxodium_boat": "Taxodium Boat",
 	"item.prehistoricfauna.sabalites_boat": "Sabalites Boat",
+	"item.prehistoricfauna.platanites_boat": "Platanites Boat",
 
 	"item.prehistoricfauna.tyrannosaur_tooth": "Tyrannosaur Tooth",
 	"item.prehistoricfauna.tail_club": "Tail Club",
@@ -1386,6 +1407,9 @@
 	"block.prehistoricfauna.taxodium_vertical_planks": "Taxodium Vertical Planks",
 	"block.prehistoricfauna.sabalites_vertical_slab": "Sabalites Vertical Slab",
 	"block.prehistoricfauna.sabalites_vertical_planks": "Sabalites Vertical Planks",
+	"block.prehistoricfauna.platanites_leaf_carpet": "Platanites Leaf Carpet",
+	"block.prehistoricfauna.platanites_vertical_slab": "Platanites Vertical Slab",
+	"block.prehistoricfauna.platanites_vertical_planks": "Platanites Vertical Planks",
 	
 	"block.prehistoricfauna.araucaria_chest": "Araucaria Chest",
 	"block.prehistoricfauna.araucaria_trapped_chest": "Araucaria Trapped Chest",
@@ -1421,6 +1445,8 @@
 	"block.prehistoricfauna.taxodium_trapped_chest": "Taxodium Trapped Chest",
 	"block.prehistoricfauna.sabalites_chest": "Sabalites Chest",
 	"block.prehistoricfauna.sabalites_trapped_chest": "Sabalites Trapped Chest",
+	"block.prehistoricfauna.platanites_chest": "Platanites Chest",
+	"block.prehistoricfauna.platanites_trapped_chest": "Platanites Trapped Chest",
 	
 	"block.prehistoricfauna.araucaria_ladder": "Araucaria Ladder",
 	"block.prehistoricfauna.metasequoia_ladder": "Metasequoia Ladder",
@@ -1439,6 +1465,7 @@
 	"block.prehistoricfauna.dryophyllum_ladder": "Dryophyllum Ladder",
 	"block.prehistoricfauna.taxodium_ladder": "Taxodium Ladder",
 	"block.prehistoricfauna.sabalites_ladder": "Sabalites Ladder",
+	"block.prehistoricfauna.platanites_ladder": "Platanites Ladder",
 	
 	"block.prehistoricfauna.araucaria_bookshelf": "Araucaria Bookshelf",
 	"block.prehistoricfauna.metasequoia_bookshelf": "Metasequoia Bookshelf",
@@ -1457,6 +1484,7 @@
 	"block.prehistoricfauna.dryophyllum_bookshelf": "Dryophyllum Bookshelf",
 	"block.prehistoricfauna.taxodium_bookshelf": "Taxodium Bookshelf",
 	"block.prehistoricfauna.sabalites_bookshelf": "Sabalites Bookshelf",
+	"block.prehistoricfauna.platanites_bookshelf": "Platanites Bookshelf",
 	
 	"block.prehistoricfauna.chalk_pavement": "Chalk Pavement",
 	"block.prehistoricfauna.sandstone_pavement": "Sandstone Pavement",
@@ -1497,6 +1525,8 @@
 	"block.prehistoricfauna.stripped_taxodium_post": "Stripped Taxodium Post",
 	"block.prehistoricfauna.sabalites_post": "Sabalites Post",
 	"block.prehistoricfauna.stripped_sabalites_post": "Stripped Sabalites Post",
+	"block.prehistoricfauna.platanites_post": "Platanites Post",
+	"block.prehistoricfauna.stripped_platanites_post": "Stripped Platanites Post",
 	
 	"block.prehistoricfauna.araucaria_hedge": "Araucaria Hedge",
 	"block.prehistoricfauna.metasequoia_hedge": "Metasequoia Hedge",
@@ -1513,6 +1543,7 @@
 	"block.prehistoricfauna.schilderia_hedge": "Schilderia Hedge",
 	"block.prehistoricfauna.dryophyllum_hedge": "Dryophyllum Hedge",
 	"block.prehistoricfauna.taxodium_hedge": "Taxodium Hedge",
+	"block.prehistoricfauna.platanites_hedge": "Platanites Hedge",
 	
 	"block.prehistoricfauna.metasequoia_beehive": "Metasequoia Beehive",
 	"block.prehistoricfauna.araucaria_beehive": "Araucaria Beehive",
@@ -1531,6 +1562,7 @@
 	"block.prehistoricfauna.dryophyllum_beehive": "Dryophyllum Beehive",
 	"block.prehistoricfauna.taxodium_beehive": "Taxodium Beehive",
 	"block.prehistoricfauna.sabalites_beehive": "Sabalites Beehive",
+	"block.prehistoricfauna.platanites_beehive": "Platanites Beehive",
 	
 	"block.prehistoricfauna.oak_feeder": "Oak Feeder",
 	

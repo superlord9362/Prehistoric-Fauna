@@ -2,6 +2,7 @@ package superlord.prehistoricfauna.common;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
@@ -29,7 +30,7 @@ import superlord.prehistoricfauna.init.PFItems;
 
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID)
 public class GeologicalHammerEvents {
-	
+
 	public static Map<Block, Block> VANILLA_ROCK_SMASHING_MAP = new HashMap<>();
 
 	static {
@@ -76,7 +77,7 @@ public class GeologicalHammerEvents {
 		VANILLA_ROCK_SMASHING_MAP.put(Blocks.CRACKED_DEEPSLATE_BRICKS, Blocks.COBBLED_DEEPSLATE);
 		VANILLA_ROCK_SMASHING_MAP.put(Blocks.SMOOTH_BASALT, Blocks.BASALT);
 	}
-	
+
 	@SubscribeEvent
 	public static void onBlockClicked(RightClickBlock event) {
 		if (event.getItemStack().getItem() == Items.BONE_MEAL) {
@@ -122,6 +123,84 @@ public class GeologicalHammerEvents {
 						event.getItemStack().hurtAndBreak(1, entity, (p_220040_1_) -> {
 							p_220040_1_.broadcastBreakEvent(event.getHand());
 						});
+					}
+				}
+			}
+			if (state.getBlock() == PFBlocks.CHALK.get()) {
+				Player entity = event.getPlayer();
+				world.playSound(entity, pos, SoundEvents.STONE_HIT, SoundSource.BLOCKS, 1.0F, 1.0F);
+				double d0 = (double)pos.getX() + 0.5D;
+				double d1 = (double)pos.getY() + 0.7D;
+				double d2 = (double)pos.getZ() + 0.5D;
+				world.addParticle(ParticleTypes.LARGE_SMOKE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+				if(!world.isClientSide) {
+					int chance = entity.getRandom().nextInt(100);
+					if (chance > 4) {
+						world.setBlock(pos, PFBlocks.CHALK_REGOLITH.get().defaultBlockState(), 11);
+						if(entity != null) {
+							event.getItemStack().hurtAndBreak(1, entity, (p_220040_1_) -> {
+								p_220040_1_.broadcastBreakEvent(event.getHand());
+							});
+						}
+					} else {
+						world.setBlock(pos, PFBlocks.CHALK_FOSSIL.get().defaultBlockState(), 11);
+						if(entity != null) {
+							event.getItemStack().hurtAndBreak(1, entity, (p_220040_1_) -> {
+								p_220040_1_.broadcastBreakEvent(event.getHand());
+							});
+						}
+					}
+				}
+			}
+			if (state.getBlock() == PFBlocks.SILTSTONE.get()) {
+				Player entity = event.getPlayer();
+				world.playSound(entity, pos, SoundEvents.STONE_HIT, SoundSource.BLOCKS, 1.0F, 1.0F);
+				double d0 = (double)pos.getX() + 0.5D;
+				double d1 = (double)pos.getY() + 0.7D;
+				double d2 = (double)pos.getZ() + 0.5D;
+				world.addParticle(ParticleTypes.LARGE_SMOKE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+				if(!world.isClientSide) {
+					int chance = entity.getRandom().nextInt(100);
+					if (chance > 4) {
+						world.setBlock(pos, PFBlocks.SILTSTONE_REGOLITH.get().defaultBlockState(), 11);
+						if(entity != null) {
+							event.getItemStack().hurtAndBreak(1, entity, (p_220040_1_) -> {
+								p_220040_1_.broadcastBreakEvent(event.getHand());
+							});
+						}
+					} else {
+						world.setBlock(pos, PFBlocks.SILTSTONE_FOSSIL.get().defaultBlockState(), 11);
+						if(entity != null) {
+							event.getItemStack().hurtAndBreak(1, entity, (p_220040_1_) -> {
+								p_220040_1_.broadcastBreakEvent(event.getHand());
+							});
+						}
+					}
+				}
+			}
+			if (state.getBlock() == PFBlocks.SANDSTONE.get()) {
+				Player entity = event.getPlayer();
+				world.playSound(entity, pos, SoundEvents.STONE_HIT, SoundSource.BLOCKS, 1.0F, 1.0F);
+				double d0 = (double)pos.getX() + 0.5D;
+				double d1 = (double)pos.getY() + 0.7D;
+				double d2 = (double)pos.getZ() + 0.5D;
+				world.addParticle(ParticleTypes.LARGE_SMOKE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+				if(!world.isClientSide) {
+					int chance = entity.getRandom().nextInt(100);
+					if (chance > 4) {
+						world.setBlock(pos, PFBlocks.SANDSTONE_REGOLITH.get().defaultBlockState(), 11);
+						if(entity != null) {
+							event.getItemStack().hurtAndBreak(1, entity, (p_220040_1_) -> {
+								p_220040_1_.broadcastBreakEvent(event.getHand());
+							});
+						}
+					} else {
+						world.setBlock(pos, PFBlocks.SANDSTONE_FOSSIL.get().defaultBlockState(), 11);
+						if(entity != null) {
+							event.getItemStack().hurtAndBreak(1, entity, (p_220040_1_) -> {
+								p_220040_1_.broadcastBreakEvent(event.getHand());
+							});
+						}
 					}
 				}
 			}
@@ -303,6 +382,36 @@ public class GeologicalHammerEvents {
 							}
 							world.setBlockAndUpdate(blockpos, PFBlocks.SANDSTONE.get().defaultBlockState());
 
+						}
+						if (blockstate.getBlock() == PFBlocks.CHALK.get()) {
+							if (stack.hurt(1, world.random, (ServerPlayer)null)) {
+								stack.setCount(0);
+							}
+							Random random = new Random();
+							int chance = random.nextInt(100);
+							if (chance > 4) {
+								world.setBlockAndUpdate(blockpos, PFBlocks.CHALK_REGOLITH.get().defaultBlockState());
+							} else world.setBlockAndUpdate(blockpos, PFBlocks.CHALK_FOSSIL.get().defaultBlockState());
+						}
+						if (blockstate.getBlock() == PFBlocks.SILTSTONE.get()) {
+							if (stack.hurt(1, world.random, (ServerPlayer)null)) {
+								stack.setCount(0);
+							}
+							Random random = new Random();
+							int chance = random.nextInt(100);
+							if (chance > 4) {
+								world.setBlockAndUpdate(blockpos, PFBlocks.SILTSTONE_REGOLITH.get().defaultBlockState());
+							} else world.setBlockAndUpdate(blockpos, PFBlocks.SILTSTONE_FOSSIL.get().defaultBlockState());
+						}
+						if (blockstate.getBlock() == PFBlocks.SANDSTONE.get()) {
+							if (stack.hurt(1, world.random, (ServerPlayer)null)) {
+								stack.setCount(0);
+							}
+							Random random = new Random();
+							int chance = random.nextInt(100);
+							if (chance > 4) {
+								world.setBlockAndUpdate(blockpos, PFBlocks.SANDSTONE_REGOLITH.get().defaultBlockState());
+							} else world.setBlockAndUpdate(blockpos, PFBlocks.SANDSTONE_FOSSIL.get().defaultBlockState());
 						}
 					}
 					return stack;

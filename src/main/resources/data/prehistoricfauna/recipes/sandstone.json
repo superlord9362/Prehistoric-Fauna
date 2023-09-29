@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"##",
+		"##"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:sandstone_regolith"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:sandstone",
+		"count": 4
+	}
+}

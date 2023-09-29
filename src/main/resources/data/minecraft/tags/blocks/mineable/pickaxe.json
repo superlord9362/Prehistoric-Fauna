@@ -61,6 +61,9 @@
 		"prehistoricfauna:henostone_brick_slab",
 		"prehistoricfauna:dark_henostone_brick_stairs",
 		"prehistoricfauna:dark_henostone_brick_slab",
-		"prehistoricfauna:crassostrea_oyster"
+		"prehistoricfauna:crassostrea_oyster",
+		"prehistoricfauna:chalk_regolith",
+		"prehistoricfauna:sandstone_regolith",
+		"prehistoricfauna:siltstone_regolith"
 	]
 }

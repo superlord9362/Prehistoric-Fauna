@@ -15,7 +15,7 @@ public class BabyCarnivoreHuntGoal extends NearestAttackableTargetGoal {
 	double huntSpeed;
 	Predicate<LivingEntity> targetPredicate;
 	DinosaurEntity dinosaur;
-	
+
 	@SuppressWarnings("unchecked")
 	public BabyCarnivoreHuntGoal(DinosaurEntity goalOwnerIn, Class targetClassIn, int targetChanceIn, double huntSpeed, boolean checkSight, boolean nearbyOnly, @Nullable Predicate<LivingEntity> targetPredicate) {
 		super(goalOwnerIn, targetClassIn, targetChanceIn, checkSight, nearbyOnly, targetPredicate);
@@ -35,33 +35,35 @@ public class BabyCarnivoreHuntGoal extends NearestAttackableTargetGoal {
 	public void tick() {
 		dinosaur.getNavigation().setSpeedModifier(huntSpeed);
 		LivingEntity target = dinosaur.getTarget();
-		if (target.getType().is(PFTags.ANIMALS_3_HUNGER)) {
-			if (target.getHealth() == 0) {
-				if (dinosaur.getCurrentHunger() + 3 >= dinosaur.maxHunger) {
-					dinosaur.setHunger(dinosaur.maxHunger);
-				} else {
-					dinosaur.setHunger(dinosaur.currentHunger + 3);
+		if (!target.is(null)) {
+			if (target.getType().is(PFTags.ANIMALS_3_HUNGER)) {
+				if (target.getHealth() == 0) {
+					if (dinosaur.getCurrentHunger() + 3 >= dinosaur.maxHunger) {
+						dinosaur.setHunger(dinosaur.maxHunger);
+					} else {
+						dinosaur.setHunger(dinosaur.currentHunger + 3);
+					}
 				}
 			}
-		}
-		if (target.getType().is(PFTags.ANIMALS_4_HUNGER)) {
-			if (target.getHealth() == 0) {
-				if (dinosaur.getCurrentHunger() + 4 >= dinosaur.maxHunger) {
-					dinosaur.setHunger(dinosaur.maxHunger);
-				} else {
-					dinosaur.setHunger(dinosaur.currentHunger + 4);
+			if (target.getType().is(PFTags.ANIMALS_4_HUNGER)) {
+				if (target.getHealth() == 0) {
+					if (dinosaur.getCurrentHunger() + 4 >= dinosaur.maxHunger) {
+						dinosaur.setHunger(dinosaur.maxHunger);
+					} else {
+						dinosaur.setHunger(dinosaur.currentHunger + 4);
+					}
 				}
 			}
-		}
-		if (target.getType().is(PFTags.ANIMALS_6_HUNGER)) {
-			if (target.getHealth() == 0) {
-				if (dinosaur.getCurrentHunger() + 6 >= dinosaur.maxHunger) {
-					dinosaur.setHunger(dinosaur.maxHunger);
-				} else {
-					dinosaur.setHunger(dinosaur.currentHunger + 6);
+			if (target.getType().is(PFTags.ANIMALS_6_HUNGER)) {
+				if (target.getHealth() == 0) {
+					if (dinosaur.getCurrentHunger() + 6 >= dinosaur.maxHunger) {
+						dinosaur.setHunger(dinosaur.maxHunger);
+					} else {
+						dinosaur.setHunger(dinosaur.currentHunger + 6);
+					}
 				}
 			}
-		}
+		} else stop();
 		super.tick();
 	}
 

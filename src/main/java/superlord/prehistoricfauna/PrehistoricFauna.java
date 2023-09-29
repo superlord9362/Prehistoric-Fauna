@@ -299,6 +299,7 @@ public class PrehistoricFauna {
 			WoodType.register(PFWoodTypes.DRYOPHYLLUM);
 			WoodType.register(PFWoodTypes.TAXODIUM);
 			WoodType.register(PFWoodTypes.SABALITES);
+			WoodType.register(PFWoodTypes.PLATANITES);
 			PFStructures.init();
 			PFProfessions.fillTradeData();
 		});

@@ -328,6 +328,7 @@ public class ClientEvents {
 			Sheets.addWoodType(PFWoodTypes.DRYOPHYLLUM);
 			Sheets.addWoodType(PFWoodTypes.TAXODIUM);
 			Sheets.addWoodType(PFWoodTypes.SABALITES);
+			Sheets.addWoodType(PFWoodTypes.PLATANITES);
 		});
 		MenuScreens.register(PFContainers.PALEOSCRIBE.get(), GuiPaleo::new);
 		MenuScreens.register(PFContainers.PALEONTOLOGY_TABLE.get(), GuiPaleontologyTable::new);

@@ -93,6 +93,10 @@ public class VelociraptorModel extends EntityModel<Velociraptor> {
 		this.LegLeft.xRot = 0;
 		this.WingLeft.zRot = 0;
 		this.WingRight.zRot = 0;
+		this.WingLeft.xRot = 0;
+		this.WingRight.xRot = 0;
+		this.WingLeft.yRot = 0;
+		this.WingRight.yRot = 0;
 		this.ThighLeft.xRot = 0;
 		this.ThighLeft.yRot = 0;
 		this.Tail.xRot = 0;
@@ -148,8 +152,8 @@ public class VelociraptorModel extends EntityModel<Velociraptor> {
 			this.Tail.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
 			this.Body.xRot = Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3));
 			this.Head.xRot = (headPitch * ((float)Math.PI / 180F)) + (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3)));
-			this.WingLeft.zRot = -Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3));
-			this.WingRight.zRot = Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3));
+			this.WingLeft.zRot = Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3));
+			this.WingRight.zRot = -Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3));
 		} else {
 			//Idle/Walking Animations
 			this.Head.yRot = netHeadYaw * ((float)Math.PI / 180F);
@@ -160,8 +164,8 @@ public class VelociraptorModel extends EntityModel<Velociraptor> {
 			this.Neck.xRot = Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3)) + (Mth.cos(limbSwing * speed * 0.1F) * (degree / 2) * 0.3F * limbSwingAmount + 0.1F) + (headPitch * ((float) Math.PI / 180F)) + attackProgress * (float) Math.toRadians(25F);
 			this.Body.xRot = (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + (Mth.cos(limbSwing * speed * 0.1F) * (degree / 2) * 0.2F * limbSwingAmount) + attackProgress * (float) Math.toRadians(-30F);
 			this.Head.xRot = (headPitch * ((float)Math.PI / 180F)) + (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3)));
-			this.WingLeft.zRot = (-Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3))) + (Mth.cos(limbSwing * speed * 0.4F) * degree * 0.1F * limbSwingAmount) + attackProgress * (float) Math.toRadians(-85F);
-			this.WingRight.zRot = (Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3))) + (Mth.cos(3.0F + limbSwing * speed * 0.4F) * degree * 0.1F * limbSwingAmount) + attackProgress * (float) Math.toRadians(85F);
+			this.WingLeft.zRot = (Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3))) + (Mth.cos(limbSwing * speed * 0.4F) * degree * 0.1F * limbSwingAmount) + attackProgress * (float) Math.toRadians(-85F);
+			this.WingRight.zRot = (-Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3))) + (Mth.cos(3.0F + limbSwing * speed * 0.4F) * degree * 0.1F * limbSwingAmount) + attackProgress * (float) Math.toRadians(85F);
 			if (entity.isInWater()) {
 				this.Body.y = 17;
 				this.ThighLeft.y = 17F;

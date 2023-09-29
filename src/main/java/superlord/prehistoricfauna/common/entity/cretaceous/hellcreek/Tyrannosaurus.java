@@ -49,6 +49,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
@@ -196,8 +197,16 @@ public class Tyrannosaurus extends DinosaurEntity {
 		return PFSounds.TYRANNOSAURUS_DEATH;
 	}
 
-	protected void playStepSound(BlockPos pos, BlockState blockIn) {
-		this.playSound(SoundEvents.COW_STEP, 0.15F, 1.0F);
+	protected void playStepSound(BlockPos pos, BlockState state) {
+		if (this.isBaby()) {
+			if (!state.getMaterial().isLiquid()) {
+				BlockState blockstate = this.level.getBlockState(pos.above());
+				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level, pos, this) : state.getSoundType(level, pos, this);
+				this.playSound(soundtype.getStepSound(), soundtype.getVolume() * 0.15F, soundtype.getPitch());
+			}
+		} else {
+			this.playSound(SoundEvents.COW_STEP, 0.15F, 1F);
+		}
 	}
 
 	protected void playWarningSound() {

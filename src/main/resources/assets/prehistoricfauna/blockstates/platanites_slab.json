@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "prehistoricfauna:block/platanites_slab" },
+        "type=top": { "model": "prehistoricfauna:block/platanites_slab_top" },
+        "type=double": { "model": "prehistoricfauna:block/platanites_planks" }
+    }
+}

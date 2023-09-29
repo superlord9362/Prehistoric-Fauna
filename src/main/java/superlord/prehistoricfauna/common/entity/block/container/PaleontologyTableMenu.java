@@ -119,7 +119,7 @@ public class PaleontologyTableMenu extends AbstractContainerMenu {
     
     private void addPlayerHotbar(Inventory playerInventory) {
     	for (int i = 0; i < 9; ++i) {
-    		this.addSlot(new Slot(playerInventory, i, 8 + i * 19, 142));
+    		this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
     	}
     }
     

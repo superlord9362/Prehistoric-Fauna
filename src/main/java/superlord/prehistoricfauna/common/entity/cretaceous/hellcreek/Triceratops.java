@@ -112,6 +112,7 @@ public class Triceratops extends AbstractChestedHorse  {
 	int loveTick = 0;
 	private float meleeProgress = 0.0F;
 	private float prevMeleeProgress = 0.0F;
+	public int warryTicks = 0;
 
 	@SuppressWarnings("deprecation")
 	public Triceratops(EntityType<? extends Triceratops> type, Level worldIn) {
@@ -342,8 +343,16 @@ public class Triceratops extends AbstractChestedHorse  {
 	}
 
 	@Override
-	protected void playStepSound(BlockPos pos, BlockState blockIn) {
-		this.playSound(SoundEvents.COW_STEP, 0.15F, 1.0F);
+	protected void playStepSound(BlockPos pos, BlockState state) {
+		if (this.isBaby()) {
+			if (!state.getMaterial().isLiquid()) {
+				BlockState blockstate = this.level.getBlockState(pos.above());
+				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level, pos, this) : state.getSoundType(level, pos, this);
+				this.playSound(soundtype.getStepSound(), soundtype.getVolume() * 0.15F, soundtype.getPitch());
+			}
+		} else {
+			this.playSound(SoundEvents.COW_STEP, 0.15F, 1F);
+		}
 	}
 
 	protected void playWarningSound() {
@@ -760,6 +769,13 @@ public class Triceratops extends AbstractChestedHorse  {
 				lastInLove--;
 			}
 		}
+		if (!this.level.isClientSide) {
+			if (this.warryTicks != 0) warryTicks--;
+		}
+	}
+	
+	public void setAwakeTicks(int ticks) {
+		this.warryTicks = ticks;
 	}
 
 	protected void onOffspringSpawnedFromEgg(Player p_28481_, Mob p_28482_) {
@@ -1338,9 +1354,8 @@ public class Triceratops extends AbstractChestedHorse  {
 		public boolean canUse() {
 			for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
 				if (!player.isShiftKeyDown()) return false;
-				else return (PrehistoricFaunaConfig.sleeping = true && entity.getRandom().nextInt(1000) == 0 && entity.getLastHurtByMob() == null && !entity.isTamed() && entity.getRidingPlayer() == null && !entity.isInWater() && !entity.isInLava() && !PrehistoricFaunaConfig.unscheduledSleeping);
 			}
-			return (PrehistoricFaunaConfig.sleeping = true && entity.getRandom().nextInt(1000) == 0 && entity.getLastHurtByMob() == null && !entity.isTamed() && entity.getRidingPlayer() == null && !entity.isInWater() && !entity.isInLava() && !PrehistoricFaunaConfig.unscheduledSleeping);
+			return (PrehistoricFaunaConfig.sleeping = true && entity.getRandom().nextInt(1000) == 0 && entity.getLastHurtByMob() == null && !entity.isTamed() && entity.getRidingPlayer() == null && !entity.isInWater() && !entity.isInLava() && !PrehistoricFaunaConfig.unscheduledSleeping && entity.warryTicks == 0);
 		}
 
 		@Override
@@ -1349,9 +1364,9 @@ public class Triceratops extends AbstractChestedHorse  {
 				if (!player.isShiftKeyDown()) {
 					stop();
 					return false;
-				} else return (sleepTimer >= 6000 || entity.getLastHurtByMob() != null || entity.isTamed() || entity.getRidingPlayer() != null || super.canContinueToUse() || entity.isInWater() || entity.isInLava());
+				} else return (sleepTimer >= 6000 || entity.getLastHurtByMob() != null || entity.isTamed() || entity.getRidingPlayer() != null || !super.canContinueToUse() || entity.isInWater() || entity.isInLava());
 			}
-			if (sleepTimer >= 6000 || entity.getLastHurtByMob() != null || entity.isTamed() || entity.getRidingPlayer() != null || super.canContinueToUse() || entity.isInWater() || entity.isInLava()) {
+			if (sleepTimer >= 6000 || entity.getLastHurtByMob() != null || entity.isTamed() || entity.getRidingPlayer() != null || !super.canContinueToUse() || entity.isInWater() || entity.isInLava()) {
 				stop();
 				return false;
 			} else return true;
@@ -1384,6 +1399,7 @@ public class Triceratops extends AbstractChestedHorse  {
 		@Override
 		public void stop() {
 			sleepTimer = 0;
+			entity.setAwakeTicks(100);
 			entity.setSleeping(false);
 		}
 

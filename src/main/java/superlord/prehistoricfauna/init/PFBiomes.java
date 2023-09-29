@@ -16,9 +16,10 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 public class PFBiomes {
 	
 	public static final DeferredRegister<Biome> REGISTER = DeferredRegister.create(ForgeRegistries.BIOMES, PrehistoricFauna.MOD_ID);
+	public static RegistryObject<Biome> CHINLE_FLATS;
 	
 	static {
-		chinle_flats("chinle_flats", OverworldBiomes::theVoid);
+		CHINLE_FLATS = chinle_flats("chinle_flats", OverworldBiomes::theVoid);
 	}
 	
 	public static RegistryObject<Biome> chinle_flats(String name, Supplier<Biome> biome) {
