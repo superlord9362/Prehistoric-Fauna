@@ -25,6 +25,7 @@ import superlord.prehistoricfauna.client.model.cretaceous.djadochta.Aepyornithom
 import superlord.prehistoricfauna.client.model.cretaceous.djadochta.CitipatiModel;
 import superlord.prehistoricfauna.client.model.cretaceous.djadochta.PinacosaurusBabyModel;
 import superlord.prehistoricfauna.client.model.cretaceous.djadochta.PinacosaurusModel;
+import superlord.prehistoricfauna.client.model.cretaceous.djadochta.PlesiohadrosBabyModel;
 import superlord.prehistoricfauna.client.model.cretaceous.djadochta.PlesiohadrosModel;
 import superlord.prehistoricfauna.client.model.cretaceous.djadochta.ProtoceratopsJuvenileModel;
 import superlord.prehistoricfauna.client.model.cretaceous.djadochta.ProtoceratopsModel;
@@ -185,6 +186,7 @@ import superlord.prehistoricfauna.client.model.jurassic.morrison.CeratosaurusMod
 import superlord.prehistoricfauna.client.model.jurassic.morrison.DryosaurusModel;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.EilenodonModel;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.HesperornithoidesModel;
+import superlord.prehistoricfauna.client.model.jurassic.morrison.StegosaurusBabyModel;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.StegosaurusModel;
 import superlord.prehistoricfauna.client.model.triassic.chinle.CoelophysisModel;
 import superlord.prehistoricfauna.client.model.triassic.chinle.DesmatosuchusModel;
@@ -476,6 +478,7 @@ public class ClientEvents {
 	public static ModelLayerLocation PINACOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "pinacosaurus"), "pinacosaurus");
 	public static ModelLayerLocation PINACOSAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "pinacosaurus_baby"), "pinacosaurus_baby");
 	public static ModelLayerLocation PLESIOHADROS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "plesiohadros"), "plesiohadros");
+	public static ModelLayerLocation PLESIOHADROS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "plesiohadros_baby"), "plesiohadros_baby");
 	public static ModelLayerLocation PROTOCERATOPS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "protoceratops"), "protoceratops");
 	public static ModelLayerLocation PROTOCERATOPS_JUVENILE = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "protoceratops_juvenile"), "protoceratops_juvenile");
 	public static ModelLayerLocation TELMASAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "telmasaurus"), "telmasaurus");
@@ -503,6 +506,7 @@ public class ClientEvents {
 	public static ModelLayerLocation EILENODON = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "eilenodon"), "eilenodon");
 	public static ModelLayerLocation HESPERORNITHOIDES = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "hesperornithoides"), "hesperornithoides");
 	public static ModelLayerLocation STEGOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "stegosaurus"), "stegosaurus");
+	public static ModelLayerLocation STEGOSAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "stegosaurus_baby"), "stegosaurus_baby");
 	//Chinle
 	public static ModelLayerLocation COELOPHYSIS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "coelophysis"), "coelophysis");
 	public static ModelLayerLocation DESMATOSUCHUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "desmatosuchus"), "desmatosuchus");
@@ -808,6 +812,7 @@ public class ClientEvents {
 		event.registerLayerDefinition(PINACOSAURUS, PinacosaurusModel::createBodyLayer);
 		event.registerLayerDefinition(PINACOSAURUS_BABY, PinacosaurusBabyModel::createBodyLayer);
 		event.registerLayerDefinition(PLESIOHADROS, PlesiohadrosModel::createBodyLayer);
+		event.registerLayerDefinition(PLESIOHADROS_BABY, PlesiohadrosBabyModel::createBodyLayer);
 		event.registerLayerDefinition(PROTOCERATOPS, ProtoceratopsModel::createBodyLayer);
 		event.registerLayerDefinition(PROTOCERATOPS_JUVENILE, ProtoceratopsJuvenileModel::createBodyLayer);
 		event.registerLayerDefinition(TELMASAURUS, TelmasaurusModel::createBodyLayer);
@@ -834,6 +839,7 @@ public class ClientEvents {
 		event.registerLayerDefinition(EILENODON, EilenodonModel::createBodyLayer);
 		event.registerLayerDefinition(HESPERORNITHOIDES, HesperornithoidesModel::createBodyLayer);
 		event.registerLayerDefinition(STEGOSAURUS, StegosaurusModel::createBodyLayer);
+		event.registerLayerDefinition(STEGOSAURUS_BABY, StegosaurusBabyModel::createBodyLayer);
 		//Chinle
 		event.registerLayerDefinition(COELOPHYSIS, CoelophysisModel::createBodyLayer);
 		event.registerLayerDefinition(DESMATOSUCHUS, DesmatosuchusModel::createBodyLayer);

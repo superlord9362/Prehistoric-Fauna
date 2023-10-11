@@ -140,15 +140,20 @@ public class Exaeretodon extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new HerbivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(5, new Exaeretodon.DiggingGoal(this));
 	}
+	
+	@Override
+	public void setAge(int age) {
+		super.setAge(age);
+		if (this.getAge() >= -24000 && this.getAge() < 0) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(4);
+		} else if(this.getAge() >= 0) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(8);
+		}
+	}
 
 	public void aiStep() {
 		super.aiStep();
-		if (this.isBaby()) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(4);
-		} else {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(8);
-		}
-		if (this.isAsleep()) {
+		if (this.isAsleep() || this.getWakingTicks() != 0) {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.23D);

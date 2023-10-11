@@ -79,31 +79,122 @@ public class TriceratopsBabyModel extends EntityModel<Triceratops> {
 
 	@Override
 	public void setupAnim(Triceratops entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.resetModel();
+		int sleepProgress = entity.getSleepingTicks();
+		int wakingProgress = entity.getWakingUpTicks();
+		if (!entity.isWakingUp() && !entity.isFallingAsleep()) {
+			if (!entity.isSleeping()) {
+				resetModel();
+			} else {
+				this.TailBase.xRot = -0.43598323915870024F;
+				this.TailBase.yRot = 0.11728612207217244F;
+				this.RLeg2.xRot = 2.5413739344815873F;
+				this.RLeg2.zRot = -0.3127630032889644F;
+				this.RLeg.xRot = -1.13376586611655F;
+				this.RLeg.yRot = 0.19547687289441354F;
+				this.LForeleg.xRot = -1.2119566751954398F;
+				this.LForeleg.yRot = -0.27366763203903305F;
+				this.Neck.xRot = 0.1563815016444822F;
+				this.Neck.yRot = -0.46914448828868976F;
+				this.Head.xRot = 0.14905111745452548F;
+				this.Head.yRot = -0.1563815016444822F;
+				this.RForeleg.xRot = -1.291369076266349F;
+				this.RForeleg.yRot = -0.23457224414434488F;
+				this.LLeg.xRot = -1.13376586611655F;
+				this.LLeg.yRot = -0.19547687289441354F;
+				this.LLeg2.xRot = 2.5411994974301875F;
+				this.LLeg2.zRot = 0.3127630032889644F;
+				this.Torso.y = 16;
+				this.LForeleg.y = 22;
+				this.RForeleg.y = 22;
+				this.LLeg.y = 20;
+				this.RLeg.y = 20;
+			}
+		}
+		if (wakingProgress != 0) {
+			//TailBase
+//			this.TailBase.xRot = -0.3186971254089062F;
+			if (this.TailBase.xRot < -0.3186971254089062F) this.TailBase.xRot += 0.05;
+			if (this.TailBase.yRot > 0) this.TailBase.yRot -= 0.05;
+			//RLeg2
+			if (this.RLeg2.xRot > 0) this.RLeg2.xRot -= 0.05;
+			if (this.RLeg2.zRot < 0) this.RLeg2.zRot += 0.05;
+			//RLeg
+//			this.RLeg.y = 16;
+			if (this.RLeg.y > 16) this.RLeg.y -= 0.15;
+			if (this.RLeg.xRot < 0) this.RLeg.xRot += 0.05;
+			if (this.RLeg.yRot > 0) this.RLeg.yRot -= 0.05;
+			//LForeleg
+//			this.LForeleg.y = 18;
+			if (this.LForeleg.y > 18) this.LForeleg.y -= 0.15;
+			if (this.LForeleg.xRot < 0) this.LForeleg.xRot += 0.05;
+			if (this.LForeleg.yRot < 0) this.LForeleg.yRot += 0.05;
+			//Neck
+			if (this.Neck.xRot > 0) this.Neck.xRot -= 0.05;
+			if (this.Neck.yRot < 0) this.Neck.yRot += 0.05;
+			//Head
+//			this.Head.xRot = 0.500909508638178F;
+			if (this.Head.xRot < 0.500909508638178F) this.Head.xRot += 0.05;
+			if (this.Head.yRot < 0) this.Head.yRot += 0.05;
+			//RForeleg
+//			this.RForeleg.y = 18;
+			if (this.RForeleg.y > 18) this.RLeg.y -= 0.15;
+			if (this.RForeleg.xRot < 0) this.RLeg.xRot += 0.05;
+			if (this.RForeleg.yRot < 0) this.RLeg.yRot += 0.05;
+			//LLeg
+//			this.LLeg.y = 16;
+			if (this.LLeg.y > 16) this.LLeg.y -= 0.15;
+			if (this.LLeg.xRot < 0) this.LLeg.xRot += 0.05;
+			if (this.LLeg.yRot < 0) this.LLeg.yRot += 0.05;
+			//LLeg2
+			if (this.LLeg2.xRot > 0) this.LLeg2.xRot -= 0.05;
+			if (this.LLeg2.zRot > 0) this.LLeg2.zRot -= 0.05;
+			//Torso
+//			this.Torso.y = 12;
+			if (this.Torso.y > 12) this.Torso.y -= 0.15;
+		}
 		if (entity.isSleeping()) {
-			this.TailBase.xRot = -0.43598323915870024F;
-			this.TailBase.yRot = 0.11728612207217244F;
-			this.RLeg2.xRot = 2.5413739344815873F;
-			this.RLeg2.zRot = -0.3127630032889644F;
-			this.RLeg.xRot = -1.13376586611655F;
-			this.RLeg.yRot = 0.19547687289441354F;
-			this.LForeleg.xRot = -1.2119566751954398F;
-			this.LForeleg.yRot = -0.27366763203903305F;
-			this.Neck.xRot = 0.1563815016444822F;
-			this.Neck.yRot = -0.46914448828868976F;
-			this.Head.xRot = 0.14905111745452548F;
-			this.Head.yRot = -0.1563815016444822F;
-			this.RForeleg.xRot = -1.291369076266349F;
-			this.RForeleg.yRot = -0.23457224414434488F;
-			this.LLeg.xRot = -1.13376586611655F;
-			this.LLeg.yRot = -0.19547687289441354F;
-			this.LLeg2.xRot = 2.5411994974301875F;
-			this.LLeg2.zRot = 0.3127630032889644F;
-			this.Torso.y = 16;
-			this.LForeleg.y = 22;
-			this.RForeleg.y = 22;
-			this.LLeg.y = 20;
-			this.RLeg.y = 20;
+			if (sleepProgress != 0) {
+				//TailBase
+//				this.TailBase.xRot = -0.3186971254089062F;
+				if (this.TailBase.xRot > -0.43598323915870024F) this.TailBase.xRot -= 0.05;
+				if (this.TailBase.yRot < 0.11728612207217244F) this.TailBase.yRot += 0.05;
+				//RLeg2
+				if (this.RLeg2.xRot < 2.5413739344815873F) this.RLeg2.xRot += 0.05;
+				if (this.RLeg2.zRot > -0.3127630032889644F) this.RLeg2.zRot -= 0.05;
+				//RLeg
+//				this.RLeg.y = 16;
+				if (this.RLeg.y < 20) this.RLeg.y += 0.15;
+				if (this.RLeg.xRot > -1.13376586611655F) this.RLeg.xRot -= 0.05;
+				if (this.RLeg.yRot < 0.19547687289441354F) this.RLeg.yRot += 0.05;
+				//LForeleg
+//				this.LForeleg.y = 18;
+				if (this.LForeleg.y < 22) this.LForeleg.y += 0.15;
+				if (this.LForeleg.xRot > -1.2119566751954398F) this.LForeleg.xRot -= 0.05;
+				if (this.LForeleg.yRot > -0.27366763203903305F) this.LForeleg.yRot -= 0.05;
+				//Neck
+				if (this.Neck.xRot < 0.1563815016444822F) this.Neck.xRot += 0.05;
+				if (this.Neck.yRot > -0.46914448828868976F) this.Neck.yRot -= 0.05;
+				//Head
+//				this.Head.xRot = 0.500909508638178F;
+				if (this.Head.xRot > 0.14905111745452548F) this.Head.xRot -= 0.05;
+				if (this.Head.yRot > -0.1563815016444822F) this.Head.yRot -= 0.05;
+				//RForeleg
+//				this.RForeleg.y = 18;
+				if (this.RForeleg.y < 22) this.RLeg.y += 0.15;
+				if (this.RForeleg.xRot > -1.291369076266349F) this.RLeg.xRot -= 0.05;
+				if (this.RForeleg.yRot > -0.23457224414434488F) this.RLeg.yRot -= 0.05;
+				//LLeg
+//				this.LLeg.y = 16;
+				if (this.LLeg.y < 20) this.LLeg.y += 0.15;
+				if (this.LLeg.xRot > -1.13376586611655F) this.LLeg.xRot -= 0.05;
+				if (this.LLeg.yRot > -0.19547687289441354F) this.LLeg.yRot -= 0.05;
+				//LLeg2
+				if (this.LLeg2.xRot < 2.5411994974301875F) this.LLeg2.xRot += 0.05;
+				if (this.LLeg2.zRot < 0.3127630032889644F) this.LLeg2.zRot += 0.05;
+				//Torso
+//				this.Torso.y = 12;
+				if (this.Torso.y < 16) this.Torso.y += 0.15;
+			}
 		} else {
 			if (entity.isJuvenile()) {
 				float speed = 1.0f;
@@ -150,11 +241,11 @@ public class TriceratopsBabyModel extends EntityModel<Triceratops> {
 				this.TailBase.xRot = Mth.cos(-1.0F + limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount - 0.3F;
 				this.TailBase.yRot = Mth.cos(-1.0F + limbSwing * speed * 0.15F) * degree * 0.05F * limbSwingAmount;
 				if (entity.isInWater()) {
-					this.Torso.y = 8;
-					this.LLeg.y = 12;
-					this.RLeg.y = 12;
-					this.LForeleg.y = 19;
-					this.RForeleg.y = 19;
+					this.Torso.y = 14;
+					this.LLeg.y = 18;
+					this.RLeg.y = 18;
+					this.LForeleg.y = 20;
+					this.RForeleg.y = 20;
 					this.LLeg.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.RLeg.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.RForeleg.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);

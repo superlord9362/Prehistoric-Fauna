@@ -93,7 +93,7 @@ public class Tyrannosaurus extends DinosaurEntity {
 	}
 
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-		if (this.isJuvenile()) {
+		if (!this.isJuvenile()) {
 			return 1.4F;
 		} else if (this.isJuvenile()) {
 			return 2.8F;
@@ -153,20 +153,6 @@ public class Tyrannosaurus extends DinosaurEntity {
 		}));
 	}
 
-	public void aiStep() {
-		super.aiStep();
-		if (this.isBaby() && !this.isJuvenile()) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(25.0D);
-		} else if (this.isJuvenile()) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(50.0D);
-		} else {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(100.0D);
-		}
-		if (this.isAsleep()) {
-			this.navigation.setSpeedModifier(0);;
-		}
-	}
-
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 100.0D).add(Attributes.FOLLOW_RANGE, 35.0D).add(Attributes.MOVEMENT_SPEED, 0.3D).add(Attributes.ATTACK_DAMAGE, 14.0D).add(Attributes.KNOCKBACK_RESISTANCE, 0.75D);
 	}
@@ -174,10 +160,14 @@ public class Tyrannosaurus extends DinosaurEntity {
 	@Override
 	public void setAge(int age) {
 		super.setAge(age);
-		if (this.getAge() >= -12000 && this.getAge() < 0) {
+		if (this.getAge() < -24000) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(25.0D);
+		} else if (this.getAge() >= -24000 && this.getAge() < 0) {
 			this.setJuvenile(true);
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(50.0D);
 		} else if(this.getAge() >= 0) {
 			this.setJuvenile(false);
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(100.0D);
 		}
 	}
 
@@ -209,6 +199,14 @@ public class Tyrannosaurus extends DinosaurEntity {
 		}
 	}
 
+	public void aiStep() {
+		super.aiStep();
+		if (this.isAsleep() || this.getWakingTicks() != 0) {
+			this.navigation.setSpeedModifier(0);;
+		}
+	}
+
+	
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
 			this.playSound(PFSounds.TYRANNOSAURUS_WARN, 1.0F, this.getVoicePitch());

@@ -101,55 +101,13 @@ public class ScelidosaurusModel extends EntityModel<Scelidosaurus> {
 		float attackProgress = entity.getMeleeProgress(partialTick);
 		float speed = 1.0f;
 		float degree = 1.0f;
-		resetModel();
-		if (entity.isAsleep()) {
-			this.LegLeft.x = 1.0F;
-			this.LegLeft.y = 15.5F;
-			this.LegLeft.z = 7.0F;
-			this.LegLeft.yRot = 0.03909537541112055F;
-			this.LegLeft.zRot = -0.27366763203903305F;
-			this.Tail2.xRot = 0.1563815016444822F;
-			this.Tail2.yRot = 0.35185837453889574F;
-			this.Leg2Left.y = 7;
-			this.Leg2Left.xRot = -0.9782570324270162F;
-			this.ArmRight.x = -4.0F;
-			this.ArmRight.y = 3.0F;
-			this.ArmRight.xRot = -1.407433498155583F;
-			this.ArmRight.yRot = -0.5082398928281348F;
-			this.ArmRight.zRot = 0.1563815016444822F;
-			this.Head.xRot = 0.35185837453889574F;
-			this.LegRight.x = -1.0F;
-			this.LegRight.y = 15.5F;
-			this.LegRight.z = 7.0F;
-			this.LegRight.yRot = -0.03909537541112055F;
-			this.LegRight.zRot = 0.27366763203903305F;
-			this.ArmLeft.x = 4.7F;
-			this.ArmLeft.y = 3.0F;
-			this.ArmLeft.xRot = -1.2906709285865847F;
-			this.ArmLeft.yRot = 0.19547687289441354F;
-			this.FootRight.x = -0.5F;
-			this.FootRight.y = 3.5F;
-			this.FootRight.z = -0.3F;
-			this.FootRight.xRot = 1.0555751236166873F;
-			this.FootRight.yRot = 0.3909537457888271F;
-			this.FootRight.zRot = 0.1558579075294158F;
-			this.Body.y = 17.3F;
-			this.Leg2Right.y = 7F;
-			this.Leg2Right.xRot = -0.9782570324270162F;
-			this.Neck.xRot = 0.35185837453889574F;
-			this.Neck.yRot = -0.19547687289441354F;
-			this.Neck.zRot = 0.3127630032889644F;
-			this.FootLeft.x = 0.5F;
-			this.FootLeft.y = 3.5F;
-			this.FootLeft.z = -0.3F;
-			this.FootLeft.xRot = 1.0555751236166873F;
-			this.FootLeft.yRot = -0.3909537457888271F;
-			this.FootLeft.zRot = -0.1558579075294158F;
-			this.Tail.xRot = -0.3909537457888271F;
-			this.Tail.yRot = 0.19547687289441354F;
-			this.Tail.zRot = 0.03909537541112055F;
-		} else {
-			if (entity.getLastHurtByMob() != null || entity.isBipedal()) {
+		int sleepProgress = entity.getSleepTicks();
+		int wakingProgress = entity.getWakingTicks();
+		int crouchingProgress = entity.getCrouchingTicks();
+		if (!entity.isWakingUp() && !entity.isFallingAsleep() && !entity.isStartCrouching()) {
+			if (!entity.isAsleep() && !entity.isBipedal()) {
+				resetModel();
+			} else if (entity.isBipedal() ) {
 				this.Body.xRot = -0.3F;
 				this.ArmRight.xRot = 0.3F;
 				this.ArmLeft.xRot = 0.3F;
@@ -158,6 +116,236 @@ public class ScelidosaurusModel extends EntityModel<Scelidosaurus> {
 				this.Tail2.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) + 0.15F;
 				this.ArmRight.zRot = Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3));
 				this.ArmLeft.zRot = -Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3));
+			} else {
+				this.LegLeft.x = 1.0F;
+				this.LegLeft.y = 15.5F;
+				this.LegLeft.z = 7.0F;
+				this.LegLeft.yRot = 0.03909537541112055F;
+				this.LegLeft.zRot = -0.27366763203903305F;
+				this.Tail2.xRot = 0.1563815016444822F;
+				this.Tail2.yRot = 0.35185837453889574F;
+				this.Leg2Left.y = 7;
+				this.Leg2Left.xRot = -0.9782570324270162F;
+				this.ArmRight.x = -4.0F;
+				this.ArmRight.y = 3.0F;
+				this.ArmRight.xRot = -1.407433498155583F;
+				this.ArmRight.yRot = -0.5082398928281348F;
+				this.ArmRight.zRot = 0.1563815016444822F;
+				this.Head.xRot = 0.35185837453889574F;
+				this.LegRight.x = -1.0F;
+				this.LegRight.y = 15.5F;
+				this.LegRight.z = 7.0F;
+				this.LegRight.yRot = -0.03909537541112055F;
+				this.LegRight.zRot = 0.27366763203903305F;
+				this.ArmLeft.x = 4.7F;
+				this.ArmLeft.y = 3.0F;
+				this.ArmLeft.xRot = -1.2906709285865847F;
+				this.ArmLeft.yRot = 0.19547687289441354F;
+				this.FootRight.x = -0.5F;
+				this.FootRight.y = 3.5F;
+				this.FootRight.z = -0.3F;
+				this.FootRight.xRot = 1.0555751236166873F;
+				this.FootRight.yRot = 0.3909537457888271F;
+				this.FootRight.zRot = 0.1558579075294158F;
+				this.Body.y = 17.3F;
+				this.Leg2Right.y = 7F;
+				this.Leg2Right.xRot = -0.9782570324270162F;
+				this.Neck.xRot = 0.35185837453889574F;
+				this.Neck.yRot = -0.19547687289441354F;
+				this.Neck.zRot = 0.3127630032889644F;
+				this.FootLeft.x = 0.5F;
+				this.FootLeft.y = 3.5F;
+				this.FootLeft.z = -0.3F;
+				this.FootLeft.xRot = 1.0555751236166873F;
+				this.FootLeft.yRot = -0.3909537457888271F;
+				this.FootLeft.zRot = -0.1558579075294158F;
+				this.Tail.xRot = -0.3909537457888271F;
+				this.Tail.yRot = 0.19547687289441354F;
+				this.Tail.zRot = 0.03909537541112055F;
+			}
+		}
+		if (wakingProgress != 0) {
+			//LegLeft
+//			this.LegLeft.x = 1.5F;
+//			this.LegLeft.y = 11.0F;
+//			this.LegLeft.z = 5.9F;
+			if (this.LegLeft.x < 1.5) this.LegLeft.x += 0.15;
+			if (this.LegLeft.y > 11) this.LegLeft.y -= 0.15;
+			if (this.LegLeft.z > 5.9) this.LegLeft.z -= 0.15;
+			if (this.LegLeft.yRot > 0) this.LegLeft.yRot -= 0.05;
+			if (this.LegLeft.zRot < 0) this.LegLeft.zRot += 0.05;
+			//Tail2
+			if (this.Tail2.xRot > 0) this.Tail2.xRot -= 0.05;
+			if (this.Tail2.yRot > 0) this.Tail2.yRot -= 0.05;
+			//Leg2Left
+//			this.Leg2Left.y = 6.5F;
+			if (this.Leg2Left.y > 6.5) this.Leg2Left.y -= 0.15;
+			if (this.Leg2Left.xRot < 0) this.Leg2Left.xRot += 0.05;
+			//ArmRight
+//			this.ArmRight.x = -2.5F;
+//			this.ArmRight.y = 2.0F;
+			if (this.ArmRight.x < -2.5) this.ArmRight.x += 0.15;
+			if (this.ArmRight.y > 2) this.ArmRight.y -= 0.15;
+			if (this.ArmRight.xRot < 0) this.ArmRight.xRot += 0.05;
+			if (this.ArmRight.xRot > 0) this.ArmRight.xRot -= 0.05;
+			if (this.ArmRight.yRot < 0) this.ArmRight.yRot += 0.05;
+			if (this.ArmRight.zRot > 0) this.ArmRight.zRot -= 0.05;
+			//Head
+//			this.Head.xRot = 0.2500000029182012F;
+			if (this.Head.xRot > 0.2500000029182012F) this.Head.xRot -= 0.05;
+			//LegRight
+//			this.LegRight.x = -1.5F;
+//			this.LegRight.y = 11.0F;
+//			this.LegRight.z = 6.0F;
+			if (this.LegRight.x > -1.5) this.LegRight.x -= 0.15;
+			if (this.LegRight.y > 11) this.LegRight.y -= 0.15;
+			if (this.LegRight.z > 6) this.LegRight.z -= 0.15;
+			if (this.LegRight.yRot < 0) this.LegRight.yRot += 0.05;
+			if (this.LegRight.zRot > 0) this.LegRight.zRot -= 0.05;
+			//ArmLeft
+//			this.ArmLeft.x = 4.5F;
+//			this.ArmLeft.y = 2.0F;
+			if (this.ArmLeft.x > 4.5) this.ArmLeft.x -= 0.15;
+			if (this.ArmLeft.y > 2) this.ArmLeft.y -= 0.15;
+			if (this.ArmLeft.xRot < 0) this.ArmLeft.xRot += 0.05;
+			if (this.ArmLeft.xRot > 0) this.ArmLeft.xRot -= 0.05;
+			if (this.ArmLeft.yRot > 0) this.ArmLeft.yRot -= 0.05;
+			//FootRight
+//			this.FootRight.x = 0.0F;
+//			this.FootRight.y = 5.5F;
+//			this.FootRight.z = 0.5F;
+			if (this.FootRight.x < 0) this.FootRight.x += 0.15;
+			if (this.FootRight.y < 5.5) this.FootRight.y += 0.15;
+			if (this.FootRight.z < 0.5) this.FootRight.z += 0.15;
+			if (this.FootRight.xRot > 0) this.FootRight.xRot -= 0.05;
+			if (this.FootRight.yRot > 0) this.FootRight.yRot -= 0.05;
+			if (this.FootRight.zRot > 0) this.FootRight.zRot -= 0.05;
+			//Body
+//			this.Body.y = 12;
+			if (this.Body.y > 12) this.Body.y -= 0.15;
+			if (this.Body.xRot < 0) this.Body.xRot += 0.15;
+			//Leg2Right
+//			this.Leg2Right.y = 6.5F;
+			if (this.Leg2Right.y > 6.5) this.Leg2Right.y -= 0.15;
+			if (this.Leg2Right.xRot < 0) this.Leg2Right.xRot += 0.05;
+			//Neck
+			if (this.Neck.xRot > 0) this.Neck.xRot -= 0.05;
+			if (this.Neck.yRot < 0) this.Neck.yRot += 0.05;
+			if (this.Neck.zRot > 0) this.Neck.zRot -= 0.05;
+			//FootLeft
+//			this.FootLeft.x = 0.0F;
+//			this.FootLeft.y = 5.5F;
+//			this.FootLeft.z = 0.5F;
+			if (this.FootLeft.x > 0) this.FootLeft.x -= 0.15;
+			if (this.FootLeft.y < 5.5) this.FootLeft.y += 0.15;
+			if (this.FootLeft.z < 0.5) this.FootLeft.z += 0.15;
+			if (this.FootLeft.xRot > 0) this.FootLeft.xRot -= 0.05;
+			if (this.FootLeft.yRot < 0) this.FootLeft.yRot += 0.05;
+			if (this.FootLeft.zRot < 0) this.FootLeft.zRot += 0.05;
+			//Tail
+			if (this.Tail.xRot < 0) this.Tail.xRot += 0.05;
+			if (this.Tail.xRot > 0) this.Tail.xRot -= 0.05;
+			if (this.Tail.yRot > 0) this.Tail.yRot -= 0.05;
+			if (this.Tail.zRot > 0) this.Tail.zRot -= 0.05;
+		}
+		if (entity.isAsleep()) {
+			if (sleepProgress != 0) {
+				//LegLeft
+//				this.LegLeft.x = 1.5F;
+//				this.LegLeft.y = 11.0F;
+//				this.LegLeft.z = 5.9F;
+				if (this.LegLeft.x > 1) this.LegLeft.x -= 0.15;
+				if (this.LegLeft.y < 15.5) this.LegLeft.y += 0.15;
+				if (this.LegLeft.z < 7) this.LegLeft.z += 0.15;
+				if (this.LegLeft.yRot < 0.03909537541112055F) this.LegLeft.yRot += 0.05;
+				if (this.LegLeft.zRot > -0.27366763203903305F) this.LegLeft.zRot -= 0.05;
+				//Tail2
+				if (this.Tail2.xRot < 0.1563815016444822F) this.Tail2.xRot += 0.05;
+				if (this.Tail2.xRot > 0.1563815016444822F) this.Tail2.xRot -= 0.05;
+				if (this.Tail2.yRot < 0.35185837453889574F) this.Tail2.yRot += 0.05;
+				//Leg2Left
+//				this.Leg2Left.y = 6.5F;
+				if (this.Leg2Left.y < 7) this.Leg2Left.y += 0.15;
+				if (this.Leg2Left.xRot > -0.9782570324270162F) this.Leg2Left.xRot -= 0.05;
+				//ArmRight
+//				this.ArmRight.x = -2.5F;
+//				this.ArmRight.y = 2.0F;
+				if (this.ArmRight.x > -4) this.ArmRight.x -= 0.15;
+				if (this.ArmRight.y < 3) this.ArmRight.y += 0.15;
+				if (this.ArmRight.xRot > -1.407433498155583F) this.ArmRight.xRot -= 0.05;
+				if (this.ArmRight.yRot > -0.5082398928281348F) this.ArmRight.yRot -= 0.05;
+				if (this.ArmRight.zRot < 0.1563815016444822F) this.ArmRight.zRot += 0.05;
+				//Head
+//				this.Head.xRot = 0.2500000029182012F;
+				if (this.Head.xRot < 0.35185837453889574F) this.Head.xRot += 0.05;
+				//LegRight
+//				this.LegRight.x = -1.5F;
+//				this.LegRight.y = 11.0F;
+//				this.LegRight.z = 6.0F;
+				if (this.LegRight.x < -1) this.LegRight.x += 0.15;
+				if (this.LegRight.y < 15.5) this.LegRight.y += 0.15;
+				if (this.LegRight.z < 7) this.LegRight.z += 0.15;
+				if (this.LegRight.yRot > -0.03909537541112055F) this.LegRight.yRot -= 0.05;
+				if (this.LegRight.zRot < 0.27366763203903305F) this.LegRight.zRot += 0.05;
+				//ArmLeft
+//				this.ArmLeft.x = 4.5F;
+//				this.ArmLeft.y = 2.0F;
+				if (this.ArmLeft.x < 4.7) this.ArmLeft.x += 0.15;
+				if (this.ArmLeft.y < 3) this.ArmLeft.y += 0.15;
+				if (this.ArmLeft.xRot > -1.2906709285865847F) this.ArmLeft.xRot -= 0.05;
+				if (this.ArmLeft.yRot < 0.19547687289441354F) this.ArmLeft.yRot += 0.05;
+				//FootRight
+//				this.FootRight.x = 0.0F;
+//				this.FootRight.y = 5.5F;
+//				this.FootRight.z = 0.5F;
+				if (this.FootRight.x > -0.5) this.FootRight.x -= 0.15;
+				if (this.FootRight.y > 3.5) this.FootRight.y -= 0.15;
+				if (this.FootRight.z > -0.3) this.FootRight.z -= 0.15;
+				if (this.FootRight.xRot < 1.0555751236166873F) this.FootRight.xRot += 0.05;
+				if (this.FootRight.yRot < 0.3909537457888271F) this.FootRight.yRot += 0.05;
+				if (this.FootRight.zRot < 0.1558579075294158F) this.FootRight.zRot += 0.05;
+				//Body
+//				this.Body.y = 12;
+				if (this.Body.y < 17.3) this.Body.y += 0.15;
+				//Leg2Right
+//				this.Leg2Right.y = 6.5F;
+				if (this.Leg2Right.y < 7) this.Leg2Right.y += 0.15;
+				if (this.Leg2Right.xRot > -0.9782570324270162F) this.Leg2Right.xRot -= 0.05;
+				//Neck
+				if (this.Neck.xRot < 0.35185837453889574F) this.Neck.xRot += 0.05;
+				if (this.Neck.yRot > -0.19547687289441354F) this.Neck.yRot -= 0.05;
+				if (this.Neck.zRot < 0.3127630032889644F) this.Neck.zRot += 0.05;
+				//FootLeft
+//				this.FootLeft.x = 0.0F;
+//				this.FootLeft.y = 5.5F;
+//				this.FootLeft.z = 0.5F;
+				if (this.FootLeft.x < 0.5) this.FootLeft.x += 0.15;
+				if (this.FootLeft.y > 3.5) this.FootLeft.y -= 0.15;
+				if (this.FootLeft.z > -0.3) this.FootLeft.z -= 0.15;
+				if (this.FootLeft.xRot < 1.0555751236166873F) this.FootLeft.xRot += 0.05;
+				if (this.FootLeft.yRot > -0.3909537457888271F) this.FootLeft.yRot -= 0.05;
+				if (this.FootLeft.zRot > -0.1558579075294158F) this.FootLeft.zRot -= 0.05;
+				//Tail
+				if (this.Tail.xRot > -0.3909537457888271F) this.Tail.xRot -= 0.05;
+				if (this.Tail.yRot < 0.19547687289441354F) this.Tail.yRot += 0.05;
+				if (this.Tail.zRot < 0.03909537541112055F) this.Tail.zRot += 0.05;
+			}
+		} else {
+			if (entity.getLastHurtByMob() != null || entity.isBipedal()) {
+				if (crouchingProgress != 0) {
+					//Body
+					if (this.Body.xRot > -0.3) this.Body.xRot -= 0.05;
+					//ArmRight
+					if (this.ArmRight.xRot < 0.3) this.ArmRight.xRot += 0.05;
+					//ArmLeft
+					if (this.ArmLeft.xRot < 0.3) this.ArmLeft.xRot += 0.05;
+					//Head
+					if (this.Head.xRot < 0.3) this.Head.xRot += 0.05;
+					//Tail
+					if (this.Tail.xRot < 0.15) this.Tail.xRot += 0.05;
+					//Tail2
+					if (this.Tail2.xRot < 0.15) this.Tail2.xRot += 0.05;
+				}
 			} else {
 				this.Body.xRot = 0;
 				this.ArmRight.xRot = -0F;

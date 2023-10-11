@@ -224,13 +224,18 @@ public class Velociraptor extends DinosaurEntity {
 		}));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 	}
-
-	public void aiStep() {
-		if (this.isBaby()) {
+	
+	@Override
+	public void setAge(int age) {
+		super.setAge(age);
+		if (this.getAge() >= -24000 && this.getAge() < 0) {
 			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(4);
-		} else {
+		} else if(this.getAge() >= 0) {
 			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(8);
 		}
+	}
+
+	public void aiStep() {
 		if (!this.level.isClientSide && this.isAlive()) {
 			++this.eatTicks;
 			ItemStack itemstack = this.getItemBySlot(EquipmentSlot.MAINHAND);
@@ -268,7 +273,7 @@ public class Velociraptor extends DinosaurEntity {
 			this.zza = 0.0F;
 		}
 
-		if (this.isAsleep() || this.isTameSitting()) {
+		if (this.isAsleep() || this.isTameSitting() || this.getWakingTicks() != 0) {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.25D);
@@ -1001,11 +1006,14 @@ public class Velociraptor extends DinosaurEntity {
 			this.func_220817_j();
 			this.field_220822_f = 2 + Velociraptor.this.getRandom().nextInt(3);
 			Velociraptor.this.setSitting(true);
+			Velociraptor.this.setStartSitting(true);
 			Velociraptor.this.getNavigation().stop();
 		}
 
 		public void stop() {
 			Velociraptor.this.setSitting(false);
+			Velociraptor.this.setWakingUp(true);
+			Velociraptor.this.setStartSitting(false);
 		}
 
 		public void tick() {

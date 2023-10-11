@@ -1,5 +1,6 @@
 package superlord.prehistoricfauna.init;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
@@ -8,6 +9,7 @@ import net.minecraft.world.level.biome.BiomeGenerationSettings;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraftforge.registries.DeferredRegister;
@@ -47,6 +49,7 @@ public class PFPlacedFeatures {
 	public static final RegistryObject<PlacedFeature> JOHNSTONIA = REGISTER.register("placed_johnstonia", () -> new PlacedFeature(PFConfiguredFeatures.JOHNSTONIA.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
 	public static final RegistryObject<PlacedFeature> DICROIDIUM = REGISTER.register("placed_dicroidium", () -> new PlacedFeature(PFConfiguredFeatures.DICROIDIUM.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
 	public static final RegistryObject<PlacedFeature> SCYTOPHYLLUM = REGISTER.register("placed_scytophyllum", () -> new PlacedFeature(PFConfiguredFeatures.SCYTOPHYLLUM.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(2)));
+	public static final RegistryObject<PlacedFeature> LOWERED_HORSETAILS = REGISTER.register("placed_lowered_horsetails", () -> new PlacedFeature(PFConfiguredFeatures.LOWERED_HORSETAILS.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
 
 	public static final RegistryObject<PlacedFeature> ZAMITES = REGISTER.register("placed_zamites", () -> new PlacedFeature(PFConfiguredFeatures.COMMON_ZAMITES_BUSH.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
 	
@@ -87,7 +90,7 @@ public class PFPlacedFeatures {
 	public static final RegistryObject<PlacedFeature> PROTOJUNIPEROXYLON_TREE_1_CHECKED = register("protojuniperoxylon_tree_1", PFConfiguredFeatures.LARGE_PROTOJUNIPEROXYLON_TREE_1, PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING));
 	public static final RegistryObject<PlacedFeature> PROTOJUNIPEROXYLON_TREE_2_CHECKED = register("protojuniperoxylon_tree_2", PFConfiguredFeatures.LARGE_PROTOJUNIPEROXYLON_TREE_2, PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING));
 
-	public static final RegistryObject<PlacedFeature> CHINLE_SWAMP_TREES = register("placed_chinle_swamp_trees", PFConfiguredFeatures.CHINLE_SWAMP_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(2, 0.1F, 1)));
+	public static final RegistryObject<PlacedFeature> CHINLE_SWAMP_TREES = register("placed_chinle_swamp_trees", PFConfiguredFeatures.CHINLE_SWAMP_TREES, PlacementUtils.countExtra(2, 0.1F, 1), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(4), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome(), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(Blocks.OAK_SAPLING.defaultBlockState(), BlockPos.ZERO)));
 	public static final RegistryObject<PlacedFeature> SCHILDERIA_TREES = register("placed_schilderia_trees", PFConfiguredFeatures.SCHILDERIA_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.1F, 1)));
 	public static final RegistryObject<PlacedFeature> CHINLE_FLATS_TREES = register("placed_chinle_flats_trees", PFConfiguredFeatures.CHINLE_FLATS_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1)));
 	public static final RegistryObject<PlacedFeature> AGATHOXYLON_TREES = register("placed_agathoxylon_trees", PFConfiguredFeatures.AGATHOXYLON_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 2)));
@@ -117,8 +120,8 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NEOCALAMITES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CHINLE_FLATS_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ALGAE.getHolder().orElseThrow());
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DOUBLE_HORSETAILS.getHolder().orElseThrow());
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HORSETAILS.getHolder().orElseThrow());
+		//builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DOUBLE_HORSETAILS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WATERLOGGED_HORSETAILS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLATHOPTERIS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS.getHolder().orElseThrow());
@@ -133,8 +136,8 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SCHILDERIA_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, AGATHOXYLON_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ALGAE.getHolder().orElseThrow());
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DOUBLE_HORSETAILS.getHolder().orElseThrow());
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HORSETAILS.getHolder().orElseThrow());
+		//builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DOUBLE_HORSETAILS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WATERLOGGED_HORSETAILS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLATHOPTERIS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS.getHolder().orElseThrow());
@@ -145,8 +148,8 @@ public class PFPlacedFeatures {
 	public static void withChinleWoodedMountainsPlants(BiomeGenerationSettings.Builder builder) {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SCHILDERIA_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ALGAE.getHolder().orElseThrow());
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DOUBLE_HORSETAILS.getHolder().orElseThrow());
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HORSETAILS.getHolder().orElseThrow());
+		//builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DOUBLE_HORSETAILS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WATERLOGGED_HORSETAILS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLATHOPTERIS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS.getHolder().orElseThrow());
@@ -160,8 +163,8 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MICHELILLOA.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NEOCALAMITES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ALGAE.getHolder().orElseThrow());
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DOUBLE_HORSETAILS.getHolder().orElseThrow());
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HORSETAILS.getHolder().orElseThrow());
+		//builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DOUBLE_HORSETAILS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WATERLOGGED_HORSETAILS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, JOHNSTONIA.getHolder().orElseThrow());
@@ -174,8 +177,8 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MICHELILLOA.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NEOCALAMITES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ALGAE.getHolder().orElseThrow());
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DOUBLE_HORSETAILS.getHolder().orElseThrow());
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HORSETAILS.getHolder().orElseThrow());
+		//builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DOUBLE_HORSETAILS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WATERLOGGED_HORSETAILS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, JOHNSTONIA.getHolder().orElseThrow());

@@ -199,16 +199,21 @@ public class Eilenodon extends DinosaurEntity {
 	protected SoundEvent getDeathSound() {
 		return PFSounds.EILENODON_DEATH;
 	}
+	
+	@Override
+	public void setAge(int age) {
+		super.setAge(age);
+		if (this.getAge() >= -24000 && this.getAge() < 0) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(2);
+		} else if(this.getAge() >= 0) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(4);
+		}
+	}
 
 	@Override
 	public void aiStep() {
 		super.aiStep();
-		if (this.isBaby()) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(2);
-		} else {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(4);
-		}
-		if (this.isAsleep()) {
+		if (this.isAsleep() || this.getWakingTicks() != 0) {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.25D);
@@ -278,15 +283,18 @@ public class Eilenodon extends DinosaurEntity {
 			return this.field_220822_f == 4;
 		}
 
-		public void startExecuting() {
+		public void start() {
 			this.func_220817_j();
 			this.field_220822_f = 2 + Eilenodon.this.getRandom().nextInt(3);
 			Eilenodon.this.setSitting(true);
+			Eilenodon.this.setStartSitting(true);
 			Eilenodon.this.getNavigation().stop();
 		}
 
-		public void resetTask() {
+		public void stop() {
 			Eilenodon.this.setSitting(false);
+			Eilenodon.this.setStartSitting(false);
+			Eilenodon.this.setWakingUp(true);
 		}
 
 		public void tick() {

@@ -139,20 +139,6 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 		this.setHerbivorous(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
-
-	@Override
-	public void setAge(int age) {
-		super.setAge(age);
-		if (this.getAge() < -16000) {
-			this.setHatchling(true);
-		} else if (this.getAge() >= -16000 && this.getAge() < -8000) {
-			this.setHatchling(false);
-		} else if (this.getAge() >= -8000 && this.getAge() < 0) {
-			this.setJuvenile(true);
-		} else if(this.getAge() >= 0) {
-			this.setJuvenile(false);
-		}
-	}
 	
 	protected void playStepSound(BlockPos pos, BlockState state) {
 		if (this.isBaby()) {
@@ -211,16 +197,27 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 			--this.warningSoundTicks;
 		}
 	}
+	
+	@Override
+	public void setAge(int age) {
+		super.setAge(age);
+		if (this.getAge() < -48000) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(25);
+			this.setHatchling(true);
+		} else if (this.getAge() >= -48000 && this.getAge() < -24000) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(50);
+			this.setHatchling(false);
+		} else if (this.getAge() >= -24000 && this.getAge() < 0) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(100);
+			this.setJuvenile(true);
+		} else if(this.getAge() >= 0) {
+			this.setJuvenile(false);
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(200);
+		}
+	}
 
 	@Override
 	public void aiStep() {
-		if (this.isBaby() && !this.isJuvenile()) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(50.0D);
-		} else if (this.isJuvenile()) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(100.0D);
-		} else {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(200.0D);
-		}
 		super.aiStep();
 		if (this.getDeltaMovement().x == 0 && this.getDeltaMovement().y == 0 && this.getDeltaMovement().z == 0) {
 			
@@ -233,7 +230,7 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 				}
 			}
 		}
-		if (this.isAsleep()) {
+		if (this.isAsleep() || this.getWakingTicks() != 0) {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.22D);

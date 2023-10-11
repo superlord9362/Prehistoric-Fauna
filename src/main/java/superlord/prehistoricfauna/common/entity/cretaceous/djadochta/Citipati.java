@@ -149,15 +149,20 @@ public class Citipati extends DinosaurEntity {
 		}));
 		this.goalSelector.addGoal(5, new Citipati.SitOnEggGoal((double)1.2F, 12, 2));
 	}
+	
+	@Override
+	public void setAge(int age) {
+		super.setAge(age);
+		if (this.getAge() >= -24000 && this.getAge() < 0) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(7);
+		} else if(this.getAge() >= 0) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(15);
+		}
+	}
 
 	public void aiStep() {
 		super.aiStep();
-		if (this.isBaby()) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(7);
-		} else {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(15);
-		}
-		if (this.isAsleep() || this.isSitting()) {
+		if (this.isAsleep() || this.isSitting() || this.getWakingTicks() != 0) {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.26D);
@@ -309,6 +314,8 @@ public class Citipati extends DinosaurEntity {
 		public void stop() {
 			super.stop();
 			Citipati.this.setSitting(false);
+			Citipati.this.setStartSitting(false);
+			Citipati.this.setWakingUp(true);
 		}
 
 		protected void eatBerry() {
@@ -340,6 +347,7 @@ public class Citipati extends DinosaurEntity {
 			this.field_220731_g = 0;
 			super.start();
 			Citipati.this.setSitting(true);
+			Citipati.this.setStartSitting(true);
 		}
 
 

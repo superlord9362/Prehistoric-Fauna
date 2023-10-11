@@ -219,15 +219,20 @@ public class Saurosuchus extends DinosaurEntity {
 		}
 		return super.mobInteract(p_230254_1_, p_230254_2_);
 	}
+	
+	@Override
+	public void setAge(int age) {
+		super.setAge(age);
+		if (this.getAge() >= -24000 && this.getAge() < 0) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(15);
+		} else if(this.getAge() >= 0) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(30);
+		}
+	}
 
 	public void aiStep() {
 		super.aiStep();
-		if (this.isBaby()) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(15);
-		} else {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(30);
-		}
-		if (this.isAsleep()) {
+		if (this.isAsleep() || this.getWakingTicks() != 0) {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.25D);

@@ -50,11 +50,11 @@ public class DiurnalSleepingGoal extends Goal {
 
 	@Override
 	public void start() {
-		entity.setAsleep(true);
 		entity.xxa = 0.0F;
 		entity.yya = 0.0F;
 		entity.zza = 0.0F;
 		entity.getNavigation().stop();
+		entity.setFallingAsleep(true);
 	}
 
 	public void tick() {
@@ -66,7 +66,8 @@ public class DiurnalSleepingGoal extends Goal {
 			}
 		}
 		if (level.getDayTime() % 24000 >= 0 && level.getDayTime() % 24000 < 12000 || entity.getTarget() != null || entity.isTame() || entity.isInWater() || entity.isInLava() || entity.getLastHurtByMob() != null) {
-			entity.setAsleep(false);
+			//entity.setAsleep(false);
+			//entity.setWakingUp(true);
 			stop();
 
 		}
@@ -74,8 +75,10 @@ public class DiurnalSleepingGoal extends Goal {
 
 	@Override
 	public void stop() {
+		entity.setWakingUp(true);
+		entity.setFallingAsleep(false);
+		//entity.setAsleep(false);
 		entity.setAwakeTicks(100);
-		entity.setAsleep(false);
 	}
 
 }

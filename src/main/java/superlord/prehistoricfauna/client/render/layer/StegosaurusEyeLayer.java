@@ -3,6 +3,7 @@ package superlord.prehistoricfauna.client.render.layer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
@@ -15,12 +16,12 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.StegosaurusModel;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Stegosaurus;
 
-public class StegosaurusEyeLayer extends RenderLayer<Stegosaurus, StegosaurusModel> {
+public class StegosaurusEyeLayer extends RenderLayer<Stegosaurus, EntityModel<Stegosaurus>> {
 	
 	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/stegosaurus_eyeglow.png"));
-	private final RenderLayerParent<Stegosaurus, StegosaurusModel> stegosaurusRenderer;
+	private final RenderLayerParent<Stegosaurus, EntityModel<Stegosaurus>> stegosaurusRenderer;
 	
-	public StegosaurusEyeLayer(RenderLayerParent<Stegosaurus, StegosaurusModel> rendererIn) {
+	public StegosaurusEyeLayer(RenderLayerParent<Stegosaurus, EntityModel<Stegosaurus>> rendererIn) {
 		super(rendererIn);
 		this.stegosaurusRenderer = rendererIn;
 	}

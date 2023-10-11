@@ -88,6 +88,8 @@ public class Triceratops extends AbstractChestedHorse  {
 	private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> IS_DIGGING = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> IS_JUVENILE = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> WAKING_UP = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> FALLING_ASLEEP = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> ALBINO = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> MELANISTIC = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> SLEEPING = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.BOOLEAN);
@@ -113,6 +115,8 @@ public class Triceratops extends AbstractChestedHorse  {
 	private float meleeProgress = 0.0F;
 	private float prevMeleeProgress = 0.0F;
 	public int warryTicks = 0;
+	public int sleepingTicks = 0;
+	public int wakingUpTicks = 0;
 
 	@SuppressWarnings("deprecation")
 	public Triceratops(EntityType<? extends Triceratops> type, Level worldIn) {
@@ -130,15 +134,12 @@ public class Triceratops extends AbstractChestedHorse  {
 		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
+	public int getSleepingTicks() {
+		return this.sleepingTicks;
+	}
 
-	@Override
-	public void setAge(int age) {
-		super.setAge(age);
-		if (this.getAge() >= -12000 && this.getAge() < 0) {
-			this.setJuvenile(true);
-		} else if(this.getAge() >= 0) {
-			this.setJuvenile(false);
-		}
+	public int getWakingUpTicks() {
+		return this.wakingUpTicks;
 	}
 
 	public boolean isDigging() {
@@ -249,6 +250,22 @@ public class Triceratops extends AbstractChestedHorse  {
 
 	public void setAggressive(boolean isAggressive) {
 		this.entityData.set(AGGRESSIVE, isAggressive);
+	}
+	
+	public boolean isFallingAsleep() {
+		return this.entityData.get(FALLING_ASLEEP);
+	}
+
+	public void setFallingAsleep(boolean isFallingAsleep) {
+		this.entityData.set(FALLING_ASLEEP, isFallingAsleep);
+	}
+	
+	public boolean isWakingUp() {
+		return this.entityData.get(WAKING_UP);
+	}
+
+	public void setWakingUp(boolean isWakingUp) {
+		this.entityData.set(WAKING_UP, isWakingUp);
 	}
 
 	List<UUID> getTrustedUUIDs() {
@@ -378,6 +395,8 @@ public class Triceratops extends AbstractChestedHorse  {
 		this.entityData.define(PROTECTIVE, false);
 		this.entityData.define(TERRITORIAL, false);
 		this.entityData.define(AGGRESSIVE, false);
+		this.entityData.define(WAKING_UP, false);
+		this.entityData.define(FALLING_ASLEEP, false);
 	}
 
 	public void addAdditionalSaveData(CompoundTag compound) {
@@ -401,6 +420,8 @@ public class Triceratops extends AbstractChestedHorse  {
 		compound.putBoolean("IsProtective", this.isProtective());
 		compound.putBoolean("IsTerritorial", this.isTerritorial());
 		compound.putBoolean("IsAggressive", this.isAggressive());
+		compound.putBoolean("IsFallingAsleep", this.isFallingAsleep());
+		compound.putBoolean("IsWakingUp", this.isWakingUp());
 	}
 
 	public void readAdditionalSaveData(CompoundTag compound) {
@@ -420,6 +441,8 @@ public class Triceratops extends AbstractChestedHorse  {
 		this.setProtective(compound.getBoolean("IsProtective"));
 		this.setTerritorial(compound.getBoolean("IsTerritorial"));
 		this.setAggressive(compound.getBoolean("IsAggressive"));
+		this.setFallingAsleep(compound.getBoolean("IsFallingAsleep"));
+		this.setWakingUp(compound.getBoolean("IsWakingUp"));
 	}
 
 	@Nullable
@@ -688,17 +711,24 @@ public class Triceratops extends AbstractChestedHorse  {
 	public float getMeleeProgress(float partialTick) {
 		return prevMeleeProgress + (meleeProgress - prevMeleeProgress) * partialTick;
 	}
+	
+	@Override
+	public void setAge(int age) {
+		super.setAge(age);
+		if (this.getAge() < -24000) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
+		} else if (this.getAge() >= -24000 && this.getAge() < 0) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(40);
+			this.setJuvenile(true);
+		} else if(this.getAge() >= 0) {
+			this.setJuvenile(false);
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(80);
+		}
+	}
 
 	@Override
 	public void aiStep() {
 		super.aiStep();
-		if (this.isBaby() && !this.isJuvenile()) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20.0D);
-		} else if (this.isJuvenile()) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(40.0D);
-		} else {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(80.0D);
-		}
 		if (this.isAlive()) {
 			if (this.attackTick > 0) {
 				--this.attackTick;
@@ -772,6 +802,16 @@ public class Triceratops extends AbstractChestedHorse  {
 		if (!this.level.isClientSide) {
 			if (this.warryTicks != 0) warryTicks--;
 		}
+		if (this.isWakingUp()) {
+			if (wakingUpTicks != 30) wakingUpTicks++;
+			else this.setWakingUp(false);
+		}
+		if (!this.isWakingUp() && wakingUpTicks != 0) this.wakingUpTicks = 0;
+		if (this.isFallingAsleep()) {
+			if (sleepingTicks != 30) sleepingTicks++;
+			else this.setFallingAsleep(false);
+		}
+		if (!this.isFallingAsleep() && sleepingTicks != 0) this.sleepingTicks = 0;
 	}
 	
 	public void setAwakeTicks(int ticks) {

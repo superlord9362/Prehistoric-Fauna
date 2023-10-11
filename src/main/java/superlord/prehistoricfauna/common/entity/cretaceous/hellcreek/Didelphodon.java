@@ -162,13 +162,18 @@ public class Didelphodon extends DinosaurEntity {
 	public float func_213475_v(float p_213475_1_) {
 		return Mth.lerp(p_213475_1_, this.interestedAngleO, this.interestedAngle) * 0.11F * (float)Math.PI;
 	}
-
-	public void aiStep() {
-		if (this.isBaby()) {
+	
+	@Override
+	public void setAge(int age) {
+		super.setAge(age);
+		if (this.getAge() >= -24000 && this.getAge() < 0) {
 			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(3);
-		} else {
+		} else if(this.getAge() >= 0) {
 			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(6);
 		}
+	}
+
+	public void aiStep() {
 		if (!this.level.isClientSide && this.isAlive() && this.isEffectiveAi()) {
 			++this.eatTicks;
 			ItemStack stack = this.getItemBySlot(EquipmentSlot.MAINHAND);
@@ -212,7 +217,7 @@ public class Didelphodon extends DinosaurEntity {
 				}
 			}
 		}
-		if (this.isAsleep()) {
+		if (this.isAsleep() || this.getWakingTicks() != 0) {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.23D);

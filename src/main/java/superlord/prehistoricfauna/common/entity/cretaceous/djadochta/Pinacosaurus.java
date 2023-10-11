@@ -110,15 +110,20 @@ public class Pinacosaurus extends DinosaurEntity {
 		}
 		return super.hurt(p_33421_, p_33422_);
 	}
+	
+	@Override
+	public void setAge(int age) {
+		super.setAge(age);
+		if (this.getAge() >= -24000 && this.getAge() < 0) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
+		} else if(this.getAge() >= 0) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(40);
+		}
+	}
 
 	public void aiStep() {
 		super.aiStep();
-		if (this.isBaby()) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
-		} else {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(40);
-		}
-		if (this.isAsleep()) {
+		if (this.isAsleep() || this.getWakingTicks() != 0) {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.2D);

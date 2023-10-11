@@ -109,29 +109,118 @@ public class SaurosuchusModel extends EntityModel<Saurosuchus> {
 		float degree = 1.0f;
 		float partialTick = ageInTicks - entity.tickCount;
 		float attackProgress = entity.getMeleeProgress(partialTick);
-		resetModel();
+		int sleepProgress = entity.getSleepTicks();
+		int wakingProgress = entity.getWakingTicks();
+		if (!entity.isWakingUp() && !entity.isFallingAsleep()) {
+			if (!entity.isAsleep()) {
+				resetModel();
+			} else {
+				this.Arm.y = 21.5F;
+				this.Arm.xRot = -1.5707963267948966F;
+				this.Arm_1.y = 21.5F;
+				this.Arm_1.xRot = -1.5707963267948966F;
+				this.Tail.xRot = -0.17453292519943295F;
+				this.Tail.yRot = 0.6108652381980153F;
+				this.Neck.xRot = 0.17453292519943295F;
+				this.Tail2.z = 20;
+				this.Tail2.yRot = 0.6108652381980153F;
+				this.Body.y = 19.0F;
+				this.Thigh.x = 3.5F;
+				this.Thigh.y = 20.5F;
+				this.Thigh.z = 17;
+				this.Thigh.xRot = 1.5707963267948966F;
+				this.Thigh.yRot = 0.6981317007977318F;
+				this.Thigh_1.x = -3.5F;
+				this.Thigh_1.y = 20.5F;
+				this.Thigh_1.z = 17;
+				this.Thigh_1.xRot = 1.5707963267948966F;
+				this.Thigh_1.yRot = -0.6981317007977318F;
+			}
+		}
+		if (wakingProgress != 0) {
+			//Arm
+//			this.Arm.y = 7.0F;
+			if (this.Arm.y > 7) this.Arm.y -= 0.15;
+			if (this.Arm.xRot < 0) this.Arm.xRot += 0.05;
+			//Arm_1
+//			this.Arm_1.y = 7.0F;
+			if (this.Arm_1.y > 7) this.Arm_1.y -= 0.15;
+			if (this.Arm_1.xRot < 0) this.Arm_1.xRot += 0.05;
+			//Tail
+			if (this.Tail.xRot < 0) this.Tail.xRot += 0.05;
+			if (this.Tail.yRot > 0) this.Tail.yRot -= 0.05;
+			//Neck
+//			this.Neck.xRot = 0.0499F;
+			if (this.Neck.xRot > 0.0499F) this.Neck.xRot -= 0.05;
+			//Tail2
+//			this.Tail2.z = 21.0F;
+			if (this.Tail2.z < 21) this.Tail2.z += 0.15;
+			if (this.Tail2.yRot > 0) this.Tail2.yRot -= 0.05;
+			//Body
+//				this.Body.y = 8.0F;
+			if (this.Body.y > 8) this.Body.y -= 0.15;
+			//Thigh
+//			this.Thigh.x = -4;
+//			this.Thigh.y = 7;
+//			this.Thigh.z = 12.5F;
+			if (this.Thigh.x > -4) this.Thigh.x -= 0.15;
+			if (this.Thigh.y > 7) this.Thigh.y -= 0.15;
+			if (this.Thigh.z > 12.5) this.Thigh.z -= 0.15;
+			if (this.Thigh.xRot > 0) this.Thigh.xRot -= 0.05;
+			if (this.Thigh.yRot > 0) this.Thigh.yRot -= 0.05;
+			//Thigh_1
+//			this.Thigh_1.x = 4;
+//			this.Thigh_1.y = 7;
+//			this.Thigh_1.z = 12.5F;
+			if (this.Thigh_1.x < 4) this.Thigh_1.x += 0.15;
+			if (this.Thigh_1.y > 7) this.Thigh_1.y -= 0.15;
+			if (this.Thigh_1.z > 12.5) this.Thigh_1.z -= 0.15;
+			if (this.Thigh_1.xRot > 0) this.Thigh_1.xRot -= 0.05;
+			if (this.Thigh_1.yRot < 0) this.Thigh_1.yRot += 0.05;
+		}
 		this.Jaw.xRot = Math.abs(-0.1F * Mth.sin(0.1F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(25F);
 		if(entity.isAsleep()) {
-			this.Arm.y = 21.5F;
-			this.Arm.xRot = -1.5707963267948966F;
-			this.Arm_1.y = 21.5F;
-			this.Arm_1.xRot = -1.5707963267948966F;
-			this.Tail.xRot = -0.17453292519943295F;
-			this.Tail.yRot = 0.6108652381980153F;
-			this.Neck.xRot = 0.17453292519943295F;
-			this.Tail2.z = 20;
-			this.Tail2.yRot = 0.6108652381980153F;
-			this.Body.y = 19.0F;
-			this.Thigh.x = 3.5F;
-			this.Thigh.y = 20.5F;
-			this.Thigh.z = 17;
-			this.Thigh.xRot = 1.5707963267948966F;
-			this.Thigh.yRot = 0.6981317007977318F;
-			this.Thigh_1.x = -3.5F;
-			this.Thigh_1.y = 20.5F;
-			this.Thigh_1.z = 17;
-			this.Thigh_1.xRot = 1.5707963267948966F;
-			this.Thigh_1.yRot = -0.6981317007977318F;
+			if (sleepProgress != 0) {
+				//Arm
+//				this.Arm.y = 7.0F;
+				if (this.Arm.y < 21.5) this.Arm.y += 0.15;
+				if (this.Arm.xRot > -1.5707963267948966F) this.Arm.xRot -= 0.05;
+				//Arm_1
+//				this.Arm_1.y = 7.0F;
+				if (this.Arm_1.y < 21.5) this.Arm_1.y += 0.15;
+				if (this.Arm_1.xRot > -1.5707963267948966F) this.Arm_1.xRot -= 0.05;
+				//Tail
+				if (this.Tail.xRot > -0.17453292519943295F) this.Tail.xRot -= 0.05;
+				if (this.Tail.yRot < 0.6108652381980153F) this.Tail.yRot += 0.05;
+				//Neck
+//				this.Neck.xRot = 0.0499F;
+				if (this.Neck.xRot < 0.17453292519943295F) this.Neck.xRot += 0.05;
+				//Tail2
+//				this.Tail2.z = 21.0F;
+				if (this.Tail2.z > 20) this.Tail2.z -= 0.15;
+				if (this.Tail2.yRot < 0.6108652381980153F) this.Tail2.yRot += 0.05;
+				//Body
+ //				this.Body.y = 8.0F;
+				if (this.Body.y < 19) this.Body.y += 0.15;
+				//Thigh
+//				this.Thigh.x = -4;
+//				this.Thigh.y = 7;
+//				this.Thigh.z = 12.5F;
+				if (this.Thigh.x < 3.5) this.Thigh.x += 0.15;
+				if (this.Thigh.y < 20.5) this.Thigh.y += 0.15;
+				if (this.Thigh.z < 17) this.Thigh.z += 0.15;
+				if (this.Thigh.xRot < 1.5707963267948966F) this.Thigh.xRot += 0.05;
+				if (this.Thigh.yRot < 0.6981317007977318F) this.Thigh.yRot += 0.05;
+				//Thigh_1
+//				this.Thigh_1.x = 4;
+//				this.Thigh_1.y = 7;
+//				this.Thigh_1.z = 12.5F;
+				if (this.Thigh_1.x > -3.5) this.Thigh_1.x -= 0.15;
+				if (this.Thigh_1.y < 20.5) this.Thigh_1.y += 0.15;
+				if (this.Thigh_1.z < 17) this.Thigh_1.z += 0.15;
+				if (this.Thigh_1.xRot < 1.5707963267948966F) this.Thigh_1.xRot += 0.05;
+				if (this.Thigh_1.yRot > -0.6981317007977318F) this.Thigh_1.yRot -= 0.05;
+			}
 		} else {
 			if (entity.getDeltaMovement().x !=  0 && entity.getDeltaMovement().y != 0 && entity.getDeltaMovement().z != 0) {
 				this.Head.xRot = 0;
@@ -195,7 +284,7 @@ public class SaurosuchusModel extends EntityModel<Saurosuchus> {
 		this.Arm_1.xRot = 0;
 		this.Tail.xRot = 0;
 		this.Tail.yRot = 0;
-		this.Neck.xRot = 0.17453292519943295F;
+		this.Neck.xRot = 0.0499F;
 		this.Tail2.z = 21.0F;
 		this.Tail2.yRot = 0;
 		this.Tail2.xRot = 0;

@@ -114,13 +114,18 @@ public class Telmasaurus extends DinosaurEntity {
 		if (this.isBaby()) return 0.25F;
 		else return 0.5F;
 	}
-
-	public void aiStep() {
-		if (this.isBaby()) {
+	
+	@Override
+	public void setAge(int age) {
+		super.setAge(age);
+		if (this.getAge() >= -24000 && this.getAge() < 0) {
 			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(3);
-		} else {
+		} else if(this.getAge() >= 0) {
 			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(6);
 		}
+	}
+
+	public void aiStep() {
 		super.aiStep();
 		ItemStack stack = this.getMainHandItem();
 		ItemStack newStack = new ItemStack(Items.AIR);
@@ -157,7 +162,7 @@ public class Telmasaurus extends DinosaurEntity {
 				this.setItemInHand(InteractionHand.MAIN_HAND, newStack);
 			}
 		}
-		if (this.isAsleep()) {
+		if (this.isAsleep() || this.getWakingTicks() != 0) {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue((double)0.25F);

@@ -54,7 +54,7 @@ public class TallHorsetailBlock extends DoublePlantBlock {
 			BlockState soil = world.getBlockState(pos.below());
 			BlockState waterState = world.getBlockState(pos);
 			BlockState aboveWaterState = world.getBlockState(pos.above());
-			if (soil.canSustainPlant(world, pos.below(), Direction.UP, this) || soil.getBlock() == Blocks.SAND || soil.getBlock() == Blocks.RED_SAND|| waterState.getBlock() == Blocks.WATER && (aboveWaterState.getBlock() == Blocks.AIR || aboveWaterState.getBlock() == this)) return true;
+			if (soil.canSustainPlant(world, pos.below(), Direction.UP, this) || soil.getBlock() == Blocks.SAND || soil.getBlock() == Blocks.GRAVEL || soil.getBlock() == Blocks.CLAY || soil.getBlock() == Blocks.RED_SAND|| waterState.getBlock() == Blocks.WATER && (aboveWaterState.getBlock() == Blocks.AIR || aboveWaterState.getBlock() == this)) return true;
 			else return false;
 		} else {
 			BlockState blockstate = world.getBlockState(pos.below());

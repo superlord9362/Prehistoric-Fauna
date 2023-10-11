@@ -184,16 +184,21 @@ public class Sarahsaurus extends DinosaurEntity {
 	public void handleEntityEvent(byte id) {
 		super.handleEntityEvent(id);
 	}
+	
+	@Override
+	public void setAge(int age) {
+		super.setAge(age);
+		if (this.getAge() >= -24000 && this.getAge() < 0) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(7);
+		} else if(this.getAge() >= 0) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(15);
+		}
+	}
 
 	@Override
 	public void aiStep() {
-		if (this.isBaby()) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(7);
-		} else {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(15);
-		}
 		super.aiStep();
-		if (this.isAsleep()) {
+		if (this.isAsleep() || this.getWakingTicks() != 0) {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.22D);

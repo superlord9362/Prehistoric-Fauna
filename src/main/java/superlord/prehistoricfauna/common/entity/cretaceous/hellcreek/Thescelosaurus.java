@@ -196,14 +196,18 @@ public class Thescelosaurus extends DinosaurEntity {
 		return super.mobInteract(p_230254_1_, p_230254_2_);
 	}
 
+	@Override
+	public void setAge(int age) {
+		super.setAge(age);
+		if (this.getAge() >= -24000 && this.getAge() < 0) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(7);
+		} else if(this.getAge() >= 0) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(15);
+		}
+	}
 
 	@Override
 	public void aiStep() {
-		if (this.isBaby()) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(7);
-		} else {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(15);
-		}
 		super.aiStep();
 		if (this.chewingTick > 0) {
 			--chewingTick;
@@ -213,7 +217,7 @@ public class Thescelosaurus extends DinosaurEntity {
 			this.spawnItem(PFItems.PLANT_FIBER.get().getDefaultInstance());
 			this.spawnItem(PFItems.PLANT_FIBER.get().getDefaultInstance());
 		}
-		if (this.isAsleep()) {
+		if (this.isAsleep() || this.getWakingTicks() != 0) {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
 		} else {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.23D);

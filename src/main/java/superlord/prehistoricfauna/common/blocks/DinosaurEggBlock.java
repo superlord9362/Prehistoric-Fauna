@@ -34,6 +34,8 @@ import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.registries.RegistryObject;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
+import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
+import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
 import superlord.prehistoricfauna.init.PFBlocks;
 
 public class DinosaurEggBlock extends Block {
@@ -102,11 +104,17 @@ public class DinosaurEggBlock extends Block {
 				for (int j = 0; j < state.getValue(EGGS); ++j) {
 					worldIn.levelEvent(2001, pos, Block.getId(state));
 					Entity dinosaurEntity = this.entityTypeSupplier.get().create(worldIn);
-					((Animal)dinosaurEntity).setAge(-24000);
 					if (dinosaurEntity instanceof DinosaurEntity) {
 						DinosaurEntity dinosaur = (DinosaurEntity)dinosaurEntity;
 						for(Player player : dinosaur.level.getEntitiesOfClass(Player.class, dinosaur.getBoundingBox().inflate(8.0D, 8.0D, 8.0D))) {
 							dinosaur.addTrustedUUID(player.getUUID());
+						}
+						if (dinosaur instanceof Camarasaurus) {
+							((Animal)dinosaurEntity).setAge(-72000);
+						} else if (dinosaur instanceof Tyrannosaurus) {
+							((Animal)dinosaurEntity).setAge(-48000);
+						} else {
+							((Animal)dinosaurEntity).setAge(-24000);
 						}
 					}
 					if (dinosaurEntity instanceof Triceratops) {
@@ -114,6 +122,7 @@ public class DinosaurEggBlock extends Block {
 						for(Player player : dinosaur.level.getEntitiesOfClass(Player.class, dinosaur.getBoundingBox().inflate(8.0D, 8.0D, 8.0D))) {
 							dinosaur.addTrustedUUID(player.getUUID());
 						}
+						((Animal)dinosaurEntity).setAge(-48000);
 					}
 					dinosaurEntity.moveTo((double) pos.getX() + 0.3D + (double) j * 0.2D,
 							(double) pos.getY(), (double) pos.getZ() + 0.3D, 0.0F, 0.0F);

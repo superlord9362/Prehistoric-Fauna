@@ -15,6 +15,7 @@ import superlord.prehistoricfauna.common.feature.DicroidiumFeature;
 import superlord.prehistoricfauna.common.feature.DjadochtaHorsetailsFeature;
 import superlord.prehistoricfauna.common.feature.JohnstoniaFeature;
 import superlord.prehistoricfauna.common.feature.LandSphereReplaceFeature;
+import superlord.prehistoricfauna.common.feature.LowerHorsetailsFeature;
 import superlord.prehistoricfauna.common.feature.NeocalamitesFeature;
 import superlord.prehistoricfauna.common.feature.NoisySphereFeature;
 import superlord.prehistoricfauna.common.feature.PtilophyllumFeature;
@@ -197,6 +198,7 @@ public class PFFeatures {
     public static final RegistryObject<LandSphereReplaceFeature> LAND_DISK = REGISTER.register("land_disk", () -> new LandSphereReplaceFeature(DiskConfiguration.CODEC.stable()));
     public static final RegistryObject<WaterloggedHorsetailsFeature> WATERLOGGED_HORSETAILS = REGISTER.register("waterlogged_horsetails", () -> new WaterloggedHorsetailsFeature(JohnstoniaConfig.CODEC.stable()));
     public static final RegistryObject<DjadochtaHorsetailsFeature> SANDY_HORSETAILS = REGISTER.register("sandy_horsetails", () -> new DjadochtaHorsetailsFeature(JohnstoniaConfig.CODEC.stable()));
+    public static final RegistryObject<LowerHorsetailsFeature> LOWER_HORSETAILS = REGISTER.register("lower_horsetails", () -> new LowerHorsetailsFeature(JohnstoniaConfig.CODEC.stable()));
     public static final RegistryObject<CrassostreaOystersFeature> CRASSOSTREA_OYSTERS = REGISTER.register("crassostrea_oyster", () -> new CrassostreaOystersFeature(CrassostreaOystersConfig.CODEC.stable()));
     public static final RegistryObject<AlgaeFeature> ALGAE = REGISTER.register("algae", () -> new AlgaeFeature(CrassostreaOystersConfig.CODEC.stable()));
     public static final RegistryObject<NoisySphereFeature> NOISY_SPHERE = REGISTER.register("noisy_sphere", () -> new NoisySphereFeature(NoisySphereConfig.CODEC.stable()));
