@@ -222,7 +222,7 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 		if (this.getDeltaMovement().x == 0 && this.getDeltaMovement().y == 0 && this.getDeltaMovement().z == 0) {
 			
 		} else {
-			if (!this.isBaby()) {
+			if (!this.isBaby() && PrehistoricFaunaConfig.sauropodTrampling) {
 				for (LivingEntity entity : this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(1, 0, 1))) {
 					if (!(entity instanceof Camarasaurus) && entity.getMaxHealth() < 60) {
 						entity.hurt(PFDamageSources.SAUROPOD_TRAMPLING, (float) 5.0D);

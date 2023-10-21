@@ -248,6 +248,7 @@ public class ServerConfig {
 	public final ForgeConfigSpec.BooleanValue naturalEggItemLaying;
 	public final ForgeConfigSpec.BooleanValue hostileCarnivores;
 	public final ForgeConfigSpec.BooleanValue unscheduledSleeping;
+	public final ForgeConfigSpec.BooleanValue sauropodTrampling;
 	
 	public ServerConfig(final ForgeConfigSpec.Builder builder) {
 		builder.push("Djadochta Formation");
@@ -526,6 +527,7 @@ public class ServerConfig {
 		this.naturalEggItemLaying = buildBoolean(builder, "Natural Egg Laying AI - Items", "all", false, "Toggles whether entities lay their eggs as items naturally when full. Default is false");
 		this.hostileCarnivores = buildBoolean(builder, "Hostile Carnivores", "all", false, "Toggles whether carnivorous entities will attack the player on sight or not, creating a more difficult environment. Default is false");
 		this.unscheduledSleeping = buildBoolean(builder, "Unscheduled Sleeping", "all", false, "Toggles whether prehistoric entities sleep randomly, instead of being diurnal, nocturnal, crepuscular, or cathemeral. Default is false");
+		this.sauropodTrampling = buildBoolean(builder, "Sauropod Trampling", "all", true, "Toggles whether large sauropods can trample smaller animals. Default is true");
 		builder.pop();
 	}
 	

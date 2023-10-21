@@ -251,6 +251,7 @@ public class PrehistoricFaunaConfig {
 	public static boolean naturalEggItemLaying = false;
 	public static boolean hostileCarnivores = false;
 	public static boolean unscheduledSleeping = false;
+	public static boolean sauropodTrampling = true;
 	
 	public static boolean eyeShine = true;
 	public static boolean customMenuBackground = true;
@@ -506,6 +507,7 @@ public class PrehistoricFaunaConfig {
 			naturalEggItemLaying = PFConfigHolder.SERVER.naturalEggItemLaying.get();
 			hostileCarnivores = PFConfigHolder.SERVER.hostileCarnivores.get();
 			unscheduledSleeping = PFConfigHolder.SERVER.unscheduledSleeping.get();
+			sauropodTrampling = PFConfigHolder.SERVER.sauropodTrampling.get();
 		} catch (Exception e) {
 			PrehistoricFauna.LOGGER.warn("An exception was caused trying to load the config for Prehistoric Fauna");
 			e.printStackTrace();
