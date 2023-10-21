@@ -112,8 +112,8 @@ public class PrehistoricFauna {
 		PFBiomes.REGISTER.register(bus);
 		PFChunkGenerators.REGISTER.register(bus);
 		PFDimensions.POI_TYPES.register(bus);
-		modLoadingContext.registerConfig(ModConfig.Type.CLIENT, PFConfigHolder.CLIENT_SPEC, "prehistoricfauna.toml");
-		modLoadingContext.registerConfig(ModConfig.Type.COMMON, PFConfigHolder.SERVER_SPEC, "prehistoricfauna.toml");
+		modLoadingContext.registerConfig(ModConfig.Type.CLIENT, PFConfigHolder.CLIENT_SPEC);
+		modLoadingContext.registerConfig(ModConfig.Type.COMMON, PFConfigHolder.SERVER_SPEC);
 		CraftingHelper.register(new QuarkFlagRecipeCondition.Serializer());
 
 		bus.addListener(this::registerEntityAttributes);
