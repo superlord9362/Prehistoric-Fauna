@@ -287,14 +287,14 @@ public class Eilenodon extends DinosaurEntity {
 			this.func_220817_j();
 			this.field_220822_f = 2 + Eilenodon.this.getRandom().nextInt(3);
 			Eilenodon.this.setSitting(true);
-			Eilenodon.this.setStartSitting(true);
+			Eilenodon.this.setSittingTicks(0);
 			Eilenodon.this.getNavigation().stop();
 		}
 
 		public void stop() {
 			Eilenodon.this.setSitting(false);
-			Eilenodon.this.setStartSitting(false);
-			Eilenodon.this.setWakingUp(true);
+			Eilenodon.this.setSittingTicks(31);
+			Eilenodon.this.setWakingTicks(0);
 		}
 
 		public void tick() {

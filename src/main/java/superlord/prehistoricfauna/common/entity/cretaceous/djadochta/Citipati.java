@@ -314,8 +314,8 @@ public class Citipati extends DinosaurEntity {
 		public void stop() {
 			super.stop();
 			Citipati.this.setSitting(false);
-			Citipati.this.setStartSitting(false);
-			Citipati.this.setWakingUp(true);
+			Citipati.this.setSittingTicks(31);
+			Citipati.this.setWakingTicks(0);
 		}
 
 		protected void eatBerry() {
@@ -347,7 +347,7 @@ public class Citipati extends DinosaurEntity {
 			this.field_220731_g = 0;
 			super.start();
 			Citipati.this.setSitting(true);
-			Citipati.this.setStartSitting(true);
+			Citipati.this.setSittingTicks(0);
 		}
 
 

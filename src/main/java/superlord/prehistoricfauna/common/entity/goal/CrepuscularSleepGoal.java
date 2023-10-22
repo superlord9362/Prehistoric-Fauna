@@ -102,18 +102,15 @@ public class CrepuscularSleepGoal extends Goal {
 		entity.yya = 0.0F;
 		entity.zza = 0.0F;
 		entity.getNavigation().stop();
-		entity.setFallingAsleep(true);
-		entity.setSleepTick(1);
+		entity.setFallingAsleepTicks(0);
 	}
 
 	@Override
 	public void stop() {
 		entity.setAwakeTicks(100);
-		entity.setWakingUp(true);
-		entity.setFallingAsleep(false);
+		entity.setFallingAsleepTicks(31);
+		entity.setWakingTicks(0);
 		entity.setAsleep(false);
-		entity.setWakingTicks(1);
-		entity.setSleepTick(0);
 	}
 
 }

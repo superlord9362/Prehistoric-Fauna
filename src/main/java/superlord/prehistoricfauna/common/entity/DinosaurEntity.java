@@ -54,15 +54,7 @@ public class DinosaurEntity extends TamableAnimal {
 	private static final EntityDataAccessor<Boolean> HAS_BABY = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> IS_BIRTHING = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> ASLEEP = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> FALLING_ASLEEP = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> START_SITTING = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> START_CROUCHING = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> WAKING_UP = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Integer> ATTACK_TICK = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.INT);
-	private static final EntityDataAccessor<Integer> SLEEP_TICK = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.INT);
-	private static final EntityDataAccessor<Integer> SITTING_TICK = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.INT);
-	private static final EntityDataAccessor<Integer> WAKE_UP_TICK = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.INT);
-	private static final EntityDataAccessor<Integer> CROUCH_TICK = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Boolean> ATTACK_DIR = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> EATING = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> ALBINO = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
@@ -82,6 +74,10 @@ public class DinosaurEntity extends TamableAnimal {
 	private static final EntityDataAccessor<Boolean> MOLLUSCIVORE = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Optional<UUID>> DATA_TRUSTED_ID_0 = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.OPTIONAL_UUID);
 	private static final EntityDataAccessor<Optional<UUID>> DATA_TRUSTED_ID_1 = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.OPTIONAL_UUID);
+	private static final EntityDataAccessor<Integer> FALLING_ASLEEP_TICKS = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Integer> WAKING_UP_TICKS = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Integer> SITTING_DOWN_TICKS = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Integer> CROUCHING_TICKS = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.INT);
 	public static final Predicate<Entity> AVOID_PLAYERS = (p_28463_) -> {
 		return !p_28463_.isDiscrete() && EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(p_28463_);
 	};
@@ -96,8 +92,11 @@ public class DinosaurEntity extends TamableAnimal {
 	public int currentHunger;
 	public int warryTicks = 0;
 	int hungerTick = 0;
-	public int sittingTicks = 0;
-	public int crouchingTicks = 0;
+
+	public int fallingAsleepTicks = 31;
+	public int wakingUpTicks = 31;
+	public int sittingTicks = 31;
+	public int crouchingTicks = 31;
 
 	protected DinosaurEntity(EntityType<? extends TamableAnimal> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
@@ -130,38 +129,6 @@ public class DinosaurEntity extends TamableAnimal {
 	private void setAlbino(boolean isAlbino) {
 		this.entityData.set(ALBINO, isAlbino);
 	}
-	
-	public boolean isFallingAsleep() {
-		return this.entityData.get(FALLING_ASLEEP);
-	}
-
-	public void setFallingAsleep(boolean isFallingAsleep) {
-		this.entityData.set(FALLING_ASLEEP, isFallingAsleep);
-	}
-	
-	public boolean isStartSitting() {
-		return this.entityData.get(START_SITTING);
-	}
-
-	public void setStartSitting(boolean isStartSitting) {
-		this.entityData.set(START_SITTING, isStartSitting);
-	}
-	
-	public boolean isStartCrouching() {
-		return this.entityData.get(START_CROUCHING);
-	}
-	
-	public void setStartCrouching(boolean isStartCrouching) {
-		this.entityData.set(START_CROUCHING, isStartCrouching);
-	}
-	
-	public boolean isWakingUp() {
-		return this.entityData.get(WAKING_UP);
-	}
-
-	public void setWakingUp(boolean isWakingUp) {
-		this.entityData.set(WAKING_UP, isWakingUp);
-	}
 
 	public boolean isMelanistic() {
 		return this.entityData.get(MELANISTIC);
@@ -169,22 +136,6 @@ public class DinosaurEntity extends TamableAnimal {
 
 	private void setMelanistic(boolean isMelanistic) {
 		this.entityData.set(MELANISTIC, isMelanistic);
-	}
-	
-	public int getSleepTicks() {
-		return this.entityData.get(SLEEP_TICK);
-	}
-	
-	public void setSleepTick(int sleepTick) {
-		this.entityData.set(SLEEP_TICK, sleepTick);
-	}
-	
-	public int getWakingTicks() {
-		return this.entityData.get(WAKE_UP_TICK);
-	}
-	
-	public void setWakingTicks(int wakeTicks) {
-		this.entityData.set(WAKE_UP_TICK, wakeTicks);
 	}
 
 	public boolean hasBaby() {
@@ -324,6 +275,38 @@ public class DinosaurEntity extends TamableAnimal {
 		this.entityData.set(PISCIVORE, isPiscivorous);
 	}
 
+	public int getFallingAsleepTicks() {
+		return this.entityData.get(FALLING_ASLEEP_TICKS);
+	}
+
+	public void setFallingAsleepTicks(int fallingAsleepTicks) {
+		this.entityData.set(FALLING_ASLEEP_TICKS, fallingAsleepTicks);
+	}
+
+	public int getWakingTicks() {
+		return this.entityData.get(WAKING_UP_TICKS);
+	}
+
+	public void setWakingTicks(int wakingTicks) {
+		this.entityData.set(WAKING_UP_TICKS, wakingTicks);
+	}
+
+	public int getSittingTicks() {
+		return this.entityData.get(SITTING_DOWN_TICKS);
+	}
+
+	public void setSittingTicks(int sittingTicks) {
+		this.entityData.set(SITTING_DOWN_TICKS, sittingTicks);
+	}
+
+	public int getCrouchingTicks() {
+		return this.entityData.get(CROUCHING_TICKS);
+	}
+
+	public void setCrouchingTicks(int crouchingTicks) {
+		this.entityData.set(CROUCHING_TICKS, crouchingTicks);
+	}
+
 	List<UUID> getTrustedUUIDs() {
 		List<UUID> list = Lists.newArrayList();
 		list.add(this.entityData.get(DATA_TRUSTED_ID_0).orElse((UUID)null));
@@ -348,10 +331,6 @@ public class DinosaurEntity extends TamableAnimal {
 		super.defineSynchedData();
 		this.entityData.define(ASLEEP, false);
 		this.entityData.define(ATTACK_TICK, 0);
-		this.entityData.define(SLEEP_TICK, 0);
-		this.entityData.define(WAKE_UP_TICK, 0);
-		this.entityData.define(CROUCH_TICK, this.crouchingTicks);
-		this.entityData.define(SITTING_TICK, this.sittingTicks);
 		this.entityData.define(ATTACK_DIR, false);
 		this.entityData.define(EATING, false);
 		this.entityData.define(ALBINO, false);
@@ -359,9 +338,6 @@ public class DinosaurEntity extends TamableAnimal {
 		this.entityData.define(HAS_BABY, false);
 		this.entityData.define(IS_BIRTHING, false);
 		this.entityData.define(NATURAL_LOVE, false);
-		this.entityData.define(WAKING_UP, false);
-		this.entityData.define(FALLING_ASLEEP, false);
-		this.entityData.define(START_SITTING, false);
 		this.entityData.define(DATA_TRUSTED_ID_0, Optional.empty());
 		this.entityData.define(DATA_TRUSTED_ID_1, Optional.empty());
 		this.entityData.define(SKITTISH, false);
@@ -376,7 +352,10 @@ public class DinosaurEntity extends TamableAnimal {
 		this.entityData.define(OVIVORE, false);
 		this.entityData.define(MOLLUSCIVORE, false);
 		this.entityData.define(PISCIVORE, false);
-		this.entityData.define(START_CROUCHING, false);
+		this.entityData.define(FALLING_ASLEEP_TICKS, 31);
+		this.entityData.define(WAKING_UP_TICKS, 31);
+		this.entityData.define(SITTING_DOWN_TICKS, 31);
+		this.entityData.define(CROUCHING_TICKS, 31);
 	}
 
 	public void addAdditionalSaveData(CompoundTag compound) {
@@ -408,11 +387,6 @@ public class DinosaurEntity extends TamableAnimal {
 		compound.putBoolean("IsOvivorous", this.isOvivorous());
 		compound.putBoolean("IsMolluscivorous", this.isMolluscivorous());
 		compound.putBoolean("IsPiscivorous", this.isPiscivorous());
-		compound.putBoolean("IsFallingAsleep", this.isFallingAsleep());
-		compound.putBoolean("IsWakingUp", this.isWakingUp());
-		compound.putBoolean("IsStartSitting", this.isStartSitting());
-		compound.putBoolean("IsStartCrouching", this.isStartCrouching());
-		compound.putInt("WakingTicks", this.getWakingTicks());
 	}
 
 	public void readAdditionalSaveData(CompoundTag compound) {
@@ -440,11 +414,6 @@ public class DinosaurEntity extends TamableAnimal {
 		this.setOvivorous(compound.getBoolean("IsOvivorous"));
 		this.setMolluscivorous(compound.getBoolean("IsMolluscivorous"));
 		this.setPiscivorous(compound.getBoolean("IsPiscivorous"));
-		this.setFallingAsleep(compound.getBoolean("IsFallingAsleep"));
-		this.setWakingUp(compound.getBoolean("IsWakingUp"));
-		this.setStartSitting(compound.getBoolean("IsStartSitting"));
-		this.setStartCrouching(compound.getBoolean("IsStartCrouching"));
-		this.setWakingTicks(compound.getInt("WakingTicks"));
 	}
 
 	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
@@ -793,30 +762,16 @@ public class DinosaurEntity extends TamableAnimal {
 			if (this.warryTicks != 0) warryTicks--;
 			//System.out.println(warryTicks);
 		}
-		if (this.isStartSitting()) {
-			if (sittingTicks != 30) sittingTicks++;
-			else this.setStartSitting(false);
-		}
-		if (!this.isStartSitting() && sittingTicks != 0) this.sittingTicks = 0;
-		if (this.isStartCrouching()) {
-			if (crouchingTicks != 30) crouchingTicks++;
-			else this.setStartCrouching(false);
-		}
-		if (!this.isStartCrouching() && crouchingTicks != 0) this.crouchingTicks = 0;
+		if (this.getWakingTicks() != 31) this.setWakingTicks(this.getWakingTicks() + 1);
+		if (this.getFallingAsleepTicks() != 31) this.setFallingAsleepTicks(this.getFallingAsleepTicks() + 1);
+		if (this.getSittingTicks() != 31) this.setSittingTicks(this.getSittingTicks() + 1);
+		if (this.getCrouchingTicks() != 31) this.setCrouchingTicks(this.getCrouchingTicks() + 1);
 	}
 
 	public void setAwakeTicks(int ticks) {
 		if (!this.level.isClientSide) {
 			this.warryTicks = ticks;
 		}
-	}
-	
-	public int getSittingTicks() {
-		return this.sittingTicks;
-	}
-	
-	public int getCrouchingTicks() {
-		return this.crouchingTicks;
 	}
 
 	public void tick() {
@@ -843,25 +798,6 @@ public class DinosaurEntity extends TamableAnimal {
 				meleeProgress = Math.max(meleeProgress - 0.2F, 0.0F);
 			}
 		}
-		if (this.isWakingUp()) {
-			System.out.println("Why");
-			int wakingTicks = this.getWakingTicks();
-			this.setWakingTicks(wakingTicks + 1);
-			if (wakingTicks >= 30) {
-				this.setWakingUp(false);
-				this.setAsleep(false);
-			}
-		}
-		if (this.isFallingAsleep()) {
-			int sleepingTicks = this.getSleepTicks();
-			this.setSleepTick(sleepingTicks + 1);
-			if (sleepingTicks >= 30) {
-				this.setFallingAsleep(false);
-				this.setAsleep(true);
-			}
-		}
-		if (!this.isFallingAsleep()) this.setSleepTick(0);
-		if (!this.isWakingUp()) this.setWakingTicks(0);
 	}
 
 	//additional melee range, change this for dinosaurs with longer reach

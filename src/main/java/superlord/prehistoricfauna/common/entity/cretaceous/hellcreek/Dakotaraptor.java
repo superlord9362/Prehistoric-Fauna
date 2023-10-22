@@ -777,14 +777,14 @@ public class Dakotaraptor extends DinosaurEntity {
 			if (livingentity != null && Dakotaraptor.func_213481_a(Dakotaraptor.this, livingentity)) {
 				Dakotaraptor.this.func_213502_u(true);
 				Dakotaraptor.this.setCrouching(true);
-				Dakotaraptor.this.setStartCrouching(true);
+				Dakotaraptor.this.setCrouchingTicks(0);
 				Dakotaraptor.this.getNavigation().stop();
 				Dakotaraptor.this.getLookControl().setLookAt(livingentity, (float)Dakotaraptor.this.getMaxHeadYRot(), (float)Dakotaraptor.this.getMaxHeadXRot());
 			} else {
 				Dakotaraptor.this.func_213502_u(false);
 				Dakotaraptor.this.setCrouching(false);
-				Dakotaraptor.this.setStartCrouching(false);
-				Dakotaraptor.this.setWakingUp(true);
+				Dakotaraptor.this.setCrouchingTicks(31);
+				Dakotaraptor.this.setWakingTicks(0);
 			}
 
 		}
@@ -795,7 +795,7 @@ public class Dakotaraptor extends DinosaurEntity {
 			if (Dakotaraptor.this.distanceToSqr(livingentity) <= 36.0D) {
 				Dakotaraptor.this.func_213502_u(true);
 				Dakotaraptor.this.setCrouching(true);
-				Dakotaraptor.this.setStartCrouching(true);
+				Dakotaraptor.this.setCrouchingTicks(0);
 				Dakotaraptor.this.getNavigation().stop();
 			} else {
 				Dakotaraptor.this.getNavigation().moveTo(livingentity, 1.5D);
@@ -980,14 +980,14 @@ public class Dakotaraptor extends DinosaurEntity {
 			this.func_220817_j();
 			this.field_220822_f = 2 + Dakotaraptor.this.getRandom().nextInt(3);
 			Dakotaraptor.this.setSitting(true);
-			Dakotaraptor.this.setStartSitting(true);
+			Dakotaraptor.this.setSittingTicks(0);
 			Dakotaraptor.this.getNavigation().stop();
 		}
 
 		public void stop() {
 			Dakotaraptor.this.setSitting(false);
-			Dakotaraptor.this.setStartSitting(false);
-			Dakotaraptor.this.setWakingUp(true);
+			Dakotaraptor.this.setSittingTicks(31);
+			Dakotaraptor.this.setWakingTicks(0);
 		}
 
 		public void tick() {
@@ -1040,10 +1040,8 @@ public class Dakotaraptor extends DinosaurEntity {
 		public void stop() {
 			this.countdown = Dakotaraptor.this.random.nextInt(WAIT_TIME_BEFORE_SLEEP);
 			Dakotaraptor.this.func_213499_en();
-			Dakotaraptor.this.setWakingUp(true);
-			Dakotaraptor.this.setFallingAsleep(false);
-			Dakotaraptor.this.setSleepTick(0);
-			Dakotaraptor.this.setWakingTicks(1);
+			Dakotaraptor.this.setWakingTicks(0);
+			Dakotaraptor.this.setFallingAsleepTicks(31);
 		}
 
 		public void start() {
@@ -1052,8 +1050,7 @@ public class Dakotaraptor extends DinosaurEntity {
 			Dakotaraptor.this.func_213502_u(false);
 			Dakotaraptor.this.setJumping(false);
 			Dakotaraptor.this.setSleeping(true);
-			Dakotaraptor.this.setFallingAsleep(true);
-			Dakotaraptor.this.setSleepTick(1);
+			Dakotaraptor.this.setFallingAsleepTicks(0);
 			Dakotaraptor.this.getNavigation().stop();
 			Dakotaraptor.this.getMoveControl().setWantedPosition(Dakotaraptor.this.getX(), Dakotaraptor.this.getY(), Dakotaraptor.this.getZ(), 0.0D);
 		}

@@ -65,12 +65,9 @@ public class EilenodonModel extends EntityModel<Eilenodon> {
 
 	@Override
 	public void setupAnim(Eilenodon entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		int sleepProgress = entity.getSleepTicks();
-		int wakingProgress = entity.getWakingTicks();
-		int sittingProgress = entity.getSittingTicks();
-		if (!entity.isWakingUp() && !entity.isFallingAsleep() && !entity.isStartSitting()) {
-			if (!entity.isAsleep() && !entity.isSitting()) {
-				resetModel();
+		if (entity.getWakingTicks() >= 31 && entity.getFallingAsleepTicks() >= 31 && entity.getSittingTicks() >= 31) {
+			if (entity.isAsleep()) {
+				sleepPose();
 			} else if (entity.isSitting() && !entity.isAsleep()) {
 				this.Body.y = 23;
 				this.LegR.y = 1;
@@ -85,114 +82,98 @@ public class EilenodonModel extends EntityModel<Eilenodon> {
 				this.Tail.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
 				this.Neck.xRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
 			} else {
-				this.Body.y = 23;
-				this.LegR.y = 1;
-				this.LegR.zRot = -1.5707963267948966F;
-				this.ArmR.y = 1;
-				this.ArmR.zRot = -1.5707963267948966F;
-				this.LegL.y = 1;
-				this.LegL.zRot = 1.5707963267948966F;
-				this.ArmL.y = 1;
-				this.ArmL.zRot = 1.5707963267948966F;
-				this.Neck.z = -4.8F;
-				this.Neck.xRot = 0.19547687289441354F;
-				this.Neck.yRot = 0.27366763203903305F;
-				this.Neck.zRot = -1.2901473511162753F;
+				resetModel();
+				this.Neck.xRot = headPitch * ((float)Math.PI / 180F);
+				this.Neck.yRot = netHeadYaw * ((float)Math.PI / 180F);
+				this.LegL.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+				this.LegR.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+				this.ArmL.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+				this.ArmR.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+				this.Tail.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
+				this.Tail.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
+				this.Neck.xRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
+				if (entity.isEating()) {
+					this.Neck.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.45F) + 0.5F;
+				}
+				if (entity.isInWater()) {
+					this.ArmR.xRot = 0.25F * Mth.sin(0.15F * ageInTicks / 1.5F);
+					this.ArmL.xRot = 0.25F * Mth.sin(0.15F * ageInTicks / 1.5F);
+					this.LegL.xRot = -0.25F * Mth.sin(0.15F * ageInTicks / 1.5F);
+					this.LegR.xRot = -0.25F * Mth.sin(0.15F * ageInTicks / 1.5F);
+					this.Tail.yRot = (Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * Mth.sin(0.15F * ageInTicks / 1.5F));
+				}
 			}
 		}
-		if (wakingProgress != 0) {
+		if (entity.getWakingTicks() < 31) {
 			//Body
-//			this.Body.y = 22;
+			//this.Body.y = 22;
 			if (this.Body.y > 22) this.Body.y -= 0.15;
 			//LegR
-//			this.LegR.y = -1.0F;
+			//this.LegR.y = -1.0F;
 			if (this.LegR.y > -1) this.LegR.y -= 0.15;
 			if (this.LegR.zRot < 0) this.LegR.zRot += 0.05;
 			//ArmR
-//			this.ArmR.y = -1.0F;
+			//this.ArmR.y = -1.0F;
 			if (this.ArmR.y > -1) this.ArmR.y -= 0.15;
 			if (this.ArmR.zRot < 0) this.ArmR.zRot += 0.05;
 			//LegL
-//			this.LegL.y = -1.0F;
+			//this.LegL.y = -1.0F;
 			if (this.LegL.y > -1) this.LegL.y -= 0.15;
 			if (this.LegL.zRot > 0) this.LegL.zRot -= 0.05;
 			//ArmL
-//			this.ArmL.y = -1.0F;
+			//this.ArmL.y = -1.0F;
 			if (this.ArmL.y > -1) this.ArmL.y -= 0.15;
 			if (this.ArmL.zRot > 0) this.ArmL.zRot -= 0.05;
 			//Neck
-//			this.Neck.z = -5.0F;
+			//this.Neck.z = -5.0F;
 			if (this.Neck.z > -5) this.Neck.z -= 0.15;
 			if (this.Neck.xRot > 0) this.Neck.xRot -= 0.05;
 			if (this.Neck.yRot > 0) this.Neck.yRot -= 0.05;
 			if (this.Neck.zRot < 0) this.Neck.zRot += 0.05;
 		}
-		if (entity.isSitting() && !entity.isAsleep()) {
-			if (sittingProgress != 0) {
-				//Body
-				if (this.Body.y < 23) this.Body.y += 0.15;
-				//LegR
-				if (this.LegR.y < 1) this.LegR.y += 0.15;
-				if (this.LegR.zRot > -1.5707963267948966F) this.LegR.zRot -= 0.05;
-				//ArmR
-				if (this.ArmR.y < 1) this.ArmR.y += 0.15;
-				if (this.ArmR.zRot > -1.5707963267948966F) this.ArmR.zRot -= 0.05;
-				//LegL
-				if (this.LegL.y < 1) this.LegL.y += 0.15;
-				if (this.LegL.zRot < 1.5707963267948966F) this.LegL.zRot += 0.05;
-				//ArmL
-				if (this.ArmL.y < 1) this.ArmL.y += 0.15;
-				if (this.ArmL.zRot < 1.5707963267948966F) this.ArmL.zRot += 0.05;
-				//Neck
-			}
-		} else if (entity.isAsleep()) {
-			if (sleepProgress != 0) {
-				//Body
-//				this.Body.y = 22;
-				if (this.Body.y < 23) this.Body.y += 0.15;
-				//LegR
-//				this.LegR.y = -1.0F;
-				if (this.LegR.y < 1) this.LegR.y += 0.15;
-				if (this.LegR.zRot > -1.5707963267948966F) this.LegR.zRot -= 0.05;
-				//ArmR
-//				this.ArmR.y = -1.0F;
-				if (this.ArmR.y < 1) this.ArmR.y += 0.15;
-				if (this.ArmR.zRot > -1.5707963267948966F) this.ArmR.zRot -= 0.05;
-				//LegL
-//				this.LegL.y = -1.0F;
-				if (this.LegL.y < 1) this.LegL.y += 0.15;
-				if (this.LegL.zRot < 1.5707963267948966F) this.LegL.zRot += 0.05;
-				//ArmL
-//				this.ArmL.y = -1.0F;
-				if (this.ArmL.y < 1) this.ArmL.y += 0.15;
-				if (this.ArmL.zRot < 1.5707963267948966F) this.ArmL.zRot += 0.05;
-				//Neck
-//				this.Neck.z = -5.0F;
-				if (this.Neck.z < -4.8) this.Neck.z += 0.15;
-				if (this.Neck.xRot < 0.19547687289441354F) this.Neck.xRot += 0.05;
-				if (this.Neck.yRot < 0.27366763203903305F) this.Neck.yRot += 0.05;
-				if (this.Neck.zRot > -1.2901473511162753F) this.Neck.zRot -= 0.05;
-			}
-		} else {
-			this.Neck.xRot = headPitch * ((float)Math.PI / 180F);
-			this.Neck.yRot = netHeadYaw * ((float)Math.PI / 180F);
-			this.LegL.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-			this.LegR.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-			this.ArmL.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-			this.ArmR.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-			this.Tail.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
-			this.Tail.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
-			this.Neck.xRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
-			if (entity.isEating()) {
-				this.Neck.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.45F) + 0.5F;
-			}
-			if (entity.isInWater()) {
-				this.ArmR.xRot = 0.25F * Mth.sin(0.15F * ageInTicks / 1.5F);
-				this.ArmL.xRot = 0.25F * Mth.sin(0.15F * ageInTicks / 1.5F);
-				this.LegL.xRot = -0.25F * Mth.sin(0.15F * ageInTicks / 1.5F);
-				this.LegR.xRot = -0.25F * Mth.sin(0.15F * ageInTicks / 1.5F);
-				this.Tail.yRot = (Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * Mth.sin(0.15F * ageInTicks / 1.5F));
-			}
+		if (entity.getSittingTicks() < 31) {
+			//Body
+			if (this.Body.y < 23) this.Body.y += 0.15;
+			//LegR
+			if (this.LegR.y < 1) this.LegR.y += 0.15;
+			if (this.LegR.zRot > -1.5707963267948966F) this.LegR.zRot -= 0.05;
+			//ArmR
+			if (this.ArmR.y < 1) this.ArmR.y += 0.15;
+			if (this.ArmR.zRot > -1.5707963267948966F) this.ArmR.zRot -= 0.05;
+			//LegL
+			if (this.LegL.y < 1) this.LegL.y += 0.15;
+			if (this.LegL.zRot < 1.5707963267948966F) this.LegL.zRot += 0.05;
+			//ArmL
+			if (this.ArmL.y < 1) this.ArmL.y += 0.15;
+			if (this.ArmL.zRot < 1.5707963267948966F) this.ArmL.zRot += 0.05;
+			//Neck
+		}
+		if (entity.getFallingAsleepTicks() < 31) {
+			//Body
+			//this.Body.y = 22;
+			if (this.Body.y < 23) this.Body.y += 0.15;
+			//LegR
+			//this.LegR.y = -1.0F;
+			if (this.LegR.y < 1) this.LegR.y += 0.15;
+			if (this.LegR.zRot > -1.5707963267948966F) this.LegR.zRot -= 0.05;
+			//ArmR
+			//this.ArmR.y = -1.0F;
+			if (this.ArmR.y < 1) this.ArmR.y += 0.15;
+			if (this.ArmR.zRot > -1.5707963267948966F) this.ArmR.zRot -= 0.05;
+			//LegL
+			//this.LegL.y = -1.0F;
+			if (this.LegL.y < 1) this.LegL.y += 0.15;
+			if (this.LegL.zRot < 1.5707963267948966F) this.LegL.zRot += 0.05;
+			//ArmL
+			//this.ArmL.y = -1.0F;
+			if (this.ArmL.y < 1) this.ArmL.y += 0.15;
+			if (this.ArmL.zRot < 1.5707963267948966F) this.ArmL.zRot += 0.05;
+			//Neck
+			//this.Neck.z = -5.0F;
+			if (this.Neck.z < -4.8) this.Neck.z += 0.15;
+			if (this.Neck.xRot < 0.19547687289441354F) this.Neck.xRot += 0.05;
+			if (this.Neck.yRot < 0.27366763203903305F) this.Neck.yRot += 0.05;
+			if (this.Neck.zRot > -1.2901473511162753F) this.Neck.zRot -= 0.05;
 		}
 	}
 
@@ -221,6 +202,22 @@ public class EilenodonModel extends EntityModel<Eilenodon> {
 		this.Neck.yRot = 0;
 		this.Neck.zRot = 0;
 		this.Neck.z = -5.0F;
+	}
+
+	public void sleepPose() {
+		this.Body.y = 23;
+		this.LegR.y = 1;
+		this.LegR.zRot = -1.5707963267948966F;
+		this.ArmR.y = 1;
+		this.ArmR.zRot = -1.5707963267948966F;
+		this.LegL.y = 1;
+		this.LegL.zRot = 1.5707963267948966F;
+		this.ArmL.y = 1;
+		this.ArmL.zRot = 1.5707963267948966F;
+		this.Neck.z = -4.8F;
+		this.Neck.xRot = 0.19547687289441354F;
+		this.Neck.yRot = 0.27366763203903305F;
+		this.Neck.zRot = -1.2901473511162753F;
 	}
 
 	@Override

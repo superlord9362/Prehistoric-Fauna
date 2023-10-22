@@ -1006,14 +1006,14 @@ public class Velociraptor extends DinosaurEntity {
 			this.func_220817_j();
 			this.field_220822_f = 2 + Velociraptor.this.getRandom().nextInt(3);
 			Velociraptor.this.setSitting(true);
-			Velociraptor.this.setStartSitting(true);
+			Velociraptor.this.setSittingTicks(0);
 			Velociraptor.this.getNavigation().stop();
 		}
 
 		public void stop() {
 			Velociraptor.this.setSitting(false);
-			Velociraptor.this.setWakingUp(true);
-			Velociraptor.this.setStartSitting(false);
+			Velociraptor.this.setWakingTicks(0);
+			Velociraptor.this.setSittingTicks(31);
 		}
 
 		public void tick() {

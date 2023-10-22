@@ -78,30 +78,37 @@ public class PinacosaurusBabyModel extends EntityModel<Pinacosaurus> {
 		float partialTick = ageInTicks - entity.tickCount;
 		float attackProgress = entity.getMeleeProgress(partialTick);
 		float leftOrRight = entity.getMeleeDirection() ? 1.0F : -1.0F;
-		int sleepProgress = entity.getSleepTicks();
-		int wakingProgress = entity.getWakingTicks();
-		if (!entity.isWakingUp() && !entity.isFallingAsleep()) {
-			if (!entity.isAsleep()) {
-				resetModel();
+		if (entity.getWakingTicks() >= 31 && entity.getFallingAsleepTicks() >= 31) {
+			if (entity.isAsleep()) {
+				setSleepingPose();
 			} else {
-				this.Torso.y = 17;
-				this.LLeg.xRot =  0.034732052281134726F;
-				this.LLeg.zRot = 0.291819038949227F;
-				this.Head.xRot = -0.3511602601486451F;
-				this.Tail.xRot = -0.4054399772487995F;
-				this.Tail.yRot = -0.14608405639455457F;
-				this.RArm.xRot = -1.3891074877464207F;
-				this.RArm.yRot = -0.10995574620459413F;
-				this.LArm.xRot = -1.2407545013269026F;
-				this.LArm.yRot = 0.2553416715641412F;
-				this.Torso.xRot = 0.1459095194746135F;
-				this.RLeg.xRot = -0.036477379868653376F;
-				this.RLeg.yRot = -5.235987638949542E-4F;
-				this.RLeg.zRot = -0.291993575869168F;
-				this.Head.xRot = 0.22287855346915916F;
+				resetModel();
+				this.LArm.xRot = Mth.cos((limbSwing / 3) * speed * 0.3F) * degree * 0.8F * limbSwingAmount;
+				this.RArm.xRot = Mth.cos((limbSwing / 3) * speed * 0.3F) * degree * -0.8F * limbSwingAmount;
+				this.RLeg.xRot = Mth.cos((limbSwing / 3) * speed * 0.3F) * degree * 0.8F * limbSwingAmount;
+				this.LLeg.xRot = Mth.cos((limbSwing / 3) * speed * 0.3F) * degree * -0.8F * limbSwingAmount;
+				this.Tail.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5)) + (Mth.cos((limbSwing / 3) * speed * 0.15F) * degree * 0.35F * limbSwingAmount) + attackProgress * leftOrRight * (float)Math.toRadians(-15);
+				this.Head.xRot = (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + (Mth.cos((limbSwing / 3) * speed * 0.3F) * degree * 0.1F * limbSwingAmount + 0.15F) + (headPitch * ((float) Math.PI / 180F));
+				this.Head.yRot = (netHeadYaw * ((float) Math.PI / 180F));
+				this.Torso.yRot = attackProgress * leftOrRight * (float)Math.toRadians(-200);
+				this.Tail.zRot = attackProgress * leftOrRight * (float)Math.toRadians(15);
+				this.Torso.z = 0 + attackProgress * -22;
+				if (entity.isInWater()) {
+					this.Head.xRot = -0.1F;
+				}
+				if (entity.isEating()) {
+					this.Head.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.5F) + 0.25F;
+					this.Torso.xRot = 0.1F;
+					this.LLeg.xRot = -0.1F;
+					this.RLeg.xRot = -0.1F;
+					this.RArm.xRot = -0.1F;
+					this.LArm.xRot = -0.1F;
+					this.RArm.zRot = 0.3F;
+					this.LArm.zRot = -0.3F;
+				}
 			}
 		}
-		if (wakingProgress != 0) {
+		if (entity.getWakingTicks() < 31) {
 			//LLeg
 			if (this.LLeg.xRot > 0) this.LLeg.xRot -= 0.05;
 			if (this.LLeg.zRot > 0) this.LLeg.zRot -= 0.05;
@@ -124,54 +131,28 @@ public class PinacosaurusBabyModel extends EntityModel<Pinacosaurus> {
 			if (this.Torso.y > 15) this.Torso.y -= 0.15;
 			if (this.Torso.xRot > 0) this.Torso.xRot -= 0.05;
 		}
-		if (entity.isAsleep()) {
-			if (sleepProgress != 0) {
-				//LLeg
-				if (this.LLeg.xRot < 0.034732052281134726F) this.LLeg.xRot += 0.05;
-				if (this.LLeg.zRot < 0.291819038949227F) this.LLeg.zRot += 0.05;
-				//RLeg
-				if (this.RLeg.xRot > -0.036477379868653376F) this.RLeg.xRot -= 0.05;
-				if (this.RLeg.yRot > -5.235987638949542E-4F) this.RLeg.yRot -= 0.05;
-				if (this.RLeg.zRot > -0.291993575869168F) this.RLeg.zRot -= 0.05;
-				//Head
-				if (this.Head.xRot < 0.22287855346915916F) this.Head.xRot += 0.05;
-				//Tail
-				if (this.Tail.xRot > -0.4054399772487995F) this.Tail.xRot -= 0.05;
-				if (this.Tail.yRot > -0.14608405639455457F) this.Tail.yRot -= 0.05;
-				//RArm
-				if (this.RArm.xRot > -1.3891074877464207F) this.RArm.xRot -= 0.05;
-				if (this.RArm.yRot > -0.10995574620459413F) this.RArm.yRot -= 0.05;
-				//LArm
-				if (this.LArm.xRot > -1.2407545013269026F) this.LArm.xRot -= 0.05;
-				if (this.LArm.yRot < 0.2553416715641412F) this.LArm.yRot += 0.05;
-				//Torso
-				if (this.Torso.y < 17) this.Torso.y += 0.15;
-				if (this.Torso.xRot < 0.1459095194746135F) this.Torso.xRot += 0.05;
-			}
-		} else {
-			this.LArm.xRot = Mth.cos((limbSwing / 3) * speed * 0.3F) * degree * 0.8F * limbSwingAmount;
-			this.RArm.xRot = Mth.cos((limbSwing / 3) * speed * 0.3F) * degree * -0.8F * limbSwingAmount;
-			this.RLeg.xRot = Mth.cos((limbSwing / 3) * speed * 0.3F) * degree * 0.8F * limbSwingAmount;
-			this.LLeg.xRot = Mth.cos((limbSwing / 3) * speed * 0.3F) * degree * -0.8F * limbSwingAmount;
-			this.Tail.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5)) + (Mth.cos((limbSwing / 3) * speed * 0.15F) * degree * 0.35F * limbSwingAmount) + attackProgress * leftOrRight * (float)Math.toRadians(-15);
-			this.Head.xRot = (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + (Mth.cos((limbSwing / 3) * speed * 0.3F) * degree * 0.1F * limbSwingAmount + 0.15F) + (headPitch * ((float) Math.PI / 180F));
-			this.Head.yRot = (netHeadYaw * ((float) Math.PI / 180F));
-			this.Torso.yRot = attackProgress * leftOrRight * (float)Math.toRadians(-200);
-			this.Tail.zRot = attackProgress * leftOrRight * (float)Math.toRadians(15);
-			this.Torso.z = 0 + attackProgress * -22;
-			if (entity.isInWater()) {
-				this.Head.xRot = -0.1F;
-			}
-			if (entity.isEating()) {
-				this.Head.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.5F) + 0.25F;
-				this.Torso.xRot = 0.1F;
-				this.LLeg.xRot = -0.1F;
-				this.RLeg.xRot = -0.1F;
-				this.RArm.xRot = -0.1F;
-				this.LArm.xRot = -0.1F;
-				this.RArm.zRot = 0.3F;
-				this.LArm.zRot = -0.3F;
-			}
+		if (entity.getFallingAsleepTicks() < 31) {
+			//LLeg
+			if (this.LLeg.xRot < 0.034732052281134726F) this.LLeg.xRot += 0.05;
+			if (this.LLeg.zRot < 0.291819038949227F) this.LLeg.zRot += 0.05;
+			//RLeg
+			if (this.RLeg.xRot > -0.036477379868653376F) this.RLeg.xRot -= 0.05;
+			if (this.RLeg.yRot > -5.235987638949542E-4F) this.RLeg.yRot -= 0.05;
+			if (this.RLeg.zRot > -0.291993575869168F) this.RLeg.zRot -= 0.05;
+			//Head
+			if (this.Head.xRot < 0.22287855346915916F) this.Head.xRot += 0.05;
+			//Tail
+			if (this.Tail.xRot > -0.4054399772487995F) this.Tail.xRot -= 0.05;
+			if (this.Tail.yRot > -0.14608405639455457F) this.Tail.yRot -= 0.05;
+			//RArm
+			if (this.RArm.xRot > -1.3891074877464207F) this.RArm.xRot -= 0.05;
+			if (this.RArm.yRot > -0.10995574620459413F) this.RArm.yRot -= 0.05;
+			//LArm
+			if (this.LArm.xRot > -1.2407545013269026F) this.LArm.xRot -= 0.05;
+			if (this.LArm.yRot < 0.2553416715641412F) this.LArm.yRot += 0.05;
+			//Torso
+			if (this.Torso.y < 17) this.Torso.y += 0.15;
+			if (this.Torso.xRot < 0.1459095194746135F) this.Torso.xRot += 0.05;
 		}
 	}
 
@@ -200,6 +181,24 @@ public class PinacosaurusBabyModel extends EntityModel<Pinacosaurus> {
 		//Torso
 		this.Torso.xRot = 0F;
 		this.Torso.y = 15;
+	}
+	
+	public void setSleepingPose() {
+		this.Torso.y = 17;
+		this.LLeg.xRot =  0.034732052281134726F;
+		this.LLeg.zRot = 0.291819038949227F;
+		this.Head.xRot = -0.3511602601486451F;
+		this.Tail.xRot = -0.4054399772487995F;
+		this.Tail.yRot = -0.14608405639455457F;
+		this.RArm.xRot = -1.3891074877464207F;
+		this.RArm.yRot = -0.10995574620459413F;
+		this.LArm.xRot = -1.2407545013269026F;
+		this.LArm.yRot = 0.2553416715641412F;
+		this.Torso.xRot = 0.1459095194746135F;
+		this.RLeg.xRot = -0.036477379868653376F;
+		this.RLeg.yRot = -5.235987638949542E-4F;
+		this.RLeg.zRot = -0.291993575869168F;
+		this.Head.xRot = 0.22287855346915916F;
 	}
 
 	@Override

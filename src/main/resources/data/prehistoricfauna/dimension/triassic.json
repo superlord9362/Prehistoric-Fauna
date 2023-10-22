@@ -36,7 +36,7 @@
 					"parameters": {
 						"temperature": 0.75,
 						"humidity": 0.9,
-						"depth": 0.1,
+						"depth": 0,
 						"weirdness": 0.2,
 						"continentalness": 2,
 						"erosion": 0.2,
@@ -48,7 +48,7 @@
 					"parameters": {
 						"temperature": 0.75,
 						"humidity": 0.9,
-						"depth": 0.1,
+						"depth": 0,
 						"weirdness": 0,
 						"continentalness": 2,
 						"erosion": 0,
@@ -60,7 +60,7 @@
 					"parameters": {
 						"temperature": 0.75,
 						"humidity": 0.9,
-						"depth": 0.1,
+						"depth": 0,
 						"weirdness": 0,
 						"continentalness": 2,
 						"erosion": 1,
@@ -72,11 +72,41 @@
 					"parameters": {
 						"temperature": 0.75,
 						"humidity": 0.9,
-						"depth": 0.1,
+						"depth": 0,
 						"weirdness": 0,
 						"continentalness": 2,
 						"erosion": -0.5,
 						"offset": 0
+					}
+				},
+				{
+					"biome": "minecraft:dripstone_caves",
+					"parameters": {
+						"continentalness": [
+							0.8,
+							1
+						],
+						"depth": [
+							-0.9,
+							-0.2
+						],
+						"erosion": [
+							-1,
+							1
+						],
+						"humidity": [
+							-1,
+							1
+						],
+						"offset": 0.0,
+						"temperature": [
+							-1,
+							1
+						],
+						"weirdness": [
+							-1,
+							1
+						]
 					}
 				}
 			]

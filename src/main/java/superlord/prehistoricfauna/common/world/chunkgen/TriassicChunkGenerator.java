@@ -59,19 +59,27 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 	public TriassicChunkGenerator(Registry<StructureSet> pStructureSets, BiomeSource pBiomeSource, Holder<NoiseGeneratorSettings> settings) {
 		this(pStructureSets, pBiomeSource, settings, 0L);
 	}
+	
+	protected static double depthNoise(FastNoise noise, double x, double y, double z) {
+		double belowSeaLevelDepth = -0.5F * (1-(y/64));
+		double aboveSeaLevelDepth = (y-64)/192;
+		if (y <= 64) return belowSeaLevelDepth;
+		else return aboveSeaLevelDepth;
+	}
 
+	FastNoiseDensityFunction depthIsolation = new FastNoiseDensityFunction(noise, noiseContext -> depthNoise(noiseContext.noise(), noiseContext.x(), noiseContext.y(), noiseContext.z()));
 
 	public TriassicChunkGenerator(Registry<StructureSet> pStructureSets, BiomeSource pBiomeSource, Holder<NoiseGeneratorSettings> settings, long seed) {
 		super(pStructureSets, Optional.empty(), pBiomeSource);
 		this.settings = settings;
 		this.seed = seed;
 		this.sampler = new Climate.Sampler(
-				new FastNoiseDensityFunction(noise),
-				new FastNoiseDensityFunction(noise, 400),
-				new FastNoiseDensityFunction(noise, -400),
-				new FastNoiseDensityFunction(noise, 800),
-				new FastNoiseDensityFunction(noise, -800),
-				new FastNoiseDensityFunction(noise, 1600),
+				new FastNoiseDensityFunction(noise), //Temperature
+				new FastNoiseDensityFunction(noise, 400), //Humidity
+				new FastNoiseDensityFunction(noise, -400), //Continentalness
+				new FastNoiseDensityFunction(noise, 800), //Erosion
+				depthIsolation, //Depth
+				new FastNoiseDensityFunction(noise, 1600), //Weirdness
 				new ArrayList<>());
 		initializeNoise(seed);
 	}
@@ -371,6 +379,6 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 
 	@Override
 	public void addDebugScreenInfo(List<String> p_208054_, BlockPos p_208055_) {
-
+		p_208054_.add("Depth: " + depthNoise(noise, p_208055_.getX(), p_208055_.getY(), p_208055_.getZ()));
 	}
 }

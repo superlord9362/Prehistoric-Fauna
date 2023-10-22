@@ -291,13 +291,13 @@ public class Scelidosaurus extends DinosaurEntity {
 		public void tick() {
 			super.tick();
 			Scelidosaurus.this.setBipedal(true);
-			Scelidosaurus.this.setStartCrouching(true);
+			Scelidosaurus.this.setCrouchingTicks(0);
 		}
 
 		public void stop() {
 			Scelidosaurus.this.setBipedal(false);
-			Scelidosaurus.this.setStartCrouching(false);
-			Scelidosaurus.this.setWakingUp(true);
+			Scelidosaurus.this.setCrouchingTicks(31);
+			Scelidosaurus.this.setWakingTicks(0);
 			super.stop();
 		}
 

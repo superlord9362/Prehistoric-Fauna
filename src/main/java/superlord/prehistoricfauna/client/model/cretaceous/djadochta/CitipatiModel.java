@@ -75,50 +75,53 @@ public class CitipatiModel extends EntityModel<Citipati> {
 
 	@Override
 	public void setupAnim(Citipati entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		boolean fallingAsleep = entity.isFallingAsleep();
-		boolean isAsleep = entity.isAsleep();
-		boolean wakingUp = entity.isWakingUp();
-		this.resetModel();
-		if (isAsleep) {
-			setSleepingPos(entity);
-		} else {
-			float partialTick = ageInTicks - entity.tickCount;
-			float attackProgress = entity.getMeleeProgress(partialTick);
-			this.Head.yRot = netHeadYaw * ((float)Math.PI / 180F);
-			this.ThighRight.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-			this.ThighLeft.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-			this.Tail.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
-			this.TailFan.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
-			this.Tail.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
-			this.TailFan.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
-			this.Body.xRot = Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3));
-			this.Head.xRot = (headPitch * ((float) Math.PI / 180F)) + (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + attackProgress * (float) Math.toRadians(40F);
-			this.WingLeft.zRot = -Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(-50F);
-			this.WingRight.zRot = Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(50F);
-			if (entity.isEating()) {
-				this.Body.xRot = 0.5F;
-				this.ThighLeft.xRot = -0.5F;
-				this.ThighRight.xRot = -0.5F;
-				this.ThighLeft.y = 4F;
-				this.ThighRight.y = 4F;
-				this.Neck.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.75F) + 0.5F;
-			}
-			if (entity.isInWater()) {
-				this.Body.y = 17;
-				this.Body.xRot = -0.25F;
-				this.Tail.xRot = 0.25F;
-				this.Neck.xRot = 0.25F;
-				this.WingLeft.zRot = -1.5F + Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
-				this.WingRight.zRot = 1.5F - Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
-				this.ThighLeft.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
-				this.ThighRight.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
-				this.Tail.yRot = Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;
-				this.TailFan.yRot = Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;
-				this.LegLeft.xRot = -0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
-				this.LegRight.xRot = 0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
+		//resetModel();
+		if (entity.getWakingTicks() >= 31 && entity.getFallingAsleepTicks() >= 31) {
+			if (entity.isAsleep()) {
+				setSleepingPose();
+			} else {
+				resetModel();
+				float partialTick = ageInTicks - entity.tickCount;
+				float attackProgress = entity.getMeleeProgress(partialTick);
+				this.Head.yRot = netHeadYaw * ((float)Math.PI / 180F);
+				this.ThighRight.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+				this.ThighLeft.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+				this.Tail.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
+				this.TailFan.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
+				this.Tail.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
+				this.TailFan.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
+				this.Body.xRot = Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3));
+				this.Head.xRot = (headPitch * ((float) Math.PI / 180F)) + (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + attackProgress * (float) Math.toRadians(40F);
+				this.WingLeft.zRot = -Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(-50F);
+				this.WingRight.zRot = Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(50F);
+
+				if (entity.isEating()) {
+					this.Body.xRot = 0.5F;
+					this.ThighLeft.xRot = -0.5F;
+					this.ThighRight.xRot = -0.5F;
+					this.ThighLeft.y = 4F;
+					this.ThighRight.y = 4F;
+					this.Neck.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.75F) + 0.5F;
+				}
+				if (entity.isInWater()) {
+					this.Body.y = 17;
+					this.Body.xRot = -0.25F;
+					this.Tail.xRot = 0.25F;
+					this.Neck.xRot = 0.25F;
+					this.WingLeft.zRot = -1.5F + Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
+					this.WingRight.zRot = 1.5F - Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
+					this.ThighLeft.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
+					this.ThighRight.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
+					this.Tail.yRot = Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;
+					this.TailFan.yRot = Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;
+					this.LegLeft.xRot = -0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
+					this.LegRight.xRot = 0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
+				}
 			}
 		}
-		if (wakingUp) {
+		if (entity.getWakingTicks() < 31) {
+			System.out.println(entity.getWakingTicks());
+			System.out.println(this.WingRight.xRot);
 			//WingRight
 			if (this.WingRight.xRot > 0) this.WingRight.xRot -= 0.05;
 			if (this.WingRight.yRot > 0) this.WingRight.yRot -= 0.05;
@@ -157,9 +160,8 @@ public class CitipatiModel extends EntityModel<Citipati> {
 			//Body
 			if (this.Body.y > 6F) this.Body.y -= 0.15;
 			if (this.Body.xRot < 0) this.Body.xRot += 0.05;
-		} 
-		if (fallingAsleep) {
-			//Body
+		}
+		if (entity.getFallingAsleepTicks() < 31) {
 			//WingRight
 			if (this.WingRight.xRot < 0.39025563139857644F) this.WingRight.xRot += 0.05;
 			if (this.WingRight.yRot < 0.5866051722479385F) this.WingRight.yRot += 0.05;
@@ -234,36 +236,34 @@ public class CitipatiModel extends EntityModel<Citipati> {
 		this.Body.y = 6;
 	}
 
-	public void setSleepingPos(Citipati entity) {
-		if (!entity.isWakingUp() && !entity.isFallingAsleep() ) {
-			this.Body.y = 16.9F;
-			this.WingRight.xRot = 0.39025563139857644F;
-			this.WingRight.yRot = 0.5866051722479385F;
-			this.WingRight.zRot = -0.7428121536172364F;
-			this.Head.xRot = 0.9773843811168246F;
-			this.Head.yRot = 0.11728612207217244F;
-			this.ThighLeft.xRot = -1.0950196019960143F;
-			this.ThighLeft.yRot = 0.35185837453889574F;
-			this.TailFan.xRot = 0.0781907508222411F;
-			this.TailFan.yRot = -0.27366763203903305F;
-			this.TailFan.zRot = -0.11728612207217244F;
-			this.ThighRight.xRot = -1.1730357742864224F;
-			this.ThighRight.yRot = -0.4300491170387584F;
-			this.Body.xRot = -0.3909537457888271F;
-			this.WingLeft.xRot = 0.15690509575954859F;
-			this.WingLeft.yRot = -0.7429866572476639F;
-			this.WingLeft.zRot = 0.8990190684075072F;
-			this.Neck.xRot = -0.35185837453889574F;
-			this.Neck.yRot = 0.23457224414434488F;
-			this.Neck.zRot = -0.0781907508222411F;
-			this.LegLeft.xRot = 0.16580627893946132F;
-			this.LegLeft.yRot = 3.1398472178113552F;
-			this.LegLeft.zRot = 0.0607374583022978F;
-			this.LegRight.xRot = 0.03874630989361682F;
-			this.LegRight.yRot = 3.141592653589793F;
-			this.Tail.xRot = 0.23457224414434488F;
-			this.Tail.yRot = -0.19547687289441354F;
-		}
+	public void setSleepingPose() {
+		this.Body.y = 16.9F;
+		this.WingRight.xRot = 0.39025563139857644F;
+		this.WingRight.yRot = 0.5866051722479385F;
+		this.WingRight.zRot = -0.7428121536172364F;
+		this.Head.xRot = 0.9773843811168246F;
+		this.Head.yRot = 0.11728612207217244F;
+		this.ThighLeft.xRot = -1.0950196019960143F;
+		this.ThighLeft.yRot = 0.35185837453889574F;
+		this.TailFan.xRot = 0.0781907508222411F;
+		this.TailFan.yRot = -0.27366763203903305F;
+		this.TailFan.zRot = -0.11728612207217244F;
+		this.ThighRight.xRot = -1.1730357742864224F;
+		this.ThighRight.yRot = -0.4300491170387584F;
+		this.Body.xRot = -0.3909537457888271F;
+		this.WingLeft.xRot = 0.15690509575954859F;
+		this.WingLeft.yRot = -0.7429866572476639F;
+		this.WingLeft.zRot = 0.8990190684075072F;
+		this.Neck.xRot = -0.35185837453889574F;
+		this.Neck.yRot = 0.23457224414434488F;
+		this.Neck.zRot = -0.0781907508222411F;
+		this.LegLeft.xRot = 0.16580627893946132F;
+		this.LegLeft.yRot = 3.1398472178113552F;
+		this.LegLeft.zRot = 0.0607374583022978F;
+		this.LegRight.xRot = 0.03874630989361682F;
+		this.LegRight.yRot = 3.141592653589793F;
+		this.Tail.xRot = 0.23457224414434488F;
+		this.Tail.yRot = -0.19547687289441354F;
 	}
 
 	@Override

@@ -51,7 +51,7 @@ public class NocturnalSleepGoal extends Goal {
 		entity.yya = 0.0F;
 		entity.zza = 0.0F;
 		entity.getNavigation().stop();;
-		entity.setFallingAsleep(true);
+		entity.setFallingAsleepTicks(31);
 	}
 
 	public void tick() {
@@ -71,8 +71,8 @@ public class NocturnalSleepGoal extends Goal {
 	public void stop() {
 		entity.setAwakeTicks(100);
 		entity.setAsleep(false);
-		entity.setWakingUp(true);
-		entity.setFallingAsleep(false);
+		entity.setWakingTicks(0);
+		entity.setFallingAsleepTicks(31);
 	}
 
 }
