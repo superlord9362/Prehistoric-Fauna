@@ -110,6 +110,7 @@ public class PrehistoricFauna {
 		PFPlacedFeatures.REGISTER.register(bus);
 		PFEffects.REGISTER.register(bus);
 		PFBiomes.REGISTER.register(bus);
+		PFBiomeSources.REGISTER.register(bus);
 		PFChunkGenerators.REGISTER.register(bus);
 		PFDimensions.POI_TYPES.register(bus);
 		modLoadingContext.registerConfig(ModConfig.Type.CLIENT, PFConfigHolder.CLIENT_SPEC);

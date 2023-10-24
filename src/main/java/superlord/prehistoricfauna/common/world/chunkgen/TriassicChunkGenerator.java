@@ -24,7 +24,6 @@ import net.minecraft.world.level.NoiseColumn;
 import net.minecraft.world.level.StructureFeatureManager;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeManager;
-import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -39,24 +38,25 @@ import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.blending.Blender;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
 import superlord.prehistoricfauna.common.util.FastNoise;
+import superlord.prehistoricfauna.common.world.biome.biomesource.TriassicBiomeSource;
 import superlord.prehistoricfauna.common.world.biome.surfacedecorators.SurfaceDecorators;
 
 public class TriassicChunkGenerator extends ChunkGenerator {
 	public static final Codec<TriassicChunkGenerator> CODEC = RecordCodecBuilder.create((codec) -> commonCodec(codec).and(codec.group(
-			BiomeSource.CODEC.fieldOf("biome_source").forGetter((generator) -> generator.biomeSource),
+			TriassicBiomeSource.CODEC.fieldOf("biome_source").forGetter((generator) -> (TriassicBiomeSource) generator.biomeSource),
 			NoiseGeneratorSettings.CODEC.fieldOf("settings").forGetter((generator) -> generator.settings)))
 			.apply(codec, codec.stable(TriassicChunkGenerator::new)));
 
 	protected final Holder<NoiseGeneratorSettings> settings;
 	protected final Climate.Sampler sampler;
 	private long seed = 0L;
-	private static final FastNoise noise = new FastNoise(0);
+	public static final FastNoise noise = new FastNoise(0);
 	static {
 		noise.SetNoiseType(FastNoise.NoiseType.Simplex);
 	}
 	private float[][][] terrainShapeSamplePoints;
 
-	public TriassicChunkGenerator(Registry<StructureSet> pStructureSets, BiomeSource pBiomeSource, Holder<NoiseGeneratorSettings> settings) {
+	public TriassicChunkGenerator(Registry<StructureSet> pStructureSets, TriassicBiomeSource pBiomeSource, Holder<NoiseGeneratorSettings> settings) {
 		this(pStructureSets, pBiomeSource, settings, 0L);
 	}
 	
@@ -66,21 +66,50 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 		if (y <= 64) return belowSeaLevelDepth;
 		else return aboveSeaLevelDepth;
 	}
+	
+	protected double swampNoise(FastNoise noise, double x, double y, double z) {
+		int seaLevel = this.settings.value().seaLevel();
+		float swampFrequency = 0.1F;
+		float swampNoise = noise.GetNoise((float) x * swampFrequency, 0, (float) z * swampFrequency);
+		swampNoise = (1.0F - swampNoise * swampNoise);
+		swampNoise *= (y - seaLevel) * 0.4;
+		return swampNoise;
+	}
+	
+	protected static double cliffNoise(FastNoise noise, double x, double y, double z) {
+		float hugeCliffFrequency = 0.3F;
+		float hugeCliffNoise = noise.GetNoise((float) x * hugeCliffFrequency, 2834, (float) z * hugeCliffFrequency);
+		hugeCliffNoise = (float) Mth.clamp(Math.pow(1.3 * hugeCliffNoise, 12), 0, 1);
+		return hugeCliffNoise;
+	}
+	
+	protected static double cliffLumpinessNoise(FastNoise noise, double x, double y, double z) {
+		float lumpFrequency = 4.3F;
+		float hugeCliffNoise = (float) cliffNoise(noise, x, y, z);
+		float hugeCliffWobble = -0.5F * Mth.cos(2F * Mth.PI * hugeCliffNoise) + 0.5F;
+		float cliffLumpiness = noise.GetNoise((float) x * lumpFrequency, (float) y * lumpFrequency * 0.8F, (float) z * lumpFrequency);
+		cliffLumpiness *= hugeCliffWobble * 0.1F;
+		return cliffLumpiness;
+	}
 
 	FastNoiseDensityFunction depthIsolation = new FastNoiseDensityFunction(noise, noiseContext -> depthNoise(noiseContext.noise(), noiseContext.x(), noiseContext.y(), noiseContext.z()));
-
-	public TriassicChunkGenerator(Registry<StructureSet> pStructureSets, BiomeSource pBiomeSource, Holder<NoiseGeneratorSettings> settings, long seed) {
+	FastNoiseDensityFunction continentalnessIsolation = new FastNoiseDensityFunction(noise, noiseContext -> swampNoise(noiseContext.noise(), noiseContext.x(), noiseContext.y(), noiseContext.z()));
+	FastNoiseDensityFunction erosionIsolation = new FastNoiseDensityFunction(noise, noiseContext -> cliffNoise(noiseContext.noise(), noiseContext.x(), noiseContext.y(), noiseContext.z()));
+	FastNoiseDensityFunction weirdnessIsolation = new FastNoiseDensityFunction(noise, noiseContext -> cliffLumpinessNoise(noiseContext.noise(), noiseContext.x(), noiseContext.y(), noiseContext.z()));
+	
+	public TriassicChunkGenerator(Registry<StructureSet> pStructureSets, TriassicBiomeSource pBiomeSource, Holder<NoiseGeneratorSettings> settings, long seed) {
 		super(pStructureSets, Optional.empty(), pBiomeSource);
 		this.settings = settings;
 		this.seed = seed;
-		this.sampler = new Climate.Sampler(
-				new FastNoiseDensityFunction(noise), //Temperature
-				new FastNoiseDensityFunction(noise, 400), //Humidity
-				new FastNoiseDensityFunction(noise, -400), //Continentalness
-				new FastNoiseDensityFunction(noise, 800), //Erosion
-				depthIsolation, //Depth
-				new FastNoiseDensityFunction(noise, 1600), //Weirdness
-				new ArrayList<>());
+		 this.sampler = new Climate.Sampler(
+	                new FastNoiseDensityFunction(noise), //Temperature
+	                new FastNoiseDensityFunction(noise, 400), //Humidity
+	                continentalnessIsolation, //Continentalness
+	                erosionIsolation, //Erosion
+	                depthIsolation, //Depth
+	                weirdnessIsolation, //Weirdness
+	                new ArrayList<>());
+		 
 		initializeNoise(seed);
 	}
 
@@ -99,7 +128,7 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 
 	@Override
 	public ChunkGenerator withSeed(long seed) {
-		return new TriassicChunkGenerator(this.structureSets, this.biomeSource.withSeed(seed), this.settings, this.seed);
+		return new TriassicChunkGenerator(this.structureSets, (TriassicBiomeSource) this.biomeSource.withSeed(seed), this.settings, this.seed);
 	}
 
 	@Override
@@ -118,7 +147,7 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
 		for (int x = 0; x < 16; x++) {
 			for (int z = 0; z < 16; z++) {
-				//when it encounters a new surface, check the biome and generate the corresponding surface.
+                //when it encounters a new surface, check the biome and generate the corresponding surface.
 				int startHeight = chunk.getHeight(Heightmap.Types.WORLD_SURFACE_WG, x, z);
 				pos.set(x + chunk.getPos().getMinBlockX(), startHeight, z + chunk.getPos().getMinBlockZ());
 				boolean isInSolid = false;
@@ -163,7 +192,6 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 		fillNoiseSampleArrays(chunk);
 		Heightmap[] heightmaps = {chunk.getOrCreateHeightmapUnprimed(Heightmap.Types.OCEAN_FLOOR_WG), chunk.getOrCreateHeightmapUnprimed(Heightmap.Types.WORLD_SURFACE_WG)};
 		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
-
 		for (int x = 0; x < 16; x++) {
 			for (int z = 0; z < 16; z++) {
 				for (int y = this.getMaxY(); y >= this.getMinY(); y--) {
@@ -204,6 +232,7 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 		return CompletableFuture.completedFuture(chunk);
 	}
 
+	@SuppressWarnings("static-access")
 	private float sampleDensity(float x, float y, float z) {
 		int seaLevel = this.settings.value().seaLevel();
 		if (y > seaLevel) y = y + 3;
@@ -224,15 +253,11 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 		bigRockNoise *= bigRockStrength;
 		bigRockNoise += (1F - bigRockStrength);
 
-		float hugeCliffFrequency = 0.3F;
-		float hugeCliffNoise = noise.GetNoise(x * hugeCliffFrequency, 2834, z * hugeCliffFrequency);
-		hugeCliffNoise = (float) Mth.clamp(Math.pow(1.3 * hugeCliffNoise, 12), 0, 1);
+		float hugeCliffNoise = (float) this.cliffNoise(noise, x, y, z);
 		float hugeCliffWobble = -0.5F * Mth.cos(2F * Mth.PI * hugeCliffNoise) + 0.5F;
 		hugeCliffWobble *= 1.5F;
 
-		float lumpFrequency = 4.3F;
-		float cliffLumpiness = noise.GetNoise(x * lumpFrequency, y * lumpFrequency * 0.8F, z * lumpFrequency);
-		cliffLumpiness *= hugeCliffWobble * 0.1F;
+		float cliffLumpiness = (float) this.cliffLumpinessNoise(noise, x, y, z);
 		sample += cliffLumpiness;
 
 		float frequency2 = 2.5F;
@@ -245,10 +270,7 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 		riverNoise = 1.0F - riverNoise * riverNoise;
 		riverNoise *= 0.3;
 		
-		float swampFrequency = 0.1F;
-		float swampNoise = noise.GetNoise(x * swampFrequency, 0, z * swampFrequency);
-		swampNoise = (1.0F - swampNoise * swampNoise);
-		swampNoise *= (y - seaLevel) * 0.4;
+		float swampNoise = (float) this.swampNoise(noise, x, y, z);
 
 		float rockFrequency = 1.2F;
 		float pebbleNoise = noise.GetNoise(x * rockFrequency, 0, z * rockFrequency);
