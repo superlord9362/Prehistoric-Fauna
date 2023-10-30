@@ -8,8 +8,8 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.world.biome.TriassicBiomes;
 
 public class PFBiomes {
-	
 	public static final DeferredRegister<Biome> REGISTER = DeferredRegister.create(ForgeRegistries.BIOMES, PrehistoricFauna.MOD_ID);
+
 	public static RegistryObject<Biome> CHINLE_FLATS = REGISTER.register("chinle_flats", TriassicBiomes::chinleFlats);
 	public static RegistryObject<Biome> CHINLE_RIVER = REGISTER.register("chinle_river", TriassicBiomes::chinleRiver);
 	public static RegistryObject<Biome> CHINLE_SWAMP = REGISTER.register("chinle_swamp", TriassicBiomes::chinleSwamp);

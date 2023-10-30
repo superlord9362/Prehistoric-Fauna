@@ -4,17 +4,7 @@
 	"generator": {
 		"type": "prehistoricfauna:triassic_chunk_generator",
 		"biome_source": {
-			"type": "prehistoricfauna:triassic_biome_source",
-			"biomes": [
-					"prehistoricfauna:chinle_flats",
-					"prehistoricfauna:chinle_river",
-					"prehistoricfauna:chinle_swamp",
-					"prehistoricfauna:chinle_wooded_mountains",
-					"prehistoricfauna:ischigualasto_river",
-					"prehistoricfauna:ischigualasto_clearing",
-					"prehistoricfauna:ischigualasto_forest",
-					"prehistoricfauna:ischigualasto_hills"
-			]
+			"type": "prehistoricfauna:triassic_biome_source"
 		},
 		"settings": "prehistoricfauna:triassic_noise_settings"
 	}
