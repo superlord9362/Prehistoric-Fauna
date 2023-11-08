@@ -46,6 +46,8 @@ import superlord.prehistoricfauna.common.blocks.CarvedTuberBlock;
 import superlord.prehistoricfauna.common.blocks.CobbaniaBlock;
 import superlord.prehistoricfauna.common.blocks.CrassostreaOysterBlock;
 import superlord.prehistoricfauna.common.blocks.CrateBlock;
+import superlord.prehistoricfauna.common.blocks.CretaceousPortalBlock;
+import superlord.prehistoricfauna.common.blocks.CretaceousTimeBlock;
 import superlord.prehistoricfauna.common.blocks.DeadCycadBlock;
 import superlord.prehistoricfauna.common.blocks.DicroidiumBlock;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
@@ -54,6 +56,8 @@ import superlord.prehistoricfauna.common.blocks.FossilCrateBlock;
 import superlord.prehistoricfauna.common.blocks.HardenedSiltBlock;
 import superlord.prehistoricfauna.common.blocks.HumulusBlock;
 import superlord.prehistoricfauna.common.blocks.JohnstoniaBlock;
+import superlord.prehistoricfauna.common.blocks.JurassicPortalBlock;
+import superlord.prehistoricfauna.common.blocks.JurassicTimeBlock;
 import superlord.prehistoricfauna.common.blocks.LiriodendritesLeavesBlock;
 import superlord.prehistoricfauna.common.blocks.MarmarthiaBlock;
 import superlord.prehistoricfauna.common.blocks.MossBlock;
@@ -634,6 +638,10 @@ public class PFBlocks {
 
 	public static final RegistryObject<TriassicPortalBlock> TRIASSIC_PORTAL = REGISTER.register("triassic_portal", () -> new TriassicPortalBlock(Block.Properties.of(Material.PORTAL).noCollission().randomTicks().strength(-1.0F).sound(SoundType.GLASS).noDrops()));
 	public static final RegistryObject<Block> TRIASSIC_TIME_BLOCK = REGISTER.register("triassic_time_block", () -> new TriassicTimeBlock());
+	public static final RegistryObject<JurassicPortalBlock> JURASSIC_PORTAL = REGISTER.register("jurassic_portal", () -> new JurassicPortalBlock(Block.Properties.of(Material.PORTAL).noCollission().randomTicks().strength(-1.0F).sound(SoundType.GLASS).noDrops()));
+	public static final RegistryObject<Block> JURASSIC_TIME_BLOCK = REGISTER.register("jurassic_time_block", () -> new JurassicTimeBlock());
+	public static final RegistryObject<CretaceousPortalBlock> CRETACEOUS_PORTAL = REGISTER.register("cretaceous_portal", () -> new CretaceousPortalBlock(Block.Properties.of(Material.PORTAL).noCollission().randomTicks().strength(-1.0F).sound(SoundType.GLASS).noDrops()));
+	public static final RegistryObject<Block> CRETACEOUS_TIME_BLOCK = REGISTER.register("cretaceous_time_block", () -> new CretaceousTimeBlock());
 
 	public static final RegistryObject<FeederBlock> OAK_FEEDER = REGISTER.register("oak_feeder", () -> new FeederBlock(Properties.of(Material.METAL).strength(2.0F, 3.0F).sound(SoundType.METAL)));
 	

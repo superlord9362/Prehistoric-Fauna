@@ -125,7 +125,7 @@ public class PrehistoricFauna {
 	public void biomeModification(final BiomeLoadingEvent event) {
 		String name = event.getName().getPath();
 		if (name.equals("badlands")) event.getGeneration().getFeatures(Decoration.VEGETAL_DECORATION).add(PFPlacedFeatures.PLACED_PETRIFIED_TREE.getHolder().orElseThrow());
-		if (!name.equals("chinle_flats") && !name.equals("chinle_swamp") && !name.equals("chinle_wooded_mountains") && !name.equals("ischigualasto_forest") && !name.equals("ischigualasto_clearing") && !name.equals("ischigualasto_hills")) {
+		if (!name.equals("chinle_flats") && !name.equals("chinle_swamp") && !name.equals("chinle_wooded_mountains") && !name.equals("ischigualasto_forest") && !name.equals("ischigualasto_clearing") && !name.equals("ischigualasto_hills") && !name.equals("chinle_river") && !name.equals("ischigualasto_river") && !name.equals("prehistoric_dripstone_cave")) {
 			event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(PFPlacedFeatures.FOSSILIZED_CHALK);
 			event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(PFPlacedFeatures.FOSSILIZED_SILTSTONE);
 			event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(PFPlacedFeatures.FOSSILIZED_SANDSTONE);

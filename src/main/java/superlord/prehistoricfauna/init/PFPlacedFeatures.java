@@ -1,5 +1,7 @@
 package superlord.prehistoricfauna.init;
 
+import java.util.List;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -11,11 +13,19 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.placement.*;
+import net.minecraft.world.level.levelgen.placement.BiomeFilter;
+import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
+import net.minecraft.world.level.levelgen.placement.CountOnEveryLayerPlacement;
+import net.minecraft.world.level.levelgen.placement.CountPlacement;
+import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
+import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.levelgen.placement.PlacementModifier;
+import net.minecraft.world.level.levelgen.placement.RarityFilter;
+import net.minecraft.world.level.levelgen.placement.SurfaceWaterDepthFilter;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import java.util.List;
 
 @SuppressWarnings("deprecation")
 public class PFPlacedFeatures {
@@ -31,6 +41,9 @@ public class PFPlacedFeatures {
 
 	public static final Holder<PlacedFeature> JURASSIC_FOSSILIZED_SANDSTONE = PlacementUtils.register("placed_jurassic_fossilized_sandstone", PFConfiguredFeatures.FOSSILIZED_SANDSTONE.getHolder().orElseThrow(), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(49), VerticalAnchor.absolute(59))));
 	
+	public static final RegistryObject<PlacedFeature> RED_SANDSTONE_ROCK = REGISTER.register("placed_red_sandstone_rock", () -> new PlacedFeature(PFConfiguredFeatures.RED_SANDSTONE_ROCK.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(2)));
+	public static final RegistryObject<PlacedFeature> BIG_RED_SANDSTONE_ROCK = REGISTER.register("placed_big_red_sandstone_rock", () -> new PlacedFeature(PFConfiguredFeatures.BIG_RED_SANDSTONE_ROCK.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(3)));
+	
 	public static final RegistryObject<PlacedFeature> MARCHANTIA = REGISTER.register("placed_marchantia", () -> new PlacedFeature(PFConfiguredFeatures.MARCHANITA.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(2)));
 	public static final RegistryObject<PlacedFeature> DEAD_OSMUNDACAULIS = REGISTER.register("placed_dead_osmundacaulis", () -> new PlacedFeature(PFConfiguredFeatures.DEAD_OSMUNDACAULIS.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
 	public static final RegistryObject<PlacedFeature> PLACED_PETRIFIED_TREE = REGISTER.register("placed_petrified_tree", () -> new PlacedFeature(PFConfiguredFeatures.PETRIFIED_TREE.getHolder().orElseThrow(), List.of(PlacementUtils.countExtra(1, 0.05F, 0), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
@@ -41,15 +54,20 @@ public class PFPlacedFeatures {
 	public static final RegistryObject<PlacedFeature> HORSETAILS = REGISTER.register("placed_horsetail", () -> new PlacedFeature(PFConfiguredFeatures.HORSETAILS.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(2)));
 	public static final RegistryObject<PlacedFeature> DOUBLE_HORSETAILS = REGISTER.register("placed_double_horsetail", () -> new PlacedFeature(PFConfiguredFeatures.DOUBLE_HORSETAILS.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(2)));
 	public static final RegistryObject<PlacedFeature> WATERLOGGED_HORSETAILS = REGISTER.register("placed_waterlogged_horsetail", () -> new PlacedFeature(PFConfiguredFeatures.WATERLOGGED_HORSETAILS.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(2)));
+	public static final RegistryObject<PlacedFeature> CONIOPTERIS = REGISTER.register("placed_coniopteris", () -> new PlacedFeature(PFConfiguredFeatures.CONIOPTERIS.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(2)));
 	public static final RegistryObject<PlacedFeature> CLADOPHLEBIS = REGISTER.register("placed_cladophlebis", () -> new PlacedFeature(PFConfiguredFeatures.CLADOPHLEBIS.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(2)));
 	public static final RegistryObject<PlacedFeature> CLATHOPTERIS = REGISTER.register("placed_clathopteris", () -> new PlacedFeature(PFConfiguredFeatures.CLATHOPTERIS.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(2)));
 	public static final RegistryObject<PlacedFeature> PHLEBOPTERIS = REGISTER.register("placed_phlebopteris", () -> new PlacedFeature(PFConfiguredFeatures.PHLEBOPTERIS.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(2)));
 	public static final RegistryObject<PlacedFeature> OTOZAMITES = REGISTER.register("placed_otozamites", () -> new PlacedFeature(PFConfiguredFeatures.OTOZAMITES.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(2)));
+	public static final RegistryObject<PlacedFeature> TALL_OTOZAMITES = REGISTER.register("placed_tall_otozamites", () -> new PlacedFeature(PFConfiguredFeatures.DOUBLE_OTOZAMITES.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(2)));
 	public static final RegistryObject<PlacedFeature> MICHELILLOA = REGISTER.register("placed_michelilloa", () -> new PlacedFeature(PFConfiguredFeatures.MICHELILLOA.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(2)));
 	public static final RegistryObject<PlacedFeature> JOHNSTONIA = REGISTER.register("placed_johnstonia", () -> new PlacedFeature(PFConfiguredFeatures.JOHNSTONIA.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
 	public static final RegistryObject<PlacedFeature> DICROIDIUM = REGISTER.register("placed_dicroidium", () -> new PlacedFeature(PFConfiguredFeatures.DICROIDIUM.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
 	public static final RegistryObject<PlacedFeature> SCYTOPHYLLUM = REGISTER.register("placed_scytophyllum", () -> new PlacedFeature(PFConfiguredFeatures.SCYTOPHYLLUM.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(2)));
 	public static final RegistryObject<PlacedFeature> LOWERED_HORSETAILS = REGISTER.register("placed_lowered_horsetails", () -> new PlacedFeature(PFConfiguredFeatures.LOWERED_HORSETAILS.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
+	public static final RegistryObject<PlacedFeature> OSMUNDACAULIS = REGISTER.register("placed_osmundacaulis", () -> new PlacedFeature(PFConfiguredFeatures.OSMUNDACAULIS.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(2)));
+	public static final RegistryObject<PlacedFeature> TALL_OSMUNDACAULIS = REGISTER.register("placed_tall_osmundacaulis", () -> new PlacedFeature(PFConfiguredFeatures.DOUBLE_OSMUNDACAULIS.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(2)));
+	public static final RegistryObject<PlacedFeature> LAUROZAMITES = REGISTER.register("placed_laurozamites", () -> new PlacedFeature(PFConfiguredFeatures.LAUROZAMITES.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(2)));
 
 	public static final RegistryObject<PlacedFeature> ZAMITES = REGISTER.register("placed_zamites", () -> new PlacedFeature(PFConfiguredFeatures.COMMON_ZAMITES_BUSH.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
 	
@@ -87,8 +105,22 @@ public class PFPlacedFeatures {
 	public static final RegistryObject<PlacedFeature> SMALL_ARAUCARIA_TREE_2_CHECKED = register("small_araucaria_tree_2", PFConfiguredFeatures.SMALL_ARAUCARIA_TREE_2, PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING));
 	public static final RegistryObject<PlacedFeature> SMALL_ARAUCARIA_TREE_3_CHECKED = register("small_araucaria_tree_3", PFConfiguredFeatures.SMALL_ARAUCARIA_TREE_3, PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING));
 	public static final RegistryObject<PlacedFeature> SMALL_ARAUCARIA_TREE_4_CHECKED = register("small_araucaria_tree_4", PFConfiguredFeatures.SMALL_ARAUCARIA_TREE_4, PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING));
+	public static final RegistryObject<PlacedFeature> DEAD_ARAUCARIA_CHECKED = register("dead_araucaria", PFConfiguredFeatures.DEAD_ARAUCARIA, PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING));
 	public static final RegistryObject<PlacedFeature> PROTOJUNIPEROXYLON_TREE_1_CHECKED = register("protojuniperoxylon_tree_1", PFConfiguredFeatures.LARGE_PROTOJUNIPEROXYLON_TREE_1, PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING));
 	public static final RegistryObject<PlacedFeature> PROTOJUNIPEROXYLON_TREE_2_CHECKED = register("protojuniperoxylon_tree_2", PFConfiguredFeatures.LARGE_PROTOJUNIPEROXYLON_TREE_2, PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING));
+
+	public static final RegistryObject<PlacedFeature> PROTOPICEOXYLON_TREE_1_CHECKED = register("protopiceoxylon_tree_1", PFConfiguredFeatures.PROTOPICEOXYLON_TREE_1, PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING));
+	public static final RegistryObject<PlacedFeature> PROTOPICEOXYLON_TREE_2_CHECKED = register("protopiceoxylon_tree_2", PFConfiguredFeatures.PROTOPICEOXYLON_TREE_2, PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING));
+	public static final RegistryObject<PlacedFeature> PROTOPICEOXYLON_TREE_3_CHECKED = register("protopiceoxylon_tree_3", PFConfiguredFeatures.PROTOPICEOXYLON_TREE_3, PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING));
+	public static final RegistryObject<PlacedFeature> PROTOPICEOXYLON_TREE_4_CHECKED = register("protopiceoxylon_tree_4", PFConfiguredFeatures.PROTOPICEOXYLON_TREE_4, PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING));
+	public static final RegistryObject<PlacedFeature> PROTOPICEOXYLON_TREE_5_CHECKED = register("protopiceoxylon_tree_5", PFConfiguredFeatures.PROTOPICEOXYLON_TREE_5, PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING));
+	public static final RegistryObject<PlacedFeature> PROTOPICEOXYLON_TREE_6_CHECKED = register("protopiceoxylon_tree_6", PFConfiguredFeatures.PROTOPICEOXYLON_TREE_6, PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING));
+	public static final RegistryObject<PlacedFeature> PROTOPICEOXYLON_TREE_7_CHECKED = register("protopiceoxylon_tree_7", PFConfiguredFeatures.PROTOPICEOXYLON_TREE_7, PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING));
+	
+	public static final RegistryObject<PlacedFeature> BRACHYPHYLLUM_TREE_1_CHECKED = register("brachyphyllum_tree_1", PFConfiguredFeatures.BRACHYPHYLLUM_TREE_1, PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING));
+	public static final RegistryObject<PlacedFeature> BRACHYPHYLLUM_TREE_2_CHECKED = register("brachyphyllum_tree_2", PFConfiguredFeatures.BRACHYPHYLLUM_TREE_2, PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING));
+	public static final RegistryObject<PlacedFeature> BRACHYPHYLLUM_TREE_3_CHECKED = register("brachyphyllum_tree_3", PFConfiguredFeatures.BRACHYPHYLLUM_TREE_3, PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING));
+	public static final RegistryObject<PlacedFeature> BRACHYPHYLLUM_TREE_4_CHECKED = register("brachyphyllum_tree_4", PFConfiguredFeatures.BRACHYPHYLLUM_TREE_4, PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING));
 
 	public static final RegistryObject<PlacedFeature> CHINLE_SWAMP_TREES = register("placed_chinle_swamp_trees", PFConfiguredFeatures.CHINLE_SWAMP_TREES, PlacementUtils.countExtra(2, 0.1F, 1), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(4), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome(), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(Blocks.OAK_SAPLING.defaultBlockState(), BlockPos.ZERO)));
 	public static final RegistryObject<PlacedFeature> SCHILDERIA_TREES = register("placed_schilderia_trees", PFConfiguredFeatures.SCHILDERIA_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.1F, 1)));
@@ -97,8 +129,14 @@ public class PFPlacedFeatures {
 	public static final RegistryObject<PlacedFeature> CHINLE_WOODED_MOUNTAINS_TREES = register("placed_chinle_wooded_mountinas_trees", PFConfiguredFeatures.CHINLE_WOODED_MOUNTAINS_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(2, 0.1F, 2)));
 	public static final RegistryObject<PlacedFeature> ISCHIGUALASTO_TREES = register("placed_ischigualasto_trees", PFConfiguredFeatures.ISCHIGUALASTO_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(8, 0.1F, 3)));
 	public static final RegistryObject<PlacedFeature> SPARSE_ISCHIGUALASTO_TREES = register("placed_sparse_ischigualasto_trees", PFConfiguredFeatures.ISCHIGUALASTO_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.1F, 1)));
-
+	public static final RegistryObject<PlacedFeature> MORRISON_TREES = register("placed_morrison_tress", PFConfiguredFeatures.MORRISON_SAVANNA_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.25F, 1)));
+	public static final RegistryObject<PlacedFeature> SPARSE_BRACHYPHYLLUM = register("placed_sparse_brachyphyllum", PFConfiguredFeatures.SPARSE_BRACHYPHYLLUM_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.1F, 1)));
+	public static final RegistryObject<PlacedFeature> DRY_FOREST_VEGETATION = register("placed_dry_forest_vegetation", PFConfiguredFeatures.DRY_FOREST_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(2, 0.2F, 3)));
+	public static final RegistryObject<PlacedFeature> SPARSE_SMALL_ARAUCARIAS = register("placed_sparse_small_araucaria", PFConfiguredFeatures.SPARSE_ARAUCARIA_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.1F, 1)));
+	
 	public static final RegistryObject<PlacedFeature> SILT_DISK = REGISTER.register("placed_silt_disk", () -> new PlacedFeature(PFConfiguredFeatures.DISK_SILT.getHolder().orElseThrow(), List.of(CountOnEveryLayerPlacement.of(4), BiomeFilter.biome())));
+
+	public static final RegistryObject<PlacedFeature> PTILOPHYLLUM = REGISTER.register("placed_ptilophyllum", () -> new PlacedFeature(PFConfiguredFeatures.PTILOPHYLLUM_TREE.getHolder().orElseThrow(),  List.of(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
 	
 	public static RegistryObject<PlacedFeature> register(String name, RegistryObject<ConfiguredFeature<?, ?>> feature, List<PlacementModifier> modifiers) {
 		return REGISTER.register(name, () -> new PlacedFeature(feature.getHolder().orElseThrow(), modifiers));
@@ -159,6 +197,18 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CHINLE_WOODED_MOUNTAINS_TREES.getHolder().orElseThrow());
 	}
 	
+	public static void withChinleRiverPlants(BiomeGenerationSettings.Builder builder) {
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NEOCALAMITES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ALGAE.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLATHOPTERIS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PHLEBOPTERIS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OTOZAMITES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HORSETAILS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZAMITES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WATERLOGGED_HORSETAILS.getHolder().orElseThrow());
+	}
+	
 	public static void withIschigualastoVegetation(BiomeGenerationSettings.Builder builder) {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MICHELILLOA.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NEOCALAMITES.getHolder().orElseThrow());
@@ -185,6 +235,54 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DICROIDIUM.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SCYTOPHYLLUM.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_ISCHIGUALASTO_TREES.getHolder().orElseThrow());
+	}
+	
+	public static void withMorrisonSavannaVegetation(BiomeGenerationSettings.Builder builder) {
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PTILOPHYLLUM.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DEAD_OSMUNDACAULIS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZAMITES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CONIOPTERIS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OSMUNDACAULIS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_OSMUNDACAULIS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MORRISON_TREES.getHolder().orElseThrow());
+	}
+	
+	public static void withMorrisonHillsVegetation(BiomeGenerationSettings.Builder builder) {
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM.getHolder().orElseThrow());
+	}
+	
+	public static void withKayentaDryForestVegetation(BiomeGenerationSettings.Builder builder) {
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DRY_FOREST_VEGETATION.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DEAD_OSMUNDACAULIS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ALGAE.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZAMITES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OTOZAMITES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLATHOPTERIS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_OTOZAMITES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LAUROZAMITES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, RED_SANDSTONE_ROCK.getHolder().orElseThrow());
+	}
+	
+	public static void withKayentaButtesVegetation(BiomeGenerationSettings.Builder builder) {
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_SMALL_ARAUCARIAS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DEAD_OSMUNDACAULIS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ALGAE.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZAMITES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OTOZAMITES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLATHOPTERIS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_OTOZAMITES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LAUROZAMITES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, RED_SANDSTONE_ROCK.getHolder().orElseThrow());
+	}
+	
+	public static void withKayentaDesertRocks(BiomeGenerationSettings.Builder builder) {
+		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, RED_SANDSTONE_ROCK.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, BIG_RED_SANDSTONE_ROCK.getHolder().orElseThrow());
 	}
 	
 	private static List<PlacementModifier> orePlacement(PlacementModifier p_195347_, PlacementModifier p_195348_) {

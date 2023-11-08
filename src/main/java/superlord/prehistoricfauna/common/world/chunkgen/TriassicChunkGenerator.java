@@ -7,8 +7,6 @@ import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
-import org.apache.logging.log4j.core.util.SystemNanoClock;
-
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
@@ -63,44 +61,7 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 	public TriassicChunkGenerator(Registry<StructureSet> pStructureSets, BiomeSource pBiomeSource, Holder<NoiseGeneratorSettings> settings) {
 		this(pStructureSets, pBiomeSource, settings, 0L);
 	}
-
-	protected static double depthNoise(FastNoise noise, double x, double y, double z) {
-		double belowSeaLevelDepth = -0.5F * (1-(y/64));
-		double aboveSeaLevelDepth = (y-64)/192;
-		if (y <= 64) return belowSeaLevelDepth;
-		else return aboveSeaLevelDepth;
-	}
-
-	protected double swampNoise(FastNoise noise, double x, double y, double z) {
-		int seaLevel = this.settings.value().seaLevel();
-		float swampFrequency = 0.1F;
-		float swampNoise = noise.GetNoise((float) x * swampFrequency, 0, (float) z * swampFrequency);
-		swampNoise = (1.0F - swampNoise * swampNoise);
-		swampNoise *= (y - seaLevel) * 0.4;
-		return swampNoise;
-	}
-
-	protected static double cliffNoise(FastNoise noise, double x, double y, double z) {
-		float hugeCliffFrequency = 0.3F;
-		float hugeCliffNoise = noise.GetNoise((float) x * hugeCliffFrequency, 2834, (float) z * hugeCliffFrequency);
-		hugeCliffNoise = (float) Mth.clamp(Math.pow(1.3 * hugeCliffNoise, 12), 0, 1);
-		return hugeCliffNoise;
-	}
-
-	protected static double cliffLumpinessNoise(FastNoise noise, double x, double y, double z) {
-		float lumpFrequency = 4.3F;
-		float hugeCliffNoise = (float) cliffNoise(noise, x, y, z);
-		float hugeCliffWobble = -0.5F * Mth.cos(2F * Mth.PI * hugeCliffNoise) + 0.5F;
-		float cliffLumpiness = noise.GetNoise((float) x * lumpFrequency, (float) y * lumpFrequency * 0.8F, (float) z * lumpFrequency);
-		cliffLumpiness *= hugeCliffWobble * 0.1F;
-		return cliffLumpiness;
-	}
-
-	FastNoiseDensityFunction depthIsolation = new FastNoiseDensityFunction(noise, noiseContext -> depthNoise(noiseContext.noise(), noiseContext.x(), noiseContext.y(), noiseContext.z()));
-	FastNoiseDensityFunction continentalnessIsolation = new FastNoiseDensityFunction(noise, noiseContext -> swampNoise(noiseContext.noise(), noiseContext.x(), noiseContext.y(), noiseContext.z()));
-	FastNoiseDensityFunction erosionIsolation = new FastNoiseDensityFunction(noise, noiseContext -> cliffNoise(noiseContext.noise(), noiseContext.x(), noiseContext.y(), noiseContext.z()));
-	FastNoiseDensityFunction weirdnessIsolation = new FastNoiseDensityFunction(noise, noiseContext -> cliffLumpinessNoise(noiseContext.noise(), noiseContext.x(), noiseContext.y(), noiseContext.z()));
-
+	
 	public TriassicChunkGenerator(Registry<StructureSet> pStructureSets, BiomeSource pBiomeSource, Holder<NoiseGeneratorSettings> settings, long seed) {
 		super(pStructureSets, Optional.empty(), pBiomeSource);
 		this.settings = settings;
@@ -108,10 +69,10 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 		this.sampler = new Climate.Sampler(
 				new FastNoiseDensityFunction(noise), //Temperature
 				new FastNoiseDensityFunction(noise, 400), //Humidity
-				continentalnessIsolation, //Continentalness
-				erosionIsolation, //Erosion
-				depthIsolation, //Depth
-				weirdnessIsolation, //Weirdness
+				new FastNoiseDensityFunction(noise, -400), //Continentalness
+				new FastNoiseDensityFunction(noise, 800), //Erosion
+				new FastNoiseDensityFunction(noise, -800), //Depth
+				new FastNoiseDensityFunction(noise, 1200), //Weirdness
 				new ArrayList<>());
 
 		initializeNoise(seed);
@@ -165,12 +126,12 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 							SurfaceDecorators.getSurfaceDecorator(biome).buildSurface(pos, this.getSeaLevel(), visibleToSun, chunk, settings.value());
 							isInSolid = true;
 							visibleToSun = false;
+							break;
 						}
 					} else {
 						isInSolid = false;
 					}
 					pos.move(Direction.DOWN);
-
 				}
 			}
 		}
@@ -245,6 +206,8 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 	private float sampleDensity(float x, float y, float z) {
 		int seaLevel = this.settings.value().seaLevel();
 		if (y > seaLevel) y = y + 3;
+		BiomeManager biomeManager = new BiomeManager((TriassicBiomeSource)this.getBiomeSource(), this.seed);
+		Holder<Biome> biome = biomeManager.getBiome(new BlockPos(x, y, z));
 		
 		float frequency1 = 0.3F;
 		float sample = noise.GetNoise(x * frequency1, y * frequency1 * 0.8F, z * frequency1);
@@ -253,46 +216,96 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 		float smoothness = 0.001F;
 		float h = Mth.clamp(0.5F + 0.5F * (sample - floor) / smoothness, 0.0F, 1.0F);
 		sample = Mth.lerp(sample, floor, h) - smoothness * h * (1.0F - h);
+		if (biome.is(PFBiomes.CHINLE_RIVER.getKey()) || biome.is(PFBiomes.ISCHIGUALASTO_RIVER.getKey())) {
+			float riverFrequency = 0.1F;
+			float riverNoise = noise.GetNoise((float) x * riverFrequency, 0, (float) z * riverFrequency);
+			riverNoise = (1.0F - riverNoise * riverNoise);
+			riverNoise *= (y - seaLevel);
+			sample -= riverNoise + 4;
+			//return sample;
+		} else if (biome.is(PFBiomes.CHINLE_SWAMP.getKey())) {
+			float swampFrequency = 3F;
+			float swampNoise = noise.GetNoise((float) x * swampFrequency, 0, (float) z * swampFrequency);
+			swampNoise = (1.0F - swampNoise * swampNoise);
+			swampNoise *= (y - seaLevel) * 0.2;
+			sample *= 0.8;
+			sample -= swampNoise;
+		} else if (biome.is(PFBiomes.CHINLE_WOODED_MOUNTAINS.getKey())) {
+			float bigRockFrequency = 0.4F;
+			float rockNoise = noise.GetNoise(x * bigRockFrequency, (y * frequency1) + 512, z * bigRockFrequency);
+			float bigRockNoise = Mth.sqrt(sample * sample + rockNoise * rockNoise);
+			bigRockNoise = (sample < 0 || rockNoise < 0) ? 1 : bigRockNoise;
+			float bigRockStrength = 0.2F;
+			bigRockNoise *= bigRockStrength;
+			bigRockNoise += (1F - bigRockStrength);
 
-		float bigRockFrequency = 0.4F;
-		float rockNoise = noise.GetNoise(x * bigRockFrequency, (y * frequency1) + 512, z * bigRockFrequency);
-		float bigRockNoise = Mth.sqrt(sample * sample + rockNoise * rockNoise);
-		bigRockNoise = (sample < 0 || rockNoise < 0) ? 1 : bigRockNoise;
-		float bigRockStrength = 0.2F;
-		bigRockNoise *= bigRockStrength;
-		bigRockNoise += (1F - bigRockStrength);
+			float hugeCliffFrequency = 0.01F;
+			float hugeCliffNoise = noise.GetNoise((float) x * hugeCliffFrequency, 2834, (float) z * hugeCliffFrequency);
+			hugeCliffNoise = (float) Mth.clamp(Math.pow(1.3 * hugeCliffNoise, 12), 0, 1) * 0.4F;
+			float hugeCliffWobble = -0.5F * Mth.cos(2F * Mth.PI * hugeCliffNoise) + 0.5F;
+			hugeCliffWobble *= 1.5F;
 
-		float hugeCliffNoise = (float) this.cliffNoise(noise, x, y, z);
-		float hugeCliffWobble = -0.5F * Mth.cos(2F * Mth.PI * hugeCliffNoise) + 0.5F;
-		hugeCliffWobble *= 1.5F;
+			float lumpFrequency = 4.3F;
+			float cliffLumpiness = noise.GetNoise((float) x * lumpFrequency, (float) y * lumpFrequency * 0.8F, (float) z * lumpFrequency);
+			cliffLumpiness *= hugeCliffWobble * 0.1F;
+			sample += cliffLumpiness * 0.4;
+			sample -= ((y - this.settings.value().seaLevel() - hugeCliffNoise * 64) / (16.0F / bigRockNoise * (hugeCliffWobble + 1)));
+		} else if (biome.is(PFBiomes.ISCHIGUALASTO_CLEARING.getKey()) || biome.is(PFBiomes.ISCHIGUALASTO_FOREST.getKey()) || biome.is(PFBiomes.CHINLE_FLATS.getKey())) {
+			float flatsFrequency = 3F;
+			float flatsNoise = noise.GetNoise((float) x * flatsFrequency, 0, (float) z * flatsFrequency);
+			flatsNoise = (1.0F - flatsNoise * flatsNoise);
+			flatsNoise *= (y - seaLevel);
+			sample -= flatsNoise;
+		} else if (biome.is(PFBiomes.ISCHIGUALASTO_HILLS.getKey())) {
+			float bigRockFrequency = 0.4F;
+			float rockNoise = noise.GetNoise(x * bigRockFrequency, (y * frequency1) + 512, z * bigRockFrequency);
+			float bigRockNoise = Mth.sqrt(sample * sample + rockNoise * rockNoise);
+			bigRockNoise = (sample < 0 || rockNoise < 0) ? 1 : bigRockNoise;
+			float bigRockStrength = 0.2F;
+			bigRockNoise *= bigRockStrength;
+			bigRockNoise += (1F - bigRockStrength);
 
-		float cliffLumpiness = (float) this.cliffLumpinessNoise(noise, x, y, z);
-		sample += cliffLumpiness;
+			float hugeCliffFrequency = 0.01F;
+			float hugeCliffNoise = noise.GetNoise((float) x * hugeCliffFrequency, 2834, (float) z * hugeCliffFrequency);
+			hugeCliffNoise = (float) Mth.clamp(Math.pow(1.3 * hugeCliffNoise, 12), 0, 1) * 0.2F;
+			float hugeCliffWobble = -0.5F * Mth.cos(2F * Mth.PI * hugeCliffNoise) + 0.5F;
+			hugeCliffWobble *= 1.5F;
 
+			float lumpFrequency = 4.3F;
+			float cliffLumpiness = noise.GetNoise((float) x * lumpFrequency, (float) y * lumpFrequency * 0.8F, (float) z * lumpFrequency);
+			cliffLumpiness *= hugeCliffWobble * 0.1F;
+			sample += cliffLumpiness * 0.4;
+			sample -= ((y - this.settings.value().seaLevel() - hugeCliffNoise * 64) / (16.0F / bigRockNoise * (hugeCliffWobble + 1)));			
+		} 
+//		if (biome.is(PFBiomes.PREHISTORIC_DRIPSTONE_CAVE.getKey())) {
+//			float flatsFrequency = 3F;
+//			float flatsNoise = noise.GetNoise((float) x * flatsFrequency, 0, (float) z * flatsFrequency);
+//			flatsNoise = (1.0F - flatsNoise * flatsNoise);
+//			flatsNoise *= (y - seaLevel);
+//			sample -= flatsNoise;
+//			float caveSample;
+//			float sample1 = noise.GetNoise(x, y, z);
+//			float sample2 = noise.GetNoise(x, y + 10239129,  z);
+//			caveSample = sample1 * sample1  + sample2 * sample2;
+//			caveSample /= 2;
+//			caveSample *= 1.5;
+//			caveSample -= 0.02; 
+//
+//			float caveSample2;
+//			float sample12 = noise.GetNoise(x + 5, y + 18281, z + 5);
+//			float sample22 = noise.GetNoise(x + 5, y + 38291,  z + 5);
+//			caveSample2 = sample12 * sample12  + sample22 * sample22;
+//			caveSample2 *= 0.5;
+//			caveSample2 -= 0.01;
+//
+//			sample = Math.min(sample, caveSample);
+//			sample = Math.min(sample, caveSample2);
+//		}
 		float frequency2 = 2.5F;
 		sample += Mth.abs(noise.GetNoise(x * frequency2, y * frequency2, z * frequency2) * 0.2F);
 		float frequency3 = 3.5F;
 		sample += Mth.abs(noise.GetNoise(x * frequency3, y * frequency3, z * frequency3) * 0.05F);
-
-		float riverFrequency = 0.3F;
-		float riverNoise = noise.GetNoise(x * riverFrequency, 0, z * riverFrequency);
-		riverNoise = 1.0F - riverNoise * riverNoise;
-		riverNoise *= 0.3;
-
-		float swampNoise = (float) this.swampNoise(noise, x, y, z);
-
-		float rockFrequency = 1.2F;
-		float pebbleNoise = noise.GetNoise(x * rockFrequency, 0, z * rockFrequency);
-		pebbleNoise = Mth.abs(pebbleNoise);
-		pebbleNoise *= 1;
-
-		sample += pebbleNoise;
-		sample -= riverNoise;
 		sample -= 0.15F;
-		sample -= ((y - this.settings.value().seaLevel() - hugeCliffNoise * 64) / (16.0F / bigRockNoise * (hugeCliffWobble + 1)));
-		if (y <= this.getSeaLevel()) sample -= swampNoise;
-
-
 		float caveSample;
 		float sample1 = noise.GetNoise(x, y, z);
 		float sample2 = noise.GetNoise(x, y + 10239129,  z);
@@ -306,11 +319,10 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 		float sample22 = noise.GetNoise(x + 5, y + 38291,  z + 5);
 		caveSample2 = sample12 * sample12  + sample22 * sample22;
 		caveSample2 *= 0.5;
-		caveSample2 -= 0.01; 
+		caveSample2 -= 0.01;
 
 		sample = Math.min(sample, caveSample);
 		sample = Math.min(sample, caveSample2);
-
 		return sample;
 	}
 
@@ -409,7 +421,5 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 
 	@Override
 	public void addDebugScreenInfo(List<String> p_208054_, BlockPos p_208055_) {
-		p_208054_.add("Noise: " + ((TriassicBiomeSource) biomeSource).calculateNoiseValue(p_208055_.getX(), p_208055_.getZ(), noise));
-		p_208054_.add("Depth: " + depthNoise(noise, p_208055_.getX(), p_208055_.getY(), p_208055_.getZ()));
 	}
 }

@@ -1,0 +1,95 @@
+{
+	"player_spawn_friendly": true,
+	"precipitation": "snow",
+	"temperature": 0.4,
+	"downfall": 0.8,
+	"category": "none",
+	"effects": {
+		"mood_sound": {
+		"sound": "minecraft:ambient.cave",
+		"tick_delay": 6000,
+		"block_search_extent": 8,
+		"offset": 2.0
+	},
+	"sky_color": 10075867,
+	"fog_color": 12701916,
+	"water_color": 3247724,
+	"water_fog_color": 1796172,
+	"music": {
+		"sound": "prehistoricfauna:ambience_1",
+		"min_delay": 20,
+		"max_delay": 20,
+		"replace_current_music": true
+	}
+	},
+	"carvers": {
+		"air": [
+			"minecraft:cave",
+			"minecraft:canyon"
+		]
+	},
+	"features": [
+		[],
+		[
+			"minecraft:lake_lava_underground",
+			"minecraft:lake_lava_surface"
+		],
+		[
+      		"minecraft:amethyst_geode"
+      	],
+		[
+		],
+		[],
+		[],
+		[
+			"minecraft:ore_dirt",
+     		"minecraft:ore_gravel",
+      		"minecraft:ore_granite_upper",
+     		"minecraft:ore_granite_lower",
+      		"minecraft:ore_diorite_upper",
+      		"minecraft:ore_diorite_lower",
+      		"minecraft:ore_andesite_upper",
+      		"minecraft:ore_andesite_lower",
+      		"minecraft:ore_tuff",
+      		"minecraft:ore_coal_upper",
+      		"minecraft:ore_coal_lower",
+      		"minecraft:ore_iron_upper",
+	      	"minecraft:ore_iron_middle",
+      		"minecraft:ore_iron_small",
+      		"minecraft:ore_gold",
+      		"minecraft:ore_gold_lower",
+      		"minecraft:ore_redstone",
+      		"minecraft:ore_redstone_lower",
+      		"minecraft:ore_diamond",
+      		"minecraft:ore_diamond_large",
+      		"minecraft:ore_diamond_buried",
+      		"minecraft:ore_lapis",
+      		"minecraft:ore_lapis_buried",
+      		"minecraft:ore_copper",
+      		"minecraft:disk_clay"
+		],
+		[],
+		[
+			"minecraft:spring_water",
+			"minecraft:spring_lava"
+		],
+		[
+		]
+	],
+	"starts": [
+	],
+	"spawners": {
+		"monster": [
+		    ],
+		"creature": [
+				],
+		"ambient": [
+		    ],
+		"water_creature": [
+		],
+		"water_ambient": [
+		],
+		"misc": []
+	},
+	"spawn_costs": {}
+}

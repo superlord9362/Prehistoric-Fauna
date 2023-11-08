@@ -2,73 +2,10 @@
 	"type": "prehistoricfauna:jurassic",
 	"forge:use_server_seed": true,
 	"generator": {
-		"type": "minecraft:noise",
-		"seed": 9,
-		"settings": "prehistoricfauna:jurassic_noise_settings",
+		"type": "prehistoricfauna:jurassic_chunk_generator",
 		"biome_source": {
-			"type": "minecraft:multi_noise",
-			"biomes": [
-				{
-					"biome": "prehistoricfauna:morrison_savannah",
-					"parameters": {
-						"temperature": 1,
-						"humidity": 0.2,
-						"depth": 0,
-						"weirdness": -1.8,
-						"continentalness": 1,
-						"erosion": 1.7,
-						"offset": 0
-					}
-				},
-				{
-					"biome": "prehistoricfauna:morrison_hills",
-					"parameters": {
-						"temperature": 1,
-						"humidity": 0.2,
-						"depth": 0,
-						"weirdness": 0,
-						"continentalness": 1,
-						"erosion": 1.4,
-						"offset": 0
-					}
-				},
-				{
-					"biome": "prehistoricfauna:kayenta_buttes",
-					"parameters": {
-						"temperature": 0.9,
-						"humidity": 0.9,
-						"depth": 0,
-						"weirdness": -1.8,
-						"continentalness": -0.2,
-						"erosion": 1.7,
-						"offset": 0
-					}
-				},
-				{
-					"biome": "prehistoricfauna:kayenta_dry_forest",
-					"parameters": {
-						"temperature": 0.9,
-						"humidity": 0.9,
-						"depth": 0,
-						"weirdness": -1.8,
-						"continentalness": -0.2,
-						"erosion": 1.7,
-						"offset": 0
-					}
-				},
-				{
-					"biome": "prehistoricfauna:kayenta_desert",
-					"parameters": {
-						"temperature": 0.9,
-						"humidity": 0.9,
-						"depth": 0,
-						"weirdness": -1.8,
-						"continentalness": -0.2,
-						"erosion": 1.7,
-						"offset": 0
-					}
-				}
-			]
-		}
+			"type": "prehistoricfauna:jurassic_biome_source"
+		},
+		"settings": "prehistoricfauna:jurassic_noise_settings"
 	}
-}
+}			

@@ -24,10 +24,12 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.entity.PFBoat;
 import superlord.prehistoricfauna.common.items.ArmorMaterialInit;
 import superlord.prehistoricfauna.common.items.CobbaniaBlockItem;
+import superlord.prehistoricfauna.common.items.CretaceousTimeTotemItem;
 import superlord.prehistoricfauna.common.items.CustomArmorItem;
 import superlord.prehistoricfauna.common.items.CustomChestplateItem;
 import superlord.prehistoricfauna.common.items.FossilItem;
 import superlord.prehistoricfauna.common.items.HorsetailTeaItem;
+import superlord.prehistoricfauna.common.items.JurassicTimeTotemItem;
 import superlord.prehistoricfauna.common.items.PFBoatItem;
 import superlord.prehistoricfauna.common.items.PFBucketItem;
 import superlord.prehistoricfauna.common.items.PFHoeItem;
@@ -565,8 +567,8 @@ public class PFItems {
 	//Misc
 	public static final RegistryObject<Item> TIME_TOTEM = REGISTER.register("time_totem", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC).rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> TRIASSIC_TIME_TOTEM = REGISTER.register("triassic_time_totem", () -> new TriassicTimeTotemItem(new Item.Properties().tab(PrehistoricFauna.PF_MISC).durability(8).rarity(Rarity.UNCOMMON)));
-	public static final RegistryObject<Item> JURASIC_TIME_TOTEM = REGISTER.register("jurassic_time_totem", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC).durability(8).rarity(Rarity.UNCOMMON)));
-	public static final RegistryObject<Item> CRETACEOUS_TIME_TOTEM = REGISTER.register("cretaceous_time_totem", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC).durability(8).rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<Item> JURASIC_TIME_TOTEM = REGISTER.register("jurassic_time_totem", () -> new JurassicTimeTotemItem(new Item.Properties().tab(PrehistoricFauna.PF_MISC).durability(8).rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<Item> CRETACEOUS_TIME_TOTEM = REGISTER.register("cretaceous_time_totem", () -> new CretaceousTimeTotemItem(new Item.Properties().tab(PrehistoricFauna.PF_MISC).durability(8).rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> TIME_GEM_SHARD = REGISTER.register("time_gem_shard", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
 	public static final RegistryObject<Item> TRIASSIC_FOSSIL = REGISTER.register("triassic_fossil", () -> new FossilItem(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
 	public static final RegistryObject<Item> JURASSIC_FOSSIL = REGISTER.register("jurassic_fossil", () -> new FossilItem(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));

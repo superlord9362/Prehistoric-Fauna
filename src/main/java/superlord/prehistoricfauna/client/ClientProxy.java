@@ -213,6 +213,10 @@ public class ClientProxy extends CommonProxy {
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.NEOCALAMITES_LADDER.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TRIASSIC_PORTAL.get(), translucentRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TRIASSIC_TIME_BLOCK.get(), translucentRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.JURASSIC_PORTAL.get(), translucentRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.JURASSIC_TIME_BLOCK.get(), translucentRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.CRETACEOUS_PORTAL.get(), translucentRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.CRETACEOUS_TIME_BLOCK.get(), translucentRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.DRYOPHYLLUM_SAPLING.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_DRYOPHYLLUM_SAPLING.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.DRYOPHYLLUM_LEAVES.get(), cutoutRenderType);

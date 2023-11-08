@@ -18,9 +18,13 @@ public class PFDimensions {
 	
 	public static final ResourceKey<DimensionType> TRIASSIC_TYPE = ResourceKey.create(Registry.DIMENSION_TYPE_REGISTRY, new ResourceLocation(PrehistoricFauna.MOD_ID, "triassic"));
 	public static final ResourceKey<DimensionType> JURASSIC_TYPE = ResourceKey.create(Registry.DIMENSION_TYPE_REGISTRY, new ResourceLocation(PrehistoricFauna.MOD_ID, "jurassic"));
+	public static final ResourceKey<DimensionType> CRETACEOUS_TYPE = ResourceKey.create(Registry.DIMENSION_TYPE_REGISTRY, new ResourceLocation(PrehistoricFauna.MOD_ID, "cretaceous"));
 	public static final ResourceKey<Level> TRIASSIC = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(PrehistoricFauna.MOD_ID, "triassic"));
 	public static final ResourceKey<Level> JURASSIC = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(PrehistoricFauna.MOD_ID, "jurassic"));
+	public static final ResourceKey<Level> CRETACEOUS = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(PrehistoricFauna.MOD_ID, "cretaceous"));
 
 	public static final RegistryObject<PoiType> TRIASSIC_PORTAL = POI_TYPES.register("triassic_portal", () -> new PoiType("triassic_portal", ImmutableSet.copyOf(PFBlocks.TRIASSIC_PORTAL.get().getStateDefinition().getPossibleStates()), 0, 1));
-
+	public static final RegistryObject<PoiType> JURASSIC_PORTAL = POI_TYPES.register("jurassic_portal", () -> new PoiType("jurassic_portal", ImmutableSet.copyOf(PFBlocks.JURASSIC_PORTAL.get().getStateDefinition().getPossibleStates()), 0, 1));
+	public static final RegistryObject<PoiType> CRETACEOUS_PORTAL = POI_TYPES.register("cretaceous_portal", () -> new PoiType("cretaceous_portal", ImmutableSet.copyOf(PFBlocks.CRETACEOUS_PORTAL.get().getStateDefinition().getPossibleStates()), 0, 1));
+	
 }

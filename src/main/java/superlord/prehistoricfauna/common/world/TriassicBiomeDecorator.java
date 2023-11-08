@@ -113,6 +113,26 @@ public class TriassicBiomeDecorator {
 			if (PrehistoricFaunaConfig.ceratodusIschigualastoClearingSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.CERATODUS.get(), PrehistoricFaunaConfig.ceratodusIschigualastoClearingSpawnWeight, 1, 2));
 			if (PrehistoricFaunaConfig.landSentinelIschigualastoClearingSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.LAND_SENTINEL.get(), PrehistoricFaunaConfig.landSentinelIschigualastoClearingSpawnWeight, 1, 1));
 		}
+		if (name.equals("prehistoric_dripstone_cave")) {
+			if (PrehistoricFaunaConfig.caveSentinelIschigualastoClearingSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.CAVE_SENTINEL.get(), PrehistoricFaunaConfig.caveSentinelIschigualastoClearingSpawnWeight, 1, 1));
+		}
+		if (name.equals("chinle_river")) {
+			builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PFPlacedFeatures.DEAD_OSMUNDACAULIS.getHolder().orElseThrow());
+			PFPlacedFeatures.withChinleFlatsPlants(builder);
+			if (PrehistoricFaunaConfig.caveSentinelChinleRiverSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.CAVE_SENTINEL.get(), PrehistoricFaunaConfig.caveSentinelChinleRiverSpawnWeight, 1, 1));
+			if (PrehistoricFaunaConfig.landSentinelChinleRiverSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.LAND_SENTINEL.get(), PrehistoricFaunaConfig.landSentinelChinleRiverSpawnWeight, 1, 1));
+	        if (PrehistoricFaunaConfig.chinleaChinleRiverSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.CHINLEA.get(), PrehistoricFaunaConfig.chinleaChinleRiverSpawnWeight, 1, 2));
+	        if (PrehistoricFaunaConfig.arganodusChinleRiverSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.ARGANODUS.get(), PrehistoricFaunaConfig.arganodusChinleRiverSpawnWeight, 1, 2));
+	        if (PrehistoricFaunaConfig.saurichthysChinleRiverSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.SAURICHTHYS.get(), PrehistoricFaunaConfig.saurichthysChinleRiverSpawnWeight, 1, 2));
+	        if (PrehistoricFaunaConfig.mooreodontusChinleRiverSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.MOOREODONTUS.get(), PrehistoricFaunaConfig.mooreodontusChinleRiverSpawnWeight, 1, 2));
+		}
+		if (name.equals("ischigualasto_river")) {
+			PFPlacedFeatures.withIschigualastoVegetation(builder);
+			if (PrehistoricFaunaConfig.caveSentinelIschigualastoRiverSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.CAVE_SENTINEL.get(), PrehistoricFaunaConfig.caveSentinelIschigualastoRiverSpawnWeight, 1, 1));
+			if (PrehistoricFaunaConfig.landSentinelIschigualastoRiverSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.LAND_SENTINEL.get(), PrehistoricFaunaConfig.landSentinelIschigualastoRiverSpawnWeight, 1, 1));
+			if (PrehistoricFaunaConfig.ceratodusIschigualastoRiverSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.CERATODUS.get(), PrehistoricFaunaConfig.ceratodusIschigualastoRiverSpawnWeight, 1, 2));
+			
+		}
 	}
 
 }
