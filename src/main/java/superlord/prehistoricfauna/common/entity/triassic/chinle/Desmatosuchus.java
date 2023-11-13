@@ -158,16 +158,6 @@ public class Desmatosuchus extends DinosaurEntity {
 		}
 	}
 
-	@Override
-	public void aiStep() {
-		super.aiStep();
-		if (this.isAsleep() || this.getWakingTicks() != 0) {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
-		} else {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.23D);
-		}
-	}
-
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.22D).add(Attributes.ARMOR, 6.0D).add(Attributes.ARMOR_TOUGHNESS, 4.0D).add(Attributes.ATTACK_DAMAGE, 3).add(Attributes.FOLLOW_RANGE, 15);
 	}

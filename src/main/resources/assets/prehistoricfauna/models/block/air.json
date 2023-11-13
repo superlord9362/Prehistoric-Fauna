@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"particle": "prehistoricfauna:blocks/osmunda_new"
+	}
+}

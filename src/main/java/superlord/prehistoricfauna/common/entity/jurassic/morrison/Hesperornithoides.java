@@ -179,11 +179,6 @@ public class Hesperornithoides extends DinosaurEntity {
 
 	public void aiStep() {
 		super.aiStep();
-		if (this.isAsleep() || this.getWakingTicks() != 0) {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
-		} else {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.26D);
-		}
 		if (random.nextInt(1000) == 0 && !this.isDustBathing() && !this.isAsleep() && (this.level.getBlockState(this.blockPosition().below()).getBlock() == Blocks.SAND || this.level.getBlockState(this.blockPosition().below()).getBlock() == Blocks.RED_SAND || this.level.getBlockState(this.blockPosition().below()).getBlock() == PFBlocks.HARDENED_SILT.get())) {
 			this.setDustBathing(true);
 		}

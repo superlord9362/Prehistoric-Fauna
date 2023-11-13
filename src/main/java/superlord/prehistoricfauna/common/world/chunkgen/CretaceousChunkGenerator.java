@@ -58,6 +58,8 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 		noise.SetNoiseType(FastNoise.NoiseType.Simplex);
 	}
 	private float[][][] terrainShapeSamplePoints;
+	//private final Aquifer.FluidPicker globalFluidPicker;
+	//private final NoiseRouter router;
 
 	public CretaceousChunkGenerator(Registry<StructureSet> pStructureSets, BiomeSource pBiomeSource, Holder<NoiseGeneratorSettings> settings) {
 		this(pStructureSets, pBiomeSource, settings, 0L);
@@ -67,6 +69,14 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 		super(pStructureSets, Optional.empty(), pBiomeSource);
 		this.settings = settings;
 		this.seed = seed;
+//		int i = settings.value().seaLevel();
+//		this.router = settings.value().createNoiseRouter(null, seed);
+//		Aquifer.FluidStatus aquifer$fluidstatus = new Aquifer.FluidStatus(-54, Blocks.LAVA.defaultBlockState());
+//		Aquifer.FluidStatus aquifer$fluidstatus1 = new Aquifer.FluidStatus(i, settings.value().defaultFluid());
+//		Aquifer.FluidStatus aquifer$fluidstatus2 = new Aquifer.FluidStatus(this.getMinY() - 1, Blocks.AIR.defaultBlockState());
+//		this.globalFluidPicker = (p_198228_, p_198229_, p_198230_) -> {
+//			return p_198229_ < Math.min(-54, i) ? aquifer$fluidstatus : aquifer$fluidstatus1;
+//		};
 		this.sampler = new Climate.Sampler(
 				new FastNoiseDensityFunction(noise),
 				new FastNoiseDensityFunction(noise, 400),
@@ -103,6 +113,40 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 
 	@Override
 	public void applyCarvers(WorldGenRegion region, long seed, BiomeManager manager, StructureFeatureManager structureFeatureManager, ChunkAccess chunk, GenerationStep.Carving genStep) {
+//		BiomeManager biomemanager = manager.withDifferentSource((p_209119_, p_209120_, p_209121_) -> {
+//			return this.biomeSource.getNoiseBiome(p_209119_, p_209120_, p_209121_, this.climateSampler());
+//		});
+//		WorldgenRandom worldgenrandom = new WorldgenRandom(new LegacyRandomSource(RandomSupport.seedUniquifier()));
+//		int i = 8;
+//		ChunkPos chunkpos = chunk.getPos();
+//		NoiseChunk noisechunk = chunk.getOrCreateNoiseChunk(this.router, () -> {
+//			return new Beardifier(structureFeatureManager, chunk);
+//		}, this.settings.value(), this.globalFluidPicker, Blender.of(region));
+//		Aquifer aquifer = noisechunk.aquifer();
+//	      CarvingContext carvingcontext = new CarvingContext(this, region.registryAccess(), chunk.getHeightAccessorForGeneration(), noisechunk);
+//		CarvingMask carvingmask = ((ProtoChunk)chunk).getOrCreateCarvingMask(genStep);
+//
+//		for(int j = -8; j <= 8; ++j) {
+//			for(int k = -8; k <= 8; ++k) {
+//				ChunkPos chunkpos1 = new ChunkPos(chunkpos.x + j, chunkpos.z + k);
+//				ChunkAccess chunkaccess = region.getChunk(chunkpos1.x, chunkpos1.z);
+//				BiomeGenerationSettings biomegenerationsettings = chunkaccess.carverBiome(() -> {
+//					return this.biomeSource.getNoiseBiome(QuartPos.fromBlock(chunkpos1.getMinBlockX()), 0, QuartPos.fromBlock(chunkpos1.getMinBlockZ()), this.climateSampler());
+//				}).value().getGenerationSettings();
+//				Iterable<Holder<ConfiguredWorldCarver<?>>> iterable = biomegenerationsettings.getCarvers(genStep);
+//				int l = 0;
+//
+//				for(Holder<ConfiguredWorldCarver<?>> holder : iterable) {
+//					ConfiguredWorldCarver<?> configuredworldcarver = holder.value();
+//					worldgenrandom.setLargeFeatureSeed(seed + (long)l, chunkpos1.x, chunkpos1.z);
+//					if (configuredworldcarver.isStartChunk(worldgenrandom)) {
+//						configuredworldcarver.carve(carvingcontext, chunk, biomemanager::getBiome, worldgenrandom, aquifer, chunkpos1, carvingmask);
+//					}
+//
+//					++l;
+//				}
+//			}
+//		}
 	}
 
 	@Override
@@ -205,7 +249,7 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 
 		float hugeCliffFrequency = 0.1F;
 		float hugeCliffNoise = noise.GetNoise(x * hugeCliffFrequency, 2834, z * hugeCliffFrequency);
-		hugeCliffNoise = (float) Mth.clamp(Math.pow(1.3 * hugeCliffNoise, 12), 0, 1) * 3;
+		hugeCliffNoise = (float) Mth.clamp(Math.pow(1.3 * hugeCliffNoise, 12), 0, 1) * 5;
 		float hugeCliffWobble = -0.5F * Mth.cos(2F * Mth.PI * hugeCliffNoise) + 0.5F;
 		hugeCliffWobble *= 1.5F;
 
@@ -239,13 +283,13 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 		float hillNoise = noise.GetNoise(x * hillFrequency, 2834, z * hillFrequency);
 		hillNoise = (float) Mth.clamp(Math.pow(1.3 * hillNoise, 12), 0, 1) * 0.4F;
 		float hillWobble = -0.5F * Mth.cos(2F * Mth.PI * hillNoise) + 0.5F;
-		hugeCliffWobble *= 1.5F;
+		hillWobble *= 1.5F;
 
 		float hillLumpFrequency = 4.3F;
 		float hillLumpiness = noise.GetNoise(x * hillLumpFrequency, y * hillLumpFrequency * 1.8F, z * hillLumpFrequency);
 		hillLumpiness *= hillWobble * 0.1F;
-		
-		if (biome.is(PFBiomes.YIXIAN_SNOWY_MOUNTAINS.getKey()) || biome.is(PFBiomes.YIXIAN_VOLCANO.getKey())) {
+
+		if (biome.is(PFBiomes.YIXIAN_SNOWY_MOUNTAINS.getKey()) || biome.is(PFBiomes.YIXIAN_VOLCANO.getKey()) || biome.is(PFBiomes.YIXIAN_REGROWTH.getKey()) || biome.is(PFBiomes.YIXIAN_SNOWY_FOREST.getKey())) {
 			sample += cliffLumpiness;
 		}
 		if (biome.is(PFBiomes.HELL_CREEK_LIRIODENDRITES_HILLS.getKey()) || biome.is(PFBiomes.DJADOCHTA_DUNES.getKey())) {
@@ -256,40 +300,38 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 		float frequency3 = 3.5F;
 		sample += Mth.abs(noise.GetNoise(x * frequency3, y * frequency3, z * frequency3) * 0.05F);
 		sample -= 0.15F;
-		float caveSample;
-		float sample1 = noise.GetNoise(x,  y, z);
-		float sample2 = noise.GetNoise(x, y + 10381903, z);
-		caveSample = sample1 * sample1 + sample2 * sample2;
-		caveSample /= 2;
-		caveSample *= 1.5;
-		caveSample -= 0.02;
 
-		float caveSample2;
-		float sample12 = noise.GetNoise(x + 10392, y + 120834429, z + 10392);
-		float sample22 = noise.GetNoise(x + 10392, y + 2391405, z + 10392);
-		caveSample2 = sample12 * sample12 + sample22 * sample22;
-		caveSample2 *= 0.5;
-		caveSample2 -= 0.01;
 		if (biome.is(PFBiomes.HELL_CREEK_SWAMP.getKey())) {
-			sample *= 0.8;
 			sample -= swampNoise;
+			sample *= 1.2F;
+			sample -= 5.75F;
 		}
 		if (biome.is(PFBiomes.HELL_CREEK_RIVER.getKey())) {
-			sample -= riverNoise + 4;
+			sample -= riverNoise;
+			sample *= 1.2;
+			sample -= 9;
 		}
 		if (biome.is(PFBiomes.YIXIAN_SNOWY_MOUNTAINS.getKey()) || biome.is(PFBiomes.YIXIAN_VOLCANO.getKey())) {
-			sample += -(y - this.settings.value().seaLevel() - hugeCliffNoise * 64) / (16.0F / bigRockNoise * (hugeCliffWobble + 1));
-			sample *= 2.9F;
+			sample *= 5.9F;
+			sample += 2.5;
+			sample -= (y - this.settings.value().seaLevel() - hugeCliffNoise * 64) / (16.0F / bigRockNoise * (hugeCliffWobble + 1));
+			//sample *= 2.9F;
 		}
-		if (biome.is(PFBiomes.HELL_CREEK_HARDWOOD_FOREST.getKey()) || biome.is(PFBiomes.HELL_CREEK_CLEARING.getKey()) || biome.is(PFBiomes.YIXIAN_FOREST.getKey()) || biome.is(PFBiomes.YIXIAN_REGROWTH.getKey()) || biome.is(PFBiomes.DJADOCHTA_ARROYO.getKey()) || biome.is(PFBiomes.HELL_CREEK_REDWOODS.getKey())) {
+		if (biome.is(PFBiomes.YIXIAN_SNOWY_MOUNTAINS.getKey()) || biome.is(PFBiomes.YIXIAN_VOLCANO.getKey()) || biome.is(PFBiomes.YIXIAN_REGROWTH.getKey()) || biome.is(PFBiomes.YIXIAN_SNOWY_FOREST.getKey())) {
+			sample *= 0.5F;
+			sample -= (y - this.settings.value().seaLevel() - hugeCliffNoise * 64) / (16.0F / bigRockNoise * (hugeCliffWobble + 1));
+		}
+		if (biome.is(PFBiomes.HELL_CREEK_HARDWOOD_FOREST.getKey()) || biome.is(PFBiomes.HELL_CREEK_CLEARING.getKey()) || biome.is(PFBiomes.YIXIAN_FOREST.getKey()) || biome.is(PFBiomes.DJADOCHTA_ARROYO.getKey()) || biome.is(PFBiomes.HELL_CREEK_REDWOODS.getKey()) || biome.is(PFBiomes.HELL_CREEK_SWAMP.getKey()) || biome.is(PFBiomes.HELL_CREEK_RIVER.getKey())) {
+			//sample *= 12.6F;
 			sample -= flatsNoise;
+			//sample *= 12.5;
 		}
 		if (biome.is(PFBiomes.HELL_CREEK_LIRIODENDRITES_HILLS.getKey()) || biome.is(PFBiomes.DJADOCHTA_DUNES.getKey())) {
-	        sample -= (y - this.settings.value().seaLevel() - hillNoise * 64) / (16.0F / bigHillRockNoise * (hillWobble + 1));
-	        sample += 0.6;
+			sample *= 1.6F;
+			sample += 0.4;
+			sample -= (y - this.settings.value().seaLevel() - hillNoise * 64) / (16.0F / bigHillRockNoise * (hillWobble + 1));
+			sample *= 6.6F;
 		}
-		sample = Math.min(sample, caveSample);
-		sample = Math.min(sample, caveSample2);
 		return sample;
 	}
 

@@ -56,23 +56,23 @@ public class ZamitesBushFeature extends Feature<JohnstoniaConfig>
 		int z = pos.getZ();
 		if (worldgenlevel.getBlockState(pos.below()).isSolidRender(worldgenlevel, pos.below())) {
 			for (int i = pos.getY(); i <= pos.getY() + height; i++) {
-				if (height == 2) {
-					if (isAir(worldgenlevel, new BlockPos(x, y, z))) setBlock(worldgenlevel, new BlockPos(x, y, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
-					if (isAir(worldgenlevel, new BlockPos(x, y + 1, z))) setBlock(worldgenlevel, new BlockPos(x, y + 1, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
-					if (isAir(worldgenlevel, new BlockPos(x, y + 2, z))) setBlock(worldgenlevel, new BlockPos(x, y + 2, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+				if (height == 2 && isAir(worldgenlevel, new BlockPos(x, y, z)) && isAir(worldgenlevel, new BlockPos(x, y + 1, z)) && isAir(worldgenlevel, new BlockPos(x, y + 2, z))) {
+					setBlock(worldgenlevel, new BlockPos(x, y, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+					setBlock(worldgenlevel, new BlockPos(x, y + 1, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+					setBlock(worldgenlevel, new BlockPos(x, y + 2, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
 				}
-				if (height == 3) {
-					if (isAir(worldgenlevel, new BlockPos(x, y, z))) setBlock(worldgenlevel, new BlockPos(x, y, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
-					if (isAir(worldgenlevel, new BlockPos(x, y + 1, z))) setBlock(worldgenlevel, new BlockPos(x, y + 1, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
-					if (isAir(worldgenlevel, new BlockPos(x, y + 2, z))) setBlock(worldgenlevel, new BlockPos(x, y + 2, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
-					if (isAir(worldgenlevel, new BlockPos(x, y + 3, z))) setBlock(worldgenlevel, new BlockPos(x, y + 3, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+				if (height == 3 && isAir(worldgenlevel, new BlockPos(x, y, z)) && isAir(worldgenlevel, new BlockPos(x, y + 1, z)) && isAir(worldgenlevel, new BlockPos(x, y + 2, z)) && isAir(worldgenlevel, new BlockPos(x, y + 3, z))) {
+					setBlock(worldgenlevel, new BlockPos(x, y, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+					setBlock(worldgenlevel, new BlockPos(x, y + 1, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+					setBlock(worldgenlevel, new BlockPos(x, y + 2, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+					setBlock(worldgenlevel, new BlockPos(x, y + 3, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
 				}
-				if (height == 4) {
-					if (isAir(worldgenlevel, new BlockPos(x, y, z))) setBlock(worldgenlevel, new BlockPos(x, y, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
-					if (isAir(worldgenlevel, new BlockPos(x, y + 1, z))) setBlock(worldgenlevel, new BlockPos(x, y + 1, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
-					if (isAir(worldgenlevel, new BlockPos(x, y + 2, z))) setBlock(worldgenlevel, new BlockPos(x, y + 2, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
-					if (isAir(worldgenlevel, new BlockPos(x, y + 3, z))) setBlock(worldgenlevel, new BlockPos(x, y + 3, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
-					if (isAir(worldgenlevel, new BlockPos(x, y + 4, z))) setBlock(worldgenlevel, new BlockPos(x, y + 4, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+				if (height == 4 && isAir(worldgenlevel, new BlockPos(x, y, z)) && isAir(worldgenlevel, new BlockPos(x, y + 1, z)) && isAir(worldgenlevel, new BlockPos(x, y + 2, z)) && isAir(worldgenlevel, new BlockPos(x, y + 3, z)) && isAir(worldgenlevel, new BlockPos(x, y + 4, z))) {
+					setBlock(worldgenlevel, new BlockPos(x, y, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+					setBlock(worldgenlevel, new BlockPos(x, y + 1, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+					setBlock(worldgenlevel, new BlockPos(x, y + 2, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+					setBlock(worldgenlevel, new BlockPos(x, y + 3, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
+					setBlock(worldgenlevel, new BlockPos(x, y + 4, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());
 				}
 				if (frondsChance == 0) {
 					if (frondsDirection == 0) {

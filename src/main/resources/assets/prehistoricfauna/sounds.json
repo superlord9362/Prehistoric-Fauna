@@ -1229,6 +1229,50 @@
 			}
 		]
 	},
+	"acipenser_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.acipenserHurt",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"acipenser_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.acipenserDeath",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
 	"fish_flop": {
 		"category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.fishFlops",
@@ -2018,6 +2062,50 @@
 	"melvius_death": {
 		"category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.melviusDeath",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"lonchidion_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.lonchidionHurt",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"lonchidion_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.lonchidionDeath",
 		"sounds": [
 			{
 				"name": "entity/fish/hurt1",

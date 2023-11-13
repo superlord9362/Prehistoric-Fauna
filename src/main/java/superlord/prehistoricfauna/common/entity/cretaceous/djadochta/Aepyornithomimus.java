@@ -184,11 +184,6 @@ public class Aepyornithomimus extends HerdDinosaurEntity {
 			this.spawnItem(PFItems.PLANT_FIBER.get().getDefaultInstance());
 			this.spawnItem(PFItems.PLANT_FIBER.get().getDefaultInstance());
 		}
-		if (this.isAsleep() || this.getWakingTicks() != 0) {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
-		} else {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.22D);
-		}
 	}
 	
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {

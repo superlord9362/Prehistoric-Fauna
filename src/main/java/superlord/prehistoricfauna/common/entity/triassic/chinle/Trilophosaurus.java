@@ -146,16 +146,6 @@ public class Trilophosaurus extends DinosaurEntity {
 		}
 	}
 
-	@Override
-	public void aiStep() {
-		super.aiStep();
-		if (this.isAsleep() || this.getWakingTicks() != 0) {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
-		} else {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.23D);
-		}
-	}
-
 	public void tick() {
 		super.tick();
 		if (!this.level.isClientSide) {

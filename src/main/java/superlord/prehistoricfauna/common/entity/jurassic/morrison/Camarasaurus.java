@@ -230,11 +230,6 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 				}
 			}
 		}
-		if (this.isAsleep() || this.getWakingTicks() != 0) {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
-		} else {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.22D);
-		}
 	}
 
 	public boolean onAttackAnimationFinish(Entity entityIn) {

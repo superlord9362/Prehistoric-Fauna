@@ -228,11 +228,6 @@ public class Plesiohadros extends HerdDinosaurEntity {
 				this.setDeoxidated(false);
 			}
 		}
-		if (this.isAsleep() || this.getWakingTicks() != 0) {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
-		} else {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.2D);
-		}
 	}
 
 	public boolean onAttackAnimationFinish(Entity entityIn) {

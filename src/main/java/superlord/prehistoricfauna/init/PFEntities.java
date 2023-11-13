@@ -24,11 +24,13 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Didelphodon
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Thescelosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
+import superlord.prehistoricfauna.common.entity.fish.Acipenser;
 import superlord.prehistoricfauna.common.entity.fish.Arganodus;
 import superlord.prehistoricfauna.common.entity.fish.Ceratodus;
 import superlord.prehistoricfauna.common.entity.fish.Chinlea;
 import superlord.prehistoricfauna.common.entity.fish.Cyclurus;
 import superlord.prehistoricfauna.common.entity.fish.Gar;
+import superlord.prehistoricfauna.common.entity.fish.Lonchidion;
 import superlord.prehistoricfauna.common.entity.fish.Melvius;
 import superlord.prehistoricfauna.common.entity.fish.Mooreodontus;
 import superlord.prehistoricfauna.common.entity.fish.Myledaphus;
@@ -145,11 +147,13 @@ public class PFEntities {
 	public static final RegistryObject<EntityType<SaurosuchusSkeleton>> SAUROSUCHUS_SKELETON = REGISTER.register("saurosuchus_skeleton", () -> EntityType.Builder.<SaurosuchusSkeleton>of(SaurosuchusSkeleton::new, MobCategory.MISC).sized(0.75F, 1.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "saurosuchus_skeleton").toString()));
 	
 	//Fish
+	public static final RegistryObject<EntityType<Acipenser>> ACIPENSER = REGISTER.register("acipenser", () -> EntityType.Builder.<Acipenser>of(Acipenser::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "acipenser").toString()));
 	public static final RegistryObject<EntityType<Arganodus>> ARGANODUS = REGISTER.register("arganodus", () -> EntityType.Builder.<Arganodus>of(Arganodus::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "arganodus").toString()));
 	public static final RegistryObject<EntityType<Ceratodus>> CERATODUS = REGISTER.register("ceratodus", () -> EntityType.Builder.<Ceratodus>of(Ceratodus::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "ceratodus").toString()));
 	public static final RegistryObject<EntityType<Chinlea>> CHINLEA = REGISTER.register("chinlea", () -> EntityType.Builder.<Chinlea>of(Chinlea::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "chinlea").toString()));
 	public static final RegistryObject<EntityType<Cyclurus>> CYCLURUS = REGISTER.register("cyclurus", () -> EntityType.Builder.<Cyclurus>of(Cyclurus::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "cyclurus").toString()));
 	public static final RegistryObject<EntityType<Gar>> GAR = REGISTER.register("gar", () -> EntityType.Builder.<Gar>of(Gar::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "gar").toString()));
+	public static final RegistryObject<EntityType<Lonchidion>> LONCHIDION = REGISTER.register("lonchidion", () -> EntityType.Builder.<Lonchidion>of(Lonchidion::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "lonchidion").toString()));
 	public static final RegistryObject<EntityType<Melvius>> MELVIUS = REGISTER.register("melvius", () -> EntityType.Builder.<Melvius>of(Melvius::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "melvius").toString()));
 	public static final RegistryObject<EntityType<Mooreodontus>> MOOREODONTUS = REGISTER.register("mooreodontus", () -> EntityType.Builder.<Mooreodontus>of(Mooreodontus::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "mooreodontus").toString()));
 	public static final RegistryObject<EntityType<Myledaphus>> MYLEDAPHUS = REGISTER.register("myledaphus", () -> EntityType.Builder.<Myledaphus>of(Myledaphus::new, MobCategory.WATER_AMBIENT).sized(0.6875F, 0.2F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "myledaphus").toString()));

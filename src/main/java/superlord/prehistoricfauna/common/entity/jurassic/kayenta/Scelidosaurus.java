@@ -227,16 +227,6 @@ public class Scelidosaurus extends DinosaurEntity {
 	}
 
 	@Override
-	public void aiStep() {
-		super.aiStep();
-		if (this.isAsleep() || this.getWakingTicks() != 0) {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
-		} else {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.22D);
-		}
-	}
-
-	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
 		Scelidosaurus entity = new Scelidosaurus(PFEntities.SCELIDOSAURUS.get(), this.level);
 		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.position())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);

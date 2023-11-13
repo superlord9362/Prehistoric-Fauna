@@ -243,6 +243,7 @@ public class ClientProxy extends CommonProxy {
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.SABALITES_LEAVES.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.SABALITES_TOP_LEAVES.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.HUMULUS.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.AZOLLA.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.PLATANITES_LEAVES.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.PLATANITES_LEAF_CARPET.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.PLATANITES_DOOR.get(), cutoutRenderType);
@@ -250,6 +251,7 @@ public class ClientProxy extends CommonProxy {
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_PLATANITES_SAPLING.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.PLATANITES_HEDGE.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.OAK_FEEDER.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TAXODIUM_KNEE.get(), cutoutRenderType);
 	}
 
 	@Override

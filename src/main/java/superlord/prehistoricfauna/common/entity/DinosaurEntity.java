@@ -697,6 +697,7 @@ public class DinosaurEntity extends TamableAnimal {
 	@Override
 	public void aiStep() {
 		super.aiStep();
+		if (this.isAsleep()) this.navigation.setSpeedModifier(0);
 		if (!this.isNoAi()) {
 			List<? extends DinosaurEntity> list = this.level.getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(48.0D, 48.0D, 48.0D));
 			if (PrehistoricFaunaConfig.advancedHunger) {

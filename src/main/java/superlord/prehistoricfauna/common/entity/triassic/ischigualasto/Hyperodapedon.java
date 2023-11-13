@@ -157,16 +157,6 @@ public class Hyperodapedon extends DinosaurEntity {
 		}
 	}
 
-	@Override
-	public void aiStep() {
-		super.aiStep();
-		if (this.isAsleep() || this.getWakingTicks() != 0) {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
-		} else {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.24D);
-		}
-	}
-
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 4.0D).add(Attributes.MOVEMENT_SPEED, 0.24D);
 	}

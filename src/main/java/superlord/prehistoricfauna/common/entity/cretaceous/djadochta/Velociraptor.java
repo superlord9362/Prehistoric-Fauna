@@ -272,12 +272,6 @@ public class Velociraptor extends DinosaurEntity {
 			this.xxa = 0.0F;
 			this.zza = 0.0F;
 		}
-
-		if (this.isAsleep() || this.isTameSitting() || this.getWakingTicks() != 0) {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
-		} else {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-		}
 		super.aiStep();
 		if (this.isVelociraptorAggroed() && this.random.nextFloat() < 0.05F) {
 		}

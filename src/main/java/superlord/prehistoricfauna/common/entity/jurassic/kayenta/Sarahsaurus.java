@@ -194,17 +194,7 @@ public class Sarahsaurus extends DinosaurEntity {
 			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(15);
 		}
 	}
-
-	@Override
-	public void aiStep() {
-		super.aiStep();
-		if (this.isAsleep() || this.getWakingTicks() != 0) {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
-		} else {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.22D);
-		}
-	}
-
+	
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
 		Sarahsaurus entity = new Sarahsaurus(PFEntities.SARAHSAURUS.get(), this.level);

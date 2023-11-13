@@ -3,22 +3,27 @@ package superlord.prehistoricfauna.init;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.DiskConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.GlowLichenConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.feature.AlgaeFeature;
+import superlord.prehistoricfauna.common.feature.AzollaFeature;
 import superlord.prehistoricfauna.common.feature.BigBlockBlobFeature;
 import superlord.prehistoricfauna.common.feature.CrassostreaOystersFeature;
 import superlord.prehistoricfauna.common.feature.DicroidiumFeature;
 import superlord.prehistoricfauna.common.feature.DjadochtaHorsetailsFeature;
+import superlord.prehistoricfauna.common.feature.HumulusFeature;
 import superlord.prehistoricfauna.common.feature.JohnstoniaFeature;
 import superlord.prehistoricfauna.common.feature.LandSphereReplaceFeature;
 import superlord.prehistoricfauna.common.feature.LowerHorsetailsFeature;
+import superlord.prehistoricfauna.common.feature.MarmarthiaFeature;
 import superlord.prehistoricfauna.common.feature.NeocalamitesFeature;
 import superlord.prehistoricfauna.common.feature.NoisySphereFeature;
 import superlord.prehistoricfauna.common.feature.PtilophyllumFeature;
+import superlord.prehistoricfauna.common.feature.TaxodiumKneeFeature;
 import superlord.prehistoricfauna.common.feature.WaterloggedHorsetailsFeature;
 import superlord.prehistoricfauna.common.feature.trees.agathoxylon.BigAgathoxylon1;
 import superlord.prehistoricfauna.common.feature.trees.agathoxylon.BigAgathoxylon2;
@@ -75,6 +80,7 @@ import superlord.prehistoricfauna.common.feature.trees.protopiceoxylon.Protopice
 import superlord.prehistoricfauna.common.feature.trees.protopiceoxylon.ProtopiceoxylonTree5;
 import superlord.prehistoricfauna.common.feature.trees.protopiceoxylon.ProtopiceoxylonTree6;
 import superlord.prehistoricfauna.common.feature.trees.protopiceoxylon.ProtopiceoxylonTree7;
+import superlord.prehistoricfauna.common.feature.trees.sabalites.SabalitesFeature;
 import superlord.prehistoricfauna.common.feature.trees.schilderia.Schilderia1;
 import superlord.prehistoricfauna.common.feature.trees.schilderia.Schilderia2;
 import superlord.prehistoricfauna.common.feature.trees.schilderia.Schilderia3;
@@ -189,6 +195,7 @@ public class PFFeatures {
     public static final RegistryObject<Taxodium6> TAXODIUM_TREE_6 = REGISTER.register("taxodium_tree_6", () -> new Taxodium6(PFTreeConfig.CODEC.stable()));
 
     public static final RegistryObject<ZamitesBushFeature> ZAMITES_BUSH = REGISTER.register("zamites_bush", () -> new ZamitesBushFeature(JohnstoniaConfig.CODEC.stable()));
+    public static final RegistryObject<SabalitesFeature> SABALITES = REGISTER.register("sabalites", () -> new SabalitesFeature(JohnstoniaConfig.CODEC.stable()));
     
     public static final RegistryObject<PtilophyllumFeature> PTILOPHYLLUM_TREE = REGISTER.register("ptilophyllum_tree", () -> new PtilophyllumFeature(NoneFeatureConfiguration.CODEC.stable()));
     public static final RegistryObject<PetrifiedTreeFeature> PETRIFIED_TREE = REGISTER.register("petrified_tree", () -> new PetrifiedTreeFeature(JohnstoniaConfig.CODEC.stable()));
@@ -203,5 +210,9 @@ public class PFFeatures {
     public static final RegistryObject<AlgaeFeature> ALGAE = REGISTER.register("algae", () -> new AlgaeFeature(CrassostreaOystersConfig.CODEC.stable()));
     public static final RegistryObject<NoisySphereFeature> NOISY_SPHERE = REGISTER.register("noisy_sphere", () -> new NoisySphereFeature(NoisySphereConfig.CODEC.stable()));
     public static final RegistryObject<BigBlockBlobFeature> BIG_BLOCK_BLOB = REGISTER.register("big_block_blob", () -> new BigBlockBlobFeature(BlockStateConfiguration.CODEC.stable()));
+    public static final RegistryObject<TaxodiumKneeFeature> TAXODIUM_KNEES = REGISTER.register("taxodium_knees", () -> new TaxodiumKneeFeature(JohnstoniaConfig.CODEC.stable()));
+    public static final RegistryObject<MarmarthiaFeature> MARMARTHIA = REGISTER.register("marmarthia", () -> new MarmarthiaFeature(JohnstoniaConfig.CODEC.stable()));
+    public static final RegistryObject<HumulusFeature> HUMULUS = REGISTER.register("humulus", () -> new HumulusFeature(GlowLichenConfiguration.CODEC.stable()));
+    public static final RegistryObject<AzollaFeature> AZOLLA = REGISTER.register("azolla", () -> new AzollaFeature(JohnstoniaConfig.CODEC.stable()));
     
 }

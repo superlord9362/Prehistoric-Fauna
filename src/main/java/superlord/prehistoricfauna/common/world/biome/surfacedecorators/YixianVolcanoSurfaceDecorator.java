@@ -22,11 +22,11 @@ public class YixianVolcanoSurfaceDecorator extends SurfaceDecorator {
 		Random random = new Random();
 		if (pos.getY() > 100) {
 			if (noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) > 0.6D || noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) < 0.2 && noise.GetValue(pos.getX(), pos.getY(), pos.getZ()) > -0.4) {
-				chunk.setBlockState(pos, underwater ? Blocks.GRAVEL.defaultBlockState() : Blocks.GRAVEL.defaultBlockState(), false);
+				chunk.setBlockState(pos, underwater ? Blocks.TUFF.defaultBlockState() : Blocks.TUFF.defaultBlockState(), false);
 				pos.move(Direction.DOWN);
 				for (int i = 0; i < 4; i++) {
 					if (chunk.getBlockState(pos) == settings.defaultBlock()) {
-						chunk.setBlockState(pos, Blocks.GRAVEL.defaultBlockState(), false);
+						chunk.setBlockState(pos, Blocks.TUFF.defaultBlockState(), false);
 						pos.move(Direction.DOWN);
 					} else {
 						return;
@@ -35,7 +35,7 @@ public class YixianVolcanoSurfaceDecorator extends SurfaceDecorator {
 			} else {
 				int number = random.nextInt(100);
 				if (number <= 5) {
-					chunk.setBlockState(pos, underwater ? Blocks.ANDESITE.defaultBlockState() : Blocks.LAVA.defaultBlockState(), false);
+					chunk.setBlockState(pos, underwater ? Blocks.BLACKSTONE.defaultBlockState() : Blocks.LAVA.defaultBlockState(), false);
 					pos.move(Direction.DOWN);
 					for (int i = 0; i < 4; i++) {
 						if (chunk.getBlockState(pos) == settings.defaultBlock()) {
@@ -46,7 +46,7 @@ public class YixianVolcanoSurfaceDecorator extends SurfaceDecorator {
 						}
 					}
 				} else {
-					chunk.setBlockState(pos, underwater ? Blocks.ANDESITE.defaultBlockState() : Blocks.BASALT.defaultBlockState(), false);
+					chunk.setBlockState(pos, underwater ? Blocks.BASALT.defaultBlockState() : Blocks.BASALT.defaultBlockState(), false);
 					pos.move(Direction.DOWN);
 					for (int i = 0; i < 4; i++) {
 						if (chunk.getBlockState(pos) == settings.defaultBlock()) {
@@ -61,18 +61,18 @@ public class YixianVolcanoSurfaceDecorator extends SurfaceDecorator {
 		}
 		if (pos.getY() > 85) {
 			if (noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) > 0.6D || noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) < 0.2 && noise.GetValue(pos.getX(), pos.getY(), pos.getZ()) > -0.4) {
-				chunk.setBlockState(pos, underwater ? Blocks.GRAVEL.defaultBlockState() : Blocks.GRAVEL.defaultBlockState(), false);
+				chunk.setBlockState(pos, underwater ? Blocks.TUFF.defaultBlockState() : Blocks.TUFF.defaultBlockState(), false);
 				pos.move(Direction.DOWN);
 				for (int i = 0; i < 4; i++) {
 					if (chunk.getBlockState(pos) == settings.defaultBlock()) {
-						chunk.setBlockState(pos, Blocks.GRAVEL.defaultBlockState(), false);
+						chunk.setBlockState(pos, Blocks.TUFF.defaultBlockState(), false);
 						pos.move(Direction.DOWN);
 					} else {
 						return;
 					}
 				}
 			} else {
-				chunk.setBlockState(pos, underwater ? Blocks.ANDESITE.defaultBlockState() : Blocks.BASALT.defaultBlockState(), false);
+				chunk.setBlockState(pos, underwater ? Blocks.BASALT.defaultBlockState() : Blocks.BASALT.defaultBlockState(), false);
 				pos.move(Direction.DOWN);
 				for (int i = 0; i < 4; i++) {
 					if (chunk.getBlockState(pos) == settings.defaultBlock()) {
@@ -85,18 +85,18 @@ public class YixianVolcanoSurfaceDecorator extends SurfaceDecorator {
 			}
 		} else {
 			if (noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) > 0.6D) {
-				chunk.setBlockState(pos, underwater ? Blocks.GRAVEL.defaultBlockState() : Blocks.GRAVEL.defaultBlockState(), false);
+				chunk.setBlockState(pos, underwater ? Blocks.BLACKSTONE.defaultBlockState() : Blocks.BLACKSTONE.defaultBlockState(), false);
 				pos.move(Direction.DOWN);
 				for (int i = 0; i < 4; i++) {
 					if (chunk.getBlockState(pos) == settings.defaultBlock()) {
-						chunk.setBlockState(pos, Blocks.GRAVEL.defaultBlockState(), false);
+						chunk.setBlockState(pos, Blocks.BLACKSTONE.defaultBlockState(), false);
 						pos.move(Direction.DOWN);
 					} else {
 						return;
 					}
 				}
 			} else if (noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) < -0.3D) {
-				chunk.setBlockState(pos, underwater ? Blocks.ANDESITE.defaultBlockState() : Blocks.BASALT.defaultBlockState(), false);
+				chunk.setBlockState(pos, underwater ? Blocks.BASALT.defaultBlockState() : Blocks.BASALT.defaultBlockState(), false);
 				pos.move(Direction.DOWN);
 				for (int i = 0; i < 4; i++) {
 					if (chunk.getBlockState(pos) == settings.defaultBlock()) {
@@ -107,11 +107,11 @@ public class YixianVolcanoSurfaceDecorator extends SurfaceDecorator {
 					}
 				}
 			} else {
-				chunk.setBlockState(pos, underwater ? Blocks.BASALT.defaultBlockState() : Blocks.ANDESITE.defaultBlockState(), false);
+				chunk.setBlockState(pos, underwater ? Blocks.TUFF.defaultBlockState() : Blocks.TUFF.defaultBlockState(), false);
 				pos.move(Direction.DOWN);
 				for (int i = 0; i < 4; i++) {
 					if (chunk.getBlockState(pos) == settings.defaultBlock()) {
-						chunk.setBlockState(pos, Blocks.ANDESITE.defaultBlockState(), false);
+						chunk.setBlockState(pos, Blocks.TUFF.defaultBlockState(), false);
 						pos.move(Direction.DOWN);
 					} else {
 						return;

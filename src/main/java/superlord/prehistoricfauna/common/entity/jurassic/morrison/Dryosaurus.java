@@ -188,11 +188,6 @@ public class Dryosaurus extends DinosaurEntity {
 			this.spawnItem(PFItems.PLANT_FIBER.get().getDefaultInstance());
 			this.spawnItem(PFItems.PLANT_FIBER.get().getDefaultInstance());
 		}
-		if (this.isAsleep() || this.getWakingTicks() != 0) {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
-		} else {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.22D);
-		}
 	}
 
 	@Override

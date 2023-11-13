@@ -1,0 +1,13 @@
+{
+	"variants": {
+		"thickness=base": [
+			{ "model": "prehistoricfauna:block/taxodium_knee_base" }
+		],
+		"thickness=middle": [
+			{ "model": "prehistoricfauna:block/taxodium_knee_middle" }
+		],
+		"thickness=top": [
+			{ "model": "prehistoricfauna:block/taxodium_knee_top" }
+		]
+	}
+}

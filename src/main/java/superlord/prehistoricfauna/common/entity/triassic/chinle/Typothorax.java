@@ -155,16 +155,6 @@ public class Typothorax extends DinosaurEntity {
 		}
 	}
 
-	@Override
-	public void aiStep() {
-		super.aiStep();
-		if (this.isAsleep() || this.getWakingTicks() != 0) {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
-		} else {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.23D);
-		}
-	}
-
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.MOVEMENT_SPEED, 0.22D).add(Attributes.ARMOR, 4.0D).add(Attributes.ARMOR_TOUGHNESS, 4.0D);
 	}

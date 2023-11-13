@@ -1,0 +1,21 @@
+{
+    "variants": {
+        "": [
+			{
+				"model": "prehistoricfauna:block/azolla"
+			},
+			{
+				"model": "prehistoricfauna:block/azolla",
+				"y": 90
+			},
+			{
+				"model": "prehistoricfauna:block/azolla",
+				"y": 180
+			},
+			{
+				"model": "prehistoricfauna:block/azolla",
+				"y": 270
+			}
+		]
+    }
+}

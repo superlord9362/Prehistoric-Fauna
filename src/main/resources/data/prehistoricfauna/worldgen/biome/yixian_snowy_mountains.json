@@ -1,7 +1,7 @@
 {
 	"player_spawn_friendly": true,
 	"precipitation": "snow",
-	"temperature": 0.4,
+	"temperature": 0,
 	"downfall": 0.8,
 	"category": "none",
 	"effects": {
@@ -74,6 +74,7 @@
 			"minecraft:spring_lava"
 		],
 		[
+			"minecraft:freeze_top_layer"
 		]
 	],
 	"starts": [

@@ -198,14 +198,6 @@ public class Tyrannosaurus extends DinosaurEntity {
 			this.playSound(SoundEvents.COW_STEP, 0.15F, 1F);
 		}
 	}
-
-	public void aiStep() {
-		super.aiStep();
-		if (this.isAsleep() || this.getWakingTicks() != 0) {
-			this.navigation.setSpeedModifier(0);;
-		}
-	}
-
 	
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {

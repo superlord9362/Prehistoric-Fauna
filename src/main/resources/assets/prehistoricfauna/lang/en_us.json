@@ -34,6 +34,8 @@
 	"block.prehistoricfauna.neocalamites_top": "Neocalamites",
 	"block.prehistoricfauna.marmarthia": "Marmarthia",
 	"item.prehistoricfauna.marmarthia_berries": "Marmarthia Berries",
+	"block.prehistoricfauna.taxodium_knee": "Taxodium Knee",
+	"block.prehistoricfauna.azolla": "Azolla",
 	"item.prehistoricfauna.horsetail_tea": "Horsetail Tea",
 	"block.prehistoricfauna.tuber_block": "Giant Tuber",
 	"block.prehistoricfauna.carved_tuber": "Giant Carved Tuber",
@@ -546,6 +548,8 @@
 	"item.prehistoricfauna.poposaurus_spawn_egg": "Poposaurus Spawn Egg",
 	"item.prehistoricfauna.typothorax_spawn_egg": "Typothorax Spawn Egg",
 	"item.prehistoricfauna.melvius_spawn_egg": "Melvius Spawn Egg",
+	"item.prehistoricfauna.lonchidion_spawn_egg": "Lonchidion Spawn Egg",
+	"item.prehistoricfauna.acipenser_spawn_egg": "Acipenser Spawn Egg",
 	
 	"entity.prehistoricfauna.thescelosaurus": "Thescelosaurus",
 	"entity.prehistoricfauna.triceratops": "Triceratops",
@@ -607,6 +611,8 @@
 	"entity.prehistoricfauna.coelophysis": "Coelophysis",
 	"entity.prehistoricfauna.typothorax": "Typothorax",
 	"entity.prehistoricfauna.melvius": "Melvius",
+	"entity.prehistoricfauna.lonchidion": "Lonchidion",
+	"entity.prehistoricfauna.acipenser": "Acipenser",
 	
 	"item.prehistoricfauna.araucaria_boat": "Araucaria Boat",
 	"item.prehistoricfauna.metasequoia_boat": "Metasequoia Boat",
@@ -721,6 +727,8 @@
 	"item.prehistoricfauna.raw_melvius": "Raw Melvius",
 	"item.prehistoricfauna.cooked_melvius": "Cooked Melvius",
 	"item.prehistoricfauna.melvius_bucket": "Bucket of Melvius",
+	"item.prehistoricfauna.lonchidion_bucket": "Bucket of Lonchidion",
+	"item.prehistoricfauna.acipenser_bucket": "Bucket of Acipenser",
 	
 	"block.prehistoricfauna.triceratops_egg": "Triceratops Egg",
 	"block.prehistoricfauna.thescelosaurus_egg": "Thescelosaurus Egg",
@@ -1264,8 +1272,12 @@
 	"prehistoricfauna.subtitle.typothoraxDeath": "Typothorax dies",
 	"prehistoricfauna.subtitle.portal": "Portal wooshes",
 	"prehistoricfauna.subtitle.meatEating": "Meat being eaten",
-	"prehistoricfauna.subtitles.smallMeatGulp": "Small animal finishes eating meat",
-	"prehistoricfauna.subtitles.largeMeatGulp": "Large animal finishes eating meat",
+	"prehistoricfauna.subtitle.smallMeatGulp": "Small animal finishes eating meat",
+	"prehistoricfauna.subtitle.largeMeatGulp": "Large animal finishes eating meat",
+	"prehistoricfauna.subtitle.lonchidionHurt": "Lonchidion hurts",
+	"prehistoricfauna.subtitle.lonchidionDeath": "Lonchidion dies",
+	"prehistoricfauna.subtitle.acipenserHurt": "Acipenser hurts",
+	"prehistoricfauna.subtitle.acipenserDeath": "Acipenser dies",
 	
 	"effect.prehistoricfauna.bleeding": "Bleeding",
 	

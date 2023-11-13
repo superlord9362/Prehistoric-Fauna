@@ -78,6 +78,7 @@ import superlord.prehistoricfauna.common.blocks.SabalitesLeafBlock;
 import superlord.prehistoricfauna.common.blocks.SmallCarvedTuberBlock;
 import superlord.prehistoricfauna.common.blocks.SmallTuberBlock;
 import superlord.prehistoricfauna.common.blocks.TallHorsetailBlock;
+import superlord.prehistoricfauna.common.blocks.TaxodiumKneeBlock;
 import superlord.prehistoricfauna.common.blocks.TrapBlock;
 import superlord.prehistoricfauna.common.blocks.TriassicPortalBlock;
 import superlord.prehistoricfauna.common.blocks.TriassicTimeBlock;
@@ -129,6 +130,8 @@ public class PFBlocks {
 	public static final RegistryObject<Block> COBBANIA = REGISTER.register("cobbania", () -> new CobbaniaBlock(Properties.of(Material.WATER_PLANT).strength(0F).sound(SoundType.LILY_PAD).noOcclusion()));
 	public static final RegistryObject<Block> MARMARTHIA = REGISTER.register("marmarthia", () -> new MarmarthiaBlock(Properties.of(Material.WOOD).strength(1.0F).noCollission().sound(SoundType.WOOD).randomTicks()));
 	public static final RegistryObject<Block> HUMULUS = REGISTER.register("humulus", () -> new HumulusBlock(Properties.of(Material.GRASS).strength(0.1F).noCollission().sound(SoundType.GRASS).randomTicks()));
+	public static final RegistryObject<Block> TAXODIUM_KNEE = REGISTER.register("taxodium_knee", () -> new TaxodiumKneeBlock(Properties.of(Material.WOOD).strength(0.5F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> AZOLLA = REGISTER.register("azolla", () -> new CobbaniaBlock(Properties.of(Material.WATER_PLANT).strength(0F).sound(SoundType.LILY_PAD).noCollission().noOcclusion()));
 	
 	public static final RegistryObject<Block> METASEQUOIA_PLANKS = REGISTER.register("metasequoia_planks", () -> new Block(Block.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> METASEQUOIA_LOG = REGISTER.register("metasequoia_log", () -> createLog());

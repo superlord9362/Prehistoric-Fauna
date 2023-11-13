@@ -221,12 +221,6 @@ public class Dakotaraptor extends DinosaurEntity {
 				}
 			}
 		}
-
-		if (this.isAsleep() || this.getWakingTicks() != 0) {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
-		} else {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-		}
 		if (!this.isNoAi()) {
 
 			if (this.isSleeping() || this.isMovementBlocked()) {

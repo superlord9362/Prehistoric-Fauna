@@ -81,6 +81,12 @@ public class CretaceousBiomes {
 		return biome(BiomeCategory.NONE, 0x318E6C, 0x1B684C, 0x99BEDB, 0xC1D0DC, Biome.Precipitation.RAIN, 0.8F, 0.4F, spawnSettings, biomeFeatures);
 	}
 	
+	public static Biome yixianSnowyForest() {
+		MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
+		BiomeGenerationSettings.Builder biomeFeatures = new BiomeGenerationSettings.Builder();
+		return biome(BiomeCategory.NONE, 0x318E6C, 0x1B684C, 0x99BEDB, 0xC1D0DC, Biome.Precipitation.SNOW, 0.8F, 0.4F, spawnSettings, biomeFeatures);
+	}
+	
 	public static Biome yixianSnowyMountains() {
 		MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
 		BiomeGenerationSettings.Builder biomeFeatures = new BiomeGenerationSettings.Builder();

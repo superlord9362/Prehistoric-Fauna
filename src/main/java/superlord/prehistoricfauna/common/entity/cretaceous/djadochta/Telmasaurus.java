@@ -162,11 +162,6 @@ public class Telmasaurus extends DinosaurEntity {
 				this.setItemInHand(InteractionHand.MAIN_HAND, newStack);
 			}
 		}
-		if (this.isAsleep() || this.getWakingTicks() != 0) {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
-		} else {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue((double)0.25F);
-		}
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })

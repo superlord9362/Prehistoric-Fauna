@@ -1,6 +1,6 @@
 {
     "variants": {
-        "half=lower": { "model": "prehistoricfauna:block/double_osmunda_bottom" },
-        "half=upper":    { "model": "prehistoricfauna:block/double_osmunda_top" }
+        "half=lower": { "model": "prehistoricfauna:block/double_osmunda" },
+        "half=upper":    { "model": "prehistoricfauna:block/air" }
     }
 }

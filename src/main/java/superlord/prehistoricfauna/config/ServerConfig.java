@@ -12,39 +12,71 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue dakotaraptorHellCreekForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue dideldophodonHellCreekForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue myledaphusHellCreekForestSpawnWeight;
-	public final ForgeConfigSpec.IntValue garHellCreekForestSpawnWeight;
+	public final ForgeConfigSpec.IntValue lepisosteusHellCreekForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue cyclurusHellCreekForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelHellCreekForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelHellCreekForestSpawnWeight;
 	//Hell Creek Fern Prairie
-	public final ForgeConfigSpec.IntValue thescelosaurusHellCreekClearingSpawnWeight;
-	public final ForgeConfigSpec.IntValue triceratopsHellCreekClearingSpawnWeight;
+	public final ForgeConfigSpec.IntValue acipenserHellCreekClearingSpawnWeight;
 	public final ForgeConfigSpec.IntValue ankylosaurusHellCreekClearingSpawnWeight;
+	public final ForgeConfigSpec.IntValue anzuHellCreekClearingSpawnWeight;
 	public final ForgeConfigSpec.IntValue basilemysHellCreekClearingSpawnWeight;
-	public final ForgeConfigSpec.IntValue dakotaraptorHellCreekClearingSpawnWeight;
-	public final ForgeConfigSpec.IntValue dideldophodonHellCreekClearingSpawnWeight;
-	public final ForgeConfigSpec.IntValue tyrannosaurusHellCreekClearingSpawnWeight;
-	public final ForgeConfigSpec.IntValue myledaphusHellCreekClearingSpawnWeight;
-	public final ForgeConfigSpec.IntValue garHellCreekClearingSpawnWeight;
 	public final ForgeConfigSpec.IntValue cyclurusHellCreekClearingSpawnWeight;
+	public final ForgeConfigSpec.IntValue dakotaraptorHellCreekClearingSpawnWeight;
+	public final ForgeConfigSpec.IntValue didelphodonHellCreekClearingSpawnWeight;
+	public final ForgeConfigSpec.IntValue edmontosaurusHellCreekClearingSpawnWeight;
+	public final ForgeConfigSpec.IntValue lepisosteusHellCreekClearingSpawnWeight;
+	public final ForgeConfigSpec.IntValue lonchidionHellCreekClearingSpawnWeight;
+	public final ForgeConfigSpec.IntValue melviusHellCreekClearingSpawnWeight;
+	public final ForgeConfigSpec.IntValue myledaphusHellCreekClearingSpawnWeight;
+	public final ForgeConfigSpec.IntValue pachycephalosaurusHellCreekClearingSpawnWeight;
+	public final ForgeConfigSpec.IntValue palaeosaniwaHellCreekClearingSpawnWeight;
+	public final ForgeConfigSpec.IntValue thescelosaurusHellCreekClearingSpawnWeight;
+	public final ForgeConfigSpec.IntValue thoracosaurusHellCreekClearingSpawnWeight;
+	public final ForgeConfigSpec.IntValue triceratopsHellCreekClearingSpawnWeight;
+	public final ForgeConfigSpec.IntValue tyrannosaurusHellCreekClearingSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelHellCreekClearingSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelHellCreekClearingSpawnWeight;
 	//Hell Creek Liriodendrites Hills
-	public final ForgeConfigSpec.IntValue thescelosaurusHellCreekHillsSpawnWeight;
-	public final ForgeConfigSpec.IntValue triceratopsHellCreekHillsSpawnWeight;
-	public final ForgeConfigSpec.IntValue ankylosaurusHellCreekHillsSpawnWeight;
-	public final ForgeConfigSpec.IntValue tyrannosaurusHellCreekHillsSpawnWeight;
-	public final ForgeConfigSpec.IntValue basilemysHellCreekHillsSpawnWeight;
-	public final ForgeConfigSpec.IntValue dakotaraptorHellCreekHillsSpawnWeight;
-	public final ForgeConfigSpec.IntValue dideldophodonHellCreekHillsSpawnWeight;
-	public final ForgeConfigSpec.IntValue myledaphusHellCreekHillsSpawnWeight;
-	public final ForgeConfigSpec.IntValue garHellCreekHillsSpawnWeight;
-	public final ForgeConfigSpec.IntValue cyclurusHellCreekHillsSpawnWeight;
-	public final ForgeConfigSpec.IntValue caveSentinelHellCreekHillsSpawnWeight;
-	public final ForgeConfigSpec.IntValue landSentinelHellCreekHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue acipenserHellCreekLiriodendritesHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue edmontosaurusHellCreekLiriodendritesHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue lonchidionHellCreekLiriodendritesHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue pachycephalosaurusHellCreekLiriodendritesHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue melviusHellCreekLiriodendritesHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue thescelosaurusHellCreekLiriodendritesHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue triceratopsHellCreekLiriodendritesHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue ankylosaurusHellCreekLiriodendritesHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue tyrannosaurusHellCreekLiriodendritesHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue basilemysHellCreekLiriodendritesHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue dakotaraptorHellCreekLiriodendritesHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue dideldophodonHellCreekLiriodendritesHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue myledaphusHellCreekLiriodendritesHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue lepisosteusHellCreekLiriodendritesHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue cyclurusHellCreekLiriodendritesHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue caveSentinelHellCreekLiriodendritesHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue landSentinelHellCreekLiriodendritesHillsSpawnWeight;
+	//Hell Creek Swamp
+	public final ForgeConfigSpec.IntValue acipenserHellCreekSwampSpawnWeight;
+	public final ForgeConfigSpec.IntValue lepisosteusHellCreekSwampSpawnWeight;
+	public final ForgeConfigSpec.IntValue myledaphusHellCreekSwampSpawnWeight;
+	public final ForgeConfigSpec.IntValue triceratopsHellCreekSwampSpawnWeight;
+	public final ForgeConfigSpec.IntValue edmontosaurusHellCreekSwampSpawnWeight;
+	public final ForgeConfigSpec.IntValue tyrannosaurusHellCreekSwampSpawnWeight;
+	public final ForgeConfigSpec.IntValue didelphodonHellCreekSwampSpawnWeight;
+	public final ForgeConfigSpec.IntValue dakotaraptorHellCreekSwampSpawnWeight;
+	public final ForgeConfigSpec.IntValue lonchidionHellCreekSwampSpawnWeight;
+	public final ForgeConfigSpec.IntValue thescelosaurusHellCreekSwampSpawnWeight;
+	public final ForgeConfigSpec.IntValue melviusHellCreekSwampSpawnWeight;
+	public final ForgeConfigSpec.IntValue cyclurusHellCreekSwampSpawnWeight;
+	public final ForgeConfigSpec.IntValue basilemysHellCreekSwampSpawnWeight;
+	public final ForgeConfigSpec.IntValue thoracosaurusHellCreekSwampSpawnWeight;
+	public final ForgeConfigSpec.IntValue pachycephalosaurusHellCreekSwampSpawnWeight;
+	public final ForgeConfigSpec.IntValue ankylosaurusHellCreekSwampSpawnWeight;
+	public final ForgeConfigSpec.IntValue caveSentinelHellCreekSwampSpawnWeight;
+	public final ForgeConfigSpec.IntValue landSentinelHellCreekSwampSpawnWeight;
 	//Hell Creek River
 	public final ForgeConfigSpec.IntValue myledaphusHellCreekRiverSpawnWeight;
-	public final ForgeConfigSpec.IntValue garHellCreekRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue lepisosteusHellCreekRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue cyclurusHellCreekRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelHellCreekRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelHellCreekRiverSpawnWeight;
@@ -281,7 +313,7 @@ public class ServerConfig {
 		this.cyclurusHellCreekForestSpawnWeight = buildInt(builder, "Cyclurus Hell Creek Forest Spawn Weight", "all", 1, 0, 300, "The weight of Cyclurus in vanilla's spawn rate in the Hell Creek Forest biome. Default is 1");
 		this.dakotaraptorHellCreekForestSpawnWeight = buildInt(builder, "Dakotaraptor Hell Creek Forest Spawn Weight", "all", 2, 0, 300, "The weight of Dakotaraptor in vanilla's spawn rate in the Hell Creek Forest biome. Default is 2");
 		this.dideldophodonHellCreekForestSpawnWeight = buildInt(builder, "Didelphodon Hell Creek Forest Spawn Weight", "all", 6, 0, 300, "The weight of Didelphodon in vanilla's spawn rate in the Hell Creek Forest biome. Default is 6");
-		this.garHellCreekForestSpawnWeight = buildInt(builder, "Gar Hell Creek Forest Spawn Weight", "all", 4, 0, 300, "The weight of Gar in vanilla's spawn rate in the Hell Creek Forest biome. Default is 4");
+		this.lepisosteusHellCreekForestSpawnWeight = buildInt(builder, "Lepisosteus Hell Creek Forest Spawn Weight", "all", 4, 0, 300, "The weight of Lepisosteus in vanilla's spawn rate in the Hell Creek Forest biome. Default is 4");
 		this.myledaphusHellCreekForestSpawnWeight = buildInt(builder, "Myledaphus Hell Creek Forest Spawn Weight", "all", 0, 0, 300, "The weight of Myledaphus in vanilla's spawn rate in the Hell Creek Forest biome. Default is 0");
 		this.thescelosaurusHellCreekForestSpawnWeight = buildInt(builder, "Thescelosaurus Hell Creek Forest Spawn Weight", "all", 12, 0, 300, "The weight of Thescelosaurus in vanilla's spawn rate in the Hell Creek Forest biome. Default is 12");
 		this.triceratopsHellCreekForestSpawnWeight = buildInt(builder, "Triceratops Hell Creek Forest Spawn Weight", "all", 7, 0, 300, "The weight of Triceratops in vanilla's spawn rate in the Hell Creek Forest biome. Default is 7");
@@ -289,37 +321,88 @@ public class ServerConfig {
 		this.caveSentinelHellCreekForestSpawnWeight = buildInt(builder, "Cave Sentinel Hell Creek Forest Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Hell Creek Forest biome. Default is 5");
 		this.landSentinelHellCreekForestSpawnWeight = buildInt(builder, "Land Sentinel Hell Creek Forest Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Hell Creek Forest biome. Default is 2");
 		builder.pop();
-		builder.push("Hell Creek Fern Prairie");
-		this.ankylosaurusHellCreekClearingSpawnWeight = buildInt(builder, "Ankylosaurus Hell Creek Fern Prairie Spawn Weight", "all", 7, 0, 300, "The weight of Ankylosaurus in vanilla's spawn rate in the Hell Creek Fern Prairie biome. Default is 7");
-		this.basilemysHellCreekClearingSpawnWeight = buildInt(builder, "Basilemys Hell Creek Fern Prairie Spawn Weight", "all", 9, 0, 300, "The weight of Basilemys in vanilla's spawn rate in the Hell Creek Fern Prairie biome. Default is 9");
-		this.cyclurusHellCreekClearingSpawnWeight = buildInt(builder, "Cyclurus Hell Creek Fern Prairie Spawn Weight", "all", 1, 0, 300, "The weight of Cyclurus in vanilla's spawn rate in the Hell Creek Fern Prairie biome. Default is 1");
-		this.dakotaraptorHellCreekClearingSpawnWeight = buildInt(builder, "Dakotaraptor Hell Creek Fern Prairie Spawn Weight", "all", 2, 0, 300, "The weight of Dakotaraptor in vanilla's spawn rate in the Hell Creek Fern Prairie biome. Default is 2");
-		this.dideldophodonHellCreekClearingSpawnWeight = buildInt(builder, "Didelphodon Hell Creek Fern Prairie Spawn Weight", "all", 6, 0, 300, "The weight of Didelphodon in vanilla's spawn rate in the Hell Creek Fern Prairie biome. Default is 6");
-		this.garHellCreekClearingSpawnWeight = buildInt(builder, "Gar Hell Creek Fern Prairie Spawn Weight", "all", 4, 0, 300, "The weight of Gar in vanilla's spawn rate in the Hell Creek Fern Prairie biome. Default is 4");
-		this.myledaphusHellCreekClearingSpawnWeight = buildInt(builder, "Myledaphus Hell Creek Fern Prairie Spawn Weight", "all", 0, 0, 300, "The weight of Myledaphus in vanilla's spawn rate in the Hell Creek Fern Prairie biome. Default is 0");
-		this.thescelosaurusHellCreekClearingSpawnWeight = buildInt(builder, "Thescelosaurus Hell Creek Fern Prairie Spawn Weight", "all", 10, 0, 300, "The weight of Thescelosaurus in vanilla's spawn rate in the Hell Creek Fern Prairie biome. Default is 10");
-		this.triceratopsHellCreekClearingSpawnWeight = buildInt(builder, "Triceratops Hell Creek Fern Prairie Spawn Weight", "all", 15, 0, 300, "The weight of Triceratops in vanilla's spawn rate in the Hell Creek Fern Prairie biome. Default is 15");
-		this.tyrannosaurusHellCreekClearingSpawnWeight = buildInt(builder, "Tyrannosaurus Hell Creek Fern Prairie Spawn Weight", "all", 10, 0, 300, "The weight of Tyrannosaurus in vanilla's spawn rate in the Hell Creek Fern Prairie biome. Default is 10");
+		builder.push("Hell Creek Clearing");
+		//Acipenser
+		this.acipenserHellCreekClearingSpawnWeight = buildInt(builder, "Acipenser Hell Creek Clearing Spawn Weight", "all", 4, 0, 300, "The weight of Acipenser in vanilla's spawn rate in the Hell Creek Clearing biome. Default is 4");
+		//Ankylosaurus
+		this.ankylosaurusHellCreekClearingSpawnWeight = buildInt(builder, "Ankylosaurus Hell Creek Clearing Spawn Weight", "all", 1, 0, 300, "The weight of Ankylosaurus in vanilla's spawn rate in the Hell Creek Clearing biome. Default is 1");
+		//Anzu
+		this.anzuHellCreekClearingSpawnWeight = buildInt(builder, "Anzu Hell Creek Clearing Spawn Weeight", "all", 3, 0, 300, "The weight of Anzu in vanilla's spawn rate in the Hell Creek Clearing biome. Default is 3");
+		//Basilemys
+		this.basilemysHellCreekClearingSpawnWeight = buildInt(builder, "Basilemys Hell Creek Clearing Spawn Weight", "all", 5, 0, 300, "The weight of Basilemys in vanilla's spawn rate in the Hell Creek Clearing biome. Default is 5");
+		//Cyclurus
+		this.cyclurusHellCreekClearingSpawnWeight = buildInt(builder, "Cyclurus Hell Creek Clearing Spawn Weight", "all", 7, 0, 300, "The weight of Cyclurus in vanilla's spawn rate in the Hell Creek Clearing biome. Default is 7");
+		//Dakotaraptor
+		this.dakotaraptorHellCreekClearingSpawnWeight = buildInt(builder, "Dakotaraptor Hell Creek Clearing Spawn Weight", "all", 2, 0, 300, "The weight of Dakotaraptor in vanilla's spawn rate in the Hell Creek Clearing biome. Default is 2");
+		//Didelphodon
+		this.didelphodonHellCreekClearingSpawnWeight = buildInt(builder, "Didelphodon Hell Creek Clearing Spawn Weight", "all" , 5, 0, 300, "The weight of Didelphodon in vanilla's spawn rate in the Hell Creek Clearing biome. Default is 5");
+		//Edmontosaurus
+		this.edmontosaurusHellCreekClearingSpawnWeight = buildInt(builder, "Edmontosaurus Hell Creek Clearing Spawn Weight", "all", 12, 0, 300, "The weight of Edmontosaurus in vanilla's spawn rate in the Hell Creek Clearing biome. Default is 12");
+		//Lepisosteus
+		this.lepisosteusHellCreekClearingSpawnWeight = buildInt(builder, "Lepisosteus Hell Creek Clearing Spawn Weight", "all", 11, 0, 300, "The weight of Lepisosteus in vanilla's spawn rate in the Hell Creek Clearing biome. Default is 11");
+		//Lonchidion
+		this.lonchidionHellCreekClearingSpawnWeight = buildInt(builder, "Lonchidion Hell Creek Clearing Spawn Weight", "all", 6, 0, 300, "The weight of Lonchidion in vanilla's spawn rate in the Hell Creek Clearing biome. Default is 6");
+		//Melvius
+		this.melviusHellCreekClearingSpawnWeight = buildInt(builder, "Melvius Hell Creek Clearing Spawn Weight", "all", 5, 0, 300, "The weight of Melvius in vanilla's spawn rate in the Hell Creek Clearing biome. Default is 5");
+		//Myledaphus
+		this.myledaphusHellCreekClearingSpawnWeight = buildInt(builder, "Myledaphus Hell Creek Clearing Spawn Weight", "all", 9, 0, 300, "The weight of Myledaphus in vanilla's spawn rate in the Hell Creek Clearing biome. Default is 9");
+		//Pachycephalosaurus
+		this.pachycephalosaurusHellCreekClearingSpawnWeight = buildInt(builder, "Pachycephalosaurus Hell Creek Clearing Spawn Weight", "all", 5, 0, 300, "The weight of Pachycephalosaurus in vanilla's spawn rate in the Hell Creek Clearing biome. Default is 5");
+		//Palaeosaniwa
+		this.palaeosaniwaHellCreekClearingSpawnWeight = buildInt(builder, "Palaeosaniwa Hell Creek Clearing Spawn Weight", "all", 2, 0, 300, "The weight of Palaeosaniwa in vanilla's spawn rate in the Hell Creek Clearing biome. Default is 2");
+		//Thescelosaurus
+		this.thescelosaurusHellCreekClearingSpawnWeight = buildInt(builder, "Thescelosaurus Hell Creek Clearing Spawn Weight", "all", 4, 0, 300, "The weight of Thescelosaurus in vanilla's spawn rate in the Hell Creek Clearing biome. Default is 4");
+		//Thoracosaurus
+		this.thoracosaurusHellCreekClearingSpawnWeight = buildInt(builder, "Thoracosaurus Hell Creek Clearing Spawn Weight", "all", 0, 0, 300, "The weight of Thoracosaurus in vanilla's spawn rate in the Hell Creek Clearing biome. Default is 0");
+		//Triceratops
+		this.triceratopsHellCreekClearingSpawnWeight = buildInt(builder, "Triceratops Hell Creek Clearing Spawn Weight", "all", 15, 0, 300, "The weight of Triceratops in vanilla's spawn rate in the Hell Creek Clearing biome. Default is 15");
+		//Tyrannosaurus
+		this.tyrannosaurusHellCreekClearingSpawnWeight = buildInt(builder, "Tyrannosaurus Hell Creek Clearing Spawn Weight", "all", 9, 0, 300, "The weight of Tyrannosaurus in vanilla's spawn rate in the Hell Creek Clearing biome. Default is 9");
 		this.caveSentinelHellCreekClearingSpawnWeight = buildInt(builder, "Cave Sentinel Hell Creek Fern Prairie Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Hell Creek Fern Prairie biome. Default is 5");
 		this.landSentinelHellCreekClearingSpawnWeight = buildInt(builder, "Land Sentinel Hell Creek Fern Prairie Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Hell Creek Fern Prairie biome. Default is 2");
 		builder.pop();
-		builder.push("Hell Creek Liriodendrites Forest");
-		this.ankylosaurusHellCreekHillsSpawnWeight = buildInt(builder, "Ankylosaurus Hell Creek Liriodendrites Forest Spawn Weight", "all", 14, 0, 300, "The weight of Ankylosaurus in vanilla's spawn rate in the Hell Creek Liriodendrites Forest biome. Default is 14");
-		this.basilemysHellCreekHillsSpawnWeight = buildInt(builder, "Basilemys Hell Creek Liriodendrites Forest Spawn Weight", "all", 7, 0, 300, "The weight of Basilemys in vanilla's spawn rate in the Hell Creek Liriodendrites Forest biome. Default is 7");
-		this.cyclurusHellCreekHillsSpawnWeight = buildInt(builder, "Cyclurus Hell Creek Liriodendrites Forest Spawn Weight", "all", 1, 0, 300, "The weight of Cyclurus in vanilla's spawn rate in the Hell Creek Liriodendrites Forest biome. Default is 1");
-		this.dakotaraptorHellCreekHillsSpawnWeight = buildInt(builder, "Dakotaraptor Hell Creek Liriodendrites Forest Spawn Weight", "all", 2, 0, 300, "The weight of Dakotaraptor in vanilla's spawn rate in the Hell Creek Liriodendrites Forest biome. Default is 2");
-		this.dideldophodonHellCreekHillsSpawnWeight = buildInt(builder, "Didelphodon Hell Creek Liriodendrites Forest Spawn Weight", "all", 6, 0, 300, "The weight of Didelphodon in vanilla's spawn rate in the Hell Creek Liriodendrites Forest biome. Default is 6");
-		this.garHellCreekHillsSpawnWeight = buildInt(builder, "Gar Hell Creek Liriodendrites Forest Spawn Weight", "all", 4, 0, 300, "The weight of Gar in vanilla's spawn rate in the Hell Creek Liriodendrites Forest biome. Default is 4");
-		this.myledaphusHellCreekHillsSpawnWeight = buildInt(builder, "Myledaphus Hell Creek Liriodendrites Forest Spawn Weight", "all", 0, 0, 300, "The weight of Myledaphus in vanilla's spawn rate in the Hell Creek Liriodendrites Forest biome. Default is 0");
-		this.thescelosaurusHellCreekHillsSpawnWeight = buildInt(builder, "Thescelosaurus Hell Creek Liriodendrites Forest Spawn Weight", "all", 7, 0, 300, "The weight of Thescelosaurus in vanilla's spawn rate in the Hell Creek Liriodendrites Forest biome. Default is 7");
-		this.triceratopsHellCreekHillsSpawnWeight = buildInt(builder, "Triceratops Hell Creek Liriodendrites Forest Spawn Weight", "all", 7, 0, 300, "The weight of Triceratops in vanilla's spawn rate in the Hell Creek Liriodendrites Forest biome. Default is 7");
-		this.tyrannosaurusHellCreekHillsSpawnWeight = buildInt(builder, "Tyrannosaurus Hell Creek Forest Liriodendrites Spawn Weight", "all", 10, 0, 300, "The weight of Tyrannosaurus in vanilla's spawn rate in the Hell Creek Liriodendrites Forest biome. Default is 10");
-		this.caveSentinelHellCreekHillsSpawnWeight = buildInt(builder, "Cave Sentinel Hell Creek Liriodendrites Forest Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Hell Creek Liriodendrites Forest biome. Default is 5");
-		this.landSentinelHellCreekHillsSpawnWeight = buildInt(builder, "Land Sentinel Hell Creek Liriodendrites Forest Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Hell Creek Liriodendrites Forest biome. Default is 2");
+		builder.push("Hell Creek Liriodendrites Hills");
+		this.acipenserHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Acipenser Hell Creek Liriodendrites Hills Spawn Weight", "all", 2, 0, 300, "The weight of Acipenser in vanilla's spawn rate in the Hell Creek Liriodendrites Hills biome. Default is 2");
+		this.ankylosaurusHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Ankylosaurus Hell Creek Liriodendrites Hills Spawn Weight", "all", 13, 0, 300, "The weight of Ankylosaurus in vanilla's spawn rate in the Hell Creek Liriodendrites Hills biome. Default is 13");
+		this.basilemysHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Basilemys Hell Creek Liriodendrites Hills Spawn Weight", "all", 8, 0, 300, "The weight of Basilemys in vanilla's spawn rate in the Hell Creek Liriodendrites Hills biome. Default is 8");
+		this.cyclurusHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Cyclurus Hell Creek Liriodendrites Hills Spawn Weight", "all", 8, 0, 300, "The weight of Cyclurus in vanilla's spawn rate in the Hell Creek Liriodendrites Hills biome. Default is 8");
+		this.dakotaraptorHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Dakotaraptor Hell Creek Liriodendrites Hills Spawn Weight", "all", 2, 0, 300, "The weight of Dakotaraptor in vanilla's spawn rate in the Hell Creek Liriodendrites Hills biome. Default is 2");
+		this.dideldophodonHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Didelphodon Hell Creek Liriodendrites Hills Spawn Weight", "all", 2, 0, 300, "The weight of Didelphodon in vanilla's spawn rate in the Hell Creek Liriodendrites Hills biome. Default is 2");
+		this.edmontosaurusHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Edmontosaurus Hell Creek Liriodendrites Hills Spawn Weight", "all", 12, 0, 300, "The weight of Edmontosaurus in vanilla's spawn rate in the Hell Creek Liriodendrites Hills biome. Default is 12");
+		this.lepisosteusHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Lepisosteus Hell Creek Liriodendrites Hills Spawn Weight", "all", 10, 0, 300, "The weight of Lepisosteus in vanilla's spawn rate in the Hell Creek Liriodendrites Hills biome. Default is 10");
+		this.lonchidionHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Lonchidion Hell Creek Liriodendrites Hills Spawn Weight", "all", 8, 0, 300, "The weight of Lonchidion in vanilla's spawn rate in the Hell Creek Liriodendrites Hills biome. Default is 8");
+		this.melviusHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Melvius Hell Creek Liriodendrites Hills Spawn Weight", "all", 1, 0, 300, "The weight of Melvius in vanilla's spawn rate in the Hell Creek Liriodendrites Hills biome. Default is 1");
+		this.myledaphusHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Myledaphus Hell Creek Liriodendrites Hills Spawn Weight", "all", 10, 0, 300, "The weight of Myledaphus in vanilla's spawn rate in the Hell Creek Liriodendrites Hills biome. Default is 10");
+		this.pachycephalosaurusHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Pachycephalosaurus Hell Creek Liriodendrites Hills Spawn Weight", "all", 3, 0, 300, "The weight of Pachycephalosaurus in vanilla's spawn rate in the Hell Creek Liriodendrites Hills biome. Default is 3");
+		this.thescelosaurusHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Thescelosaurus Hell Creek Liriodendrites Hills Spawn Weight", "all", 5, 0, 300, "The weight of Thescelosaurus in vanilla's spawn rate in the Hell Creek Liriodendrites Hills biome. Default is 5");
+		this.triceratopsHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Triceratops Hell Creek Liriodendrites Hills Spawn Weight", "all", 3, 0, 300, "The weight of Triceratops in vanilla's spawn rate in the Hell Creek Liriodendrites Hills biome. Default is 3");
+		this.tyrannosaurusHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Tyrannosaurus Hell Creek Forest Liriodendrites Spawn Weight", "all", 8, 0, 300, "The weight of Tyrannosaurus in vanilla's spawn rate in the Hell Creek Liriodendrites Hills biome. Default is 8");
+		this.caveSentinelHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Cave Sentinel Hell Creek Liriodendrites Hills Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Hell Creek Liriodendrites Hills biome. Default is 5");
+		this.landSentinelHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Land Sentinel Hell Creek Liriodendrites Hills Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Hell Creek Liriodendrites Hills biome. Default is 2");
+		builder.pop();
+		builder.push("Hell Creek Swamp");
+		this.acipenserHellCreekSwampSpawnWeight = buildInt(builder, "Acipenser Hell Creek Swamp Spawn Weight", "all", 7, 0, 300, "The weight of Acipenser in vanilla's spawn rate in the Hell Creek Swamp biome. Default is 7");
+		this.ankylosaurusHellCreekSwampSpawnWeight = buildInt(builder, "Ankylosaurus Hell Creek Swamp Spawn Weight", "all", 1, 0, 300, "The weight of Ankylosaurus in vanilla's spawn rate in the Hell Creek Swamp biome. Default is 1");
+		this.basilemysHellCreekSwampSpawnWeight = buildInt(builder, "Basilemys Hell Creek Swamp Spawn Weight", "all", 3, 0, 300, "The weight of Basilemys in vanilla's spawn rate in the Hell Creek Swamp biome. Default is 3");
+		this.cyclurusHellCreekSwampSpawnWeight = buildInt(builder, "Cyclurus Hell Creek Swamp Spawn Weight", "all", 4, 0, 300, "The weight of Cyclurus in vanilla's spawn rate in the Hell Creek Swamp biome. Default is 4");
+		this.dakotaraptorHellCreekSwampSpawnWeight = buildInt(builder, "Dakotaraptor Hell Creek Swamp Spawn Weight", "all", 0, 0, 300, "The weight of Dakotaraptor in vanilla's spawn rate in the Hell Creek Swamp biome. Default is 0");
+		this.didelphodonHellCreekSwampSpawnWeight = buildInt(builder, "Didelphodon Hell Creek Swamp Spawn Weight", "all", 8, 0, 300, "The weight of Didelphodon in vanilla's spawn rate in the Hell Creek Swamp biome. Default is 8");
+		this.edmontosaurusHellCreekSwampSpawnWeight = buildInt(builder, "Edmontosaurus Hell Creek Swamp Spawn Weight", "all", 9, 0, 300, "The weight of Edmontosaurus in vanilla's spawn rate in the Hell Creek Swamp biome. Default is 9");
+		this.lepisosteusHellCreekSwampSpawnWeight = buildInt(builder, "Lepisosteus Hell Creek Swamp Spawn Weight", "all", 14, 0, 300, "The weight of Lepisosteus in vanilla's spawn rate in the Hell Creek Swamp biome. Default is 14");
+		this.lonchidionHellCreekSwampSpawnWeight = buildInt(builder, "Lonchidion Hell Creek Swamp Spawn Weight", "all", 7, 0, 300, "The weight of Lonchidion in vanilla's spawn rate in the Hell Creek Swamp biome. Default is 7");
+		this.melviusHellCreekSwampSpawnWeight = buildInt(builder, "Melvius Hell Creek Swamp Spawn Weight", "all", 6, 0, 300, "The weight of Melvius in vanilla's spawn rate in the Hell Creek Swamp biome. Default is 6");
+		this.myledaphusHellCreekSwampSpawnWeight = buildInt(builder, "Myledaphus Hell Creek Swamp Spawn Weight", "all", 12, 0, 300, "The weight of Myledaphus in vanilla's spawn rate in the Hell Creek Swamp biome. Default is 12");
+		this.pachycephalosaurusHellCreekSwampSpawnWeight = buildInt(builder, "Pachycephalosaurus Hell Creek Swamp Spawn Weight", "all", 2, 0, 300, "The weight of Pachycephalosaurus in vanilla's spawn rate in the Hell Creek Swamp biome. Default is 2");
+		this.thescelosaurusHellCreekSwampSpawnWeight = buildInt(builder, "Thescelosaurus Hell Creek Swamp Spawn Weight", "all", 7, 0, 300, "The weight of Thescelosaurus in vanilla's spawn rate in the Hell Creek Swamp biome. Default is 7");
+		this.thoracosaurusHellCreekSwampSpawnWeight = buildInt(builder, "Thoracosaurus Hell Creek Swamp Spawn Weight", "all", 3, 0, 300, "The weight of Thoracosaurus in vanilla's spawn rate in the Hell Creek Swamp biome. Default is 3");
+		this.triceratopsHellCreekSwampSpawnWeight = buildInt(builder, "Triceratops Hell Creek Swamp Spawn Weight", "all", 10, 0, 300, "The weight of Triceratops in vanilla's spawn rate in the Hell Creek Swamp biome. Default is 10");
+		this.tyrannosaurusHellCreekSwampSpawnWeight = buildInt(builder, "Tyrannosaurus Hell Creek Swamp Spawn Weight", "all", 8, 0, 300, "The weight of Tyrannosaurus in vanilla's spawn rate in the Hell Creek Swamp biome. Default is 8");
+		this.caveSentinelHellCreekSwampSpawnWeight = buildInt(builder, "Cave Sentinel Hell Creek Swamp Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Hell Creek Swamp biome. Default is 5");
+		this.landSentinelHellCreekSwampSpawnWeight = buildInt(builder, "Land Sentinel Hell Creek Swamp Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Hell Creek Swamp biome. Default is 2");
 		builder.pop();
 		builder.push("Hell Creek River");
 		this.cyclurusHellCreekRiverSpawnWeight = buildInt(builder, "Cyclurus Hell Creek River Spawn Weight", "all", 1, 0, 300, "The weight of Cyclurus in vanilla's spawn rate in the Hell Creek River biome. Default is 1");
-		this.garHellCreekRiverSpawnWeight = buildInt(builder, "Gar Hell Creek River Spawn Weight", "all", 4, 0, 300, "The weight of Gar in vanilla's spawn rate in the Hell Creek River biome. Default is 4");
+		this.lepisosteusHellCreekRiverSpawnWeight = buildInt(builder, "Lepisosteus Hell Creek River Spawn Weight", "all", 4, 0, 300, "The weight of Lepisosteus in vanilla's spawn rate in the Hell Creek River biome. Default is 4");
 		this.myledaphusHellCreekRiverSpawnWeight = buildInt(builder, "Myledaphus Hell Creek River Spawn Weight", "all", 2, 0, 300, "The weight of Myledaphus in vanilla's spawn rate in the Hell Creek River biome. Default is 2");
 		this.caveSentinelHellCreekRiverSpawnWeight = buildInt(builder, "Cave Sentinel Hell Creek River Spawn Weight", "all", 5, 0, 300, "The weight of Cave Sentinels in vanilla's spawn rate in the Hell Creek River biome. Default is 5");
 		this.landSentinelHellCreekRiverSpawnWeight = buildInt(builder, "Land Sentinel Hell Creek River Spawn Weight", "all", 2, 0, 300, "The weight of Land Sentinels in vanilla's spawn rate in the Hell Creek River biome. Default is 2");

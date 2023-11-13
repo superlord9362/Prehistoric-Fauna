@@ -132,16 +132,6 @@ public class Basilemys extends DinosaurEntity {
 		}
 	}
 
-	@Override
-	public void aiStep() {
-		super.aiStep();
-		if (this.isAsleep() || this.getWakingTicks() != 0) {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);;
-		} else {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.1D);
-		}
-	}
-
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 8.0D).add(Attributes.MOVEMENT_SPEED, 0.1D).add(Attributes.KNOCKBACK_RESISTANCE, 0.0D).add(Attributes.ARMOR, 2.0D).add(Attributes.ARMOR_TOUGHNESS, 2.0D);
 	}

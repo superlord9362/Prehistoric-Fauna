@@ -25,7 +25,7 @@ public class SabalitesLeafBlock extends LeavesBlock {
 	
 	public SabalitesLeafBlock(Properties p_54422_) {
 		super(p_54422_);
-		this.registerDefaultState(this.stateDefinition.any().setValue(DISTANCE, Integer.valueOf(7)).setValue(PERSISTENT, Boolean.valueOf(false)).setValue(FACING, Direction.NORTH).setValue(DIRECTION, LeafDirection.STRAIGHT));
+		this.registerDefaultState(this.stateDefinition.any().setValue(DISTANCE, Integer.valueOf(1)).setValue(PERSISTENT, Boolean.valueOf(false)).setValue(FACING, Direction.NORTH).setValue(DIRECTION, LeafDirection.STRAIGHT));
 	}
 	
 	@OnlyIn(Dist.CLIENT)

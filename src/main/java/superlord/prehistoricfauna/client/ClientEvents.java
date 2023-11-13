@@ -44,11 +44,13 @@ import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TriceratopsM
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TyrannosaurusBabyModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TyrannosaurusJuvenileModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TyrannosaurusModel;
+import superlord.prehistoricfauna.client.model.fish.AcipenserModel;
 import superlord.prehistoricfauna.client.model.fish.ArganodusModel;
 import superlord.prehistoricfauna.client.model.fish.CeratodusModel;
 import superlord.prehistoricfauna.client.model.fish.ChinleaModel;
 import superlord.prehistoricfauna.client.model.fish.CyclurusModel;
 import superlord.prehistoricfauna.client.model.fish.GarModel;
+import superlord.prehistoricfauna.client.model.fish.LonchidionModel;
 import superlord.prehistoricfauna.client.model.fish.MelviusModel;
 import superlord.prehistoricfauna.client.model.fish.MooreodontusModel;
 import superlord.prehistoricfauna.client.model.fish.MyledaphusModel;
@@ -222,11 +224,13 @@ import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.Didelphodon
 import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.ThescelosaurusRenderer;
 import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.TriceratopsRenderer;
 import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.TyrannosaurusRenderer;
+import superlord.prehistoricfauna.client.render.fish.AcipenserRenderer;
 import superlord.prehistoricfauna.client.render.fish.ArganodusRenderer;
 import superlord.prehistoricfauna.client.render.fish.CeratodusRenderer;
 import superlord.prehistoricfauna.client.render.fish.ChinleaRenderer;
 import superlord.prehistoricfauna.client.render.fish.CyclurusRenderer;
 import superlord.prehistoricfauna.client.render.fish.GarRenderer;
+import superlord.prehistoricfauna.client.render.fish.LonchidionRenderer;
 import superlord.prehistoricfauna.client.render.fish.MelviusRenderer;
 import superlord.prehistoricfauna.client.render.fish.MooreodontusRenderer;
 import superlord.prehistoricfauna.client.render.fish.MyledaphusRenderer;
@@ -527,11 +531,13 @@ public class ClientEvents {
 	public static ModelLayerLocation SILLOSUCHUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "sillosuchus"), "sillosuchus");
 	public static ModelLayerLocation SILLOSUCHUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "sillosuchus_baby"), "sillosuchus_baby");
 	//Fish
+	public static ModelLayerLocation ACIPENSER = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "acipenser"), "acipenser");
 	public static ModelLayerLocation ARGANODUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "arganodous"), "arganodus");
 	public static ModelLayerLocation CERATODUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "ceratodus"), "ceratodus");
 	public static ModelLayerLocation CHINLEA = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "chinlea"), "chinlea");
 	public static ModelLayerLocation CYCLURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "cyclurus"), "cyclurus");
 	public static ModelLayerLocation GAR = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "gar"), "gar");
+	public static ModelLayerLocation LONCHIDION = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "lonchidion"), "lonchidion");
 	public static ModelLayerLocation MELVIUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "melvius"), "melvius");
 	public static ModelLayerLocation MOOREODONTUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "mooreodontus"), "mooreodontus");
 	public static ModelLayerLocation MYLEDAPHUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "myledaphus"), "myledaphus");
@@ -594,6 +600,7 @@ public class ClientEvents {
 		event.registerEntityRenderer(PFEntities.CHINLEA.get(), ChinleaRenderer::new);
 		event.registerEntityRenderer(PFEntities.CYCLURUS.get(), CyclurusRenderer::new);
 		event.registerEntityRenderer(PFEntities.GAR.get(), GarRenderer::new);
+		event.registerEntityRenderer(PFEntities.LONCHIDION.get(), LonchidionRenderer::new);
 		event.registerEntityRenderer(PFEntities.MOOREODONTUS.get(), MooreodontusRenderer::new);
 		event.registerEntityRenderer(PFEntities.MYLEDAPHUS.get(), MyledaphusRenderer::new);
 		event.registerEntityRenderer(PFEntities.POTAMOCERATODUS.get(), PotamoceratodusRenderer::new);
@@ -643,6 +650,7 @@ public class ClientEvents {
 		event.registerEntityRenderer(PFEntities.SILLOSUCHUS.get(), SillosuchusRenderer::new);
 		event.registerEntityRenderer(PFEntities.CAVE_SENTINEL.get(), CaveSentinelRenderer::new);
 		event.registerEntityRenderer(PFEntities.LAND_SENTINEL.get(), LandSentinelRenderer::new);
+		event.registerEntityRenderer(PFEntities.ACIPENSER.get(), AcipenserRenderer::new);
 	}
 
 	@SubscribeEvent
@@ -782,11 +790,13 @@ public class ClientEvents {
 		event.registerLayerDefinition(VELOCIRAPTOR_SKELETON_RUNNING, VelociraptorSkeletonRunningModel::createBodyLayer);
 		event.registerLayerDefinition(VELOCIRAPTOR_SKULL, VelociraptorSkullModel::createBodyLayer);
 		//Fish
+		event.registerLayerDefinition(ACIPENSER, AcipenserModel::createBodyLayer);
 		event.registerLayerDefinition(ARGANODUS, ArganodusModel::createBodyLayer);
 		event.registerLayerDefinition(CERATODUS, CeratodusModel::createBodyLayer);
 		event.registerLayerDefinition(CHINLEA, ChinleaModel::createBodyLayer);
 		event.registerLayerDefinition(CYCLURUS, CyclurusModel::createBodyLayer);
 		event.registerLayerDefinition(GAR, GarModel::createBodyLayer);
+		event.registerLayerDefinition(LONCHIDION, LonchidionModel::createBodyLayer);
 		event.registerLayerDefinition(MOOREODONTUS, MooreodontusModel::createBodyLayer);
 		event.registerLayerDefinition(MELVIUS, MelviusModel::createBodyLayer);
 		event.registerLayerDefinition(MYLEDAPHUS, MyledaphusModel::createBodyLayer);

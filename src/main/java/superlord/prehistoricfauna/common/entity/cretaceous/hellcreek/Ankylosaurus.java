@@ -136,16 +136,6 @@ public class Ankylosaurus extends DinosaurEntity {
 		}
 	}
 
-	@Override
-	public void aiStep() {
-		super.aiStep();
-		if (this.isAsleep() || this.getWakingTicks() != 0) {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
-		} else {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.2D);
-		}
-	}
-
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(1, new Ankylosaurus.MeleeAttackGoal());
