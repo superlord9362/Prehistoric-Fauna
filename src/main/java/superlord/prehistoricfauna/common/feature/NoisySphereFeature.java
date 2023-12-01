@@ -7,14 +7,12 @@ import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.chunk.ChunkAccess;
-import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraftforge.common.Tags;
-import superlord.prehistoricfauna.common.feature.trees.util.JohnstoniaConfig;
+import superlord.prehistoricfauna.common.feature.util.NoisySphereConfig;
 import superlord.prehistoricfauna.common.util.FastNoise;
-import superlord.prehistoricfauna.common.util.NoisySphereConfig;
 
 @SuppressWarnings("unused")
 public class NoisySphereFeature extends Feature<NoisySphereConfig> {

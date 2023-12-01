@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import superlord.prehistoricfauna.common.util.CrassostreaOystersConfig;
+import superlord.prehistoricfauna.common.feature.util.CrassostreaOystersConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 
 public class AlgaeFeature extends Feature<CrassostreaOystersConfig> {

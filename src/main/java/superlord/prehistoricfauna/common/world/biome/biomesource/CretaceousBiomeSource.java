@@ -28,14 +28,14 @@ public class CretaceousBiomeSource extends BiomeSource implements NoiseBiomeSour
 		})).apply(p_48644_, p_48644_.stable(CretaceousBiomeSource::new));
 	});
 
-	private final Holder<Biome> hellCreekHardwoodForest, hellCreekClearing, hellCreekLiriodendritesHills, hellCreekRedwoods, hellCreekSwamp, hellCreekRiver, djadochtaDunes, djadochtaArroyo, yixianForest, yixianSnowyForest, yixianSnowyMountains, yixianRegrowth, yixianVolcano, prehistoricDripstoneCave;
+	private final Holder<Biome> hellCreekHardwoodForest, hellCreekClearing, hellCreekLiriodendritesHills, hellCreekRedwoods, hellCreekSwamp, hellCreekRiver, djadochtaDunes, djadochtaArroyo, djadochtaAlluvialPlains, yixianForest, yixianSnowyForest, yixianSnowyMountains, yixianRegrowth, yixianVolcano, prehistoricDripstoneCave;
 
 	public CretaceousBiomeSource(Registry<Biome> biome) {
-		this(biome.getOrCreateHolder(PFBiomes.HELL_CREEK_HARDWOOD_FOREST.getKey()), biome.getOrCreateHolder(PFBiomes.HELL_CREEK_CLEARING.getKey()), biome.getOrCreateHolder(PFBiomes.HELL_CREEK_LIRIODENDRITES_HILLS.getKey()), biome.getOrCreateHolder(PFBiomes.HELL_CREEK_REDWOODS.getKey()), biome.getOrCreateHolder(PFBiomes.HELL_CREEK_SWAMP.getKey()), biome.getOrCreateHolder(PFBiomes.HELL_CREEK_RIVER.getKey()), biome.getOrCreateHolder(PFBiomes.DJADOCHTA_DUNES.getKey()), biome.getOrCreateHolder(PFBiomes.DJADOCHTA_ARROYO.getKey()), biome.getOrCreateHolder(PFBiomes.YIXIAN_FOREST.getKey()), biome.getOrCreateHolder(PFBiomes.YIXIAN_SNOWY_FOREST.getKey()), biome.getOrCreateHolder(PFBiomes.YIXIAN_SNOWY_MOUNTAINS.getKey()), biome.getOrCreateHolder(PFBiomes.YIXIAN_REGROWTH.getKey()), biome.getOrCreateHolder(PFBiomes.YIXIAN_VOLCANO.getKey()), biome.getOrCreateHolder(PFBiomes.PREHISTORIC_DRIPSTONE_CAVE.getKey()));
+		this(biome.getOrCreateHolder(PFBiomes.HELL_CREEK_HARDWOOD_FOREST.getKey()), biome.getOrCreateHolder(PFBiomes.HELL_CREEK_CLEARING.getKey()), biome.getOrCreateHolder(PFBiomes.HELL_CREEK_LIRIODENDRITES_HILLS.getKey()), biome.getOrCreateHolder(PFBiomes.HELL_CREEK_REDWOODS.getKey()), biome.getOrCreateHolder(PFBiomes.HELL_CREEK_SWAMP.getKey()), biome.getOrCreateHolder(PFBiomes.HELL_CREEK_RIVER.getKey()), biome.getOrCreateHolder(PFBiomes.DJADOCHTA_DUNES.getKey()), biome.getOrCreateHolder(PFBiomes.DJADOCHTA_ARROYO.getKey()), biome.getOrCreateHolder(PFBiomes.DJADOCHTA_ALLUVIAL_PLAINS.getKey()), biome.getOrCreateHolder(PFBiomes.YIXIAN_FOREST.getKey()), biome.getOrCreateHolder(PFBiomes.YIXIAN_SNOWY_FOREST.getKey()), biome.getOrCreateHolder(PFBiomes.YIXIAN_SNOWY_MOUNTAINS.getKey()), biome.getOrCreateHolder(PFBiomes.YIXIAN_REGROWTH.getKey()), biome.getOrCreateHolder(PFBiomes.YIXIAN_VOLCANO.getKey()), biome.getOrCreateHolder(PFBiomes.PREHISTORIC_DRIPSTONE_CAVE.getKey()));
 	}
 
-	public CretaceousBiomeSource(Holder<Biome> hellCreekHardwoodForest, Holder<Biome> hellCreekClearing, Holder<Biome> hellCreekLiriodendritesHills, Holder<Biome> hellCreekRedwoods, Holder<Biome> hellCreekSwamp, Holder<Biome> hellCreekRiver, Holder<Biome> djadochtaDunes, Holder<Biome> djadochtaArroyo, Holder<Biome> yixianForest, Holder<Biome> yixianSnowyForest, Holder<Biome> yixianSnowyMountains, Holder<Biome> yixianRegrowth, Holder<Biome> yixianVolcano, Holder<Biome> prehistoricDripstoneCave) {
-		super(ImmutableList.of(hellCreekHardwoodForest, hellCreekClearing, hellCreekLiriodendritesHills, hellCreekRedwoods, hellCreekSwamp, hellCreekRiver, djadochtaDunes, djadochtaArroyo, yixianForest, yixianSnowyForest, yixianSnowyMountains, yixianRegrowth, yixianVolcano, prehistoricDripstoneCave));
+	public CretaceousBiomeSource(Holder<Biome> hellCreekHardwoodForest, Holder<Biome> hellCreekClearing, Holder<Biome> hellCreekLiriodendritesHills, Holder<Biome> hellCreekRedwoods, Holder<Biome> hellCreekSwamp, Holder<Biome> hellCreekRiver, Holder<Biome> djadochtaDunes, Holder<Biome> djadochtaArroyo, Holder<Biome> djadochtaAlluvialPlains, Holder<Biome> yixianForest, Holder<Biome> yixianSnowyForest, Holder<Biome> yixianSnowyMountains, Holder<Biome> yixianRegrowth, Holder<Biome> yixianVolcano, Holder<Biome> prehistoricDripstoneCave) {
+		super(ImmutableList.of(hellCreekHardwoodForest, hellCreekClearing, hellCreekLiriodendritesHills, hellCreekRedwoods, hellCreekSwamp, hellCreekRiver, djadochtaDunes, djadochtaArroyo, djadochtaAlluvialPlains, yixianForest, yixianSnowyForest, yixianSnowyMountains, yixianRegrowth, yixianVolcano, prehistoricDripstoneCave));
 		this.hellCreekHardwoodForest = hellCreekHardwoodForest;
 		this.hellCreekClearing = hellCreekClearing;
 		this.hellCreekLiriodendritesHills = hellCreekLiriodendritesHills;
@@ -44,6 +44,7 @@ public class CretaceousBiomeSource extends BiomeSource implements NoiseBiomeSour
 		this.hellCreekRiver = hellCreekRiver;
 		this.djadochtaDunes = djadochtaDunes;
 		this.djadochtaArroyo = djadochtaArroyo;
+		this.djadochtaAlluvialPlains = djadochtaAlluvialPlains;
 		this.yixianForest = yixianForest;
 		this.yixianSnowyForest = yixianSnowyForest;
 		this.yixianSnowyMountains = yixianSnowyMountains;
@@ -117,9 +118,9 @@ public class CretaceousBiomeSource extends BiomeSource implements NoiseBiomeSour
 			} else {
 				return yixianForest;
 			}
-		} else if (noiseValue > -12 && noiseValue <= 12) {
+		} else if (noiseValue > -12.8 && noiseValue <= 12.8) {
 			//HellCreek
-			if (noiseValue > -10 && noiseValue <= -8) {
+			if (noiseValue > -9 && noiseValue <= -8) {
 				return hellCreekClearing;
 			} else if (noiseValue > -3 && noiseValue <= 1) {
 				return hellCreekLiriodendritesHills;
@@ -132,13 +133,15 @@ public class CretaceousBiomeSource extends BiomeSource implements NoiseBiomeSour
 			}
 		} else if (noiseValue > 13) {
 			//Djadochta
-			if (noiseValue > 20 && noiseValue <= 25 || noiseValue > 29 && noiseValue <= 32 || noiseValue > 37) {
+			if (noiseValue > 20 && noiseValue <= 25 || noiseValue > 37) {
 				return djadochtaArroyo;
+			} else if (noiseValue > 17 && noiseValue <= 20 || noiseValue > 25 && noiseValue <= 28 || noiseValue > 32 && noiseValue <= 35) {
+				return djadochtaAlluvialPlains;
 			} else {
 				return djadochtaDunes;
 			}
 		}
-		if (noiseValue >= -12 && noiseValue < -13 || noiseValue > 12 && noiseValue <= 13) return hellCreekRiver;
+		if (noiseValue <= -12.8 && noiseValue > -13 || noiseValue > 12.8 && noiseValue <= 13) return hellCreekRiver;
 		else return hellCreekRiver;
 	}
 

@@ -5,20 +5,48 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 
 public class PrehistoricFaunaConfig {
 	//Hell Creek Redwood Forest
-	public static int thescelosaurusHellCreekForestSpawnWeight = 12;
-	public static int triceratopsHellCreekForestSpawnWeight = 7;
-	public static int ankylosaurusHellCreekForestSpawnWeight = 14;
-	public static int tyrannosaurusHellCreekForestSpawnWeight = 10;
-	public static int basilemysHellCreekForestSpawnWeight = 7;
-	public static int dakotaraptorHellCreekForestSpawnWeight = 2;
-	public static int didelphodonHellCreekForestSpawnWeight = 6;
-	public static int myledaphusHellCreekForestSpawnWeight = 0;
-	public static int lepisosteusHellCreekForestSpawnWeight = 4;
-	public static int cyclurusHellCreekForestSpawnWeight = 3;
-	public static int caveSentinelHellCreekForestSpawnWeight = 5;
-	public static int landSentinelHellCreekForestSpawnWeight = 2;
-	//Hell Creek Fern Prairie
-	//Acipenser, Ankylosaurus, Anzu, Basilemys, Cyclurus, Dakotaraptor, Didelphodon, Edmontosaurus, Lepisosteus, Lonchidion, Melvius, Myledaphus, Pachycephalosaurus, Palaeosaniwa, Thescelosaurus, Thoracosaurus, Triceratops, Tyrannosaurus
+	public static int acipenserHellCreekRedwoodsSpawnWeight = 0;
+	public static int ankylosaurusHellCreekRedwoodsSpawnWeight = 1;
+	public static int anzuHellCreekRedwoodsSpawnWeight = 7;
+	public static int basilemysHellCreekRedwoodsSpawnWeight = 4;
+	public static int cyclurusHellCreekRedwoodsSpawnWeight = 8;
+	public static int dakotaraptorHellCreekRedwoodsSpawnWeight = 4;
+	public static int didelphodonHellCreekRedwoodsSpawnWeight = 6;
+	public static int edmontosaurusHellCreekRedwoodsSpawnWeight = 6;
+	public static int lepisosteusHellCreekRedwoodsSpawnWeight = 12;
+	public static int lonchidionHellCreekRedwoodsSpawnWeight = 0;
+	public static int melviusHellCreekRedwoodsSpawnWeight = 3;
+	public static int myledaphusHellCreekRedwoodsSpawnWeight = 11;
+	public static int pachycephalosaurusHellCreekRedwoodsSpawnWeight = 10;
+	public static int palaeosaniwaHellCreekRedwoodsSpawnWeight = 4;
+	public static int thescelosaurusHellCreekRedwoodsSpawnWeight = 11;
+	public static int thoracosaurusHellCreekRedwoodsSpawnWeight = 0;
+	public static int triceratopsHellCreekRedwoodsSpawnWeight = 7;
+	public static int tyrannosaurusHellCreekRedwoodsSpawnWeight = 5;
+	public static int caveSentinelHellCreekRedwoodsSpawnWeight = 5;
+	public static int landSentinelHellCreekRedwoodsSpawnWeight = 2;
+	//Hell Creek Hardwood Forest
+	public static int acipenserHellCreekHardwoodForestSpawnWeight = 0;
+	public static int ankylosaurusHellCreekHardwoodForestSpawnWeight = 3;
+	public static int anzuHellCreekHardwoodForestSpawnWeight = 7;
+	public static int basilemysHellCreekHardwoodForestSpawnWeight = 2;
+	public static int cyclurusHellCreekHardwoodForestSpawnWeight = 8;
+	public static int dakotaraptorHellCreekHardwoodForestSpawnWeight = 3;
+	public static int didelphodonHellCreekHardwoodForestSpawnWeight = 4;
+	public static int edmontosaurusHellCreekHardwoodForestSpawnWeight = 11;
+	public static int lepisosteusHellCreekHardwoodForestSpawnWeight = 12;
+	public static int lonchidionHellCreekHardwoodForestSpawnWeight = 0;
+	public static int melviusHellCreekHardwoodForestSpawnWeight = 3;
+	public static int myledaphusHellCreekHardwoodForestSpawnWeight = 11;
+	public static int pachycephalosaurusHellCreekHardwoodForestSpawnWeight = 8;
+	public static int palaeosaniwaHellCreekHardwoodForestSpawnWeight = 2;
+	public static int thescelosaurusHellCreekHardwoodForestSpawnWeight = 4;
+	public static int thoracosaurusHellCreekHardwoodForestSpawnWeight = 0;
+	public static int triceratopsHellCreekHardwoodForestSpawnWeight = 12;
+	public static int tyrannosaurusHellCreekHardwoodForestSpawnWeight = 8;
+	public static int caveSentinelHellCreekHardwoodForestSpawnWeight = 5;
+	public static int landSentinelHellCreekHardwoodForestSpawnWeight = 2;
+	//Hell Creek Clearing
 	public static int acipenserHellCreekClearingSpawnWeight = 4;
 	public static int ankylosaurusHellCreekClearingSpawnWeight = 1;
 	public static int anzuHellCreekClearingSpawnWeight = 3;
@@ -55,6 +83,7 @@ public class PrehistoricFaunaConfig {
 	public static int lepisosteusHellCreekLiriodendritesHillsSpawnWeight = 10;
 	public static int lonchidionHellCreekLiriodendritesHillsSpawnWeight = 8;
 	public static int cyclurusHellCreekLiriodendritesHillsSpawnWeight = 8;
+	public static int thoracosaurusHellCreekLiriodendritesHillsSpawnWeight = 0;
 	public static int caveSentinelHellCreekLiriodendritesHillsSpawnWeight = 5;
 	public static int landSentinelHellCreekLiriodendritesHillsSpawnWeight = 2;
 	//Hell Creek Swamp
@@ -77,11 +106,26 @@ public class PrehistoricFaunaConfig {
 	public static int caveSentinelHellCreekSwampSpawnWeight = 5;
 	public static int landSentinelHellCreekSwampSpawnWeight = 2;
 	//Hell Creek River
+	public static int acipenserHellCreekRiverSpawnWeight = 6;
+	public static int ankylosaurusHellCreekRiverSpawnWeight = 1;
+	public static int anzuHellCreekRiverSpawnWeight = 2;
+	public static int basilemysHellCreekRiverSpawnWeight = 4;
+	public static int cyclurusHellCreekRiverSpawnWeight = 7;
+	public static int dakotaraptorHellCreekRiverSpawnWeight = 6;
+	public static int didelphodonHellCreekRiverSpawnWeight = 5;
+	public static int edmontosaurusHellCreekRiverSpawnWeight = 10;
+	public static int lepisosteusHellCreekRiverSpawnWeight = 11;
+	public static int lonchidionHellCreekRiverSpawnWeight = 6;
+	public static int melviusHellCreekRiverSpawnWeight = 4;
+	public static int myledaphusHellCreekRiverSpawnWeight = 11;
+	public static int pachycephalosaurusHellCreekRiverSpawnWeight = 2;
+	public static int palaeosaniwaHellCreekRiverSpawnWeight = 1;
+	public static int thescelosaurusHellCreekRiverSpawnWeight = 7;
+	public static int thoracosaurusHellCreekRiverSpawnWeight = 3;
+	public static int triceratopsHellCreekRiverSpawnWeight = 11;
+	public static int tyrannosaurusHellCreekRiverSpawnWeight = 8;
 	public static int caveSentinelHellCreekRiverSpawnWeight = 5;
 	public static int landSentinelHellCreekRiverSpawnWeight = 2;
-	public static int myledaphusHellCreekRiverSpawnWeight = 2;
-	public static int lepisosteusHellCreekRiverSpawnWeight = 4;
-	public static int cyclurusHellCreekRiverSpawnWeight = 3;
 	//Morrison Hills
 	public static int stegosaurusMorrisonHillsSpawnWeight = 10;
 	public static int dryosaurusMorrisonHillsSpawnWeight = 7;
@@ -163,6 +207,16 @@ public class PrehistoricFaunaConfig {
 	public static int plesiohadrosDjadochtaDunesSpawnWeight = 0;
 	public static int caveSentinelDjadochtaDunesSpawnWeight = 5;
 	public static int landSentinelDjadochtaDunesSpawnWeight = 2;
+	//Djadochta Dunes
+	public static int protoceratopsDjadochtaAlluvialPlainsSpawnWeight = 7;
+	public static int citipatiDjadochtaAlluvialPlainsSpawnWeight = 5;
+	public static int velociraptorDjadochtaAlluvialPlainsSpawnWeight = 7;
+	public static int aepyornithomimusDjadochtaAlluvialPlainsSpawnWeight = 3;
+	public static int telmasaurusDjadochtaAlluvialPlainsSpawnWeight = 3;
+	public static int pinacosaurusDjadochtaAlluvialPlainsSpawnWeight = 5;
+	public static int plesiohadrosDjadochtaAlluvialPlainsSpawnWeight = 0;
+	public static int caveSentinelDjadochtaAlluvialPlainsSpawnWeight = 5;
+	public static int landSentinelDjadochtaAlluvialPlainsSpawnWeight = 2;
 	//Kayenta Buttes
 	public static int ceratodusKayentaButtesSpawnWeight = 0;
 	public static int potamoceratodusKayentaButtesSpawnWeight = 2;
@@ -297,19 +351,48 @@ public class PrehistoricFaunaConfig {
 	public static void bakeServer(final ModConfig config) {
 		try {
 			//Hell Creek Redwood Forest
-			thescelosaurusHellCreekForestSpawnWeight = PFConfigHolder.SERVER.thescelosaurusHellCreekForestSpawnWeight.get();
-			triceratopsHellCreekForestSpawnWeight = PFConfigHolder.SERVER.triceratopsHellCreekForestSpawnWeight.get();
-			ankylosaurusHellCreekForestSpawnWeight = PFConfigHolder.SERVER.ankylosaurusHellCreekForestSpawnWeight.get();
-			tyrannosaurusHellCreekForestSpawnWeight = PFConfigHolder.SERVER.tyrannosaurusHellCreekForestSpawnWeight.get();
-			basilemysHellCreekForestSpawnWeight = PFConfigHolder.SERVER.basilemysHellCreekForestSpawnWeight.get();
-			dakotaraptorHellCreekForestSpawnWeight = PFConfigHolder.SERVER.dakotaraptorHellCreekForestSpawnWeight.get();
-			didelphodonHellCreekForestSpawnWeight = PFConfigHolder.SERVER.dideldophodonHellCreekForestSpawnWeight.get();
-			myledaphusHellCreekForestSpawnWeight = PFConfigHolder.SERVER.myledaphusHellCreekForestSpawnWeight.get();
-			lepisosteusHellCreekForestSpawnWeight = PFConfigHolder.SERVER.lepisosteusHellCreekForestSpawnWeight.get();
-			cyclurusHellCreekForestSpawnWeight = PFConfigHolder.SERVER.cyclurusHellCreekForestSpawnWeight.get();
-			caveSentinelHellCreekForestSpawnWeight = PFConfigHolder.SERVER.caveSentinelHellCreekForestSpawnWeight.get();
-			landSentinelHellCreekForestSpawnWeight = PFConfigHolder.SERVER.landSentinelHellCreekForestSpawnWeight.get();
-			//Hell Creek Fern Prairie
+			acipenserHellCreekRedwoodsSpawnWeight = PFConfigHolder.SERVER.acipenserHellCreekRedwoodsSpawnWeight.get();
+			ankylosaurusHellCreekRedwoodsSpawnWeight = PFConfigHolder.SERVER.ankylosaurusHellCreekRedwoodsSpawnWeight.get();
+			anzuHellCreekRedwoodsSpawnWeight = PFConfigHolder.SERVER.anzuHellCreekRedwoodsSpawnWeight.get();
+			basilemysHellCreekRedwoodsSpawnWeight = PFConfigHolder.SERVER.basilemysHellCreekRedwoodsSpawnWeight.get();
+			cyclurusHellCreekRedwoodsSpawnWeight = PFConfigHolder.SERVER.cyclurusHellCreekRedwoodsSpawnWeight.get();
+			dakotaraptorHellCreekRedwoodsSpawnWeight = PFConfigHolder.SERVER.dakotaraptorHellCreekRedwoodsSpawnWeight.get();
+			didelphodonHellCreekRedwoodsSpawnWeight = PFConfigHolder.SERVER.didelphodonHellCreekRedwoodsSpawnWeight.get();
+			edmontosaurusHellCreekRedwoodsSpawnWeight = PFConfigHolder.SERVER.edmontosaurusHellCreekRedwoodsSpawnWeight.get();
+			lepisosteusHellCreekRedwoodsSpawnWeight = PFConfigHolder.SERVER.lepisosteusHellCreekRedwoodsSpawnWeight.get();
+			lonchidionHellCreekRedwoodsSpawnWeight = PFConfigHolder.SERVER.lonchidionHellCreekRedwoodsSpawnWeight.get();
+			melviusHellCreekRedwoodsSpawnWeight = PFConfigHolder.SERVER.melviusHellCreekRedwoodsSpawnWeight.get();
+			myledaphusHellCreekRedwoodsSpawnWeight = PFConfigHolder.SERVER.myledaphusHellCreekRedwoodsSpawnWeight.get();
+			pachycephalosaurusHellCreekRedwoodsSpawnWeight = PFConfigHolder.SERVER.pachycephalosaurusHellCreekRedwoodsSpawnWeight.get();
+			palaeosaniwaHellCreekRedwoodsSpawnWeight = PFConfigHolder.SERVER.palaeosaniwaHellCreekRedwoodsSpawnWeight.get();
+			thescelosaurusHellCreekRedwoodsSpawnWeight = PFConfigHolder.SERVER.thescelosaurusHellCreekRedwoodsSpawnWeight.get();
+			thoracosaurusHellCreekRedwoodsSpawnWeight = PFConfigHolder.SERVER.thoracosaurusHellCreekRedwoodsSpawnWeight.get();
+			triceratopsHellCreekRedwoodsSpawnWeight = PFConfigHolder.SERVER.triceratopsHellCreekRedwoodsSpawnWeight.get();
+			tyrannosaurusHellCreekRedwoodsSpawnWeight = PFConfigHolder.SERVER.tyrannosaurusHellCreekRedwoodsSpawnWeight.get();
+			caveSentinelHellCreekRedwoodsSpawnWeight = PFConfigHolder.SERVER.caveSentinelHellCreekRedwoodsSpawnWeight.get();
+			landSentinelHellCreekRedwoodsSpawnWeight = PFConfigHolder.SERVER.landSentinelHellCreekRedwoodsSpawnWeight.get();
+			//Hell Creek Hardwood Forest
+			acipenserHellCreekHardwoodForestSpawnWeight = PFConfigHolder.SERVER.acipenserHellCreekHardwoodForestSpawnWeight.get();
+			ankylosaurusHellCreekHardwoodForestSpawnWeight = PFConfigHolder.SERVER.ankylosaurusHellCreekHardwoodForestSpawnWeight.get();
+			anzuHellCreekHardwoodForestSpawnWeight = PFConfigHolder.SERVER.anzuHellCreekHardwoodForestSpawnWeight.get();
+			basilemysHellCreekHardwoodForestSpawnWeight = PFConfigHolder.SERVER.basilemysHellCreekHardwoodForestSpawnWeight.get();
+			cyclurusHellCreekHardwoodForestSpawnWeight = PFConfigHolder.SERVER.cyclurusHellCreekHardwoodForestSpawnWeight.get();
+			dakotaraptorHellCreekHardwoodForestSpawnWeight = PFConfigHolder.SERVER.dakotaraptorHellCreekHardwoodForestSpawnWeight.get();
+			didelphodonHellCreekHardwoodForestSpawnWeight = PFConfigHolder.SERVER.didelphodonHellCreekHardwoodForestSpawnWeight.get();
+			edmontosaurusHellCreekHardwoodForestSpawnWeight = PFConfigHolder.SERVER.edmontosaurusHellCreekHardwoodForestSpawnWeight.get();
+			lepisosteusHellCreekHardwoodForestSpawnWeight = PFConfigHolder.SERVER.lepisosteusHellCreekHardwoodForestSpawnWeight.get();
+			lonchidionHellCreekHardwoodForestSpawnWeight = PFConfigHolder.SERVER.lonchidionHellCreekHardwoodForestSpawnWeight.get();
+			melviusHellCreekHardwoodForestSpawnWeight = PFConfigHolder.SERVER.melviusHellCreekHardwoodForestSpawnWeight.get();
+			myledaphusHellCreekHardwoodForestSpawnWeight = PFConfigHolder.SERVER.myledaphusHellCreekHardwoodForestSpawnWeight.get();
+			pachycephalosaurusHellCreekHardwoodForestSpawnWeight = PFConfigHolder.SERVER.pachycephalosaurusHellCreekHardwoodForestSpawnWeight.get();
+			palaeosaniwaHellCreekHardwoodForestSpawnWeight = PFConfigHolder.SERVER.palaeosaniwaHellCreekHardwoodForestSpawnWeight.get();
+			thescelosaurusHellCreekHardwoodForestSpawnWeight = PFConfigHolder.SERVER.thescelosaurusHellCreekHardwoodForestSpawnWeight.get();
+			thoracosaurusHellCreekHardwoodForestSpawnWeight = PFConfigHolder.SERVER.thoracosaurusHellCreekHardwoodForestSpawnWeight.get();
+			triceratopsHellCreekHardwoodForestSpawnWeight = PFConfigHolder.SERVER.triceratopsHellCreekHardwoodForestSpawnWeight.get();
+			tyrannosaurusHellCreekHardwoodForestSpawnWeight = PFConfigHolder.SERVER.tyrannosaurusHellCreekHardwoodForestSpawnWeight.get();
+			caveSentinelHellCreekHardwoodForestSpawnWeight = PFConfigHolder.SERVER.caveSentinelHellCreekHardwoodForestSpawnWeight.get();
+			landSentinelHellCreekHardwoodForestSpawnWeight = PFConfigHolder.SERVER.landSentinelHellCreekHardwoodForestSpawnWeight.get();
+			//Hell Creek Clearing
 			//Acipenser
 			acipenserHellCreekClearingSpawnWeight = PFConfigHolder.SERVER.acipenserHellCreekClearingSpawnWeight.get();
 			//Ankylosaurus
@@ -363,6 +446,7 @@ public class PrehistoricFaunaConfig {
 			edmontosaurusHellCreekLiriodendritesHillsSpawnWeight = PFConfigHolder.SERVER.edmontosaurusHellCreekLiriodendritesHillsSpawnWeight.get();
 			lonchidionHellCreekLiriodendritesHillsSpawnWeight = PFConfigHolder.SERVER.lonchidionHellCreekLiriodendritesHillsSpawnWeight.get();
 			pachycephalosaurusHellCreekLiriodendritesHillsSpawnWeight = PFConfigHolder.SERVER.pachycephalosaurusHellCreekLiriodendritesHillsSpawnWeight.get();
+			thoracosaurusHellCreekLiriodendritesHillsSpawnWeight = PFConfigHolder.SERVER.thoracosaurusHellCreekLiriodendritesHillsSpawnWeight.get();
 			caveSentinelHellCreekLiriodendritesHillsSpawnWeight = PFConfigHolder.SERVER.caveSentinelHellCreekLiriodendritesHillsSpawnWeight.get();
 			landSentinelHellCreekLiriodendritesHillsSpawnWeight = PFConfigHolder.SERVER.landSentinelHellCreekLiriodendritesHillsSpawnWeight.get();
 			//Hell Creek Swamp
@@ -384,9 +468,24 @@ public class PrehistoricFaunaConfig {
 			landSentinelHellCreekSwampSpawnWeight = PFConfigHolder.SERVER.landSentinelHellCreekSwampSpawnWeight.get();
 			caveSentinelHellCreekSwampSpawnWeight = PFConfigHolder.SERVER.caveSentinelHellCreekSwampSpawnWeight.get();
 			//Hell Creek River
-			myledaphusHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.myledaphusHellCreekRiverSpawnWeight.get();
-			lepisosteusHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.lepisosteusHellCreekRiverSpawnWeight.get();
+			acipenserHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.acipenserHellCreekRiverSpawnWeight.get();
+			ankylosaurusHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.ankylosaurusHellCreekRiverSpawnWeight.get();
+			anzuHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.anzuHellCreekRiverSpawnWeight.get();
+			basilemysHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.basilemysHellCreekRiverSpawnWeight.get();
 			cyclurusHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.cyclurusHellCreekRiverSpawnWeight.get();
+			dakotaraptorHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.dakotaraptorHellCreekRiverSpawnWeight.get();
+			didelphodonHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.didelphodonHellCreekRiverSpawnWeight.get();
+			edmontosaurusHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.edmontosaurusHellCreekRiverSpawnWeight.get();
+			lepisosteusHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.lepisosteusHellCreekRiverSpawnWeight.get();
+			lonchidionHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.lonchidionHellCreekRiverSpawnWeight.get();
+			melviusHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.melviusHellCreekRiverSpawnWeight.get();
+			myledaphusHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.myledaphusHellCreekRiverSpawnWeight.get();
+			pachycephalosaurusHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.pachycephalosaurusHellCreekRiverSpawnWeight.get();
+			palaeosaniwaHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.palaeosaniwaHellCreekRiverSpawnWeight.get();
+			thescelosaurusHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.thescelosaurusHellCreekRiverSpawnWeight.get();
+			thoracosaurusHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.thoracosaurusHellCreekRiverSpawnWeight.get();
+			triceratopsHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.triceratopsHellCreekRiverSpawnWeight.get();
+			tyrannosaurusHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.tyrannosaurusHellCreekRiverSpawnWeight.get();
 			caveSentinelHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.caveSentinelHellCreekRiverSpawnWeight.get();
 			landSentinelHellCreekRiverSpawnWeight = PFConfigHolder.SERVER.landSentinelHellCreekRiverSpawnWeight.get();
 			//Morrison Savanna
@@ -470,6 +569,16 @@ public class PrehistoricFaunaConfig {
 			plesiohadrosDjadochtaDunesSpawnWeight = PFConfigHolder.SERVER.plesiohadrosDjadochtaDunesSpawnWeight.get();
 			caveSentinelDjadochtaDunesSpawnWeight = PFConfigHolder.SERVER.caveSentinelDjadochtaDunesSpawnWeight.get();
 			landSentinelDjadochtaDunesSpawnWeight = PFConfigHolder.SERVER.landSentinelDjadochtaDunesSpawnWeight.get();
+			//Djadochta Alluvial Plains
+			protoceratopsDjadochtaAlluvialPlainsSpawnWeight = PFConfigHolder.SERVER.protoceratopsDjadochtaAlluvialPlainsSpawnWeight.get();
+			velociraptorDjadochtaAlluvialPlainsSpawnWeight = PFConfigHolder.SERVER.velociraptorDjadochtaAlluvialPlainsSpawnWeight.get();
+			citipatiDjadochtaAlluvialPlainsSpawnWeight = PFConfigHolder.SERVER.citipatiDjadochtaAlluvialPlainsSpawnWeight.get();
+			aepyornithomimusDjadochtaAlluvialPlainsSpawnWeight = PFConfigHolder.SERVER.aepyornithomimusDjadochtaAlluvialPlainsSpawnWeight.get();
+			telmasaurusDjadochtaAlluvialPlainsSpawnWeight = PFConfigHolder.SERVER.telmasaurusDjadochtaAlluvialPlainsSpawnWeight.get();
+			pinacosaurusDjadochtaAlluvialPlainsSpawnWeight = PFConfigHolder.SERVER.pinacosaurusDjadochtaAlluvialPlainsSpawnWeight.get();
+			plesiohadrosDjadochtaAlluvialPlainsSpawnWeight = PFConfigHolder.SERVER.plesiohadrosDjadochtaAlluvialPlainsSpawnWeight.get();
+			caveSentinelDjadochtaAlluvialPlainsSpawnWeight = PFConfigHolder.SERVER.caveSentinelDjadochtaAlluvialPlainsSpawnWeight.get();
+			landSentinelDjadochtaAlluvialPlainsSpawnWeight = PFConfigHolder.SERVER.landSentinelDjadochtaAlluvialPlainsSpawnWeight.get();
 			//Kayenta Buttes
 			ceratodusKayentaButtesSpawnWeight = PFConfigHolder.SERVER.ceratodusKayentaButtesSpawnWeight.get();
 			potamoceratodusKayentaButtesSpawnWeight = PFConfigHolder.SERVER.potamoceratodusKayentaButtesSpawnWeight.get();

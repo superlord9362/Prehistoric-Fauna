@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "prehistoricfauna:raw_acipenser"
+  },
+  "result": "prehistoricfauna:cooked_acipenser",
+  "experience": 0.35,
+  "cookingtime": 100
+}

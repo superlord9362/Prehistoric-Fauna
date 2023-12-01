@@ -75,6 +75,12 @@ public class CretaceousBiomes {
 		return biome(BiomeCategory.NONE, 0x66866b, 0x9c8c67, 0x5F909D, 12638463, Biome.Precipitation.NONE, 0.2F, 1F, spawnSettings, biomeFeatures);
 	}
 	
+	public static Biome djadochtaAlluvialPlains() {
+		MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
+		BiomeGenerationSettings.Builder biomeFeatures = new BiomeGenerationSettings.Builder();
+		return biome(BiomeCategory.NONE, 0x66866b, 0x9c8c67, 0x5F909D, 12638463, Biome.Precipitation.NONE, 0.2F, 1F, spawnSettings, biomeFeatures);
+	}
+	
 	public static Biome yixianForest() {
 		MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
 		BiomeGenerationSettings.Builder biomeFeatures = new BiomeGenerationSettings.Builder();

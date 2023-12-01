@@ -1,6 +1,5 @@
 package superlord.prehistoricfauna.common.feature.trees.woodworthia;
 
-
 import java.util.Random;
 import java.util.Set;
 
@@ -11,7 +10,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import superlord.prehistoricfauna.common.feature.trees.PFAbstractTreeFeature;
-import superlord.prehistoricfauna.common.util.trees.PFTreeConfig;
+import superlord.prehistoricfauna.common.feature.util.PFTreeConfig;
 
 public class Woodworthia3 extends PFAbstractTreeFeature<PFTreeConfig> {
 

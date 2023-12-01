@@ -53,6 +53,50 @@
 			}
 		]
 	},
+    "thoracosaurus_idle": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.thoracosaurusIdle",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/thoracosaurus/thoracosaurus_idle1",
+				"stream": true
+			},
+			{
+				"name": "prehistoricfauna:prehistoric/thoracosaurus/thoracosaurus_idle2",
+				"stream": true
+			}
+		]
+	},
+	"thoracosaurus_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricFauna.subtitle.thoracosaurusHurt",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/thoracosaurus/thoracosaurus_hurt",
+				"stream": true
+			}
+		]
+	},
+	"thoracosaurus_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.thoracosaurusDeath",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/thoracosaurus/thoracosaurus_death",
+				"stream": true
+			}
+		]
+	},
+	"thoracosaurus_warning": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.thoracosaurusWarning",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/thoracosaurus/thoracosaurus_warning",
+				"stream": true
+			}
+		]
+	},
 	"tyrannosaurus_idle": {
         "category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.tyrannosaurusIdle",

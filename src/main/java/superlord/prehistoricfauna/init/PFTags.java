@@ -85,6 +85,8 @@ public class PFTags {
 	public static final TagKey<EntityType<?>> HERRERASAURUS_BABY_HUNTING = registerEntityTag("herrerasaurus_baby_hunting");
 	public static final TagKey<EntityType<?>> SAUROSUCHUS_HUNTING = registerEntityTag("saurosuchus_hunting");
 	public static final TagKey<EntityType<?>> SAUROSUCHUS_BABY_HUNTING = registerEntityTag("saurosuchus_baby_hunting");
+	public static final TagKey<EntityType<?>> THORACOSAURUS_HUNTING = registerEntityTag("thoracosaurus_hunting");
+	public static final TagKey<EntityType<?>> THORACOSAURUS_BABY_HUNTING = registerEntityTag("thoracosaurus_baby_hunting");
 	
 	public static final TagKey<Item> MEATS_2_HUNGER = registerItemTag("two_hunger_meats");
 	public static final TagKey<Item> MEATS_4_HUNGER = registerItemTag("four_hunger_meats");

@@ -36,8 +36,16 @@ public class PrehistoricPlantBlock extends BushBlock implements BonemealableBloc
 		return true;
 	}
 
-	public void performBonemeal(ServerLevel p_57320_, Random p_57321_, BlockPos p_57322_, BlockState p_57323_) {
-		DoublePlantBlock doubleplantblock = (DoublePlantBlock)(p_57323_.is(PFBlocks.OSMUNDA.get()) ? PFBlocks.TALL_OSMUNDA.get() : PFBlocks.TALL_HORSETAIL.get());
+	public void performBonemeal(ServerLevel p_57320_, Random p_57321_, BlockPos p_57322_, BlockState p_57323_) {		
+		DoublePlantBlock doubleplantblock;
+		if (p_57323_.is(PFBlocks.OSMUNDA.get())) {
+			doubleplantblock = (DoublePlantBlock) PFBlocks.TALL_OSMUNDA.get();
+		} else if (p_57323_.is(PFBlocks.ARCHAEFRUCTUS.get())) {
+			doubleplantblock = (DoublePlantBlock) PFBlocks.TALL_ARCHAEFRUCTUS.get();
+		} else {
+			doubleplantblock = (DoublePlantBlock) PFBlocks.TALL_HORSETAIL.get();
+		}
+		
 		if (doubleplantblock.defaultBlockState().canSurvive(p_57320_, p_57322_) && p_57320_.isEmptyBlock(p_57322_.above())) {
 			DoublePlantBlock.placeAt(p_57320_, doubleplantblock.defaultBlockState(), p_57322_, 2);
 		}

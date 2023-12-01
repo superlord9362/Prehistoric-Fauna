@@ -1,0 +1,24 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/block",
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "prehistoricfauna:blocks/thoracosaurus_egg"
+	},
+	"elements": [
+		{
+			"name": "Egg",
+			"from": [6, 0, 6],
+			"to": [10, 7, 10],
+			"rotation": {"angle": 0, "axis": "z", "origin": [0, 7, 1]},
+			"faces": {
+				"north": {"uv": [2, 2, 4, 5.5], "texture": "#particle"},
+				"east": {"uv": [0, 2, 2, 5.5], "texture": "#particle"},
+				"south": {"uv": [6, 2, 8, 5.5], "texture": "#particle"},
+				"west": {"uv": [4, 2, 6, 5.5], "texture": "#particle"},
+				"up": {"uv": [4, 2, 2, 0], "texture": "#particle"},
+				"down": {"uv": [6, 0, 4, 2], "texture": "#particle"}
+			}
+		}
+	]
+}

@@ -62,6 +62,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Basilemys;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Didelphodon;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Thescelosaurus;
+import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Thoracosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
 import superlord.prehistoricfauna.common.entity.fish.Acipenser;
@@ -143,6 +144,7 @@ import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Hyperodap
 import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Ischigualastia;
 import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Saurosuchus;
 import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Sillosuchus;
+import superlord.prehistoricfauna.common.network.KeyInputMessage;
 import superlord.prehistoricfauna.common.util.QuarkFlagRecipeCondition;
 import superlord.prehistoricfauna.common.util.RegistryHelper;
 import superlord.prehistoricfauna.config.PFConfigHolder;
@@ -337,6 +339,7 @@ public class PrehistoricFauna {
 		event.put(PFEntities.LAND_SENTINEL.get(), LandSentinel.createAttributes().build());
 		event.put(PFEntities.LONCHIDION.get(), Lonchidion.createAttributes().build());
 		event.put(PFEntities.ACIPENSER.get(), Acipenser.createAttributes().build());
+		event.put(PFEntities.THORACOSAURUS.get(), Thoracosaurus.createAttributes().build());
 	}
 
 	public final static CreativeModeTab PF_BUILDING = new CreativeModeTab("prehistoric_building_tab") {
@@ -409,6 +412,7 @@ public class PrehistoricFauna {
 			PFProfessions.fillTradeData();
 		});
 		NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageUpdatePaleoscribe.class, MessageUpdatePaleoscribe::write, MessageUpdatePaleoscribe::read, MessageUpdatePaleoscribe.Handler::handle);
+		NETWORK_WRAPPER.registerMessage(packetsRegistered++, KeyInputMessage.class, KeyInputMessage::encode, KeyInputMessage::decode, KeyInputMessage::handle);
 		SpawnPlacements.register(PFEntities.ACIPENSER.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Acipenser::checkAncientFishSpawnRules);
 		SpawnPlacements.register(PFEntities.ARGANODUS.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Arganodus::checkAncientFishSpawnRules);
 		SpawnPlacements.register(PFEntities.CERATODUS.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Ceratodus::checkAncientFishSpawnRules);
@@ -463,6 +467,7 @@ public class PrehistoricFauna {
 		SpawnPlacements.register(PFEntities.ISCHIGUALASTIA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.SAUROSUCHUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.SILLOSUCHUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.THORACOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Thoracosaurus::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.LAND_SENTINEL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, LandSentinel::canSpawn);
 		SpawnPlacements.register(PFEntities.CAVE_SENTINEL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, CaveSentinel::canSpawn);
 		GeologicalHammerEvents.init();

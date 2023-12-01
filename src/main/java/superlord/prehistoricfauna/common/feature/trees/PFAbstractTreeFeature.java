@@ -33,9 +33,9 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.BitSetDiscreteVoxelShape;
 import net.minecraft.world.phys.shapes.DiscreteVoxelShape;
+import superlord.prehistoricfauna.common.feature.util.PFTreeConfig;
 import superlord.prehistoricfauna.common.util.FastNoise;
 import superlord.prehistoricfauna.common.util.FeatureGenUtil;
-import superlord.prehistoricfauna.common.util.trees.PFTreeConfig;
 
 public abstract class PFAbstractTreeFeature<TC extends PFTreeConfig> extends Feature<TC> {
 

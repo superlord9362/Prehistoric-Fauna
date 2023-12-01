@@ -22,6 +22,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Basilemys;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Didelphodon;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Thescelosaurus;
+import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Thoracosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
 import superlord.prehistoricfauna.common.entity.fish.Acipenser;
@@ -166,6 +167,7 @@ public class PFEntities {
 	public static final RegistryObject<EntityType<Dakotaraptor>> DAKOTARAPTOR = REGISTER.register("dakotaraptor", () -> EntityType.Builder.<Dakotaraptor>of(Dakotaraptor::new, MobCategory.CREATURE).sized(0.875F, 2.15F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "dakotaraptor").toString()));
 	public static final RegistryObject<EntityType<Didelphodon>> DIDELPHODON = REGISTER.register("didelphodon", () -> EntityType.Builder.<Didelphodon>of(Didelphodon::new, MobCategory.CREATURE).sized(0.35F, 0.4F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "didelphodon").toString()));
 	public static final RegistryObject<EntityType<Thescelosaurus>> THESCELOSAURUS = REGISTER.register("thescelosaurus", () -> EntityType.Builder.<Thescelosaurus>of(Thescelosaurus::new, MobCategory.CREATURE).sized(0.55F, 1.25F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "thescelosaurus").toString()));
+	public static final RegistryObject<EntityType<Thoracosaurus>> THORACOSAURUS = REGISTER.register("thoracosaurus", () -> EntityType.Builder.<Thoracosaurus>of(Thoracosaurus::new, MobCategory.CREATURE).sized(1, 1).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "thoracosaurus").toString()));
 	public static final RegistryObject<EntityType<Triceratops>> TRICERATOPS = REGISTER.register("triceratops", () -> EntityType.Builder.<Triceratops>of(Triceratops::new, MobCategory.CREATURE).sized(2F, 2.6F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "triceratops").toString()));
 	public static final RegistryObject<EntityType<Tyrannosaurus>> TYRANNOSAURUS = REGISTER.register("tyrannosaurus", () -> EntityType.Builder.<Tyrannosaurus>of(Tyrannosaurus::new, MobCategory.CREATURE).sized(2F, 4F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "tyrannosaurus").toString()));
 	

@@ -69,6 +69,7 @@ import superlord.prehistoricfauna.common.blocks.PFWallSignBlock;
 import superlord.prehistoricfauna.common.blocks.PaleontologyTableBlock;
 import superlord.prehistoricfauna.common.blocks.PaleoscribeBlock;
 import superlord.prehistoricfauna.common.blocks.PlantGrowingBlock;
+import superlord.prehistoricfauna.common.blocks.PoisonGasBlock;
 import superlord.prehistoricfauna.common.blocks.PortalFrameBlock;
 import superlord.prehistoricfauna.common.blocks.PrehistoricPlantBlock;
 import superlord.prehistoricfauna.common.blocks.PtilophyllumBaseBlock;
@@ -112,6 +113,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> CLUBMOSS = REGISTER.register("clubmoss", () -> new AncientPlantBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> MARCHANTIA = REGISTER.register("marchantia", () -> new AncientPlantBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> MOSS_CARPET = REGISTER.register("moss_carpet", () -> new MossBlock(Block.Properties.of(Material.PLANT).strength(0.2F).sound(SoundType.GRASS)));
+	public static final RegistryObject<Block> ASH = REGISTER.register("ash", () -> new MossBlock(Block.Properties.of(Material.SNOW).strength(0.2F).sound(SoundType.SNOW)));
 	public static final RegistryObject<Block> CONIOPTERIS = REGISTER.register("coniopteris", () -> new AncientPlantBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> OSMUNDACAULIS = REGISTER.register("osmundacaulis", () -> new PlantGrowingBlock(Block.Properties.of(Material.PLANT).strength(0.2F).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> TALL_OSMUNDACAULIS = REGISTER.register("tall_osmundacaulis", () -> new DoublePlantBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
@@ -132,7 +134,10 @@ public class PFBlocks {
 	public static final RegistryObject<Block> HUMULUS = REGISTER.register("humulus", () -> new HumulusBlock(Properties.of(Material.GRASS).strength(0.1F).noCollission().sound(SoundType.GRASS).randomTicks()));
 	public static final RegistryObject<Block> TAXODIUM_KNEE = REGISTER.register("taxodium_knee", () -> new TaxodiumKneeBlock(Properties.of(Material.WOOD).strength(0.5F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> AZOLLA = REGISTER.register("azolla", () -> new CobbaniaBlock(Properties.of(Material.WATER_PLANT).strength(0F).sound(SoundType.LILY_PAD).noCollission().noOcclusion()));
-	
+	public static final RegistryObject<Block> ARCHAEFRUCTUS = REGISTER.register("archaefructus", () -> new PrehistoricPlantBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+	public static final RegistryObject<Block> TALL_ARCHAEFRUCTUS = REGISTER.register("tall_archaefructus", () -> new DoublePlantBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+	public static final RegistryObject<Block> ARCHAEAMPHORA = REGISTER.register("archaeamphora", () -> new AncientPlantBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
 	public static final RegistryObject<Block> METASEQUOIA_PLANKS = REGISTER.register("metasequoia_planks", () -> new Block(Block.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> METASEQUOIA_LOG = REGISTER.register("metasequoia_log", () -> createLog());
 	public static final RegistryObject<Block> STRIPPED_METASEQUOIA_LOG = REGISTER.register("stripped_metasequoia_log", () -> createLog());
@@ -857,6 +862,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> TYRANNOSAURUS_EGG = REGISTER.register("tyrannosaurus_egg", () -> new DinosaurEggBlock(PFEntities.TYRANNOSAURUS, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> BASILEMYS_EGG = REGISTER.register("basilemys_egg", () -> new DinosaurEggBlock(PFEntities.BASILEMYS, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> DAKOTARAPTOR_EGG = REGISTER.register("dakotaraptor_egg", () -> new DinosaurEggBlock(PFEntities.DAKOTARAPTOR, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> THORACOSAURUS_EGG = REGISTER.register("thoracosaurus_egg", () -> new DinosaurEggBlock(PFEntities.THORACOSAURUS, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> PROTOCERATOPS_EGG = REGISTER.register("protoceratops_egg", () -> new DinosaurEggBlock(PFEntities.PROTOCERATOPS, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> VELOCIRAPTOR_EGG = REGISTER.register("velociraptor_egg", () -> new DinosaurEggBlock(PFEntities.VELOCIRAPTOR, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> CITIPATI_EGG = REGISTER.register("citipati_egg", () -> new DinosaurEggBlock(PFEntities.CITIPATI, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
@@ -893,6 +899,8 @@ public class PFBlocks {
 	public static final RegistryObject<Block> SAUROSUCHUS_EGG = REGISTER.register("saurosuchus_egg", () -> new DinosaurEggBlock(PFEntities.SAUROSUCHUS, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> ISCHIGUALASTIA_EGG = REGISTER.register("ischigualastia_egg", () -> new DinosaurEggBlock(PFEntities.ISCHIGUALASTIA, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 
+	public static final RegistryObject<Block> POISON_GAS = REGISTER.register("poison_gas", () -> new PoisonGasBlock(BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().randomTicks()));
+	
 	private static RotatedPillarBlock createLog() {
 		return new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F).sound(SoundType.WOOD));
 	}

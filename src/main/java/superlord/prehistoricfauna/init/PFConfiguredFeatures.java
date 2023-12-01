@@ -30,10 +30,10 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStatePr
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.common.feature.trees.util.JohnstoniaConfig;
-import superlord.prehistoricfauna.common.util.CrassostreaOystersConfig;
-import superlord.prehistoricfauna.common.util.NoisySphereConfig;
-import superlord.prehistoricfauna.common.util.trees.PFTreeConfig;
+import superlord.prehistoricfauna.common.feature.util.CrassostreaOystersConfig;
+import superlord.prehistoricfauna.common.feature.util.JohnstoniaConfig;
+import superlord.prehistoricfauna.common.feature.util.NoisySphereConfig;
+import superlord.prehistoricfauna.common.feature.util.PFTreeConfig;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class PFConfiguredFeatures {
@@ -129,14 +129,20 @@ public class PFConfiguredFeatures {
 	public static final RegistryObject<ConfiguredFeature<?, ?>> DRYOPHYLLUM_TREE_6 = REGISTER.register("configured_dryophyllum_tree_6", () -> new ConfiguredFeature<>(PFFeatures.DRYOPHYLLUM_TREE_6.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.DRYOPHYLLUM_LOG.get()).setLeavesBlock(PFBlocks.DRYOPHYLLUM_LEAVES.get()).setMinHeight(12).setMaxHeight(26).build()));
 	public static final RegistryObject<ConfiguredFeature<?, ?>> DRYOPHYLLUM_TREE_7 = REGISTER.register("configured_dryophyllum_tree_7", () -> new ConfiguredFeature<>(PFFeatures.DRYOPHYLLUM_TREE_7.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.DRYOPHYLLUM_LOG.get()).setLeavesBlock(PFBlocks.DRYOPHYLLUM_LEAVES.get()).setMinHeight(18).setMaxHeight(22).build()));
 	public static final RegistryObject<ConfiguredFeature<?, ?>> DRYOPHYLLUM_TREE_8 = REGISTER.register("configured_dryophyllum_tree_8", () -> new ConfiguredFeature<>(PFFeatures.DRYOPHYLLUM_TREE_8.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.DRYOPHYLLUM_LOG.get()).setLeavesBlock(PFBlocks.DRYOPHYLLUM_LEAVES.get()).setMinHeight(20).setMaxHeight(23).build()));
-
+	
 	public static final RegistryObject<ConfiguredFeature<?, ?>> TAXODIUM_TREE_1 = REGISTER.register("configured_taxodium_tree_1", () -> new ConfiguredFeature<>(PFFeatures.TAXODIUM_TREE_1.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.TAXODIUM_LOG.get()).setLeavesBlock(PFBlocks.TAXODIUM_LEAVES.get()).setMinHeight(17).setMaxHeight(25).build()));
 	public static final RegistryObject<ConfiguredFeature<?, ?>> TAXODIUM_TREE_2 = REGISTER.register("configured_taxodium_tree_2", () -> new ConfiguredFeature<>(PFFeatures.TAXODIUM_TREE_2.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.TAXODIUM_LOG.get()).setLeavesBlock(PFBlocks.TAXODIUM_LEAVES.get()).setMinHeight(19).setMaxHeight(27).build()));
 	public static final RegistryObject<ConfiguredFeature<?, ?>> TAXODIUM_TREE_3 = REGISTER.register("configured_taxodium_tree_3", () -> new ConfiguredFeature<>(PFFeatures.TAXODIUM_TREE_3.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.TAXODIUM_LOG.get()).setLeavesBlock(PFBlocks.TAXODIUM_LEAVES.get()).setMinHeight(21).setMaxHeight(29).build()));
 	public static final RegistryObject<ConfiguredFeature<?, ?>> TAXODIUM_TREE_4 = REGISTER.register("configured_taxodium_tree_4", () -> new ConfiguredFeature<>(PFFeatures.TAXODIUM_TREE_4.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.TAXODIUM_LOG.get()).setLeavesBlock(PFBlocks.TAXODIUM_LEAVES.get()).setMinHeight(24).setMaxHeight(32).build()));
 	public static final RegistryObject<ConfiguredFeature<?, ?>> TAXODIUM_TREE_5 = REGISTER.register("configured_taxodium_tree_5", () -> new ConfiguredFeature<>(PFFeatures.TAXODIUM_TREE_5.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.TAXODIUM_LOG.get()).setLeavesBlock(PFBlocks.TAXODIUM_LEAVES.get()).setMinHeight(29).setMaxHeight(37).build()));
 	public static final RegistryObject<ConfiguredFeature<?, ?>> TAXODIUM_TREE_6 = REGISTER.register("configured_taxodium_tree_6", () -> new ConfiguredFeature<>(PFFeatures.TAXODIUM_TREE_6.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.TAXODIUM_LOG.get()).setLeavesBlock(PFBlocks.TAXODIUM_LEAVES.get()).setMinHeight(38).setMaxHeight(38).build()));
-	
+
+	public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_DRYOPHYLLUM_LOG = REGISTER.register("configured_fallen_dryophyllum_log", () -> new ConfiguredFeature<>(PFFeatures.DRYOPHYLLUM_FALLEN_LOG.get(), new JohnstoniaConfig(1)));
+	public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_TAXODIUM_LOG = REGISTER.register("configured_fallen_taxodium_log", () -> new ConfiguredFeature<>(PFFeatures.TAXODIUM_FALLEN_LOG.get(), new JohnstoniaConfig(1)));
+	public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_METASEQUOIA_LOG = REGISTER.register("configured_fallen_metasequoia_log", () -> new ConfiguredFeature<>(PFFeatures.METASEQUOIA_FALLEN_LOG.get(), new JohnstoniaConfig(1)));
+	public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_PLATANITES_LOG = REGISTER.register("configured_fallen_platanites_log", () -> new ConfiguredFeature<>(PFFeatures.PLATANITES_FALLEN_LOG.get(), new JohnstoniaConfig(1)));
+	public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_GINKGO_LOG = REGISTER.register("configured_fallen_ginkgo_log", () -> new ConfiguredFeature<>(PFFeatures.GINKGO_FALLEN_LOG.get(), new JohnstoniaConfig(1)));
+
 	public static final RegistryObject<ConfiguredFeature<?, ?>> ZAMITES_BUSH = REGISTER.register("configured_zamites_bush", () -> new ConfiguredFeature<>(PFFeatures.ZAMITES_BUSH.get(), new JohnstoniaConfig(1)));
 	public static final RegistryObject<ConfiguredFeature<?, ?>> COMMON_ZAMITES_BUSH = REGISTER.register("configured_common_zamites_bush", () -> new ConfiguredFeature<>(PFFeatures.ZAMITES_BUSH.get(), new JohnstoniaConfig(30)));
 	public static final RegistryObject<ConfiguredFeature<?, ?>> COMMON_SABALITES = REGISTER.register("configured_common_sabalites", () -> new ConfiguredFeature<>(PFFeatures.SABALITES.get(), new JohnstoniaConfig(17)));
@@ -182,6 +188,7 @@ public class PFConfiguredFeatures {
 	public static final RegistryObject<ConfiguredFeature<?, ?>> BIG_SANDSTONE_ROCK = REGISTER.register("configured_large_sandstone_rock", () -> new ConfiguredFeature(PFFeatures.BIG_BLOCK_BLOB.get(), new BlockStateConfiguration(Blocks.SANDSTONE.defaultBlockState())));
 	public static final RegistryObject<ConfiguredFeature<?, ?>> RED_SANDSTONE_ROCK = REGISTER.register("configured_red_sandstone_rock", () -> new ConfiguredFeature(Feature.FOREST_ROCK, new BlockStateConfiguration(Blocks.RED_SANDSTONE.defaultBlockState())));
 	public static final RegistryObject<ConfiguredFeature<?, ?>> BIG_RED_SANDSTONE_ROCK = REGISTER.register("configured_large_red_sandstone_rock", () -> new ConfiguredFeature(PFFeatures.BIG_BLOCK_BLOB.get(), new BlockStateConfiguration(Blocks.RED_SANDSTONE.defaultBlockState())));
+	public static final RegistryObject<ConfiguredFeature<?, ?>> MOSSY_ROCK = REGISTER.register("configured_mossy_rock", () -> new ConfiguredFeature(Feature.FOREST_ROCK, new BlockStateConfiguration(Blocks.MOSSY_COBBLESTONE.defaultBlockState())));
 
 	public static final RegistryObject<ConfiguredFeature<?, ?>> PTILOPHYLLUM_TREE = REGISTER.register("configured_ptilophyllum_tree", () -> new ConfiguredFeature(PFFeatures.PTILOPHYLLUM_TREE.get(), new NoneFeatureConfiguration()));
 

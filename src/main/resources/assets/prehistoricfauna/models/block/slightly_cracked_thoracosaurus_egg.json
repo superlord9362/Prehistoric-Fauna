@@ -1,0 +1,7 @@
+{
+    "parent": "prehistoricfauna:block/thoracosaurus_egg",
+    "textures": {
+        "particle": "prehistoricfauna:blocks/thoracosaurus_egg_slightly_cracked",
+        "all": "prehistoricfauna:blocks/thoracosaurus_egg_slightly_cracked"
+    }
+}

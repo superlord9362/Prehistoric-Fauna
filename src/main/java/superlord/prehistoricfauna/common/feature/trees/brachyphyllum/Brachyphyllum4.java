@@ -11,7 +11,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import superlord.prehistoricfauna.common.feature.trees.PFAbstractTreeFeature;
-import superlord.prehistoricfauna.common.util.trees.PFTreeConfig;
+import superlord.prehistoricfauna.common.feature.util.PFTreeConfig;
 
 public class Brachyphyllum4 extends PFAbstractTreeFeature<PFTreeConfig> {
 

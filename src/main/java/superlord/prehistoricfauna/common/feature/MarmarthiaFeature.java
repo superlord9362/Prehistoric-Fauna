@@ -12,7 +12,7 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import superlord.prehistoricfauna.common.blocks.MarmarthiaBlock;
-import superlord.prehistoricfauna.common.feature.trees.util.JohnstoniaConfig;
+import superlord.prehistoricfauna.common.feature.util.JohnstoniaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 
 public class MarmarthiaFeature extends Feature<JohnstoniaConfig> {

@@ -45,6 +45,7 @@ public class PFPlacedFeatures {
 	public static final RegistryObject<PlacedFeature> BIG_RED_SANDSTONE_ROCK = REGISTER.register("placed_big_red_sandstone_rock", () -> new PlacedFeature(PFConfiguredFeatures.BIG_RED_SANDSTONE_ROCK.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(3)));
 	public static final RegistryObject<PlacedFeature> SANDSTONE_ROCK = REGISTER.register("placed_sandstone_rock", () -> new PlacedFeature(PFConfiguredFeatures.SANDSTONE_ROCK.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(1)));
 	public static final RegistryObject<PlacedFeature> BIG_SANDSTONE_ROCK = REGISTER.register("placed_big_sandstone_rock", () -> new PlacedFeature(PFConfiguredFeatures.BIG_SANDSTONE_ROCK.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(1)));
+	public static final RegistryObject<PlacedFeature> MOSSY_ROCK = REGISTER.register("placed_mossy_rock", () -> new PlacedFeature(PFConfiguredFeatures.MOSSY_ROCK.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
 	
 	public static final RegistryObject<PlacedFeature> MARCHANTIA = REGISTER.register("placed_marchantia", () -> new PlacedFeature(PFConfiguredFeatures.MARCHANITA.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(2)));
 	public static final RegistryObject<PlacedFeature> DEAD_OSMUNDACAULIS = REGISTER.register("placed_dead_osmundacaulis", () -> new PlacedFeature(PFConfiguredFeatures.DEAD_OSMUNDACAULIS.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
@@ -80,12 +81,19 @@ public class PFPlacedFeatures {
 	public static final RegistryObject<PlacedFeature> COMMON_OSMUNDA = REGISTER.register("placed_common_osmunda", () -> new PlacedFeature(PFConfiguredFeatures.OSMUNDA.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(6)));
 	public static final RegistryObject<PlacedFeature> COMMON_TALL_OSMUNDA = REGISTER.register("placed_common_tall_osmunda", () -> new PlacedFeature(PFConfiguredFeatures.DOUBLE_OSMUNDA.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(3)));
 	public static final RegistryObject<PlacedFeature> RARE_LOWERED_HORSETAILS = REGISTER.register("placed_rare_lowered_horsetails", () -> new PlacedFeature(PFConfiguredFeatures.LOWERED_HORSETAILS.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
+	public static final RegistryObject<PlacedFeature> CLUBMOSS = REGISTER.register("placed_clubmoss", () -> new PlacedFeature(PFConfiguredFeatures.CLUBMOSS.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(1)));
 
 	public static final RegistryObject<PlacedFeature> TAXODIUM_KNEES = REGISTER.register("placed_taxodium_knees", () -> new PlacedFeature(PFConfiguredFeatures.TAXODIUM_KNEES.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(4)));
 	
 	public static final RegistryObject<PlacedFeature> ZAMITES = REGISTER.register("placed_zamites", () -> new PlacedFeature(PFConfiguredFeatures.COMMON_ZAMITES_BUSH.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
 	public static final RegistryObject<PlacedFeature> SABALITES = REGISTER.register("placed_sabalites", () -> new PlacedFeature(PFConfiguredFeatures.COMMON_SABALITES.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(4), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
 	public static final RegistryObject<PlacedFeature> RARE_SABALITES = REGISTER.register("placed_rare_sabalites", () -> new PlacedFeature(PFConfiguredFeatures.RARE_SABALITES.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
+
+	public static final RegistryObject<PlacedFeature> FALLEN_DRYOPHYLLUM_LOG = REGISTER.register("placed_fallen_dryophyllum_log", () -> new PlacedFeature(PFConfiguredFeatures.FALLEN_DRYOPHYLLUM_LOG.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
+	public static final RegistryObject<PlacedFeature> FALLEN_TAXODIUM_LOG = REGISTER.register("placed_fallen_taxodium_log", () -> new PlacedFeature(PFConfiguredFeatures.FALLEN_TAXODIUM_LOG.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
+	public static final RegistryObject<PlacedFeature> FALLEN_METASEQUOIA_LOG = REGISTER.register("placed_fallen_metasequoia_log", () -> new PlacedFeature(PFConfiguredFeatures.FALLEN_METASEQUOIA_LOG.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
+	public static final RegistryObject<PlacedFeature> FALLEN_PLATANITES_LOG = REGISTER.register("placed_fallen_platanites_log", () -> new PlacedFeature(PFConfiguredFeatures.FALLEN_PLATANITES_LOG.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
+	public static final RegistryObject<PlacedFeature> FALLEN_GINKGO_LOG = REGISTER.register("placed_fallen_ginkgo_log", () -> new PlacedFeature(PFConfiguredFeatures.FALLEN_GINKGO_LOG.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
 
 	public static final RegistryObject<PlacedFeature> SMALL_ARAUCARIA_TREE_1 = REGISTER.register("placed_small_araucaria_tree_1", () -> new PlacedFeature(PFConfiguredFeatures.SMALL_ARAUCARIA_TREE_1.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
 	public static final RegistryObject<PlacedFeature> SMALL_ARAUCARIA_TREE_2 = REGISTER.register("placed_small_araucaria_tree_2", () -> new PlacedFeature(PFConfiguredFeatures.SMALL_ARAUCARIA_TREE_2.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
@@ -207,19 +215,24 @@ public class PFPlacedFeatures {
 	public static final RegistryObject<PlacedFeature> ARROYO_TREES = register("placed_arroyo_trees", PFConfiguredFeatures.ARROYO_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.25F, 1)));
 	public static final RegistryObject<PlacedFeature> TAXODIUM_TREES = register("placed_taxodium_trees", PFConfiguredFeatures.TAXODIUM_TREES, PlacementUtils.countExtra(2, 0.25F, 1), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(4), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome(), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(Blocks.OAK_SAPLING.defaultBlockState(), BlockPos.ZERO)));
 	public static final RegistryObject<PlacedFeature> RARE_DRYOPHYLLUM_TREES = register("placed_rare_dryophyllum_trees", PFConfiguredFeatures.DRYOPHYLLUM_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.25F, 1)));
-	public static final RegistryObject<PlacedFeature> COMMON_DRYOPHYLLUM_TREES = register("placed_common_dryophyllum_trees", PFConfiguredFeatures.DRYOPHYLLUM_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.25F, 1)));
+	public static final RegistryObject<PlacedFeature> COMMON_DRYOPHYLLUM_TREES = register("placed_common_dryophyllum_trees", PFConfiguredFeatures.DRYOPHYLLUM_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.25F, 2)));
 	public static final RegistryObject<PlacedFeature> RARE_SMALL_METASEQUOIA_TREES = register("placed_rare_small_metasequoia_trees", PFConfiguredFeatures.SMALL_METASEQUOIA_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.125F, 1)));
-	public static final RegistryObject<PlacedFeature> RARE_SMALL_GINGKO_TREES = register("placed_rare_small_ginkgo_trees", PFConfiguredFeatures.SMALL_GINKGO_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.25F, 1)));
+	public static final RegistryObject<PlacedFeature> RARE_SMALL_GINKGO_TREES = register("placed_rare_small_ginkgo_trees", PFConfiguredFeatures.SMALL_GINKGO_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.25F, 1)));
 	public static final RegistryObject<PlacedFeature> RARE_TAXODIUM_TREES = register("placed_rare_taxodium_trees", PFConfiguredFeatures.TAXODIUM_TREES, PlacementUtils.countExtra(0, 0.25F, 1), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(4), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome(), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(Blocks.OAK_SAPLING.defaultBlockState(), BlockPos.ZERO)));
 	public static final RegistryObject<PlacedFeature> COMMON_LIRIODENDRITES_TREES = register("placed_common_liriodendrites_trees", PFConfiguredFeatures.LIRIODENDRITES_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.25F, 2)));
-	public static final RegistryObject<PlacedFeature> VERY_RARE_SMALL_GINGKO_TREES = register("placed_very_rare_small_ginkgo_trees", PFConfiguredFeatures.SMALL_GINKGO_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.125F, 1)));
-	public static final RegistryObject<PlacedFeature> VERY_RARE_LARGE_GINGKO_TREES = register("placed_very_rare_large_ginkgo_trees", PFConfiguredFeatures.LARGE_GINKGO_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.125F, 1)));
+	public static final RegistryObject<PlacedFeature> VERY_RARE_SMALL_GINKGO_TREES = register("placed_very_rare_small_ginkgo_trees", PFConfiguredFeatures.SMALL_GINKGO_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.125F, 1)));
+	public static final RegistryObject<PlacedFeature> VERY_RARE_LARGE_GINKGO_TREES = register("placed_very_rare_large_ginkgo_trees", PFConfiguredFeatures.LARGE_GINKGO_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.125F, 1)));
 	public static final RegistryObject<PlacedFeature> RARE_SMALL_ARAUCARIA_TREES = register("placed_rare_small_araucaria_trees", PFConfiguredFeatures.SMALL_ARAUCARIA_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.0625F, 1)));
 	public static final RegistryObject<PlacedFeature> COMMON_SMALL_ARAUCARIA_TREES = register("placed_common_small_araucaria_trees", PFConfiguredFeatures.SMALL_ARAUCARIA_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.125F, 1)));
 	public static final RegistryObject<PlacedFeature> COMMON_SMALL_METASEQUOIA_TREES = register("placed_common_small_metasequoia_trees", PFConfiguredFeatures.SMALL_METASEQUOIA_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.25F, 2)));
 	public static final RegistryObject<PlacedFeature> LARGE_ARAUCARIA_TREES = register("placed_large_aracauria_trees", PFConfiguredFeatures.LARGE_ARAUCARIA_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.125F, 1)));
 	public static final RegistryObject<PlacedFeature> LARGE_METASEQUOIA_TREES = register("placed_large_metasequoia_trees", PFConfiguredFeatures.LARGE_METASEQUOIA_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(2, 0.5F, 2)));
 	public static final RegistryObject<PlacedFeature> RARE_LIRIODENDRITES_TREES = register("placed_rare_liriodendrites_trees", PFConfiguredFeatures.LIRIODENDRITES_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.125F, 1)));
+	public static final RegistryObject<PlacedFeature> SMALL_METASEQUOIA_TREES = register("placed_small_metasequoia_trees", PFConfiguredFeatures.SMALL_METASEQUOIA_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.125F, 1)));
+	public static final RegistryObject<PlacedFeature> VERY_COMMON_DRYOPHYLLUM_TREES = register("placed_very_common_dryophyllum_trees", PFConfiguredFeatures.DRYOPHYLLUM_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.5F, 2)));
+	public static final RegistryObject<PlacedFeature> SMALL_GINKGO_TREES = register("placed_small_ginkgo_trees", PFConfiguredFeatures.SMALL_GINKGO_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.25F, 1)));
+	public static final RegistryObject<PlacedFeature> RARE_LARGE_GINKGO_TREES = register("placed_rare_large_ginkgo_trees", PFConfiguredFeatures.LARGE_GINKGO_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.25F, 1)));
+	public static final RegistryObject<PlacedFeature> SMALL_ARAUCARIA_TREES = register("placed_small_araucaria_trees", PFConfiguredFeatures.SMALL_ARAUCARIA_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.125F, 1)));
 
 	public static final RegistryObject<PlacedFeature> SILT_DISK = REGISTER.register("placed_silt_disk", () -> new PlacedFeature(PFConfiguredFeatures.DISK_SILT.getHolder().orElseThrow(), List.of(CountOnEveryLayerPlacement.of(4), BiomeFilter.biome())));
 
@@ -385,47 +398,66 @@ public class PFPlacedFeatures {
 	}
 	
 	public static void withHellCreekSwampPlants(BiomeGenerationSettings.Builder builder) {
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLUBMOSS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MARCHANTIA.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OSMUNDA.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_OSMUNDA.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MOSS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, COBBANIA.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, AZOLLA.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TROCHODENDROIDES_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_DRYOPHYLLUM_TREES.getHolder().orElseThrow());
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_GINGKO_TREES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_GINKGO_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_METASEQUOIA_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TAXODIUM_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TAXODIUM_KNEES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ALGAE.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CRASSOSTREA_OYSTERS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, MOSSY_ROCK.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_TAXODIUM_LOG.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_DRYOPHYLLUM_LOG.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_METASEQUOIA_LOG.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_PLATANITES_LOG.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_GINKGO_LOG.getHolder().orElseThrow());
 		//Platanites. Quereuxia, Nelumbo, Zingiberopsis
 	}
 	
 	public static void withHellCreekLiriodendritesHillsPlants(BiomeGenerationSettings.Builder builder) {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HUMULUS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLUBMOSS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OSMUNDA.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_OSMUNDA.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MOSS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MARMARTHIA.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, AZOLLA.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_DRYOPHYLLUM_TREES.getHolder().orElseThrow());
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_GINGKO_TREES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_GINKGO_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_METASEQUOIA_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_TAXODIUM_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, COMMON_LIRIODENDRITES_TREES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, MOSSY_ROCK.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_TAXODIUM_LOG.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_DRYOPHYLLUM_LOG.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_METASEQUOIA_LOG.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_PLATANITES_LOG.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_GINKGO_LOG.getHolder().orElseThrow());
 		//Zingiberopsis, Platanites, Bisonia, Nilssonia
 	}
 	
 	public static void withHellCreekClearingPlants(BiomeGenerationSettings.Builder builder) {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HUMULUS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLUBMOSS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_ARAUCARIA_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, COMMON_OSMUNDA.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, COMMON_TALL_OSMUNDA.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_LOWERED_HORSETAILS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SABALITES.getHolder().orElseThrow());
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VERY_RARE_SMALL_GINGKO_TREES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VERY_RARE_SMALL_GINKGO_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_METASEQUOIA_TREES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_METASEQUOIA_LOG.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_PLATANITES_LOG.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_GINKGO_LOG.getHolder().orElseThrow());
 		//Platanites
 	}
 	
@@ -444,11 +476,49 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, COMMON_SMALL_METASEQUOIA_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LARGE_METASEQUOIA_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LARGE_ARAUCARIA_TREES.getHolder().orElseThrow());
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_GINGKO_TREES.getHolder().orElseThrow());
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VERY_RARE_LARGE_GINGKO_TREES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_GINKGO_TREES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VERY_RARE_LARGE_GINKGO_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_TAXODIUM_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_LIRIODENDRITES_TREES.getHolder().orElseThrow());
-		//Platanites, Zingiberopsis, Nilssonia(?), Quereuxia
+		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, MOSSY_ROCK.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_TAXODIUM_LOG.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_DRYOPHYLLUM_LOG.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_METASEQUOIA_LOG.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_PLATANITES_LOG.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_GINKGO_LOG.getHolder().orElseThrow());
+		//Platanites, Zingiberopsis, Nilssonia(?), Quereuxia, Bisonia
+	}
+	
+	public static void withHellCreekRiverPlants(BiomeGenerationSettings.Builder builder) {
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MARCHANTIA.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MARMARTHIA.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TROCHODENDROIDES_TREES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, COMMON_DRYOPHYLLUM_TREES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SMALL_METASEQUOIA_TREES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_GINKGO_TREES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ALGAE.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, MOSSY_ROCK.getHolder().orElseThrow());
+		//Quereuxia
+	}
+	
+	public static void withHellCreekHardwoodForestPlants(BiomeGenerationSettings.Builder builder) {
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HUMULUS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MARCHANTIA.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MOSS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MARMARTHIA.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VERY_COMMON_DRYOPHYLLUM_TREES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SMALL_GINKGO_TREES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_LARGE_GINKGO_TREES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_METASEQUOIA_TREES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SMALL_ARAUCARIA_TREES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, MOSSY_ROCK.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_DRYOPHYLLUM_LOG.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_METASEQUOIA_LOG.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_PLATANITES_LOG.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_GINKGO_LOG.getHolder().orElseThrow());
+		//Platanites, Nilssonia, Quereuxia, Nelumbo, Bisonia
 	}
 	
 	private static List<PlacementModifier> orePlacement(PlacementModifier p_195347_, PlacementModifier p_195348_) {

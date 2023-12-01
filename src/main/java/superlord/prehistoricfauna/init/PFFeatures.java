@@ -50,6 +50,11 @@ import superlord.prehistoricfauna.common.feature.trees.dryophyllum.Dryophyllum5;
 import superlord.prehistoricfauna.common.feature.trees.dryophyllum.Dryophyllum6;
 import superlord.prehistoricfauna.common.feature.trees.dryophyllum.Dryophyllum7;
 import superlord.prehistoricfauna.common.feature.trees.dryophyllum.Dryophyllum8;
+import superlord.prehistoricfauna.common.feature.trees.fallenlog.DryophyllumFallenLogFeature;
+import superlord.prehistoricfauna.common.feature.trees.fallenlog.GinkgoFallenLogFeature;
+import superlord.prehistoricfauna.common.feature.trees.fallenlog.MetasequoiaFallenLogFeature;
+import superlord.prehistoricfauna.common.feature.trees.fallenlog.PlatanitesFallenLogFeature;
+import superlord.prehistoricfauna.common.feature.trees.fallenlog.TaxodiumFallenLogFeature;
 import superlord.prehistoricfauna.common.feature.trees.ginkgo.BigGinkgo1;
 import superlord.prehistoricfauna.common.feature.trees.ginkgo.BigGinkgo2;
 import superlord.prehistoricfauna.common.feature.trees.ginkgo.BigGinkgo3;
@@ -95,15 +100,15 @@ import superlord.prehistoricfauna.common.feature.trees.trochodendroides.Trochode
 import superlord.prehistoricfauna.common.feature.trees.trochodendroides.Trochodendroides2;
 import superlord.prehistoricfauna.common.feature.trees.trochodendroides.Trochodendroides3;
 import superlord.prehistoricfauna.common.feature.trees.trochodendroides.Trochodendroides4;
-import superlord.prehistoricfauna.common.feature.trees.util.JohnstoniaConfig;
 import superlord.prehistoricfauna.common.feature.trees.woodworthia.Woodworthia1;
 import superlord.prehistoricfauna.common.feature.trees.woodworthia.Woodworthia2;
 import superlord.prehistoricfauna.common.feature.trees.woodworthia.Woodworthia3;
 import superlord.prehistoricfauna.common.feature.trees.woodworthia.Woodworthia4;
 import superlord.prehistoricfauna.common.feature.trees.zamites.ZamitesBushFeature;
-import superlord.prehistoricfauna.common.util.CrassostreaOystersConfig;
-import superlord.prehistoricfauna.common.util.NoisySphereConfig;
-import superlord.prehistoricfauna.common.util.trees.PFTreeConfig;
+import superlord.prehistoricfauna.common.feature.util.CrassostreaOystersConfig;
+import superlord.prehistoricfauna.common.feature.util.JohnstoniaConfig;
+import superlord.prehistoricfauna.common.feature.util.NoisySphereConfig;
+import superlord.prehistoricfauna.common.feature.util.PFTreeConfig;
 
 public class PFFeatures {
 	
@@ -214,5 +219,10 @@ public class PFFeatures {
     public static final RegistryObject<MarmarthiaFeature> MARMARTHIA = REGISTER.register("marmarthia", () -> new MarmarthiaFeature(JohnstoniaConfig.CODEC.stable()));
     public static final RegistryObject<HumulusFeature> HUMULUS = REGISTER.register("humulus", () -> new HumulusFeature(GlowLichenConfiguration.CODEC.stable()));
     public static final RegistryObject<AzollaFeature> AZOLLA = REGISTER.register("azolla", () -> new AzollaFeature(JohnstoniaConfig.CODEC.stable()));
+    public static final RegistryObject<DryophyllumFallenLogFeature> DRYOPHYLLUM_FALLEN_LOG = REGISTER.register("dryophyllum_fallen_log", () -> new DryophyllumFallenLogFeature(JohnstoniaConfig.CODEC.stable()));
+    public static final RegistryObject<PlatanitesFallenLogFeature> PLATANITES_FALLEN_LOG = REGISTER.register("platanites_fallen_log", () -> new PlatanitesFallenLogFeature(JohnstoniaConfig.CODEC.stable()));
+    public static final RegistryObject<TaxodiumFallenLogFeature> TAXODIUM_FALLEN_LOG = REGISTER.register("taxodium_fallen_log", () -> new TaxodiumFallenLogFeature(JohnstoniaConfig.CODEC.stable()));
+    public static final RegistryObject<MetasequoiaFallenLogFeature> METASEQUOIA_FALLEN_LOG = REGISTER.register("metasequoia_fallen_log", () -> new MetasequoiaFallenLogFeature(JohnstoniaConfig.CODEC.stable()));
+    public static final RegistryObject<GinkgoFallenLogFeature> GINKGO_FALLEN_LOG = REGISTER.register("ginkgo_fallen_log", () -> new GinkgoFallenLogFeature(JohnstoniaConfig.CODEC.stable()));
     
 }

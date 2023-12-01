@@ -12,7 +12,7 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import superlord.prehistoricfauna.common.blocks.TaxodiumKneeBlock;
 import superlord.prehistoricfauna.common.blocks.TaxodiumKneeBlock.KneeThickness;
-import superlord.prehistoricfauna.common.feature.trees.util.JohnstoniaConfig;
+import superlord.prehistoricfauna.common.feature.util.JohnstoniaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 
 public class TaxodiumKneeFeature extends Feature<JohnstoniaConfig> {

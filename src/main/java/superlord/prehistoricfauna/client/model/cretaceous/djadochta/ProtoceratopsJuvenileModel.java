@@ -275,10 +275,10 @@ public class ProtoceratopsJuvenileModel extends EntityModel<Protoceratops> {
 		this.Neck.xRot = 0;
 		this.Neck.yRot = 0;
 		this.Neck.zRot = 0;
-		this.BLegLeft.x = 1.5F;
+		this.BLegLeft.x = -1.5F;
 		this.BLegLeft.y  = 2.0F;
 		this.BLegLeft.z = 4.0F;
-		this.BLegRight.x = -1.5F;
+		this.BLegRight.x = 1.5F;
 		this.BLegRight.y = 2.0F;
 		this.BLegRight.z = 4.0F;
 		this.Head.x = 0.0F;
@@ -287,10 +287,11 @@ public class ProtoceratopsJuvenileModel extends EntityModel<Protoceratops> {
 		this.Body.x = 0.0F;
 		this.Body.y = 13.0F;
 		this.Body.z = 0.0F;
-		this.FLegLeft.x  = -1.5F;
+		//1.5F, 5.0F, -2.0F
+		this.FLegLeft.x  = 1.5F;
 		this.FLegLeft.y = 5.0F;
 		this.FLegLeft.z = -2.0F;
-		this.FLegRight.x = 1.5F;
+		this.FLegRight.x = -1.5F;
 		this.FLegRight.y = 5.0F;
 		this.FLegRight.z = -2.0F;
 		this.Neck.x = 0.0F;

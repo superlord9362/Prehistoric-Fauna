@@ -47,6 +47,10 @@
 	"block.prehistoricfauna.big_carved_tuber_lit": "Big Tuber Lantern",
 	"block.prehistoricfauna.big_carved_tuber_soul_lit": "Big Soul Tuber Lantern",
 	"block.prehistoricfauna.big_carved_tuber_time_lit": "Big Time Tuber Lantern",
+	"block.prehistoricfauna.ash": "Ash",
+	"block.prehistoricfauna.archaefructus": "Archaefructus",
+	"block.prehistoricfauna.tall_archaefructus": "Tall Archaefructus",
+	"block.prehistoricfauna.archaeamphora": "Archaeamphora",
 	
 	"block.prehistoricfauna.liriodendrites_planks": "Liriodendrites Planks",
 	"block.prehistoricfauna.heidiphyllum_planks": "Heidiphyllum Planks",
@@ -550,6 +554,7 @@
 	"item.prehistoricfauna.melvius_spawn_egg": "Melvius Spawn Egg",
 	"item.prehistoricfauna.lonchidion_spawn_egg": "Lonchidion Spawn Egg",
 	"item.prehistoricfauna.acipenser_spawn_egg": "Acipenser Spawn Egg",
+	"item.prehistoricfauna.thoracosaurus_spawn_egg": "Thoracosaurus Spawn Egg",
 	
 	"entity.prehistoricfauna.thescelosaurus": "Thescelosaurus",
 	"entity.prehistoricfauna.triceratops": "Triceratops",
@@ -613,6 +618,7 @@
 	"entity.prehistoricfauna.melvius": "Melvius",
 	"entity.prehistoricfauna.lonchidion": "Lonchidion",
 	"entity.prehistoricfauna.acipenser": "Acipenser",
+	"entity.prehistoricfauna.thoracosaurus": "Thoracosaurus",
 	
 	"item.prehistoricfauna.araucaria_boat": "Araucaria Boat",
 	"item.prehistoricfauna.metasequoia_boat": "Metasequoia Boat",
@@ -729,6 +735,9 @@
 	"item.prehistoricfauna.melvius_bucket": "Bucket of Melvius",
 	"item.prehistoricfauna.lonchidion_bucket": "Bucket of Lonchidion",
 	"item.prehistoricfauna.acipenser_bucket": "Bucket of Acipenser",
+	"item.prehistoricfauna.raw_lonchidion": "Raw Lonchidion",
+	"item.prehistoricfauna.raw_acipenser": "Raw Acipenser",
+	"item.prehistoricfauna.cooked_acipenser": "Cooked Acipenser",
 	
 	"block.prehistoricfauna.triceratops_egg": "Triceratops Egg",
 	"block.prehistoricfauna.thescelosaurus_egg": "Thescelosaurus Egg",
@@ -771,6 +780,7 @@
 	"block.prehistoricfauna.poposaurus_egg": "Poposaurus Egg",
 	"block.prehistoricfauna.coelophysis_egg": "Coelophysis Egg",
 	"block.prehistoricfauna.typothorax_egg": "Typothorax Egg",
+	"block.prehistoricfauna.thoracosaurus_egg": "Thoracosaurus Egg",
 	
 	"block.prehistoricfauna.small_ammonite_fossil": "Small Ammonite Fossil",
 	"block.prehistoricfauna.medium_ammonite_fossil": "Medium Ammonite Fossil",
@@ -948,6 +958,7 @@
 	"paleopedia.poposaurus": "Poposaurus",
 	"paleopedia.coelophysis": "Coelophysis",
 	"paleopedia.typothorax": "Typothorax",
+	"paleopedia.thoracosaurus": "Thoracosaurus",
 	
 	"item.prehistoricfauna.banner_pattern_claw": "Banner Pattern",
 	"item.prehistoricfauna.banner_pattern_claw.desc": "Claw",
@@ -1197,6 +1208,10 @@
 	"prehistoricfauna.subtitle.velociraptorHurt": "Velociraptor hurts",
 	"prehistoricfauna.subtitle.velociraptorDeath": "Velociraptor dies",
 	"prehistoricfauna.subtitle.velociraptorWarning": "Velociraptor hoots",
+	"prehistoricfauna.subtitle.thoracosaurusIdle": "Thoracosaurus grumbles",
+	"prehistoricfauna.subtitle.thoracosaurusHurt": "Thoracosaurus hurts",
+	"prehistoricfauna.subtitle.thoracosaurusDeath": "Thoracosaurus dies",
+	"prehistoricfauna.subtitle.thoracosaurusWarn": "Thoracosaurus bellows",
 	"prehistoricfauna.subtitle.citipatiIdle": "Citipati honks",
 	"prehistoricfauna.subtitle.citipatiHurt": "Citipati hurts",
 	"prehistoricfauna.subtitle.citipatiDeath": "Citipati dies",

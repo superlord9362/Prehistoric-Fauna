@@ -1,5 +1,6 @@
 package superlord.prehistoricfauna.client;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -13,6 +14,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -38,6 +40,7 @@ import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.Dakotaraptor
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.DakotaraptorModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.DidelphodonModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.ThescelosaurusModel;
+import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.ThoracosaurusModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TriceratopsBabyModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TriceratopsJuvenileModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TriceratopsModel;
@@ -222,6 +225,7 @@ import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.BasilemysRe
 import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.DakotaraptorRenderer;
 import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.DidelphodonRenderer;
 import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.ThescelosaurusRenderer;
+import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.ThoracosaurusRenderer;
 import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.TriceratopsRenderer;
 import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.TyrannosaurusRenderer;
 import superlord.prehistoricfauna.client.render.fish.AcipenserRenderer;
@@ -304,9 +308,11 @@ import superlord.prehistoricfauna.client.render.triassic.ischigualasto.Ischigual
 import superlord.prehistoricfauna.client.render.triassic.ischigualasto.SaurosuchusRenderer;
 import superlord.prehistoricfauna.client.render.triassic.ischigualasto.SillosuchusRenderer;
 import superlord.prehistoricfauna.common.items.PFSpawnEggItem;
+import superlord.prehistoricfauna.common.network.KeyInputMessage;
 import superlord.prehistoricfauna.init.PFBlockEntities;
 import superlord.prehistoricfauna.init.PFContainers;
 import superlord.prehistoricfauna.init.PFEntities;
+import superlord.prehistoricfauna.init.PFKeybinds;
 import superlord.prehistoricfauna.init.PFWoodTypes;
 
 @OnlyIn(Dist.CLIENT)
@@ -315,6 +321,7 @@ public class ClientEvents {
 
 	@SubscribeEvent
 	public static void init(final FMLClientSetupEvent event) {
+		PFKeybinds.register(event);
 		BlockEntityRenderers.register(PFBlockEntities.SIGN.get(), SignRenderer::new);
 		event.enqueueWork(() -> {
 			Sheets.addWoodType(PFWoodTypes.METASEQUOIA);
@@ -552,7 +559,7 @@ public class ClientEvents {
 	public static ModelLayerLocation SUMMONED_HENOS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "summoned_henos"), "summoned_henos");
 	public static ModelLayerLocation CAVE_SENTINEL = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "cave_sentinel"), "cave_sentinel");
 	public static ModelLayerLocation LAND_SENTINEL = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "land_sentinel"), "land_sentinel");
-	
+
 	@SubscribeEvent
 	public static void registerEntityRenders(EntityRenderersEvent.RegisterRenderers event) {
 		event.registerEntityRenderer(PFEntities.HERRERASAURUS_SKULL.get(), HerrerasaurusSkullRenderer::new);
@@ -651,6 +658,7 @@ public class ClientEvents {
 		event.registerEntityRenderer(PFEntities.CAVE_SENTINEL.get(), CaveSentinelRenderer::new);
 		event.registerEntityRenderer(PFEntities.LAND_SENTINEL.get(), LandSentinelRenderer::new);
 		event.registerEntityRenderer(PFEntities.ACIPENSER.get(), AcipenserRenderer::new);
+		event.registerEntityRenderer(PFEntities.THORACOSAURUS.get(), ThoracosaurusRenderer::new);
 	}
 
 	@SubscribeEvent
@@ -816,6 +824,7 @@ public class ClientEvents {
 		event.registerLayerDefinition(TYRANNOSAURUS, TyrannosaurusModel::createBodyLayer);
 		event.registerLayerDefinition(TYRANNOSAURUS_JUVENILE, TyrannosaurusJuvenileModel::createBodyLayer);
 		event.registerLayerDefinition(TYRANNOSAURUS_BABY, TyrannosaurusBabyModel::createBodyLayer);
+		event.registerLayerDefinition(THORACOSAURUS, ThoracosaurusModel::createBodyLayer);
 		//Djadochta
 		event.registerLayerDefinition(AEPYORNITHOMIMUS, AepyornithomimusModel::createBodyLayer);
 		event.registerLayerDefinition(CITIPATI, CitipatiModel::createBodyLayer);
@@ -879,5 +888,53 @@ public class ClientEvents {
 		for (PFSpawnEggItem e : PFSpawnEggItem.UNADDED_EGGS) handler.register(eggColor, e);
 	}
 
+	@Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
+	public static class ForgeBusEvents {
+
+		@SubscribeEvent
+		public static void onKeyPress(InputEvent.KeyInputEvent event) {
+			Minecraft mc = Minecraft.getInstance();
+			if (mc.level == null) return;
+			onInput(mc, event.getKey(), event.getAction());
+		}
+
+		@SubscribeEvent
+		public static void onMouseClick(InputEvent.MouseInputEvent event) {
+			Minecraft mc = Minecraft.getInstance();
+			if (mc.level == null) return;
+			onInput(mc, event.getButton(), event.getAction());
+		}
+
+		private static void onInput(Minecraft mc, int key, int action) {
+			if (mc.screen == null && PFKeybinds.sinkKey.consumeClick()) {
+				PrehistoricFauna.NETWORK_WRAPPER.sendToServer(new KeyInputMessage(key));
+			}
+		}
+	}
+	
+	@Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+	public class InputEvents {
+		
+		@SubscribeEvent
+		public static void onKeyPress(InputEvent.KeyInputEvent event) {
+			Minecraft mc = Minecraft.getInstance();
+			if (mc.level == null) return;
+			onInput(mc, event.getKey(), event.getAction());
+		}
+		
+		@SubscribeEvent
+		public static void onMouseClick(InputEvent.MouseInputEvent event) {
+			Minecraft mc = Minecraft.getInstance();
+			if (mc.level == null) return;
+			onInput(mc, event.getButton(), event.getAction());
+		}
+		
+		private static void onInput(Minecraft mc, int key, int action) {
+			if (mc.screen == null && PFKeybinds.sinkKey.consumeClick()) {
+				PrehistoricFauna.NETWORK_WRAPPER.sendToServer(new KeyInputMessage(key));
+			}
+		}
+		
+	}
 
 }

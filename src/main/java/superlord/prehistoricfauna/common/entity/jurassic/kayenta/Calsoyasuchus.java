@@ -21,6 +21,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -28,6 +29,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.entity.ai.goal.BreathAirGoal;
 import net.minecraft.world.entity.ai.goal.FollowParentGoal;
+import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -39,12 +41,14 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.AmphibiousNodeEvaluator;
 import net.minecraft.world.level.pathfinder.PathFinder;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
@@ -81,7 +85,7 @@ public class Calsoyasuchus extends DinosaurEntity {
 	@SuppressWarnings("deprecation")
 	public Calsoyasuchus(EntityType<? extends DinosaurEntity> type, Level worldIn) {
 		super(type, worldIn);
-		this.moveControl = new Calsoyasuchus.MoveHelperController(this);
+		this.moveControl = new Calsoyasuchus.CalsoyasuchusMoveControl(this);
 		this.maxUpStep = 1.0F;
 		super.maxHunger = maxHunger;
 	}
@@ -91,79 +95,37 @@ public class Calsoyasuchus extends DinosaurEntity {
 		else return 0.3F;
 	}
 
-	public int getMaxAir() {
-		return 4800;
-	}
+	public int getMaxAirSupply() {
+	      return 4800;
+	   }
 
-	protected int determineNextAir(int currentAir) {
-		return this.getMaxAir();
-	}
+	   protected int increaseAirSupply(int p_28389_) {
+	      return this.getMaxAirSupply();
+	   }
 
 	protected float getWaterSlowDown() {
 		return 1F;
 	}
+	
+	public float getWalkTargetValue(BlockPos pos, LevelReader worldIn) {
+		return worldIn.getFluidState(pos.below()).isEmpty() && worldIn.getFluidState(pos).is(FluidTags.WATER) ? 10.0F : super.getWalkTargetValue(pos, worldIn);
+	}
+	
+	public void travel(Vec3 travelVector) {
+		if (this.isEffectiveAi() && this.isInWater()) {
+			this.moveRelative(this.getSpeed(), travelVector);
+			this.move(MoverType.SELF, this.getDeltaMovement());
+			this.setDeltaMovement(this.getDeltaMovement().scale(0.5D));
+			if (this.getTarget() == null) {
+				this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.005D, 0.0D));
+			}
+		} else {
+			super.travel(travelVector);
+		}
+	}
 
 	public boolean isFood(ItemStack stack) {
 		return stack.getItem() == PFItems.CERATODUS.get();
-	}
-
-	class WalkAndSwimPathNavigator extends WaterBoundPathNavigation {
-
-		WalkAndSwimPathNavigator(Calsoyasuchus calsoyasuchus, Level world) {
-			super(calsoyasuchus, world);
-		}
-
-		protected boolean canNavigate() {
-			return true;
-		}
-
-		protected PathFinder getPathFinder(int uncategorizedNumber) {
-			this.nodeEvaluator = new AmphibiousNodeEvaluator(true);
-			return new PathFinder(this.nodeEvaluator, uncategorizedNumber);
-		}
-
-		public boolean canStandOnPos(BlockPos pos) {
-			return !this.level.getBlockState(pos.below()).isAir();
-		}
-
-	}
-
-	static class MoveHelperController extends MoveControl {
-		private final Calsoyasuchus calsoyasuchus;
-
-		MoveHelperController(Calsoyasuchus calsoyasuchus) {
-			super(calsoyasuchus);
-			this.calsoyasuchus = calsoyasuchus;
-		}
-
-		public void tick() {
-			if (this.calsoyasuchus.isEyeInFluid(FluidTags.WATER)) {
-				this.calsoyasuchus.setDeltaMovement(this.calsoyasuchus.getDeltaMovement().add(0.0D, 0.005D, 0.0D));
-			}
-			if (this.operation == MoveControl.Operation.MOVE_TO && !this.calsoyasuchus.getNavigation().isDone()) {
-				float f = (float)(this.speedModifier * this.calsoyasuchus.getAttributeValue(Attributes.MOVEMENT_SPEED));
-				this.calsoyasuchus.setSpeed(Mth.lerp(0.125F, this.calsoyasuchus.getSpeed(), f));
-				double d0 = this.wantedX - this.calsoyasuchus.getX();
-				double d1 = this.wantedY - this.calsoyasuchus.getY();
-				double d2 = this.wantedZ - this.calsoyasuchus.getZ();
-				if (d1 != 0.0D) {
-					double d3 = (double)Mth.sqrt((float) (d0 * d0 + d1 * d1 + d2 * d2));
-					this.calsoyasuchus.setDeltaMovement(this.calsoyasuchus.getDeltaMovement().add(0.0D, (double)this.calsoyasuchus.getSpeed() * (d1 / d3) * 0.1D, 0.0D));
-				}
-				if (d0 != 0.0D || d2 != 0.0D) {
-					float f1 = (float)(Mth.atan2(d2, d0) * (double)(180F / (float)Math.PI)) - 90.0F;
-					this.calsoyasuchus.xRot = this.rotlerp(this.calsoyasuchus.xRot, f1, 90.0F);
-					this.calsoyasuchus.xRotO = this.calsoyasuchus.xRot;
-				}
-			} else {
-				this.calsoyasuchus.setSpeed(0.0F);
-			}
-		}
-
-	}
-
-	protected PathNavigation createNavigation(Level world) {
-		return new Calsoyasuchus.WalkAndSwimPathNavigator(this, world);
 	}
 
 	protected boolean func_212800_dy() {
@@ -174,7 +136,8 @@ public class Calsoyasuchus extends DinosaurEntity {
 		super.registerGoals();
 		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
 		this.goalSelector.addGoal(1, new Calsoyasuchus.MeleeAttackGoal());
-		this.goalSelector.addGoal(1, new BabyPanicGoal(this));
+		this.goalSelector.addGoal(1, new Calsoyasuchus.CalsoyasuchusPanicGoal(this));
+		this.goalSelector.addGoal(3, new Calsoyasuchus.CalsoyasuchusGoToWaterGoal(this, 1.0D));
 		this.targetSelector.addGoal(1, new DinosaurHurtByTargetGoal(this));
 		this.targetSelector.addGoal(2, new ProtectBabyGoal(this));
 		this.targetSelector.addGoal(2, new DinosaurTerritorialAttackGoal(this));
@@ -183,7 +146,7 @@ public class Calsoyasuchus extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new DinosaurMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new NaturalMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
-		this.goalSelector.addGoal(5, new RandomStrollGoal(this, 1.0D));
+		this.goalSelector.addGoal(5, new Calsoyasuchus.CalsoyasuchusRandomStrollGoal(this, 1.0D, 100));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
@@ -381,6 +344,122 @@ public class Calsoyasuchus extends DinosaurEntity {
 
 	public BlockState getEggBlock() {
 		return PFBlocks.CALSOYASUCHUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
+	}
+	
+	static class CalsoyasuchusGoToWaterGoal extends MoveToBlockGoal {
+		private static final int GIVE_UP_TICKS = 1200;
+		private final Calsoyasuchus calsoyasuchus;
+		
+		CalsoyasuchusGoToWaterGoal(Calsoyasuchus calsoyasuchus, double speed) {
+			super(calsoyasuchus, calsoyasuchus.isBaby() ? 2.0D : speed, 24);
+			this.calsoyasuchus = calsoyasuchus;
+			this.verticalSearchStart = -1;
+		}
+		
+		public boolean canContinueToUse() {
+			return !this.calsoyasuchus.isInWater() && this.tryTicks <= GIVE_UP_TICKS && this.isValidTarget(this.calsoyasuchus.level, this.blockPos);
+		}
+		
+		public boolean canUse() {
+			if (this.calsoyasuchus.isBaby() && !this.calsoyasuchus.isInWater()) {
+				return super.canUse();
+			} else return !this.calsoyasuchus.isInWater() && !this.calsoyasuchus.hasBaby() ? super.canUse() : false;
+		}
+		
+		public boolean shouldRecalculatePath() {
+			return this.tryTicks % 160 == 0;
+		}
+		
+		protected boolean isValidTarget(LevelReader level, BlockPos pos) {
+			return level.getBlockState(pos).is(Blocks.WATER);
+		}
+	}
+	
+	static class CalsoyasuchusPanicGoal extends BabyPanicGoal {
+		CalsoyasuchusPanicGoal(Calsoyasuchus calsoyasuchus) {
+			super(calsoyasuchus);
+		}
+		
+		public boolean canUse() {
+			if (!this.shouldPanic() || !this.mob.isBaby()) {
+				return false;
+			} else {
+				BlockPos blockpos = this.lookForWater(this.mob.level, this.mob, 7);
+				if (blockpos != null) {
+					this.posX = (double)blockpos.getX();
+					this.posY = (double)blockpos.getY();
+					this.posZ = (double)blockpos.getZ();
+					return true;
+				} else {
+					return this.findRandomPosition();
+				}
+			}
+		}
+	}
+	
+	static class CalsoyasuchusRandomStrollGoal extends RandomStrollGoal {
+		private final Calsoyasuchus calsoyasuchus;
+		
+		CalsoyasuchusRandomStrollGoal(Calsoyasuchus calsoyasuchus, double speed, int interval) {
+			super(calsoyasuchus, speed, interval);
+			this.calsoyasuchus = calsoyasuchus;
+		}
+		
+		public boolean canUse() {
+			return !this.mob.isInWater() && !this.calsoyasuchus.hasBaby() ? super.canUse() : false;
+		}
+	}
+	
+	static class CalsoyasuchusPathNavigation extends WaterBoundPathNavigation {
+		CalsoyasuchusPathNavigation(Calsoyasuchus calsoyasuchus, Level level) {
+			super(calsoyasuchus, level);
+		}
+		
+		protected boolean canUpdatePath() {
+			return true;
+		}
+		
+		protected PathFinder createPathFinder(int maxNodes) {
+			this.nodeEvaluator = new AmphibiousNodeEvaluator(true);
+			return new PathFinder(this.nodeEvaluator, maxNodes);
+		}
+		
+		public boolean isStableDestination(BlockPos pos) {
+			return !this.level.getBlockState(pos.below()).isAir();
+		}
+		
+	}
+	
+	static class CalsoyasuchusMoveControl extends MoveControl {
+		private final Calsoyasuchus calsoyasuchus;
+		
+		CalsoyasuchusMoveControl(Calsoyasuchus calsoyasuchus) {
+			super(calsoyasuchus);
+			this.calsoyasuchus = calsoyasuchus;
+		}
+		
+		public void tick() {
+			if (this.operation == MoveControl.Operation.MOVE_TO && !this.calsoyasuchus.getNavigation().isDone()) {
+				double d0 = this.wantedX - this.calsoyasuchus.getX();
+				double d1 = this.wantedY - this.calsoyasuchus.getY();
+				double d2 = this.wantedZ - this.calsoyasuchus.getZ();
+				double d3 = Math.sqrt(d0 * d0 + d1 * d1 + d2 *d2);
+				d1 /= d3;
+				float f = (float)(Mth.atan2(d2, d0) * (double)(180F / (float)Math.PI)) - 90.0F;
+				this.calsoyasuchus.setYRot(this.rotlerp(this.calsoyasuchus.getYRot(), f, 90.0F));
+				this.calsoyasuchus.yBodyRot = this.calsoyasuchus.getYRot();
+				float f1 = (float)(this.speedModifier * this.calsoyasuchus.getAttributeValue(Attributes.MOVEMENT_SPEED));
+				this.calsoyasuchus.setSpeed(Mth.lerp(0.125F, this.calsoyasuchus.getSpeed(), f1));
+				this.calsoyasuchus.setDeltaMovement(this.calsoyasuchus.getDeltaMovement().add(0.0D, (double)this.calsoyasuchus.getSpeed() * d1 * 0.1D, 0.0D));
+			} else {
+				this.calsoyasuchus.setSpeed(0.0F);
+			}
+		}
+		
+	}
+	
+	protected PathNavigation createNavigation(Level level) {
+		return new Calsoyasuchus.CalsoyasuchusPathNavigation(this, level);
 	}
 
 }

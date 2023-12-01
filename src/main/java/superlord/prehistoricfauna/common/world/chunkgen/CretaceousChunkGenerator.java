@@ -308,8 +308,8 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 		}
 		if (biome.is(PFBiomes.HELL_CREEK_RIVER.getKey())) {
 			sample -= riverNoise;
-			sample *= 1.2;
-			sample -= 9;
+			sample *= 2.3;
+			sample -= 26;
 		}
 		if (biome.is(PFBiomes.YIXIAN_SNOWY_MOUNTAINS.getKey()) || biome.is(PFBiomes.YIXIAN_VOLCANO.getKey())) {
 			sample *= 5.9F;
@@ -321,7 +321,7 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 			sample *= 0.5F;
 			sample -= (y - this.settings.value().seaLevel() - hugeCliffNoise * 64) / (16.0F / bigRockNoise * (hugeCliffWobble + 1));
 		}
-		if (biome.is(PFBiomes.HELL_CREEK_HARDWOOD_FOREST.getKey()) || biome.is(PFBiomes.HELL_CREEK_CLEARING.getKey()) || biome.is(PFBiomes.YIXIAN_FOREST.getKey()) || biome.is(PFBiomes.DJADOCHTA_ARROYO.getKey()) || biome.is(PFBiomes.HELL_CREEK_REDWOODS.getKey()) || biome.is(PFBiomes.HELL_CREEK_SWAMP.getKey()) || biome.is(PFBiomes.HELL_CREEK_RIVER.getKey())) {
+		if (biome.is(PFBiomes.HELL_CREEK_HARDWOOD_FOREST.getKey()) || biome.is(PFBiomes.HELL_CREEK_CLEARING.getKey()) || biome.is(PFBiomes.YIXIAN_FOREST.getKey()) || biome.is(PFBiomes.DJADOCHTA_ARROYO.getKey()) || biome.is(PFBiomes.HELL_CREEK_REDWOODS.getKey()) || biome.is(PFBiomes.HELL_CREEK_SWAMP.getKey()) || biome.is(PFBiomes.HELL_CREEK_RIVER.getKey()) || biome.is(PFBiomes.DJADOCHTA_ALLUVIAL_PLAINS.getKey())) {
 			//sample *= 12.6F;
 			sample -= flatsNoise;
 			//sample *= 12.5;

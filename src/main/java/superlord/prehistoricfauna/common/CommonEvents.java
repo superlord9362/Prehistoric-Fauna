@@ -4,10 +4,12 @@ import com.google.common.collect.ImmutableMap;
 
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.FireBlock;
+import net.minecraftforge.event.TickEvent.WorldTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -92,10 +94,13 @@ public class CommonEvents {
 		compostibleBlocks(0.3F, PFItems.PTILOPHYLLUM_FRONDS.get());
 		compostibleBlocks(0.3F, PFBlocks.LAUROZAMITES.get());
 		compostibleBlocks(0.3F, PFBlocks.OTOZAMITES.get());
+		compostibleBlocks(0.3F, PFBlocks.ARCHAEFRUCTUS.get());
+		compostibleBlocks(0.3F, PFBlocks.ARCHAEAMPHORA.get());
 		compostibleBlocks(0.3F, PFItems.MARMARTHIA_BERRIES.get());
 		compostibleBlocks(0.5F, PFBlocks.TALL_HORSETAIL.get());
 		compostibleBlocks(0.5F, PFBlocks.TALL_OSMUNDA.get());
 		compostibleBlocks(0.5F, PFBlocks.SCYTOPHYLLUM.get());
+		compostibleBlocks(0.5F, PFBlocks.TALL_ARCHAEFRUCTUS.get());
 		compostibleBlocks(0.5F, PFBlocks.MOSS_BLOCK.get());
 		compostibleBlocks(0.5F, PFBlocks.TALL_OSMUNDACAULIS.get());
 		compostibleBlocks(0.5F, PFBlocks.TALL_OTOZAMITES.get());
@@ -284,6 +289,9 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.TALL_HORSETAIL.get(), 60, 100);
 		registerFlammable(PFBlocks.TALL_OSMUNDA.get(), 60, 100);
 		registerFlammable(PFBlocks.CONIOPTERIS.get(), 60, 100);
+		registerFlammable(PFBlocks.ARCHAEAMPHORA.get(), 60, 100);
+		registerFlammable(PFBlocks.ARCHAEFRUCTUS.get(), 60, 100);
+		registerFlammable(PFBlocks.TALL_ARCHAEFRUCTUS.get(), 60, 100);
 		registerFlammable(PFBlocks.TALL_OSMUNDACAULIS.get(), 60, 100);
 		registerFlammable(PFBlocks.TALL_OTOZAMITES.get(), 60, 100);
 		registerFlammable(PFBlocks.OTOZAMITES.get(), 60, 100);
@@ -297,5 +305,11 @@ public class CommonEvents {
 		FireBlock fire = (FireBlock) Blocks.FIRE;
 		fire.setFlammable(block, flameOdds, burnOdds);
 	}
+	
+//	@SubscribeEvent
+//	public static void limnicEruptionEvent(WorldTickEvent event) {
+//		Level world = event.world;
+//		world.getBiomeManager().getBiome(world.block)
+//	}
 
 }

@@ -143,7 +143,8 @@ public class WallFossil extends HangingEntity implements IEntityAdditionalSpawnD
          HORSESHOE(32, 16),
          LONGISQUAMA(32, 32),
          HYPHALOSAURUS(16, 32),
-         TULLIMONSTRUM(32, 16);
+         TULLIMONSTRUM(32, 16),
+         SINOSAUROPTERYX(32, 48);
 
         public static final WallFossilType[] VALUES = values();
 
