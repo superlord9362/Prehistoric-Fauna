@@ -1,10 +1,11 @@
 package superlord.prehistoricfauna.common.world.chunkgen;
 
+import java.util.function.Function;
+
 import com.mojang.serialization.Codec;
+
 import net.minecraft.world.level.levelgen.DensityFunction;
 import superlord.prehistoricfauna.common.util.FastNoise;
-
-import java.util.function.Function;
 
 public class FastNoiseDensityFunction implements DensityFunction.SimpleFunction {
     final FastNoise noise;

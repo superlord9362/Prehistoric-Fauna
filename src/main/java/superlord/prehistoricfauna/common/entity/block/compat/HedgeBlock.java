@@ -1,6 +1,7 @@
 package superlord.prehistoricfauna.common.entity.block.compat;
 
 import com.google.common.collect.ImmutableList;
+
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;

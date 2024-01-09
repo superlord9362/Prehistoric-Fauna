@@ -1,0 +1,36 @@
+{
+    "variants": {
+        "": [
+			{
+				"model": "prehistoricfauna:block/nelumbo_pad"
+			},
+			{
+				"model": "prehistoricfauna:block/nelumbo_pad",
+				"y": 90
+			},
+			{
+				"model": "prehistoricfauna:block/nelumbo_pad",
+				"y": 180
+			},
+			{
+				"model": "prehistoricfauna:block/nelumbo_pad",
+				"y": 270
+			},
+			{
+				"model": "prehistoricfauna:block/flowering_nelumbo"
+			},
+			{
+				"model": "prehistoricfauna:block/flowering_nelumbo",
+				"y": 90
+			},
+			{
+				"model": "prehistoricfauna:block/flowering_nelumbo",
+				"y": 180
+			},
+			{
+				"model": "prehistoricfauna:block/flowering_nelumbo",
+				"y": 270
+			}
+		]
+    }
+}

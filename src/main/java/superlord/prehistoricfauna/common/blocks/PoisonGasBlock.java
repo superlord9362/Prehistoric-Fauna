@@ -22,7 +22,6 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import superlord.prehistoricfauna.init.PFBlocks;
 
 public class PoisonGasBlock extends Block {
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_15;
@@ -112,6 +111,7 @@ public class PoisonGasBlock extends Block {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random random) {
 		BlockPos abovePos = pos.above();
 		BlockPos northPos = pos.north();

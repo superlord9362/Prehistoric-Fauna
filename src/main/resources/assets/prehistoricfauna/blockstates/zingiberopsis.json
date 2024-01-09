@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=lower": { "model": "prehistoricfauna:block/zingiberopsis_bottom" },
+        "half=upper":    { "model": "prehistoricfauna:block/zingiberopsis_top" }
+    }
+}

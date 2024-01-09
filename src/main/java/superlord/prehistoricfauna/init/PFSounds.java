@@ -26,6 +26,7 @@ public class PFSounds {
 	public static final SoundEvent LONCHIDION_HURT, LONCHIDION_DEATH;
 	public static final SoundEvent ACIPENSER_HURT, ACIPENSER_DEATH;
 	public static final SoundEvent THORACOSAURUS_IDLE, THORACOSAURUS_HURT, THORACOSAURUS_WARN, THORACOSAURUS_DEATH;
+	public static final SoundEvent PALAEOSANIWA_IDLE, PALAEOSANIWA_HURT, PALAEOSANIWA_WARN, PALAEOSANIWA_DEATH;
 	//Djadochta
 	public static final SoundEvent PROTOCERATOPS_IDLE, PROTOCERATOPS_HURT, PROTOCERATOPS_WARN, PROTOCERATOPS_DEATH;
 	public static final SoundEvent VELOCIRAPTOR_IDLE, VELOCIRAPTOR_HURT, VELOCIRAPTOR_DEATH, VELOCIRAPTOR_WARN;
@@ -34,6 +35,7 @@ public class PFSounds {
 	public static final SoundEvent TELMASAURUS_IDLE, TELMASAURUS_HURT, TELMASAURUS_DEATH;
 	public static final SoundEvent PINACOSAURUS_IDLE, PINACOSAURUS_HURT, PINACOSAURUS_DEATH, PINACOSAURUS_WARNING;
 	public static final SoundEvent PLESIOHADROS_IDLE, PLESIOHADROS_HURT, PLESIOHADROS_DEATH, PLESIOHADROS_WARNING;
+	public static final SoundEvent OVIRAPTOR_IDLE, OVIRAPTOR_HURT, OVIRAPTOR_DEATH;
 	//Morrison
 	public static final SoundEvent ALLOSAURUS_IDLE, ALLOSAURUS_BITE, ALLOSAURUS_HURT, ALLOSAURUS_WARN, ALLOSAURUS_DEATH, ALLOSAURUS_SNORES;
 	public static final SoundEvent STEGOSAURUS_IDLE, STEGOSAURUS_HURT, STEGOSAURUS_WARN, STEGOSAURUS_DEATH, STEGOSAURUS_SNORES;
@@ -136,6 +138,10 @@ public class PFSounds {
 		evt.getRegistry().register(THORACOSAURUS_HURT);
 		evt.getRegistry().register(THORACOSAURUS_WARN);
 		evt.getRegistry().register(THORACOSAURUS_DEATH);
+		evt.getRegistry().register(PALAEOSANIWA_IDLE);
+		evt.getRegistry().register(PALAEOSANIWA_HURT);
+		evt.getRegistry().register(PALAEOSANIWA_WARN);
+		evt.getRegistry().register(PALAEOSANIWA_DEATH);
 		//Djadochta
 		evt.getRegistry().register(PROTOCERATOPS_IDLE);
 		evt.getRegistry().register(PROTOCERATOPS_WARN);
@@ -163,6 +169,9 @@ public class PFSounds {
 		evt.getRegistry().register(PLESIOHADROS_HURT);
 		evt.getRegistry().register(PLESIOHADROS_IDLE);
 		evt.getRegistry().register(PLESIOHADROS_WARNING);
+		evt.getRegistry().register(OVIRAPTOR_IDLE);
+		evt.getRegistry().register(OVIRAPTOR_HURT);
+		evt.getRegistry().register(OVIRAPTOR_DEATH);
 		//Morrison
 		evt.getRegistry().register(ALLOSAURUS_IDLE);
 		evt.getRegistry().register(ALLOSAURUS_BITE);
@@ -364,6 +373,10 @@ public class PFSounds {
 		THORACOSAURUS_HURT = createEvent("thoracosaurus_hurt");
 		THORACOSAURUS_DEATH = createEvent("thoracosaurus_death");
 		THORACOSAURUS_WARN = createEvent("thoracosaurus_warn");
+		PALAEOSANIWA_IDLE = createEvent("palaeosaniwa_idle");
+		PALAEOSANIWA_HURT = createEvent("palaeosaniwa_hurt");
+		PALAEOSANIWA_WARN = createEvent("palaeosaniwa_warn");
+		PALAEOSANIWA_DEATH = createEvent("palaeosaniwa_death");
 		//Djadochta
 		PROTOCERATOPS_IDLE = createEvent("protoceratops_idle");
 		PROTOCERATOPS_HURT = createEvent("protoceratops_hurt");
@@ -391,6 +404,9 @@ public class PFSounds {
 		PLESIOHADROS_HURT = createEvent("plesiohadros_hurt");
 		PLESIOHADROS_DEATH = createEvent("plesiohadros_death");
 		PLESIOHADROS_WARNING = createEvent("plesiohadros_warning");
+		OVIRAPTOR_IDLE = createEvent("oviraptor_idle");
+		OVIRAPTOR_HURT = createEvent("oviraptor_hurt");
+		OVIRAPTOR_DEATH = createEvent("oviraptor_death");
 		//Morrison
 		ALLOSAURUS_IDLE = createEvent("allosaurus_idle");
 		ALLOSAURUS_BITE = createEvent("allosaurus_bite");

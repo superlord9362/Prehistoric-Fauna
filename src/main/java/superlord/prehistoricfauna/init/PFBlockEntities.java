@@ -40,7 +40,8 @@ public class PFBlockEntities {
 			PFBlocks.DRYOPHYLLUM_SIGN.get(), PFBlocks.DRYOPHYLLUM_WALL_SIGN.get(),
 			PFBlocks.TAXODIUM_SIGN.get(), PFBlocks.TAXODIUM_WALL_SIGN.get(),
 			PFBlocks.SABALITES_SIGN.get(), PFBlocks.SABALITES_WALL_SIGN.get(),
-			PFBlocks.PLATANITES_SIGN.get(), PFBlocks.PLATANITES_WALL_SIGN.get()
+			PFBlocks.PLATANITES_SIGN.get(), PFBlocks.PLATANITES_WALL_SIGN.get(),
+			PFBlocks.TAXUS_SIGN.get(), PFBlocks.TAXUS_WALL_SIGN.get()
 			).build(null));
     public static final RegistryObject<BlockEntityType<PaleoscribeBlockEntity>> PALEOSCRIBE = REGISTER.register("paleoscribe", () -> BlockEntityType.Builder.of(PaleoscribeBlockEntity::new, PFBlocks.PALEOSCRIBE.get()).build(null));
     public static final RegistryObject<BlockEntityType<PaleontologyTableBlockEntity>> PALEONTOLOGY_TABLE = REGISTER.register("paleontology_table", () -> BlockEntityType.Builder.of(PaleontologyTableBlockEntity::new, PFBlocks.PALEONTOLOGY_TABLE.get()).build(null));

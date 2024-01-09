@@ -59,11 +59,11 @@ public class ClientProxy extends CommonProxy {
 		}, PFBlocks.ARAUCARIA_LEAVES.get());
 		blockcolors.register((state, reader, pos, color) -> {
 			return reader != null && pos != null ? BiomeColors.getAverageFoliageColor(reader, pos) : FoliageColor.getDefaultColor();
-		}, PFBlocks.ARAUCARIA_LEAVES.get(), PFBlocks.METASEQUOIA_LEAVES.get(), PFBlocks.CONIOPTERIS.get(), PFBlocks.PROTOPICEOXYLON_LEAVES.get(), PFBlocks.PROTOJUNIPEROXYLON_LEAVES.get(), PFBlocks.CLADOPHLEBIS.get(), PFBlocks.AGATHOXYLON_LEAVES.get(), PFBlocks.CLADOPHLEBIS.get(), PFBlocks.TAXODIUM_LEAVES.get(), PFBlocks.TAXODIUM_LEAF_CARPET.get(), PFBlocks.TAXODIUM_HEDGE.get());
+		}, PFBlocks.ARAUCARIA_LEAVES.get(), PFBlocks.METASEQUOIA_LEAVES.get(), PFBlocks.CONIOPTERIS.get(), PFBlocks.PROTOPICEOXYLON_LEAVES.get(), PFBlocks.PROTOJUNIPEROXYLON_LEAVES.get(), PFBlocks.CLADOPHLEBIS.get(), PFBlocks.AGATHOXYLON_LEAVES.get(), PFBlocks.CLADOPHLEBIS.get(), PFBlocks.TAXODIUM_LEAVES.get(), PFBlocks.TAXODIUM_LEAF_CARPET.get(), PFBlocks.TAXODIUM_HEDGE.get(), PFBlocks.TAXUS_LEAVES.get(), PFBlocks.TAXUS_LEAF_CARPET.get(), PFBlocks.TAXUS_HEDGE.get());
 		itemcolors.register((p_210235_1_, p_210235_2_) -> {
 			BlockState blockstate = ((BlockItem) p_210235_1_.getItem()).getBlock().defaultBlockState();
 			return blockcolors.getColor(blockstate, (BlockAndTintGetter) null, (BlockPos) null, p_210235_2_);
-		}, PFBlocks.ARAUCARIA_LEAVES.get(), PFBlocks.METASEQUOIA_LEAVES.get(), PFBlocks.CONIOPTERIS.get(), PFBlocks.PROTOPICEOXYLON_LEAVES.get(), PFBlocks.PROTOJUNIPEROXYLON_LEAVES.get(), PFBlocks.CLADOPHLEBIS.get(), PFBlocks.AGATHOXYLON_LEAVES.get(), PFBlocks.CLADOPHLEBIS.get(), PFBlocks.TAXODIUM_LEAVES.get(), PFBlocks.TAXODIUM_LEAF_CARPET.get(), PFBlocks.TAXODIUM_HEDGE.get());
+		}, PFBlocks.ARAUCARIA_LEAVES.get(), PFBlocks.METASEQUOIA_LEAVES.get(), PFBlocks.CONIOPTERIS.get(), PFBlocks.PROTOPICEOXYLON_LEAVES.get(), PFBlocks.PROTOJUNIPEROXYLON_LEAVES.get(), PFBlocks.CLADOPHLEBIS.get(), PFBlocks.AGATHOXYLON_LEAVES.get(), PFBlocks.CLADOPHLEBIS.get(), PFBlocks.TAXODIUM_LEAVES.get(), PFBlocks.TAXODIUM_LEAF_CARPET.get(), PFBlocks.TAXODIUM_HEDGE.get(), PFBlocks.TAXUS_LEAVES.get(), PFBlocks.TAXUS_LEAF_CARPET.get(), PFBlocks.TAXUS_HEDGE.get());
 
 		RenderType cutoutRenderType = RenderType.cutout();
 		RenderType translucentRenderType = RenderType.translucent();
@@ -256,6 +256,19 @@ public class ClientProxy extends CommonProxy {
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.ARCHAEFRUCTUS.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TALL_ARCHAEFRUCTUS.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POISON_GAS.get(), translucentRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.BISONIA.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.NELUMBO_PAD.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.NELUMBO_STEM.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.NELUMBO_ROOTS.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.ZINGIBEROPSIS.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TAXUS_DOOR.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TAXUS_TRAPDOOR.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TAXUS_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_TAXUS_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TAXUS_LEAVES.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TAXUS_LEAF_CARPET.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TAXUS_HEDGE.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TAXUS_LADDER.get(), cutoutRenderType);
 	}
 
 	@Override

@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_bottom",
+    "textures": {
+        "bottom": "prehistoricfauna:blocks/taxus_door_bottom",
+        "top": "prehistoricfauna:blocks/taxus_door_top"
+    }
+}

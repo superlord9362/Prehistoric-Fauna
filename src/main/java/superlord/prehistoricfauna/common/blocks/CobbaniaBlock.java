@@ -34,4 +34,5 @@ public class CobbaniaBlock  extends BushBlock {
 		FluidState fluidstate1 = p_58175_.getFluidState(p_58176_.above());
 		return (fluidstate.getType() == Fluids.WATER || p_58174_.getMaterial() == Material.ICE) && fluidstate1.getType() == Fluids.EMPTY;
 	}
+
 }

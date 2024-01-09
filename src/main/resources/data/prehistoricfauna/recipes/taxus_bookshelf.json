@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"###",
+		"XXX",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:taxus_planks"
+		},
+		"X": {
+			"item": "minecraft:book"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:taxus_bookshelf"
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:quark_flag",
+			"flag": "variant_bookshelves"
+		}
+	]
+}

@@ -1,0 +1,14 @@
+{
+	"structures": [
+		{
+			"structure": "prehistoricfauna:ischigualasto_hut",
+			"weight": 1
+		}
+	],
+	"placement": {
+		"salt": 2849203,
+		"spacing": 60,
+		"separation": 30,
+		"type": "minecraft:random_spread"
+	}
+}

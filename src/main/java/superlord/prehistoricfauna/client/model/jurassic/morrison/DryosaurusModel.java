@@ -128,7 +128,7 @@ public class DryosaurusModel extends EntityModel<Dryosaurus> {
 			if (this.LLeg1.yRot < 0) this.LLeg1.yRot += 0.05;
 			//LArm
 			//this.LArm.z = 3;
-			if (this.LArm.y < 3) this.LArm.y += 0.15;
+			if (this.LArm.z < 3) this.LArm.z += 0.15;
 			if (this.LArm.xRot > 0) this.LArm.xRot -= 0.05;
 			//LLeg3
 			if (this.LLeg3.xRot > 0) this.LLeg3.xRot -= 0.05;
@@ -186,7 +186,7 @@ public class DryosaurusModel extends EntityModel<Dryosaurus> {
 			if (this.LLeg1.yRot > -0.296705972839036F) this.LLeg1.yRot -= 0.05;
 			//LArm
 			//this.LArm.z = 3;
-			if (this.LArm.y > 2.5) this.LArm.y -= 0.15;
+			if (this.LArm.z > 2.5) this.LArm.z -= 0.15;
 			if (this.LArm.xRot < 0.8726646259971648F) this.LArm.xRot += 0.05;
 			//LLeg3
 			if (this.LLeg3.xRot < 1.5707963267948966F) this.LLeg3.xRot += 0.05;

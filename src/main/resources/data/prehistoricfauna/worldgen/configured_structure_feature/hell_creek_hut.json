@@ -1,0 +1,10 @@
+{
+	"type": "minecraft:village",
+	"config": {
+    	"start_pool": "prehistoricfauna:hell_creek_hut",
+    	"size": 1
+	},
+	"biomes": "#prehistoricfauna:has_structure/hell_creek_hut",
+	"adapt_noise": true,
+	"spawn_overrides": {}
+}

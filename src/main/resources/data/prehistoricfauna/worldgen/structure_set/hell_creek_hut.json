@@ -1,0 +1,14 @@
+{
+	"structures": [
+		{
+			"structure": "prehistoricfauna:hell_creek_hut",
+			"weight": 1
+		}
+	],
+	"placement": {
+		"salt": 93029350,
+		"spacing": 60,
+		"separation": 30,
+		"type": "minecraft:random_spread"
+	}
+}

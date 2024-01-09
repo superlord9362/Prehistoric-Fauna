@@ -12,6 +12,7 @@ import superlord.prehistoricfauna.common.entity.Paleopainting;
 import superlord.prehistoricfauna.common.entity.WallFossil;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Aepyornithomimus;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Citipati;
+import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Oviraptor;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Pinacosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Plesiohadros;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Protoceratops;
@@ -21,6 +22,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ankylosauru
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Basilemys;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Didelphodon;
+import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Palaeosaniwa;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Thescelosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Thoracosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
@@ -166,6 +168,7 @@ public class PFEntities {
 	public static final RegistryObject<EntityType<Basilemys>> BASILEMYS = REGISTER.register("basilemys", () -> EntityType.Builder.<Basilemys>of(Basilemys::new, MobCategory.CREATURE).sized(0.75F, 0.375F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "basilemys").toString()));
 	public static final RegistryObject<EntityType<Dakotaraptor>> DAKOTARAPTOR = REGISTER.register("dakotaraptor", () -> EntityType.Builder.<Dakotaraptor>of(Dakotaraptor::new, MobCategory.CREATURE).sized(0.875F, 2.15F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "dakotaraptor").toString()));
 	public static final RegistryObject<EntityType<Didelphodon>> DIDELPHODON = REGISTER.register("didelphodon", () -> EntityType.Builder.<Didelphodon>of(Didelphodon::new, MobCategory.CREATURE).sized(0.35F, 0.4F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "didelphodon").toString()));
+	public static final RegistryObject<EntityType<Palaeosaniwa>> PALAEOSANIWA = REGISTER.register("palaeosaniwa", () -> EntityType.Builder.<Palaeosaniwa>of(Palaeosaniwa::new, MobCategory.CREATURE).sized(0.5F, 0.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "palaeosaniwa").toString()));
 	public static final RegistryObject<EntityType<Thescelosaurus>> THESCELOSAURUS = REGISTER.register("thescelosaurus", () -> EntityType.Builder.<Thescelosaurus>of(Thescelosaurus::new, MobCategory.CREATURE).sized(0.55F, 1.25F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "thescelosaurus").toString()));
 	public static final RegistryObject<EntityType<Thoracosaurus>> THORACOSAURUS = REGISTER.register("thoracosaurus", () -> EntityType.Builder.<Thoracosaurus>of(Thoracosaurus::new, MobCategory.CREATURE).sized(1, 1).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "thoracosaurus").toString()));
 	public static final RegistryObject<EntityType<Triceratops>> TRICERATOPS = REGISTER.register("triceratops", () -> EntityType.Builder.<Triceratops>of(Triceratops::new, MobCategory.CREATURE).sized(2F, 2.6F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "triceratops").toString()));
@@ -174,6 +177,7 @@ public class PFEntities {
 	//Djadochta
 	public static final RegistryObject<EntityType<Aepyornithomimus>> AEPYORNITHOMIMUS = REGISTER.register("aepyornithomimus", () -> EntityType.Builder.<Aepyornithomimus>of(Aepyornithomimus::new, MobCategory.CREATURE).sized(0.9375F, 1.25F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "aepyornithomimus").toString()));
 	public static final RegistryObject<EntityType<Citipati>> CITIPATI = REGISTER.register("citipati", () -> EntityType.Builder.<Citipati>of(Citipati::new, MobCategory.CREATURE).sized(0.5625F, 1.9F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "citipati").toString()));
+	public static final RegistryObject<EntityType<Oviraptor>> OVIRAPTOR = REGISTER.register("oviraptor", () -> EntityType.Builder.<Oviraptor>of(Oviraptor::new, MobCategory.CREATURE).sized(0.5F, 1.0F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "oviraptor").toString()));
 	public static final RegistryObject<EntityType<Pinacosaurus>> PINACOSAURUS = REGISTER.register("pinacosaurus", () -> EntityType.Builder.<Pinacosaurus>of(Pinacosaurus::new, MobCategory.CREATURE).sized(2, 1.1F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "pinacosaurus").toString()));
 	public static final RegistryObject<EntityType<Plesiohadros>> PLESIOHADROS = REGISTER.register("plesiohadros", () -> EntityType.Builder.<Plesiohadros>of(Plesiohadros::new, MobCategory.CREATURE).sized(1.5F, 2).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "plesiohadros").toString()));
 	public static final RegistryObject<EntityType<Protoceratops>> PROTOCERATOPS = REGISTER.register("protoceratops", () -> EntityType.Builder.<Protoceratops>of(Protoceratops::new, MobCategory.CREATURE).sized(0.5F, 0.875F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "protoceratops").toString()));

@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"#"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:taxus_vertical_slab"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:taxus_slab",
+		"count": 1
+	},
+  "conditions": [
+    {
+      "type": "prehistoricfauna:quark_flag",
+      "flag": "vertical_slabs"
+    }
+  ]
+}

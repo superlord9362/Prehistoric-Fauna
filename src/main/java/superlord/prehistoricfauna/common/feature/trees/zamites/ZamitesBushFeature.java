@@ -102,7 +102,7 @@ public class ZamitesBushFeature extends Feature<JohnstoniaConfig>
 						if (isAir(worldgenlevel, new BlockPos(x - 1, pos.getY() + secondFrondsHeight, z - 0))) setBlock(worldgenlevel, new BlockPos(x - 1, pos.getY() + secondFrondsHeight, z - 0), PFBlocks.ZAMITES_FROND.get().defaultBlockState().setValue(ZamitesFrondsBlock.FACING, Direction.EAST));
 					}
 				}
-				if (isAir(worldgenlevel, new BlockPos(x, pos.getY() + height + 1, z))) setBlock(worldgenlevel, new BlockPos(x, pos.getY() + height + 1, z), PFBlocks.ZAMITES_LEAVES.get().defaultBlockState().setValue(LeavesBlock.DISTANCE, 1));
+				if (isAir(worldgenlevel, new BlockPos(x, pos.getY() + height + 1, z)) && worldgenlevel.getBlockState(new BlockPos(x, pos.getY() + height, z)).getBlock() == PFBlocks.ZAMITES_LOG.get()) setBlock(worldgenlevel, new BlockPos(x, pos.getY() + height + 1, z), PFBlocks.ZAMITES_LEAVES.get().defaultBlockState().setValue(LeavesBlock.DISTANCE, 1));
 				return true;
 			}
 		} else {

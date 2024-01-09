@@ -1,0 +1,7 @@
+{
+	"parent": "prehistoricfauna:block/hedge_post",
+	"textures": {
+		"log": "prehistoricfauna:blocks/taxus_log",
+		"leaf": "prehistoricfauna:blocks/taxus_leaves"
+	}
+}

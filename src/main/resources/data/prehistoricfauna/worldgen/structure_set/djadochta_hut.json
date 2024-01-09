@@ -1,0 +1,14 @@
+{
+	"structures": [
+		{
+			"structure": "prehistoricfauna:djadochta_hut",
+			"weight": 1
+		}
+	],
+	"placement": {
+		"salt": 634827589,
+		"spacing": 60,
+		"separation": 30,
+		"type": "minecraft:random_spread"
+	}
+}

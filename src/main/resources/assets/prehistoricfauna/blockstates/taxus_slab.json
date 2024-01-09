@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "prehistoricfauna:block/taxus_slab" },
+        "type=top": { "model": "prehistoricfauna:block/taxus_slab_top" },
+        "type=double": { "model": "prehistoricfauna:block/taxus_planks" }
+    }
+}

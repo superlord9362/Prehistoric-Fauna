@@ -1,7 +1,7 @@
 package superlord.prehistoricfauna.common.world.biome.surfacedecorators;
 
-import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos.MutableBlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;

@@ -2497,6 +2497,40 @@
             }
         ]
     },
+    "oviraptor_idle": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.oviraptorIdle",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/oviraptor/oviraptor_idle1",
+				"stream": true
+			},
+			{
+				"name": "prehistoricfauna:prehistoric/oviraptor/oviraptor_idle2",
+				"stream": true
+			}
+		]
+	},
+	"oviraptor_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.oviraptorHurt",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/oviraptor/oviraptor_hurt",
+				"stream": true
+			}
+		]
+	},
+	"oviraptor_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitl.oviraptorDeath",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/oviraptor/oviraptor_hurt",
+				"stream": true
+			}
+		]
+	},
 	"portal": {
 		"category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.portal",

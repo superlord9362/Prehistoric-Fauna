@@ -1,0 +1,13 @@
+{
+  "type": "crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "prehistoricfauna:taxus_logs"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:taxus_planks",
+    "count": 4
+  }
+}

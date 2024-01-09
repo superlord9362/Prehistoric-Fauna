@@ -6,8 +6,8 @@ import java.util.function.Predicate;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Maps;
 import com.google.common.collect.ImmutableMultimap.Builder;
+import com.google.common.collect.Maps;
 import com.mojang.datafixers.util.Pair;
 
 import net.minecraft.core.BlockPos;

@@ -53,6 +53,7 @@ public class PFPlacedFeatures {
 
 	public static final RegistryObject<PlacedFeature> NEOCALAMITES = REGISTER.register("placed_neocalamites", () -> new PlacedFeature(PFConfiguredFeatures.NEOCALAMITES.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
 	public static final RegistryObject<PlacedFeature> ALGAE = REGISTER.register("placed_algae", () -> new PlacedFeature(PFConfiguredFeatures.ALGAE.getHolder().orElseThrow(),worldSurfaceSquaredWithCount(2)));
+	public static final RegistryObject<PlacedFeature> NELUMBO = REGISTER.register("placed_nelumbo", () -> new PlacedFeature(PFConfiguredFeatures.NELUMBO.getHolder().orElseThrow(),worldSurfaceSquaredWithCount(2)));
 	public static final RegistryObject<PlacedFeature> CRASSOSTREA_OYSTERS = REGISTER.register("placed_crassostrea_oysters", () -> new PlacedFeature(PFConfiguredFeatures.CRASSOSTREA_OYSTERS.getHolder().orElseThrow(),worldSurfaceSquaredWithCount(2)));
 	public static final RegistryObject<PlacedFeature> MOSS = REGISTER.register("placed_moss", () -> new PlacedFeature(PFConfiguredFeatures.MOSS.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(4)));
 	public static final RegistryObject<PlacedFeature> HUMULUS = REGISTER.register("placed_humulus", () -> new PlacedFeature(PFConfiguredFeatures.HUMULUS.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(1)));
@@ -76,12 +77,14 @@ public class PFPlacedFeatures {
 	public static final RegistryObject<PlacedFeature> COBBANIA = REGISTER.register("placed_cobbania", () -> new PlacedFeature(PFConfiguredFeatures.COBBANIA.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(2)));
 	public static final RegistryObject<PlacedFeature> AZOLLA = REGISTER.register("placed_azolla", () -> new PlacedFeature(PFConfiguredFeatures.AZOLLA.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(5)));
 	public static final RegistryObject<PlacedFeature> OSMUNDA = REGISTER.register("placed_osmunda", () -> new PlacedFeature(PFConfiguredFeatures.OSMUNDA.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(1)));
+	public static final RegistryObject<PlacedFeature> ZINGIBEROPSIS = REGISTER.register("placed_zingiberopsis", () -> new PlacedFeature(PFConfiguredFeatures.ZINGIBEROPSIS.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(1)));
 	public static final RegistryObject<PlacedFeature> TALL_OSMUNDA = REGISTER.register("placed_tall_osmunda", () -> new PlacedFeature(PFConfiguredFeatures.DOUBLE_OSMUNDA.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(1)));
 	public static final RegistryObject<PlacedFeature> MARMARTHIA = REGISTER.register("placed_marmarthia", () -> new PlacedFeature(PFConfiguredFeatures.MARMARTHIA.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
 	public static final RegistryObject<PlacedFeature> COMMON_OSMUNDA = REGISTER.register("placed_common_osmunda", () -> new PlacedFeature(PFConfiguredFeatures.OSMUNDA.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(6)));
 	public static final RegistryObject<PlacedFeature> COMMON_TALL_OSMUNDA = REGISTER.register("placed_common_tall_osmunda", () -> new PlacedFeature(PFConfiguredFeatures.DOUBLE_OSMUNDA.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(3)));
 	public static final RegistryObject<PlacedFeature> RARE_LOWERED_HORSETAILS = REGISTER.register("placed_rare_lowered_horsetails", () -> new PlacedFeature(PFConfiguredFeatures.LOWERED_HORSETAILS.getHolder().orElseThrow(), List.of(RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
 	public static final RegistryObject<PlacedFeature> CLUBMOSS = REGISTER.register("placed_clubmoss", () -> new PlacedFeature(PFConfiguredFeatures.CLUBMOSS.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(1)));
+	public static final RegistryObject<PlacedFeature> BISONIA = REGISTER.register("placed_bisonia", () -> new PlacedFeature(PFConfiguredFeatures.BISONIA.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(1)));
 
 	public static final RegistryObject<PlacedFeature> TAXODIUM_KNEES = REGISTER.register("placed_taxodium_knees", () -> new PlacedFeature(PFConfiguredFeatures.TAXODIUM_KNEES.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(4)));
 	
@@ -420,7 +423,9 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_METASEQUOIA_LOG.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_PLATANITES_LOG.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_GINKGO_LOG.getHolder().orElseThrow());
-		//Platanites. Quereuxia, Nelumbo, Zingiberopsis
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NELUMBO.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZINGIBEROPSIS.getHolder().orElseThrow());
+		//Platanites. Quereuxia
 	}
 	
 	public static void withHellCreekLiriodendritesHillsPlants(BiomeGenerationSettings.Builder builder) {
@@ -442,7 +447,9 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_METASEQUOIA_LOG.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_PLATANITES_LOG.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_GINKGO_LOG.getHolder().orElseThrow());
-		//Zingiberopsis, Platanites, Bisonia, Nilssonia
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BISONIA.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZINGIBEROPSIS.getHolder().orElseThrow());
+		//Platanites, Nilssonia
 	}
 	
 	public static void withHellCreekClearingPlants(BiomeGenerationSettings.Builder builder) {
@@ -486,7 +493,9 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_METASEQUOIA_LOG.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_PLATANITES_LOG.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_GINKGO_LOG.getHolder().orElseThrow());
-		//Platanites, Zingiberopsis, Nilssonia(?), Quereuxia, Bisonia
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BISONIA.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZINGIBEROPSIS.getHolder().orElseThrow());
+		//Platanites, Nilssonia(?), Quereuxia
 	}
 	
 	public static void withHellCreekRiverPlants(BiomeGenerationSettings.Builder builder) {
@@ -518,7 +527,9 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_METASEQUOIA_LOG.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_PLATANITES_LOG.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_GINKGO_LOG.getHolder().orElseThrow());
-		//Platanites, Nilssonia, Quereuxia, Nelumbo, Bisonia
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BISONIA.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NELUMBO.getHolder().orElseThrow());
+		//Platanites, Nilssonia, Quereuxia
 	}
 	
 	private static List<PlacementModifier> orePlacement(PlacementModifier p_195347_, PlacementModifier p_195348_) {

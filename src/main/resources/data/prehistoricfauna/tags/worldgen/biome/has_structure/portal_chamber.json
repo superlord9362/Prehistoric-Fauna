@@ -7,6 +7,25 @@
     	"#minecraft:is_forest",
     	"#minecraft:is_hill",
     	"#minecraft:is_jungle",
-    	"#minecraft:is_taiga"
+    	"#minecraft:is_taiga",
+		"prehistoricfauna:chinle_flats",
+		"prehistoricfauna:chinle_swamp",
+		"prehistoricfauna:chinle_wooded_mountains",
+		"prehistoricfauna:djadochta_alluvial_plains",
+		"prehistoricfauna:djadochta_arroyo",
+		"prehistoricfauna:djadochta_dunes",
+		"prehistoricfauna:hell_creek_clearing",
+		"prehistoricfauna:hell_creek_hardwood_forest",
+		"prehistoricfauna:hell_creek_liriodendrites_hills",
+		"prehistoricfauna:hell_creek_redwoods",
+		"prehistoricfauna:hell_creek_swamp",
+		"prehistoricfauna:ischigualasto_clearing",
+		"prehistoricfauna:ischigualasto_forest",
+		"prehistoricfauna:ischigualasto_hills",
+		"prehistoricfauna:kayenta_buttes",
+		"prehistoricfauna:kayenta_desert",
+		"prehistoricfauna:kayenta_dry_forest",
+		"prehistoricfauna:morrison_hills",
+		"prehistoricfauna:morrison_savannah"
 	]
 }

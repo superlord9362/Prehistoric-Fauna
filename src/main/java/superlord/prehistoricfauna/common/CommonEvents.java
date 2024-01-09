@@ -4,12 +4,10 @@ import com.google.common.collect.ImmutableMap;
 
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.FireBlock;
-import net.minecraftforge.event.TickEvent.WorldTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -49,7 +47,9 @@ public class CommonEvents {
 					.put(PFBlocks.SABALITES_GRASSY_LOG.get(), PFBlocks.STRIPPED_SABALITES_LOG.get())
 					.put(PFBlocks.SABALITES_WOOD.get(), PFBlocks.STRIPPED_SABALITES_WOOD.get())
 					.put(PFBlocks.PLATANITES_LOG.get(), PFBlocks.STRIPPED_PLATANITES_LOG.get())
-					.put(PFBlocks.PLATANITES_WOOD.get(), PFBlocks.STRIPPED_PLATANITES_WOOD.get()).build();
+					.put(PFBlocks.PLATANITES_WOOD.get(), PFBlocks.STRIPPED_PLATANITES_WOOD.get())
+					.put(PFBlocks.TAXUS_LOG.get(), PFBlocks.STRIPPED_TAXUS_LOG.get())
+					.put(PFBlocks.TAXUS_WOOD.get(), PFBlocks.STRIPPED_TAXUS_WOOD.get()).build();
 			registerFlammables();
 		});
 	}
@@ -69,6 +69,7 @@ public class CommonEvents {
 		compostibleBlocks(0.3F, PFBlocks.PLATANITES_LEAVES.get());
 		compostibleBlocks(0.3F, PFBlocks.TAXODIUM_LEAVES.get());
 		compostibleBlocks(0.3F, PFBlocks.SABALITES_LEAVES.get());
+		compostibleBlocks(0.3F, PFBlocks.TAXUS_LEAVES.get());
 		compostibleBlocks(0.3F, PFBlocks.AGATHOXYLON_SAPLING.get());
 		compostibleBlocks(0.3F, PFBlocks.METASEQUOIA_SAPLING.get());
 		compostibleBlocks(0.3F, PFBlocks.ARAUCARIA_SAPLING.get());
@@ -82,6 +83,7 @@ public class CommonEvents {
 		compostibleBlocks(0.3F, PFBlocks.GINKGO_SAPLING.get());
 		compostibleBlocks(0.3F, PFBlocks.SABALITES_SAPLING.get());
 		compostibleBlocks(0.3F, PFBlocks.PLATANITES_SAPLING.get());
+		compostibleBlocks(0.3F, PFBlocks.TAXUS_SAPLING.get());
 		compostibleBlocks(0.3F, PFBlocks.HORSETAIL.get());
 		compostibleBlocks(0.3F, PFBlocks.OSMUNDA.get());
 		compostibleBlocks(0.3F, PFBlocks.CLADOPHLEBIS.get());
@@ -96,6 +98,7 @@ public class CommonEvents {
 		compostibleBlocks(0.3F, PFBlocks.OTOZAMITES.get());
 		compostibleBlocks(0.3F, PFBlocks.ARCHAEFRUCTUS.get());
 		compostibleBlocks(0.3F, PFBlocks.ARCHAEAMPHORA.get());
+		compostibleBlocks(0.3F, PFBlocks.BISONIA.get());
 		compostibleBlocks(0.3F, PFItems.MARMARTHIA_BERRIES.get());
 		compostibleBlocks(0.5F, PFBlocks.TALL_HORSETAIL.get());
 		compostibleBlocks(0.5F, PFBlocks.TALL_OSMUNDA.get());
@@ -166,6 +169,11 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.LIRIODENDRITES_FENCE.get(), 5, 20);
 		registerFlammable(PFBlocks.LIRIODENDRITES_FENCE_GATE.get(), 5, 20);
 		registerFlammable(PFBlocks.LIRIODENDRITES_STAIRS.get(), 5, 20);
+		registerFlammable(PFBlocks.TAXUS_PLANKS.get(), 5, 20);
+		registerFlammable(PFBlocks.TAXUS_SLAB.get(), 5, 20);
+		registerFlammable(PFBlocks.TAXUS_FENCE.get(), 5, 20);
+		registerFlammable(PFBlocks.TAXUS_FENCE_GATE.get(), 5, 20);
+		registerFlammable(PFBlocks.TAXUS_STAIRS.get(), 5, 20);
 		registerFlammable(PFBlocks.TAXODIUM_PLANKS.get(), 5, 20);
 		registerFlammable(PFBlocks.TAXODIUM_SLAB.get(), 5, 20);
 		registerFlammable(PFBlocks.TAXODIUM_FENCE.get(), 5, 20);
@@ -250,6 +258,10 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.AGATHOXYLON_WOOD.get(), 5, 5);
 		registerFlammable(PFBlocks.STRIPPED_AGATHOXYLON_LOG.get(), 5, 5);
 		registerFlammable(PFBlocks.STRIPPED_AGATHOXYLON_WOOD.get(), 5, 5);
+		registerFlammable(PFBlocks.TAXUS_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.TAXUS_WOOD.get(), 5, 5);
+		registerFlammable(PFBlocks.STRIPPED_TAXUS_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.STRIPPED_TAXUS_WOOD.get(), 5, 5);
 		registerFlammable(PFBlocks.DRYOPHYLLUM_LOG.get(), 5, 5);
 		registerFlammable(PFBlocks.DRYOPHYLLUM_WOOD.get(), 5, 5);
 		registerFlammable(PFBlocks.STRIPPED_DRYOPHYLLUM_LOG.get(), 5, 5);
@@ -280,6 +292,7 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.SABALITES_LEAVES.get(), 30, 60);
 		registerFlammable(PFBlocks.PLATANITES_LEAVES.get(), 30, 60);
 		registerFlammable(PFBlocks.TAXODIUM_LEAVES.get(), 30, 60);
+		registerFlammable(PFBlocks.TAXUS_LEAVES.get(), 30, 60);
 		registerFlammable(PFBlocks.CLUBMOSS.get(), 60, 100);
 		registerFlammable(PFBlocks.HORSETAIL.get(), 60, 100);
 		registerFlammable(PFBlocks.OSMUNDA.get(), 60, 100);
@@ -295,6 +308,7 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.TALL_OSMUNDACAULIS.get(), 60, 100);
 		registerFlammable(PFBlocks.TALL_OTOZAMITES.get(), 60, 100);
 		registerFlammable(PFBlocks.OTOZAMITES.get(), 60, 100);
+		registerFlammable(PFBlocks.BISONIA.get(), 60, 100);
 		registerFlammable(PFBlocks.LAUROZAMITES.get(), 60, 100);
 		registerFlammable(PFBlocks.MOSS_CARPET.get(), 60, 20);
 		registerFlammable(PFBlocks.HUMULUS.get(), 60, 20);

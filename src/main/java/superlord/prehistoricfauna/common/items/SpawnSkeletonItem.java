@@ -1,14 +1,16 @@
 package superlord.prehistoricfauna.common.items;
 
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Maps;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Maps;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;

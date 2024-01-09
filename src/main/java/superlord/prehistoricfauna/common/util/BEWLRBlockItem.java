@@ -1,5 +1,12 @@
 package superlord.prehistoricfauna.common.util;
 
+import java.util.concurrent.Callable;
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -9,12 +16,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.IItemRenderProperties;
 import net.minecraftforge.fml.DistExecutor;
-
-import javax.annotation.Nullable;
-import java.util.concurrent.Callable;
-import java.util.function.BiFunction;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class BEWLRBlockItem extends BlockItem {
 	@Nullable

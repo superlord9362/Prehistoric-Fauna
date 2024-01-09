@@ -1,5 +1,9 @@
 package superlord.prehistoricfauna.common.entity.block.compat;
 
+import java.util.function.Supplier;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
@@ -23,9 +27,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 import superlord.prehistoricfauna.common.util.BlockUtil;
-
-import javax.annotation.Nullable;
-import java.util.function.Supplier;
 
 /**
  * A {@link Block} extension for wooden posts.

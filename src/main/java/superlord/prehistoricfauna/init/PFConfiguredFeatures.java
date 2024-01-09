@@ -153,6 +153,7 @@ public class PFConfiguredFeatures {
 	public static final RegistryObject<ConfiguredFeature<NoisySphereConfig, ?>> FOSSILIZED_SANDSTONE = REGISTER.register("configured_fossilized_sandstone", () -> new ConfiguredFeature<>(PFFeatures.NOISY_SPHERE.get(), new NoisySphereConfig.Builder().setBlock(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(PFBlocks.SANDSTONE.get().defaultBlockState(), 20).add(PFBlocks.SANDSTONE_FOSSIL.get().defaultBlockState(), 5))).setMinRadius(10).setMinYRadius(3).setMaxYRadius(8).build()));
 
 	public static final RegistryObject<ConfiguredFeature<?, ?>> MARCHANITA = REGISTER.register("configured_marchantia", () -> new ConfiguredFeature(Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.MARCHANTIA.get()), 32)));
+	public static final RegistryObject<ConfiguredFeature<?, ?>> BISONIA = REGISTER.register("configured_bisonia", () -> new ConfiguredFeature(Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.BISONIA.get()), 32)));
 	public static final RegistryObject<ConfiguredFeature<?, ?>> HORSETAILS = REGISTER.register("configured_horsetails", () -> new ConfiguredFeature(Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.HORSETAIL.get()), 32)));
 	public static final RegistryObject<ConfiguredFeature<?, ?>> WATERLOGGED_HORSETAILS = REGISTER.register("configured_waterlogged_horsetails", () -> new ConfiguredFeature(PFFeatures.WATERLOGGED_HORSETAILS.get(), new JohnstoniaConfig(15)));
 	public static final RegistryObject<ConfiguredFeature<?, ?>> LOWERED_HORSETAILS = REGISTER.register("configured_lowered_horsetails", () -> new ConfiguredFeature(PFFeatures.LOWER_HORSETAILS.get(), new JohnstoniaConfig(15)));
@@ -179,8 +180,10 @@ public class PFConfiguredFeatures {
 	
 	public static final RegistryObject<ConfiguredFeature<?, ?>> CRASSOSTREA_OYSTERS = REGISTER.register("configured_crassostrea_oyster", () -> new ConfiguredFeature(PFFeatures.CRASSOSTREA_OYSTERS.get(), new CrassostreaOystersConfig(24)));
 	public static final RegistryObject<ConfiguredFeature<?, ?>> ALGAE = REGISTER.register("configured_algae", () -> new ConfiguredFeature(PFFeatures.ALGAE.get(), new CrassostreaOystersConfig(24)));
+	public static final RegistryObject<ConfiguredFeature<?, ?>> NELUMBO = REGISTER.register("configured_nelumbo", () -> new ConfiguredFeature(PFFeatures.NELUMBO.get(), new CrassostreaOystersConfig(24)));
 	public static final RegistryObject<ConfiguredFeature<?, ?>> COBBANIA = REGISTER.register("configured_cobbania", () -> new ConfiguredFeature(Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.COBBANIA.get()), 32)));
 	public static final RegistryObject<ConfiguredFeature<?, ?>> AZOLLA = REGISTER.register("configured_azolla", () -> new ConfiguredFeature(PFFeatures.AZOLLA.get(), new JohnstoniaConfig(25)));
+	public static final RegistryObject<ConfiguredFeature<?, ?>> ZINGIBEROPSIS = REGISTER.register("configured_zingiberopsis", () -> new ConfiguredFeature(PFFeatures.ZINGIBEROPSIS.get(), new JohnstoniaConfig(15)));
 
 	public static final RegistryObject<ConfiguredFeature<?, ?>> TAXODIUM_KNEES = REGISTER.register("configured_taxodium_knees", () -> new ConfiguredFeature(PFFeatures.TAXODIUM_KNEES.get(), new JohnstoniaConfig(12)));
 	

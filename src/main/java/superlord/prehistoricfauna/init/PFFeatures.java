@@ -20,11 +20,13 @@ import superlord.prehistoricfauna.common.feature.JohnstoniaFeature;
 import superlord.prehistoricfauna.common.feature.LandSphereReplaceFeature;
 import superlord.prehistoricfauna.common.feature.LowerHorsetailsFeature;
 import superlord.prehistoricfauna.common.feature.MarmarthiaFeature;
+import superlord.prehistoricfauna.common.feature.NelumboFeature;
 import superlord.prehistoricfauna.common.feature.NeocalamitesFeature;
 import superlord.prehistoricfauna.common.feature.NoisySphereFeature;
 import superlord.prehistoricfauna.common.feature.PtilophyllumFeature;
 import superlord.prehistoricfauna.common.feature.TaxodiumKneeFeature;
 import superlord.prehistoricfauna.common.feature.WaterloggedHorsetailsFeature;
+import superlord.prehistoricfauna.common.feature.ZingiberopsisFeature;
 import superlord.prehistoricfauna.common.feature.trees.agathoxylon.BigAgathoxylon1;
 import superlord.prehistoricfauna.common.feature.trees.agathoxylon.BigAgathoxylon2;
 import superlord.prehistoricfauna.common.feature.trees.agathoxylon.BigAgathoxylon3;
@@ -219,10 +221,12 @@ public class PFFeatures {
     public static final RegistryObject<MarmarthiaFeature> MARMARTHIA = REGISTER.register("marmarthia", () -> new MarmarthiaFeature(JohnstoniaConfig.CODEC.stable()));
     public static final RegistryObject<HumulusFeature> HUMULUS = REGISTER.register("humulus", () -> new HumulusFeature(GlowLichenConfiguration.CODEC.stable()));
     public static final RegistryObject<AzollaFeature> AZOLLA = REGISTER.register("azolla", () -> new AzollaFeature(JohnstoniaConfig.CODEC.stable()));
+    public static final RegistryObject<ZingiberopsisFeature> ZINGIBEROPSIS = REGISTER.register("zingiberopsis", () -> new ZingiberopsisFeature(JohnstoniaConfig.CODEC.stable()));
     public static final RegistryObject<DryophyllumFallenLogFeature> DRYOPHYLLUM_FALLEN_LOG = REGISTER.register("dryophyllum_fallen_log", () -> new DryophyllumFallenLogFeature(JohnstoniaConfig.CODEC.stable()));
     public static final RegistryObject<PlatanitesFallenLogFeature> PLATANITES_FALLEN_LOG = REGISTER.register("platanites_fallen_log", () -> new PlatanitesFallenLogFeature(JohnstoniaConfig.CODEC.stable()));
     public static final RegistryObject<TaxodiumFallenLogFeature> TAXODIUM_FALLEN_LOG = REGISTER.register("taxodium_fallen_log", () -> new TaxodiumFallenLogFeature(JohnstoniaConfig.CODEC.stable()));
     public static final RegistryObject<MetasequoiaFallenLogFeature> METASEQUOIA_FALLEN_LOG = REGISTER.register("metasequoia_fallen_log", () -> new MetasequoiaFallenLogFeature(JohnstoniaConfig.CODEC.stable()));
     public static final RegistryObject<GinkgoFallenLogFeature> GINKGO_FALLEN_LOG = REGISTER.register("ginkgo_fallen_log", () -> new GinkgoFallenLogFeature(JohnstoniaConfig.CODEC.stable()));
-    
+    public static final RegistryObject<NelumboFeature> NELUMBO = REGISTER.register("nelubmo", () -> new NelumboFeature(CrassostreaOystersConfig.CODEC.stable()));
+
 }

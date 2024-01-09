@@ -1,0 +1,21 @@
+{
+    "variants": {
+        "": [
+			{
+				"model": "prehistoricfauna:block/bisonia"
+			},
+			{
+				"model": "prehistoricfauna:block/bisonia",
+				"y": 90
+			},
+			{
+				"model": "prehistoricfauna:block/bisonia",
+				"y": 180
+			},
+			{
+				"model": "prehistoricfauna:block/bisonia",
+				"y": 270
+			}
+		]
+    }
+}

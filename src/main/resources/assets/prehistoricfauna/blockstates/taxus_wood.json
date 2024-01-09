@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":  { "model": "prehistoricfauna:block/taxus_wood" },
+        "axis=z":   { "model": "prehistoricfauna:block/taxus_wood", "x": 90 },
+        "axis=x":   { "model": "prehistoricfauna:block/taxus_wood", "x": 90, "y": 90 }
+    }
+}

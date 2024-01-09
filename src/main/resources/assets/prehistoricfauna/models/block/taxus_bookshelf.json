@@ -1,0 +1,7 @@
+{
+	"parent": "block/cube_column",
+	"textures": {
+		"end": "prehistoricfauna:blocks/taxus_planks",
+		"side": "prehistoricfauna:blocks/taxus_bookshelf"
+	}
+}

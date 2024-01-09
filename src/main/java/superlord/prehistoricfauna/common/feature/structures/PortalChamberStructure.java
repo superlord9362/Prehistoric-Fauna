@@ -13,7 +13,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGenerator;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
-import superlord.prehistoricfauna.common.feature.structures.structurepiece.GeologistCampStructurePiece;
+import superlord.prehistoricfauna.common.feature.structures.structurepiece.PortalChamberStructurePiece;
 
 public class PortalChamberStructure extends StructureFeature<NoneFeatureConfiguration> {
 	public PortalChamberStructure(Codec<NoneFeatureConfiguration> p_i51440_1_) {
@@ -23,7 +23,7 @@ public class PortalChamberStructure extends StructureFeature<NoneFeatureConfigur
 	private static void generatePieces(StructurePiecesBuilder p_197233_, PieceGenerator.Context<NoneFeatureConfiguration> p_197234_) {
 		BlockPos blockpos = new BlockPos(p_197234_.chunkPos().getMinBlockX(), 90, p_197234_.chunkPos().getMinBlockZ());
 		Rotation rotation = Rotation.getRandom(p_197234_.random());
-		GeologistCampStructurePiece.addStructure(p_197234_.structureManager(), blockpos, rotation, p_197233_, p_197234_.random());
+		PortalChamberStructurePiece.addStructure(p_197234_.structureManager(), blockpos, rotation, p_197233_, p_197234_.random());
 	}
 
 	private static boolean checkLocation(PieceGeneratorSupplier.Context<NoneFeatureConfiguration> p_197134_) {

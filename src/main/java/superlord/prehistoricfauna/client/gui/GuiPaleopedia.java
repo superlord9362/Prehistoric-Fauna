@@ -1,9 +1,22 @@
 package superlord.prehistoricfauna.client.gui;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+
+import org.apache.commons.io.IOUtils;
+import org.jetbrains.annotations.NotNull;
+
 import com.google.common.collect.Maps;
 import com.google.common.primitives.Ints;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.components.Widget;
@@ -20,13 +33,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
 import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.init.PFItems;
-
-import org.apache.commons.io.IOUtils;
-import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.*;
 
 public class GuiPaleopedia extends Screen {
 	protected static final int X = 390;

@@ -61,6 +61,9 @@ import superlord.prehistoricfauna.common.blocks.JurassicTimeBlock;
 import superlord.prehistoricfauna.common.blocks.LiriodendritesLeavesBlock;
 import superlord.prehistoricfauna.common.blocks.MarmarthiaBlock;
 import superlord.prehistoricfauna.common.blocks.MossBlock;
+import superlord.prehistoricfauna.common.blocks.NelumboPadBlock;
+import superlord.prehistoricfauna.common.blocks.NelumboRootsBlock;
+import superlord.prehistoricfauna.common.blocks.NelumboStemBlock;
 import superlord.prehistoricfauna.common.blocks.NeocalamitesBlock;
 import superlord.prehistoricfauna.common.blocks.NeocalamitesTopBlock;
 import superlord.prehistoricfauna.common.blocks.PFSaplingBlock;
@@ -126,6 +129,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> LAUROZAMITES = REGISTER.register("laurozamites", () -> new AncientPlantBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> CLATHOPTERIS = REGISTER.register("clathopteris", () -> new AncientPlantBlock(Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> PHLEBOPTERIS = REGISTER.register("phlebopteris", () -> new AncientPlantBlock(Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+	public static final RegistryObject<Block> BISONIA = REGISTER.register("bisonia", () -> new AncientPlantBlock(Properties.copy(LAUROZAMITES.get())));
 	public static final RegistryObject<Block> CRASSOSTREA_OYSTER = REGISTER.register("crassostrea_oyster", () -> new CrassostreaOysterBlock(Block.Properties.of(Material.STONE).noCollission().strength(0.5F).randomTicks()));
 	public static final RegistryObject<Block> TUBER_CROP = REGISTER.register("tuber_crop", () -> new TuberCropBlock(Properties.of(Material.PLANT).instabreak().noCollission().sound(SoundType.GRASS).randomTicks()));
 	public static final RegistryObject<Block> ALGAE_CARPET = REGISTER.register("algae_carpet", () -> new AlgaeBlock(Properties.of(Material.WATER_PLANT).strength(0.2F).sound(SoundType.SLIME_BLOCK).noOcclusion()));
@@ -137,6 +141,10 @@ public class PFBlocks {
 	public static final RegistryObject<Block> ARCHAEFRUCTUS = REGISTER.register("archaefructus", () -> new PrehistoricPlantBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> TALL_ARCHAEFRUCTUS = REGISTER.register("tall_archaefructus", () -> new DoublePlantBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> ARCHAEAMPHORA = REGISTER.register("archaeamphora", () -> new AncientPlantBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+	public static final RegistryObject<Block> NELUMBO_PAD = REGISTER.register("nelumbo", () -> new NelumboPadBlock(Block.Properties.of(Material.PLANT).sound(SoundType.WET_GRASS).instabreak().randomTicks()));
+	public static final RegistryObject<Block> NELUMBO_STEM = REGISTER.register("nelumbo_stem", () -> new NelumboStemBlock(Block.Properties.of(Material.WATER_PLANT).sound(SoundType.WET_GRASS).instabreak().noCollission().randomTicks()));
+	public static final RegistryObject<Block> NELUMBO_ROOTS = REGISTER.register("nelumbo_roots", () -> new 	NelumboRootsBlock(Block.Properties.of(Material.WATER_PLANT).sound(SoundType.WET_GRASS).instabreak().noCollission().randomTicks()));
+	public static final RegistryObject<Block> ZINGIBEROPSIS = REGISTER.register("zingiberopsis", () -> new TallHorsetailBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 
 	public static final RegistryObject<Block> METASEQUOIA_PLANKS = REGISTER.register("metasequoia_planks", () -> new Block(Block.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> METASEQUOIA_LOG = REGISTER.register("metasequoia_log", () -> createLog());
@@ -448,6 +456,25 @@ public class PFBlocks {
 	public static final RegistryObject<PFStandingSignBlock> PLATANITES_SIGN = REGISTER.register("platanites_sign", () -> new PFStandingSignBlock(Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), PFWoodTypes.PLATANITES));
 	public static final RegistryObject<PFWallSignBlock> PLATANITES_WALL_SIGN = REGISTER.register("platanites_wall_sign", () -> new PFWallSignBlock(Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(PLATANITES_SIGN.get()), PFWoodTypes.SABALITES));
 
+	public static final RegistryObject<Block> TAXUS_PLANKS = REGISTER.register("taxus_planks", () -> new Block(Block.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> TAXUS_LOG = REGISTER.register("taxus_log", () -> createLog());
+	public static final RegistryObject<Block> STRIPPED_TAXUS_LOG = REGISTER.register("stripped_taxus_log", () -> createLog());
+	public static final RegistryObject<Block> TAXUS_WOOD = REGISTER.register("taxus_wood", () -> createLog());
+	public static final RegistryObject<Block> STRIPPED_TAXUS_WOOD = REGISTER.register("stripped_taxus_wood", () -> createLog());
+	public static final RegistryObject<Block> TAXUS_LEAVES = REGISTER.register("taxus_leaves", () -> leaves(SoundType.GRASS));
+	public static final RegistryObject<Block> TAXUS_SAPLING = REGISTER.register("taxus_sapling", () -> new PFSaplingBlock(new PFTreeSpawners.Araucaria(), Block.Properties.of(Material.PLANT).noCollission().randomTicks().strength(0F).sound(SoundType.GRASS)));
+	public static final RegistryObject<Block> TAXUS_DOOR = REGISTER.register("taxus_door", () -> new DoorBlock(Block.Properties.of(Material.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion()));
+	public static final RegistryObject<Block> TAXUS_PRESSURE_PLATE = REGISTER.register("taxus_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.of(Material.WOOD).noCollission().strength(0.5F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> TAXUS_FENCE = REGISTER.register("taxus_fence", () -> new FenceBlock(Block.Properties.of(Material.WOOD, SABALITES_PLANKS.get().defaultMaterialColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> TAXUS_TRAPDOOR = REGISTER.register("taxus_trapdoor", () -> new TrapDoorBlock(Block.Properties.of(Material.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(PFBlocks::neverAllowSpawn)));
+	public static final RegistryObject<Block> TAXUS_FENCE_GATE = REGISTER.register("taxus_fence_gate", () -> new FenceGateBlock(Block.Properties.of(Material.WOOD, SABALITES_PLANKS.get().defaultMaterialColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> TAXUS_BUTTON = REGISTER.register("taxus_button", () -> new WoodButtonBlock(Block.Properties.of(Material.DECORATION).noCollission().strength(0.5F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> TAXUS_SLAB = REGISTER.register("taxus_slab", () -> new SlabBlock(Block.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> TAXUS_STAIRS = REGISTER.register("taxus_stairs", () -> new StairBlock(TAXUS_PLANKS.get().defaultBlockState(), Block.Properties.copy(TAXUS_PLANKS.get())));
+	public static final RegistryObject<PFStandingSignBlock> TAXUS_SIGN = REGISTER.register("taxus_sign", () -> new PFStandingSignBlock(Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), PFWoodTypes.TAXUS));
+	public static final RegistryObject<PFWallSignBlock> TAXUS_WALL_SIGN = REGISTER.register("taxus_wall_sign", () -> new PFWallSignBlock(Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(TAXUS_SIGN.get()), PFWoodTypes.SABALITES));
+
+	
 	public static final RegistryObject<Block> NEOCALAMITES = REGISTER.register("neocalamites", () -> new NeocalamitesBlock(Properties.of(Material.PLANT).strength(0.5F).sound(SoundType.BAMBOO).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> NEOCALAMITES_TOP = REGISTER.register("neocalamites_top", () -> new NeocalamitesTopBlock(Properties.copy(NEOCALAMITES.get())));
 
@@ -475,6 +502,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> POTTED_TAXODIUM_SAPLING = REGISTER.register("potted_taxodium_sapling", () -> new FlowerPotBlock(TAXODIUM_SAPLING.get(), Block.Properties.of(Material.DECORATION).strength(0).noOcclusion()));
 	public static final RegistryObject<Block> POTTED_SABALITES_SAPLING = REGISTER.register("potted_sabalites_sapling", () -> new FlowerPotBlock(SABALITES_SAPLING.get(), Block.Properties.of(Material.DECORATION).strength(0).noOcclusion()));
 	public static final RegistryObject<Block> POTTED_PLATANITES_SAPLING = REGISTER.register("potted_platanites_sapling", () -> new FlowerPotBlock(PLATANITES_SAPLING.get(), Block.Properties.of(Material.DECORATION).strength(0).noOcclusion()));
+	public static final RegistryObject<Block> POTTED_TAXUS_SAPLING = REGISTER.register("potted_taxus_sapling", () -> new FlowerPotBlock(TAXUS_SAPLING.get(), Block.Properties.of(Material.DECORATION).strength(0).noOcclusion()));
 	public static final RegistryObject<Block> POTTED_OTOZAMITES = REGISTER.register("potted_otozamites", () -> new FlowerPotBlock(OTOZAMITES.get(), Properties.of(Material.DECORATION).strength(0).noOcclusion()));
 	public static final RegistryObject<Block> POTTED_LAUROZAMITES = REGISTER.register("potted_laurozamites", () -> new FlowerPotBlock(LAUROZAMITES.get(), Properties.of(Material.DECORATION).strength(0).noOcclusion()));
 	public static final RegistryObject<Block> POTTED_CLATHOPTERIS = REGISTER.register("potted_clathopteris", () -> new FlowerPotBlock(CLATHOPTERIS.get(), Properties.of(Material.DECORATION).strength(0).noOcclusion()));
@@ -670,6 +698,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> TAXODIUM_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "taxodium_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(TAXODIUM_SLAB.get())), PrehistoricFauna.PF_BUILDING);
 	public static final RegistryObject<Block> SABALITES_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "sabalites_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(SABALITES_SLAB.get())), PrehistoricFauna.PF_BUILDING);
 	public static final RegistryObject<Block> PLATANITES_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "platanites_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(PLATANITES_SLAB.get())), PrehistoricFauna.PF_BUILDING);
+	public static final RegistryObject<Block> TAXUS_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "taxus_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(TAXUS_SLAB.get())), PrehistoricFauna.PF_BUILDING);
 	public static final RegistryObject<Block> NEOCALAMITES_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "neocalamites_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(NEOCALAMITES_SLAB.get())), PrehistoricFauna.PF_BUILDING);
 	public static final RegistryObject<Block> TRIASSIC_SANDSTONE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "sandstone_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(SANDSTONE_SLAB.get())), PrehistoricFauna.PF_BUILDING);
 	public static final RegistryObject<Block> POLISHED_TRIASSIC_SANDSTONE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "polished_sandstone_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(POLISHED_SANDSTONE_SLAB.get())), PrehistoricFauna.PF_BUILDING);
@@ -702,6 +731,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> TAXODIUM_VERTICAL_PLANKS = HELPER.createCompatBlock("quark", "taxodium_vertical_planks", () -> new Block(Properties.copy(TAXODIUM_PLANKS.get())), PrehistoricFauna.PF_BUILDING);
 	public static final RegistryObject<Block> SABALITES_VERTICAL_PLANKS = HELPER.createCompatBlock("quark", "sabalites_vertical_planks", () -> new Block(Properties.copy(SABALITES_PLANKS.get())), PrehistoricFauna.PF_BUILDING);
 	public static final RegistryObject<Block> PLATANITES_VERTICAL_PLANKS = HELPER.createCompatBlock("quark", "platanites_vertical_planks", () -> new Block(Properties.copy(PLATANITES_PLANKS.get())), PrehistoricFauna.PF_BUILDING);
+	public static final RegistryObject<Block> TAXUS_VERTICAL_PLANKS = HELPER.createCompatBlock("quark", "taxus_vertical_planks", () -> new Block(Properties.copy(TAXUS_PLANKS.get())), PrehistoricFauna.PF_BUILDING);
 	public static final RegistryObject<Block> NEOCALAMITES_VERTICAL_PLANKS = HELPER.createCompatBlock("quark", "neocalamites_vertical_planks", () -> new Block(Properties.copy(NEOCALAMITES_PLANKS.get())), PrehistoricFauna.PF_BUILDING);
 
 	public static final RegistryObject<Block> METASEQUOIA_LEAF_CARPET = HELPER.createCompatBlock("woodworks", "metasequoia_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.of(Material.CLOTH_DECORATION).strength(0.0F).sound(SoundType.GRASS).noOcclusion()), PrehistoricFauna.PF_DECORATION);
@@ -720,6 +750,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> DRYOPHYLLUM_LEAF_CARPET = HELPER.createCompatBlock("woodworks", "dryophyllum_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.of(Material.CLOTH_DECORATION).strength(0.0F).sound(SoundType.GRASS).noOcclusion()), PrehistoricFauna.PF_DECORATION);
 	public static final RegistryObject<Block> TAXODIUM_LEAF_CARPET = HELPER.createCompatBlock("woodworks", "taxodium_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.of(Material.CLOTH_DECORATION).strength(0.0F).sound(SoundType.GRASS).noOcclusion()), PrehistoricFauna.PF_DECORATION);
 	public static final RegistryObject<Block> PLATANITES_LEAF_CARPET = HELPER.createCompatBlock("woodworks", "platanites_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.of(Material.CLOTH_DECORATION).strength(0.0F).sound(SoundType.GRASS).noOcclusion()), PrehistoricFauna.PF_DECORATION);
+	public static final RegistryObject<Block> TAXUS_LEAF_CARPET = HELPER.createCompatBlock("woodworks", "taxus_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.of(Material.CLOTH_DECORATION).strength(0.0F).sound(SoundType.GRASS).noOcclusion()), PrehistoricFauna.PF_DECORATION);
 
 	public static final RegistryObject<Block> METASEQUOIA_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "metasequoia_beehive", () -> new PFBeehiveBlock(Properties.copy(Blocks.BEEHIVE)), PrehistoricFauna.PF_DECORATION);
 	public static final RegistryObject<Block> ARAUCARIA_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "araucaria_beehive", () -> new PFBeehiveBlock(Properties.copy(Blocks.BEEHIVE)), PrehistoricFauna.PF_DECORATION);
@@ -738,6 +769,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> TAXODIUM_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "taxodium_beehive", () -> new PFBeehiveBlock(Properties.copy(Blocks.BEEHIVE)), PrehistoricFauna.PF_DECORATION);
 	public static final RegistryObject<Block> SABALITES_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "sabalites_beehive", () -> new PFBeehiveBlock(Properties.copy(Blocks.BEEHIVE)), PrehistoricFauna.PF_DECORATION);
 	public static final RegistryObject<Block> PLATANITES_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "platanites_beehive", () -> new PFBeehiveBlock(Properties.copy(Blocks.BEEHIVE)), PrehistoricFauna.PF_DECORATION);
+	public static final RegistryObject<Block> TAXUS_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "taxus_beehive", () -> new PFBeehiveBlock(Properties.copy(Blocks.BEEHIVE)), PrehistoricFauna.PF_DECORATION);
 	public static final RegistryObject<Block> NEOCALAMITES_BEEHIVE = HELPER.createCompatBlock("buzzier_bees", "neocalamites_beehive", () -> new PFBeehiveBlock(Properties.copy(Blocks.BEEHIVE)), PrehistoricFauna.PF_DECORATION);
 
 	public static final RegistryObject<Block> METASEQUOIA_BOOKSHELF = HELPER.createCompatBlock("quark", "metasequoia_bookshelf", () -> new PFBookshelfBlock(Properties.copy(Blocks.BOOKSHELF)), PrehistoricFauna.PF_BUILDING);
@@ -757,6 +789,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> TAXODIUM_BOOKSHELF = HELPER.createCompatBlock("quark", "taxodium_bookshelf", () -> new PFBookshelfBlock(Properties.copy(Blocks.BOOKSHELF)), PrehistoricFauna.PF_BUILDING);
 	public static final RegistryObject<Block> SABALITES_BOOKSHELF = HELPER.createCompatBlock("quark", "sabalites_bookshelf", () -> new PFBookshelfBlock(Properties.copy(Blocks.BOOKSHELF)), PrehistoricFauna.PF_BUILDING);
 	public static final RegistryObject<Block> PLATANITES_BOOKSHELF = HELPER.createCompatBlock("quark", "platanites_bookshelf", () -> new PFBookshelfBlock(Properties.copy(Blocks.BOOKSHELF)), PrehistoricFauna.PF_BUILDING);
+	public static final RegistryObject<Block> TAXUS_BOOKSHELF = HELPER.createCompatBlock("quark", "taxus_bookshelf", () -> new PFBookshelfBlock(Properties.copy(Blocks.BOOKSHELF)), PrehistoricFauna.PF_BUILDING);
 	public static final RegistryObject<Block> NEOCALAMITES_BOOKSHELF = HELPER.createCompatBlock("quark", "neocalamites_bookshelf", () -> new PFBookshelfBlock(Properties.copy(Blocks.BOOKSHELF)), PrehistoricFauna.PF_BUILDING);
 
 	public static final RegistryObject<Block> METASEQUOIA_LADDER = HELPER.createCompatBlock("quark", "metasequoia_ladder", () -> new PFLadderBlock(Properties.copy(Blocks.LADDER)), PrehistoricFauna.PF_DECORATION);
@@ -776,6 +809,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> TAXODIUM_LADDER = HELPER.createCompatBlock("quark", "taxodium_ladder", () -> new PFLadderBlock(Properties.copy(Blocks.LADDER)), PrehistoricFauna.PF_DECORATION);
 	public static final RegistryObject<Block> SABALITES_LADDER = HELPER.createCompatBlock("quark", "sabalites_ladder", () -> new PFLadderBlock(Properties.copy(Blocks.LADDER)), PrehistoricFauna.PF_DECORATION);
 	public static final RegistryObject<Block> PLATANITES_LADDER = HELPER.createCompatBlock("quark", "platanites_ladder", () -> new PFLadderBlock(Properties.copy(Blocks.LADDER)), PrehistoricFauna.PF_DECORATION);
+	public static final RegistryObject<Block> TAXUS_LADDER = HELPER.createCompatBlock("quark", "taxus_ladder", () -> new PFLadderBlock(Properties.copy(Blocks.LADDER)), PrehistoricFauna.PF_DECORATION);
 	public static final RegistryObject<Block> NEOCALAMITES_LADDER = HELPER.createCompatBlock("quark", "neocalamites_ladder", () -> new PFLadderBlock(Properties.copy(Blocks.LADDER)), PrehistoricFauna.PF_DECORATION);
 
 	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> METASEQUOIA_CHEST 	= HELPER.createCompatChestBlocks("metasequoia", MaterialColor.WOOD, "quark");
@@ -795,6 +829,7 @@ public class PFBlocks {
 	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> TAXODIUM_CHEST = HELPER.createCompatChestBlocks("taxodium", MaterialColor.WOOD, "quark");
 	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> SABALITES_CHEST = HELPER.createCompatChestBlocks("sabalites", MaterialColor.WOOD, "quark");
 	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> PLATANITES_CHEST = HELPER.createCompatChestBlocks("platanites", MaterialColor.WOOD, "quark");
+	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> TAXUS_CHEST = HELPER.createCompatChestBlocks("taxus", MaterialColor.WOOD, "quark");
 	public static final Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> NEOCALAMITES_CHEST = HELPER.createCompatChestBlocks("neocalamites", MaterialColor.WOOD, "quark");
 
 	public static final RegistryObject<Block> CHALK_PAVEMENT = HELPER.createCompatBlock("quark", "chalk_pavement", () -> new Block(Properties.copy(CHALK_BRICKS.get())), PrehistoricFauna.PF_BUILDING);
@@ -838,6 +873,8 @@ public class PFBlocks {
 	public static final RegistryObject<Block> STRIPPED_SABALITES_POST = HELPER.createCompatBlock("quark", "stripped_sabalites_post", () -> new WoodPostBlock(Properties.copy(SABALITES_FENCE.get())), PrehistoricFauna.PF_BUILDING);
 	public static final RegistryObject<Block> PLATANITES_POST = HELPER.createCompatBlock("quark", "platanites_post", () -> new WoodPostBlock(Properties.copy(PLATANITES_FENCE.get())), PrehistoricFauna.PF_BUILDING);
 	public static final RegistryObject<Block> STRIPPED_PLATANITES_POST = HELPER.createCompatBlock("quark", "stripped_platanites_post", () -> new WoodPostBlock(Properties.copy(PLATANITES_FENCE.get())), PrehistoricFauna.PF_BUILDING);
+	public static final RegistryObject<Block> TAXUS_POST = HELPER.createCompatBlock("quark", "taxus_post", () -> new WoodPostBlock(Properties.copy(TAXUS_FENCE.get())), PrehistoricFauna.PF_BUILDING);
+	public static final RegistryObject<Block> STRIPPED_TAXUS_POST = HELPER.createCompatBlock("quark", "stripped_taxus_post", () -> new WoodPostBlock(Properties.copy(TAXUS_FENCE.get())), PrehistoricFauna.PF_BUILDING);
 
 	public static final RegistryObject<Block> METASEQUOIA_HEDGE = HELPER.createCompatBlock("quark", "metasequoia_hedge", () -> new HedgeBlock(Properties.copy(METASEQUOIA_PLANKS.get())), PrehistoricFauna.PF_BUILDING);
 	public static final RegistryObject<Block> ARAUCARIA_HEDGE = HELPER.createCompatBlock("quark", "araucaria_hedge", () -> new HedgeBlock(Properties.copy(ARAUCARIA_PLANKS.get())), PrehistoricFauna.PF_BUILDING);
@@ -855,6 +892,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> DRYOPHYLLUM_HEDGE = HELPER.createCompatBlock("quark", "dryophyllum_hedge", () -> new HedgeBlock(Properties.copy(DRYOPHYLLUM_PLANKS.get())), PrehistoricFauna.PF_BUILDING);
 	public static final RegistryObject<Block> TAXODIUM_HEDGE = HELPER.createCompatBlock("quark", "taxodium_hedge", () -> new HedgeBlock(Properties.copy(TAXODIUM_PLANKS.get())), PrehistoricFauna.PF_BUILDING);
 	public static final RegistryObject<Block> PLATANITES_HEDGE = HELPER.createCompatBlock("quark", "platanites_hedge", () -> new HedgeBlock(Properties.copy(PLATANITES_PLANKS.get())), PrehistoricFauna.PF_BUILDING);
+	public static final RegistryObject<Block> TAXUS_HEDGE = HELPER.createCompatBlock("quark", "taxus_hedge", () -> new HedgeBlock(Properties.copy(TAXUS_PLANKS.get())), PrehistoricFauna.PF_BUILDING);
 
 	public static final RegistryObject<Block> THESCELOSAURUS_EGG = REGISTER.register("thescelosaurus_egg", () -> new DinosaurEggBlock(PFEntities.THESCELOSAURUS, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> TRICERATOPS_EGG = REGISTER.register("triceratops_egg", () -> new DinosaurEggBlock(PFEntities.TRICERATOPS, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
@@ -863,9 +901,11 @@ public class PFBlocks {
 	public static final RegistryObject<Block> BASILEMYS_EGG = REGISTER.register("basilemys_egg", () -> new DinosaurEggBlock(PFEntities.BASILEMYS, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> DAKOTARAPTOR_EGG = REGISTER.register("dakotaraptor_egg", () -> new DinosaurEggBlock(PFEntities.DAKOTARAPTOR, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> THORACOSAURUS_EGG = REGISTER.register("thoracosaurus_egg", () -> new DinosaurEggBlock(PFEntities.THORACOSAURUS, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> PALAEOSANIWA_EGG = REGISTER.register("palaeosaniwa_egg", () -> new DinosaurEggBlock(PFEntities.PALAEOSANIWA, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> PROTOCERATOPS_EGG = REGISTER.register("protoceratops_egg", () -> new DinosaurEggBlock(PFEntities.PROTOCERATOPS, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> VELOCIRAPTOR_EGG = REGISTER.register("velociraptor_egg", () -> new DinosaurEggBlock(PFEntities.VELOCIRAPTOR, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> CITIPATI_EGG = REGISTER.register("citipati_egg", () -> new DinosaurEggBlock(PFEntities.CITIPATI, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> OVIRAPTOR_EGG = REGISTER.register("oviraptor_egg", () -> new DinosaurEggBlock(PFEntities.OVIRAPTOR, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> AEPYORNITHOMIMUS_EGG = REGISTER.register("aepyornithomimus_egg", () -> new DinosaurEggBlock(PFEntities.AEPYORNITHOMIMUS, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> TELMASAURUS_EGG = REGISTER.register("telmasaurus_egg", () -> new DinosaurEggBlock(PFEntities.TELMASAURUS, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> PINACOSAURUS_EGG = REGISTER.register("pinacosaurus_egg", () -> new DinosaurEggBlock(PFEntities.PINACOSAURUS, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));

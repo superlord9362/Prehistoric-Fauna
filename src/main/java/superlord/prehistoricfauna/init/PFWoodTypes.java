@@ -24,5 +24,6 @@ public class PFWoodTypes {
 	public static WoodType TAXODIUM = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "taxodium").toString());
 	public static WoodType SABALITES = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "sabalites").toString());
 	public static WoodType PLATANITES = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "platanites").toString());
+	public static WoodType TAXUS = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "taxus").toString());
 	
 }

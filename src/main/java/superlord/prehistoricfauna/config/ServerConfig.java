@@ -83,6 +83,7 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue myledaphusHellCreekLiriodendritesHillsSpawnWeight;
 	public final ForgeConfigSpec.IntValue lepisosteusHellCreekLiriodendritesHillsSpawnWeight;
 	public final ForgeConfigSpec.IntValue cyclurusHellCreekLiriodendritesHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue palaeosaniwaHellCreekLiriodendritesHillsSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelHellCreekLiriodendritesHillsSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelHellCreekLiriodendritesHillsSpawnWeight;
 	//Hell Creek Swamp
@@ -101,6 +102,7 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue basilemysHellCreekSwampSpawnWeight;
 	public final ForgeConfigSpec.IntValue thoracosaurusHellCreekSwampSpawnWeight;
 	public final ForgeConfigSpec.IntValue pachycephalosaurusHellCreekSwampSpawnWeight;
+	public final ForgeConfigSpec.IntValue palaeosaniwaHellCreekSwampSpawnWeight;
 	public final ForgeConfigSpec.IntValue ankylosaurusHellCreekSwampSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelHellCreekSwampSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelHellCreekSwampSpawnWeight;
@@ -194,6 +196,7 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue telmasaurusDjadochtaDunesSpawnWeight;
 	public final ForgeConfigSpec.IntValue pinacosaurusDjadochtaDunesSpawnWeight;
 	public final ForgeConfigSpec.IntValue plesiohadrosDjadochtaDunesSpawnWeight;
+	public final ForgeConfigSpec.IntValue oviraptorDjadochtaDunesSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelDjadochtaDunesSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelDjadochtaDunesSpawnWeight;
 	//Djadochta Alluvial Plains
@@ -204,6 +207,7 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue telmasaurusDjadochtaAlluvialPlainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue pinacosaurusDjadochtaAlluvialPlainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue plesiohadrosDjadochtaAlluvialPlainsSpawnWeight;
+	public final ForgeConfigSpec.IntValue oviraptorDjadochtaAlluvialPlainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelDjadochtaAlluvialPlainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelDjadochtaAlluvialPlainsSpawnWeight;
 	//Djadochta Arroyo
@@ -214,6 +218,7 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue telmasaurusDjadochtaArroyoSpawnWeight;
 	public final ForgeConfigSpec.IntValue pinacosaurusDjadochtaArroyoSpawnWeight;
 	public final ForgeConfigSpec.IntValue plesiohadrosDjadochtaArroyoSpawnWeight;
+	public final ForgeConfigSpec.IntValue oviraptorDjadochtaArroyoSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelDjadochtaArroyoSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelDjadochtaArroyoSpawnWeight;
 	//Kayenta Buttes
@@ -342,6 +347,7 @@ public class ServerConfig {
 		builder.push("Djadochta Alluvial Plains");
 		this.aepyornithomimusDjadochtaAlluvialPlainsSpawnWeight = buildInt(builder, "Aepyornithomimus Djadochta Alluvial Plains Spawn Rate", "all", 2, 0, 300, "The spawn rate of Aepyornithomimus in the Djadochta Alluvial Plains biome. Default is 3");
 		this.citipatiDjadochtaAlluvialPlainsSpawnWeight = buildInt(builder, "Citipati Djadochta Alluvial Plains Spawn Rate", "all", 5, 0, 300, "The spawn rate of Citipati in the Djadochta Alluvial Plains biome. Default is 5");
+		this.oviraptorDjadochtaAlluvialPlainsSpawnWeight = buildInt(builder, "Oviraptor Djadochta Alluvial Plains Spawn Rate", "all", 2, 0, 300, "The spawn rate of Oviraptor in the Djadochta Alluvial Plains biome. Default is 2");
 		this.pinacosaurusDjadochtaAlluvialPlainsSpawnWeight = buildInt(builder, "Pinacosaurus Djadochta Alluvial Plains Spawn Rate", "all", 5, 0, 300, "The spawn rate of Pinacosaurus in the Djadochta Alluvial Plains biome. Default is 5");
 		this.plesiohadrosDjadochtaAlluvialPlainsSpawnWeight = buildInt(builder, "Plesiohadros Djadochta Alluvial Plains Spawn Rate", "all", 0, 0, 300, "The spawn rate of Plesiohadros in the Djadochta Alluvial Plains biome. Default is 0");
 		this.protoceratopsDjadochtaAlluvialPlainsSpawnWeight = buildInt(builder, "Protoceratops Djadochta Alluvial Plains Spawn Rate", "all", 7, 0, 300, "The spawn rate of Protoceratops in the Djadochta Alluvial Plains biome. Default is 7");
@@ -353,6 +359,7 @@ public class ServerConfig {
 		builder.push("Djadochta Arroyo");
 		this.aepyornithomimusDjadochtaArroyoSpawnWeight = buildInt(builder, "Aepyornithomimus Djadochta Arroyo Spawn Rate", "all", 12, 0, 300, "The spawn rate of Aepyornithomimus in the Djadochta Arroyo biome. Default is 12");
 		this.citipatiDjadochtaArroyoSpawnWeight = buildInt(builder, "Citipati Djadochta Arroyo Spawn Rate", "all", 5, 0, 300, "The spawn rate of Citipati in the Djadochta Arroyo biome. Default is 5");
+		this.oviraptorDjadochtaArroyoSpawnWeight = buildInt(builder, "Oviraptor Djadochta Arroyo Spawn Rate", "all", 7, 0, 300, "The spawn rate of Oviraptor in the Djadochta Arroyo biome. Default is 7");
 		this.pinacosaurusDjadochtaArroyoSpawnWeight = buildInt(builder, "Pinacosaurus Djadochta Arroyo Spawn Rate", "all", 7, 0, 300, "The spawn rate of Pinacosaurus in the Djadochta Arroyo biome. Default is 7");
 		this.plesiohadrosDjadochtaArroyoSpawnWeight = buildInt(builder, "Plesiohadros Djadochta Arroyo Spawn Rate", "all", 8, 0, 300, "The spawn rate of Plesiohadros in the Djadochta Arroyo biome. Default is 8");
 		this.protoceratopsDjadochtaArroyoSpawnWeight = buildInt(builder, "Protoceratops Djadochta Arroyo Spawn Rate", "all", 4, 0, 300, "The spawn rate of Protoceratops in the Djadochta Arroyo biome. Default is 4");
@@ -364,6 +371,7 @@ public class ServerConfig {
 		builder.push("Djadochta Dunes");
 		this.aepyornithomimusDjadochtaDunesSpawnWeight = buildInt(builder, "Aepyornithomimus Djadochta Dunes Spawn Rate", "all", 2, 0, 300, "The spawn rate of Aepyornithomimus in the Djadochta Dunes biome. Default is 3");
 		this.citipatiDjadochtaDunesSpawnWeight = buildInt(builder, "Citipati Djadochta Dunes Spawn Rate", "all", 5, 0, 300, "The spawn rate of Citipati in the Djadochta Dunes biome. Default is 5");
+		this.oviraptorDjadochtaDunesSpawnWeight = buildInt(builder, "Oviraptor Djadochta Dunes Spawn Rate", "all", 2, 0, 300, "The spawn rate of Oviraptor in the Djadochta Dunes biome. Default is 2");
 		this.pinacosaurusDjadochtaDunesSpawnWeight = buildInt(builder, "Pinacosaurus Djadochta Dunes Spawn Rate", "all", 5, 0, 300, "The spawn rate of Pinacosaurus in the Djadochta Dunes biome. Default is 5");
 		this.plesiohadrosDjadochtaDunesSpawnWeight = buildInt(builder, "Plesiohadros Djadochta Dunes Spawn Rate", "all", 0, 0, 300, "The spawn rate of Plesiohadros in the Djadochta Dunes biome. Default is 0");
 		this.protoceratopsDjadochtaDunesSpawnWeight = buildInt(builder, "Protoceratops Djadochta Dunes Spawn Rate", "all", 7, 0, 300, "The spawn rate of Protoceratops in the Djadochta Dunes biome. Default is 7");
@@ -430,6 +438,7 @@ public class ServerConfig {
 		this.melviusHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Melvius Hell Creek Liriodendrites Hills Spawn Rate", "all", 1, 0, 300, "The spawn rate of Melvius in the Hell Creek Liriodendrites Hills biome. Default is 1");
 		this.myledaphusHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Myledaphus Hell Creek Liriodendrites Hills Spawn Rate", "all", 10, 0, 300, "The spawn rate of Myledaphus in the Hell Creek Liriodendrites Hills biome. Default is 10");
 		this.pachycephalosaurusHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Pachycephalosaurus Hell Creek Liriodendrites Hills Spawn Rate", "all", 3, 0, 300, "The spawn rate of Pachycephalosaurus in the Hell Creek Liriodendrites Hills biome. Default is 3");
+		this.palaeosaniwaHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Palaeosaniwa Hell Creek Liriodendrites Hills Spawn Rate", "all", 1, 0, 300, "The spawn rate of Palaeosaniwa in the Hell Creek Liriodendrites Hills biome. Default is 1");
 		this.thescelosaurusHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Thescelosaurus Hell Creek Liriodendrites Hills Spawn Rate", "all", 5, 0, 300, "The spawn rate of Thescelosaurus in the Hell Creek Liriodendrites Hills biome. Default is 5");
 		this.thoracosaurusHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Thoracosaurus Hell Creek Liriodendrites Hills Spawn Rate", "all", 0, 0, 300, "The spawn rate of Thoracosaurus in the Hell Creek Liriodendrites Hills biome. Default is 0");
 		this.triceratopsHellCreekLiriodendritesHillsSpawnWeight = buildInt(builder, "Triceratops Hell Creek Liriodendrites Hills Spawn Rate", "all", 3, 0, 300, "The spawn rate of Triceratops in the Hell Creek Liriodendrites Hills biome. Default is 3");
@@ -494,6 +503,7 @@ public class ServerConfig {
 		this.melviusHellCreekSwampSpawnWeight = buildInt(builder, "Melvius Hell Creek Swamp Spawn Rate", "all", 6, 0, 300, "The spawn rate of Melvius in the Hell Creek Swamp biome. Default is 6");
 		this.myledaphusHellCreekSwampSpawnWeight = buildInt(builder, "Myledaphus Hell Creek Swamp Spawn Rate", "all", 12, 0, 300, "The spawn rate of Myledaphus in the Hell Creek Swamp biome. Default is 12");
 		this.pachycephalosaurusHellCreekSwampSpawnWeight = buildInt(builder, "Pachycephalosaurus Hell Creek Swamp Spawn Rate", "all", 2, 0, 300, "The spawn rate of Pachycephalosaurus in the Hell Creek Swamp biome. Default is 2");
+		this.palaeosaniwaHellCreekSwampSpawnWeight = buildInt(builder, "Palaeosaniwa Hell Creek Swamp Spawn Rate", "all", 0, 0, 300, "The spawn rate of Palaeosaniwa in th Hell Creek Swamp biome. Default is 0");
 		this.thescelosaurusHellCreekSwampSpawnWeight = buildInt(builder, "Thescelosaurus Hell Creek Swamp Spawn Rate", "all", 7, 0, 300, "The spawn rate of Thescelosaurus in the Hell Creek Swamp biome. Default is 7");
 		this.thoracosaurusHellCreekSwampSpawnWeight = buildInt(builder, "Thoracosaurus Hell Creek Swamp Spawn Rate", "all", 3, 0, 300, "The spawn rate of Thoracosaurus in the Hell Creek Swamp biome. Default is 3");
 		this.triceratopsHellCreekSwampSpawnWeight = buildInt(builder, "Triceratops Hell Creek Swamp Spawn Rate", "all", 10, 0, 300, "The spawn rate of Triceratops in the Hell Creek Swamp biome. Default is 10");

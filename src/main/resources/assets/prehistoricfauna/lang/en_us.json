@@ -14,6 +14,7 @@
 	"block.prehistoricfauna.marchantia": "Marchantia",
 	"block.prehistoricfauna.moss_carpet": "Moss Carpet",
 	"block.prehistoricfauna.thatch_carpet": "Thatch Carpet",
+	"block.prehistoricfauna.bisonia": "Bisonia",
 	"block.prehistoricfauna.loam": "Loam",
 	"block.prehistoricfauna.packed_loam": "Packed Loam",
 	"block.prehistoricfauna.moss_block": "Moss Block",
@@ -51,6 +52,11 @@
 	"block.prehistoricfauna.archaefructus": "Archaefructus",
 	"block.prehistoricfauna.tall_archaefructus": "Tall Archaefructus",
 	"block.prehistoricfauna.archaeamphora": "Archaeamphora",
+	"block.prehistoricfauna.nelumbo": "Nelumbo",
+	"block.prehistoricfauna.nelumbo_stem": "Nelumbo Stem",
+	"block.prehistoricfauna.nelumbo_roots": "Nelumbo Roots",
+	"item.prehistoricfauna.nelumbo": "Nelumbo",
+	"block.prehistoricfauna.zingiberopsis": "Zingiberopsis",
 	
 	"block.prehistoricfauna.liriodendrites_planks": "Liriodendrites Planks",
 	"block.prehistoricfauna.heidiphyllum_planks": "Heidiphyllum Planks",
@@ -72,6 +78,7 @@
 	"block.prehistoricfauna.sabalites_planks": "Sabalites Planks",
 	"block.prehistoricfauna.taxodium_planks": "Taxodium Planks",
 	"block.prehistoricfauna.platanites_planks": "Platanites Planks",
+	"block.prehistoricfauna.taxus_planks": "Taxus Planks",
 	
 	"block.prehistoricfauna.araucaria_sign": "Araucaria Sign",
 	"block.prehistoricfauna.araucaria_wall_sign": "Araucaria Sign",
@@ -109,6 +116,8 @@
 	"block.prehistoricfauna.sabalites_wall_sign": "Sabalites Sign",
 	"block.prehistoricfauna.platanites_sign": "Platanites Sign",
 	"block.prehistoricfauna.platanites_wall_sign": "Platanites Sign",
+	"block.prehistoricfauna.taxus_sign": "Taxus Sign",
+	"block.prehistoricfauna.taxus_wall_sign": "Taxus Wall Sign",
 	
 	"block.prehistoricfauna.stripped_liriodendrites_log": "Stripped Liriodendrites Log",
 	"block.prehistoricfauna.liriodendrites_wood": "Liriodendrites Wood",
@@ -185,6 +194,10 @@
 	"block.prehistoricfauna.platanites_wood": "Platanites Wood",
 	"block.prehistoircfauna.stripped_platanites_log": "Stripped Platanites Log",
 	"block.prehistoricfauna.stripped_platanites_wood": "Stripped Platanites Wood",
+	"block.prehistoricfauna.taxus_log": "Taxus Log",
+	"block.prehistoricfauna.taxus_wood": "Taxus Wood",
+	"block.prehistoricfauna.stripped_taxus_log": "Stripped Taxus Log",
+	"block.prehistoricfauna.stripped_taxus_wood": "Stripped Taxus Wood",
 	
 	"block.prehistoricfauna.liriodendrites_slab": "Liriodendrites Slab",
 	"block.prehistoricfauna.heidiphyllum_slab": "Heidiphyllum Slab",
@@ -206,6 +219,7 @@
 	"block.prehistoricfauna.taxodium_slab": "Taxodium Slab",
 	"block.prehistoricfauna.sabalites_slab": "Sabalites Slab",
 	"block.prehistoricfauna.platanites_slab": "Platanites Slab",
+	"block.prehistoricfauna.taxus_slab": "Taxus Slab",
 	
 	"block.prehistoricfauna.liriodendrites_stairs": "Liriodendrites Stairs",
 	"block.prehistoricfauna.heidiphyllum_stairs": "Heidiphyllum Stairs",
@@ -227,6 +241,7 @@
 	"block.prehistoricfauna.taxodium_stairs": "Taxodium Stairs",
 	"block.prehistoricfauna.sabalites_stairs": "Sabalites Stairs",
 	"block.prehistoricfauna.platanites_stairs": "Platanites Stairs",
+	"block.prehistoricfauna.taxus_stairs": "Taxus Stairs",
 		
 	"block.prehistoricfauna.liriodendrites_leaves": "Liriodendrites Leaves",
 	"block.prehistoricfauna.liriodendrites_leaves_flower": "Flowering Liriodendrites Leaves",
@@ -250,6 +265,7 @@
 	"block.prehistoricfauna.sabalites_top_leaves": "Sabalites Leaves",
 	"block.prehistoricfauna.sabalites_diagonal_leaves": "Sabalites Leaves",
 	"block.prehistoricfauna.platanites_leaves": "Platanites Leaves",
+	"block.prehistoricfauna.taxus_leaves": "Taxus Leaves",
 	
 	"block.prehistoricfauna.liriodendrites_pressure_plate": "Liriodendrites Pressure Plate",
 	"block.prehistoricfauna.heidiphyllum_pressure_plate": "Heidiphyllum Pressure Plate",
@@ -270,6 +286,7 @@
 	"block.prehistoricfauna.taxodium_pressure_plate": "Taxodium Pressure Plate",
 	"block.prehistoricfauna.sabalites_pressure_plate": "Sabalites Pressure Plate",
 	"block.prehistoricfauna.platanites_pressure_plate": "Platanites Pressure Plate",
+	"block.prehistoricfauna.taxus_pressure_plate": "Taxus Pressure Plate",
 	
 	"block.prehistoricfauna.liriodendrites_trapdoor": "Liriodendrites Trapdoor",
 	"block.prehistoricfauna.liriodendrites_door": "Liriodendrites Door",
@@ -309,6 +326,8 @@
 	"block.prehistoricfauna.sabalites_trapdoor": "Sabalites Trapdoor",
 	"block.prehistoricfauna.platanites_door": "Platanites Door",
 	"block.prehistoricfauna.platanites_trapdoor": "Platanites Trapdoor",
+	"block.prehistoricfauna.taxus_door": "Taxus Door",
+	"block.prehistoricfauna.taxus_trapdoor": "Taxus Trapdoor",
 	
 	"block.prehistoricfauna.liriodendrites_fence": "Liriodendrites Fence",
 	"block.prehistoricfauna.liriodendrites_fence_gate": "Liriodendrites Fence Gate",
@@ -348,6 +367,8 @@
 	"block.prehistoricfauna.sabalites_fence_gate": "Sabalites Fence Gate",
 	"block.prehistoricfauna.platanites_fence": "Platanites Fence",
 	"block.prehistoricfauna.platanites_fence_gate": "Platanites Fence Gate",
+	"block.prehistoricfauna.taxus_fence": "Taxus Fence",
+	"block.prehistoricfauna.taxus_fence_gate": "Taxus Fence Gate",
 	
 	"block.prehistoricfauna.liriodendrites_sapling": "Liriodendrites Sapling",
 	"block.prehistoricfauna.heidiphyllum_sapling": "Heidiphyllum Sapling",
@@ -367,6 +388,7 @@
 	"block.prehistoricfauna.taxodium_sapling": "Taxodium Sapling",
 	"block.prehistoricfauna.sabalites_sapling": "Sabalites Sapling",
 	"block.prehistoricfauna.platanites_sapling": "Platanites Sapling",
+	"block.prehistoricfauna.taxus_sapling": "Taxus Sapling",
 	
 	"block.prehistoricfauna.liriodendrites_button": "Liriodendrites Button",
 	"block.prehistoricfauna.heidiphyllum_button": "Heidiphyllum Button",
@@ -387,6 +409,7 @@
 	"block.prehistoricfauna.taxodium_button": "Taxodium Button",
 	"block.prehistoricfauna.sabalites_button": "Sabalites Button",
 	"block.prehistoricfauna.platanites_button": "Platanites Button",
+	"block.prehistoricfauna.taxus_button": "Taxus Button",
 	
 	"block.prehistoricfauna.cretaceous_portal": "Cretaceous Warp Block",
 	"block.prehistoricfauna.portal_frame": "Time Machine Frame",
@@ -555,6 +578,8 @@
 	"item.prehistoricfauna.lonchidion_spawn_egg": "Lonchidion Spawn Egg",
 	"item.prehistoricfauna.acipenser_spawn_egg": "Acipenser Spawn Egg",
 	"item.prehistoricfauna.thoracosaurus_spawn_egg": "Thoracosaurus Spawn Egg",
+	"item.prehistoricfauna.palaeosaniwa_spawn_egg": "Palaeosaniwa Spawn Egg",
+	"item.prehistoricfauna.oviraptor_spawn_egg": "Oviraptor Spawn Egg",
 	
 	"entity.prehistoricfauna.thescelosaurus": "Thescelosaurus",
 	"entity.prehistoricfauna.triceratops": "Triceratops",
@@ -619,6 +644,8 @@
 	"entity.prehistoricfauna.lonchidion": "Lonchidion",
 	"entity.prehistoricfauna.acipenser": "Acipenser",
 	"entity.prehistoricfauna.thoracosaurus": "Thoracosaurus",
+	"entity.prehistoricfauna.palaeosaniwa": "Palaeosaniwa",
+	"entity.prehistoricfauna.oviraptor": "Oviraptor",
 	
 	"item.prehistoricfauna.araucaria_boat": "Araucaria Boat",
 	"item.prehistoricfauna.metasequoia_boat": "Metasequoia Boat",
@@ -637,6 +664,7 @@
 	"item.prehistoricfauna.taxodium_boat": "Taxodium Boat",
 	"item.prehistoricfauna.sabalites_boat": "Sabalites Boat",
 	"item.prehistoricfauna.platanites_boat": "Platanites Boat",
+	"item.prehistoricfauna.taxus_boat": "Taxus Boat",
 
 	"item.prehistoricfauna.tyrannosaur_tooth": "Tyrannosaur Tooth",
 	"item.prehistoricfauna.tail_club": "Tail Club",
@@ -781,6 +809,8 @@
 	"block.prehistoricfauna.coelophysis_egg": "Coelophysis Egg",
 	"block.prehistoricfauna.typothorax_egg": "Typothorax Egg",
 	"block.prehistoricfauna.thoracosaurus_egg": "Thoracosaurus Egg",
+	"block.prehistoricfauna.palaeosaniwa_egg": "Palaeosaniwa Egg",
+	"block.prehistoricfauna.oviraptor_egg": "Oviraptor Egg",
 	
 	"block.prehistoricfauna.small_ammonite_fossil": "Small Ammonite Fossil",
 	"block.prehistoricfauna.medium_ammonite_fossil": "Medium Ammonite Fossil",
@@ -959,6 +989,8 @@
 	"paleopedia.coelophysis": "Coelophysis",
 	"paleopedia.typothorax": "Typothorax",
 	"paleopedia.thoracosaurus": "Thoracosaurus",
+	"paleopedia.palaeosaniwa": "Palaeosaniwa",
+	"paleopedia.oviraptor": "Oviraptor",
 	
 	"item.prehistoricfauna.banner_pattern_claw": "Banner Pattern",
 	"item.prehistoricfauna.banner_pattern_claw.desc": "Claw",
@@ -1293,6 +1325,13 @@
 	"prehistoricfauna.subtitle.lonchidionDeath": "Lonchidion dies",
 	"prehistoricfauna.subtitle.acipenserHurt": "Acipenser hurts",
 	"prehistoricfauna.subtitle.acipenserDeath": "Acipenser dies",
+	"prehistoricfauna.subtitle.palaeosaniwaIdle": "Palaeosaniwa hisses",
+	"prehistoricfauna.subtitle.palaeosaniwaWarning": "Palaeosaniwa yips",
+	"prehistoricfauna.subtitle.palaeosaniwaHurt": "Palaeosaniwa hurts",
+	"prehistoricfauna.subtitle.palaeosaniwaDeath": "Palaeosaniwa dies",
+	"prehistoricfauna.subtitle.oviraptorIdle": "Oviraptor squawks",
+	"prehistoricfauna.subtitle.oviraptorHurt": "Oviraptor hurts",
+	"prehistoricfauna.subtitle.oviraptorDeath": "Oviraptor dies",
 	
 	"effect.prehistoricfauna.bleeding": "Bleeding",
 	
@@ -1438,6 +1477,9 @@
 	"block.prehistoricfauna.platanites_leaf_carpet": "Platanites Leaf Carpet",
 	"block.prehistoricfauna.platanites_vertical_slab": "Platanites Vertical Slab",
 	"block.prehistoricfauna.platanites_vertical_planks": "Platanites Vertical Planks",
+	"block.prehistoricfauna.taxus_leaf_carpet": "Taxus Leaf Carpet",
+	"block.prehistoricfauna.taxus_vertical_slab": "Taxus Vertical Slab",
+	"block.prehistoricfauna.taxus_vertical_planks": "Taxus Vertical Planks",
 	
 	"block.prehistoricfauna.araucaria_chest": "Araucaria Chest",
 	"block.prehistoricfauna.araucaria_trapped_chest": "Araucaria Trapped Chest",
@@ -1475,6 +1517,8 @@
 	"block.prehistoricfauna.sabalites_trapped_chest": "Sabalites Trapped Chest",
 	"block.prehistoricfauna.platanites_chest": "Platanites Chest",
 	"block.prehistoricfauna.platanites_trapped_chest": "Platanites Trapped Chest",
+	"block.prehistoricfauna.taxus_chest": "Taxus Chest",
+	"block.prehistoricfauna.taxus_trapped_chest": "Taxus Trapped Chest",
 	
 	"block.prehistoricfauna.araucaria_ladder": "Araucaria Ladder",
 	"block.prehistoricfauna.metasequoia_ladder": "Metasequoia Ladder",
@@ -1494,6 +1538,7 @@
 	"block.prehistoricfauna.taxodium_ladder": "Taxodium Ladder",
 	"block.prehistoricfauna.sabalites_ladder": "Sabalites Ladder",
 	"block.prehistoricfauna.platanites_ladder": "Platanites Ladder",
+	"block.prehistoricfaunaa.taxus_ladder": "Taxus Ladder", 
 	
 	"block.prehistoricfauna.araucaria_bookshelf": "Araucaria Bookshelf",
 	"block.prehistoricfauna.metasequoia_bookshelf": "Metasequoia Bookshelf",
@@ -1513,6 +1558,7 @@
 	"block.prehistoricfauna.taxodium_bookshelf": "Taxodium Bookshelf",
 	"block.prehistoricfauna.sabalites_bookshelf": "Sabalites Bookshelf",
 	"block.prehistoricfauna.platanites_bookshelf": "Platanites Bookshelf",
+	"block.prehistoricfauna.taxus_bookshelf": "Taxus Bookshelf",
 	
 	"block.prehistoricfauna.chalk_pavement": "Chalk Pavement",
 	"block.prehistoricfauna.sandstone_pavement": "Sandstone Pavement",
@@ -1555,6 +1601,8 @@
 	"block.prehistoricfauna.stripped_sabalites_post": "Stripped Sabalites Post",
 	"block.prehistoricfauna.platanites_post": "Platanites Post",
 	"block.prehistoricfauna.stripped_platanites_post": "Stripped Platanites Post",
+	"block.prehistoricfauna.taxus_post": "Taxus Post",
+	"block.prehistoricfauna.stripped_taxus_post": "Stripped Taxus Post",
 	
 	"block.prehistoricfauna.araucaria_hedge": "Araucaria Hedge",
 	"block.prehistoricfauna.metasequoia_hedge": "Metasequoia Hedge",
@@ -1572,6 +1620,7 @@
 	"block.prehistoricfauna.dryophyllum_hedge": "Dryophyllum Hedge",
 	"block.prehistoricfauna.taxodium_hedge": "Taxodium Hedge",
 	"block.prehistoricfauna.platanites_hedge": "Platanites Hedge",
+	"block.prehistoricfauna.taxus_hedge": "Taxus Hedge",
 	
 	"block.prehistoricfauna.metasequoia_beehive": "Metasequoia Beehive",
 	"block.prehistoricfauna.araucaria_beehive": "Araucaria Beehive",
@@ -1591,6 +1640,7 @@
 	"block.prehistoricfauna.taxodium_beehive": "Taxodium Beehive",
 	"block.prehistoricfauna.sabalites_beehive": "Sabalites Beehive",
 	"block.prehistoricfauna.platanites_beehive": "Platanites Beehive",
+	"block.prehistoricfauna.taxus_beehive": "Taxus Beehive",
 	
 	"block.prehistoricfauna.oak_feeder": "Oak Feeder",
 	
