@@ -276,6 +276,8 @@ public class PlesiohadrosModel extends EntityModel<Plesiohadros> {
 		this.Neck.yRot = 0;
 		this.ThighR.xRot = 0;
 		this.ThighR.yRot = 0;
+		this.ThighL.xRot = 0;
+		this.ThighL.yRot = 0;
 		this.Head.xRot = 0;
 		this.LegFrontL.xRot = 0;
 		this.LegFrontL.zRot = 0;
@@ -316,14 +318,14 @@ public class PlesiohadrosModel extends EntityModel<Plesiohadros> {
 
 	public void sleepPose() {
 		this.Body.y = 10;
-		this.ThighL.y = 6;
-		this.ThighL.x = 10;
-		this.ThighL.z = 9;
 		this.ThighR.y = 6;
-		this.ThighR.x = -1;
-		this.ThighR.z = 12;
+		this.ThighR.x = 10;
+		this.ThighR.z = 9;
+		this.ThighL.y = 6;
+		this.ThighL.x = -1;
+		this.ThighL.z = 12;
 		this.LegFrontL.y = 18;
-		this.LegFrontR.y = 18;
+		this.LegFrontR.y = 20;
 		this.LegBackL.y = 13.9F;
 		this.LegBackR.y = 13.9F;
 		this.FeetL.z = 1F;
@@ -334,8 +336,8 @@ public class PlesiohadrosModel extends EntityModel<Plesiohadros> {
 		this.Neck.y = 1.5F;
 		this.Neck.xRot = 0.5235987755982988F;
 		this.Neck.yRot = -0.3490658503988659F;
-		this.ThighR.xRot = -0.7330382858376184F;
-		this.ThighR.yRot = 0.5585053606381855F;
+		this.ThighL.xRot = -0.7330382858376184F;
+		this.ThighL.yRot = 0.5585053606381855F;
 		this.Head.xRot = -0.4974188368183839F;
 		this.LegFrontL.xRot = -0.7330382858376184F;
 		this.LegFrontL.zRot = -0.9075712110370513F;
@@ -352,7 +354,7 @@ public class PlesiohadrosModel extends EntityModel<Plesiohadros> {
 		this.TailTip.xRot = 0.41887902047863906F;
 		this.TailTip.yRot = 0.593411945678072F;
 		this.TailTip.zRot = 0.10471975511965977F;
-		this.ThighL.xRot = -0.7330382858376184F;
+		this.ThighR.xRot = -0.7330382858376184F;
 		this.FeetL.xRot = 1.5707963267948966F;
 		this.FeetR.xRot = 1.5707963267948966F;
 	}

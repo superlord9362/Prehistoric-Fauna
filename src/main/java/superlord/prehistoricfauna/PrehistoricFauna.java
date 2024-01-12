@@ -52,6 +52,7 @@ import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.block.messages.MessageUpdatePaleoscribe;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Aepyornithomimus;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Citipati;
+import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Oviraptor;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Pinacosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Plesiohadros;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Protoceratops;
@@ -61,6 +62,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ankylosauru
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Basilemys;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Didelphodon;
+import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Palaeosaniwa;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Thescelosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Thoracosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
@@ -340,6 +342,8 @@ public class PrehistoricFauna {
 		event.put(PFEntities.LONCHIDION.get(), Lonchidion.createAttributes().build());
 		event.put(PFEntities.ACIPENSER.get(), Acipenser.createAttributes().build());
 		event.put(PFEntities.THORACOSAURUS.get(), Thoracosaurus.createAttributes().build());
+		event.put(PFEntities.OVIRAPTOR.get(), Oviraptor.createAttributes().build());
+		event.put(PFEntities.PALAEOSANIWA.get(), Palaeosaniwa.createAttributes().build());
 	}
 
 	public final static CreativeModeTab PF_BUILDING = new CreativeModeTab("prehistoric_building_tab") {
@@ -408,6 +412,7 @@ public class PrehistoricFauna {
 			WoodType.register(PFWoodTypes.TAXODIUM);
 			WoodType.register(PFWoodTypes.SABALITES);
 			WoodType.register(PFWoodTypes.PLATANITES);
+			WoodType.register(PFWoodTypes.TAXUS);
 			PFStructures.init();
 			PFProfessions.fillTradeData();
 		});
@@ -468,6 +473,8 @@ public class PrehistoricFauna {
 		SpawnPlacements.register(PFEntities.SAUROSUCHUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.SILLOSUCHUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.THORACOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Thoracosaurus::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.OVIRAPTOR.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Oviraptor::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.PALAEOSANIWA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Palaeosaniwa::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.LAND_SENTINEL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, LandSentinel::canSpawn);
 		SpawnPlacements.register(PFEntities.CAVE_SENTINEL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, CaveSentinel::canSpawn);
 		GeologicalHammerEvents.init();

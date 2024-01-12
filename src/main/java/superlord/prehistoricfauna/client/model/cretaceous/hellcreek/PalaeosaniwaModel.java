@@ -49,12 +49,12 @@ public class PalaeosaniwaModel extends EntityModel<Palaeosaniwa> {
 		PartDefinition tail1 = body2.addOrReplaceChild("tail1", CubeListBuilder.create().texOffs(16, 21).addBox(-2.0F, -2.0F, -1.0F, 4.0F, 5.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5F, 1.0F, 8.0F, -0.3054F, 0.0F, 0.0F));
 
 		PartDefinition tail2 = tail1.addOrReplaceChild("tail2", CubeListBuilder.create().texOffs(26, 45).addBox(-1.5F, 0.0F, -1.0F, 3.0F, 3.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 7.0F, 0.3054F, 0.0F, 0.0F));
-		
+
 		PartDefinition leg3 = body2.addOrReplaceChild("leg3", CubeListBuilder.create().texOffs(27, 41).addBox(-1.0F, -1.0F, -1.5F, 2.0F, 6.0F, 3.0F, new CubeDeformation(0.0F))
-		.texOffs(33, 0).addBox(-3.5F, 5.0F, -3.5F, 5.0F, 0.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.5F, 1.0F, 5.5F));
+				.texOffs(33, 0).addBox(-3.5F, 5.0F, -3.5F, 5.0F, 0.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.5F, 1.0F, 5.5F));
 
 		PartDefinition leg4 = body2.addOrReplaceChild("leg4", CubeListBuilder.create().texOffs(17, 41).addBox(-1.0F, -1.0F, -1.5F, 2.0F, 6.0F, 3.0F, new CubeDeformation(0.0F))
-		.texOffs(33, 16).addBox(-1.5F, 5.0F, -3.5F, 5.0F, 0.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(3.5F, 1.0F, 5.5F));
+				.texOffs(33, 16).addBox(-1.5F, 5.0F, -3.5F, 5.0F, 0.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(3.5F, 1.0F, 5.5F));
 
 		PartDefinition head = body.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 31).addBox(-2.5F, -4.0F, -4.0F, 5.0F, 7.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -4.0F, -5.0F));
 
@@ -63,10 +63,10 @@ public class PalaeosaniwaModel extends EntityModel<Palaeosaniwa> {
 		PartDefinition tongue = snout.addOrReplaceChild("tongue", CubeListBuilder.create().texOffs(6, 45).addBox(-1.5F, 0.0F, -4.0F, 3.0F, 0.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.5F, -4.0F, -5.0F));
 
 		PartDefinition leg1 = body.addOrReplaceChild("leg1", CubeListBuilder.create().texOffs(27, 41).addBox(-1.0F, -1.0F, -1.5F, 2.0F, 6.0F, 3.0F, new CubeDeformation(0.0F))
-		.texOffs(25, 36).addBox(-3.5F, 5.0F, -3.5F, 5.0F, 0.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(-4.0F, -2.0F, -3.25F));
+				.texOffs(25, 36).addBox(-3.5F, 5.0F, -3.5F, 5.0F, 0.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(-4.0F, -2.0F, -3.25F));
 
 		PartDefinition leg2 = body.addOrReplaceChild("leg2", CubeListBuilder.create().texOffs(17, 41).addBox(-1.0F, -1.0F, -1.5F, 2.0F, 6.0F, 3.0F, new CubeDeformation(0.0F))
-		.texOffs(15, 36).addBox(-1.5F, 5.0F, -3.5F, 5.0F, 0.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(4.0F, -2.0F, -3.25F));
+				.texOffs(15, 36).addBox(-1.5F, 5.0F, -3.5F, 5.0F, 0.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(4.0F, -2.0F, -3.25F));
 
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
@@ -76,21 +76,23 @@ public class PalaeosaniwaModel extends EntityModel<Palaeosaniwa> {
 		resetModel();
 		if (entity.isAsleep()) {
 			setSleepingPose();
-		} else if (entity.getWakingTicks() == 31) {
+		}
+		if (!entity.isAsleep()) {
 			float speed = 1.0f;
 			float degree = 1.0f;
-			this.head.xRot = (-Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.1F * limbSwingAmount - 0.1F);
-			this.head.yRot = (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.1F * limbSwingAmount - 0.1F);
-			this.body2.yRot = (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.1F * limbSwingAmount - 0.1F);
-			this.tail1.yRot = -(Mth.cos(limbSwing * speed * 0.3F) * degree * 0.1F * limbSwingAmount - 0.1F);
-			this.leg3.xRot = Mth.cos(limbSwing * speed * 0.3F) * degree * 0.5F * limbSwingAmount;
-			this.leg3.yRot = Math.abs(Mth.cos(limbSwing * speed * 0.3F) * degree * 0.5F * limbSwingAmount);
-			this.leg4.xRot = Mth.cos(4.0F + limbSwing * speed * 0.3F) * degree * 0.5F * limbSwingAmount;
-			this.leg4.zRot = -Math.abs(Mth.cos(4.0F + limbSwing * speed * 0.3F) * degree * 0.5F * limbSwingAmount);
-			this.leg2.xRot = Mth.cos(4.0F + limbSwing * speed * 0.3F) * degree * 0.5F * limbSwingAmount;
-			this.leg2.zRot = -Math.abs(Mth.cos(4.0F + limbSwing * speed * 0.3F) * degree * 0.5F * limbSwingAmount);
-			this.leg1.xRot = Mth.cos(limbSwing * speed * 0.3F) * degree * 0.5F * limbSwingAmount;
-			this.leg1.yRot = Math.abs(Mth.cos(limbSwing * speed * 0.3F) * degree * 0.5F * limbSwingAmount);
+			this.head.xRot = (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) +  + (Mth.cos(limbSwing * speed) * degree * 0.1F * limbSwingAmount);
+			this.head.yRot = (Mth.cos(limbSwing * speed) * degree * 0.1F * limbSwingAmount);
+			this.body2.yRot = (Mth.cos(limbSwing * speed) * degree * 0.1F * limbSwingAmount);
+			this.tail1.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5)) + -(Mth.cos(limbSwing * speed) * degree * 0.1F * limbSwingAmount);
+			this.tail2.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5));
+			this.leg4.xRot = Mth.cos(limbSwing * speed) * degree * 0.5F * limbSwingAmount;
+			this.leg4.zRot = -Math.abs(Mth.cos(limbSwing * speed) * degree * 0.5F * limbSwingAmount);
+			this.leg3.xRot = Mth.cos(4.0F + limbSwing * speed) * degree * 0.5F * limbSwingAmount;
+			this.leg3.zRot = Math.abs(Mth.cos(4.0F + limbSwing * speed) * degree * 0.5F * limbSwingAmount);
+			this.leg2.xRot = Mth.cos(4.0F + limbSwing * speed) * degree * 0.5F * limbSwingAmount;
+			this.leg2.zRot = -Math.abs(Mth.cos(4.0F + limbSwing * speed) * degree * 0.5F * limbSwingAmount);
+			this.leg1.xRot = Mth.cos(limbSwing * speed) * degree * 0.5F * limbSwingAmount;
+			this.leg1.zRot = Math.abs(Mth.cos(limbSwing * speed) * degree * 0.5F * limbSwingAmount);
 			if (entity.isInWater()) {
 				this.body.y = 17.2F;
 				this.leg1.xRot = 1.25F;
@@ -107,10 +109,12 @@ public class PalaeosaniwaModel extends EntityModel<Palaeosaniwa> {
 			}
 		}
 	}
-	
+
 	public void resetModel() {
 		this.body.y = 21F;
 		this.body2.yRot = 0.0F;
+		this.body2.zRot = 0.0F;
+		this.body2.xRot = 0.0F;
 		this.tail1.xRot = -0.3054F;
 		this.tail1.yRot = 0.0F;
 		this.tail2.xRot = 0.3054F;
@@ -134,7 +138,7 @@ public class PalaeosaniwaModel extends EntityModel<Palaeosaniwa> {
 		this.leg3.zRot = 0.0F;
 		this.leg4.zRot = 0.0F;
 	}
-	
+
 	public void setSleepingPose() {
 		this.body.y = 23F;
 		this.body2.yRot = -0.1309F;
@@ -155,7 +159,7 @@ public class PalaeosaniwaModel extends EntityModel<Palaeosaniwa> {
 		this.leg1.zRot = 1.5708F;
 		this.leg2.y = 0.0F;
 		this.leg2.xRot = -0.3491F;
-		this.leg2.yRot = -1.5708F;
+		this.leg2.zRot = -1.5708F;
 	}
 
 	@Override
