@@ -68,23 +68,26 @@ public class TriceratopsJuvenileModel extends EntityModel<Triceratops> {
 
 		PartDefinition Body = partdefinition.addOrReplaceChild("Body", CubeListBuilder.create().texOffs(0, 0).addBox(-7.0F, -8.0F, -12.0F, 14.0F, 17.0F, 24.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.0F, 0.0F));
 
-		PartDefinition Neck = Body.addOrReplaceChild("Neck", CubeListBuilder.create().texOffs(58, 0).addBox(-3.0F, -5.0F, -10.0F, 6.0F, 11.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -1.0F, -10.0F, 0.05F, 0.0F, 0.0F));
+		PartDefinition Neck = Body.addOrReplaceChild("Neck", CubeListBuilder.create().texOffs(58, 0).addBox(-3.0F, -5.0F, -10.0F, 6.0F, 11.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -1.0F, -10.0F, 0.0936F, 0.0F, 0.0F));
 
 		PartDefinition Head1 = Neck.addOrReplaceChild("Head1", CubeListBuilder.create().texOffs(0, 79).addBox(-4.0F, -3.0F, -9.0F, 8.0F, 13.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -5.0F, -10.0F, 0.5F, 0.0F, 0.0F));
 
-		PartDefinition horn1_1 = Head1.addOrReplaceChild("horn1_1", CubeListBuilder.create().texOffs(66, 90).addBox(-1.0F, -2.0F, -7.0F, 2.0F, 2.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.9F, -1.0F, -9.0F, -0.7285F, -0.182F, 0.0F));
+		PartDefinition horn1_1 = Head1.addOrReplaceChild("horn1_1", CubeListBuilder.create().texOffs(10, 111).addBox(-0.8499F, -2.4911F, -10.1419F, 2.0F, 2.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.9F, -1.0F, -9.0F, -1.1212F, -0.182F, 0.0F));
 
-		PartDefinition Crest = Head1.addOrReplaceChild("Crest", CubeListBuilder.create().texOffs(48, 67).addBox(-6.0F, -9.0F, -2.0F, 12.0F, 11.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0F, -3.0F, -0.9561F, 0.0F, 0.0F));
+		PartDefinition Crest = Head1.addOrReplaceChild("Crest", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 1.0F, -3.0F, -0.9561F, 0.0F, 0.0F));
+
+		PartDefinition Box_r1 = Crest.addOrReplaceChild("Box_r1", CubeListBuilder.create().texOffs(90, 112).addBox(-8.0243F, -6.3596F, -1.1469F, 16.0F, 13.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0243F, -4.0F, -1.0F, 0.2166F, 0.0F, 0.0F));
 
 		PartDefinition Snout = Head1.addOrReplaceChild("Snout", CubeListBuilder.create().texOffs(37, 88).addBox(-2.0F, 0.0F, -7.0F, 4.0F, 8.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, -9.0F));
 
-		PartDefinition nasalhorn = Snout.addOrReplaceChild("nasalhorn", CubeListBuilder.create().texOffs(0, 0).addBox(-0.5F, -3.0F, -2.0F, 1.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0F, -5.0F, 0.6374F, 0.0F, 0.0F));
+		PartDefinition nasalhorn = Snout.addOrReplaceChild("nasalhorn", CubeListBuilder.create().texOffs(0, 0).addBox(-0.5F, -4.5F, -2.0F, 1.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0F, -5.0F, 0.6374F, 0.0F, 0.0F));
 
 		PartDefinition Beak = Snout.addOrReplaceChild("Beak", CubeListBuilder.create().texOffs(0, 106).addBox(-1.0F, 0.0F, -2.0F, 2.0F, 6.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.0F, -7.0F));
 
-		PartDefinition horn1 = Head1.addOrReplaceChild("horn1", CubeListBuilder.create().texOffs(66, 90).addBox(-1.0F, -2.0F, -7.0F, 2.0F, 2.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-2.9F, -1.0F, -9.0F, -0.7285F, 0.182F, 0.0F));
+		PartDefinition horn1 = Head1.addOrReplaceChild("horn1", CubeListBuilder.create().texOffs(10, 111).addBox(-1.1501F, -2.4911F, -10.1419F, 2.0F, 2.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-2.9F, -1.0F, -9.0F, -1.1212F, 0.182F, 0.0F));
 
-		PartDefinition Tail1 = Body.addOrReplaceChild("Tail1", CubeListBuilder.create().texOffs(0, 48).addBox(-3.0F, -3.0F, -2.0F, 6.0F, 7.0F, 14.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -3.0F, 12.0F, -0.3F, 0.0F, 0.0F));
+		PartDefinition Tail1 = Body.addOrReplaceChild("Tail1", CubeListBuilder.create().texOffs(0, 48).addBox(-3.0F, -3.0F, -2.0F, 6.0F, 7.0F, 14.0F, new CubeDeformation(0.0F))
+		.texOffs(41, 109).addBox(-2.0F, -4.0F, -2.0F, 4.0F, 1.0F, 14.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -3.0F, 12.0F, -0.3F, 0.0F, 0.0F));
 
 		PartDefinition Tail2 = Tail1.addOrReplaceChild("Tail2", CubeListBuilder.create().texOffs(66, 37).addBox(-2.0F, -1.0F, -2.0F, 4.0F, 5.0F, 15.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -1.0F, 12.0F, 0.15F, 0.0F, 0.0F));
 

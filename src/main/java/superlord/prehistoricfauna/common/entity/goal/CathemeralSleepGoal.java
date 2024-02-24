@@ -80,7 +80,6 @@ public class CathemeralSleepGoal extends Goal {
 		entity.zza = 0.0F;
 		entity.getNavigation().stop();
 		entity.lerpMotion(0.0D, 0.0D, 0.0D);
-		entity.setFallingAsleepTicks(0);
 	}
 
 	@Override
@@ -88,10 +87,7 @@ public class CathemeralSleepGoal extends Goal {
 		entity.setAwakeTicks(100);
 		sleepTimer = 0;
 		entity.setAsleep(false);
-		entity.setAsleep(false);
-		entity.setFallingAsleepTicks(31);
 		entity.setWakingTicks(0);
-		entity.setWakingTicks(1);
 	}
 
 }

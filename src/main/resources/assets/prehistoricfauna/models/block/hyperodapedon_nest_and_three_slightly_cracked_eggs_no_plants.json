@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/hyperodapedon_nest_and_three_eggs_no_plants",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/hyperodapedon_egg_slightly_cracked"
+	}
+}

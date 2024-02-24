@@ -1,0 +1,9 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/nest_three_large_round_eggs_three_plants",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/plesiohadros_egg",
+		"material": "prehistoricfauna:blocks/nest",
+		"plants": "prehistoricfauna:blocks/plants"
+	}
+}

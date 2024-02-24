@@ -36,7 +36,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
+import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.common.entity.HerdDinosaurEntity;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
@@ -162,7 +162,7 @@ public class Aepyornithomimus extends HerdDinosaurEntity {
 	public void handleEntityEvent(byte id) {
 		super.handleEntityEvent(id);
 	}
-	
+
 	@Override
 	public void setAge(int age) {
 		super.setAge(age);
@@ -185,7 +185,7 @@ public class Aepyornithomimus extends HerdDinosaurEntity {
 			this.spawnItem(PFItems.PLANT_FIBER.get().getDefaultInstance());
 		}
 	}
-	
+
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		int temperment = random.nextInt(100);
 		this.setHerbivorous(true);
@@ -201,8 +201,8 @@ public class Aepyornithomimus extends HerdDinosaurEntity {
 		return PFItems.AEPYORNITHOMIMUS_EGG.get();
 	}
 
-	public BlockState getEggBlock() {
-		return PFBlocks.AEPYORNITHOMIMUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
+	public BlockState getEggBlock(Level world, BlockPos pos) {
+		return PFBlocks.AEPYORNITHOMIMUS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
 	}
 
 	@Override

@@ -1,0 +1,7 @@
+{
+	"parent": "prehistoricfauna:block/one_small_tall_egg",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/sinosauropteryx_egg_very_cracked"
+	}
+}

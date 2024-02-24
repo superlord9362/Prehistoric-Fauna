@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/poposaurus_nest_and_egg_two_plants",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/poposaurus_egg_very_cracked"
+	}
+}

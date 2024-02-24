@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "prehistoricfauna:block/schizolepidopsis_slab" },
+        "type=top": { "model": "prehistoricfauna:block/schizolepidopsis_slab_top" },
+        "type=double": { "model": "prehistoricfauna:block/schizolepidopsis_planks" }
+    }
+}

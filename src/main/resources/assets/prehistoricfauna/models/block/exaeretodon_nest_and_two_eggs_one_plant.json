@@ -1,0 +1,9 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/nest_two_small_round_eggs_one_plant",
+	"textures": {
+		"material": "prehistoricfauna:blocks/nest",
+		"egg": "prehistoricfauna:blocks/exaeretodon_egg",
+		"plants": "prehistoricfauna:blocks/plants"
+	}
+}

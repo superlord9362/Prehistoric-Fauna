@@ -19,6 +19,9 @@
 		"prehistoricfauna:taxodium_door",
 		"prehistoricfauna:sabalites_door",
 		"prehistoricfauna:platanites_door",
-		"prehistoricfauna:taxus_door"
+		"prehistoricfauna:taxus_door",
+		"prehistoricfauna:czekanowskia_door",
+		"prehistoricfauna:schizolepidopsis_door",
+		"prehistoricfauna:podozamites_door"
 	]
 }

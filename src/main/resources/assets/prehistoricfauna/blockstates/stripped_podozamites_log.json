@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":  { "model": "prehistoricfauna:block/stripped_podozamites_log" },
+        "axis=z":   { "model": "prehistoricfauna:block/stripped_podozamites_log", "x": 90 },
+        "axis=x":   { "model": "prehistoricfauna:block/stripped_podozamites_log", "x": 90, "y": 90 }
+    }
+}

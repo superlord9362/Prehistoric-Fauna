@@ -31,6 +31,7 @@ public class TriassicBiomeDecorator {
 	        if (PrehistoricFaunaConfig.arganodusChinleFlatsSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.ARGANODUS.get(), PrehistoricFaunaConfig.arganodusChinleFlatsSpawnWeight, 1, 2));
 	        if (PrehistoricFaunaConfig.saurichthysChinleFlatsSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.SAURICHTHYS.get(), PrehistoricFaunaConfig.saurichthysChinleFlatsSpawnWeight, 1, 2));
 	        if (PrehistoricFaunaConfig.mooreodontusChinleFlatsSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.MOOREODONTUS.get(), PrehistoricFaunaConfig.mooreodontusChinleFlatsSpawnWeight, 1, 2));
+	        if (PrehistoricFaunaConfig.lonchidionChinleFlatsSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.LONCHIDION.get(), PrehistoricFaunaConfig.lonchidionChinleFlatsSpawnWeight, 1, 2));
 			if (PrehistoricFaunaConfig.postosuchusChinleFlatsSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.POSTOSUCHUS.get(), PrehistoricFaunaConfig.postosuchusChinleFlatsSpawnWeight, 1, 2));
 			if (PrehistoricFaunaConfig.placeriasChinleFlatsSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.PLACERIAS.get(), PrehistoricFaunaConfig.placeriasChinleFlatsSpawnWeight, 1, 4));
 			if (PrehistoricFaunaConfig.coelophysisChinleFlatsSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.COELOPHYSIS.get(), PrehistoricFaunaConfig.coelophysisChinleFlatsSpawnWeight, 1, 3));
@@ -53,6 +54,7 @@ public class TriassicBiomeDecorator {
 			if (PrehistoricFaunaConfig.coelophysisChinleSwampSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.COELOPHYSIS.get(), PrehistoricFaunaConfig.coelophysisChinleSwampSpawnWeight, 1, 3));
 			if (PrehistoricFaunaConfig.poposaurusChinleSwampSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.POPOSAURUS.get(), PrehistoricFaunaConfig.poposaurusChinleSwampSpawnWeight, 1, 2));
 			if (PrehistoricFaunaConfig.typothoraxChinleSwampSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.TYPOTHORAX.get(), PrehistoricFaunaConfig.typothoraxChinleSwampSpawnWeight, 1, 4));
+	        if (PrehistoricFaunaConfig.lonchidionChinleSwampSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.LONCHIDION.get(), PrehistoricFaunaConfig.lonchidionChinleSwampSpawnWeight, 1, 2));
 		}
 		if (name.equals("chinle_wooded_mountains")) {
 			PFPlacedFeatures.withChinleWoodedMountainsPlants(builder);
@@ -70,6 +72,7 @@ public class TriassicBiomeDecorator {
 			if (PrehistoricFaunaConfig.coelophysisChinleWoodedMountainsSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.COELOPHYSIS.get(), PrehistoricFaunaConfig.coelophysisChinleWoodedMountainsSpawnWeight, 1, 3));
 			if (PrehistoricFaunaConfig.poposaurusChinleWoodedMountainsSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.POPOSAURUS.get(), PrehistoricFaunaConfig.poposaurusChinleWoodedMountainsSpawnWeight, 1, 2));
 			if (PrehistoricFaunaConfig.typothoraxChinleWoodedMountainsSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.TYPOTHORAX.get(), PrehistoricFaunaConfig.typothoraxChinleWoodedMountainsSpawnWeight, 1, 4));
+	        if (PrehistoricFaunaConfig.lonchidionChinleWoodedMountainsSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.LONCHIDION.get(), PrehistoricFaunaConfig.lonchidionChinleWoodedMountainsSpawnWeight, 1, 2));
 		}
 		if (name.equals("ischigualasto_forest")) {
 			PFPlacedFeatures.withIschigualastoVegetation(builder);
@@ -125,6 +128,7 @@ public class TriassicBiomeDecorator {
 	        if (PrehistoricFaunaConfig.arganodusChinleRiverSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.ARGANODUS.get(), PrehistoricFaunaConfig.arganodusChinleRiverSpawnWeight, 1, 2));
 	        if (PrehistoricFaunaConfig.saurichthysChinleRiverSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.SAURICHTHYS.get(), PrehistoricFaunaConfig.saurichthysChinleRiverSpawnWeight, 1, 2));
 	        if (PrehistoricFaunaConfig.mooreodontusChinleRiverSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.MOOREODONTUS.get(), PrehistoricFaunaConfig.mooreodontusChinleRiverSpawnWeight, 1, 2));
+	        if (PrehistoricFaunaConfig.lonchidionChinleRiverSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.LONCHIDION.get(), PrehistoricFaunaConfig.lonchidionChinleRiverSpawnWeight, 1, 2));
 		}
 		if (name.equals("ischigualasto_river")) {
 			PFPlacedFeatures.withIschigualastoVegetation(builder);

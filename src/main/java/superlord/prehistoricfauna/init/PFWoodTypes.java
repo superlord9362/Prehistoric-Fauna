@@ -25,5 +25,8 @@ public class PFWoodTypes {
 	public static WoodType SABALITES = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "sabalites").toString());
 	public static WoodType PLATANITES = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "platanites").toString());
 	public static WoodType TAXUS = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "taxus").toString());
+	public static WoodType CZEKANOWSKIA = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "czekanowskia").toString());
+	public static WoodType SCHIZOLEPIDOPSIS = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "schizolepidopsis").toString());
+	public static WoodType PODOZAMITES = WoodType.create(new ResourceLocation(PrehistoricFauna.MOD_ID, "podozamites").toString());
 	
 }

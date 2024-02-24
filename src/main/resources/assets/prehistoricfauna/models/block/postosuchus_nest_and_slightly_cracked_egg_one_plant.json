@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/postosuchus_nest_and_egg_one_plant",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/postosuchus_egg_slightly_cracked"
+	}
+}

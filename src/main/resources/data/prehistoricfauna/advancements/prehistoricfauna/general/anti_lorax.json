@@ -175,6 +175,102 @@
 				}
 			]
 		}
+	},
+	"czekanowskia": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:czekanowskia_log"
+					]
+				}
+			]
+		}
+	},
+	"dryophyllum": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:dryophyllum_log"
+					]
+				}
+			]
+		}
+	},
+	"taxodium": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:taxodium_log"
+					]
+				}
+			]
+		}
+	},
+	"sabalites": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:sabalites_log"
+					]
+				}
+			]
+		}
+	},
+	"platanites": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:platanites_log"
+					]
+				}
+			]
+		}
+	},
+	"taxus": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:taxus_log"
+					]
+				}
+			]
+		}
+	},
+	"schizolepidopsis": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:schizolepidopsis_log"
+					]
+				}
+			]
+		}
+	},
+	"podozamites": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:podozamites_log"
+					]
+				}
+			]
+		}
 	}
   },
   "requirements": [
@@ -216,6 +312,30 @@
 	],
 	[
 		"schilderia"
+	],
+	[
+		"czekanowskia"
+	],
+	[
+		"dryophyllum"
+	],
+	[
+		"taxodium"
+	],
+	[
+		"sabalites"
+	],
+	[
+		"platanites"
+	],
+	[
+		"taxus"
+	],
+	[
+		"schizolepidopsis"
+	],
+	[
+		"podozamites"
 	]
   ]
 }

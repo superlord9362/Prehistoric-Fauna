@@ -1,7 +1,7 @@
 {
-    "parent": "prehistoricfauna:block/two_pinacosaurus_eggs",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/pinacosaurus_eggs_very_cracked",
-        "all": "prehistoricfauna:blocks/pinacosaurus_eggs_very_cracked"
-    }
+	"parent": "prehistoricfauna:block/two_medium_round_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/pinacosaurus_egg_very_cracked"
+	}
 }

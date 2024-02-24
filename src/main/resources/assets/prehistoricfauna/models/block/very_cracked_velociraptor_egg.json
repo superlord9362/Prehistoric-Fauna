@@ -1,7 +1,7 @@
 {
-    "parent": "prehistoricfauna:block/velociraptor_egg",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/velociraptor_egg_very_cracked",
-        "all": "prehistoricfauna:blocks/velociraptor_egg_very_cracked"
-    }
+	"parent": "prehistoricfauna:block/one_small_tall_egg",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/velociraptor_egg_very_cracked"
+	}
 }

@@ -1,0 +1,8 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/nest_two_large_round_eggs_no_plants",
+	"textures": {
+		"material": "prehistoricfauna:blocks/nest",
+		"egg": "prehistoricfauna:blocks/triceratops_egg"
+	}
+}

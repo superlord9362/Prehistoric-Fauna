@@ -1,0 +1,7 @@
+{
+	"parent": "prehistoricfauna:block/four_small_tall_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/oviraptor_egg"
+	}
+}

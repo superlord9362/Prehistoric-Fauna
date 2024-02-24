@@ -71,7 +71,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.EntityEvent.Size;
-import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
+import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ankylosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
@@ -1000,14 +1000,12 @@ public class Velociraptor extends DinosaurEntity {
 			this.func_220817_j();
 			this.field_220822_f = 2 + Velociraptor.this.getRandom().nextInt(3);
 			Velociraptor.this.setSitting(true);
-			Velociraptor.this.setSittingTicks(0);
 			Velociraptor.this.getNavigation().stop();
 		}
 
 		public void stop() {
 			Velociraptor.this.setSitting(false);
 			Velociraptor.this.setWakingTicks(0);
-			Velociraptor.this.setSittingTicks(31);
 		}
 
 		public void tick() {
@@ -1191,8 +1189,8 @@ public class Velociraptor extends DinosaurEntity {
 		return PFItems.VELOCIRAPTOR_EGG.get();
 	}
 
-	public BlockState getEggBlock() {
-		return PFBlocks.VELOCIRAPTOR_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
+	public BlockState getEggBlock(Level world, BlockPos pos) {
+		return PFBlocks.VELOCIRAPTOR_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
 	}
 
 }

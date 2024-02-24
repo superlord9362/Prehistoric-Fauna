@@ -2,18 +2,22 @@ package superlord.prehistoricfauna.common;
 
 import com.google.common.collect.ImmutableMap;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.FireBlock;
+import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.common.network.KeyInputMessage;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFItems;
+import superlord.prehistoricfauna.init.PFKeybinds;
 
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CommonEvents {
@@ -21,7 +25,7 @@ public class CommonEvents {
 	@SubscribeEvent
 	public static void init(final FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
-			compostibleBlockss();
+			compostibleBlocks();
 			AxeItem.STRIPPABLES = new ImmutableMap.Builder<Block, Block>().putAll(AxeItem.STRIPPABLES)
 					.put(PFBlocks.AGATHOXYLON_LOG.get(), PFBlocks.STRIPPED_AGATHOXYLON_LOG.get())
 					.put(PFBlocks.AGATHOXYLON_WOOD.get(), PFBlocks.STRIPPED_AGATHOXYLON_WOOD.get())
@@ -49,12 +53,18 @@ public class CommonEvents {
 					.put(PFBlocks.PLATANITES_LOG.get(), PFBlocks.STRIPPED_PLATANITES_LOG.get())
 					.put(PFBlocks.PLATANITES_WOOD.get(), PFBlocks.STRIPPED_PLATANITES_WOOD.get())
 					.put(PFBlocks.TAXUS_LOG.get(), PFBlocks.STRIPPED_TAXUS_LOG.get())
-					.put(PFBlocks.TAXUS_WOOD.get(), PFBlocks.STRIPPED_TAXUS_WOOD.get()).build();
+					.put(PFBlocks.TAXUS_WOOD.get(), PFBlocks.STRIPPED_TAXUS_WOOD.get())
+					.put(PFBlocks.CZEKANOWSKIA_LOG.get(), PFBlocks.STRIPPED_CZEKANOWSKIA_LOG.get())
+					.put(PFBlocks.CZEKANOWSKIA_WOOD.get(), PFBlocks.STRIPPED_CZEKANOWSKIA_WOOD.get())
+					.put(PFBlocks.SCHIZOLEPIDOPSIS_LOG.get(), PFBlocks.STRIPPED_SCHIZOLEPIDOPSIS_LOG.get())
+					.put(PFBlocks.SCHIZOLEPIDOPSIS_WOOD.get(), PFBlocks.STRIPPED_SCHIZOLEPIDOPSIS_WOOD.get())
+					.put(PFBlocks.PODOZAMITES_LOG.get(), PFBlocks.STRIPPED_PODOZAMITES_LOG.get())
+					.put(PFBlocks.PODOZAMITES_WOOD.get(), PFBlocks.STRIPPED_PODOZAMITES_WOOD.get()).build();
 			registerFlammables();
 		});
 	}
 
-	private static void compostibleBlockss() {
+	private static void compostibleBlocks() {
 		compostibleBlocks(0.3F, PFBlocks.AGATHOXYLON_LEAVES.get());
 		compostibleBlocks(0.3F, PFBlocks.METASEQUOIA_LEAVES.get());
 		compostibleBlocks(0.3F, PFBlocks.ARAUCARIA_LEAVES.get());
@@ -70,6 +80,9 @@ public class CommonEvents {
 		compostibleBlocks(0.3F, PFBlocks.TAXODIUM_LEAVES.get());
 		compostibleBlocks(0.3F, PFBlocks.SABALITES_LEAVES.get());
 		compostibleBlocks(0.3F, PFBlocks.TAXUS_LEAVES.get());
+		compostibleBlocks(0.3F, PFBlocks.CZEKANOWSKIA_LEAVES.get());
+		compostibleBlocks(0.3F, PFBlocks.SCHIZOLEPIDOPSIS_LEAVES.get());
+		compostibleBlocks(0.3F, PFBlocks.PODOZAMITES_LEAVES.get());
 		compostibleBlocks(0.3F, PFBlocks.AGATHOXYLON_SAPLING.get());
 		compostibleBlocks(0.3F, PFBlocks.METASEQUOIA_SAPLING.get());
 		compostibleBlocks(0.3F, PFBlocks.ARAUCARIA_SAPLING.get());
@@ -84,6 +97,9 @@ public class CommonEvents {
 		compostibleBlocks(0.3F, PFBlocks.SABALITES_SAPLING.get());
 		compostibleBlocks(0.3F, PFBlocks.PLATANITES_SAPLING.get());
 		compostibleBlocks(0.3F, PFBlocks.TAXUS_SAPLING.get());
+		compostibleBlocks(0.3F, PFBlocks.CZEKANOWSKIA_SAPLING.get());
+		compostibleBlocks(0.3F, PFBlocks.SCHIZOLEPIDOPSIS_SAPLING.get());
+		compostibleBlocks(0.3F, PFBlocks.PODOZAMITES_SAPLING.get());
 		compostibleBlocks(0.3F, PFBlocks.HORSETAIL.get());
 		compostibleBlocks(0.3F, PFBlocks.OSMUNDA.get());
 		compostibleBlocks(0.3F, PFBlocks.CLADOPHLEBIS.get());
@@ -97,7 +113,10 @@ public class CommonEvents {
 		compostibleBlocks(0.3F, PFBlocks.LAUROZAMITES.get());
 		compostibleBlocks(0.3F, PFBlocks.OTOZAMITES.get());
 		compostibleBlocks(0.3F, PFBlocks.ARCHAEFRUCTUS.get());
-		compostibleBlocks(0.3F, PFBlocks.ARCHAEAMPHORA.get());
+		compostibleBlocks(0.3F, PFBlocks.LEEFRUCTUS.get());
+		compostibleBlocks(0.3F, PFBlocks.RUFFORDIA.get());
+		compostibleBlocks(0.3F, PFBlocks.EPHEDRA.get());
+//		compostibleBlocks(0.3F, PFBlocks.ARCHAEAMPHORA.get());
 		compostibleBlocks(0.3F, PFBlocks.BISONIA.get());
 		compostibleBlocks(0.3F, PFItems.MARMARTHIA_BERRIES.get());
 		compostibleBlocks(0.5F, PFBlocks.TALL_HORSETAIL.get());
@@ -174,6 +193,21 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.TAXUS_FENCE.get(), 5, 20);
 		registerFlammable(PFBlocks.TAXUS_FENCE_GATE.get(), 5, 20);
 		registerFlammable(PFBlocks.TAXUS_STAIRS.get(), 5, 20);
+		registerFlammable(PFBlocks.CZEKANOWSKIA_PLANKS.get(), 5, 20);
+		registerFlammable(PFBlocks.CZEKANOWSKIA_SLAB.get(), 5, 20);
+		registerFlammable(PFBlocks.CZEKANOWSKIA_FENCE.get(), 5, 20);
+		registerFlammable(PFBlocks.CZEKANOWSKIA_FENCE_GATE.get(), 5, 20);
+		registerFlammable(PFBlocks.CZEKANOWSKIA_STAIRS.get(), 5, 20);
+		registerFlammable(PFBlocks.SCHIZOLEPIDOPSIS_PLANKS.get(), 5, 20);
+		registerFlammable(PFBlocks.SCHIZOLEPIDOPSIS_SLAB.get(), 5, 20);
+		registerFlammable(PFBlocks.SCHIZOLEPIDOPSIS_FENCE.get(), 5, 20);
+		registerFlammable(PFBlocks.SCHIZOLEPIDOPSIS_FENCE_GATE.get(), 5, 20);
+		registerFlammable(PFBlocks.SCHIZOLEPIDOPSIS_STAIRS.get(), 5, 20);
+		registerFlammable(PFBlocks.PODOZAMITES_PLANKS.get(), 5, 20);
+		registerFlammable(PFBlocks.PODOZAMITES_SLAB.get(), 5, 20);
+		registerFlammable(PFBlocks.PODOZAMITES_FENCE.get(), 5, 20);
+		registerFlammable(PFBlocks.PODOZAMITES_FENCE_GATE.get(), 5, 20);
+		registerFlammable(PFBlocks.PODOZAMITES_STAIRS.get(), 5, 20);
 		registerFlammable(PFBlocks.TAXODIUM_PLANKS.get(), 5, 20);
 		registerFlammable(PFBlocks.TAXODIUM_SLAB.get(), 5, 20);
 		registerFlammable(PFBlocks.TAXODIUM_FENCE.get(), 5, 20);
@@ -262,6 +296,18 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.TAXUS_WOOD.get(), 5, 5);
 		registerFlammable(PFBlocks.STRIPPED_TAXUS_LOG.get(), 5, 5);
 		registerFlammable(PFBlocks.STRIPPED_TAXUS_WOOD.get(), 5, 5);
+		registerFlammable(PFBlocks.CZEKANOWSKIA_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.CZEKANOWSKIA_WOOD.get(), 5, 5);
+		registerFlammable(PFBlocks.STRIPPED_CZEKANOWSKIA_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.STRIPPED_CZEKANOWSKIA_WOOD.get(), 5, 5);
+		registerFlammable(PFBlocks.SCHIZOLEPIDOPSIS_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.SCHIZOLEPIDOPSIS_WOOD.get(), 5, 5);
+		registerFlammable(PFBlocks.STRIPPED_SCHIZOLEPIDOPSIS_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.STRIPPED_SCHIZOLEPIDOPSIS_WOOD.get(), 5, 5);
+		registerFlammable(PFBlocks.PODOZAMITES_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.PODOZAMITES_WOOD.get(), 5, 5);
+		registerFlammable(PFBlocks.STRIPPED_PODOZAMITES_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.STRIPPED_PODOZAMITES_WOOD.get(), 5, 5);
 		registerFlammable(PFBlocks.DRYOPHYLLUM_LOG.get(), 5, 5);
 		registerFlammable(PFBlocks.DRYOPHYLLUM_WOOD.get(), 5, 5);
 		registerFlammable(PFBlocks.STRIPPED_DRYOPHYLLUM_LOG.get(), 5, 5);
@@ -293,6 +339,9 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.PLATANITES_LEAVES.get(), 30, 60);
 		registerFlammable(PFBlocks.TAXODIUM_LEAVES.get(), 30, 60);
 		registerFlammable(PFBlocks.TAXUS_LEAVES.get(), 30, 60);
+		registerFlammable(PFBlocks.CZEKANOWSKIA_LEAVES.get(), 30, 60);
+		registerFlammable(PFBlocks.SCHIZOLEPIDOPSIS_LEAVES.get(), 30, 60);
+		registerFlammable(PFBlocks.PODOZAMITES_LEAVES.get(), 30, 60);
 		registerFlammable(PFBlocks.CLUBMOSS.get(), 60, 100);
 		registerFlammable(PFBlocks.HORSETAIL.get(), 60, 100);
 		registerFlammable(PFBlocks.OSMUNDA.get(), 60, 100);
@@ -302,7 +351,10 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.TALL_HORSETAIL.get(), 60, 100);
 		registerFlammable(PFBlocks.TALL_OSMUNDA.get(), 60, 100);
 		registerFlammable(PFBlocks.CONIOPTERIS.get(), 60, 100);
-		registerFlammable(PFBlocks.ARCHAEAMPHORA.get(), 60, 100);
+		registerFlammable(PFBlocks.LEEFRUCTUS.get(), 60, 100);
+		registerFlammable(PFBlocks.EPHEDRA.get(), 60, 100);
+		registerFlammable(PFBlocks.RUFFORDIA.get(), 60, 100);
+//		registerFlammable(PFBlocks.ARCHAEAMPHORA.get(), 60, 100);
 		registerFlammable(PFBlocks.ARCHAEFRUCTUS.get(), 60, 100);
 		registerFlammable(PFBlocks.TALL_ARCHAEFRUCTUS.get(), 60, 100);
 		registerFlammable(PFBlocks.TALL_OSMUNDACAULIS.get(), 60, 100);

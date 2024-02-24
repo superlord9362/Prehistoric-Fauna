@@ -354,6 +354,110 @@
           "type": "prehistoricfauna:typothorax"
         }
       }
+    },
+    "oviraptor": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:oviraptor"
+        }
+      }
+    },
+    "palaeosaniwa": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:palaeosaniwa"
+        }
+      }
+    },
+    "thoracosaurus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:thoracosaurus"
+        }
+      }
+    },
+    "goyocephale": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:goyocephale"
+        }
+      }
+    },
+    "halszkaraptor": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:halszkaraptor"
+        }
+      }
+    },
+    "kol": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:kol"
+        }
+      }
+    },
+    "udanoceratops": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:udanoceratops"
+        }
+      }
+    },
+    "ornithomimus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:ornithomimus"
+        }
+      }
+    },
+    "pachycephalosaurus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:pachycephalosaurus"
+        }
+      }
+    },
+    "sinosauropteryx": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:sinosauropteryx"
+        }
+      }
+    },
+    "psittacosaurus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:psittacosaurus"
+        }
+      }
+    },
+    "incisivosaurus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:incisivosaurus"
+        }
+      }
+    },
+    "yutyrannus": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "prehistoricfauna:yutyrannus"
+        }
+      }
     }
   },
   "requirements": [
@@ -482,6 +586,45 @@
 	],
 	[
 		"typothorax"
+	],
+	[
+		"oviraptor"
+	],
+	[
+		"palaeosaniwa"
+	],
+	[
+		"thoracosaurus"
+	],
+	[
+		"goyocephale"
+	],
+	[
+		"halszkaraptor"
+	],
+	[
+		"kol"
+	],
+	[
+		"udanoceratops"
+	],
+	[
+		"ornithomimus"
+	],
+	[
+		"pachycephalosaurus"
+	],
+	[
+		"sinosauropteryx"
+	],
+	[
+		"psittacosaurus"
+	],
+	[
+		"yutyrannus"
+	],
+	[
+		"incisivosaurus"
 	]
   ]
 }

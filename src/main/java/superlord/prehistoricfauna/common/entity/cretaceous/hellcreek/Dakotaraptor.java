@@ -65,7 +65,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
+import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.AggressiveTempermentAttackGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
@@ -974,13 +974,11 @@ public class Dakotaraptor extends DinosaurEntity {
 			this.func_220817_j();
 			this.field_220822_f = 2 + Dakotaraptor.this.getRandom().nextInt(3);
 			Dakotaraptor.this.setSitting(true);
-			Dakotaraptor.this.setSittingTicks(0);
 			Dakotaraptor.this.getNavigation().stop();
 		}
 
 		public void stop() {
 			Dakotaraptor.this.setSitting(false);
-			Dakotaraptor.this.setSittingTicks(31);
 			Dakotaraptor.this.setWakingTicks(0);
 		}
 
@@ -1035,7 +1033,6 @@ public class Dakotaraptor extends DinosaurEntity {
 			this.countdown = Dakotaraptor.this.random.nextInt(WAIT_TIME_BEFORE_SLEEP);
 			Dakotaraptor.this.func_213499_en();
 			Dakotaraptor.this.setWakingTicks(0);
-			Dakotaraptor.this.setFallingAsleepTicks(31);
 		}
 
 		public void start() {
@@ -1044,7 +1041,6 @@ public class Dakotaraptor extends DinosaurEntity {
 			Dakotaraptor.this.func_213502_u(false);
 			Dakotaraptor.this.setJumping(false);
 			Dakotaraptor.this.setSleeping(true);
-			Dakotaraptor.this.setFallingAsleepTicks(0);
 			Dakotaraptor.this.getNavigation().stop();
 			Dakotaraptor.this.getMoveControl().setWantedPosition(Dakotaraptor.this.getX(), Dakotaraptor.this.getY(), Dakotaraptor.this.getZ(), 0.0D);
 		}
@@ -1134,7 +1130,7 @@ public class Dakotaraptor extends DinosaurEntity {
 		return PFItems.DAKOTARAPTOR_EGG.get();
 	}
 
-	public BlockState getEggBlock() {
-		return PFBlocks.DAKOTARAPTOR_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
+	public BlockState getEggBlock(Level world, BlockPos pos) {
+		return PFBlocks.DAKOTARAPTOR_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
 	}
 }

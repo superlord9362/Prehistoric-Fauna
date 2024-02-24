@@ -117,6 +117,12 @@ public class PFBoat extends Boat {
 			return PFItems.PLATANITES_BOAT.get();
 		case TAXUS:
 			return PFItems.TAXUS_BOAT.get();
+		case CZEKANOWSKIA:
+			return PFItems.CZEKANOWSKIA_BOAT.get();
+		case SCHIZOLEPIDOPSIS:
+			return PFItems.SCHIZOLEPIDOPSIS_BOAT.get();
+		case PODOZAMITES:
+			return PFItems.PODOZAMITES_BOAT.get();
 		}
 	}
 	
@@ -138,7 +144,10 @@ public class PFBoat extends Boat {
 		TAXODIUM(PFBlocks.TAXODIUM_PLANKS.get(), "taxodium"),
 		SABALITES(PFBlocks.SABALITES_PLANKS.get(), "sabalites"),
 		PLATANITES(PFBlocks.PLATANITES_PLANKS.get(), "platanites"),
-		TAXUS(PFBlocks.TAXUS_PLANKS.get(), "taxus");
+		TAXUS(PFBlocks.TAXUS_PLANKS.get(), "taxus"),
+		CZEKANOWSKIA(PFBlocks.CZEKANOWSKIA_PLANKS.get(), "czekanowskia"),
+		SCHIZOLEPIDOPSIS(PFBlocks.SCHIZOLEPIDOPSIS_PLANKS.get(), "schizolepidopsis"),
+		PODOZAMITES(PFBlocks.PODOZAMITES_PLANKS.get(), "podozamites");
 		
 		private final String name;
 		private final Block planks;

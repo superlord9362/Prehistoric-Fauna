@@ -1,15 +1,15 @@
 package superlord.prehistoricfauna.common.feature.trees.taxodium;
+
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.level.WorldGenLevel;
+import superlord.prehistoricfauna.common.feature.util.PFTreeConfig;
+import superlord.prehistoricfauna.common.feature.trees.PFAbstractTreeFeature;
+
 import java.util.Random;
 import java.util.Set;
-
 import com.mojang.serialization.Codec;
-
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.levelgen.structure.BoundingBox;
-import superlord.prehistoricfauna.common.feature.trees.PFAbstractTreeFeature;
-import superlord.prehistoricfauna.common.feature.util.PFTreeConfig;
 
 public class Taxodium3 extends PFAbstractTreeFeature<PFTreeConfig> {
 
@@ -28,9 +28,9 @@ public class Taxodium3 extends PFAbstractTreeFeature<PFTreeConfig> {
             } else if (!this.doesSaplingHaveSpaceToGrow(world, pos, randTreeHeight, 7, 5, 5, isSapling)) {
                 return false;
             } else {
+            	//buildTrunkBase(pos, changedBlocks, world, config, rand, boundsIn, mainmutable.set(pos).move(-1, 0, 0).immutable(), mainmutable.set(pos).move(0, 0, -1).immutable(), mainmutable.set(pos).move(0, 0, 0).immutable(), mainmutable.set(pos).move(0, 0, 1).immutable(), mainmutable.set(pos).move(1, 0, 0).immutable());
             	for (int buildTrunk = 0; buildTrunk <= randTreeHeight; buildTrunk++) {
-                	buildTrunkBase(pos, changedBlocks, world, config, rand, boundsIn, mainmutable.set(pos).move(-1, 0, 0).immutable(), mainmutable.set(pos).move(0, 0, -1).immutable(), mainmutable.set(pos).move(0, 0, 0).immutable(), mainmutable.set(pos).move(0, 0, 1).immutable(), mainmutable.set(pos).move(1, 0, 0).immutable());
-                	placeTrunk(pos, config, rand, changedBlocks, world, mainmutable, boundsIn);
+					placeTrunk(pos, config, rand, changedBlocks, world, mainmutable, boundsIn);
 					mainmutable.move(Direction.UP);
 				}
 				
@@ -58,10 +58,10 @@ public class Taxodium3 extends PFAbstractTreeFeature<PFTreeConfig> {
 				placeTrunk(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, 19, 0), boundsIn);
 				placeTrunk(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, 20, 0), boundsIn);
 				placeTrunk(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, 21, 0), boundsIn);
-//				placeBranch(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(-1, randTreeHeight - 21, 0), boundsIn);
-//				placeBranch(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, randTreeHeight - 21, -1), boundsIn);
-//				placeBranch(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, randTreeHeight - 21, 1), boundsIn);
-//				placeBranch(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(1, randTreeHeight - 21, 0), boundsIn);
+				placeBranch(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(-1, 0, 0), boundsIn);
+				placeBranch(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, 0, -1), boundsIn);
+				placeBranch(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, 0, 1), boundsIn);
+				placeBranch(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(1, 0, 0), boundsIn);
 				placeBranch(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, randTreeHeight - 16, 1), boundsIn);
 				placeBranch(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, randTreeHeight - 15, -2), boundsIn);
 				placeBranch(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, randTreeHeight - 15, -1), boundsIn);

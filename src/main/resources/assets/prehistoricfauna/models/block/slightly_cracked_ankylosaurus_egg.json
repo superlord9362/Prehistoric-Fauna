@@ -1,7 +1,7 @@
 {
-    "parent": "prehistoricfauna:block/ankylosaurus_egg",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/ankylosaurus_egg_slightly_cracked",
-        "all": "prehistoricfauna:blocks/ankylosaurus_egg_slightly_cracked"
-    }
+	"parent": "prehistoricfauna:block/one_large_round_egg",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/ankylosaurus_egg_slightly_cracked"
+	}
 }

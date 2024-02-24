@@ -19,6 +19,9 @@
 		"prehistoricfauna:taxodium_fence",
 		"prehistoricfauna:sabalites_fence",
 		"prehistoricfauna:platanites_fence",
-		"prehistoricfauna:taxus_fence"
+		"prehistoricfauna:taxus_fence",
+		"prehistoricfauna:czekanowskia_fence",
+		"prehistoricfauna:schizolepidopsis_fence",
+		"prehistoricfauna:podozamites_fence"
 	]
 }

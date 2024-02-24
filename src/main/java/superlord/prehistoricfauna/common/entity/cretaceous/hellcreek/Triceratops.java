@@ -75,8 +75,8 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.blocks.FeederBlock;
+import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
@@ -251,7 +251,7 @@ public class Triceratops extends AbstractChestedHorse  {
 	public void setAggressive(boolean isAggressive) {
 		this.entityData.set(AGGRESSIVE, isAggressive);
 	}
-	
+
 	public boolean isFallingAsleep() {
 		return this.entityData.get(FALLING_ASLEEP);
 	}
@@ -259,7 +259,7 @@ public class Triceratops extends AbstractChestedHorse  {
 	public void setFallingAsleep(boolean isFallingAsleep) {
 		this.entityData.set(FALLING_ASLEEP, isFallingAsleep);
 	}
-	
+
 	public boolean isWakingUp() {
 		return this.entityData.get(WAKING_UP);
 	}
@@ -490,7 +490,7 @@ public class Triceratops extends AbstractChestedHorse  {
 		if (!this.isBaby()) {
 			if (item == PFItems.TRICERATOPS_SPAWN_EGG.get()) {
 				Triceratops triceratopsentity = PFEntities.TRICERATOPS.get().create(world);
-				triceratopsentity.setAge(-24000);
+				triceratopsentity.setAge(-48000);
 				triceratopsentity.moveTo((double)this.getX() + 0.3D * 0.2D, (double)this.getY(), (double)this.getZ() + 0.3D, 0.0F, 0.0F);
 				world.addFreshEntity(triceratopsentity);
 				return super.mobInteract(p_230254_1_, p_230254_2_);
@@ -711,7 +711,7 @@ public class Triceratops extends AbstractChestedHorse  {
 	public float getMeleeProgress(float partialTick) {
 		return prevMeleeProgress + (meleeProgress - prevMeleeProgress) * partialTick;
 	}
-	
+
 	@Override
 	public void setAge(int age) {
 		super.setAge(age);
@@ -813,7 +813,7 @@ public class Triceratops extends AbstractChestedHorse  {
 		}
 		if (!this.isFallingAsleep() && sleepingTicks != 0) this.sleepingTicks = 0;
 	}
-	
+
 	public void setAwakeTicks(int ticks) {
 		this.warryTicks = ticks;
 	}
@@ -1060,13 +1060,14 @@ public class Triceratops extends AbstractChestedHorse  {
 		public void tick() {
 			super.tick();
 			BlockPos blockpos = new BlockPos(this.triceratops.blockPosition());
+			Random random = new Random();
 			if (!this.triceratops.isInWater() && this.isReachedTarget()) {
 				if (this.triceratops.isDigging < 1) {
 					this.triceratops.setDigging(true);
 				} else if (this.triceratops.isDigging > 200) {
 					Level world = this.triceratops.level;
 					world.playSound((Player)null, blockpos, SoundEvents.TURTLE_LAY_EGG, SoundSource.BLOCKS, 0.3F, 0.9F + world.random.nextFloat() * 0.2F);
-					world.setBlock(this.blockPos.above(), PFBlocks.TRICERATOPS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.triceratops.random.nextInt(4) + 1)), 3);
+					world.setBlock(blockpos, PFBlocks.TRICERATOPS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(random.nextInt(3) + 1)), 0);
 					this.triceratops.setHasEgg(false);
 					this.triceratops.setDigging(false);
 					this.triceratops.setInLoveTime(600);

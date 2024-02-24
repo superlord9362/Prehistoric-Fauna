@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:czekanowskia_vertical_planks"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:czekanowskia_planks"
+  },
+  "conditions": [
+    {
+      "type": "prehistoricfauna:quark_flag",
+      "flag": "vertical_planks"
+    }
+  ]
+}

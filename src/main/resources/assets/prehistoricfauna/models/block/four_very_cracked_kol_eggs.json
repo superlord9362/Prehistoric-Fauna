@@ -1,0 +1,7 @@
+{
+	"parent": "prehistoricfauna:block/four_small_tall_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/kol_egg_very_cracked"
+	}
+}

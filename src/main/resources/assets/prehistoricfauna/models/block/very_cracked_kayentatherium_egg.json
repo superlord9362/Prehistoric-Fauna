@@ -1,7 +1,7 @@
 {
-    "parent": "prehistoricfauna:block/kayentatherium_egg",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/kayentatherium_eggs_very_cracked",
-        "all": "prehistoricfauna:blocks/kayentatherium_eggs_very_cracked"
-    }
+	"parent": "prehistoricfauna:block/one_small_round_egg",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/kayentatherium_egg_very_cracked"
+	}
 }

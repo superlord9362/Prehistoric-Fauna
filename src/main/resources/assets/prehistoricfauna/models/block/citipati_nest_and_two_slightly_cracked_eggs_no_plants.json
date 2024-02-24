@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/citipati_nest_and_two_eggs_no_plants",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/citipati_egg_slightly_cracked"
+	}
+}

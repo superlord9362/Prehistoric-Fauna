@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/dilophosaurus_nest_and_four_eggs_no_plants",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/dilophosaurus_egg_slightly_cracked"
+	}
+}

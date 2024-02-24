@@ -1,7 +1,7 @@
 {
-    "parent": "prehistoricfauna:block/four_postosuchus_eggs",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/postosuchus_eggs_slightly_cracked",
-        "all": "prehistoricfauna:blocks/postosuchus_eggs_slightly_cracked"
-    }
+	"parent": "prehistoricfauna:block/four_medium_tall_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/postosuchus_egg_slightly_cracked"
+	}
 }

@@ -1,0 +1,9 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/nest_three_small_round_eggs_three_plants",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/placerias_egg",
+		"material": "prehistoricfauna:blocks/nest",
+		"plants": "prehistoricfauna:blocks/plants"
+	}
+}

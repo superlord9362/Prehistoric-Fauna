@@ -145,6 +145,10 @@ public class ThoracosaurusModel  extends EntityModel<Thoracosaurus> {
 				this.HindRLeg1.z = 12;
 				this.HindRLeg1.xRot = 0;
 				this.HindRLeg2.xRot = 0;
+				this.Tail1.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount - 0.025F);
+				this.Tail1.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5)) + (Mth.cos(-1.0F + limbSwing * speed * 0.25F) * degree * 0.5F * limbSwingAmount);
+				this.Tail2.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount + 0.025F);
+				this.Tail2.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5)) + (Mth.cos(-1.0F + limbSwing * speed * 0.25F) * degree * 0.5F * limbSwingAmount);
 			} else {
 				this.FLLeg.y = -(Mth.cos(0.8F + limbSwing * speed * 0.25F) * degree * 0.2F * limbSwingAmount) + 13;
 				this.FLLeg.z = -(Mth.cos(limbSwing * speed * 0.25F) * degree * 0.5F * limbSwingAmount) - 9;
@@ -160,12 +164,12 @@ public class ThoracosaurusModel  extends EntityModel<Thoracosaurus> {
 				this.HindRLeg1.z = (Mth.cos(-1.0F + limbSwing * speed * 0.25F) * degree * 0.25F * limbSwingAmount) + 12;
 				this.HindRLeg1.xRot = (Mth.cos(limbSwing * speed * 0.25F) * degree * 0.5F * limbSwingAmount) + 0.7741F;
 				this.HindRLeg2.xRot = (Mth.cos(2.0F + limbSwing * speed * 0.3F) * degree * -0.3F * limbSwingAmount) - 0.7741F;	
+				this.Tail1.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount - 0.15F);
+				this.Tail1.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5)) + (Mth.cos(-1.0F + limbSwing * speed * 0.25F) * degree * 0.5F * limbSwingAmount);
+				this.Tail2.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount + 0.15F);
+				this.Tail2.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5)) + (Mth.cos(-1.0F + limbSwing * speed * 0.25F) * degree * 0.5F * limbSwingAmount);
 			}
 			this.Body.yRot = Mth.cos(limbSwing * speed * 0.25F) * degree * 0.25F * limbSwingAmount;
-			this.Tail1.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount - 0.15F);
-			this.Tail1.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5)) + (Mth.cos(-1.0F + limbSwing * speed * 0.25F) * degree * 0.5F * limbSwingAmount);
-			this.Tail2.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount + 0.15F);
-			this.Tail2.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5)) + (Mth.cos(-1.0F + limbSwing * speed * 0.25F) * degree * 0.5F * limbSwingAmount);
 			this.Jaw1.xRot = Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(30F);
 			this.Neck.xRot = (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + (Mth.cos(-1.0F + limbSwing * speed * 0.3F) * degree * 0.1F * limbSwingAmount) + (headPitch * ((float) Math.PI / 180F));
 			this.Neck.yRot = (netHeadYaw * ((float) Math.PI / 180F));

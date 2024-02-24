@@ -1,0 +1,36 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:cooked_harenaichthys",
+		"prehistoricfauna:cooked_harenaichthys_from_campfire",
+		"prehistoricfauna:cooked_harenaichthys_from_smoking"
+    ]
+  },
+  "criteria": {
+    "has_meat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+				"prehistoricfauna:raw_harenaichthys"
+          	]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:cooked_harenaichthys"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_meat",
+      "has_the_recipe"
+    ]
+  ]
+}

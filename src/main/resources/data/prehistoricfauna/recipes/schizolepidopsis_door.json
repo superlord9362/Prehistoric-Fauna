@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_door",
+  "pattern": [
+    "##",
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:schizolepidopsis_planks"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:schizolepidopsis_door",
+    "count": 3
+  }
+}

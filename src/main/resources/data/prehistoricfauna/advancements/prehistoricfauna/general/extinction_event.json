@@ -354,6 +354,110 @@
 				"type": "prehistoricfauna:typothorax"
 			}
 		}
+	},
+	"oviraptor": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:oviraptor"
+			}
+		}
+	},
+	"palaeosaniwa": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:palaeosaniwa"
+			}
+		}
+	},
+	"thoracosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:thoracosaurus"
+			}
+		}
+	},
+	"goyocephale": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:goyocephale"
+			}
+		}
+	},
+	"halszkaraptor": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:halszkaraptor"
+			}
+		}
+	},
+	"kol": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:kol"
+			}
+		}
+	},
+	"udanoceratops": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:udanoceratops"
+			}
+		}
+	},
+	"ornithomimus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:ornithomimus"
+			}
+		}
+	},
+	"pachycephalosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:pachycephalosaurus"
+			}
+		}
+	},
+	"sinosauropteryx": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:sinosauropteryx"
+			}
+		}
+	},
+	"psittacosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:psittacosaurus"
+			}
+		}
+	},
+	"yutyrannus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:yutyrannus"
+			}
+		}
+	},
+	"incisivosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:incisivosaurus"
+			}
+		}
 	}
   },
   "requirements": [
@@ -482,6 +586,45 @@
 	],
 	[
 		"typothorax"
+	],
+	[
+		"oviraptor"
+	],
+	[
+		"palaeosaniwa"
+	],
+	[
+		"thoracosaurus"
+	],
+	[
+		"goyocephale"
+	],
+	[
+		"halszkaraptor"
+	],
+	[
+		"kol"
+	],
+	[
+		"udanoceratops"
+	],
+	[
+		"ornithomimus"
+	],
+	[
+		"pachycephalosaurus"
+	],
+	[
+		"sinosauropteryx"
+	],
+	[
+		"psittacosaurus"
+	],
+	[
+		"yutyrannus"
+	],
+	[
+		"incisivosaurus"
 	]
   ]
 }

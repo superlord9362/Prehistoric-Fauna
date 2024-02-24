@@ -15,9 +15,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -37,7 +35,6 @@ import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.BreedGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.player.Player;
@@ -45,14 +42,12 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
-import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
+import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.AggressiveTempermentAttackGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
@@ -68,6 +63,7 @@ import superlord.prehistoricfauna.common.entity.goal.HostileCarnivoreGoal;
 import superlord.prehistoricfauna.common.entity.goal.HuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.JuvenileCarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.JuvenileHuntGoal;
+import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.ProtectBabyGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
@@ -303,55 +299,6 @@ public class Tyrannosaurus extends DinosaurEntity {
 		}
 	}
 
-	static class LayEggGoal extends MoveToBlockGoal {
-		private final Tyrannosaurus tyrannosaurus;
-
-		LayEggGoal(Tyrannosaurus tyrannosaurus, double speedIn) {
-			super(tyrannosaurus, speedIn, 16);
-			this.tyrannosaurus = tyrannosaurus;
-		}
-
-		public boolean canUse() {
-			return this.tyrannosaurus.hasBaby() ? super.canUse() : false;
-		}
-
-		public boolean canContinueToUse() {
-			return super.canContinueToUse() && this.tyrannosaurus.hasBaby();
-		}
-
-		public void tick() {
-			super.tick();
-			BlockPos blockpos = new BlockPos(this.tyrannosaurus.blockPosition());
-			if (!this.tyrannosaurus.isInWater() && this.isReachedTarget()) {
-				if (this.tyrannosaurus.isBirthing < 1) {
-					this.tyrannosaurus.setBirthing(true);
-				} else if (this.tyrannosaurus.isBirthing > 200) {
-					Level world = this.tyrannosaurus.level;
-					world.playSound((Player)null, blockpos, SoundEvents.TURTLE_LAY_EGG, SoundSource.BLOCKS, 0.3F, 0.9F + world.random.nextFloat() * 0.2F);
-					world.setBlock(this.blockPos.above(), PFBlocks.TYRANNOSAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.tyrannosaurus.random.nextInt(4) + 1)), 3);
-					this.tyrannosaurus.setHasBaby(false);
-					this.tyrannosaurus.setBirthing(false);
-					this.tyrannosaurus.setInLoveTime(600);
-				}
-
-				if (this.tyrannosaurus.isBirthing()) {
-					this.tyrannosaurus.isBirthing++;
-				}
-			}
-
-		}
-
-		protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
-			if (!worldIn.isEmptyBlock(pos.above())) {
-				return false;
-			} else {
-				Block block = worldIn.getBlockState(pos).getBlock();
-				BlockState state = worldIn.getBlockState(pos);
-				return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.MYCELIUM || block == Blocks.SAND || block == Blocks.RED_SAND || block == PFBlocks.MOSSY_DIRT.get() || block == PFBlocks.MOSS_BLOCK.get() || block == PFBlocks.LOAM.get() || block == PFBlocks.PACKED_LOAM.get() || block == PFBlocks.SILT.get() || block == PFBlocks.PACKED_LOAM.get() || state.is(BlockTags.LEAVES);
-			}
-		}
-	}
-
 	static class MateGoal extends BreedGoal {
 		private final Tyrannosaurus tyrannosaurus;
 
@@ -497,7 +444,7 @@ public class Tyrannosaurus extends DinosaurEntity {
 		return PFItems.TYRANNOSAURUS_EGG.get();
 	}
 
-	public BlockState getEggBlock() {
-		return PFBlocks.TYRANNOSAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
+	public BlockState getEggBlock(Level world, BlockPos pos) {
+		return PFBlocks.TYRANNOSAURUS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
 	}
 }

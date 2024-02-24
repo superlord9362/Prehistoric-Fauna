@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.ChestBlock;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import superlord.prehistoricfauna.common.entity.block.compat.PFChestBlockEntity;
@@ -30,5 +31,10 @@ public class PFChestBlock extends ChestBlock implements IChestBlock {
 	@Override
 	public String getChestType() {
 		return type;
+	}
+
+	@Override
+	public RenderShape getRenderShape(BlockState p_51567_) {
+		return RenderShape.ENTITYBLOCK_ANIMATED;
 	}
 }

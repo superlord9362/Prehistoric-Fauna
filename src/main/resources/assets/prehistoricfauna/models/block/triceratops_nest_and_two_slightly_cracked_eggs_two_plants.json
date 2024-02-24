@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/triceratops_nest_and_two_eggs_two_plants",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/triceratops_egg_slightly_cracked"
+	}
+}

@@ -1,0 +1,8 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/nest_four_medium_tall_eggs_no_plants",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/postosuchus_egg",
+		"material": "prehistoricfauna:blocks/nest"
+	}
+}

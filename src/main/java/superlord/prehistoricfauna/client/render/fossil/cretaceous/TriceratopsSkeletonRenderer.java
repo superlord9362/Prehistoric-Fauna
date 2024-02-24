@@ -8,9 +8,12 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.ClientEvents;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.TriceratopsSkeletonActionLeftModel;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.TriceratopsSkeletonActionRightModel;
 import superlord.prehistoricfauna.client.model.fossil.cretaceous.TriceratopsSkeletonChargingModel;
 import superlord.prehistoricfauna.client.model.fossil.cretaceous.TriceratopsSkeletonModel;
 import superlord.prehistoricfauna.client.model.fossil.cretaceous.TriceratopsSkeletonRetroModel;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.TriceratopsSkeletonSittingModel;
 import superlord.prehistoricfauna.client.model.fossil.cretaceous.TriceratopsSkeletonSleepingModel;
 import superlord.prehistoricfauna.common.entity.fossil.cretaceous.TriceratopsSkeleton;
 
@@ -21,6 +24,9 @@ public class TriceratopsSkeletonRenderer extends MobRenderer<TriceratopsSkeleton
     private static TriceratopsSkeletonChargingModel CHARGING;
     private static TriceratopsSkeletonRetroModel RETRO;
     private static TriceratopsSkeletonSleepingModel SLEEPING;
+    private static TriceratopsSkeletonSittingModel SITTING;
+    private static TriceratopsSkeletonActionLeftModel ACTION_LEFT;
+    private static TriceratopsSkeletonActionRightModel ACTION_RIGHT;
 
 	public TriceratopsSkeletonRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new TriceratopsSkeletonModel(renderManagerIn.bakeLayer(ClientEvents.TRICERATOPS_SKELETON)), 0);
@@ -28,6 +34,9 @@ public class TriceratopsSkeletonRenderer extends MobRenderer<TriceratopsSkeleton
 		CHARGING = new TriceratopsSkeletonChargingModel(renderManagerIn.bakeLayer(ClientEvents.TRICERATOPS_SKELETON_CHARGING));
 		RETRO = new TriceratopsSkeletonRetroModel(renderManagerIn.bakeLayer(ClientEvents.TRICERATOPS_SKELETON_RETRO));
 		SLEEPING = new TriceratopsSkeletonSleepingModel(renderManagerIn.bakeLayer(ClientEvents.TRICERATOPS_SKELETON_SLEEPING));
+		SITTING = new TriceratopsSkeletonSittingModel(renderManagerIn.bakeLayer(ClientEvents.TRICERATOPS_SKELETON_SITTING));
+		ACTION_LEFT = new TriceratopsSkeletonActionLeftModel(renderManagerIn.bakeLayer(ClientEvents.TRICERATOPS_SKELETON_ACTION_LEFT));
+		ACTION_RIGHT = new TriceratopsSkeletonActionRightModel(renderManagerIn.bakeLayer(ClientEvents.TRICERATOPS_SKELETON_ACTION_RIGHT));
 	}
 	
 	protected void scale(TriceratopsSkeleton entityIn, PoseStack matrixStackIn, float partialTickTime) {
@@ -37,6 +46,12 @@ public class TriceratopsSkeletonRenderer extends MobRenderer<TriceratopsSkeleton
 			model = RETRO;
 		} else if (entityIn.isSleeping()) {
 			model = SLEEPING;
+		} else if (entityIn.isSitting()) {
+			model = SITTING;
+		} else if (entityIn.isActionLeft()) {
+			model = ACTION_LEFT;
+		} else if (entityIn.isActionRight()) {
+			model = ACTION_RIGHT;
 		} else {
 			model = IDLE;
 		}

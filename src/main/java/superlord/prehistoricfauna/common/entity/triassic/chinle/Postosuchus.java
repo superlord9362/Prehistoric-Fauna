@@ -31,7 +31,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
-import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
+import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ankylosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
@@ -258,8 +258,8 @@ public class Postosuchus extends DinosaurEntity {
 		return PFItems.POSTOSUCHUS_EGG.get();
 	}
     
-    public BlockState getEggBlock() {
-    	return PFBlocks.POSTOSUCHUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
-    }
+	public BlockState getEggBlock(Level world, BlockPos pos) {
+		return PFBlocks.POSTOSUCHUS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+	}
 
 }

@@ -1,0 +1,9 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/nest_four_medium_tall_eggs_one_plant",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/ornithomimus_egg",
+		"material": "prehistoricfauna:blocks/nest",
+		"plants": "prehistoricfauna:blocks/plants"
+	}
+}

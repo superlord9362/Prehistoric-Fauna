@@ -1,6 +1,7 @@
 {
-    "parent": "prehistoricfauna:block/two_thescelosaurus_eggs",
-    "textures": {
-        "all": "prehistoricfauna:blocks/thescelosaurus_egg_slightly_cracked"
-    }
+	"parent": "prehistoricfauna:block/two_small_tall_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/thescelosaurus_egg_slightly_cracked"
+	}
 }

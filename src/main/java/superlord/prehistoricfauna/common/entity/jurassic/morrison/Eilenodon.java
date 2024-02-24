@@ -46,7 +46,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
+import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ankylosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
@@ -277,13 +277,11 @@ public class Eilenodon extends DinosaurEntity {
 			this.func_220817_j();
 			this.field_220822_f = 2 + Eilenodon.this.getRandom().nextInt(3);
 			Eilenodon.this.setSitting(true);
-			Eilenodon.this.setSittingTicks(0);
 			Eilenodon.this.getNavigation().stop();
 		}
 
 		public void stop() {
 			Eilenodon.this.setSitting(false);
-			Eilenodon.this.setSittingTicks(31);
 			Eilenodon.this.setWakingTicks(0);
 		}
 
@@ -320,8 +318,8 @@ public class Eilenodon extends DinosaurEntity {
 		return PFItems.EILENODON_EGG.get();
 	}
     
-    public BlockState getEggBlock() {
-    	return PFBlocks.EILENODON_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
-    }
+	public BlockState getEggBlock(Level world, BlockPos pos) {
+		return PFBlocks.EILENODON_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+	}
 
 }

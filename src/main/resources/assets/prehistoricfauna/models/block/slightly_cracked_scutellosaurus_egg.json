@@ -1,7 +1,7 @@
 {
-    "parent": "prehistoricfauna:block/scutellosaurus_egg",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/scutellosaurus_eggs_slightly_cracked",
-        "all": "prehistoricfauna:blocks/scutellosaurus_eggs_slightly_cracked"
-    }
+	"parent": "prehistoricfauna:block/one_small_tall_egg",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/scutellosaurus_egg_slightly_cracked"
+	}
 }

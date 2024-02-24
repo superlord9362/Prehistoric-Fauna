@@ -30,10 +30,9 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.IPlantable;
 import superlord.prehistoricfauna.init.PFBlocks;
 
-public class TaxodiumKneeBlock extends Block implements BonemealableBlock, SimpleWaterloggedBlock, IPlantable {
+public class TaxodiumKneeBlock extends Block implements BonemealableBlock, SimpleWaterloggedBlock {
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final EnumProperty<KneeThickness> THICKNESS = EnumProperty.create("thickness", KneeThickness.class);
 	private static final VoxelShape TOP_SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
@@ -134,12 +133,6 @@ public class TaxodiumKneeBlock extends Block implements BonemealableBlock, Simpl
 		boolean flag = fluidstate.getType() == Fluids.WATER;
 		return super.getStateForPlacement(p_56089_).setValue(WATERLOGGED, Boolean.valueOf(flag));
 	}
-
-	@Override
-	public BlockState getPlant(BlockGetter world, BlockPos pos) {
-		return defaultBlockState();
-	}
-
 
 	protected int getNumKneeBlocksAbove(BlockGetter worldIn, BlockPos pos) {
 		int i;

@@ -1,0 +1,8 @@
+{
+    "parent": "prehistoricfauna:block/vertical_slab",
+    "textures": {
+        "side": "prehistoricfauna:blocks/czekanowskia_planks",
+        "top": "prehistoricfauna:blocks/czekanowskia_planks",
+        "bottom": "prehistoricfauna:blocks/czekanowskia_planks"
+    }
+}

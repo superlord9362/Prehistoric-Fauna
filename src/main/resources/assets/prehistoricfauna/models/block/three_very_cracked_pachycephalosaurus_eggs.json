@@ -1,0 +1,7 @@
+{
+	"parent": "prehistoricfauna:block/three_medium_tall_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/pachycephalosaurus_egg_very_cracked"
+	}
+}

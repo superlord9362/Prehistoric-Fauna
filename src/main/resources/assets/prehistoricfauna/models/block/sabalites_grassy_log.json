@@ -2,7 +2,7 @@
     "parent": "block/cube_bottom_top",
     "textures": {
         "bottom": "prehistoricfauna:blocks/sabalites_log_top",
-        "top": "prehistoricfauna:blocks/sabalites_grassy_log",
+        "top": "prehistoricfauna:blocks/sabalites_grassy_log_top",
         "side": "prehistoricfauna:blocks/sabalites_grassy_log"
     }
 }

@@ -50,7 +50,7 @@ public class Dryophyllum5 extends PFAbstractTreeFeature<PFTreeConfig> {
 				placeTrunk(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, 11, 0), boundsIn);
 				placeTrunk(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, 12, 0), boundsIn);
 				placeTrunk(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, 13, 0), boundsIn);
-				placeBranch(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(-1, randTreeHeight - 13, -1), boundsIn);
+				placeBranch(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(-1, 0, -1), boundsIn);
 				placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(-1, randTreeHeight - 6, -1), boundsIn);
 				placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(-1, randTreeHeight - 6, 0), boundsIn);
 				placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, randTreeHeight - 6, -1), boundsIn);

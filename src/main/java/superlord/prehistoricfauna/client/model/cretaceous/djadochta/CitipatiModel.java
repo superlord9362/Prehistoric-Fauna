@@ -77,52 +77,47 @@ public class CitipatiModel extends EntityModel<Citipati> {
 	public void setupAnim(Citipati entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		resetModel();
 		if (entity.isAsleep() || entity.isSitting()) {
-			if (entity.getFallingAsleepTicks() != 31) {
-				System.out.println("Falling Asleep Ticks: " + entity.getFallingAsleepTicks());
-				//WingRight
-				if (this.WingRight.xRot < 0.39025563139857644F) this.WingRight.xRot += 0.05;
-				if (this.WingRight.yRot < 0.5866051722479385F) this.WingRight.yRot += 0.05;
-				if (this.WingRight.zRot > -0.7428121536172364F) this.WingRight.zRot -= 0.05;
-				//Head
-				if (this.Head.xRot < 0.9773843811168246F) this.Head.xRot += 0.05;
-				if (this.Head.yRot < 0.11728612207217244F) this.Head.yRot += 0.05;
-				//ThighLeft
-				if (this.ThighLeft.xRot > -1.0950196019960143F) this.ThighLeft.xRot -= 0.05;
-				if (this.ThighLeft.yRot < 0.35185837453889574F) this.ThighLeft.yRot += 0.05;
-				//TailFan
-				if (this.TailFan.xRot < 0.0781907508222411F) this.TailFan.xRot += 0.05;
-				if (this.TailFan.yRot > -0.27366763203903305F) this.TailFan.yRot -= 0.05;
-				if (this.TailFan.zRot > -0.11728612207217244F) this.TailFan.zRot -= 0.05;
-				//ThighRight
-				if (this.ThighRight.xRot > -1.1730357742864224F) this.ThighRight.xRot -= 0.05;
-				if (this.ThighRight.yRot > -0.4300491170387584F) this.ThighRight.yRot -= 0.05;
-				//WingLeft
-				if (this.WingLeft.xRot < 0.15690509575954859F) this.WingLeft.xRot += 0.05;
-				if (this.WingLeft.yRot > -0.7429866572476639F) this.WingLeft.yRot -= 0.05;
-				if (this.WingLeft.zRot < 0.8990190684075072F) this.WingLeft.zRot += 0.05;
-				//Neck
-				if (this.Neck.xRot > -0.35185837453889574F) this.Neck.xRot -= 0.05;
-				if (this.Neck.yRot < 0.23457224414434488F) this.Neck.yRot += 0.05;
-				if (this.Neck.zRot > -0.0781907508222411F) this.Neck.zRot -= 0.05;
-				//LegLeft
-				if (this.LegLeft.xRot < 0.16580627893946132F) this.LegLeft.xRot += 0.05;
-				if (this.LegLeft.yRot < 3.1398472178113552F) this.LegLeft.yRot += 0.05;
-				if (this.LegLeft.zRot < 0.0607374583022978F) this.LegLeft.zRot += 0.05;
-				//LegRight
-				if (this.LegRight.xRot < 0.03874630989361682F) this.LegRight.xRot += 0.05;
-				if (this.LegRight.yRot < 3.141592653589793F) this.LegRight.yRot += 0.05;
-				//Tail
-				if (this.Tail.xRot < 0.23457224414434488F) this.Tail.xRot += 0.05;
-				if (this.Tail.yRot > -0.19547687289441354F) this.Tail.yRot -= 0.05;
-				//Body
-				if (this.Body.y < 16.9F) this.Body.y += 0.15;
-				if (this.Body.xRot > -0.3909537457888271F) this.Body.xRot -= 0.05;
-			} else if (entity.getFallingAsleepTicks() == 31) {
-				setSleepingPose();
-			}
+			//WingRight
+			if (this.WingRight.xRot < 0.39025563139857644F) this.WingRight.xRot += 0.05;
+			if (this.WingRight.yRot < 0.5866051722479385F) this.WingRight.yRot += 0.05;
+			if (this.WingRight.zRot > -0.7428121536172364F) this.WingRight.zRot -= 0.05;
+			//Head
+			if (this.Head.xRot < 0.9773843811168246F) this.Head.xRot += 0.05;
+			if (this.Head.yRot < 0.11728612207217244F) this.Head.yRot += 0.05;
+			//ThighLeft
+			if (this.ThighLeft.xRot > -1.0950196019960143F) this.ThighLeft.xRot -= 0.05;
+			if (this.ThighLeft.yRot < 0.35185837453889574F) this.ThighLeft.yRot += 0.05;
+			//TailFan
+			if (this.TailFan.xRot < 0.0781907508222411F) this.TailFan.xRot += 0.05;
+			if (this.TailFan.yRot > -0.27366763203903305F) this.TailFan.yRot -= 0.05;
+			if (this.TailFan.zRot > -0.11728612207217244F) this.TailFan.zRot -= 0.05;
+			//ThighRight
+			if (this.ThighRight.xRot > -1.1730357742864224F) this.ThighRight.xRot -= 0.05;
+			if (this.ThighRight.yRot > -0.4300491170387584F) this.ThighRight.yRot -= 0.05;
+			//WingLeft
+			if (this.WingLeft.xRot < 0.15690509575954859F) this.WingLeft.xRot += 0.05;
+			if (this.WingLeft.yRot > -0.7429866572476639F) this.WingLeft.yRot -= 0.05;
+			if (this.WingLeft.zRot < 0.8990190684075072F) this.WingLeft.zRot += 0.05;
+			//Neck
+			if (this.Neck.xRot > -0.35185837453889574F) this.Neck.xRot -= 0.05;
+			if (this.Neck.yRot < 0.23457224414434488F) this.Neck.yRot += 0.05;
+			if (this.Neck.zRot > -0.0781907508222411F) this.Neck.zRot -= 0.05;
+			//LegLeft
+			if (this.LegLeft.xRot < 0.16580627893946132F) this.LegLeft.xRot += 0.05;
+			if (this.LegLeft.yRot < 3.1398472178113552F) this.LegLeft.yRot += 0.05;
+			if (this.LegLeft.zRot < 0.0607374583022978F) this.LegLeft.zRot += 0.05;
+			//LegRight
+			if (this.LegRight.xRot < 0.03874630989361682F) this.LegRight.xRot += 0.05;
+			if (this.LegRight.yRot < 3.141592653589793F) this.LegRight.yRot += 0.05;
+			//Tail
+			if (this.Tail.xRot < 0.23457224414434488F) this.Tail.xRot += 0.05;
+			if (this.Tail.yRot > -0.19547687289441354F) this.Tail.yRot -= 0.05;
+			//Body
+			if (this.Body.y < 16.9F) this.Body.y += 0.15;
+			if (this.Body.xRot > -0.3909537457888271F) this.Body.xRot -= 0.05;
+			setSleepingPose();
 		} else {
 			if (entity.getWakingTicks() != 31) {
-				System.out.println("Waking Up Ticks: " + entity.getWakingTicks());
 				//WingRight
 				if (this.WingRight.xRot > 0) this.WingRight.xRot -= 0.05;
 				if (this.WingRight.yRot > 0) this.WingRight.yRot -= 0.05;

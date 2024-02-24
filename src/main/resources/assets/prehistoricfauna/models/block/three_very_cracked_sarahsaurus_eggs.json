@@ -1,6 +1,7 @@
 {
-    "parent": "prehistoricfauna:block/three_sarahsaurus_eggs",
-    "textures": {
-        "all": "prehistoricfauna:blocks/sarahsaurus_eggs_very_cracked"
-    }
+	"parent": "prehistoricfauna:block/three_medium_tall_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/sarahsaurus_egg_very_cracked"
+	}
 }

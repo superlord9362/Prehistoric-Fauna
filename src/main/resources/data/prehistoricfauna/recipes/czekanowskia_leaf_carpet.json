@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:czekanowskia_leaves"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:czekanowskia_leaf_carpet",
+    "count": 3
+  },
+  "conditions": [
+    {
+      "type": "forge:and",
+      "values": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "quark"
+        },
+        {
+          "type": "prehistoricfauna:quark_flag",
+          "flag": "leaf_carpet"
+        }
+      ]
+    }
+  ]
+}

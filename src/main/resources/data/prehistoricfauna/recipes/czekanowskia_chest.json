@@ -1,0 +1,24 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"group": "czekanowskia_chest",
+	"pattern": [
+		"###",
+		"# #",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:czekanowskia_planks"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:czekanowskia_chest",
+		"count": 1
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:quark_flag",
+			"flag": "variant_chests"
+		}
+	]
+}

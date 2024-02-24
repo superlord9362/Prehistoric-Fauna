@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/scutellosaurus_nest_and_four_eggs_two_plants",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/scutellosaurus_egg_very_cracked"
+	}
+}

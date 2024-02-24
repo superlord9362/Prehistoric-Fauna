@@ -54,8 +54,7 @@ public class DiurnalSleepingGoal extends Goal {
 		entity.yya = 0.0F;
 		entity.zza = 0.0F;
 		entity.getNavigation().stop();
-		entity.setFallingAsleepTicks(0);
-		entity.setAsleep(true);
+		entity.setFallingAsleep(true);
 	}
 
 	public void tick() {
@@ -77,7 +76,7 @@ public class DiurnalSleepingGoal extends Goal {
 	@Override
 	public void stop() {
 		entity.setWakingTicks(0);
-		entity.setFallingAsleepTicks(31);
+		entity.setWakingUp(true);
 		entity.setAsleep(false);
 		entity.setAwakeTicks(100);
 	}

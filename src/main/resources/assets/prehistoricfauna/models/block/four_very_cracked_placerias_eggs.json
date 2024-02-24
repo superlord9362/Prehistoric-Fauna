@@ -1,7 +1,7 @@
 {
-    "parent": "prehistoricfauna:block/four_placerias_eggs",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/placerias_eggs_very_cracked",
-        "all": "prehistoricfauna:blocks/placerias_eggs_very_cracked"
-    }
+	"parent": "prehistoricfauna:block/four_small_round_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/placerias_egg_very_cracked"
+	}
 }

@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/basilemys_nest_and_three_eggs_no_plants",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/basilemys_egg_slightly_cracked"
+	}
+}

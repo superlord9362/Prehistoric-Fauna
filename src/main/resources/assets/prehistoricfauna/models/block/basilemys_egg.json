@@ -1,24 +1,7 @@
 {
-	"credit": "Made with Blockbench",
-	"parent": "minecraft:block/block",
+	"parent": "prehistoricfauna:block/one_small_round_egg",
 	"ambientocclusion": false,
 	"textures": {
-		"particle": "prehistoricfauna:blocks/basilemys_eggs"
-	},
-	"elements": [
-		{
-			"name": "Egg1",
-			"from": [6, 0, 6],
-			"to": [10, 4, 10],
-			"rotation": {"angle": 0, "axis": "z", "origin": [8, 2, 8]},
-			"faces": {
-				"north": {"uv": [2, 2, 4, 4], "texture": "#particle"},
-				"east": {"uv": [0, 2, 2, 4], "texture": "#particle"},
-				"south": {"uv": [6, 2, 8, 4], "texture": "#particle"},
-				"west": {"uv": [4, 2, 6, 4], "texture": "#particle"},
-				"up": {"uv": [4, 2, 2, 0], "texture": "#particle"},
-				"down": {"uv": [6, 0, 4, 2], "texture": "#particle"}
-			}
-		}
-	]
+		"egg": "prehistoricfauna:blocks/basilemys_egg"
+	}
 }

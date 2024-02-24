@@ -1,0 +1,9 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:podozamites_log",
+		"prehistoricfauna:stripped_podozamites_log",
+		"prehistoricfauna:podozamites_wood",
+		"prehistoricfauna:stripped_podozamites_wood"
+	]
+}

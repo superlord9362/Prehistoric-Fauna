@@ -5,6 +5,7 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -19,6 +20,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -36,7 +39,9 @@ import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFTags;
 
 public class DinosaurEggBlock extends Block {
 	public static final int MAX_HATCH_LEVEL = 2;
@@ -47,17 +52,23 @@ public class DinosaurEggBlock extends Block {
 	public static final IntegerProperty HATCH = BlockStateProperties.HATCH;
 	public static final IntegerProperty EGGS = BlockStateProperties.EGGS;
 	public static final BooleanProperty CITIPATIFIED = BooleanProperty.create("citipatified");
-    private final Lazy<? extends EntityType<?>> entityTypeSupplier;
+	private final Lazy<? extends EntityType<?>> entityTypeSupplier;
 
 	public DinosaurEggBlock(final RegistryObject<? extends EntityType<?>> entityTypeSupplier, BlockBehaviour.Properties p_57759_) {
 		super(p_57759_);
-        this.entityTypeSupplier = Lazy.of(entityTypeSupplier::get);
+		this.entityTypeSupplier = Lazy.of(entityTypeSupplier::get);
 		this.registerDefaultState(this.stateDefinition.any().setValue(HATCH, Integer.valueOf(0)).setValue(EGGS, Integer.valueOf(1)));
 	}
 
 	public void stepOn(Level p_154857_, BlockPos p_154858_, BlockState p_154859_, Entity p_154860_) {
 		this.destroyEgg(p_154857_, p_154859_, p_154858_, p_154860_, 100);
 		super.stepOn(p_154857_, p_154858_, p_154859_, p_154860_);
+	}
+	
+	@Override
+	public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
+		BlockState blockstate = worldIn.getBlockState(pos.below());
+		return blockstate.isFaceSturdy(worldIn, pos.below(), Direction.UP) && !blockstate.is(PFTags.NESTS) && !state.is(Blocks.WATER);
 	}
 
 	public void fallOn(Level p_154845_, BlockState p_154846_, BlockPos p_154847_, Entity p_154848_, float p_154849_) {
@@ -77,6 +88,10 @@ public class DinosaurEggBlock extends Block {
 		}
 	}
 
+	public EntityType<?> getEntityType() {
+		return this.entityTypeSupplier.get();
+	}
+
 	private void decreaseEggs(Level p_57792_, BlockPos p_57793_, BlockState p_57794_) {
 		p_57792_.playSound((Player)null, p_57793_, SoundEvents.TURTLE_EGG_BREAK, SoundSource.BLOCKS, 0.7F, 0.9F + p_57792_.random.nextFloat() * 0.2F);
 		int i = p_57794_.getValue(EGGS);
@@ -90,7 +105,7 @@ public class DinosaurEggBlock extends Block {
 	}
 
 	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
-		if (this.shouldUpdateHatchLevel(worldIn, state) && onSand(worldIn, pos)) {
+		if (this.shouldUpdateHatchLevel(worldIn, state, pos) && onSand(worldIn, pos)) {
 			int i = state.getValue(HATCH);
 			if (i < 2) {
 				worldIn.playSound((Player) null, pos, SoundEvents.TURTLE_EGG_CRACK, SoundSource.BLOCKS,
@@ -143,21 +158,52 @@ public class DinosaurEggBlock extends Block {
 
 	}
 
-	private boolean shouldUpdateHatchLevel(Level p_57766_, BlockState state) {
-		boolean citipatified = state.getValue(CITIPATIFIED);
-		int regularTime = 2400;
-		int citipatifiedTime = 1200;
-		Random rand = new Random();
-		for (int i = regularTime + rand.nextInt(600); i>=0; i--) {
-			if (i == 0) {
-				return true;
+	private boolean shouldUpdateHatchLevel(Level world, BlockState state, BlockPos pos) {
+		if (PrehistoricFaunaConfig.eggHeating) {
+			long roundTime = world.getDayTime() % 24000;
+			boolean night = roundTime >= 13000 && roundTime <= 22000;
+			int i = world.getBrightness(LightLayer.SKY, pos);
+			int j = world.getBrightness(LightLayer.BLOCK, pos);
+			int hardshellDeathTime = 24000;
+			int softshellDeathTime = 18000;
+			int brightness;
+			if (night) {
+				brightness = j;
+			} else {
+				brightness = Math.max(i, j);
 			}
-		}
-		if (citipatified) {
-			for (int i = citipatifiedTime + rand.nextInt(600); i >= 0; i--) {
-				if (i == 0) {
-					return true;
+			if (brightness < 7) {
+				if (PrehistoricFaunaConfig.softShellAndHardShellEggs && state.is(PFTags.SOFT_SHELL_EGG_BLOCKS)) {
+					for (int l = softshellDeathTime; l > 0; l--) {
+						if (l == 0) {
+							world.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+						}
+					}
+				} else {
+					for (int l = hardshellDeathTime; l > 0; l--) {
+						if (l == 0) {
+							world.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+						}
+					}
 				}
+			} else {
+				boolean citipatified = state.getValue(CITIPATIFIED);
+				int regularTime = 24000;
+				int citipatifiedTime = 12000;
+				Random rand = new Random();
+				for (int l = regularTime + rand.nextInt(6000); l>=0; l--) {
+					if (l == 0) {
+						return true;
+					}
+				}
+				if (citipatified) {
+					for (int l = citipatifiedTime + rand.nextInt(6000); l >= 0; l--) {
+						if (l == 0) {
+							return true;
+						}
+					}
+				}
+				return false;
 			}
 		}
 		return false;

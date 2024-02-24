@@ -1,0 +1,9 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/nest_one_small_tall_egg_two_plants",
+	"textures": {
+		"material": "prehistoricfauna:blocks/nest",
+		"egg": "prehistoricfauna:blocks/coelophysis_egg",
+		"plants": "prehistoricfauna:blocks/plants"
+	}
+}

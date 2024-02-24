@@ -35,7 +35,7 @@ public class PFBiomes {
 	
 	public static RegistryObject<Biome> HELL_CREEK_HARDWOOD_FOREST = REGISTER.register("hell_creek_hardwood_forest", CretaceousBiomes::hellCreekHardwoodForest);
 	public static RegistryObject<Biome> HELL_CREEK_CLEARING = REGISTER.register("hell_creek_clearing", CretaceousBiomes::hellCreekClearing);
-	public static RegistryObject<Biome> HELL_CREEK_LIRIODENDRITES_HILLS = REGISTER.register("hell_creek_liriodendrites_hills", CretaceousBiomes::hellCreekLiriodendritesHills);
+	public static RegistryObject<Biome> HELL_CREEK_BLUFFS = REGISTER.register("hell_creek_bluffs", CretaceousBiomes::hellCreekLiriodendritesHills);
 	public static RegistryObject<Biome> HELL_CREEK_REDWOODS = REGISTER.register("hell_creek_redwoods", CretaceousBiomes::hellCreekRedwoods);
 	public static RegistryObject<Biome> HELL_CREEK_SWAMP = REGISTER.register("hell_creek_swamp", CretaceousBiomes::hellCreekSwamp);
 	public static RegistryObject<Biome> HELL_CREEK_RIVER = REGISTER.register("hell_creek_river", CretaceousBiomes::hellCreekRiver);

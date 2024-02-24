@@ -42,7 +42,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
+import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
@@ -399,8 +399,8 @@ public class Ischigualastia extends DinosaurEntity {
 		return PFItems.ISCHIGUALASTIA_EGG.get();
 	}
     
-    public BlockState getEggBlock() {
-    	return PFBlocks.ISCHIGUALASTIA_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
-    }
+	public BlockState getEggBlock(Level world, BlockPos pos) {
+		return PFBlocks.ISCHIGUALASTIA_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+	}
 
 }

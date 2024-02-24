@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"L",
+		"W"
+	],
+	"key": {
+		"L": {
+			"item": "prehistoricfauna:czekanowskia_leaves"
+		},
+		"W": {
+			"tag": "prehistoricfauna:czekanowskia_logs"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:czekanowskia_hedge",
+		"count": 2
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:quark_flag",
+			"flag": "hedges"
+		}
+	]
+}

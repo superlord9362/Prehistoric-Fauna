@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:czekanowskia_planks"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:czekanowskia_boat"
+  }
+}

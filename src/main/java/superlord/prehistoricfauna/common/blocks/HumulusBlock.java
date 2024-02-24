@@ -25,8 +25,8 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import superlord.prehistoricfauna.init.PFItems;
 
 public class HumulusBlock extends MultifaceBlock implements BonemealableBlock {
-	public static final int DEAD_AGE = 5;
-	public static final IntegerProperty AGE = BlockStateProperties.AGE_5;
+	public static final int DEAD_AGE = 3;
+	public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
 
 	public HumulusBlock(BlockBehaviour.Properties p_153282_) {
 		super(p_153282_);
@@ -47,7 +47,7 @@ public class HumulusBlock extends MultifaceBlock implements BonemealableBlock {
 	}
 
 	public boolean isRandomlyTicking(BlockState p_51696_) {
-		return p_51696_.getValue(AGE) < 5;
+		return p_51696_.getValue(AGE) < 3;
 	}
 
 	public boolean isValidBonemealTarget(BlockGetter p_153289_, BlockPos p_153290_, BlockState p_153291_, boolean p_153292_) {
@@ -101,7 +101,7 @@ public class HumulusBlock extends MultifaceBlock implements BonemealableBlock {
 	}
 
 	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
-		int grow = random.nextInt(3);
+		int grow = random.nextInt(4);
 		BlockState currentState = world.getBlockState(pos);
 		int ageValue = currentState.getValue(AGE);
 		world.setBlock(pos, currentState.setValue(AGE, ageValue + 1), 0);

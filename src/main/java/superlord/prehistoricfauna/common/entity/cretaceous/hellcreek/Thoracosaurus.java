@@ -61,7 +61,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
-import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
+import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.AggressiveTempermentAttackGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
@@ -566,8 +566,8 @@ public class Thoracosaurus extends DinosaurEntity {
 		return PFItems.THORACOSAURUS_EGG.get();
 	}
 
-	public BlockState getEggBlock() {
-		return PFBlocks.THORACOSAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
+	public BlockState getEggBlock(Level world, BlockPos pos) {
+		return PFBlocks.THORACOSAURUS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
 	}
 	
 	static class ThoracosaurusGoToWaterGoal extends MoveToBlockGoal {

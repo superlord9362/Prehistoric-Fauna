@@ -66,11 +66,11 @@ public class TriassicBiomeSource extends BiomeSource implements NoiseBiomeSource
 	}
 
 	public double calculateNoiseValue(int x, int z, FastNoise noise) {
-		float frequency = 0.5F;
+		float frequency = 0.15F;
 		float amplitude = 4.0F;
 
-		double noiseX = noise.GetNoise(x * frequency, z * frequency);
-		double noiseZ = noise.GetNoise(x * frequency, z * frequency);
+		double noiseX = noise.GetNoise(x * frequency, x * frequency);
+		double noiseZ = noise.GetNoise(z * frequency, z * frequency);
 
 		double combinedNoise = amplitude * (noiseX + noiseZ);
 

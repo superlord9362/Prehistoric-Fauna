@@ -1,53 +1,7 @@
 {
-	"credit": "Made with Blockbench",
-	"parent": "minecraft:block/block",
+	"parent": "prehistoricfauna:block/three_medium_round_eggs",
 	"ambientocclusion": false,
 	"textures": {
-		"1": "prehistoricfauna:blocks/saurosuchus_egg",
-		"particle": "prehistoricfauna:blocks/saurosuchus_egg"
-	},
-	"elements": [
-		{
-			"name": "Egg",
-			"from": [7, 0, 8],
-			"to": [13, 8, 14],
-			"rotation": {"angle": 0, "axis": "z", "origin": [1, 4, 0]},
-			"faces": {
-				"north": {"uv": [3, 3, 6, 7], "texture": "#1"},
-				"east": {"uv": [0, 3, 3, 7], "texture": "#1"},
-				"south": {"uv": [9, 3, 12, 7], "texture": "#1"},
-				"west": {"uv": [6, 3, 9, 7], "texture": "#1"},
-				"up": {"uv": [6, 3, 3, 0], "texture": "#1"},
-				"down": {"uv": [9, 0, 6, 3], "texture": "#1"}
-			}
-		},
-		{
-			"name": "Egg",
-			"from": [9, 0, 3],
-			"to": [14, 7, 8],
-			"rotation": {"angle": 0, "axis": "y", "origin": [1, 4, 0]},
-			"faces": {
-				"north": {"uv": [3, 3, 6, 7], "texture": "#1"},
-				"east": {"uv": [0, 3, 3, 7], "texture": "#1"},
-				"south": {"uv": [9, 3, 12, 7], "texture": "#1"},
-				"west": {"uv": [6, 3, 9, 7], "texture": "#1"},
-				"up": {"uv": [6, 3, 3, 0], "texture": "#1"},
-				"down": {"uv": [9, 0, 6, 3], "texture": "#1"}
-			}
-		},
-		{
-			"name": "Egg",
-			"from": [2, 0, 7],
-			"to": [7, 7, 12],
-			"rotation": {"angle": 0, "axis": "y", "origin": [1, 4, 0]},
-			"faces": {
-				"north": {"uv": [3, 3, 6, 7], "texture": "#1"},
-				"east": {"uv": [0, 3, 3, 7], "texture": "#1"},
-				"south": {"uv": [9, 3, 12, 7], "texture": "#1"},
-				"west": {"uv": [6, 3, 9, 7], "texture": "#1"},
-				"up": {"uv": [6, 3, 3, 0], "texture": "#1"},
-				"down": {"uv": [9, 0, 6, 3], "texture": "#1"}
-			}
-		}
-	]
+		"egg": "prehistoricfauna:blocks/saurosuchus_egg"
+	}
 }

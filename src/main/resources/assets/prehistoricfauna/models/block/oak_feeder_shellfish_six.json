@@ -1,0 +1,7 @@
+{
+    "parent": "prehistoricfauna:block/feeder_six",
+    "textures": {
+        "planks": "minecraft:block/oak_planks",
+        "food": "prehistoricfauna:blocks/shellfish"
+    }
+}

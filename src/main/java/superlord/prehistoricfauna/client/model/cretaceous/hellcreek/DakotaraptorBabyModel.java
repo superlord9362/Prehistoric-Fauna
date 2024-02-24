@@ -79,11 +79,53 @@ public class DakotaraptorBabyModel extends EntityModel<Dakotaraptor> {
 		float degree = 1.0f;
 		float partialTick = ageInTicks - entity.tickCount;
 		float attackProgress = entity.getMeleeProgress(partialTick);
-		if (entity.getWakingTicks() >= 31 && entity.getFallingAsleepTicks() >= 31 && entity.getCrouchingTicks() >= 31 && entity.getSittingTicks() >= 31) {
-			if (entity.isAsleep()) {
-				sleepPose();
+		resetModel();
+		if (entity.isAsleep()) {
+			//LArm
+				//this.LArm.zRot = 0.1047F
+				if (this.LArm.zRot < 1.092750655326294F) this.LArm.zRot += 0.05;
+				//LLeg
+				//this.LLeg.y = 15.5F;
+				//this.LLeg.z = 2.5F;
+				if (this.LLeg.y < 22.5) this.LLeg.y += 0.15F;
+				if (this.LLeg.z < 4) this.LLeg.z += 0.15F;
+				if (this.LLeg.xRot > -1.5707963267948966F) this.LLeg.xRot -= 0.05;
+				//RLeg
+				//this.RLeg.y = 15.5F;
+				//this.RLeg.z = 2.5F;
+				if (this.RLeg.y < 22.5) this.RLeg.y += 0.15F;
+				if (this.RLeg.z < 4) this.RLeg.z += 0.15F;
+				if (this.RLeg.xRot > -1.5707963267948966F) this.RLeg.xRot -= 0.05;
+				//RArm
+				//this.RArm.zRot = -0.1047F;
+				if (this.RArm.zRot > -1.092750655326294F) this.RArm.zRot -= 0.05;
+				//Neck
+				//this.Neck.y = 3;
+				//this.Neck.z = 0;
+				//this.Neck.xRot = 0.1047F;
+				if (this.Neck.y > 1) this.Neck.y -= 0.15F;
+				if (this.Neck.z < 0.5) this.Neck.z += 0.15F;
+				if (this.Neck.xRot < 0.13665927909957545F) this.Neck.xRot += 0.05;
+				if (this.Neck.yRot > -1.4570009181544104F) this.Neck.yRot -= 0.05;
+				//TailBase
+				//this.TailBase.xRot = -0.04555309164612875F;
+				if (this.TailBase.xRot > -0.2275909337942703F) this.TailBase.xRot += 0.05;
+				if (this.TailBase.yRot < 1.5707963267948966F) this.TailBase.yRot += 0.05;
+				//Torso
+				//this.Torso.y = 13F;
+				if (this.Torso.y < 18.9F) this.Torso.y += 0.15F;
+				//RFoot
+				//this.RFoot.y = 3.5F;
+				if (this.RFoot.y > 2) this.RFoot.y -= 0.15F;
+				//LFoot
+				//this.LFoot.y = 3.5F;
+				if (this.LFoot.y > 2) this.LFoot.y -= 0.15F;
+				//Head
+				//this.Head.z = -1;
+				if (this.Head.y < 0.25F) this.Head.y += 0.15F;
 				this.RLeg.xRot = -1.5707963267948966F + (Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3)));
 				this.RArm.zRot = -1.092750655326294F + (-Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3)));
+				sleepPose();
 			} else if (entity.isCrouching()) {
 				this.Torso.xRot =  0.39269908169872414F;
 				this.LArm.zRot = Mth.cos(limbSwing * speed * 0.05F) * degree * 0.6F * limbSwingAmount + 0.4F;
@@ -95,30 +137,39 @@ public class DakotaraptorBabyModel extends EntityModel<Dakotaraptor> {
 				this.LFoot.xRot = Mth.cos(3.0F + limbSwing * speed * 0.4F) * degree * 0.4F * limbSwingAmount;
 				this.TailBase.xRot = -0.08464846705724931F + (Mth.cos(limbSwing * speed * 0.05F) * degree * 0.3F * limbSwingAmount - 0.3F);
 			} else if (entity.isSitting()) {
-				this.LArm.xRot = 0.7740534966278743F;
-				this.LArm.zRot = (Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3)));
-				this.Neck.xRot = 0.6829473549475088F;
-				this.RArm.xRot = 0.7740534966278743F;
-				this.RArm.zRot = (-Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3)));
-				this.Torso.xRot = -0.6373942508178124F;
-				this.RLeg.xRot = -1.5707963267948966F;
-				this.RLeg.yRot = -0.18203784630933073F;
-				this.LLeg.xRot = -1.5707963267948966F;
-				this.LLeg.yRot = 0.18203784630933073F;
-				this.TailBase.xRot = 0.500909508638178F;
-				this.Torso.y = 14.9F;
-				this.RLeg.y = 22.5F;
-				this.RLeg.z = 1;
-				this.RFoot.y = 3;
-				this.LFoot.y = 3;
-				this.LLeg.y = 22.5F;
-				this.LLeg.z = 1;
-				this.Neck.y = 2;
-				this.Neck.z = 1;
-				this.Head.z = 0.25F;
-				this.TailBase.z = 10;
+				//LArm
+				if (this.LArm.xRot < 0.7740534966278743F) this.LArm.xRot += 0.05;
+				//Neck
+				//this.Neck.y = 3;
+				//this.Neck.z = 0;
+				//this.Neck.xRot = 0.1047F;
+				if (this.Neck.y > 2) this.Neck.y -= 0.15;
+				if (this.Neck.z < 1) this.Neck.z += 0.15;
+				if (this.Neck.xRot < 0.6829473549475088F) this.Neck.xRot += 0.05;
+				//RArm
+				if (this.RArm.xRot < 0.7740534966278743F) this.RArm.xRot += 0.05;
+				//Torso
+				if (this.Torso.y < 14.9) this.Torso.y += 0.15;
+				if (this.Torso.xRot > -0.6373942508178124F) this.Torso.xRot -= 0.05;
+				//RLeg
+				if (this.RLeg.y < 22.5) this.RLeg.y += 0.15;
+				if (this.RLeg.z > 1) this.RLeg.z -= 0.15;
+				if (this.RLeg.xRot > -1.5707963267948966F) this.RLeg.xRot -= 0.05;
+				if (this.RLeg.yRot > -0.18203784630933073F) this.RLeg.yRot -= 0.05;
+				//LLeg
+				if (this.LLeg.y < 22.5) this.LLeg.y += 0.15;
+				if (this.LLeg.z > 1) this.LLeg.z -= 0.15;
+				if (this.LLeg.xRot > -1.5707963267948966F) this.LLeg.xRot -= 0.05;
+				if (this.LLeg.yRot < 0.18203784630933073F) this.LLeg.yRot += 0.05;
+				//TailBase
+				if (this.TailBase.xRot < 0.500909508638178F) this.TailBase.xRot += 0.05;
+				//RFoot
+				if (this.RFoot.y > 3) this.RFoot.y -= 0.15;
+				//LFoot
+				if (this.LFoot.y > 3) this.LFoot.y -= 0.15;
+				//Head
+				if (this.Head.z < 0.25) this.Head.z += 0.15;
 			} else {
-				resetModel();
 				this.RLeg.xRot = Mth.cos(limbSwing * speed * 0.4F) * degree * 1.0F * limbSwingAmount + attackProgress * (float) Math.toRadians(-65F);
 				this.LLeg.xRot = Mth.cos(3.0F + limbSwing * speed * 0.4F) * degree * 1.0F * limbSwingAmount + attackProgress * (float) Math.toRadians(-65F);
 				this.TailBase.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5)) + (Mth.cos(limbSwing * speed * 0.2F) * degree * 0.2F * limbSwingAmount);
@@ -148,7 +199,6 @@ public class DakotaraptorBabyModel extends EntityModel<Dakotaraptor> {
 					this.LFoot.xRot = 0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
 				}
 			}
-		}
 		if (entity.getWakingTicks() < 31) {
 			//LArm
 			//this.LArm.zRot = 0.1047F
@@ -206,84 +256,6 @@ public class DakotaraptorBabyModel extends EntityModel<Dakotaraptor> {
 		if (entity.getCrouchingTicks() < 31) {
 			if (this.Torso.xRot < 0.39269908169872414F) this.Torso.xRot += 0.05;
 			if (this.TailBase.xRot > -0.08464846705724931F) this.TailBase.xRot -= 0.05;
-		}
-		if (entity.getSittingTicks() < 31) {
-			//LArm
-			if (this.LArm.xRot < 0.7740534966278743F) this.LArm.xRot += 0.05;
-			//Neck
-			//this.Neck.y = 3;
-			//this.Neck.z = 0;
-			//this.Neck.xRot = 0.1047F;
-			if (this.Neck.y > 2) this.Neck.y -= 0.15;
-			if (this.Neck.z < 1) this.Neck.z += 0.15;
-			if (this.Neck.xRot < 0.6829473549475088F) this.Neck.xRot += 0.05;
-			//RArm
-			if (this.RArm.xRot < 0.7740534966278743F) this.RArm.xRot += 0.05;
-			//Torso
-			if (this.Torso.y < 14.9) this.Torso.y += 0.15;
-			if (this.Torso.xRot > -0.6373942508178124F) this.Torso.xRot -= 0.05;
-			//RLeg
-			if (this.RLeg.y < 22.5) this.RLeg.y += 0.15;
-			if (this.RLeg.z > 1) this.RLeg.z -= 0.15;
-			if (this.RLeg.xRot > -1.5707963267948966F) this.RLeg.xRot -= 0.05;
-			if (this.RLeg.yRot > -0.18203784630933073F) this.RLeg.yRot -= 0.05;
-			//LLeg
-			if (this.LLeg.y < 22.5) this.LLeg.y += 0.15;
-			if (this.LLeg.z > 1) this.LLeg.z -= 0.15;
-			if (this.LLeg.xRot > -1.5707963267948966F) this.LLeg.xRot -= 0.05;
-			if (this.LLeg.yRot < 0.18203784630933073F) this.LLeg.yRot += 0.05;
-			//TailBase
-			if (this.TailBase.xRot < 0.500909508638178F) this.TailBase.xRot += 0.05;
-			//RFoot
-			if (this.RFoot.y > 3) this.RFoot.y -= 0.15;
-			//LFoot
-			if (this.LFoot.y > 3) this.LFoot.y -= 0.15;
-			//Head
-			if (this.Head.z < 0.25) this.Head.z += 0.15;
-		}
-		if (entity.getFallingAsleepTicks() < 31) {
-			//LArm
-			//this.LArm.zRot = 0.1047F
-			if (this.LArm.zRot < 1.092750655326294F) this.LArm.zRot += 0.05;
-			//LLeg
-			//this.LLeg.y = 15.5F;
-			//this.LLeg.z = 2.5F;
-			if (this.LLeg.y < 22.5) this.LLeg.y += 0.15F;
-			if (this.LLeg.z < 4) this.LLeg.z += 0.15F;
-			if (this.LLeg.xRot > -1.5707963267948966F) this.LLeg.xRot -= 0.05;
-			//RLeg
-			//this.RLeg.y = 15.5F;
-			//this.RLeg.z = 2.5F;
-			if (this.RLeg.y < 22.5) this.RLeg.y += 0.15F;
-			if (this.RLeg.z < 4) this.RLeg.z += 0.15F;
-			if (this.RLeg.xRot > -1.5707963267948966F) this.RLeg.xRot -= 0.05;
-			//RArm
-			//this.RArm.zRot = -0.1047F;
-			if (this.RArm.zRot > -1.092750655326294F) this.RArm.zRot -= 0.05;
-			//Neck
-			//this.Neck.y = 3;
-			//this.Neck.z = 0;
-			//this.Neck.xRot = 0.1047F;
-			if (this.Neck.y > 1) this.Neck.y -= 0.15F;
-			if (this.Neck.z < 0.5) this.Neck.z += 0.15F;
-			if (this.Neck.xRot < 0.13665927909957545F) this.Neck.xRot += 0.05;
-			if (this.Neck.yRot > -1.4570009181544104F) this.Neck.yRot -= 0.05;
-			//TailBase
-			//this.TailBase.xRot = -0.04555309164612875F;
-			if (this.TailBase.xRot > -0.2275909337942703F) this.TailBase.xRot += 0.05;
-			if (this.TailBase.yRot < 1.5707963267948966F) this.TailBase.yRot += 0.05;
-			//Torso
-			//this.Torso.y = 13F;
-			if (this.Torso.y < 18.9F) this.Torso.y += 0.15F;
-			//RFoot
-			//this.RFoot.y = 3.5F;
-			if (this.RFoot.y > 2) this.RFoot.y -= 0.15F;
-			//LFoot
-			//this.LFoot.y = 3.5F;
-			if (this.LFoot.y > 2) this.LFoot.y -= 0.15F;
-			//Head
-			//this.Head.z = -1;
-			if (this.Head.y < 0.25F) this.Head.y += 0.15F;
 		}
 
 	}

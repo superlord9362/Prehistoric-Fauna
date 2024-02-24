@@ -1,7 +1,7 @@
 {
-    "parent": "prehistoricfauna:block/four_exaeretodon_eggs",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/exaeretodon_eggs_slightly_cracked",
-        "all": "prehistoricfauna:blocks/exaeretodon_eggs_slightly_cracked"
-    }
+	"parent": "prehistoricfauna:block/four_small_round_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/exaeretodon_egg_slightly_cracked"
+	}
 }

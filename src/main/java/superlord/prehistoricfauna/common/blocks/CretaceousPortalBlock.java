@@ -64,7 +64,7 @@ public class CretaceousPortalBlock extends Block {
 	}
 
 	private boolean canCreatePortalByWorld(Level world, BlockPos pos) {
-		if (world.dimension() == Level.OVERWORLD) {
+		if (world.dimension() == Level.OVERWORLD || world.dimension() == PFDimensions.JURASSIC || world.dimension() == PFDimensions.TRIASSIC) {
 			return true;
 		} else {
 			return world.dimension() == PFDimensions.CRETACEOUS;

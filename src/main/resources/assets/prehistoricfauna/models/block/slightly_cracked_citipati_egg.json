@@ -1,7 +1,7 @@
 {
-    "parent": "prehistoricfauna:block/citipati_egg",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/citipati_egg_slightly_cracked",
-        "all": "prehistoricfauna:blocks/citipati_egg_slightly_cracked"
-    }
+	"parent": "prehistoricfauna:block/one_medium_tall_egg",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/citipati_egg_slightly_cracked"
+	}
 }

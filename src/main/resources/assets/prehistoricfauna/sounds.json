@@ -82,7 +82,7 @@
 		"subtitle": "prehistoricfauna.subtitle.thoracosaurusDeath",
 		"sounds": [
 			{
-				"name": "prehistoricfauna:prehistoric/thoracosaurus/thoracosaurus_death",
+				"name": "prehistoricfauna:prehistoric/thoracosaurus/thoracosaurus_hurt",
 				"stream": true
 			}
 		]
@@ -2169,6 +2169,50 @@
 			}
 		]
 	},
+	"harenaichthys_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.harenaichthysHurt",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"harenaichthys_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.harenaichthysDeath",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
 	"citipati_warn": {
 		"category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.citipatiWarning",
@@ -2527,6 +2571,74 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/oviraptor/oviraptor_hurt",
+				"stream": true
+			}
+		]
+	},
+	"halszkaraptor_idle": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.halszkaraptorIdle",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/halszkaraptor/halszkaraptor_idle1",
+				"stream": true
+			},
+			{
+				"name": "prehistoricfauna:prehistoric/halszkaraptor/halszkaraptor_idle2",
+				"stream": true
+			}
+		]
+	},
+	"halszkaraptor_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.halszkaraptorHurt",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/halszkaraptor/halszkaraptor_hurt",
+				"stream": true
+			}
+		]
+	},
+	"halszkaraptor_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.halszkaraptorDeath",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/halszkaraptor/halszkaraptor_hurt",
+				"stream": true
+			}
+		]
+	},
+	"kol_idle": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.kolIdle",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/kol/kol_idle1",
+				"stream": true
+			},
+			{
+				"name": "prehistoricfauna:prehistoric/kol/kol_idle2",
+				"stream": true
+			}
+		]
+	},
+	"kol_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.kolHurt",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/kol/kol_hurt",
+				"stream": true
+			}
+		]
+	},
+	"kol_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.kolDeath",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/kol/kol_hurt",
 				"stream": true
 			}
 		]

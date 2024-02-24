@@ -292,7 +292,7 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 		if (biome.is(PFBiomes.YIXIAN_SNOWY_MOUNTAINS.getKey()) || biome.is(PFBiomes.YIXIAN_VOLCANO.getKey()) || biome.is(PFBiomes.YIXIAN_REGROWTH.getKey()) || biome.is(PFBiomes.YIXIAN_SNOWY_FOREST.getKey())) {
 			sample += cliffLumpiness;
 		}
-		if (biome.is(PFBiomes.HELL_CREEK_LIRIODENDRITES_HILLS.getKey()) || biome.is(PFBiomes.DJADOCHTA_DUNES.getKey())) {
+		if (biome.is(PFBiomes.HELL_CREEK_BLUFFS.getKey()) || biome.is(PFBiomes.DJADOCHTA_DUNES.getKey())) {
 			sample += hillLumpiness;
 		}
 		float frequency2 = 2.5F;
@@ -326,7 +326,7 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 			sample -= flatsNoise;
 			//sample *= 12.5;
 		}
-		if (biome.is(PFBiomes.HELL_CREEK_LIRIODENDRITES_HILLS.getKey()) || biome.is(PFBiomes.DJADOCHTA_DUNES.getKey())) {
+		if (biome.is(PFBiomes.HELL_CREEK_BLUFFS.getKey()) || biome.is(PFBiomes.DJADOCHTA_DUNES.getKey())) {
 			sample *= 1.6F;
 			sample += 0.4;
 			sample -= (y - this.settings.value().seaLevel() - hillNoise * 64) / (16.0F / bigHillRockNoise * (hillWobble + 1));

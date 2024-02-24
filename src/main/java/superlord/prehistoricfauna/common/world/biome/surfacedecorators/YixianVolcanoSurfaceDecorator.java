@@ -85,11 +85,11 @@ public class YixianVolcanoSurfaceDecorator extends SurfaceDecorator {
 			}
 		} else {
 			if (noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) > 0.6D) {
-				chunk.setBlockState(pos, underwater ? Blocks.BLACKSTONE.defaultBlockState() : Blocks.BLACKSTONE.defaultBlockState(), false);
+				chunk.setBlockState(pos, underwater ? Blocks.OBSIDIAN.defaultBlockState() : Blocks.OBSIDIAN.defaultBlockState(), false);
 				pos.move(Direction.DOWN);
 				for (int i = 0; i < 4; i++) {
 					if (chunk.getBlockState(pos) == settings.defaultBlock()) {
-						chunk.setBlockState(pos, Blocks.BLACKSTONE.defaultBlockState(), false);
+						chunk.setBlockState(pos, Blocks.OBSIDIAN.defaultBlockState(), false);
 						pos.move(Direction.DOWN);
 					} else {
 						return;

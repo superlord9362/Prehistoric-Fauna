@@ -179,6 +179,36 @@ public class PFTreeSpawners {
 		}
 	}
 	
+	public static class Taxus extends HugeTreeSpawner {
+		@Nullable
+		public ConfiguredFeature<?, ?> getTreeFeature(Random random) {
+			int number = random.nextInt(3);
+			if (number == 0) {
+				return PFConfiguredFeatures.TAXUS_TREE_1.get();
+			} else if (number == 1) {
+				return PFConfiguredFeatures.TAXUS_TREE_2.get();
+			} else {
+				return PFConfiguredFeatures.TAXUS_TREE_5.get();
+			}
+		}
+		
+		@Override
+		protected ConfiguredFeature<?, ?> getBigTreeFeature(Random random) {
+			int number = random.nextInt(5);
+			if (number == 0) {
+				return PFConfiguredFeatures.TAXUS_TREE_3.get();
+			} else if (number == 1) {
+				return PFConfiguredFeatures.TAXUS_TREE_4.get();
+			} else if (number == 2) {
+				return PFConfiguredFeatures.TAXUS_TREE_6.get();
+			} else if (number == 3) {
+				return PFConfiguredFeatures.TAXUS_TREE_7.get();
+			} else {
+				return PFConfiguredFeatures.TAXUS_TREE_8.get();
+			}
+		}
+	}
+	
 	public static class Heidiphyllum extends TreeSpawner {
 		@Nullable
 		public ConfiguredFeature<?, ?> getTreeFeature(Random random) {
@@ -291,6 +321,72 @@ public class PFTreeSpawners {
 		}
 	}
 	
+	public static class Podozamites extends TreeSpawner {
+		@Nullable
+		public ConfiguredFeature<?, ?> getTreeFeature(Random random) {
+			int number = random.nextInt(6);
+			if (number == 0) {
+				return PFConfiguredFeatures.PODOZAMITES_TREE_1.get();
+			} else if (number == 1) {
+				return PFConfiguredFeatures.PODOZAMITES_TREE_2.get();
+			} else if (number == 2) {
+				return PFConfiguredFeatures.PODOZAMITES_TREE_3.get();
+			} else if (number == 3) {
+				return PFConfiguredFeatures.PODOZAMITES_TREE_4.get();
+			} else if (number == 3) {
+				return PFConfiguredFeatures.PODOZAMITES_TREE_5.get();
+			} else {
+				return PFConfiguredFeatures.PODOZAMITES_TREE_6.get();
+			}
+		}
+	}
+	
+	public static class Schizolepidopsis extends TreeSpawner {
+		@Nullable
+		public ConfiguredFeature<?, ?> getTreeFeature(Random random) {
+			int number = random.nextInt(9);
+			if (number == 0) {
+				return PFConfiguredFeatures.SCHIZOLEPIDOPSIS_TREE_1.get();
+			} else if (number == 1) {
+				return PFConfiguredFeatures.SCHIZOLEPIDOPSIS_TREE_2.get();
+			} else if (number == 2) {
+				return PFConfiguredFeatures.SCHIZOLEPIDOPSIS_TREE_3.get();
+			} else if (number == 3) {
+				return PFConfiguredFeatures.SCHIZOLEPIDOPSIS_TREE_4.get();
+			} else if (number == 4) {
+				return PFConfiguredFeatures.SCHIZOLEPIDOPSIS_TREE_5.get();
+			} else if (number == 5) {
+				return PFConfiguredFeatures.SCHIZOLEPIDOPSIS_TREE_6.get();
+			} else if (number == 6) {
+				return PFConfiguredFeatures.SCHIZOLEPIDOPSIS_TREE_7.get();
+			} else if (number == 7) {
+				return PFConfiguredFeatures.SCHIZOLEPIDOPSIS_TREE_8.get();
+			} else {
+				return PFConfiguredFeatures.SCHIZOLEPIDOPSIS_TREE_9.get();
+			}
+		}
+	}
+	
+	public static class Czekanowskia extends TreeSpawner {
+		@Nullable
+		public ConfiguredFeature<?, ?> getTreeFeature(Random random) {
+			int number = random.nextInt(6);
+			if (number == 0) {
+				return PFConfiguredFeatures.CZEKANOWSKIA_TREE_1.get();
+			} else if (number == 1) {
+				return PFConfiguredFeatures.CZEKANOWSKIA_TREE_2.get();
+			} else if (number == 2) {
+				return PFConfiguredFeatures.CZEKANOWSKIA_TREE_3.get();
+			} else if (number == 3) {
+				return PFConfiguredFeatures.CZEKANOWSKIA_TREE_4.get();
+			} else if (number == 3) {
+				return PFConfiguredFeatures.CZEKANOWSKIA_TREE_5.get();
+			} else {
+				return PFConfiguredFeatures.CZEKANOWSKIA_TREE_6.get();
+			}
+		}
+	}
+	
 	public static class Woodworthia extends TreeSpawner {
 		@Nullable
 		public ConfiguredFeature<?, ?> getTreeFeature(Random random) {
@@ -321,6 +417,34 @@ public class PFTreeSpawners {
 		@Override
 		protected ConfiguredFeature<?, ?> getTreeFeature(Random random) {
 			return null;
+		}
+	}
+	
+	public static class Platanites extends HugeTreeSpawner {
+		@Nullable
+		public ConfiguredFeature<?, ?> getBigTreeFeature(Random random) {
+			int number = random.nextInt(3);
+			if (number == 0) {
+				return PFConfiguredFeatures.LARGE_PLATANITES_TREE_1.get();
+			} else if (number == 1) {
+				return PFConfiguredFeatures.LARGE_PLATANITES_TREE_2.get();
+			} else {
+				return PFConfiguredFeatures.LARGE_PLATANITES_TREE_3.get();
+			}
+		}
+
+		@Nullable
+		public ConfiguredFeature<?, ?> getTreeFeature(Random random) {
+			int number = random.nextInt(4);
+			if (number == 0) {
+				return PFConfiguredFeatures.SMALL_PLATANITES_TREE_1.get();
+			} else if (number == 1) {
+				return PFConfiguredFeatures.SMALL_PLATANITES_TREE_2.get();
+			} else if (number == 2) {
+				return PFConfiguredFeatures.SMALL_PLATANITES_TREE_3.get();
+			} else {
+				return PFConfiguredFeatures.SMALL_PLATANITES_TREE_4.get();
+			}
 		}
 	}
 

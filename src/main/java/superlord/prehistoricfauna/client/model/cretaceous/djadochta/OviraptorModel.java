@@ -98,7 +98,6 @@ public class OviraptorModel extends EntityModel<Oviraptor> {
 				this.Body.xRot = 0.5F;
 				this.LeftThigh.xRot = -0.5F;
 				this.RightThigh.xRot = -0.5F;
-				this.LeftThigh.y = 4F;
 				this.Neck1.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.75F) + 0.5F;
 			}
 			if (entity.isInWater()) {
@@ -106,8 +105,8 @@ public class OviraptorModel extends EntityModel<Oviraptor> {
 				this.Body.xRot = -0.25F;
 				this.Tail.xRot = 0.25F;
 				this.Neck1.xRot = 0.25F + (headPitch * ((float) Math.PI / 180F)) + (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + attackProgress * (float) Math.toRadians(40F);
-				this.LeftWing.zRot = -1.5F + Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
-				this.RightWing.zRot = 1.5F - Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
+				this.LeftWing.zRot = 0.5F + Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
+				this.RightWing.zRot = -0.5F - Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
 				this.LeftThigh.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
 				this.RightThigh.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
 				this.Tail.yRot = Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;

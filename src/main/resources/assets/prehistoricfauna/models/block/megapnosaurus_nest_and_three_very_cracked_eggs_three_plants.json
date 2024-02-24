@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/megapnosaurus_nest_and_three_eggs_three_plants",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/megapnosaurus_egg_very_cracked"
+	}
+}

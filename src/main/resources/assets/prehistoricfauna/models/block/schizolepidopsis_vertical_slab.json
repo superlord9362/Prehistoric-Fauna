@@ -1,0 +1,8 @@
+{
+    "parent": "prehistoricfauna:block/vertical_slab",
+    "textures": {
+        "side": "prehistoricfauna:blocks/schizolepidopsis_planks",
+        "top": "prehistoricfauna:blocks/schizolepidopsis_planks",
+        "bottom": "prehistoricfauna:blocks/schizolepidopsis_planks"
+    }
+}

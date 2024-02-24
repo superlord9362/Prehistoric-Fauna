@@ -1,0 +1,7 @@
+{
+	"parent": "prehistoricfauna:block/four_medium_tall_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/udanoceratops_egg_slightly_cracked"
+	}
+}

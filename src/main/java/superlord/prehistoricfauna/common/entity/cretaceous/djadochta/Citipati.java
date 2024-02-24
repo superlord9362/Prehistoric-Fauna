@@ -43,6 +43,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
+import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ankylosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
@@ -149,7 +150,7 @@ public class Citipati extends DinosaurEntity {
 		}));
 		this.goalSelector.addGoal(5, new Citipati.SitOnEggGoal((double)1.2F, 12, 2));
 	}
-	
+
 	@Override
 	public void setAge(int age) {
 		super.setAge(age);
@@ -305,7 +306,6 @@ public class Citipati extends DinosaurEntity {
 		public void stop() {
 			super.stop();
 			Citipati.this.setSitting(false);
-			Citipati.this.setSittingTicks(31);
 			Citipati.this.setWakingTicks(0);
 		}
 
@@ -338,7 +338,6 @@ public class Citipati extends DinosaurEntity {
 			this.field_220731_g = 0;
 			super.start();
 			Citipati.this.setSitting(true);
-			Citipati.this.setSittingTicks(0);
 		}
 
 
@@ -357,8 +356,8 @@ public class Citipati extends DinosaurEntity {
 		return PFItems.CITIPATI_EGG.get();
 	}
 
-	public BlockState getEggBlock() {
-		return PFBlocks.CITIPATI_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
+	public BlockState getEggBlock(Level world, BlockPos pos) {
+		return PFBlocks.CITIPATI_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
 	}
 
 }

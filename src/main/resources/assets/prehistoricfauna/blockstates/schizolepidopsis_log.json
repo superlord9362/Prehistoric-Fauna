@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":  { "model": "prehistoricfauna:block/schizolepidopsis_log" },
+        "axis=z":   { "model": "prehistoricfauna:block/schizolepidopsis_log", "x": 90 },
+        "axis=x":   { "model": "prehistoricfauna:block/schizolepidopsis_log", "x": 90, "y": 90 }
+    }
+}

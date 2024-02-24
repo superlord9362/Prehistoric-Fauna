@@ -1,7 +1,7 @@
 {
-    "parent": "prehistoricfauna:block/hyperodapedon_egg",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/hyperodapedon_egg_slightly_cracked",
-        "all": "prehistoricfauna:blocks/hyperodapedon_egg_slightly_cracked"
-    }
+	"parent": "prehistoricfauna:block/one_small_round_egg",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/hyperodapedon_egg_slightly_cracked"
+	}
 }

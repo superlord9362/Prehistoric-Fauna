@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "prehistoricfauna:block/podozamites_slab" },
+        "type=top": { "model": "prehistoricfauna:block/podozamites_slab_top" },
+        "type=double": { "model": "prehistoricfauna:block/podozamites_planks" }
+    }
+}

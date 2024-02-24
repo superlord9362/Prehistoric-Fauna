@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:schizolepidopsis_vertical_planks"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:schizolepidopsis_planks"
+  },
+  "conditions": [
+    {
+      "type": "prehistoricfauna:quark_flag",
+      "flag": "vertical_planks"
+    }
+  ]
+}

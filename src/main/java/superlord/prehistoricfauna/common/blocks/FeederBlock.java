@@ -38,6 +38,7 @@ public class FeederBlock extends BaseEntityBlock {
 	public static final BooleanProperty EGG = BooleanProperty.create("egg");
 	public static final BooleanProperty SHELLFISH = BooleanProperty.create("shellfish");
 	public static final BooleanProperty FISH = BooleanProperty.create("fish");
+	public static final BooleanProperty INSECT = BooleanProperty.create("insect");
 	public static final IntegerProperty FOOD_LEVEL = IntegerProperty.create("food_level", 0, 7);
 	private static final VoxelShape OUTER_SHAPE = Shapes.block();
 	private static final VoxelShape[] SHAPES = Util.make(new VoxelShape[9], (p_51967_) -> {
@@ -50,11 +51,11 @@ public class FeederBlock extends BaseEntityBlock {
 
 	public FeederBlock(Properties p_49795_) {
 		super(p_49795_);
-		this.registerDefaultState(this.stateDefinition.any().setValue(MEAT, false).setValue(PLANT, false).setValue(EGG, false).setValue(SHELLFISH, false).setValue(FISH, false).setValue(FOOD_LEVEL, 0));
+		this.registerDefaultState(this.stateDefinition.any().setValue(MEAT, false).setValue(PLANT, false).setValue(EGG, false).setValue(SHELLFISH, false).setValue(FISH, false).setValue(INSECT, false).setValue(FOOD_LEVEL, 0));
 	}
 
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(MEAT, PLANT, EGG, SHELLFISH, FISH, FOOD_LEVEL);
+		builder.add(MEAT, PLANT, EGG, SHELLFISH, FISH, INSECT, FOOD_LEVEL);
 	}
 
 	@Override
@@ -142,6 +143,11 @@ public class FeederBlock extends BaseEntityBlock {
 				}
 				return InteractionResult.sidedSuccess(world.isClientSide);
 			}
+			if (stack.is(PFTags.INSECTS_2_HUNGER_ITEM)) {
+				world.setBlock(pos, foodState.setValue(INSECT, true), 0);
+				setFoodAmount(getFoodAmount(world, pos) + 2, world, pos);
+				world.getBlockState(pos);
+			}
 			if (stack.is(PFTags.PLANTS_2_HUNGER_ITEM) || stack.is(PFTags.PLANTS_4_HUNGER_ITEM) || stack.is(PFTags.PLANTS_6_HUNGER_ITEM) || stack.is(PFTags.PLANTS_8_HUNGER_ITEM) || stack.is(PFTags.PLANTS_10_HUNGER_ITEM) || stack.is(PFTags.PLANTS_12_HUNGER_ITEM) || stack.is(PFTags.PLANTS_15_HUNGER_ITEM) || stack.is(PFTags.PLANTS_20_HUNGER_ITEM) || stack.is(PFTags.PLANTS_25_HUNGER_ITEM) || stack.is(PFTags.PLANTS_30_HUNGER_ITEM)) {
 				world.setBlock(pos, foodState.setValue(PLANT, true), 0);
 				if (stack.is(PFTags.PLANTS_2_HUNGER_ITEM)) {
@@ -191,6 +197,16 @@ public class FeederBlock extends BaseEntityBlock {
 		}
 		if (getFoodAmount(world, pos) < 1001) {
 			BlockState currentState = world.getBlockState(pos);
+			if (hasInsects(currentState)) {
+				if (stack.is(PFTags.INSECTS_2_HUNGER_ITEM)) {
+					if (getFoodAmount(world, pos) + 2 < 1001) {
+						setFoodAmount(getFoodAmount(world, pos) + 2, world, pos);
+					} else {
+						setFoodAmount(1001, world, pos);
+					}
+					world.getBlockState(pos);
+				}
+			}
 			if (hasMeat(currentState)) {
 				if (stack.is(PFTags.MEATS_2_HUNGER)) {
 					if (getFoodAmount(world, pos) + 2 < 1001) {
@@ -429,6 +445,10 @@ public class FeederBlock extends BaseEntityBlock {
 
 	public boolean hasFish(BlockState state) {
 		return state.getValue(FISH);
+	}
+	
+	public boolean hasInsects(BlockState state) {
+		return state.getValue(INSECT);
 	}
 
 	public VoxelShape getShape(BlockState p_51973_, BlockGetter p_51974_, BlockPos p_51975_, CollisionContext p_51976_) {

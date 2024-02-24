@@ -10,102 +10,21 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.entity.PFBoat;
 import superlord.prehistoricfauna.common.entity.Paleopainting;
 import superlord.prehistoricfauna.common.entity.WallFossil;
-import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Aepyornithomimus;
-import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Citipati;
-import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Oviraptor;
-import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Pinacosaurus;
-import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Plesiohadros;
-import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Protoceratops;
-import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Telmasaurus;
-import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Velociraptor;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ankylosaurus;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Basilemys;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Didelphodon;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Palaeosaniwa;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Thescelosaurus;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Thoracosaurus;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
-import superlord.prehistoricfauna.common.entity.fish.Acipenser;
-import superlord.prehistoricfauna.common.entity.fish.Arganodus;
-import superlord.prehistoricfauna.common.entity.fish.Ceratodus;
-import superlord.prehistoricfauna.common.entity.fish.Chinlea;
-import superlord.prehistoricfauna.common.entity.fish.Cyclurus;
-import superlord.prehistoricfauna.common.entity.fish.Gar;
-import superlord.prehistoricfauna.common.entity.fish.Lonchidion;
-import superlord.prehistoricfauna.common.entity.fish.Melvius;
-import superlord.prehistoricfauna.common.entity.fish.Mooreodontus;
-import superlord.prehistoricfauna.common.entity.fish.Myledaphus;
-import superlord.prehistoricfauna.common.entity.fish.Potamoceratodus;
-import superlord.prehistoricfauna.common.entity.fish.Saurichthys;
-import superlord.prehistoricfauna.common.entity.fossil.cretaceous.AnkylosaurusSkeleton;
-import superlord.prehistoricfauna.common.entity.fossil.cretaceous.AnkylosaurusSkull;
-import superlord.prehistoricfauna.common.entity.fossil.cretaceous.PlesiohadrosSkeleton;
-import superlord.prehistoricfauna.common.entity.fossil.cretaceous.PlesiohadrosSkull;
-import superlord.prehistoricfauna.common.entity.fossil.cretaceous.ProtoceratopsSkeleton;
-import superlord.prehistoricfauna.common.entity.fossil.cretaceous.ProtoceratopsSkull;
-import superlord.prehistoricfauna.common.entity.fossil.cretaceous.TriceratopsSkeleton;
-import superlord.prehistoricfauna.common.entity.fossil.cretaceous.TriceratopsSkull;
-import superlord.prehistoricfauna.common.entity.fossil.cretaceous.TyrannosaurusSkeleton;
-import superlord.prehistoricfauna.common.entity.fossil.cretaceous.TyrannosaurusSkull;
-import superlord.prehistoricfauna.common.entity.fossil.cretaceous.VelociraptorSkeleton;
-import superlord.prehistoricfauna.common.entity.fossil.cretaceous.VelociraptorSkull;
-import superlord.prehistoricfauna.common.entity.fossil.jurassic.AllosaurusSkeleton;
-import superlord.prehistoricfauna.common.entity.fossil.jurassic.AllosaurusSkull;
-import superlord.prehistoricfauna.common.entity.fossil.jurassic.CeratosaurusSkeleton;
-import superlord.prehistoricfauna.common.entity.fossil.jurassic.CeratosaurusSkull;
-import superlord.prehistoricfauna.common.entity.fossil.jurassic.DilophosaurusSkeleton;
-import superlord.prehistoricfauna.common.entity.fossil.jurassic.DilophosaurusSkull;
-import superlord.prehistoricfauna.common.entity.fossil.jurassic.SarahsaurusSkeleton;
-import superlord.prehistoricfauna.common.entity.fossil.jurassic.SarahsaurusSkull;
-import superlord.prehistoricfauna.common.entity.fossil.jurassic.ScelidosaurusSkeleton;
-import superlord.prehistoricfauna.common.entity.fossil.jurassic.ScelidosaurusSkull;
-import superlord.prehistoricfauna.common.entity.fossil.jurassic.StegosaurusSkeleton;
-import superlord.prehistoricfauna.common.entity.fossil.jurassic.StegosaurusSkull;
-import superlord.prehistoricfauna.common.entity.fossil.triassic.CoelophysisSkeleton;
-import superlord.prehistoricfauna.common.entity.fossil.triassic.CoelophysisSkull;
-import superlord.prehistoricfauna.common.entity.fossil.triassic.DesmatosuchusSkeleton;
-import superlord.prehistoricfauna.common.entity.fossil.triassic.DesmatosuchusSkull;
-import superlord.prehistoricfauna.common.entity.fossil.triassic.HerrerasaurusSkeleton;
-import superlord.prehistoricfauna.common.entity.fossil.triassic.HerrerasaurusSkull;
-import superlord.prehistoricfauna.common.entity.fossil.triassic.IschigualastiaSkeleton;
-import superlord.prehistoricfauna.common.entity.fossil.triassic.IschigualastiaSkull;
-import superlord.prehistoricfauna.common.entity.fossil.triassic.PostosuchusSkeleton;
-import superlord.prehistoricfauna.common.entity.fossil.triassic.PostosuchusSkull;
-import superlord.prehistoricfauna.common.entity.fossil.triassic.SaurosuchusSkeleton;
-import superlord.prehistoricfauna.common.entity.fossil.triassic.SaurosuchusSkull;
+import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.*;
+import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.*;
+import superlord.prehistoricfauna.common.entity.cretaceous.yixian.*;
+import superlord.prehistoricfauna.common.entity.fish.*;
+import superlord.prehistoricfauna.common.entity.fossil.cretaceous.*;
+import superlord.prehistoricfauna.common.entity.fossil.jurassic.*;
+import superlord.prehistoricfauna.common.entity.fossil.triassic.*;
 import superlord.prehistoricfauna.common.entity.henos.CaveSentinel;
 import superlord.prehistoricfauna.common.entity.henos.Henos;
 import superlord.prehistoricfauna.common.entity.henos.LandSentinel;
-import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Calsoyasuchus;
-import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Dilophosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Kayentatherium;
-import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Megapnosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Sarahsaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Scelidosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Scutellosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Ceratosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Dryosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Eilenodon;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Hesperornithoides;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Stegosaurus;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Coelophysis;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Desmatosuchus;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Placerias;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Poposaurus;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Postosuchus;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Trilophosaurus;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Typothorax;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Chromogisaurus;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Exaeretodon;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Herrerasaurus;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Hyperodapedon;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Ischigualastia;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Saurosuchus;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Sillosuchus;
+import superlord.prehistoricfauna.common.entity.item.FermentedGinkgoBerry;
+import superlord.prehistoricfauna.common.entity.jurassic.kayenta.*;
+import superlord.prehistoricfauna.common.entity.jurassic.morrison.*;
+import superlord.prehistoricfauna.common.entity.triassic.chinle.*;
+import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.*;
 
 public class PFEntities {
 	
@@ -162,12 +81,15 @@ public class PFEntities {
 	public static final RegistryObject<EntityType<Myledaphus>> MYLEDAPHUS = REGISTER.register("myledaphus", () -> EntityType.Builder.<Myledaphus>of(Myledaphus::new, MobCategory.WATER_AMBIENT).sized(0.6875F, 0.2F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "myledaphus").toString()));
 	public static final RegistryObject<EntityType<Potamoceratodus>> POTAMOCERATODUS = REGISTER.register("potamoceratodus", () -> EntityType.Builder.<Potamoceratodus>of(Potamoceratodus::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "potamoceratodus").toString()));
 	public static final RegistryObject<EntityType<Saurichthys>> SAURICHTHYS = REGISTER.register("saurichthys", () -> EntityType.Builder.<Saurichthys>of(Saurichthys::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "saurichthys").toString()));
-
+	public static final RegistryObject<EntityType<Harenaichthys>> HARENAICHTHYS = REGISTER.register("harenaichthys", () -> EntityType.Builder.<Harenaichthys>of(Harenaichthys::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "herenaichthys").toString()));
+	
 	//Hell Creek
 	public static final RegistryObject<EntityType<Ankylosaurus>> ANKYLOSAURUS = REGISTER.register("ankylosaurus", () -> EntityType.Builder.<Ankylosaurus>of(Ankylosaurus::new, MobCategory.CREATURE).sized(2F, 2F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "ankylosaurus").toString()));
 	public static final RegistryObject<EntityType<Basilemys>> BASILEMYS = REGISTER.register("basilemys", () -> EntityType.Builder.<Basilemys>of(Basilemys::new, MobCategory.CREATURE).sized(0.75F, 0.375F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "basilemys").toString()));
 	public static final RegistryObject<EntityType<Dakotaraptor>> DAKOTARAPTOR = REGISTER.register("dakotaraptor", () -> EntityType.Builder.<Dakotaraptor>of(Dakotaraptor::new, MobCategory.CREATURE).sized(0.875F, 2.15F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "dakotaraptor").toString()));
 	public static final RegistryObject<EntityType<Didelphodon>> DIDELPHODON = REGISTER.register("didelphodon", () -> EntityType.Builder.<Didelphodon>of(Didelphodon::new, MobCategory.CREATURE).sized(0.35F, 0.4F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "didelphodon").toString()));
+	public static final RegistryObject<EntityType<Ornithomimus>> ORNITHOMIMUS = REGISTER.register("ornithomimus", () -> EntityType.Builder.<Ornithomimus>of(Ornithomimus::new, MobCategory.CREATURE).sized(0.75F, 2.25F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "ornithomimus").toString()));
+	public static final RegistryObject<EntityType<Pachycephalosaurus>> PACHYCEPHALOSAURUS = REGISTER.register("pachycephalosaurus", () -> EntityType.Builder.<Pachycephalosaurus>of(Pachycephalosaurus::new, MobCategory.CREATURE).sized(0.875F, 1.875F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "pachycephalosaurus").toString()));
 	public static final RegistryObject<EntityType<Palaeosaniwa>> PALAEOSANIWA = REGISTER.register("palaeosaniwa", () -> EntityType.Builder.<Palaeosaniwa>of(Palaeosaniwa::new, MobCategory.CREATURE).sized(0.5F, 0.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "palaeosaniwa").toString()));
 	public static final RegistryObject<EntityType<Thescelosaurus>> THESCELOSAURUS = REGISTER.register("thescelosaurus", () -> EntityType.Builder.<Thescelosaurus>of(Thescelosaurus::new, MobCategory.CREATURE).sized(0.55F, 1.25F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "thescelosaurus").toString()));
 	public static final RegistryObject<EntityType<Thoracosaurus>> THORACOSAURUS = REGISTER.register("thoracosaurus", () -> EntityType.Builder.<Thoracosaurus>of(Thoracosaurus::new, MobCategory.CREATURE).sized(1, 1).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "thoracosaurus").toString()));
@@ -177,12 +99,25 @@ public class PFEntities {
 	//Djadochta
 	public static final RegistryObject<EntityType<Aepyornithomimus>> AEPYORNITHOMIMUS = REGISTER.register("aepyornithomimus", () -> EntityType.Builder.<Aepyornithomimus>of(Aepyornithomimus::new, MobCategory.CREATURE).sized(0.9375F, 1.25F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "aepyornithomimus").toString()));
 	public static final RegistryObject<EntityType<Citipati>> CITIPATI = REGISTER.register("citipati", () -> EntityType.Builder.<Citipati>of(Citipati::new, MobCategory.CREATURE).sized(0.5625F, 1.9F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "citipati").toString()));
+	public static final RegistryObject<EntityType<Goyocephale>> GOYOCEPHALE = REGISTER.register("goyocephale", () -> EntityType.Builder.<Goyocephale>of(Goyocephale::new, MobCategory.CREATURE).sized(0.6F, 0.875F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "goyocephale").toString()));
+	public static final RegistryObject<EntityType<Halszkaraptor>> HALSZKARAPTOR = REGISTER.register("halszkaraptor", () -> EntityType.Builder.<Halszkaraptor>of(Halszkaraptor::new, MobCategory.CREATURE).sized(0.35F, 0.75F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "halszkaraptor").toString()));
+	public static final RegistryObject<EntityType<Kol>> KOL = REGISTER.register("kol", () -> EntityType.Builder.<Kol>of(Kol::new, MobCategory.CREATURE).sized(0.5F, 1.0625F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "kol").toString()));
 	public static final RegistryObject<EntityType<Oviraptor>> OVIRAPTOR = REGISTER.register("oviraptor", () -> EntityType.Builder.<Oviraptor>of(Oviraptor::new, MobCategory.CREATURE).sized(0.5F, 1.0F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "oviraptor").toString()));
 	public static final RegistryObject<EntityType<Pinacosaurus>> PINACOSAURUS = REGISTER.register("pinacosaurus", () -> EntityType.Builder.<Pinacosaurus>of(Pinacosaurus::new, MobCategory.CREATURE).sized(2, 1.1F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "pinacosaurus").toString()));
 	public static final RegistryObject<EntityType<Plesiohadros>> PLESIOHADROS = REGISTER.register("plesiohadros", () -> EntityType.Builder.<Plesiohadros>of(Plesiohadros::new, MobCategory.CREATURE).sized(1.5F, 2).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "plesiohadros").toString()));
 	public static final RegistryObject<EntityType<Protoceratops>> PROTOCERATOPS = REGISTER.register("protoceratops", () -> EntityType.Builder.<Protoceratops>of(Protoceratops::new, MobCategory.CREATURE).sized(0.5F, 0.875F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "protoceratops").toString()));
+	public static final RegistryObject<EntityType<Udanoceratops>> UDANOCERATOPS = REGISTER.register("udanoceratops", () -> EntityType.Builder.<Udanoceratops>of(Udanoceratops::new, MobCategory.CREATURE).sized(1.0F, 1.375F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "udanoceratops").toString()));
 	public static final RegistryObject<EntityType<Telmasaurus>> TELMASAURUS = REGISTER.register("telmasaurus", () -> EntityType.Builder.<Telmasaurus>of(Telmasaurus::new, MobCategory.CREATURE).sized(1, 0.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "telmasaurus").toString()));
 	public static final RegistryObject<EntityType<Velociraptor>> VELOCIRAPTOR = REGISTER.register("velociraptor", () -> EntityType.Builder.<Velociraptor>of(Velociraptor::new, MobCategory.CREATURE).sized(0.3125F, 0.8F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "velociraptor").toString()));
+	
+	public static final RegistryObject<EntityType<DermestidBeetle>> DERMESTID_BEETLE = REGISTER.register("dermestid_beetle", () -> EntityType.Builder.<DermestidBeetle>of(DermestidBeetle::new, MobCategory.AMBIENT).sized(0.25F, 0.25F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "dermestid_beetle").toString()));
+	public static final RegistryObject<EntityType<Gobiulus>> GOBIULUS = REGISTER.register("gobiulus", () -> EntityType.Builder.<Gobiulus>of(Gobiulus::new, MobCategory.AMBIENT).sized(0.25F, 0.25F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "gobiulus").toString()));
+	
+	//Yixian
+	public static final RegistryObject<EntityType<Incisivosaurus>> INCISIVOSAURUS = REGISTER.register("incisivosaurus", () -> EntityType.Builder.<Incisivosaurus>of(Incisivosaurus::new, MobCategory.CREATURE).sized(0.3125F, 0.6875F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "incisivosaurus").toString()));
+	public static final RegistryObject<EntityType<Psittacosaurus>> PSITTACOSAURUS = REGISTER.register("psittacosaurus", () -> EntityType.Builder.<Psittacosaurus>of(Psittacosaurus::new, MobCategory.CREATURE).sized(0.5F, 0.9375F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "psittacosaurus").toString()));
+	public static final RegistryObject<EntityType<Sinosauropteryx>> SINOSAUROPTERYX = REGISTER.register("sinosauropteryx", () -> EntityType.Builder.<Sinosauropteryx>of(Sinosauropteryx::new, MobCategory.CREATURE).sized(0.25F, 0.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "sinosauropteryx").toString()));
+	public static final RegistryObject<EntityType<Yutyrannus>> YUTYRANNUS = REGISTER.register("yutyrannus", () -> EntityType.Builder.<Yutyrannus>of(Yutyrannus::new, MobCategory.CREATURE).sized(1.0F, 2.4375F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "yutyrannus").toString()));
 	
 	//Kayenta
 	public static final RegistryObject<EntityType<Calsoyasuchus>> CALSOYASUCHUS = REGISTER.register("calsoyasuchus", () -> EntityType.Builder.<Calsoyasuchus>of(Calsoyasuchus::new, MobCategory.CREATURE).sized(0.5F, 0.3F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "calsoyasuchus").toString()));
@@ -227,5 +162,6 @@ public class PFEntities {
 	public static final RegistryObject<EntityType<PFBoat>> BOAT = REGISTER.register("boat", () -> EntityType.Builder.<PFBoat>of(PFBoat::new, MobCategory.MISC).sized(1.375F, 0.5625F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "boat").toString()));
 	public static final RegistryObject<EntityType<Paleopainting>> PALEOPAINTING = REGISTER.register("paleopainting", () -> EntityType.Builder.<Paleopainting>of(Paleopainting::new, MobCategory.MISC).sized(0.5F, 0.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "paleopainting").toString()));
 	public static final RegistryObject<EntityType<WallFossil>> WALL_FOSSIL = REGISTER.register("wall_fossil", () -> EntityType.Builder.<WallFossil>of(WallFossil::new, MobCategory.MISC).sized(0.5F, 0.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "wall_fossil").toString()));
-
+	public static final RegistryObject<EntityType<FermentedGinkgoBerry>> FERMENTED_GINKGO_BERRY = REGISTER.register("fermented_ginkgo_berry", () -> EntityType.Builder.<FermentedGinkgoBerry>of(FermentedGinkgoBerry::new, MobCategory.MISC).sized(0.5F, 0.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "fermented_ginkgo_berry").toString()));
+	
 }

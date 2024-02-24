@@ -1,0 +1,9 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/nest_two_giant_round_eggs_two_plants",
+	"textures": {
+		"material": "prehistoricfauna:blocks/nest",
+		"egg": "prehistoricfauna:blocks/camarasaurus_egg",
+		"plants": "prehistoricfauna:blocks/plants"
+	}
+}

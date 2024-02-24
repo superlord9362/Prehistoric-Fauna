@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/sillosuchus_nest_and_egg_one_plant",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/sillosuchus_egg_very_cracked"
+	}
+}

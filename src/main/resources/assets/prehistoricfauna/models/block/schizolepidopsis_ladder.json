@@ -1,0 +1,7 @@
+{
+	"parent": "block/ladder",
+	"textures": {
+		"particle": "prehistoricfauna:blocks/schizolepidopsis_ladder",
+		"texture": "prehistoricfauna:blocks/schizolepidopsis_ladder"
+	}
+}

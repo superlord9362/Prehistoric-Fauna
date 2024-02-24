@@ -27,8 +27,10 @@ public class ProtectBabyGoal extends NearestAttackableTargetGoal<LivingEntity> {
 				for(DinosaurEntity pinacosaurus : dinosaur.level.getEntitiesOfClass(DinosaurEntity.class, dinosaur.getBoundingBox().inflate(8.0D, 4.0D, 8.0D))) {
 					if (!dinosaur.trusts(this.target.getUUID()) && (dinosaur.isProtective() || dinosaur.isTerritorial() || dinosaur.isOpportunist() || dinosaur.isAggressive()) && !dinosaur.isTame()) {
 						if (this.target instanceof DinosaurEntity meanDinosaur) {
-							if (meanDinosaur.getBoundingBox().getSize() < pinacosaurus.getBoundingBox().getSize() * 2 && meanDinosaur.isCarnivorous() && meanDinosaur != dinosaur) {
-								if (pinacosaurus.isBaby()) {
+							if (meanDinosaur.getBoundingBox().getSize() < pinacosaurus.getBoundingBox().getSize() * 2 && meanDinosaur.isCarnivorous() && meanDinosaur != pinacosaurus) {
+								if (pinacosaurus.isBaby() && meanDinosaur != pinacosaurus) {
+									System.out.println("Mean Dinosaur: " + meanDinosaur);
+									System.out.println("Baby Dinosaur: " + pinacosaurus);
 									return true;
 								}	
 							}

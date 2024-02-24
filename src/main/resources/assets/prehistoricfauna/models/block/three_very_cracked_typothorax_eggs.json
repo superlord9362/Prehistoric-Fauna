@@ -1,7 +1,7 @@
 {
-    "parent": "prehistoricfauna:block/three_typothorax_eggs",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/typothorax_eggs_very_cracked",
-        "all": "prehistoricfauna:blocks/typothorax_eggs_very_cracked"
-    }
+	"parent": "prehistoricfauna:block/three_small_round_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/typothorax_egg_very_cracked"
+	}
 }

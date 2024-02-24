@@ -1,0 +1,9 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/nest_two_medium_tall_eggs_one_plant",
+	"textures": {
+		"material": "block/dirt",
+		"egg": "prehistoricfauna:blocks/dryosaurus_egg",
+		"plants": "prehistoricfauna:blocks/plants"
+	}
+}

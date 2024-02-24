@@ -1,0 +1,41 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"particle": "#egg"
+	},
+	"elements": [
+		{
+			"from": [6, 0, 1],
+			"to": [14, 12, 9],
+			"faces": {
+				"north": {"uv": [0, 0, 8, 12], "texture": "#egg"},
+				"east": {"uv": [0, 0, 8, 12], "texture": "#egg"},
+				"south": {"uv": [0, 0, 8, 12], "texture": "#egg"},
+				"west": {"uv": [0, 0, 8, 12], "texture": "#egg"},
+				"up": {"uv": [0, 0, 8, 8], "texture": "#egg"},
+				"down": {"uv": [0, 0, 8, 8], "texture": "#egg"}
+			}
+		},
+		{
+			"from": [0, 0, 8],
+			"to": [6, 10, 14],
+			"faces": {
+				"north": {"uv": [0, 0, 6, 10], "texture": "#egg"},
+				"east": {"uv": [0, 0, 6, 10], "texture": "#egg"},
+				"south": {"uv": [0, 0, 6, 10], "texture": "#egg"},
+				"west": {"uv": [0, 0, 6, 10], "texture": "#egg"},
+				"up": {"uv": [0, 0, 6, 6], "texture": "#egg"},
+				"down": {"uv": [0, 0, 6, 6], "texture": "#egg"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "Eggs",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"nbt": "{}",
+			"children": [0, 1]
+		}
+	]
+}

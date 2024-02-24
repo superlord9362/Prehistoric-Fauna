@@ -1,0 +1,7 @@
+{
+	"parent": "prehistoricfauna:block/three_small_round_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/incisivosaurus_egg_very_cracked"
+	}
+}

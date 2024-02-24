@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/hesperornithoides_nest_and_three_eggs_two_plants",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/hesperornithoides_egg_very_cracked"
+	}
+}

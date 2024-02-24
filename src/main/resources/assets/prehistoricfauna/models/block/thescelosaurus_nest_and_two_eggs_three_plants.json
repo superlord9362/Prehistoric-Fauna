@@ -1,0 +1,9 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/nest_two_small_tall_eggs_three_plants",
+	"textures": {
+		"material": "prehistoricfauna:blocks/nest",
+		"egg": "prehistoricfauna:blocks/thescelosaurus_egg",
+		"plants": "prehistoricfauna:blocks/plants"
+	}
+}

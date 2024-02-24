@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_bottom",
+    "textures": {
+        "bottom": "prehistoricfauna:blocks/schizolepidopsis_door_bottom",
+        "top": "prehistoricfauna:blocks/schizolepidopsis_door_top"
+    }
+}

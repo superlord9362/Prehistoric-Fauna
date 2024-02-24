@@ -1,7 +1,7 @@
 {
-    "parent": "prehistoricfauna:block/three_dakotaraptor_eggs",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/dakotaraptor_eggs_slightly_cracked",
-        "all": "prehistoricfauna:blocks/dakotaraptor_eggs_slightly_cracked"
-    }
+	"parent": "prehistoricfauna:block/three_medium_tall_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/dakotaraptor_egg_slightly_cracked"
+	}
 }

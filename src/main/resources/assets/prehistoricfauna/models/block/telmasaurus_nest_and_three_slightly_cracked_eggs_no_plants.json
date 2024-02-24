@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/telmasaurus_nest_and_three_eggs_no_plants",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/telmasaurus_egg_slightly_cracked"
+	}
+}

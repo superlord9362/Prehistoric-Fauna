@@ -1,7 +1,7 @@
 {
-    "parent": "prehistoricfauna:block/two_telmasaurus_eggs",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/telmasaurus_eggs_very_cracked",
-        "all": "prehistoricfauna:blocks/telmasaurus_eggs_very_cracked"
-    }
+	"parent": "prehistoricfauna:block/two_small_round_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/telmasaurus_egg_very_cracked"
+	}
 }

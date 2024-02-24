@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:czekanowskia_log"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:czekanowskia_wood",
+    "count": 3
+  }
+}

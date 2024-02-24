@@ -1,0 +1,7 @@
+{
+	"parent": "block/cube_column",
+	"textures": {
+		"end": "prehistoricfauna:blocks/schizolepidopsis_planks",
+		"side": "prehistoricfauna:blocks/schizolepidopsis_bookshelf"
+	}
+}

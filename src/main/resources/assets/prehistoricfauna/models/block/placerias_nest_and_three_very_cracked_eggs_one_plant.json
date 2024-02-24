@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/placerias_nest_and_three_eggs_one_plant",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/placerias_egg_very_cracked"
+	}
+}

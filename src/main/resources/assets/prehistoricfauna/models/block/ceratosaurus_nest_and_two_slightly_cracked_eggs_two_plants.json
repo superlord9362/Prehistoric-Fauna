@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/ceratosaurus_nest_and_two_eggs_two_plants",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/ceratosaurus_egg_slightly_cracked"
+	}
+}

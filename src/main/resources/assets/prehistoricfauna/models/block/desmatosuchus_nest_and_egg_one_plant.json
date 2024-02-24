@@ -1,0 +1,9 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/nest_one_medium_tall_egg_one_plant",
+	"textures": {
+		"material": "prehistoricfauna:blocks/nest",
+		"egg": "prehistoricfauna:blocks/desmatosuchus_egg",
+		"plants": "prehistoricfauna:blocks/plants"
+	}
+}

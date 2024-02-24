@@ -1,0 +1,153 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"egg": "#egg",
+		"material": "#material",
+		"particle": "#material"
+	},
+	"elements": [
+		{
+			"name": "base",
+			"from": [0, 0, 0],
+			"to": [16, 2, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 2], "texture": "#material"},
+				"east": {"uv": [0, 2, 16, 4], "texture": "#material"},
+				"south": {"uv": [0, 4, 16, 6], "texture": "#material"},
+				"west": {"uv": [0, 6, 16, 8], "texture": "#material"},
+				"up": {"uv": [16, 16, 0, 0], "texture": "#material"},
+				"down": {"uv": [16, 0, 0, 16], "texture": "#material"}
+			}
+		},
+		{
+			"name": "side_front",
+			"from": [2, 2, 0],
+			"to": [16, 6, 2],
+			"faces": {
+				"north": {"uv": [0, 12, 14, 16], "texture": "#material"},
+				"east": {"uv": [14, 8, 16, 12], "texture": "#material"},
+				"south": {"uv": [2, 12, 16, 16], "texture": "#material"},
+				"west": {"uv": [1, 12, 9, 16], "texture": "#material"},
+				"up": {"uv": [2, 0, 16, 2], "texture": "#material"},
+				"down": {"uv": [0, 0, 7, 1], "texture": "#material"}
+			}
+		},
+		{
+			"name": "side_back",
+			"from": [0, 2, 14],
+			"to": [14, 6, 16],
+			"faces": {
+				"north": {"uv": [1, 0, 15, 4], "texture": "#material"},
+				"east": {"uv": [1, 4, 9, 8], "texture": "#material"},
+				"south": {"uv": [0, 0, 14, 4], "texture": "#material"},
+				"west": {"uv": [14, 2, 16, 6], "texture": "#material"},
+				"up": {"uv": [0, 14, 14, 16], "texture": "#material"},
+				"down": {"uv": [0, 0, 7, 1], "texture": "#material"}
+			}
+		},
+		{
+			"name": "side_left",
+			"from": [0, 2, 0],
+			"to": [2, 6, 14],
+			"faces": {
+				"north": {"uv": [14, 12, 16, 16], "texture": "#material"},
+				"east": {"uv": [0, 12, 14, 16], "texture": "#material"},
+				"south": {"uv": [1, 8, 9, 12], "texture": "#material"},
+				"west": {"uv": [0, 2, 14, 6], "texture": "#material"},
+				"up": {"uv": [0, 2, 2, 16], "texture": "#material"},
+				"down": {"uv": [15, 6, 16, 13], "texture": "#material"}
+			}
+		},
+		{
+			"name": "side_ride",
+			"from": [14, 2, 2],
+			"to": [16, 6, 16],
+			"faces": {
+				"north": {"uv": [1, 0, 9, 4], "texture": "#material"},
+				"east": {"uv": [0, 8, 14, 12], "texture": "#material"},
+				"south": {"uv": [14, 0, 16, 4], "texture": "#material"},
+				"west": {"uv": [2, 7, 16, 11], "texture": "#material"},
+				"up": {"uv": [14, 2, 16, 16], "texture": "#material"},
+				"down": {"uv": [0, 0, 1, 7], "texture": "#material"}
+			}
+		},
+		{
+			"name": "Egg",
+			"from": [6, 2, 6],
+			"to": [14, 10, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 4, 0]},
+			"faces": {
+				"north": {"uv": [4, 4, 8, 8], "texture": "#egg"},
+				"east": {"uv": [0, 4, 4, 8], "texture": "#egg"},
+				"south": {"uv": [12, 4, 16, 8], "texture": "#egg"},
+				"west": {"uv": [8, 4, 12, 8], "texture": "#egg"},
+				"up": {"uv": [8, 4, 4, 0], "texture": "#egg"},
+				"down": {"uv": [12, 0, 8, 4], "texture": "#egg"}
+			}
+		},
+		{
+			"name": "Egg2",
+			"from": [2, 2, 2],
+			"to": [9, 9, 9],
+			"faces": {
+				"north": {"uv": [0, 4, 4, 8], "texture": "#egg"},
+				"east": {"uv": [12, 4, 16, 8], "texture": "#egg"},
+				"south": {"uv": [8, 4, 12, 8], "texture": "#egg"},
+				"west": {"uv": [4, 4, 8, 8], "texture": "#egg"},
+				"up": {"uv": [8, 4, 4, 0], "rotation": 270, "texture": "#egg"},
+				"down": {"uv": [12, 0, 8, 4], "rotation": 90, "texture": "#egg"}
+			}
+		},
+		{
+			"name": "Egg3",
+			"from": [3, 2, 7],
+			"to": [9, 8, 13],
+			"faces": {
+				"north": {"uv": [12, 4, 16, 8], "texture": "#egg"},
+				"east": {"uv": [8, 4, 12, 8], "texture": "#egg"},
+				"south": {"uv": [4, 4, 8, 8], "texture": "#egg"},
+				"west": {"uv": [0, 4, 4, 8], "texture": "#egg"},
+				"up": {"uv": [8, 4, 4, 0], "rotation": 180, "texture": "#egg"},
+				"down": {"uv": [12, 0, 8, 4], "rotation": 180, "texture": "#egg"}
+			}
+		},
+		{
+			"name": "Egg4",
+			"from": [8, 2, 3],
+			"to": [13, 7, 8],
+			"faces": {
+				"north": {"uv": [12, 4, 16, 8], "texture": "#egg"},
+				"east": {"uv": [8, 4, 12, 8], "texture": "#egg"},
+				"south": {"uv": [4, 4, 8, 8], "texture": "#egg"},
+				"west": {"uv": [0, 4, 4, 8], "texture": "#egg"},
+				"up": {"uv": [8, 4, 4, 0], "rotation": 180, "texture": "#egg"},
+				"down": {"uv": [8, 0, 12, 4], "rotation": 180, "texture": "#egg"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "base",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"nbt": "{}",
+			"children": [
+				0,
+				{
+					"name": "sides",
+					"origin": [0, 0, 0],
+					"color": 0,
+					"nbt": "{}",
+					"children": [1, 2, 3, 4]
+				}
+			]
+		},
+		{
+			"name": "Eggs",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"nbt": "{}",
+			"children": [5, 6, 7, 8]
+		}
+	]
+}

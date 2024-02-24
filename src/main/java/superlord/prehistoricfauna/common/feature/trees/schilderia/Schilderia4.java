@@ -13,7 +13,6 @@ import superlord.prehistoricfauna.common.feature.util.PFTreeConfig;
 
 public class Schilderia4 extends PFAbstractTreeFeature<PFTreeConfig> {
 
-
 	int randTreeHeight;
 	BlockPos.MutableBlockPos mainmutable;
 	

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:schizolepidopsis_log"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:schizolepidopsis_wood",
+    "count": 3
+  }
+}

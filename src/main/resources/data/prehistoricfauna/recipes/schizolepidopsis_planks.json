@@ -1,0 +1,13 @@
+{
+  "type": "crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "prehistoricfauna:schizolepidopsis_logs"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:schizolepidopsis_planks",
+    "count": 4
+  }
+}

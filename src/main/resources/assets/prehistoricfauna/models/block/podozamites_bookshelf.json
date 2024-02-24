@@ -1,0 +1,7 @@
+{
+	"parent": "block/cube_column",
+	"textures": {
+		"end": "prehistoricfauna:blocks/podozamites_planks",
+		"side": "prehistoricfauna:blocks/podozamites_bookshelf"
+	}
+}

@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/kol_nest_and_four_eggs_three_plants",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/kol_egg_very_cracked"
+	}
+}

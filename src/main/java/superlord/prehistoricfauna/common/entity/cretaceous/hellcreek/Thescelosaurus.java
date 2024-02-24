@@ -37,7 +37,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
+import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
@@ -244,7 +244,7 @@ public class Thescelosaurus extends DinosaurEntity {
 		return PFItems.THESCELOSAURUS_EGG.get();
 	}
     
-    public BlockState getEggBlock() {
-    	return PFBlocks.THESCELOSAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
-    }
+	public BlockState getEggBlock(Level world, BlockPos pos) {
+		return PFBlocks.THESCELOSAURUS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+	}
 }

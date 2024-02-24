@@ -31,7 +31,6 @@ import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.FollowParentGoal;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
@@ -49,7 +48,7 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
+import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.AggressiveTempermentAttackGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
@@ -94,11 +93,9 @@ public class Ankylosaurus extends DinosaurEntity {
 	
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		int temperment = random.nextInt(100);
-		if (temperment < 80) {
+		if (temperment < 85) {
 			this.setTerritorial(true);
-		} else if (temperment >= 80 && temperment < 95) {
-			this.setProtective(true);
-		} else if (temperment >= 95) {
+		} else {
 			this.setAggressive(true);
 		}
 		this.setHerbivorous(true);
@@ -140,7 +137,6 @@ public class Ankylosaurus extends DinosaurEntity {
 		super.registerGoals();
 		this.goalSelector.addGoal(1, new Ankylosaurus.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new BabyPanicGoal(this));
-		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
@@ -357,7 +353,7 @@ public class Ankylosaurus extends DinosaurEntity {
 		return PFItems.ANKYLOSAURUS_EGG.get();
 	}
 
-	public BlockState getEggBlock() {
-		return PFBlocks.ANKYLOSAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
+	public BlockState getEggBlock(Level world, BlockPos pos) {
+		return PFBlocks.ANKYLOSAURUS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
 	}
 }

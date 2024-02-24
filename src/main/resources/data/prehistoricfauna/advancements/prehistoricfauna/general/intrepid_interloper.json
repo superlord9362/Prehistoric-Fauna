@@ -60,11 +60,19 @@
 				}
 			}
 		},
+		"djadochta_alluvial_plains": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:djadochta_alluvial_plains"
+				}
+			}
+		},
 		"hell_creek": {
 			"trigger": "minecraft:location",
 			"conditions": {
 				"location": {
-					"biome": "prehistoricfauna:hell_creek"
+					"biome": "prehistoricfauna:hell_creek_hardwood_forest"
 				}
 			}
 		},
@@ -80,7 +88,7 @@
 			"trigger": "minecraft:location",
 			"conditions": {
 				"location": {
-					"biome": "prehistoricfauna:hell_creek_hills"
+					"biome": "prehistoricfauna:hell_creek_bluffs"
 				}
 			}
 		},
@@ -89,6 +97,62 @@
 			"conditions": {
 				"location": {
 					"biome": "prehistoricfauna:hell_creek_river"
+				}
+			}
+		},
+		"hell_creek_swamp": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:hell_creek_swamp"
+				}
+			}
+		},
+		"hell_creek_redwoods": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:hell_creek_redwoods"
+				}
+			}
+		},
+		"yixian_forest": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:yixian_forest"
+				}
+			}
+		},
+		"yixian_regrowth": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:yixian_regrowth"
+				}
+			}
+		},
+		"yixian_snowy_forest": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:yixian_snowy_forest"
+				}
+			}
+		},
+		"yixian_snowy_mountains": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:yixian_snowy_mountains"
+				}
+			}
+		},
+		"yixian_volcano": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"biome": "prehistoricfauna:yixian_volcano"
 				}
 			}
 		},
@@ -182,6 +246,9 @@
 			"djadochta_dunes"
 		],
 		[
+			"djadochta_alluvial_plains"
+		],
+		[
 			"hell_creek"
 		],
 		[
@@ -192,6 +259,27 @@
 		],
 		[
 			"hell_creek_river"
+		],
+		[
+			"hell_creek_swamp"
+		],
+		[
+			"hell_creek_redwoods"
+		],
+		[
+			"yixian_forest"
+		],
+		[
+			"yixian_regrowth"
+		],
+		[
+			"yixian_snowy_forest"
+		],
+		[
+			"yixian_snowy_mountains"
+		],
+		[
+			"yixian_volcano"
 		],
 		[
 			"ischigualasto_clearing"

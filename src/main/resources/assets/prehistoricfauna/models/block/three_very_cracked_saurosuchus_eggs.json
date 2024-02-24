@@ -1,7 +1,7 @@
 {
-    "parent": "prehistoricfauna:block/three_saurosuchus_eggs",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/saurosuchus_egg_very_cracked",
-        "all": "prehistoricfauna:blocks/saurosuchus_egg_very_cracked"
-    }
+	"parent": "prehistoricfauna:block/three_medium_round_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/saurosuchus_egg_very_cracked"
+	}
 }

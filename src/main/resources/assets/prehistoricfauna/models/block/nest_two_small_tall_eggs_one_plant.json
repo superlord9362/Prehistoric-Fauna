@@ -1,0 +1,147 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"egg": "#egg",
+		"material": "#material",
+		"12": "prehistoricfauna:blocks/plants",
+		"particle": "#material"
+	},
+	"elements": [
+		{
+			"name": "base",
+			"from": [0, 0, 0],
+			"to": [16, 2, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 2], "texture": "#material"},
+				"east": {"uv": [0, 2, 16, 4], "texture": "#material"},
+				"south": {"uv": [0, 4, 16, 6], "texture": "#material"},
+				"west": {"uv": [0, 6, 16, 8], "texture": "#material"},
+				"up": {"uv": [16, 16, 0, 0], "texture": "#material"},
+				"down": {"uv": [16, 0, 0, 16], "texture": "#material"}
+			}
+		},
+		{
+			"name": "side_front",
+			"from": [2, 2, 0],
+			"to": [16, 6, 2],
+			"faces": {
+				"north": {"uv": [0, 12, 14, 16], "texture": "#material"},
+				"east": {"uv": [14, 8, 16, 12], "texture": "#material"},
+				"south": {"uv": [2, 12, 16, 16], "texture": "#material"},
+				"west": {"uv": [1, 12, 9, 16], "texture": "#material"},
+				"up": {"uv": [2, 0, 16, 2], "texture": "#material"},
+				"down": {"uv": [0, 0, 7, 1], "texture": "#material"}
+			}
+		},
+		{
+			"name": "side_back",
+			"from": [0, 2, 14],
+			"to": [14, 6, 16],
+			"faces": {
+				"north": {"uv": [1, 0, 15, 4], "texture": "#material"},
+				"east": {"uv": [1, 4, 9, 8], "texture": "#material"},
+				"south": {"uv": [0, 0, 14, 4], "texture": "#material"},
+				"west": {"uv": [14, 2, 16, 6], "texture": "#material"},
+				"up": {"uv": [0, 14, 14, 16], "texture": "#material"},
+				"down": {"uv": [0, 0, 7, 1], "texture": "#material"}
+			}
+		},
+		{
+			"name": "side_left",
+			"from": [0, 2, 0],
+			"to": [2, 6, 14],
+			"faces": {
+				"north": {"uv": [14, 12, 16, 16], "texture": "#material"},
+				"east": {"uv": [0, 12, 14, 16], "texture": "#material"},
+				"south": {"uv": [1, 8, 9, 12], "texture": "#material"},
+				"west": {"uv": [0, 2, 14, 6], "texture": "#material"},
+				"up": {"uv": [0, 2, 2, 16], "texture": "#material"},
+				"down": {"uv": [15, 6, 16, 13], "texture": "#material"}
+			}
+		},
+		{
+			"name": "side_ride",
+			"from": [14, 2, 2],
+			"to": [16, 6, 16],
+			"faces": {
+				"north": {"uv": [1, 0, 9, 4], "texture": "#material"},
+				"east": {"uv": [0, 8, 14, 12], "texture": "#material"},
+				"south": {"uv": [14, 0, 16, 4], "texture": "#material"},
+				"west": {"uv": [2, 7, 16, 11], "texture": "#material"},
+				"up": {"uv": [14, 2, 16, 16], "texture": "#material"},
+				"down": {"uv": [0, 0, 1, 7], "texture": "#material"}
+			}
+		},
+		{
+			"name": "layer1",
+			"from": [2, 3, 2],
+			"to": [14, 3, 14],
+			"faces": {
+				"north": {"uv": [0, 0, 6, 0], "texture": "#12"},
+				"east": {"uv": [0, 0, 6, 0], "texture": "#12"},
+				"south": {"uv": [0, 0, 6, 0], "texture": "#12"},
+				"west": {"uv": [0, 0, 6, 0], "texture": "#12"},
+				"up": {"uv": [1, 1, 15, 15], "texture": "#12"},
+				"down": {"uv": [1, 1, 15, 15], "texture": "#12"}
+			}
+		},
+		{
+			"from": [8, 2, 7],
+			"to": [11, 8, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 6, 7]},
+			"faces": {
+				"north": {"uv": [3, 3, 6, 9], "texture": "#egg"},
+				"east": {"uv": [0, 3, 3, 9], "texture": "#egg"},
+				"south": {"uv": [9, 3, 12, 9], "texture": "#egg"},
+				"west": {"uv": [6, 3, 9, 9], "texture": "#egg"},
+				"up": {"uv": [3, 0, 6, 3], "texture": "#egg"},
+				"down": {"uv": [6, 0, 9, 3], "texture": "#egg"}
+			}
+		},
+		{
+			"from": [5, 2, 5],
+			"to": [7, 6, 7],
+			"rotation": {"angle": 0, "axis": "y", "origin": [6, 4, 6]},
+			"faces": {
+				"north": {"uv": [7, 12, 9, 16], "texture": "#egg"},
+				"east": {"uv": [5, 12, 7, 16], "texture": "#egg"},
+				"south": {"uv": [3, 12, 5, 16], "texture": "#egg"},
+				"west": {"uv": [1, 12, 3, 16], "texture": "#egg"},
+				"up": {"uv": [3, 10, 5, 12], "texture": "#egg"},
+				"down": {"uv": [5, 10, 7, 12], "texture": "#egg"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "base",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"nbt": "{}",
+			"children": [
+				0,
+				{
+					"name": "sides",
+					"origin": [0, 0, 0],
+					"color": 0,
+					"nbt": "{}",
+					"children": [1, 2, 3, 4]
+				},
+				{
+					"name": "filler",
+					"origin": [0, 0, 0],
+					"color": 0,
+					"nbt": "{}",
+					"children": [5]
+				}
+			]
+		},
+		{
+			"name": "Eggs",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"nbt": "{}",
+			"children": [6, 7]
+		}
+	]
+}

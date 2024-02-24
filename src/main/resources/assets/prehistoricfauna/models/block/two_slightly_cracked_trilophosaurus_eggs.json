@@ -1,7 +1,7 @@
 {
-    "parent": "prehistoricfauna:block/two_trilophosaurus_eggs",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/trilophosaurus_eggs_slightly_cracked",
-        "all": "prehistoricfauna:blocks/trilophosaurus_eggs_slightly_cracked"
-    }
+	"parent": "prehistoricfauna:block/two_small_round_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/trilophosaurus_egg_slightly_cracked"
+	}
 }

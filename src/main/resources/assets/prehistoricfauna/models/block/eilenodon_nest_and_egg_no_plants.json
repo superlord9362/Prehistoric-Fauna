@@ -1,0 +1,8 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/nest_one_small_round_egg_no_plants",
+	"textures": {
+		"material": "block/dirt",
+		"egg": "prehistoricfauna:blocks/eilenodon_egg"
+	}
+}

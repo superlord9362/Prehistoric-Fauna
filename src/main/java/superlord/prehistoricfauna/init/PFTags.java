@@ -23,7 +23,11 @@ public class PFTags {
 	public static final TagKey<Block> PLANTS_20_HUNGER = registerBlockTag("twenty_hunger_plants");
 	public static final TagKey<Block> PLANTS_25_HUNGER = registerBlockTag("twenty_five_hunger_plants");
 	public static final TagKey<Block> PLANTS_30_HUNGER = registerBlockTag("thirty_hunger_plants");
+	public static final TagKey<Block> HARDENED_SILT_NESTS = registerBlockTag("hardened_silt_nests");
+	public static final TagKey<Block> NESTS = registerBlockTag("nests");
+	public static final TagKey<Block> SOFT_SHELL_EGG_BLOCKS = registerBlockTag("soft_shell_eggs");
 	public static final TagKey<Item> PLANTS_2_HUNGER_ITEM = registerItemTag("two_hunger_plants");
+	public static final TagKey<Item> INSECTS_2_HUNGER_ITEM = registerItemTag("two_hunger_insects");
 	public static final TagKey<Item> PLANTS_4_HUNGER_ITEM = registerItemTag("four_hunger_plants");
 	public static final TagKey<Item> PLANTS_6_HUNGER_ITEM = registerItemTag("six_hunger_plants");
 	public static final TagKey<Item> PLANTS_8_HUNGER_ITEM = registerItemTag("eight_hunger_plants");
@@ -33,6 +37,7 @@ public class PFTags {
 	public static final TagKey<Item> PLANTS_20_HUNGER_ITEM = registerItemTag("twenty_hunger_plants");
 	public static final TagKey<Item> PLANTS_25_HUNGER_ITEM = registerItemTag("twenty_five_hunger_plants");
 	public static final TagKey<Item> PLANTS_30_HUNGER_ITEM = registerItemTag("thirty_hunger_plants");
+	public static final TagKey<Item> SOFT_SHELL_EGGS = registerItemTag("soft_shell_eggs");
 	public static final TagKey<EntityType<?>> FISH_3_HUNGER = registerEntityTag("three_hunger_fish");
 	public static final TagKey<EntityType<?>> ANIMALS_3_HUNGER = registerEntityTag("three_hunger_animals");
 	public static final TagKey<EntityType<?>> ANIMALS_4_HUNGER = registerEntityTag("four_hunger_animals");
@@ -47,6 +52,7 @@ public class PFTags {
 	public static final TagKey<EntityType<?>> ANIMALS_80_HUNGER = registerEntityTag("eighty_hunger_animals");
 	public static final TagKey<EntityType<?>> ANIMALS_100_HUNGER = registerEntityTag("one_hundred_hunger_animals");
 	public static final TagKey<EntityType<?>> ANIMALS_200_HUNGER = registerEntityTag("two_hundreed_hunger_animals");
+	public static final TagKey<EntityType<?>> INSECTS_2_HUNGER = registerEntityTag("two_hunger_insects");
 	
 	public static final TagKey<EntityType<?>> CITIPATI_HUNTING = registerEntityTag("citipati_hunting");
 	public static final TagKey<EntityType<?>> CITIPATI_BABY_HUNTING = registerEntityTag("citipati_baby_hunting");
@@ -91,6 +97,18 @@ public class PFTags {
 	public static final TagKey<EntityType<?>> PALAEOSANIWA_BABY_HUNTING = registerEntityTag("palaeosaniwa_baby_hunting");
 	public static final TagKey<EntityType<?>> OVIRAPTOR_HUNTING = registerEntityTag("oviraptor_hunting");
 	public static final TagKey<EntityType<?>> OVIRAPTOR_BABY_HUNTING = registerEntityTag("oviraptor_baby_hunting");
+	public static final TagKey<EntityType<?>> HALSZKARAPTOR_HUNTING = registerEntityTag("halszkaraptor_hunting");
+	public static final TagKey<EntityType<?>> HALSZKARAPTOR_BABY_HUNTING = registerEntityTag("halszkaraptor_baby_hunting");
+	public static final TagKey<EntityType<?>> ORNITHOMIMUS_HUNTING = registerEntityTag("ornithomimus_hunting");
+	public static final TagKey<EntityType<?>> ORNITHOMIMUS_BABY_HUNTING = registerEntityTag("ornithomimus_baby_hunting");
+	public static final TagKey<EntityType<?>> KOL_HUNTING = registerEntityTag("kol_hunting");
+	public static final TagKey<EntityType<?>> KOL_BABY_HUNTING = registerEntityTag("kol_baby_hunting");
+	public static final TagKey<EntityType<?>> YUTYRANNUS_HUNTING = registerEntityTag("yutyrannus_hunting");
+	public static final TagKey<EntityType<?>> YUTYRANNUS_BABY_HUNTING = registerEntityTag("yutyrannus_baby_hunting");
+	public static final TagKey<EntityType<?>> SINOSAUROPTERYX_HUNTING = registerEntityTag("sinosauropteryx_hunting");
+	public static final TagKey<EntityType<?>> SINOSAUROPTERYX_BABY_HUNTING = registerEntityTag("sinosauropteryx_baby_hunting");
+	public static final TagKey<EntityType<?>> INCISIVOSAURUS_HUNTING = registerEntityTag("incisivosaurus_hunting");
+	public static final TagKey<EntityType<?>> INCISIVOSAURUS_BABY_HUNTING = registerEntityTag("incisivosaurus_baby_hunting");
 	
 	public static final TagKey<Item> MEATS_2_HUNGER = registerItemTag("two_hunger_meats");
 	public static final TagKey<Item> MEATS_4_HUNGER = registerItemTag("four_hunger_meats");

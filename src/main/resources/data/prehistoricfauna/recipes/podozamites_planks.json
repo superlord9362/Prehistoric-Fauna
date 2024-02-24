@@ -1,0 +1,13 @@
+{
+  "type": "crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "prehistoricfauna:podozamites_logs"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:podozamites_planks",
+    "count": 4
+  }
+}

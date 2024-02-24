@@ -1,0 +1,7 @@
+{
+	"parent": "prehistoricfauna:block/one_medium_tall_egg",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/pachycephalosaurus_egg"
+	}
+}

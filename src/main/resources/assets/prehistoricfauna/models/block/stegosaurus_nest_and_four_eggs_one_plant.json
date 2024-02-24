@@ -1,0 +1,9 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/nest_four_large_round_eggs_one_plant",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/stegosaurus_egg",
+		"material": "block/dirt",
+		"plants": "prehistoricfauna:blocks/plants"
+	}
+}

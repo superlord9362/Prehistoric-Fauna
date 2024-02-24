@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_slab",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:czekanowskia_planks"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:czekanowskia_slab",
+    "count": 6
+  }
+}

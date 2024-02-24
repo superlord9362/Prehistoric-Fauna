@@ -1,0 +1,7 @@
+{
+	"parent": "block/ladder",
+	"textures": {
+		"particle": "prehistoricfauna:blocks/podozamites_ladder",
+		"texture": "prehistoricfauna:blocks/podozamites_ladder"
+	}
+}

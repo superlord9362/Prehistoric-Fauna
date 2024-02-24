@@ -1,0 +1,30 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"particle": "#egg"
+	},
+	"elements": [
+		{
+			"from": [4, 0, 4],
+			"to": [12, 12, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-2, 0, 3]},
+			"faces": {
+				"north": {"uv": [0, 0, 8, 12], "texture": "#egg"},
+				"east": {"uv": [0, 0, 8, 12], "texture": "#egg"},
+				"south": {"uv": [0, 0, 8, 12], "texture": "#egg"},
+				"west": {"uv": [0, 0, 8, 12], "texture": "#egg"},
+				"up": {"uv": [0, 0, 8, 8], "texture": "#egg"},
+				"down": {"uv": [0, 0, 8, 8], "texture": "#egg"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "Eggs",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"nbt": "{}",
+			"children": [0]
+		}
+	]
+}

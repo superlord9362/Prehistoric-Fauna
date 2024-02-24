@@ -1,7 +1,7 @@
 {
-    "parent": "prehistoricfauna:block/two_protoceratops_eggs",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/protoceratops_egg_very_cracked",
-        "all": "prehistoricfauna:blocks/protoceratops_egg_very_cracked"
-    }
+	"parent": "prehistoricfauna:block/two_small_tall_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/protoceratops_egg_very_cracked"
+	}
 }

@@ -31,32 +31,27 @@ public class KayentaButtesSurfaceDecorator extends SurfaceDecorator {
 				chunk.setBlockState(pos, Blocks.ORANGE_TERRACOTTA.defaultBlockState(), false);
 				pos.move(Direction.UP);
 			}
-		}
-		if (noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) >= 0.2D && noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) < 0.3) {
+		} else if (noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) >= 0.2D && noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) < 0.3) {
 			for (int y = pos.getY(); y <= height2; y++) {
 				chunk.setBlockState(pos, Blocks.TERRACOTTA.defaultBlockState(), false);
 				pos.move(Direction.UP);
 			}
-		}
-		if (noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) >= 0.3D && noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) < 0.4) {
+		} else if (noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) >= 0.3D && noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) < 0.4) {
 			for (int y = pos.getY(); y <= height3; y++) {
 				chunk.setBlockState(pos, Blocks.WHITE_TERRACOTTA.defaultBlockState(), false);
 				pos.move(Direction.UP);
 			}
-		}
-		if (noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) >= 0.4D && noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) < 0.5) {
+		} else if (noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) >= 0.4D && noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) < 0.5) {
 			for (int y = pos.getY(); y <= height2; y++) {
 				chunk.setBlockState(pos, Blocks.TERRACOTTA.defaultBlockState(), false);
 				pos.move(Direction.UP);
 			}
-		}
-		if (noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) >= 0.5D && noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) < 0.6) {
+		} else if (noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) >= 0.5D && noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) < 0.6) {
 			for (int y = pos.getY(); y <= height0; y++) {
 				chunk.setBlockState(pos, Blocks.ORANGE_TERRACOTTA.defaultBlockState(), false);
 				pos.move(Direction.UP);
 			}
-		}
-		if (noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) > 0.5) {
+		} else if (noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) > 0.6) {
 			chunk.setBlockState(pos, underwater ? Blocks.RED_SAND.defaultBlockState() : Blocks.RED_SAND.defaultBlockState(), false);
 			pos.move(Direction.DOWN);
 			for (int i = 0; i < 4; i++) {

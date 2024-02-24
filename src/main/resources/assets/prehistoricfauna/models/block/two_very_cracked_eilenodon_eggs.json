@@ -1,7 +1,7 @@
 {
-    "parent": "prehistoricfauna:block/two_eilenodon_eggs",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/eilenodon_eggs_very_cracked",
-        "all": "prehistoricfauna:blocks/eilenodon_eggs_very_cracked"
-    }
+	"parent": "prehistoricfauna:block/two_small_round_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/eilenodon_egg_very_cracked"
+	}
 }

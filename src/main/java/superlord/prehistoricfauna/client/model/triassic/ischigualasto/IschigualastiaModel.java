@@ -63,33 +63,57 @@ public class IschigualastiaModel extends EntityModel<Ischigualastia> {
 		float degree = 1.0f;
 		float partialTick = ageInTicks - entity.tickCount;
 		float attackProgress = entity.getMeleeProgress(partialTick) * 2.0F;
-		if (entity.getWakingTicks() >= 31 && entity.getFallingAsleepTicks() >= 31) {
-			if (entity.isAsleep()) {
-				sleepPose();
-			} else {
-				resetModel();
-				this.Neck.xRot = (-Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + (Mth.cos(-1.0F + limbSwing * speed * 0.3F) * degree * 0.05F * limbSwingAmount + 0.1F) + attackProgress * (float) Math.toRadians(25F);
-				this.Neck.yRot = netHeadYaw * ((float)Math.PI / 180F);
-				this.LegR.xRot = (Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
-				this.LegL.xRot = (Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount);
-				this.ArmL.xRot = (Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
-				this.ArmR.xRot = (Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount);
-				this.Tail.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5));
+		resetModel();
+		if (entity.isAsleep()) {
+			//Body
+			//this.Body.y = 9;
+			if (this.Body.y < 14) this.Body.y += 0.15;
+			if (this.Body.zRot > -1.5707963267948966F) this.Body.zRot -= 0.05;
+			//LegL
+			//this.LegL.x = 7.0F;
+			if (this.LegL.x < 10.4) this.LegL.x += 0.15;
+			if (this.LegL.zRot < 0.5235987755982988F) this.LegL.zRot += 0.05;
+			//ArmR
+			if (this.ArmR.xRot < 0.5235987755982988F) this.ArmR.xRot += 0.05;
+			//LegR
+			if (this.LegR.xRot < 0.41887902047863906F) this.LegR.xRot += 0.05;
+			//Neck
+			if (this.Neck.xRot < 0.593411945678072F) this.Neck.xRot += 0.05;
+			if (this.Neck.yRot > -0.13962634015954636F) this.Neck.yRot -= 0.05;
+			if (this.Neck.zRot < 0.8377580409572781F) this.Neck.zRot += 0.05;
+			//Tail
+			if (this.Tail.xRot > -0.24434609527920614F) this.Tail.xRot -= 0.05;
+			if (this.Tail.yRot > -0.10471975511965977F) this.Tail.yRot -= 0.05;
+			if (this.Tail.zRot < 0.593411945678072F) this.Tail.zRot += 0.05;
+			//ArmL
+			//this.ArmL.x = 7.0F;
+			if (this.ArmL.x < 11) this.ArmL.x += 0.15;
+			if (this.ArmL.xRot < 0.45378560551852565F) this.ArmL.xRot += 0.05;
+			if (this.ArmL.yRot < 0.24434609527920614F) this.ArmL.yRot += 0.05;
+			if (this.ArmL.zRot < 0.5235987755982988F) this.ArmL.zRot += 0.05;
+			sleepPose();
+		} else {
+			this.Neck.xRot = (-Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + (Mth.cos(-1.0F + limbSwing * speed * 0.3F) * degree * 0.05F * limbSwingAmount + 0.1F) + attackProgress * (float) Math.toRadians(25F);
+			this.Neck.yRot = netHeadYaw * ((float)Math.PI / 180F);
+			this.LegR.xRot = (Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
+			this.LegL.xRot = (Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount);
+			this.ArmL.xRot = (Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
+			this.ArmR.xRot = (Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount);
+			this.Tail.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5));
+			this.Tail.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) - 0.25F;
+			if (entity.isEating()) {
+				this.Neck.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.45F) + 0.15F;
+			}
+			if (entity.isInWater()) {
+				this.Body.y = 20;
+				this.Body.xRot = -0.125F;
+				this.Tail.xRot = 0.0625F;
+				this.LegL.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
+				this.LegR.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
+				this.ArmR.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
+				this.ArmL.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
+				this.Neck.xRot = 0.0625F;
 				this.Tail.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) - 0.25F;
-				if (entity.isEating()) {
-					this.Neck.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.45F) + 0.15F;
-				}
-				if (entity.isInWater()) {
-					this.Body.y = 20;
-					this.Body.xRot = -0.125F;
-					this.Tail.xRot = 0.0625F;
-					this.LegL.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
-					this.LegR.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
-					this.ArmR.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
-					this.ArmL.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
-					this.Neck.xRot = 0.0625F;
-					this.Tail.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) - 0.25F;
-				}
 			}
 		}
 		if (entity.getWakingTicks() < 31) {
@@ -119,34 +143,6 @@ public class IschigualastiaModel extends EntityModel<Ischigualastia> {
 			if (this.ArmL.xRot > 0) this.ArmL.xRot -= 0.05;
 			if (this.ArmL.yRot > 0) this.ArmL.yRot -= 0.05;
 			if (this.ArmL.zRot > 0) this.ArmL.zRot -= 0.05;
-		}
-		if (entity.getFallingAsleepTicks() < 31) {
-			//Body
-			//this.Body.y = 9;
-			if (this.Body.y < 14) this.Body.y += 0.15;
-			if (this.Body.zRot > -1.5707963267948966F) this.Body.zRot -= 0.05;
-			//LegL
-			//this.LegL.x = 7.0F;
-			if (this.LegL.x < 10.4) this.LegL.x += 0.15;
-			if (this.LegL.zRot < 0.5235987755982988F) this.LegL.zRot += 0.05;
-			//ArmR
-			if (this.ArmR.xRot < 0.5235987755982988F) this.ArmR.xRot += 0.05;
-			//LegR
-			if (this.LegR.xRot < 0.41887902047863906F) this.LegR.xRot += 0.05;
-			//Neck
-			if (this.Neck.xRot < 0.593411945678072F) this.Neck.xRot += 0.05;
-			if (this.Neck.yRot > -0.13962634015954636F) this.Neck.yRot -= 0.05;
-			if (this.Neck.zRot < 0.8377580409572781F) this.Neck.zRot += 0.05;
-			//Tail
-			if (this.Tail.xRot > -0.24434609527920614F) this.Tail.xRot -= 0.05;
-			if (this.Tail.yRot > -0.10471975511965977F) this.Tail.yRot -= 0.05;
-			if (this.Tail.zRot < 0.593411945678072F) this.Tail.zRot += 0.05;
-			//ArmL
-			//this.ArmL.x = 7.0F;
-			if (this.ArmL.x < 11) this.ArmL.x += 0.15;
-			if (this.ArmL.xRot < 0.45378560551852565F) this.ArmL.xRot += 0.05;
-			if (this.ArmL.yRot < 0.24434609527920614F) this.ArmL.yRot += 0.05;
-			if (this.ArmL.zRot < 0.5235987755982988F) this.ArmL.zRot += 0.05;
 		}
 	}
 

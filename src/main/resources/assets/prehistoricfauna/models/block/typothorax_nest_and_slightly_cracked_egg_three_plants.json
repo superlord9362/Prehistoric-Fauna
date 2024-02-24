@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/typothorax_nest_and_egg_three_plants",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/typothorax_egg_slightly_cracked"
+	}
+}

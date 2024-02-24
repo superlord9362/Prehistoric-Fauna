@@ -1,6 +1,7 @@
 {
-    "parent": "prehistoricfauna:block/four_dilophosaurus_eggs",
-    "textures": {
-        "all": "prehistoricfauna:blocks/dilophosaurus_eggs_very_cracked"
-    }
+	"parent": "prehistoricfauna:block/four_medium_tall_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/dilophosaurus_egg_very_cracked"
+	}
 }

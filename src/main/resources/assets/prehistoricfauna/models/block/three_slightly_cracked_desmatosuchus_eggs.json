@@ -1,7 +1,7 @@
 {
-    "parent": "prehistoricfauna:block/three_desmatosuchus_eggs",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/desmatosuchus_eggs_slightly_cracked",
-        "all": "prehistoricfauna:blocks/desmatosuchus_eggs_slightly_cracked"
-    }
+	"parent": "prehistoricfauna:block/three_medium_tall_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/desmatosuchus_egg_slightly_cracked"
+	}
 }

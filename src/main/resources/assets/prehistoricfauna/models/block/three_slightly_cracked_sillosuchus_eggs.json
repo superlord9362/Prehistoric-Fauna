@@ -1,7 +1,7 @@
 {
-    "parent": "prehistoricfauna:block/three_sillosuchus_eggs",
-    "textures": {
-        "particle": "prehistoricfauna:blocks/sillosuchus_eggs_slightly_cracked",
-        "all": "prehistoricfauna:blocks/sillosuchus_eggs_slightly_cracked"
-    }
+	"parent": "prehistoricfauna:block/three_large_tall_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/sillosuchus_egg_slightly_cracked"
+	}
 }

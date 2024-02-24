@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/incisivosaurus_nest_and_four_eggs_two_plants",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/incisivosaurus_egg_slightly_cracked"
+	}
+}

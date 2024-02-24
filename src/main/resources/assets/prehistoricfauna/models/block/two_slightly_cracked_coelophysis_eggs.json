@@ -1,6 +1,7 @@
 {
-    "parent": "prehistoricfauna:block/two_coelophysis_eggs",
-    "textures": {
-        "all": "prehistoricfauna:blocks/coelophysis_eggs_slightly_cracked"
-    }
+	"parent": "prehistoricfauna:block/two_small_tall_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/coelophysis_egg_slightly_cracked"
+	}
 }

@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "": [
+			{
+				"model": "prehistoricfauna:block/leefructus"
+			},
+			{
+				"model": "prehistoricfauna:block/leefructus_flowering"
+			}
+		]
+    }
+}

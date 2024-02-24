@@ -1,0 +1,292 @@
+{
+    "variants": {
+        "eggs=1,hatch=0,plant_level=0": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_egg_no_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_egg_no_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_egg_no_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_egg_no_plants", "y": 270 }
+		],
+		"eggs=1,hatch=0,plant_level=1": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_egg_one_plant" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_egg_one_plant", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_egg_one_plant", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_egg_one_plant", "y": 270 }
+		],
+		"eggs=1,hatch=0,plant_level=2": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_egg_two_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_egg_two_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_egg_two_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_egg_two_plants", "y": 270 }
+		],
+		"eggs=1,hatch=0,plant_level=3": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_egg_three_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_egg_three_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_egg_three_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_egg_three_plants", "y": 270 }
+		],
+		"eggs=1,hatch=1,plant_level=0": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_slightly_cracked_egg_no_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_slightly_cracked_egg_no_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_slightly_cracked_egg_no_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_slightly_cracked_egg_no_plants", "y": 270 }
+		],
+		"eggs=1,hatch=1,plant_level=1": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_slightly_cracked_egg_one_plant" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_slightly_cracked_egg_one_plant", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_slightly_cracked_egg_one_plant", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_slightly_cracked_egg_one_plant", "y": 270 }
+		],
+		"eggs=1,hatch=1,plant_level=2": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_slightly_cracked_egg_two_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_slightly_cracked_egg_two_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_slightly_cracked_egg_two_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_slightly_cracked_egg_two_plants", "y": 270 }
+		],
+		"eggs=1,hatch=1,plant_level=3": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_slightly_cracked_egg_three_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_slightly_cracked_egg_three_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_slightly_cracked_egg_three_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_slightly_cracked_egg_three_plants", "y": 270 }
+		],
+		"eggs=1,hatch=2,plant_level=0": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_very_cracked_egg_no_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_very_cracked_egg_no_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_very_cracked_egg_no_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_very_cracked_egg_no_plants", "y": 270 }
+		],
+		"eggs=1,hatch=2,plant_level=1": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_very_cracked_egg_one_plant" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_very_cracked_egg_one_plant", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_very_cracked_egg_one_plant", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_very_cracked_egg_one_plant", "y": 270 }
+		],
+		"eggs=1,hatch=2,plant_level=2": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_very_cracked_egg_two_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_very_cracked_egg_two_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_very_cracked_egg_two_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_very_cracked_egg_two_plants", "y": 270 }
+		],
+		"eggs=1,hatch=2,plant_level=3": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_very_cracked_egg_three_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_very_cracked_egg_three_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_very_cracked_egg_three_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_very_cracked_egg_three_plants", "y": 270 }
+		],
+		"eggs=2,hatch=0,plant_level=0": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_eggs_no_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_eggs_no_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_eggs_no_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_eggs_no_plants", "y": 270 }
+		],
+		"eggs=2,hatch=0,plant_level=1": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_eggs_one_plant" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_eggs_one_plant", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_eggs_one_plant", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_eggs_one_plant", "y": 270 }
+		],
+		"eggs=2,hatch=0,plant_level=2": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_eggs_two_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_eggs_two_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_eggs_two_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_eggs_two_plants", "y": 270 }
+		],
+		"eggs=2,hatch=0,plant_level=3": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_eggs_three_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_eggs_three_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_eggs_three_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_eggs_three_plants", "y": 270 }
+		],
+		"eggs=2,hatch=1,plant_level=0": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_slightly_cracked_eggs_no_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_slightly_cracked_eggs_no_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_slightly_cracked_eggs_no_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_slightly_cracked_eggs_no_plants", "y": 270 }
+		],
+		"eggs=2,hatch=1,plant_level=1": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_slightly_cracked_eggs_one_plant" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_slightly_cracked_eggs_one_plant", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_slightly_cracked_eggs_one_plant", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_slightly_cracked_eggs_one_plant", "y": 270 }
+		],
+		"eggs=2,hatch=1,plant_level=2": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_slightly_cracked_eggs_two_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_slightly_cracked_eggs_two_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_slightly_cracked_eggs_two_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_slightly_cracked_eggs_two_plants", "y": 270 }
+		],
+		"eggs=2,hatch=1,plant_level=3": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_slightly_cracked_eggs_three_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_slightly_cracked_eggs_three_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_slightly_cracked_eggs_three_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_slightly_cracked_eggs_three_plants", "y": 270 }
+		],
+		"eggs=2,hatch=2,plant_level=0": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_very_cracked_eggs_no_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_very_cracked_eggs_no_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_very_cracked_eggs_no_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_very_cracked_eggs_no_plants", "y": 270 }
+		],
+		"eggs=2,hatch=2,plant_level=1": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_very_cracked_eggs_one_plant" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_very_cracked_eggs_one_plant", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_very_cracked_eggs_one_plant", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_very_cracked_eggs_one_plant", "y": 270 }
+		],
+		"eggs=2,hatch=2,plant_level=2": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_very_cracked_eggs_two_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_very_cracked_eggs_two_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_very_cracked_eggs_two_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_very_cracked_eggs_two_plants", "y": 270 }
+		],
+		"eggs=2,hatch=2,plant_level=3": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_very_cracked_eggs_three_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_very_cracked_eggs_three_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_very_cracked_eggs_three_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_two_very_cracked_eggs_three_plants", "y": 270 }
+		],
+		"eggs=3,hatch=0,plant_level=0": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_eggs_no_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_eggs_no_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_eggs_no_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_eggs_no_plants", "y": 270 }
+		],
+		"eggs=3,hatch=0,plant_level=1": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_eggs_one_plant" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_eggs_one_plant", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_eggs_one_plant", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_eggs_one_plant", "y": 270 }
+		],
+		"eggs=3,hatch=0,plant_level=2": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_eggs_two_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_eggs_two_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_eggs_two_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_eggs_two_plants", "y": 270 }
+		],
+		"eggs=3,hatch=0,plant_level=3": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_eggs_three_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_eggs_three_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_eggs_three_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_eggs_three_plants", "y": 270 }
+		],
+		"eggs=3,hatch=1,plant_level=0": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_slightly_cracked_eggs_no_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_slightly_cracked_eggs_no_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_slightly_cracked_eggs_no_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_slightly_cracked_eggs_no_plants", "y": 270 }
+		],
+		"eggs=3,hatch=1,plant_level=1": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_slightly_cracked_eggs_one_plant" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_slightly_cracked_eggs_one_plant", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_slightly_cracked_eggs_one_plant", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_slightly_cracked_eggs_one_plant", "y": 270 }
+		],
+		"eggs=3,hatch=1,plant_level=2": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_slightly_cracked_eggs_two_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_slightly_cracked_eggs_two_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_slightly_cracked_eggs_two_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_slightly_cracked_eggs_two_plants", "y": 270 }
+		],
+		"eggs=3,hatch=1,plant_level=3": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_slightly_cracked_eggs_three_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_slightly_cracked_eggs_three_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_slightly_cracked_eggs_three_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_slightly_cracked_eggs_three_plants", "y": 270 }
+		],
+		"eggs=3,hatch=2,plant_level=0": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_very_cracked_eggs_no_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_very_cracked_eggs_no_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_very_cracked_eggs_no_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_very_cracked_eggs_no_plants", "y": 270 }
+		],
+		"eggs=3,hatch=2,plant_level=1": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_very_cracked_eggs_one_plant" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_very_cracked_eggs_one_plant", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_very_cracked_eggs_one_plant", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_very_cracked_eggs_one_plant", "y": 270 }
+		],
+		"eggs=3,hatch=2,plant_level=2": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_very_cracked_eggs_two_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_very_cracked_eggs_two_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_very_cracked_eggs_two_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_very_cracked_eggs_two_plants", "y": 270 }
+		],
+		"eggs=3,hatch=2,plant_level=3": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_very_cracked_eggs_three_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_very_cracked_eggs_three_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_very_cracked_eggs_three_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_three_very_cracked_eggs_three_plants", "y": 270 }
+		],
+		"eggs=4,hatch=0,plant_level=0": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_eggs_no_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_eggs_no_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_eggs_no_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_eggs_no_plants", "y": 270 }
+		],
+		"eggs=4,hatch=0,plant_level=1": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_eggs_one_plant" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_eggs_one_plant", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_eggs_one_plant", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_eggs_one_plant", "y": 270 }
+		],
+		"eggs=4,hatch=0,plant_level=2": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_eggs_two_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_eggs_two_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_eggs_two_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_eggs_two_plants", "y": 270 }
+		],
+		"eggs=4,hatch=0,plant_level=3": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_eggs_three_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_eggs_three_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_eggs_three_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_eggs_three_plants", "y": 270 }
+		],
+		"eggs=4,hatch=1,plant_level=0": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_slightly_cracked_eggs_no_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_slightly_cracked_eggs_no_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_slightly_cracked_eggs_no_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_slightly_cracked_eggs_no_plants", "y": 270 }
+		],
+		"eggs=4,hatch=1,plant_level=1": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_slightly_cracked_eggs_one_plant" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_slightly_cracked_eggs_one_plant", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_slightly_cracked_eggs_one_plant", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_slightly_cracked_eggs_one_plant", "y": 270 }
+		],
+		"eggs=4,hatch=1,plant_level=2": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_slightly_cracked_eggs_two_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_slightly_cracked_eggs_two_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_slightly_cracked_eggs_two_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_slightly_cracked_eggs_two_plants", "y": 270 }
+		],
+		"eggs=4,hatch=1,plant_level=3": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_slightly_cracked_eggs_three_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_slightly_cracked_eggs_three_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_slightly_cracked_eggs_three_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_slightly_cracked_eggs_three_plants", "y": 270 }
+		],
+		"eggs=4,hatch=2,plant_level=0": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_very_cracked_eggs_no_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_very_cracked_eggs_no_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_very_cracked_eggs_no_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_very_cracked_eggs_no_plants", "y": 270 }
+		],
+		"eggs=4,hatch=2,plant_level=1": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_very_cracked_eggs_one_plant" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_very_cracked_eggs_one_plant", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_very_cracked_eggs_one_plant", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_very_cracked_eggs_one_plant", "y": 270 }
+		],
+		"eggs=4,hatch=2,plant_level=2": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_very_cracked_eggs_two_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_very_cracked_eggs_two_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_very_cracked_eggs_two_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_very_cracked_eggs_two_plants", "y": 270 }
+		],
+		"eggs=4,hatch=2,plant_level=3": [
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_very_cracked_eggs_three_plants" },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_very_cracked_eggs_three_plants", "y": 90 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_very_cracked_eggs_three_plants", "y": 180 },
+			{ "model": "prehistoricfauna:block/ornithomimus_nest_and_four_very_cracked_eggs_three_plants", "y": 270 }
+		]
+    }
+}

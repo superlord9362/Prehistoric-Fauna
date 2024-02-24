@@ -43,7 +43,7 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
+import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
@@ -253,8 +253,8 @@ public class Typothorax extends DinosaurEntity {
 		return PFItems.TYPOTHORAX_EGG.get();
 	}
     
-    public BlockState getEggBlock() {
-    	return PFBlocks.TYPOTHORAX_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
-    }
+	public BlockState getEggBlock(Level world, BlockPos pos) {
+		return PFBlocks.TYPOTHORAX_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+	}
 
 }

@@ -1,0 +1,7 @@
+{
+	"parent": "prehistoricfauna:block/two_small_tall_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:blocks/oviraptor_egg_very_cracked"
+	}
+}

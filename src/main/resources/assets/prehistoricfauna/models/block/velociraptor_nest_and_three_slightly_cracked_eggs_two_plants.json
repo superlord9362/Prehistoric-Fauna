@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/velociraptor_nest_and_three_eggs_two_plants",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/velociraptor_egg_slightly_cracked"
+	}
+}

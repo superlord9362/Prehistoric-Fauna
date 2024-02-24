@@ -1,0 +1,9 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/nest_two_large_tall_eggs_three_plants",
+	"textures": {
+		"material": "block/dirt",
+		"egg": "prehistoricfauna:blocks/sillosuchus_egg",
+		"plants": "prehistoricfauna:blocks/plants"
+	}
+}

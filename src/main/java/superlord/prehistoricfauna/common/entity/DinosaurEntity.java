@@ -46,6 +46,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.Tags;
+import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Psittacosaurus;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFTags;
@@ -54,6 +55,8 @@ public class DinosaurEntity extends TamableAnimal {
 	private static final EntityDataAccessor<Boolean> HAS_BABY = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> IS_BIRTHING = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> ASLEEP = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> WAKING_UP = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> FALLING_ASLEEP = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Integer> ATTACK_TICK = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Boolean> ATTACK_DIR = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> EATING = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
@@ -72,11 +75,10 @@ public class DinosaurEntity extends TamableAnimal {
 	private static final EntityDataAccessor<Boolean> OVIVORE = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> PISCIVORE = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> MOLLUSCIVORE = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> INSECTIVORE = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Optional<UUID>> DATA_TRUSTED_ID_0 = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.OPTIONAL_UUID);
 	private static final EntityDataAccessor<Optional<UUID>> DATA_TRUSTED_ID_1 = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.OPTIONAL_UUID);
-	private static final EntityDataAccessor<Integer> FALLING_ASLEEP_TICKS = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Integer> WAKING_UP_TICKS = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.INT);
-	private static final EntityDataAccessor<Integer> SITTING_DOWN_TICKS = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Integer> CROUCHING_TICKS = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.INT);
 	public static final Predicate<Entity> AVOID_PLAYERS = (p_28463_) -> {
 		return !p_28463_.isDiscrete() && EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(p_28463_);
@@ -112,6 +114,22 @@ public class DinosaurEntity extends TamableAnimal {
 
 	public void setAsleep(boolean isAsleep) {
 		this.entityData.set(ASLEEP, isAsleep);
+	}
+
+	public boolean isWakingUp() {
+		return this.entityData.get(WAKING_UP);
+	}
+
+	public void setWakingUp(boolean isWakingUp) {
+		this.entityData.set(WAKING_UP, isWakingUp);
+	}
+
+	public boolean isFallingAsleep() {
+		return this.entityData.get(FALLING_ASLEEP);
+	}
+
+	public void setFallingAsleep(boolean isFallingAsleep) {
+		this.entityData.set(FALLING_ASLEEP, isFallingAsleep);
 	}
 
 	public boolean isEating() {
@@ -266,6 +284,14 @@ public class DinosaurEntity extends TamableAnimal {
 	public void setMolluscivorous(boolean isMolluscivorous) {
 		this.entityData.set(MOLLUSCIVORE, isMolluscivorous);
 	}
+	
+	public boolean isInsectivorous() {
+		return this.entityData.get(INSECTIVORE);
+	}
+
+	public void setInsectivorous(boolean isInsctivorous) {
+		this.entityData.set(INSECTIVORE, isInsctivorous);
+	}
 
 	public boolean isPiscivorous() {
 		return this.entityData.get(PISCIVORE);
@@ -275,14 +301,6 @@ public class DinosaurEntity extends TamableAnimal {
 		this.entityData.set(PISCIVORE, isPiscivorous);
 	}
 
-	public int getFallingAsleepTicks() {
-		return this.entityData.get(FALLING_ASLEEP_TICKS);
-	}
-
-	public void setFallingAsleepTicks(int fallingAsleepTicks) {
-		this.entityData.set(FALLING_ASLEEP_TICKS, fallingAsleepTicks);
-	}
-
 	public int getWakingTicks() {
 		return this.entityData.get(WAKING_UP_TICKS);
 	}
@@ -290,15 +308,6 @@ public class DinosaurEntity extends TamableAnimal {
 	public void setWakingTicks(int wakingTicks) {
 		this.entityData.set(WAKING_UP_TICKS, wakingTicks);
 	}
-
-	public int getSittingTicks() {
-		return this.entityData.get(SITTING_DOWN_TICKS);
-	}
-
-	public void setSittingTicks(int sittingTicks) {
-		this.entityData.set(SITTING_DOWN_TICKS, sittingTicks);
-	}
-
 	public int getCrouchingTicks() {
 		return this.entityData.get(CROUCHING_TICKS);
 	}
@@ -352,9 +361,10 @@ public class DinosaurEntity extends TamableAnimal {
 		this.entityData.define(OVIVORE, false);
 		this.entityData.define(MOLLUSCIVORE, false);
 		this.entityData.define(PISCIVORE, false);
-		this.entityData.define(FALLING_ASLEEP_TICKS, 31);
+		this.entityData.define(INSECTIVORE, false);
+		this.entityData.define(WAKING_UP, false);
+		this.entityData.define(FALLING_ASLEEP, false);
 		this.entityData.define(WAKING_UP_TICKS, 31);
-		this.entityData.define(SITTING_DOWN_TICKS, 31);
 		this.entityData.define(CROUCHING_TICKS, 31);
 	}
 	
@@ -387,6 +397,9 @@ public class DinosaurEntity extends TamableAnimal {
 		compound.putBoolean("IsOvivorous", this.isOvivorous());
 		compound.putBoolean("IsMolluscivorous", this.isMolluscivorous());
 		compound.putBoolean("IsPiscivorous", this.isPiscivorous());
+		compound.putBoolean("IsInsectivorous", this.isInsectivorous());
+		compound.putBoolean("IsWakingUp", this.isWakingUp());
+		compound.putBoolean("IsFallingAsleep", this.isFallingAsleep());
 	}
 
 	public void readAdditionalSaveData(CompoundTag compound) {
@@ -414,6 +427,9 @@ public class DinosaurEntity extends TamableAnimal {
 		this.setOvivorous(compound.getBoolean("IsOvivorous"));
 		this.setMolluscivorous(compound.getBoolean("IsMolluscivorous"));
 		this.setPiscivorous(compound.getBoolean("IsPiscivorous"));
+		this.setInsectivorous(compound.getBoolean("IsInsectivorous"));
+		this.setWakingUp(compound.getBoolean("IsWakingUp"));
+		this.setFallingAsleep(compound.getBoolean("IsFallingAsleep"));
 	}
 
 	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
@@ -425,6 +441,18 @@ public class DinosaurEntity extends TamableAnimal {
 					this.setInLove(p_230254_1_);
 					itemstack.shrink(1);
 				} else {
+					if (this.isInsectivorous()) {
+						if (itemstack.is(PFTags.INSECTS_2_HUNGER_ITEM)) {
+							if (hunger + 2 >= this.maxHunger) {
+								this.setHunger(this.maxHunger);
+							} else {
+								this.setHunger(hunger + 2);
+							}
+							if (!p_230254_1_.isCreative()) {
+								itemstack.shrink(1);
+							}
+						}
+					}
 					if (this.isHerbivorous() || this.isOmnivorous()) {
 						if (itemstack.is(PFTags.PLANTS_2_HUNGER_ITEM)) {
 							if (hunger + 2 >= this.maxHunger) {
@@ -699,6 +727,12 @@ public class DinosaurEntity extends TamableAnimal {
 		super.aiStep();
 		if (this.isAsleep()) this.setDeltaMovement(0, 0, 0);
 		if (!this.isNoAi()) {
+			for (@SuppressWarnings("unused") Psittacosaurus psittacosaurus : this.level.getEntitiesOfClass(Psittacosaurus.class, this.getBoundingBox().inflate(5))) {
+				if (this.isBaby()) {
+					int i = this.getAge();
+					this.setAge(i + 2);
+				}
+			}
 			List<? extends DinosaurEntity> list = this.level.getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(48.0D, 48.0D, 48.0D));
 			if (PrehistoricFaunaConfig.advancedHunger) {
 				hungerTick++;
@@ -758,14 +792,28 @@ public class DinosaurEntity extends TamableAnimal {
 			if (lastInLove != 0) {
 				lastInLove--;
 			}
+			if (this.isFallingAsleep()) {
+				fallingAsleepTicks--;
+				if (fallingAsleepTicks <= 0) {
+					this.setFallingAsleep(false);
+					this.setAsleep(true);
+					fallingAsleepTicks = 31;
+				}
+				this.setWakingUp(false);
+			}
+			if (this.isWakingUp()) {
+				wakingUpTicks--;
+				if (wakingUpTicks <= 0) {
+					this.setWakingUp(false);
+					wakingUpTicks = 31;
+				}
+			}
 		}
 		if (!this.level.isClientSide) {
 			if (this.warryTicks != 0) warryTicks--;
 			//System.out.println(warryTicks);
 		}
 		if (this.getWakingTicks() != 31) this.setWakingTicks(this.getWakingTicks() + 1);
-		if (this.getFallingAsleepTicks() != 31) this.setFallingAsleepTicks(this.getFallingAsleepTicks() + 1);
-		if (this.getSittingTicks() != 31) this.setSittingTicks(this.getSittingTicks() + 1);
 		if (this.getCrouchingTicks() != 31) this.setCrouchingTicks(this.getCrouchingTicks() + 1);
 	}
 
@@ -864,7 +912,7 @@ public class DinosaurEntity extends TamableAnimal {
 		return null;
 	}
 
-	public BlockState getEggBlock() {
+	public BlockState getEggBlock(Level world, BlockPos pos) {
 		return null;
 	}
 
