@@ -33,15 +33,15 @@ public class DesmatosuchusSkeletonWalkingRightModel extends EntityModel<Desmatos
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition Arm_L = partdefinition.addOrReplaceChild("Arm_L", CubeListBuilder.create().texOffs(44, 32).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 13.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-4.0F, 11.0F, -7.0F, -0.1745F, 0.0F, 0.0F));
+		PartDefinition Arm_L = partdefinition.addOrReplaceChild("Arm_L", CubeListBuilder.create().texOffs(44, 32).mirror().addBox(-1.5F, 0.0F, -1.5F, 3.0F, 13.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-4.0F, 11.0F, -7.0F, -0.1745F, 0.0F, 0.0F));
 
-		PartDefinition Arm_R = partdefinition.addOrReplaceChild("Arm_R", CubeListBuilder.create().texOffs(44, 32).mirror().addBox(-1.5F, 0.0F, -1.5F, 3.0F, 13.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(4.0F, 11.0F, -7.5F, 0.0F, -0.1745F, 0.0F));
+		PartDefinition Arm_R = partdefinition.addOrReplaceChild("Arm_R", CubeListBuilder.create().texOffs(44, 32).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 13.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(4.0F, 11.0F, -7.5F, 0.0F, -0.1745F, 0.0F));
 
-		PartDefinition Leg_L_1_1 = partdefinition.addOrReplaceChild("Leg_L_1_1", CubeListBuilder.create().texOffs(2, 48).mirror().addBox(0.0F, 0.0F, -2.0F, 5.0F, 9.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(2.5F, 9.0F, 10.0F, -0.1745F, -0.1745F, 0.0F));
+		PartDefinition Leg_L_1_1 = partdefinition.addOrReplaceChild("Leg_L_1_1", CubeListBuilder.create().texOffs(2, 48).addBox(0.0F, 0.0F, -2.0F, 5.0F, 9.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(2.5F, 9.0F, 10.0F, -0.1745F, -0.1745F, 0.0F));
 
-		PartDefinition Leg_L_2_1 = Leg_L_1_1.addOrReplaceChild("Leg_L_2_1", CubeListBuilder.create().texOffs(24, 51).mirror().addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(2.9F, 8.0F, 1.0F, 0.5236F, 0.0F, 0.0F));
+		PartDefinition Leg_L_2_1 = Leg_L_1_1.addOrReplaceChild("Leg_L_2_1", CubeListBuilder.create().texOffs(24, 51).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(2.9F, 8.0F, 1.0F, 0.5236F, 0.0F, 0.0F));
 
-		PartDefinition Feet_L_1 = Leg_L_2_1.addOrReplaceChild("Feet_L_1", CubeListBuilder.create().texOffs(0, 61).mirror().addBox(-2.2F, 0.0F, -5.0F, 4.0F, 2.0F, 6.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, 5.0F, -0.5F, -0.3491F, 0.0F, 0.0F));
+		PartDefinition Feet_L_1 = Leg_L_2_1.addOrReplaceChild("Feet_L_1", CubeListBuilder.create().texOffs(0, 61).addBox(-2.2F, 0.0F, -5.0F, 4.0F, 2.0F, 6.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, 5.0F, -0.5F, -0.3491F, 0.0F, 0.0F));
 
 		PartDefinition ASS = partdefinition.addOrReplaceChild("ASS", CubeListBuilder.create().texOffs(0, 0).addBox(-6.0F, -3.0F, 0.0F, 12.0F, 4.0F, 15.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 11.0F, 0.0F));
 
@@ -85,11 +85,11 @@ public class DesmatosuchusSkeletonWalkingRightModel extends EntityModel<Desmatos
 
 		PartDefinition Tail_tip_2 = Tail_tip_1.addOrReplaceChild("Tail_tip_2", CubeListBuilder.create().texOffs(3, 105).addBox(-1.5F, -1.0F, 0.0F, 3.0F, 0.0F, 22.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, 0.0F));
 
-		PartDefinition Leg_L_1 = partdefinition.addOrReplaceChild("Leg_L_1", CubeListBuilder.create().texOffs(2, 48).addBox(-5.0F, 0.0F, -2.0F, 5.0F, 9.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-2.5F, 9.0F, 10.0F, 0.5236F, 0.0F, 0.0F));
+		PartDefinition Leg_L_1 = partdefinition.addOrReplaceChild("Leg_L_1", CubeListBuilder.create().texOffs(2, 48).mirror().addBox(-5.0F, 0.0F, -2.0F, 5.0F, 9.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-2.5F, 9.0F, 10.0F, 0.5236F, 0.0F, 0.0F));
 
-		PartDefinition Leg_L_2 = Leg_L_1.addOrReplaceChild("Leg_L_2", CubeListBuilder.create().texOffs(24, 51).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-2.9F, 8.0F, 1.0F, 0.1745F, 0.0F, 0.0F));
+		PartDefinition Leg_L_2 = Leg_L_1.addOrReplaceChild("Leg_L_2", CubeListBuilder.create().texOffs(24, 51).mirror().addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-2.9F, 8.0F, 1.0F, 0.1745F, 0.0F, 0.0F));
 
-		PartDefinition Feet_L = Leg_L_2.addOrReplaceChild("Feet_L", CubeListBuilder.create().texOffs(0, 61).addBox(-2.2F, 0.0F, -5.0F, 4.0F, 2.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 5.0F, -0.5F));
+		PartDefinition Feet_L = Leg_L_2.addOrReplaceChild("Feet_L", CubeListBuilder.create().texOffs(0, 61).mirror().addBox(-2.2F, 0.0F, -5.0F, 4.0F, 2.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 5.0F, -0.5F));
 
 		return LayerDefinition.create(meshdefinition, 160, 160);
 	}

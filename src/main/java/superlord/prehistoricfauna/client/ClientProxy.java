@@ -170,7 +170,7 @@ public class ClientProxy extends CommonProxy {
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.OTOZAMITES.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TALL_OTOZAMITES.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.LAUROZAMITES.get(), cutoutRenderType);
-		ItemBlockRenderTypes.setRenderLayer(PFBlocks.CLATHOPTERIS.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.CLATHROPTERIS.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.MARMARTHIA.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.PHLEBOPTERIS.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.CRASSOSTREA_OYSTER.get(), cutoutRenderType);
@@ -201,7 +201,7 @@ public class ClientProxy extends CommonProxy {
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_LAUROZAMITES.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_NEOCALAMITES.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_PHLEBOPTERIS.get(), cutoutRenderType);
-		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_CLATHOPTERIS.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_CLATHROPTERIS.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.NEOCALAMITES_TOP.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.SMALL_TUBER_BLOCK.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.SMALL_CARVED_TUBER.get(), cutoutRenderType);

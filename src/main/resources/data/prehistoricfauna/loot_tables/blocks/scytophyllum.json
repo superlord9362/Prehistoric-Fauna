@@ -3,9 +3,11 @@
   "pools": [
     {
       "rolls": 1,
+      "bonus_rolls": 0,
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "prehistoricfauna:scytophyllum",
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
@@ -14,8 +16,7 @@
                 "half": "lower"
               }
             }
-          ],
-          "name": "prehistoricfauna:scytophyllum"
+          ]
         }
       ],
       "conditions": [

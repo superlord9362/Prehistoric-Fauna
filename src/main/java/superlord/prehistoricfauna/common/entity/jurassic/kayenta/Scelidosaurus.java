@@ -90,7 +90,7 @@ public class Scelidosaurus extends DinosaurEntity {
 	}
 
 	public boolean isFood(ItemStack stack) {
-		return stack.getItem() == PFBlocks.CLATHOPTERIS.get().asItem();
+		return stack.getItem() == PFBlocks.CLATHROPTERIS.get().asItem();
 	}
 
 	public boolean isBipedal() {

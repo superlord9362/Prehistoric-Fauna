@@ -2,27 +2,27 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 1.0,
-      "bonus_rolls": 0.0,
+      "rolls": 1,
+      "bonus_rolls": 0,
       "entries": [
         {
-          "type": "minecraft:item",
-          "conditions": [
+          "type": "minecraft:alternatives",
+          "children": [
             {
-              "condition": "minecraft:block_state_property",
-              "block": "prehistoricfauna:tall_osmunda",
-              "properties": {
-                "half": "lower"
-              }
+              "type": "minecraft:item",
+              "name": "prehistoricfauna:osmunda",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "items": [
+                      "minecraft:shears"
+                    ]
+                  }
+                }
+              ]
             }
-          ],
-          "name": "prehistoricfauna:osmunda",
-          "count": 2
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
+          ]
         }
       ]
     }

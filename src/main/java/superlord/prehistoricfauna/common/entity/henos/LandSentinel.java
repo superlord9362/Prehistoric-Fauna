@@ -59,7 +59,7 @@ public class LandSentinel extends Monster {
 	@SuppressWarnings("deprecation")
 	public static boolean canSpawn(EntityType<LandSentinel> batIn, ServerLevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random randomIn) {
 		if (pos.getY() >= worldIn.getSeaLevel()) {  
-			return worldIn.getDifficulty() != Difficulty.PEACEFUL && isValidLightLevel(worldIn, pos, randomIn) && checkMobSpawnRules(batIn, worldIn, reason, pos, randomIn) && worldIn.getLevel().isNight();
+			return worldIn.getDifficulty() != Difficulty.PEACEFUL && isValidLightLevel(worldIn, pos, randomIn) && checkMobSpawnRules(batIn, worldIn, reason, pos, randomIn) && worldIn.getLevel().isNight() && randomIn.nextFloat() > 0.95F;
 		} else {
 			return false;
 		}

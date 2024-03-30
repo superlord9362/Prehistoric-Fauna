@@ -26,6 +26,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import superlord.prehistoricfauna.init.PFBlocks;
 
 public class TallHorsetailBlock extends DoublePlantBlock {
 
@@ -95,7 +96,7 @@ public class TallHorsetailBlock extends DoublePlantBlock {
 
 	public void playerWillDestroy(Level p_52878_, BlockPos p_52879_, BlockState p_52880_, Player p_52881_) {
 		if (!p_52878_.isClientSide) {
-			if (p_52881_.isCreative()) {
+			if (p_52881_.isCreative() || p_52880_.is(PFBlocks.ZINGIBEROPSIS.get()) || p_52880_.is(PFBlocks.PURPLE_ZINGIBEROPSIS.get())) {
 				preventCreativeDropFromBottomPart(p_52878_, p_52879_, p_52880_, p_52881_);
 			} else {
 				dropResources(p_52880_, p_52878_, p_52879_, (BlockEntity)null, p_52881_, p_52881_.getMainHandItem());
@@ -109,7 +110,7 @@ public class TallHorsetailBlock extends DoublePlantBlock {
 		super.playerDestroy(p_52865_, p_52866_, p_52867_, Blocks.AIR.defaultBlockState(), p_52869_, p_52870_);
 	}
 
-	protected static void preventCreativeDropFromBottomPart(Level world, BlockPos pos, BlockState state, Player player) {
+	public static void preventCreativeDropFromBottomPart(Level world, BlockPos pos, BlockState state, Player player) {
 		DoubleBlockHalf doubleblockhalf = state.getValue(HALF);
 		if (doubleblockhalf == DoubleBlockHalf.UPPER) {
 			BlockPos blockpos = pos.below();

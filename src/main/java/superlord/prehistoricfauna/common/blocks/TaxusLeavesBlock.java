@@ -47,6 +47,10 @@ public class TaxusLeavesBlock extends LeavesBlock {
 	public BlockState withAge(int age) {
 		return this.defaultBlockState().setValue(this.getAgeProperty(), Integer.valueOf(age));
 	}
+	
+	public boolean isRandomlyTicking(BlockState p_51696_) {
+		return p_51696_.getValue(AGE) < 2;
+	}
 
 	public boolean isMaxAge(BlockState state) {
 		return state.getValue(this.getAgeProperty()) >= this.getMaxAge();
@@ -58,12 +62,8 @@ public class TaxusLeavesBlock extends LeavesBlock {
 		if(worldIn.getRawBrightness(pos, 0) >= 9) {
 			int i = this.getAge(state);
 			if (i < this.getMaxAge()) {
-				float f = 1.0F;
-				if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt((int)(25.0F / f) + 1) == 0)) {
-					BlockState oldState = worldIn.getBlockState(pos);
-					worldIn.setBlock(pos, oldState.setValue(AGE, i + 1), 2);
-					net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
-				}
+				BlockState oldState = worldIn.getBlockState(pos);
+				worldIn.setBlock(pos, oldState.setValue(AGE, i + 1), 2);
 			}
 		}
 	}
@@ -73,7 +73,7 @@ public class TaxusLeavesBlock extends LeavesBlock {
 	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
 		int i = state.getValue(AGE);
 		boolean flag = i == 2;
-		if (i > 0) {
+		if (i > 1) {
 			int j = 1 + worldIn.random.nextInt(2);
 			popResource(worldIn, pos, new ItemStack(PFItems.TAXUS_BERRIES.get(), j + (flag ? 1 : 0)));
 			worldIn.playSound((Player)null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + worldIn.random.nextFloat() * 0.4F);

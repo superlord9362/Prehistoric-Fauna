@@ -41,7 +41,7 @@ public class DesmatosuchusSkeletonSleepingModel extends EntityModel<Desmatosuchu
 
 		PartDefinition Leg_L_2_1 = Leg_L_1_1.addOrReplaceChild("Leg_L_2_1", CubeListBuilder.create().texOffs(24, 51).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.9F, 6.0F, 0.0F, 1.5708F, 0.0F, 0.0F));
 
-		PartDefinition Feet_L_1 = Leg_L_2_1.addOrReplaceChild("Feet_L_1", CubeListBuilder.create().texOffs(0, 61).mirror().addBox(-2.2F, 0.0F, -5.0F, 4.0F, 2.0F, 6.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.4F, 5.5F, -1.0F, 0.4189F, 0.0F, -0.1745F));
+		PartDefinition Feet_L_1 = Leg_L_2_1.addOrReplaceChild("Feet_L_1", CubeListBuilder.create().texOffs(0, 61).addBox(-2.2F, 0.0F, -5.0F, 4.0F, 2.0F, 6.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.4F, 5.5F, -1.0F, 0.4189F, 0.0F, -0.1745F));
 
 		PartDefinition ASS = partdefinition.addOrReplaceChild("ASS", CubeListBuilder.create().texOffs(0, 0).addBox(-6.0F, -3.0F, 0.0F, 12.0F, 4.0F, 15.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 18.0F, 0.0F));
 
@@ -89,7 +89,7 @@ public class DesmatosuchusSkeletonSleepingModel extends EntityModel<Desmatosuchu
 
 		PartDefinition Leg_L_2 = Leg_L_1.addOrReplaceChild("Leg_L_2", CubeListBuilder.create().texOffs(24, 51).mirror().addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-2.9F, 6.0F, 0.0F, 1.5708F, 0.0F, 0.0F));
 
-		PartDefinition Feet_L = Leg_L_2.addOrReplaceChild("Feet_L", CubeListBuilder.create().texOffs(0, 61).addBox(-2.2F, 0.0F, -5.0F, 4.0F, 2.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 5.5F, -1.0F, 0.4189F, 0.0F, 0.1745F));
+		PartDefinition Feet_L = Leg_L_2.addOrReplaceChild("Feet_L", CubeListBuilder.create().texOffs(0, 61).mirror().addBox(-2.2F, 0.0F, -5.0F, 4.0F, 2.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 5.5F, -1.0F, 0.4189F, 0.0F, 0.1745F));
 
 		return LayerDefinition.create(meshdefinition, 160, 160);
 	}

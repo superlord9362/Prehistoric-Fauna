@@ -56,6 +56,7 @@ import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.RunAroundLikeCrazyGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.animal.Animal;
@@ -77,6 +78,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import superlord.prehistoricfauna.common.blocks.FeederBlock;
 import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
@@ -297,7 +299,7 @@ public class Triceratops extends AbstractChestedHorse  {
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new TriceratopsLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new TriceratopsRandomLookGoal(this));
-		this.targetSelector.addGoal(1, new Triceratops.HurtByTargetGoal());
+		this.targetSelector.addGoal(1, new Triceratops.DinosaurHurtByTargetGoal(this));
 		this.targetSelector.addGoal(2, new Triceratops.AttackPlayerGoal());
 		this.targetSelector.addGoal(2, new Triceratops.TriceratopsTerritorialAttackGoal(this));
 		this.targetSelector.addGoal(2, new Triceratops.TriceratopsAggressiveTempermentAttackGoal(this));
@@ -934,7 +936,7 @@ public class Triceratops extends AbstractChestedHorse  {
 			} else {
 				if (super.canUse()) {
 					for(Triceratops triceratops : Triceratops.this.level.getEntitiesOfClass(Triceratops.class, Triceratops.this.getBoundingBox().inflate(8.0D, 4.0D, 8.0D))) {
-						if (!triceratops.trusts(this.target.getUUID()) && (triceratops.isProtective() || triceratops.isTerritorial())) {
+						if (!triceratops.trusts(this.target.getUUID()) && (triceratops.isProtective() || triceratops.isTerritorial()) && Triceratops.this.getTarget() != null) {
 							if (triceratops.isBaby() && !triceratops.isJuvenile()) {
 								return true;
 							}
@@ -956,24 +958,36 @@ public class Triceratops extends AbstractChestedHorse  {
 		return this.getMaxHealth();
 	}
 
-	class HurtByTargetGoal extends net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal {
-		public HurtByTargetGoal() {
-			super(Triceratops.this);
+	public class DinosaurHurtByTargetGoal extends HurtByTargetGoal {
+		Triceratops dinosaur;
+
+		public DinosaurHurtByTargetGoal(Triceratops dinosaur) {
+			super(dinosaur);
+			this.dinosaur = dinosaur;
 		}
 
+		public boolean canUse() {
+			return super.canUse();
+		}
+
+		/**
+		 * Execute a one shot task or start executing a continuous task
+		 */
 		public void start() {
 			super.start();
-			if (Triceratops.this.isBaby() && !Triceratops.this.isJuvenile()) {
+			if (dinosaur.getTrustedUUIDs() != null) {
+				if (dinosaur.trusts(this.targetMob.getUUID())) {
+					dinosaur.removeTrustedUUID(this.targetMob.getUUID());
+				}
+			}
+			if (dinosaur.isBaby()) {
 				this.alertOthers();
 				this.stop();
 			}
-			if (Triceratops.this.trusts(this.targetMob.getUUID())) {
-				Triceratops.this.removeTrustedUUID(this.targetMob.getUUID());
-			}
 		}
 
-		protected void alertOther(Mob mobIn, LivingEntity targetIn) {
-			if (mobIn instanceof Triceratops && !mobIn.isBaby()) {
+		protected void alertOther(Mob mobIn, DinosaurEntity targetIn) {
+			if (!mobIn.isBaby()) {
 				super.alertOther(mobIn, targetIn);
 			}
 

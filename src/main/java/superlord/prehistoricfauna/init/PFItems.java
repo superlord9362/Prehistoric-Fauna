@@ -266,7 +266,8 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> THATCH = REGISTER.register("thatch", () -> new BlockItem(PFBlocks.THATCH.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
 	public static final RegistryObject<BlockItem> THATCH_STAIRS = REGISTER.register("thatch_stairs", () -> new BlockItem(PFBlocks.THATCH_STAIRS.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
 	public static final RegistryObject<BlockItem> THATCH_SLAB = REGISTER.register("thatch_slab", () -> new BlockItem(PFBlocks.THATCH_SLAB.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
-
+	public static final RegistryObject<BlockItem> ASH_BRICKS = REGISTER.register("ash_bricks", () -> new BlockItem(PFBlocks.ASH_BRICKS.get(), new Item.Properties().tab(PrehistoricFauna.PF_BUILDING)));
+	
 	//Decoration Blocks
 	public static final RegistryObject<Item> PALEOPAINTING = REGISTER.register("paleopainting", () -> new PaleopaintingItem(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
 	public static final RegistryObject<Item> WALL_FOSSIL = REGISTER.register("wall_fossil", () -> new WallFossilItem(new Item.Properties().tab(PrehistoricFauna.PF_MISC)));
@@ -362,7 +363,7 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> TALL_OTOZAMITES = REGISTER.register("tall_otozamites", () -> new BlockItem(PFBlocks.TALL_OTOZAMITES.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	public static final RegistryObject<BlockItem> LAUROZAMITES = REGISTER.register("laurozamites", () -> new BlockItem(PFBlocks.LAUROZAMITES.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	public static final RegistryObject<BlockItem> ZAMITES_FROND = REGISTER.register("zamites_fronds", () -> new BlockItem(PFBlocks.ZAMITES_FROND.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
-	public static final RegistryObject<BlockItem> CLATHOPTERIS = REGISTER.register("clathopteris", () -> new BlockItem(PFBlocks.CLATHOPTERIS.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
+	public static final RegistryObject<BlockItem> CLATHROPTERIS = REGISTER.register("clathropteris", () -> new BlockItem(PFBlocks.CLATHROPTERIS.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	public static final RegistryObject<BlockItem> PHLEBOPTERIS = REGISTER.register("phlebopteris", () -> new BlockItem(PFBlocks.PHLEBOPTERIS.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	public static final RegistryObject<BlockItem> NEOCALAMITES = REGISTER.register("neocalamites", () -> new BlockItem(PFBlocks.NEOCALAMITES.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	public static final RegistryObject<BlockItem> HUMULUS = REGISTER.register("humulus", () -> new BlockItem(PFBlocks.HUMULUS.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
@@ -583,7 +584,7 @@ public class PFItems {
 	public static final RegistryObject<Item> THORACOSAURUS_SPAWN_EGG = REGISTER.register("thoracosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.THORACOSAURUS, 0x3F351B, 0x7A5C33, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
 	public static final RegistryObject<Item> TRICERATOPS_SPAWN_EGG = REGISTER.register("triceratops_spawn_egg", () -> new PFSpawnEggItem(PFEntities.TRICERATOPS, 0x494427, 0xABA37B, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
 	public static final RegistryObject<Item> TYRANNOSAURUS_SPAWN_EGG = REGISTER.register("tyrannosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.TYRANNOSAURUS, 0x56483E, 0x541714, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
-	public static final RegistryObject<Item> INCISIVOSAURUS_SPAWN_EGG = REGISTER.register("incisivosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.INCISIVOSAURUS, 0x8D4224, 0xD49B44, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
+	public static final RegistryObject<Item> INCISIVOSAURUS_SPAWN_EGG = REGISTER.register("incisivosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.INCISIVOSAURUS, 0x3B5244, 0xD08952, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
 	public static final RegistryObject<Item> PSITTACOSAURUS_SPAWN_EGG = REGISTER.register("psittacosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.PSITTACOSAURUS, 0x8D4224, 0xD49B44, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
 	public static final RegistryObject<Item> SINOSAUROPTERYX_SPAWN_EGG = REGISTER.register("sinosauropteryx_spawn_egg", () -> new PFSpawnEggItem(PFEntities.SINOSAUROPTERYX, 0x9E5D33, 0xEDEADD, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));
 	public static final RegistryObject<Item> YUTYRANNUS_SPAWN_EGG = REGISTER.register("yutyrannus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.YUTYRANNUS, 0x463F36, 0xE9D3C3, new Item.Properties().tab(PrehistoricFauna.PF_SPAWN_EGGS)));

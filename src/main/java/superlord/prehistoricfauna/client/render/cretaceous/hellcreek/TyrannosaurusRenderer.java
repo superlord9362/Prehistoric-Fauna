@@ -38,6 +38,8 @@ public class TyrannosaurusRenderer extends MobRenderer<Tyrannosaurus, EntityMode
 	private static final ResourceLocation SUB_ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/albino_sub_sleeping.png");
 	private static final ResourceLocation RETRO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/retro.png");
 	private static final ResourceLocation RETRO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/retro_sleeping.png");
+	private static final ResourceLocation MEGATRON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/megatron.png");
+	private static final ResourceLocation MEGATRON_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/megatron_sleeping.png");
 
 	private static TyrannosaurusModel TYRANNOSAURUS_MODEL;
 	private static TyrannosaurusJuvenileModel JUVENILE_TYRANNOSAURUS_MODEL;
@@ -75,6 +77,11 @@ public class TyrannosaurusRenderer extends MobRenderer<Tyrannosaurus, EntityMode
 			if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
 				return RETRO_SLEEPING;
 			} else return RETRO;
+		}
+		if ( s != null && "Megatron".equals(s) && !entity.isBaby()) {
+			if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+				return MEGATRON_SLEEPING;
+			} else return MEGATRON;
 		}
 		if (entity.isAlbino() && !entity.isBaby()) {
 			if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {

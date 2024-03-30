@@ -133,7 +133,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> OTOZAMITES = REGISTER.register("otozamites", () -> new PlantGrowingBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> TALL_OTOZAMITES = REGISTER.register("tall_otozamites", () -> new DoublePlantBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> LAUROZAMITES = REGISTER.register("laurozamites", () -> new AncientPlantBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
-	public static final RegistryObject<Block> CLATHOPTERIS = REGISTER.register("clathopteris", () -> new AncientPlantBlock(Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+	public static final RegistryObject<Block> CLATHROPTERIS = REGISTER.register("clathropteris", () -> new AncientPlantBlock(Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> PHLEBOPTERIS = REGISTER.register("phlebopteris", () -> new AncientPlantBlock(Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> BISONIA = REGISTER.register("bisonia", () -> new AncientPlantBlock(Properties.copy(LAUROZAMITES.get())));
 	public static final RegistryObject<Block> CRASSOSTREA_OYSTER = REGISTER.register("crassostrea_oyster", () -> new CrassostreaOysterBlock(Block.Properties.of(Material.STONE).noCollission().strength(0.5F).randomTicks()));
@@ -573,7 +573,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> POTTED_PODOZAMITES_SAPLING = REGISTER.register("potted_podozamites_sapling", () -> new FlowerPotBlock(PODOZAMITES_SAPLING.get(), Block.Properties.of(Material.DECORATION).strength(0).noOcclusion()));
 	public static final RegistryObject<Block> POTTED_OTOZAMITES = REGISTER.register("potted_otozamites", () -> new FlowerPotBlock(OTOZAMITES.get(), Properties.of(Material.DECORATION).strength(0).noOcclusion()));
 	public static final RegistryObject<Block> POTTED_LAUROZAMITES = REGISTER.register("potted_laurozamites", () -> new FlowerPotBlock(LAUROZAMITES.get(), Properties.of(Material.DECORATION).strength(0).noOcclusion()));
-	public static final RegistryObject<Block> POTTED_CLATHOPTERIS = REGISTER.register("potted_clathopteris", () -> new FlowerPotBlock(CLATHOPTERIS.get(), Properties.of(Material.DECORATION).strength(0).noOcclusion()));
+	public static final RegistryObject<Block> POTTED_CLATHROPTERIS = REGISTER.register("potted_clathropteris", () -> new FlowerPotBlock(CLATHROPTERIS.get(), Properties.of(Material.DECORATION).strength(0).noOcclusion()));
 	public static final RegistryObject<Block> POTTED_PHLEBOPTERIS = REGISTER.register("potted_phlebopteris", () -> new FlowerPotBlock(PHLEBOPTERIS.get(), Properties.of(Material.DECORATION).strength(0).noOcclusion()));
 	public static final RegistryObject<Block> POTTED_NEOCALAMITES = REGISTER.register("potted_neocalamites", () -> new FlowerPotBlock(NEOCALAMITES.get(), Properties.of(Material.DECORATION).strength(0).noOcclusion()));
 	public static final RegistryObject<Block> POTTED_OSMUNDACAULIS = REGISTER.register("potted_short_osmundacaulis", () -> new FlowerPotBlock(OSMUNDACAULIS.get(), Properties.of(Material.DECORATION).strength(0).noOcclusion()));
@@ -755,6 +755,8 @@ public class PFBlocks {
 	public static final RegistryObject<FeederBlock> OAK_FEEDER = REGISTER.register("oak_feeder", () -> new FeederBlock(Properties.of(Material.METAL).strength(2.0F, 3.0F).sound(SoundType.METAL)));
 	
 	public static final RegistryObject<AraucariaConeBlock> ARAUCARIA_CONE = REGISTER.register("araucaria_cone", () -> new AraucariaConeBlock(Properties.of(Material.WOOD).strength(1.0F, 1.0F).sound(SoundType.WOOD)));
+	
+	public static final RegistryObject<Block> ASH_BRICKS = REGISTER.register("ash_bricks", () -> new Block(Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BLACK).requiresCorrectToolForDrops().strength(2.0F, 6.0F).sound(SoundType.STONE)));
 	
 	public static final RegistryObject<Block> METASEQUOIA_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "metasequoia_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(METASEQUOIA_SLAB.get())), PrehistoricFauna.PF_BUILDING);
 	public static final RegistryObject<Block> ARAUCARIA_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "araucaria_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(ARAUCARIA_SLAB.get())), PrehistoricFauna.PF_BUILDING);

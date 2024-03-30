@@ -75,7 +75,7 @@ import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
 
 public class Scutellosaurus extends DinosaurEntity {
-	private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(PFBlocks.CLATHOPTERIS.get().asItem());
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(PFBlocks.CLATHROPTERIS.get().asItem());
 	private int maxHunger = 10;
 
 	@SuppressWarnings("deprecation")
@@ -86,7 +86,7 @@ public class Scutellosaurus extends DinosaurEntity {
 	}
 
 	public boolean isFood(ItemStack stack) {
-		return stack.getItem() == PFBlocks.CLATHOPTERIS.get().asItem();
+		return stack.getItem() == PFBlocks.CLATHROPTERIS.get().asItem();
 	}
 	
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {

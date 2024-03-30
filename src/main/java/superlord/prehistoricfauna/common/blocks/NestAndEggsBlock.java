@@ -76,14 +76,13 @@ public class NestAndEggsBlock extends Block {
 		int addChance = random.nextInt(5);
 		int i = state.getValue(EGGS);
 		BlockState filledState = world.getBlockState(pos);
-		if ((stack.is(PFTags.PLANTS_2_HUNGER_ITEM) || stack.is(PFTags.PLANTS_4_HUNGER_ITEM) || stack.is(PFTags.PLANTS_6_HUNGER_ITEM) || stack.is(PFTags.PLANTS_8_HUNGER_ITEM) || stack.is(PFTags.PLANTS_10_HUNGER_ITEM) || stack.is(PFTags.PLANTS_12_HUNGER_ITEM) || stack.is(PFTags.PLANTS_15_HUNGER_ITEM) || stack.is(PFTags.PLANTS_20_HUNGER_ITEM) || stack.is(PFTags.PLANTS_25_HUNGER_ITEM) || stack.is(PFTags.PLANTS_30_HUNGER_ITEM)) && addChance == 0 && state.getValue(PLANT_LEVEL) < this.maxPlantFilled()) {
-			world.setBlock(pos, state.setValue(PLANT_LEVEL, filledState.getValue(PLANT_LEVEL) + 1), 0);
+		if ((stack.is(PFTags.PLANTS_2_HUNGER_ITEM) || stack.is(PFTags.PLANTS_4_HUNGER_ITEM) || stack.is(PFTags.PLANTS_6_HUNGER_ITEM) || stack.is(PFTags.PLANTS_8_HUNGER_ITEM) || stack.is(PFTags.PLANTS_10_HUNGER_ITEM) || stack.is(PFTags.PLANTS_12_HUNGER_ITEM) || stack.is(PFTags.PLANTS_15_HUNGER_ITEM) || stack.is(PFTags.PLANTS_20_HUNGER_ITEM) || stack.is(PFTags.PLANTS_25_HUNGER_ITEM) || stack.is(PFTags.PLANTS_30_HUNGER_ITEM)) && state.getValue(PLANT_LEVEL) < this.maxPlantFilled()) {
+			if (addChance == 0) world.setBlock(pos, state.setValue(PLANT_LEVEL, filledState.getValue(PLANT_LEVEL) + 1), 0);
 			if (!player.isCreative()) {
 				stack.shrink(1);
 			}
 			return InteractionResult.sidedSuccess(world.isClientSide);
-		}
-		if (!(stack.is(PFTags.EGGS_5_HUNGER) || stack.is(PFTags.EGGS_10_HUNGER) || stack.is(PFTags.EGGS_15_HUNGER))) {
+		} else if (!(stack.is(PFTags.EGGS_5_HUNGER) || stack.is(PFTags.EGGS_10_HUNGER) || stack.is(PFTags.EGGS_15_HUNGER)) && !(stack.is(PFTags.PLANTS_2_HUNGER_ITEM) || stack.is(PFTags.PLANTS_4_HUNGER_ITEM) || stack.is(PFTags.PLANTS_6_HUNGER_ITEM) || stack.is(PFTags.PLANTS_8_HUNGER_ITEM) || stack.is(PFTags.PLANTS_10_HUNGER_ITEM) || stack.is(PFTags.PLANTS_12_HUNGER_ITEM) || stack.is(PFTags.PLANTS_15_HUNGER_ITEM) || stack.is(PFTags.PLANTS_20_HUNGER_ITEM) || stack.is(PFTags.PLANTS_25_HUNGER_ITEM) || stack.is(PFTags.PLANTS_30_HUNGER_ITEM))) {
 			if (state.getValue(EGGS) > 1) {
 				world.setBlock(pos, state.setValue(EGGS, Integer.valueOf(i - 1)), 2);
 			} else {
@@ -92,7 +91,8 @@ public class NestAndEggsBlock extends Block {
 			if (dinosaurEntity instanceof DinosaurEntity dinosaur) {
 				for (Entity parentEntity : world.getEntities(dinosaurEntity, new AABB(pos.getX() - 4, pos.getY() - 4, pos.getZ() - 4, pos.getX() + 4, pos.getY() + 4, pos.getZ() + 4))) {
 					if (parentEntity instanceof DinosaurEntity parentDinosaur) {
-						if ((parentDinosaur.getAttribute(Attributes.ATTACK_DAMAGE).getValue() != 0 || parentDinosaur.getAttribute(Attributes.ATTACK_DAMAGE) != null) && !parentDinosaur.isBaby() && !parentDinosaur.trusts(player.getUUID())) {
+						Entity parent = this.entityTypeSupplier.get().create(world);
+						if ((parentDinosaur.getAttribute(Attributes.ATTACK_DAMAGE).getValue() != 0 || parentDinosaur.getAttribute(Attributes.ATTACK_DAMAGE) != null) && !parentDinosaur.isBaby() && !parentDinosaur.trusts(player.getUUID()) && !parentDinosaur.isTame() && parentDinosaur == parent) {
 							parentDinosaur.setTarget(player);
 						}
 					}
@@ -102,7 +102,8 @@ public class NestAndEggsBlock extends Block {
 			} else if (dinosaurEntity instanceof Triceratops triceratops) {
 				for (Entity parentEntity : world.getEntities(triceratops, new AABB(pos.getX() - 4, pos.getY() - 4, pos.getZ() - 4, pos.getX() + 4, pos.getY() + 4, pos.getZ() + 4))) {
 					if (parentEntity instanceof Triceratops parentDinosaur) {
-						if (parentDinosaur.getAttribute(Attributes.ATTACK_DAMAGE).getValue() != 0 && !parentDinosaur.isBaby() && !parentDinosaur.trusts(player.getUUID())) {
+						Entity parent = this.entityTypeSupplier.get().create(world);
+						if (parentDinosaur.getAttribute(Attributes.ATTACK_DAMAGE).getValue() != 0 && !parentDinosaur.isBaby() && !parentDinosaur.trusts(player.getUUID()) && !parentDinosaur.isTamed() && parentDinosaur == parent) {
 							parentDinosaur.setTarget(player);
 						}
 					}
@@ -111,6 +112,7 @@ public class NestAndEggsBlock extends Block {
 				world.addFreshEntity(item);
 			}
 		} else {
+
 			if (state.getValue(EGGS) != MAX_EGGS) {
 				if (heldItem instanceof BlockItem) {
 					BlockItem blockItem = (BlockItem) stack.getItem();
