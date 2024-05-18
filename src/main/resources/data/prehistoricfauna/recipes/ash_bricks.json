@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:wheat"
+    },
+	{
+		"item": "prehistoricfauna:ash_ball"
+	},
+	{
+		"item": "prehistoricfauna:ash_ball"
+	},
+	{
+		"item": "prehistoricfauna:ash_ball"
+	},
+	{
+		"item": "prehistoricfauna:ash_ball"
+	},
+	{
+		"item": "prehistoricfauna:ash_ball"
+	},
+	{
+		"item": "prehistoricfauna:ash_ball"
+	},
+	{
+		"item": "prehistoricfauna:ash_ball"
+	},
+	{
+		"item": "prehistoricfauna:ash_ball"
+	}
+  ],
+  "result": {
+    "item": "prehistoricfauna:ash_bricks",
+    "count": 4
+  }
+}

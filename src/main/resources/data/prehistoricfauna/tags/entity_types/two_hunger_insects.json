@@ -2,6 +2,9 @@
 	"replace": false,
 	"values": [
 		"prehistoricfauna:gobiulus",
-		"prehistoricfauna:dermestid_beetle"
+		"prehistoricfauna:dermestid_beetle",
+		"prehistoricfauna:cretaraneus",
+		"prehistoricfauna:apoclion",
+		"prehistoricfauna:cephaloleichnites"
 	]
 }

@@ -256,8 +256,8 @@ public class PFConfiguredFeatures {
 	public static final RegistryObject<ConfiguredFeature<?, ?>> LEEFRUCTUS = REGISTER.register("configured_leefructus", () -> new ConfiguredFeature(Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.LEEFRUCTUS.get()), 32)));
 	public static final RegistryObject<ConfiguredFeature<?, ?>> RUFFORDIA = REGISTER.register("configured_ruffordia", () -> new ConfiguredFeature(Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.RUFFORDIA.get()), 32)));
 	public static final RegistryObject<ConfiguredFeature<?, ?>> EPHEDRA = REGISTER.register("configured_ephedra", () -> new ConfiguredFeature(Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.EPHEDRA.get()), 32)));
-	public static final RegistryObject<ConfiguredFeature<?, ?>> ARCHAEFRUCTUS = REGISTER.register("configured_archaefructus", () -> new ConfiguredFeature(Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.ARCHAEFRUCTUS.get()), 32)));
-	public static final RegistryObject<ConfiguredFeature<?, ?>> DOUBLE_ARCHAEFRUCTUS = REGISTER.register("configured_double_archaefructus", () -> new ConfiguredFeature(Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.TALL_ARCHAEFRUCTUS.get()), 32)));
+	public static final RegistryObject<ConfiguredFeature<?, ?>> ARCHAEFRUCTUS = REGISTER.register("configured_archaefructus", () -> new ConfiguredFeature(PFFeatures.ARCHAEFRUCTUS.get(), new JohnstoniaConfig(15)));
+	public static final RegistryObject<ConfiguredFeature<?, ?>> DOUBLE_ARCHAEFRUCTUS = REGISTER.register("configured_double_archaefructus", () -> new ConfiguredFeature(PFFeatures.TALL_ARCHAEFRUCTUS.get(), new JohnstoniaConfig(15)));
 
 	public static final RegistryObject<ConfiguredFeature<?, ?>> CRASSOSTREA_OYSTERS = REGISTER.register("configured_crassostrea_oyster", () -> new ConfiguredFeature(PFFeatures.CRASSOSTREA_OYSTERS.get(), new CrassostreaOystersConfig(24)));
 	public static final RegistryObject<ConfiguredFeature<?, ?>> ALGAE = REGISTER.register("configured_algae", () -> new ConfiguredFeature(PFFeatures.ALGAE.get(), new CrassostreaOystersConfig(24)));

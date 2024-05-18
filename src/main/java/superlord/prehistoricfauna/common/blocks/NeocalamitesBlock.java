@@ -137,7 +137,7 @@ public class NeocalamitesBlock extends Block implements IPlantable, SimpleWaterl
 	public BlockState getStateForPlacement(BlockPlaceContext p_56089_) {
 		FluidState fluidstate = p_56089_.getLevel().getFluidState(p_56089_.getClickedPos());
 		boolean flag = fluidstate.getType() == Fluids.WATER;
-		return super.getStateForPlacement(p_56089_).setValue(WATERLOGGED, Boolean.valueOf(flag));
+		return super.getStateForPlacement(p_56089_).setValue(WATERLOGGED, Boolean.valueOf(flag)).setValue(PLAYER_PLACED, true);
 	}
 
 	@Override

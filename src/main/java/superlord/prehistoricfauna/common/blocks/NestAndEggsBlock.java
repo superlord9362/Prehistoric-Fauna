@@ -24,6 +24,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
@@ -46,6 +47,7 @@ public class NestAndEggsBlock extends Block {
 	public static final int MAX_EGGS = 4;
 	public static final IntegerProperty HATCH = BlockStateProperties.HATCH;
 	public static final IntegerProperty EGGS = BlockStateProperties.EGGS;
+	public static final BooleanProperty PLAYER_PLACED = BooleanProperty.create("player_placed");
 	public static final IntegerProperty PLANT_LEVEL = IntegerProperty.create("plant_level", 0, 3);
 	private final Lazy<? extends EntityType<?>> entityTypeSupplier;
 	protected static final VoxelShape BLOCK = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D);
@@ -53,7 +55,7 @@ public class NestAndEggsBlock extends Block {
 	public NestAndEggsBlock(final RegistryObject<? extends EntityType<?>> entityTypeSupplier, BlockBehaviour.Properties p_57759_) {
 		super(p_57759_);
 		this.entityTypeSupplier = Lazy.of(entityTypeSupplier::get);
-		this.registerDefaultState(this.stateDefinition.any().setValue(HATCH, Integer.valueOf(0)).setValue(EGGS, Integer.valueOf(1)).setValue(PLANT_LEVEL, Integer.valueOf(0)));
+		this.registerDefaultState(this.stateDefinition.any().setValue(HATCH, Integer.valueOf(0)).setValue(EGGS, Integer.valueOf(1)).setValue(PLANT_LEVEL, Integer.valueOf(0)).setValue(PLAYER_PLACED, false));
 	}
 
 	public int maxPlantFilled() {
@@ -140,7 +142,7 @@ public class NestAndEggsBlock extends Block {
 				worldIn.levelEvent(2001, pos, Block.getId(state));
 				worldIn.playSound((Player) null, pos, SoundEvents.TURTLE_EGG_CRACK, SoundSource.BLOCKS, 0.7F, 0.9F + rand.nextFloat() * 0.2F);
 				BlockState filledState = worldIn.getBlockState(pos);
-				worldIn.setBlockAndUpdate(pos, PFBlocks.NEST.get().defaultBlockState().setValue(NestBlock.PLANT_LEVEL, filledState.getValue(PLANT_LEVEL)));
+				worldIn.setBlockAndUpdate(pos, PFBlocks.NEST.get().defaultBlockState().setValue(NestBlock.PLANT_LEVEL, filledState.getValue(PLANT_LEVEL)).setValue(NestBlock.PLAYER_PLACED, state.getValue(PLAYER_PLACED)));
 
 				for (int j = 0; j < state.getValue(EGGS); ++j) {
 					worldIn.levelEvent(2001, pos, Block.getId(state));
@@ -224,6 +226,6 @@ public class NestAndEggsBlock extends Block {
 	}
 
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_57799_) {
-		p_57799_.add(HATCH, EGGS, PLANT_LEVEL);
+		p_57799_.add(HATCH, EGGS, PLANT_LEVEL, PLAYER_PLACED);
 	}
 }

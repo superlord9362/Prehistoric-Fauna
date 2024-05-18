@@ -179,60 +179,60 @@
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
-	{
-          "items": [
-			  "prehistoricfauna:exaeretodon_egg"
-        	]
-        }
-]     
- }
+			{
+         	 	"items": [
+					  "prehistoricfauna:exaeretodon_egg"
+        		]
+        	}
+		]
+      }
     },
     "prehistoricfauna:chromogisaurus_egg": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
-	{
-          "items": [
-			  "prehistoricfauna:chromogisaurus_egg"
-        	]
-        }
-]     
- }
+			{
+         	 	"items": [
+					  "prehistoricfauna:chromogisaurus_egg"
+        		]
+        	}
+		]
+      }
     },
     "prehistoricfauna:herrerasaurus_egg": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
-{          
-"items": [
-	"prehistoricfauna:herrerasaurus_egg"
- 	]
-        }
-]  
-    }
+			{
+         	 	"items": [
+					  "prehistoricfauna:herrerasaurus_egg"
+        		]
+        	}
+		]
+      }
     },
     "prehistoricfauna:hyperodapedon_egg": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
-	{
-          "items": [
-			  "prehistoricfauna:hyperodapedon_egg"
-	]
-        }
-]
+			{
+         	 	"items": [
+					  "prehistoricfauna:hyperodapedon_egg"
+        		]
+        	}
+		]
       }
     },
     "prehistoricfauna:sillosuchus_egg": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
-	{
-          "items": [
-			  "prehistoricfauna:sillosuchus_egg"
-			]
-        }
-]
+			{
+         	 	"items": [
+					  "prehistoricfauna:sillosuchus_egg"
+        		]
+        	}
+		]
       }
     },
     "prehistoricfauna:saurosuchus_egg": {
@@ -240,11 +240,11 @@
       "conditions": {
         "items": [
 			{
-          "items": [
-			  "prehistoricfauna:saurosuchus_egg"
-        	]
-        }
-	]
+         	 	"items": [
+					  "prehistoricfauna:saurosuchus_egg"
+        		]
+        	}
+		]
       }
     },
     "prehistoricfauna:ischigualastia_egg": {

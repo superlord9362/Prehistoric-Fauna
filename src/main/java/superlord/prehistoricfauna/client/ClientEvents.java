@@ -43,9 +43,11 @@ import superlord.prehistoricfauna.client.model.cretaceous.djadochta.Velociraptor
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.AnkylosaurusBabyModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.AnkylosaurusModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.BasilemysModel;
+import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.CephaloleichnitesModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.DakotaraptorBabyModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.DakotaraptorModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.DidelphodonModel;
+import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.EdmontosaurusModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.OrnithomimusModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.PachycephalosaurusModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.PalaeosaniwaModel;
@@ -57,6 +59,8 @@ import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TriceratopsM
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TyrannosaurusBabyModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TyrannosaurusJuvenileModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TyrannosaurusModel;
+import superlord.prehistoricfauna.client.model.cretaceous.yixian.ApoclionModel;
+import superlord.prehistoricfauna.client.model.cretaceous.yixian.CretaraneusModel;
 import superlord.prehistoricfauna.client.model.cretaceous.yixian.IncisivosaurusModel;
 import superlord.prehistoricfauna.client.model.cretaceous.yixian.PsittacosaurusModel;
 import superlord.prehistoricfauna.client.model.cretaceous.yixian.SinosauropteryxModel;
@@ -73,7 +77,10 @@ import superlord.prehistoricfauna.client.model.fish.MelviusModel;
 import superlord.prehistoricfauna.client.model.fish.MooreodontusModel;
 import superlord.prehistoricfauna.client.model.fish.MyledaphusModel;
 import superlord.prehistoricfauna.client.model.fish.PotamoceratodusModel;
+import superlord.prehistoricfauna.client.model.fish.ProtopsephurusModel;
 import superlord.prehistoricfauna.client.model.fish.SaurichthysModel;
+import superlord.prehistoricfauna.client.model.fish.SinamiaModel;
+import superlord.prehistoricfauna.client.model.fish.YanosteusModel;
 import superlord.prehistoricfauna.client.model.fossil.cretaceous.AnkylosaurusSkeletonActionLeftModel;
 import superlord.prehistoricfauna.client.model.fossil.cretaceous.AnkylosaurusSkeletonActionRightModel;
 import superlord.prehistoricfauna.client.model.fossil.cretaceous.AnkylosaurusSkeletonModel;
@@ -94,6 +101,13 @@ import superlord.prehistoricfauna.client.model.fossil.cretaceous.ProtoceratopsSk
 import superlord.prehistoricfauna.client.model.fossil.cretaceous.ProtoceratopsSkeletonRunningModel;
 import superlord.prehistoricfauna.client.model.fossil.cretaceous.ProtoceratopsSkeletonSittingModel;
 import superlord.prehistoricfauna.client.model.fossil.cretaceous.ProtoceratopsSkullModel;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.PsittacosaurusSkeletonLeftModel;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.PsittacosaurusSkeletonMatingModel;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.PsittacosaurusSkeletonModel;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.PsittacosaurusSkeletonSaunterModel;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.PsittacosaurusSkeletonSittingModel;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.PsittacosaurusSkeletonSprintModel;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.PsittacosaurusSkullModel;
 import superlord.prehistoricfauna.client.model.fossil.cretaceous.TriceratopsSkeletonActionLeftModel;
 import superlord.prehistoricfauna.client.model.fossil.cretaceous.TriceratopsSkeletonActionRightModel;
 import superlord.prehistoricfauna.client.model.fossil.cretaceous.TriceratopsSkeletonChargingModel;
@@ -247,8 +261,10 @@ import superlord.prehistoricfauna.client.render.cretaceous.djadochta.Udanocerato
 import superlord.prehistoricfauna.client.render.cretaceous.djadochta.VelociraptorRenderer;
 import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.AnkylosaurusRenderer;
 import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.BasilemysRenderer;
+import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.CephaloleichnitesRenderer;
 import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.DakotaraptorRenderer;
 import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.DidelphodonRenderer;
+import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.EdmontosaurusRenderer;
 import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.OrnithomimusRenderer;
 import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.PachycephalosaurusRenderer;
 import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.PalaeosaniwaRenderer;
@@ -256,6 +272,8 @@ import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.Thescelosau
 import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.ThoracosaurusRenderer;
 import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.TriceratopsRenderer;
 import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.TyrannosaurusRenderer;
+import superlord.prehistoricfauna.client.render.cretaceous.yixian.ApoclionRenderer;
+import superlord.prehistoricfauna.client.render.cretaceous.yixian.CretaraneusRenderer;
 import superlord.prehistoricfauna.client.render.cretaceous.yixian.IncisivosaurusRenderer;
 import superlord.prehistoricfauna.client.render.cretaceous.yixian.PsittacosaurusRenderer;
 import superlord.prehistoricfauna.client.render.cretaceous.yixian.SinosauropteryxRenderer;
@@ -272,13 +290,18 @@ import superlord.prehistoricfauna.client.render.fish.MelviusRenderer;
 import superlord.prehistoricfauna.client.render.fish.MooreodontusRenderer;
 import superlord.prehistoricfauna.client.render.fish.MyledaphusRenderer;
 import superlord.prehistoricfauna.client.render.fish.PotamoceratodusRenderer;
+import superlord.prehistoricfauna.client.render.fish.ProtopsephurusRenderer;
 import superlord.prehistoricfauna.client.render.fish.SaurichthysRenderer;
+import superlord.prehistoricfauna.client.render.fish.SinamiaRenderer;
+import superlord.prehistoricfauna.client.render.fish.YanosteusRenderer;
 import superlord.prehistoricfauna.client.render.fossil.cretaceous.AnkylosaurusSkeletonRenderer;
 import superlord.prehistoricfauna.client.render.fossil.cretaceous.AnkylosaurusSkullRenderer;
 import superlord.prehistoricfauna.client.render.fossil.cretaceous.PlesiohadrosSkeletonRenderer;
 import superlord.prehistoricfauna.client.render.fossil.cretaceous.PlesiohadrosSkullRenderer;
 import superlord.prehistoricfauna.client.render.fossil.cretaceous.ProtoceratopsSkeletonRenderer;
 import superlord.prehistoricfauna.client.render.fossil.cretaceous.ProtoceratopsSkullRenderer;
+import superlord.prehistoricfauna.client.render.fossil.cretaceous.PsittacosaurusSkeletonRenderer;
+import superlord.prehistoricfauna.client.render.fossil.cretaceous.PsittacosaurusSkullRenderer;
 import superlord.prehistoricfauna.client.render.fossil.cretaceous.TriceratopsSkeletonRenderer;
 import superlord.prehistoricfauna.client.render.fossil.cretaceous.TriceratopsSkullRenderer;
 import superlord.prehistoricfauna.client.render.fossil.cretaceous.TyrannosaurusSkeletonRenderer;
@@ -500,6 +523,13 @@ public class ClientEvents {
 	public static ModelLayerLocation SAUROSUCHUS_SKELETON_ACTION_RIGHT = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "saurosuchus_skeleton_action_right"), "saurosuchus_skeleton_action_right");
 	public static ModelLayerLocation SAUROSUCHUS_SKELETON_ACTION_LEFT = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "saurosuchus_skeleton_action_left"), "saurosuchus_skeleton_action_left");
 	public static ModelLayerLocation SAUROSUCHUS_SKELETON_SLEEPING = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "saurosuchus_skeleton_sleeping"), "saurosuchus_skeleton_sleeping");
+	public static ModelLayerLocation PSITTACOSAURUS_SKELETON = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "psittacosaurus_skeleton"), "psittacosaurus_skeleton");
+	public static ModelLayerLocation PSITTACOSAURUS_SKELETON_LEFT = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "psittacosaurus_skeleton_left"), "psittacosaurus_skeleton_left");
+	public static ModelLayerLocation PSITTACOSAURUS_SKELETON_MATING = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "psittacosaurus_skeleton_mating"), "psittacosaurus_skeleton_mating");
+	public static ModelLayerLocation PSITTACOSAURUS_SKELETON_SAUNTER = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "psittacosaurus_skeleton_saunter"), "psittacosaurus_skeleton_saunter");
+	public static ModelLayerLocation PSITTACOSAURUS_SKELETON_SITTING = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "psittacosaurus_skeleton_sitting"), "psittacosaurus_skeleton_sitting");
+	public static ModelLayerLocation PSITTACOSAURUS_SKELETON_SPRINTING = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "psittacosaurus_skeleton_sprinting"), "psittacosaurus_skeleton_sprinting");
+	public static ModelLayerLocation PSITTACOSAURUS_SKULL = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "psittacosaurus_skull"), "psittacosaurus_skull");
 	//Hell Creek
 	public static ModelLayerLocation ANKYLOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "ankylosaurus"), "ankylosaurus");
 	public static ModelLayerLocation ANKYLOSAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "ankylosaurus_baby"), "ankylosaurus_baby");
@@ -538,8 +568,12 @@ public class ClientEvents {
 	public static ModelLayerLocation UDANOCERATOPS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "udanoceratops"), "udanoceratops");
 	public static ModelLayerLocation VELOCIRAPTOR = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "velociraptor"), "velociraptor");
 	
+	//Bugs
 	public static ModelLayerLocation DERMESTID_BEETLE = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "dermestid_beetle"), "dermestid_beetle");
 	public static ModelLayerLocation GOBIULUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "gobiulus"), "gobiulus");
+	public static ModelLayerLocation CEPHALOLEICHNITES = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "cephaloleichnites"), "cephaloleichnites");
+	public static ModelLayerLocation APOCLION = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "apoclion"), "apoclion");
+	public static ModelLayerLocation CRETARANEUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "cretaraneus"), "cretaraneus");
 	
 	//Yixian
 	public static ModelLayerLocation BEIPIAOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "beipiaosaurus"), "beipiaosaurus");
@@ -611,7 +645,10 @@ public class ClientEvents {
 	public static ModelLayerLocation MOOREODONTUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "mooreodontus"), "mooreodontus");
 	public static ModelLayerLocation MYLEDAPHUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "myledaphus"), "myledaphus");
 	public static ModelLayerLocation POTAMOCERATODUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "potamoceratodus"), "potamoceratodus");
+	public static ModelLayerLocation PROTOPSEPHURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "protopsephurus"), "protopsephurus");
 	public static ModelLayerLocation SAURICHTHYS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "saurichthys"), "saurichthys");
+	public static ModelLayerLocation SINAMIA = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "sinamia"), "sinamia");
+	public static ModelLayerLocation YANOSTEUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "yanosteus"), "yanosteus");
 
 	public static ModelLayerLocation ANKYLOSAURUS_HELMET = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "ankylosaurus_helmet"), "ankylosaurus_helmet");
 	public static ModelLayerLocation DESMATOSUCHUS_CHESTPLATE = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "desmatosuchus_chestplate"), "desmatosuchus_chestplate");
@@ -664,7 +701,8 @@ public class ClientEvents {
 		event.registerEntityRenderer(PFEntities.TYRANNOSAURUS_SKULL.get(), TyrannosaurusSkullRenderer::new);
 		event.registerEntityRenderer(PFEntities.VELOCIRAPTOR_SKELETON.get(), VelociraptorSkeletonRenderer::new);
 		event.registerEntityRenderer(PFEntities.VELOCIRAPTOR_SKULL.get(), VelociraptorSkullRenderer::new);
-		event.registerEntityRenderer(PFEntities.ARGANODUS.get(), ArganodusRenderer::new);
+		event.registerEntityRenderer(PFEntities.PSITTACOSAURUS_SKELETON.get(), PsittacosaurusSkeletonRenderer::new);
+		event.registerEntityRenderer(PFEntities.PSITTACOSAURUS_SKULL.get(), PsittacosaurusSkullRenderer::new);		event.registerEntityRenderer(PFEntities.ARGANODUS.get(), ArganodusRenderer::new);
 		event.registerEntityRenderer(PFEntities.CERATODUS.get(), CeratodusRenderer::new);
 		event.registerEntityRenderer(PFEntities.CHINLEA.get(), ChinleaRenderer::new);
 		event.registerEntityRenderer(PFEntities.CYCLURUS.get(), CyclurusRenderer::new);
@@ -737,6 +775,13 @@ public class ClientEvents {
 		event.registerEntityRenderer(PFEntities.PSITTACOSAURUS.get(), PsittacosaurusRenderer::new);
 		event.registerEntityRenderer(PFEntities.SINOSAUROPTERYX.get(), SinosauropteryxRenderer::new);
 		event.registerEntityRenderer(PFEntities.INCISIVOSAURUS.get(), IncisivosaurusRenderer::new);
+		event.registerEntityRenderer(PFEntities.CEPHALOLEICHNITES.get(), CephaloleichnitesRenderer::new);
+		event.registerEntityRenderer(PFEntities.APOCLION.get(), ApoclionRenderer::new);
+		event.registerEntityRenderer(PFEntities.CRETARANEUS.get(), CretaraneusRenderer::new);
+		event.registerEntityRenderer(PFEntities.PROTOPSEPHURUS.get(), ProtopsephurusRenderer::new);
+		event.registerEntityRenderer(PFEntities.SINAMIA.get(), SinamiaRenderer::new);
+		event.registerEntityRenderer(PFEntities.YANOSTEUS.get(), YanosteusRenderer::new);
+		event.registerEntityRenderer(PFEntities.EDMONTOSAURUS.get(), EdmontosaurusRenderer::new);
 	}
 
 	@SubscribeEvent
@@ -878,6 +923,14 @@ public class ClientEvents {
 		event.registerLayerDefinition(VELOCIRAPTOR_SKELETON_STAND_FIGHTING, VelociraptorSkeletonStandFightingModel::createBodyLayer);
 		event.registerLayerDefinition(VELOCIRAPTOR_SKELETON_RUNNING, VelociraptorSkeletonRunningModel::createBodyLayer);
 		event.registerLayerDefinition(VELOCIRAPTOR_SKULL, VelociraptorSkullModel::createBodyLayer);
+		//Psittacosaurus Skeleton and Skull
+		event.registerLayerDefinition(PSITTACOSAURUS_SKELETON, PsittacosaurusSkeletonModel::createBodyLayer);
+		event.registerLayerDefinition(PSITTACOSAURUS_SKELETON_LEFT, PsittacosaurusSkeletonLeftModel::createBodyLayer);
+		event.registerLayerDefinition(PSITTACOSAURUS_SKELETON_MATING, PsittacosaurusSkeletonMatingModel::createBodyLayer);
+		event.registerLayerDefinition(PSITTACOSAURUS_SKELETON_SAUNTER, PsittacosaurusSkeletonSaunterModel::createBodyLayer);
+		event.registerLayerDefinition(PSITTACOSAURUS_SKELETON_SITTING, PsittacosaurusSkeletonSittingModel::createBodyLayer);
+		event.registerLayerDefinition(PSITTACOSAURUS_SKELETON_SPRINTING, PsittacosaurusSkeletonSprintModel::createBodyLayer);
+		event.registerLayerDefinition(PSITTACOSAURUS_SKULL, PsittacosaurusSkullModel::createBodyLayer);
 		//Fish
 		event.registerLayerDefinition(ACIPENSER, AcipenserModel::createBodyLayer);
 		event.registerLayerDefinition(ARGANODUS, ArganodusModel::createBodyLayer);
@@ -891,7 +944,10 @@ public class ClientEvents {
 		event.registerLayerDefinition(MELVIUS, MelviusModel::createBodyLayer);
 		event.registerLayerDefinition(MYLEDAPHUS, MyledaphusModel::createBodyLayer);
 		event.registerLayerDefinition(POTAMOCERATODUS, PotamoceratodusModel::createBodyLayer);
+		event.registerLayerDefinition(PROTOPSEPHURUS, ProtopsephurusModel::createBodyLayer);
 		event.registerLayerDefinition(SAURICHTHYS, SaurichthysModel::createBodyLayer);
+		event.registerLayerDefinition(SINAMIA, SinamiaModel::createBodyLayer);
+		event.registerLayerDefinition(YANOSTEUS, YanosteusModel::createBodyLayer);
 		//Hell Creek
 		event.registerLayerDefinition(THESCELOSAURUS, ThescelosaurusModel::createBodyLayer);
 		event.registerLayerDefinition(BASILEMYS, BasilemysModel::createBodyLayer);
@@ -900,6 +956,7 @@ public class ClientEvents {
 		event.registerLayerDefinition(DAKOTARAPTOR, DakotaraptorModel::createBodyLayer);
 		event.registerLayerDefinition(DAKOTARAPTOR_BABY, DakotaraptorBabyModel::createBodyLayer);
 		event.registerLayerDefinition(DIDELPHODON, DidelphodonModel::createBodyLayer);
+		event.registerLayerDefinition(EDMONTOSAURUS, EdmontosaurusModel::createHipsLayer);;
 		event.registerLayerDefinition(ORNITHOMIMUS, OrnithomimusModel::createBodyLayer);
 		event.registerLayerDefinition(PALAEOSANIWA, PalaeosaniwaModel::createBodyLayer);
 		event.registerLayerDefinition(TRICERATOPS, TriceratopsModel::createBodyLayer);
@@ -910,6 +967,7 @@ public class ClientEvents {
 		event.registerLayerDefinition(TYRANNOSAURUS_BABY, TyrannosaurusBabyModel::createBodyLayer);
 		event.registerLayerDefinition(THORACOSAURUS, ThoracosaurusModel::createBodyLayer);
 		event.registerLayerDefinition(PACHYCEPHALOSAURUS, PachycephalosaurusModel::createBodyLayer);
+		event.registerLayerDefinition(CEPHALOLEICHNITES, CephaloleichnitesModel::createBodyLayer);
 		//Djadochta
 		event.registerLayerDefinition(AEPYORNITHOMIMUS, AepyornithomimusModel::createBodyLayer);
 		event.registerLayerDefinition(CITIPATI, CitipatiModel::createBodyLayer);
@@ -933,6 +991,8 @@ public class ClientEvents {
 		event.registerLayerDefinition(PSITTACOSAURUS, PsittacosaurusModel::createBodyLayer);
 		event.registerLayerDefinition(SINOSAUROPTERYX, SinosauropteryxModel::createBodyLayer);;
 		event.registerLayerDefinition(YUTYRANNUS, YutyrannusModel::createBodyLayer);
+		event.registerLayerDefinition(APOCLION, ApoclionModel::createBodyLayer);
+		event.registerLayerDefinition(CRETARANEUS, CretaraneusModel::createBodyLayer);
 		//Kayenta
 		event.registerLayerDefinition(CALSOYASUCHUS, CalsoyasuchusModel::createBodyLayer);
 		event.registerLayerDefinition(DILOPHOSAURUS, DilophosaurusModel::createBodyLayer);

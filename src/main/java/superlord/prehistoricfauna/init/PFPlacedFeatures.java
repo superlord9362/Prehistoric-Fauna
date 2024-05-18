@@ -690,6 +690,25 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM.getHolder().orElseThrow());
 	}
 	
+	public static void withYixianLakesPlants(BiomeGenerationSettings.Builder builder) {
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_ARAUCARIA_TREES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CONIOPTERIS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SMALL_MIXED_GINKGO_TREES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_MIXED_LARGE_GINKGO_TREES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, EPHEDRA.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LEEFRUCTUS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RUFFORDIA.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ARCHAEFRUCTUS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_CZEKANOWSKIA_TREES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_TAXUS_TREES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SCHIZOLEPIDOPSIS_TREES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_ARCHAEFRUCTUS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_PODOZAMITES_TREES.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM.getHolder().orElseThrow());
+	}
+	
 	public static void withYixianRegrowthPlants(BiomeGenerationSettings.Builder builder) {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RUFFORDIA.getHolder().orElseThrow());

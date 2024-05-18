@@ -87,7 +87,7 @@
 			}
 		]
 	},
-	"thoracosaurus_warning": {
+	"thoracosaurus_warn": {
 		"category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.thoracosaurusWarning",
 		"sounds": [
@@ -1298,6 +1298,138 @@
 	"acipenser_death": {
 		"category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.acipenserDeath",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"protopsephurus_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.protopsephurusHurt",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"protopsephurus_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.protopsephurusDeath",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"sinamia_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.sinamiaHurt",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"sinamia_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.sinamiaDeath",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"yanosteus_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.yanosteusHurt",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"yanosteus_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.yanosteusDeath",
 		"sounds": [
 			{
 				"name": "entity/fish/hurt1",

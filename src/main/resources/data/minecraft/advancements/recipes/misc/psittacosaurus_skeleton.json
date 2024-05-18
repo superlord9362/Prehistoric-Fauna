@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:psittacosaurus_skeleton"
+    ]
+  },
+  "criteria": {
+    "has_fossil": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+				"prehistoricfauna:fossilized_bones"
+          	]
+          }
+        ]
+      }
+    },
+	"has_skull": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+				"prehistoricfauna:psittacosaurus_skull"
+          	]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:psittacosaurus_skeleton"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_fossil",
+	  "has_skull",
+      "has_the_recipe"
+    ]
+  ]
+}

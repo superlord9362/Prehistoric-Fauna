@@ -186,6 +186,8 @@ public class PrehistoricFauna {
 		event.put(PFEntities.SAUROSUCHUS_SKELETON.get(), SaurosuchusSkeleton.createAttributes().build());
 		event.put(PFEntities.ISCHIGUALASTIA_SKELETON.get(), IschigualastiaSkeleton.createAttributes().build());
 		event.put(PFEntities.HERRERASAURUS_SKELETON.get(), HerrerasaurusSkeleton.createAttributes().build());
+		event.put(PFEntities.PSITTACOSAURUS_SKELETON.get(), PsittacosaurusSkeleton.createAttributes().build());
+		event.put(PFEntities.PSITTACOSAURUS_SKULL.get(), PsittacosaurusSkull.createAttributes().build());
 		event.put(PFEntities.HENOS.get(), Henos.createAttributes().build());
 		event.put(PFEntities.ARGANODUS.get(), Arganodus.createAttributes().build());
 		event.put(PFEntities.CERATODUS.get(), Ceratodus.createAttributes().build());
@@ -259,6 +261,13 @@ public class PrehistoricFauna {
 		event.put(PFEntities.PSITTACOSAURUS.get(), Psittacosaurus.createAttributes().build());
 		event.put(PFEntities.SINOSAUROPTERYX.get(), Sinosauropteryx.createAttributes().build());
 		event.put(PFEntities.INCISIVOSAURUS.get(), Incisivosaurus.createAttributes().build());
+		event.put(PFEntities.CEPHALOLEICHNITES.get(), Cephaloleichnites.createAttributes().build());
+		event.put(PFEntities.APOCLION.get(), Apoclion.createAttributes().build());
+		event.put(PFEntities.CRETARANEUS.get(), Cretaraneus.createAttributes().build());
+		event.put(PFEntities.YANOSTEUS.get(), Yanosteus.createAttributes().build());
+		event.put(PFEntities.PROTOPSEPHURUS.get(), Protopsephurus.createAttributes().build());
+		event.put(PFEntities.SINAMIA.get(), Sinamia.createAttributes().build());
+		event.put(PFEntities.EDMONTOSAURUS.get(), Edmontosaurus.createAttributes().build());
 	}
 
 	public final static CreativeModeTab PF_BUILDING = new CreativeModeTab("prehistoric_building_tab") {
@@ -404,8 +413,17 @@ public class PrehistoricFauna {
 		SpawnPlacements.register(PFEntities.PSITTACOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.SINOSAUROPTERYX.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.INCISIVOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.EDMONTOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.LAND_SENTINEL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, LandSentinel::canSpawn);
 		SpawnPlacements.register(PFEntities.CAVE_SENTINEL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, CaveSentinel::canSpawn);
+		SpawnPlacements.register(PFEntities.PROTOPSEPHURUS.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Protopsephurus::checkAncientFishSpawnRules);
+		SpawnPlacements.register(PFEntities.SINAMIA.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Sinamia::checkAncientFishSpawnRules);
+		SpawnPlacements.register(PFEntities.YANOSTEUS.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Yanosteus::checkAncientFishSpawnRules);
+		SpawnPlacements.register(PFEntities.GOBIULUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Gobiulus::canBugSpawn);
+		SpawnPlacements.register(PFEntities.DERMESTID_BEETLE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, DermestidBeetle::canBugSpawn);
+		SpawnPlacements.register(PFEntities.CRETARANEUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Cretaraneus::canBugSpawn);
+		SpawnPlacements.register(PFEntities.APOCLION.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Apoclion::canBugSpawn);
+		SpawnPlacements.register(PFEntities.CEPHALOLEICHNITES.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Cephaloleichnites::canBugSpawn);
 		GeologicalHammerEvents.init();
 	}
 

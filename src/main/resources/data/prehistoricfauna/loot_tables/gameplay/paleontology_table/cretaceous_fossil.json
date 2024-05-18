@@ -7,7 +7,7 @@
 				{
 					"type": "minecraft:item",
 					"weight": 10,
-					"name": "prehistoricfauna:siltstone"
+					"name": "prehistoricfauna:chalk"
 				},
 				{
 					"type": "minecraft:item",
@@ -83,6 +83,11 @@
 					"type": "minecraft:item",
 					"weight": 2.5,
 					"name": "prehistoricfauna:protoceratops_skull"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 2.5,
+					"name": "prehistoricfauna:psittacosaurus_skull"
 				}
 			]
 		}

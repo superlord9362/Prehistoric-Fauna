@@ -10,6 +10,7 @@ import java.util.concurrent.Executor;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -60,7 +61,7 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 	private float[][][] terrainShapeSamplePoints;
 	//private final Aquifer.FluidPicker globalFluidPicker;
 	//private final NoiseRouter router;
-
+	
 	public CretaceousChunkGenerator(Registry<StructureSet> pStructureSets, BiomeSource pBiomeSource, Holder<NoiseGeneratorSettings> settings) {
 		this(pStructureSets, pBiomeSource, settings, 0L);
 	}
@@ -261,7 +262,12 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 		float swampNoise = noise.GetNoise((float) x * swampFrequency, 0, (float) z * swampFrequency);
 		swampNoise = (1.0F - swampNoise * swampNoise);
 		swampNoise *= (y - seaLevel) * 0.2;
-
+		
+		float lakeFrequency = 1.5F;
+		float lakeNoise = noise.GetNoise((float) x * lakeFrequency, 0, (float) z * lakeFrequency);
+		lakeNoise = (1.0F - lakeNoise * lakeNoise);
+		lakeNoise *= (y - seaLevel) * 1.2;
+		
 		float riverFrequency = 0.1F;
 		float riverNoise = noise.GetNoise((float) x * riverFrequency, 0, (float) z * riverFrequency);
 		riverNoise = (1.0F - riverNoise * riverNoise);
@@ -325,6 +331,11 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 			//sample *= 12.6F;
 			sample -= flatsNoise;
 			//sample *= 12.5;
+		}
+		if (biome.is(PFBiomes.YIXIAN_LAKES.getKey())) {
+			sample *= 2.2F;
+			sample -= lakeNoise + 5;
+			//sample *= 0.6F;
 		}
 		if (biome.is(PFBiomes.HELL_CREEK_BLUFFS.getKey()) || biome.is(PFBiomes.DJADOCHTA_DUNES.getKey())) {
 			sample *= 1.6F;

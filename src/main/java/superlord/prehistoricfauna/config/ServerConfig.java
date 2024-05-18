@@ -8,6 +8,7 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue ankylosaurusHellCreekRedwoodsSpawnWeight;
 	public final ForgeConfigSpec.IntValue anzuHellCreekRedwoodsSpawnWeight;
 	public final ForgeConfigSpec.IntValue basilemysHellCreekRedwoodsSpawnWeight;
+	public final ForgeConfigSpec.IntValue cephaloleichnitesHellCreekRedwoodsSpawnWeight;
 	public final ForgeConfigSpec.IntValue cyclurusHellCreekRedwoodsSpawnWeight;
 	public final ForgeConfigSpec.IntValue dakotaraptorHellCreekRedwoodsSpawnWeight;
 	public final ForgeConfigSpec.IntValue didelphodonHellCreekRedwoodsSpawnWeight;
@@ -30,6 +31,7 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue ankylosaurusHellCreekHardwoodForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue anzuHellCreekHardwoodForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue basilemysHellCreekHardwoodForestSpawnWeight;
+	public final ForgeConfigSpec.IntValue cephaloleichnitesHellCreekHardwoodForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue cyclurusHellCreekHardwoodForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue dakotaraptorHellCreekHardwoodForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue didelphodonHellCreekHardwoodForestSpawnWeight;
@@ -52,6 +54,7 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue ankylosaurusHellCreekClearingSpawnWeight;
 	public final ForgeConfigSpec.IntValue anzuHellCreekClearingSpawnWeight;
 	public final ForgeConfigSpec.IntValue basilemysHellCreekClearingSpawnWeight;
+	public final ForgeConfigSpec.IntValue cephaloleichnitesHellCreekClearingSpawnWeight;
 	public final ForgeConfigSpec.IntValue cyclurusHellCreekClearingSpawnWeight;
 	public final ForgeConfigSpec.IntValue dakotaraptorHellCreekClearingSpawnWeight;
 	public final ForgeConfigSpec.IntValue didelphodonHellCreekClearingSpawnWeight;
@@ -88,6 +91,7 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue cyclurusHellCreekBluffsSpawnWeight;
 	public final ForgeConfigSpec.IntValue palaeosaniwaHellCreekBluffsSpawnWeight;
 	public final ForgeConfigSpec.IntValue ornithomimusHellCreekBluffsSpawnWeight;
+	public final ForgeConfigSpec.IntValue cephaloleichnitesHellCreekBluffsSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelHellCreekBluffsSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelHellCreekBluffsSpawnWeight;
 	//Hell Creek Swamp
@@ -109,6 +113,7 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue pachycephalosaurusHellCreekSwampSpawnWeight;
 	public final ForgeConfigSpec.IntValue palaeosaniwaHellCreekSwampSpawnWeight;
 	public final ForgeConfigSpec.IntValue ankylosaurusHellCreekSwampSpawnWeight;
+	public final ForgeConfigSpec.IntValue cephaloleichnitesHellCreekSwampSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelHellCreekSwampSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelHellCreekSwampSpawnWeight;
 	//Hell Creek River
@@ -116,6 +121,7 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue ankylosaurusHellCreekRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue anzuHellCreekRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue basilemysHellCreekRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue cephaloleichnitesHellCreekRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue cyclurusHellCreekRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue dakotaraptorHellCreekRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue didelphodonHellCreekRiverSpawnWeight;
@@ -134,64 +140,73 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue caveSentinelHellCreekRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelHellCreekRiverSpawnWeight;
 	//Morrison Savanna
-	public final ForgeConfigSpec.IntValue stegosaurusMorrisonSavannahSpawnWeight;
-	public final ForgeConfigSpec.IntValue dryosaurusMorrisonSavannahSpawnWeight;
-	public final ForgeConfigSpec.IntValue ceratosaurusMorrisonSavannahSpawnWeight;
 	public final ForgeConfigSpec.IntValue allosaurusMorrisonSavannahSpawnWeight;
-	public final ForgeConfigSpec.IntValue hesperornithoidesMorrisonSavannahSpawnWeight;
-	public final ForgeConfigSpec.IntValue eilenodonMorrisonSavannahSpawnWeight;
 	public final ForgeConfigSpec.IntValue camarasaurusMorrisonSavannahSpawnWeight;
 	public final ForgeConfigSpec.IntValue ceratodusMorrisonSavannahSpawnWeight;
+	public final ForgeConfigSpec.IntValue ceratosaurusMorrisonSavannahSpawnWeight;
+	public final ForgeConfigSpec.IntValue dermestidBeetleMorrisonSavannahSpawnWeight;
+	public final ForgeConfigSpec.IntValue dryosaurusMorrisonSavannahSpawnWeight;
+	public final ForgeConfigSpec.IntValue eilenodonMorrisonSavannahSpawnWeight;
+	public final ForgeConfigSpec.IntValue hesperornithoidesMorrisonSavannahSpawnWeight;
 	public final ForgeConfigSpec.IntValue potamoceratodusMorrisonSavannahSpawnWeight;
+	public final ForgeConfigSpec.IntValue stegosaurusMorrisonSavannahSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelMorrisonSavannahSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelMorrisonSavannahSpawnWeight;
 	//Morrison Hills
-	public final ForgeConfigSpec.IntValue stegosaurusMorrisonHillsSpawnWeight;
-	public final ForgeConfigSpec.IntValue dryosaurusMorrisonHillsSpawnWeight;
-	public final ForgeConfigSpec.IntValue ceratosaurusMorrisonHillsSpawnWeight;
 	public final ForgeConfigSpec.IntValue allosaurusMorrisonHillsSpawnWeight;
-	public final ForgeConfigSpec.IntValue hesperornithoidesMorrisonHillsSpawnWeight;
-	public final ForgeConfigSpec.IntValue eilenodonMorrisonHillsSpawnWeight;
 	public final ForgeConfigSpec.IntValue camarasaurusMorrisonHillsSpawnWeight;
 	public final ForgeConfigSpec.IntValue ceratodusMorrisonHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue ceratosaurusMorrisonHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue dermestidBeetleMorrisonHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue dryosaurusMorrisonHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue eilenodonMorrisonHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue hesperornithoidesMorrisonHillsSpawnWeight;
 	public final ForgeConfigSpec.IntValue potamoceratodusMorrisonHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue stegosaurusMorrisonHillsSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelMorrisonHillsSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelMorrisonHillsSpawnWeight;
 	//Ischigualasto Forest
-	public final ForgeConfigSpec.IntValue exaeretodonIschigualastoForestSpawnWeight;
+	public final ForgeConfigSpec.IntValue ceratodusIschigualastoForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue chromogisaurusIschigualastoForestSpawnWeight;
+	public final ForgeConfigSpec.IntValue exaeretodonIschigualastoForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue herrerasaurusIschigualastoForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue hyperodapedonIschigualastoForestSpawnWeight;
-	public final ForgeConfigSpec.IntValue sillosuchusIschigualastoForestSpawnWeight;
-	public final ForgeConfigSpec.IntValue saurosuchusIschigualastoForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue ischigualastiaIschigualastoForestSpawnWeight;
-	public final ForgeConfigSpec.IntValue ceratodusIschigualastoForestSpawnWeight;
+	public final ForgeConfigSpec.IntValue saurosuchusIschigualastoForestSpawnWeight;
+	public final ForgeConfigSpec.IntValue sillosuchusIschigualastoForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelIschigualastoForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelIschigualastoForestSpawnWeight;
 	//Ischigualasto Clearing
-	public final ForgeConfigSpec.IntValue exaeretodonIschigualastoClearingSpawnWeight;
+	public final ForgeConfigSpec.IntValue ceratodusIschigualastoClearingSpawnWeight;
 	public final ForgeConfigSpec.IntValue chromogisaurusIschigualastoClearingSpawnWeight;
+	public final ForgeConfigSpec.IntValue exaeretodonIschigualastoClearingSpawnWeight;
 	public final ForgeConfigSpec.IntValue herrerasaurusIschigualastoClearingSpawnWeight;
 	public final ForgeConfigSpec.IntValue hyperodapedonIschigualastoClearingSpawnWeight;
-	public final ForgeConfigSpec.IntValue sillosuchusIschigualastoClearingSpawnWeight;
-	public final ForgeConfigSpec.IntValue saurosuchusIschigualastoClearingSpawnWeight;
 	public final ForgeConfigSpec.IntValue ischigualastiaIschigualastoClearingSpawnWeight;
-	public final ForgeConfigSpec.IntValue ceratodusIschigualastoClearingSpawnWeight;
+	public final ForgeConfigSpec.IntValue saurosuchusIschigualastoClearingSpawnWeight;
+	public final ForgeConfigSpec.IntValue sillosuchusIschigualastoClearingSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelIschigualastoClearingSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelIschigualastoClearingSpawnWeight;
 	//Ischigualasto Hills
-	public final ForgeConfigSpec.IntValue exaeretodonIschigualastoHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue ceratodusIschigualastoHillsSpawnWeight;
 	public final ForgeConfigSpec.IntValue chromogisaurusIschigualastoHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue exaeretodonIschigualastoHillsSpawnWeight;
 	public final ForgeConfigSpec.IntValue herrerasaurusIschigualastoHillsSpawnWeight;
 	public final ForgeConfigSpec.IntValue hyperodapedonIschigualastoHillsSpawnWeight;
-	public final ForgeConfigSpec.IntValue sillosuchusIschigualastoHillsSpawnWeight;
-	public final ForgeConfigSpec.IntValue saurosuchusIschigualastoHillsSpawnWeight;
 	public final ForgeConfigSpec.IntValue ischigualastiaIschigualastoHillsSpawnWeight;
-	public final ForgeConfigSpec.IntValue ceratodusIschigualastoHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue saurosuchusIschigualastoHillsSpawnWeight;
+	public final ForgeConfigSpec.IntValue sillosuchusIschigualastoHillsSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelIschigualastoHillsSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelIschigualastoHillsSpawnWeight;
 	//Ischigualasto River
 	public final ForgeConfigSpec.IntValue ceratodusIschigualastoRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue chromogisaurusIschigualastoRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue exaeretodonIschigualastoRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue herrerasaurusIschigualastoRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue hyperodapedonIschigualastoRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue ischigualastiaIschigualastoRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue saurosuchusIschigualastoRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue sillosuchusIschigualastoRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelIschigualastoRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelIschigualastoRiverSpawnWeight;
 	//Djadochta Dunes
@@ -209,6 +224,8 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue halszkaraptorDjadochtaDunesSpawnWeight;
 	public final ForgeConfigSpec.IntValue kolDjadochtaDunesSpawnWeight;
 	public final ForgeConfigSpec.IntValue byronosaurusDjadochtaDunesSpawnWeight;
+	public final ForgeConfigSpec.IntValue dermestidBeetleDjadochtaDunesSpawnWeight;
+	public final ForgeConfigSpec.IntValue gobiulusDjadochtaDunesSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelDjadochtaDunesSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelDjadochtaDunesSpawnWeight;
 	//Djadochta Alluvial Plains
@@ -226,6 +243,8 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue halszkaraptorDjadochtaAlluvialPlainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue kolDjadochtaAlluvialPlainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue byronosaurusDjadochtaAlluvialPlainsSpawnWeight;
+	public final ForgeConfigSpec.IntValue dermestidBeetleDjadochtaAlluvialPlainsSpawnWeight;
+	public final ForgeConfigSpec.IntValue gobiulusDjadochtaAlluvialPlainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelDjadochtaAlluvialPlainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelDjadochtaAlluvialPlainsSpawnWeight;
 	//Djadochta Arroyo
@@ -243,6 +262,8 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue halszkaraptorDjadochtaArroyoSpawnWeight;
 	public final ForgeConfigSpec.IntValue kolDjadochtaArroyoSpawnWeight;
 	public final ForgeConfigSpec.IntValue byronosaurusDjadochtaArroyoSpawnWeight;
+	public final ForgeConfigSpec.IntValue dermestidBeetleDjadochtaArroyoSpawnWeight;
+	public final ForgeConfigSpec.IntValue gobiulusDjadochtaArroyoSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelDjadochtaArroyoSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelDjadochtaArroyoSpawnWeight;
 	//Kayenta Buttes
@@ -281,6 +302,18 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue potamoceratodusKayentaDryForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelKayentaDryForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelKayentaDryForestSpawnWeight;
+	//Kayenta River
+	public final ForgeConfigSpec.IntValue dilophosaurusKayentaRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue sarahsaurusKayentaRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue scelidosaurusKayentaRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue scutellosaurusKayentaRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue megapnosaurusKayentaRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue kayentatheriumKayentaRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue calsoyasuchusKayentaRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue ceratodusKayentaRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue potamoceratodusKayentaRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue caveSentinelKayentaRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue landSentinelKayentaRiverSpawnWeight;
 	//Chinle Swamp
 	public final ForgeConfigSpec.IntValue coelophysisChinleSwampSpawnWeight;
 	public final ForgeConfigSpec.IntValue desmatosuchusChinleSwampSpawnWeight;
@@ -312,6 +345,13 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue caveSentinelChinleFlatsSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelChinleFlatsSpawnWeight;
 	//Chinle River
+	public final ForgeConfigSpec.IntValue coelophysisChinleRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue desmatosuchusChinleRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue placeriasChinleRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue poposaurusChinleRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue postosuchusChinleRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue trilophosaurusChinleRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue typothoraxChinleRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue chinleaChinleRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue arganodusChinleRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue mooreodontusChinleRiverSpawnWeight;
@@ -334,83 +374,128 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue lonchidionChinleWoodedMountainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelChinleWoodedMountainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelChinleWoodedMountainsSpawnWeight;
-	
 	//Yixian Forest
+	public final ForgeConfigSpec.IntValue apoclionYixianForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue beipiaosaurusYixianForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue changyuraptorYixianForestSpawnWeight;
+	public final ForgeConfigSpec.IntValue cretaraneusYixianForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue dilongYixianForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue dongbeititanYixianForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue incisivosaurusYixianForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue jinzhousaurusYixianForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue liaoningosaurusYixianForestSpawnWeight;
+	public final ForgeConfigSpec.IntValue protopsephurusYixianForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue psittacosaurusYixianForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue repenomamusYixianForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue ruixiniaYixianForestSpawnWeight;
+	public final ForgeConfigSpec.IntValue sinamiaYixianForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue sinosauropteryxYixianForestSpawnWeight;
+	public final ForgeConfigSpec.IntValue yanosteusYixianForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue yutyrannusYixianForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue zhenyuanlongYixianForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelYixianForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelYixianForestSpawnWeight;
+	//Yixian Lakes
+	public final ForgeConfigSpec.IntValue apoclionYixianLakesSpawnWeight;
+	public final ForgeConfigSpec.IntValue beipiaosaurusYixianLakesSpawnWeight;
+	public final ForgeConfigSpec.IntValue changyuraptorYixianLakesSpawnWeight;
+	public final ForgeConfigSpec.IntValue cretaraneusYixianLakesSpawnWeight;
+	public final ForgeConfigSpec.IntValue dilongYixianLakesSpawnWeight;
+	public final ForgeConfigSpec.IntValue dongbeititanYixianLakesSpawnWeight;
+	public final ForgeConfigSpec.IntValue incisivosaurusYixianLakesSpawnWeight;
+	public final ForgeConfigSpec.IntValue jinzhousaurusYixianLakesSpawnWeight;
+	public final ForgeConfigSpec.IntValue liaoningosaurusYixianLakesSpawnWeight;
+	public final ForgeConfigSpec.IntValue protopsephurusYixianLakesSpawnWeight;
+	public final ForgeConfigSpec.IntValue psittacosaurusYixianLakesSpawnWeight;
+	public final ForgeConfigSpec.IntValue repenomamusYixianLakesSpawnWeight;
+	public final ForgeConfigSpec.IntValue ruixiniaYixianLakesSpawnWeight;
+	public final ForgeConfigSpec.IntValue sinamiaYixianLakesSpawnWeight;
+	public final ForgeConfigSpec.IntValue sinosauropteryxYixianLakesSpawnWeight;
+	public final ForgeConfigSpec.IntValue yanosteusYixianLakesSpawnWeight;
+	public final ForgeConfigSpec.IntValue yutyrannusYixianLakesSpawnWeight;
+	public final ForgeConfigSpec.IntValue zhenyuanlongYixianLakesSpawnWeight;
+	public final ForgeConfigSpec.IntValue caveSentinelYixianLakesSpawnWeight;
+	public final ForgeConfigSpec.IntValue landSentinelYixianLakesSpawnWeight;
 	//Yixian Snowy Forest
+	public final ForgeConfigSpec.IntValue apoclionYixianSnowyForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue beipiaosaurusYixianSnowyForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue changyuraptorYixianSnowyForestSpawnWeight;
+	public final ForgeConfigSpec.IntValue cretaraneusYixianSnowyForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue dilongYixianSnowyForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue dongbeititanYixianSnowyForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue incisivosaurusYixianSnowyForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue jinzhousaurusYixianSnowyForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue liaoningosaurusYixianSnowyForestSpawnWeight;
+	public final ForgeConfigSpec.IntValue protopsephurusYixianSnowyForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue psittacosaurusYixianSnowyForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue repenomamusYixianSnowyForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue ruixiniaYixianSnowyForestSpawnWeight;
+	public final ForgeConfigSpec.IntValue sinamiaYixianSnowyForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue sinosauropteryxYixianSnowyForestSpawnWeight;
+	public final ForgeConfigSpec.IntValue yanosteusYixianSnowyForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue yutyrannusYixianSnowyForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue zhenyuanlongYixianSnowyForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelYixianSnowyForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelYixianSnowyForestSpawnWeight;
 	//Yixian Snowy Mountains
+	public final ForgeConfigSpec.IntValue apoclionYixianSnowyMountainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue beipiaosaurusYixianSnowyMountainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue changyuraptorYixianSnowyMountainsSpawnWeight;
+	public final ForgeConfigSpec.IntValue cretaraneusYixianSnowyMountainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue dilongYixianSnowyMountainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue dongbeititanYixianSnowyMountainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue incisivosaurusYixianSnowyMountainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue jinzhousaurusYixianSnowyMountainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue liaoningosaurusYixianSnowyMountainsSpawnWeight;
+	public final ForgeConfigSpec.IntValue protopsephurusYixianSnowyMountainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue psittacosaurusYixianSnowyMountainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue repenomamusYixianSnowyMountainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue ruixiniaYixianSnowyMountainsSpawnWeight;
+	public final ForgeConfigSpec.IntValue sinamiaYixianSnowyMountainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue sinosauropteryxYixianSnowyMountainsSpawnWeight;
+	public final ForgeConfigSpec.IntValue yanosteusYixianSnowyMountainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue yutyrannusYixianSnowyMountainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue zhenyuanlongYixianSnowyMountainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelYixianSnowyMountainsSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelYixianSnowyMountainsSpawnWeight;
 	//Yixian Regrowth
+	public final ForgeConfigSpec.IntValue apoclionYixianRegrowthSpawnWeight;
 	public final ForgeConfigSpec.IntValue beipiaosaurusYixianRegrowthSpawnWeight;
 	public final ForgeConfigSpec.IntValue changyuraptorYixianRegrowthSpawnWeight;
+	public final ForgeConfigSpec.IntValue cretaraneusYixianRegrowthSpawnWeight;
 	public final ForgeConfigSpec.IntValue dilongYixianRegrowthSpawnWeight;
 	public final ForgeConfigSpec.IntValue dongbeititanYixianRegrowthSpawnWeight;
 	public final ForgeConfigSpec.IntValue incisivosaurusYixianRegrowthSpawnWeight;
 	public final ForgeConfigSpec.IntValue jinzhousaurusYixianRegrowthSpawnWeight;
 	public final ForgeConfigSpec.IntValue liaoningosaurusYixianRegrowthSpawnWeight;
+	public final ForgeConfigSpec.IntValue protopsephurusYixianRegrowthSpawnWeight;
 	public final ForgeConfigSpec.IntValue psittacosaurusYixianRegrowthSpawnWeight;
 	public final ForgeConfigSpec.IntValue repenomamusYixianRegrowthSpawnWeight;
 	public final ForgeConfigSpec.IntValue ruixiniaYixianRegrowthSpawnWeight;
+	public final ForgeConfigSpec.IntValue sinamiaYixianRegrowthSpawnWeight;
 	public final ForgeConfigSpec.IntValue sinosauropteryxYixianRegrowthSpawnWeight;
+	public final ForgeConfigSpec.IntValue yanosteusYixianRegrowthSpawnWeight;
 	public final ForgeConfigSpec.IntValue yutyrannusYixianRegrowthSpawnWeight;
 	public final ForgeConfigSpec.IntValue zhenyuanlongYixianRegrowthSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelYixianRegrowthSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelYixianRegrowthSpawnWeight;
 	//Yixian Volcano
+	public final ForgeConfigSpec.IntValue apoclionYixianVolcanoSpawnWeight;
 	public final ForgeConfigSpec.IntValue beipiaosaurusYixianVolcanoSpawnWeight;
 	public final ForgeConfigSpec.IntValue changyuraptorYixianVolcanoSpawnWeight;
+	public final ForgeConfigSpec.IntValue cretaraneusYixianVolcanoSpawnWeight;
 	public final ForgeConfigSpec.IntValue dilongYixianVolcanoSpawnWeight;
 	public final ForgeConfigSpec.IntValue dongbeititanYixianVolcanoSpawnWeight;
 	public final ForgeConfigSpec.IntValue incisivosaurusYixianVolcanoSpawnWeight;
 	public final ForgeConfigSpec.IntValue jinzhousaurusYixianVolcanoSpawnWeight;
 	public final ForgeConfigSpec.IntValue liaoningosaurusYixianVolcanoSpawnWeight;
+	public final ForgeConfigSpec.IntValue protopsephurusYixianVolcanoSpawnWeight;
 	public final ForgeConfigSpec.IntValue psittacosaurusYixianVolcanoSpawnWeight;
 	public final ForgeConfigSpec.IntValue repenomamusYixianVolcanoSpawnWeight;
 	public final ForgeConfigSpec.IntValue ruixiniaYixianVolcanoSpawnWeight;
+	public final ForgeConfigSpec.IntValue sinamiaYixianVolcanoSpawnWeight;
 	public final ForgeConfigSpec.IntValue sinosauropteryxYixianVolcanoSpawnWeight;
+	public final ForgeConfigSpec.IntValue yanosteusYixianVolcanoSpawnWeight;
 	public final ForgeConfigSpec.IntValue yutyrannusYixianVolcanoSpawnWeight;
 	public final ForgeConfigSpec.IntValue zhenyuanlongYixianVolcanoSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelYixianVolcanoSpawnWeight;
@@ -452,13 +537,15 @@ public class ServerConfig {
 	public final ForgeConfigSpec.BooleanValue sauropodTrampling;
 	public final ForgeConfigSpec.BooleanValue softShellAndHardShellEggs;
 	public final ForgeConfigSpec.BooleanValue eggHeating;
-	
+
 	public ServerConfig(final ForgeConfigSpec.Builder builder) {
 		builder.push("Djadochta Formation");
 		builder.push("Djadochta Alluvial Plains");
 		this.aepyornithomimusDjadochtaAlluvialPlainsSpawnWeight = buildInt(builder, "Aepyornithomimus Djadochta Alluvial Plains Spawn Rate", "all", 2, 0, 300, "The spawn rate of Aepyornithomimus in the Djadochta Alluvial Plains biome. Default is 3");
 		this.byronosaurusDjadochtaAlluvialPlainsSpawnWeight = buildInt(builder, "Byronosaurus Djadochta Alluvial Plains Spawn Rate", "all", 6, 0, 300, "The spawn rate of Byronosaurus in the Djadochta Alluvial Plains biome. Default is 6");
 		this.citipatiDjadochtaAlluvialPlainsSpawnWeight = buildInt(builder, "Citipati Djadochta Alluvial Plains Spawn Rate", "all", 5, 0, 300, "The spawn rate of Citipati in the Djadochta Alluvial Plains biome. Default is 5");
+		this.dermestidBeetleDjadochtaAlluvialPlainsSpawnWeight = buildInt(builder, "Dermestid Beetle Djadochta Alluvial Plains Spawn Rate", "all", 7, 0, 300, "The spawn rate of Dermestid Beetles in the Djadochta Alluvial Plains biome. Default is 7");
+		this.gobiulusDjadochtaAlluvialPlainsSpawnWeight = buildInt(builder, "Gobiulus Djadochta Alluvial Plains Spawn Rate", "all", 5, 0, 300, "The spawn rate of Gobiulus in the Djadochta Alluvial Plains biome. Default is 5");
 		this.goyocephaleDjadochtaAlluvialPlainsSpawnWeight = buildInt(builder, "Goyocephale Djadochta Alluvial Plains Spawn Rate", "all", 4, 0, 300, "The spawn rate of Goyocephale in the Djadochta Alluvial Plains biome. Default is 4");
 		this.halszkaraptorDjadochtaAlluvialPlainsSpawnWeight = buildInt(builder, "Halszkaraptor Djadochta Alluvial Plains Spawn Rate", "all", 0, 0, 300, "The spawn rate of Halszkaraptor in the Djadochta Alluvial Plains biome. Default is 0");
 		this.harenaichthysDjadochtaAlluvialPlainsSpawnWeight = buildInt(builder, "Harenaichthys Djadochta Alluvial Plains Spawn Rate", "all", 0, 0, 300, "The spawn rate of Harenaichthys in the Djadochta Alluvial Plains biome. Default is 0");
@@ -477,6 +564,8 @@ public class ServerConfig {
 		this.aepyornithomimusDjadochtaArroyoSpawnWeight = buildInt(builder, "Aepyornithomimus Djadochta Arroyo Spawn Rate", "all", 12, 0, 300, "The spawn rate of Aepyornithomimus in the Djadochta Arroyo biome. Default is 12");
 		this.byronosaurusDjadochtaArroyoSpawnWeight = buildInt(builder, "Byronosaurus Djadochta Arroyo Spawn Rate", "all", 6, 0, 300, "The spawn rate of Byronosaurus in the Djadochta Arroyo biome. Default is 6");
 		this.citipatiDjadochtaArroyoSpawnWeight = buildInt(builder, "Citipati Djadochta Arroyo Spawn Rate", "all", 5, 0, 300, "The spawn rate of Citipati in the Djadochta Arroyo biome. Default is 5");
+		this.dermestidBeetleDjadochtaArroyoSpawnWeight = buildInt(builder, "Dermestid Beetle Djadochta Arroyo Spawn Rate", "all", 5, 0, 300, "The spawn rate of Dermestid Beetles in the Djadochta Arroyo biome. Default is 5");
+		this.gobiulusDjadochtaArroyoSpawnWeight = buildInt(builder, "Gobiulus Djadochta Arroyo Spawn Rate", "all", 7, 0, 300, "The spawn rate of Gobiulus in the Djadochta Alluvial Plains biome. Default is 7");
 		this.goyocephaleDjadochtaArroyoSpawnWeight = buildInt(builder, "Goyocephale Djadochta Arroyo Spawn Rate", "all", 8, 0, 300, "The spawn rate of Goyocephale in the Djadochta Arroyo biome. Default is 8");
 		this.halszkaraptorDjadochtaArroyoSpawnWeight = buildInt(builder, "Halszkaraptor Djadochta Arroyo Spawn Rate", "all", 10, 0, 300, "The spawn rate of Halszkaraptor in the Djadochta Arroyo biome. Default is 10");
 		this.harenaichthysDjadochtaArroyoSpawnWeight = buildInt(builder, "Harenaichthys Djadochta Arroyo Spawn Rate", "all", 5, 0, 0, "The spawn rate of Harenaichthys in the Djadochta Arroyo biome. Default is 5");
@@ -495,6 +584,8 @@ public class ServerConfig {
 		this.aepyornithomimusDjadochtaDunesSpawnWeight = buildInt(builder, "Aepyornithomimus Djadochta Dunes Spawn Rate", "all", 2, 0, 300, "The spawn rate of Aepyornithomimus in the Djadochta Dunes biome. Default is 3");
 		this.byronosaurusDjadochtaDunesSpawnWeight = buildInt(builder, "Byronosaurus Djadochta Dunes Spawn Rate", "all", 4, 0, 300, "The spawn rate of Byronosaurus in the Djadochta Dunes biome. Default is 4");
 		this.citipatiDjadochtaDunesSpawnWeight = buildInt(builder, "Citipati Djadochta Dunes Spawn Rate", "all", 5, 0, 300, "The spawn rate of Citipati in the Djadochta Dunes biome. Default is 5");
+		this.dermestidBeetleDjadochtaDunesSpawnWeight = buildInt(builder, "Dermestid Beetle Djadochta Dunes Spawn Rate", "all", 6, 0, 300, "The spawn rate of Dermestid Beetles in the Djadochta Dunes biome. Default is 6");
+		this.gobiulusDjadochtaDunesSpawnWeight = buildInt(builder, "Gobiulus Djadochta Dunes Spawn Rate", "all", 0, 0, 300, "The spawn rate of Gobiulus in the Djadochta Dunes biome. Default is 0");
 		this.goyocephaleDjadochtaDunesSpawnWeight = buildInt(builder, "Goyocephale Djadochta Dunes Spawn Rate", "all", 3, 0, 300, "The spawn rate of Goyocephale in the Djadochta Dunes biome. Default is 3");
 		this.halszkaraptorDjadochtaDunesSpawnWeight = buildInt(builder, "Halszkaraptor Djadochta Dunes Spawn Rate", "all", 0, 0, 300, "The spawn rate of Halszkaraptor in the Djadochta Dunes biome. Default is 0");
 		this.harenaichthysDjadochtaDunesSpawnWeight = buildInt(builder, "Harenaichthys Djadochta Dunes Spawn Rate", "all", 0, 0, 300, "The spawn rate of Harenaichthys in the Djadochta Dunes biome. Default is 0");
@@ -515,6 +606,7 @@ public class ServerConfig {
 		this.ankylosaurusHellCreekClearingSpawnWeight = buildInt(builder, "Ankylosaurus Hell Creek Clearing Spawn Rate", "all", 1, 0, 300, "The spawn rate of Ankylosaurus in the Hell Creek Clearing biome. Default is 1");
 		this.anzuHellCreekClearingSpawnWeight = buildInt(builder, "Anzu Hell Creek Clearing Spawn Weeight", "all", 3, 0, 300, "The spawn rate of Anzu in the Hell Creek Clearing biome. Default is 3");
 		this.basilemysHellCreekClearingSpawnWeight = buildInt(builder, "Basilemys Hell Creek Clearing Spawn Rate", "all", 5, 0, 300, "The spawn rate of Basilemys in the Hell Creek Clearing biome. Default is 5");
+		this.cephaloleichnitesHellCreekClearingSpawnWeight = buildInt(builder, "Cephaloleichnites Hell Creek Clearing Spawn Rate", "all", 7, 0, 300, "The spawn rate of Cephaloleichnites in the Hell Creek Clearing biome. Default is 7");
 		this.cyclurusHellCreekClearingSpawnWeight = buildInt(builder, "Cyclurus Hell Creek Clearing Spawn Rate", "all", 7, 0, 300, "The spawn rate of Cyclurus in the Hell Creek Clearing biome. Default is 7");
 		this.dakotaraptorHellCreekClearingSpawnWeight = buildInt(builder, "Dakotaraptor Hell Creek Clearing Spawn Rate", "all", 2, 0, 300, "The spawn rate of Dakotaraptor in the Hell Creek Clearing biome. Default is 2");
 		this.didelphodonHellCreekClearingSpawnWeight = buildInt(builder, "Didelphodon Hell Creek Clearing Spawn Rate", "all" , 5, 0, 300, "The spawn rate of Didelphodon in the Hell Creek Clearing biome. Default is 5");
@@ -537,6 +629,7 @@ public class ServerConfig {
 		this.acipenserHellCreekBluffsSpawnWeight = buildInt(builder, "Acipenser Hell Creek Bluffs Spawn Rate", "all", 2, 0, 300, "The spawn rate of Acipenser in the Hell Creek Bluffs biome. Default is 2");
 		this.ankylosaurusHellCreekBluffsSpawnWeight = buildInt(builder, "Ankylosaurus Hell Creek Bluffs Spawn Rate", "all", 13, 0, 300, "The spawn rate of Ankylosaurus in the Hell Creek Bluffs biome. Default is 13");
 		this.basilemysHellCreekBluffsSpawnWeight = buildInt(builder, "Basilemys Hell Creek Bluffs Spawn Rate", "all", 8, 0, 300, "The spawn rate of Basilemys in the Hell Creek Bluffs biome. Default is 8");
+		this.cephaloleichnitesHellCreekBluffsSpawnWeight = buildInt(builder, "Cephaloleichnites Hell Creek Bluffs Spawn Rate", "all", 7, 0, 300, "The spawn rate of Cephaloleichnites in the Hell Creek Bluffs biome. Default is 7");
 		this.cyclurusHellCreekBluffsSpawnWeight = buildInt(builder, "Cyclurus Hell Creek Bluffs Spawn Rate", "all", 8, 0, 300, "The spawn rate of Cyclurus in the Hell Creek Bluffs biome. Default is 8");
 		this.dakotaraptorHellCreekBluffsSpawnWeight = buildInt(builder, "Dakotaraptor Hell Creek Bluffs Spawn Rate", "all", 2, 0, 300, "The spawn rate of Dakotaraptor in the Hell Creek Bluffs biome. Default is 2");
 		this.dideldophodonHellCreekBluffsSpawnWeight = buildInt(builder, "Didelphodon Hell Creek Bluffs Spawn Rate", "all", 2, 0, 300, "The spawn rate of Didelphodon in the Hell Creek Bluffs biome. Default is 2");
@@ -560,6 +653,7 @@ public class ServerConfig {
 		this.ankylosaurusHellCreekHardwoodForestSpawnWeight = buildInt(builder, "Ankylosaurus Hell Creek Hardwood Forest Spawn Rate", "all", 3, 0, 300, "The spawn rate of Ankylosaurus in the Hell Creek Hardwood Forest biome. Default is 3");
 		this.anzuHellCreekHardwoodForestSpawnWeight = buildInt(builder, "Anzu Hell Creek Hardwood Forest Spawn Rate", "all", 7, 0, 300, "The spawn rate of Anzu in the Hell Creek Hardwood Forest biome. Default is 7");
 		this.basilemysHellCreekHardwoodForestSpawnWeight = buildInt(builder, "Basilemys Hell Creek Hardwood Forest Spawn Rate", "all", 2, 0, 300, "The spawn rate of Basilemys in the Hell Creek Hardwood Forest biome. Default is 2");
+		this.cephaloleichnitesHellCreekHardwoodForestSpawnWeight = buildInt(builder, "Cephaloleichnites Hell Creek Hardwood Forest Spawn Rate", "all", 7, 0, 300, "The spawn rate of Cephaloleichnites in the Hell Creek Hardwood Forest biome. Default is 7");
 		this.cyclurusHellCreekHardwoodForestSpawnWeight = buildInt(builder, "Cyclurus Hell Creek Hardwood Forest Spawn Rate", "all", 8, 0, 300, "The spawn rate of Cyclurus in the Hell Creek Hardwood Forest biome. Default is 8");
 		this.dakotaraptorHellCreekHardwoodForestSpawnWeight = buildInt(builder, "Dakotaraptor Hell Creek Hardwood Forest Spawn Rate", "all", 3, 0, 300, "The spawn rate of Dakotaraptor in the Hell Creek Hardwood Forest biome. Default is 3");
 		this.didelphodonHellCreekHardwoodForestSpawnWeight = buildInt(builder, "Didelphodon Hell Creek Hardwood Forest Spawn Rate", "all", 4, 0, 300, "The spawn rate of Didelphodon in the Hell Creek Hardwood Forest biome. Default is 4");
@@ -583,6 +677,7 @@ public class ServerConfig {
 		this.ankylosaurusHellCreekRedwoodsSpawnWeight = buildInt(builder, "Ankylosaurus Hell Creek Redwoods Spawn Rate", "all", 1, 0, 300, "The spawn rate of Ankylosaurus in the Hell Creek Redwoods biome. Default is 1");
 		this.anzuHellCreekRedwoodsSpawnWeight = buildInt(builder, "Anzu Hell Creek Redwoods Spawn Rate", "all", 7, 0, 300, "The spawn rate of Anzu in the Hell Creek Redwoods biome. Default is 7");
 		this.basilemysHellCreekRedwoodsSpawnWeight = buildInt(builder, "Basilemys Hell Creek Redwoods Spawn Rate", "all", 4, 0, 300, "The spawn rate of Basilemys in the Hell Creek Redwoods biome. Default is 4");
+		this.cephaloleichnitesHellCreekRedwoodsSpawnWeight = buildInt(builder, "Cephaloleichnites Hell Creek Redwoods Spawn Rate", "all", 7, 0, 300, "The spawn rate of Cephaloleichnites in the Hell Creek Redwoods biome. Default is 7");
 		this.cyclurusHellCreekRedwoodsSpawnWeight = buildInt(builder, "Cyclurus Hell Creek Redwoods Spawn Rate", "all", 8, 0, 300, "The spawn rate of Cyclurus in the Hell Creek Redwoods biome. Default is 8");
 		this.dakotaraptorHellCreekRedwoodsSpawnWeight = buildInt(builder, "Dakotaraptor Hell Creek Redwoods Spawn Rate", "all", 4, 0, 300, "The spawn rate of Dakotaraptor in the Hell Creek Redwoods biome. Default is 4");
 		this.didelphodonHellCreekRedwoodsSpawnWeight = buildInt(builder, "Didelphodon Hell Creek Redwoods Spawn Rate", "all", 6, 0, 300, "The spawn rate of Didelphodon in the Hell Creek Redwoods biome. Default is 6");
@@ -606,6 +701,7 @@ public class ServerConfig {
 		this.ankylosaurusHellCreekRiverSpawnWeight = buildInt(builder, "Ankylosaurus Hell Creek River Spawn Rate", "all", 1, 0, 300, "The spawn rate of Ankylosaurus in the Hell Creek River biome. Default is 1");
 		this.anzuHellCreekRiverSpawnWeight = buildInt(builder, "Anzu Hell Creek River Spawn Rate", "all", 2, 0, 300, "The spawn rate of Anzu in the Hell Creek River biome. Default is 2");
 		this.basilemysHellCreekRiverSpawnWeight = buildInt(builder, "Basilemys Hell Creek River Spawn Rate", "all", 4, 0, 300, "The spawn rate of Basilemys in the Hell Creek River biome. Default is 4");
+		this.cephaloleichnitesHellCreekRiverSpawnWeight = buildInt(builder, "Cephaloleichnites Hell Creek River Spawn Rate", "all", 0, 0, 300, "The spawn rate of Cephaloleichnites in the Hell Creek River biome. Default is 0");
 		this.cyclurusHellCreekRiverSpawnWeight = buildInt(builder, "Cyclurus Hell Creek River Spawn Rate", "all", 7, 0, 300, "The spawn rate of Cyclurus in the Hell Creek River biome. Default is 7");
 		this.dakotaraptorHellCreekRiverSpawnWeight = buildInt(builder, "Dakotaraptor Hell Creek River Spawn Rate", "all", 6, 0, 300, "The spawn rate of Dakotaraptor in the Hell Creek River biome. Default is 6");
 		this.didelphodonHellCreekRiverSpawnWeight = buildInt(builder, "Didelphodon Hell Creek River Spawn Rate", "all", 5, 0, 300, "The spawn rate of Didelphodon in the Hell Creek River biome. Default is 5");
@@ -628,6 +724,7 @@ public class ServerConfig {
 		this.acipenserHellCreekSwampSpawnWeight = buildInt(builder, "Acipenser Hell Creek Swamp Spawn Rate", "all", 7, 0, 300, "The spawn rate of Acipenser in the Hell Creek Swamp biome. Default is 7");
 		this.ankylosaurusHellCreekSwampSpawnWeight = buildInt(builder, "Ankylosaurus Hell Creek Swamp Spawn Rate", "all", 1, 0, 300, "The spawn rate of Ankylosaurus in the Hell Creek Swamp biome. Default is 1");
 		this.basilemysHellCreekSwampSpawnWeight = buildInt(builder, "Basilemys Hell Creek Swamp Spawn Rate", "all", 3, 0, 300, "The spawn rate of Basilemys in the Hell Creek Swamp biome. Default is 3");
+		this.cephaloleichnitesHellCreekSwampSpawnWeight = buildInt(builder, "Cephaloleichnites Hell Creek Swamp Spawn Rate", "all", 3, 0, 300, "The spawn rate of Cephaloleichnites in the Hell Creek Swamp biome. Default is 3");
 		this.cyclurusHellCreekSwampSpawnWeight = buildInt(builder, "Cyclurus Hell Creek Swamp Spawn Rate", "all", 4, 0, 300, "The spawn rate of Cyclurus in the Hell Creek Swamp biome. Default is 4");
 		this.dakotaraptorHellCreekSwampSpawnWeight = buildInt(builder, "Dakotaraptor Hell Creek Swamp Spawn Rate", "all", 0, 0, 300, "The spawn rate of Dakotaraptor in the Hell Creek Swamp biome. Default is 0");
 		this.didelphodonHellCreekSwampSpawnWeight = buildInt(builder, "Didelphodon Hell Creek Swamp Spawn Rate", "all", 8, 0, 300, "The spawn rate of Didelphodon in the Hell Creek Swamp biome. Default is 8");
@@ -648,85 +745,132 @@ public class ServerConfig {
 		builder.pop(2);
 		builder.push("Yixian Formation");
 		builder.push("Yixian Forest");
+		this.apoclionYixianForestSpawnWeight = buildInt(builder, "Apoclion Yixian Forest Spawn Rate", "all", 6, 0, 300, "The spawn rate of Apoclion in the Yixian Forest biome. Default is 6");
 		this.beipiaosaurusYixianForestSpawnWeight = buildInt(builder, "Beipiaosaurus Yixian Forest Spawn Rate", "all", 3, 0, 300, "The spawn rate of Beipiaosaurus in Yixian Forest biome. Default is 3");
 		this.changyuraptorYixianForestSpawnWeight = buildInt(builder, "Changyuraptor Yixian Forest Spawn Rate", "all", 7, 0, 300, "The spawn rate of Changyuraptor in Yixian Forest biome. Default is 7");
+		this.cretaraneusYixianForestSpawnWeight = buildInt(builder, "Cretaraneus Yixian Forest Spawn Rate", "all", 3, 0, 300, "The spawn rate of Cretaraneus in the Yixian Forest biome. Default is 3");
 		this.dilongYixianForestSpawnWeight = buildInt(builder, "Dilong Yixian Forest Spawn Rate", "all", 4, 0, 300, "The spawn rate of Dilong in Yixian Forest biome. Default is 4");
 		this.dongbeititanYixianForestSpawnWeight = buildInt(builder, "Dongbeititan Yixian Forest Spawn Rate", "all", 8, 0, 300, "The spawn rate of Dongbeititan in Yixian Forest biome. Default is 8");
 		this.incisivosaurusYixianForestSpawnWeight = buildInt(builder, "Incivosaurus Yixian Forest Spawn Rate", "all", 4, 0, 300, "The spawn rate of Incisivosaurus in Yixian Forest biome. Default is 4");
 		this.jinzhousaurusYixianForestSpawnWeight = buildInt(builder, "Jinzhousaurus Yixian Forest Spawn Rate", "all", 10, 0, 300, "The spawn rate of Jinzhousaurus in Yixian Forest biome. Default is 10");
 		this.liaoningosaurusYixianForestSpawnWeight = buildInt(builder, "Liaoningosaurus Yixian Forest Spawn Rate", "all", 16, 0, 300, "The spawn rate of Liaoningosaurus in Yixian Forest biome. Default is 16");
+		this.protopsephurusYixianForestSpawnWeight = buildInt(builder, "Protopsephurus Yixian Forest Spawn Rate", "all", 5, 0, 300, "The spawn rate of Protopsephurus in the Yixian Forest biome. Default is 5");
 		this.psittacosaurusYixianForestSpawnWeight = buildInt(builder, "Psittacosaurus Yixian Forest Spawn Rate", "all", 18, 0, 300, "The spawn rate of Psittacosaurus in Yixian Forest biome. Default is 18");
 		this.repenomamusYixianForestSpawnWeight = buildInt(builder, "Repenomamus Yixian Forest Spawn Rate", "all", 13, 0, 300, "The spawn rate of Repenomamus in Yixian Forest biome. Default is 13");
 		this.ruixiniaYixianForestSpawnWeight = buildInt(builder, "Ruixinia Yixian Forest Spawn Rate", "all", 7, 0, 300, "The spawn rate of Ruixinia in Yixian Forest biome. Default is 7");
+		this.sinamiaYixianForestSpawnWeight = buildInt(builder, "Sinamia Yixian Forest Spawn Rate", "all", 8, 0, 300, "The spawn rate of Sinamia in the Yixian Forest biome. Default is 8");
 		this.sinosauropteryxYixianForestSpawnWeight = buildInt(builder, "Sinosauropteryx Yixian Forest Spawn Rate", "all", 12, 0, 300, "The spawn rate of Sinosauropteryx in Yixian Forest biome. Default is 9");
-		this.yutyrannusYixianForestSpawnWeight = buildInt(builder, "Yutyrannus Yixian Forest Spawn Rate", "all", 9, 0, 300, "The spawn rate of Yutyrannus in Yixian Forest biome. Default is ");
+		this.yanosteusYixianForestSpawnWeight = buildInt(builder, "Yanosteus Yixian Forest Spawn Rate", "all", 7, 0, 300, "The spawn rate of Yanosteus in the Yixian Forest biome. Default is 7");
+		this.yutyrannusYixianForestSpawnWeight = buildInt(builder, "Yutyrannus Yixian Forest Spawn Rate", "all", 9, 0, 300, "The spawn rate of Yutyrannus in Yixian Forest biome. Default is 9");
 		this.zhenyuanlongYixianForestSpawnWeight = buildInt(builder, "Zhenyuanlong Yixian Forest Spawn Rate", "all", 3, 0, 300, "The spawn rate of Zhenyuanlong in Yixian Forest biome. Default is 3");
 		this.caveSentinelYixianForestSpawnWeight = buildInt(builder, "Cave Sentinel Yixian Forest Spawn Rate", "all", 5, 0, 300, "The spawn rate of Cave Sentinels in the Yixian Forest biome. Default is 5");
 		this.landSentinelYixianForestSpawnWeight = buildInt(builder, "Land Sentinel Yixian Forest Spawn Rate", "all", 2, 0, 300, "The spawn rate of Land Sentinels in the Yixian Forest biome. Default is 2");
 		builder.pop();
+		builder.push("Yixian Lakes");
+		this.apoclionYixianLakesSpawnWeight = buildInt(builder, "Apoclion Yixian Lakes Spawn Rate", "all", 6, 0, 300, "The spawn rate of Apoclion in the Yixian Lakes biome. Default is 6");
+		this.beipiaosaurusYixianLakesSpawnWeight = buildInt(builder, "Beipiaosaurus Yixian Lakes Spawn Rate", "all", 3, 0, 300, "The spawn rate of Beipiaosaurus in Yixian Lakes biome. Default is 3");
+		this.changyuraptorYixianLakesSpawnWeight = buildInt(builder, "Changyuraptor Yixian Lakes Spawn Rate", "all", 2, 0, 300, "The spawn rate of Changyuraptor in Yixian Lakes biome. Default is 2");
+		this.cretaraneusYixianLakesSpawnWeight = buildInt(builder, "Cretaraneus Yixian Lakes Spawn Rate", "all", 3, 0, 300, "The spawn rate of Cretaraneus in the Yixian Lakes biome. Default is 3");
+		this.dilongYixianLakesSpawnWeight = buildInt(builder, "Dilong Yixian Lakes Spawn Rate", "all", 4, 0, 300, "The spawn rate of Dilong in Yixian Lakes biome. Default is 4");
+		this.dongbeititanYixianLakesSpawnWeight = buildInt(builder, "Dongbeititan Yixian Lakes Spawn Rate", "all", 14, 0, 300, "The spawn rate of Dongbeititan in Yixian Lakes biome. Default is 14");
+		this.incisivosaurusYixianLakesSpawnWeight = buildInt(builder, "Incivosaurus Yixian Lakes Spawn Rate", "all", 4, 0, 300, "The spawn rate of Incisivosaurus in Yixian Lakes biome. Default is 4");
+		this.jinzhousaurusYixianLakesSpawnWeight = buildInt(builder, "Jinzhousaurus Yixian Lakes Spawn Rate", "all", 12, 0, 300, "The spawn rate of Jinzhousaurus in Yixian Lakes biome. Default is 12");
+		this.liaoningosaurusYixianLakesSpawnWeight = buildInt(builder, "Liaoningosaurus Yixian Lakes Spawn Rate", "all", 9, 0, 300, "The spawn rate of Liaoningosaurus in Yixian Lakes biome. Default is 9");
+		this.protopsephurusYixianLakesSpawnWeight = buildInt(builder, "Protopsephurus Yixian Lakes Spawn Rate", "all", 8, 0, 300, "The spawn rate of Protopsephurus in the Yixian Lakes biome. Default is 8");
+		this.psittacosaurusYixianLakesSpawnWeight = buildInt(builder, "Psittacosaurus Yixian Lakes Spawn Rate", "all", 18, 0, 300, "The spawn rate of Psittacosaurus in Yixian Lakes biome. Default is 18");
+		this.repenomamusYixianLakesSpawnWeight = buildInt(builder, "Repenomamus Yixian Lakes Spawn Rate", "all", 13, 0, 300, "The spawn rate of Repenomamus in Yixian Lakes biome. Default is 13");
+		this.ruixiniaYixianLakesSpawnWeight = buildInt(builder, "Ruixinia Yixian Lakes Spawn Rate", "all", 12, 0, 300, "The spawn rate of Ruixinia in Yixian Lakes biome. Default is 12");
+		this.sinamiaYixianLakesSpawnWeight = buildInt(builder, "Sinamia Yixian Lakes Spawn Rate", "all", 12, 0, 300, "The spawn rate of Sinamia in the Yixian Lakes biome. Default is 12");
+		this.sinosauropteryxYixianLakesSpawnWeight = buildInt(builder, "Sinosauropteryx Yixian Lakes Spawn Rate", "all", 12, 0, 300, "The spawn rate of Sinosauropteryx in Yixian Lakes biome. Default is 9");
+		this.yanosteusYixianLakesSpawnWeight = buildInt(builder, "Yanosteus Yixian Lakes Spawn Rate", "all", 10, 0, 300, "The spawn rate of Yanosteus in the Yixian Lakes biome. Default is 10");
+		this.yutyrannusYixianLakesSpawnWeight = buildInt(builder, "Yutyrannus Yixian Lakes Spawn Rate", "all", 9, 0, 300, "The spawn rate of Yutyrannus in Yixian Lakes biome. Default is 9");
+		this.zhenyuanlongYixianLakesSpawnWeight = buildInt(builder, "Zhenyuanlong Yixian Lakes Spawn Rate", "all", 5, 0, 300, "The spawn rate of Zhenyuanlong in Yixian Lakes biome. Default is 5");
+		this.caveSentinelYixianLakesSpawnWeight = buildInt(builder, "Cave Sentinel Yixian Lakes Spawn Rate", "all", 5, 0, 300, "The spawn rate of Cave Sentinels in the Yixian Lakes biome. Default is 5");
+		this.landSentinelYixianLakesSpawnWeight = buildInt(builder, "Land Sentinel Yixian Lakes Spawn Rate", "all", 2, 0, 300, "The spawn rate of Land Sentinels in the Yixian Lakes biome. Default is 2");
+		builder.pop();
 		builder.push("Yixian Regrowth");
+		this.apoclionYixianRegrowthSpawnWeight = buildInt(builder, "Apoclion Yixian Regrowth Spawn Rate", "all", 12, 0, 300, "The spawn rate of Apoclion in the Yixian Regrowth biome. Default is 12");
 		this.beipiaosaurusYixianRegrowthSpawnWeight = buildInt(builder, "Beipiaosaurus Yixian Regrowth Spawn Rate", "all", 8, 0, 300, "The spawn rate of Beipiaosaurus in Yixian Regrowth biome. Default is 8");
 		this.changyuraptorYixianRegrowthSpawnWeight = buildInt(builder, "Changyuraptor Yixian Regrowth Spawn Rate", "all", 0, 0, 300, "The spawn rate of Changyuraptor in Yixian Regrowth biome. Default is 0");
+		this.cretaraneusYixianRegrowthSpawnWeight = buildInt(builder, "Cretaraneus Yixian Lakes Spawn Rate", "all", 6, 0, 300, "The spawn rate of Cretaraneus in the Yixian Regrowth biome. Default is 6");
 		this.dilongYixianRegrowthSpawnWeight = buildInt(builder, "Dilong Yixian Regrowth Spawn Rate", "all", 3, 0, 300, "The spawn rate of Dilong in Yixian Regrowth biome. Default is 3");
 		this.dongbeititanYixianRegrowthSpawnWeight = buildInt(builder, "Dongbeititan Yixian Regrowth Spawn Rate", "all", 0, 0, 300, "The spawn rate of Dongbeititan in Yixian Regrowth biome. Default is 0");
 		this.incisivosaurusYixianRegrowthSpawnWeight = buildInt(builder, "Incivosaurus Yixian Regrowth Spawn Rate", "all", 6, 0, 300, "The spawn rate of Incisivosaurus in Yixian Regrowth biome. Default is 6");
 		this.jinzhousaurusYixianRegrowthSpawnWeight = buildInt(builder, "Jinzhousaurus Yixian Regrowth Spawn Rate", "all", 1, 0, 300, "The spawn rate of Jinzhousaurus in Yixian Regrowth biome. Default is 1");
 		this.liaoningosaurusYixianRegrowthSpawnWeight = buildInt(builder, "Liaoningosaurus Yixian Regrowth Spawn Rate", "all", 11, 0, 300, "The spawn rate of Liaoningosaurus in Yixian Regrowth biome. Default is 11");
+		this.protopsephurusYixianRegrowthSpawnWeight = buildInt(builder, "Protopsephurus Yixian Regrowth Spawn Rate", "all", 1, 0, 300, "The spawn rate of Protopsephurus in the Yixian Regrowth biome. Default is 1");
 		this.psittacosaurusYixianRegrowthSpawnWeight = buildInt(builder, "Psittacosaurus Yixian Regrowth Spawn Rate", "all", 9, 0, 300, "The spawn rate of Psittacosaurus in Yixian Regrowth biome. Default is 9");
 		this.repenomamusYixianRegrowthSpawnWeight = buildInt(builder, "Repenomamus Yixian Regrowth Spawn Rate", "all", 4, 0, 300, "The spawn rate of Repenomamus in Yixian Regrowth biome. Default is 4");
 		this.ruixiniaYixianRegrowthSpawnWeight = buildInt(builder, "Ruixinia Yixian Regrowth Spawn Rate", "all", 1, 0, 300, "The spawn rate of Ruixinia in Yixian Regrowth biome. Default is 1");
+		this.sinamiaYixianRegrowthSpawnWeight = buildInt(builder, "Sinamia Yixian Regrowth Spawn Rate", "all", 4, 0, 300, "The spawn rate of Sinamia in the Yixian Regrowth biome. Default is 4");
 		this.sinosauropteryxYixianRegrowthSpawnWeight = buildInt(builder, "Sinosauropteryx Yixian Regrowth Spawn Rate", "all", 13, 0, 300, "The spawn rate of Sinosauropteryx in Yixian Regrowth biome. Default is 13");
+		this.yanosteusYixianRegrowthSpawnWeight = buildInt(builder, "Yanosteus Yixian Regrowth Spawn Rate", "all", 2, 0, 300, "The spawn rate of Yanosteus in the Yixian Regrowth biome. Default is 2");
 		this.yutyrannusYixianRegrowthSpawnWeight = buildInt(builder, "Yutyrannus Yixian Regrowth Spawn Rate", "all", 0, 0, 300, "The spawn rate of Yutyrannus in Yixian Regrowth biome. Default is 0");
 		this.zhenyuanlongYixianRegrowthSpawnWeight = buildInt(builder, "Zhenyuanlong Yixian Regrowth Spawn Rate", "all", 0, 0, 300, "The spawn rate of Zhenyuanlong in Yixian Regrowth biome. Default is 0");
 		this.caveSentinelYixianRegrowthSpawnWeight = buildInt(builder, "Cave Sentinel Yixian Regrowth Spawn Rate", "all", 5, 0, 300, "The spawn rate of Cave Sentinels in the Yixian Regrowth biome. Default is 5");
 		this.landSentinelYixianRegrowthSpawnWeight = buildInt(builder, "Land Sentinel Yixian Regrowth Spawn Rate", "all", 2, 0, 300, "The spawn rate of Land Sentinels in the Yixian Regrowth biome. Default is 2");
 		builder.pop();
 		builder.push("Yixian Snowy Forest");
+		this.apoclionYixianSnowyForestSpawnWeight = buildInt(builder, "Apoclion Yixian Snowy Forest Spawn Rate", "all", 0, 0, 300, "The spawn rate of Apoclion in the Yixian Snowy Forest biome. Default is 0");
 		this.beipiaosaurusYixianSnowyForestSpawnWeight = buildInt(builder, "Beipiaosaurus Yixian Snowy Forest Spawn Rate", "all", 4, 0, 300, "The spawn rate of Beipiaosaurus in Yixian Snowy Forest biome. Default is 4");
 		this.changyuraptorYixianSnowyForestSpawnWeight = buildInt(builder, "Changyuraptor Yixian Snowy Forest Spawn Rate", "all", 7, 0, 300, "The spawn rate of Changyuraptor in Yixian Snowy Forest biome. Default is 7");
+		this.cretaraneusYixianSnowyForestSpawnWeight = buildInt(builder, "Cretaraneus Yixian Snowy Forest Spawn Rate", "all", 0, 0, 300, "The spawn rate of Cretaraneus in the Yixian Snowy Forest biome. Default is 0");
 		this.dilongYixianSnowyForestSpawnWeight = buildInt(builder, "Dilong Yixian Snowy Forest Spawn Rate", "all", 5, 0, 300, "The spawn rate of Dilong in Yixian Snowy Forest biome. Default is 5");
 		this.dongbeititanYixianSnowyForestSpawnWeight = buildInt(builder, "Dongbeititan Yixian Snowy Forest Spawn Rate", "all", 6, 0, 300, "The spawn rate of Dongbeititan in Yixian Snowy Forest biome. Default is 6");
 		this.incisivosaurusYixianSnowyForestSpawnWeight = buildInt(builder, "Incivosaurus Yixian Snowy Forest Spawn Rate", "all", 4, 0, 300, "The spawn rate of Incisivosaurus in Yixian Snowy Forest biome. Default is 4");
 		this.jinzhousaurusYixianSnowyForestSpawnWeight = buildInt(builder, "Jinzhousaurus Yixian Snowy Forest Spawn Rate", "all", 9, 0, 300, "The spawn rate of Jinzhousaurus in Yixian Snowy Forest biome. Default is 9");
 		this.liaoningosaurusYixianSnowyForestSpawnWeight = buildInt(builder, "Liaoningosaurus Yixian Snowy Forest Spawn Rate", "all", 12, 0, 300, "The spawn rate of Liaoningosaurus in Yixian Snowy Forest biome. Default is 12");
+		this.protopsephurusYixianSnowyForestSpawnWeight = buildInt(builder, "Protopsephurus Yixian Snowy Forest Spawn Rate", "all", 0, 0, 300, "The spawn rate of Protopsephurus in the Yixian Snowy Forest biome. Default is 0");
 		this.psittacosaurusYixianSnowyForestSpawnWeight = buildInt(builder, "Psittacosaurus Yixian Snowy Forest Spawn Rate", "all", 18, 0, 300, "The spawn rate of Psittacosaurus in Yixian Snowy Forest biome. Default is 18");
 		this.repenomamusYixianSnowyForestSpawnWeight = buildInt(builder, "Repenomamus Yixian Snowy Forest Spawn Rate", "all", 14, 0, 300, "The spawn rate of Repenomamus in Yixian Snowy Forest biome. Default is 14");
 		this.ruixiniaYixianSnowyForestSpawnWeight = buildInt(builder, "Ruixinia Yixian Snowy Forest Spawn Rate", "all", 8, 0, 300, "The spawn rate of Ruixinia in Yixian Snowy Forest biome. Default is 8");
+		this.sinamiaYixianSnowyForestSpawnWeight = buildInt(builder, "Sinamia Yixian Snowy Forest Spawn Rate", "all", 0, 0, 300, "The spawn rate of Sinamia in the Yixian Snowy Forest biome. Default is 0");
 		this.sinosauropteryxYixianSnowyForestSpawnWeight = buildInt(builder, "Sinosauropteryx Yixian Snowy Forest Spawn Rate", "all", 10, 0, 300, "The spawn rate of Sinosauropteryx in Yixian Snowy Forest biome. Default is 10");
+		this.yanosteusYixianSnowyForestSpawnWeight = buildInt(builder, "Yanosteus Yixian Snowy Forest Spawn Rate", "all", 0, 0, 300, "The spawn rate of Yanosteus in the Yixian Snowy Forest biome. Default is 0");
 		this.yutyrannusYixianSnowyForestSpawnWeight = buildInt(builder, "Yutyrannus Yixian Snowy Forest Spawn Rate", "all", 7, 0, 300, "The spawn rate of Yutyrannus in Yixian Snowy Forest biome. Default is 7");
 		this.zhenyuanlongYixianSnowyForestSpawnWeight = buildInt(builder, "Zhenyuanlong Yixian Snowy Forest Spawn Rate", "all", 5, 0, 300, "The spawn rate of Zhenyuanlong in Yixian Snowy Forest biome. Default is 5");
 		this.caveSentinelYixianSnowyForestSpawnWeight = buildInt(builder, "Cave Sentinel Yixian Snowy Forest Spawn Rate", "all", 5, 0, 300, "The spawn rate of Cave Sentinels in the Yixian Snowy Forest biome. Default is 5");
 		this.landSentinelYixianSnowyForestSpawnWeight = buildInt(builder, "Land Sentinel Yixian Snowy Forest Spawn Rate", "all", 2, 0, 300, "The spawn rate of Land Sentinels in the Yixian Snowy Forest biome. Default is 2");
 		builder.pop();
 		builder.push("Yixian Snowy Mountains");
+		this.apoclionYixianSnowyMountainsSpawnWeight = buildInt(builder, "Apoclion Yixian Snowy Mountains Spawn Rate", "all", 0, 0, 300, "The spawn rate of Apoclion in the Yixian Snowy Mountains biome. Default is 0");
 		this.beipiaosaurusYixianSnowyMountainsSpawnWeight = buildInt(builder, "Beipiaosaurus Yixian Snowy Mountains Spawn Rate", "all", 2, 0, 300, "The spawn rate of Beipiaosaurus in Yixian Snowy Mountains biome. Default is 2");
 		this.changyuraptorYixianSnowyMountainsSpawnWeight = buildInt(builder, "Changyuraptor Yixian Snowy Mountains Spawn Rate", "all", 1, 0, 300, "The spawn rate of Changyuraptor in Yixian Snowy Mountains biome. Default is 1");
+		this.cretaraneusYixianSnowyMountainsSpawnWeight = buildInt(builder, "Cretaraneus Yixian Snowy Mountains Spawn Rate", "all", 0, 0, 300, "The spawn rate of Cretaraneus in the Yixian Snowy Mountains biome. Default is 0");
 		this.dilongYixianSnowyMountainsSpawnWeight = buildInt(builder, "Dilong Yixian Snowy Mountains Spawn Rate", "all", 3, 0, 300, "The spawn rate of Dilong in Yixian Snowy Mountains biome. Default is 3");
 		this.dongbeititanYixianSnowyMountainsSpawnWeight = buildInt(builder, "Dongbeititan Yixian Snowy Mountains Spawn Rate", "all", 0, 0, 300, "The spawn rate of Dongbeititan in Yixian Snowy Mountains biome. Default is 0");
 		this.incisivosaurusYixianSnowyMountainsSpawnWeight = buildInt(builder, "Incivosaurus Yixian Snowy Mountains Spawn Rate", "all", 2, 0, 300, "The spawn rate of Incisivosaurus in Yixian Snowy Mountains biome. Default is 2");
 		this.jinzhousaurusYixianSnowyMountainsSpawnWeight = buildInt(builder, "Jinzhousaurus Yixian Snowy Mountains Spawn Rate", "all", 0, 0, 300, "The spawn rate of Jinzhousaurus in Yixian Snowy Mountains biome. Default is 0");
 		this.liaoningosaurusYixianSnowyMountainsSpawnWeight = buildInt(builder, "Liaoningosaurus Yixian Snowy Mountains Spawn Rate", "all", 1, 0, 300, "The spawn rate of Liaoningosaurus in Yixian Snowy Mountains biome. Default is 1");
+		this.protopsephurusYixianSnowyMountainsSpawnWeight = buildInt(builder, "Protopsephurus Yixian Snowy Mountains Spawn Rate", "all", 0, 0, 300, "The spawn rate of Protopsephurus in the Yixian Snowy Mountains biome. Default is 0");
 		this.psittacosaurusYixianSnowyMountainsSpawnWeight = buildInt(builder, "Psittacosaurus Yixian Snowy Mountains Spawn Rate", "all", 4, 0, 300, "The spawn rate of Psittacosaurus in Yixian Snowy Mountains biome. Default is 4");
 		this.repenomamusYixianSnowyMountainsSpawnWeight = buildInt(builder, "Repenomamus Yixian Snowy Mountains Spawn Rate", "all", 1, 0, 300, "The spawn rate of Repenomamus in Yixian Snowy Mountains biome. Default is 1");
 		this.ruixiniaYixianSnowyMountainsSpawnWeight = buildInt(builder, "Ruixinia Yixian Snowy Mountains Spawn Rate", "all", 0, 0, 300, "The spawn rate of Ruixinia in Yixian Snowy Mountains biome. Default is 0");
+		this.sinamiaYixianSnowyMountainsSpawnWeight = buildInt(builder, "Sinamia Yixian Snowy Mountains Spawn Rate", "all", 0, 0, 300, "The spawn rate of Sinamia in the Yixian Snowy Mountains biome. Default is 0");
 		this.sinosauropteryxYixianSnowyMountainsSpawnWeight = buildInt(builder, "Sinosauropteryx Yixian Snowy Mountains Spawn Rate", "all", 2, 0, 300, "The spawn rate of Sinosauropteryx in Yixian Snowy Mountains biome. Default is 2");
+		this.yanosteusYixianSnowyMountainsSpawnWeight = buildInt(builder, "Yanosteus Yixian Snowy Mountains Spawn Rate", "all", 0, 0, 300, "The spawn rate of Yanosteus in the Yixian Snowy Mountains biome. Default is 0");
 		this.yutyrannusYixianSnowyMountainsSpawnWeight = buildInt(builder, "Yutyrannus Yixian Snowy Mountains Spawn Rate", "all", 2, 0, 300, "The spawn rate of Yutyrannus in Yixian Snowy Mountains biome. Default is 2");
 		this.zhenyuanlongYixianSnowyMountainsSpawnWeight = buildInt(builder, "Zhenyuanlong Yixian Snowy Mountains Spawn Rate", "all", 1, 0, 300, "The spawn rate of Zhenyuanlong in Yixian Snowy Mountains biome. Default is 1");
 		this.caveSentinelYixianSnowyMountainsSpawnWeight = buildInt(builder, "Cave Sentinel Yixian Snowy Mountains Spawn Rate", "all", 5, 0, 300, "The spawn rate of Cave Sentinels in the Yixian Snowy Mountains biome. Default is 5");
 		this.landSentinelYixianSnowyMountainsSpawnWeight = buildInt(builder, "Land Sentinel Yixian Snowy Mountains Spawn Rate", "all", 2, 0, 300, "The spawn rate of Land Sentinels in the Yixian Snowy Mountains biome. Default is 2");
 		builder.pop();
 		builder.push("Yixian Volcano");
+		this.apoclionYixianVolcanoSpawnWeight = buildInt(builder, "Apoclion Yixian Volcano Spawn Rate", "all", 3, 0, 300, "The spawn rate of Apoclion in the Yixian Volcano biome. Default is 3");
 		this.beipiaosaurusYixianVolcanoSpawnWeight = buildInt(builder, "Beipiaosaurus Yixian Volcano Spawn Rate", "all", 0, 0, 300, "The spawn rate of Beipiaosaurus in Yixian Volcano biome. Default is 0");
 		this.changyuraptorYixianVolcanoSpawnWeight = buildInt(builder, "Changyuraptor Yixian Volcano Spawn Rate", "all", 0, 0, 300, "The spawn rate of Changyuraptor in Yixian Volcano biome. Default is 0");
+		this.cretaraneusYixianVolcanoSpawnWeight = buildInt(builder, "Cretaraneus Yixian Volcano Spawn Rate", "all", 1, 0, 300, "The spawn rate of Cretaraneus in the Yixian Volcano biome. Default is 1");
 		this.dilongYixianVolcanoSpawnWeight = buildInt(builder, "Dilong Yixian Volcano Spawn Rate", "all", 1, 0, 300, "The spawn rate of Dilong in Yixian Volcano biome. Default is 1");
 		this.dongbeititanYixianVolcanoSpawnWeight = buildInt(builder, "Dongbeititan Yixian Volcano Spawn Rate", "all", 0, 0, 300, "The spawn rate of Dongbeititan in Yixian Volcano biome. Default is 0");
 		this.incisivosaurusYixianVolcanoSpawnWeight = buildInt(builder, "Incivosaurus Yixian Volcano Spawn Rate", "all", 3, 0, 300, "The spawn rate of Incisivosaurus in Yixian Volcano biome. Default is 3");
 		this.jinzhousaurusYixianVolcanoSpawnWeight = buildInt(builder, "Jinzhousaurus Yixian Volcano Spawn Rate", "all", 0, 0, 300, "The spawn rate of Jinzhousaurus in Yixian Volcano biome. Default is 0");
 		this.liaoningosaurusYixianVolcanoSpawnWeight = buildInt(builder, "Liaoningosaurus Yixian Volcano Spawn Rate", "all", 5, 0, 300, "The spawn rate of Liaoningosaurus in Yixian Volcano biome. Default is 5");
+		this.protopsephurusYixianVolcanoSpawnWeight = buildInt(builder, "Protopsephurus Yixian Volcano Spawn Rate", "all", 0, 0, 300, "The spawn rate of Protopsephurus in the Yixian Volcano biome. Default is 0");
 		this.psittacosaurusYixianVolcanoSpawnWeight = buildInt(builder, "Psittacosaurus Yixian Volcano Spawn Rate", "all", 4, 0, 300, "The spawn rate of Psittacosaurus in Yixian Volcano biome. Default is 4");
 		this.repenomamusYixianVolcanoSpawnWeight = buildInt(builder, "Repenomamus Yixian Volcano Spawn Rate", "all", 2, 0, 300, "The spawn rate of Repenomamus in Yixian Volcano biome. Default is 2");
 		this.ruixiniaYixianVolcanoSpawnWeight = buildInt(builder, "Ruixinia Yixian Volcano Spawn Rate", "all", 0, 0, 300, "The spawn rate of Ruixinia in Yixian Volcano biome. Default is 0");
+		this.sinamiaYixianVolcanoSpawnWeight = buildInt(builder, "Sinamia Yixian Volcano Spawn Rate", "all", 0, 0, 300, "The spawn rate of Sinamia in the Yixian Volcano biome. Default is 0");
 		this.sinosauropteryxYixianVolcanoSpawnWeight = buildInt(builder, "Sinosauropteryx Yixian Volcano Spawn Rate", "all", 3, 0, 300, "The spawn rate of Sinosauropteryx in Yixian Volcano biome. Default is 3");
+		this.yanosteusYixianVolcanoSpawnWeight = buildInt(builder, "Yanosteus Yixian Volcano Spawn Rate", "all", 0, 0, 300, "The spawn rate of Yanosteus in the Yixian Volcano biome. Default is 0");
 		this.yutyrannusYixianVolcanoSpawnWeight = buildInt(builder, "Yutyrannus Yixian Volcano Spawn Rate", "all", 1, 0, 300, "The spawn rate of Yutyrannus in Yixian Volcano biome. Default is 1");
 		this.zhenyuanlongYixianVolcanoSpawnWeight = buildInt(builder, "Zhenyuanlong Yixian Volcano Spawn Rate", "all", 0, 0, 300, "The spawn rate of Zhenyuanlong in Yixian Volcano biome. Default is 0");
 		this.caveSentinelYixianVolcanoSpawnWeight = buildInt(builder, "Cave Sentinel Yixian Volcano Spawn Rate", "all", 5, 0, 300, "The spawn rate of Cave Sentinels in the Yixian Volcano biome. Default is 5");
@@ -771,6 +915,19 @@ public class ServerConfig {
 		this.scutellosaurusKayentaDryForestSpawnWeight = buildInt(builder, "Scutellosaurus Kayenta Dry Forest Spawn Rate", "all", 8, 0, 300, "The spawn rate of Scutellosaurus in the Kayenta Dry Forest biome. Default is 8");
 		this.caveSentinelKayentaDryForestSpawnWeight = buildInt(builder, "Cave Sentinel Kayenta Dry Forest Spawn Rate", "all", 5, 0, 300, "The spawn rate of Cave Sentinels in the Kayenta Dry Forest biome. Default is 5");
 		this.landSentinelKayentaDryForestSpawnWeight = buildInt(builder, "Land Sentinel Kayenta Dry Forest Spawn Rate", "all", 2, 0, 300, "The spawn rate of Land Sentinels in the Kayenta Dry Forest biome. Default is 2");
+		builder.pop();
+		builder.push("Kayenta River");
+		this.calsoyasuchusKayentaRiverSpawnWeight = buildInt(builder, "Calsoyasuchus Kayenta River Spawn Rate", "all", 3, 0, 300, "The spawn rate of Calsoyasuchus in the Kayenta River biome. Default is 3");
+		this.ceratodusKayentaRiverSpawnWeight = buildInt(builder, "Ceratodus Kayenta River Spawn Rate", "all", 3, 0, 300, "The spawn rate of Ceratodus in the Kayenta River biome. Default is 3");
+		this.dilophosaurusKayentaRiverSpawnWeight = buildInt(builder, "Dilophosaurus Kayenta River Spawn Rate", "all", 0, 0, 300, "The spawn rate of Dilophosaurus in the Kayenta River biome. Default is 0");
+		this.kayentatheriumKayentaRiverSpawnWeight = buildInt(builder, "Kayentatherium Kayenta River Spawn Rate", "all", 1, 0, 300, "The spawn rate of Kayentatherium in the Kayenta River biome. Default is 1");
+		this.megapnosaurusKayentaRiverSpawnWeight = buildInt(builder, "Megapnosaurus Kayenta River Spawn Rate", "all", 0, 1, 300, "The spawn rate of Megapnosaurus in the Kayenta River biome. Default is 0");
+		this.potamoceratodusKayentaRiverSpawnWeight = buildInt(builder, "Potamoceratodus Kayenta River Spawn Rate", "all", 2, 0, 300, "The spawn rate of Potamoceratodus in the Kayenta River biome. Default is 2");
+		this.sarahsaurusKayentaRiverSpawnWeight = buildInt(builder, "Sarahsaurus Kayenta River Spawn Rate", "all", 0, 0, 300, "The spawn rate of Sarahsaurus in the Kayenta River biome. Default is 0");
+		this.scelidosaurusKayentaRiverSpawnWeight = buildInt(builder, "Scelidosaurus Kayenta River Spawn Rate", "all", 0, 0, 300, "The spawn rate of Scelidosaurus in the Kayenta River biome. Default is 0");
+		this.scutellosaurusKayentaRiverSpawnWeight = buildInt(builder, "Scutellosaurus Kayenta River Spawn Rate", "all", 0, 0, 300, "The spawn rate of Scutellosaurus in the Kayenta River biome. Default is 0");
+		this.caveSentinelKayentaRiverSpawnWeight = buildInt(builder, "Cave Sentinel Kayenta River Spawn Rate", "all", 5, 0, 300, "The spawn rate of Cave Sentinels in the Kayenta River biome. Default is 5");
+		this.landSentinelKayentaRiverSpawnWeight = buildInt(builder, "Land Sentinel Kayenta River Spawn Rate", "all", 2, 0, 300, "The spawn rate of Land Sentinels in the Kayenta River biome. Default is 2");
 		builder.pop(2);
 		builder.push("Morrison Formation");
 		builder.push("Morrison Hills");
@@ -778,6 +935,7 @@ public class ServerConfig {
 		this.camarasaurusMorrisonHillsSpawnWeight = buildInt(builder, "Camarasaurus Morrison Hills Spawn Rate", "all", 2, 0, 300, "The spawn rate of Camarasaurus in the Morrison Hills biome. Default is 2");
 		this.ceratodusMorrisonHillsSpawnWeight = buildInt(builder, "Ceratodus Morrison Hills Spawn Rate", "all", 1, 0, 300, "The spawn rate of Ceratodus in the Morrison Hills biome. Default is 1");
 		this.ceratosaurusMorrisonHillsSpawnWeight = buildInt(builder, "Ceratosaurus Morrison Hills Spawn Rate", "all", 2, 0, 300, "The spawn rate of Ceratosaurus in the Morrison Hills biome. Default is 2");
+		this.dermestidBeetleMorrisonHillsSpawnWeight = buildInt(builder, "Dermestid Beetle Morrison Hills Spawn Rate", "all", 7, 0, 300, "The spawn rate of Dermestid Beetles in the Morrison Hills biome. Default is 7");
 		this.dryosaurusMorrisonHillsSpawnWeight = buildInt(builder, "Dryosaurus Morrison Hills Spawn Rate", "all", 7, 0, 300, "The spawn rate of Dryosaurus in the Morrison Hills biome. Default is 7");
 		this.eilenodonMorrisonHillsSpawnWeight = buildInt(builder, "Eilenodon Morrison Hills Spawn Rate", "all", 8, 0, 300, "The spawn rate of Eilenodon in the Morrison Hills biome. Default is 5");
 		this.hesperornithoidesMorrisonHillsSpawnWeight = buildInt(builder, "Hesperornithoides Morrison Hills Spawn Rate", "all", 7, 0, 300, "The spawn rate of Hesperornithoides in the Morrison Hills biome. Default is 4");
@@ -791,6 +949,7 @@ public class ServerConfig {
 		this.camarasaurusMorrisonSavannahSpawnWeight = buildInt(builder, "Camarasaurus Morrison Savanna Spawn Rate", "all", 2, 0, 300, "The spawn rate of Camarasaurus in the Morrison Savanna biome. Default is 2");
 		this.ceratodusMorrisonSavannahSpawnWeight = buildInt(builder, "Ceratodus Morrison Savanna Spawn Rate", "all", 1, 0, 300, "The spawn rate of Ceratodus in the Morrison Savanna biome. Default is 1");
 		this.ceratosaurusMorrisonSavannahSpawnWeight = buildInt(builder, "Ceratosaurus Morrison Savanna Spawn Rate", "all", 2, 0, 300, "The spawn rate of Ceratosaurus in the Morrison Savanna biome. Default is 2");
+		this.dermestidBeetleMorrisonSavannahSpawnWeight = buildInt(builder, "Dermestid Beetle Morrison Savanna Spawn Rate", "all", 7, 0, 300, "The spawn rate of Dermestid Beetles in the Morrison Savanna biome. Default is 7");
 		this.dryosaurusMorrisonSavannahSpawnWeight = buildInt(builder, "Dryosaurus Morrison Savanna Spawn Rate", "all", 7, 0, 300, "The spawn rate of Dryosaurus in the Morrison Savanna biome. Default is 7");
 		this.eilenodonMorrisonSavannahSpawnWeight = buildInt(builder, "Eilenodon Morrison Savanna Spawn Rate", "all", 8, 0, 300, "The spawn rate of Eilenodon in the Morrison Savanna biome. Default is 5");
 		this.hesperornithoidesMorrisonSavannahSpawnWeight = buildInt(builder, "Hesperornithoides Morrison Savanna Spawn Rate", "all", 7, 0, 300, "The spawn rate of Hesperornithoides in the Morrison Savanna biome. Default is 4");
@@ -819,9 +978,16 @@ public class ServerConfig {
 		builder.push("Chinle River");
 		this.arganodusChinleRiverSpawnWeight = buildInt(builder, "Arganodus Chinle River Spawn Rate", "all", 3, 0, 300, "The spawn rate of Arganodus in the Chinle River biome. Default is 4");
 		this.chinleaChinleRiverSpawnWeight = buildInt(builder, "Chinlea Chinle River Spawn Rate", "all", 4, 0, 300, "The spawn rate of Chinlea in the Chinle River biome. Default is 4");
+		this.coelophysisChinleRiverSpawnWeight = buildInt(builder, "Coelophysis Chinle River Spawn Rate", "all", 0, 0, 300, "The spawn rate of Coelophysis in the Chinle River biome. Default is 0");
+		this.desmatosuchusChinleRiverSpawnWeight = buildInt(builder, "Desmatosuchus Chinle River Spawn Rate", "all", 0, 0, 300, "The spawn rate of Desmatosuchus in the Chinle River biome. Default is 0");
 		this.lonchidionChinleRiverSpawnWeight = buildInt(builder, "Lonchidion Chinle River Spawn Rate", "all", 1, 0, 300, "The spawn rate of Lonchidion in the Chinle River biome. Default is 1");
 		this.mooreodontusChinleRiverSpawnWeight = buildInt(builder, "Mooreodontus Chinle River Spawn Rate", "all", 1, 0, 300, "The spawn rate of Mooreodontus in the Chinle River biome. Default is 1");
+		this.placeriasChinleRiverSpawnWeight = buildInt(builder, "Placerias Chinle River Spawn Rate", "all", 0, 0, 300, "The spawn rate of Placerias in the Chinle River biome. Default is 0");
+		this.poposaurusChinleRiverSpawnWeight = buildInt(builder, "Poposaurus Chinle River Spawn Rate", "all", 0, 0, 300, "The spawn rate of Poposaurus in the Chinle River biomes. Default is 0");
+		this.postosuchusChinleRiverSpawnWeight = buildInt(builder, "Postosuchus Chinle River Spawn Rate", "all", 0, 0, 300, "The spawn rate of Postosuchus in the Chinle River biome. Default is 0");
 		this.saurichthysChinleRiverSpawnWeight = buildInt(builder, "Saurichthys Chinle River Spawn Rate", "all", 2, 0, 300, "The spawn rate of Saurichthys in the Chinle River biome. Default is 2");
+		this.trilophosaurusChinleRiverSpawnWeight = buildInt(builder, "Trilophosaurus Chinle River Spawn Rate", "all", 0, 0, 300, "The spawn rate of Trilophosaurus in the Chinle River biome. Default is 0");
+		this.typothoraxChinleRiverSpawnWeight = buildInt(builder, "Typothorax Chinle River Spawn Rate", "all", 0, 0, 300, "The spawn rate of Typothorax in the Chinle River biome. Default is 0");
 		this.caveSentinelChinleRiverSpawnWeight = buildInt(builder, "Cave Sentinel Chinle River Spawn Rate", "all", 5, 0, 300, "The spawn rate of Cave Sentinels in the Chinle River biome. Default is 5");
 		this.landSentinelChinleRiverSpawnWeight = buildInt(builder, "Land Sentinel Chinle River Spawn Rate", "all", 2, 0, 300, "The spawn rate of Land Sentinels in the Chinle River biome. Default is 2");
 		builder.pop();
@@ -896,6 +1062,13 @@ public class ServerConfig {
 		builder.pop();
 		builder.push("Ischigualasto River");
 		this.ceratodusIschigualastoRiverSpawnWeight = buildInt(builder, "Ceratodus Ischigualasto River Spawn Rate", "all", 3, 0, 300, "The spawn rate of Ceratodus in the Ischigualasto River biome. Default is 3");
+		this.chromogisaurusIschigualastoRiverSpawnWeight = buildInt(builder, "Chromogisaurus Ischigualasto River Spawn Rate", "all", 0, 0, 300, "The spawn rate of Chromogisaurus in the Ischigualasto River biome. Default is 0");
+		this.exaeretodonIschigualastoRiverSpawnWeight = buildInt(builder, "Exaeretodon Ischigualasto River Spawn Rate", "all", 0, 0, 300, "The spawn rate of Exaeretodon in the Ischigualasto River biome. Default is 0");
+		this.herrerasaurusIschigualastoRiverSpawnWeight = buildInt(builder, "Herrerasaurus Ischigualasto River Spawn Rate", "all", 0, 0, 300, "The spawn rate of Herrerasaurus in the Ischigualasto River biome. Default is 0");
+		this.hyperodapedonIschigualastoRiverSpawnWeight = buildInt(builder, "Hyperodapedon Ischigualasto River Spawn Rate", "all", 0, 0, 300, "The spawn rate of Hyperodapedon in the Ischigualasto River biome. Default is 0");
+		this.ischigualastiaIschigualastoRiverSpawnWeight = buildInt(builder, "Ischigualastia Ischigualasto River Spawn Rate", "all", 0, 0, 300, "The spawn rate of Ischigualastia in the Ischigualasto River biome. Default is 0");
+		this.sillosuchusIschigualastoRiverSpawnWeight = buildInt(builder, "Sillosuchus Ischigualasto River Spawn Rate", "all", 0, 0, 300, "The spawn rate of Sillosuchus in the Ischigualasto River biome. Default is 0");
+		this.saurosuchusIschigualastoRiverSpawnWeight = buildInt(builder, "Saurosuchus Ischigualasto River Spawn Rate", "all", 0, 0, 300, "The spawn rate of Saurosuchus in the Ischigualasto River biome. Default is 0");
 		this.caveSentinelIschigualastoRiverSpawnWeight = buildInt(builder, "Cave Sentinel Ischigualasto River Spawn Rate", "all", 5, 0, 300, "The spawn rate of Cave Sentinels in the Ischigualasto River biome. Default is 5");
 		this.landSentinelIschigualastoRiverSpawnWeight = buildInt(builder, "Land Sentinel Ischigualasto River Spawn Rate", "all", 2, 0, 300, "The spawn rate of Land Sentinels in the Ischigualasto River biome. Default is 2");
 		builder.pop(2);
@@ -946,7 +1119,7 @@ public class ServerConfig {
 		this.eggHeating = buildBoolean(builder, "Egg Heat Requirement", "all", true, "Toggles whether eggs need heat to hatch, and whether they can die without heat. Default is true");
 		builder.pop();
 	}
-	
+
 	private static ForgeConfigSpec.BooleanValue buildBoolean(ForgeConfigSpec.Builder builder, String name, String catagory, boolean defaultValue, String comment){
 		return builder.comment(comment).translation(name).define(name, defaultValue);
 	}
@@ -959,5 +1132,5 @@ public class ServerConfig {
 	private static ForgeConfigSpec.DoubleValue buildDouble(ForgeConfigSpec.Builder builder, String name, String catagory, double defaultValue, double min, double max, String comment){
 		return builder.comment(comment).translation(name).defineInRange(name, defaultValue, min, max);
 	}
-	
+
 }

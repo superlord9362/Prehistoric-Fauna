@@ -1,7 +1,7 @@
 {
 	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/ankylosaurus_nest_and_egg_one_plant",
+	"parent": "prehistoricfauna:block/protoceratops_nest_and_egg_one_plant",
 	"textures": {
-		"egg": "prehistoricfauna:blocks/ankylosaurus_egg_slightly_cracked"
+		"egg": "prehistoricfauna:blocks/protoceratops_egg_slightly_cracked"
 	}
 }

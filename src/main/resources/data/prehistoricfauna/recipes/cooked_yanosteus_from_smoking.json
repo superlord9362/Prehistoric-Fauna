@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "prehistoricfauna:raw_yanosteus"
+  },
+  "result": "prehistoricfauna:cooked_yanosteus",
+  "experience": 0.35,
+  "cookingtime": 100
+}

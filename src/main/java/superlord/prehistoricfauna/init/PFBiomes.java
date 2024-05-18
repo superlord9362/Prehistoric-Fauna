@@ -43,6 +43,7 @@ public class PFBiomes {
 	public static RegistryObject<Biome> DJADOCHTA_ARROYO = REGISTER.register("djadochta_arroyo", CretaceousBiomes::djadochtaArroyo);
 	public static RegistryObject<Biome> DJADOCHTA_ALLUVIAL_PLAINS = REGISTER.register("djadochta_alluvial_plains", CretaceousBiomes::djadochtaAlluvialPlains);
 	public static RegistryObject<Biome> YIXIAN_FOREST = REGISTER.register("yixian_forest", CretaceousBiomes::yixianForest);
+	public static RegistryObject<Biome> YIXIAN_LAKES = REGISTER.register("yixian_lakes", CretaceousBiomes::yixianLakes);
 	public static RegistryObject<Biome> YIXIAN_SNOWY_FOREST = REGISTER.register("yixian_snowy_forest", CretaceousBiomes::yixianSnowyForest);
 	public static RegistryObject<Biome> YIXIAN_SNOWY_MOUNTAINS = REGISTER.register("yixian_snowy_mountains", CretaceousBiomes::yixianSnowyMountains);
 	public static RegistryObject<Biome> YIXIAN_REGROWTH = REGISTER.register("yixian_regrowth", CretaceousBiomes::yixianRegrowth);

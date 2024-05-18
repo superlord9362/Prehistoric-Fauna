@@ -63,6 +63,8 @@ public class SurfaceDecorators {
 				new DjadochtaAlluvialPlainsSurfaceDecorator(noise));
 		register(new ResourceLocation(PrehistoricFauna.MOD_ID, "yixian_forest"),
 				new NoiseBasedSurfaceDecorator(PFBlocks.MOSSY_DIRT.get().defaultBlockState(), Blocks.DIRT.defaultBlockState(), Blocks.SAND.defaultBlockState(), Blocks.PODZOL.defaultBlockState(), Blocks.DIRT.defaultBlockState(), Blocks.CLAY.defaultBlockState(), PFBlocks.MOSSY_DIRT.get().defaultBlockState(), Blocks.DIRT.defaultBlockState(), Blocks.GRAVEL.defaultBlockState(), -0.2D, 0.8D, 4, noise));
+		register(new ResourceLocation(PrehistoricFauna.MOD_ID, "yixian_lakes"),
+				new NoiseBasedSurfaceDecorator(PFBlocks.MOSSY_DIRT.get().defaultBlockState(), Blocks.DIRT.defaultBlockState(), Blocks.SAND.defaultBlockState(), Blocks.PODZOL.defaultBlockState(), Blocks.DIRT.defaultBlockState(), Blocks.CLAY.defaultBlockState(), PFBlocks.MOSSY_DIRT.get().defaultBlockState(), Blocks.DIRT.defaultBlockState(), Blocks.GRAVEL.defaultBlockState(), -0.2D, 0.8D, 4, noise));
 		register(new ResourceLocation(PrehistoricFauna.MOD_ID, "yixian_regrowth"),
 				new NoiseBasedSurfaceDecorator(PFBlocks.MOSSY_DIRT.get().defaultBlockState(), Blocks.DIRT.defaultBlockState(), Blocks.SAND.defaultBlockState(), Blocks.PODZOL.defaultBlockState(), Blocks.DIRT.defaultBlockState(), Blocks.CLAY.defaultBlockState(), Blocks.GRAVEL.defaultBlockState(), Blocks.GRAVEL.defaultBlockState(), Blocks.GRAVEL.defaultBlockState(), -0.6D, 0.4D, 4, noise));
 		register(new ResourceLocation(PrehistoricFauna.MOD_ID, "yixian_volcano"),

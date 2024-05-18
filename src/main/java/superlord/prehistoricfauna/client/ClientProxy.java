@@ -300,7 +300,6 @@ public class ClientProxy extends CommonProxy {
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.QUEREUXIA_PAD.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.QUEREUXIA_STEM.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_BISONIA.get(), cutoutRenderType);
-		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_ARCHAEOFRUCTUS.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_EPHEDRA.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_RUFFORDIA.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_LEEFRUCTUS.get(), cutoutRenderType);

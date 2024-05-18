@@ -24,7 +24,7 @@
             },
             {
               "type": "minecraft:item",
-              "name": "prehistoricfauna:ephedra_berry",
+              "name": "prehistoricfauna:ephedra_berries",
               "functions": [
                 {
                   "function": "minecraft:apply_bonus",

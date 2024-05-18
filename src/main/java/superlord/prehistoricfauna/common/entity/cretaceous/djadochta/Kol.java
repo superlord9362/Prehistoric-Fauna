@@ -266,11 +266,11 @@ public class Kol extends DinosaurEntity {
 		 * method as well.
 		 */
 		public boolean canUse() {
-			return !dinosaur.isAsleep() && super.canUse() && dinosaur.getCurrentHunger() < dinosaur.getHalfHunger() && dinosaur.getTarget() != null;
+			return !dinosaur.isAsleep() && super.canUse() && dinosaur.getCurrentHunger() < dinosaur.getHalfHunger() && dinosaur.getTarget() == null;
 		}
 
 		public boolean canContinueToUse() {
-			if (dinosaur.getCurrentHunger() >= dinosaur.maxHunger || dinosaur.isAsleep()) {
+			if (dinosaur.getTarget() != null || dinosaur.isAsleep()) {
 				return false;
 			} else return super.canContinueToUse();
 		}
