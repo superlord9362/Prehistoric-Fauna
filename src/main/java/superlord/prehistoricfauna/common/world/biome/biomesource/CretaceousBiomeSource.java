@@ -9,13 +9,11 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.RegistryOps;
-import net.minecraft.util.Mth;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeManager.NoiseBiomeSource;
 import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.biome.Climate.Sampler;
 import superlord.prehistoricfauna.common.util.FastNoise;
-import superlord.prehistoricfauna.common.util.FastNoise.NoiseType;
 import superlord.prehistoricfauna.common.world.chunkgen.CretaceousChunkGenerator;
 import superlord.prehistoricfauna.init.PFBiomes;
 
@@ -30,6 +28,7 @@ public class CretaceousBiomeSource extends BiomeSource implements NoiseBiomeSour
 		})).apply(p_48644_, p_48644_.stable(CretaceousBiomeSource::new));
 	});
 
+	@SuppressWarnings("unused")
 	private final Holder<Biome> hellCreekHardwoodForest, hellCreekClearing, hellCreekBluffs, hellCreekRedwoods, hellCreekSwamp, hellCreekRiver, djadochtaDunes, djadochtaArroyo, djadochtaAlluvialPlains, yixianForest, yixianSnowyForest, yixianSnowyMountains, yixianRegrowth, yixianVolcano, prehistoricDripstoneCave, yixianLakes;
 
 	public CretaceousBiomeSource(Registry<Biome> biome) {
@@ -74,34 +73,21 @@ public class CretaceousBiomeSource extends BiomeSource implements NoiseBiomeSour
 	public Holder<Biome> getNoiseBiome(int x, int y, int z, Sampler sampler) {
 		return getNoiseBiome(x, y, z);
 	}
-
-	public double calculateNoiseValue(int x, int y, int z, FastNoise noise) {
-		float frequency = 0.045F;
-		float amplitude = 31.7F;
-		
-		double noiseX = noise.GetNoise(x * frequency, x * frequency);
-		double noiseZ = noise.GetNoise(z * frequency, z * frequency);
-
-		double combinedNoise = amplitude * (noiseX + noiseZ);
-
-		return combinedNoise;
+	
+	public double timeLineNoise(int x, int y, int z, FastNoise noise) {
+		return noise.GetNoise(x * 0.5F, y * 0.5F, z * 0.5F);
 	}
-
-	public double calculateFormationNoiseValue(int x, int z, FastNoise noise) {
-		double randomValue = (noise.GetNoise(x, z) + 1) * 1.5D;
-		return randomValue;
+	
+	public double tempNoise(int x, int y, int z, FastNoise noise) {
+		return noise.GetNoise(x * 0.2F, y * 0.2F, z * 0.2F);
 	}
-
-	public double calculateCaveNoiseValue(int y, FastNoise noise) {
-		float frequency = 0.5F;
-		float amplitude = 4.0F;
-		noise.SetNoiseType(NoiseType.Simplex);
-		double noiseY = noise.GetNoise(y * frequency, y * frequency);
-		double combinedNoise;
-		if (y >= 55) {
-			combinedNoise = 4;
-		} else combinedNoise = amplitude * noiseY;
-		return combinedNoise;
+	
+	public double hillinessNoise(int x, int y, int z, FastNoise noise) {
+		return noise.GetNoise(x * 0.4F, y * 0.4F, z * 0.4F);
+	}
+	
+	public double humidityNoise(int x, int y, int z, FastNoise noise) {
+		return noise.GetNoise(x * 0.7F, y * 0.7F, z * 0.7F);
 	}
 
 	public double getNoiseValue() {
@@ -110,173 +96,28 @@ public class CretaceousBiomeSource extends BiomeSource implements NoiseBiomeSour
 
 	@Override
 	public Holder<Biome> getNoiseBiome(int x, int y, int z) {
-		double caveNoiseValue = calculateCaveNoiseValue(y, CretaceousChunkGenerator.noise);
-		noiseValue = calculateNoiseValue(x, y, z, CretaceousChunkGenerator.noise);
-		Random random = new Random();
-		if (caveNoiseValue < 0.5 && caveNoiseValue > 0) {
-			if (y < Mth.nextDouble(random, -64, 55)) return prehistoricDripstoneCave;
-		}
-		//Hell Creek
-		if (worldNumber == 0 || worldNumber == 1) {
-			if (noiseValue <= -42) {
-				return hellCreekHardwoodForest;
-			} else if (noiseValue > -42 && noiseValue <= -39) {
-				return hellCreekBluffs;
-			} else if (noiseValue > -39 && noiseValue <= -34) {
-				return hellCreekRedwoods;
-			} else if (noiseValue > -34 && noiseValue <= -32) {
-				return hellCreekBluffs;
-			} else if (noiseValue > -32 && noiseValue <= -29) {
-				return hellCreekHardwoodForest;
-			} else if (noiseValue > -29 && noiseValue <= -26) {
-				return hellCreekClearing;
-			} else if (noiseValue > -26 && noiseValue <= -22) {
-				return hellCreekHardwoodForest;
-			} else if (noiseValue > -22 && noiseValue <= -18) {
-				return hellCreekSwamp;
-			} else if (noiseValue > -18 && noiseValue <= -15.5) {
-				return hellCreekHardwoodForest;
-			} else if (noiseValue > -15.5 && noiseValue <= -15) {
-				return hellCreekRiver;
-			}
-		}
-		if (worldNumber == 2 || worldNumber == 5) {
-			if (noiseValue > -15 && noiseValue <= -14.6) {
-				return hellCreekRiver;
-			} else if (noiseValue > -14.6 && noiseValue <= -12) {
-				return hellCreekHardwoodForest;
-			} else if (noiseValue > -12 && noiseValue <= -9) {
-				return hellCreekBluffs;
-			} else if (noiseValue > -9 && noiseValue <= -4) {
-				return hellCreekRedwoods;
-			} else if (noiseValue > -4 && noiseValue <= -2) {
-				return hellCreekBluffs;
-			} else if (noiseValue > -2 && noiseValue <= 1) {
-				return hellCreekHardwoodForest;
-			} else if (noiseValue > 1 && noiseValue <= 4) {
-				return hellCreekClearing;
-			} else if (noiseValue > 4 && noiseValue <= 8) {
-				return hellCreekHardwoodForest;
-			} else if (noiseValue > 8 && noiseValue <= 12) {
-				return hellCreekSwamp;
-			} else if (noiseValue > 12 && noiseValue <= 15) {
-				return hellCreekHardwoodForest;
-			}
-		}
-		if (worldNumber == 3 || worldNumber == 4) {
-			if (noiseValue > 15 && noiseValue <= 15.5) {
-				return hellCreekRiver;
-			} else if (noiseValue > 15.5 && noiseValue <= 17) {
-				return hellCreekHardwoodForest;
-			} else if (noiseValue > 17 && noiseValue <= 21) {
-				return hellCreekBluffs;
-			} else if (noiseValue > 21 && noiseValue <= 26) {
-				return hellCreekRedwoods;
-			} else if (noiseValue > 26 && noiseValue <= 28) {
-				return hellCreekBluffs;
-			} else if (noiseValue > 28 && noiseValue <= 31) {
-				return hellCreekHardwoodForest;
-			} else if (noiseValue > 31 && noiseValue <= 34) {
-				return hellCreekClearing;
-			} else if (noiseValue > 34 && noiseValue <= 38) {
-				return hellCreekHardwoodForest;
-			} else if (noiseValue > 38 && noiseValue <= 42) {
-				return hellCreekSwamp;
-			} else if (noiseValue > 42 && noiseValue <= 45) {
-				return hellCreekHardwoodForest;
-			}
-		}
-		//Yixian
-		if (worldNumber == 0 || worldNumber == 4) {
-			if (noiseValue > -15 && noiseValue <= -12) {
-				return yixianForest;
-			} else if (noiseValue > -12 && noiseValue <= -8) {
-				return yixianSnowyForest;
-			} else if (noiseValue > -8 && noiseValue <= -2) {
-				return yixianSnowyMountains;
-			} else if (noiseValue > -2 && noiseValue <= 1) {
-				return yixianForest;
-			} else if (noiseValue > 1 && noiseValue <= 4) {
-				return yixianRegrowth;
-			} else if (noiseValue > 4 && noiseValue <= 10) {
-				return yixianVolcano;
-			} else if (noiseValue > 10 && noiseValue <= 15) {
-				return yixianLakes;
-			}
-		}
-		if (worldNumber == 2 || worldNumber == 3) {
-			if (noiseValue > -45 && noiseValue <= -42) {
-				return yixianForest;
-			} else if (noiseValue > -42 && noiseValue <= -38) {
-				return yixianSnowyForest;
-			} else if (noiseValue > -38 && noiseValue <= -32) {
-				return yixianSnowyMountains;
-			} else if (noiseValue > -32 && noiseValue <= -29) {
-				return yixianForest;
-			} else if (noiseValue > -29 && noiseValue <= -26) {
-				return yixianRegrowth;
-			} else if (noiseValue > -26 && noiseValue <= -20) {
-				return yixianVolcano;
-			} else if (noiseValue > -20 && noiseValue <= -15) {
-				return yixianLakes;
-			}
-		}
-		if (worldNumber == 1 || worldNumber == 5) {
-			if (noiseValue > 15 && noiseValue <= 18) {
-				return yixianForest;
-			} else if (noiseValue > 18 && noiseValue <= 22) {
-				return yixianSnowyForest;
-			} else if (noiseValue > 22 && noiseValue <= 28) {
-				return yixianSnowyMountains;
-			} else if (noiseValue > 28 && noiseValue <= 31) {
-				return yixianForest;
-			} else if (noiseValue > 31 && noiseValue <= 34) {
-				return yixianRegrowth;
-			} else if (noiseValue > 34 && noiseValue <= 40) {
-				return yixianVolcano;
-			} else if (noiseValue > 40 && noiseValue <= 45) {
-				return yixianLakes;
-			}
-		}
-		
-		if (worldNumber == 1 || worldNumber == 3) {
-			if (noiseValue > -15 && noiseValue <= -9) {
-				return djadochtaDunes;
-			} else if (noiseValue > -9 && noiseValue <= -4) {
-				return djadochtaAlluvialPlains;
-			} else if (noiseValue > -4 && noiseValue <= 3) {
-				return djadochtaDunes;
-			} else if (noiseValue > 3 && noiseValue <= 10) {
-				return djadochtaArroyo;
-			} else if (noiseValue > 10 && noiseValue <= 15) {
-				return djadochtaDunes;
-			}
-		}
-		if (worldNumber == 4 || worldNumber == 5) {
-			if (noiseValue > -45 && noiseValue <= -39) {
-				return djadochtaDunes;
-			} else if (noiseValue > -39 && noiseValue <= -34) {
-				return djadochtaAlluvialPlains;
-			} else if (noiseValue > -34 && noiseValue <= -27) {
-				return djadochtaDunes;
-			} else if (noiseValue > -27 && noiseValue <= -20) {
-				return djadochtaArroyo;
-			} else if (noiseValue > -20 && noiseValue <= -15) {
-				return djadochtaDunes;
-			}
-		}
-		if (worldNumber == 0 || worldNumber == 2) {
-			if (noiseValue > 15 && noiseValue <= 21) {
-				return djadochtaDunes;
-			} else if (noiseValue > 21 && noiseValue <= 26) {
-				return djadochtaAlluvialPlains;
-			} else if (noiseValue > 26 && noiseValue <= 33) {
-				return djadochtaDunes;
-			} else if (noiseValue > 33 && noiseValue <= 40) {
-				return djadochtaArroyo;
-			} else if (noiseValue > 40 && noiseValue <= 45) {
-				return djadochtaDunes;
-			}
+		double timelineNoise = timeLineNoise(x, y, z, CretaceousChunkGenerator.noise);
+		double tempNoise = tempNoise(x, y, z, CretaceousChunkGenerator.noise);
+		double humidityNoise = humidityNoise(x, y, z, CretaceousChunkGenerator.noise);
+		double hillinessNoise = hillinessNoise(x, y, z, CretaceousChunkGenerator.noise);
+		if (timelineNoise > 0.333F) {
+			if ((tempNoise >= -0.5 && tempNoise <= 0) && (humidityNoise >= -0.5F && humidityNoise <= 0.5F) && (hillinessNoise >= -0.5F && hillinessNoise <= 0.5F)) return hellCreekHardwoodForest;
+			if ((tempNoise >= 0.5F) && (humidityNoise >= -1 && humidityNoise <= 0) && (hillinessNoise < -0.5F)) return hellCreekClearing;
+			if ((tempNoise <= -0.5F) && (humidityNoise <= -0.5F) && (hillinessNoise >= 0.5F)) return hellCreekBluffs;
+			if ((tempNoise >= -1 && tempNoise <= 0) && (humidityNoise >= -0.5F && humidityNoise <= 0.5F) && (hillinessNoise >= -0.5F && hillinessNoise <= 0.5F)) return hellCreekRedwoods;
+			if ((tempNoise >= 0.5F) && (humidityNoise >= 0.5F) && (hillinessNoise <= -0.5F)) return hellCreekSwamp;
+			if ((tempNoise >= -0.5F && tempNoise <= 0.5F) && (humidityNoise >= 0.5F) && (hillinessNoise <= -0.85F)) return hellCreekRiver;
+		} else if (timelineNoise < -0.333F) {
+			if ((tempNoise >= -0.5F && tempNoise <= 0.5F) && (humidityNoise >= -0.5F && humidityNoise <= 0.5F) && (hillinessNoise >= -0.5F && hillinessNoise <= 0)) return yixianForest;
+			if ((tempNoise >= -1F && tempNoise <= -0.5F) && (humidityNoise >= 0.5F && humidityNoise <= 1F) && (hillinessNoise >= 0F && hillinessNoise <= 0.5F)) return yixianSnowyForest;
+			if ((tempNoise >= -1F && tempNoise <= -0.5F) && (humidityNoise >= 0F && humidityNoise <= 1F) && (hillinessNoise >= 0.5F && hillinessNoise <= 1)) return yixianSnowyMountains;
+			if ((tempNoise >= 0F && tempNoise <= 0.75F) && (humidityNoise >= -1F && humidityNoise <= 0F) && (hillinessNoise >= -0.25F && hillinessNoise <= 0.75F)) return yixianRegrowth;
+			if ((tempNoise >= 0.75F && tempNoise <= 1F) && (humidityNoise >= -1F && humidityNoise <= -0.5F) && (hillinessNoise >= 0.75F && hillinessNoise <= 1)) return yixianVolcano;
+			if ((tempNoise >= -0.5F && tempNoise <= 0.5F) && (humidityNoise >= 0.5F && humidityNoise <= 1F) && (hillinessNoise >= -1F && hillinessNoise <= 0.75F)) return yixianLakes;
+		} else {
+			if ((tempNoise >= -1F && tempNoise <= 1F) && (humidityNoise >= -1F && humidityNoise <= -0.5F) && (hillinessNoise >= 0.5F && hillinessNoise <= 1)) return djadochtaDunes;
+			if ((tempNoise >= -1F && tempNoise <= 1F) && (humidityNoise >= 0.5F && humidityNoise <= 1F) && (hillinessNoise >= 0 && hillinessNoise <= 0.5F)) return djadochtaArroyo;
+			if ((tempNoise >= -0.5F && tempNoise <= 0.5F) && (humidityNoise >= -0.5F && humidityNoise <= 0.5F) && (hillinessNoise >= -1F && hillinessNoise <= -0.5F)) return djadochtaAlluvialPlains;
 		}
 		return hellCreekRiver;
 	}
