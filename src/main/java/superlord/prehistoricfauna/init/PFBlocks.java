@@ -85,6 +85,7 @@ import superlord.prehistoricfauna.common.blocks.QuereuxiaPadBlock;
 import superlord.prehistoricfauna.common.blocks.QuereuxiaStemBlock;
 import superlord.prehistoricfauna.common.blocks.SabalitesCrownLogBlock;
 import superlord.prehistoricfauna.common.blocks.SabalitesLeafBlock;
+import superlord.prehistoricfauna.common.blocks.SabalitesSaplingBlock;
 import superlord.prehistoricfauna.common.blocks.SmallCarvedTuberBlock;
 import superlord.prehistoricfauna.common.blocks.SmallTuberBlock;
 import superlord.prehistoricfauna.common.blocks.TallArchaefructusBlock;
@@ -440,7 +441,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> STRIPPED_SABALITES_WOOD = REGISTER.register("stripped_sabalites_wood", () -> createLog());
 	public static final RegistryObject<Block> SABALITES_LEAVES = REGISTER.register("sabalites_leaves", () -> new SabalitesLeafBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().noCollission().sound(SoundType.GRASS).isValidSpawn(PFBlocks::allowsSpawnOnLeaves).isSuffocating(PFBlocks::never).isViewBlocking(PFBlocks::never)));
 	public static final RegistryObject<Block> SABALITES_TOP_LEAVES = REGISTER.register("sabalites_top_leaves", () -> new LeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().noCollission().sound(SoundType.GRASS).isValidSpawn(PFBlocks::allowsSpawnOnLeaves).isSuffocating(PFBlocks::never).isViewBlocking(PFBlocks::never)));
-	public static final RegistryObject<Block> SABALITES_SAPLING = REGISTER.register("sabalites_sapling", () -> new PFSaplingBlock(new PFTreeSpawners.Araucaria(), Block.Properties.of(Material.PLANT).noCollission().randomTicks().strength(0F).sound(SoundType.GRASS)));
+	public static final RegistryObject<Block> SABALITES_SAPLING = REGISTER.register("sabalites_sapling", () -> new SabalitesSaplingBlock(Block.Properties.of(Material.PLANT).noCollission().randomTicks().strength(0F).sound(SoundType.GRASS)));
 	public static final RegistryObject<Block> SABALITES_DOOR = REGISTER.register("sabalites_door", () -> new DoorBlock(Block.Properties.of(Material.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion()));
 	public static final RegistryObject<Block> SABALITES_PRESSURE_PLATE = REGISTER.register("sabalites_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.of(Material.WOOD).noCollission().strength(0.5F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> SABALITES_FENCE = REGISTER.register("sabalites_fence", () -> new FenceBlock(Block.Properties.of(Material.WOOD, SABALITES_PLANKS.get().defaultMaterialColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));

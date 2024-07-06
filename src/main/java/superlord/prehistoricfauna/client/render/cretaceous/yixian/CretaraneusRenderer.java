@@ -17,7 +17,7 @@ public class CretaraneusRenderer extends MobRenderer<Cretaraneus, CretaraneusMod
 	private static final ResourceLocation CRETARANEUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bugs/cretaraneus.png");
 
 	public CretaraneusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new CretaraneusModel(renderManagerIn.bakeLayer(ClientEvents.CRETARANEUS)), 0.25F);
+		super(renderManagerIn, new CretaraneusModel(renderManagerIn.bakeLayer(ClientEvents.CRETARANEUS)), 0F);
 	}
 
 	@SuppressWarnings("incomplete-switch")

@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/edmontosaurus_nest_and_three_eggs_one_plant",
-	"textures": {
-		"egg": "prehistoricfauna:blocks/edmontosaurus_egg_very_cracked"
-	}
-}

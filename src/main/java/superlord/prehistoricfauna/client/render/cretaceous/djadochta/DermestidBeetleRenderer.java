@@ -16,7 +16,7 @@ public class DermestidBeetleRenderer extends MobRenderer<DermestidBeetle, Dermes
 	private static final ResourceLocation DERMESTID_BEETLE_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bugs/dermestid_beetle.png");
 
 	public DermestidBeetleRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new DermestidBeetleModel(renderManagerIn.bakeLayer(ClientEvents.DERMESTID_BEETLE)), 0.1F);
+		super(renderManagerIn, new DermestidBeetleModel(renderManagerIn.bakeLayer(ClientEvents.DERMESTID_BEETLE)), 0F);
 	}
 	
 	@SuppressWarnings("incomplete-switch")

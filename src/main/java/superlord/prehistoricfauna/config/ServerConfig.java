@@ -639,11 +639,11 @@ public class ServerConfig {
 		this.melviusHellCreekBluffsSpawnWeight = buildInt(builder, "Melvius Hell Creek Bluffs Spawn Rate", "all", 1, 0, 300, "The spawn rate of Melvius in the Hell Creek Bluffs biome. Default is 1");
 		this.myledaphusHellCreekBluffsSpawnWeight = buildInt(builder, "Myledaphus Hell Creek Bluffs Spawn Rate", "all", 10, 0, 300, "The spawn rate of Myledaphus in the Hell Creek Bluffs biome. Default is 10");
 		this.ornithomimusHellCreekBluffsSpawnWeight = buildInt(builder, "Ornithomimus Hell Creek Bluffs Spawn Rate", "all", 0, 0, 300, "The spawn rate of Ornithomimus in the Hell Creek Bluffs biome. Default is 0");
-		this.pachycephalosaurusHellCreekBluffsSpawnWeight = buildInt(builder, "Pachycephalosaurus Hell Creek Bluffs Spawn Rate", "all", 3, 0, 300, "The spawn rate of Pachycephalosaurus in the Hell Creek Bluffs biome. Default is 3");
+		this.pachycephalosaurusHellCreekBluffsSpawnWeight = buildInt(builder, "Pachycephalosaurus Hell Creek Bluffs Spawn Rate", "all", 0, 0, 300, "The spawn rate of Pachycephalosaurus in the Hell Creek Bluffs biome. Default is 0");
 		this.palaeosaniwaHellCreekBluffsSpawnWeight = buildInt(builder, "Palaeosaniwa Hell Creek Bluffs Spawn Rate", "all", 1, 0, 300, "The spawn rate of Palaeosaniwa in the Hell Creek Bluffs biome. Default is 1");
 		this.thescelosaurusHellCreekBluffsSpawnWeight = buildInt(builder, "Thescelosaurus Hell Creek Bluffs Spawn Rate", "all", 5, 0, 300, "The spawn rate of Thescelosaurus in the Hell Creek Bluffs biome. Default is 5");
 		this.thoracosaurusHellCreekBluffsSpawnWeight = buildInt(builder, "Thoracosaurus Hell Creek Bluffs Spawn Rate", "all", 0, 0, 300, "The spawn rate of Thoracosaurus in the Hell Creek Bluffs biome. Default is 0");
-		this.triceratopsHellCreekBluffsSpawnWeight = buildInt(builder, "Triceratops Hell Creek Bluffs Spawn Rate", "all", 3, 0, 300, "The spawn rate of Triceratops in the Hell Creek Bluffs biome. Default is 3");
+		this.triceratopsHellCreekBluffsSpawnWeight = buildInt(builder, "Triceratops Hell Creek Bluffs Spawn Rate", "all", 0, 0, 300, "The spawn rate of Triceratops in the Hell Creek Bluffs biome. Default is 0");
 		this.tyrannosaurusHellCreekBluffsSpawnWeight = buildInt(builder, "Tyrannosaurus Hell Creek Bluffs Spawn Rate", "all", 8, 0, 300, "The spawn rate of Tyrannosaurus in the Hell Creek Bluffs biome. Default is 8");
 		this.caveSentinelHellCreekBluffsSpawnWeight = buildInt(builder, "Cave Sentinel Hell Creek Bluffs Spawn Rate", "all", 5, 0, 300, "The spawn rate of Cave Sentinels in the Hell Creek Bluffs biome. Default is 5");
 		this.landSentinelHellCreekBluffsSpawnWeight = buildInt(builder, "Land Sentinel Hell Creek Bluffs Spawn Rate", "all", 2, 0, 300, "The spawn rate of Land Sentinels in the Hell Creek Bluffs biome. Default is 2");
@@ -698,7 +698,7 @@ public class ServerConfig {
 		builder.pop();
 		builder.push("Hell Creek River");
 		this.acipenserHellCreekRiverSpawnWeight = buildInt(builder, "Acipenser Hell Creek River Spawn Rate", "all", 6, 0, 300, "The spawn rate of Acipenser in the Hell Creek River biome. Default is 6");
-		this.ankylosaurusHellCreekRiverSpawnWeight = buildInt(builder, "Ankylosaurus Hell Creek River Spawn Rate", "all", 1, 0, 300, "The spawn rate of Ankylosaurus in the Hell Creek River biome. Default is 1");
+		this.ankylosaurusHellCreekRiverSpawnWeight = buildInt(builder, "Ankylosaurus Hell Creek River Spawn Rate", "all", 0, 0, 300, "The spawn rate of Ankylosaurus in the Hell Creek River biome. Default is 0");
 		this.anzuHellCreekRiverSpawnWeight = buildInt(builder, "Anzu Hell Creek River Spawn Rate", "all", 2, 0, 300, "The spawn rate of Anzu in the Hell Creek River biome. Default is 2");
 		this.basilemysHellCreekRiverSpawnWeight = buildInt(builder, "Basilemys Hell Creek River Spawn Rate", "all", 4, 0, 300, "The spawn rate of Basilemys in the Hell Creek River biome. Default is 4");
 		this.cephaloleichnitesHellCreekRiverSpawnWeight = buildInt(builder, "Cephaloleichnites Hell Creek River Spawn Rate", "all", 0, 0, 300, "The spawn rate of Cephaloleichnites in the Hell Creek River biome. Default is 0");
@@ -722,13 +722,13 @@ public class ServerConfig {
 		builder.pop();
 		builder.push("Hell Creek Swamp");
 		this.acipenserHellCreekSwampSpawnWeight = buildInt(builder, "Acipenser Hell Creek Swamp Spawn Rate", "all", 7, 0, 300, "The spawn rate of Acipenser in the Hell Creek Swamp biome. Default is 7");
-		this.ankylosaurusHellCreekSwampSpawnWeight = buildInt(builder, "Ankylosaurus Hell Creek Swamp Spawn Rate", "all", 1, 0, 300, "The spawn rate of Ankylosaurus in the Hell Creek Swamp biome. Default is 1");
+		this.ankylosaurusHellCreekSwampSpawnWeight = buildInt(builder, "Ankylosaurus Hell Creek Swamp Spawn Rate", "all", 0, 0, 300, "The spawn rate of Ankylosaurus in the Hell Creek Swamp biome. Default is 0");
 		this.basilemysHellCreekSwampSpawnWeight = buildInt(builder, "Basilemys Hell Creek Swamp Spawn Rate", "all", 3, 0, 300, "The spawn rate of Basilemys in the Hell Creek Swamp biome. Default is 3");
 		this.cephaloleichnitesHellCreekSwampSpawnWeight = buildInt(builder, "Cephaloleichnites Hell Creek Swamp Spawn Rate", "all", 3, 0, 300, "The spawn rate of Cephaloleichnites in the Hell Creek Swamp biome. Default is 3");
 		this.cyclurusHellCreekSwampSpawnWeight = buildInt(builder, "Cyclurus Hell Creek Swamp Spawn Rate", "all", 4, 0, 300, "The spawn rate of Cyclurus in the Hell Creek Swamp biome. Default is 4");
 		this.dakotaraptorHellCreekSwampSpawnWeight = buildInt(builder, "Dakotaraptor Hell Creek Swamp Spawn Rate", "all", 0, 0, 300, "The spawn rate of Dakotaraptor in the Hell Creek Swamp biome. Default is 0");
 		this.didelphodonHellCreekSwampSpawnWeight = buildInt(builder, "Didelphodon Hell Creek Swamp Spawn Rate", "all", 8, 0, 300, "The spawn rate of Didelphodon in the Hell Creek Swamp biome. Default is 8");
-		this.edmontosaurusHellCreekSwampSpawnWeight = buildInt(builder, "Edmontosaurus Hell Creek Swamp Spawn Rate", "all", 9, 0, 300, "The spawn rate of Edmontosaurus in the Hell Creek Swamp biome. Default is 9");
+		this.edmontosaurusHellCreekSwampSpawnWeight = buildInt(builder, "Edmontosaurus Hell Creek Swamp Spawn Rate", "all", 0, 0, 300, "The spawn rate of Edmontosaurus in the Hell Creek Swamp biome. Default is 0");
 		this.lepisosteusHellCreekSwampSpawnWeight = buildInt(builder, "Lepisosteus Hell Creek Swamp Spawn Rate", "all", 14, 0, 300, "The spawn rate of Lepisosteus in the Hell Creek Swamp biome. Default is 14");
 		this.lonchidionHellCreekSwampSpawnWeight = buildInt(builder, "Lonchidion Hell Creek Swamp Spawn Rate", "all", 7, 0, 300, "The spawn rate of Lonchidion in the Hell Creek Swamp biome. Default is 7");
 		this.melviusHellCreekSwampSpawnWeight = buildInt(builder, "Melvius Hell Creek Swamp Spawn Rate", "all", 6, 0, 300, "The spawn rate of Melvius in the Hell Creek Swamp biome. Default is 6");

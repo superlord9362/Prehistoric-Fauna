@@ -17,7 +17,7 @@ public class CephaloleichnitesRenderer extends MobRenderer<Cephaloleichnites, Ce
 	private static final ResourceLocation CEPHALOLEICHNITES_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bugs/cephaloleichnites.png");
 
 	public CephaloleichnitesRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new CephaloleichnitesModel(renderManagerIn.bakeLayer(ClientEvents.CEPHALOLEICHNITES)), 0.25F);
+		super(renderManagerIn, new CephaloleichnitesModel(renderManagerIn.bakeLayer(ClientEvents.CEPHALOLEICHNITES)), 0F);
 	}
 
 	@SuppressWarnings("incomplete-switch")

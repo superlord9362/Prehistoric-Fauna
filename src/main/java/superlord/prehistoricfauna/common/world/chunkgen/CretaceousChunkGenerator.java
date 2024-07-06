@@ -52,8 +52,9 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 
 	protected final Holder<NoiseGeneratorSettings> settings;
 	protected final Climate.Sampler sampler;
-	private long seed = 0L;
-	public static final FastNoise noise = new FastNoise(0);
+	static Random random = new Random();
+	private long seed = random.nextLong();
+	public static final FastNoise noise = new FastNoise(random.nextInt());
 	static {
 		noise.SetNoiseType(FastNoise.NoiseType.Simplex);
 	}
@@ -62,7 +63,7 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 	//private final NoiseRouter router;
 	
 	public CretaceousChunkGenerator(Registry<StructureSet> pStructureSets, BiomeSource pBiomeSource, Holder<NoiseGeneratorSettings> settings) {
-		this(pStructureSets, pBiomeSource, settings, 0L);
+		this(pStructureSets, pBiomeSource, settings, random.nextLong());
 	}
 
 	public CretaceousChunkGenerator(Registry<StructureSet> pStructureSets, BiomeSource pBiomeSource, Holder<NoiseGeneratorSettings> settings, long seed) {
@@ -430,6 +431,11 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 
 	@Override
 	public void addDebugScreenInfo(List<String> string, BlockPos pos) {
+		CretaceousBiomeSource source = (CretaceousBiomeSource)this.biomeSource;
+		string.add("Timeline Noise: " + source.timeLineNoise(pos.getX(), pos.getY(), pos.getZ(), noise));
+		string.add("Temp Noise: " + source.tempNoise(pos.getX(), pos.getY(), pos.getZ(), noise));
+		string.add("Hilliness Noise: " + source.hillinessNoise(pos.getX(), pos.getY(), pos.getZ(), noise));
+		string.add("Humidity Noise: " + source.humidityNoise(pos.getX(), pos.getY(), pos.getZ(), noise));
 	}
 
 }

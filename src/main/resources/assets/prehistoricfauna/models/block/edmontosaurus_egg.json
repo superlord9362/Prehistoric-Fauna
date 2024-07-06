@@ -1,7 +1,0 @@
-{
-	"parent": "prehistoricfauna:block/one_giant_tall_egg",
-	"ambientocclusion": false,
-	"textures": {
-		"egg": "prehistoricfauna:blocks/edmontosaurus_egg"
-	}
-}

@@ -33,13 +33,34 @@
       "conditions": {
         "feature": "prehistoricfauna:ischigualasto_hut"
       }
-    }
+    },
+    "djadochta_hut": {
+		"trigger": "minecraft:location",
+		"conditions": {
+			"feature": "prehistoricfauna:djadochta_hut"
+		}
+	},
+    "kayenta_hut": {
+		"trigger": "minecraft:location",
+		"conditions": {
+			"feature": "prehistoricfauna:kayenta_hut"
+		}
+	},
+    "chinle_hut": {
+		"trigger": "minecraft:location",
+		"conditions": {
+			"feature": "prehistoricfauna:chinle_hut"
+		}
+	}
   },
   "requirements": [
     [
       "cretaceous_hut",
 		"jurassic_hut",
-		"triassic_hut"
+		"triassic_hut",
+		"djadochta_hut",
+		"kayenta_hut",
+		"chinle_hut"
     ]
   ]
 }

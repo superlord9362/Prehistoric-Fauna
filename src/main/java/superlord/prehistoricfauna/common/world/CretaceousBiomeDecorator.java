@@ -44,6 +44,7 @@ public class CretaceousBiomeDecorator {
 			builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PFPlacedFeatures.DEAD_OSMUNDACAULIS.getHolder().orElseThrow());
 			PFPlacedFeatures.withDjadochtaRocks(builder);
 			PFPlacedFeatures.withDjadochtaFallenLogs(builder);
+			PFPlacedFeatures.withDjadochtaAlluvialPlainsPlants(builder);
 			if (PrehistoricFaunaConfig.caveSentinelDjadochtaAlluvialPlainsSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.CAVE_SENTINEL.get(), PrehistoricFaunaConfig.caveSentinelDjadochtaAlluvialPlainsSpawnWeight, 1, 1));
 			if (PrehistoricFaunaConfig.landSentinelDjadochtaAlluvialPlainsSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.LAND_SENTINEL.get(), PrehistoricFaunaConfig.landSentinelDjadochtaAlluvialPlainsSpawnWeight, 1, 1));
 			if (PrehistoricFaunaConfig.protoceratopsDjadochtaAlluvialPlainsSpawnWeight != 0) event.getSpawns().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.PROTOCERATOPS.get(), PrehistoricFaunaConfig.protoceratopsDjadochtaAlluvialPlainsSpawnWeight, 2, 5));

@@ -17,7 +17,7 @@ public class ApoclionRenderer extends MobRenderer<Apoclion, ApoclionModel> {
 	private static final ResourceLocation APOCLION_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bugs/apoclion.png");
 
 	public ApoclionRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new ApoclionModel(renderManagerIn.bakeLayer(ClientEvents.APOCLION)), 0.25F);
+		super(renderManagerIn, new ApoclionModel(renderManagerIn.bakeLayer(ClientEvents.APOCLION)), 0F);
 	}
 
 	@SuppressWarnings("incomplete-switch")

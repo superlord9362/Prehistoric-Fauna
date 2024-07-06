@@ -11,7 +11,7 @@ public class GobiulusRenderer extends MobRenderer<Gobiulus, GobiulusModel> {
 	private static final ResourceLocation GOBIULUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bugs/gobiulus.png");
 
 	public GobiulusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new GobiulusModel(renderManagerIn.bakeLayer(ClientEvents.GOBIULUS)), 0.1F);
+		super(renderManagerIn, new GobiulusModel(renderManagerIn.bakeLayer(ClientEvents.GOBIULUS)), 0F);
 	}
 
 	@Override

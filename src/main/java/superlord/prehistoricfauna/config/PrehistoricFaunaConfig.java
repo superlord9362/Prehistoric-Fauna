@@ -73,11 +73,11 @@ public class PrehistoricFaunaConfig {
 	public static int tyrannosaurusHellCreekClearingSpawnWeight = 9;
 	public static int caveSentinelHellCreekClearingSpawnWeight = 5;
 	public static int landSentinelHellCreekClearingSpawnWeight = 2;
-	//Hell Creek Liriodendrites Hills
+	//Hell Creek Bluffs
 	public static int acipenserHellCreekBluffsSpawnWeight = 2;
-	public static int pachycephalosaurusHellCreekBluffsSpawnWeight = 3;
+	public static int pachycephalosaurusHellCreekBluffsSpawnWeight = 0;
 	public static int thescelosaurusHellCreekBluffsSpawnWeight = 5;
-	public static int triceratopsHellCreekBluffsSpawnWeight = 3;
+	public static int triceratopsHellCreekBluffsSpawnWeight = 0;
 	public static int ankylosaurusHellCreekBluffsSpawnWeight = 13;
 	public static int edmontosaurusHellCreekBluffsSpawnWeight = 12;
 	public static int tyrannosaurusHellCreekBluffsSpawnWeight = 8;
@@ -100,7 +100,7 @@ public class PrehistoricFaunaConfig {
 	public static int lepisosteusHellCreekSwampSpawnWeight = 14;
 	public static int myledaphusHellCreekSwampSpawnWeight = 12;
 	public static int triceratopsHellCreekSwampSpawnWeight = 10;
-	public static int edmontosaurusHellCreekSwampSpawnWeight = 9;
+	public static int edmontosaurusHellCreekSwampSpawnWeight = 0;
 	public static int tyrannosaurusHellCreekSwampSpawnWeight = 8;
 	public static int didelphodonHellCreekSwampSpawnWeight = 8;
 	public static int lonchidionHellCreekSwampSpawnWeight = 7;
@@ -110,7 +110,7 @@ public class PrehistoricFaunaConfig {
 	public static int basilemysHellCreekSwampSpawnWeight = 3;
 	public static int thoracosaurusHellCreekSwampSpawnWeight = 3;
 	public static int pachycephalosaurusHellCreekSwampSpawnWeight = 2;
-	public static int ankylosaurusHellCreekSwampSpawnWeight = 1;
+	public static int ankylosaurusHellCreekSwampSpawnWeight = 0;
 	public static int palaeosaniwaHellCreekSwampSpawnWeight = 0;
 	public static int dakotaraptorHellCreekSwampSpawnWeight = 0;
 	public static int ornithomimusHellCreekSwampSpawnWeight = 0;
@@ -119,7 +119,7 @@ public class PrehistoricFaunaConfig {
 	public static int landSentinelHellCreekSwampSpawnWeight = 2;
 	//Hell Creek River
 	public static int acipenserHellCreekRiverSpawnWeight = 6;
-	public static int ankylosaurusHellCreekRiverSpawnWeight = 1;
+	public static int ankylosaurusHellCreekRiverSpawnWeight = 0;
 	public static int anzuHellCreekRiverSpawnWeight = 2;
 	public static int basilemysHellCreekRiverSpawnWeight = 4;
 	public static int cephaloleichnitesHellCreekRiverSpawnWeight = 0;

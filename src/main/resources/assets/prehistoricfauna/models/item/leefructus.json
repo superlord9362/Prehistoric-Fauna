@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:blocks/leefructus"
+        "layer0": "prehistoricfauna:blocks/leefructus_flowering"
     }
 }

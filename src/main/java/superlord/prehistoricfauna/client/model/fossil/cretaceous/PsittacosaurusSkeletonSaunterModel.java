@@ -33,7 +33,7 @@ public class PsittacosaurusSkeletonSaunterModel extends EntityModel<Psittacosaur
 
 		PartDefinition Tail = Body.addOrReplaceChild("Tail", CubeListBuilder.create().texOffs(4, 22).addBox(0.0F, -1.0F, 0.0F, 0.0F, 4.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 5.0F, -0.2793F, 0.1745F, 0.0F));
 
-		PartDefinition Tail_1 = Tail.addOrReplaceChild("Tail_1", CubeListBuilder.create().texOffs(0, 22).addBox(-1.5F, 0.0F, 0.0F, 4.0F, 0.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition Tail_1 = Tail.addOrReplaceChild("Tail_1", CubeListBuilder.create().texOffs(0, 22).addBox(-2.5F, 0.0F, 0.0F, 4.0F, 0.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		PartDefinition Tail_End = Tail.addOrReplaceChild("Tail_End", CubeListBuilder.create().texOffs(27, 21).addBox(0.0F, -1.0F, 0.0F, 0.0F, 3.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 8.0F, -0.1745F, 0.1745F, 0.0F));
 

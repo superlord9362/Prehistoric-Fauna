@@ -62,7 +62,7 @@ public class CaveSentinelModel extends EntityModel<CaveSentinel> {
 
 		PartDefinition PleuralSpine3 = Thorax.addOrReplaceChild("PleuralSpine3", CubeListBuilder.create().texOffs(21, 19).addBox(-4.0F, -1.0F, -2.0F, 4.0F, 3.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(-5.0F, 0.0F, 13.0F));
 
-		PartDefinition Antenna = Cephalon.addOrReplaceChild("Antenna", CubeListBuilder.create().texOffs(-11, 27).addBox(-10.5F, 0.0F, -3.0F, 11.0F, 0.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-6.5F, 3.0F, -15.0F, -0.0123F, 0.0F, 0.0F));
+		PartDefinition Antenna = Cephalon.addOrReplaceChild("Antenna", CubeListBuilder.create().texOffs(-11, 27).mirror().addBox(-10.5F, 0.0F, -3.0F, 11.0F, 0.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-6.5F, 3.0F, -15.0F, -0.0123F, 0.0F, 0.0F));
 
 		PartDefinition Cranidium = Cephalon.addOrReplaceChild("Cranidium", CubeListBuilder.create().texOffs(63, 0).addBox(-10.0F, 0.0F, 0.0F, 20.0F, 2.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.0F, -10.0F));
 

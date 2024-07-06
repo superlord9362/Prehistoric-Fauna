@@ -74,6 +74,7 @@
 	"item.prehistoricfauna.fermented_ginkgo_berry": "Fermented Ginkgo Berry",
 	"item.prehistoricfauna.cooked_ginkgo_nuts": "Cooked Ginkgo Nuts",
 	"item.prehistoricfauna.araucaria_nuts": "Araucaria Nuts",
+	"item.prehistoricfauna.clubmoss_powder": "Clubmoss Powder",
 	
 	"block.prehistoricfauna.liriodendrites_planks": "Liriodendrites Planks",
 	"block.prehistoricfauna.heidiphyllum_planks": "Heidiphyllum Planks",
@@ -671,6 +672,7 @@
 	"item.prehistoricfauna.protopsephurus_spawn_egg": "Protopsephurus Spawn Egg",
 	"item.prehistoricfauna.sinamia_spawn_egg": "Sinamia Spawn Egg",
 	"item.prehistoricfauna.yanosteus_spawn_egg": "Yanosteus Spawn Egg",
+	"item.prehistoricfauna.edmontosaurus_spawn_egg": "Edmontosaurus Spawn Egg",
 	
 	"entity.prehistoricfauna.thescelosaurus": "Thescelosaurus",
 	"entity.prehistoricfauna.triceratops": "Triceratops",
@@ -756,6 +758,7 @@
 	"entity.prehistoricfauna.protopsephurus": "Protopsephurus",
 	"entity.prehistoricfauna.sinamia": "Sinamia",
 	"entity.prehistoricfauna.yanosteus": "Yanosteus",
+	"entity.prehistoricfauna.edmontosaurus": "Edmontosaurus",
 	
 	"item.prehistoricfauna.araucaria_boat": "Araucaria Boat",
 	"item.prehistoricfauna.metasequoia_boat": "Metasequoia Boat",
@@ -951,6 +954,7 @@
 	"block.prehistoricfauna.psittacosaurus_egg": "Psittacosaurus Egg",
 	"block.prehistoricfauna.sinosauropteryx_egg": "Sinosauropteryx Egg",
 	"block.prehistoricfauna.incisivosaurus_egg": "Incisivosaurus Egg",
+	"block.prehistoricfauna.edmontosaurus_egg": "Edmontosaurus Egg",
 	
 	"block.prehistoricfauna.small_ammonite_fossil": "Small Ammonite Fossil",
 	"block.prehistoricfauna.medium_ammonite_fossil": "Medium Ammonite Fossil",
@@ -1610,7 +1614,7 @@
 	"advancements.prehistoricfauna.cretaceous_time_travel.description": "Visit the Cretaceous",
 	"advancements.prehistoricfauna.digger_man.title": "Digger Man",
 	"advancements.prehistoricfauna.digger_man.description": "Excavate fossils",
-	"advancements.prehistoricfauna.dinoe_exotic.title": "Dinoe Exotic",
+	"advancements.prehistoricfauna.dinoe_exotic.title": "The Flirtaceous Period",
 	"advancements.prehistoricfauna.dinoe_exotic.description": "Breed every prehistoric animal",
 	"advancements.prehistoricfauna.extinction_event.title": "You're the Extinction Event",
 	"advancements.prehistoricfauna.extinction_event.description": "Kill every prehistoric animal",

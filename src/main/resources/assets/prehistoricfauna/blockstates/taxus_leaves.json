@@ -2,6 +2,14 @@
     "variants": {
         "age=0": { "model": "prehistoricfauna:block/taxus_leaves" },
 		"age=1": { "model": "prehistoricfauna:block/taxus_leaves" },
-		"age=2": { "model": "prehistoricfauna:block/taxus_berry_leaves" }
+		"age=2": [
+			{ "model": "prehistoricfauna:block/taxus_berry_leaves" },
+			{ "model": "prehistoricfauna:block/taxus_berry_leaves_1" },
+			{ "model": "prehistoricfauna:block/taxus_berry_leaves_2" },
+			{ "model": "prehistoricfauna:block/taxus_berry_leaves_3" },
+			{ "model": "prehistoricfauna:block/taxus_berry_leaves_4" },
+			{ "model": "prehistoricfauna:block/taxus_berry_leaves_5" },
+			{ "model": "prehistoricfauna:block/taxus_berry_leaves_6" }
+    	]
     }
 }

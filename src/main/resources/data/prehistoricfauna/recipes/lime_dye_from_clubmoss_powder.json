@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:clubmoss_powder"
+    }
+  ],
+  "result": {
+    "item": "minecraft:lime_dye"
+  }
+}

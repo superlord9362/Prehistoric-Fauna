@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"#S#",
+		"S#S",
+		"#S#"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:clubmoss_powder"
+		},
+		"S": {
+			"tag": "minecraft:sand"
+		}
+	},
+	"result": {
+		"item": "minecraft:tnt"
+	}
+}

@@ -8,6 +8,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
@@ -17,7 +19,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFItems;
 
 public class QuereuxiaRootsBlock extends Block {
 	
@@ -63,4 +67,8 @@ public class QuereuxiaRootsBlock extends Block {
 		return false;
 	}
 
+	public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter level, BlockPos pos, Player player) {
+		return new ItemStack(PFItems.QUEREUXIA.get().asItem());
+	}
+	
 }
