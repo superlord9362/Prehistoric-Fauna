@@ -78,7 +78,6 @@ import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.PiscivoreEatFromFeederGoal;
 import superlord.prehistoricfauna.common.entity.goal.SkittishFleeGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
-import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Calsoyasuchus;
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Dilophosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Megapnosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
@@ -107,7 +106,7 @@ public class Halszkaraptor extends DinosaurEntity {
 	@SuppressWarnings("deprecation")
 	public Halszkaraptor(EntityType<? extends TamableAnimal> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.moveControl = new Halszkaraptor.MoveHelperController(this);
+		this.moveControl = new Halszkaraptor.HalszkaraptorMoveControl(this);
 		this.maxUpStep = 1.0F;
 		super.maxHunger = maxHunger;
 	}
@@ -162,7 +161,7 @@ public class Halszkaraptor extends DinosaurEntity {
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<Saurosuchus>(this, Saurosuchus.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<Sillosuchus>(this, Sillosuchus.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<Dilophosaurus>(this, Dilophosaurus.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Calsoyasuchus>(this, Calsoyasuchus.class, 10F, 1.2D, 1.5D));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<Halszkaraptor>(this, Halszkaraptor.class, 10F, 1.2D, 1.5D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<Megapnosaurus>(this, Megapnosaurus.class, 10F, 1.2D, 1.5D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<Poposaurus>(this, Poposaurus.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<Postosuchus>(this, Postosuchus.class, 10F, 1.5D, 1.75D));
@@ -296,62 +295,55 @@ public class Halszkaraptor extends DinosaurEntity {
 	protected boolean func_212800_dy() {
 		return true;
 	}
-
-	class WalkAndSwimPathNavigator extends WaterBoundPathNavigation {
-
-		WalkAndSwimPathNavigator(Halszkaraptor halszkaraptor, Level world) {
-			super(halszkaraptor, world);
+	
+	static class HalszkaraptorPathNavigation extends WaterBoundPathNavigation {
+		HalszkaraptorPathNavigation(Halszkaraptor halszkaraptor, Level level) {
+			super(halszkaraptor, level);
 		}
-
-		protected boolean canNavigate() {
+		
+		protected boolean canUpdatePath() {
 			return true;
 		}
-
-		protected PathFinder getPathFinder(int uncategorizedNumber) {
+		
+		protected PathFinder createPathFinder(int maxNodes) {
 			this.nodeEvaluator = new AmphibiousNodeEvaluator(true);
-			return new PathFinder(this.nodeEvaluator, uncategorizedNumber);
+			return new PathFinder(this.nodeEvaluator, maxNodes);
 		}
-
-		public boolean canStandOnPos(BlockPos pos) {
+		
+		public boolean isStableDestination(BlockPos pos) {
 			return !this.level.getBlockState(pos.below()).isAir();
 		}
-
+		
 	}
-
-	static class MoveHelperController extends MoveControl {
+	
+	static class HalszkaraptorMoveControl extends MoveControl {
 		private final Halszkaraptor halszkaraptor;
-
-		MoveHelperController(Halszkaraptor halszkaraptor) {
+		
+		HalszkaraptorMoveControl(Halszkaraptor halszkaraptor) {
 			super(halszkaraptor);
 			this.halszkaraptor = halszkaraptor;
 		}
-
+		
 		public void tick() {
-			if (this.halszkaraptor.isEyeInFluid(FluidTags.WATER)) {
-				this.halszkaraptor.setDeltaMovement(this.halszkaraptor.getDeltaMovement().add(0.0D, 0.005D, 0.0D));
-			}
 			if (this.operation == MoveControl.Operation.MOVE_TO && !this.halszkaraptor.getNavigation().isDone()) {
-				float f = (float)(this.speedModifier * this.halszkaraptor.getAttributeValue(Attributes.MOVEMENT_SPEED));
-				this.halszkaraptor.setSpeed(Mth.lerp(0.125F, this.halszkaraptor.getSpeed(), f));
 				double d0 = this.wantedX - this.halszkaraptor.getX();
 				double d1 = this.wantedY - this.halszkaraptor.getY();
 				double d2 = this.wantedZ - this.halszkaraptor.getZ();
-				if (d1 != 0.0D) {
-					double d3 = (double)Mth.sqrt((float) (d0 * d0 + d1 * d1 + d2 * d2));
-					this.halszkaraptor.setDeltaMovement(this.halszkaraptor.getDeltaMovement().add(0.0D, (double)this.halszkaraptor.getSpeed() * (d1 / d3) * 0.1D, 0.0D));
-				}
-				if (d0 != 0.0D || d2 != 0.0D) {
-					float f1 = (float)(Mth.atan2(d2, d0) * (double)(180F / (float)Math.PI)) - 90.0F;
-					this.halszkaraptor.xRot = this.rotlerp(this.halszkaraptor.xRot, f1, 90.0F);
-					this.halszkaraptor.xRotO = this.halszkaraptor.xRot;
-				}
+				double d3 = Math.sqrt(d0 * d0 + d1 * d1 + d2 *d2);
+				d1 /= d3;
+				float f = (float)(Mth.atan2(d2, d0) * (double)(180F / (float)Math.PI)) - 90.0F;
+				this.halszkaraptor.setYRot(this.rotlerp(this.halszkaraptor.getYRot(), f, 90.0F));
+				this.halszkaraptor.yBodyRot = this.halszkaraptor.getYRot();
+				float f1 = (float)(this.speedModifier * this.halszkaraptor.getAttributeValue(Attributes.MOVEMENT_SPEED));
+				this.halszkaraptor.setSpeed(Mth.lerp(0.125F, this.halszkaraptor.getSpeed(), f1));
+				this.halszkaraptor.setDeltaMovement(this.halszkaraptor.getDeltaMovement().add(0.0D, (double)this.halszkaraptor.getSpeed() * d1 * 0.1D, 0.0D));
 			} else {
 				this.halszkaraptor.setSpeed(0.0F);
 			}
 		}
-
+		
 	}
-
+	
 	@Override
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack heldItem = player.getItemInHand(hand);
@@ -366,9 +358,9 @@ public class Halszkaraptor extends DinosaurEntity {
 		}
 		return super.mobInteract(player, hand);
 	}
-
-	protected PathNavigation createNavigation(Level world) {
-		return new Halszkaraptor.WalkAndSwimPathNavigator(this, world);
+	
+	protected PathNavigation createNavigation(Level level) {
+		return new Halszkaraptor.HalszkaraptorPathNavigation(this, level);
 	}
 
 	@Override
@@ -419,12 +411,12 @@ public class Halszkaraptor extends DinosaurEntity {
 
 	static class HalszkaraptorRandomStrollGoal extends RandomStrollGoal {
 		private final Halszkaraptor halszkaraptor;
-
+		
 		HalszkaraptorRandomStrollGoal(Halszkaraptor halszkaraptor, double speed, int interval) {
 			super(halszkaraptor, speed, interval);
 			this.halszkaraptor = halszkaraptor;
 		}
-
+		
 		public boolean canUse() {
 			return !this.mob.isInWater() && !this.halszkaraptor.hasBaby() ? super.canUse() : false;
 		}
@@ -433,27 +425,27 @@ public class Halszkaraptor extends DinosaurEntity {
 	static class HalszkaraptorGoToWaterGoal extends MoveToBlockGoal {
 		private static final int GIVE_UP_TICKS = 1200;
 		private final Halszkaraptor halszkaraptor;
-
+		
 		HalszkaraptorGoToWaterGoal(Halszkaraptor halszkaraptor, double speed) {
 			super(halszkaraptor, halszkaraptor.isBaby() ? 2.0D : speed, 24);
 			this.halszkaraptor = halszkaraptor;
 			this.verticalSearchStart = -1;
 		}
-
+		
 		public boolean canContinueToUse() {
 			return !this.halszkaraptor.isInWater() && this.tryTicks <= GIVE_UP_TICKS && this.isValidTarget(this.halszkaraptor.level, this.blockPos);
 		}
-
+		
 		public boolean canUse() {
 			if (this.halszkaraptor.isBaby() && !this.halszkaraptor.isInWater()) {
 				return super.canUse();
 			} else return !this.halszkaraptor.isInWater() && !this.halszkaraptor.hasBaby() ? super.canUse() : false;
 		}
-
+		
 		public boolean shouldRecalculatePath() {
 			return this.tryTicks % 160 == 0;
 		}
-
+		
 		protected boolean isValidTarget(LevelReader level, BlockPos pos) {
 			return level.getBlockState(pos).is(Blocks.WATER);
 		}

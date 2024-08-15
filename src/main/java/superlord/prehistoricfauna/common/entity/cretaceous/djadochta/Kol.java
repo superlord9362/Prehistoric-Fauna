@@ -72,7 +72,7 @@ public class Kol extends DinosaurEntity {
 	}
 	
 	public boolean isFood(ItemStack stack) {
-		return stack.getItem() == PFItems.DERMESTID_BEETLE.get().asItem();
+		return stack.getItem() == PFItems.DEAD_BEETLE.get().asItem();
 	}
 	
 	@Override

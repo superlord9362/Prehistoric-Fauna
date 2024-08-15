@@ -1,7 +1,8 @@
 {
 	"replace": false,
 	"values": [
-		"prehistoricfauna:gobiulus",
-		"prehistoricfauna:dermestid_beetle"
+		"prehistoricfauna:dead_millipede",
+		"prehistoricfauna:dead_beetle",
+		"prehistoricfauna:dead_spider"
 	]
 }

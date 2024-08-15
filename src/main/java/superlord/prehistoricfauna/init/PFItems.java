@@ -811,8 +811,11 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> SAUROSUCHUS_EGG = REGISTER.register("saurosuchus_egg", () -> new DinosaurEggItem(PFBlocks.SAUROSUCHUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	public static final RegistryObject<BlockItem> SILLOSUCHUS_EGG = REGISTER.register("sillosuchus_egg", () -> new DinosaurEggItem(PFBlocks.SILLOSUCHUS_EGG.get(), new Item.Properties().tab(PrehistoricFauna.PF_DECORATION)));
 	
-	public static final RegistryObject<Item> BOTTLED_GOBIULUS = REGISTER.register("bottled_gobiulus", () -> new BottledBugItem(PFEntities.GOBIULUS, new Item.Properties().tab(PrehistoricFauna.PF_MISC).stacksTo(4)));
-	public static final RegistryObject<Item> BOTTLED_DERMESTID_BEETLE = REGISTER.register("bottled_dermestid_beetle", () -> new BottledBugItem(PFEntities.DERMESTID_BEETLE, new Item.Properties().tab(PrehistoricFauna.PF_MISC).stacksTo(4)));
+	public static final RegistryObject<Item> BOTTLED_GOBIULUS = REGISTER.register("bottled_gobiulus", () -> new BottledBugItem(PFEntities.GOBIULUS, new Item.Properties().tab(PrehistoricFauna.PF_MISC).stacksTo(1)));
+	public static final RegistryObject<Item> BOTTLED_DERMESTID_BEETLE = REGISTER.register("bottled_dermestid_beetle", () -> new BottledBugItem(PFEntities.DERMESTID_BEETLE, new Item.Properties().tab(PrehistoricFauna.PF_MISC).stacksTo(1)));
+	public static final RegistryObject<Item> BOTTLED_CEPHALOLEICHNITES = REGISTER.register("bottled_cephaloleichnites", () -> new BottledBugItem(PFEntities.CEPHALOLEICHNITES, new Item.Properties().tab(PrehistoricFauna.PF_MISC).stacksTo(1)));
+	public static final RegistryObject<Item> BOTTLED_APOCLION = REGISTER.register("bottled_apoclion", () -> new BottledBugItem(PFEntities.APOCLION, new Item.Properties().tab(PrehistoricFauna.PF_MISC).stacksTo(1)));
+	public static final RegistryObject<Item> BOTTLED_CRETARANEUS = REGISTER.register("bottled_cretaraneus", () -> new BottledBugItem(PFEntities.CRETARANEUS, new Item.Properties().tab(PrehistoricFauna.PF_MISC).stacksTo(1)));
 	
 	public static final RegistryObject<Item> RAW_SMALL_THYREOPHORAN_MEAT = REGISTER.register("raw_small_thyreophoran_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.3F).meat().build())));
 	public static final RegistryObject<Item> COOKED_SMALL_THYREOPHORAN_MEAT = REGISTER.register("cooked_small_thyreophoran_meat", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().nutrition(5).saturationMod(0.8F).meat().build())));
@@ -889,8 +892,9 @@ public class PFItems {
 	public static final RegistryObject<Item> YANOSTEUS = REGISTER.register("raw_yanosteus", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(2).build())));
 	public static final RegistryObject<Item> COOKED_YANOSTEUS = REGISTER.register("cooked_yanosteus", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.8F).nutrition(6).build())));
 	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> GOBIULUS = REGISTER.register("gobiulus", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(1).effect(new MobEffectInstance(MobEffects.POISON, 300, 0), 1).build())));
-	public static final RegistryObject<Item> DERMESTID_BEETLE = REGISTER.register("dermestid_beetle", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(1).build())));
+	public static final RegistryObject<Item> DEAD_MILLIPEDE = REGISTER.register("dead_millipede", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(1).effect(new MobEffectInstance(MobEffects.POISON, 300, 0), 1).build())));
+	public static final RegistryObject<Item> DEAD_BEETLE = REGISTER.register("dead_beetle", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(1).build())));
+	public static final RegistryObject<Item> DEAD_SPIDER = REGISTER.register("dead_spider", () -> new Item(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(1).build())));
 	public static final RegistryObject<Item> HORSETAIL_TEA = REGISTER.register("horsetail_tea", () -> new HorsetailTeaItem(new Item.Properties().tab(PrehistoricFauna.PF_FOOD).stacksTo(16)));
 	
 	private static BannerPattern registerPattern(String name) {

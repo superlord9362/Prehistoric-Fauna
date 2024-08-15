@@ -47,6 +47,7 @@ import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.Cephaloleich
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.DakotaraptorBabyModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.DakotaraptorModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.DidelphodonModel;
+import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.EdmontosaurusBabyModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.EdmontosaurusModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.OrnithomimusModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.PachycephalosaurusModel;
@@ -539,6 +540,7 @@ public class ClientEvents {
 	public static ModelLayerLocation DAKOTARAPTOR_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "dakotaraptor_baby"), "dakotaraptor_baby");
 	public static ModelLayerLocation DIDELPHODON = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "didelphodon"), "didelphodon");
 	public static ModelLayerLocation EDMONTOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "edmontosaurus"), "edmontosaurus");
+	public static ModelLayerLocation EDMONTOSAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "edmontosaurus_baby"), "edmontosaurus_baby");
 	public static ModelLayerLocation ORNITHOMIMUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "ornithomimus"), "ornithomimus");
 	public static ModelLayerLocation PACHYCEPHALOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "pachycephalosaurus"), "pachycephalosaurus");
 	public static ModelLayerLocation PALAEOSANIWA = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "palaeosaniwa"), "palaeosaniwa");
@@ -957,6 +959,7 @@ public class ClientEvents {
 		event.registerLayerDefinition(DAKOTARAPTOR_BABY, DakotaraptorBabyModel::createBodyLayer);
 		event.registerLayerDefinition(DIDELPHODON, DidelphodonModel::createBodyLayer);
 		event.registerLayerDefinition(EDMONTOSAURUS, EdmontosaurusModel::createHipsLayer);;
+		event.registerLayerDefinition(EDMONTOSAURUS_BABY, EdmontosaurusBabyModel::createBodyLayer);;
 		event.registerLayerDefinition(ORNITHOMIMUS, OrnithomimusModel::createBodyLayer);
 		event.registerLayerDefinition(PALAEOSANIWA, PalaeosaniwaModel::createBodyLayer);
 		event.registerLayerDefinition(TRICERATOPS, TriceratopsModel::createBodyLayer);

@@ -80,7 +80,9 @@ public class BottledBugItem extends Item {
 					abstractspawner.setEntityId(entitytype1);
 					tileentity.setChanged();
 					world.sendBlockUpdated(blockpos, blockstate, blockstate, 3);
-					itemstack.shrink(1);
+					if (!context.getPlayer().isCreative()) {
+						itemstack.shrink(1);
+					}
 					return InteractionResult.CONSUME;
 				}
 			}
@@ -94,7 +96,10 @@ public class BottledBugItem extends Item {
 
 			EntityType<?> entitytype = this.getType(itemstack.getTag());
 			if (entitytype.spawn((ServerLevel)world, itemstack, context.getPlayer(), blockpos1, MobSpawnType.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP) != null) {
-				itemstack.shrink(1);
+				if (!context.getPlayer().isCreative()) {
+					itemstack.shrink(1);
+					context.getPlayer().setItemInHand(context.getHand(), new ItemStack(Items.GLASS_BOTTLE));
+				}
 			}
 
 			return InteractionResult.CONSUME;

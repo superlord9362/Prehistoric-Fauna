@@ -163,7 +163,7 @@ public class Cretaraneus extends Animal {
 			if (!player.isCreative()) {
 				itemstack.shrink(1);
 			}
-			player.addItem(new ItemStack(PFItems.BOTTLED_GOBIULUS.get()));
+			player.addItem(new ItemStack(PFItems.BOTTLED_CRETARANEUS.get()));
 			this.discard();
 		}
 		return super.mobInteract(player, hand);

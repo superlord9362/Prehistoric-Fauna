@@ -121,6 +121,7 @@ public class NestBlock extends Block {
 		if (heldItem == PFItems.ISCHIGUALASTIA_EGG.get()) world.setBlock(pos, PFBlocks.ISCHIGUALASTIA_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.PLANT_LEVEL, filledState.getValue(PLANT_LEVEL)).setValue(NestAndEggsBlock.PLAYER_PLACED, state.getValue(PLAYER_PLACED)), 0);
 		if (heldItem == PFItems.SAUROSUCHUS_EGG.get()) world.setBlock(pos, PFBlocks.SAUROSUCHUS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.PLANT_LEVEL, filledState.getValue(PLANT_LEVEL)).setValue(NestAndEggsBlock.PLAYER_PLACED, state.getValue(PLAYER_PLACED)), 0);
 		if (heldItem == PFItems.SILLOSUCHUS_EGG.get()) world.setBlock(pos, PFBlocks.SILLOSUCHUS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.PLANT_LEVEL, filledState.getValue(PLANT_LEVEL)).setValue(NestAndEggsBlock.PLAYER_PLACED, state.getValue(PLAYER_PLACED)), 0);
+		if (heldItem == PFItems.EDMONTOSAURUS_EGG.get()) world.setBlock(pos, PFBlocks.EDMONTOSAURUS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.PLANT_LEVEL, filledState.getValue(PLANT_LEVEL)).setValue(NestAndEggsBlock.PLAYER_PLACED, state.getValue(PLAYER_PLACED)), 0);
 		return InteractionResult.PASS;
 	}
 

@@ -119,7 +119,7 @@ public class Cephaloleichnites extends Animal {
 			if (!player.isCreative()) {
 				itemstack.shrink(1);
 			}
-			player.addItem(new ItemStack(PFItems.BOTTLED_GOBIULUS.get()));
+			player.addItem(new ItemStack(PFItems.BOTTLED_CEPHALOLEICHNITES.get()));
 			this.discard();
 		}
 		return super.mobInteract(player, hand);

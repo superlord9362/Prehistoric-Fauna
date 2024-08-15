@@ -119,7 +119,7 @@ public class Apoclion extends Animal {
 			if (!player.isCreative()) {
 				itemstack.shrink(1);
 			}
-			player.addItem(new ItemStack(PFItems.BOTTLED_GOBIULUS.get()));
+			player.addItem(new ItemStack(PFItems.BOTTLED_APOCLION.get()));
 			this.discard();
 		}
 		return super.mobInteract(player, hand);
