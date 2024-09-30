@@ -45,7 +45,7 @@ public class GuiMixin extends GuiComponent
 		blit(poseStack, posX, posY, 0, textureX, textureY, u, v, atlasWidth, atlasHeight);
 	}
 	
-	@Inject(method = "renderHeart()V", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "Lnet/minecraft/client/gui/Gui;renderHeart(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Gui$HeartType;IIIZZ)V", at = @At("HEAD"), cancellable = true, remap = false)
 	private void renderHeart(PoseStack stack, Gui.HeartType __, int x, int y, int v, boolean blinking, boolean halfHeart, CallbackInfo cbi)
 	{
 		if (!blinking && drawForHeartType(__) && Minecraft.getInstance().cameraEntity instanceof Player player && hasAnyCustomJurassicHearts(player))

@@ -1,5 +1,5 @@
 {
-	"type": "minecraft:village",
+	"type": "prehistoricfauna:ischigualasto_hut",
 	"config": {
     	"start_pool": "prehistoricfauna:ischigualasto_hut",
     	"size": 1

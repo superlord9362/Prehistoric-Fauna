@@ -88,7 +88,7 @@ public class GeologistCampStructurePiece {
 			BlockPos blockpos1 = this.templatePosition.offset(this.placeSettings.getRotationPivot());
 			int i = worldIn.getHeight(Heightmap.Types.WORLD_SURFACE_WG, blockpos1.getX(), blockpos1.getZ());
 			BlockPos blockpos2 = this.templatePosition;
-			this.templatePosition = this.templatePosition.offset(0, i - 90 - 2, 0);
+			this.templatePosition = this.templatePosition.offset(0, i - 90 - 1, 0);
 			super.postProcess(worldIn, p_230383_2_, p_230383_3_, p_230383_4_, p_230383_5_, p_230383_6_, p_230383_7_);
 			this.templatePosition = blockpos2;
 			if (!this.villager) {

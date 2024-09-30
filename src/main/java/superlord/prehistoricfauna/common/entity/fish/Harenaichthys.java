@@ -43,7 +43,7 @@ public class Harenaichthys extends AbstractSchoolingFish {
 	public static boolean checkAncientFishSpawnRules(EntityType<? extends AbstractFish> type, LevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random randomIn) {
 		int i = worldIn.getSeaLevel();
 		int j = i - 13;
-		return pos.getY() >= j && worldIn.getBlockState(pos).is(Blocks.WATER) && randomIn.nextFloat() > 0.95F;
+		return pos.getY() >= j && worldIn.getBlockState(pos).is(Blocks.WATER);
 	}		
 	
 	@Override

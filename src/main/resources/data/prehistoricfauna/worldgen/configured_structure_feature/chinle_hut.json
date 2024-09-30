@@ -1,5 +1,5 @@
 {
-	"type": "minecraft:village",
+	"type": "prehistoricfauna:chinle_hut",
 	"config": {
     	"start_pool": "prehistoricfauna:chinle_hut",
     	"size": 1

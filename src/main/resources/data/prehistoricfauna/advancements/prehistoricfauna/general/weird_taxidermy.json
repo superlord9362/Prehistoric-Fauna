@@ -1,37 +1,37 @@
 {
-  "parent": "prehistoricfauna:prehistoricfauna/general/time_machine",
-  "display": {
-    "icon": {
-      "item": "prehistoricfauna:desmatosuchus_chestplate"
+    "parent": "prehistoricfauna:prehistoricfauna/general/time_machine",
+    "display": {
+        "icon": {
+            "item": "prehistoricfauna:desmatosuchus_chestplate"
+        },
+        "title": {
+            "translate": "advancements.prehistoricfauna.weird_taxidermy.title"
+        },
+        "description": {
+            "translate": "advancements.prehistoricfauna.weird_taxidermy.description"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
     },
-    "title": {
-      "translate": "advancements.prehistoricfauna.weird_taxidermy.title"
+    "criteria": {
+        "chestplate": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:desmatosuchus_chestplate"
+                        ]
+                    }
+                ]
+            }
+        }
     },
-    "description": {
-      "translate": "advancements.prehistoricfauna.weird_taxidermy.description"
-    },
-    "frame": "task",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
-  },
-  "criteria": {
-    "chestplate": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-				"prehistoricfauna:desmatosuchus_chestplate"
-          	]
-          }
+    "requirements": [
+        [
+            "chestplate"
         ]
-      }
-    }
-  },
-  "requirements": [
-    [
-      "chestplate"
     ]
-  ]
 }

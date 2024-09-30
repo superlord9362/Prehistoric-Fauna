@@ -13,7 +13,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGenerator;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
-import superlord.prehistoricfauna.common.feature.structures.structurepiece.MorrisonHutStructurePiece;
+import superlord.prehistoricfauna.common.feature.structures.structurepiece.*;
 
 public class MorrisonHutStructure extends StructureFeature<NoneFeatureConfiguration> {
 	public MorrisonHutStructure(Codec<NoneFeatureConfiguration> p_i51440_1_) {
@@ -33,7 +33,7 @@ public class MorrisonHutStructure extends StructureFeature<NoneFeatureConfigurat
 		worldgenrandom.setSeed((long) (i ^ j << 4) ^ p_197134_.seed());
 		worldgenrandom.nextInt();
 
-		return p_197134_.validBiomeOnTop(Heightmap.Types.WORLD_SURFACE_WG);
+		return p_197134_.validBiomeOnTop(Heightmap.Types.OCEAN_FLOOR_WG);
 	}
 
 	@Override

@@ -35,6 +35,13 @@ public class ProtoceratopsRenderer extends MobRenderer<Protoceratops, EntityMode
 	private static final ResourceLocation MELANISTIC_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/melanistic_juvenile_sleeping.png");
 	private static final ResourceLocation PALEOCRAFT_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/paleocraft_juvenile_sleeping.png");
 
+	private static final ResourceLocation PROTOCERATOPS_F = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/protoceratops_f.png");
+	private static final ResourceLocation PROTOCERATOPS_F_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/protoceratops_f_sleeping.png");
+	private static final ResourceLocation ALBINO_F = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/albino_f.png");
+	private static final ResourceLocation ALBINO_F_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/albino_f_sleeping.png");
+	private static final ResourceLocation MELANISTIC_F = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/melanistic_f.png");
+	private static final ResourceLocation MELANISTIC_F_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/melanistic_f_sleeping.png");
+
 	private static ProtoceratopsModel PROTOCERATOPS_MODEL;
 	private static ProtoceratopsJuvenileModel BABY_PROTOCERATOPS_MODEL;
 
@@ -50,7 +57,7 @@ public class ProtoceratopsRenderer extends MobRenderer<Protoceratops, EntityMode
 
 	protected void scale(Protoceratops triceratops, PoseStack matrixStackIn, float partialTickTime) {
 		if(triceratops.isBaby()) {
-				matrixStackIn.scale(0.5F, 0.5F, 0.5F);
+			matrixStackIn.scale(0.5F, 0.5F, 0.5F);
 			model = BABY_PROTOCERATOPS_MODEL;
 		} else {
 			model = PROTOCERATOPS_MODEL;
@@ -71,35 +78,69 @@ public class ProtoceratopsRenderer extends MobRenderer<Protoceratops, EntityMode
 					return PALEOCRAFT_SLEEPING;
 				} else return PALEOCRAFT;
 			}
-		} else if (entity.isAlbino()) {
-			if (entity.isBaby()) {
-				if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-					return ALBINO_JUVENILE_SLEEPING;
-				} else return ALBINO_JUVENILE;
+		} else if (!PrehistoricFaunaConfig.protoceratopsFeathersOrScaled) {
+			if (entity.isAlbino()) {
+				if (entity.isBaby()) {
+					if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+						return ALBINO_JUVENILE_SLEEPING;
+					} else return ALBINO_JUVENILE;
+				} else {
+					if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+						return ALBINO_F_SLEEPING;
+					} else return ALBINO_F;
+				}
+			} else if (entity.isMelanistic()) {
+				if (entity.isBaby()) {
+					if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+						return MELANISTIC_JUVENILE_SLEEPING;
+					} else return MELANISTIC_JUVENILE;
+				} else {
+					if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+						return MELANISTIC_F_SLEEPING;
+					} else return MELANISTIC_F;
+				}
 			} else {
-				if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-					return ALBINO_SLEEPING;
-				} else return ALBINO;
-			}
-		} else if (entity.isMelanistic()) {
-			if (entity.isBaby()) {
-				if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-					return MELANISTIC_JUVENILE_SLEEPING;
-				} else return MELANISTIC_JUVENILE;
-			} else {
-				if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-					return MELANISTIC_SLEEPING;
-				} else return MELANISTIC;
+				if (entity.isBaby()) {
+					if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+						return JUVENILE_SLEEPING;
+					} else return JUVENILE;
+				} else {
+					if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+						return PROTOCERATOPS_F_SLEEPING;
+					} else return PROTOCERATOPS_F;
+				}
 			}
 		} else {
-			if (entity.isBaby()) {
-				if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-					return JUVENILE_SLEEPING;
-				} else return JUVENILE;
+			if (entity.isAlbino()) {
+				if (entity.isBaby()) {
+					if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+						return ALBINO_JUVENILE_SLEEPING;
+					} else return ALBINO_JUVENILE;
+				} else {
+					if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+						return ALBINO_SLEEPING;
+					} else return ALBINO;
+				}
+			} else if (entity.isMelanistic()) {
+				if (entity.isBaby()) {
+					if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+						return MELANISTIC_JUVENILE_SLEEPING;
+					} else return MELANISTIC_JUVENILE;
+				} else {
+					if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+						return MELANISTIC_SLEEPING;
+					} else return MELANISTIC;
+				}
 			} else {
-				if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-					return PROTOCERATOPS_SLEEPING;
-				} else return PROTOCERATOPS;
+				if (entity.isBaby()) {
+					if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+						return JUVENILE_SLEEPING;
+					} else return JUVENILE;
+				} else {
+					if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+						return PROTOCERATOPS_SLEEPING;
+					} else return PROTOCERATOPS;
+				}
 			}
 		}
 	}

@@ -21,7 +21,7 @@ public class GeologistCampStructure extends StructureFeature<NoneFeatureConfigur
 	}
 
 	private static void generatePieces(StructurePiecesBuilder p_197233_, PieceGenerator.Context<NoneFeatureConfiguration> p_197234_) {
-		BlockPos blockpos = new BlockPos(p_197234_.chunkPos().getMinBlockX(), 90, p_197234_.chunkPos().getMinBlockZ());
+		BlockPos blockpos = new BlockPos(p_197234_.chunkPos().getMinBlockX(), 91, p_197234_.chunkPos().getMinBlockZ());
 		Rotation rotation = Rotation.getRandom(p_197234_.random());
 		GeologistCampStructurePiece.addStructure(p_197234_.structureManager(), blockpos, rotation, p_197233_, p_197234_.random());
 	}

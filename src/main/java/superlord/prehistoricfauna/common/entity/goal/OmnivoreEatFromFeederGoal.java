@@ -33,7 +33,7 @@ public class OmnivoreEatFromFeederGoal extends MoveToBlockGoal {
 	 */
 	protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 		BlockState blockstate = worldIn.getBlockState(pos);
-		return blockstate.getBlock() instanceof FeederBlock && (blockstate.getValue(FeederBlock.PLANT) == true || blockstate.getValue(FeederBlock.MEAT) == true);
+		return blockstate.getBlock() instanceof FeederBlock && (blockstate.getValue(FeederBlock.PLANT) == true || blockstate.getValue(FeederBlock.MEAT) == true || blockstate.getValue(FeederBlock.INSECT) == true);
 	}
 
 	protected BlockPos getMoveToTarget() {

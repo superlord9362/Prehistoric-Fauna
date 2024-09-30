@@ -68,14 +68,14 @@ public class YanosteusModel extends EntityModel<Yanosteus> {
 			this.head.zRot = 1.6F;
 		} else {
 			this.head.zRot = 0;
-			this.head.y = 22;
+			this.head.y = 21;
 		}
         this.head.xRot = headPitch * ((float)Math.PI / 180F);
         this.head.yRot = netheadYaw * ((float)Math.PI / 180F);
         this.Back.yRot = -f * 0.45F * Mth.sin(0.6F * ageInTicks);
         this.tail.yRot = -f * 0.225F * Mth.sin(0.3F * ageInTicks);
-		this.pectoral_f_l.zRot = (Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3))) + 0.4363F;
-		this.pectoral_f_r.zRot = (-Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3))) - 0.4363F;
+		this.pectoral_f_l.zRot = -Math.abs(-0.45F * Mth.sin(0.2F * ageInTicks)) - 0.4363F;
+		this.pectoral_f_r.zRot = Math.abs(-0.45F * Mth.sin(0.2F * ageInTicks)) + 0.4363F;
 	}
 
 	@Override

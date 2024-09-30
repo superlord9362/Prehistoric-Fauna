@@ -25,7 +25,6 @@ import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowParentGoal;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.ai.goal.TemptGoal;
-import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -42,6 +41,7 @@ import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurWaterAvoidingRandomStrollGoal;
 import superlord.prehistoricfauna.common.entity.goal.DiurnalSleepingGoal;
 import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatFromFeederGoal;
 import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatGoal;
@@ -63,7 +63,7 @@ import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
 
 public class Thescelosaurus extends DinosaurEntity {
-	private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(PFBlocks.MARCHANTIA.get().asItem());
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(PFBlocks.LIVERWORT.get().asItem());
 	private int maxHunger = 38;
 	private int chewingTick;
 
@@ -80,7 +80,7 @@ public class Thescelosaurus extends DinosaurEntity {
 	}
 
 	public boolean isFood(ItemStack stack) {
-		return stack.getItem() == PFBlocks.MARCHANTIA.get().asItem();
+		return stack.getItem() == PFBlocks.LIVERWORT.get().asItem();
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -90,7 +90,7 @@ public class Thescelosaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25F));
 		this.goalSelector.addGoal(3, new FollowParentGoal(this, 1.1D));
-		this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+		this.goalSelector.addGoal(4, new DinosaurWaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, TEMPTATION_ITEMS, false));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));

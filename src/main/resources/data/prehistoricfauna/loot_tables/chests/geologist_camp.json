@@ -122,6 +122,11 @@
           "type": "minecraft:item",
           "weight": 15,
           "name": "minecraft:paper"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "prehistoricfauna:geological_hammer"
         }
       ]
     }

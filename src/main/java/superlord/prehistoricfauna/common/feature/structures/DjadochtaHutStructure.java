@@ -33,7 +33,7 @@ public class DjadochtaHutStructure extends StructureFeature<NoneFeatureConfigura
 		worldgenrandom.setSeed((long) (i ^ j << 4) ^ p_197134_.seed());
 		worldgenrandom.nextInt();
 
-		return p_197134_.validBiomeOnTop(Heightmap.Types.WORLD_SURFACE_WG);
+		return p_197134_.validBiomeOnTop(Heightmap.Types.OCEAN_FLOOR_WG);
 	}
 
 	@Override

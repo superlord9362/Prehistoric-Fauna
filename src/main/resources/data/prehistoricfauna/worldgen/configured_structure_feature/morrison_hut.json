@@ -1,5 +1,5 @@
 {
-	"type": "minecraft:village",
+	"type": "prehistoricfauna:morrison_hut",
 	"config": {
     	"start_pool": "prehistoricfauna:morrison_hut",
     	"size": 1

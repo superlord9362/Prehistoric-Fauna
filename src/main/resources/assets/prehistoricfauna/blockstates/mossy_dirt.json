@@ -1,5 +1,24 @@
 {
     "variants": {
-        "": { "model": "prehistoricfauna:block/mossy_dirt" }
+		"snowy=false": [
+      {
+        "model": "prehistoricfauna:block/mossy_dirt"
+      },
+      {
+        "model": "prehistoricfauna:block/mossy_dirt",
+        "y": 90
+      },
+      {
+        "model": "prehistoricfauna:block/mossy_dirt",
+        "y": 180
+      },
+      {
+        "model": "prehistoricfauna:block/mossy_dirt",
+        "y": 270
+      }
+    ],
+    "snowy=true": {
+      "model": "minecraft:block/grass_block_snow"
+    }
     }
 }

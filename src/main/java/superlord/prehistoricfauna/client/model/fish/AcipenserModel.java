@@ -68,15 +68,15 @@ public class AcipenserModel extends EntityModel<Acipenser> {
 			this.Body.zRot = 1.6F;
 		} else {
 			this.Body.zRot = 0;
-			this.Body.y = 22;
+			this.Body.y = 20;
 		}
         this.Body.xRot = headPitch * ((float)Math.PI / 180F);
         this.Body.yRot = netHeadYaw * ((float)Math.PI / 180F);
         this.Tail.yRot = -f * 0.45F * Mth.sin(0.6F * ageInTicks);
         this.Tail2.yRot = -f * 0.225F * Mth.sin(0.3F * ageInTicks);
         this.TailFin.yRot = -f * 0.1125F * Mth.sin(0.15F * ageInTicks);
-		this.FinL.zRot = (Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3))) + 0.4363F;
-		this.FinR.zRot = (-Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3))) - 0.4363F;
+		this.FinL.zRot = (Math.abs(-0.45F * Mth.sin(0.2F * ageInTicks))) + 0.4363F;
+		this.FinR.zRot = (-Math.abs(-0.45F * Mth.sin(0.2F * ageInTicks))) - 0.4363F;
 	}
 
 	@Override

@@ -1,0 +1,14 @@
+{
+	"structures": [
+		{
+			"structure": "prehistoricfauna:yixian_hut",
+			"weight": 1
+		}
+	],
+	"placement": {
+		"salt": 6023124,
+		"spacing": 60,
+		"separation": 30,
+		"type": "minecraft:random_spread"
+	}
+}

@@ -1,0 +1,36 @@
+{
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "prehistoricfauna:blocks/callianthus",
+		"1": "prehistoricfauna:blocks/callianthus_2",
+		"particle": "prehistoricfauna:blocks/callianthus"
+	},
+	"elements": [
+		{
+			"from": [5.5, -1, 8],
+			"to": [10.5, 6, 8],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [6.5, 0, 4, 3.5], "texture": "#0"},
+				"east": {"uv": [0, 0, 0, 4], "texture": "#0"},
+				"south": {"uv": [4, 0, 6.5, 3.5], "texture": "#0"},
+				"west": {"uv": [0, 0, 0, 4], "texture": "#0"},
+				"up": {"uv": [0, 0, 2.5, 0], "texture": "#0"},
+				"down": {"uv": [0, 0, 2.5, 0], "texture": "#0"}
+			}
+		},
+		{
+			"from": [8, -1, 5.5],
+			"to": [8, 6, 10.5],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 4], "texture": "#0"},
+				"east": {"uv": [6.5, 0, 4, 3.5], "texture": "#1"},
+				"south": {"uv": [0, 0, 0, 4], "texture": "#0"},
+				"west": {"uv": [4, 0, 6.5, 3.5], "texture": "#1"},
+				"up": {"uv": [0, 0, 2.5, 0], "rotation": 90, "texture": "#0"},
+				"down": {"uv": [0, 0, 2.5, 0], "rotation": 270, "texture": "#0"}
+			}
+		}
+	]
+}

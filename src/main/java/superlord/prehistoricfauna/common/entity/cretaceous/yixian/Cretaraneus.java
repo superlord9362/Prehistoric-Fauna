@@ -184,7 +184,7 @@ public class Cretaraneus extends Animal {
 				this.entityData.set(ATTACHED_FACE, Direction.DOWN);
 			} else  if (this.verticalCollision) {
 				this.entityData.set(ATTACHED_FACE, Direction.UP);
-			}else {
+			} else {
 				boolean flag = false;
 				Direction closestDirection = Direction.DOWN;
 				double closestDistance = 100;

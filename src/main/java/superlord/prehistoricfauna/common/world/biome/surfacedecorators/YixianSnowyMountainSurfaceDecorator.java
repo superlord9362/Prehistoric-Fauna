@@ -1,6 +1,9 @@
 package superlord.prehistoricfauna.common.world.biome.surfacedecorators;
 
 import net.minecraft.core.BlockPos.MutableBlockPos;
+
+import java.util.Random;
+
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.chunk.ChunkAccess;
@@ -15,58 +18,80 @@ public class YixianSnowyMountainSurfaceDecorator extends SurfaceDecorator {
 		this.noise = noise;
 		SurfaceDecorators.setFastNoise(this.noise);
 	}
-	
+
 	public void buildSurface(MutableBlockPos pos, int seaLevel, boolean canSeeSun, ChunkAccess chunk, NoiseGeneratorSettings settings, FastNoise noise) {
 		boolean underwater = !chunk.getFluidState(pos.above()).isEmpty();
 		if (pos.getY() > 85) {
+			if (0.8D > noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) && noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) > 0.7D) {
+				chunk.setBlockState(pos, underwater ? Blocks.GRAVEL.defaultBlockState() : Blocks.POWDER_SNOW.defaultBlockState(), false);
+				pos.move(Direction.DOWN);
+				Random random = new Random();
+				for (int i = 0; i < random.nextInt(4) + 1; i++) {
+					if (i < 4) {
+						if (chunk.getBlockState(pos) == settings.defaultBlock()) {
+							chunk.setBlockState(pos, Blocks.POWDER_SNOW.defaultBlockState(), false);
+							pos.move(Direction.DOWN);
+						} else {
+							return;
+						}
+					} else {
+						if (chunk.getBlockState(pos) == settings.defaultBlock()) {
+							chunk.setBlockState(pos, Blocks.GRAVEL.defaultBlockState(), false);
+							pos.move(Direction.DOWN);
+						} else {
+							return;
+						}
+					}
+				}
+			}
 			chunk.setBlockState(pos, underwater ? Blocks.GRAVEL.defaultBlockState() : Blocks.SNOW_BLOCK.defaultBlockState(), false);
-            pos.move(Direction.DOWN);
-            for (int i = 0; i < 4; i++) {
-                if (chunk.getBlockState(pos) == settings.defaultBlock()) {
-                    chunk.setBlockState(pos, Blocks.GRAVEL.defaultBlockState(), false);
-                    pos.move(Direction.DOWN);
-                } else {
-                    return;
-                }
-            }
+			pos.move(Direction.DOWN);
+			for (int i = 0; i < 4; i++) {
+				if (chunk.getBlockState(pos) == settings.defaultBlock()) {
+					chunk.setBlockState(pos, Blocks.GRAVEL.defaultBlockState(), false);
+					pos.move(Direction.DOWN);
+				} else {
+					return;
+				}
+			}
 		} else {
 			if (noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) > 0.6D) {
 				chunk.setBlockState(pos, underwater ? Blocks.GRAVEL.defaultBlockState() : Blocks.GRAVEL.defaultBlockState(), false);
-	            pos.move(Direction.DOWN);
-	            for (int i = 0; i < 4; i++) {
-	                if (chunk.getBlockState(pos) == settings.defaultBlock()) {
-	                    chunk.setBlockState(pos, Blocks.GRAVEL.defaultBlockState(), false);
-	                    pos.move(Direction.DOWN);
-	                } else {
-	                    return;
-	                }
-	            }
+				pos.move(Direction.DOWN);
+				for (int i = 0; i < 4; i++) {
+					if (chunk.getBlockState(pos) == settings.defaultBlock()) {
+						chunk.setBlockState(pos, Blocks.GRAVEL.defaultBlockState(), false);
+						pos.move(Direction.DOWN);
+					} else {
+						return;
+					}
+				}
 			} else if (noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) < -0.3D) {
 				chunk.setBlockState(pos, underwater ? Blocks.CLAY.defaultBlockState() : Blocks.PODZOL.defaultBlockState(), false);
-	            pos.move(Direction.DOWN);
-	            for (int i = 0; i < 4; i++) {
-	                if (chunk.getBlockState(pos) == settings.defaultBlock()) {
-	                    chunk.setBlockState(pos, Blocks.DIRT.defaultBlockState(), false);
-	                    pos.move(Direction.DOWN);
-	                } else {
-	                    return;
-	                }
-	            }
+				pos.move(Direction.DOWN);
+				for (int i = 0; i < 4; i++) {
+					if (chunk.getBlockState(pos) == settings.defaultBlock()) {
+						chunk.setBlockState(pos, Blocks.DIRT.defaultBlockState(), false);
+						pos.move(Direction.DOWN);
+					} else {
+						return;
+					}
+				}
 			} else {
 				chunk.setBlockState(pos, underwater ? Blocks.SAND.defaultBlockState() : PFBlocks.MOSSY_DIRT.get().defaultBlockState(), false);
-	            pos.move(Direction.DOWN);
-	            for (int i = 0; i < 4; i++) {
-	                if (chunk.getBlockState(pos) == settings.defaultBlock()) {
-	                    chunk.setBlockState(pos, Blocks.DIRT.defaultBlockState(), false);
-	                    pos.move(Direction.DOWN);
-	                } else {
-	                    return;
-	                }
-	            }
+				pos.move(Direction.DOWN);
+				for (int i = 0; i < 4; i++) {
+					if (chunk.getBlockState(pos) == settings.defaultBlock()) {
+						chunk.setBlockState(pos, Blocks.DIRT.defaultBlockState(), false);
+						pos.move(Direction.DOWN);
+					} else {
+						return;
+					}
+				}
 			}
 		}
 	}
-	
+
 	@Override
 	public void buildSurface(MutableBlockPos pos, int seaLevel, boolean canSeeSun, ChunkAccess chunk, NoiseGeneratorSettings settings) {
 		FastNoise noise = new FastNoise();

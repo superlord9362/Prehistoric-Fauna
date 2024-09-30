@@ -210,7 +210,6 @@ public class PaleontologyTableBlockEntity extends BlockEntity implements MenuPro
 			boolean success = false;
 			for (int i = 1, n = entity.itemHandler.getSlots(); i < n; i++) {
 				if (entity.itemHandler.insertItem(i, result, false).isEmpty()) {
-					System.out.println("Hello!");
 					success = true;
 					break;
 				}

@@ -220,7 +220,7 @@ public class PsittacosaurusSkeleton extends PrehistoricEntity {
 	}
 
 	private void spawnFossil(DamageSource p_213815_1_) {
-	      Block.popResource(this.level, this.blockPosition(), new ItemStack(PFItems.PROTOCERATOPS_SKELETON.get()));
+	      Block.popResource(this.level, this.blockPosition(), new ItemStack(PFItems.PSITTACOSAURUS_SKELETON.get()));
 	}
 	
 	static class LookAtPlayerGoal extends net.minecraft.world.entity.ai.goal.LookAtPlayerGoal {

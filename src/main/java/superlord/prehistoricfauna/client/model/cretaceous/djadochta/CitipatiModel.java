@@ -12,6 +12,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
+import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Citipati;
 
 public class CitipatiModel extends EntityModel<Citipati> {
@@ -75,89 +76,91 @@ public class CitipatiModel extends EntityModel<Citipati> {
 
 	@Override
 	public void setupAnim(Citipati entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		float partialTick = ageInTicks - entity.tickCount;
+		float sleepProgress = entity.getSleepProgress(partialTick);
 		resetModel();
 		if (entity.isAsleep() || entity.isSitting()) {
-			//WingRight
-			if (this.WingRight.xRot < 0.39025563139857644F) this.WingRight.xRot += 0.05;
-			if (this.WingRight.yRot < 0.5866051722479385F) this.WingRight.yRot += 0.05;
-			if (this.WingRight.zRot > -0.7428121536172364F) this.WingRight.zRot -= 0.05;
-			//Head
-			if (this.Head.xRot < 0.9773843811168246F) this.Head.xRot += 0.05;
-			if (this.Head.yRot < 0.11728612207217244F) this.Head.yRot += 0.05;
-			//ThighLeft
-			if (this.ThighLeft.xRot > -1.0950196019960143F) this.ThighLeft.xRot -= 0.05;
-			if (this.ThighLeft.yRot < 0.35185837453889574F) this.ThighLeft.yRot += 0.05;
-			//TailFan
-			if (this.TailFan.xRot < 0.0781907508222411F) this.TailFan.xRot += 0.05;
-			if (this.TailFan.yRot > -0.27366763203903305F) this.TailFan.yRot -= 0.05;
-			if (this.TailFan.zRot > -0.11728612207217244F) this.TailFan.zRot -= 0.05;
-			//ThighRight
-			if (this.ThighRight.xRot > -1.1730357742864224F) this.ThighRight.xRot -= 0.05;
-			if (this.ThighRight.yRot > -0.4300491170387584F) this.ThighRight.yRot -= 0.05;
-			//WingLeft
-			if (this.WingLeft.xRot < 0.15690509575954859F) this.WingLeft.xRot += 0.05;
-			if (this.WingLeft.yRot > -0.7429866572476639F) this.WingLeft.yRot -= 0.05;
-			if (this.WingLeft.zRot < 0.8990190684075072F) this.WingLeft.zRot += 0.05;
-			//Neck
-			if (this.Neck.xRot > -0.35185837453889574F) this.Neck.xRot -= 0.05;
-			if (this.Neck.yRot < 0.23457224414434488F) this.Neck.yRot += 0.05;
-			if (this.Neck.zRot > -0.0781907508222411F) this.Neck.zRot -= 0.05;
-			//LegLeft
-			if (this.LegLeft.xRot < 0.16580627893946132F) this.LegLeft.xRot += 0.05;
-			if (this.LegLeft.yRot < 3.1398472178113552F) this.LegLeft.yRot += 0.05;
-			if (this.LegLeft.zRot < 0.0607374583022978F) this.LegLeft.zRot += 0.05;
-			//LegRight
-			if (this.LegRight.xRot < 0.03874630989361682F) this.LegRight.xRot += 0.05;
-			if (this.LegRight.yRot < 3.141592653589793F) this.LegRight.yRot += 0.05;
-			//Tail
-			if (this.Tail.xRot < 0.23457224414434488F) this.Tail.xRot += 0.05;
-			if (this.Tail.yRot > -0.19547687289441354F) this.Tail.yRot -= 0.05;
-			//Body
-			if (this.Body.y < 16.9F) this.Body.y += 0.15;
-			if (this.Body.xRot > -0.3909537457888271F) this.Body.xRot -= 0.05;
-			setSleepingPose();
-		} else {
-			if (entity.getWakingTicks() != 31) {
+			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
 				//WingRight
-				if (this.WingRight.xRot > 0) this.WingRight.xRot -= 0.05;
-				if (this.WingRight.yRot > 0) this.WingRight.yRot -= 0.05;
-				if (this.WingRight.zRot < 0) this.WingRight.zRot += 0.05;
+				this.WingRight.xRot = Mth.lerp(sleepProgress, 0, 0.39025563139857644F);
+				this.WingRight.yRot = Mth.lerp(sleepProgress, 0, 0.5866051722479385F);
+				this.WingRight.zRot = Mth.lerp(sleepProgress, 0, -0.7428121536172364F);
 				//Head
-				if (this.Head.xRot > 0) this.Head.xRot -= 0.05;
-				if (this.Head.yRot > 0) this.Head.yRot -= 0.05;
+				this.Head.xRot = Mth.lerp(sleepProgress, 0, 0.9773843811168246F);
+				this.Head.yRot = Mth.lerp(sleepProgress, 0, 0.11728612207217244F);
 				//ThighLeft
-				if (this.ThighLeft.xRot < 0) this.ThighLeft.xRot += 0.05;
-				if (this.ThighLeft.yRot > 0) this.ThighLeft.yRot -= 0.05;
+				this.ThighLeft.xRot = Mth.lerp(sleepProgress, 0, -1.0950196019960143F);
+				this.ThighLeft.yRot = Mth.lerp(sleepProgress, 0, 0.35185837453889574F);
 				//TailFan
-				if (this.TailFan.xRot > 0) this.TailFan.xRot -= 0.05;
-				if (this.TailFan.yRot < 0) this.TailFan.yRot += 0.05;
-				if (this.TailFan.zRot < 0) this.TailFan.zRot += 0.05;
+				this.TailFan.xRot = Mth.lerp(sleepProgress, 0, 0.0781907508222411F);
+				this.TailFan.yRot = Mth.lerp(sleepProgress, 0, -0.27366763203903305F);
+				this.TailFan.zRot = Mth.lerp(sleepProgress, 0, -0.11728612207217244F);
 				//ThighRight
-				if (this.ThighRight.xRot < 0) this.ThighRight.xRot += 0.05;
-				if (this.ThighRight.yRot < 0) this.ThighRight.yRot += 0.05;
+				this.ThighRight.xRot = Mth.lerp(sleepProgress, 0, -1.1730357742864224F);
+				this.ThighRight.yRot = Mth.lerp(sleepProgress, 0, -0.4300491170387584F);
 				//WingLeft
-				if (this.WingLeft.xRot > 0) this.WingLeft.xRot -= 0.05;
-				if (this.WingLeft.yRot < 0) this.WingLeft.yRot += 0.05;
-				if (this.WingLeft.zRot > 0) this.WingLeft.zRot -= 0.05;
+				this.WingLeft.xRot = Mth.lerp(sleepProgress, 0, 0.15690509575954859F);
+				this.WingLeft.yRot = Mth.lerp(sleepProgress, 0, -0.7429866572476639F);
+				this.WingLeft.zRot = Mth.lerp(sleepProgress, 0, 0.8990190684075072F);
 				//Neck
-				if (this.Neck.xRot < 0) this.Neck.xRot += 0.05;
-				if (this.Neck.yRot > 0) this.Neck.yRot -= 0.05;
-				if (this.Neck.zRot < 0) this.Neck.zRot += 0.05;
+				this.Neck.xRot = Mth.lerp(sleepProgress, 0, -0.35185837453889574F);
+				this.Neck.yRot = Mth.lerp(sleepProgress, 0, 0.23457224414434488F);
+				this.Neck.zRot = Mth.lerp(sleepProgress, 0, -0.0781907508222411F);
 				//LegLeft
-				if (this.LegLeft.xRot > 0) this.LegLeft.xRot -= 0.05;
-				if (this.LegLeft.yRot > 0) this.LegLeft.yRot -= 0.05;
-				if (this.LegLeft.zRot > 0) this.LegLeft.zRot -= 0.05;
+				this.LegLeft.xRot = Mth.lerp(sleepProgress, 0, 0.16580627893946132F);
+				this.LegLeft.yRot = Mth.lerp(sleepProgress, 0, 3.1398472178113552F);
+				this.LegLeft.zRot = Mth.lerp(sleepProgress, 0, 0.0607374583022978F);
 				//LegRight
-				if (this.LegRight.xRot > 0) this.LegRight.xRot -= 0.05;
-				if (this.LegRight.yRot > 0) this.LegRight.yRot -= 0.05;
+				this.LegRight.xRot = Mth.lerp(sleepProgress, 0, 0.03874630989361682F);
+				this.LegRight.yRot = Mth.lerp(sleepProgress, 0, 3.141592653589793F);
 				//Tail
-				if (this.Tail.xRot > 0) this.Tail.xRot -= 0.05;
-				if (this.Tail.yRot < 0) this.Tail.yRot += 0.05;
+				this.Tail.xRot = Mth.lerp(sleepProgress, 0, 0.23457224414434488F);
+				this.Tail.yRot = Mth.lerp(sleepProgress, 0, -0.19547687289441354F);
 				//Body
-				if (this.Body.y > 6F) this.Body.y -= 0.15;
-				if (this.Body.xRot < 0) this.Body.xRot += 0.05;
-			} else if (entity.getWakingTicks() == 31) {
-				float partialTick = ageInTicks - entity.tickCount;
+				this.Body.y = Mth.lerp(sleepProgress, 6, 16.9F);
+				this.Body.xRot = Mth.lerp(sleepProgress, 0, -0.3909537457888271F);
+			} else setSleepingPose();
+		} else {
+			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
+				//WingRight
+				this.WingRight.xRot = Mth.lerp(sleepProgress, 0.39025563139857644F, 0);
+				this.WingRight.yRot = Mth.lerp(sleepProgress, 0.5866051722479385F, 0);
+				this.WingRight.zRot = Mth.lerp(sleepProgress, -0.7428121536172364F, 0);
+				//Head
+				this.Head.xRot = Mth.lerp(sleepProgress, 0.9773843811168246F, 0);
+				this.Head.yRot = Mth.lerp(sleepProgress, 0.11728612207217244F, 0);
+				//ThighLeft
+				this.ThighLeft.xRot = Mth.lerp(sleepProgress, -1.0950196019960143F, 0);
+				this.ThighLeft.yRot = Mth.lerp(sleepProgress, 0.35185837453889574F, 0);
+				//TailFan
+				this.TailFan.xRot = Mth.lerp(sleepProgress, 0.0781907508222411F, 0);
+				this.TailFan.yRot = Mth.lerp(sleepProgress, -0.27366763203903305F, 0);
+				this.TailFan.zRot = Mth.lerp(sleepProgress, -0.11728612207217244F, 0);
+				//ThighRight
+				this.ThighRight.xRot = Mth.lerp(sleepProgress, -1.1730357742864224F, 0);
+				this.ThighRight.yRot = Mth.lerp(sleepProgress, -0.4300491170387584F, 0);
+				//WingLeft
+				this.WingLeft.xRot = Mth.lerp(sleepProgress, 0.15690509575954859F, 0);
+				this.WingLeft.yRot = Mth.lerp(sleepProgress, -0.7429866572476639F, 0);
+				this.WingLeft.zRot = Mth.lerp(sleepProgress, 0.8990190684075072F, 0);
+				//Neck
+				this.Neck.xRot = Mth.lerp(sleepProgress, -0.35185837453889574F, 0);
+				this.Neck.yRot = Mth.lerp(sleepProgress, 0.23457224414434488F, 0);
+				this.Neck.zRot = Mth.lerp(sleepProgress, -0.0781907508222411F, 0);
+				//LegLeft
+				this.LegLeft.xRot = Mth.lerp(sleepProgress, 0.16580627893946132F, 0);
+				this.LegLeft.yRot = Mth.lerp(sleepProgress, 3.1398472178113552F, 0);
+				this.LegLeft.zRot = Mth.lerp(sleepProgress, 0.0607374583022978F, 0);
+				//LegRight
+				this.LegRight.xRot = Mth.lerp(sleepProgress, 0.03874630989361682F, 0);
+				this.LegRight.yRot = Mth.lerp(sleepProgress, 3.141592653589793F, 0);
+				//Tail
+				this.Tail.xRot = Mth.lerp(sleepProgress, 0.23457224414434488F, 0);
+				this.Tail.yRot = Mth.lerp(sleepProgress, -0.19547687289441354F, 0);
+				//Body
+				this.Body.y = Mth.lerp(sleepProgress, 16.9F, 6F);
+				this.Body.xRot = Mth.lerp(sleepProgress, -0.3909537457888271F, 0);
+			} else {
 				float attackProgress = entity.getMeleeProgress(partialTick);
 				this.Head.yRot = netHeadYaw * ((float)Math.PI / 180F);
 				this.ThighRight.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;

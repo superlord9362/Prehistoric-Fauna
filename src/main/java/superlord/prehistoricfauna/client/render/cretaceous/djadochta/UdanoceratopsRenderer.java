@@ -2,6 +2,7 @@ package superlord.prehistoricfauna.client.render.cretaceous.djadochta;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -20,6 +21,9 @@ public class UdanoceratopsRenderer extends MobRenderer<Udanoceratops, Udanocerat
 	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/albino_sleeping.png");
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/melanistic_sleeping.png");
 
+	private static final ResourceLocation SNIFFER = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/sniffer.png");
+	private static final ResourceLocation SNIFFER_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/sniffer_sleeping.png");
+
 	public UdanoceratopsRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new UdanoceratopsModel(renderManagerIn.bakeLayer(ClientEvents.UDANOCERATOPS)), 0.25F);
 		if (PrehistoricFaunaConfig.eyeShine) {
@@ -36,18 +40,25 @@ public class UdanoceratopsRenderer extends MobRenderer<Udanoceratops, Udanocerat
 
 	@Override
 	public ResourceLocation getTextureLocation(Udanoceratops entity) {
-		if (entity.isAlbino()) {
+		String s = ChatFormatting.stripFormatting(entity.getName().getString());
+		if ( s != null && "Sniffer".equals(s)) {
 			if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-				return ALBINO_SLEEPING;
-			} else return ALBINO;
-		} else if (entity.isMelanistic()) {
-			if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-				return MELANISTIC_SLEEPING;
-			} else return MELANISTIC;
+				return SNIFFER_SLEEPING;
+			} else return SNIFFER;
 		} else {
-			if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-				return UDANOCERATOPS_SLEEPING;
-			} else return UDANOCERATOPS;
+			if (entity.isAlbino()) {
+				if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+					return ALBINO_SLEEPING;
+				} else return ALBINO;
+			} else if (entity.isMelanistic()) {
+				if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+					return MELANISTIC_SLEEPING;
+				} else return MELANISTIC;
+			} else {
+				if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+					return UDANOCERATOPS_SLEEPING;
+				} else return UDANOCERATOPS;
+			}
 		}
 	}
 }

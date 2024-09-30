@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"parent": "prehistoricfauna:block/nest_three_small_tall_eggs_two_plants",
 	"textures": {
-		"egg": "prehistoricfauna:blocks/ankylosaurus_egg",
+		"egg": "prehistoricfauna:blocks/palaeosaniwa_egg",
 		"material": "prehistoricfauna:blocks/nest",
 		"plants": "prehistoricfauna:blocks/plants"
 	}

@@ -26,7 +26,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowParentGoal;
-import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -51,6 +50,7 @@ import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurTerritorialAttackGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurWaterAvoidingRandomStrollGoal;
 import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatFromFeederGoal;
 import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatGoal;
 import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
@@ -99,6 +99,7 @@ public class Scelidosaurus extends DinosaurEntity {
 
 	private void setBipedal(boolean isBipedal) {
 		this.entityData.set(BIPEDAL, isBipedal);
+		this.setFallingAsleep();
 	}
 
 	protected void defineSynchedData() {
@@ -128,7 +129,7 @@ public class Scelidosaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new DinosaurMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new NaturalMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(3, new FollowParentGoal(this, 1.1D));
-		this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+		this.goalSelector.addGoal(4, new DinosaurWaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
@@ -281,13 +282,10 @@ public class Scelidosaurus extends DinosaurEntity {
 		public void tick() {
 			super.tick();
 			Scelidosaurus.this.setBipedal(true);
-			Scelidosaurus.this.setCrouchingTicks(0);
 		}
 
 		public void stop() {
 			Scelidosaurus.this.setBipedal(false);
-			Scelidosaurus.this.setCrouchingTicks(31);
-			Scelidosaurus.this.setWakingTicks(0);
 			super.stop();
 		}
 

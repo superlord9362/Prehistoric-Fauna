@@ -14,6 +14,7 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.HumanoidArm;
+import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Halszkaraptor;
 
 public class HalszkaraptorModel extends EntityModel<Halszkaraptor> implements ArmedModel {
@@ -67,30 +68,67 @@ public class HalszkaraptorModel extends EntityModel<Halszkaraptor> implements Ar
 	public void setupAnim(Halszkaraptor entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		float partialTick = ageInTicks - entity.tickCount;
 		float attackProgress = entity.getMeleeProgress(partialTick);
+		float sleepProgress = entity.getSleepProgress(partialTick);
 		resetModel();
 		if (entity.isAsleep()) {
-			sleepPose();
+			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
+				this.RLeg.y = Mth.lerp(sleepProgress, 3, 0);
+				this.LLeg.y = Mth.lerp(sleepProgress, 3, 0);
+				this.RWing.y = Mth.lerp(sleepProgress, 1, 0.3F);
+				this.RWing.xRot = Mth.lerp(sleepProgress, 0, -0.33004175888896664F);
+				this.RWing.yRot = Mth.lerp(sleepProgress, 0, -0.21537363235926135F);
+				this.LWing.y = Mth.lerp(sleepProgress, 1, 0.3F);
+				this.LWing.xRot = Mth.lerp(sleepProgress, 0, -0.33004175888896664F);
+				this.LWing.yRot = Mth.lerp(sleepProgress, 0, 0.21537363235926135F);
+				this.Neck.y = Mth.lerp(sleepProgress, 0, 2.4F);
+				this.Neck.xRot = Mth.lerp(sleepProgress, 0, -0.182212366584515F);
+				this.Tail.y = Mth.lerp(sleepProgress, 1, 0.6F);
+				this.Tail.xRot = Mth.lerp(sleepProgress, 0, -0.21938788164936507F);
+				this.Tail.yRot = Mth.lerp(sleepProgress, 0, -0.1096066806870904F);
+				this.Tail.zRot = Mth.lerp(sleepProgress, 0, -0.07295475973730675F);
+				this.Body.y = Mth.lerp(sleepProgress, 17, 20.8F);
+				this.Body.xRot = Mth.lerp(sleepProgress, 0, 0.07278023113974408F);
+			} else sleepPose();
 		} else {
-			this.Neck.xRot = (headPitch * ((float) Math.PI / 180F)) + (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + attackProgress * (float) Math.toRadians(40F);
-			this.RWing.zRot = -Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(-50F);
-			this.LWing.zRot = Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(50F);
-			this.Neck.yRot = netHeadYaw * ((float)Math.PI / 180F);
-			this.LLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-			this.RLeg.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-			this.Tail.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
-			this.Tail.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
-			this.RWing.yRot = Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3));
-			this.LWing.yRot = -Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3));
-			if (entity.isInWater()) {
-				this.Body.y = 17;
-				this.Body.xRot = -0.25F;
-				this.Tail.xRot = 0.25F;
-				this.Neck.xRot = 0.25F;
-				this.LWing.zRot = -1.5F + Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
-				this.RWing.zRot = 1.5F - Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
-				this.RLeg.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
-				this.LLeg.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
-				this.Tail.yRot = Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;
+			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
+				this.RLeg.y = Mth.lerp(sleepProgress, 0, 3);
+				this.LLeg.y = Mth.lerp(sleepProgress, 0, 3);
+				this.RWing.y = Mth.lerp(sleepProgress, 0.3F, 1F);
+				this.RWing.xRot = Mth.lerp(sleepProgress, -0.33004175888896664F, 0);
+				this.RWing.yRot = Mth.lerp(sleepProgress, -0.21537363235926135F, 0);
+				this.LWing.y = Mth.lerp(sleepProgress, 0.3F, 1F);
+				this.LWing.xRot = Mth.lerp(sleepProgress, -0.33004175888896664F, 0);
+				this.LWing.yRot = Mth.lerp(sleepProgress, 0.21537363235926135F, 0);
+				this.Neck.y = Mth.lerp(sleepProgress, 2.4F, 0F);
+				this.Neck.xRot = Mth.lerp(sleepProgress, -0.182212366584515F, 0);
+				this.Tail.y = Mth.lerp(sleepProgress, 0.6F, 1F);
+				this.Tail.xRot = Mth.lerp(sleepProgress, -0.21938788164936507F, 0);
+				this.Tail.yRot = Mth.lerp(sleepProgress, -0.1096066806870904F, 0);
+				this.Tail.zRot = Mth.lerp(sleepProgress, -0.07295475973730675F, 0);
+				this.Body.y = Mth.lerp(sleepProgress, 20.8F, 17F);
+				this.Body.xRot = Mth.lerp(sleepProgress, 0.07278023113974408F, 0);
+			} else {
+				this.Neck.xRot = (headPitch * ((float) Math.PI / 180F)) + (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + attackProgress * (float) Math.toRadians(40F);
+				this.RWing.zRot = -Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(-50F);
+				this.LWing.zRot = Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(50F);
+				this.Neck.yRot = netHeadYaw * ((float)Math.PI / 180F);
+				this.LLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+				this.RLeg.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+				this.Tail.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
+				this.Tail.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
+				this.RWing.yRot = Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3));
+				this.LWing.yRot = -Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3));
+				if (entity.isInWater()) {
+					this.Body.y = 17;
+					this.Body.xRot = -0.25F;
+					this.Tail.xRot = 0.25F;
+					this.Neck.xRot = 0.25F;
+					this.LWing.zRot = -1.5F + Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
+					this.RWing.zRot = 1.5F - Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
+					this.RLeg.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
+					this.LLeg.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
+					this.Tail.yRot = Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;
+				}
 			}
 		}
 	}

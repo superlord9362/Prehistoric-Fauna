@@ -30,6 +30,7 @@ public class PFSounds {
 	public static final SoundEvent PACHYCEPHALOSAURUS_IDLE, PACHYCEPHALOSAURUS_HURT, PACHYCEPHALOSAURUS_DEATH;
 	public static final SoundEvent ORNITHOMIMUS_IDLE, ORNITHOMIMUS_HURT, ORNITHOMIMUS_DEATH, ORNITHOMIMUS_WARN;
 	public static final SoundEvent EDMONTOSAURUS_IDLE, EDMONTOSAURUS_HURT, EDMONTOSAURUS_DEATH, EDMONTOSAURUS_WARN;
+	public static final SoundEvent ANZU_IDLE, ANZU_HURT, ANZU_DEATH, ANZU_WARN;
 	//Djadochta
 	public static final SoundEvent PROTOCERATOPS_IDLE, PROTOCERATOPS_HURT, PROTOCERATOPS_WARN, PROTOCERATOPS_DEATH;
 	public static final SoundEvent VELOCIRAPTOR_IDLE, VELOCIRAPTOR_HURT, VELOCIRAPTOR_DEATH, VELOCIRAPTOR_WARN;
@@ -178,6 +179,10 @@ public class PFSounds {
 		evt.getRegistry().register(EDMONTOSAURUS_HURT);
 		evt.getRegistry().register(EDMONTOSAURUS_DEATH);
 		evt.getRegistry().register(EDMONTOSAURUS_WARN);
+		evt.getRegistry().register(ANZU_IDLE);
+		evt.getRegistry().register(ANZU_HURT);
+		evt.getRegistry().register(ANZU_DEATH);
+		evt.getRegistry().register(ANZU_WARN);
 		//Djadochta
 		evt.getRegistry().register(PROTOCERATOPS_IDLE);
 		evt.getRegistry().register(PROTOCERATOPS_WARN);
@@ -496,6 +501,10 @@ public class PFSounds {
 		EDMONTOSAURUS_HURT = createEvent("edmontosaurus_hurt");
 		EDMONTOSAURUS_DEATH = createEvent("edmontosaurus_death");
 		EDMONTOSAURUS_WARN = createEvent("edmontosaurus_warn");
+		ANZU_IDLE = createEvent("anzu_idle");
+		ANZU_HURT = createEvent("anzu_hurt");
+		ANZU_DEATH = createEvent("anzu_death");
+		ANZU_WARN = createEvent("anzu_warn");
 		//Djadochta
 		PROTOCERATOPS_IDLE = createEvent("protoceratops_idle");
 		PROTOCERATOPS_HURT = createEvent("protoceratops_hurt");

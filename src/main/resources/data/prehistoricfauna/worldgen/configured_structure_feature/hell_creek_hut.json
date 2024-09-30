@@ -1,5 +1,5 @@
 {
-	"type": "minecraft:village",
+	"type": "prehistoricfauna:hell_creek_hut",
 	"config": {
     	"start_pool": "prehistoricfauna:hell_creek_hut",
     	"size": 1

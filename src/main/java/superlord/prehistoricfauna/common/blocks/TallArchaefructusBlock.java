@@ -39,7 +39,7 @@ public class TallArchaefructusBlock  extends DoublePlantBlock implements LiquidB
 	}
 
 	public ItemStack getCloneItemStack(BlockGetter p_154749_, BlockPos p_154750_, BlockState p_154751_) {
-		return new ItemStack(PFBlocks.ARCHAEFRUCTUS.get());
+		return new ItemStack(PFBlocks.TALL_ARCHAEFRUCTUS.get());
 	}
 
 	@Nullable

@@ -164,17 +164,15 @@ public class TriceratopsSkeleton extends PrehistoricEntity {
 	
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
+		//Charging
+		//ActionLeft
+		//ActionRight
+		//Classical
+		//Sitting
+		//Sleeping
+		//Classical
 	    if (itemstack.getItem() == PFItems.GEOLOGY_HAMMER.get()) {
 	    	if (!this.isCharging() && !this.isSleeping() && !this.isClassical() && !this.isSitting() && !this.isActionLeft() && !this.isActionRight() && !player.isShiftKeyDown()) {
-				this.setClassical(true);
-			} else if (this.isClassical() && !player.isShiftKeyDown()) {
-				this.setClassical(false);
-				this.setSitting(true);
-			} else if (this.isSitting() && !player.isShiftKeyDown()) {
-				this.setSitting(false);
-				this.setSleeping(true);
-			} else if (this.isSleeping() && !player.isShiftKeyDown()) {
-				this.setSleeping(false);
 				this.setCharging(true);
 			} else if (this.isCharging() && !player.isShiftKeyDown()) {
 				this.setCharging(false);
@@ -184,6 +182,15 @@ public class TriceratopsSkeleton extends PrehistoricEntity {
 				this.setActionRight(true);
 			} else if (this.isActionRight() && !player.isShiftKeyDown()) {
 				this.setActionRight(false);
+				this.setSitting(true);
+			} else if (this.isSitting() && !player.isShiftKeyDown()) {
+				this.setSitting(false);
+				this.setSleeping(true);
+			} else if (this.isSleeping() && !player.isShiftKeyDown()) {
+				this.setSleeping(false);
+				this.setClassical(true);
+			} else if (this.isClassical() && !player.isShiftKeyDown()) {
+				this.setClassical(false);
 	    	} else if (player.isShiftKeyDown() && !this.isPushableState() && !this.isLooking()) {
 	    		this.setPushable(true);
 				player.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.skeleton.pushable"), true);

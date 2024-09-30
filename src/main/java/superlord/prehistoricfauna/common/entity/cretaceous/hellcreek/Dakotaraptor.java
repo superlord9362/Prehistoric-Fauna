@@ -42,7 +42,6 @@ import net.minecraft.world.entity.ai.goal.FollowParentGoal;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.LeapAtTargetGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
@@ -76,6 +75,7 @@ import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurTerritorialAttackGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurWaterAvoidingRandomStrollGoal;
 import superlord.prehistoricfauna.common.entity.goal.HostileCarnivoreGoal;
 import superlord.prehistoricfauna.common.entity.goal.HuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
@@ -156,7 +156,7 @@ public class Dakotaraptor extends DinosaurEntity {
 		this.goalSelector.addGoal(8, new Dakotaraptor.FollowGoal(this, 1.25D));
 		this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
 		this.goalSelector.addGoal(10, new LeapAtTargetGoal(this, 0.4F));
-		this.goalSelector.addGoal(11, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+		this.goalSelector.addGoal(11, new DinosaurWaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.goalSelector.addGoal(13, new Dakotaraptor.SitAndLookGoal());
@@ -386,6 +386,7 @@ public class Dakotaraptor extends DinosaurEntity {
 
 	public void setSitting(boolean p_213466_1_) {
 		this.setDakotaraptorFlag(1, p_213466_1_);
+		this.setFallingAsleep();
 	}
 
 	public boolean isStuck() {
@@ -771,14 +772,11 @@ public class Dakotaraptor extends DinosaurEntity {
 			if (livingentity != null && Dakotaraptor.func_213481_a(Dakotaraptor.this, livingentity)) {
 				Dakotaraptor.this.func_213502_u(true);
 				Dakotaraptor.this.setCrouching(true);
-				Dakotaraptor.this.setCrouchingTicks(0);
 				Dakotaraptor.this.getNavigation().stop();
 				Dakotaraptor.this.getLookControl().setLookAt(livingentity, (float)Dakotaraptor.this.getMaxHeadYRot(), (float)Dakotaraptor.this.getMaxHeadXRot());
 			} else {
 				Dakotaraptor.this.func_213502_u(false);
 				Dakotaraptor.this.setCrouching(false);
-				Dakotaraptor.this.setCrouchingTicks(31);
-				Dakotaraptor.this.setWakingTicks(0);
 			}
 
 		}
@@ -789,7 +787,6 @@ public class Dakotaraptor extends DinosaurEntity {
 			if (Dakotaraptor.this.distanceToSqr(livingentity) <= 36.0D) {
 				Dakotaraptor.this.func_213502_u(true);
 				Dakotaraptor.this.setCrouching(true);
-				Dakotaraptor.this.setCrouchingTicks(0);
 				Dakotaraptor.this.getNavigation().stop();
 			} else {
 				Dakotaraptor.this.getNavigation().moveTo(livingentity, 1.5D);
@@ -979,7 +976,6 @@ public class Dakotaraptor extends DinosaurEntity {
 
 		public void stop() {
 			Dakotaraptor.this.setSitting(false);
-			Dakotaraptor.this.setWakingTicks(0);
 		}
 
 		public void tick() {
@@ -1032,7 +1028,6 @@ public class Dakotaraptor extends DinosaurEntity {
 		public void stop() {
 			this.countdown = Dakotaraptor.this.random.nextInt(WAIT_TIME_BEFORE_SLEEP);
 			Dakotaraptor.this.func_213499_en();
-			Dakotaraptor.this.setWakingTicks(0);
 		}
 
 		public void start() {

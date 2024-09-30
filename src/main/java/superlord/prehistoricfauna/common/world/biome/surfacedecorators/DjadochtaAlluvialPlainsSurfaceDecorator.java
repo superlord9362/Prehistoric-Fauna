@@ -1,5 +1,6 @@
 package superlord.prehistoricfauna.common.world.biome.surfacedecorators;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Blocks;
@@ -18,64 +19,85 @@ public class DjadochtaAlluvialPlainsSurfaceDecorator extends SurfaceDecorator {
 	public void buildSurface(MutableBlockPos pos, int seaLevel, boolean canSeeSun, ChunkAccess chunk, NoiseGeneratorSettings settings, FastNoise noise) {
 		SurfaceDecorators.setFastNoise(noise);
 		boolean underwater = !chunk.getFluidState(pos.above()).isEmpty();
-		if (noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) > 0.5D) {
-			chunk.setBlockState(pos, underwater ? PFBlocks.SILT.get().defaultBlockState() : Blocks.GRAVEL.defaultBlockState(), false);
-			pos.move(Direction.DOWN);
-			for (int i = 0; i < 4; i++) {
-				if (chunk.getBlockState(pos) == settings.defaultBlock()) {
-					chunk.setBlockState(pos, Blocks.TERRACOTTA.defaultBlockState(), false);
-					pos.move(Direction.DOWN);
-				} else {
-					return;
-				}
-			}
+        if (noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) > 0.5D) {
+        	chunk.setBlockState(pos, underwater ? Blocks.TERRACOTTA.defaultBlockState() : PFBlocks.HARDENED_SILT.get().defaultBlockState(), false);
+            pos.move(Direction.DOWN);
+            for (int i = 0; i < 4; i++) {
+                if (chunk.getBlockState(pos) == settings.defaultBlock()) {
+                    chunk.setBlockState(pos, Blocks.TERRACOTTA.defaultBlockState(), false);
+                    pos.move(Direction.DOWN);
+                } else {
+                    return;
+                }
+            }
 		} else if (noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) > 0.4D) {
-			chunk.setBlockState(pos, underwater ? PFBlocks.SILT.get().defaultBlockState() : PFBlocks.HARDENED_SILT.get().defaultBlockState(), false);
-			pos.move(Direction.DOWN);
-			for (int i = 0; i < 4; i++) {
-				if (chunk.getBlockState(pos) == settings.defaultBlock()) {
-					chunk.setBlockState(pos, PFBlocks.HARDENED_SILT.get().defaultBlockState(), false);
-					pos.move(Direction.DOWN);
-				} else {
-					return;
-				}
+			for (int i = 64; i < 100; i++) {
+				BlockPos pos1 = new BlockPos(pos.getX(), i, pos.getZ());
+				chunk.setBlockState(pos1, Blocks.AIR.defaultBlockState(), false);
+			}
+			if (pos.getY() != 64) {
+				pos.setY(64);
+				chunk.setBlockState(pos, underwater ? PFBlocks.SILT.get().defaultBlockState() : PFBlocks.LOAM.get().defaultBlockState(), false);
+	            pos.move(Direction.DOWN);
+	            for (int i = 0; i < 4; i++) {
+	                if (chunk.getBlockState(pos) == settings.defaultBlock()) {
+	                    chunk.setBlockState(pos, PFBlocks.HARDENED_SILT.get().defaultBlockState(), false);
+	                    pos.move(Direction.DOWN);
+	                } else {
+	                    return;
+	                }
+	            }
 			}
 		} else if (noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) > 0.2D) {
-			chunk.setBlockState(pos, underwater ? PFBlocks.SILT.get().defaultBlockState() : PFBlocks.SILT.get().defaultBlockState(), false);
-			pos.move(Direction.DOWN);
-			for (int i = 0; i < 4; i++) {
-				if (chunk.getBlockState(pos) == settings.defaultBlock()) {
-					chunk.setBlockState(pos, PFBlocks.HARDENED_SILT.get().defaultBlockState(), false);
-					pos.move(Direction.DOWN);
-				} else {
-					return;
-				}
+			for (int i = 64; i < 100; i++) {
+				BlockPos pos1 = new BlockPos(pos.getX(), i, pos.getZ());
+				chunk.setBlockState(pos1, Blocks.AIR.defaultBlockState(), false);
+			}
+			if (pos.getY() != 64) {
+				pos.setY(64);
+				chunk.setBlockState(pos, underwater ? PFBlocks.SILT.get().defaultBlockState() : Blocks.AIR.defaultBlockState(), false);
+				pos.move(Direction.DOWN);
+	            for (int i = 0; i < 4; i++) {
+	                if (chunk.getBlockState(pos) == settings.defaultBlock()) {
+	                    chunk.setBlockState(pos, PFBlocks.HARDENED_SILT.get().defaultBlockState(), false);
+	                    pos.move(Direction.DOWN);
+	                } else {
+	                    return;
+	                }
+	            }
 			}
 		} else if (noise.GetNoise(pos.getX(), pos.getY(), pos.getZ()) > 0D) {
-			chunk.setBlockState(pos, underwater ? PFBlocks.SILT.get().defaultBlockState() : PFBlocks.HARDENED_SILT.get().defaultBlockState(), false);
-			pos.move(Direction.DOWN);
-			for (int i = 0; i < 4; i++) {
-				if (chunk.getBlockState(pos) == settings.defaultBlock()) {
-					chunk.setBlockState(pos, PFBlocks.HARDENED_SILT.get().defaultBlockState(), false);
-					pos.move(Direction.DOWN);
-				} else {
-					return;
-				}
+			for (int i = 64; i < 100; i++) {
+				BlockPos pos1 = new BlockPos(pos.getX(), i, pos.getZ());
+				chunk.setBlockState(pos1, Blocks.AIR.defaultBlockState(), false);
+			}
+			if (pos.getY() != 64) {
+				pos.setY(64);
+				chunk.setBlockState(pos, underwater ? PFBlocks.SILT.get().defaultBlockState() : PFBlocks.LOAM.get().defaultBlockState(), false);
+	            pos.move(Direction.DOWN);
+	            for (int i = 0; i < 4; i++) {
+	                if (chunk.getBlockState(pos) == settings.defaultBlock()) {
+	                    chunk.setBlockState(pos, PFBlocks.SILT.get().defaultBlockState(), false);
+	                    pos.move(Direction.DOWN);
+	                } else {
+	                    return;
+	                }
+	            }
 			}
 		} else {
 			chunk.setBlockState(pos, underwater ? PFBlocks.SILT.get().defaultBlockState() : Blocks.SAND.defaultBlockState(), false);
-			pos.move(Direction.DOWN);
-			for (int i = 0; i < 4; i++) {
-				if (chunk.getBlockState(pos) == settings.defaultBlock()) {
-					chunk.setBlockState(pos, Blocks.TERRACOTTA.defaultBlockState(), false);
-					pos.move(Direction.DOWN);
-				} else {
-					return;
-				}
-			}
+            pos.move(Direction.DOWN);
+            for (int i = 0; i < 4; i++) {
+                if (chunk.getBlockState(pos) == settings.defaultBlock()) {
+                    chunk.setBlockState(pos, Blocks.TERRACOTTA.defaultBlockState(), false);
+                    pos.move(Direction.DOWN);
+                } else {
+                    return;
+                }
+            }
 		}
 	}
-
+	
 	@Override
 	public void buildSurface(MutableBlockPos pos, int seaLevel, boolean canSeeSun, ChunkAccess chunk, NoiseGeneratorSettings settings) {
 		FastNoise noise = new FastNoise();

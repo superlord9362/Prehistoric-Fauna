@@ -127,9 +127,9 @@ public class PrehistoricFauna {
 	public void biomeModification(final BiomeLoadingEvent event) {
 		String name = event.getName().getPath();
 		if (name.equals("badlands")) event.getGeneration().getFeatures(Decoration.VEGETAL_DECORATION).add(PFPlacedFeatures.PLACED_PETRIFIED_TREE.getHolder().orElseThrow());
-		if (!name.equals("chinle_flats") && !name.equals("chinle_swamp") && !name.equals("chinle_wooded_mountains") && !name.equals("ischigualasto_forest") && !name.equals("ischigualasto_clearing") && !name.equals("ischigualasto_hills") && !name.equals("chinle_river") && !name.equals("ischigualasto_river") && !name.equals("prehistoric_dripstone_cave")) {
-			if (!name.equals("kayenta_dry_forest") && !name.equals("kayenta_buttes") && !name.equals("kayenta_desert") && !name.equals("kayenta_river") && !name.equals("morrison_savanna") && !name.equals("morrison_hills")) {
-				if (!name.equals("hell_creek_hardwood_forest") && !name.equals("hell_creek_clearing") && !name.equals("hell_creek_bluffs") && !name.equals("hell_creek_redwoods") && !name.equals("hell_creek_swamp") && !name.equals("hell_creek_river") && !name.equals("djadochta_dunes") && !name.equals("djadochta_arroyo") && !name.equals("djadochta_alluvial_plains")  &&  !name.equals("yixian_forest") && !name.equals("yixian_snowy_forest") && !name.equals("yixian_snowy_mountains") && !name.equals("yixian_regrowth") && !name.equals("yixian_volcano")) {
+		if (!name.equals("triassic_dripstone_cave") && !name.equals("triassic_cave") && !name.equals("chinle_flats") && !name.equals("chinle_swamp") && !name.equals("chinle_wooded_mountains") && !name.equals("ischigualasto_forest") && !name.equals("ischigualasto_clearing") && !name.equals("ischigualasto_hills") && !name.equals("chinle_river") && !name.equals("ischigualasto_river") && !name.equals("prehistoric_dripstone_cave")) {
+			if (!name.equals("jurassic_dripstone_cave") && !name.equals("jurassic_cave") && !name.equals("kayenta_dry_forest") && !name.equals("kayenta_buttes") && !name.equals("kayenta_desert") && !name.equals("kayenta_river") && !name.equals("morrison_savanna") && !name.equals("morrison_hills")) {
+				if (!name.equals("cretaceous_dripstone_cave") && !name.equals("cretaceous_cave") && !name.equals("hell_creek_hardwood_forest") && !name.equals("hell_creek_clearing") && !name.equals("hell_creek_bluffs") && !name.equals("hell_creek_redwoods") && !name.equals("hell_creek_swamp") && !name.equals("hell_creek_river") && !name.equals("djadochta_dunes") && !name.equals("djadochta_arroyo") && !name.equals("djadochta_alluvial_plains")  &&  !name.equals("yixian_forest") && !name.equals("yixian_snowy_forest") && !name.equals("yixian_snowy_mountains") && !name.equals("yixian_regrowth") && !name.equals("yixian_volcano")) {
 					event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(PFPlacedFeatures.FOSSILIZED_CHALK);
 				}
 				event.getGeneration().getFeatures(Decoration.UNDERGROUND_ORES).add(PFPlacedFeatures.FOSSILIZED_SILTSTONE);
@@ -268,6 +268,10 @@ public class PrehistoricFauna {
 		event.put(PFEntities.PROTOPSEPHURUS.get(), Protopsephurus.createAttributes().build());
 		event.put(PFEntities.SINAMIA.get(), Sinamia.createAttributes().build());
 		event.put(PFEntities.EDMONTOSAURUS.get(), Edmontosaurus.createAttributes().build());
+		event.put(PFEntities.BEIPIAOSAURUS.get(), Beipiaosaurus.createAttributes().build());
+		event.put(PFEntities.ANZU.get(), Anzu.createAttributes().build());
+		event.put(PFEntities.LIAONINGOSAURUS.get(), Liaoningosaurus.createAttributes().build());
+		event.put(PFEntities.CHANGYURAPTOR.get(), Changyuraptor.createAttributes().build());
 	}
 
 	public final static CreativeModeTab PF_BUILDING = new CreativeModeTab("prehistoric_building_tab") {
@@ -414,6 +418,10 @@ public class PrehistoricFauna {
 		SpawnPlacements.register(PFEntities.SINOSAUROPTERYX.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.INCISIVOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.EDMONTOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.BEIPIAOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.ANZU.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.LIAONINGOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.CHANGYURAPTOR.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.LAND_SENTINEL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, LandSentinel::canSpawn);
 		SpawnPlacements.register(PFEntities.CAVE_SENTINEL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, CaveSentinel::canSpawn);
 		SpawnPlacements.register(PFEntities.PROTOPSEPHURUS.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Protopsephurus::checkAncientFishSpawnRules);

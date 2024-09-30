@@ -12,6 +12,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
+import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Oviraptor;
 
 public class OviraptorModel extends EntityModel<Oviraptor> {
@@ -79,43 +80,82 @@ public class OviraptorModel extends EntityModel<Oviraptor> {
 
 	@Override
 	public void setupAnim(Oviraptor entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		float partialTick = ageInTicks - entity.tickCount;
+		float sleepProgress = entity.getSleepProgress(partialTick);
 		resetModel();
 		if (entity.isAsleep()) {
-			setSleepingPose();
+			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
+				this.Body.y = Mth.lerp(sleepProgress, 16, 19.5F);
+				this.Neck1.xRot = Mth.lerp(sleepProgress, 0, 0.3491F);
+				this.Neck1.yRot = Mth.lerp(sleepProgress, 0, 0.5672F);
+				this.RightWing.xRot = Mth.lerp(sleepProgress, 0, 0.0873F);
+				this.RightWing.zRot = Mth.lerp(sleepProgress, 0, -0.7854F);
+				this.LeftWing.xRot = Mth.lerp(sleepProgress, 0, 0.0873F);
+				this.LeftWing.zRot = Mth.lerp(sleepProgress, 0, 0.7854F);
+				this.Tail.xRot = Mth.lerp(sleepProgress, 0, -0.3054F);
+				this.Tail.yRot = Mth.lerp(sleepProgress, 0, -0.3491F);
+				this.LeftThigh.xRot = Mth.lerp(sleepProgress, 0, -0.4363F);
+				this.LeftThigh.yRot = Mth.lerp(sleepProgress, 0, 0.1745F);
+				this.LeftLeg.xRot = Mth.lerp(sleepProgress, 0, -1.1345F);
+				this.LeftFoot.xRot = Mth.lerp(sleepProgress, 0, 1.5708F);
+				this.RightThigh.xRot = Mth.lerp(sleepProgress, 0, -0.4363F);
+				this.RightThigh.yRot = Mth.lerp(sleepProgress, 0, -0.1745F);
+				this.RightLeg.xRot = Mth.lerp(sleepProgress, 0, -1.1345F);
+				this.RightFoot.xRot = Mth.lerp(sleepProgress, 0, 1.5708F);
+			} else setSleepingPose();
 		} else {
-			float partialTick = ageInTicks - entity.tickCount;
-			float attackProgress = entity.getMeleeProgress(partialTick);
-			this.Neck1.yRot = netHeadYaw * ((float)Math.PI / 180F);
-			this.RightThigh.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-			this.LeftThigh.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-			this.Tail.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
-			this.Tail.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
-			this.Body.xRot = Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3));
-			this.Neck1.xRot = (headPitch * ((float) Math.PI / 180F)) + (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + attackProgress * (float) Math.toRadians(40F);
-			this.LeftWing.zRot = -Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(-50F);
-			this.RightWing.zRot = Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(50F);
-			if (entity.isEating()) {
-				this.Body.xRot = 0.5F;
-				this.LeftThigh.xRot = -0.5F;
-				this.RightThigh.xRot = -0.5F;
-				this.Neck1.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.75F) + 0.5F;
-			}
-			if (entity.isInWater()) {
-				this.Body.y = 17;
-				this.Body.xRot = -0.25F;
-				this.Tail.xRot = 0.25F;
-				this.Neck1.xRot = 0.25F + (headPitch * ((float) Math.PI / 180F)) + (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + attackProgress * (float) Math.toRadians(40F);
-				this.LeftWing.zRot = 0.5F + Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
-				this.RightWing.zRot = -0.5F - Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
-				this.LeftThigh.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
-				this.RightThigh.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
-				this.Tail.yRot = Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;
-				this.LeftLeg.xRot = -0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
-				this.RightLeg.xRot = 0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
+			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
+				this.Body.y = Mth.lerp(sleepProgress, 19.5F, 16F);
+				this.Neck1.xRot = Mth.lerp(sleepProgress, 0.3491F, 0);
+				this.Neck1.yRot = Mth.lerp(sleepProgress, 0.5672F, 0);
+				this.RightWing.xRot = Mth.lerp(sleepProgress, 0.0873F, 0);
+				this.RightWing.zRot = Mth.lerp(sleepProgress, -0.7854F, 0);
+				this.LeftWing.xRot = Mth.lerp(sleepProgress, 0.0873F, 0);
+				this.LeftWing.zRot = Mth.lerp(sleepProgress, 0.7854F, 0);
+				this.Tail.xRot = Mth.lerp(sleepProgress, -0.3054F, 0);
+				this.Tail.yRot = Mth.lerp(sleepProgress, -0.3491F, 0);
+				this.LeftThigh.xRot = Mth.lerp(sleepProgress, -0.4363F, 0);
+				this.LeftThigh.yRot = Mth.lerp(sleepProgress, 0.1745F, 0);
+				this.LeftLeg.xRot = Mth.lerp(sleepProgress, -1.1345F, 0);
+				this.LeftFoot.xRot = Mth.lerp(sleepProgress, 1.5708F, 0);
+				this.RightThigh.xRot = Mth.lerp(sleepProgress, -0.4363F, 0);
+				this.RightThigh.yRot = Mth.lerp(sleepProgress, -0.1745F, 0);
+				this.RightLeg.xRot = Mth.lerp(sleepProgress, -1.1345F, 0);
+				this.RightFoot.xRot = Mth.lerp(sleepProgress, 1.5708F, 0);
+			} else {
+				float attackProgress = entity.getMeleeProgress(partialTick);
+				this.Neck1.yRot = netHeadYaw * ((float)Math.PI / 180F);
+				this.RightThigh.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+				this.LeftThigh.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+				this.Tail.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
+				this.Tail.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
+				this.Body.xRot = Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3));
+				this.Neck1.xRot = (headPitch * ((float) Math.PI / 180F)) + (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + attackProgress * (float) Math.toRadians(40F);
+				this.LeftWing.zRot = -Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(-50F);
+				this.RightWing.zRot = Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(50F);
+				if (entity.isEating()) {
+					this.Body.xRot = 0.5F;
+					this.LeftThigh.xRot = -0.5F;
+					this.RightThigh.xRot = -0.5F;
+					this.Neck1.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.75F) + 0.5F;
+				}
+				if (entity.isInWater()) {
+					this.Body.y = 17;
+					this.Body.xRot = -0.25F;
+					this.Tail.xRot = 0.25F;
+					this.Neck1.xRot = 0.25F + (headPitch * ((float) Math.PI / 180F)) + (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + attackProgress * (float) Math.toRadians(40F);
+					this.LeftWing.zRot = 0.5F + Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
+					this.RightWing.zRot = -0.5F - Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
+					this.LeftThigh.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
+					this.RightThigh.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
+					this.Tail.yRot = Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;
+					this.LeftLeg.xRot = -0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
+					this.RightLeg.xRot = 0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
+				}
 			}
 		}
 	}
-	
+
 	public void resetModel() {
 		this.Body.y = 16F;
 		this.Body.xRot = 0F;
@@ -136,7 +176,7 @@ public class OviraptorModel extends EntityModel<Oviraptor> {
 		this.RightLeg.xRot = 0F;
 		this.RightFoot.xRot = 0F;
 	}
-	
+
 	public void setSleepingPose() {
 		this.Body.y = 19.5F;
 		this.Neck1.xRot = 0.3491F;

@@ -37,6 +37,15 @@ public class CarnivoreHuntGoal extends NearestAttackableTargetGoal {
 		if (dinosaur.getTarget() != null) {
 			LivingEntity target = dinosaur.getTarget();
 			if (!target.is(null)) {
+				if (target.getType().is(PFTags.INSECTS_2_HUNGER)) {
+					if (target.getHealth() == 0) {
+						if (dinosaur.getCurrentHunger() + 2 >= dinosaur.maxHunger) {
+							dinosaur.setHunger(dinosaur.maxHunger);
+						} else {
+							dinosaur.setHunger(dinosaur.currentHunger + 2);
+						}
+					}
+				}
 				if (target.getType().is(PFTags.ANIMALS_3_HUNGER)) {
 					if (target.getHealth() == 0) {
 						if (dinosaur.getCurrentHunger() + 3 >= dinosaur.maxHunger) {

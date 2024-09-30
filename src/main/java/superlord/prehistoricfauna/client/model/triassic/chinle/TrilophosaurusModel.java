@@ -12,6 +12,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
+import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.triassic.chinle.Trilophosaurus;
 
 public class TrilophosaurusModel extends EntityModel<Trilophosaurus> {
@@ -81,141 +82,106 @@ public class TrilophosaurusModel extends EntityModel<Trilophosaurus> {
 
 	@Override
 	public void setupAnim(Trilophosaurus entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		float partialTick = ageInTicks - entity.tickCount;
+		float sleepProgress = entity.getSleepProgress(partialTick);
 		resetModel();
 		if (entity.isAsleep()) {
-			//Neck
-			if (this.Neck.xRot < 0.7037167490777915F) this.Neck.xRot += 0.05;
-			if (this.Neck.yRot > -0.46914448828868976F) this.Neck.yRot -= 0.05;
-			//RightFoot
-			if (this.RightFoot.xRot > -0.11728612207217244F) this.RightFoot.xRot -= 0.05;
-			if (this.RightFoot.yRot < 0.03909537541112055F) this.RightFoot.yRot += 0.05;
-			if (this.RightFoot.zRot < 1.2510520131558576F) this.RightFoot.zRot += 0.05;
-			//RightHand 
-			if (this.RightHand.zRot < 1.3688617376654748F) this.RightHand.zRot += 0.05;
-			//LeftHand
-			if (this.LeftHand.zRot > -1.3683381601951652F) this.LeftHand.zRot -= 0.05;
-			//Body
-			//this.Body.y = 18.0F;
-			if (this.Body.y < 21) this.Body.y += 0.15;
-			//RightArm
-			//this.RightArm.y = 20.89F;
-			if (this.RightArm.y < 23.89) this.RightArm.y += 0.15;
-			if (this.RightArm.xRot > -0.46914448828868976F) this.RightArm.xRot -= 0.05;
-			if (this.RightArm.yRot < 0.1563815016444822F) this.RightArm.yRot += 0.05;
-			if (this.RightArm.zRot > -1.3683381601951652F) this.RightArm.zRot -= 0.05;
-			//TailBase
-			//this.TailBase.xRot = -0.27366763203903305F;
-			if (this.TailBase.xRot < -0.11728612207217244F) this.TailBase.xRot += 0.05;
-			if (this.TailBase.yRot < 0.46914448828868976F) this.TailBase.yRot += 0.05;
-			//RightLeg
-			//this.RightLeg.y = 19.99F;
-			if (this.RightLeg.y < 22.99) this.RightLeg.y += 0.15;
-			if (this.RightLeg.xRot < 0.35185837453889574F) this.RightLeg.xRot += 0.05;
-			if (this.RightLeg.yRot > -1.1728612040769677F) this.RightLeg.yRot -= 0.05;
-			//TailEnd
-			//this.TailEnd.xRot = 0.11728612207217244F;
-			if (this.TailEnd.xRot > 0.0781907508222411F) this.TailEnd.xRot -= 0.05;
-			if (this.TailEnd.yRot < 0.46914448828868976F) this.TailEnd.yRot += 0.05;
-			//LeftLeg
-			//this.LeftLeg.y = 19.99F;
-			if (this.LeftLeg.y < 22.99) this.LeftLeg.y += 0.15;
-			if (this.LeftLeg.xRot < 0.35185837453889574F) this.LeftLeg.xRot += 0.05;
-			if (this.LeftLeg.yRot < 1.1728612040769677F) this.LeftLeg.yRot += 0.05;
-			//LeftArm
-			//this.LeftArm.y = 20.99F;
-			if (this.LeftArm.y < 22.99) this.LeftArm.y += 0.15;
-			if (this.LeftArm.xRot > -0.46914448828868976F) this.LeftArm.xRot -= 0.05;
-			if (this.LeftArm.yRot > -0.1563815016444822F) this.LeftArm.yRot -= 0.05;
-			if (this.LeftArm.zRot < 1.3683381601951652F) this.LeftArm.zRot += 0.05;
-			//LeftFoot
-			if (this.LeftFoot.xRot > -0.11728612207217244F) this.LeftFoot.xRot -= 0.05;
-			if (this.LeftFoot.yRot < 0.03909537541112055F) this.LeftFoot.yRot += 0.05;
-			if (this.LeftFoot.zRot > -1.2510520131558576F) this.LeftFoot.zRot -= 0.05;
-			sleepPose();
+			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
+				this.Neck.xRot = Mth.lerp(sleepProgress, 0, 0.7037167490777915F);
+				this.Neck.yRot = Mth.lerp(sleepProgress, 0, -0.46914448828868976F);
+				this.RightFoot.xRot = Mth.lerp(sleepProgress, 0, -0.11728612207217244F);
+				this.RightFoot.yRot = Mth.lerp(sleepProgress, 0, 0.03909537541112055F);
+				this.RightFoot.zRot = Mth.lerp(sleepProgress, 0, 1.2510520131558576F);
+				this.RightHand.zRot = Mth.lerp(sleepProgress, 0,  1.3688617376654748F);
+				this.LeftHand.zRot = Mth.lerp(sleepProgress, 0, -1.3683381601951652F);
+				this.Body.y = Mth.lerp(sleepProgress, 18, 21.0F);
+				this.RightArm.y = Mth.lerp(sleepProgress, 20.89F, 23.89F);
+				this.RightArm.xRot = Mth.lerp(sleepProgress, 0, -0.46914448828868976F);
+				this.RightArm.yRot = Mth.lerp(sleepProgress, 0, 0.1563815016444822F);
+				this.RightArm.zRot = Mth.lerp(sleepProgress, 0, -1.3683381601951652F);
+				this.TailBase.xRot = Mth.lerp(sleepProgress, -0.27366763203903305F, -0.11728612207217244F);
+				this.TailBase.yRot = Mth.lerp(sleepProgress, 0, 0.46914448828868976F);
+				this.RightLeg.y = Mth.lerp(sleepProgress, 19.99F, 22.99F);
+				this.RightLeg.xRot = Mth.lerp(sleepProgress, 0, 0.35185837453889574F);
+				this.RightLeg.zRot = Mth.lerp(sleepProgress, 0, -1.1728612040769677F);
+				this.TailEnd.xRot = Mth.lerp(sleepProgress, 0.11728612207217244F, 0.0781907508222411F);
+				this.TailEnd.yRot = Mth.lerp(sleepProgress, 0, 0.3909537457888271F);
+				this.LeftLeg.y = Mth.lerp(sleepProgress, 19.99F, 22.99F);
+				this.LeftLeg.xRot = Mth.lerp(sleepProgress, 0, 0.35185837453889574F);
+				this.LeftLeg.zRot = Mth.lerp(sleepProgress, 0, 1.1728612040769677F);
+				this.LeftArm.y = Mth.lerp(sleepProgress, 20.99F, 22.99F);
+				this.LeftArm.xRot = Mth.lerp(sleepProgress, 0, -0.46914448828868976F);
+				this.LeftArm.yRot = Mth.lerp(sleepProgress, 0, -0.1563815016444822F);
+				this.LeftArm.zRot = Mth.lerp(sleepProgress, 0, 1.3683381601951652F);
+				this.LeftFoot.xRot = Mth.lerp(sleepProgress, 0, -0.11728612207217244F);
+				this.LeftFoot.yRot = Mth.lerp(sleepProgress, 0, 0.03909537541112055F);
+				this.LeftFoot.zRot = Mth.lerp(sleepProgress, 0, -1.2510520131558576F);
+			} else sleepPose();
 		} else {
-			resetModel();
-			this.LeftLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-			this.RightLeg.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-			this.TailBase.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
-			this.TailEnd.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
-			this.TailBase.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
-			this.TailEnd.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
-			this.Neck.xRot = (headPitch * ((float)Math.PI / 180F)) + (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3)));
-			this.RightArm.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-			this.LeftArm.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;		this.Neck.yRot = netHeadYaw * ((float)Math.PI / 180F);
-			if (entity.isEating()) {
-				this.Neck.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.75F) + 0.5F;
+			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
+				this.Neck.xRot = Mth.lerp(sleepProgress, 0.7037167490777915F, 0);
+				this.Neck.yRot = Mth.lerp(sleepProgress, -0.46914448828868976F, 0);
+				this.RightFoot.xRot = Mth.lerp(sleepProgress, -0.11728612207217244F, 0);
+				this.RightFoot.yRot = Mth.lerp(sleepProgress, 0.03909537541112055F, 0);
+				this.RightFoot.zRot = Mth.lerp(sleepProgress, 1.2510520131558576F, 0);
+				this.RightHand.zRot = Mth.lerp(sleepProgress, 1.3688617376654748F, 0);
+				this.LeftHand.zRot = Mth.lerp(sleepProgress, -1.3683381601951652F, 0);
+				this.Body.y = Mth.lerp(sleepProgress, 21, 18.0F);
+				this.RightArm.y = Mth.lerp(sleepProgress, 23.89F, 20.89F);
+				this.RightArm.xRot = Mth.lerp(sleepProgress, -0.46914448828868976F, 0);
+				this.RightArm.yRot = Mth.lerp(sleepProgress, 0.1563815016444822F, 0);
+				this.RightArm.zRot = Mth.lerp(sleepProgress, -1.3683381601951652F, 0);
+				this.TailBase.xRot = Mth.lerp(sleepProgress, -0.11728612207217244F, -0.27366763203903305F);
+				this.TailBase.yRot = Mth.lerp(sleepProgress, 0.46914448828868976F, 0);
+				this.RightLeg.y = Mth.lerp(sleepProgress, 22.99F, 19.99F);
+				this.RightLeg.xRot = Mth.lerp(sleepProgress, 0.35185837453889574F, 0);
+				this.RightLeg.zRot = Mth.lerp(sleepProgress, -1.1728612040769677F, 0);
+				this.TailEnd.xRot = Mth.lerp(sleepProgress, 0.0781907508222411F, 0.11728612207217244F);
+				this.TailEnd.yRot = Mth.lerp(sleepProgress, 0.3909537457888271F, 0);
+				this.LeftLeg.y = Mth.lerp(sleepProgress, 22.99F, 19.99F);
+				this.LeftLeg.xRot = Mth.lerp(sleepProgress, 0.35185837453889574F, 0);
+				this.LeftLeg.zRot = Mth.lerp(sleepProgress, 1.1728612040769677F, 0);
+				this.LeftArm.y = Mth.lerp(sleepProgress, 22.99F, 20.99F);
+				this.LeftArm.xRot = Mth.lerp(sleepProgress, -0.46914448828868976F, 0);
+				this.LeftArm.yRot = Mth.lerp(sleepProgress, -0.1563815016444822F, 0);
+				this.LeftArm.zRot = Mth.lerp(sleepProgress, 1.3683381601951652F, 0);
+				this.LeftFoot.xRot = Mth.lerp(sleepProgress, -0.11728612207217244F, 0);
+				this.LeftFoot.yRot = Mth.lerp(sleepProgress, 0.03909537541112055F, 0);
+				this.LeftFoot.zRot = Mth.lerp(sleepProgress, -1.2510520131558576F, 0);
+			} else {
+				this.LeftLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+				this.RightLeg.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+				this.TailBase.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
+				this.TailEnd.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
+				this.TailBase.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
+				this.TailEnd.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
+				this.Neck.xRot = (headPitch * ((float)Math.PI / 180F)) + (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3)));
+				this.RightArm.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+				this.LeftArm.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;		this.Neck.yRot = netHeadYaw * ((float)Math.PI / 180F);
+				if (entity.isEating()) {
+					this.Neck.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.75F) + 0.5F;
+				}
+				if (entity.isInWater()) {
+					this.RightArm.xRot = 1.25F;
+					this.RightArm.yRot = 0.25F;
+					this.LeftArm.xRot = 1.25F;
+					this.LeftArm.yRot = -0.25F;
+					this.LeftLeg.xRot = 1.25F;
+					this.LeftLeg.yRot = -0.25F + (0.25F * Mth.sin(0.25F * ageInTicks / 1F));
+					this.RightLeg.xRot = 1.25F;
+					this.RightLeg.yRot = 0.25F + (0.25F * Mth.sin(0.25F * ageInTicks / 1F));
+					this.TailBase.yRot = 0.25F * Mth.sin(0.25F * ageInTicks / 1F);
+					this.TailEnd.yRot = 0.25F * Mth.sin(0.25F * ageInTicks / 1F);
+					this.RightHand.zRot =  1.3688617376654748F;
+					this.LeftHand.zRot = -1.3683381601951652F;
+					this.RightFoot.xRot = -0.11728612207217244F;
+					this.RightFoot.yRot = 0.03909537541112055F;
+					this.RightFoot.zRot = 1.2510520131558576F;
+					this.LeftFoot.xRot = -0.11728612207217244F;
+					this.LeftFoot.yRot = 0.03909537541112055F;
+					this.LeftFoot.zRot = -1.2510520131558576F;
+				}
 			}
-			if (entity.isInWater()) {
-				this.RightArm.xRot = 1.25F;
-				this.RightArm.yRot = 0.25F;
-				this.LeftArm.xRot = 1.25F;
-				this.LeftArm.yRot = -0.25F;
-				this.LeftLeg.xRot = 1.25F;
-				this.LeftLeg.yRot = -0.25F + (0.25F * Mth.sin(0.25F * ageInTicks / 1F));
-				this.RightLeg.xRot = 1.25F;
-				this.RightLeg.yRot = 0.25F + (0.25F * Mth.sin(0.25F * ageInTicks / 1F));
-				this.TailBase.yRot = 0.25F * Mth.sin(0.25F * ageInTicks / 1F);
-				this.TailEnd.yRot = 0.25F * Mth.sin(0.25F * ageInTicks / 1F);
-				this.RightHand.zRot =  1.3688617376654748F;
-				this.LeftHand.zRot = -1.3683381601951652F;
-				this.RightFoot.xRot = -0.11728612207217244F;
-				this.RightFoot.yRot = 0.03909537541112055F;
-				this.RightFoot.zRot = 1.2510520131558576F;
-				this.LeftFoot.xRot = -0.11728612207217244F;
-				this.LeftFoot.yRot = 0.03909537541112055F;
-				this.LeftFoot.zRot = -1.2510520131558576F;
-			}
-		}
-		if (entity.getWakingTicks() < 31) {
-			//Neck
-			if (this.Neck.xRot > 0.7037167490777915F) this.Neck.xRot -= 0.05;
-			if (this.Neck.yRot < -0.46914448828868976F) this.Neck.yRot += 0.05;
-			//RightFoot
-			if (this.RightFoot.xRot < -0.11728612207217244F) this.RightFoot.xRot += 0.05;
-			if (this.RightFoot.yRot > 0.03909537541112055F) this.RightFoot.yRot -= 0.05;
-			if (this.RightFoot.zRot > 1.2510520131558576F) this.RightFoot.zRot -= 0.05;
-			//RightHand 
-			if (this.RightHand.zRot > 1.3688617376654748F) this.RightHand.zRot -= 0.05;
-			//LeftHand
-			if (this.LeftHand.zRot < -1.3683381601951652F) this.LeftHand.zRot += 0.05;
-			//Body
-			//this.Body.y = 18.0F;
-			if (this.Body.y > 21) this.Body.y -= 0.15;
-			//RightArm
-			//this.RightArm.y = 20.89F;
-			if (this.RightArm.y > 23.89) this.RightArm.y -= 0.15;
-			if (this.RightArm.xRot < -0.46914448828868976F) this.RightArm.xRot += 0.05;
-			if (this.RightArm.yRot > 0.1563815016444822F) this.RightArm.yRot -= 0.05;
-			if (this.RightArm.zRot < -1.3683381601951652F) this.RightArm.zRot += 0.05;
-			//TailBase
-			//this.TailBase.xRot = -0.27366763203903305F;
-			if (this.TailBase.xRot > -0.11728612207217244F) this.TailBase.xRot -= 0.05;
-			if (this.TailBase.yRot > 0.46914448828868976F) this.TailBase.yRot -= 0.05;
-			//RightLeg
-			//this.RightLeg.y = 19.99F;
-			if (this.RightLeg.y > 22.99) this.RightLeg.y -= 0.15;
-			if (this.RightLeg.xRot > 0.35185837453889574F) this.RightLeg.xRot -= 0.05;
-			if (this.RightLeg.yRot < -1.1728612040769677F) this.RightLeg.yRot += 0.05;
-			//TailEnd
-			//this.TailEnd.xRot = 0.11728612207217244F;
-			if (this.TailEnd.xRot < 0.0781907508222411F) this.TailEnd.xRot += 0.05;
-			if (this.TailEnd.yRot > 0.46914448828868976F) this.TailEnd.yRot -= 0.05;
-			//LeftLeg
-			//this.LeftLeg.y = 19.99F;
-			if (this.LeftLeg.y > 22.99) this.LeftLeg.y -= 0.15;
-			if (this.LeftLeg.xRot > 0.35185837453889574F) this.LeftLeg.xRot -= 0.05;
-			if (this.LeftLeg.yRot > 1.1728612040769677F) this.LeftLeg.yRot -= 0.05;
-			//LeftArm
-			//this.LeftArm.y = 20.99F;
-			if (this.LeftArm.y > 22.99) this.LeftArm.y -= 0.15;
-			if (this.LeftArm.xRot < -0.46914448828868976F) this.LeftArm.xRot += 0.05;
-			if (this.LeftArm.yRot < -0.1563815016444822F) this.LeftArm.yRot += 0.05;
-			if (this.LeftArm.zRot > 1.3683381601951652F) this.LeftArm.zRot -= 0.05;
-			//LeftFoot
-			if (this.LeftFoot.xRot < -0.11728612207217244F) this.LeftFoot.xRot += 0.05;
-			if (this.LeftFoot.yRot > 0.03909537541112055F) this.LeftFoot.yRot -= 0.05;
-			if (this.LeftFoot.zRot < -1.2510520131558576F) this.LeftFoot.zRot += 0.05;
 		}
 	}
 

@@ -110,6 +110,14 @@ public class PFTags {
 	public static final TagKey<EntityType<?>> INCISIVOSAURUS_HUNTING = registerEntityTag("incisivosaurus_hunting");
 	public static final TagKey<EntityType<?>> INCISIVOSAURUS_BABY_HUNTING = registerEntityTag("incisivosaurus_baby_hunting");
 	public static final TagKey<EntityType<?>> CRETARANEUS_HUNTING = registerEntityTag("cretaraneus_hunting");
+	public static final TagKey<EntityType<?>> BEIPIAOSAURUS_HUNTING = registerEntityTag("beipiaosaurus_hunting");
+	public static final TagKey<EntityType<?>> BEIPIAOSAURUS_BABY_HUNTING = registerEntityTag("beipiaosaurus_baby_hunting");
+	public static final TagKey<EntityType<?>> ANZU_HUNTING = registerEntityTag("anzu_hunting");
+	public static final TagKey<EntityType<?>> ANZU_BABY_HUNTING = registerEntityTag("anzu_baby_hunting");
+	public static final TagKey<EntityType<?>> CHANGYURAPTOR_HUNTING = registerEntityTag("changyuraptor_hunting");
+	public static final TagKey<EntityType<?>> CHANGYURAPTOR_BABY_HUNTING = registerEntityTag("changyuraptor_baby_hunting");
+
+	public static final TagKey<EntityType<?>> BEIPIAOSAURUS_AVOIDING = registerEntityTag("beipiaosaurus_avoiding");
 	
 	public static final TagKey<Item> MEATS_2_HUNGER = registerItemTag("two_hunger_meats");
 	public static final TagKey<Item> MEATS_4_HUNGER = registerItemTag("four_hunger_meats");

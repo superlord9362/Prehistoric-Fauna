@@ -128,7 +128,7 @@ public class WallFossil extends HangingEntity implements IEntityAdditionalSpawnD
     	 ARCHAEOPTERYX(32, 32),
          CLAMS(16, 16),
          CRAB(16, 16),
-         DINOSAUR(48, 32),
+         COELOPHYSIS(48, 32),
          ICHTHYOSAUR(64, 32),
          JAW(32, 16),
          LEAVES(16, 32),

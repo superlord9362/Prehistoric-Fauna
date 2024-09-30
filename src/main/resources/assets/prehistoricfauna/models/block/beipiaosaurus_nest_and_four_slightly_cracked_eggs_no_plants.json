@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/beipiaosaurus_nest_and_four_eggs_no_plants",
+	"textures": {
+		"egg": "prehistoricfauna:blocks/beipiaosaurus_egg_slightly_cracked"
+	}
+}

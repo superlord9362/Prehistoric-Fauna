@@ -70,27 +70,27 @@ public class FeederBlock extends BaseEntityBlock {
 			if (stack.is(PFTags.MEATS_2_HUNGER) || stack.is(PFTags.MEATS_4_HUNGER) || stack.is(PFTags.MEATS_6_HUNGER) || stack.is(PFTags.MEATS_8_HUNGER) || stack.is(PFTags.MEATS_10_HUNGER) || stack.is(PFTags.MEATS_12_HUNGER)) {
 				world.setBlock(pos, foodState.setValue(MEAT, true), 0);
 				if (stack.is(PFTags.MEATS_2_HUNGER)) {
-					setFoodAmount(getFoodAmount(world, pos) + 2, world, pos);
-					world.getBlockState(pos);
-				}
-				if (stack.is(PFTags.MEATS_4_HUNGER)) {
-					setFoodAmount(getFoodAmount(world, pos) + 4, world, pos);
-					world.getBlockState(pos);
-				}
-				if (stack.is(PFTags.MEATS_6_HUNGER)) {
-					setFoodAmount(getFoodAmount(world, pos) + 6, world, pos);
-					world.getBlockState(pos);
-				}
-				if (stack.is(PFTags.MEATS_8_HUNGER)) {
-					setFoodAmount(getFoodAmount(world, pos) + 8, world, pos);
-					world.getBlockState(pos);
-				}
-				if (stack.is(PFTags.MEATS_10_HUNGER)) {
 					setFoodAmount(getFoodAmount(world, pos) + 10, world, pos);
 					world.getBlockState(pos);
 				}
+				if (stack.is(PFTags.MEATS_4_HUNGER)) {
+					setFoodAmount(getFoodAmount(world, pos) + 20, world, pos);
+					world.getBlockState(pos);
+				}
+				if (stack.is(PFTags.MEATS_6_HUNGER)) {
+					setFoodAmount(getFoodAmount(world, pos) + 30, world, pos);
+					world.getBlockState(pos);
+				}
+				if (stack.is(PFTags.MEATS_8_HUNGER)) {
+					setFoodAmount(getFoodAmount(world, pos) + 40, world, pos);
+					world.getBlockState(pos);
+				}
+				if (stack.is(PFTags.MEATS_10_HUNGER)) {
+					setFoodAmount(getFoodAmount(world, pos) + 50, world, pos);
+					world.getBlockState(pos);
+				}
 				if (stack.is(PFTags.MEATS_12_HUNGER)) {
-					setFoodAmount(getFoodAmount(world, pos) + 12, world, pos);
+					setFoodAmount(getFoodAmount(world, pos) + 60, world, pos);
 					world.getBlockState(pos);
 				}
 				if (!player.isCreative()) {
@@ -101,11 +101,11 @@ public class FeederBlock extends BaseEntityBlock {
 			if (stack.is(PFTags.FISH_2_HUNGER) || stack.is(PFTags.FISH_4_HUNGER)) {
 				world.setBlock(pos, foodState.setValue(FISH, true), 0);
 				if (stack.is(PFTags.FISH_2_HUNGER)) {
-					setFoodAmount(getFoodAmount(world, pos) + 2, world, pos);
+					setFoodAmount(getFoodAmount(world, pos) + 10, world, pos);
 					world.getBlockState(pos);
 				}
 				if (stack.is(PFTags.FISH_4_HUNGER)) {
-					setFoodAmount(getFoodAmount(world, pos) + 4, world, pos);
+					setFoodAmount(getFoodAmount(world, pos) + 20, world, pos);
 					world.getBlockState(pos);
 				}
 				if (!player.isCreative()) {
@@ -116,7 +116,7 @@ public class FeederBlock extends BaseEntityBlock {
 			if (stack.is(PFTags.SHELLFISH_3_HUNGER)) {
 				world.setBlock(pos, foodState.setValue(SHELLFISH, true), 0);
 				if (stack.is(PFTags.SHELLFISH_3_HUNGER)) {
-					setFoodAmount(getFoodAmount(world, pos) + 3, world, pos);
+					setFoodAmount(getFoodAmount(world, pos) + 15, world, pos);
 					world.getBlockState(pos);
 				}
 				if (!player.isCreative()) {
@@ -127,15 +127,15 @@ public class FeederBlock extends BaseEntityBlock {
 			if (stack.is(PFTags.EGGS_5_HUNGER) || stack.is(PFTags.EGGS_10_HUNGER) || stack.is(PFTags.EGGS_15_HUNGER)) {
 				world.setBlock(pos, foodState.setValue(EGG, true), 0);
 				if (stack.is(PFTags.EGGS_5_HUNGER)) {
-					setFoodAmount(getFoodAmount(world, pos) + 5, world, pos);
+					setFoodAmount(getFoodAmount(world, pos) + 25, world, pos);
 					world.getBlockState(pos);
 				}
 				if (stack.is(PFTags.EGGS_10_HUNGER)) {
-					setFoodAmount(getFoodAmount(world, pos) + 6, world, pos);
+					setFoodAmount(getFoodAmount(world, pos) + 50, world, pos);
 					world.getBlockState(pos);
 				}
 				if (stack.is(PFTags.EGGS_15_HUNGER)) {
-					setFoodAmount(getFoodAmount(world, pos) + 8, world, pos);
+					setFoodAmount(getFoodAmount(world, pos) + 75, world, pos);
 					world.getBlockState(pos);
 				}
 				if (!player.isCreative()) {
@@ -145,49 +145,49 @@ public class FeederBlock extends BaseEntityBlock {
 			}
 			if (stack.is(PFTags.INSECTS_2_HUNGER_ITEM)) {
 				world.setBlock(pos, foodState.setValue(INSECT, true), 0);
-				setFoodAmount(getFoodAmount(world, pos) + 2, world, pos);
+				setFoodAmount(getFoodAmount(world, pos) + 10, world, pos);
 				world.getBlockState(pos);
 			}
 			if (stack.is(PFTags.PLANTS_2_HUNGER_ITEM) || stack.is(PFTags.PLANTS_4_HUNGER_ITEM) || stack.is(PFTags.PLANTS_6_HUNGER_ITEM) || stack.is(PFTags.PLANTS_8_HUNGER_ITEM) || stack.is(PFTags.PLANTS_10_HUNGER_ITEM) || stack.is(PFTags.PLANTS_12_HUNGER_ITEM) || stack.is(PFTags.PLANTS_15_HUNGER_ITEM) || stack.is(PFTags.PLANTS_20_HUNGER_ITEM) || stack.is(PFTags.PLANTS_25_HUNGER_ITEM) || stack.is(PFTags.PLANTS_30_HUNGER_ITEM)) {
 				world.setBlock(pos, foodState.setValue(PLANT, true), 0);
 				if (stack.is(PFTags.PLANTS_2_HUNGER_ITEM)) {
-					setFoodAmount(getFoodAmount(world, pos) + 2, world, pos);
-					world.getBlockState(pos);
-				}
-				if (stack.is(PFTags.PLANTS_4_HUNGER_ITEM)) {
-					setFoodAmount(getFoodAmount(world, pos) + 4, world, pos);
-					world.getBlockState(pos);
-				}
-				if (stack.is(PFTags.PLANTS_6_HUNGER_ITEM)) {
-					setFoodAmount(getFoodAmount(world, pos) + 6, world, pos);
-					world.getBlockState(pos);
-				}
-				if (stack.is(PFTags.PLANTS_8_HUNGER_ITEM)) {
-					setFoodAmount(getFoodAmount(world, pos) + 8, world, pos);
-					world.getBlockState(pos);
-				}
-				if (stack.is(PFTags.PLANTS_10_HUNGER_ITEM)) {
 					setFoodAmount(getFoodAmount(world, pos) + 10, world, pos);
 					world.getBlockState(pos);
 				}
-				if (stack.is(PFTags.PLANTS_12_HUNGER_ITEM)) {
-					setFoodAmount(getFoodAmount(world, pos) + 12, world, pos);
-					world.getBlockState(pos);
-				}
-				if (stack.is(PFTags.PLANTS_15_HUNGER_ITEM)) {
-					setFoodAmount(getFoodAmount(world, pos) + 15, world, pos);
-					world.getBlockState(pos);
-				}
-				if (stack.is(PFTags.PLANTS_20_HUNGER_ITEM)) {
+				if (stack.is(PFTags.PLANTS_4_HUNGER_ITEM)) {
 					setFoodAmount(getFoodAmount(world, pos) + 20, world, pos);
 					world.getBlockState(pos);
 				}
+				if (stack.is(PFTags.PLANTS_6_HUNGER_ITEM)) {
+					setFoodAmount(getFoodAmount(world, pos) + 30, world, pos);
+					world.getBlockState(pos);
+				}
+				if (stack.is(PFTags.PLANTS_8_HUNGER_ITEM)) {
+					setFoodAmount(getFoodAmount(world, pos) + 40, world, pos);
+					world.getBlockState(pos);
+				}
+				if (stack.is(PFTags.PLANTS_10_HUNGER_ITEM)) {
+					setFoodAmount(getFoodAmount(world, pos) + 50, world, pos);
+					world.getBlockState(pos);
+				}
+				if (stack.is(PFTags.PLANTS_12_HUNGER_ITEM)) {
+					setFoodAmount(getFoodAmount(world, pos) + 60, world, pos);
+					world.getBlockState(pos);
+				}
+				if (stack.is(PFTags.PLANTS_15_HUNGER_ITEM)) {
+					setFoodAmount(getFoodAmount(world, pos) + 75, world, pos);
+					world.getBlockState(pos);
+				}
+				if (stack.is(PFTags.PLANTS_20_HUNGER_ITEM)) {
+					setFoodAmount(getFoodAmount(world, pos) + 100, world, pos);
+					world.getBlockState(pos);
+				}
 				if (stack.is(PFTags.PLANTS_25_HUNGER_ITEM)) {
-					setFoodAmount(getFoodAmount(world, pos) + 25, world, pos);
+					setFoodAmount(getFoodAmount(world, pos) + 125, world, pos);
 					world.getBlockState(pos);
 				}
 				if (stack.is(PFTags.PLANTS_30_HUNGER_ITEM)) {
-					setFoodAmount(getFoodAmount(world, pos) + 30, world, pos);
+					setFoodAmount(getFoodAmount(world, pos) + 150, world, pos);
 				}
 				if (!player.isCreative()) {
 					stack.shrink(1);
@@ -197,203 +197,259 @@ public class FeederBlock extends BaseEntityBlock {
 		}
 		if (getFoodAmount(world, pos) < 1001) {
 			BlockState currentState = world.getBlockState(pos);
-			if (hasInsects(currentState)) {
+			if (hasInsects(currentState) && getFoodAmount(world, pos) != 1001) {
 				if (stack.is(PFTags.INSECTS_2_HUNGER_ITEM)) {
-					if (getFoodAmount(world, pos) + 2 < 1001) {
-						setFoodAmount(getFoodAmount(world, pos) + 2, world, pos);
+					if (getFoodAmount(world, pos) + 10 < 1001) {
+						setFoodAmount(getFoodAmount(world, pos) + 10, world, pos);
+						System.out.println(getFoodAmount(world, pos));
 					} else {
 						setFoodAmount(1001, world, pos);
 					}
+					if (!player.isCreative()) {
+						stack.shrink(1);
+					}
 					world.getBlockState(pos);
 				}
+
 			}
-			if (hasMeat(currentState)) {
+			if (hasMeat(currentState) && getFoodAmount(world, pos) != 1001) {
 				if (stack.is(PFTags.MEATS_2_HUNGER)) {
-					if (getFoodAmount(world, pos) + 2 < 1001) {
-						setFoodAmount(getFoodAmount(world, pos) + 2, world, pos);
+					if (getFoodAmount(world, pos) + 10 < 1001) {
+						setFoodAmount(getFoodAmount(world, pos) + 10, world, pos);
 					} else {
 						setFoodAmount(1001, world, pos);
+					}
+					if (!player.isCreative()) {
+						stack.shrink(1);
 					}
 					world.getBlockState(pos);
 				}
 				if (stack.is(PFTags.MEATS_4_HUNGER)) {
-					if (getFoodAmount(world, pos) + 4 < 1001) {
-						setFoodAmount(getFoodAmount(world, pos) + 4, world, pos);
-					} else {
-						setFoodAmount(1001, world, pos);
-					}
-					world.getBlockState(pos);
-				}
-				if (stack.is(PFTags.MEATS_6_HUNGER)) {
-					if (getFoodAmount(world, pos) + 6 < 1001) {
-						setFoodAmount(getFoodAmount(world, pos) + 6, world, pos);
-					} else {
-						setFoodAmount(1001, world, pos);
-					}
-					world.getBlockState(pos);
-				}
-				if (stack.is(PFTags.MEATS_8_HUNGER)) {
-					if (getFoodAmount(world, pos) + 8 < 1001) {
-						setFoodAmount(getFoodAmount(world, pos) + 8, world, pos);
-					} else {
-						setFoodAmount(1001, world, pos);
-					}
-					world.getBlockState(pos);
-				}
-				if (stack.is(PFTags.MEATS_10_HUNGER)) {
-					if (getFoodAmount(world, pos) + 10 < 1001) {
-						setFoodAmount(getFoodAmount(world, pos) + 10, world, pos);
-					} else {
-						setFoodAmount(1001, world, pos);
-					}
-					world.getBlockState(pos);
-				}
-				if (stack.is(PFTags.MEATS_12_HUNGER)) {
-					if (getFoodAmount(world, pos) + 12 < 1001) {
-						setFoodAmount(getFoodAmount(world, pos) + 12, world, pos);
-					} else {
-						setFoodAmount(1001, world, pos);
-					}
-					world.getBlockState(pos);
-				}
-				if (!player.isCreative()) {
-					stack.shrink(1);
-				}
-				return InteractionResult.sidedSuccess(world.isClientSide);
-			}
-			if (hasPlants(currentState)) {
-				if (stack.is(PFTags.PLANTS_2_HUNGER_ITEM)) {
-					if (getFoodAmount(world, pos) + 2 < 1001) {
-						setFoodAmount(getFoodAmount(world, pos) + 2, world, pos);
-					} else {
-						setFoodAmount(1001, world, pos);
-					}
-				}
-				if (stack.is(PFTags.PLANTS_4_HUNGER_ITEM)) {
-					if (getFoodAmount(world, pos) + 4 < 1001) {
-						setFoodAmount(getFoodAmount(world, pos) + 4, world, pos);
-					} else {
-						setFoodAmount(1001, world, pos);
-					}
-				}
-				if (stack.is(PFTags.PLANTS_6_HUNGER_ITEM)) {
-					if (getFoodAmount(world, pos) + 2 < 1001) {
-						setFoodAmount(getFoodAmount(world, pos) + 6, world, pos);
-					} else {
-						setFoodAmount(1001, world, pos);
-					}
-				}
-				if (stack.is(PFTags.PLANTS_8_HUNGER_ITEM)) {
-					if (getFoodAmount(world, pos) + 8 < 1001) {
-						setFoodAmount(getFoodAmount(world, pos) + 8, world, pos);
-					} else {
-						setFoodAmount(1001, world, pos);
-					}
-				}
-				if (stack.is(PFTags.PLANTS_10_HUNGER_ITEM)) {
-					if (getFoodAmount(world, pos) + 10 < 1001) {
-						setFoodAmount(getFoodAmount(world, pos) + 10, world, pos);
-					} else {
-						setFoodAmount(1001, world, pos);
-					}
-				}
-				if (stack.is(PFTags.PLANTS_12_HUNGER_ITEM)) {
-					if (getFoodAmount(world, pos) + 12 < 1001) {
-						setFoodAmount(getFoodAmount(world, pos) + 12, world, pos);
-					} else {
-						setFoodAmount(1001, world, pos);
-					}
-				}
-				if (stack.is(PFTags.PLANTS_15_HUNGER_ITEM)) {
-					if (getFoodAmount(world, pos) + 15 < 1001) {
-						setFoodAmount(getFoodAmount(world, pos) + 15, world, pos);
-					} else {
-						setFoodAmount(1001, world, pos);
-					}
-				}
-				if (stack.is(PFTags.PLANTS_20_HUNGER_ITEM)) {
 					if (getFoodAmount(world, pos) + 20 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 20, world, pos);
 					} else {
 						setFoodAmount(1001, world, pos);
 					}
-				}
-				if (stack.is(PFTags.PLANTS_25_HUNGER_ITEM)) {
-					if (getFoodAmount(world, pos) + 25 < 1001) {
-						setFoodAmount(getFoodAmount(world, pos) + 25, world, pos);
-					} else {
-						setFoodAmount(1001, world, pos);
+					if (!player.isCreative()) {
+						stack.shrink(1);
 					}
+					world.getBlockState(pos);
 				}
-				if (stack.is(PFTags.PLANTS_30_HUNGER_ITEM)) {
+				if (stack.is(PFTags.MEATS_6_HUNGER)) {
 					if (getFoodAmount(world, pos) + 30 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 30, world, pos);
 					} else {
 						setFoodAmount(1001, world, pos);
 					}
+					if (!player.isCreative()) {
+						stack.shrink(1);
+					}
+					world.getBlockState(pos);
 				}
-				if (!player.isCreative()) {
-					stack.shrink(1);
-				}
-				return InteractionResult.sidedSuccess(world.isClientSide);
-			}
-			if (hasEggs(currentState)) {
-				if (stack.is(PFTags.EGGS_5_HUNGER)) {
-					if (getFoodAmount(world, pos) + 5 < 1001) {
-						setFoodAmount(getFoodAmount(world, pos) + 5, world, pos);
+				if (stack.is(PFTags.MEATS_8_HUNGER)) {
+					if (getFoodAmount(world, pos) + 40 < 1001) {
+						setFoodAmount(getFoodAmount(world, pos) + 40, world, pos);
 					} else {
 						setFoodAmount(1001, world, pos);
 					}
+					if (!player.isCreative()) {
+						stack.shrink(1);
+					}
+					world.getBlockState(pos);
 				}
-				if (stack.is(PFTags.EGGS_10_HUNGER)) {
+				if (stack.is(PFTags.MEATS_10_HUNGER)) {
+					if (getFoodAmount(world, pos) + 50 < 1001) {
+						setFoodAmount(getFoodAmount(world, pos) + 50, world, pos);
+					} else {
+						setFoodAmount(1001, world, pos);
+					}
+					if (!player.isCreative()) {
+						stack.shrink(1);
+					}
+					world.getBlockState(pos);
+				}
+				if (stack.is(PFTags.MEATS_12_HUNGER)) {
+					if (getFoodAmount(world, pos) + 60 < 1001) {
+						setFoodAmount(getFoodAmount(world, pos) + 60, world, pos);
+					} else {
+						setFoodAmount(1001, world, pos);
+					}
+					if (!player.isCreative()) {
+						stack.shrink(1);
+					}
+					world.getBlockState(pos);
+				}
+				return InteractionResult.sidedSuccess(world.isClientSide);
+			}
+			if (hasPlants(currentState) && getFoodAmount(world, pos) != 1001) {
+				if (stack.is(PFTags.PLANTS_2_HUNGER_ITEM)) {
 					if (getFoodAmount(world, pos) + 10 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 10, world, pos);
 					} else {
 						setFoodAmount(1001, world, pos);
 					}
+					if (!player.isCreative()) {
+						stack.shrink(1);
+					}
+				}
+				if (stack.is(PFTags.PLANTS_4_HUNGER_ITEM)) {
+					if (getFoodAmount(world, pos) + 20 < 1001) {
+						setFoodAmount(getFoodAmount(world, pos) + 20, world, pos);
+					} else {
+						setFoodAmount(1001, world, pos);
+					}
+					if (!player.isCreative()) {
+						stack.shrink(1);
+					}
+				}
+				if (stack.is(PFTags.PLANTS_6_HUNGER_ITEM)) {
+					if (getFoodAmount(world, pos) + 30 < 1001) {
+						setFoodAmount(getFoodAmount(world, pos) + 30, world, pos);
+					} else {
+						setFoodAmount(1001, world, pos);
+					}
+					if (!player.isCreative()) {
+						stack.shrink(1);
+					}
+				}
+				if (stack.is(PFTags.PLANTS_8_HUNGER_ITEM)) {
+					if (getFoodAmount(world, pos) + 40 < 1001) {
+						setFoodAmount(getFoodAmount(world, pos) + 40, world, pos);
+					} else {
+						setFoodAmount(1001, world, pos);
+					}
+					if (!player.isCreative()) {
+						stack.shrink(1);
+					}
+				}
+				if (stack.is(PFTags.PLANTS_10_HUNGER_ITEM)) {
+					if (getFoodAmount(world, pos) + 50 < 1001) {
+						setFoodAmount(getFoodAmount(world, pos) + 50, world, pos);
+					} else {
+						setFoodAmount(1001, world, pos);
+					}
+					if (!player.isCreative()) {
+						stack.shrink(1);
+					}
+				}
+				if (stack.is(PFTags.PLANTS_12_HUNGER_ITEM)) {
+					if (getFoodAmount(world, pos) + 60 < 1001) {
+						setFoodAmount(getFoodAmount(world, pos) + 60, world, pos);
+					} else {
+						setFoodAmount(1001, world, pos);
+					}
+					if (!player.isCreative()) {
+						stack.shrink(1);
+					}
+				}
+				if (stack.is(PFTags.PLANTS_15_HUNGER_ITEM)) {
+					if (getFoodAmount(world, pos) + 75 < 1001) {
+						setFoodAmount(getFoodAmount(world, pos) + 75, world, pos);
+					} else {
+						setFoodAmount(1001, world, pos);
+					}
+					if (!player.isCreative()) {
+						stack.shrink(1);
+					}
+				}
+				if (stack.is(PFTags.PLANTS_20_HUNGER_ITEM)) {
+					if (getFoodAmount(world, pos) + 100 < 1001) {
+						setFoodAmount(getFoodAmount(world, pos) + 100, world, pos);
+					} else {
+						setFoodAmount(1001, world, pos);
+					}
+					if (!player.isCreative()) {
+						stack.shrink(1);
+					}
+				}
+				if (stack.is(PFTags.PLANTS_25_HUNGER_ITEM)) {
+					if (getFoodAmount(world, pos) + 125 < 1001) {
+						setFoodAmount(getFoodAmount(world, pos) + 125, world, pos);
+					} else {
+						setFoodAmount(1001, world, pos);
+					}
+					if (!player.isCreative()) {
+						stack.shrink(1);
+					}
+				}
+				if (stack.is(PFTags.PLANTS_30_HUNGER_ITEM)) {
+					if (getFoodAmount(world, pos) + 150 < 1001) {
+						setFoodAmount(getFoodAmount(world, pos) + 150, world, pos);
+					} else {
+						setFoodAmount(1001, world, pos);
+					}
+					if (!player.isCreative()) {
+						stack.shrink(1);
+					}
+				}
+				return InteractionResult.sidedSuccess(world.isClientSide);
+			}
+			if (hasEggs(currentState) && getFoodAmount(world, pos) != 1001) {
+				if (stack.is(PFTags.EGGS_5_HUNGER)) {
+					if (getFoodAmount(world, pos) + 25 < 1001) {
+						setFoodAmount(getFoodAmount(world, pos) + 25, world, pos);
+					} else {
+						setFoodAmount(1001, world, pos);
+					}
+					if (!player.isCreative()) {
+						stack.shrink(1);
+					}
+				}
+				if (stack.is(PFTags.EGGS_10_HUNGER)) {
+					if (getFoodAmount(world, pos) + 50 < 1001) {
+						setFoodAmount(getFoodAmount(world, pos) + 50, world, pos);
+					} else {
+						setFoodAmount(1001, world, pos);
+					}
+					if (!player.isCreative()) {
+						stack.shrink(1);
+					}
 				}
 				if (stack.is(PFTags.EGGS_15_HUNGER)) {
+					if (getFoodAmount(world, pos) + 75 < 1001) {
+						setFoodAmount(getFoodAmount(world, pos) + 75, world, pos);
+					} else {
+						setFoodAmount(1001, world, pos);
+					}
+					if (!player.isCreative()) {
+						stack.shrink(1);
+					}
+				}
+				return InteractionResult.sidedSuccess(world.isClientSide);
+			}
+			if (hasFish(currentState) && getFoodAmount(world, pos) != 1001) {
+				if (stack.is(PFTags.FISH_2_HUNGER)) {
+					if (getFoodAmount(world, pos) + 10 < 1001) {
+						setFoodAmount(getFoodAmount(world, pos) + 10, world, pos);
+					} else {
+						setFoodAmount(1001, world, pos);
+					}
+					if (!player.isCreative()) {
+						stack.shrink(1);
+					}
+				}
+				if (stack.is(PFTags.FISH_4_HUNGER)) {
+					if (getFoodAmount(world, pos) + 20 < 1001) {
+						setFoodAmount(getFoodAmount(world, pos) + 20, world, pos);
+					} else {
+						setFoodAmount(1001, world, pos);
+					}
+					if (!player.isCreative()) {
+						stack.shrink(1);
+					}
+				}
+				return InteractionResult.sidedSuccess(world.isClientSide);
+			}
+			if (hasShellfish(currentState) && getFoodAmount(world, pos) != 1001) {
+				if(stack.is(PFTags.SHELLFISH_3_HUNGER)) {
 					if (getFoodAmount(world, pos) + 15 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 15, world, pos);
 					} else {
 						setFoodAmount(1001, world, pos);
 					}
-				}
-				if (!player.isCreative()) {
-					stack.shrink(1);
-				}
-				return InteractionResult.sidedSuccess(world.isClientSide);
-			}
-			if (hasFish(currentState)) {
-				if (stack.is(PFTags.FISH_2_HUNGER)) {
-					if (getFoodAmount(world, pos) + 2 < 1001) {
-						setFoodAmount(getFoodAmount(world, pos) + 2, world, pos);
-					} else {
-						setFoodAmount(1001, world, pos);
+					if (!player.isCreative()) {
+						stack.shrink(1);
 					}
-				}
-				if (stack.is(PFTags.FISH_4_HUNGER)) {
-					if (getFoodAmount(world, pos) + 4 < 1001) {
-						setFoodAmount(getFoodAmount(world, pos) + 4, world, pos);
-					} else {
-						setFoodAmount(1001, world, pos);
-					}
-				}
-				if (!player.isCreative()) {
-					stack.shrink(1);
-				}
-				return InteractionResult.sidedSuccess(world.isClientSide);
-			}
-			if (hasShellfish(currentState)) {
-				if(stack.is(PFTags.SHELLFISH_3_HUNGER)) {
-					if (getFoodAmount(world, pos) + 3 < 1001) {
-						setFoodAmount(getFoodAmount(world, pos) + 3, world, pos);
-					} else {
-						setFoodAmount(1001, world, pos);
-					}
-				}
-				if (!player.isCreative()) {
-					stack.shrink(1);
 				}
 				return InteractionResult.sidedSuccess(world.isClientSide);
 			}

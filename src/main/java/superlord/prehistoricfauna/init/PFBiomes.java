@@ -49,8 +49,10 @@ public class PFBiomes {
 	public static RegistryObject<Biome> YIXIAN_REGROWTH = REGISTER.register("yixian_regrowth", CretaceousBiomes::yixianRegrowth);
 	public static RegistryObject<Biome> YIXIAN_VOLCANO = REGISTER.register("yixian_volcano", CretaceousBiomes::yixianVolcano);
 	
-	public static RegistryObject<Biome> PREHISTORIC_DRIPSTONE_CAVE = REGISTER.register("prehistoric_dripstone_cave", PFBiomes::prehistoricDripstoneCave);
-	
+	public static RegistryObject<Biome> CRETACEOUS_DRIPSTONE_CAVE = REGISTER.register("cretaceous_dripstone_cave", PFBiomes::prehistoricDripstoneCave);
+	public static RegistryObject<Biome> JURASSIC_DRIPSTONE_CAVE = REGISTER.register("jurassic_dripstone_cave", PFBiomes::prehistoricDripstoneCave);
+	public static RegistryObject<Biome> TRIASSIC_DRIPSTONE_CAVE = REGISTER.register("triassic_dripstone_cave", PFBiomes::prehistoricDripstoneCave);
+		
 	private static Biome biome(Biome.BiomeCategory category, int waterColor, int waterFogColor, int skyColor, int fogColor, Biome.Precipitation precipitation, float temperature, float downfall, MobSpawnSettings.Builder spawnBuilder, BiomeGenerationSettings.Builder biomeBuilder) {
 		return (new Biome.BiomeBuilder())
 				.precipitation(precipitation)
@@ -72,7 +74,7 @@ public class PFBiomes {
 	public static Biome prehistoricDripstoneCave() {
 		MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
 		BiomeGenerationSettings.Builder biomeFeatures = new BiomeGenerationSettings.Builder();
-		return biome(BiomeCategory.NONE, 7372597, 5267523, 15922646, 13622197, Biome.Precipitation.RAIN, 0.9F, 0.9F, spawnSettings, biomeFeatures);
+		return biome(BiomeCategory.UNDERGROUND, 7372597, 5267523, 15922646, 13622197, Biome.Precipitation.NONE, 0, 0, spawnSettings, biomeFeatures);
 	}
 	
 }

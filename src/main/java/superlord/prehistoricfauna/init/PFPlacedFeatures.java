@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
+import net.minecraft.data.worldgen.placement.MiscOverworldPlacements;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
@@ -96,6 +97,9 @@ public class PFPlacedFeatures {
 	public static final RegistryObject<PlacedFeature> EPHEDRA = REGISTER.register("placed_ephedra", () -> new PlacedFeature(PFConfiguredFeatures.EPHEDRA.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(3)));
 	public static final RegistryObject<PlacedFeature> LEEFRUCTUS = REGISTER.register("placed_leefructus", () -> new PlacedFeature(PFConfiguredFeatures.LEEFRUCTUS.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(3)));
 	public static final RegistryObject<PlacedFeature> RUFFORDIA = REGISTER.register("placed_ruffordia", () -> new PlacedFeature(PFConfiguredFeatures.RUFFORDIA.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(3)));
+	
+	public static final RegistryObject<PlacedFeature> CALLIANTHUS = REGISTER.register("placed_callianthus", () -> new PlacedFeature(PFConfiguredFeatures.CALLIANTHUS.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(5)));
+	public static final RegistryObject<PlacedFeature> NOTHODICHOCARPUM = REGISTER.register("placed_nothodichocarpum", () -> new PlacedFeature(PFConfiguredFeatures.NOTHODICHOCARPUM.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(2)));
 
 	public static final RegistryObject<PlacedFeature> TAXODIUM_KNEES = REGISTER.register("placed_taxodium_knees", () -> new PlacedFeature(PFConfiguredFeatures.TAXODIUM_KNEES.getHolder().orElseThrow(), worldSurfaceSquaredWithCount(4)));
 	
@@ -574,10 +578,8 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_DRYOPHYLLUM_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_GINKGO_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_METASEQUOIA_TREES.getHolder().orElseThrow());
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_TAXODIUM_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, COMMON_LIRIODENDRITES_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, MOSSY_ROCK.getHolder().orElseThrow());
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_TAXODIUM_LOG.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_DRYOPHYLLUM_LOG.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_METASEQUOIA_LOG.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_PLATANITES_LOG.getHolder().orElseThrow());
@@ -692,6 +694,7 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_ARCHAEFRUCTUS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PODOZAMITES_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NOTHODICHOCARPUM.getHolder().orElseThrow());
 	}
 	
 	public static void withYixianSnowyForestPlants(BiomeGenerationSettings.Builder builder) {
@@ -711,6 +714,7 @@ public class PFPlacedFeatures {
 //		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_ARCHAEFRUCTUS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PODOZAMITES_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NOTHODICHOCARPUM.getHolder().orElseThrow());
 	}
 	
 	public static void withYixianLakesPlants(BiomeGenerationSettings.Builder builder) {
@@ -730,6 +734,9 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_ARCHAEFRUCTUS.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_PODOZAMITES_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CALLIANTHUS.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NOTHODICHOCARPUM.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MiscOverworldPlacements.FREEZE_TOP_LAYER);
 	}
 	
 	public static void withYixianRegrowthPlants(BiomeGenerationSettings.Builder builder) {
@@ -746,6 +753,7 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_PODOZAMITES_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DEAD_PODOZAMITES_TREES.getHolder().orElseThrow());
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM.getHolder().orElseThrow());
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NOTHODICHOCARPUM.getHolder().orElseThrow());
 	}
 	
 	private static List<PlacementModifier> orePlacement(PlacementModifier p_195347_, PlacementModifier p_195348_) {

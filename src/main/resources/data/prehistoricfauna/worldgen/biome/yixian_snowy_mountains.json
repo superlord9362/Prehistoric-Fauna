@@ -68,7 +68,21 @@
       		"minecraft:ore_copper",
       		"minecraft:disk_clay"
 		],
-		[],
+		[
+			"prehistoricfauna:placed_rare_small_araucaria_trees",
+			"prehistoricfauna:placed_coniopteris",
+			"prehistoricfauna:placed_cladophlebis",
+			"prehistoricfauna:placed_small_yellow_ginkgo_trees",
+			"prehistoricfauna:placed_rare_large_yellow_ginkgo_trees",
+			"prehistoricfauna:placed_taxus_trees",
+			"prehistoricfauna:placed_czekanowskia_trees",
+			"prehistoricfauna:placed_schizolepidopsis_trees",
+			"prehistoricfauna:placed_ephedra",
+			"prehistoricfauna:placed_ruffordia",
+			"prehistoricfauna:placed_archaefructus",
+			"prehistoricfauna:placed_podozamites_trees",
+			"prehistoricfauna:placed_sparse_brachyphyllum",
+			"prehistoricfauna:placed_nothodichocarpum"],
 		[
 			"minecraft:spring_water",
 			"minecraft:spring_lava"

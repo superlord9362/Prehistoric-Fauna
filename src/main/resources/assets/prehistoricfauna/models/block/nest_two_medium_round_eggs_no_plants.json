@@ -1,9 +1,7 @@
 {
 	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
 	"textures": {
-		"egg": "#egg",
-		"material": "#material",
-		"5": "prehistoricfauna:blocks/plants",
 		"particle": "#material"
 	},
 	"elements": [
@@ -78,12 +76,12 @@
 			"to": [11, 7, 10],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 2, 8]},
 			"faces": {
-				"north": {"uv": [2, 2, 4, 4], "texture": "#egg"},
-				"east": {"uv": [0, 2, 2, 4], "texture": "#egg"},
-				"south": {"uv": [6, 2, 8, 4], "texture": "#egg"},
-				"west": {"uv": [4, 2, 6, 4], "texture": "#egg"},
-				"up": {"uv": [4, 2, 2, 0], "texture": "#egg"},
-				"down": {"uv": [6, 0, 4, 2], "texture": "#egg"}
+				"north": {"uv": [2.5, 2.5, 5, 5], "texture": "#egg"},
+				"east": {"uv": [0, 2.5, 2.5, 5], "texture": "#egg"},
+				"south": {"uv": [7.5, 2.5, 10, 5], "texture": "#egg"},
+				"west": {"uv": [5, 2.5, 7.5, 5], "texture": "#egg"},
+				"up": {"uv": [5, 2.5, 2.5, 0], "texture": "#egg"},
+				"down": {"uv": [7.5, 0, 5, 2.5], "texture": "#egg"}
 			}
 		},
 		{
@@ -92,12 +90,12 @@
 			"to": [6, 6, 11],
 			"rotation": {"angle": 0, "axis": "y", "origin": [5, 1, 9]},
 			"faces": {
-				"north": {"uv": [2, 2, 4, 4], "texture": "#egg"},
-				"east": {"uv": [0, 2, 2, 4], "texture": "#egg"},
-				"south": {"uv": [6, 2, 8, 4], "texture": "#egg"},
-				"west": {"uv": [4, 2, 6, 4], "texture": "#egg"},
-				"up": {"uv": [4, 2, 2, 0], "texture": "#egg"},
-				"down": {"uv": [6, 0, 4, 2], "texture": "#egg"}
+				"north": {"uv": [3, 2.5, 5, 4.5], "texture": "#egg"},
+				"east": {"uv": [1, 2.5, 3, 4.5], "texture": "#egg"},
+				"south": {"uv": [7, 2.5, 9, 4.5], "texture": "#egg"},
+				"west": {"uv": [5, 2.5, 7, 4.5], "texture": "#egg"},
+				"up": {"uv": [5, 2.5, 3, 0.5], "texture": "#egg"},
+				"down": {"uv": [7, 0.5, 5, 2.5], "texture": "#egg"}
 			}
 		}
 	],

@@ -19,6 +19,7 @@ import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SandBlock;
 import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.SnowyDirtBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.TallFlowerBlock;
@@ -44,6 +45,7 @@ import superlord.prehistoricfauna.common.blocks.AmmoniteSmallShellBlock;
 import superlord.prehistoricfauna.common.blocks.AncientPlantBlock;
 import superlord.prehistoricfauna.common.blocks.AraucariaConeBlock;
 import superlord.prehistoricfauna.common.blocks.ArchaefructusBlock;
+import superlord.prehistoricfauna.common.blocks.CallianthusBlock;
 import superlord.prehistoricfauna.common.blocks.CarvedTuberBlock;
 import superlord.prehistoricfauna.common.blocks.CobbaniaBlock;
 import superlord.prehistoricfauna.common.blocks.CrassostreaOysterBlock;
@@ -88,6 +90,7 @@ import superlord.prehistoricfauna.common.blocks.SabalitesLeafBlock;
 import superlord.prehistoricfauna.common.blocks.SabalitesSaplingBlock;
 import superlord.prehistoricfauna.common.blocks.SmallCarvedTuberBlock;
 import superlord.prehistoricfauna.common.blocks.SmallTuberBlock;
+import superlord.prehistoricfauna.common.blocks.SplatteredGinkgoBlock;
 import superlord.prehistoricfauna.common.blocks.TallArchaefructusBlock;
 import superlord.prehistoricfauna.common.blocks.TallHorsetailBlock;
 import superlord.prehistoricfauna.common.blocks.TaxodiumKneeBlock;
@@ -123,9 +126,10 @@ public class PFBlocks {
 	public static final RegistryObject<Block> TALL_HORSETAIL = REGISTER.register("tall_horsetail", () -> new TallHorsetailBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> TALL_OSMUNDA = REGISTER.register("tall_osmunda", () -> new DoublePlantBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> CLUBMOSS = REGISTER.register("clubmoss", () -> new AncientPlantBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
-	public static final RegistryObject<Block> MARCHANTIA = REGISTER.register("marchantia", () -> new AncientPlantBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+	public static final RegistryObject<Block> LIVERWORT = REGISTER.register("liverwort", () -> new AncientPlantBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> MOSS_CARPET = REGISTER.register("moss_carpet", () -> new MossBlock(Block.Properties.of(Material.PLANT).strength(0.2F).sound(SoundType.GRASS)));
 	public static final RegistryObject<Block> ASH = REGISTER.register("ash", () -> new MossBlock(Block.Properties.of(Material.SNOW).strength(0.2F).sound(SoundType.SNOW)));
+	public static final RegistryObject<Block> ASH_BLOCK = REGISTER.register("ash_block", () -> new Block(Block.Properties.of(Material.SNOW).strength(0.2F).sound(SoundType.SNOW)));
 	public static final RegistryObject<Block> CONIOPTERIS = REGISTER.register("coniopteris", () -> new AncientPlantBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> OSMUNDACAULIS = REGISTER.register("osmundacaulis", () -> new PlantGrowingBlock(Block.Properties.of(Material.PLANT).strength(0.2F).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> TALL_OSMUNDACAULIS = REGISTER.register("tall_osmundacaulis", () -> new DoublePlantBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
@@ -149,7 +153,6 @@ public class PFBlocks {
 	public static final RegistryObject<Block> AZOLLA = REGISTER.register("azolla", () -> new CobbaniaBlock(Properties.of(Material.WATER_PLANT).strength(0F).sound(SoundType.LILY_PAD).noCollission().noOcclusion()));
 	public static final RegistryObject<Block> ARCHAEFRUCTUS = REGISTER.register("archaefructus", () -> new ArchaefructusBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> TALL_ARCHAEFRUCTUS = REGISTER.register("tall_archaefructus", () -> new TallArchaefructusBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
-//	public static final RegistryObject<Block> ARCHAEAMPHORA = REGISTER.register("archaeamphora", () -> new AncientPlantBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> NELUMBO_PAD = REGISTER.register("nelumbo", () -> new NelumboPadBlock(Block.Properties.of(Material.PLANT).sound(SoundType.WET_GRASS).instabreak().randomTicks()));
 	public static final RegistryObject<Block> NELUMBO_STEM = REGISTER.register("nelumbo_stem", () -> new NelumboStemBlock(Block.Properties.of(Material.WATER_PLANT).sound(SoundType.WET_GRASS).instabreak().noCollission().randomTicks()));
 	public static final RegistryObject<Block> NELUMBO_ROOTS = REGISTER.register("nelumbo_roots", () -> new 	NelumboRootsBlock(Block.Properties.of(Material.WATER_PLANT).sound(SoundType.WET_GRASS).instabreak().noCollission().randomTicks()));
@@ -160,6 +163,8 @@ public class PFBlocks {
 	public static final RegistryObject<Block> RUFFORDIA = REGISTER.register("ruffordia", () -> new AncientPlantBlock(Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> LEEFRUCTUS = REGISTER.register("leefructus", () -> new AncientPlantBlock(Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> EPHEDRA = REGISTER.register("ephedra", () -> new AncientPlantBlock(Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+	public static final RegistryObject<Block> CALLIANTHUS = REGISTER.register("callianthus", () -> new CallianthusBlock(Properties.of(Material.WATER_PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+	public static final RegistryObject<Block> NOTHODICHOCARPUM = REGISTER.register("nothodichocarpum", () -> new DoublePlantBlock(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 
 	public static final RegistryObject<Block> METASEQUOIA_PLANKS = REGISTER.register("metasequoia_planks", () -> new Block(Block.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> METASEQUOIA_LOG = REGISTER.register("metasequoia_log", () -> createLog());
@@ -551,7 +556,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> POTTED_HORSRTAIL = REGISTER.register("potted_horsetail", () -> new FlowerPotBlock(HORSETAIL.get(), Block.Properties.of(Material.DECORATION).strength(0).noOcclusion()));
 	public static final RegistryObject<Block> POTTED_OSMUNDA = REGISTER.register("potted_osmunda", () -> new FlowerPotBlock(OSMUNDA.get(), Block.Properties.of(Material.DECORATION).strength(0).noOcclusion()));
 	public static final RegistryObject<Block> POTTED_CLUBMOSS = REGISTER.register("potted_clubmoss", () -> new FlowerPotBlock(CLUBMOSS.get(), Block.Properties.of(Material.DECORATION).strength(0).noOcclusion()));
-	public static final RegistryObject<Block> POTTED_MARCHANTIA = REGISTER.register("potted_marchantia", () -> new FlowerPotBlock(MARCHANTIA.get(), Block.Properties.of(Material.DECORATION).strength(0).noOcclusion()));
+	public static final RegistryObject<Block> POTTED_MARCHANTIA = REGISTER.register("potted_marchantia", () -> new FlowerPotBlock(LIVERWORT.get(), Block.Properties.of(Material.DECORATION).strength(0).noOcclusion()));
 	public static final RegistryObject<Block> POTTED_PROTOPICEOXYLON_SAPLING = REGISTER.register("potted_protopiceoxylon_sapling", () -> new FlowerPotBlock(PROTOPICEOXYLON_SAPLING.get(), Block.Properties.of(Material.DECORATION).strength(0).noOcclusion()));
 	public static final RegistryObject<Block> POTTED_ZAMITES_SAPLING = REGISTER.register("potted_zamites_sapling", () -> new FlowerPotBlock(ZAMITES_SAPLING.get(), Block.Properties.of(Material.DECORATION).strength(0).noOcclusion()));
 	public static final RegistryObject<Block> POTTED_PROTOJUNIPEROXYLON_SAPLING = REGISTER.register("potted_protojuniperoxylon_sapling", () -> new FlowerPotBlock(PROTOJUNIPEROXYLON_SAPLING.get(), Block.Properties.of(Material.DECORATION).strength(0).noOcclusion()));
@@ -586,7 +591,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> POTTED_EPHEDRA = REGISTER.register("potted_ephedra", () -> new FlowerPotBlock(EPHEDRA.get(), Properties.of(Material.DECORATION).strength(0).noOcclusion()));
 	public static final RegistryObject<Block> POTTED_BISONIA = REGISTER.register("potted_bisonia", () -> new FlowerPotBlock(BISONIA.get(), Properties.of(Material.DECORATION).strength(0).noOcclusion()));
 
-	public static final RegistryObject<Block> MOSSY_DIRT = REGISTER.register("mossy_dirt", () -> new Block(Block.Properties.of(Material.DIRT).strength(0.6F).sound(SoundType.GRASS)));
+	public static final RegistryObject<Block> MOSSY_DIRT = REGISTER.register("mossy_dirt", () -> new SnowyDirtBlock(Block.Properties.of(Material.DIRT).strength(0.6F).sound(SoundType.GRASS)));
 	public static final RegistryObject<Block> LOAM = REGISTER.register("loam", () -> new Block(Block.Properties.of(Material.DIRT).strength(0.6F).sound(SoundType.ROOTED_DIRT)));
 	public static final RegistryObject<Block> PACKED_LOAM = REGISTER.register("packed_loam", () -> new Block(Block.Properties.of(Material.DIRT).strength(0.6F).sound(SoundType.ROOTED_DIRT)));
 	public static final RegistryObject<Block> MOSS_BLOCK = REGISTER.register("moss_block", () -> new Block(Block.Properties.of(Material.PLANT).strength(0.2F).sound(SoundType.GRASS)));
@@ -1059,6 +1064,10 @@ public class PFBlocks {
 	public static final RegistryObject<Block> SINOSAUROPTERYX_EGG = REGISTER.register("sinosauropteryx_egg", () -> new DinosaurEggBlock(PFEntities.SINOSAUROPTERYX, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> INCISIVOSAURUS_EGG = REGISTER.register("incisivosaurus_egg", () -> new DinosaurEggBlock(PFEntities.SINOSAUROPTERYX, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> EDMONTOSAURUS_EGG = REGISTER.register("edmontosaurus_egg", () -> new DinosaurEggBlock(PFEntities.EDMONTOSAURUS, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> BEIPIAOSAURUS_EGG = REGISTER.register("beipiaosaurus_egg", () -> new DinosaurEggBlock(PFEntities.BEIPIAOSAURUS, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> ANZU_EGG = REGISTER.register("anzu_egg", () -> new DinosaurEggBlock(PFEntities.ANZU, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> LIAONINGOSAURUS_EGG = REGISTER.register("liaoningosaurus_egg", () -> new DinosaurEggBlock(PFEntities.LIAONINGOSAURUS, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> CHANGYURAPTOR_EGG = REGISTER.register("changyuraptor_egg", () -> new DinosaurEggBlock(PFEntities.CHANGYURAPTOR, Block.Properties.of(Material.EGG).strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	
 	public static final RegistryObject<Block> NEST = REGISTER.register("nest", () -> new NestBlock(Block.Properties.of(Material.WOOD).strength(0.6F).sound(SoundType.WOOD).randomTicks()));
 	
@@ -1117,9 +1126,14 @@ public class PFBlocks {
 	public static final RegistryObject<Block> SINOSAUROPTERYX_NEST = REGISTER.register("sinosauropteryx_nest", () -> new NestAndEggsBlock(PFEntities.SINOSAUROPTERYX, Block.Properties.of(Material.WOOD).strength(0.6F).sound(SoundType.WOOD).randomTicks()));
 	public static final RegistryObject<Block> INCISIVOSAURUS_NEST = REGISTER.register("incisivosaurus_nest", () -> new NestAndEggsBlock(PFEntities.INCISIVOSAURUS, Block.Properties.of(Material.WOOD).strength(0.6F).sound(SoundType.WOOD).randomTicks()));
 	public static final RegistryObject<Block> EDMONTOSAURUS_NEST = REGISTER.register("edmontosaurus_nest", () -> new NestAndEggsBlock(PFEntities.EDMONTOSAURUS, Block.Properties.of(Material.WOOD).strength(0.6F).sound(SoundType.WOOD).randomTicks()));
+	public static final RegistryObject<Block> BEIPIAOSAURUS_NEST = REGISTER.register("beipiaosaurus_nest", () -> new NestAndEggsBlock(PFEntities.BEIPIAOSAURUS, Block.Properties.of(Material.WOOD).strength(0.6F).sound(SoundType.WOOD).randomTicks()));
+	public static final RegistryObject<Block> ANZU_NEST = REGISTER.register("anzu_nest", () -> new NestAndEggsBlock(PFEntities.ANZU, Block.Properties.of(Material.WOOD).strength(0.6F).sound(SoundType.WOOD).randomTicks()));
+	public static final RegistryObject<Block> LIAONINGOSAURUS_NEST = REGISTER.register("liaoningosaurus_nest", () -> new NestAndEggsBlock(PFEntities.LIAONINGOSAURUS, Block.Properties.of(Material.WOOD).strength(0.6F).sound(SoundType.WOOD).randomTicks()));
+	public static final RegistryObject<Block> CHANGYURAPTOR_NEST = REGISTER.register("changyuraptor_nest", () -> new NestAndEggsBlock(PFEntities.CHANGYURAPTOR, Block.Properties.of(Material.WOOD).strength(0.6F).sound(SoundType.WOOD).randomTicks()));
 	
 	public static final RegistryObject<Block> POISON_GAS = REGISTER.register("poison_gas", () -> new PoisonGasBlock(BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().randomTicks()));
-	
+	public static final RegistryObject<Block> SPLATTERED_GINKGO = REGISTER.register("splattered_ginkgo", () -> new SplatteredGinkgoBlock(BlockBehaviour.Properties.of(Material.CLAY).noCollission().instabreak().noDrops().randomTicks()));
+
 	private static RotatedPillarBlock createLog() {
 		return new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F).sound(SoundType.WOOD));
 	}

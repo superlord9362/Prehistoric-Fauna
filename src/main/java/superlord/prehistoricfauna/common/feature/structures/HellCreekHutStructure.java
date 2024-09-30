@@ -13,12 +13,11 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGenerator;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
-import superlord.prehistoricfauna.common.feature.structures.structurepiece.HellCreekHutStructurePiece;
+import superlord.prehistoricfauna.common.feature.structures.structurepiece.*;
 
 public class HellCreekHutStructure extends StructureFeature<NoneFeatureConfiguration> {
-
-	public HellCreekHutStructure(Codec<NoneFeatureConfiguration> codec) {
-		super(codec, PieceGeneratorSupplier.simple(HellCreekHutStructure::checkLocation, HellCreekHutStructure::generatePieces));
+	public HellCreekHutStructure(Codec<NoneFeatureConfiguration> p_i51440_1_) {
+		super(p_i51440_1_, PieceGeneratorSupplier.simple(HellCreekHutStructure::checkLocation, HellCreekHutStructure::generatePieces));
 	}
 
 	private static void generatePieces(StructurePiecesBuilder p_197233_, PieceGenerator.Context<NoneFeatureConfiguration> p_197234_) {
@@ -41,5 +40,4 @@ public class HellCreekHutStructure extends StructureFeature<NoneFeatureConfigura
 	public GenerationStep.Decoration step() {
 		return GenerationStep.Decoration.SURFACE_STRUCTURES;
 	}
-
 }

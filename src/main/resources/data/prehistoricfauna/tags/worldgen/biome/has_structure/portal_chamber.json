@@ -26,6 +26,15 @@
 		"prehistoricfauna:kayenta_desert",
 		"prehistoricfauna:kayenta_dry_forest",
 		"prehistoricfauna:morrison_hills",
-		"prehistoricfauna:morrison_savannah"
+		"prehistoricfauna:morrison_savanna",
+		"prehistoricfauna:yixian_forest",
+		"prehistoricfauna:yixian_snowy_forest",
+		"prehistoricfauna:yixian_lakes",
+		"prehistoricfauna:yixian_regrowth",
+		"prehistoricfauna:yixian_volcano",
+		"prehistoricfauna:yixian_snowy_mountains",
+		"prehistoricfauna:cretaceous_dripstone_cave",
+		"prehistoricfauna:jurassic_dripstone_cave",
+		"prehistoricfauna:triassic_dripstone_cave"
 	]
 }

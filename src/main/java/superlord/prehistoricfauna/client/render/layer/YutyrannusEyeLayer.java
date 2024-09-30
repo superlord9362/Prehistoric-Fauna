@@ -3,6 +3,7 @@ package superlord.prehistoricfauna.client.render.layer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
@@ -15,12 +16,12 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.cretaceous.yixian.YutyrannusModel;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Yutyrannus;
 
-public class YutyrannusEyeLayer extends RenderLayer<Yutyrannus, YutyrannusModel> {
+public class YutyrannusEyeLayer extends RenderLayer<Yutyrannus, EntityModel<Yutyrannus>> {
 	
 	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yutyrannus/yutyrannus_eyeglow.png"));
-	private final RenderLayerParent<Yutyrannus, YutyrannusModel> yutyrannusRenderer;
+	private final RenderLayerParent<Yutyrannus, EntityModel<Yutyrannus>> yutyrannusRenderer;
 	
-	public YutyrannusEyeLayer(RenderLayerParent<Yutyrannus, YutyrannusModel> rendererIn) {
+	public YutyrannusEyeLayer(RenderLayerParent<Yutyrannus, EntityModel<Yutyrannus>> rendererIn) {
 		super(rendererIn);
 		this.yutyrannusRenderer = rendererIn;
 	}

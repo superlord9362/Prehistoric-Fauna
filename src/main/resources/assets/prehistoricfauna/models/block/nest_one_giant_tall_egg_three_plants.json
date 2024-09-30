@@ -3,9 +3,9 @@
 	"texture_size": [32, 32],
 	"textures": {
 		"5": "prehistoricfauna:blocks/plants",
-		"particle": "",
-		"material": "",
-		"egg": ""
+		"particle": "#material",
+		"material": "#material",
+		"egg": "#egg"
 	},
 	"elements": [
 		{

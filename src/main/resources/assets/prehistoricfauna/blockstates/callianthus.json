@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "half=lower": [
+			{ "model": "prehistoricfauna:block/callianthus_bottom" },
+			{ "model": "prehistoricfauna:block/callianthus_bottom", "y": 90 },
+			{ "model": "prehistoricfauna:block/callianthus_bottom", "y": 180 },
+			{ "model": "prehistoricfauna:block/callianthus_bottom", "y": 270 }
+			],
+        "half=upper": [
+			{ "model": "prehistoricfauna:block/callianthus_top" },
+			{ "model": "prehistoricfauna:block/callianthus_top", "y": 90 },
+			{ "model": "prehistoricfauna:block/callianthus_top", "y": 180 },
+			{ "model": "prehistoricfauna:block/callianthus_top", "y": 270 }			
+        ]
+    }
+}

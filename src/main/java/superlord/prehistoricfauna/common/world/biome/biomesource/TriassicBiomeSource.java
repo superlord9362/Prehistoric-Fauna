@@ -1,7 +1,5 @@
 package superlord.prehistoricfauna.common.world.biome.biomesource;
 
-import java.util.Random;
-
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -9,7 +7,6 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.RegistryOps;
-import net.minecraft.util.Mth;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeManager.NoiseBiomeSource;
 import net.minecraft.world.level.biome.BiomeSource;
@@ -29,7 +26,7 @@ public class TriassicBiomeSource extends BiomeSource implements NoiseBiomeSource
 	private final Holder<Biome> chinleRiver, chinleFlats, chinleSwamp, chinleWoodedMountains, ischigualastoRiver, ischigualastoForest, ischigualastoClearing, ischigualastoHills, prehistoricDripstoneCave;
 
 	public TriassicBiomeSource(Registry<Biome> biome) {
-		this(biome.getOrCreateHolder(PFBiomes.CHINLE_RIVER.getKey()), biome.getOrCreateHolder(PFBiomes.CHINLE_FLATS.getKey()), biome.getOrCreateHolder(PFBiomes.CHINLE_SWAMP.getKey()), biome.getOrCreateHolder(PFBiomes.CHINLE_WOODED_MOUNTAINS.getKey()), biome.getOrCreateHolder(PFBiomes.ISCHIGUALASTO_RIVER.getKey()), biome.getOrCreateHolder(PFBiomes.ISCHIGUALASTO_FOREST.getKey()), biome.getOrCreateHolder(PFBiomes.ISCHIGUALASTO_CLEARING.getKey()), biome.getOrCreateHolder(PFBiomes.ISCHIGUALASTO_HILLS.getKey()), biome.getOrCreateHolder(PFBiomes.PREHISTORIC_DRIPSTONE_CAVE.getKey()));
+		this(biome.getOrCreateHolder(PFBiomes.CHINLE_RIVER.getKey()), biome.getOrCreateHolder(PFBiomes.CHINLE_FLATS.getKey()), biome.getOrCreateHolder(PFBiomes.CHINLE_SWAMP.getKey()), biome.getOrCreateHolder(PFBiomes.CHINLE_WOODED_MOUNTAINS.getKey()), biome.getOrCreateHolder(PFBiomes.ISCHIGUALASTO_RIVER.getKey()), biome.getOrCreateHolder(PFBiomes.ISCHIGUALASTO_FOREST.getKey()), biome.getOrCreateHolder(PFBiomes.ISCHIGUALASTO_CLEARING.getKey()), biome.getOrCreateHolder(PFBiomes.ISCHIGUALASTO_HILLS.getKey()), biome.getOrCreateHolder(PFBiomes.TRIASSIC_DRIPSTONE_CAVE.getKey()));
 	}
 
 	public double noiseValue;
@@ -57,83 +54,51 @@ public class TriassicBiomeSource extends BiomeSource implements NoiseBiomeSource
 		return this;
 	}
 
-
-
-
 	@Override
 	public Holder<Biome> getNoiseBiome(int x, int y, int z, Sampler p_204241_) {
 		return getNoiseBiome(x, y, z);
 	}
 
-	public double calculateNoiseValue(int x, int z, FastNoise noise) {
-		float frequency = 0.15F;
-		float amplitude = 4.0F;
-
-		double noiseX = noise.GetNoise(x * frequency, x * frequency);
-		double noiseZ = noise.GetNoise(z * frequency, z * frequency);
-
-		double combinedNoise = amplitude * (noiseX + noiseZ);
-
-		return combinedNoise;
+	public double timeLineNoise(int x, int y, int z, FastNoise noise) {
+		return noise.GetNoise(x * 0.6F, z * 0.6F);
 	}
 
-	public double calculateCaveNoiseValue(int y, FastNoise noise) {
-		float frequency = 0.5F;
-		float amplitude = 4.0F;
+	public double tempNoise(int x, int y, int z, FastNoise noise) {
+		return noise.GetNoise(x * 0.2F, z * 0.2F);
+	}
 
-		double noiseY = noise.GetNoise(y * frequency, y * frequency);
-		double combinedNoise;
-		if (y >= 44) {
-			combinedNoise = 4;
-		} else combinedNoise = amplitude * noiseY;
+	public double hillinessNoise(int x, int y, int z, FastNoise noise) {
+		return noise.GetNoise(x * 0.4F, z * 0.4F);
+	}
 
-		return combinedNoise;
+	public double humidityNoise(int x, int y, int z, FastNoise noise) {
+		return noise.GetNoise(x * 0.7F, z * 0.7F);
+	}
+
+	public double getNoiseValue() {
+		return noiseValue;
 	}
 
 	@Override
 	public Holder<Biome> getNoiseBiome(int x, int y, int z) {
-		noiseValue = calculateNoiseValue(x, z, TriassicChunkGenerator.noise);
-		double caveNoiseValue = calculateCaveNoiseValue(y, TriassicChunkGenerator.noise);
-		if (caveNoiseValue < 0.5 && caveNoiseValue > 0) {
-			Random random = new Random();
-			if (y < Mth.nextDouble(random, 44, -64)) return prehistoricDripstoneCave;
-			if (y >= 44) {
-				if (noiseValue <= -5.9 && noiseValue > -6.1 || noiseValue >= -0.2 && noiseValue < 0) {
-					return chinleRiver;
-				} else if (noiseValue <= -5 && noiseValue > -5.9) {
-					return chinleFlats;
-				} else if (noiseValue <= -3.5 && noiseValue > -5 || noiseValue >= -2.5 && noiseValue < -0.2) {
-					return chinleSwamp;
-				} else if (noiseValue > -3.5 && noiseValue < -2.5) {
-					return chinleWoodedMountains;
-				} else if (noiseValue >= 0 && noiseValue < 0.2 || noiseValue >= 5.9 && noiseValue < 6.1) {
-					return ischigualastoRiver;
-				} else if (noiseValue > 0.2 && noiseValue <= 2.5 || noiseValue >= 4 && noiseValue < 5.9) {
-					return ischigualastoForest;
-				} else if (noiseValue > 2.5 && noiseValue <= 3) {
-					return ischigualastoClearing;
-				} else {
-					return ischigualastoHills;
-				}
-			}
+		double timelineNoise = timeLineNoise(x, y, z, TriassicChunkGenerator.noise);
+		double tempNoise = tempNoise(x, y, z, TriassicChunkGenerator.noise);
+		double humidityNoise = humidityNoise(x, y, z, TriassicChunkGenerator.noise);
+		double hillinessNoise = hillinessNoise(x, y, z, TriassicChunkGenerator.noise);
+		if (humidityNoise > 0.4D && y < 6) {
+			return prehistoricDripstoneCave;
 		}
-		if (noiseValue <= -5.9 && noiseValue > -6.1 || noiseValue >= -0.2 && noiseValue < 0) {
-			return chinleRiver;
-		} else if (noiseValue <= -5 && noiseValue > -5.9) {
-			return chinleFlats;
-		} else if (noiseValue <= -3.5 && noiseValue > -5 || noiseValue >= -2.5 && noiseValue < -0.2) {
+		if (timelineNoise >= 0.0222F) {
+			if (hillinessNoise > 0.5F) return chinleWoodedMountains;
+			if (tempNoise > 0.3F) return chinleFlats;
 			return chinleSwamp;
-		} else if (noiseValue > -3.5 && noiseValue < -2.5) {
-			return chinleWoodedMountains;
-		} else if (noiseValue >= 0 && noiseValue < 0.2 || noiseValue >= 5.9 && noiseValue < 6.1) {
-			return ischigualastoRiver;
-		} else if (noiseValue > 0.2 && noiseValue <= 2.5 || noiseValue >= 4 && noiseValue < 5.9) {
+		} else if (timelineNoise < 0.0222F && timelineNoise >= 0) {
+			return chinleRiver;
+		} else if (timelineNoise <= -0.0222F) {
+			if (hillinessNoise > 0.3F) return ischigualastoHills;
+			if (hillinessNoise < -0.4F) return ischigualastoClearing;
 			return ischigualastoForest;
-		} else if (noiseValue > 2.5 && noiseValue <= 3) {
-			return ischigualastoClearing;
-		} else {
-			return ischigualastoHills;
-		}
+		} else return ischigualastoRiver;
 	}
 
 }

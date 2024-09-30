@@ -30,14 +30,14 @@ import superlord.prehistoricfauna.init.PFStructures;
 
 public class HellCreekHutStructurePiece {
 
-	private static final ResourceLocation hellCreekHut_Template = new ResourceLocation(PrehistoricFauna.MOD_ID, "hell_creek_hut");
+	private static final ResourceLocation hell_creekHut_Template = new ResourceLocation(PrehistoricFauna.MOD_ID, "hell_creek_hut");
 
-	private static final Map<ResourceLocation, BlockPos> structurePos = ImmutableMap.of(hellCreekHut_Template, BlockPos.ZERO);
+	private static final Map<ResourceLocation, BlockPos> structurePos = ImmutableMap.of(hell_creekHut_Template, BlockPos.ZERO);
 
 	static final BlockPos PIVOT = new BlockPos(9, 0, 9);
 
 	public static void addStructure(StructureManager manager, BlockPos pos, Rotation rotation, StructurePieceAccessor accessor, Random random) {
-		accessor.addPiece(new Piece(manager, hellCreekHut_Template, pos, rotation, 0));
+		accessor.addPiece(new Piece(manager, hell_creekHut_Template, pos, rotation, 0));
 	}
 
 	public static class Piece extends TemplateStructurePiece {

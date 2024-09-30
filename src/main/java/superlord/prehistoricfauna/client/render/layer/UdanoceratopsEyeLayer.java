@@ -3,6 +3,7 @@ package superlord.prehistoricfauna.client.render.layer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
@@ -18,6 +19,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Udanocerato
 public class UdanoceratopsEyeLayer extends RenderLayer<Udanoceratops, UdanoceratopsModel> {
 	
 	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/udanoceratops_eyeglow.png"));
+	private static final RenderType TEXTURE_SNIFFER = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/sniffer_eyeglow.png"));
 	private final RenderLayerParent<Udanoceratops, UdanoceratopsModel> udanoceratopsRenderer;
 	
 	public UdanoceratopsEyeLayer(RenderLayerParent<Udanoceratops, UdanoceratopsModel> rendererIn) {
@@ -45,7 +47,12 @@ public class UdanoceratopsEyeLayer extends RenderLayer<Udanoceratops, Udanocerat
 			RenderType tex = null;
 			if (udanoceratops.isAsleep() || udanoceratops.tickCount % 50 >= 0 && udanoceratops.tickCount % 50 <= 5) {
 				tex = null;
-			} else tex = TEXTURE;
+			} else {
+				String s = ChatFormatting.stripFormatting(udanoceratops.getName().getString());
+				if ( s != null && "Sniffer".equals(s)) {
+					tex = TEXTURE_SNIFFER;
+				} else tex = TEXTURE;
+			}
 	        if(tex != null){
 	        	VertexConsumer ivertexbuilder = bufferIn.getBuffer(tex);
 	            this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);

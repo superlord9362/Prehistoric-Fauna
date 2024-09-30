@@ -28,6 +28,10 @@
 		"prehistoricfauna:placerias_egg",
 		"prehistoricfauna:trilophosaurus_egg",
 		"prehistoricfauna:typothorax_egg",
-		"minecraft:egg"
+		"minecraft:egg",
+		"prehistoricfauna:beipiaosaurus_egg",
+		"prehistoricfauna:kayentatherium_egg",
+		"prehistoricfauna:incisivosaurus_egg",
+		"prehistoricfauna:liaoningosaurus_egg"
 	]
 }

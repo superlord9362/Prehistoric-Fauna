@@ -12,6 +12,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
+import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Thoracosaurus;
 
 public class ThoracosaurusModel  extends EntityModel<Thoracosaurus> {
@@ -111,6 +112,7 @@ public class ThoracosaurusModel  extends EntityModel<Thoracosaurus> {
 		float degree = 1.0f;
 		float partialTick = ageInTicks - entity.tickCount;
 		float attackProgress = entity.getMeleeProgress(partialTick);
+		float sleepProgress = entity.getSleepProgress(partialTick);
 		resetModel();
 		if (entity.isInWater()) {
 			this.Tail1.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) + ((Mth.cos(limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount - 0.15F) / 3);
@@ -130,44 +132,52 @@ public class ThoracosaurusModel  extends EntityModel<Thoracosaurus> {
 		}
 		if (!entity.isAsleep() && !entity.isInWater()) {
 			if (entity.getDeltaMovement().x() == 0 && entity.getDeltaMovement().z() == 0) {
-				this.Body.y = 16;
-				this.FLLeg.y = 21;
-				this.FLLeg.z = -9;
-				this.FLLeg.xRot = -1.5708F;
-				this.FRLeg.y = 21;
-				this.FRLeg.z = -9;
-				this.FRLeg.xRot = -1.5708F;
-				this.HindLLeg1.y = 16;
-				this.HindLLeg1.z = 12;
-				this.HindLLeg1.xRot = 0;
-				this.HindLLeg2.xRot = 0;
-				this.HindRLeg1.y = 16;
-				this.HindRLeg1.z = 12;
-				this.HindRLeg1.xRot = 0;
-				this.HindRLeg2.xRot = 0;
+				if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
+					this.Body.y = Mth.lerp(sleepProgress, 10, 16);
+					this.FLLeg.y = Mth.lerp(sleepProgress, 13, 21);
+					this.FLLeg.xRot = Mth.lerp(sleepProgress, 0, -1.5708F);
+					this.FRLeg.y = Mth.lerp(sleepProgress, 13, 21);
+					this.FRLeg.xRot = Mth.lerp(sleepProgress, 0, -1.5708F);
+					this.HindLLeg1.y = Mth.lerp(sleepProgress, 12, 16);
+					this.HindLLeg1.xRot = Mth.lerp(sleepProgress, 0.7741F, 0);
+					this.HindRLeg1.y = Mth.lerp(sleepProgress, 12, 16);
+					this.HindRLeg1.xRot = Mth.lerp(sleepProgress, 0.7741F, 0);
+				} else sleepPose();
 				this.Tail1.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount - 0.025F);
 				this.Tail1.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5)) + (Mth.cos(-1.0F + limbSwing * speed * 0.25F) * degree * 0.5F * limbSwingAmount);
 				this.Tail2.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount + 0.025F);
 				this.Tail2.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5)) + (Mth.cos(-1.0F + limbSwing * speed * 0.25F) * degree * 0.5F * limbSwingAmount);
 			} else {
-				this.FLLeg.y = -(Mth.cos(0.8F + limbSwing * speed * 0.25F) * degree * 0.2F * limbSwingAmount) + 13;
-				this.FLLeg.z = -(Mth.cos(limbSwing * speed * 0.25F) * degree * 0.5F * limbSwingAmount) - 9;
-				this.FLLeg.xRot = Mth.cos(limbSwing * speed * 0.25F) * degree * 0.5F * limbSwingAmount;
-				this.FRLeg.y = -(Mth.cos(0.8F + limbSwing * speed * 0.25F) * degree * -0.2F * limbSwingAmount) + 13;
-				this.FRLeg.z = -(Mth.cos(limbSwing * speed * 0.25F) * degree * -0.5F * limbSwingAmount) - 9;
-				this.FRLeg.xRot = Mth.cos(limbSwing * speed * 0.25F) * degree * -0.5F * limbSwingAmount;
-				this.HindLLeg1.y = (Mth.cos(1.0F + limbSwing * speed * 0.25F) * degree * -0.2F * limbSwingAmount) + 12;
-				this.HindLLeg1.z = (Mth.cos(-1.0F + limbSwing * speed * 0.25F) * degree * -0.25F * limbSwingAmount) + 12;
-				this.HindLLeg1.xRot = (Mth.cos(limbSwing * speed * 0.25F) * degree * -0.5F * limbSwingAmount) + 0.7741F;
-				this.HindLLeg2.xRot = (Mth.cos(2.0F + limbSwing * speed * 0.3F) * degree * 0.3F * limbSwingAmount) - 0.7741F;
-				this.HindRLeg1.y = (Mth.cos(1.0F + limbSwing * speed * 0.25F) * degree * 0.2F * limbSwingAmount) + 12;
-				this.HindRLeg1.z = (Mth.cos(-1.0F + limbSwing * speed * 0.25F) * degree * 0.25F * limbSwingAmount) + 12;
-				this.HindRLeg1.xRot = (Mth.cos(limbSwing * speed * 0.25F) * degree * 0.5F * limbSwingAmount) + 0.7741F;
-				this.HindRLeg2.xRot = (Mth.cos(2.0F + limbSwing * speed * 0.3F) * degree * -0.3F * limbSwingAmount) - 0.7741F;	
-				this.Tail1.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount - 0.15F);
-				this.Tail1.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5)) + (Mth.cos(-1.0F + limbSwing * speed * 0.25F) * degree * 0.5F * limbSwingAmount);
-				this.Tail2.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount + 0.15F);
-				this.Tail2.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5)) + (Mth.cos(-1.0F + limbSwing * speed * 0.25F) * degree * 0.5F * limbSwingAmount);
+				if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
+					this.Body.y = Mth.lerp(sleepProgress, 16, 10);
+					this.FLLeg.y = Mth.lerp(sleepProgress, 21, 13);
+					this.FLLeg.xRot = Mth.lerp(sleepProgress, -1.5708F, 0);
+					this.FRLeg.y = Mth.lerp(sleepProgress, 21, 13);
+					this.FRLeg.xRot = Mth.lerp(sleepProgress, -1.5708F, 0);
+					this.HindLLeg1.y = Mth.lerp(sleepProgress, 16, 12);
+					this.HindLLeg1.xRot = Mth.lerp(sleepProgress, 0, 0.7741F);
+					this.HindRLeg1.y = Mth.lerp(sleepProgress, 16, 12);
+					this.HindRLeg1.xRot = Mth.lerp(sleepProgress, 0, 0.7741F);
+				} else {
+					this.FLLeg.y = -(Mth.cos(0.8F + limbSwing * speed * 0.25F) * degree * 0.2F * limbSwingAmount) + 13;
+					this.FLLeg.z = -(Mth.cos(limbSwing * speed * 0.25F) * degree * 0.5F * limbSwingAmount) - 9;
+					this.FLLeg.xRot = Mth.cos(limbSwing * speed * 0.25F) * degree * 0.5F * limbSwingAmount;
+					this.FRLeg.y = -(Mth.cos(0.8F + limbSwing * speed * 0.25F) * degree * -0.2F * limbSwingAmount) + 13;
+					this.FRLeg.z = -(Mth.cos(limbSwing * speed * 0.25F) * degree * -0.5F * limbSwingAmount) - 9;
+					this.FRLeg.xRot = Mth.cos(limbSwing * speed * 0.25F) * degree * -0.5F * limbSwingAmount;
+					this.HindLLeg1.y = (Mth.cos(1.0F + limbSwing * speed * 0.25F) * degree * -0.2F * limbSwingAmount) + 12;
+					this.HindLLeg1.z = (Mth.cos(-1.0F + limbSwing * speed * 0.25F) * degree * -0.25F * limbSwingAmount) + 12;
+					this.HindLLeg1.xRot = (Mth.cos(limbSwing * speed * 0.25F) * degree * -0.5F * limbSwingAmount) + 0.7741F;
+					this.HindLLeg2.xRot = (Mth.cos(2.0F + limbSwing * speed * 0.3F) * degree * 0.3F * limbSwingAmount) - 0.7741F;
+					this.HindRLeg1.y = (Mth.cos(1.0F + limbSwing * speed * 0.25F) * degree * 0.2F * limbSwingAmount) + 12;
+					this.HindRLeg1.z = (Mth.cos(-1.0F + limbSwing * speed * 0.25F) * degree * 0.25F * limbSwingAmount) + 12;
+					this.HindRLeg1.xRot = (Mth.cos(limbSwing * speed * 0.25F) * degree * 0.5F * limbSwingAmount) + 0.7741F;
+					this.HindRLeg2.xRot = (Mth.cos(2.0F + limbSwing * speed * 0.3F) * degree * -0.3F * limbSwingAmount) - 0.7741F;	
+					this.Tail1.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount - 0.15F);
+					this.Tail1.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5)) + (Mth.cos(-1.0F + limbSwing * speed * 0.25F) * degree * 0.5F * limbSwingAmount);
+					this.Tail2.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount + 0.15F);
+					this.Tail2.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5)) + (Mth.cos(-1.0F + limbSwing * speed * 0.25F) * degree * 0.5F * limbSwingAmount);
+				}
 			}
 			this.Body.yRot = Mth.cos(limbSwing * speed * 0.25F) * degree * 0.25F * limbSwingAmount;
 			this.Jaw1.xRot = Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(30F);
@@ -175,7 +185,7 @@ public class ThoracosaurusModel  extends EntityModel<Thoracosaurus> {
 			this.Neck.yRot = (netHeadYaw * ((float) Math.PI / 180F));
 		}
 	}
-	
+
 	public void resetModel() {
 		this.Body.y = 10;
 		this.HindRLeg1.y = 12;
@@ -192,6 +202,24 @@ public class ThoracosaurusModel  extends EntityModel<Thoracosaurus> {
 		this.FLLeg.y = 13;
 		this.FLLeg.z = -9;
 		this.FLLeg.xRot = 0;
+	}
+
+	private void sleepPose() {
+		this.Body.y = 16;
+		this.FLLeg.y = 21;
+		this.FLLeg.z = -9;
+		this.FLLeg.xRot = -1.5708F;
+		this.FRLeg.y = 21;
+		this.FRLeg.z = -9;
+		this.FRLeg.xRot = -1.5708F;
+		this.HindLLeg1.y = 16;
+		this.HindLLeg1.z = 12;
+		this.HindLLeg1.xRot = 0;
+		this.HindLLeg2.xRot = 0;
+		this.HindRLeg1.y = 16;
+		this.HindRLeg1.z = 12;
+		this.HindRLeg1.xRot = 0;
+		this.HindRLeg2.xRot = 0;
 	}
 
 	@Override

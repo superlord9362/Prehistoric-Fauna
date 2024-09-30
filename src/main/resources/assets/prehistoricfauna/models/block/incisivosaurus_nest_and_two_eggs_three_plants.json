@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"parent": "prehistoricfauna:block/nest_two_small_round_eggs_three_plants",
 	"textures": {
-		"material": "block/dirt",
+		"material": "prehistoricfauna:blocks/nest",
 		"egg": "prehistoricfauna:blocks/incisivosaurus_egg",
 		"plants": "prehistoricfauna:blocks/plants"
 	}

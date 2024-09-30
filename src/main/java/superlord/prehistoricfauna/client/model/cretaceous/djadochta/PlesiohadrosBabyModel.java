@@ -12,6 +12,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
+import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Plesiohadros;
 
 public class PlesiohadrosBabyModel extends EntityModel<Plesiohadros> {
@@ -79,206 +80,207 @@ public class PlesiohadrosBabyModel extends EntityModel<Plesiohadros> {
 		float degree = 1.0f;
 		float partialTick = ageInTicks - entity.tickCount;
 		float attackProgress = entity.getMeleeProgress(partialTick) * 2.0F;
+		float sleepProgress = entity.getSleepProgress(partialTick);
 		resetModel();
 		if (entity.isAsleep()) {
-			//Neck
-			if (this.Neck.y < 2F) this.Neck.y += 0.15;
-			if (this.Neck.xRot < 0.5235987755982988F) this.Neck.xRot += 0.05;
-			if (this.Neck.yRot > -0.3490658503988659F) this.Neck.yRot -= 0.05;
-			//RLeg
-			//this.RLeg.y = 19.5F;
-			//this.RLeg.x = -3;
-			//this.RLeg.z = -1;
-			if (this.RLeg.x < -3F) this.RLeg.y += 0.15;
-			if (this.RLeg.y < 19.5F) this.RLeg.y += 0.15;
-			if (this.RLeg.z < -1F) this.RLeg.z += 0.15;
-			if (this.RLeg.xRot > -0.7330382858376184F) this.RLeg.xRot -= 0.05;
-			if (this.RLeg.yRot < 0.5585053606381855F) this.RLeg.yRot += 0.05;
-			//Head
-			if (this.Head.xRot > -0.4974188368183839F) this.Head.xRot -= 0.05;
-			//LForeleg
-			if (this.LForeleg.y < 22F) this.LForeleg.y += 0.15;
-			if (this.LForeleg.xRot > -0.7330382858376184F) this.LForeleg.xRot -= 0.05;
-			if (this.LForeleg.zRot > -0.9075712110370513F) this.LForeleg.zRot -= 0.05;
-			//LLeg2
-			if (this.LLeg2.y < 4F) this.LLeg2.y += 0.15;
-			if (this.LLeg2.xRot > -0.8377580409572781F) this.LLeg2.xRot -= 0.05;
-			//RForeleg
-			if (this.RForeleg.y < 22F) this.RForeleg.y += 0.15;
-			if (this.RForeleg.xRot > -1.3962634015954636F) this.RForeleg.xRot -= 0.05;
-			if (this.RForeleg.yRot < 0.13962634015954636F) this.RForeleg.yRot += 0.05;
-			if (this.RForeleg.zRot > -0.13962634015954636F) this.RForeleg.zRot -= 0.05;
-			//RLeg2
-			if (this.RLeg2.y < 4F) this.RLeg2.y += 0.15;
-			if (this.RLeg2.xRot > -0.8377580409572781F) this.RLeg2.xRot -= 0.05;
-			//Torso
-			//this.Torso.y = 17;
-			if (this.Torso.y < 17F) this.Torso.y += 0.15;
-			if (this.Torso.xRot < 0.17453292519943295F) this.Torso.xRot += 0.05;
-			//TailBase
-			if (this.TailBase.z > 10.5F) this.TailBase.z -= 0.15;
-			if (this.TailBase.xRot > -0.5585053606381855F) this.TailBase.xRot -= 0.05;
-			if (this.TailBase.yRot < 0.41887902047863906F) this.TailBase.yRot += 0.05;
-			//LLeg
-			//this.LLeg.y = 19.5F;
-			//this.LLeg.x = 3;
-			//this.LLeg.z = -1;
-			if (this.LLeg.x < 3F) this.LLeg.x += 0.15;
-			if (this.LLeg.y < 19.5F) this.LLeg.y += 0.15;
-			if (this.LLeg.z < -1F) this.LLeg.z += 0.15;
-			if (this.LLeg.xRot > -0.7330382858376184F) this.LLeg.xRot -= 0.05;
-			sleepPose();
+			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
+				//Torso
+				this.Torso.y = Mth.lerp(sleepProgress, 13, 17);
+				this.Torso.xRot = Mth.lerp(sleepProgress, 0, 0.17453292519943295F);
+				//LLeg
+				this.LLeg.y = Mth.lerp(sleepProgress, 17, 19.5F);
+				this.LLeg.z = Mth.lerp(sleepProgress, 2, 3);
+				this.LLeg.xRot = Mth.lerp(sleepProgress, 0, -0.7330382858376184F);
+				this.LLeg.yRot = Mth.lerp(sleepProgress, 0, 0.2585053606381855F);
+				//RLeg
+				this.RLeg.y = Mth.lerp(sleepProgress, 17, 19.5F);
+				this.RLeg.z = Mth.lerp(sleepProgress, 2, 3);
+				this.RLeg.xRot = Mth.lerp(sleepProgress, 0, -0.7330382858376184F);
+				this.RLeg.yRot = Mth.lerp(sleepProgress, 0, -0.2585053606381855F);
+				//LForeleg
+				this.LForeleg.y = Mth.lerp(sleepProgress, 19, 22);
+				this.LForeleg.xRot = Mth.lerp(sleepProgress, 0, -1.2330382858376184F);
+				this.LForeleg.zRot = Mth.lerp(sleepProgress, 0, -0.6475712110370513F);
+				//RForeleg
+				this.RForeleg.y = Mth.lerp(sleepProgress, 19, 22);
+				this.RForeleg.xRot = Mth.lerp(sleepProgress, 0, -1.3962634015954636F);
+				this.RForeleg.yRot = Mth.lerp(sleepProgress, 0, 0.13962634015954636F);
+				this.RForeleg.zRot = Mth.lerp(sleepProgress, 0, -0.13962634015954636F);
+				//LLeg2
+				this.LLeg2.xRot = Mth.lerp(sleepProgress, 0, -0.8377580409572781F);
+				//RLeg2
+				this.RLeg2.xRot = Mth.lerp(sleepProgress, 0, -0.8377580409572781F);
+				//TailBase
+				this.TailBase.z = Mth.lerp(sleepProgress, 11.5F, 10.5F);
+				this.TailBase.xRot = Mth.lerp(sleepProgress, 0, -0.5585053606381855F);
+				this.TailBase.yRot = Mth.lerp(sleepProgress, 0, 0.41887902047863906F);
+				//Neck
+				this.Neck.y = Mth.lerp(sleepProgress, 2.5F, 2F);
+				this.Neck.xRot = Mth.lerp(sleepProgress, 0, 0.5235987755982988F);
+				this.Neck.yRot = Mth.lerp(sleepProgress, 0, -0.3490658503988659F);
+				//Head
+				this.Head.xRot = Mth.lerp(sleepProgress, 0, -0.4974188368183839F);
+			} else sleepPose();
 		} else {
-			this.LForeleg.xRot = Mth.cos(limbSwing * speed * 0.3F) * degree * 0.8F * limbSwingAmount + attackProgress * (float) Math.toRadians(15F);
-			this.RForeleg.xRot = Mth.cos(limbSwing * speed * 0.3F) * degree * -0.8F * limbSwingAmount + attackProgress * (float) Math.toRadians(15F);
-			this.RLeg.xRot = Mth.cos(1.0F + limbSwing * speed * 0.3F) * degree * 0.4F * limbSwingAmount + attackProgress * (float) Math.toRadians(7F);
-			this.RLeg2.xRot = Mth.cos(limbSwing * speed * 0.3F) * degree * 0.3F * limbSwingAmount;
-			this.LLeg.xRot = Mth.cos(1.0F + limbSwing * speed * 0.3F) * degree * -0.4F * limbSwingAmount + attackProgress * (float) Math.toRadians(7F);
-			this.LLeg2.xRot = Mth.cos(limbSwing * speed * 0.3F) * degree * -0.3F * limbSwingAmount;
-			this.TailBase.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5)) + (Mth.cos(limbSwing * speed * 0.15F) * degree * 0.35F * limbSwingAmount);
-			this.TailBase.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount - 0.15F);
-			this.Neck.xRot = (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.1F * limbSwingAmount + 0.15F);
-			this.Head.xRot = attackProgress * (float) Math.toRadians(25F);
-			if (entity.isEating()) {
-				this.Neck.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.45F) + 0.15F;
-				this.Torso.xRot = 0.2F;
-				this.LForeleg.zRot = -0.2F;
-				this.RForeleg.zRot = 0.2F;
+			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
+				//Torso
+				this.Torso.y = Mth.lerp(sleepProgress, 17, 13);
+				this.Torso.xRot = Mth.lerp(sleepProgress, 0.17453292519943295F, 0);
+				//LLeg
+				this.LLeg.y = Mth.lerp(sleepProgress, 19.5F, 17F);
+				this.LLeg.z = Mth.lerp(sleepProgress, 3, 2);
+				this.LLeg.xRot = Mth.lerp(sleepProgress, -0.7330382858376184F, 0);
+				this.LLeg.yRot = Mth.lerp(sleepProgress, 0.2585053606381855F, 0);
+				//RLeg
+				this.RLeg.y = Mth.lerp(sleepProgress, 19.5F, 17F);
+				this.RLeg.z = Mth.lerp(sleepProgress, 3, 2);
+				this.RLeg.xRot = Mth.lerp(sleepProgress, -0.7330382858376184F, 0);
+				this.RLeg.yRot = Mth.lerp(sleepProgress, -0.2585053606381855F, 0);
+				//LForeleg
+				this.LForeleg.y = Mth.lerp(sleepProgress, 22, 19);
+				this.LForeleg.xRot = Mth.lerp(sleepProgress, -1.2330382858376184F, 0);
+				this.LForeleg.zRot = Mth.lerp(sleepProgress, -0.6475712110370513F, 0);
+				//RForeleg
+				this.RForeleg.y = Mth.lerp(sleepProgress, 22, 19);
+				this.RForeleg.xRot = Mth.lerp(sleepProgress, -1.3962634015954636F, 0);
+				this.RForeleg.yRot = Mth.lerp(sleepProgress, 0.13962634015954636F, 0);
+				this.RForeleg.zRot = Mth.lerp(sleepProgress, -0.13962634015954636F, 0);
+				//LLeg2
+				this.LLeg2.xRot = Mth.lerp(sleepProgress, -0.8377580409572781F, 0);
+				//RLeg2
+				this.RLeg2.xRot = Mth.lerp(sleepProgress, -0.8377580409572781F, 0);
+				//TailBase
+				this.TailBase.z = Mth.lerp(sleepProgress, 10.5F, 11.5F);
+				this.TailBase.xRot = Mth.lerp(sleepProgress, -0.5585053606381855F, 0);
+				this.TailBase.yRot = Mth.lerp(sleepProgress, 0.41887902047863906F, 0);
+				//Neck
+				this.Neck.y = Mth.lerp(sleepProgress, 2F, 2.5F);
+				this.Neck.xRot = Mth.lerp(sleepProgress, 0.5235987755982988F, 0);
+				this.Neck.yRot = Mth.lerp(sleepProgress, -0.3490658503988659F, 0);
+				//Head
+				this.Head.xRot = Mth.lerp(sleepProgress, -0.4974188368183839F, 0);
+			} else {
+				this.LForeleg.xRot = Mth.cos(limbSwing * speed * 0.3F) * degree * 0.8F * limbSwingAmount + attackProgress * (float) Math.toRadians(15F);
+				this.RForeleg.xRot = Mth.cos(limbSwing * speed * 0.3F) * degree * -0.8F * limbSwingAmount + attackProgress * (float) Math.toRadians(15F);
+				this.RLeg.xRot = Mth.cos(1.0F + limbSwing * speed * 0.3F) * degree * 0.4F * limbSwingAmount + attackProgress * (float) Math.toRadians(7F);
+				this.RLeg2.xRot = Mth.cos(limbSwing * speed * 0.3F) * degree * 0.3F * limbSwingAmount;
+				this.LLeg.xRot = Mth.cos(1.0F + limbSwing * speed * 0.3F) * degree * -0.4F * limbSwingAmount + attackProgress * (float) Math.toRadians(7F);
+				this.LLeg2.xRot = Mth.cos(limbSwing * speed * 0.3F) * degree * -0.3F * limbSwingAmount;
+				this.TailBase.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5)) + (Mth.cos(limbSwing * speed * 0.15F) * degree * 0.35F * limbSwingAmount);
+				this.TailBase.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount - 0.15F);
+				this.Neck.xRot = (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.1F * limbSwingAmount + 0.15F);
+				this.Head.xRot = attackProgress * (float) Math.toRadians(25F);
+				if (entity.isEating()) {
+					this.Neck.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.45F) + 0.15F;
+					this.Torso.xRot = 0.2F;
+					this.LForeleg.zRot = -0.2F;
+					this.RForeleg.zRot = 0.2F;
+				}
+				if (entity.isInWater()) {
+					this.Torso.y = 17;
+					this.LLeg.y = 17;
+					this.RLeg.y = 17;
+					this.LForeleg.y = 24;
+					this.RForeleg.y = 24;
+					this.LLeg.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
+					this.RLeg.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
+					this.LLeg2.xRot = -0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
+					this.RLeg2.xRot = 0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
+					this.RForeleg.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
+					this.LForeleg.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
+					this.Neck.xRot = -0.125F;
+					this.TailBase.yRot = (Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * Mth.sin(0.15F * ageInTicks / 1.5F));
+				}
 			}
-			if (entity.isInWater()) {
-				this.Torso.y = 17;
-				this.LLeg.y = 17;
-				this.RLeg.y = 17;
-				this.LForeleg.y = 24;
-				this.RForeleg.y = 24;
-				this.LLeg.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
-				this.RLeg.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
-				this.LLeg2.xRot = -0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
-				this.RLeg2.xRot = 0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
-				this.RForeleg.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
-				this.LForeleg.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
-				this.Neck.xRot = -0.125F;
-				this.TailBase.yRot = (Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * Mth.sin(0.15F * ageInTicks / 1.5F));
-			}
-		}
-		if (entity.getWakingTicks() < 31) {
-			//Neck
-			if (this.Neck.y > 2.5F) this.Neck.y -= 0.15;
-			if (this.Neck.xRot > 0.0698F) this.Neck.xRot -= 0.05;
-			if (this.Neck.yRot < 0) this.Neck.yRot += 0.05;
-			//RLeg
-			if (this.RLeg.x > 2.5F) this.RLeg.y -= 0.15;
-			if (this.RLeg.y > 17F) this.RLeg.y -= 0.15;
-			if (this.RLeg.z > -2F) this.RLeg.z -= 0.15;
-			if (this.RLeg.xRot < 0) this.RLeg.xRot += 0.05;
-			if (this.RLeg.yRot > 0) this.RLeg.yRot -= 0.05;
-			//Head
-			if (this.Head.xRot < 0) this.Head.xRot += 0.05;
-			//LForeleg
-			if (this.LForeleg.y > 19F) this.LForeleg.y -= 0.15;
-			if (this.LForeleg.xRot < 0) this.LForeleg.xRot += 0.05;
-			if (this.LForeleg.zRot < 0) this.LForeleg.zRot += 0.05;
-			//LLeg2
-			if (this.LLeg2.y > 4F) this.LLeg2.y += 0.15;
-			if (this.LLeg2.xRot < 0) this.LLeg2.xRot -= 0.05;
-			//RForeleg
-			if (this.RForeleg.y > 19F) this.RForeleg.y -= 0.15;
-			if (this.RForeleg.xRot < 0) this.RForeleg.xRot += 0.05;
-			if (this.RForeleg.yRot > 0) this.RForeleg.yRot -= 0.05;
-			if (this.RForeleg.zRot < 0) this.RForeleg.zRot += 0.05;
-			//RLeg2
-			if (this.RLeg2.y > 4F) this.RLeg2.y -= 0.15;
-			if (this.RLeg2.xRot < 0) this.RLeg2.xRot += 0.05;
-			//Torso
-			if (this.Torso.y > 13F) this.Torso.y -= 0.15;
-			if (this.Torso.xRot > 0) this.Torso.xRot -= 0.05;
-			//TailBase
-			if (this.TailBase.z < 11.5F) this.TailBase.z += 0.15;
-			if (this.TailBase.xRot < 0) this.TailBase.xRot += 0.05;
-			if (this.TailBase.yRot > 0) this.TailBase.yRot -= 0.05;
-			//LLeg
-			if (this.LLeg.x > -2.5) this.LLeg.x -= 0.15;
-			if (this.LLeg.y > 17) this.LLeg.y -= 0.15;
-			if (this.LLeg.z > -2F) this.LLeg.z -= 0.15;
-			if (this.LLeg.xRot < 0) this.LLeg.xRot += 0.05;
 		}
 	}
 
 	public void resetModel() {
-		//Neck
-		this.Neck.y = 2.5F;
-		this.Neck.xRot = 0.0698F;
-		this.Neck.yRot = 0;
+		//Torso
+		this.Torso.y = 13;
+		this.Torso.xRot = 0;
+		//LLeg
+		this.LLeg.x = -2.5F;
+		this.LLeg.y = 17;
+		this.LLeg.z = 2;
+		this.LLeg.xRot = 0;
 		//RLeg
 		this.RLeg.x = 2.5F;
 		this.RLeg.y = 17;
 		this.RLeg.z = 2;
 		this.RLeg.xRot = 0;
 		this.RLeg.yRot = 0;
-		//Head
-		this.Head.xRot = 0;
 		//LForeleg
-		this.LForeleg.z = -4F;
 		this.LForeleg.y = 19;
+		this.LForeleg.z = -4F;
 		this.LForeleg.xRot = 0;
 		this.LForeleg.zRot = 0;
-		//LLeg2
-		this.LLeg2.y = 4;
-		this.LLeg2.xRot = 0;
 		//RForeleg
-		this.RForeleg.z = -4F;
 		this.RForeleg.y = 19;
+		this.RForeleg.z = -4F;
 		this.RForeleg.xRot = 0;
 		this.RForeleg.yRot = 0;
 		this.RForeleg.zRot = 0;
+		//LLeg2
+		this.LLeg2.y = 4;
+		this.LLeg2.xRot = 0;
 		//RLeg2
 		this.RLeg2.y = 4;
 		this.RLeg2.xRot = 0;
-		//Torso
-		this.Torso.y = 13;
-		this.Torso.xRot = 0;
 		//TailBase
 		this.TailBase.y = 1.5F;
 		this.TailBase.z = 11.5F;
 		this.TailBase.xRot = 0;
 		this.TailBase.yRot = 0;
-		//LLeg
-		this.LLeg.x = -2.5F;
-		this.LLeg.y = 17;
-		this.LLeg.z = 2;
-		this.LLeg.xRot = 0;
+		//Neck
+		this.Neck.y = 2.5F;
+		this.Neck.xRot = 0.0698F;
+		this.Neck.yRot = 0;
+		//Head
+		this.Head.xRot = 0;
 	}
 
+
+
 	public void sleepPose() {
+		//Torso
 		this.Torso.y = 17;
+		this.Torso.xRot = 0.17453292519943295F;
+		//LLeg
 		this.LLeg.y = 19.5F;
-		this.LLeg.x = 3;
-		this.LLeg.z = -1;
+		this.LLeg.z = 3;
+		this.LLeg.xRot = -0.7330382858376184F;
+		this.LLeg.yRot = 0.2585053606381855F;
+		//RLeg
 		this.RLeg.y = 19.5F;
-		this.RLeg.x = -3;
-		this.RLeg.z = -1;
-		this.LForeleg.y = 22;
-		this.RForeleg.y = 22;
-		this.LLeg2.y = 4F;
-		this.RLeg2.y = 4;
-		this.TailBase.z = 10.5F;
-		this.Neck.y = 2F;
-		this.Neck.xRot = 0.5235987755982988F;
-		this.Neck.yRot = -0.3490658503988659F;
+		this.RLeg.z = 3;
 		this.RLeg.xRot = -0.7330382858376184F;
-		this.RLeg.yRot = 0.5585053606381855F;
-		this.Head.xRot = -0.4974188368183839F;
-		this.LForeleg.xRot = -0.7330382858376184F;
-		this.LForeleg.zRot = -0.9075712110370513F;
+		this.RLeg.yRot = -0.2585053606381855F;
+		//LForeleg
+		this.LForeleg.y = 22;
+		this.LForeleg.xRot = -1.2330382858376184F;
+		this.LForeleg.zRot = -0.6475712110370513F;
+		//RForeleg
+		this.RForeleg.y = 22;
 		this.RForeleg.xRot = -1.3962634015954636F;
 		this.RForeleg.yRot = 0.13962634015954636F;
 		this.RForeleg.zRot = -0.13962634015954636F;
-		this.RLeg2.xRot = -0.8377580409572781F;
+		//LLeg2
+		this.LLeg2.y = 4F;
 		this.LLeg2.xRot = -0.8377580409572781F;
-		this.Torso.xRot = 0.17453292519943295F;
+		//RLeg2
+		this.RLeg2.y = 4;
+		this.RLeg2.xRot = -0.8377580409572781F;
+		//TailBase
+		this.TailBase.z = 10.5F;
 		this.TailBase.xRot = -0.5585053606381855F;
 		this.TailBase.yRot = 0.41887902047863906F;
-		this.LLeg.xRot = -0.7330382858376184F;
+		//Neck
+		this.Neck.y = 2F;
+		this.Neck.xRot = 0.5235987755982988F;
+		this.Neck.yRot = -0.3490658503988659F;
+		//Head
+		this.Head.xRot = -0.4974188368183839F;
 	}
 
 	@Override

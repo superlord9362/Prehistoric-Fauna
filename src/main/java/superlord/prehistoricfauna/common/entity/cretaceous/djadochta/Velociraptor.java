@@ -45,7 +45,6 @@ import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.LeapAtTargetGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal;
-import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
@@ -86,6 +85,7 @@ import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurTerritorialAttackGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurWaterAvoidingRandomStrollGoal;
 import superlord.prehistoricfauna.common.entity.goal.HostileCarnivoreGoal;
 import superlord.prehistoricfauna.common.entity.goal.HuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
@@ -194,7 +194,7 @@ public class Velociraptor extends DinosaurEntity {
 		this.goalSelector.addGoal(8, new Velociraptor.FollowGoal(this, 1.25D));
 		this.targetSelector.addGoal(1, new DinosaurHurtByTargetGoal(this));
 		this.goalSelector.addGoal(10, new LeapAtTargetGoal(this, 0.4F));
-		this.goalSelector.addGoal(11, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+		this.goalSelector.addGoal(11, new DinosaurWaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.goalSelector.addGoal(13, new Velociraptor.SitAndLookGoal());
@@ -432,6 +432,7 @@ public class Velociraptor extends DinosaurEntity {
 
 	public void setSitting(boolean p_213466_1_) {
 		this.setVelociraptorFlag(1, p_213466_1_);
+		this.setFallingAsleep();
 	}
 
 	public boolean isStuck() {
@@ -1005,7 +1006,6 @@ public class Velociraptor extends DinosaurEntity {
 
 		public void stop() {
 			Velociraptor.this.setSitting(false);
-			Velociraptor.this.setWakingTicks(0);
 		}
 
 		public void tick() {

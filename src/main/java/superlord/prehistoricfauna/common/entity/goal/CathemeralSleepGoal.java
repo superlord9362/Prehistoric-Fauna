@@ -75,6 +75,7 @@ public class CathemeralSleepGoal extends Goal {
 	public void start() {
 		sleepTimer = 0;
 		entity.setAsleep(true);
+		entity.setFallingAsleep();
 		entity.xxa = 0.0F;
 		entity.yya = 0.0F;
 		entity.zza = 0.0F;
@@ -87,7 +88,7 @@ public class CathemeralSleepGoal extends Goal {
 		entity.setAwakeTicks(100);
 		sleepTimer = 0;
 		entity.setAsleep(false);
-		entity.setWakingTicks(0);
+		entity.setFallingAsleep();
 	}
 
 }

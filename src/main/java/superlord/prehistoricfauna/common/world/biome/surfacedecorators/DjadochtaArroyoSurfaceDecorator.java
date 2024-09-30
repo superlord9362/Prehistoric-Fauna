@@ -55,7 +55,7 @@ public class DjadochtaArroyoSurfaceDecorator extends SurfaceDecorator {
 			}
 			if (pos.getY() != 63) {
 				pos.setY(63);
-				chunk.setBlockState(pos, underwater ? PFBlocks.SILT.get().defaultBlockState() : Blocks.WATER.defaultBlockState(), false);
+				chunk.setBlockState(pos, underwater ? PFBlocks.SILT.get().defaultBlockState() : Blocks.WATER.defaultBlockState(), true);
 				pos.move(Direction.DOWN);
 	            for (int i = 0; i < 4; i++) {
 	                if (chunk.getBlockState(pos) == settings.defaultBlock()) {

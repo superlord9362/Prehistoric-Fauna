@@ -1,5 +1,5 @@
 {
-	"type": "minecraft:village",
+	"type": "prehistoricfauna:djadochta_hut",
 	"config": {
     	"start_pool": "prehistoricfauna:djadochta_hut",
     	"size": 1

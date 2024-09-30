@@ -1,638 +1,895 @@
 {
-  "parent": "prehistoricfauna:prehistoricfauna/general/dinoe_exotic",
-  "display": {
-    "icon": {
-      "item": "prehistoricfauna:tyrannosaurus_egg"
+    "parent": "prehistoricfauna:prehistoricfauna/general/dinoe_exotic",
+    "display": {
+        "icon": {
+            "item": "prehistoricfauna:tyrannosaurus_egg"
+        },
+        "title": {
+            "translate": "advancements.prehistoricfauna.fragile.title"
+        },
+        "description": {
+            "translate": "advancements.prehistoricfauna.fragile.description"
+        },
+        "frame": "challenge",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
     },
-    "title": {
-      "translate": "advancements.prehistoricfauna.fragile.title"
+    "rewards": {
+        "experience": 100
     },
-    "description": {
-      "translate": "advancements.prehistoricfauna.fragile.description"
-    },
-    "frame": "challenge",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
-  },
-  "rewards": {
-    "experience": 100
-  },
-  "criteria": {
-    "prehistoricfauna:thescelosaurus_egg": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-	{
-          "items": [
-			  "prehistoricfauna:thescelosaurus_egg"
-        	]
+    "criteria": {
+       "aepyornithomimus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:aepyornithomimus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "citipati": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:citipati_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "goyocephale": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:goyocephale_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "halszkaraptor": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:halszkaraptor_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "kol": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:kol_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "oviraptor": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:oviraptor_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "pinacosaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:pinacosaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "plesiohadros": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:plesiohadros_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "protoceratops": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:protoceratops_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "telmasaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:telmasaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "udanoceratops": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:udanoceratops_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "velociraptor": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:velociraptor_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "ankylosaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:ankylosaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "anzu": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:anzu_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "basilemys": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:basilemys_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "dakotaraptor": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:dakotaraptor_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "edmontosaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:edmontosaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "ornithomimus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:ornithomimus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "pachycephalosaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:pachycephalosaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "palaeosaniwa": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:palaeosaniwa_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "thescelosaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:thescelosaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "thoracosaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:thoracosaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "triceratops": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:triceratops_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "tyrannosaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:tyrannosaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "beipiaosaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:beipiaosaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "incisivosaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:incisivosaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "liaoningosaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:liaoningosaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "psittacosaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:psittacosaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "sinosauropteryx": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:sinosauropteryx_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "yutyrannus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:yutyrannus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "calsoyasuchus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:calsoyasuchus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "dilophosaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:dilophosaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "kayentatherium": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:kayentatherium_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "megapnosaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:megapnosaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "sarahsaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:sarahsaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "scelidosaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:scelidosaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "scutellosaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:scutellosaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "allosaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:allosaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "camarasaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:camarasaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "ceratosaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:ceratosaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "dryosaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:dryosaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "eilenodon": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:eilenodon_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "hesperornithoides": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:hesperornithoides_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "stegosaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:stegosaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "coelophysis": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:coelophysis_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "desmatosuchus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:desmatosuchus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "placerias": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:placerias_egg"
+                        ]
+                    }
+                ]
+            }
+		},
+        "poposaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:poposaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "postosuchus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:postosuchus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "trilophosaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:trilophosaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "typothorax": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:typothorax_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "chromogisaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:chromogisaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "exaeretodon": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:exaeretodon_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "herrerasaurus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:herrerasaurus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "hyperodapedon": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:hyperodapedon_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "ischigualastia": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:ischigualastia_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "saurosuchus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:saurosuchus_egg"
+                        ]
+                    }
+                ]
+            }
+        },
+        "sillosuchus": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "prehistoricfauna:sillosuchus_egg"
+                        ]
+                    }
+                ]
+            }
         }
-]
-      }
     },
-    "prehistoricfauna:triceratops_egg": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-	{
-          "items": [
-			  "prehistoricfauna:triceratops_egg"
-        	]
-        }
-]
-      }
-    },
-    "prehistoricfauna:ankylosaurus_egg": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-	{
-          "items": [
-			  "prehistoricfauna:ankylosaurus_egg"
-        	]
-        }
-]
-      }
-    },
-    "prehistoricfauna:tyrannosaurus_egg": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-	{
-          "items": [
-			  "prehistoricfauna:tyrannosaurus_egg"
-        	]
-        }
-]
-      }
-    },
-    "prehistoricfauna:basilemys_egg": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-	{
-          "items": [
-			  "prehistoricfauna:basilemys_egg"
-        	]
-        }
-]
-      }
-    },
-    "prehistoricfauna:dakotaraptor_egg": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-	{
-          "items": [
-			  "prehistoricfauna:dakotaraptor_egg"
-        	]
-        }
-]
-      }
-    },
-    "prehistoricfauna:allosaurus_egg": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-	{
-          "items": [
-			  "prehistoricfauna:allosaurus_egg"
-        	]
-        }
-]
-      }
-    },
-    "prehistoricfauna:stegosaurus_egg": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-	{
-          "items": [
-			  "prehistoricfauna:stegosaurus_egg"
-        	]
-        }
-]
-      }
-    },
-    "prehistoricfauna:ceratosaurus_egg": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-	{
-          "items": [
-			  "prehistoricfauna:ceratosaurus_egg"
-        	]
-        }
-]
-      }
-    },
-    "prehistoricfauna:dryosaurus_egg": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-	{
-          "items": [
-			  "prehistoricfauna:dryosaurus_egg"
-        	]
-        }
-]
-      }
-    },
-    "prehistoricfauna:hesperornithoides_egg": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-	{
-          "items": [
-			  "prehistoricfauna:hesperornithoides_egg"
-        	]
-        }
-]
-      }
-    },
-    "prehistoricfauna:eilenodon_egg": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-				{
-          			"items": [
-						  "prehistoricfauna:eilenodon_egg"
-        			]
-        		}
-			]     
- 		}
-    },
-    "prehistoricfauna:camarasaurus_egg": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-	{
-          "items": [
-			  "prehistoricfauna:camarasaurus_egg"
-        	]
-        }
-]
-      }
-    },
-    "prehistoricfauna:exaeretodon_egg": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-			{
-         	 	"items": [
-					  "prehistoricfauna:exaeretodon_egg"
-        		]
-        	}
+    "requirements": [
+        [
+            "aepyornithomimus"
+        ],
+        [
+            "citipati"
+        ],
+        [
+            "goyocephale"
+        ],
+        [
+            "halszkaraptor"
+        ],
+        [
+			"kol"
+		],
+        [
+			"oviraptor"
+		],
+        [
+			"pinacosaurus"
+		],
+        [
+			"plesiohadros"
+		],
+        [
+			"protoceratops"
+		],
+        [
+			"telmasaurus"
+		],
+        [
+			"udanoceratops"
+		],
+        [
+			"velociraptor"
+		],
+        [
+			"ankylosaurus"
+		],
+        [
+			"anzu"
+		],
+        [
+			"basilemys"
+		],
+        [
+			"dakotaraptor"
+		],
+        [
+			"edmontosaurus"
+		],
+        [
+			"ornithomimus"
+		],
+        [
+			"pachycephalosaurus"
+		],
+        [
+			"palaeosaniwa"
+		],
+        [
+			"thescelosaurus"
+		],
+        [
+			"thoracosaurus"
+		],
+        [
+			"triceratops"
+		],
+        [
+			"tyrannosaurus"
+		],
+        [
+			"beipiaosaurus"
+		],
+        [
+			"incisivosaurus"
+		],
+        [
+			"liaoningosaurus"
+		],
+        [
+			"psittacosaurus"
+		],
+        [
+			"sinosauropteryx"
+		],
+        [
+			"yutyrannus"
+		],
+        [
+			"calsoyasuchus"
+		],
+        [
+			"dilophosaurus"
+		],
+        [
+			"kayentatherium"
+		],
+        [
+			"megapnosaurus"
+		],
+        [
+			"sarahsaurus"
+		],
+        [
+			"scelidosaurus"
+		],
+        [
+			"scutellosaurus"
+		],
+        [
+			"allosaurus"
+		],
+        [
+			"camarasaurus"
+		],
+        [
+			"ceratosaurus"
+		],
+        [
+			"dryosaurus"
+		],
+        [
+			"eilenodon"
+		],
+        [
+			"hesperornithoides"
+		],
+        [
+			"stegosaurus"
+		],
+        [
+			"coelophysis"
+		],
+        [
+			"desmatosuchus"
+		],
+        [
+			"placerias"
+		],
+        [
+			"poposaurus"
+		],
+        [
+			"postosuchus"
+		],
+        [
+			"trilophosaurus"
+		],
+        [
+			"typothorax"
+		],
+        [
+			"chromogisaurus"
+		],
+        [
+			"exaeretodon"
+		],
+        [
+			"herrerasaurus"
+		],
+        [
+			"hyperodapedon"
+		],
+        [
+			"ischigualastia"
+		],
+        [
+			"saurosuchus"
+		],
+        [
+			"sillosuchus"
 		]
-      }
-    },
-    "prehistoricfauna:chromogisaurus_egg": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-			{
-         	 	"items": [
-					  "prehistoricfauna:chromogisaurus_egg"
-        		]
-        	}
-		]
-      }
-    },
-    "prehistoricfauna:herrerasaurus_egg": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-			{
-         	 	"items": [
-					  "prehistoricfauna:herrerasaurus_egg"
-        		]
-        	}
-		]
-      }
-    },
-    "prehistoricfauna:hyperodapedon_egg": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-			{
-         	 	"items": [
-					  "prehistoricfauna:hyperodapedon_egg"
-        		]
-        	}
-		]
-      }
-    },
-    "prehistoricfauna:sillosuchus_egg": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-			{
-         	 	"items": [
-					  "prehistoricfauna:sillosuchus_egg"
-        		]
-        	}
-		]
-      }
-    },
-    "prehistoricfauna:saurosuchus_egg": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-			{
-         	 	"items": [
-					  "prehistoricfauna:saurosuchus_egg"
-        		]
-        	}
-		]
-      }
-    },
-    "prehistoricfauna:ischigualastia_egg": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-			{
-         	 	"items": [
-					  "prehistoricfauna:ischigualastia_egg"
-        		]
-        	}
-		]
-      }
-    },
-    "velociraptor": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-			"items": [
-				{
-          			"items": [
-						  "prehistoricfauna:velociraptor_egg"
-        			]
-        		}
-			]     
-		 }
-    },
-    "telmasaurus": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-			"items": [
-				{
-          			"items": [
-						  "prehistoricfauna:telmasaurus_egg"
-        			]
-        		}
-			]     
-		 }
-    },
-    "aepyornithomimus": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-			"items": [
-				{
-          			"items": [
-						  "prehistoricfauna:aepyornithomimus_egg"
-        			]
-        		}
-			]     
-		 }
-    },
-    "citipati": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-			"items": [
-				{
-          			"items": [
-						  "prehistoricfauna:citipati_egg"
-        			]
-        		}
-			]     
-		 }
-    },
-    "protoceratops": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-			"items": [
-				{
-          			"items": [
-						  "prehistoricfauna:protoceratops_egg"
-        			]
-        		}
-			]     
-		 }
-    },
-    "pinacosaurus": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-			"items": [
-				{
-          			"items": [
-						  "prehistoricfauna:pinacosaurus_egg"
-        			]
-        		}
-			]     
-		 }
-    },
-    "plesiohadros": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-			"items": [
-				{
-          			"items": [
-						  "prehistoricfauna:plesiohadros_egg"
-        			]
-        		}
-			]     
-		 }
-    },
-    "calsoyasuchus": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-			"items": [
-				{
-          			"items": [
-						  "prehistoricfauna:calsoyasuchus_egg"
-        			]
-        		}
-			]     
-		 }
-    },
-    "dilophosaurus": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-			"items": [
-				{
-          			"items": [
-						  "prehistoricfauna:dilophosaurus_egg"
-        			]
-        		}
-			]     
-		 }
-    },
-    "kayentatherium": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-			"items": [
-				{
-          			"items": [
-						  "prehistoricfauna:kayentatherium_egg"
-        			]
-        		}
-			]     
-		 }
-    },
-    "megapnosaurus": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-			"items": [
-				{
-          			"items": [
-						  "prehistoricfauna:megapnosaurus_egg"
-        			]
-        		}
-			]     
-		 }
-    },
-    "sarahsaurus": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-			"items": [
-				{
-          			"items": [
-						  "prehistoricfauna:sarahsaurus_egg"
-        			]
-        		}
-			]     
-		 }
-    },
-    "scelidosaurus": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-			"items": [
-				{
-          			"items": [
-						  "prehistoricfauna:scelidosaurus_egg"
-        			]
-        		}
-			]     
-		 }
-    },
-    "scutellosaurus": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-			"items": [
-				{
-          			"items": [
-						  "prehistoricfauna:scutellosaurus_egg"
-        			]
-        		}
-			]     
-		 }
-    },
-    "coelophysis": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-			"items": [
-				{
-          			"items": [
-						  "prehistoricfauna:coelophysis_egg"
-        			]
-        		}
-			]     
-		 }
-    },
-    "desmatosuchus": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-			"items": [
-				{
-          			"items": [
-						  "prehistoricfauna:desmatosuchus_egg"
-        			]
-        		}
-			]     
-		 }
-    },
-    "placerias": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-			"items": [
-				{
-          			"items": "prehistoricfauna:placerias_egg"
-        		}
-			]     
-		 }
-    },
-    "poposaurus": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-			"items": [
-				{
-          			"items": [
-						  "prehistoricfauna:poposaurus_egg"
-        			]
-        		}
-			]     
-		 }
-    },
-    "postosuchus": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-			"items": [
-				{
-          			"items": [
-						  "prehistoricfauna:postosuchus_egg"
-        			]
-        		}
-			]     
-		 }
-    },
-    "trilophosaurus": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-			"items": [
-				{
-          			"items": [
-						  "prehistoricfauna:trilophosaurus_egg"
-        			]
-        		}
-			]     
-		 }
-    },
-    "typothorax": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-			"items": [
-				{
-          			"items": [
-						  "prehistoricfauna:typothorax_egg"
-        			]
-        		}
-			]     
-		 }
-    }
-  },
-  "requirements": [
-    [
-      "prehistoricfauna:thescelosaurus_egg"
-    ],
-    [
-      "prehistoricfauna:triceratops_egg"
-    ],
-    [
-      "prehistoricfauna:ankylosaurus_egg"
-    ],
-    [
-      "prehistoricfauna:tyrannosaurus_egg"
-    ],
-    [
-      "prehistoricfauna:basilemys_egg"
-    ],
-    [
-      "prehistoricfauna:dakotaraptor_egg"
-    ],
-    [
-      "prehistoricfauna:allosaurus_egg"
-    ],
-    [
-      "prehistoricfauna:stegosaurus_egg"
-    ],
-    [
-      "prehistoricfauna:ceratosaurus_egg"
-    ],
-    [
-      "prehistoricfauna:dryosaurus_egg"
-    ],
-    [
-      "prehistoricfauna:hesperornithoides_egg"
-    ],
-    [
-      "prehistoricfauna:eilenodon_egg"
-    ],
-    [
-      "prehistoricfauna:camarasaurus_egg"
-    ],
-    [
-      "prehistoricfauna:exaeretodon_egg"
-    ],
-    [
-      "prehistoricfauna:chromogisaurus_egg"
-    ],
-    [
-      "prehistoricfauna:herrerasaurus_egg"
-    ],
-    [
-      "prehistoricfauna:hyperodapedon_egg"
-    ],
-    [
-      "prehistoricfauna:sillosuchus_egg"
-    ],
-    [
-      "prehistoricfauna:saurosuchus_egg"
-    ],
-    [
-      "prehistoricfauna:ischigualastia_egg"
-    ],
-    [
-      "velociraptor"
-    ],
-    [
-      "telmasaurus"
-    ],
-    [
-      "citipati"
-    ],
-    [
-      "protoceratops"
-    ],
-    [
-      "aepyornithomimus"
-    ],
-	[
-		"pinacosaurus"
-	],
-	[
-		"plesiohadros"
-	],
-	[
-		"calsoyasuchus"
-	],
-	[
-		"dilophosaurus"
-	],
-	[
-		"kayentatherium"
-	],
-	[
-		"megapnosaurus"
-	],
-	[
-		"sarahsaurus"
-	],
-	[
-		"scelidosaurus"
-	],
-	[
-		"scutellosaurus"
-	],
-	[
-		"coelophysis"
-	],
-	[
-		"desmatosuchus"
-	],
-	[
-		"placerias"
-	],
-	[
-		"poposaurus"
-	],
-	[
-		"postosuchus"
-	],
-	[
-		"trilophosaurus"
-	],
-	[
-		"typothorax"
-	]
-  ]
+    ]
 }

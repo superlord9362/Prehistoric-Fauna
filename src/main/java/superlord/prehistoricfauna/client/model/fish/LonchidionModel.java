@@ -74,15 +74,15 @@ public class LonchidionModel extends EntityModel<Lonchidion> {
 			this.Belly.zRot = 1.6F;
 		} else {
 			this.Belly.zRot = 0;
-			this.Belly.y = 22;
+			this.Belly.y = 20;
 		}
         this.Belly.xRot = headPitch * ((float)Math.PI / 180F);
         this.Belly.yRot = netHeadYaw * ((float)Math.PI / 180F);
         this.Belly_2.yRot = -f * 0.45F * Mth.sin(0.6F * ageInTicks);
         this.Tail.yRot = -f * 0.225F * Mth.sin(0.3F * ageInTicks);
         this.Tail_f.yRot = -f * 0.1125F * Mth.sin(0.15F * ageInTicks);
-		this.Pectoral_f_1.zRot = (Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3))) + 0.4363F;
-		this.Pectoral_f.zRot = (-Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3))) - 0.4363F;
+		this.Pectoral_f_1.zRot = (Math.abs(-0.45F * Mth.sin(0.2F * ageInTicks))) + 0.4363F;
+		this.Pectoral_f.zRot = (-Math.abs(-0.45F * Mth.sin(0.2F * ageInTicks))) - 0.4363F;
 	}
 
 	@Override

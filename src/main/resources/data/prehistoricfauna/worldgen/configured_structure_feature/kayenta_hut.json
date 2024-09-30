@@ -1,5 +1,5 @@
 {
-	"type": "minecraft:village",
+	"type": "prehistoricfauna:kayenta_hut",
 	"config": {
     	"start_pool": "prehistoricfauna:kayenta_hut",
     	"size": 1

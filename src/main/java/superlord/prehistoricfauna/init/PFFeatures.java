@@ -13,6 +13,7 @@ import superlord.prehistoricfauna.common.feature.AlgaeFeature;
 import superlord.prehistoricfauna.common.feature.ArchaefructusFeature;
 import superlord.prehistoricfauna.common.feature.AzollaFeature;
 import superlord.prehistoricfauna.common.feature.BigBlockBlobFeature;
+import superlord.prehistoricfauna.common.feature.CallianthusFeature;
 import superlord.prehistoricfauna.common.feature.CrassostreaOystersFeature;
 import superlord.prehistoricfauna.common.feature.DicroidiumFeature;
 import superlord.prehistoricfauna.common.feature.DjadochtaHorsetailsFeature;
@@ -303,6 +304,7 @@ public class PFFeatures {
     public static final RegistryObject<MarmarthiaFeature> MARMARTHIA = REGISTER.register("marmarthia", () -> new MarmarthiaFeature(JohnstoniaConfig.CODEC.stable()));
     public static final RegistryObject<HumulusFeature> HUMULUS = REGISTER.register("humulus", () -> new HumulusFeature(GlowLichenConfiguration.CODEC.stable()));
     public static final RegistryObject<AzollaFeature> AZOLLA = REGISTER.register("azolla", () -> new AzollaFeature(JohnstoniaConfig.CODEC.stable()));
+    public static final RegistryObject<CallianthusFeature> CALLIANTHUS = REGISTER.register("callianthus", () -> new CallianthusFeature(JohnstoniaConfig.CODEC.stable()));
     public static final RegistryObject<ZingiberopsisFeature> ZINGIBEROPSIS = REGISTER.register("zingiberopsis", () -> new ZingiberopsisFeature(JohnstoniaConfig.CODEC.stable()));
     public static final RegistryObject<DryophyllumFallenLogFeature> DRYOPHYLLUM_FALLEN_LOG = REGISTER.register("dryophyllum_fallen_log", () -> new DryophyllumFallenLogFeature(JohnstoniaConfig.CODEC.stable()));
     public static final RegistryObject<PlatanitesFallenLogFeature> PLATANITES_FALLEN_LOG = REGISTER.register("platanites_fallen_log", () -> new PlatanitesFallenLogFeature(JohnstoniaConfig.CODEC.stable()));

@@ -94,7 +94,7 @@ public class NestAndEggsBlock extends Block {
 				for (Entity parentEntity : world.getEntities(dinosaurEntity, new AABB(pos.getX() - 4, pos.getY() - 4, pos.getZ() - 4, pos.getX() + 4, pos.getY() + 4, pos.getZ() + 4))) {
 					if (parentEntity instanceof DinosaurEntity parentDinosaur) {
 						Entity parent = this.entityTypeSupplier.get().create(world);
-						if ((parentDinosaur.getAttribute(Attributes.ATTACK_DAMAGE).getValue() != 0 || parentDinosaur.getAttribute(Attributes.ATTACK_DAMAGE) != null) && !parentDinosaur.isBaby() && !parentDinosaur.trusts(player.getUUID()) && !parentDinosaur.isTame() && parentDinosaur == parent) {
+						if (parentDinosaur.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE) &&  !parentDinosaur.isBaby() && !parentDinosaur.trusts(player.getUUID()) && !parentDinosaur.isTame() && parentDinosaur == parent) {
 							parentDinosaur.setTarget(player);
 						}
 					}
@@ -105,7 +105,7 @@ public class NestAndEggsBlock extends Block {
 				for (Entity parentEntity : world.getEntities(triceratops, new AABB(pos.getX() - 4, pos.getY() - 4, pos.getZ() - 4, pos.getX() + 4, pos.getY() + 4, pos.getZ() + 4))) {
 					if (parentEntity instanceof Triceratops parentDinosaur) {
 						Entity parent = this.entityTypeSupplier.get().create(world);
-						if (parentDinosaur.getAttribute(Attributes.ATTACK_DAMAGE).getValue() != 0 && !parentDinosaur.isBaby() && !parentDinosaur.trusts(player.getUUID()) && !parentDinosaur.isTamed() && parentDinosaur == parent) {
+						if (parentDinosaur.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE) && !parentDinosaur.isBaby() && !parentDinosaur.trusts(player.getUUID()) && !parentDinosaur.isTamed() && parentDinosaur == parent) {
 							parentDinosaur.setTarget(player);
 						}
 					}

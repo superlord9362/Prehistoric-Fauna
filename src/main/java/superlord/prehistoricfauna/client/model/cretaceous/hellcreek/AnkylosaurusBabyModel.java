@@ -12,6 +12,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
+import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ankylosaurus;
 
 public class AnkylosaurusBabyModel extends EntityModel<Ankylosaurus> {
@@ -92,57 +93,75 @@ public class AnkylosaurusBabyModel extends EntityModel<Ankylosaurus> {
 		float partialTick = ageInTicks - entity.tickCount;
 		float attackProgress = entity.getMeleeProgress(partialTick);
 		float leftOrRight = entity.getMeleeDirection() ? 1.0F : -1.0F;
+		float sleepProgress = entity.getSleepProgress(partialTick);
 		resetModel();
-			if (entity.isAsleep()) {
-				//Torso
-//				this.Torso.y = 12;
-				if (this.Torso.y < 15) this.Torso.y += 0.15;
-				if (this.Torso.xRot > -0.03909537541112055F) this.Torso.xRot -= 0.05;
-				//RArm
-//				this.RArm.y = 18.0F;
-				if (this.RArm.y < 20) this.RArm.y += 0.15;
-				if (this.RArm.xRot > -0.8208283259076444F) this.RArm.xRot -= 0.05;
-				if (this.RArm.yRot > -0.3909537457888271F) this.RArm.yRot -= 0.05;
-				if (this.RArm.zRot > -0.31293754020890546F) this.RArm.zRot -= 0.05;
-				//LArm
-//				this.LArm.y = 18.0F;
-				if (this.LArm.y < 20) this.LArm.y += 0.15;
-				if (this.LArm.xRot > -0.8990190684075072F) this.LArm.xRot -= 0.05;
-				if (this.LArm.yRot < 0.31293754020890546F) this.LArm.yRot += 0.05;
-				if (this.LArm.zRot < 0.07644542323472245F) this.LArm.zRot += 0.05;
-				//LLeg
-//				this.LLeg.y = 14.0F;
-				if (this.LLeg.y < 17) this.LLeg.y += 0.15;
-				if (this.LLeg.yRot > -0.15707963267948966F) this.LLeg.yRot -= 0.05;
-				//RLeg
-//				this.RLeg.y = 14.0F;
-				if (this.RLeg.y < 17) this.RLeg.y += 0.15;
-				if (this.RLeg.xRot < 0.017453292519943295F) this.RLeg.xRot += 0.05;
-				if (this.RLeg.yRot < 0.15707963267948966F) this.RLeg.yRot += 0.05;
-				//Head
-//				this.Head.y = -1;
-				if (this.Head.y > -1.5F) this.Head.y -= 0.15;
-				if (this.Head.xRot < 0.02827433396553192F) this.Head.xRot += 0.05;
-				if (this.Head.yRot < 0.11728612207217244F) this.Head.yRot += 0.05;
-				if (this.Head.zRot > -0.11746065899211351F) this.Head.zRot -= 0.05;
-				//Tail2
-				if (this.Tail2.xRot < 0.03263765709551775F) this.Tail2.xRot += 0.05;
-				if (this.Tail2.yRot > -0.11728612207217244F) this.Tail2.yRot -= 0.05;
-				//RFoot
-				if (this.RFoot.xRot > -1.5317009888344788F) this.RFoot.xRot -= 0.05;
-				if (this.RFoot.yRot < 0.33021629580890766F) this.RFoot.yRot += 0.05;
-				if (this.RFoot.zRot < 0.017453292519943295F) this.RFoot.zRot += 0.05;
-				//LFoot
-				if (this.LFoot.xRot > -1.5247196451948906F) this.LFoot.xRot -= 0.05;
-				if (this.LFoot.yRot > -0.2738421523142173F) this.LFoot.yRot -= 0.05;
-				//Neck
-				if (this.Neck.xRot < 0.3862413488189591F) this.Neck.xRot += 0.05;
-				if (this.Neck.yRot < 0.11728612207217244F) this.Neck.yRot += 0.05;
-				if (this.Neck.zRot > -0.1563815016444822F) this.Neck.zRot -= 0.05;
-				//Tail
-				if (this.Tail.xRot > -0.18901915665940536F) this.Tail.xRot -= 0.05;
-				if (this.Tail.yRot > -0.27366763203903305F) this.Tail.yRot -= 0.05;
-				sleepPose();
+		if (entity.isAsleep()) {
+			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
+				this.Torso.y = Mth.lerp(sleepProgress, 12, 15);
+				this.RArm.y = Mth.lerp(sleepProgress, 18, 20.0F);
+				this.LArm.y = Mth.lerp(sleepProgress, 18, 20.0F);
+				this.LLeg.y = Mth.lerp(sleepProgress, 14, 17.0F);
+				this.RLeg.y = Mth.lerp(sleepProgress, 14, 17.0F);
+				this.Head.xRot = Mth.lerp(sleepProgress, 0, 0.02827433396553192F);
+				this.Head.yRot = Mth.lerp(sleepProgress, 0, 0.11728612207217244F);
+				this.Head.zRot = Mth.lerp(sleepProgress, 0, -0.11746065899211351F);
+				this.LLeg.yRot = Mth.lerp(sleepProgress, 0, -0.15707963267948966F);
+				this.RLeg.xRot = Mth.lerp(sleepProgress, 0, 0.017453292519943295F);
+				this.RLeg.yRot = Mth.lerp(sleepProgress, 0, 0.15707963267948966F);
+				this.Torso.xRot = Mth.lerp(sleepProgress, 0, -0.03909537541112055F);
+				this.RArm.xRot = Mth.lerp(sleepProgress, 0, -0.8208283259076444F);
+				this.RArm.yRot = Mth.lerp(sleepProgress, 0, -0.3909537457888271F);
+				this.RArm.zRot = Mth.lerp(sleepProgress, 0, -0.31293754020890546F);
+				this.Tail2.xRot = Mth.lerp(sleepProgress, 0, 0.03263765709551775F);
+				this.Tail2.yRot = Mth.lerp(sleepProgress, 0, -0.11728612207217244F);
+				this.RFoot.xRot = Mth.lerp(sleepProgress, 0, -1.5317009888344788F);
+				this.RFoot.yRot = Mth.lerp(sleepProgress, 0, 0.33021629580890766F);
+				this.RFoot.zRot = Mth.lerp(sleepProgress, 0, 0.017453292519943295F);
+				this.LArm.xRot = Mth.lerp(sleepProgress, 0, -0.8990190684075072F);
+				this.LArm.yRot = Mth.lerp(sleepProgress, 0, 0.31293754020890546F);
+				this.LArm.zRot = Mth.lerp(sleepProgress, 0, 0.07644542323472245F);
+				this.LFoot.xRot = Mth.lerp(sleepProgress, 0, -1.5247196451948906F);
+				this.LFoot.yRot = Mth.lerp(sleepProgress, 0, -0.2738421523142173F);
+				this.Neck.xRot = Mth.lerp(sleepProgress, 0, 0.3862413488189591F);
+				this.Neck.yRot = Mth.lerp(sleepProgress, 0, 0.11728612207217244F);
+				this.Neck.zRot = Mth.lerp(sleepProgress, 0, -0.1563815016444822F);
+				this.Tail.xRot = Mth.lerp(sleepProgress, 0, -0.18901915665940536F);
+				this.Tail.yRot = Mth.lerp(sleepProgress, 0, -0.27366763203903305F);
+				this.Head.y = Mth.lerp(sleepProgress, -1, -1.5F);
+			} else sleepPose();
+		} else {
+			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
+				this.Torso.y = Mth.lerp(sleepProgress, 15, 12);
+				this.RArm.y = Mth.lerp(sleepProgress, 20, 18.0F);
+				this.LArm.y = Mth.lerp(sleepProgress, 20, 18.0F);
+				this.LLeg.y = Mth.lerp(sleepProgress, 17, 14.0F);
+				this.RLeg.y = Mth.lerp(sleepProgress, 17, 14.0F);
+				this.Head.xRot = Mth.lerp(sleepProgress, 0.02827433396553192F, 0);
+				this.Head.yRot = Mth.lerp(sleepProgress, 0.11728612207217244F, 0);
+				this.Head.zRot = Mth.lerp(sleepProgress, -0.11746065899211351F, 0);
+				this.LLeg.yRot = Mth.lerp(sleepProgress, -0.15707963267948966F, 0);
+				this.RLeg.xRot = Mth.lerp(sleepProgress, 0.017453292519943295F, 0);
+				this.RLeg.yRot = Mth.lerp(sleepProgress, 0.15707963267948966F, 0);
+				this.Torso.xRot = Mth.lerp(sleepProgress, -0.03909537541112055F, 0);
+				this.RArm.xRot = Mth.lerp(sleepProgress, -0.3909537457888271F, 0);
+				this.RArm.yRot = Mth.lerp(sleepProgress, -0.3909537457888271F, 0);
+				this.RArm.zRot = Mth.lerp(sleepProgress, -0.31293754020890546F, 0);
+				this.Tail2.xRot = Mth.lerp(sleepProgress, 0.03263765709551775F, 0);
+				this.Tail2.yRot = Mth.lerp(sleepProgress, -0.11728612207217244F, 0);
+				this.RFoot.xRot = Mth.lerp(sleepProgress, -1.5317009888344788F, 0);
+				this.RFoot.yRot = Mth.lerp(sleepProgress, 0.33021629580890766F, 0);
+				this.RFoot.zRot = Mth.lerp(sleepProgress, 0.017453292519943295F, 0);
+				this.LArm.xRot = Mth.lerp(sleepProgress, -0.8990190684075072F, 0);
+				this.LArm.yRot = Mth.lerp(sleepProgress, 0.31293754020890546F, 0);
+				this.LArm.zRot = Mth.lerp(sleepProgress, 0.07644542323472245F, 0);
+				this.LFoot.xRot = Mth.lerp(sleepProgress, -1.5247196451948906F, 0);
+				this.LFoot.yRot = Mth.lerp(sleepProgress, -0.2738421523142173F, 0);
+				this.Neck.xRot = Mth.lerp(sleepProgress, 0.3862413488189591F, 0);
+				this.Neck.yRot = Mth.lerp(sleepProgress, 0.11728612207217244F, 0);
+				this.Neck.zRot = Mth.lerp(sleepProgress, -0.1563815016444822F, 0);
+				this.Tail.xRot = Mth.lerp(sleepProgress, -0.18901915665940536F, 0);
+				this.Tail.yRot = Mth.lerp(sleepProgress, -0.27366763203903305F, 0);
+				this.Head.y = Mth.lerp(sleepProgress, -1.5F, -1F);
 			} else {
 				this.Torso.xRot = 0F;
 				this.RLeg.xRot = -0F;
@@ -176,58 +195,9 @@ public class AnkylosaurusBabyModel extends EntityModel<Ankylosaurus> {
 					this.LArm.zRot = -0.3F;
 				}
 			}
-		if (entity.getWakingTicks() < 31) {
-			//Torso
-//			this.Torso.y = 12;
-			if (this.Torso.y > 12) this.Torso.y -= 0.15;
-			if (this.Torso.xRot < 0) this.Torso.xRot += 0.05;
-			//RArm
-//			this.RArm.y = 18.0F;
-			if (this.RArm.y > 18) this.RArm.y -= 0.15;
-			if (this.RArm.xRot < 0) this.RArm.xRot += 0.05;
-			if (this.RArm.yRot < 0) this.RArm.yRot += 0.05;
-			if (this.RArm.zRot < 0) this.RArm.zRot += 0.05;
-			//LArm
-//			this.LArm.y = 18.0F;
-			if (this.LArm.y > 18) this.LArm.y -= 0.15;
-			if (this.LArm.xRot < 0) this.LArm.xRot += 0.05;
-			if (this.LArm.yRot > 0) this.LArm.yRot -= 0.05;
-			if (this.LArm.zRot > 0) this.LArm.zRot -= 0.05;
-			//LLeg
-//			this.LLeg.y = 14.0F;
-			if (this.LLeg.y > 14) this.LLeg.y -= 0.15;
-			if (this.LLeg.yRot < 0) this.LLeg.yRot += 0.05;
-			//RLeg
-//			this.RLeg.y = 14.0F;
-			if (this.RLeg.y > 14) this.RLeg.y -= 0.15;
-			if (this.RLeg.xRot > 0) this.RLeg.xRot -= 0.05;
-			if (this.RLeg.yRot > 0) this.RLeg.yRot -= 0.05;
-			//Head
-//			this.Head.y = -1;
-			if (this.Head.y < -1F) this.Head.y += 0.15;
-			if (this.Head.xRot > 0) this.Head.xRot -= 0.05;
-			if (this.Head.yRot > 0) this.Head.yRot -= 0.05;
-			if (this.Head.zRot < 0) this.Head.zRot += 0.05;
-			//Tail2
-			if (this.Tail2.xRot > 0) this.Tail2.xRot -= 0.05;
-			if (this.Tail2.yRot < 0) this.Tail2.yRot += 0.05;
-			//RFoot
-			if (this.RFoot.xRot < 0) this.RFoot.xRot += 0.05;
-			if (this.RFoot.yRot > 0) this.RFoot.yRot -= 0.05;
-			if (this.RFoot.zRot > 0) this.RFoot.zRot -= 0.05;
-			//LFoot
-			if (this.LFoot.xRot < 0) this.LFoot.xRot += 0.05;
-			if (this.LFoot.yRot < 0) this.LFoot.yRot += 0.05;
-			//Neck
-			if (this.Neck.xRot > 0) this.Neck.xRot -= 0.05;
-			if (this.Neck.yRot > 0) this.Neck.yRot -= 0.05;
-			if (this.Neck.zRot < 0) this.Neck.zRot += 0.05;
-			//Tail
-			if (this.Tail.xRot < 0) this.Tail.xRot += 0.05;
-			if (this.Tail.yRot < 0) this.Tail.yRot += 0.05;
 		}
 	}
-	
+
 	public void resetModel() {
 		this.Head.xRot = 0.3186971254089062F;
 		this.Head.yRot = 0;
@@ -263,7 +233,7 @@ public class AnkylosaurusBabyModel extends EntityModel<Ankylosaurus> {
 		this.LLeg.y = 14.0F;
 		this.RLeg.y = 14.0F;
 	}
-	
+
 	public void sleepPose() {
 		this.Torso.y = 15;
 		this.RArm.y = 20.0F;

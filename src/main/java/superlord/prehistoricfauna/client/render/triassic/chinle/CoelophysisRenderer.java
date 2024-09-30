@@ -22,6 +22,13 @@ public class CoelophysisRenderer extends MobRenderer<Coelophysis, CoelophysisMod
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/melanistic_sleeping.png");
 	private static final ResourceLocation JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/juvenile_sleeping.png");
 
+	private static final ResourceLocation COELOPHYSIS_S = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/coelophysis_s.png");
+	private static final ResourceLocation COELOPHYSIS_S_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/coelophysis_s_sleeping.png");
+	private static final ResourceLocation ALBINO_S = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/albino_s.png");
+	private static final ResourceLocation ALBINO_S_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/albino_s_sleeping.png");
+	private static final ResourceLocation MELANISTIC_S = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/melanistic_s.png");
+	private static final ResourceLocation MELANISTIC_S_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/melanistic_s_sleeping.png");
+	
 	public CoelophysisRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new CoelophysisModel(renderManagerIn.bakeLayer(ClientEvents.COELOPHYSIS)), 0.75F);
 		if (PrehistoricFaunaConfig.eyeShine) {
@@ -38,23 +45,39 @@ public class CoelophysisRenderer extends MobRenderer<Coelophysis, CoelophysisMod
 
 	@Override
 	public ResourceLocation getTextureLocation(Coelophysis entity) {
-		if (entity.isAlbino()) {
-			if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-				return ALBINO_SLEEPING;
-			} else return ALBINO;
-		} else if (entity.isMelanistic()) {
-			if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-				return MELANISTIC_SLEEPING;
-			}else return MELANISTIC;
-		} else {
-			if (entity.isBaby()) {
+		if (PrehistoricFaunaConfig.coelophysisFeathersOrScaled) {
+			if (entity.isAlbino()) {
 				if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-					return JUVENILE_SLEEPING;
-				} else return JUVENILE;
+					return ALBINO_S_SLEEPING;
+				} else return ALBINO_S;
+			} else if (entity.isMelanistic()) {
+				if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+					return MELANISTIC_S_SLEEPING;
+				} else return MELANISTIC_S;
 			} else {
 				if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-					return COELOPHYSIS_SLEEPING;
-				} else return COELOPHYSIS;
+					return COELOPHYSIS_S_SLEEPING;
+				} else return COELOPHYSIS_S;
+			}
+		} else {
+			if (entity.isAlbino()) {
+				if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+					return ALBINO_SLEEPING;
+				} else return ALBINO;
+			} else if (entity.isMelanistic()) {
+				if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+					return MELANISTIC_SLEEPING;
+				}else return MELANISTIC;
+			} else {
+				if (entity.isBaby()) {
+					if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+						return JUVENILE_SLEEPING;
+					} else return JUVENILE;
+				} else {
+					if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+						return COELOPHYSIS_SLEEPING;
+					} else return COELOPHYSIS;
+				}
 			}
 		}
 	}

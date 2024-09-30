@@ -61,7 +61,7 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 	private float[][][] terrainShapeSamplePoints;
 	//private final Aquifer.FluidPicker globalFluidPicker;
 	//private final NoiseRouter router;
-	
+
 	public CretaceousChunkGenerator(Registry<StructureSet> pStructureSets, BiomeSource pBiomeSource, Holder<NoiseGeneratorSettings> settings) {
 		this(pStructureSets, pBiomeSource, settings, random.nextLong());
 	}
@@ -70,14 +70,14 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 		super(pStructureSets, Optional.empty(), pBiomeSource);
 		this.settings = settings;
 		this.seed = seed;
-//		int i = settings.value().seaLevel();
-//		this.router = settings.value().createNoiseRouter(null, seed);
-//		Aquifer.FluidStatus aquifer$fluidstatus = new Aquifer.FluidStatus(-54, Blocks.LAVA.defaultBlockState());
-//		Aquifer.FluidStatus aquifer$fluidstatus1 = new Aquifer.FluidStatus(i, settings.value().defaultFluid());
-//		Aquifer.FluidStatus aquifer$fluidstatus2 = new Aquifer.FluidStatus(this.getMinY() - 1, Blocks.AIR.defaultBlockState());
-//		this.globalFluidPicker = (p_198228_, p_198229_, p_198230_) -> {
-//			return p_198229_ < Math.min(-54, i) ? aquifer$fluidstatus : aquifer$fluidstatus1;
-//		};
+		//		int i = settings.value().seaLevel();
+		//		this.router = settings.value().createNoiseRouter(null, seed);
+		//		Aquifer.FluidStatus aquifer$fluidstatus = new Aquifer.FluidStatus(-54, Blocks.LAVA.defaultBlockState());
+		//		Aquifer.FluidStatus aquifer$fluidstatus1 = new Aquifer.FluidStatus(i, settings.value().defaultFluid());
+		//		Aquifer.FluidStatus aquifer$fluidstatus2 = new Aquifer.FluidStatus(this.getMinY() - 1, Blocks.AIR.defaultBlockState());
+		//		this.globalFluidPicker = (p_198228_, p_198229_, p_198230_) -> {
+		//			return p_198229_ < Math.min(-54, i) ? aquifer$fluidstatus : aquifer$fluidstatus1;
+		//		};
 		this.sampler = new Climate.Sampler(
 				new FastNoiseDensityFunction(noise),
 				new FastNoiseDensityFunction(noise, 400),
@@ -114,40 +114,40 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 
 	@Override
 	public void applyCarvers(WorldGenRegion region, long seed, BiomeManager manager, StructureFeatureManager structureFeatureManager, ChunkAccess chunk, GenerationStep.Carving genStep) {
-//		BiomeManager biomemanager = manager.withDifferentSource((p_209119_, p_209120_, p_209121_) -> {
-//			return this.biomeSource.getNoiseBiome(p_209119_, p_209120_, p_209121_, this.climateSampler());
-//		});
-//		WorldgenRandom worldgenrandom = new WorldgenRandom(new LegacyRandomSource(RandomSupport.seedUniquifier()));
-//		int i = 8;
-//		ChunkPos chunkpos = chunk.getPos();
-//		NoiseChunk noisechunk = chunk.getOrCreateNoiseChunk(this.router, () -> {
-//			return new Beardifier(structureFeatureManager, chunk);
-//		}, this.settings.value(), this.globalFluidPicker, Blender.of(region));
-//		Aquifer aquifer = noisechunk.aquifer();
-//	      CarvingContext carvingcontext = new CarvingContext(this, region.registryAccess(), chunk.getHeightAccessorForGeneration(), noisechunk);
-//		CarvingMask carvingmask = ((ProtoChunk)chunk).getOrCreateCarvingMask(genStep);
-//
-//		for(int j = -8; j <= 8; ++j) {
-//			for(int k = -8; k <= 8; ++k) {
-//				ChunkPos chunkpos1 = new ChunkPos(chunkpos.x + j, chunkpos.z + k);
-//				ChunkAccess chunkaccess = region.getChunk(chunkpos1.x, chunkpos1.z);
-//				BiomeGenerationSettings biomegenerationsettings = chunkaccess.carverBiome(() -> {
-//					return this.biomeSource.getNoiseBiome(QuartPos.fromBlock(chunkpos1.getMinBlockX()), 0, QuartPos.fromBlock(chunkpos1.getMinBlockZ()), this.climateSampler());
-//				}).value().getGenerationSettings();
-//				Iterable<Holder<ConfiguredWorldCarver<?>>> iterable = biomegenerationsettings.getCarvers(genStep);
-//				int l = 0;
-//
-//				for(Holder<ConfiguredWorldCarver<?>> holder : iterable) {
-//					ConfiguredWorldCarver<?> configuredworldcarver = holder.value();
-//					worldgenrandom.setLargeFeatureSeed(seed + (long)l, chunkpos1.x, chunkpos1.z);
-//					if (configuredworldcarver.isStartChunk(worldgenrandom)) {
-//						configuredworldcarver.carve(carvingcontext, chunk, biomemanager::getBiome, worldgenrandom, aquifer, chunkpos1, carvingmask);
-//					}
-//
-//					++l;
-//				}
-//			}
-//		}
+		//				BiomeManager biomemanager = manager.withDifferentSource((p_209119_, p_209120_, p_209121_) -> {
+		//					return this.biomeSource.getNoiseBiome(p_209119_, p_209120_, p_209121_, this.climateSampler());
+		//				});
+		//				WorldgenRandom worldgenrandom = new WorldgenRandom(new LegacyRandomSource(RandomSupport.seedUniquifier()));
+		//				int i = 8;
+		//				ChunkPos chunkpos = chunk.getPos();
+		//				NoiseChunk noisechunk = chunk.getOrCreateNoiseChunk(this.router, () -> {
+		//					return new Beardifier(structureFeatureManager, chunk);
+		//				}, this.settings.value(), this.globalFluidPicker, Blender.of(region));
+		//				Aquifer aquifer = noisechunk.aquifer();
+		//			      CarvingContext carvingcontext = new CarvingContext((NoiseBasedChunkGenerator)this, region.registryAccess(), chunk.getHeightAccessorForGeneration(), noisechunk);
+		//				CarvingMask carvingmask = ((ProtoChunk)chunk).getOrCreateCarvingMask(genStep);
+		//		
+		//				for(int j = -8; j <= 8; ++j) {
+		//					for(int k = -8; k <= 8; ++k) {
+		//						ChunkPos chunkpos1 = new ChunkPos(chunkpos.x + j, chunkpos.z + k);
+		//						ChunkAccess chunkaccess = region.getChunk(chunkpos1.x, chunkpos1.z);
+		//						BiomeGenerationSettings biomegenerationsettings = chunkaccess.carverBiome(() -> {
+		//							return this.biomeSource.getNoiseBiome(QuartPos.fromBlock(chunkpos1.getMinBlockX()), 0, QuartPos.fromBlock(chunkpos1.getMinBlockZ()), this.climateSampler());
+		//						}).value().getGenerationSettings();
+		//						Iterable<Holder<ConfiguredWorldCarver<?>>> iterable = biomegenerationsettings.getCarvers(genStep);
+		//						int l = 0;
+		//		
+		//						for(Holder<ConfiguredWorldCarver<?>> holder : iterable) {
+		//							ConfiguredWorldCarver<?> configuredworldcarver = holder.value();
+		//							worldgenrandom.setLargeFeatureSeed(seed + (long)l, chunkpos1.x, chunkpos1.z);
+		//							if (configuredworldcarver.isStartChunk(worldgenrandom)) {
+		//								configuredworldcarver.carve(carvingcontext, chunk, biomemanager::getBiome, worldgenrandom, aquifer, chunkpos1, carvingmask);
+		//							}
+		//		
+		//							++l;
+		//						}
+		//					}
+		//				}
 	}
 
 	@Override
@@ -198,7 +198,6 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 					Random random = new Random();
 					pos.set(x, y, z);
 					float sample = sampleDensityFromArray(terrainShapeSamplePoints, x, y, z);
-
 					BlockState state;
 					if (sample > 0) {
 						if (y <= this.getMinY() + random.nextInt(4)) {
@@ -209,22 +208,44 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 					} else {
 						if ( y <= this.getMinY() + random.nextInt(4)) {
 							state = Blocks.BEDROCK.defaultBlockState();
-						} else if (y < this.getSeaLevel()) {
-							if (chunk.getBlockState(pos.above()) != Blocks.WATER.defaultBlockState()) {
-								if (chunk.getBlockState(pos.east()) != Blocks.WATER.defaultBlockState() || chunk.getBlockState(pos.west()) != Blocks.WATER.defaultBlockState() || chunk.getBlockState(pos.south()) != Blocks.WATER.defaultBlockState() || chunk.getBlockState(pos.north()) != Blocks.WATER.defaultBlockState()) {
-									state = Blocks.AIR.defaultBlockState();
-								} else state =  y > this.getSeaLevel() ? Blocks.AIR.defaultBlockState() : Blocks.WATER.defaultBlockState();
-							} else state =  y > this.getSeaLevel() ? Blocks.AIR.defaultBlockState() : Blocks.WATER.defaultBlockState();
-						} else state =  y > this.getSeaLevel() ? Blocks.AIR.defaultBlockState() : Blocks.WATER.defaultBlockState();
+						} else if (y <= this.getSeaLevel()) {
+							state = getAirAtPos(chunk, x + chunk.getPos().getMinBlockX(), y, z + chunk.getPos().getMinBlockZ());
+						} else state =  Blocks.AIR.defaultBlockState();
 					}
 					for (Heightmap heightmap : heightmaps) {
 						heightmap.update(x, y, z, state);
 					}
-					chunk.setBlockState(pos, state, false);
+					chunk.setBlockState(pos, state, true);
 				}
 			}
 		}
 		return CompletableFuture.completedFuture(chunk);
+	}
+
+	private boolean shouldHaveFluid(BlockPos pos) {
+		BiomeManager biomeManager = new BiomeManager((CretaceousBiomeSource)this.getBiomeSource(), this.seed);
+		Holder<Biome> biome = biomeManager.getBiome(new BlockPos(pos.getX(), pos.getY(), pos.getZ()));
+		if (pos.getY() <= this.getSeaLevel())
+			return ((biome.is(PFBiomes.HELL_CREEK_RIVER.getKey()) || biome.is(PFBiomes.HELL_CREEK_SWAMP.getKey()) || biome.is(PFBiomes.YIXIAN_LAKES.getKey()) || biome.is(PFBiomes.DJADOCHTA_ARROYO.getKey()) && pos.getY() > 45) || noise.GetNoise(pos.getX() * 0.8F, pos.getY(), pos.getZ() * 0.8F) > 0.7);
+		return false;
+	}
+
+	private BlockState getAirAtPos(ChunkAccess chunk, int x, int y, int z) {
+		BlockPos pos = new BlockPos(x, y, z);
+		if (shouldHaveFluid(pos)) {
+			if (!shouldHaveFluid(new BlockPos(x + 1, y + 0, z + 0)) ||
+					!shouldHaveFluid(new BlockPos(x + 0, y + 0, z + 1)) ||
+					!shouldHaveFluid(new BlockPos(x - 1, y + 0, z + 0)) ||
+					!shouldHaveFluid(new BlockPos(x + 0, y + 0, z - 1)) ||
+					!shouldHaveFluid(new BlockPos(x + 0, y - 1, z  + 0))) {
+				if (y < 0 +- random.nextInt(5)) {
+					return Blocks.DEEPSLATE.defaultBlockState();
+				} 
+				return Blocks.STONE.defaultBlockState();
+			}
+			return Blocks.WATER.defaultBlockState();
+		}
+		return Blocks.AIR.defaultBlockState();
 	}
 
 	private float sampleDensity(float x, float y, float z) {
@@ -258,16 +279,16 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 		float cliffLumpiness = noise.GetNoise(x * lumpFrequency, y * lumpFrequency * 0.8F, z * lumpFrequency);
 		cliffLumpiness *= hugeCliffWobble * 0.1F;
 
-		float swampFrequency = 3F;
+		float swampFrequency = 1.5F;
 		float swampNoise = noise.GetNoise((float) x * swampFrequency, 0, (float) z * swampFrequency);
-		swampNoise = (1.0F - swampNoise * swampNoise);
-		swampNoise *= (y - seaLevel) * 0.2;
-		
+		swampNoise = (1.5F - swampNoise * swampNoise);
+		swampNoise *= (y - seaLevel + 8) * 1.1;
+
 		float lakeFrequency = 1.5F;
 		float lakeNoise = noise.GetNoise((float) x * lakeFrequency, 0, (float) z * lakeFrequency);
-		lakeNoise = (1.0F - lakeNoise * lakeNoise);
-		lakeNoise *= (y - seaLevel) * 1.2;
-		
+		lakeNoise = (1.5F - lakeNoise * lakeNoise);
+		lakeNoise *= (y - seaLevel + 3) * 0.7;
+
 		float riverFrequency = 0.1F;
 		float riverNoise = noise.GetNoise((float) x * riverFrequency, 0, (float) z * riverFrequency);
 		riverNoise = (1.0F - riverNoise * riverNoise);
@@ -308,9 +329,8 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 		sample -= 0.15F;
 
 		if (biome.is(PFBiomes.HELL_CREEK_SWAMP.getKey())) {
+			sample *= 2.3F;
 			sample -= swampNoise;
-			sample *= 1.2F;
-			sample -= 5.75F;
 		}
 		if (biome.is(PFBiomes.HELL_CREEK_RIVER.getKey())) {
 			sample -= riverNoise;
@@ -333,8 +353,8 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 			//sample *= 12.5;
 		}
 		if (biome.is(PFBiomes.YIXIAN_LAKES.getKey())) {
-			sample *= 2.2F;
-			sample -= lakeNoise + 5;
+			sample *= 5.3F;
+			sample -= lakeNoise;
 			//sample *= 0.6F;
 		}
 		if (biome.is(PFBiomes.HELL_CREEK_BLUFFS.getKey()) || biome.is(PFBiomes.DJADOCHTA_DUNES.getKey())) {
@@ -342,6 +362,37 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 			sample += 0.4;
 			sample -= (y - this.settings.value().seaLevel() - hillNoise * 64) / (16.0F / bigHillRockNoise * (hillWobble + 1));
 			sample *= 6.6F;
+		}
+		//		if (biome.is(PFBiomes.PREHISTORIC_DRIPSTONE_CAVE.getKey())) {
+		//			sample *= 1.6F;
+		//			sample += 0.4;
+		//			sample -= (y - this.settings.value().seaLevel() - hillNoise * 64) / (16.0F / bigHillRockNoise * (hillWobble + 1));
+		//			sample *= 6.6F;
+		if (y < 60) {
+			sample *= 1;
+			sample += 0.4;
+			sample -= (y - this.settings.value().seaLevel() - hillNoise * 64) / (16.0F / bigHillRockNoise * (hillWobble + 1));
+			sample *= 6.6F;
+		}
+		if (y > -60) {
+			float caveSample;
+			float sample1 = noise.GetNoise(x,  y, z);
+			float sample2 = noise.GetNoise(x, y + 10381903, z);
+			caveSample = sample1 * sample1 + sample2 * sample2;
+			caveSample /= 2;
+			caveSample *= 1.5;
+			caveSample -= 0.02;
+
+			//		float caveSample2;
+			//		float sample12 = noise.GetNoise(x + 10392, y + 120834429, z + 10392);
+			//		float sample22 = noise.GetNoise(x + 10392, y + 2391405, z + 10392);
+			//		caveSample2 = sample12 * sample12 + sample22 * sample22;
+			//		caveSample2 *= 0.5;
+			//		caveSample2 -= 0.01;
+
+			sample = Math.min(sample, caveSample);
+			//		sample = Math.min(sample, caveSample2);
+			//		}
 		}
 		return sample;
 	}

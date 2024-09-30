@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=lower": { "model": "prehistoricfauna:block/nothodichocarpum_bottom" },
+        "half=upper":    { "model": "prehistoricfauna:block/nothodichocarpum_top" }
+    }
+}
