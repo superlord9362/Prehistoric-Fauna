@@ -31,11 +31,11 @@ public class AllosaurusBabyEyeLayer extends RenderLayer<Allosaurus, EntityModel<
 		if (!(allosaurusRenderer.getModel() instanceof AllosaurusBabyModel)) {
 			return;
 		}
-		long roundTime = allosaurus.level.getDayTime() % 24000;
+		long roundTime = allosaurus.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos allosaurusPos = allosaurus.blockPosition();
-		int i = allosaurus.level.getBrightness(LightLayer.SKY, allosaurusPos);
-		int j = allosaurus.level.getBrightness(LightLayer.BLOCK, allosaurusPos);
+		int i = allosaurus.level().getBrightness(LightLayer.SKY, allosaurusPos);
+		int j = allosaurus.level().getBrightness(LightLayer.BLOCK, allosaurusPos);
 		int brightness;
 		if (night) {
 			brightness = j;

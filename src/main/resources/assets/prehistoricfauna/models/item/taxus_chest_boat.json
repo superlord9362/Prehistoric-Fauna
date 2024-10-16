@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "prehistoricfauna:item/taxus_chest_boat"
+    }
+}

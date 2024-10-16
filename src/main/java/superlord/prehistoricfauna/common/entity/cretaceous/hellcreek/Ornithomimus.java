@@ -71,10 +71,9 @@ public class Ornithomimus extends HerdDinosaurEntity {
 	private int warningSoundTicks;
 	private int maxHunger = 75;
 
-	@SuppressWarnings("deprecation")
 	public Ornithomimus(EntityType<? extends Ornithomimus> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -126,20 +125,20 @@ public class Ornithomimus extends HerdDinosaurEntity {
 
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.ORNITHOMIMUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.ORNITHOMIMUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.ORNITHOMIMUS_HURT;
+		return PFSounds.ORNITHOMIMUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.ORNITHOMIMUS_DEATH;
+		return PFSounds.ORNITHOMIMUS_DEATH.get();
 	}
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.ORNITHOMIMUS_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.ORNITHOMIMUS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -225,8 +224,8 @@ public class Ornithomimus extends HerdDinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Ornithomimus entity = new Ornithomimus(PFEntities.ORNITHOMIMUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Ornithomimus entity = new Ornithomimus(PFEntities.ORNITHOMIMUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -284,7 +283,7 @@ public class Ornithomimus extends HerdDinosaurEntity {
 					dinosaur.setEating(true);
 				}
 				if (this.field_220731_g % 5 == 1) {
-					dinosaur.level.playSound((Player)null, this.blockPos, SoundEvents.GRASS_HIT, SoundSource.NEUTRAL, 1, 1);
+					dinosaur.level().playSound((Player)null, this.blockPos, SoundEvents.GRASS_HIT, SoundSource.NEUTRAL, 1, 1);
 				}
 			}
 			if (dinosaur.getCurrentHunger() >= 13) {
@@ -294,7 +293,7 @@ public class Ornithomimus extends HerdDinosaurEntity {
 		}
 
 		protected void eatBerry() {
-			BlockState blockstate = dinosaur.level.getBlockState(this.blockPos);
+			BlockState blockstate = dinosaur.level().getBlockState(this.blockPos);
 			int hunger = dinosaur.getCurrentHunger();
 			if (hunger + 4 >= dinosaur.maxHunger) {
 				dinosaur.setHunger(dinosaur.maxHunger);
@@ -303,7 +302,7 @@ public class Ornithomimus extends HerdDinosaurEntity {
 				dinosaur.setHunger(hunger + 4);
 				dinosaur.setEating(false);
 			}
-			dinosaur.level.setBlockAndUpdate(this.blockPos, blockstate.setValue(CropBlock.AGE, 1));
+			dinosaur.level().setBlockAndUpdate(this.blockPos, blockstate.setValue(CropBlock.AGE, 1));
 		}
 
 		/**

@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/brachyphyllum_boat"
+        "layer0": "prehistoricfauna:item/brachyphyllum_boat"
     }
 }

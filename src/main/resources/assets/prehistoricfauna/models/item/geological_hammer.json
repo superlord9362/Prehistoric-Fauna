@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "prehistoricfauna:items/geological_hammer"
+        "layer0": "prehistoricfauna:item/geological_hammer"
     }
 }

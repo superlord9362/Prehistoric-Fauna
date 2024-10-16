@@ -2,9 +2,8 @@ package superlord.prehistoricfauna.common.util;
 
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 
-public interface ISubRegistryHelper<T extends IForgeRegistryEntry<T>> {
+public interface ISubRegistryHelper<T> {
 
 	RegistryHelper getParent();
 

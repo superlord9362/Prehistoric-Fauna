@@ -70,10 +70,9 @@ public class Dilophosaurus extends DinosaurEntity {
 	private int warningSoundTicks;
 	private Goal attackAnimals;
 
-	@SuppressWarnings("deprecation")
 	public Dilophosaurus(EntityType<? extends Dilophosaurus> type, Level worldIn) {
 		super(type, worldIn);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -154,22 +153,23 @@ public class Dilophosaurus extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.DILOPHOSAURUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.DILOPHOSAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.DILOPHOSAURUS_HURT;
+		return PFSounds.DILOPHOSAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.DILOPHOSAURUS_DEATH;
+		return PFSounds.DILOPHOSAURUS_DEATH.get();
 	}
 
+	@SuppressWarnings("deprecation")
 	protected void playStepSound(BlockPos pos, BlockState state) {
 		if (this.isBaby()) {
-			if (!state.getMaterial().isLiquid()) {
-				BlockState blockstate = this.level.getBlockState(pos.above());
-				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level, pos, this) : state.getSoundType(level, pos, this);
+			if (!state.liquid()) {
+				BlockState blockstate = this.level().getBlockState(pos.above());
+				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level(), pos, this) : state.getSoundType(level(), pos, this);
 				this.playSound(soundtype.getStepSound(), soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			}
 		} else {
@@ -179,7 +179,7 @@ public class Dilophosaurus extends DinosaurEntity {
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.DILOPHOSAURUS_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.DILOPHOSAURUS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -213,7 +213,7 @@ public class Dilophosaurus extends DinosaurEntity {
 			double d0 = this.getAttackReachSqr(enemy);
 			if (distToEnemySqr <= d0 && this.isTimeToAttack()) {
 				this.resetAttackCooldown();
-				Dilophosaurus.this.playSound(PFSounds.DILOPHOSAURUS_BITE, 1.0F, Dilophosaurus.this.getVoicePitch());
+				Dilophosaurus.this.playSound(PFSounds.DILOPHOSAURUS_BITE.get(), 1.0F, Dilophosaurus.this.getVoicePitch());
 				this.mob.doHurtTarget(enemy);
 			} else if (distToEnemySqr <= d0 * 2.0D) {
 				if (this.isTimeToAttack()) {
@@ -244,8 +244,8 @@ public class Dilophosaurus extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Dilophosaurus entity = new Dilophosaurus(PFEntities.DILOPHOSAURUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Dilophosaurus entity = new Dilophosaurus(PFEntities.DILOPHOSAURUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 

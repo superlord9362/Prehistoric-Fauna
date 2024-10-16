@@ -1,0 +1,27 @@
+{
+  "type": "prehistoricfauna:small_metasequoia_tree_2",
+  "config": {
+    "leaves_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:metasequoia_leaves",
+        "Properties": {
+          "distance": "7",
+          "persistent": "false",
+          "waterlogged": "false"
+        }
+      }
+    },
+    "max_height": 22,
+    "min_height": 15,
+    "trunk_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:metasequoia_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    }
+  }
+}

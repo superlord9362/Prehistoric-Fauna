@@ -28,7 +28,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.level.BaseSpawner;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -75,9 +74,9 @@ public class BottledBugItem extends Item {
 			if (blockstate.is(Blocks.SPAWNER)) {
 				BlockEntity tileentity = world.getBlockEntity(blockpos);
 				if (tileentity instanceof SpawnerBlockEntity) {
-					BaseSpawner abstractspawner = ((SpawnerBlockEntity)tileentity).getSpawner();
+					SpawnerBlockEntity spawnerblockentity = (SpawnerBlockEntity)tileentity;
 					EntityType<?> entitytype1 = this.getType(itemstack.getTag());
-					abstractspawner.setEntityId(entitytype1);
+					spawnerblockentity.setEntityId(entitytype1, world.getRandom());
 					tileentity.setChanged();
 					world.sendBlockUpdated(blockpos, blockstate, blockstate, 3);
 					if (!context.getPlayer().isCreative()) {

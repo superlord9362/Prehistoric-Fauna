@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "prehistoricfauna:blocks/quereuxia_roots"
+        "cross": "prehistoricfauna:block/quereuxia_roots"
     }
 }

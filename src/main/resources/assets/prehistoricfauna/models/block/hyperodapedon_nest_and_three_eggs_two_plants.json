@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"parent": "prehistoricfauna:block/nest_three_small_round_eggs_two_plants",
 	"textures": {
-		"egg": "prehistoricfauna:blocks/hyperodapedon_egg",
-		"material": "prehistoricfauna:blocks/nest",
-		"plants": "prehistoricfauna:blocks/plants"
+		"egg": "prehistoricfauna:block/hyperodapedon_egg",
+		"material": "prehistoricfauna:block/nest",
+		"plants": "prehistoricfauna:block/plants"
 	}
 }

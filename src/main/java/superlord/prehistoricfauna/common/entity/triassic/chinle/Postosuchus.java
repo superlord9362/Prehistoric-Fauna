@@ -67,10 +67,9 @@ public class Postosuchus extends DinosaurEntity {
 	private int warningSoundTicks;
 	private Goal attackAnimals;
 
-	@SuppressWarnings("deprecation")
 	public Postosuchus(EntityType<? extends Postosuchus> type, Level levelIn) {
 		super(type, levelIn);
-		super.maxUpStep = 1.0F;
+		super.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -146,15 +145,15 @@ public class Postosuchus extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.POSTOSUCHUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.POSTOSUCHUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.POSTOSUCHUS_HURT;
+		return PFSounds.POSTOSUCHUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.POSTOSUCHUS_DEATH;
+		return PFSounds.POSTOSUCHUS_DEATH.get();
 	}
 
 	protected void playStepSound(BlockPos pos, BlockState state) {
@@ -163,7 +162,7 @@ public class Postosuchus extends DinosaurEntity {
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.POSTOSUCHUS_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.POSTOSUCHUS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -197,7 +196,7 @@ public class Postosuchus extends DinosaurEntity {
 			double d0 = this.getAttackReachSqr(enemy);
 			if (distToEnemySqr <= d0 && this.isTimeToAttack()) {
 				this.resetAttackCooldown();
-				Postosuchus.this.playSound(PFSounds.POSTOSUCHUS_BITE, 1.0F, Postosuchus.this.getVoicePitch());
+				Postosuchus.this.playSound(PFSounds.POSTOSUCHUS_BITE.get(), 1.0F, Postosuchus.this.getVoicePitch());
 				this.mob.doHurtTarget(enemy);
 			} else if (distToEnemySqr <= d0 * 2.0D) {
 				if (this.isTimeToAttack()) {
@@ -228,8 +227,8 @@ public class Postosuchus extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Postosuchus entity = new Postosuchus(PFEntities.POSTOSUCHUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Postosuchus entity = new Postosuchus(PFEntities.POSTOSUCHUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 

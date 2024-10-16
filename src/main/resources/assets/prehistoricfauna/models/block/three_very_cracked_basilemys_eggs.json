@@ -2,6 +2,6 @@
 	"parent": "prehistoricfauna:block/three_small_round_eggs",
 	"ambientocclusion": false,
 	"textures": {
-		"egg": "prehistoricfauna:blocks/basilemys_egg_very_cracked"
+		"egg": "prehistoricfauna:block/basilemys_egg_very_cracked"
 	}
 }

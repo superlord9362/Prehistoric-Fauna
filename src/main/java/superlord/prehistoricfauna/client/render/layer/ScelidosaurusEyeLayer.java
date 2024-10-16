@@ -30,11 +30,11 @@ public class ScelidosaurusEyeLayer extends RenderLayer<Scelidosaurus, Scelidosau
 		if (!(scelidosaurusRenderer.getModel() instanceof ScelidosaurusModel)) {
 			return;
 		}
-		long roundTime = scelidosaurus.level.getDayTime() % 24000;
+		long roundTime = scelidosaurus.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos scelidosaurusPos = scelidosaurus.blockPosition();
-		int i = scelidosaurus.level.getBrightness(LightLayer.SKY, scelidosaurusPos);
-		int j = scelidosaurus.level.getBrightness(LightLayer.BLOCK, scelidosaurusPos);
+		int i = scelidosaurus.level().getBrightness(LightLayer.SKY, scelidosaurusPos);
+		int j = scelidosaurus.level().getBrightness(LightLayer.BLOCK, scelidosaurusPos);
 		int brightness;
 		if (night) {
 			brightness = j;

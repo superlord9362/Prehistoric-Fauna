@@ -1,9 +1,9 @@
 {
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "prehistoricfauna:blocks/callianthus",
-		"1": "prehistoricfauna:blocks/callianthus_2",
-		"particle": "prehistoricfauna:blocks/callianthus"
+		"0": "prehistoricfauna:block/callianthus",
+		"1": "prehistoricfauna:block/callianthus_2",
+		"particle": "prehistoricfauna:block/callianthus"
 	},
 	"elements": [
 		{

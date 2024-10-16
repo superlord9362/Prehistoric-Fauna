@@ -1,11 +1,10 @@
 package superlord.prehistoricfauna.common.feature.trees.fallenlog;
 
-import java.util.Random;
-
 import com.mojang.serialization.Codec;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
@@ -37,7 +36,7 @@ public class GinkgoFallenLogFeature extends Feature<JohnstoniaConfig> {
 	public boolean place(FeaturePlaceContext<JohnstoniaConfig> context) {
 		BlockPos pos = context.origin();
 		WorldGenLevel world = context.level();
-		Random rand = context.random();
+		RandomSource rand = context.random();
 		int i = 0;
 		for (int j = 0; j < context.config().count; ++j) {
 			int placeChance = rand.nextInt(100);

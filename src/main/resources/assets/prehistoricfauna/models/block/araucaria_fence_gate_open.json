@@ -1,6 +1,6 @@
 {
     "parent": "block/template_fence_gate_open",
     "textures": {
-        "texture": "prehistoricfauna:blocks/araucaria_planks"
+        "texture": "prehistoricfauna:block/araucaria_planks"
     }
 }

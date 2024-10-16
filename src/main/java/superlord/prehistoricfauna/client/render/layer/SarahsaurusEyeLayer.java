@@ -30,11 +30,11 @@ public class SarahsaurusEyeLayer extends RenderLayer<Sarahsaurus, SarahsaurusMod
 		if (!(sarahsaurusRenderer.getModel() instanceof SarahsaurusModel)) {
 			return;
 		}
-		long roundTime = sarahsaurus.level.getDayTime() % 24000;
+		long roundTime = sarahsaurus.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos sarahsaurusPos = sarahsaurus.blockPosition();
-		int i = sarahsaurus.level.getBrightness(LightLayer.SKY, sarahsaurusPos);
-		int j = sarahsaurus.level.getBrightness(LightLayer.BLOCK, sarahsaurusPos);
+		int i = sarahsaurus.level().getBrightness(LightLayer.SKY, sarahsaurusPos);
+		int j = sarahsaurus.level().getBrightness(LightLayer.BLOCK, sarahsaurusPos);
 		int brightness;
 		if (night) {
 			brightness = j;

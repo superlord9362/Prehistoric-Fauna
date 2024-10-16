@@ -1,0 +1,27 @@
+{
+  "type": "prehistoricfauna:large_metasequoia_tree_2",
+  "config": {
+    "leaves_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:protojuniperoxylon_leaves",
+        "Properties": {
+          "distance": "7",
+          "persistent": "false",
+          "waterlogged": "false"
+        }
+      }
+    },
+    "max_height": 57,
+    "min_height": 44,
+    "trunk_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:protojuniperoxylon_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    }
+  }
+}

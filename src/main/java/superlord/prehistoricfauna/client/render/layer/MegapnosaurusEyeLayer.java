@@ -30,11 +30,11 @@ public class MegapnosaurusEyeLayer extends RenderLayer<Megapnosaurus, Megapnosau
 		if (!(megapnosaurusRenderer.getModel() instanceof MegapnosaurusModel)) {
 			return;
 		}
-		long roundTime = megapnosaurus.level.getDayTime() % 24000;
+		long roundTime = megapnosaurus.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos megapnosaurusPos = megapnosaurus.blockPosition();
-		int i = megapnosaurus.level.getBrightness(LightLayer.SKY, megapnosaurusPos);
-		int j = megapnosaurus.level.getBrightness(LightLayer.BLOCK, megapnosaurusPos);
+		int i = megapnosaurus.level().getBrightness(LightLayer.SKY, megapnosaurusPos);
+		int j = megapnosaurus.level().getBrightness(LightLayer.BLOCK, megapnosaurusPos);
 		int brightness;
 		if (night) {
 			brightness = j;

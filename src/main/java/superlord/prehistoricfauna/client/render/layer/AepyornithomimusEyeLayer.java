@@ -30,11 +30,11 @@ public class AepyornithomimusEyeLayer extends RenderLayer<Aepyornithomimus, Aepy
 		if (!(aepyornithomimusRenderer.getModel() instanceof AepyornithomimusModel)) {
 			return;
 		}
-		long roundTime = aepyornithomimus.level.getDayTime() % 24000;
+		long roundTime = aepyornithomimus.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos aepyornithomimusPos = aepyornithomimus.blockPosition();
-		int i = aepyornithomimus.level.getBrightness(LightLayer.SKY, aepyornithomimusPos);
-		int j = aepyornithomimus.level.getBrightness(LightLayer.BLOCK, aepyornithomimusPos);
+		int i = aepyornithomimus.level().getBrightness(LightLayer.SKY, aepyornithomimusPos);
+		int j = aepyornithomimus.level().getBrightness(LightLayer.BLOCK, aepyornithomimusPos);
 		int brightness;
 		if (night) {
 			brightness = j;

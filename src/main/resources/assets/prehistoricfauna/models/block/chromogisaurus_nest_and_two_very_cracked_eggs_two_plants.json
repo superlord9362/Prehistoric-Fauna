@@ -2,6 +2,6 @@
 	"credit": "Made with Blockbench",
 	"parent": "prehistoricfauna:block/chromogisaurus_nest_and_two_eggs_two_plants",
 	"textures": {
-		"egg": "prehistoricfauna:blocks/chromogisaurus_egg_very_cracked"
+		"egg": "prehistoricfauna:block/chromogisaurus_egg_very_cracked"
 	}
 }

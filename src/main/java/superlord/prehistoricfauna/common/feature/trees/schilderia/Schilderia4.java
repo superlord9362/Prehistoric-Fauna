@@ -1,11 +1,11 @@
 package superlord.prehistoricfauna.common.feature.trees.schilderia;
 
-import java.util.Random;
 import java.util.Set;
 
 import com.mojang.serialization.Codec;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import superlord.prehistoricfauna.common.feature.trees.PFAbstractTreeFeature;
@@ -20,7 +20,7 @@ public class Schilderia4 extends PFAbstractTreeFeature<PFTreeConfig> {
         super(configIn);
     }
 
-	protected boolean generate(Set<BlockPos> changedBlocks, WorldGenLevel world, Random rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
+	protected boolean generate(Set<BlockPos> changedBlocks, WorldGenLevel world, RandomSource rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
 
 		this.randTreeHeight = config.getMinHeight() + rand.nextInt(config.getMaxPossibleHeight());
 		this.mainmutable = new BlockPos.MutableBlockPos().set(pos);
@@ -45,7 +45,7 @@ public class Schilderia4 extends PFAbstractTreeFeature<PFTreeConfig> {
         return true;
     }
 	
-	protected void generate1(Set<BlockPos> changedBlocks, WorldGenLevel world, Random rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
+	protected void generate1(Set<BlockPos> changedBlocks, WorldGenLevel world, RandomSource rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
 		placeTrunk(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, 0, 0), boundsIn);
 		placeTrunk(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, 1, 0), boundsIn);
 		placeTrunk(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, 2, 0), boundsIn);
@@ -949,7 +949,7 @@ public class Schilderia4 extends PFAbstractTreeFeature<PFTreeConfig> {
 		placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(5, randTreeHeight - 28, 11), boundsIn);
 	}
 	
-	protected void generate2(Set<BlockPos> changedBlocks, WorldGenLevel world, Random rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
+	protected void generate2(Set<BlockPos> changedBlocks, WorldGenLevel world, RandomSource rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
 		placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(6, randTreeHeight - 28, -11), boundsIn);
 		placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(6, randTreeHeight - 28, -6), boundsIn);
 		placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(6, randTreeHeight - 28, -3), boundsIn);
@@ -2052,7 +2052,7 @@ public class Schilderia4 extends PFAbstractTreeFeature<PFTreeConfig> {
 		placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(-7, randTreeHeight - 25, 13), boundsIn);
 	}
 	
-	protected void generate3(Set<BlockPos> changedBlocks, WorldGenLevel world, Random rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
+	protected void generate3(Set<BlockPos> changedBlocks, WorldGenLevel world, RandomSource rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
 		placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(-6, randTreeHeight - 25, -13), boundsIn);
 		placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(-6, randTreeHeight - 25, -11), boundsIn);
 		placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(-6, randTreeHeight - 25, -10), boundsIn);
@@ -2716,7 +2716,7 @@ public class Schilderia4 extends PFAbstractTreeFeature<PFTreeConfig> {
 
 	}
 	
-	protected void generate4(Set<BlockPos> changedBlocks, WorldGenLevel world, Random rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
+	protected void generate4(Set<BlockPos> changedBlocks, WorldGenLevel world, RandomSource rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
 		placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(-9, randTreeHeight - 22, 9), boundsIn);
 		placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(-9, randTreeHeight - 22, 10), boundsIn);
 		placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(-8, randTreeHeight - 22, -10), boundsIn);
@@ -3721,7 +3721,7 @@ public class Schilderia4 extends PFAbstractTreeFeature<PFTreeConfig> {
 
 	}
 	
-	protected void generate5(Set<BlockPos> changedBlocks, WorldGenLevel world, Random rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
+	protected void generate5(Set<BlockPos> changedBlocks, WorldGenLevel world, RandomSource rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
 		placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(-3, randTreeHeight - 17, 4), boundsIn);
 		placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(-3, randTreeHeight - 17, 5), boundsIn);
 		placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(-3, randTreeHeight - 17, 6), boundsIn);
@@ -4726,7 +4726,7 @@ public class Schilderia4 extends PFAbstractTreeFeature<PFTreeConfig> {
 
 	}
 
-	protected void generate6(Set<BlockPos> changedBlocks, WorldGenLevel world, Random rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
+	protected void generate6(Set<BlockPos> changedBlocks, WorldGenLevel world, RandomSource rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
 		placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(2, randTreeHeight - 11, -3), boundsIn);
 		placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(2, randTreeHeight - 11, -2), boundsIn);
 		placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(2, randTreeHeight - 11, -1), boundsIn);

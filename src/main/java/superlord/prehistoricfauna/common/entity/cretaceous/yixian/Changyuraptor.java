@@ -12,6 +12,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
@@ -23,16 +25,17 @@ import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.control.MoveControl;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowParentGoal;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
-import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -55,7 +58,6 @@ import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.SkittishFleeGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
-import superlord.prehistoricfauna.common.entity.navigation.FlightMoveController;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
@@ -64,15 +66,17 @@ import superlord.prehistoricfauna.init.PFTags;
 
 public class Changyuraptor extends DinosaurEntity {
 	public static final EntityDataAccessor<Integer> FALLING_TICK = SynchedEntityData.defineId(Changyuraptor.class, EntityDataSerializers.INT);
+	public static final EntityDataAccessor<Boolean> STEALING = SynchedEntityData.defineId(Changyuraptor.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Byte> CLIMBING = SynchedEntityData.defineId(Changyuraptor.class, EntityDataSerializers.BYTE);
 	@Nullable
 	private BlockPos targetPosition;
+	int timer = 0;
+	int tryStealing = 0;
 
-	@SuppressWarnings("deprecation")
 	public Changyuraptor(EntityType<? extends TamableAnimal> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.maxUpStep = 1.0F;
-		this.navigation = new WallClimberNavigation(this, level);
+		this.setMaxUpStep(1);
+		this.navigation = new WallClimberNavigation(this, level());
 	}
 
 	public boolean isFood(ItemStack stack) {
@@ -105,6 +109,9 @@ public class Changyuraptor extends DinosaurEntity {
 		}));
 		this.targetSelector.addGoal(0, new BabyCarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213487_0_) -> {
 			return p_213487_0_.getType().is(PFTags.CHANGYURAPTOR_BABY_HUNTING);
+		}));
+		this.goalSelector.addGoal(8, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
+			return p_213487_0_.getType().is(PFTags.CHANGYURAPTOR_AVOIDING);
 		}));
 	}
 
@@ -145,6 +152,14 @@ public class Changyuraptor extends DinosaurEntity {
 
 	public boolean onClimbable() {
 		return this.isBesideClimbableBlock();
+	}
+	
+	public boolean isStealing() {
+		return this.entityData.get(STEALING);
+	}
+
+	public void setStealing(boolean isStealing) {
+		this.entityData.set(STEALING, isStealing);
 	}
 
 	public boolean isBesideClimbableBlock() {
@@ -200,38 +215,38 @@ public class Changyuraptor extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.CHANGYURAPTOR_IDLE;
+		return this.isAsleep() ? null : PFSounds.CHANGYURAPTOR_IDLE.get();
 	}
 
 	public void tick() {
 		super.tick();
-		if (!this.level.isClientSide) {
+		if (!this.level().isClientSide()) {
 			this.setClimbing(this.horizontalCollision);
 		}
 
 	}
-	
+
 	public boolean isClimbing() {
-	      return (this.entityData.get(DATA_FLAGS_ID) & 1) != 0;
-	   }
+		return (this.entityData.get(DATA_FLAGS_ID) & 1) != 0;
+	}
 
-	   public void setClimbing(boolean p_33820_) {
-	      byte b0 = this.entityData.get(DATA_FLAGS_ID);
-	      if (p_33820_) {
-	         b0 = (byte)(b0 | 1);
-	      } else {
-	         b0 = (byte)(b0 & -2);
-	      }
+	public void setClimbing(boolean p_33820_) {
+		byte b0 = this.entityData.get(DATA_FLAGS_ID);
+		if (p_33820_) {
+			b0 = (byte)(b0 | 1);
+		} else {
+			b0 = (byte)(b0 & -2);
+		}
 
-	      this.entityData.set(DATA_FLAGS_ID, b0);
-	   }
+		this.entityData.set(DATA_FLAGS_ID, b0);
+	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.CHANGYURAPTOR_HURT;
+		return PFSounds.CHANGYURAPTOR_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.CHANGYURAPTOR_DEATH;
+		return PFSounds.CHANGYURAPTOR_DEATH.get();
 	}
 
 	public boolean onAttackAnimationFinish(Entity entityIn) {
@@ -244,8 +259,8 @@ public class Changyuraptor extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Changyuraptor entity = new Changyuraptor(PFEntities.CHANGYURAPTOR.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Changyuraptor entity = new Changyuraptor(PFEntities.CHANGYURAPTOR.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -266,12 +281,59 @@ public class Changyuraptor extends DinosaurEntity {
 		return false;
 	}
 
+	private void spawnItem(ItemStack stack) {
+		ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), stack);
+		this.level().addFreshEntity(itemEntity);
+	}
+
 	public void aiStep() {
 		super.aiStep();
+		ItemStack stack = this.getMainHandItem();
+		ItemStack newStack = new ItemStack(Items.AIR);
+		if (stack.getItem() != Items.AIR) {
+			timer++;
+			if (timer == 600) {
+				this.spawnItem(stack);
+				this.setItemInHand(InteractionHand.MAIN_HAND, newStack);
+				timer = 0;
+			}
+			if (this.getLastHurtByMob() != null && timer < 600) {
+				this.spawnItem(stack);
+				this.setItemInHand(InteractionHand.MAIN_HAND, newStack);
+				timer = 0;
+			}
+		}
+		if (this.tickCount > 1000 && this.random.nextInt(1000) == 213) {
+			this.setStealing(true);
+		}
+		if (this.isStealing()) {
+			tryStealing++;
+			if (this.tryStealing == 600) {
+				this.setStealing(false);
+				tryStealing = 0;
+			}
+			for (Player entity : this.level().getEntitiesOfClass(Player.class, this.getBoundingBox().inflate(8, 8, 8))) {
+				if (entity.getMainHandItem() != new ItemStack(Items.AIR) && !entity.isCreative() && this.getMainHandItem().isEmpty()) {
+					this.getNavigation().moveTo(entity, 1);
+					for (Player closePlayer : this.level().getEntitiesOfClass(Player.class, this.getBoundingBox().inflate(1, 2, 1))) {
+						if (this.getMainHandItem().isEmpty() && !closePlayer.getMainHandItem().isEmpty()) {
+							ItemStack stack1 = closePlayer.getItemInHand(InteractionHand.MAIN_HAND);
+							if (closePlayer.getItemInHand(InteractionHand.MAIN_HAND).getCount() > 1) {
+								stack1.shrink(1);
+								closePlayer.setItemInHand(InteractionHand.MAIN_HAND, stack1);
+							} else {
+								ItemStack airStack = new ItemStack(Items.AIR);
+								closePlayer.setItemInHand(InteractionHand.MAIN_HAND, airStack);
+							}
+							this.setItemInHand(InteractionHand.MAIN_HAND, stack1);
+							tryStealing = 0;
+						}
+					}
+				}
+			}
+		}
 		Vec3 vec3 = this.getDeltaMovement();
-		if (!this.onGround && this.level.getBlockState(this.blockPosition().below()).isAir() && !this.isClimbing()) {
-			this.moveControl = new FlightMoveController(this, 1.6F, false);
-			this.navigation = new FlyingPathNavigation(this, level);
+		if (!this.onGround() && this.level().getBlockState(this.blockPosition().below()).isAir() && !this.isClimbing()) {
 			this.setFallingTicks(this.getFallingTicks() + 1);
 			if (this.getFallingTicks() < 10) {
 				this.setDeltaMovement(vec3.multiply(1.0D, 0.75D, 1.0D));
@@ -280,16 +342,24 @@ public class Changyuraptor extends DinosaurEntity {
 			}
 		} else {
 			this.setFallingTicks(0);
-			this.moveControl = new MoveControl(this);
-			this.navigation = new WallClimberNavigation(this, level);
 		}
+	}
+
+	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
+		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
+		if (!this.getMainHandItem().isEmpty() && itemstack.is(PFTags.INSECTS_2_HUNGER_ITEM)) {
+			this.spawnItem(this.getMainHandItem());
+			this.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.AIR));
+			itemstack.shrink(1);
+		}
+		return super.mobInteract(p_230254_1_, p_230254_2_);
 	}
 
 	protected void customServerAiStep() {
 		super.customServerAiStep();
 		if (this.getFallingTicks() != 0) {
 			if (this.targetPosition == null || this.targetPosition.closerToCenterThan(this.position(), 2.0D)) {
-				this.targetPosition = new BlockPos(this.getX() + (double)this.random.nextInt(7) - (double)this.random.nextInt(7), this.getY() + (double)this.random.nextInt(6) - 2.0D, this.getZ() + (double)this.random.nextInt(7) - (double)this.random.nextInt(7));
+				this.targetPosition = new BlockPos((int) this.getX() + this.random.nextInt(7) - this.random.nextInt(7), (int) this.getY() + this.random.nextInt(6) - 2, (int) this.getZ() + this.random.nextInt(7) - this.random.nextInt(7));
 			}
 
 			double d2 = (double)this.targetPosition.getX() + 0.5D - this.getX();
@@ -315,18 +385,20 @@ public class Changyuraptor extends DinosaurEntity {
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(FALLING_TICK, 0);
+		this.entityData.define(STEALING, false);
 		this.entityData.define(CLIMBING, (byte) 0);
 	}
 
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putInt("FallingTick", this.getFallingTicks());
+		compound.putBoolean("Stealing", this.isStealing());
 	}
 
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 		this.setFallingTicks(compound.getInt("FallingTick"));
-
+		this.setStealing(compound.getBoolean("Stealing"));
 	}
 
 }

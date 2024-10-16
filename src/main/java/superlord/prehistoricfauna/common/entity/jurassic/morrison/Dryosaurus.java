@@ -65,10 +65,9 @@ public class Dryosaurus extends DinosaurEntity {
 	private int maxHunger = 38;
 	private int chewingTick;
 
-	@SuppressWarnings("deprecation")
 	public Dryosaurus(EntityType<? extends Dryosaurus> type, Level level) {
 		super(type, level);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -82,8 +81,8 @@ public class Dryosaurus extends DinosaurEntity {
 	}
 
 	private void spawnItem(ItemStack stack) {
-		ItemEntity item = new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), stack);
-		this.level.addFreshEntity(item);
+		ItemEntity item = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), stack);
+		this.level().addFreshEntity(item);
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -129,15 +128,15 @@ public class Dryosaurus extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.DRYOSAURUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.DRYOSAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.DRYOSAURUS_HURT;
+		return PFSounds.DRYOSAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.DRYOSAURUS_DEATH;
+		return PFSounds.DRYOSAURUS_DEATH.get();
 	}
 
 	@Override
@@ -192,8 +191,8 @@ public class Dryosaurus extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Dryosaurus entity = new Dryosaurus(PFEntities.DRYOSAURUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Dryosaurus entity = new Dryosaurus(PFEntities.DRYOSAURUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 

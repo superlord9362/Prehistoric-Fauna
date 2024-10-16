@@ -31,11 +31,11 @@ public class SaurosuchusEyeLayer extends RenderLayer<Saurosuchus, EntityModel<Sa
 		if (!(saurosuchusRenderer.getModel() instanceof SaurosuchusModel)) {
 			return;
 		}
-		long roundTime = saurosuchus.level.getDayTime() % 24000;
+		long roundTime = saurosuchus.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos saurosuchusPos = saurosuchus.blockPosition();
-		int i = saurosuchus.level.getBrightness(LightLayer.SKY, saurosuchusPos);
-		int j = saurosuchus.level.getBrightness(LightLayer.BLOCK, saurosuchusPos);
+		int i = saurosuchus.level().getBrightness(LightLayer.SKY, saurosuchusPos);
+		int j = saurosuchus.level().getBrightness(LightLayer.BLOCK, saurosuchusPos);
 		int brightness;
 		if (night) {
 			brightness = j;

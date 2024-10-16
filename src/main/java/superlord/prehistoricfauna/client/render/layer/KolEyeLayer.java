@@ -30,11 +30,11 @@ public class KolEyeLayer extends RenderLayer<Kol, KolModel> {
 		if (!(kolRenderer.getModel() instanceof KolModel)) {
 			return;
 		}
-		long roundTime = kol.level.getDayTime() % 24000;
+		long roundTime = kol.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos kolPos = kol.blockPosition();
-		int i = kol.level.getBrightness(LightLayer.SKY, kolPos);
-		int j = kol.level.getBrightness(LightLayer.BLOCK, kolPos);
+		int i = kol.level().getBrightness(LightLayer.SKY, kolPos);
+		int j = kol.level().getBrightness(LightLayer.BLOCK, kolPos);
 		int brightness;
 		if (night) {
 			brightness = j;

@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/placerias_egg"
+        "layer0": "prehistoricfauna:item/placerias_egg"
     }
 }

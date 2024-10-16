@@ -31,11 +31,11 @@ public class SillosuchusEyeLayer extends RenderLayer<Sillosuchus, EntityModel<Si
 		if (!(sillosuchusRenderer.getModel() instanceof SillosuchusModel)) {
 			return;
 		}
-		long roundTime = sillosuchus.level.getDayTime() % 24000;
+		long roundTime = sillosuchus.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos sillosuchusPos = sillosuchus.blockPosition();
-		int i = sillosuchus.level.getBrightness(LightLayer.SKY, sillosuchusPos);
-		int j = sillosuchus.level.getBrightness(LightLayer.BLOCK, sillosuchusPos);
+		int i = sillosuchus.level().getBrightness(LightLayer.SKY, sillosuchusPos);
+		int j = sillosuchus.level().getBrightness(LightLayer.BLOCK, sillosuchusPos);
 		int brightness;
 		if (night) {
 			brightness = j;

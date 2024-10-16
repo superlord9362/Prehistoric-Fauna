@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/woodworthia_sign"
+        "layer0": "prehistoricfauna:item/woodworthia_sign"
     }
 }

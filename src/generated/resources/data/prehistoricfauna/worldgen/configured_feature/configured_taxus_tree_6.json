@@ -1,0 +1,28 @@
+{
+  "type": "prehistoricfauna:taxus_tree_6",
+  "config": {
+    "leaves_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:taxus_leaves",
+        "Properties": {
+          "age": "0",
+          "distance": "1",
+          "persistent": "false",
+          "waterlogged": "false"
+        }
+      }
+    },
+    "max_height": 20,
+    "min_height": 16,
+    "trunk_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:taxus_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    }
+  }
+}

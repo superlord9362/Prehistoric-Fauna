@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/plant_fiber"
+        "layer0": "prehistoricfauna:item/plant_fiber"
     }
 }

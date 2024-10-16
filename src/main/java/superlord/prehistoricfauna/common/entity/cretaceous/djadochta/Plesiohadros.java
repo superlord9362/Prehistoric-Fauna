@@ -74,16 +74,15 @@ public class Plesiohadros extends HerdDinosaurEntity {
 	public float ridingXZ;
 	public float ridingY = 1F;
 
-	@SuppressWarnings("deprecation")
 	public Plesiohadros(EntityType<? extends Plesiohadros> type, Level worldIn) {
 		super(type, worldIn);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Plesiohadros entity = new Plesiohadros(PFEntities.PLESIOHADROS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Plesiohadros entity = new Plesiohadros(PFEntities.PLESIOHADROS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -138,22 +137,23 @@ public class Plesiohadros extends HerdDinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.PLESIOHADROS_IDLE;
+		return this.isAsleep() ? null : PFSounds.PLESIOHADROS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.PLESIOHADROS_HURT;
+		return PFSounds.PLESIOHADROS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.PLESIOHADROS_DEATH;
+		return PFSounds.PLESIOHADROS_DEATH.get();
 	}
 
+	@SuppressWarnings("deprecation")
 	protected void playStepSound(BlockPos pos, BlockState blockIn) {
 		if (this.isBaby()) {
-			if (!blockIn.getMaterial().isLiquid()) {
-				BlockState blockstate = this.level.getBlockState(pos.above());
-				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level, pos, this) : blockIn.getSoundType(level, pos, this);
+			if (!blockIn.liquid()) {
+				BlockState blockstate = this.level().getBlockState(pos.above());
+				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level(), pos, this) : blockIn.getSoundType(level(), pos, this);
 				this.playSound(soundtype.getStepSound(), soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			}
 		} else {
@@ -163,7 +163,7 @@ public class Plesiohadros extends HerdDinosaurEntity {
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.PLESIOHADROS_WARNING, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.PLESIOHADROS_WARNING.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -253,9 +253,9 @@ public class Plesiohadros extends HerdDinosaurEntity {
 					this.navigation.stop();
 					this.setTarget((LivingEntity)null);
 					this.setOrderedToSit(true);
-					this.level.broadcastEntityEvent(this, (byte)7);
+					this.level().broadcastEntityEvent(this, (byte)7);
 				} else {
-					this.level.broadcastEntityEvent(this, (byte)6);
+					this.level().broadcastEntityEvent(this, (byte)6);
 				}
 				return InteractionResult.SUCCESS;
 			}
@@ -266,7 +266,7 @@ public class Plesiohadros extends HerdDinosaurEntity {
 					itemstack.shrink(1);
 				}
 				this.setSaddled(true);
-				this.level.playSound(p_230254_1_, this.getX(), this.getY(), this.getZ(), SoundEvents.PIG_SADDLE, SoundSource.NEUTRAL, 0.5F, 1.0F);
+				this.level().playSound(p_230254_1_, this.getX(), this.getY(), this.getZ(), SoundEvents.PIG_SADDLE, SoundSource.NEUTRAL, 0.5F, 1.0F);
 				return InteractionResult.SUCCESS;
 			}
 		}
@@ -283,7 +283,6 @@ public class Plesiohadros extends HerdDinosaurEntity {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	public void travel(Vec3 travelVector) {
 		if (this.isAlive()) {
 			if (this.isVehicle() && this.canBeControlledByRider() && this.isSaddled()) {
@@ -296,7 +295,6 @@ public class Plesiohadros extends HerdDinosaurEntity {
 	            this.yHeadRot = this.yBodyRot;
 				float f = livingentity.xxa * 0.5F;
 				float f1 = livingentity.zza;
-				this.maxUpStep = 1.0F;
 
 				if (this.canBeControlledByRider()) {
 					this.setSpeed((float)this.getAttributeValue(Attributes.MOVEMENT_SPEED));
@@ -305,10 +303,10 @@ public class Plesiohadros extends HerdDinosaurEntity {
 					this.setDeltaMovement(Vec3.ZERO);
 				}
 
-				if (this.onGround) {
+				if (this.onGround()) {
 				}
 
-				this.calculateEntityAnimation(this, false);
+				this.calculateEntityAnimation(false);
 			} else {
 				super.travel(travelVector);
 			}
@@ -316,8 +314,19 @@ public class Plesiohadros extends HerdDinosaurEntity {
 	}
 
 	@Nullable
-	public Entity getControllingPassenger() {
-		return this.getPassengers().isEmpty() ? null : this.getPassengers().get(0);
+	public LivingEntity getControllingPassenger() {
+		Entity entity = this.getFirstPassenger();
+	      if (entity instanceof Mob) {
+	         return (Mob)entity;
+	      } else {
+	         if (this.isSaddled()) {
+	            entity = this.getFirstPassenger();
+	            if (entity instanceof Player) {
+	               return (Player)entity;
+	            }
+	         }
+	         return null;
+	      }
 	}
 
 	public boolean canBeControlledByRider() {
@@ -325,8 +334,8 @@ public class Plesiohadros extends HerdDinosaurEntity {
 	}
 
 	@Override
-	public void positionRider(Entity passenger) {
-		super.positionRider(passenger);
+	public void positionRider(Entity passenger, Entity.MoveFunction p_289531_) {
+		super.positionRider(passenger, p_289531_);
 
 		float radius = ridingXZ * 0.7F * -3 + 0.5F;
 		float angle = (0.01745329251F * this.yBodyRotO);
@@ -364,7 +373,7 @@ public class Plesiohadros extends HerdDinosaurEntity {
 			double d3 = this.getBoundingBox().maxY + 0.75D;
 
 			while(true) {
-				double d4 = this.level.getBlockFloorHeight(blockpos$mutable);
+				double d4 = this.level().getBlockFloorHeight(blockpos$mutable);
 				if ((double)blockpos$mutable.getY() + d4 > d3) {
 					break;
 				}
@@ -372,7 +381,7 @@ public class Plesiohadros extends HerdDinosaurEntity {
 				if (DismountHelper.isBlockFloorValid(d4)) {
 					AABB axisalignedbb = p_234236_2_.getLocalBoundsForPose(pose);
 					Vec3 vector3d = new Vec3(d0, (double)blockpos$mutable.getY() + d4, d2);
-					if (DismountHelper.canDismountTo(this.level, p_234236_2_, axisalignedbb.move(vector3d))) {
+					if (DismountHelper.canDismountTo(this.level(), p_234236_2_, axisalignedbb.move(vector3d))) {
 						p_234236_2_.setPose(pose);
 						return vector3d;
 					}

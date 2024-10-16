@@ -119,14 +119,13 @@ public class Dakotaraptor extends DinosaurEntity {
 		return new WallClimberNavigation(this, worldIn);
 	}
 
-	@SuppressWarnings("deprecation")
 	public Dakotaraptor(EntityType<? extends Dakotaraptor> type, Level worldIn) {
 		super(type, worldIn);
 		this.lookControl = new Dakotaraptor.LookHelperController();
 		this.moveControl = new Dakotaraptor.MoveHelperController();
 		this.setPathfindingMalus(BlockPathTypes.DANGER_OTHER, 0.0F);
 		this.setPathfindingMalus(BlockPathTypes.DAMAGE_OTHER, 0.0F);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1);
 		super.maxHunger = maxHunger;
 	}
 
@@ -191,19 +190,19 @@ public class Dakotaraptor extends DinosaurEntity {
 	}
 
 	public void aiStep() {
-		if (!this.level.isClientSide && this.isAlive()) {
+		if (!this.level().isClientSide() && this.isAlive()) {
 			++this.eatTicks;
 			ItemStack itemstack = this.getItemBySlot(EquipmentSlot.MAINHAND);
 			if (this.canEatItem(itemstack)) {
 				if (this.eatTicks > 600) {
-					ItemStack itemstack1 = itemstack.finishUsingItem(this.level, this);
+					ItemStack itemstack1 = itemstack.finishUsingItem(this.level(), this);
 					if (!itemstack1.isEmpty()) {
 						this.setItemSlot(EquipmentSlot.MAINHAND, itemstack1);
 					}
 
 					this.eatTicks = 0;
 				} else if (this.eatTicks > 560 && this.random.nextFloat() < 0.1F) {
-					this.level.broadcastEntityEvent(this, (byte)45);
+					this.level().broadcastEntityEvent(this, (byte)45);
 				}
 			}
 
@@ -217,7 +216,7 @@ public class Dakotaraptor extends DinosaurEntity {
 			if (this.getVehicle() != null) {
 				if (this.getVehicle() == this.getTarget() && this.tickCount % 20 == 0) {
 					AttributeInstance iattributeinstance = this.getAttribute(Attributes.ATTACK_DAMAGE);
-					this.getTarget().hurt(DamageSource.mobAttack(this), (float) iattributeinstance.getBaseValue());
+					this.getTarget().hurt(this.damageSources().mobAttack(this), (float) iattributeinstance.getBaseValue());
 				}
 			}
 		}
@@ -236,7 +235,7 @@ public class Dakotaraptor extends DinosaurEntity {
 
 	@SuppressWarnings("deprecation")
 	private boolean canEatItem(ItemStack itemStackIn) {
-		return itemStackIn.getItem().isEdible() && itemStackIn.getItem().getFoodProperties().isMeat() && this.getTarget() == null && this.onGround && !this.isSleeping();
+		return itemStackIn.getItem().isEdible() && itemStackIn.getItem().getFoodProperties().isMeat() && this.getTarget() == null && this.onGround() && !this.isSleeping();
 	}
 
 	protected boolean isMovementBlocked() {
@@ -250,17 +249,17 @@ public class Dakotaraptor extends DinosaurEntity {
 	}
 
 	private void spitOutItem(ItemStack stackIn) {
-		if (!stackIn.isEmpty() && !this.level.isClientSide) {
-			ItemEntity itementity = new ItemEntity(this.level, this.getX() + this.getLookAngle().x, this.getY() + 1.0D, this.getZ() + this.getLookAngle().z, stackIn);
+		if (!stackIn.isEmpty() && !this.level().isClientSide) {
+			ItemEntity itementity = new ItemEntity(this.level(), this.getX() + this.getLookAngle().x, this.getY() + 1.0D, this.getZ() + this.getLookAngle().z, stackIn);
 			itementity.setPickUpDelay(40);
 			itementity.setThrower(this.getUUID());
-			this.level.addFreshEntity(itementity);
+			this.level().addFreshEntity(itementity);
 		}
 	}
 
 	private void dropItemStack(ItemStack stackIn) {
-		ItemEntity itementity = new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), stackIn);
-		this.level.addFreshEntity(itementity);
+		ItemEntity itementity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), stackIn);
+		this.level().addFreshEntity(itementity);
 	}
 
 	protected void pickUpItem(ItemEntity item) {
@@ -311,7 +310,7 @@ public class Dakotaraptor extends DinosaurEntity {
 			if (!itemstack.isEmpty()) {
 				for(int i = 0; i < 8; ++i) {
 					Vec3 vec3d = (new Vec3(((double)this.random.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, 0.0D)).xRot(-this.xRot * ((float)Math.PI / 180F)).yRot(-this.yRot * ((float)Math.PI / 180F));
-					this.level.addParticle(new ItemParticleOption(ParticleTypes.ITEM, itemstack), this.getX() + this.getLookAngle().x / 2.0D, this.getY(), this.getZ() + this.getLookAngle().z / 2.0D, vec3d.x, vec3d.y + 0.05D, vec3d.z);
+					this.level().addParticle(new ItemParticleOption(ParticleTypes.ITEM, itemstack), this.getX() + this.getLookAngle().x / 2.0D, this.getY(), this.getZ() + this.getLookAngle().z / 2.0D, vec3d.x, vec3d.y + 0.05D, vec3d.z);
 				}
 			}
 		} else {
@@ -324,7 +323,7 @@ public class Dakotaraptor extends DinosaurEntity {
 	public void push(Entity entity) {
 		super.push(entity);
 		if (this.getTarget() != null) {
-			if (this.getTarget() == entity && !onGround && this.getVehicle() != entity && !(entity instanceof Player)) {
+			if (this.getTarget() == entity && !onGround() && this.getVehicle() != entity && !(entity instanceof Player)) {
 				this.startRiding(entity);
 			}
 		}
@@ -433,7 +432,7 @@ public class Dakotaraptor extends DinosaurEntity {
 		super.tick();
 		if (this.isEffectiveAi()) {
 			boolean flag = this.isInWater();
-			if (flag || this.getTarget() != null || this.level.isThundering()) {
+			if (flag || this.getTarget() != null || this.level().isThundering()) {
 				this.func_213454_em();
 			}
 
@@ -441,10 +440,10 @@ public class Dakotaraptor extends DinosaurEntity {
 				this.setSitting(false);
 			}
 
-			if (this.isStuck() && this.level.random.nextFloat() < 0.2F) {
-				BlockPos blockpos = new BlockPos(this.position());
-				BlockState blockstate = this.level.getBlockState(blockpos);
-				this.level.levelEvent(2001, blockpos, Block.getId(blockstate));
+			if (this.isStuck() && this.level().random.nextFloat() < 0.2F) {
+				BlockPos blockpos = new BlockPos(this.blockPosition());
+				BlockState blockstate = this.level().getBlockState(blockpos);
+				this.level().levelEvent(2001, blockpos, Block.getId(blockstate));
 			}
 		}
 
@@ -469,17 +468,17 @@ public class Dakotaraptor extends DinosaurEntity {
 			this.crouchAmount = 0.0F;
 		}
 
-		if (!this.level.isClientSide) {
+		if (!this.level().isClientSide()) {
 			if (this.horizontalCollision) {
 				Boolean logBlock;
-				BlockPos blockpos1 = new BlockPos(this.position().x() + 1, this.position().y() + 1, this.position().z());
-				BlockPos blockpos2 = new BlockPos(this.position().x() - 1, this.position().y() + 1, this.position().z());
-				BlockPos blockpos3 = new BlockPos(this.position().x(), this.position().y() + 1, this.position().z() + 1);
-				BlockPos blockpos4 = new BlockPos(this.position().x(), this.position().y() + 1, this.position().z() - 1);
-				BlockState blockstate1 = this.level.getBlockState(blockpos1);
-				BlockState blockstate2 = this.level.getBlockState(blockpos2);
-				BlockState blockstate3 = this.level.getBlockState(blockpos3);
-				BlockState blockstate4 = this.level.getBlockState(blockpos4);
+				BlockPos blockpos1 = new BlockPos(this.blockPosition().getX() + 1, this.blockPosition().getY() + 1, this.blockPosition().getZ());
+				BlockPos blockpos2 = new BlockPos(this.blockPosition().getX() - 1, this.blockPosition().getY() + 1, this.blockPosition().getZ());
+				BlockPos blockpos3 = new BlockPos(this.blockPosition().getX(), this.blockPosition().getY() + 1, this.blockPosition().getZ() + 1);
+				BlockPos blockpos4 = new BlockPos(this.blockPosition().getX(), this.blockPosition().getY() + 1, this.blockPosition().getZ() - 1);
+				BlockState blockstate1 = this.level().getBlockState(blockpos1);
+				BlockState blockstate2 = this.level().getBlockState(blockpos2);
+				BlockState blockstate3 = this.level().getBlockState(blockpos3);
+				BlockState blockstate4 = this.level().getBlockState(blockpos4);
 				if (blockstate1.is(BlockTags.LOGS) || blockstate1.is(BlockTags.PLANKS) || blockstate1.is(BlockTags.WOODEN_DOORS) || blockstate1.is(BlockTags.WOODEN_FENCES) || blockstate1.is(BlockTags.WOODEN_SLABS) || blockstate1.is(BlockTags.WOODEN_STAIRS) || blockstate2.is(BlockTags.LOGS) || blockstate2.is(BlockTags.PLANKS) || blockstate2.is(BlockTags.WOODEN_DOORS) || blockstate2.is(BlockTags.WOODEN_FENCES) || blockstate2.is(BlockTags.WOODEN_SLABS) || blockstate2.is(BlockTags.WOODEN_STAIRS)  || blockstate3.is(BlockTags.LOGS) || blockstate3.is(BlockTags.PLANKS) || blockstate3.is(BlockTags.WOODEN_DOORS) || blockstate3.is(BlockTags.WOODEN_FENCES) || blockstate3.is(BlockTags.WOODEN_SLABS) || blockstate3.is(BlockTags.WOODEN_STAIRS) || blockstate4.is(BlockTags.LOGS) || blockstate4.is(BlockTags.PLANKS) || blockstate4.is(BlockTags.WOODEN_DOORS) || blockstate4.is(BlockTags.WOODEN_FENCES) || blockstate4.is(BlockTags.WOODEN_SLABS) || blockstate4.is(BlockTags.WOODEN_STAIRS)) {
 					logBlock = true;
 					if (climbingTickCooldown == 0 && climbingTicks < 600) {
@@ -590,15 +589,15 @@ public class Dakotaraptor extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound()  {
-		return this.isAsleep() ? null : PFSounds.DAKOTARAPTOR_IDLE;
+		return this.isAsleep() ? null : PFSounds.DAKOTARAPTOR_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.DAKOTARAPTOR_HURT;
+		return PFSounds.DAKOTARAPTOR_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.DAKOTARAPTOR_DEATH;
+		return PFSounds.DAKOTARAPTOR_DEATH.get();
 	}
 
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
@@ -608,7 +607,7 @@ public class Dakotaraptor extends DinosaurEntity {
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.DAKOTARAPTOR_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.DAKOTARAPTOR_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -626,7 +625,7 @@ public class Dakotaraptor extends DinosaurEntity {
 			double d4 = d2 == 0.0D ? d1 * (double)((float)j / 6.0F) : d3 / d2;
 
 			for(int k = 1; k < 4; ++k) {
-				if (!p_213481_0_.level.getBlockState(new BlockPos(p_213481_0_.getX() + d4, p_213481_0_.getY() + (double)k, p_213481_0_.getZ() + d3)).getMaterial().isReplaceable()) {
+				if (!p_213481_0_.level().getBlockState(new BlockPos((int) p_213481_0_.getX() + (int) d4, (int) p_213481_0_.getY() + k, (int) p_213481_0_.getZ() + (int) d3)).canBeReplaced()) {
 					return false;
 				}
 			}
@@ -660,12 +659,12 @@ public class Dakotaraptor extends DinosaurEntity {
 		}
 
 		protected boolean hasShelter() {
-			BlockPos blockpos = new BlockPos(Dakotaraptor.this.position());
-			return !Dakotaraptor.this.level.canSeeSky(blockpos) && Dakotaraptor.this.getWalkTargetValue(blockpos) >= 0.0F;
+			BlockPos blockpos = new BlockPos(Dakotaraptor.this.blockPosition());
+			return !Dakotaraptor.this.level().canSeeSky(blockpos) && Dakotaraptor.this.getWalkTargetValue(blockpos) >= 0.0F;
 		}
 
 		protected boolean alertable() {
-			return !Dakotaraptor.this.level.getNearbyEntities(LivingEntity.class, this.field_220816_b, Dakotaraptor.this, Dakotaraptor.this.getBoundingBox().inflate(12.0D, 6.0D, 12.0D)).isEmpty();
+			return !Dakotaraptor.this.level().getNearbyEntities(LivingEntity.class, this.field_220816_b, Dakotaraptor.this, Dakotaraptor.this.getBoundingBox().inflate(12.0D, 6.0D, 12.0D)).isEmpty();
 		}
 	}
 
@@ -705,15 +704,15 @@ public class Dakotaraptor extends DinosaurEntity {
 
 		public boolean canUse() {
 			if (!Dakotaraptor.this.isSleeping() && this.mob.getTarget() == null) {
-				if (Dakotaraptor.this.level.isThundering()) {
+				if (Dakotaraptor.this.level().isThundering()) {
 					return true;
 				} else if (this.cooldown > 0) {
 					--this.cooldown;
 					return false;
 				} else {
 					this.cooldown = 100;
-					BlockPos blockpos = new BlockPos(this.mob.position());
-					return Dakotaraptor.this.level.isDay() && Dakotaraptor.this.level.canSeeSky(blockpos) && !((ServerLevel)Dakotaraptor.this.level).isVillage(blockpos) && this.setWantedPos();
+					BlockPos blockpos = new BlockPos(this.mob.blockPosition());
+					return Dakotaraptor.this.level().isDay() && Dakotaraptor.this.level().canSeeSky(blockpos) && !((ServerLevel)Dakotaraptor.this.level()).isVillage(blockpos) && this.setWantedPos();
 				}
 			} else {
 				return false;
@@ -882,7 +881,7 @@ public class Dakotaraptor extends DinosaurEntity {
 			LivingEntity livingentity = Dakotaraptor.this.getTarget();
 			if (livingentity != null && livingentity.isAlive()) {
 				double d0 = Dakotaraptor.this.getDeltaMovement().y;
-				return (!(d0 * d0 < (double)0.05F) || !(Math.abs(Dakotaraptor.this.xRot) < 15.0F) || !Dakotaraptor.this.onGround) && !Dakotaraptor.this.isStuck();
+				return (!(d0 * d0 < (double)0.05F) || !(Math.abs(Dakotaraptor.this.xRot) < 15.0F) || !Dakotaraptor.this.onGround()) && !Dakotaraptor.this.isStuck();
 			} else {
 				return false;
 			}
@@ -930,7 +929,7 @@ public class Dakotaraptor extends DinosaurEntity {
 
 			if (livingentity != null && Dakotaraptor.this.distanceTo(livingentity) <= 2.0F) {
 				Dakotaraptor.this.doHurtTarget(livingentity);
-			} else if (Dakotaraptor.this.xRot > 0.0F && Dakotaraptor.this.onGround && (float)Dakotaraptor.this.getDeltaMovement().y != 0.0F && Dakotaraptor.this.level.getBlockState(new BlockPos(Dakotaraptor.this.position())).getBlock() == Blocks.SNOW) {
+			} else if (Dakotaraptor.this.xRot > 0.0F && Dakotaraptor.this.onGround() && (float)Dakotaraptor.this.getDeltaMovement().y != 0.0F && Dakotaraptor.this.level().getBlockState(new BlockPos(Dakotaraptor.this.blockPosition())).getBlock() == Blocks.SNOW) {
 				Dakotaraptor.this.xRot = 60.0F;
 				Dakotaraptor.this.setTarget((LivingEntity)null);
 			}
@@ -1021,7 +1020,7 @@ public class Dakotaraptor extends DinosaurEntity {
 				--this.countdown;
 				return false;
 			} else {
-				return Dakotaraptor.this.level.isDay() && this.hasShelter() && !this.alertable() && !Dakotaraptor.this.isInPowderSnow;
+				return Dakotaraptor.this.level().isDay() && this.hasShelter() && !this.alertable() && !Dakotaraptor.this.isInPowderSnow;
 			}
 		}
 
@@ -1097,7 +1096,7 @@ public class Dakotaraptor extends DinosaurEntity {
 		if (flag) {
 			this.doEnchantDamageEffects(this, entity);
 		}
-		if(this.isOnGround()){
+		if(this.onGround()){
 			Vec3 vector3d = this.getDeltaMovement();
 			Vec3 vector3d1 = new Vec3(entity.getX() - this.getX(), 0.0D, entity.getZ() - this.getZ());
 			if (vector3d1.lengthSqr() > 1.0E-7D) {
@@ -1111,8 +1110,8 @@ public class Dakotaraptor extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Dakotaraptor entity = new Dakotaraptor(PFEntities.DAKOTARAPTOR.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Dakotaraptor entity = new Dakotaraptor(PFEntities.DAKOTARAPTOR.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 

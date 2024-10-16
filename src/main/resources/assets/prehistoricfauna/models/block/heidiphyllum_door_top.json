@@ -1,7 +1,0 @@
-{
-    "parent": "block/door_top",
-    "textures": {
-        "bottom": "prehistoricfauna:blocks/heidiphyllum_door_bottom",
-        "top": "prehistoricfauna:blocks/heidiphyllum_door_top"
-    }
-}

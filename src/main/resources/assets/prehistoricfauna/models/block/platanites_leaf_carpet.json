@@ -1,6 +1,6 @@
 {   
     "parent": "prehistoricfauna:block/leaf_carpet",
     "textures": {
-        "all": "prehistoricfauna:blocks/platanites_leaves"
+        "all": "prehistoricfauna:block/platanites_leaves"
     }
 }

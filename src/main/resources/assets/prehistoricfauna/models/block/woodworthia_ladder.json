@@ -1,7 +1,7 @@
 {
 	"parent": "block/ladder",
 	"textures": {
-		"particle": "prehistoricfauna:blocks/woodworthia_ladder",
-		"texture": "prehistoricfauna:blocks/woodworthia_ladder"
+		"particle": "prehistoricfauna:block/woodworthia_ladder",
+		"texture": "prehistoricfauna:block/woodworthia_ladder"
 	}
 }

@@ -83,10 +83,9 @@ public class Citipati extends DinosaurEntity {
 	public int maxHunger = 38;
 	private Goal attackAnimals;
 
-	@SuppressWarnings("deprecation")
 	public Citipati(EntityType<? extends Citipati> type, Level world) {
 		super(type, world);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -170,15 +169,15 @@ public class Citipati extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.CITIPATI_IDLE;
+		return this.isAsleep() ? null : PFSounds.CITIPATI_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.CITIPATI_HURT;
+		return PFSounds.CITIPATI_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.CITIPATI_DEATH;
+		return PFSounds.CITIPATI_DEATH.get();
 	}
 
 	protected void defineSynchedData() {
@@ -257,8 +256,8 @@ public class Citipati extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Citipati entity = new Citipati(PFEntities.CITIPATI.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Citipati entity = new Citipati(PFEntities.CITIPATI.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -310,15 +309,15 @@ public class Citipati extends DinosaurEntity {
 		}
 
 		protected void eatBerry() {
-			if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(Citipati.this.level, Citipati.this)) {
-				BlockState blockstate = Citipati.this.level.getBlockState(this.blockPos);
-				level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, blockstate), blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0.0D, 0.0D, 0.0D);
+			if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(Citipati.this.level(), Citipati.this)) {
+				BlockState blockstate = Citipati.this.level().getBlockState(this.blockPos);
+				level().addParticle(new BlockParticleOption(ParticleTypes.BLOCK, blockstate), blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0.0D, 0.0D, 0.0D);
 				Block egg = blockstate.getBlock();
 				if (egg instanceof DinosaurEggBlock) {
 					int eggs = blockstate.getValue(DinosaurEggBlock.EGGS);
 					int hatch = blockstate.getValue(DinosaurEggBlock.HATCH);
 					blockstate.setValue(DinosaurEggBlock.EGGS, Integer.valueOf(1));
-					Citipati.this.level.setBlock(this.blockPos, blockstate.setValue(DinosaurEggBlock.EGGS, eggs).setValue(DinosaurEggBlock.HATCH, hatch).setValue(DinosaurEggBlock.CITIPATIFIED, true), 2);
+					Citipati.this.level().setBlock(this.blockPos, blockstate.setValue(DinosaurEggBlock.EGGS, eggs).setValue(DinosaurEggBlock.HATCH, hatch).setValue(DinosaurEggBlock.CITIPATIFIED, true), 2);
 				}
 			}
 		}

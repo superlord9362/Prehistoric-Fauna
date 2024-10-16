@@ -1,0 +1,147 @@
+{
+  "carvers": {},
+  "downfall": 0.9,
+  "effects": {
+    "fog_color": 12638463,
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2.0,
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000
+    },
+    "sky_color": 10464974,
+    "water_color": 4417619,
+    "water_fog_color": 4219470
+  },
+  "features": [
+    [],
+    [],
+    [
+      "minecraft:amethyst_geode"
+    ],
+    [],
+    [],
+    [],
+    [
+      "minecraft:ore_dirt",
+      "minecraft:ore_gravel",
+      "minecraft:ore_granite_upper",
+      "minecraft:ore_granite_lower",
+      "minecraft:ore_diorite_upper",
+      "minecraft:ore_diorite_lower",
+      "minecraft:ore_andesite_upper",
+      "minecraft:ore_andesite_lower",
+      "minecraft:ore_tuff",
+      "minecraft:ore_coal_upper",
+      "minecraft:ore_coal_lower",
+      "minecraft:ore_iron_upper",
+      "minecraft:ore_iron_middle",
+      "minecraft:ore_iron_small",
+      "minecraft:ore_gold",
+      "minecraft:ore_gold_lower",
+      "minecraft:ore_redstone",
+      "minecraft:ore_redstone_lower",
+      "minecraft:ore_diamond",
+      "minecraft:ore_diamond_large",
+      "minecraft:ore_diamond_buried",
+      "minecraft:ore_lapis",
+      "minecraft:ore_lapis_buried",
+      "minecraft:ore_copper_large",
+      "minecraft:underwater_magma"
+    ],
+    [],
+    [],
+    [
+      "minecraft:glow_lichen",
+      "prehistoricfauna:placed_michelilloa",
+      "prehistoricfauna:placed_neocalamites",
+      "prehistoricfauna:placed_algae",
+      "prehistoricfauna:placed_lowered_horsetails",
+      "prehistoricfauna:placed_waterlogged_horsetail",
+      "prehistoricfauna:placed_cladophlebis",
+      "prehistoricfauna:placed_johnstonia",
+      "prehistoricfauna:placed_dicroidium",
+      "prehistoricfauna:placed_scytophyllum",
+      "prehistoricfauna:placed_ischigualasto_trees"
+    ],
+    [
+      "prehistoricfauna:placed_silt_disk"
+    ]
+  ],
+  "has_precipitation": true,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [
+      {
+        "type": "prehistoricfauna:exaeretodon",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 12
+      },
+      {
+        "type": "prehistoricfauna:chromogisaurus",
+        "maxCount": 4,
+        "minCount": 1,
+        "weight": 10
+      },
+      {
+        "type": "prehistoricfauna:herrerasaurus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 8
+      },
+      {
+        "type": "prehistoricfauna:hyperodapedon",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 15
+      },
+      {
+        "type": "prehistoricfauna:sillosuchus",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 6
+      },
+      {
+        "type": "prehistoricfauna:saurosuchus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 4
+      },
+      {
+        "type": "prehistoricfauna:ischigualastia",
+        "maxCount": 5,
+        "minCount": 2,
+        "weight": 8
+      }
+    ],
+    "misc": [],
+    "monster": [
+      {
+        "type": "prehistoricfauna:cave_sentinel",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 5
+      },
+      {
+        "type": "prehistoricfauna:land_sentinel",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 2
+      }
+    ],
+    "underground_water_creature": [],
+    "water_ambient": [
+      {
+        "type": "prehistoricfauna:ceratodus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 3
+      }
+    ],
+    "water_creature": []
+  },
+  "temperature": 0.75
+}

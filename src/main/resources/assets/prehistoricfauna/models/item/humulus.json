@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:blocks/humulus_climb"
+        "layer0": "prehistoricfauna:block/humulus_climb"
     }
 }

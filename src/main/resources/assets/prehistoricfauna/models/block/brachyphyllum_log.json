@@ -1,7 +1,7 @@
 {
     "parent": "block/cube_column",
     "textures": {
-        "end": "prehistoricfauna:blocks/brachyphyllum_log_top",
-        "side": "prehistoricfauna:blocks/brachyphyllum_log"
+        "end": "prehistoricfauna:block/brachyphyllum_log_top",
+        "side": "prehistoricfauna:block/brachyphyllum_log"
     }
 }

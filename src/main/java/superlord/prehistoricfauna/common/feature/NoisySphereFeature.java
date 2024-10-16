@@ -56,7 +56,7 @@ public class NoisySphereFeature extends Feature<NoisySphereConfig> {
                             continue;
 
                         if (world.getBlockState(mutable2).is(Tags.Blocks.STONE))
-                            world.setBlock(mutable2, config.getBlockProvider().getState(random, mutable2), 2);
+                            world.setBlock(mutable2, config.getBlockProvider().getState(context.random(), mutable2), 2);
                     }
                     xRadius = (int) (xRadius / config.getRadiusDivisorPerStack());
                     yRadius = (int) (yRadius / config.getRadiusDivisorPerStack());

@@ -118,11 +118,107 @@ public class BeipiaosaurusModel extends EntityModel<Beipiaosaurus> {
 		resetModel();
 		if (entity.isAsleep()) {
 			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
-
+				//5.9F, -9.0F, -0.4363F
+				this.Body.y = Mth.lerp(sleepProgress, 5.9F, 10.3F);
+				this.Body.z = Mth.lerp(sleepProgress, -9, -7.3F);
+				this.Body.xRot = Mth.lerp(sleepProgress, -0.4363F, -0.6021F);
+				//0.0F, 1.9068F, 0.9246F, 0.6807F, 0.0F, 0.0F
+				this.Neck.x = Mth.lerp(sleepProgress, 0, -1.1F);
+				this.Neck.y = Mth.lerp(sleepProgress, 1.9068F, 3.9F);
+				this.Neck.z = Mth.lerp(sleepProgress, 0.9246F, -0.9F);
+				this.Neck.xRot = Mth.lerp(sleepProgress, 0.6807F, 1.8949F);
+				this.Neck.yRot = Mth.lerp(sleepProgress, 0, 0.6996F);
+				this.Neck.zRot = Mth.lerp(sleepProgress, 0, -0.1218F);
+				//-5.51F, -2.0F, -0.1571F
+				this.Head.y = Mth.lerp(sleepProgress, -5.51F, -4.21F);
+				this.Head.z = Mth.lerp(sleepProgress, -2, 0.3F);
+				this.Head.xRot = Mth.lerp(sleepProgress, -0.1571F, -0.1134F);
+				//1.49F, 14.0F, 0.2618F, 0.0F, 0.0F
+				this.Tail.y = Mth.lerp(sleepProgress, 1.49F, 0.79F);
+				this.Tail.z = Mth.lerp(sleepProgress, 14, 15);
+				this.Tail.xRot = Mth.lerp(sleepProgress, 0.2618F, 0.3376F);
+				this.Tail.yRot = Mth.lerp(sleepProgress, 0, -0.2784F);
+				this.Tail.zRot = Mth.lerp(sleepProgress, 0, 0.2247F);
+				//4.0F, 10.5F, 0.4363F, 0.0F, 0.0F
+				this.LeftThigh.y = Mth.lerp(sleepProgress, 4, 2);
+				this.LeftThigh.z = Mth.lerp(sleepProgress, 10.5F, 11.5F);
+				this.LeftThigh.xRot = Mth.lerp(sleepProgress, 0.4363F, 0.4476F);
+				this.LeftThigh.yRot = Mth.lerp(sleepProgress, 0, 0.4248F);
+				this.LeftThigh.zRot = Mth.lerp(sleepProgress, 0, 0.0058F);
+				//0
+				this.LeftLeg.xRot = Mth.lerp(sleepProgress, 0, -1.4835F);
+				//0
+				this.LeftFoot.xRot = Mth.lerp(sleepProgress, 0, 1.7453F);
+				//4.0F, 10.5F, 0.4363F, 0.0F, 0.0F
+				this.RightThigh.y = Mth.lerp(sleepProgress, 4, 2);
+				this.RightThigh.z = Mth.lerp(sleepProgress, 10.5F, 11.5F);
+				this.RightThigh.xRot = Mth.lerp(sleepProgress, 0.4363F, 0.4695F);
+				this.RightThigh.yRot = Mth.lerp(sleepProgress, 0, -0.3893F);
+				this.RightThigh.zRot = Mth.lerp(sleepProgress, 0, -0.101F);
+				//0
+				this.RightLeg.xRot = Mth.lerp(sleepProgress, 0, -1.4399F);
+				//0
+				this.RightFoot.xRot = Mth.lerp(sleepProgress, 0, 1.6581F);
+				//0.5236F, 0.0F, 0.0F
+				this.LeftArm.xRot = Mth.lerp(sleepProgress, 0.5236F, 1.017F);
+				this.LeftArm.yRot = Mth.lerp(sleepProgress, 0, 0.1558F);
+				this.LeftArm.zRot = Mth.lerp(sleepProgress, 0, 0.027F);
+				//0.5236F, 0, 0
+				this.RightArm.xRot = Mth.lerp(sleepProgress, 0.5236F, 1.0925F);
+				this.RightArm.yRot = Mth.lerp(sleepProgress, 0, 0.0552F);
+				this.RightArm.zRot = Mth.lerp(sleepProgress, 0, -0.1587F);
 			} else sleepPose();
 		} else {
 			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
-
+				//5.9F, -9.0F, -0.4363F
+				this.Body.y = Mth.lerp(sleepProgress, 10.3F, 5.9F);
+				this.Body.z = Mth.lerp(sleepProgress, -7.3F, -9);
+				this.Body.xRot = Mth.lerp(sleepProgress, -0.6021F, -0.4363F);
+				//0.0F, 1.9068F, 0.9246F, 0.6807F, 0.0F, 0.0F
+				this.Neck.x = Mth.lerp(sleepProgress, -1.1F, 0);
+				this.Neck.y = Mth.lerp(sleepProgress, 3.9F, 1.9068F);
+				this.Neck.z = Mth.lerp(sleepProgress, -0.9F, 0.9246F);
+				this.Neck.xRot = Mth.lerp(sleepProgress, 1.8949F, 0.6807F);
+				this.Neck.yRot = Mth.lerp(sleepProgress, 0.6996F, 0);
+				this.Neck.zRot = Mth.lerp(sleepProgress, -0.1218F, 0);
+				//-5.51F, -2.0F, -0.1571F
+				this.Head.y = Mth.lerp(sleepProgress, -4.21F, -5.51F);
+				this.Head.z = Mth.lerp(sleepProgress, 0.3F, -2);
+				this.Head.xRot = Mth.lerp(sleepProgress, -0.1134F, -0.1571F);
+				//1.49F, 14.0F, 0.2618F, 0.0F, 0.0F
+				this.Tail.y = Mth.lerp(sleepProgress, 0.79F, 1.49F);
+				this.Tail.z = Mth.lerp(sleepProgress, 15, 14);
+				this.Tail.xRot = Mth.lerp(sleepProgress, 0.3376F, 0.2618F);
+				this.Tail.yRot = Mth.lerp(sleepProgress, -0.2784F, 0);
+				this.Tail.zRot = Mth.lerp(sleepProgress, 0.2247F, 0);
+				//4.0F, 10.5F, 0.4363F, 0.0F, 0.0F
+				this.LeftThigh.y = Mth.lerp(sleepProgress, 2, 4);
+				this.LeftThigh.z = Mth.lerp(sleepProgress, 11.5F, 10.5F);
+				this.LeftThigh.xRot = Mth.lerp(sleepProgress, 0.4476F, 0.4363F);
+				this.LeftThigh.yRot = Mth.lerp(sleepProgress, 0.4248F, 0);
+				this.LeftThigh.zRot = Mth.lerp(sleepProgress, 0.0058F, 0);
+				//0
+				this.LeftLeg.xRot = Mth.lerp(sleepProgress, -1.4835F, 0);
+				//0
+				this.LeftFoot.xRot = Mth.lerp(sleepProgress, 1.7453F, 0);
+				//4.0F, 10.5F, 0.4363F, 0.0F, 0.0F
+				this.RightThigh.y = Mth.lerp(sleepProgress, 2, 4);
+				this.RightThigh.z = Mth.lerp(sleepProgress, 11.5F, 10.5F);
+				this.RightThigh.xRot = Mth.lerp(sleepProgress, 0.4695F, 0.4363F);
+				this.RightThigh.yRot = Mth.lerp(sleepProgress, -0.3893F, 0);
+				this.RightThigh.zRot = Mth.lerp(sleepProgress, -0.101F, 0);
+				//0
+				this.RightLeg.xRot = Mth.lerp(sleepProgress, -1.4399F, 0);
+				//0
+				this.RightFoot.xRot = Mth.lerp(sleepProgress, 1.6581F, 0);
+				//0.5236F, 0.0F, 0.0F
+				this.LeftArm.xRot = Mth.lerp(sleepProgress, 1.017F, 0.5236F);
+				this.LeftArm.yRot = Mth.lerp(sleepProgress, 0.1558F, 0);
+				this.LeftArm.zRot = Mth.lerp(sleepProgress, 0.027F, 0);
+				//0.5236F, 0, 0
+				this.RightArm.xRot = Mth.lerp(sleepProgress, 1.0925F, 0.5236F);
+				this.RightArm.yRot = Mth.lerp(sleepProgress, 0.0552F, 0);
+				this.RightArm.zRot = Mth.lerp(sleepProgress, -0.1587F, 0);
 			} else {
 				this.LeftThigh.xRot = (Mth.sin(limbSwing * 0.5F) * 0.48F * limbSwingAmount) + Mth.abs((Mth.sin(0.15F * limbSwing) * -0.5F * limbSwingAmount)) + 0.4363F;
 				this.LeftLeg.xRot = Mth.sin(limbSwing * 0.5F) * 0.5F * limbSwingAmount;
@@ -152,11 +248,95 @@ public class BeipiaosaurusModel extends EntityModel<Beipiaosaurus> {
 	}
 
 	public void sleepPose() {
-
+		//5.9F, -9.0F, -0.4363F
+		this.Body.y = 10.3F;
+		this.Body.z = -7.3F;
+		this.Body.xRot = -0.6021F;
+		//0.0F, 1.9068F, 0.9246F, 0.6807F, 0.0F, 0.0F
+		this.Neck.x = -1.1F;
+		this.Neck.y = 3.9F;
+		this.Neck.z = -0.9F;
+		this.Neck.xRot = 1.8949F;
+		this.Neck.yRot = 0.6996F;
+		this.Neck.zRot = -0.1218F;
+		//-5.51F, -2.0F, -0.1571F
+		this.Head.y = -4.21F;
+		this.Head.z = 0.3F;
+		this.Head.xRot = -0.1134F;
+		//1.49F, 14.0F, 0.2618F, 0.0F, 0.0F
+		this.Tail.y = 0.79F;
+		this.Tail.z = 15;
+		this.Tail.xRot = 0.3376F;
+		this.Tail.yRot = -0.2784F;
+		this.Tail.zRot = 0.2247F;
+		//4.0F, 10.5F, 0.4363F, 0.0F, 0.0F
+		this.LeftThigh.y = 2;
+		this.LeftThigh.z = 11.5F;
+		this.LeftThigh.xRot = 0.4476F;
+		this.LeftThigh.yRot = 0.4248F;
+		this.LeftThigh.zRot = 0.0058F;
+		//0
+		this.LeftLeg.xRot = -1.4835F;
+		//0
+		this.LeftFoot.xRot = 1.7453F;
+		//4.0F, 10.5F, 0.4363F, 0.0F, 0.0F
+		this.RightThigh.y = 2;
+		this.RightThigh.z = 11.5F;
+		this.RightThigh.xRot = 0.4695F;
+		this.RightThigh.yRot = -0.3893F;
+		this.RightThigh.zRot = -0.101F;
+		//0
+		this.RightLeg.xRot = -1.4399F;
+		//0
+		this.RightFoot.xRot = 1.6581F;
+		//0.5236F, 0.0F, 0.0F
+		this.LeftArm.xRot = 1.017F;
+		this.LeftArm.yRot = 0.1558F;
+		this.LeftArm.zRot = 0.027F;
+		//0.5236F, 0, 0
+		this.RightArm.xRot = 1.0925F;
+		this.RightArm.yRot = 0.0552F;
+		this.RightArm.zRot = -0.1587F;
 	}
 
 	public void resetModel() {
-
+		this.Body.y = 5.9F;
+		this.Body.z = -9F;
+		this.Body.xRot = -0.4363F;
+		this.Neck.x = 0F;
+		this.Neck.y = 1.9068F;
+		this.Neck.z = 0.9246F;
+		this.Neck.xRot = 0.6807F;
+		this.Neck.yRot = 0;
+		this.Neck.zRot = 0;
+		this.Head.y = -5.51F;
+		this.Head.z = -2F;
+		this.Head.xRot = -0.1571F;
+		this.Tail.y = 1.49F;
+		this.Tail.z = 14;
+		this.Tail.xRot = 0.2618F;
+		this.Tail.yRot = 0F;
+		this.Tail.zRot = 0F;
+		this.LeftThigh.y = 4;
+		this.LeftThigh.z = 10.5F;
+		this.LeftThigh.xRot = 0.4363F;
+		this.LeftThigh.yRot = 0F;
+		this.LeftThigh.zRot = 0F;
+		this.LeftLeg.xRot = 0;
+		this.LeftFoot.xRot = 0;
+		this.RightThigh.y = 4;
+		this.RightThigh.z = 10.5F;
+		this.RightThigh.xRot = 0.4363F;
+		this.RightThigh.yRot = 0;
+		this.RightThigh.zRot = 0;
+		this.RightLeg.xRot = 0;
+		this.RightFoot.xRot = 0;
+		this.LeftArm.xRot = 0.5236F;
+		this.LeftArm.yRot = 0;
+		this.LeftArm.zRot = 0;
+		this.RightArm.xRot = 0.5236F;
+		this.RightArm.yRot = 0;
+		this.RightArm.zRot = 0;
 	}
 
 	@Override

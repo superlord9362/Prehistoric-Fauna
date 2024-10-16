@@ -2,6 +2,6 @@
 	"credit": "Made with Blockbench",
 	"parent": "prehistoricfauna:block/psittacosaurus_nest_and_egg_two_plants",
 	"textures": {
-		"egg": "prehistoricfauna:blocks/psittacosaurus_egg_very_cracked"
+		"egg": "prehistoricfauna:block/psittacosaurus_egg_very_cracked"
 	}
 }

@@ -1,0 +1,6 @@
+{
+  "type": "prehistoricfauna:kayenta_hut",
+  "biomes": "#prehistoricfauna:has_structure/kayenta_hut",
+  "spawn_overrides": {},
+  "step": "surface_structures"
+}

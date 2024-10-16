@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/postosuchus_skull"
+        "layer0": "prehistoricfauna:item/postosuchus_skull"
     }
 }

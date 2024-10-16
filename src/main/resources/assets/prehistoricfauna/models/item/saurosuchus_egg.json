@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/saurosuchus_egg"
+        "layer0": "prehistoricfauna:item/saurosuchus_egg"
     }
 }

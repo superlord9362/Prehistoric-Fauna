@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/trochodendroides_door"
+        "layer0": "prehistoricfauna:item/trochodendroides_door"
     }
 }

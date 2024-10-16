@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/bisonia"
+        "layer0": "prehistoricfauna:item/bisonia"
     }
 }

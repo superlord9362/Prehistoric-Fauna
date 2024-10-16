@@ -1,7 +1,7 @@
 {
     "parent": "block/cube_column",
     "textures": {
-        "end": "prehistoricfauna:blocks/liriodendrites_log_top",
-        "side": "prehistoricfauna:blocks/liriodendrites_log"
+        "end": "prehistoricfauna:block/liriodendrites_log_top",
+        "side": "prehistoricfauna:block/liriodendrites_log"
     }
 }

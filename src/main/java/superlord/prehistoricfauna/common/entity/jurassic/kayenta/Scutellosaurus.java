@@ -78,10 +78,9 @@ public class Scutellosaurus extends DinosaurEntity {
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(PFBlocks.CLATHROPTERIS.get().asItem());
 	private int maxHunger = 10;
 
-	@SuppressWarnings("deprecation")
 	public Scutellosaurus(EntityType<? extends Scutellosaurus> type, Level world) {
 		super(type, world);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -149,15 +148,15 @@ public class Scutellosaurus extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.SCUTELLOSAURUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.SCUTELLOSAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.SCUTELLOSAURUS_HURT;
+		return PFSounds.SCUTELLOSAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.SCUTELLOSAURUS_DEATH;
+		return PFSounds.SCUTELLOSAURUS_DEATH.get();
 	}
 
 	@Override
@@ -186,8 +185,8 @@ public class Scutellosaurus extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Scutellosaurus entity = new Scutellosaurus(PFEntities.SCUTELLOSAURUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Scutellosaurus entity = new Scutellosaurus(PFEntities.SCUTELLOSAURUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -202,7 +201,7 @@ public class Scutellosaurus extends DinosaurEntity {
 
 
 		public boolean canUse() {
-			List<DinosaurEntity> list = this.scutellosaurus.level.getEntitiesOfClass(DinosaurEntity.class, this.scutellosaurus.getBoundingBox().inflate(10.0D));
+			List<DinosaurEntity> list = this.scutellosaurus.level().getEntitiesOfClass(DinosaurEntity.class, this.scutellosaurus.getBoundingBox().inflate(10.0D));
 			boolean flag = false;
 			for (DinosaurEntity dinosaur : list) {
 				if (dinosaur.getClass() == this.followCreature) {
@@ -228,7 +227,7 @@ public class Scutellosaurus extends DinosaurEntity {
 		}
 
 		public void tick() {
-			List<DinosaurEntity> list = this.scutellosaurus.level.getEntitiesOfClass(DinosaurEntity.class, this.scutellosaurus.getBoundingBox().inflate(10.0D));
+			List<DinosaurEntity> list = this.scutellosaurus.level().getEntitiesOfClass(DinosaurEntity.class, this.scutellosaurus.getBoundingBox().inflate(10.0D));
 			for (DinosaurEntity dinosaur : list) {
 				this.scutellosaurus.getNavigation().moveTo(dinosaur, 1.0D);
 			}

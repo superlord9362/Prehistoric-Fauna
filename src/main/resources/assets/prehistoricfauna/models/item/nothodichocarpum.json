@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/nothodichocarpum"
+        "layer0": "prehistoricfauna:item/nothodichocarpum"
     }
 }

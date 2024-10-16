@@ -9,13 +9,13 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -155,15 +155,15 @@ public class MarmarthiaBlock extends BushBlock implements BonemealableBlock {
 		builder.add(LAYER, BERRIES, GROWTH);
 	}
 
-	public boolean isValidBonemealTarget(BlockGetter p_52258_, BlockPos p_52259_, BlockState state, boolean p_52261_) {
+	public boolean isValidBonemealTarget(LevelReader p_52258_, BlockPos p_52259_, BlockState state, boolean p_52261_) {
 		return state.getValue(GROWTH) < 2;
 	}
 
-	public boolean isBonemealSuccess(Level p_52268_, Random p_52269_, BlockPos p_52270_, BlockState p_52271_) {
+	public boolean isBonemealSuccess(Level p_52268_, RandomSource p_52269_, BlockPos p_52270_, BlockState p_52271_) {
 		return true;
 	}
 
-	public void performBonemeal(ServerLevel worldIn, Random rand, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerLevel worldIn, RandomSource rand, BlockPos pos, BlockState state) {
 		int i = Math.min(2, state.getValue(GROWTH) + 1);
 		worldIn.setBlock(pos, state.setValue(GROWTH, Integer.valueOf(i)), 2);
 	}

@@ -17,10 +17,20 @@
   },
   "criteria": {
     "time_temple": {
-      "trigger": "minecraft:location",
       "conditions": {
-        "feature": "prehistoricfauna:time_temple"
-      }
+		  "player": [
+			  {
+				  "condition": "minecraft:entity_properties",
+				  "entity": "this",
+				  "predicate": {
+					  "location": {
+						  "structure": "prehistoricfauna:time_temple"
+					  }
+				  }
+			  }
+		  ]
+	  },
+	  "trigger": "minecraft:location"
     }
   },
   "requirements": [

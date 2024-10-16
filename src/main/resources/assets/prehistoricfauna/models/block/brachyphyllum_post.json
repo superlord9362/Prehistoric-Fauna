@@ -1,6 +1,6 @@
 {
 	"parent": "prehistoricfauna:block/post",
 	"textures": {
-		"texture": "prehistoricfauna:blocks/brachyphyllum_log"
+		"texture": "prehistoricfauna:block/brachyphyllum_log"
 	}
 }

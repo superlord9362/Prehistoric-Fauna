@@ -60,16 +60,15 @@ public class Pinacosaurus extends DinosaurEntity {
 	private int maxHunger = 100;
 	private int warningSoundTicks;
 
-	@SuppressWarnings("deprecation")
 	public Pinacosaurus(EntityType<? extends Pinacosaurus> type, Level worldIn) {
 		super(type, worldIn);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Pinacosaurus entity = new Pinacosaurus(PFEntities.PINACOSAURUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Pinacosaurus entity = new Pinacosaurus(PFEntities.PINACOSAURUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -110,7 +109,7 @@ public class Pinacosaurus extends DinosaurEntity {
 		}
 		return super.hurt(p_33421_, p_33422_);
 	}
-	
+
 	@Override
 	public void setAge(int age) {
 		super.setAge(age);
@@ -126,22 +125,23 @@ public class Pinacosaurus extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.PINACOSAURUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.PINACOSAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.PINACOSAURUS_HURT;
+		return PFSounds.PINACOSAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.PINACOSAURUS_DEATH;
+		return PFSounds.PINACOSAURUS_DEATH.get();
 	}
 
+	@SuppressWarnings("deprecation")
 	protected void playStepSound(BlockPos pos, BlockState blockIn) {
 		if (this.isBaby()) {
-			if (!blockIn.getMaterial().isLiquid()) {
-				BlockState blockstate = this.level.getBlockState(pos.above());
-				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level, pos, this) : blockIn.getSoundType(level, pos, this);
+			if (!blockIn.liquid()) {
+				BlockState blockstate = this.level().getBlockState(pos.above());
+				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level(), pos, this) : blockIn.getSoundType(level(), pos, this);
 				this.playSound(soundtype.getStepSound(), soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			}
 		} else {
@@ -151,7 +151,7 @@ public class Pinacosaurus extends DinosaurEntity {
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.PINACOSAURUS_WARNING, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.PINACOSAURUS_WARNING.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -171,10 +171,10 @@ public class Pinacosaurus extends DinosaurEntity {
 		if (!this.isVehicle() && !player.isSecondaryUseActive() && !this.isBaby() && !this.isSleeping()) {
 			boolean flag = this.isFood(player.getItemInHand(hand));
 			if (!flag && !this.isVehicle() && !player.isSecondaryUseActive()) {
-				if (!this.level.isClientSide) {
+				if (!this.level().isClientSide()) {
 					player.startRiding(this);
 				}
-				return InteractionResult.sidedSuccess(this.level.isClientSide);
+				return InteractionResult.sidedSuccess(this.level().isClientSide());
 			}
 		} else if (!this.getPassengers().isEmpty()) {
 			this.ejectPassengers();
@@ -191,7 +191,7 @@ public class Pinacosaurus extends DinosaurEntity {
 			--this.warningSoundTicks;
 		}
 		if (this.getPassengers().isEmpty()) {
-			for (Entity e : level.getEntities(this, getBoundingBox().inflate(0.5))) {
+			for (Entity e : level().getEntities(this, getBoundingBox().inflate(0.5))) {
 				if (e instanceof Mob && e.getBbWidth() <= 0.75F && e.getBbHeight() <= 0.75F && !this.isBaby() && ((Mob)e).getMobType() != MobType.WATER && !this.isInWater()) {
 					e.startRiding(this);
 				}
@@ -202,13 +202,8 @@ public class Pinacosaurus extends DinosaurEntity {
 	}
 
 	@Nullable
-	public Entity getControllingPassenger() {
-		return this.getPassengers().isEmpty() ? null : this.getPassengers().get(0);
-	}
-
-	@Override
-	public boolean canBeControlledByRider() {
-		return false;
+	public LivingEntity getControllingPassenger() {
+		return null;
 	}
 
 	public boolean onAttackAnimationFinish(Entity entityIn) {
@@ -277,7 +272,7 @@ public class Pinacosaurus extends DinosaurEntity {
 		@Override
 		public void start() {
 			super.start();
-			for (Mob mob : entity.level.getEntitiesOfClass(Mob.class, entity.getBoundingBox().inflate(5), e -> e != entity && e.getVehicle() == null)) {
+			for (Mob mob : entity.level().getEntitiesOfClass(Mob.class, entity.getBoundingBox().inflate(5), e -> e != entity && e.getVehicle() == null)) {
 				if (mob.getBbWidth() <= 0.75F && mob.getBbHeight() <= 0.75F) {
 					mob.getNavigation().moveTo(entity, mob.getSpeed() + 0.4);
 				}

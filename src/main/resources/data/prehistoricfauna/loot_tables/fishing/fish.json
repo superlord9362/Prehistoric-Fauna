@@ -8,7 +8,7 @@
           "type": "minecraft:item",
 			"conditions": [
             {
-              "condition": "minecraft:alternative",
+              "condition": "minecraft:any_of",
               "terms": [
                 {
                   "condition": "minecraft:location_check",
@@ -80,7 +80,7 @@
           "type": "minecraft:item",
 			"conditions": [
             {
-              "condition": "minecraft:alternative",
+              "condition": "minecraft:any_of",
               "terms": [
                 {
                   "condition": "minecraft:location_check",
@@ -128,7 +128,7 @@
           "type": "minecraft:item",
 			"conditions": [
             {
-              "condition": "minecraft:alternative",
+              "condition": "minecraft:any_of",
               "terms": [
                 {
                   "condition": "minecraft:location_check",
@@ -176,7 +176,7 @@
           "type": "minecraft:item",
 			"conditions": [
             {
-              "condition": "minecraft:alternative",
+              "condition": "minecraft:any_of",
               "terms": [
                 {
                   "condition": "minecraft:location_check",
@@ -224,7 +224,7 @@
           "type": "minecraft:item",
 			"conditions": [
             {
-              "condition": "minecraft:alternative",
+              "condition": "minecraft:any_of",
               "terms": [
                 {
                   "condition": "minecraft:location_check",
@@ -272,7 +272,7 @@
           "type": "minecraft:item",
 			"conditions": [
             {
-              "condition": "minecraft:alternative",
+              "condition": "minecraft:any_of",
               "terms": [
                 {
                   "condition": "minecraft:location_check",
@@ -344,7 +344,7 @@
 			"type": "minecraft:item",
 			"conditions": [
 				{
-					"condition": "minecraft:alternative",
+					"condition": "minecraft:any_of",
 					"terms": [
 						{
 							"condition": "minecraft:location_check",
@@ -374,7 +374,7 @@
           "type": "minecraft:item",
 			"conditions": [
             {
-              "condition": "minecraft:alternative",
+              "condition": "minecraft:any_of",
               "terms": [
                 {
                   "condition": "minecraft:location_check",
@@ -422,7 +422,7 @@
 			"type": "minecraft:item",
 			"conditions": [
             {
-              "condition": "minecraft:alternative",
+              "condition": "minecraft:any_of",
               "terms": [
 				  {
                   "condition": "minecraft:location_check",
@@ -470,7 +470,7 @@
           "type": "minecraft:item",
 			"conditions": [
             {
-              "condition": "minecraft:alternative",
+              "condition": "minecraft:any_of",
               "terms": [
                 {
                   "condition": "minecraft:location_check",
@@ -506,7 +506,7 @@
           "type": "minecraft:item",
 			"conditions": [
             {
-              "condition": "minecraft:alternative",
+              "condition": "minecraft:any_of",
               "terms": [
                 {
                   "condition": "minecraft:location_check",
@@ -542,7 +542,7 @@
           "type": "minecraft:item",
 			"conditions": [
             {
-              "condition": "minecraft:alternative",
+              "condition": "minecraft:any_of",
               "terms": [
                 {
                   "condition": "minecraft:location_check",
@@ -578,7 +578,7 @@
           "type": "minecraft:item",
 			"conditions": [
             {
-              "condition": "minecraft:alternative",
+              "condition": "minecraft:any_of",
               "terms": [
                 {
                   "condition": "minecraft:location_check",
@@ -614,7 +614,7 @@
           "type": "minecraft:item",
 			"conditions": [
             {
-              "condition": "minecraft:alternative",
+              "condition": "minecraft:any_of",
               "terms": [
                 {
                   "condition": "minecraft:location_check",
@@ -662,7 +662,7 @@
           "type": "minecraft:item",
 			"conditions": [
             {
-              "condition": "minecraft:alternative",
+              "condition": "minecraft:any_of",
               "terms": [
                 {
                   "condition": "minecraft:location_check",
@@ -710,7 +710,7 @@
           "type": "minecraft:item",
 			"conditions": [
             {
-              "condition": "minecraft:alternative",
+              "condition": "minecraft:any_of",
               "terms": [
                 {
                   "condition": "minecraft:location_check",

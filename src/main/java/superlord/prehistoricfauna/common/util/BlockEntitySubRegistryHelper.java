@@ -18,7 +18,7 @@ public class BlockEntitySubRegistryHelper extends AbstractSubRegistryHelper<Bloc
 	}
 
 	public BlockEntitySubRegistryHelper(RegistryHelper parent) {
-		super(parent, DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, parent.getModId()));
+		super(parent, DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, parent.getModId()));
 	}
 
 	public static Block[] collectBlocks(Class<?> blockClass) {

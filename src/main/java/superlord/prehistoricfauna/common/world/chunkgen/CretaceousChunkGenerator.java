@@ -2,7 +2,6 @@ package superlord.prehistoricfauna.common.world.chunkgen;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
@@ -13,7 +12,6 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.util.Mth;
@@ -21,7 +19,7 @@ import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.LevelHeightAccessor;
 import net.minecraft.world.level.NaturalSpawner;
 import net.minecraft.world.level.NoiseColumn;
-import net.minecraft.world.level.StructureFeatureManager;
+import net.minecraft.world.level.StructureManager;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeManager;
 import net.minecraft.world.level.biome.BiomeSource;
@@ -30,24 +28,26 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.ChunkGenerator;
-import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.GenerationStep.Carving;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.Heightmap.Types;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
+import net.minecraft.world.level.levelgen.RandomState;
 import net.minecraft.world.level.levelgen.RandomSupport;
 import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.blending.Blender;
-import net.minecraft.world.level.levelgen.structure.StructureSet;
 import superlord.prehistoricfauna.common.util.FastNoise;
 import superlord.prehistoricfauna.common.world.biome.biomesource.CretaceousBiomeSource;
 import superlord.prehistoricfauna.common.world.biome.surfacedecorators.SurfaceDecorators;
 import superlord.prehistoricfauna.init.PFBiomes;
+import superlord.prehistoricfauna.init.PFBlocks;
 
 public class CretaceousChunkGenerator extends ChunkGenerator {
 
-	public static final Codec<CretaceousChunkGenerator> CODEC = RecordCodecBuilder.create((codec) -> commonCodec(codec).and(codec.group(
+	public static final Codec<CretaceousChunkGenerator> CODEC = RecordCodecBuilder.create((codec) -> codec.group(
 			BiomeSource.CODEC.fieldOf("biome_source").forGetter((generator) -> (BiomeSource) generator.biomeSource),
-			NoiseGeneratorSettings.CODEC.fieldOf("settings").forGetter((generator) -> generator.settings)))
+			NoiseGeneratorSettings.CODEC.fieldOf("settings").forGetter((generator) -> generator.settings))
 			.apply(codec, codec.stable(CretaceousChunkGenerator::new)));
 
 	protected final Holder<NoiseGeneratorSettings> settings;
@@ -62,12 +62,12 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 	//private final Aquifer.FluidPicker globalFluidPicker;
 	//private final NoiseRouter router;
 
-	public CretaceousChunkGenerator(Registry<StructureSet> pStructureSets, BiomeSource pBiomeSource, Holder<NoiseGeneratorSettings> settings) {
-		this(pStructureSets, pBiomeSource, settings, random.nextLong());
+	public CretaceousChunkGenerator(BiomeSource pBiomeSource, Holder<NoiseGeneratorSettings> settings) {
+		this(pBiomeSource, settings, random.nextLong());
 	}
 
-	public CretaceousChunkGenerator(Registry<StructureSet> pStructureSets, BiomeSource pBiomeSource, Holder<NoiseGeneratorSettings> settings, long seed) {
-		super(pStructureSets, Optional.empty(), pBiomeSource);
+	public CretaceousChunkGenerator(BiomeSource pBiomeSource, Holder<NoiseGeneratorSettings> settings, long seed) {
+		super(pBiomeSource);
 		this.settings = settings;
 		this.seed = seed;
 		//		int i = settings.value().seaLevel();
@@ -103,17 +103,7 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 	}
 
 	@Override
-	public ChunkGenerator withSeed(long seed) {
-		return new CretaceousChunkGenerator(this.structureSets, this.biomeSource.withSeed(seed), this.settings, this.seed);
-	}
-
-	@Override
-	public Climate.Sampler climateSampler() {
-		return this.sampler;
-	}
-
-	@Override
-	public void applyCarvers(WorldGenRegion region, long seed, BiomeManager manager, StructureFeatureManager structureFeatureManager, ChunkAccess chunk, GenerationStep.Carving genStep) {
+	public void applyCarvers(WorldGenRegion region, long seed, RandomState p_223045_, BiomeManager manager, StructureManager structureFeatureManager, ChunkAccess chunk, Carving genStep) {
 		//				BiomeManager biomemanager = manager.withDifferentSource((p_209119_, p_209120_, p_209121_) -> {
 		//					return this.biomeSource.getNoiseBiome(p_209119_, p_209120_, p_209121_, this.climateSampler());
 		//				});
@@ -151,7 +141,7 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 	}
 
 	@Override
-	public void buildSurface(WorldGenRegion region, StructureFeatureManager structureFeatureManager, ChunkAccess chunk) {
+	public void buildSurface(WorldGenRegion region, StructureManager structureFeatureManager, RandomState p_223052_, ChunkAccess chunk) {
 		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
 		for (int x = 0; x < 16; x++) {
 			for (int z = 0; z < 16; z++) {
@@ -161,7 +151,7 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 				boolean isInSolid = false;
 				boolean visibleToSun = true;
 				while (pos.getY() > this.getMinY() + 5) {
-					ResourceLocation biome = region.getBiome(pos).value().getRegistryName();
+					ResourceLocation biome = region.getBiome(pos).unwrap().map((resourceKey) -> resourceKey.location(), (noKey) -> null);
 					if (chunk.getBlockState(pos) == this.settings.value().defaultBlock() ) {
 						if (!isInSolid) {
 							SurfaceDecorators.getSurfaceDecorator(biome).buildSurface(pos, this.getSeaLevel(), visibleToSun, chunk, settings.value());
@@ -182,13 +172,13 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 	public void spawnOriginalMobs(WorldGenRegion region) {
 		ChunkPos chunkPos = region.getCenter();
 		Holder<Biome> holder = region.getBiome(chunkPos.getWorldPosition().atY(region.getMaxBuildHeight() - 1));
-		WorldgenRandom worldgenRandom = new WorldgenRandom(new LegacyRandomSource(RandomSupport.seedUniquifier()));
+		WorldgenRandom worldgenRandom = new WorldgenRandom(new LegacyRandomSource(RandomSupport.generateUniqueSeed()));
 		worldgenRandom.setDecorationSeed(region.getSeed(), chunkPos.getMinBlockX(), chunkPos.getMinBlockZ());
 		NaturalSpawner.spawnMobsForChunkGeneration(region, holder, chunkPos, worldgenRandom);
 	}
 
 	@Override
-	public CompletableFuture<ChunkAccess> fillFromNoise(Executor executor, Blender blender, StructureFeatureManager manager, ChunkAccess chunk) {
+	public CompletableFuture<ChunkAccess> fillFromNoise(Executor executor, Blender blender, RandomState p_223211_, StructureManager manager, ChunkAccess chunk) {
 		fillNoiseSampleArrays(chunk);
 		Heightmap[] heightmaps = {chunk.getOrCreateHeightmapUnprimed(Heightmap.Types.OCEAN_FLOOR_WG), chunk.getOrCreateHeightmapUnprimed(Heightmap.Types.WORLD_SURFACE_WG)};
 		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
@@ -200,11 +190,18 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 					float sample = sampleDensityFromArray(terrainShapeSamplePoints, x, y, z);
 					BlockState state;
 					if (sample > 0) {
+						BiomeManager biomeManager = new BiomeManager((CretaceousBiomeSource)this.getBiomeSource(), this.seed);
+						Holder<Biome> biome = biomeManager.getBiome(new BlockPos(x + chunk.getPos().getMinBlockX(), pos.getY(), z + chunk.getPos().getMinBlockZ()));
+						if (biome.is(PFBiomes.CRETACEOUS_HENOSTONE_CAVE)) {
+							state = PFBlocks.HENOSTONE.get().defaultBlockState();
+						} else {
+							if (y < 0 +- random.nextInt(5)) {
+								state = Blocks.DEEPSLATE.defaultBlockState();
+							} else state = settings.value().defaultBlock();
+						}
 						if (y <= this.getMinY() + random.nextInt(4)) {
 							state = Blocks.BEDROCK.defaultBlockState();
-						} else if (y < 0 +- random.nextInt(5)) {
-							state = Blocks.DEEPSLATE.defaultBlockState();
-						} else state = settings.value().defaultBlock();
+						}
 					} else {
 						if ( y <= this.getMinY() + random.nextInt(4)) {
 							state = Blocks.BEDROCK.defaultBlockState();
@@ -226,7 +223,7 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 		BiomeManager biomeManager = new BiomeManager((CretaceousBiomeSource)this.getBiomeSource(), this.seed);
 		Holder<Biome> biome = biomeManager.getBiome(new BlockPos(pos.getX(), pos.getY(), pos.getZ()));
 		if (pos.getY() <= this.getSeaLevel())
-			return ((biome.is(PFBiomes.HELL_CREEK_RIVER.getKey()) || biome.is(PFBiomes.HELL_CREEK_SWAMP.getKey()) || biome.is(PFBiomes.YIXIAN_LAKES.getKey()) || biome.is(PFBiomes.DJADOCHTA_ARROYO.getKey()) && pos.getY() > 45) || noise.GetNoise(pos.getX() * 0.8F, pos.getY(), pos.getZ() * 0.8F) > 0.7);
+			return ((biome.is(PFBiomes.HELL_CREEK_RIVER) || biome.is(PFBiomes.HELL_CREEK_SWAMP) || biome.is(PFBiomes.YIXIAN_LAKES) || biome.is(PFBiomes.DJADOCHTA_ARROYO) && pos.getY() > 45) || noise.GetNoise(pos.getX() * 0.8F, pos.getY(), pos.getZ() * 0.8F) > 0.7);
 		return false;
 	}
 
@@ -252,7 +249,7 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 		int seaLevel = this.settings.value().seaLevel();
 		if (y > seaLevel) y = y + 3;
 		BiomeManager biomeManager = new BiomeManager((CretaceousBiomeSource)this.getBiomeSource(), this.seed);
-		Holder<Biome> biome = biomeManager.getBiome(new BlockPos(x, y, z));
+		Holder<Biome> biome = biomeManager.getBiome(new BlockPos((int) x, (int) y, (int) z));
 
 		float frequency1 = 0.3F;
 		float sample = noise.GetNoise(x * frequency1, y * frequency1 * 0.8F, z * frequency1);
@@ -282,12 +279,12 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 		float swampFrequency = 1.5F;
 		float swampNoise = noise.GetNoise((float) x * swampFrequency, 0, (float) z * swampFrequency);
 		swampNoise = (1.5F - swampNoise * swampNoise);
-		swampNoise *= (y - seaLevel + 8) * 1.1;
+		swampNoise *= (y - seaLevel + 0.55) * 1.1;
 
 		float lakeFrequency = 1.5F;
 		float lakeNoise = noise.GetNoise((float) x * lakeFrequency, 0, (float) z * lakeFrequency);
 		lakeNoise = (1.5F - lakeNoise * lakeNoise);
-		lakeNoise *= (y - seaLevel + 3) * 0.7;
+		lakeNoise *= (y - seaLevel + 0.05) * 0.7;
 
 		float riverFrequency = 0.1F;
 		float riverNoise = noise.GetNoise((float) x * riverFrequency, 0, (float) z * riverFrequency);
@@ -316,10 +313,10 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 		float hillLumpiness = noise.GetNoise(x * hillLumpFrequency, y * hillLumpFrequency * 1.8F, z * hillLumpFrequency);
 		hillLumpiness *= hillWobble * 0.1F;
 
-		if (biome.is(PFBiomes.YIXIAN_SNOWY_MOUNTAINS.getKey()) || biome.is(PFBiomes.YIXIAN_VOLCANO.getKey()) || biome.is(PFBiomes.YIXIAN_REGROWTH.getKey()) || biome.is(PFBiomes.YIXIAN_SNOWY_FOREST.getKey())) {
+		if (biome.is(PFBiomes.YIXIAN_SNOWY_MOUNTAINS) || biome.is(PFBiomes.YIXIAN_VOLCANO) || biome.is(PFBiomes.YIXIAN_REGROWTH) || biome.is(PFBiomes.YIXIAN_SNOWY_FOREST)) {
 			sample += cliffLumpiness;
 		}
-		if (biome.is(PFBiomes.HELL_CREEK_BLUFFS.getKey()) || biome.is(PFBiomes.DJADOCHTA_DUNES.getKey())) {
+		if (biome.is(PFBiomes.HELL_CREEK_BLUFFS) || biome.is(PFBiomes.DJADOCHTA_DUNES)) {
 			sample += hillLumpiness;
 		}
 		float frequency2 = 2.5F;
@@ -328,42 +325,42 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 		sample += Mth.abs(noise.GetNoise(x * frequency3, y * frequency3, z * frequency3) * 0.05F);
 		sample -= 0.15F;
 
-		if (biome.is(PFBiomes.HELL_CREEK_SWAMP.getKey())) {
-			sample *= 2.3F;
+		if (biome.is(PFBiomes.HELL_CREEK_SWAMP)) {
 			sample -= swampNoise;
+			sample *= 4.3F;
 		}
-		if (biome.is(PFBiomes.HELL_CREEK_RIVER.getKey())) {
+		if (biome.is(PFBiomes.HELL_CREEK_RIVER)) {
 			sample -= riverNoise;
 			sample *= 2.3;
 			sample -= 26;
 		}
-		if (biome.is(PFBiomes.YIXIAN_SNOWY_MOUNTAINS.getKey()) || biome.is(PFBiomes.YIXIAN_VOLCANO.getKey())) {
+		if (biome.is(PFBiomes.YIXIAN_SNOWY_MOUNTAINS) || biome.is(PFBiomes.YIXIAN_VOLCANO)) {
 			sample *= 5.9F;
 			sample += 2.5;
 			sample -= (y - this.settings.value().seaLevel() - hugeCliffNoise * 64) / (16.0F / bigRockNoise * (hugeCliffWobble + 1));
 			//sample *= 2.9F;
 		}
-		if (biome.is(PFBiomes.YIXIAN_SNOWY_MOUNTAINS.getKey()) || biome.is(PFBiomes.YIXIAN_VOLCANO.getKey()) || biome.is(PFBiomes.YIXIAN_REGROWTH.getKey()) || biome.is(PFBiomes.YIXIAN_SNOWY_FOREST.getKey())) {
+		if (biome.is(PFBiomes.YIXIAN_SNOWY_MOUNTAINS) || biome.is(PFBiomes.YIXIAN_VOLCANO) || biome.is(PFBiomes.YIXIAN_REGROWTH) || biome.is(PFBiomes.YIXIAN_SNOWY_FOREST)) {
 			sample *= 0.5F;
 			sample -= (y - this.settings.value().seaLevel() - hugeCliffNoise * 64) / (16.0F / bigRockNoise * (hugeCliffWobble + 1));
 		}
-		if (biome.is(PFBiomes.HELL_CREEK_HARDWOOD_FOREST.getKey()) || biome.is(PFBiomes.HELL_CREEK_CLEARING.getKey()) || biome.is(PFBiomes.YIXIAN_FOREST.getKey()) || biome.is(PFBiomes.DJADOCHTA_ARROYO.getKey()) || biome.is(PFBiomes.HELL_CREEK_REDWOODS.getKey()) || biome.is(PFBiomes.HELL_CREEK_SWAMP.getKey()) || biome.is(PFBiomes.HELL_CREEK_RIVER.getKey()) || biome.is(PFBiomes.DJADOCHTA_ALLUVIAL_PLAINS.getKey())) {
+		if (biome.is(PFBiomes.HELL_CREEK_HARDWOOD_FOREST) || biome.is(PFBiomes.HELL_CREEK_CLEARING) || biome.is(PFBiomes.YIXIAN_FOREST) || biome.is(PFBiomes.DJADOCHTA_ARROYO) || biome.is(PFBiomes.HELL_CREEK_REDWOODS) || biome.is(PFBiomes.HELL_CREEK_SWAMP) || biome.is(PFBiomes.HELL_CREEK_RIVER) || biome.is(PFBiomes.DJADOCHTA_ALLUVIAL_PLAINS)) {
 			//sample *= 12.6F;
 			sample -= flatsNoise;
 			//sample *= 12.5;
 		}
-		if (biome.is(PFBiomes.YIXIAN_LAKES.getKey())) {
-			sample *= 5.3F;
+		if (biome.is(PFBiomes.YIXIAN_LAKES)) {
 			sample -= lakeNoise;
+			sample *= 6.3F;
 			//sample *= 0.6F;
 		}
-		if (biome.is(PFBiomes.HELL_CREEK_BLUFFS.getKey()) || biome.is(PFBiomes.DJADOCHTA_DUNES.getKey())) {
+		if (biome.is(PFBiomes.HELL_CREEK_BLUFFS) || biome.is(PFBiomes.DJADOCHTA_DUNES)) {
 			sample *= 1.6F;
 			sample += 0.4;
 			sample -= (y - this.settings.value().seaLevel() - hillNoise * 64) / (16.0F / bigHillRockNoise * (hillWobble + 1));
 			sample *= 6.6F;
 		}
-		//		if (biome.is(PFBiomes.PREHISTORIC_DRIPSTONE_CAVE.getKey())) {
+		//		if (biome.is(PFBiomes.PREHISTORIC_DRIPSTONE_CAVE)) {
 		//			sample *= 1.6F;
 		//			sample += 0.4;
 		//			sample -= (y - this.settings.value().seaLevel() - hillNoise * 64) / (16.0F / bigHillRockNoise * (hillWobble + 1));
@@ -465,12 +462,12 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 	}
 
 	@Override
-	public int getBaseHeight(int p_156153_, int p_156154_, Heightmap.Types type, LevelHeightAccessor accessor) {
-		return 0;
+	public int getBaseHeight(int p_156153_, int p_156154_, Types type, LevelHeightAccessor accessor, RandomState p_223036_) {
+		return 64;
 	}
 
 	@Override
-	public NoiseColumn getBaseColumn(int p_156150_, int p_156151_, LevelHeightAccessor chunk) {
+	public NoiseColumn getBaseColumn(int p_156150_, int p_156151_, LevelHeightAccessor chunk, RandomState p_223031_) {
 		BlockState[] states = new BlockState[chunk.getHeight()];
 		int iY = 0;
 		for (int y = chunk.getMinBuildHeight(); y < chunk.getMaxBuildHeight(); y++) {
@@ -481,12 +478,13 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 	}
 
 	@Override
-	public void addDebugScreenInfo(List<String> string, BlockPos pos) {
+	public void addDebugScreenInfo(List<String> string, RandomState state, BlockPos pos) {
 		CretaceousBiomeSource source = (CretaceousBiomeSource)this.biomeSource;
 		string.add("Timeline Noise: " + source.timeLineNoise(pos.getX(), pos.getY(), pos.getZ(), noise));
 		string.add("Temp Noise: " + source.tempNoise(pos.getX(), pos.getY(), pos.getZ(), noise));
 		string.add("Hilliness Noise: " + source.hillinessNoise(pos.getX(), pos.getY(), pos.getZ(), noise));
 		string.add("Humidity Noise: " + source.humidityNoise(pos.getX(), pos.getY(), pos.getZ(), noise));
+		string.add("Cave Timeline Noise: " + source.caveTimeLineNoise(pos.getX(), pos.getY(), pos.getZ(), noise));
 	}
 
 }

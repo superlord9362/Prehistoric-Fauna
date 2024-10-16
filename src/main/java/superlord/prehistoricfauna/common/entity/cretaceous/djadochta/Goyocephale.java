@@ -66,10 +66,9 @@ public class Goyocephale extends DinosaurEntity {
 	private static final EntityDataAccessor<Boolean> RAMMING = SynchedEntityData.defineId(Goyocephale.class, EntityDataSerializers.BOOLEAN);
 	public int rammingTime = 0;
 
-	@SuppressWarnings("deprecation")
 	public Goyocephale(EntityType<? extends Goyocephale> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = this.maxHunger;
 	}
 
@@ -132,7 +131,7 @@ public class Goyocephale extends DinosaurEntity {
 
 	public void aiStep() {
 		super.aiStep();
-		for (LivingEntity entity : this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(8, 4, 8))) {
+		for (LivingEntity entity : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(8, 4, 8))) {
 			if (entity.hasEffect(PFEffects.GINKGO_SPLATTERED.get())) {
 				this.setTarget(entity);
 			}
@@ -140,7 +139,7 @@ public class Goyocephale extends DinosaurEntity {
 		int ramTime = this.random.nextInt(5400) + 600;
 		for (int i = this.rammingTime; i < ramTime; i++) {
 			if (i == ramTime) {
-				for (LivingEntity entity : this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(8, 4, 8))) {
+				for (LivingEntity entity : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(8, 4, 8))) {
 					if (entity.getBbWidth() <= 0.1 && entity.getBbHeight() <= 0.1) {
 						this.setRamming(true);
 						this.setTarget(entity);
@@ -152,15 +151,15 @@ public class Goyocephale extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.GOYOCEPHALE_IDLE;
+		return this.isAsleep() ? null : PFSounds.GOYOCEPHALE_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.GOYOCEPHALE_HURT;
+		return PFSounds.GOYOCEPHALE_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.GOYOCEPHALE_DEATH;
+		return PFSounds.GOYOCEPHALE_DEATH.get();
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -200,8 +199,8 @@ public class Goyocephale extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Goyocephale entity = new Goyocephale(PFEntities.GOYOCEPHALE.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Goyocephale entity = new Goyocephale(PFEntities.GOYOCEPHALE.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 

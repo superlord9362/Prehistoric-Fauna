@@ -1,7 +1,0 @@
-{
-    "parent": "block/door_top",
-    "textures": {
-        "bottom": "prehistoricfauna:blocks/neocalamites_door_bottom",
-        "top": "prehistoricfauna:blocks/neocalamites_door_top"
-    }
-}

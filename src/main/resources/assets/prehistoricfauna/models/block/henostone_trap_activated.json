@@ -2,10 +2,10 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/cube_all",
 	"textures": {
-		"0": "prehistoricfauna:blocks/henostone_trap_side",
-		"1": "prehistoricfauna:blocks/henostone_trap_spikes",
-		"2": "prehistoricfauna:blocks/henostone_trap_top",
-		"particle": "prehistoricfauna:blocks/henostone_trap_side"
+		"0": "prehistoricfauna:block/henostone_trap_side",
+		"1": "prehistoricfauna:block/henostone_trap_spikes",
+		"2": "prehistoricfauna:block/henostone_trap_top",
+		"particle": "prehistoricfauna:block/henostone_trap_side"
 	},
 	"elements": [
 		{

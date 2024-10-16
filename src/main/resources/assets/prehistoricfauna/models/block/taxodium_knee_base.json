@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "prehistoricfauna:blocks/taxodium_knee_base"
+        "cross": "prehistoricfauna:block/taxodium_knee_base"
     }
 }

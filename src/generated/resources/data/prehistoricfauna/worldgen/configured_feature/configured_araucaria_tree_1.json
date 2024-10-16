@@ -1,0 +1,27 @@
+{
+  "type": "prehistoricfauna:araucaria_tree_1",
+  "config": {
+    "leaves_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:araucaria_leaves",
+        "Properties": {
+          "distance": "7",
+          "persistent": "false",
+          "waterlogged": "false"
+        }
+      }
+    },
+    "max_height": 56,
+    "min_height": 44,
+    "trunk_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:araucaria_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    }
+  }
+}

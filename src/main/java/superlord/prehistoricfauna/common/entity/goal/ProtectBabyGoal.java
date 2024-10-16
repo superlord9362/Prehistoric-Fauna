@@ -19,23 +19,22 @@ public class ProtectBabyGoal extends NearestAttackableTargetGoal<LivingEntity> {
 	 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
 	 * method as well.
 	 */
+	@SuppressWarnings("resource")
 	public boolean canUse() {
 		if (dinosaur.isBaby() || dinosaur.isTame()) {
 			return false;
 		} else {
 			if (super.canUse()) {
-				for(DinosaurEntity pinacosaurus : dinosaur.level.getEntitiesOfClass(DinosaurEntity.class, dinosaur.getBoundingBox().inflate(8.0D, 4.0D, 8.0D))) {
+				for(DinosaurEntity baby : dinosaur.level().getEntitiesOfClass(DinosaurEntity.class, dinosaur.getBoundingBox().inflate(8.0D, 4.0D, 8.0D))) {
 					if (!dinosaur.trusts(this.target.getUUID()) && (dinosaur.isProtective() || dinosaur.isTerritorial() || dinosaur.isOpportunist() || dinosaur.isAggressive()) && !dinosaur.isTame()) {
 						if (this.target instanceof DinosaurEntity meanDinosaur) {
-							if (meanDinosaur.getBoundingBox().getSize() < pinacosaurus.getBoundingBox().getSize() * 2 && meanDinosaur.isCarnivorous() && meanDinosaur != pinacosaurus) {
-								if (pinacosaurus.isBaby() && meanDinosaur != pinacosaurus) {
-									System.out.println("Mean Dinosaur: " + meanDinosaur);
-									System.out.println("Baby Dinosaur: " + pinacosaurus);
+							if (meanDinosaur.getBoundingBox().getSize() < baby.getBoundingBox().getSize() * 2 && meanDinosaur.isCarnivorous() && meanDinosaur != baby) {
+								if (baby.isBaby() && meanDinosaur != baby) {
 									return true;
 								}	
 							}
 						} else if (this.target instanceof Player) {
-							if (pinacosaurus.isBaby()) {
+							if (baby.isBaby()) {
 								return true;
 							}	
 						}

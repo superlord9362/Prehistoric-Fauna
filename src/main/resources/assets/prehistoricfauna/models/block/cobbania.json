@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "prehistoricfauna:blocks/cobbania",
-		"1": "prehistoricfauna:blocks/cobbania_roots",
-		"particle": "prehistoricfauna:blocks/cobbania"
+		"0": "prehistoricfauna:block/cobbania",
+		"1": "prehistoricfauna:block/cobbania_roots",
+		"particle": "prehistoricfauna:block/cobbania"
 	},
 	"elements": [
 		{

@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "prehistoricfauna:blocks/archaefructus_tall_top"
+        "cross": "prehistoricfauna:block/archaefructus_tall_top"
     }
 }

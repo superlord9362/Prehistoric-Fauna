@@ -37,7 +37,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.PrehistoricFauna;
@@ -64,10 +64,9 @@ public class Liaoningosaurus extends DinosaurEntity {
 	private static final EntityDataAccessor<Boolean> ASH_DIGGING = SynchedEntityData.defineId(Liaoningosaurus.class, EntityDataSerializers.BOOLEAN);
 	private int maxHunger = 50;
 
-	@SuppressWarnings("deprecation")
 	public Liaoningosaurus(EntityType<? extends TamableAnimal> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1);
 		super.maxHunger = this.maxHunger;
 	}
 	
@@ -103,15 +102,15 @@ public class Liaoningosaurus extends DinosaurEntity {
 	}
 	
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.LIAONINGOSAURUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.LIAONINGOSAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.LIAONINGOSAURUS_HURT;
+		return PFSounds.LIAONINGOSAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.LIAONINGOSAURUS_DEATH;
+		return PFSounds.LIAONINGOSAURUS_DEATH.get();
 	}
 	
 	public static AttributeSupplier.Builder createAttributes() {
@@ -164,8 +163,8 @@ public class Liaoningosaurus extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Liaoningosaurus entity = new Liaoningosaurus(PFEntities.LIAONINGOSAURUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Liaoningosaurus entity = new Liaoningosaurus(PFEntities.LIAONINGOSAURUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -233,11 +232,11 @@ public class Liaoningosaurus extends DinosaurEntity {
 				return false;
 			} else {
 				BlockPos blockpos = liaoningosaurus.blockPosition();
-				BlockState state = liaoningosaurus.level.getBlockState(blockpos);
+				BlockState state = liaoningosaurus.level().getBlockState(blockpos);
 				if (state.is(BlockTags.DIRT)) {
 					return true;
 				} else {
-					return liaoningosaurus.level.getBlockState(blockpos.below()).is(BlockTags.DIRT);
+					return liaoningosaurus.level().getBlockState(blockpos.below()).is(BlockTags.DIRT);
 				}
 			}
 		}
@@ -246,7 +245,7 @@ public class Liaoningosaurus extends DinosaurEntity {
 		public void start() {
 			diggingTimer = 40;
 			digTimer2 = 6000;
-			liaoningosaurus.level.broadcastEntityEvent(liaoningosaurus, (byte) 10);
+			liaoningosaurus.level().broadcastEntityEvent(liaoningosaurus, (byte) 10);
 			liaoningosaurus.setAshDigging(true);
 			liaoningosaurus.getNavigation().stop();
 		}
@@ -273,13 +272,13 @@ public class Liaoningosaurus extends DinosaurEntity {
 			if (diggingTimer == 25) {
 				BlockPos blockpos = liaoningosaurus.blockPosition();
 				BlockPos blockpos1 = blockpos.below();
-				if (liaoningosaurus.level.getBlockState(blockpos1).is(BlockTags.DIRT)) {
-					BlockState state = liaoningosaurus.level.getBlockState(blockpos1);
-					liaoningosaurus.level.levelEvent(2001, blockpos1, Block.getId(state));
-					MinecraftServer server = liaoningosaurus.level.getServer();
+				if (liaoningosaurus.level().getBlockState(blockpos1).is(BlockTags.DIRT)) {
+					BlockState state = liaoningosaurus.level().getBlockState(blockpos1);
+					liaoningosaurus.level().levelEvent(2001, blockpos1, Block.getId(state));
+					MinecraftServer server = liaoningosaurus.level().getServer();
 					if (server != null) {
-						List<ItemStack> items = server.getLootTables().get(DIGGING_LOOT).getRandomItems(new LootContext.Builder((ServerLevel) liaoningosaurus.level).withRandom(liaoningosaurus.getRandom()).create(LootContextParamSets.EMPTY));
-						Containers.dropContents(liaoningosaurus.level, blockpos, NonNullList.of(ItemStack.EMPTY, items.toArray(new ItemStack[0])));
+						List<ItemStack> items = server.getLootData().getLootTable(DIGGING_LOOT).getRandomItems(new LootParams.Builder((ServerLevel) liaoningosaurus.level()).create(LootContextParamSets.EMPTY));
+						Containers.dropContents(liaoningosaurus.level(), blockpos, NonNullList.of(ItemStack.EMPTY, items.toArray(new ItemStack[0])));
 					}
 				}
 			}

@@ -1,6 +1,6 @@
 {
     "parent": "block/flower_pot_cross",
     "textures": {
-        "plant": "prehistoricfauna:blocks/dead_cycadeoid"
+        "plant": "prehistoricfauna:block/dead_cycadeoid"
     }
 }

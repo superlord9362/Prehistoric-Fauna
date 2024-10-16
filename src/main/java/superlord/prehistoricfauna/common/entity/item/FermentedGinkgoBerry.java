@@ -3,7 +3,7 @@ package superlord.prehistoricfauna.common.entity.item;
 import javax.annotation.Nonnull;
 
 import net.minecraft.network.protocol.Packet;
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -44,7 +44,7 @@ public class FermentedGinkgoBerry extends ThrowableItemProjectile {
 
 	@Nonnull
 	@Override
-	public Packet<?> getAddEntityPacket() {
+	public Packet<ClientGamePacketListener> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
@@ -52,15 +52,15 @@ public class FermentedGinkgoBerry extends ThrowableItemProjectile {
 		super.onHitEntity(result);
 		Entity entity = result.getEntity();
 		if (entity instanceof LivingEntity livingEntity) {
-			livingEntity.hurt(DamageSource.thrown(this, this.getOwner()), 0);
+			livingEntity.hurt(this.damageSources().thrown(this, this.getOwner()), 0);
 			livingEntity.addEffect(new MobEffectInstance(PFEffects.GINKGO_SPLATTERED.get(), 150, 0, false, false, false));
 		}
 		this.discard();
 	}
 
 	protected void onHitBlock(BlockHitResult result) {
-		if (this.level.getBlockState(result.getBlockPos().relative(result.getDirection())).isAir()) {
-			this.level.setBlockAndUpdate(result.getBlockPos().relative(result.getDirection()), PFBlocks.SPLATTERED_GINKGO.get().defaultBlockState());
+		if (this.level().getBlockState(result.getBlockPos().relative(result.getDirection())).isAir()) {
+			this.level().setBlockAndUpdate(result.getBlockPos().relative(result.getDirection()), PFBlocks.SPLATTERED_GINKGO.get().defaultBlockState());
 		}
 		super.onHitBlock(result);
 	}

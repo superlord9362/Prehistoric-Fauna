@@ -2,9 +2,9 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/thin_block",
 	"textures": {
-		"0": "prehistoricfauna:blocks/algae",
-		"1": "prehistoricfauna:blocks/algae_side",
-		"particle": "prehistoricfauna:blocks/algae"
+		"0": "prehistoricfauna:block/algae",
+		"1": "prehistoricfauna:block/algae_side",
+		"particle": "prehistoricfauna:block/algae"
 	},
 	"elements": [
 		{

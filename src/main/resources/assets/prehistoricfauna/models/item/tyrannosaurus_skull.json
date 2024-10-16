@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/tyrannosaurus_skull"
+        "layer0": "prehistoricfauna:item/tyrannosaurus_skull"
     }
 }

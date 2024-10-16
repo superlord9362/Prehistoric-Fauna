@@ -1,10 +1,11 @@
 package superlord.prehistoricfauna.client.render.henos;
 
+import org.joml.Matrix3f;
+import org.joml.Matrix4f;
+
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Matrix3f;
-import com.mojang.math.Matrix4f;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.model.EntityModel;
@@ -91,15 +92,15 @@ public class HenosRenderer extends MobRenderer<Henos, EntityModel<Henos>> {
 		float f1 = Mth.wrapDegrees(180.0F - rotationYaw);
 		float f2 = Mth.wrapDegrees((float)(Mth.atan2(d2, d0) * (double)(180F / (float)Math.PI)) + 90.0F);
 		float f3 = entityIn.getLaserTargetProgress(partialTicks);
-		matrixStackIn.mulPose(Vector3f.YN.rotationDegrees(f1 * f3));
-		matrixStackIn.mulPose(Vector3f.YN.rotationDegrees(f2 * f3));
+		matrixStackIn.mulPose(Axis.YN.rotationDegrees(f1 * f3));
+		matrixStackIn.mulPose(Axis.YN.rotationDegrees(f2 * f3));
 	}
 
 	public void render(Henos entityIn, float entityYaw, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn) {
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 		Entity livingentity = entityIn.getLaserTarget();
 		if (livingentity != null) {
-			float f1 = (float) entityIn.level.getGameTime() + partialTicks;
+			float f1 = (float) entityIn.level().getGameTime() + partialTicks;
 			float f2 = f1 * -0.2F % 1.0F;
 			float f3 = entityIn.getBbHeight() * 0.625F;
 			matrixStackIn.pushPose();
@@ -111,8 +112,8 @@ public class HenosRenderer extends MobRenderer<Henos, EntityModel<Henos>> {
 			vector3d2 = vector3d2.normalize();
 			float f5 = (float) Math.acos(vector3d2.y);
 			float f6 = (float) Math.atan2(vector3d2.z, vector3d2.x);
-			matrixStackIn.mulPose(Vector3f.YP.rotationDegrees((((float) Math.PI / 2F) - f6) * (180F / (float) Math.PI)));
-			matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(f5 * (180F / (float) Math.PI)));
+			matrixStackIn.mulPose(Axis.YP.rotationDegrees((((float) Math.PI / 2F) - f6) * (180F / (float) Math.PI)));
+			matrixStackIn.mulPose(Axis.XP.rotationDegrees(f5 * (180F / (float) Math.PI)));
 			float f8 = 1F;
 			int j = (int) (f8 * 255.0F);
 			int k = (int) (f8 * 255.0F);

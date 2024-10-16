@@ -71,10 +71,9 @@ public class Herrerasaurus extends DinosaurEntity {
 	private int warningSoundTicks;
 	private Goal attackAnimals;
 
-	@SuppressWarnings("deprecation")
 	public Herrerasaurus(EntityType<? extends Herrerasaurus> type, Level levelIn) {
 		super(type, levelIn);
-		super.maxUpStep = 1.0F;
+		super.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 	
@@ -163,20 +162,20 @@ public class Herrerasaurus extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.HERRERASAURUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.HERRERASAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.HERRERASAURUS_HURT;
+		return PFSounds.HERRERASAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.HERRERASAURUS_DEATH;
+		return PFSounds.HERRERASAURUS_DEATH.get();
 	}
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.HERRERASAURUS_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.HERRERASAURUS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -210,7 +209,7 @@ public class Herrerasaurus extends DinosaurEntity {
 			double d0 = this.getAttackReachSqr(enemy);
 			if (distToEnemySqr <= d0 && this.isTimeToAttack()) {
 				this.resetAttackCooldown();
-				Herrerasaurus.this.playSound(PFSounds.HERRERASAURUS_BITE, 1.0F, Herrerasaurus.this.getVoicePitch());
+				Herrerasaurus.this.playSound(PFSounds.HERRERASAURUS_BITE.get(), 1.0F, Herrerasaurus.this.getVoicePitch());
 				this.mob.doHurtTarget(enemy);
 			} else if (distToEnemySqr <= d0 * 2.0D) {
 				if (this.isTimeToAttack()) {
@@ -241,8 +240,8 @@ public class Herrerasaurus extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Herrerasaurus entity = new Herrerasaurus(PFEntities.HERRERASAURUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Herrerasaurus entity = new Herrerasaurus(PFEntities.HERRERASAURUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 	

@@ -2,11 +2,9 @@ package superlord.prehistoricfauna.client.gui;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
-
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
 public class ChangePageButton extends Button {
@@ -15,16 +13,16 @@ public class ChangePageButton extends Button {
     private final int color;
 
     public ChangePageButton(int x, int y, boolean right, int color, OnPress press) {
-        super(x, y, 23, 10, new TextComponent(""), press);
+        super(x, y, 23, 10, Component.literal(""), press, DEFAULT_NARRATION);
         this.right = right;
         this.color = color;
     }
 
     @Override
-    public void renderButton(@NotNull PoseStack matrixStack, int mouseX, int mouseY, float partial) {
+    public void renderWidget(@NotNull GuiGraphics matrixStack, int mouseX, int mouseY, float partial) {
         if (this.active) {
-            boolean flag = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
-            RenderSystem.setShaderTexture(0, new ResourceLocation("prehistoricfauna:textures/gui/paleopedia/widgets.png"));
+        	ResourceLocation resourceLocation = new ResourceLocation("prehistoricfauna:textures/gui/paleopedia/widgets.png");
+            boolean flag = mouseX >= this.getX() && mouseY >= this.getY() && mouseX < this.getX() + this.width && mouseY < this.getY() + this.height;
             int i = 0;
             int j = 64;
             if (flag) {
@@ -36,7 +34,7 @@ public class ChangePageButton extends Button {
             }
             j += color * 23;
 
-            this.blit(matrixStack, this.x, this.y, i, j, width, height);
+            matrixStack.blit(resourceLocation, this.getX(), this.getY(), i, j, width, height);
         }
     }
 }

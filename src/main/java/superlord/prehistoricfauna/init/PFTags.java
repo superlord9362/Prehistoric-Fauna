@@ -1,10 +1,11 @@
 package superlord.prehistoricfauna.init;
 
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import superlord.prehistoricfauna.PrehistoricFauna;
 
@@ -118,6 +119,7 @@ public class PFTags {
 	public static final TagKey<EntityType<?>> CHANGYURAPTOR_BABY_HUNTING = registerEntityTag("changyuraptor_baby_hunting");
 
 	public static final TagKey<EntityType<?>> BEIPIAOSAURUS_AVOIDING = registerEntityTag("beipiaosaurus_avoiding");
+	public static final TagKey<EntityType<?>> CHANGYURAPTOR_AVOIDING = registerEntityTag("changyuraptor_avoiding");
 	
 	public static final TagKey<Item> MEATS_2_HUNGER = registerItemTag("two_hunger_meats");
 	public static final TagKey<Item> MEATS_4_HUNGER = registerItemTag("four_hunger_meats");
@@ -132,17 +134,35 @@ public class PFTags {
 	public static final TagKey<Item> EGGS_15_HUNGER = registerItemTag("fifteen_hunger_eggs");
 	public static final TagKey<Item> SHELLFISH_3_HUNGER = registerItemTag("three_hunger_shellfish");
 	public static final TagKey<Block> FEEDERS = registerBlockTag("feeders");
+	
+	public static final TagKey<Biome> IS_JURASSIC = registerBiomeTag("is_jurassic");
+	public static final TagKey<Biome> IS_CRETACEOUS = registerBiomeTag("is_cretaceous");
+	public static final TagKey<Biome> IS_TRIASSIC = registerBiomeTag("is_triassic");
+	
+	public static final TagKey<Biome> HAS_CHINLE_HUT = registerBiomeTag("has_structure/chinle_hut");
+	public static final TagKey<Biome> HAS_DJADOCHTA_HUT = registerBiomeTag("has_structure/djadochta_hut");
+	public static final TagKey<Biome> HAS_GEOLOGIST_CAMP = registerBiomeTag("has_structure/geologist_camp");
+	public static final TagKey<Biome> HAS_HELL_CREEK_HUT = registerBiomeTag("has_structure/hell_creek_hut");
+	public static final TagKey<Biome> HAS_ISCHIGUALASTO_HUT = registerBiomeTag("has_structure/ischigualasto_hut");
+	public static final TagKey<Biome> HAS_KAYENTA_HUT = registerBiomeTag("has_structure/kayenta_hut");
+	public static final TagKey<Biome> HAS_MORRISON_HUT = registerBiomeTag("has_structure/morrison_hut");
+	public static final TagKey<Biome> HAS_TIME_TEMPLE = registerBiomeTag("has_structure/time_temple");
+	public static final TagKey<Biome> HAS_YIXIAN_HUT = registerBiomeTag("has_structure/yixian_hut");
 
 	private static TagKey<Item> registerItemTag(String name) {
-		return TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation(PrehistoricFauna.MOD_ID, name));
+		return TagKey.create(Registries.ITEM, new ResourceLocation(PrehistoricFauna.MOD_ID, name));
 	}
 
 	private static TagKey<EntityType<?>> registerEntityTag(String name) {
-		return TagKey.create(Registry.ENTITY_TYPE_REGISTRY, new ResourceLocation(PrehistoricFauna.MOD_ID, name));
+		return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(PrehistoricFauna.MOD_ID, name));
 	}
 
 	private static TagKey<Block> registerBlockTag(String name) {
-		return TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(PrehistoricFauna.MOD_ID, name));
+		return TagKey.create(Registries.BLOCK, new ResourceLocation(PrehistoricFauna.MOD_ID, name));
 	}
+	
+		private static TagKey<Biome> registerBiomeTag(String name) {
+			return TagKey.create(Registries.BIOME, new ResourceLocation(PrehistoricFauna.MOD_ID, name));
+		}
 
 }

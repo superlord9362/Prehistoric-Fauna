@@ -149,7 +149,7 @@ public class NestAndEggsBlock extends Block {
 					Entity dinosaurEntity = this.entityTypeSupplier.get().create(worldIn);
 					if (dinosaurEntity instanceof DinosaurEntity) {
 						DinosaurEntity dinosaur = (DinosaurEntity)dinosaurEntity;
-						for(Player player : dinosaur.level.getEntitiesOfClass(Player.class, dinosaur.getBoundingBox().inflate(8.0D, 8.0D, 8.0D))) {
+						for(Player player : dinosaur.level().getEntitiesOfClass(Player.class, dinosaur.getBoundingBox().inflate(8.0D, 8.0D, 8.0D))) {
 							dinosaur.addTrustedUUID(player.getUUID());
 						}
 						if (dinosaur instanceof Camarasaurus) {
@@ -162,7 +162,7 @@ public class NestAndEggsBlock extends Block {
 					}
 					if (dinosaurEntity instanceof Triceratops) {
 						Triceratops dinosaur = (Triceratops)dinosaurEntity;
-						for(Player player : dinosaur.level.getEntitiesOfClass(Player.class, dinosaur.getBoundingBox().inflate(8.0D, 8.0D, 8.0D))) {
+						for(Player player : dinosaur.level().getEntitiesOfClass(Player.class, dinosaur.getBoundingBox().inflate(8.0D, 8.0D, 8.0D))) {
 							dinosaur.addTrustedUUID(player.getUUID());
 						}
 						((Animal)dinosaurEntity).setAge(-48000);

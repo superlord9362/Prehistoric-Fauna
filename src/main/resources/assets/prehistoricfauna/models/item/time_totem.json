@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/time_totem"
+        "layer0": "prehistoricfauna:item/time_totem"
     }
 }

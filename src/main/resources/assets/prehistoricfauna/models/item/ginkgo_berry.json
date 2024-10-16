@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/ginkgo_berry"
+        "layer0": "prehistoricfauna:item/ginkgo_berry"
     }
 }

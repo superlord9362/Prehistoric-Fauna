@@ -1,6 +1,6 @@
 {
     "parent": "prehistoricfauna:block/vertical_planks",
     "textures": {
-        "all": "prehistoricfauna:blocks/protopiceoxylon_planks"
+        "all": "prehistoricfauna:block/protopiceoxylon_planks"
     }
 }

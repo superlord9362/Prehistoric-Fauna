@@ -15,19 +15,21 @@ public class CrepuscularSleepGoal extends Goal {
 		this.entity = sleeper;
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public boolean canUse() {
-		Level level = entity.level;
-		for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(2D, 2D, 2D))) {
+		Level level = entity.level();
+		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(2D, 2D, 2D))) {
 			if (!player.isShiftKeyDown()) return false;
 		}
 		return PrehistoricFaunaConfig.sleeping = true && (level.getDayTime() % 24000 >= 2000 && level.getDayTime() % 24000 <= 9000 || level.getDayTime() % 24000 >= 14000 && level.getDayTime() % 24000 <= 21000) && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isTame() && !entity.isInWater() && !entity.isInLava() && !PrehistoricFaunaConfig.unscheduledSleeping && entity.warryTicks == 0;
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public boolean canContinueToUse() {
-		Level level = entity.level;
-		for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(2D, 2D, 2D))) {
+		Level level = entity.level();
+		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(2D, 2D, 2D))) {
 			if (player.isShiftKeyDown()) {
 				return true;
 			} else {
@@ -65,8 +67,8 @@ public class CrepuscularSleepGoal extends Goal {
 
 	public void tick() {
 		super.tick();
-		Level level = entity.level;
-		for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(2D, 2D, 2D))) {
+		Level level = entity.level();
+		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(2D, 2D, 2D))) {
 			if (!player.isShiftKeyDown()) {
 				stop();
 				entity.setAsleep(false);

@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "prehistoricfauna:blocks/protojuniper_planks"
+        "all": "prehistoricfauna:block/protojuniper_planks"
     }
 }

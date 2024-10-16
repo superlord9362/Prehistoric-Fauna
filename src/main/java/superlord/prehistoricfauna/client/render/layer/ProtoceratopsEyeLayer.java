@@ -31,11 +31,11 @@ public class ProtoceratopsEyeLayer extends RenderLayer<Protoceratops, EntityMode
 		if (!(protoceratopsRenderer.getModel() instanceof ProtoceratopsModel)) {
 			return;
 		}
-		long roundTime = protoceratops.level.getDayTime() % 24000;
+		long roundTime = protoceratops.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos protoceratopsPos = protoceratops.blockPosition();
-		int i = protoceratops.level.getBrightness(LightLayer.SKY, protoceratopsPos);
-		int j = protoceratops.level.getBrightness(LightLayer.BLOCK, protoceratopsPos);
+		int i = protoceratops.level().getBrightness(LightLayer.SKY, protoceratopsPos);
+		int j = protoceratops.level().getBrightness(LightLayer.BLOCK, protoceratopsPos);
 		int brightness;
 		if (night) {
 			brightness = j;

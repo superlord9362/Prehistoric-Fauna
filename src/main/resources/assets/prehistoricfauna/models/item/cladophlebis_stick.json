@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld_rod",
     "textures": {
-        "layer0": "prehistoricfauna:items/cladophlebis_stick"
+        "layer0": "prehistoricfauna:item/cladophlebis_stick"
     }
 }

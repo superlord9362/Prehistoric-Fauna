@@ -6,7 +6,6 @@ import javax.annotation.Nullable;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -47,7 +46,7 @@ public class DinosaurEggItem extends BlockItem {
 		float f5 = Mth.sin(-f * ((float)Math.PI / 180F));
 		float f6 = f3 * f4;
 		float f7 = f2 * f4;
-		double d0 = player.getAttribute(net.minecraftforge.common.ForgeMod.REACH_DISTANCE.get()).getValue();;
+		double d0 = player.getAttribute(net.minecraftforge.common.ForgeMod.BLOCK_REACH.get()).getValue();;
 		Vec3 vector3d1 = vector3d.add((double)f6 * d0, (double)f5 * d0, (double)f7 * d0);
 		return worldIn.clip(new ClipContext(vector3d, vector3d1, blockMode, ClipContext.Fluid.ANY, player));
 	}
@@ -55,9 +54,9 @@ public class DinosaurEggItem extends BlockItem {
 	public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
 		if (PrehistoricFaunaConfig.softShellAndHardShellEggs) {
 			if (stack.is(PFTags.SOFT_SHELL_EGGS)) {
-				tooltip.add(new TranslatableComponent("soft_shell").withStyle(ChatFormatting.GRAY));
+				tooltip.add(Component.translatable("soft_shell").withStyle(ChatFormatting.GRAY));
 			} else {
-				tooltip.add(new TranslatableComponent("hard_shell").withStyle(ChatFormatting.GRAY));
+				tooltip.add(Component.translatable("hard_shell").withStyle(ChatFormatting.GRAY));
 			}
 		}
     }

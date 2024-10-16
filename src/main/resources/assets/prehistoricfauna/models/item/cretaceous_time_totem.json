@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/cretaceous_time_totem"
+        "layer0": "prehistoricfauna:item/cretaceous_time_totem"
     }
 }

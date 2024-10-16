@@ -2,8 +2,8 @@
     "parent": "block/block",
     "ambientocclusion": false,
     "textures": {
-        "crassostrea_oysters": "prehistoricfauna:blocks/crassostrea_oysters_0",
-        "particle": "prehistoricfauna:blocks/crassostrea_oysters_0"
+        "crassostrea_oysters": "prehistoricfauna:block/crassostrea_oysters_0",
+        "particle": "prehistoricfauna:block/crassostrea_oysters_0"
     },
     "elements": [
         {   "from": [ 0, 0, 4 ],

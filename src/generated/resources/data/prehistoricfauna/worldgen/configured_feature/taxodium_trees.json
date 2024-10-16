@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": "prehistoricfauna:taxodium_tree_6",
+    "features": [
+      {
+        "chance": 0.16,
+        "feature": "prehistoricfauna:taxodium_tree_1"
+      },
+      {
+        "chance": 0.16,
+        "feature": "prehistoricfauna:taxodium_tree_2"
+      },
+      {
+        "chance": 0.16,
+        "feature": "prehistoricfauna:taxodium_tree_3"
+      },
+      {
+        "chance": 0.16,
+        "feature": "prehistoricfauna:taxodium_tree_4"
+      },
+      {
+        "chance": 0.16,
+        "feature": "prehistoricfauna:taxodium_tree_5"
+      }
+    ]
+  }
+}

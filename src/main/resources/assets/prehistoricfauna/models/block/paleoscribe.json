@@ -8,12 +8,12 @@
         }
     },
     "textures": {
-        "particle": "prehistoricfauna:blocks/paleoscribe_sides",
-        "bottom": "prehistoricfauna:blocks/paleoscribe_bottom",
-        "base": "prehistoricfauna:blocks/paleoscribe_base",
-        "front": "prehistoricfauna:blocks/paleoscribe_front",
-        "sides": "prehistoricfauna:blocks/paleoscribe_sides",
-        "top": "prehistoricfauna:blocks/paleoscribe_top"
+        "particle": "prehistoricfauna:block/paleoscribe_sides",
+        "bottom": "prehistoricfauna:block/paleoscribe_bottom",
+        "base": "prehistoricfauna:block/paleoscribe_base",
+        "front": "prehistoricfauna:block/paleoscribe_front",
+        "sides": "prehistoricfauna:block/paleoscribe_sides",
+        "top": "prehistoricfauna:block/paleoscribe_top"
     },
     "elements": [
         {

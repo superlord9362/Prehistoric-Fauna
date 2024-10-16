@@ -82,10 +82,9 @@ public class Oviraptor extends DinosaurEntity {
 	public int maxHunger = 20;
 	private Goal attackAnimals;
 
-	@SuppressWarnings("deprecation")
 	public Oviraptor(EntityType<? extends Oviraptor> type, Level world) {
 		super(type, world);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -168,15 +167,15 @@ public class Oviraptor extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.OVIRAPTOR_IDLE;
+		return this.isAsleep() ? null : PFSounds.OVIRAPTOR_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.OVIRAPTOR_HURT;
+		return PFSounds.OVIRAPTOR_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.OVIRAPTOR_DEATH;
+		return PFSounds.OVIRAPTOR_DEATH.get();
 	}
 
 	protected void defineSynchedData() {
@@ -253,8 +252,8 @@ public class Oviraptor extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Oviraptor entity = new Oviraptor(PFEntities.OVIRAPTOR.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Oviraptor entity = new Oviraptor(PFEntities.OVIRAPTOR.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -305,15 +304,15 @@ public class Oviraptor extends DinosaurEntity {
 		}
 
 		protected void eatBerry() {
-			if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(Oviraptor.this.level, Oviraptor.this)) {
-				BlockState blockstate = Oviraptor.this.level.getBlockState(this.blockPos);
-				level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, blockstate), blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0.0D, 0.0D, 0.0D);
+			if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(Oviraptor.this.level(), Oviraptor.this)) {
+				BlockState blockstate = Oviraptor.this.level().getBlockState(this.blockPos);
+				level().addParticle(new BlockParticleOption(ParticleTypes.BLOCK, blockstate), blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0.0D, 0.0D, 0.0D);
 				Block egg = blockstate.getBlock();
 				if (egg instanceof DinosaurEggBlock) {
 					int eggs = blockstate.getValue(DinosaurEggBlock.EGGS);
 					int hatch = blockstate.getValue(DinosaurEggBlock.HATCH);
 					blockstate.setValue(DinosaurEggBlock.EGGS, Integer.valueOf(1));
-					Oviraptor.this.level.setBlock(this.blockPos, blockstate.setValue(DinosaurEggBlock.EGGS, eggs).setValue(DinosaurEggBlock.HATCH, hatch).setValue(DinosaurEggBlock.CITIPATIFIED, true), 2);
+					Oviraptor.this.level().setBlock(this.blockPos, blockstate.setValue(DinosaurEggBlock.EGGS, eggs).setValue(DinosaurEggBlock.HATCH, hatch).setValue(DinosaurEggBlock.CITIPATIFIED, true), 2);
 				}
 			}
 		}

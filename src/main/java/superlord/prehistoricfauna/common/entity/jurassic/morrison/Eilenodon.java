@@ -81,10 +81,9 @@ public class Eilenodon extends DinosaurEntity {
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(PFBlocks.HORSETAIL.get().asItem());
 	private int maxHunger = 10;
 
-	@SuppressWarnings("deprecation")
 	public Eilenodon(EntityType<? extends Eilenodon> type, Level level) {
 		super(type, level);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 	
@@ -194,11 +193,11 @@ public class Eilenodon extends DinosaurEntity {
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.EILENODON_HURT;
+		return PFSounds.EILENODON_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.EILENODON_DEATH;
+		return PFSounds.EILENODON_DEATH.get();
 	}
 	
 	@Override
@@ -246,12 +245,12 @@ public class Eilenodon extends DinosaurEntity {
 		}
 
 		protected boolean func_220813_g() {
-			BlockPos blockpos = new BlockPos(Eilenodon.this.position());
-			return !Eilenodon.this.level.canSeeSky(blockpos) && Eilenodon.this.getWalkTargetValue(blockpos) >= 0.0F;
+			BlockPos blockpos = Eilenodon.this.blockPosition();
+			return !Eilenodon.this.level().canSeeSky(blockpos) && Eilenodon.this.getWalkTargetValue(blockpos) >= 0.0F;
 		}
 
 		protected boolean func_220814_h() {
-			return !Eilenodon.this.level.getNearbyEntities(LivingEntity.class, this.field_220816_b, Eilenodon.this, Eilenodon.this.getBoundingBox().inflate(12.0D, 6.0D, 12.0D)).isEmpty();
+			return !Eilenodon.this.level().getNearbyEntities(LivingEntity.class, this.field_220816_b, Eilenodon.this, Eilenodon.this.getBoundingBox().inflate(12.0D, 6.0D, 12.0D)).isEmpty();
 		}
 
 	}
@@ -267,7 +266,7 @@ public class Eilenodon extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			return Eilenodon.this.getLastHurtByMob() == null && Eilenodon.this.getRandom().nextFloat() < 0.02F && !Eilenodon.this.isAsleep() && Eilenodon.this.getTarget() == null && Eilenodon.this.getNavigation().isDone() && !this.func_220814_h() && !Eilenodon.this.func_213480_dY() && !Eilenodon.this.isCrouching() && level.getDayTime() <= 10 || Eilenodon.this.getLastHurtByMob() == null && Eilenodon.this.getRandom().nextFloat() < 0.02F && !Eilenodon.this.isSleeping() && Eilenodon.this.getTarget() == null && Eilenodon.this.getNavigation().isDone() && !this.func_220814_h() && !Eilenodon.this.func_213480_dY() && !Eilenodon.this.isCrouching() && level.getDayTime() >= 1110 && level.getDayTime() <= 1310 || Eilenodon.this.getLastHurtByMob() == null && Eilenodon.this.getRandom().nextFloat() < 0.02F && !Eilenodon.this.isSleeping() && Eilenodon.this.getTarget() == null && Eilenodon.this.getNavigation().isDone() && !this.func_220814_h() && !Eilenodon.this.func_213480_dY() && !Eilenodon.this.isCrouching() && level.getDayTime() >= 2210;
+			return Eilenodon.this.getLastHurtByMob() == null && Eilenodon.this.getRandom().nextFloat() < 0.02F && !Eilenodon.this.isAsleep() && Eilenodon.this.getTarget() == null && Eilenodon.this.getNavigation().isDone() && !this.func_220814_h() && !Eilenodon.this.func_213480_dY() && !Eilenodon.this.isCrouching() && level().getDayTime() <= 10 || Eilenodon.this.getLastHurtByMob() == null && Eilenodon.this.getRandom().nextFloat() < 0.02F && !Eilenodon.this.isSleeping() && Eilenodon.this.getTarget() == null && Eilenodon.this.getNavigation().isDone() && !this.func_220814_h() && !Eilenodon.this.func_213480_dY() && !Eilenodon.this.isCrouching() && level().getDayTime() >= 1110 && level().getDayTime() <= 1310 || Eilenodon.this.getLastHurtByMob() == null && Eilenodon.this.getRandom().nextFloat() < 0.02F && !Eilenodon.this.isSleeping() && Eilenodon.this.getTarget() == null && Eilenodon.this.getNavigation().isDone() && !this.func_220814_h() && !Eilenodon.this.func_213480_dY() && !Eilenodon.this.isCrouching() && level().getDayTime() >= 2210;
 		}
 
 		public boolean canContinueToUse() {
@@ -304,8 +303,8 @@ public class Eilenodon extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Eilenodon entity = new Eilenodon(PFEntities.EILENODON.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Eilenodon entity = new Eilenodon(PFEntities.EILENODON.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 	

@@ -30,11 +30,11 @@ public class ScutellosaurusEyeLayer extends RenderLayer<Scutellosaurus, Scutello
 		if (!(scutellosaurusRenderer.getModel() instanceof ScutellosaurusModel)) {
 			return;
 		}
-		long roundTime = scutellosaurus.level.getDayTime() % 24000;
+		long roundTime = scutellosaurus.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos scutellosaurusPos = scutellosaurus.blockPosition();
-		int i = scutellosaurus.level.getBrightness(LightLayer.SKY, scutellosaurusPos);
-		int j = scutellosaurus.level.getBrightness(LightLayer.BLOCK, scutellosaurusPos);
+		int i = scutellosaurus.level().getBrightness(LightLayer.SKY, scutellosaurusPos);
+		int j = scutellosaurus.level().getBrightness(LightLayer.BLOCK, scutellosaurusPos);
 		int brightness;
 		if (night) {
 			brightness = j;

@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/cyclurus_bucket"
+        "layer0": "prehistoricfauna:item/cyclurus_bucket"
     }
 }

@@ -64,17 +64,16 @@ public class Udanoceratops extends DinosaurEntity {
 	private int maxHunger = 25;
 	private int warningSoundTicks;
 
-	@SuppressWarnings("deprecation")
 	public Udanoceratops(EntityType<? extends Udanoceratops> type, Level worldIn) {
 		super(type, worldIn);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Udanoceratops entity = new Udanoceratops(PFEntities.UDANOCERATOPS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Udanoceratops entity = new Udanoceratops(PFEntities.UDANOCERATOPS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -150,7 +149,7 @@ public class Udanoceratops extends DinosaurEntity {
 		@Override
 		public void start() {
 			super.start();
-			for (Protoceratops mob : entity.level.getEntitiesOfClass(Protoceratops.class, entity.getBoundingBox().inflate(5), e -> e != entity)) {
+			for (Protoceratops mob : entity.level().getEntitiesOfClass(Protoceratops.class, entity.getBoundingBox().inflate(5), e -> e != entity)) {
 				mob.getNavigation().moveTo(entity, mob.getSpeed() + 0.4);
 			}
 		}
@@ -171,20 +170,20 @@ public class Udanoceratops extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.UDANOCERATOPS_IDLE;
+		return this.isAsleep() ? null : PFSounds.UDANOCERATOPS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.UDANOCERATOPS_HURT;
+		return PFSounds.UDANOCERATOPS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.UDANOCERATOPS_DEATH;
+		return PFSounds.UDANOCERATOPS_DEATH.get();
 	}
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.UDANOCERATOPS_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.UDANOCERATOPS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}

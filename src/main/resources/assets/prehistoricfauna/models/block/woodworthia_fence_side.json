@@ -1,6 +1,6 @@
 {
     "parent": "block/fence_side",
     "textures": {
-        "texture": "prehistoricfauna:blocks/woodworthia_planks"
+        "texture": "prehistoricfauna:block/woodworthia_planks"
     }
 }

@@ -15,17 +15,19 @@ public class CathemeralSleepGoal extends Goal {
 		this.entity = sleeper;
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public boolean canUse() {
-		for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
+		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
 			if (!player.isShiftKeyDown()) return false;
 		}
 		return (PrehistoricFaunaConfig.sleeping = true && entity.getRandom().nextInt(1000) == 0 && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isInWater() && !entity.isInLava() && !PrehistoricFaunaConfig.unscheduledSleeping && entity.warryTicks == 100);
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public boolean canContinueToUse() {
-		for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
+		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
 			if (player.isShiftKeyDown()) {
 				if (sleepTimer >= 6000 || entity.getLastHurtByMob() != null || entity.getTarget() != null || !super.canContinueToUse() || entity.isInWater() || entity.isInLava()) {
 					entity.setAsleep(false);
@@ -51,7 +53,7 @@ public class CathemeralSleepGoal extends Goal {
 	public void tick() {
 		super.tick();
 		sleepTimer++;
-		for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
+		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
 			if (player.isShiftKeyDown()) {
 				if (sleepTimer >= 6000 || entity.getLastHurtByMob() != null || entity.getTarget() != null || entity.isInWater() || entity.isInLava()) {
 					entity.setAsleep(false);

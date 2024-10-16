@@ -2,6 +2,6 @@
 	"parent": "prehistoricfauna:block/one_large_round_egg",
 	"ambientocclusion": false,
 	"textures": {
-		"egg": "prehistoricfauna:blocks/stegosaurus_egg"
+		"egg": "prehistoricfauna:block/stegosaurus_egg"
 	}
 }

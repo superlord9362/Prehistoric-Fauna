@@ -1,10 +1,10 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "prehistoricfauna:blocks/zingiberopsis_secondary_top",
-		"1": "prehistoricfauna:blocks/zingiberopsis_secondary_flower",
-		"4": "prehistoricfauna:blocks/zingiberopsis_main_stem_top",
-		"particle": "prehistoricfauna:blocks/zingiberopsis_secondary_top"
+		"0": "prehistoricfauna:block/zingiberopsis_secondary_top",
+		"1": "prehistoricfauna:block/zingiberopsis_secondary_flower",
+		"4": "prehistoricfauna:block/zingiberopsis_main_stem_top",
+		"particle": "prehistoricfauna:block/zingiberopsis_secondary_top"
 	},
 	"elements": [
 		{

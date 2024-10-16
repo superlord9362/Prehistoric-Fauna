@@ -77,10 +77,9 @@ public class Scelidosaurus extends DinosaurEntity {
 	private int maxHunger = 38;
 	private int warningSoundTicks;
 
-	@SuppressWarnings("deprecation")
 	public Scelidosaurus(EntityType<? extends Scelidosaurus> type, Level worldIn) {
 		super(type, worldIn);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 	
@@ -170,20 +169,20 @@ public class Scelidosaurus extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.SCELIDOSAURUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.SCELIDOSAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.SCELIDOSAURUS_HURT;
+		return PFSounds.SCELIDOSAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.SCELIDOSAURUS_DEATH;
+		return PFSounds.SCELIDOSAURUS_DEATH.get();
 	}
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.SCELIDOSAURUS_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.SCELIDOSAURUS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -229,8 +228,8 @@ public class Scelidosaurus extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Scelidosaurus entity = new Scelidosaurus(PFEntities.SCELIDOSAURUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.position())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Scelidosaurus entity = new Scelidosaurus(PFEntities.SCELIDOSAURUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(entity.blockPosition()), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 

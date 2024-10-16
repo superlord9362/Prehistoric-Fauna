@@ -1,9 +1,9 @@
 {
 	"textures": {
-		"0": "prehistoricfauna:blocks/quereuxia_leaves",
-		"1": "prehistoricfauna:blocks/quereuxia_stems",
-		"2": "prehistoricfauna:blocks/empty",
-		"particle": "prehistoricfauna:blocks/quereuxia_leaves"
+		"0": "prehistoricfauna:block/quereuxia_leaves",
+		"1": "prehistoricfauna:block/quereuxia_stems",
+		"2": "prehistoricfauna:block/empty",
+		"particle": "prehistoricfauna:block/quereuxia_leaves"
 	},
 	"elements": [
 		{

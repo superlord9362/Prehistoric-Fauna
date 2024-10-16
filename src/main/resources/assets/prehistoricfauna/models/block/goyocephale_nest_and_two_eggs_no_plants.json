@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"parent": "prehistoricfauna:block/nest_two_small_tall_eggs_no_plants",
 	"textures": {
-		"material": "prehistoricfauna:blocks/nest",
-		"egg": "prehistoricfauna:blocks/goyocephale_egg"
+		"material": "prehistoricfauna:block/nest",
+		"egg": "prehistoricfauna:block/goyocephale_egg"
 	}
 }

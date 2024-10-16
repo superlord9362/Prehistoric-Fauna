@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"2": "prehistoricfauna:blocks/big_tuber",
-		"particle": "prehistoricfauna:blocks/big_tuber"
+		"2": "prehistoricfauna:block/big_tuber",
+		"particle": "prehistoricfauna:block/big_tuber"
 	},
 	"elements": [
 		{

@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/ceratodus_bucket"
+        "layer0": "prehistoricfauna:item/ceratodus_bucket"
     }
 }

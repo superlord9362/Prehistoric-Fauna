@@ -3,8 +3,8 @@
     "ambientocclusion": false,
 	"texture_size": [32, 32],
 	"textures": {
-		"1": "prehistoricfauna:blocks/clathopteris",
-		"particle": "prehistoricfauna:blocks/clathopteris"
+		"1": "prehistoricfauna:block/clathopteris",
+		"particle": "prehistoricfauna:block/clathopteris"
 	},
 	"elements": [
 		{

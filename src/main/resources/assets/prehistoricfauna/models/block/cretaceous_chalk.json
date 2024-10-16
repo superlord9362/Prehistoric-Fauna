@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "prehistoricfauna:blocks/cretaceous_chalk"
+        "all": "prehistoricfauna:block/cretaceous_chalk"
     }
 }

@@ -54,10 +54,9 @@ public class Edmontosaurus extends HerdDinosaurEntity {
 	private int warningSoundTicks = 200;
 	public int maxHunger = 250;
 
-	@SuppressWarnings("deprecation")
 	public Edmontosaurus(EntityType<? extends Edmontosaurus> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1);
 		super.maxHunger = this.maxHunger;
 	}
 
@@ -88,15 +87,15 @@ public class Edmontosaurus extends HerdDinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.EDMONTOSAURUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.EDMONTOSAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.EDMONTOSAURUS_HURT;
+		return PFSounds.EDMONTOSAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.EDMONTOSAURUS_DEATH;
+		return PFSounds.EDMONTOSAURUS_DEATH.get();
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -136,8 +135,8 @@ public class Edmontosaurus extends HerdDinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Edmontosaurus entity = new Edmontosaurus(PFEntities.EDMONTOSAURUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Edmontosaurus entity = new Edmontosaurus(PFEntities.EDMONTOSAURUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -150,11 +149,11 @@ public class Edmontosaurus extends HerdDinosaurEntity {
 	public void aiStep() {
 		super.aiStep();
 		if (!this.isBaby()) {
-			for (Player player : this.level.getEntitiesOfClass(Player.class, getBoundingBox().inflate(6, 0, 6))) {
-				List<Edmontosaurus> edmontosaurus = this.level.getEntitiesOfClass(Edmontosaurus.class, getBoundingBox().inflate(6, 0, 6));
+			for (Player player : this.level().getEntitiesOfClass(Player.class, getBoundingBox().inflate(6, 0, 6))) {
+				List<Edmontosaurus> edmontosaurus = this.level().getEntitiesOfClass(Edmontosaurus.class, getBoundingBox().inflate(6, 0, 6));
 				if (edmontosaurus.isEmpty()) this.setTarget(player);
 			}
-			for (DinosaurEntity dinosaur : this.level.getEntitiesOfClass(DinosaurEntity.class, getBoundingBox().inflate(6, 0, 6))) {
+			for (DinosaurEntity dinosaur : this.level().getEntitiesOfClass(DinosaurEntity.class, getBoundingBox().inflate(6, 0, 6))) {
 				if (dinosaur.isCarnivorous()) {
 					this.playWarningSound();
 				}
@@ -171,7 +170,7 @@ public class Edmontosaurus extends HerdDinosaurEntity {
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.EDMONTOSAURUS_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.EDMONTOSAURUS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}

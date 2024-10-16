@@ -15,10 +15,11 @@ public class UnscheduledSleepingGoal extends Goal {
 		this.entity = sleeper;
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public boolean canUse() {
 		if (PrehistoricFaunaConfig.unscheduledSleeping) {
-			for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
+			for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
 				if (!player.isShiftKeyDown()) {
 					return false;
 				} else return (PrehistoricFaunaConfig.unscheduledSleeping = true && entity.getRandom().nextInt(1000) == 0 && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isInWater() && !entity.isInLava());
@@ -31,9 +32,10 @@ public class UnscheduledSleepingGoal extends Goal {
 		} else return false;
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public boolean canContinueToUse() {
-		for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
+		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
 			if (!player.isShiftKeyDown() || sleepTimer >= 6000 || entity.getLastHurtByMob() != null || entity.getTarget() != null || super.canContinueToUse() || entity.isInWater() || entity.isInLava()) {
 				entity.setAsleep(false);
 				sleepTimer = 0;
@@ -52,7 +54,7 @@ public class UnscheduledSleepingGoal extends Goal {
 	public void tick() {
 		super.tick();
 		sleepTimer++;
-		for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
+		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
 			if (!player.isShiftKeyDown()) {
 				entity.setAsleep(false);
 				sleepTimer = 0;

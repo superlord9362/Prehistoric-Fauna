@@ -1,6 +1,6 @@
 {
     "parent": "block/fence_inventory",
     "textures": {
-        "texture": "prehistoricfauna:blocks/czekanowskia_planks"
+        "texture": "prehistoricfauna:block/czekanowskia_planks"
     }
 }

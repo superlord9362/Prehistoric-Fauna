@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"parent": "prehistoricfauna:block/nest_one_medium_round_egg_three_plants",
 	"textures": {
-		"material": "prehistoricfauna:blocks/nest",
-		"egg": "prehistoricfauna:blocks/thoracosaurus_egg",
-		"plants": "prehistoricfauna:blocks/plants"
+		"material": "prehistoricfauna:block/nest",
+		"egg": "prehistoricfauna:block/thoracosaurus_egg",
+		"plants": "prehistoricfauna:block/plants"
 	}
 }

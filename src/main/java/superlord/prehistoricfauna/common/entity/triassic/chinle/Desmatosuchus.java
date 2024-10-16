@@ -68,6 +68,7 @@ public class Desmatosuchus extends DinosaurEntity {
 	public Desmatosuchus(EntityType<? extends TamableAnimal> type, Level levelIn) {
 		super(type, levelIn);
 		super.maxHunger = maxHunger;
+		this.setMaxUpStep(1.0F);
 	}
 	
 	public boolean hurt(DamageSource p_33421_, float p_33422_) {
@@ -88,20 +89,20 @@ public class Desmatosuchus extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.DESMATOSUCHUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.DESMATOSUCHUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.DESMATOSUCHUS_HURT;
+		return PFSounds.DESMATOSUCHUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.DESMATOSUCHUS_DEATH;
+		return PFSounds.DESMATOSUCHUS_DEATH.get();
 	}
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.DESMATOSUCHUS_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.DESMATOSUCHUS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -218,8 +219,8 @@ public class Desmatosuchus extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Desmatosuchus entity = new Desmatosuchus(PFEntities.DESMATOSUCHUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Desmatosuchus entity = new Desmatosuchus(PFEntities.DESMATOSUCHUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 	

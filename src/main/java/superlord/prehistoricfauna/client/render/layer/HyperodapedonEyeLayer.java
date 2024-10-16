@@ -30,11 +30,11 @@ public class HyperodapedonEyeLayer extends RenderLayer<Hyperodapedon, Hyperodape
 		if (!(hyperodapedonRenderer.getModel() instanceof HyperodapedonModel)) {
 			return;
 		}
-		long roundTime = hyperodapedon.level.getDayTime() % 24000;
+		long roundTime = hyperodapedon.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos hyperodapedonPos = hyperodapedon.blockPosition();
-		int i = hyperodapedon.level.getBrightness(LightLayer.SKY, hyperodapedonPos);
-		int j = hyperodapedon.level.getBrightness(LightLayer.BLOCK, hyperodapedonPos);
+		int i = hyperodapedon.level().getBrightness(LightLayer.SKY, hyperodapedonPos);
+		int j = hyperodapedon.level().getBrightness(LightLayer.BLOCK, hyperodapedonPos);
 		int brightness;
 		if (night) {
 			brightness = j;

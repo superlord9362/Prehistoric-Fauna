@@ -31,11 +31,11 @@ public class AnzuEyeLayer extends RenderLayer<Anzu, EntityModel<Anzu>> {
 		if (!(anzuRenderer.getModel() instanceof AnzuModel)) {
 			return;
 		}
-		long roundTime = anzu.level.getDayTime() % 24000;
+		long roundTime = anzu.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos anzuPos = anzu.blockPosition();
-		int i = anzu.level.getBrightness(LightLayer.SKY, anzuPos);
-		int j = anzu.level.getBrightness(LightLayer.BLOCK, anzuPos);
+		int i = anzu.level().getBrightness(LightLayer.SKY, anzuPos);
+		int j = anzu.level().getBrightness(LightLayer.BLOCK, anzuPos);
 		int brightness;
 		if (night) {
 			brightness = j;

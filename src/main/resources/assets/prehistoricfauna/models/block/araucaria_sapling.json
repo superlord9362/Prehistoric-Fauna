@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "prehistoricfauna:blocks/araucaria_sapling"
+        "cross": "prehistoricfauna:block/araucaria_sapling"
     }
 }

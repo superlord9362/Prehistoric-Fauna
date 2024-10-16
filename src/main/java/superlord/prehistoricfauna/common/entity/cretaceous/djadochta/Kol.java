@@ -63,18 +63,17 @@ import superlord.prehistoricfauna.init.PFTags;
 public class Kol extends DinosaurEntity {
 
 	private int maxHunger = 38;
-	
-	@SuppressWarnings("deprecation")
+
 	public Kol(EntityType<? extends Kol> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
 		super.maxHunger = maxHunger;
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 	}
-	
+
 	public boolean isFood(ItemStack stack) {
 		return stack.getItem() == PFItems.DEAD_BEETLE.get().asItem();
 	}
-	
+
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
@@ -108,19 +107,19 @@ public class Kol extends DinosaurEntity {
 			return p_213487_0_.getType().is(PFTags.KOL_BABY_HUNTING);
 		}));
 	}
-	
+
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.KOL_IDLE;
+		return this.isAsleep() ? null : PFSounds.KOL_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.KOL_HURT;
+		return PFSounds.KOL_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.KOL_DEATH;
+		return PFSounds.KOL_DEATH.get();
 	}
-	
+
 	class MeleeAttackGoal extends net.minecraft.world.entity.ai.goal.MeleeAttackGoal {
 		public MeleeAttackGoal() {
 			super(Kol.this, 1.25D, true);
@@ -153,7 +152,7 @@ public class Kol extends DinosaurEntity {
 			return (double)(4.0F + attackTarget.getBbWidth());
 		}
 	}
-	
+
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		int temperment = random.nextInt(100);
 		if (temperment < 80) {
@@ -180,11 +179,11 @@ public class Kol extends DinosaurEntity {
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 15.0D).add(Attributes.MOVEMENT_SPEED, 0.23D).add(Attributes.ATTACK_DAMAGE, 2.0D);
 	}
-	
+
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Kol entity = new Kol(PFEntities.KOL.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Kol entity = new Kol(PFEntities.KOL.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -247,15 +246,15 @@ public class Kol extends DinosaurEntity {
 		protected void eatBerry() {
 			int bug = dinosaur.random.nextInt(10);
 			if (bug >= 9) {
-				Gobiulus gobiulus = new Gobiulus(PFEntities.GOBIULUS.get(), dinosaur.level);
+				Gobiulus gobiulus = new Gobiulus(PFEntities.GOBIULUS.get(), dinosaur.level());
 				gobiulus.teleportTo(this.blockPos.getX(), this.blockPos.getY() + 1, this.blockPos.getZ());
-				dinosaur.level.addFreshEntity(gobiulus);
+				dinosaur.level().addFreshEntity(gobiulus);
 				dinosaur.setTarget(gobiulus);
 				stop();
 			} else {
-				DermestidBeetle dermestid = new DermestidBeetle(PFEntities.DERMESTID_BEETLE.get(), dinosaur.level);
+				DermestidBeetle dermestid = new DermestidBeetle(PFEntities.DERMESTID_BEETLE.get(), dinosaur.level());
 				dermestid.teleportTo(this.blockPos.getX(), this.blockPos.getY() + 1, this.blockPos.getZ());
-				dinosaur.level.addFreshEntity(dermestid);
+				dinosaur.level().addFreshEntity(dermestid);
 				dinosaur.setTarget(dermestid);
 				stop();
 			}

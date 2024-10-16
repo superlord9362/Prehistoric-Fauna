@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#prehistoricfauna:is_jurassic",
+  "features": "prehistoricfauna:placed_jurassic_fossilized_sandstone",
+  "step": "underground_ores"
+}

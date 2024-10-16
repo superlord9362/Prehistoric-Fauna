@@ -1,7 +1,7 @@
 {
     "parent": "block/cube_column",
     "textures": {
-        "end": "prehistoricfauna:blocks/stripped_platanites_log",
-        "side": "prehistoricfauna:blocks/stripped_platanites_log"
+        "end": "prehistoricfauna:block/stripped_platanites_log",
+        "side": "prehistoricfauna:block/stripped_platanites_log"
     }
 }

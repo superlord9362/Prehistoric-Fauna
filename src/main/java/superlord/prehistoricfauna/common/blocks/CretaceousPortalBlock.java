@@ -1,7 +1,5 @@
 package superlord.prehistoricfauna.common.blocks;
 
-import java.util.Random;
-
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
@@ -11,6 +9,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -98,13 +97,13 @@ public class CretaceousPortalBlock extends Block {
 			if (entity.isOnPortalCooldown() ) {
 				entity.setPortalCooldown();
 			} else {
-				if (!entity.level.isClientSide() && !pos.equals(entity.portalEntrancePos)) {
+				if (!entity.level().isClientSide() && !pos.equals(entity.portalEntrancePos)) {
 					entity.portalEntrancePos  = pos.immutable();
 				}
-				if (entity.level instanceof ServerLevel) {
-					ServerLevel serverWorld = (ServerLevel)entity.level;
+				if (entity.level() instanceof ServerLevel) {
+					ServerLevel serverWorld = (ServerLevel)entity.level();
 					MinecraftServer minecraftServer = serverWorld.getServer();
-					ResourceKey<Level> registryKey = entity.level.dimension() == PFDimensions.CRETACEOUS ? Level.OVERWORLD : PFDimensions.CRETACEOUS;
+					ResourceKey<Level> registryKey = entity.level().dimension() == PFDimensions.CRETACEOUS ? Level.OVERWORLD : PFDimensions.CRETACEOUS;
 					ServerLevel serverWorld1 = minecraftServer.getLevel(registryKey);
 					if (serverWorld1 != null && !entity.isPassenger()) {
 						entity.setPortalCooldown();
@@ -117,9 +116,9 @@ public class CretaceousPortalBlock extends Block {
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void animateTick(BlockState state, Level world, BlockPos pos, Random rand) {
+	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource rand) {
 		if (rand.nextInt(100) == 0) {
-			world.playLocalSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, PFSounds.PORTAL, SoundSource.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
+			world.playLocalSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, PFSounds.PORTAL.get(), SoundSource.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
 		}
 		for (int i = 0; i < 2; ++i) {
 			double x = (float)pos.getX() + rand.nextFloat();
@@ -136,7 +135,7 @@ public class CretaceousPortalBlock extends Block {
 				z = (double)pos.getZ() + 0.5D + 0.25D * (double)mul;
 				sZ = rand.nextFloat() * 2.0F * (float)mul;
 			}
-			world.addParticle(PFParticles.PORTAL_PARTICLE, x, y, z, sX, sY, sZ);
+			world.addParticle(PFParticles.PORTAL_PARTICLE.get(), x, y, z, sX, sY, sZ);
 		}
 	}
 

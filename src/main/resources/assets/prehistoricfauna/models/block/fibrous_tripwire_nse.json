@@ -1,8 +1,8 @@
 {
     "ambientocclusion": false,
     "textures": {
-        "particle": "prehistoricfauna:blocks/fibrous_tripwire",
-        "texture": "prehistoricfauna:blocks/fibrous_tripwire"
+        "particle": "prehistoricfauna:block/fibrous_tripwire",
+        "texture": "prehistoricfauna:block/fibrous_tripwire"
     },
     "elements": [
         {   "from": [ 7.75, 1.5, 0 ],

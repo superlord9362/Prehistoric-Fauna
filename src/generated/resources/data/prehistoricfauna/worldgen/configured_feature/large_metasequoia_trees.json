@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": "prehistoricfauna:large_metasequoia_tree_2",
+    "features": [
+      {
+        "chance": 0.5,
+        "feature": "prehistoricfauna:large_metasequoia_tree_1"
+      }
+    ]
+  }
+}

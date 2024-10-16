@@ -68,17 +68,16 @@ public class Protoceratops extends DinosaurEntity {
 	private int maxHunger = 25;
 	private int warningSoundTicks;
 
-	@SuppressWarnings("deprecation")
 	public Protoceratops(EntityType<? extends Protoceratops> type, Level worldIn) {
 		super(type, worldIn);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Protoceratops entity = new Protoceratops(PFEntities.PROTOCERATOPS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Protoceratops entity = new Protoceratops(PFEntities.PROTOCERATOPS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -153,20 +152,20 @@ public class Protoceratops extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.PROTOCERATOPS_IDLE;
+		return this.isAsleep() ? null : PFSounds.PROTOCERATOPS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.PROTOCERATOPS_HURT;
+		return PFSounds.PROTOCERATOPS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.PROTOCERATOPS_DEATH;
+		return PFSounds.PROTOCERATOPS_DEATH.get();
 	}
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.PROTOCERATOPS_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.PROTOCERATOPS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}

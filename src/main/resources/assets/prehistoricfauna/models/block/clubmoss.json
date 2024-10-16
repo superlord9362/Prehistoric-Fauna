@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "prehistoricfauna:blocks/clubmoss"
+        "cross": "prehistoricfauna:block/clubmoss"
     }
 }

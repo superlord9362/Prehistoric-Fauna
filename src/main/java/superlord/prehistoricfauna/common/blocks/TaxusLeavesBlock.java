@@ -25,11 +25,11 @@ public class TaxusLeavesBlock extends LeavesBlock {
 
 	public TaxusLeavesBlock(Block.Properties builder) {
 		super(builder);
-		this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), Integer.valueOf(0)).setValue(DISTANCE, Integer.valueOf(1)).setValue(PERSISTENT, Boolean.valueOf(false)));
+		this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), Integer.valueOf(0)).setValue(WATERLOGGED, Boolean.valueOf(false)).setValue(DISTANCE, Integer.valueOf(1)).setValue(PERSISTENT, Boolean.valueOf(false)));
 	}
 
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(AGE, DISTANCE, PERSISTENT);
+		builder.add(AGE, DISTANCE, PERSISTENT, WATERLOGGED);
 	}
 
 	public IntegerProperty getAgeProperty() {

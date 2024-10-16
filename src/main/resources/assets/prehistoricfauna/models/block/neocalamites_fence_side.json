@@ -1,7 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "prehistoricfauna:blocks/neocalamites_fence"
+		"1": "prehistoricfauna:block/neocalamites_fence"
 	},
 	"elements": [
 		{

@@ -2,6 +2,6 @@
 	"parent": "prehistoricfauna:block/two_medium_tall_eggs",
 	"ambientocclusion": false,
 	"textures": {
-		"egg": "prehistoricfauna:blocks/poposaurus_egg"
+		"egg": "prehistoricfauna:block/poposaurus_egg"
 	}
 }

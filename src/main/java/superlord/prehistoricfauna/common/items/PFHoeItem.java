@@ -40,37 +40,34 @@ public class PFHoeItem extends TieredItem {
 		builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", (double)2, AttributeModifier.Operation.ADDITION));	      
 	}
 
-	@SuppressWarnings("removal")
 	public InteractionResult useOn(UseOnContext p_41341_) {
-		int hook = net.minecraftforge.event.ForgeEventFactory.onHoeUse(p_41341_);
-		if (hook != 0) return hook > 0 ? InteractionResult.SUCCESS : InteractionResult.FAIL;
-		Level level = p_41341_.getLevel();
-		BlockPos blockpos = p_41341_.getClickedPos();
-		BlockState toolModifiedState = level.getBlockState(blockpos).getToolModifiedState(p_41341_, net.minecraftforge.common.ToolActions.HOE_TILL, false);
-		Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> pair = toolModifiedState == null ? null : Pair.of(ctx -> true, changeIntoState(toolModifiedState));
-		if (pair == null) {
-			return InteractionResult.PASS;
-		} else {
-			Predicate<UseOnContext> predicate = pair.getFirst();
-			Consumer<UseOnContext> consumer = pair.getSecond();
-			if (predicate.test(p_41341_)) {
-				Player player = p_41341_.getPlayer();
-				level.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-				if (!level.isClientSide) {
-					consumer.accept(p_41341_);
-					if (player != null) {
-						p_41341_.getItemInHand().hurtAndBreak(1, player, (p_150845_) -> {
-							p_150845_.broadcastBreakEvent(p_41341_.getHand());
-						});
-					}
-				}
+	      Level level = p_41341_.getLevel();
+	      BlockPos blockpos = p_41341_.getClickedPos();
+	      BlockState toolModifiedState = level.getBlockState(blockpos).getToolModifiedState(p_41341_, net.minecraftforge.common.ToolActions.HOE_TILL, false);
+	      Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> pair = toolModifiedState == null ? null : Pair.of(ctx -> true, changeIntoState(toolModifiedState));
+	      if (pair == null) {
+	         return InteractionResult.PASS;
+	      } else {
+	         Predicate<UseOnContext> predicate = pair.getFirst();
+	         Consumer<UseOnContext> consumer = pair.getSecond();
+	         if (predicate.test(p_41341_)) {
+	            Player player = p_41341_.getPlayer();
+	            level.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+	            if (!level.isClientSide) {
+	               consumer.accept(p_41341_);
+	               if (player != null) {
+	                  p_41341_.getItemInHand().hurtAndBreak(1, player, (p_150845_) -> {
+	                     p_150845_.broadcastBreakEvent(p_41341_.getHand());
+	                  });
+	               }
+	            }
 
-				return InteractionResult.sidedSuccess(level.isClientSide);
-			} else {
-				return InteractionResult.PASS;
-			}
-		}
-	}
+	            return InteractionResult.sidedSuccess(level.isClientSide);
+	         } else {
+	            return InteractionResult.PASS;
+	         }
+	      }
+	   }
 
 	public static Consumer<UseOnContext> changeIntoState(BlockState p_150859_) {
 		return (p_150848_) -> {

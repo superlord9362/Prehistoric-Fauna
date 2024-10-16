@@ -3,9 +3,9 @@
 	"parent": "block/cube_column",
 	"texture_size": [48, 32],
 	"textures": {
-		"0": "prehistoricfauna:blocks/zamites_crown",
-		"1": "prehistoricfauna:blocks/zamites_cone",
-		"particle": "prehistoricfauna:blocks/zamites_crown"
+		"0": "prehistoricfauna:block/zamites_crown",
+		"1": "prehistoricfauna:block/zamites_cone",
+		"particle": "prehistoricfauna:block/zamites_crown"
 	},
 	"elements": [
 		{

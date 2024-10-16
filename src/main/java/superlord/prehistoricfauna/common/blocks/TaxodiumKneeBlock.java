@@ -1,12 +1,11 @@
 package superlord.prehistoricfauna.common.blocks;
 
-import java.util.Random;
-
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -98,7 +97,7 @@ public class TaxodiumKneeBlock extends Block implements BonemealableBlock, Simpl
 		return voxelShape.move(vector3d.x, vector3d.y, vector3d.z);
 	}
 
-	public void tick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 		if (!this.canSurvive(state, world, pos)) {
 			world.destroyBlock(pos, true);
 		}
@@ -161,17 +160,17 @@ public class TaxodiumKneeBlock extends Block implements BonemealableBlock, Simpl
 		}
 	}
 
-	protected int getBlocksToGrowWhenBonemealed(Random p_54314_) {
+	protected int getBlocksToGrowWhenBonemealed(RandomSource p_54314_) {
 		return 1;
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(BlockGetter p_50897_, BlockPos p_50898_, BlockState p_50899_, boolean p_50900_) {
+	public boolean isValidBonemealTarget(LevelReader p_50897_, BlockPos p_50898_, BlockState p_50899_, boolean p_50900_) {
 		return true;
 	}
 
 	@Override
-	public boolean isBonemealSuccess(Level p_50901_, Random p_50902_, BlockPos p_50903_, BlockState p_50904_) {
+	public boolean isBonemealSuccess(Level p_50901_, RandomSource p_50902_, BlockPos p_50903_, BlockState p_50904_) {
 		return true;
 	}
 	
@@ -180,7 +179,7 @@ public class TaxodiumKneeBlock extends Block implements BonemealableBlock, Simpl
 	}
 
 	@Override
-	public void performBonemeal(ServerLevel world, Random random, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
 		if (isAirBlock(world, pos.above())) {
 			world.setBlockAndUpdate(pos.above(), PFBlocks.TAXODIUM_KNEE.get().defaultBlockState());
 		}

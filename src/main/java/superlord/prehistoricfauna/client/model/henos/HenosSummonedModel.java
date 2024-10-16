@@ -12,7 +12,6 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
-import net.minecraft.world.phys.Vec3;
 import superlord.prehistoricfauna.common.entity.henos.Henos;
 
 public class HenosSummonedModel extends EntityModel<Henos> {
@@ -90,7 +89,6 @@ public class HenosSummonedModel extends EntityModel<Henos> {
 		return LayerDefinition.create(meshdefinition, 250, 128);
 	}
 
-	@SuppressWarnings({ "deprecation", "unused" })
 	@Override
 	public void setupAnim(Henos entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		float f = ageInTicks - entity.tickCount;
@@ -130,11 +128,6 @@ public class HenosSummonedModel extends EntityModel<Henos> {
         this.Hips.xRot = -bodyYaw;
         this.Head.xRot = headPitch * ((float)Math.PI / 180F) - bodyYaw;
         this.Head.yRot = netHeadYaw * ((float)Math.PI / 180F) - this.Body.yRot;
-		Vec3 vec = entity.getLaserTargetPos(f);
-		double d0 = vec.x - entity.getX();
-		double d2 = vec.z - entity.getZ();
-		float bossYaw = 90F + Mth.rotlerp(f, entity.yBodyRotO, entity.yBodyRot);
-		float laserBodyTwist = Mth.wrapDegrees((float)(Mth.atan2(d2, d0) * (double)(180F / (float)Math.PI)) - bossYaw);
 		this.Body.yRot = attackLeft * (float)Math.toRadians(20) + attackRight * (float)Math.toRadians(-20);
 	}
 

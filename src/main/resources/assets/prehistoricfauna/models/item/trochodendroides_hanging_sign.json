@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:item/generated",
+	"textures": {
+		"layer0": "prehistoricfauna:item/trochodendroides_hanging_sign"
+	}
+}

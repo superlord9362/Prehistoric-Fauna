@@ -1,12 +1,12 @@
 package superlord.prehistoricfauna.common.feature.trees.metasequoia;
 
-import java.util.Random;
 import java.util.Set;
 
 import com.mojang.serialization.Codec;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import superlord.prehistoricfauna.common.feature.trees.PFAbstractTreeFeature;
@@ -21,7 +21,7 @@ public class MetasequoiaTree2 extends PFAbstractTreeFeature<PFTreeConfig> {
         super(configIn);
     }
 
-    protected boolean generate(Set<BlockPos> changedBlocks, WorldGenLevel world, Random rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
+    protected boolean generate(Set<BlockPos> changedBlocks, WorldGenLevel world, RandomSource rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
 
         this.randTreeHeight = config.getMinHeight() + rand.nextInt(config.getMaxPossibleHeight());
         this.mainmutable = new BlockPos.MutableBlockPos().set(pos);
@@ -1398,7 +1398,7 @@ public class MetasequoiaTree2 extends PFAbstractTreeFeature<PFTreeConfig> {
         return true;
     }
     
-    protected void generate1(Set<BlockPos> changedBlocks, WorldGenLevel world, Random rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
+    protected void generate1(Set<BlockPos> changedBlocks, WorldGenLevel world, RandomSource rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
         placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(-3, randTreeHeight - 22, -4), boundsIn);
         placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(-2, randTreeHeight - 22, -4), boundsIn);
         placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, randTreeHeight - 22, -4), boundsIn);

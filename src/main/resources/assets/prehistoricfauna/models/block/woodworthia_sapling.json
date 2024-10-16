@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "prehistoricfauna:blocks/woodworthia_sapling"
+        "cross": "prehistoricfauna:block/woodworthia_sapling"
     }
 }

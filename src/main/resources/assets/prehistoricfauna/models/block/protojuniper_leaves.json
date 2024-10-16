@@ -1,6 +1,6 @@
 {
     "parent": "block/leaves",
     "textures": {
-        "all": "prehistoricfauna:blocks/protojuniper_leaves"
+        "all": "prehistoricfauna:block/protojuniper_leaves"
     }
 }

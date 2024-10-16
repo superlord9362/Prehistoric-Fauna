@@ -32,11 +32,11 @@ public class UdanoceratopsEyeLayer extends RenderLayer<Udanoceratops, Udanocerat
 		if (!(udanoceratopsRenderer.getModel() instanceof UdanoceratopsModel)) {
 			return;
 		}
-		long roundTime = udanoceratops.level.getDayTime() % 24000;
+		long roundTime = udanoceratops.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos udanoceratopsPos = udanoceratops.blockPosition();
-		int i = udanoceratops.level.getBrightness(LightLayer.SKY, udanoceratopsPos);
-		int j = udanoceratops.level.getBrightness(LightLayer.BLOCK, udanoceratopsPos);
+		int i = udanoceratops.level().getBrightness(LightLayer.SKY, udanoceratopsPos);
+		int j = udanoceratops.level().getBrightness(LightLayer.BLOCK, udanoceratopsPos);
 		int brightness;
 		if (night) {
 			brightness = j;

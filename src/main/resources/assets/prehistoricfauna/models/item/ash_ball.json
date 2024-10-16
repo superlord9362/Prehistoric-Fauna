@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/ash_ball"
+        "layer0": "prehistoricfauna:item/ash_ball"
     }
 }

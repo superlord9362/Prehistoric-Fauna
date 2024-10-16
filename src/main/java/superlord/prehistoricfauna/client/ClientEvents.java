@@ -1,387 +1,53 @@
 package superlord.prehistoricfauna.client;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.color.item.ItemColor;
-import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.client.gui.GuiPaleo;
-import superlord.prehistoricfauna.client.gui.GuiPaleontologyTable;
-import superlord.prehistoricfauna.client.model.armor.AnkylosaurusHelmetModel;
-import superlord.prehistoricfauna.client.model.armor.DesmatosuchusChestplateModel;
-import superlord.prehistoricfauna.client.model.cretaceous.djadochta.AepyornithomimusModel;
-import superlord.prehistoricfauna.client.model.cretaceous.djadochta.CitipatiModel;
-import superlord.prehistoricfauna.client.model.cretaceous.djadochta.DermestidBeetleModel;
-import superlord.prehistoricfauna.client.model.cretaceous.djadochta.GobiulusModel;
-import superlord.prehistoricfauna.client.model.cretaceous.djadochta.GoyocephaleModel;
-import superlord.prehistoricfauna.client.model.cretaceous.djadochta.HalszkaraptorModel;
-import superlord.prehistoricfauna.client.model.cretaceous.djadochta.KolModel;
-import superlord.prehistoricfauna.client.model.cretaceous.djadochta.OviraptorModel;
-import superlord.prehistoricfauna.client.model.cretaceous.djadochta.PinacosaurusBabyModel;
-import superlord.prehistoricfauna.client.model.cretaceous.djadochta.PinacosaurusModel;
-import superlord.prehistoricfauna.client.model.cretaceous.djadochta.PlesiohadrosBabyModel;
-import superlord.prehistoricfauna.client.model.cretaceous.djadochta.PlesiohadrosModel;
-import superlord.prehistoricfauna.client.model.cretaceous.djadochta.ProtoceratopsJuvenileModel;
-import superlord.prehistoricfauna.client.model.cretaceous.djadochta.ProtoceratopsModel;
-import superlord.prehistoricfauna.client.model.cretaceous.djadochta.TelmasaurusModel;
-import superlord.prehistoricfauna.client.model.cretaceous.djadochta.UdanoceratopsModel;
-import superlord.prehistoricfauna.client.model.cretaceous.djadochta.VelociraptorModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.AnkylosaurusBabyModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.AnkylosaurusModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.AnzuModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.BasilemysModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.CephaloleichnitesModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.DakotaraptorBabyModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.DakotaraptorModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.DidelphodonModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.EdmontosaurusBabyModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.EdmontosaurusModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.OrnithomimusModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.PachycephalosaurusModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.PalaeosaniwaModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.ThescelosaurusModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.ThoracosaurusModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TriceratopsBabyModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TriceratopsJuvenileModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TriceratopsModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TyrannosaurusBabyModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TyrannosaurusJuvenileModel;
-import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TyrannosaurusModel;
-import superlord.prehistoricfauna.client.model.cretaceous.yixian.ApoclionModel;
-import superlord.prehistoricfauna.client.model.cretaceous.yixian.BeipiaosaurusModel;
-import superlord.prehistoricfauna.client.model.cretaceous.yixian.ChangyuraptorModel;
-import superlord.prehistoricfauna.client.model.cretaceous.yixian.CretaraneusModel;
-import superlord.prehistoricfauna.client.model.cretaceous.yixian.IncisivosaurusModel;
-import superlord.prehistoricfauna.client.model.cretaceous.yixian.LiaoningosaurusModel;
-import superlord.prehistoricfauna.client.model.cretaceous.yixian.PsittacosaurusModel;
-import superlord.prehistoricfauna.client.model.cretaceous.yixian.SinosauropteryxModel;
-import superlord.prehistoricfauna.client.model.cretaceous.yixian.YutyrannusBabyModel;
-import superlord.prehistoricfauna.client.model.cretaceous.yixian.YutyrannusModel;
-import superlord.prehistoricfauna.client.model.fish.AcipenserModel;
-import superlord.prehistoricfauna.client.model.fish.ArganodusModel;
-import superlord.prehistoricfauna.client.model.fish.CeratodusModel;
-import superlord.prehistoricfauna.client.model.fish.ChinleaModel;
-import superlord.prehistoricfauna.client.model.fish.CyclurusModel;
-import superlord.prehistoricfauna.client.model.fish.GarModel;
-import superlord.prehistoricfauna.client.model.fish.HarenaichthysModel;
-import superlord.prehistoricfauna.client.model.fish.LonchidionModel;
-import superlord.prehistoricfauna.client.model.fish.MelviusModel;
-import superlord.prehistoricfauna.client.model.fish.MooreodontusModel;
-import superlord.prehistoricfauna.client.model.fish.MyledaphusModel;
-import superlord.prehistoricfauna.client.model.fish.PotamoceratodusModel;
-import superlord.prehistoricfauna.client.model.fish.ProtopsephurusModel;
-import superlord.prehistoricfauna.client.model.fish.SaurichthysModel;
-import superlord.prehistoricfauna.client.model.fish.SinamiaModel;
-import superlord.prehistoricfauna.client.model.fish.YanosteusModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.AnkylosaurusSkeletonActionLeftModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.AnkylosaurusSkeletonActionRightModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.AnkylosaurusSkeletonModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.AnkylosaurusSkeletonRestingModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.AnkylosaurusSkeletonSquattingModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.AnkylosaurusSkullModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.PlesiohadrosSkeletonChargeModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.PlesiohadrosSkeletonDashLeftModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.PlesiohadrosSkeletonDashRightModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.PlesiohadrosSkeletonModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.PlesiohadrosSkeletonSittingModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.PlesiohadrosSkeletonSleepingModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.PlesiohadrosSkeletonWalkingModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.PlesiohadrosSkullModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.ProtoceratopsSkeletonDisplayModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.ProtoceratopsSkeletonLayingModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.ProtoceratopsSkeletonModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.ProtoceratopsSkeletonRunningModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.ProtoceratopsSkeletonSittingModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.ProtoceratopsSkullModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.PsittacosaurusSkeletonLeftModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.PsittacosaurusSkeletonMatingModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.PsittacosaurusSkeletonModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.PsittacosaurusSkeletonSaunterModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.PsittacosaurusSkeletonSittingModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.PsittacosaurusSkeletonSprintModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.PsittacosaurusSkullModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.TriceratopsSkeletonActionLeftModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.TriceratopsSkeletonActionRightModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.TriceratopsSkeletonChargingModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.TriceratopsSkeletonModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.TriceratopsSkeletonRetroModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.TriceratopsSkeletonSittingModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.TriceratopsSkeletonSleepingModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.TriceratopsSkullModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.TyrannosaurusSkeletonJPModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.TyrannosaurusSkeletonModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.TyrannosaurusSkeletonRetroModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.TyrannosaurusSkeletonRunningModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.TyrannosaurusSkeletonSittingModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.TyrannosaurusSkeletonSleepingModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.TyrannosaurusSkeletonStalkingModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.TyrannosaurusSkeletonStompingModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.TyrannosaurusSkullModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.VelociraptorSkeletonFlashingModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.VelociraptorSkeletonLayFightingModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.VelociraptorSkeletonModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.VelociraptorSkeletonRunningModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.VelociraptorSkeletonSleepingModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.VelociraptorSkeletonStandFightingModel;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.VelociraptorSkullModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.AllosaurusSkeletonActionLeftModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.AllosaurusSkeletonActionRightModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.AllosaurusSkeletonModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.AllosaurusSkeletonRestingModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.AllosaurusSkeletonRetroModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.AllosaurusSkullModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.CeratosaurusSkeletonActionModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.CeratosaurusSkeletonAlertLeftModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.CeratosaurusSkeletonAlertRightModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.CeratosaurusSkeletonModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.CeratosaurusSkeletonRestingModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.CeratosaurusSkullModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.DilophosaurusSkeletonAttackModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.DilophosaurusSkeletonGazeModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.DilophosaurusSkeletonModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.DilophosaurusSkeletonSittingModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.DilophosaurusSkeletonStrutModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.DilophosaurusSkullModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.SarahsaurusSkeletonEatingModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.SarahsaurusSkeletonModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.SarahsaurusSkeletonSittingModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.SarahsaurusSkeletonWalkingModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.SarahsaurusSkullModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.ScelidosaurusSkeletonDashingModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.ScelidosaurusSkeletonGrazingModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.ScelidosaurusSkeletonModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.ScelidosaurusSkeletonReachingModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.ScelidosaurusSkeletonSleepingModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.ScelidosaurusSkeletonWalkingModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.ScelidosaurusSkullModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.StegosaurusSkeletonActionLeftModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.StegosaurusSkeletonActionRightModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.StegosaurusSkeletonModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.StegosaurusSkeletonRetroModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.StegosaurusSkeletonSleepingModel;
-import superlord.prehistoricfauna.client.model.fossil.jurassic.StegosaurusSkullModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.CoelophysisSkeletonModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.CoelophysisSkeletonSaunterModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.CoelophysisSkeletonSeizeModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.CoelophysisSkeletonSlainModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.CoelophysisSkeletonSleepingModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.CoelophysisSkeletonSlumpModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.CoelophysisSkeletonStrideModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.CoelophysisSkullModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.DesmatosuchusSkeletonModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.DesmatosuchusSkeletonSleepingModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.DesmatosuchusSkeletonWalkingLeftModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.DesmatosuchusSkeletonWalkingRightModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.DesmatosuchusSkullModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.HerrerasaurusSkeletonActionModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.HerrerasaurusSkeletonModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.HerrerasaurusSkeletonRunningModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.HerrerasaurusSkullModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.IschigualastiaSkeletonModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.IschigualastiaSkeletonStretchingModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.IschigualastiaSkullModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.PostosuchusSkeletonAttackLeftModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.PostosuchusSkeletonAttackModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.PostosuchusSkeletonCuriousModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.PostosuchusSkeletonModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.PostosuchusSkeletonSleepingModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.PostosuchusSkeletonWalkingModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.PostosuchusSkullModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.SaurosuchusSkeletonActionLeftModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.SaurosuchusSkeletonActionRightModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.SaurosuchusSkeletonModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.SaurosuchusSkeletonSleepingModel;
-import superlord.prehistoricfauna.client.model.fossil.triassic.SaurosuchusSkullModel;
-import superlord.prehistoricfauna.client.model.henos.CaveSentinelModel;
-import superlord.prehistoricfauna.client.model.henos.HenosModel;
-import superlord.prehistoricfauna.client.model.henos.HenosSummonedModel;
-import superlord.prehistoricfauna.client.model.henos.LandSentinelModel;
-import superlord.prehistoricfauna.client.model.jurassic.kayenta.CalsoyasuchusModel;
-import superlord.prehistoricfauna.client.model.jurassic.kayenta.DilophosaurusBabyModel;
-import superlord.prehistoricfauna.client.model.jurassic.kayenta.DilophosaurusModel;
-import superlord.prehistoricfauna.client.model.jurassic.kayenta.KayentatheriumModel;
-import superlord.prehistoricfauna.client.model.jurassic.kayenta.MegapnosaurusModel;
-import superlord.prehistoricfauna.client.model.jurassic.kayenta.SarahsaurusModel;
-import superlord.prehistoricfauna.client.model.jurassic.kayenta.ScelidosaurusModel;
-import superlord.prehistoricfauna.client.model.jurassic.kayenta.ScutellosaurusModel;
-import superlord.prehistoricfauna.client.model.jurassic.morrison.AllosaurusBabyModel;
-import superlord.prehistoricfauna.client.model.jurassic.morrison.AllosaurusModel;
-import superlord.prehistoricfauna.client.model.jurassic.morrison.CamarasaurusBabyModel;
-import superlord.prehistoricfauna.client.model.jurassic.morrison.CamarasaurusHatchlingModel;
-import superlord.prehistoricfauna.client.model.jurassic.morrison.CamarasaurusJuvenileModel;
-import superlord.prehistoricfauna.client.model.jurassic.morrison.CamarasaurusModel;
-import superlord.prehistoricfauna.client.model.jurassic.morrison.CeratosaurusBabyModel;
-import superlord.prehistoricfauna.client.model.jurassic.morrison.CeratosaurusModel;
-import superlord.prehistoricfauna.client.model.jurassic.morrison.DryosaurusModel;
-import superlord.prehistoricfauna.client.model.jurassic.morrison.EilenodonModel;
-import superlord.prehistoricfauna.client.model.jurassic.morrison.HesperornithoidesModel;
-import superlord.prehistoricfauna.client.model.jurassic.morrison.StegosaurusBabyModel;
-import superlord.prehistoricfauna.client.model.jurassic.morrison.StegosaurusModel;
-import superlord.prehistoricfauna.client.model.triassic.chinle.CoelophysisModel;
-import superlord.prehistoricfauna.client.model.triassic.chinle.DesmatosuchusModel;
-import superlord.prehistoricfauna.client.model.triassic.chinle.PlaceriasModel;
-import superlord.prehistoricfauna.client.model.triassic.chinle.PoposaurusModel;
-import superlord.prehistoricfauna.client.model.triassic.chinle.PostosuchusModel;
-import superlord.prehistoricfauna.client.model.triassic.chinle.TrilophosaurusModel;
-import superlord.prehistoricfauna.client.model.triassic.chinle.TypothoraxModel;
-import superlord.prehistoricfauna.client.model.triassic.ischigualasto.ChromogisaurusModel;
-import superlord.prehistoricfauna.client.model.triassic.ischigualasto.ExaeretodonModel;
-import superlord.prehistoricfauna.client.model.triassic.ischigualasto.HerrerasaurusModel;
-import superlord.prehistoricfauna.client.model.triassic.ischigualasto.HyperodapedonModel;
-import superlord.prehistoricfauna.client.model.triassic.ischigualasto.IschigualastiaBabyModel;
-import superlord.prehistoricfauna.client.model.triassic.ischigualasto.IschigualastiaModel;
-import superlord.prehistoricfauna.client.model.triassic.ischigualasto.SaurosuchusBabyModel;
-import superlord.prehistoricfauna.client.model.triassic.ischigualasto.SaurosuchusModel;
-import superlord.prehistoricfauna.client.model.triassic.ischigualasto.SillosuchusBabyModel;
-import superlord.prehistoricfauna.client.model.triassic.ischigualasto.SillosuchusModel;
-import superlord.prehistoricfauna.client.render.PFBoatRenderer;
-import superlord.prehistoricfauna.client.render.PaleopaintingRenderer;
-import superlord.prehistoricfauna.client.render.WallFossilRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.djadochta.AepyornithomimusRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.djadochta.CitipatiRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.djadochta.DermestidBeetleRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.djadochta.GobiulusRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.djadochta.GoyocephaleRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.djadochta.HalszkaraptorRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.djadochta.KolRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.djadochta.OviraptorRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.djadochta.PinacosaurusRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.djadochta.PlesiohadrosRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.djadochta.ProtoceratopsRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.djadochta.TelmasaurusRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.djadochta.UdanoceratopsRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.djadochta.VelociraptorRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.AnkylosaurusRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.AnzuRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.BasilemysRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.CephaloleichnitesRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.DakotaraptorRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.DidelphodonRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.EdmontosaurusRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.OrnithomimusRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.PachycephalosaurusRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.PalaeosaniwaRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.ThescelosaurusRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.ThoracosaurusRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.TriceratopsRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.TyrannosaurusRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.yixian.ApoclionRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.yixian.BeipiaosaurusRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.yixian.ChangyuraptorRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.yixian.CretaraneusRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.yixian.IncisivosaurusRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.yixian.LiaoningosaurusRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.yixian.PsittacosaurusRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.yixian.SinosauropteryxRenderer;
-import superlord.prehistoricfauna.client.render.cretaceous.yixian.YutyrannusRenderer;
-import superlord.prehistoricfauna.client.render.fish.AcipenserRenderer;
-import superlord.prehistoricfauna.client.render.fish.ArganodusRenderer;
-import superlord.prehistoricfauna.client.render.fish.CeratodusRenderer;
-import superlord.prehistoricfauna.client.render.fish.ChinleaRenderer;
-import superlord.prehistoricfauna.client.render.fish.CyclurusRenderer;
-import superlord.prehistoricfauna.client.render.fish.GarRenderer;
-import superlord.prehistoricfauna.client.render.fish.HarenaichthysRenderer;
-import superlord.prehistoricfauna.client.render.fish.LonchidionRenderer;
-import superlord.prehistoricfauna.client.render.fish.MelviusRenderer;
-import superlord.prehistoricfauna.client.render.fish.MooreodontusRenderer;
-import superlord.prehistoricfauna.client.render.fish.MyledaphusRenderer;
-import superlord.prehistoricfauna.client.render.fish.PotamoceratodusRenderer;
-import superlord.prehistoricfauna.client.render.fish.ProtopsephurusRenderer;
-import superlord.prehistoricfauna.client.render.fish.SaurichthysRenderer;
-import superlord.prehistoricfauna.client.render.fish.SinamiaRenderer;
-import superlord.prehistoricfauna.client.render.fish.YanosteusRenderer;
-import superlord.prehistoricfauna.client.render.fossil.cretaceous.AnkylosaurusSkeletonRenderer;
-import superlord.prehistoricfauna.client.render.fossil.cretaceous.AnkylosaurusSkullRenderer;
-import superlord.prehistoricfauna.client.render.fossil.cretaceous.PlesiohadrosSkeletonRenderer;
-import superlord.prehistoricfauna.client.render.fossil.cretaceous.PlesiohadrosSkullRenderer;
-import superlord.prehistoricfauna.client.render.fossil.cretaceous.ProtoceratopsSkeletonRenderer;
-import superlord.prehistoricfauna.client.render.fossil.cretaceous.ProtoceratopsSkullRenderer;
-import superlord.prehistoricfauna.client.render.fossil.cretaceous.PsittacosaurusSkeletonRenderer;
-import superlord.prehistoricfauna.client.render.fossil.cretaceous.PsittacosaurusSkullRenderer;
-import superlord.prehistoricfauna.client.render.fossil.cretaceous.TriceratopsSkeletonRenderer;
-import superlord.prehistoricfauna.client.render.fossil.cretaceous.TriceratopsSkullRenderer;
-import superlord.prehistoricfauna.client.render.fossil.cretaceous.TyrannosaurusSkeletonRenderer;
-import superlord.prehistoricfauna.client.render.fossil.cretaceous.TyrannosaurusSkullRenderer;
-import superlord.prehistoricfauna.client.render.fossil.cretaceous.VelociraptorSkeletonRenderer;
-import superlord.prehistoricfauna.client.render.fossil.cretaceous.VelociraptorSkullRenderer;
-import superlord.prehistoricfauna.client.render.fossil.jurassic.AllosaurusSkeletonRenderer;
-import superlord.prehistoricfauna.client.render.fossil.jurassic.AllosaurusSkullRenderer;
-import superlord.prehistoricfauna.client.render.fossil.jurassic.CeratosaurusSkeletonRenderer;
-import superlord.prehistoricfauna.client.render.fossil.jurassic.CeratosaurusSkullRenderer;
-import superlord.prehistoricfauna.client.render.fossil.jurassic.DilophosaurusSkeletonRenderer;
-import superlord.prehistoricfauna.client.render.fossil.jurassic.DilophosaurusSkullRenderer;
-import superlord.prehistoricfauna.client.render.fossil.jurassic.SarahsaurusSkeletonRenderer;
-import superlord.prehistoricfauna.client.render.fossil.jurassic.SarahsaurusSkullRenderer;
-import superlord.prehistoricfauna.client.render.fossil.jurassic.ScelidosaurusSkeletonRenderer;
-import superlord.prehistoricfauna.client.render.fossil.jurassic.ScelidosaurusSkullRenderer;
-import superlord.prehistoricfauna.client.render.fossil.jurassic.StegosaurusSkeletonRenderer;
-import superlord.prehistoricfauna.client.render.fossil.jurassic.StegosaurusSkullRenderer;
-import superlord.prehistoricfauna.client.render.fossil.triassic.CoelophysisSkeletonRenderer;
-import superlord.prehistoricfauna.client.render.fossil.triassic.CoelophysisSkullRenderer;
-import superlord.prehistoricfauna.client.render.fossil.triassic.DesmatosuchusSkeletonRenderer;
-import superlord.prehistoricfauna.client.render.fossil.triassic.DesmatosuchusSkullRenderer;
-import superlord.prehistoricfauna.client.render.fossil.triassic.HerrerasaurusSkeletonRenderer;
-import superlord.prehistoricfauna.client.render.fossil.triassic.HerrerasaurusSkullRenderer;
-import superlord.prehistoricfauna.client.render.fossil.triassic.IschigualastiaSkeletonRenderer;
-import superlord.prehistoricfauna.client.render.fossil.triassic.IschigualastiaSkullRenderer;
-import superlord.prehistoricfauna.client.render.fossil.triassic.PostosuchusSkeletonRenderer;
-import superlord.prehistoricfauna.client.render.fossil.triassic.PostosuchusSkullRenderer;
-import superlord.prehistoricfauna.client.render.fossil.triassic.SaurosuchusSkeletonRenderer;
-import superlord.prehistoricfauna.client.render.fossil.triassic.SaurosuchusSkullRenderer;
-import superlord.prehistoricfauna.client.render.henos.CaveSentinelRenderer;
-import superlord.prehistoricfauna.client.render.henos.HenosRenderer;
-import superlord.prehistoricfauna.client.render.henos.LandSentinelRenderer;
-import superlord.prehistoricfauna.client.render.item.FermentedGinkgoBerryRenderer;
-import superlord.prehistoricfauna.client.render.jurassic.kayenta.CalsoyasuchusRenderer;
-import superlord.prehistoricfauna.client.render.jurassic.kayenta.DilophosaurusRenderer;
-import superlord.prehistoricfauna.client.render.jurassic.kayenta.KayentatheriumRenderer;
-import superlord.prehistoricfauna.client.render.jurassic.kayenta.MegapnosaurusRenderer;
-import superlord.prehistoricfauna.client.render.jurassic.kayenta.SarahsaurusRenderer;
-import superlord.prehistoricfauna.client.render.jurassic.kayenta.ScelidosaurusRenderer;
-import superlord.prehistoricfauna.client.render.jurassic.kayenta.ScutellosaurusRenderer;
-import superlord.prehistoricfauna.client.render.jurassic.morrison.AllosaurusRenderer;
-import superlord.prehistoricfauna.client.render.jurassic.morrison.CamarasaurusRenderer;
-import superlord.prehistoricfauna.client.render.jurassic.morrison.CeratosaurusRenderer;
-import superlord.prehistoricfauna.client.render.jurassic.morrison.DryosaurusRenderer;
-import superlord.prehistoricfauna.client.render.jurassic.morrison.EilenodonRenderer;
-import superlord.prehistoricfauna.client.render.jurassic.morrison.HesperornithoidesRenderer;
-import superlord.prehistoricfauna.client.render.jurassic.morrison.StegosaurusRenderer;
-import superlord.prehistoricfauna.client.render.triassic.chinle.CoelophysisRenderer;
-import superlord.prehistoricfauna.client.render.triassic.chinle.DesmatosuchusRenderer;
-import superlord.prehistoricfauna.client.render.triassic.chinle.PlaceriasRenderer;
-import superlord.prehistoricfauna.client.render.triassic.chinle.PoposaurusRenderer;
-import superlord.prehistoricfauna.client.render.triassic.chinle.PostosuchusRenderer;
-import superlord.prehistoricfauna.client.render.triassic.chinle.TrilophosaurusRenderer;
-import superlord.prehistoricfauna.client.render.triassic.chinle.TypothoraxRenderer;
-import superlord.prehistoricfauna.client.render.triassic.ischigualasto.ChromogisaurusRenderer;
-import superlord.prehistoricfauna.client.render.triassic.ischigualasto.ExaeretodonRenderer;
-import superlord.prehistoricfauna.client.render.triassic.ischigualasto.HerrerasaurusRenderer;
-import superlord.prehistoricfauna.client.render.triassic.ischigualasto.HyperodapedonRenderer;
-import superlord.prehistoricfauna.client.render.triassic.ischigualasto.IschigualastiaRenderer;
-import superlord.prehistoricfauna.client.render.triassic.ischigualasto.SaurosuchusRenderer;
-import superlord.prehistoricfauna.client.render.triassic.ischigualasto.SillosuchusRenderer;
+import superlord.prehistoricfauna.client.gui.*;
+import superlord.prehistoricfauna.client.model.armor.*;
+import superlord.prehistoricfauna.client.model.cretaceous.djadochta.*;
+import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.*;
+import superlord.prehistoricfauna.client.model.cretaceous.yixian.*;
+import superlord.prehistoricfauna.client.model.fish.*;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.*;
+import superlord.prehistoricfauna.client.model.fossil.jurassic.*;
+import superlord.prehistoricfauna.client.model.fossil.triassic.*;
+import superlord.prehistoricfauna.client.model.henos.*;
+import superlord.prehistoricfauna.client.model.jurassic.kayenta.*;
+import superlord.prehistoricfauna.client.model.jurassic.morrison.*;
+import superlord.prehistoricfauna.client.model.triassic.chinle.*;
+import superlord.prehistoricfauna.client.model.triassic.ischigualasto.*;
+import superlord.prehistoricfauna.client.render.*;
+import superlord.prehistoricfauna.client.render.cretaceous.djadochta.*;
+import superlord.prehistoricfauna.client.render.cretaceous.hellcreek.*;
+import superlord.prehistoricfauna.client.render.cretaceous.yixian.*;
+import superlord.prehistoricfauna.client.render.fish.*;
+import superlord.prehistoricfauna.client.render.fossil.cretaceous.*;
+import superlord.prehistoricfauna.client.render.fossil.jurassic.*;
+import superlord.prehistoricfauna.client.render.fossil.triassic.*;
+import superlord.prehistoricfauna.client.render.henos.*;
+import superlord.prehistoricfauna.client.render.item.*;
+import superlord.prehistoricfauna.client.render.jurassic.kayenta.*;
+import superlord.prehistoricfauna.client.render.jurassic.morrison.*;
+import superlord.prehistoricfauna.client.render.triassic.chinle.*;
+import superlord.prehistoricfauna.client.render.triassic.ischigualasto.*;
 import superlord.prehistoricfauna.client.util.PFChestBlockEntityRenderer;
-import superlord.prehistoricfauna.common.items.PFSpawnEggItem;
 import superlord.prehistoricfauna.common.network.KeyInputMessage;
-import superlord.prehistoricfauna.init.PFBlockEntities;
-import superlord.prehistoricfauna.init.PFContainers;
-import superlord.prehistoricfauna.init.PFEntities;
-import superlord.prehistoricfauna.init.PFKeybinds;
-import superlord.prehistoricfauna.init.PFWoodTypes;
+import superlord.prehistoricfauna.init.*;
 
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -389,8 +55,8 @@ public class ClientEvents {
 
 	@SubscribeEvent
 	public static void init(final FMLClientSetupEvent event) {
-		PFKeybinds.register(event);
 		BlockEntityRenderers.register(PFBlockEntities.SIGN.get(), SignRenderer::new);
+		BlockEntityRenderers.register(PFBlockEntities.HANGING_SIGN.get(), HangingSignRenderer::new);
 		event.enqueueWork(() -> {
 			Sheets.addWoodType(PFWoodTypes.METASEQUOIA);
 			Sheets.addWoodType(PFWoodTypes.ARAUCARIA);
@@ -662,7 +328,8 @@ public class ClientEvents {
 	public static ModelLayerLocation SAURICHTHYS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "saurichthys"), "saurichthys");
 	public static ModelLayerLocation SINAMIA = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "sinamia"), "sinamia");
 	public static ModelLayerLocation YANOSTEUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "yanosteus"), "yanosteus");
-
+	public static ModelLayerLocation PARAPSEPHURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "parapsephurus"), "parapsephurus");
+	
 	public static ModelLayerLocation ANKYLOSAURUS_HELMET = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "ankylosaurus_helmet"), "ankylosaurus_helmet");
 	public static ModelLayerLocation DESMATOSUCHUS_CHESTPLATE = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "desmatosuchus_chestplate"), "desmatosuchus_chestplate");
 
@@ -677,6 +344,8 @@ public class ClientEvents {
 		event.registerEntityRenderer(PFEntities.HERRERASAURUS_SKULL.get(), HerrerasaurusSkullRenderer::new);
 		event.registerEntityRenderer(PFEntities.HERRERASAURUS_SKELETON.get(), HerrerasaurusSkeletonRenderer::new);
 		event.registerEntityRenderer(PFEntities.BOAT.get(), PFBoatRenderer::new);
+		event.registerEntityRenderer(PFEntities.CHEST_BOAT.get(), PFChestBoatRenderer::new);
+		event.registerEntityRenderer(PFEntities.RAFT.get(), PFRaftRenderer::new);
 		event.registerEntityRenderer(PFEntities.PALEOPAINTING.get(), PaleopaintingRenderer::new);
 		event.registerEntityRenderer(PFEntities.WALL_FOSSIL.get(), WallFossilRenderer::new);
 		event.registerEntityRenderer(PFEntities.HENOS.get(), HenosRenderer::new);
@@ -799,8 +468,10 @@ public class ClientEvents {
 		event.registerEntityRenderer(PFEntities.ANZU.get(), AnzuRenderer::new);
 		event.registerEntityRenderer(PFEntities.LIAONINGOSAURUS.get(), LiaoningosaurusRenderer::new);
 		event.registerEntityRenderer(PFEntities.CHANGYURAPTOR.get(), ChangyuraptorRenderer::new);
+		event.registerEntityRenderer(PFEntities.PARAPSEPHURUS.get(), ParapsephurusRenderer::new);
 		
 		event.registerBlockEntityRenderer(PFBlockEntities.CHEST.get(), PFChestBlockEntityRenderer::new);
+		event.registerBlockEntityRenderer(PFBlockEntities.TRAPPED_CHEST.get(), PFChestBlockEntityRenderer::new);
 	}
 
 	@SubscribeEvent
@@ -967,6 +638,7 @@ public class ClientEvents {
 		event.registerLayerDefinition(SAURICHTHYS, SaurichthysModel::createBodyLayer);
 		event.registerLayerDefinition(SINAMIA, SinamiaModel::createBodyLayer);
 		event.registerLayerDefinition(YANOSTEUS, YanosteusModel::createBodyLayer);
+		event.registerLayerDefinition(PARAPSEPHURUS, ParapsephurusModel::createBodyLayer);
 		//Hell Creek
 		event.registerLayerDefinition(THESCELOSAURUS, ThescelosaurusModel::createBodyLayer);
 		event.registerLayerDefinition(BASILEMYS, BasilemysModel::createBodyLayer);
@@ -1062,26 +734,18 @@ public class ClientEvents {
 		event.registerLayerDefinition(SILLOSUCHUS_BABY, SillosuchusBabyModel::createBodyLayer);
 	}
 
-	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
-	public static void itemColors(ColorHandlerEvent.Item event) {
-		ItemColors handler = event.getItemColors();
-		ItemColor eggColor = (stack, tintIndex) -> ((PFSpawnEggItem) stack.getItem()).getColor(tintIndex);
-		for (PFSpawnEggItem e : PFSpawnEggItem.UNADDED_EGGS) handler.register(eggColor, e);
-	}
-
 	@Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 	public static class ForgeBusEvents {
 
 		@SubscribeEvent
-		public static void onKeyPress(InputEvent.KeyInputEvent event) {
+		public static void onKeyPress(InputEvent.Key event) {
 			Minecraft mc = Minecraft.getInstance();
 			if (mc.level == null) return;
 			onInput(mc, event.getKey(), event.getAction());
 		}
 
 		@SubscribeEvent
-		public static void onMouseClick(InputEvent.MouseInputEvent event) {
+		public static void onMouseClick(InputEvent.MouseButton event) {
 			Minecraft mc = Minecraft.getInstance();
 			if (mc.level == null) return;
 			onInput(mc, event.getButton(), event.getAction());
@@ -1099,14 +763,14 @@ public class ClientEvents {
 	public class InputEvents {
 		
 		@SubscribeEvent
-		public static void onKeyPress(InputEvent.KeyInputEvent event) {
+		public static void onKeyPress(InputEvent.Key event) {
 			Minecraft mc = Minecraft.getInstance();
 			if (mc.level == null) return;
 			onInput(mc, event.getKey(), event.getAction());
 		}
 		
 		@SubscribeEvent
-		public static void onMouseClick(InputEvent.MouseInputEvent event) {
+		public static void onMouseClick(InputEvent.MouseButton event) {
 			Minecraft mc = Minecraft.getInstance();
 			if (mc.level == null) return;
 			onInput(mc, event.getButton(), event.getAction());

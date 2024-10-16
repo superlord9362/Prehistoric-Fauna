@@ -1,7 +1,7 @@
 {
 	"parent": "block/ladder",
 	"textures": {
-		"particle": "prehistoricfauna:blocks/protopiceoxylon_ladder",
-		"texture": "prehistoricfauna:blocks/protopiceoxylon_ladder"
+		"particle": "prehistoricfauna:block/protopiceoxylon_ladder",
+		"texture": "prehistoricfauna:block/protopiceoxylon_ladder"
 	}
 }

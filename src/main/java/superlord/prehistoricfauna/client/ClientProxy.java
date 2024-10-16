@@ -19,12 +19,18 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.gui.GuiPaleopedia;
 import superlord.prehistoricfauna.client.render.item.AnkylosaurusHelmetRenderProperties;
 import superlord.prehistoricfauna.common.CommonProxy;
+import superlord.prehistoricfauna.common.particle.BossHealParticle;
+import superlord.prehistoricfauna.common.particle.BossLaserParticle;
+import superlord.prehistoricfauna.common.particle.PFPortalParticle;
 import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFParticles;
 
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID, value = Dist.CLIENT)
@@ -33,12 +39,14 @@ public class ClientProxy extends CommonProxy {
 	private BlockEntity referencedBE = null;
 
 	public void init() {
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientProxy::setupParticles);
 	}
 
 	public static int getDryophyllumColor() {
 		return 0x5C843B;
 	}
 
+	@SuppressWarnings("deprecation")
 	public static void setupBlockRenders() {
 		BlockColors blockcolors = Minecraft.getInstance().getBlockColors();
 		ItemColors itemcolors = Minecraft.getInstance().getItemColors();
@@ -307,6 +315,12 @@ public class ClientProxy extends CommonProxy {
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.CALLIANTHUS.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.NOTHODICHOCARPUM.get(), cutoutRenderType);
 	}
+	
+    public static void setupParticles(RegisterParticleProvidersEvent registry) {
+    	registry.registerSpriteSet(PFParticles.BOSS_HEAL.get(), BossHealParticle.Provider::new);
+    	registry.registerSpriteSet(PFParticles.BOSS_LASER.get(), BossLaserParticle.Provider::new);
+    	registry.registerSpriteSet(PFParticles.PORTAL_PARTICLE.get(), PFPortalParticle.Provider::new);
+    }
 
 	@Override
 	public void openPaleopediaGui(ItemStack book) {

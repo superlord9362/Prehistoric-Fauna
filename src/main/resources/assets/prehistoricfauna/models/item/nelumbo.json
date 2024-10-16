@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:blocks/nelumbo_pad"
+        "layer0": "prehistoricfauna:block/nelumbo_pad"
     }
 }

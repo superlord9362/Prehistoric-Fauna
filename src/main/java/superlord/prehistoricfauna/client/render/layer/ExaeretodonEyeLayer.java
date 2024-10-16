@@ -30,11 +30,11 @@ public class ExaeretodonEyeLayer extends RenderLayer<Exaeretodon, ExaeretodonMod
 		if (!(exaeretodonRenderer.getModel() instanceof ExaeretodonModel)) {
 			return;
 		}
-		long roundTime = exaeretodon.level.getDayTime() % 24000;
+		long roundTime = exaeretodon.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos exaeretodonPos = exaeretodon.blockPosition();
-		int i = exaeretodon.level.getBrightness(LightLayer.SKY, exaeretodonPos);
-		int j = exaeretodon.level.getBrightness(LightLayer.BLOCK, exaeretodonPos);
+		int i = exaeretodon.level().getBrightness(LightLayer.SKY, exaeretodonPos);
+		int j = exaeretodon.level().getBrightness(LightLayer.BLOCK, exaeretodonPos);
 		int brightness;
 		if (night) {
 			brightness = j;

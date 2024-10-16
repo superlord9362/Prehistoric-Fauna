@@ -2,6 +2,6 @@
 	"parent": "prehistoricfauna:block/four_small_round_eggs",
 	"ambientocclusion": false,
 	"textures": {
-		"egg": "prehistoricfauna:blocks/kayentatherium_egg"
+		"egg": "prehistoricfauna:block/kayentatherium_egg"
 	}
 }

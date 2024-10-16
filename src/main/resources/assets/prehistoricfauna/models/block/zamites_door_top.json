@@ -1,7 +1,0 @@
-{
-    "parent": "block/door_top",
-    "textures": {
-        "bottom": "prehistoricfauna:blocks/zamites_door_bottom",
-        "top": "prehistoricfauna:blocks/zamites_door_top"
-    }
-}

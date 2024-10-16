@@ -31,11 +31,11 @@ public class TyrannosaurusEyeLayer extends RenderLayer<Tyrannosaurus, EntityMode
 		if (!(tyrannosaurusRenderer.getModel() instanceof TyrannosaurusModel)) {
 			return;
 		}
-		long roundTime = tyrannosaurus.level.getDayTime() % 24000;
+		long roundTime = tyrannosaurus.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos tyrannosaurusPos = tyrannosaurus.blockPosition();
-		int i = tyrannosaurus.level.getBrightness(LightLayer.SKY, tyrannosaurusPos);
-		int j = tyrannosaurus.level.getBrightness(LightLayer.BLOCK, tyrannosaurusPos);
+		int i = tyrannosaurus.level().getBrightness(LightLayer.SKY, tyrannosaurusPos);
+		int j = tyrannosaurus.level().getBrightness(LightLayer.BLOCK, tyrannosaurusPos);
 		int brightness;
 		if (night) {
 			brightness = j;

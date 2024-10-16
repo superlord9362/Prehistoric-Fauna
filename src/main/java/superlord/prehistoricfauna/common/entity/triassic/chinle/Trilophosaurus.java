@@ -65,10 +65,9 @@ public class Trilophosaurus extends DinosaurEntity {
 	private int climbingTicks = 0;
 	private int climbingTickCooldown = 0;
 
-	@SuppressWarnings("deprecation")
 	public Trilophosaurus(EntityType<? extends TamableAnimal> type, Level levelIn) {
 		super(type, levelIn);
-		super.maxUpStep = 1.0F;
+		super.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -86,15 +85,15 @@ public class Trilophosaurus extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.TRILOPHOSAURUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.TRILOPHOSAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.TRILOPHOSAURUS_HURT;
+		return PFSounds.TRILOPHOSAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.TRILOPHOSAURUS_DEATH;
+		return PFSounds.TRILOPHOSAURUS_DEATH.get();
 	}
 
 	@Override
@@ -148,17 +147,17 @@ public class Trilophosaurus extends DinosaurEntity {
 
 	public void tick() {
 		super.tick();
-		if (!this.level.isClientSide) {
+		if (!this.level().isClientSide()) {
 			if (this.horizontalCollision) {
 				Boolean logBlock;
-				BlockPos blockpos1 = new BlockPos(this.position().x() + 1, this.position().y() + 1, this.position().z());
-				BlockPos blockpos2 = new BlockPos(this.position().x() - 1, this.position().y() + 1, this.position().z());
-				BlockPos blockpos3 = new BlockPos(this.position().x(), this.position().y() + 1, this.position().z() + 1);
-				BlockPos blockpos4 = new BlockPos(this.position().x(), this.position().y() + 1, this.position().z() - 1);
-				BlockState blockstate1 = this.level.getBlockState(blockpos1);
-				BlockState blockstate2 = this.level.getBlockState(blockpos2);
-				BlockState blockstate3 = this.level.getBlockState(blockpos3);
-				BlockState blockstate4 = this.level.getBlockState(blockpos4);
+				BlockPos blockpos1 = new BlockPos(this.blockPosition().getX() + 1, this.blockPosition().getY() + 1, this.blockPosition().getZ());
+				BlockPos blockpos2 = new BlockPos(this.blockPosition().getX() - 1, this.blockPosition().getY() + 1, this.blockPosition().getZ());
+				BlockPos blockpos3 = new BlockPos(this.blockPosition().getX(), this.blockPosition().getY() + 1, this.blockPosition().getZ() + 1);
+				BlockPos blockpos4 = new BlockPos(this.blockPosition().getX(), this.blockPosition().getY() + 1, this.blockPosition().getZ() - 1);
+				BlockState blockstate1 = this.level().getBlockState(blockpos1);
+				BlockState blockstate2 = this.level().getBlockState(blockpos2);
+				BlockState blockstate3 = this.level().getBlockState(blockpos3);
+				BlockState blockstate4 = this.level().getBlockState(blockpos4);
 				if (blockstate1.is(PFBlocks.NEOCALAMITES.get()) || blockstate1.is(PFBlocks.NEOCALAMITES_TOP.get())|| blockstate2.is(PFBlocks.NEOCALAMITES.get()) || blockstate2.is(PFBlocks.NEOCALAMITES_TOP.get()) || blockstate3.is(PFBlocks.NEOCALAMITES.get()) || blockstate3.is(PFBlocks.NEOCALAMITES_TOP.get()) || blockstate4.is(PFBlocks.NEOCALAMITES.get()) || blockstate4.is(PFBlocks.NEOCALAMITES_TOP.get())) {
 					logBlock = true;
 					if (climbingTickCooldown == 0 && climbingTicks < 600) {
@@ -212,8 +211,8 @@ public class Trilophosaurus extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Trilophosaurus entity = new Trilophosaurus(PFEntities.TRILOPHOSAURUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Trilophosaurus entity = new Trilophosaurus(PFEntities.TRILOPHOSAURUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 

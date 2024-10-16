@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_right",
+  "textures": {
+    "bottom": "prehistoricfauna:block/taxodium_door_bottom",
+    "top": "prehistoricfauna:block/taxodium_door_top"
+  }
+}

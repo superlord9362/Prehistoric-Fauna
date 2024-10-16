@@ -55,7 +55,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.predicate.BlockStatePredicate;
 import net.minecraft.world.level.pathfinder.AmphibiousNodeEvaluator;
 import net.minecraft.world.level.pathfinder.PathFinder;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -103,11 +103,10 @@ public class Halszkaraptor extends DinosaurEntity {
 
 	private int maxHunger = 15;
 
-	@SuppressWarnings("deprecation")
 	public Halszkaraptor(EntityType<? extends TamableAnimal> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
 		this.moveControl = new Halszkaraptor.HalszkaraptorMoveControl(this);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -116,8 +115,8 @@ public class Halszkaraptor extends DinosaurEntity {
 	}
 
 	private void spawnItem(ItemStack stack) {
-		ItemEntity itemEntity = new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), stack);
-		this.level.addFreshEntity(itemEntity);
+		ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), stack);
+		this.level().addFreshEntity(itemEntity);
 	}
 
 	@Override
@@ -226,15 +225,15 @@ public class Halszkaraptor extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.HALSZKARAPTOR_IDLE;
+		return this.isAsleep() ? null : PFSounds.HALSZKARAPTOR_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.HALSZKARAPTOR_HURT;
+		return PFSounds.HALSZKARAPTOR_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.HALSZKARAPTOR_DEATH;
+		return PFSounds.HALSZKARAPTOR_DEATH.get();
 	}
 
 	public boolean onAttackAnimationFinish(Entity entityIn) {
@@ -247,8 +246,8 @@ public class Halszkaraptor extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Halszkaraptor entity = new Halszkaraptor(PFEntities.HALSZKARAPTOR.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Halszkaraptor entity = new Halszkaraptor(PFEntities.HALSZKARAPTOR.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -271,11 +270,11 @@ public class Halszkaraptor extends DinosaurEntity {
 	}
 
 	private void spitOutItem(ItemStack p_28602_) {
-		if (!p_28602_.isEmpty() && !this.level.isClientSide) {
-			ItemEntity itementity = new ItemEntity(this.level, this.getX() + this.getLookAngle().x, this.getY() + 1.0D, this.getZ() + this.getLookAngle().z, p_28602_);
+		if (!p_28602_.isEmpty() && !this.level().isClientSide) {
+			ItemEntity itementity = new ItemEntity(this.level(), this.getX() + this.getLookAngle().x, this.getY() + 1.0D, this.getZ() + this.getLookAngle().z, p_28602_);
 			itementity.setPickUpDelay(40);
 			itementity.setThrower(this.getUUID());
-			this.level.addFreshEntity(itementity);
+			this.level().addFreshEntity(itementity);
 		}
 	}
 
@@ -433,7 +432,7 @@ public class Halszkaraptor extends DinosaurEntity {
 		}
 		
 		public boolean canContinueToUse() {
-			return !this.halszkaraptor.isInWater() && this.tryTicks <= GIVE_UP_TICKS && this.isValidTarget(this.halszkaraptor.level, this.blockPos);
+			return !this.halszkaraptor.isInWater() && this.tryTicks <= GIVE_UP_TICKS && this.isValidTarget(this.halszkaraptor.level(), this.blockPos);
 		}
 		
 		public boolean canUse() {
@@ -474,10 +473,10 @@ public class Halszkaraptor extends DinosaurEntity {
 				return false;
 			} else {
 				BlockPos blockpos = entity.blockPosition();
-				if (IS_WATER.test(entity.level.getBlockState(blockpos))) {
+				if (IS_WATER.test(entity.level().getBlockState(blockpos))) {
 					return true;
 				} else {
-					return entity.level.getBlockState(blockpos.below()).is(Blocks.WATER);
+					return entity.level().getBlockState(blockpos.below()).is(Blocks.WATER);
 				}
 			}
 		}
@@ -486,7 +485,7 @@ public class Halszkaraptor extends DinosaurEntity {
 		public void start() {
 			fishingTimer = 40;
 			fishTimer = 6000;
-			entity.level.broadcastEntityEvent(entity, (byte) 10);
+			entity.level().broadcastEntityEvent(entity, (byte) 10);
 			entity.getNavigation().stop();
 		}
 
@@ -511,11 +510,11 @@ public class Halszkaraptor extends DinosaurEntity {
 			if (fishingTimer == 25) {
 				BlockPos blockpos = entity.blockPosition();
 				BlockPos blockpos1 = blockpos.below();
-				if (entity.level.getBlockState(blockpos1).is(Blocks.WATER)) {
-					MinecraftServer server = entity.level.getServer();
+				if (entity.level().getBlockState(blockpos1).is(Blocks.WATER)) {
+					MinecraftServer server = entity.level().getServer();
 					if (server != null) {
-						List<ItemStack> items = server.getLootTables().get(FISHING_LOOT).getRandomItems(new LootContext.Builder((ServerLevel) entity.level).withRandom(entity.getRandom()).create(LootContextParamSet.builder().build()));
-						Containers.dropContents(entity.level, blockpos, NonNullList.of(ItemStack.EMPTY, items.toArray(new ItemStack[0])));
+						List<ItemStack> items = server.getLootData().getLootTable(FISHING_LOOT).getRandomItems(new LootParams.Builder((ServerLevel) entity.level()).create(LootContextParamSet.builder().build()));
+						Containers.dropContents(entity.level(), blockpos, NonNullList.of(ItemStack.EMPTY, items.toArray(new ItemStack[0])));
 					}
 				}
 			}
@@ -523,12 +522,12 @@ public class Halszkaraptor extends DinosaurEntity {
 	}
 
 	public void aiStep() {
-		if (!this.level.isClientSide && this.isAlive() && this.isEffectiveAi()) {
+		if (!this.level().isClientSide() && this.isAlive() && this.isEffectiveAi()) {
 			++this.ticksSinceEaten;
 			ItemStack itemstack = this.getItemBySlot(EquipmentSlot.MAINHAND);
 			if (this.canEatItem(itemstack)) {
 				if (this.ticksSinceEaten > 100) {
-					ItemStack itemstack1 = itemstack.finishUsingItem(this.level, this);
+					ItemStack itemstack1 = itemstack.finishUsingItem(this.level(), this);
 					if (!itemstack1.isEmpty()) {
 						this.setItemSlot(EquipmentSlot.MAINHAND, itemstack1);
 					}
@@ -571,14 +570,14 @@ public class Halszkaraptor extends DinosaurEntity {
 			if (Halszkaraptor.this.getRandom().nextInt(reducedTickDelay(10)) != 0) {
 				return false;
 			} else {
-				List<ItemEntity> list = Halszkaraptor.this.level.getEntitiesOfClass(ItemEntity.class, Halszkaraptor.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D));
+				List<ItemEntity> list = Halszkaraptor.this.level().getEntitiesOfClass(ItemEntity.class, Halszkaraptor.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D));
 				return !list.isEmpty() && Halszkaraptor.this.getItemBySlot(EquipmentSlot.MAINHAND).isEmpty();
 			}
 		}
 
 
 		public void tick() {
-			List<ItemEntity> list = Halszkaraptor.this.level.getEntitiesOfClass(ItemEntity.class, Halszkaraptor.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D));
+			List<ItemEntity> list = Halszkaraptor.this.level().getEntitiesOfClass(ItemEntity.class, Halszkaraptor.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D));
 			ItemStack itemstack = Halszkaraptor.this.getItemBySlot(EquipmentSlot.MAINHAND);
 			if (itemstack.isEmpty() && !list.isEmpty()) {
 				Halszkaraptor.this.getNavigation().moveTo(list.get(0), (double)1.2F);
@@ -587,7 +586,7 @@ public class Halszkaraptor extends DinosaurEntity {
 		}
 
 		public void start() {
-			List<ItemEntity> list = Halszkaraptor.this.level.getEntitiesOfClass(ItemEntity.class, Halszkaraptor.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D));
+			List<ItemEntity> list = Halszkaraptor.this.level().getEntitiesOfClass(ItemEntity.class, Halszkaraptor.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D));
 			if (!list.isEmpty()) {
 				Halszkaraptor.this.getNavigation().moveTo(list.get(0), (double)1.2F);
 			}

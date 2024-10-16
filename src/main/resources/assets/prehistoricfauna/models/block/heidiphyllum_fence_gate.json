@@ -1,6 +1,6 @@
 {
     "parent": "block/template_fence_gate",
     "textures": {
-        "texture": "prehistoricfauna:blocks/heidiphyllum_planks"
+        "texture": "prehistoricfauna:block/heidiphyllum_planks"
     }
 }

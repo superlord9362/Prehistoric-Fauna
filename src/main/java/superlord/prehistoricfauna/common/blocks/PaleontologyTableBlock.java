@@ -86,7 +86,7 @@ public class PaleontologyTableBlock extends BaseEntityBlock {
 		if (world != null && !world.isClientSide) {
 			BlockEntity tile = world.getBlockEntity(pos);
 			if(tile instanceof PaleontologyTableBlockEntity) {
-				NetworkHooks.openGui((ServerPlayer)player, (MenuProvider)tile, pos);
+				NetworkHooks.openScreen((ServerPlayer)player, (MenuProvider)tile, pos);
 				return InteractionResult.SUCCESS;
 			}
 		}

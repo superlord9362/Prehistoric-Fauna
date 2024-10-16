@@ -1,9 +1,0 @@
-{
-	"type": "prehistoricfauna:paleontology_table",
-	"ingredients": [
- 		{
- 			"item": "prehistoricfauna:triassic_fossil"
- 		}
-	],
-	"output": "prehistoricfauna:gameplay/paleontology_table/triassic_fossil"
-}

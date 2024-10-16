@@ -1,8 +1,8 @@
 {
     "ambientocclusion": false,
     "textures": {
-        "particle": "prehistoricfauna:blocks/humulus_climb",
-        "humulus": "prehistoricfauna:blocks/humulus_climb"
+        "particle": "prehistoricfauna:block/humulus_climb",
+        "humulus": "prehistoricfauna:block/humulus_climb"
     },
     "elements": [
         {   "from": [ 0, 0, 0.1 ],

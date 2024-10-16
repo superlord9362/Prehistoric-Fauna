@@ -131,6 +131,7 @@ public class TallHorsetailBlock extends DoublePlantBlock {
 		return Block.OffsetType.XZ;
 	}
 
+	@SuppressWarnings("deprecation")
 	@OnlyIn(Dist.CLIENT)
 	public long getSeed(BlockState state, BlockPos pos) {
 		return Mth.getSeed(pos.getX(), pos.below(state.getValue(HALF) == DoubleBlockHalf.LOWER ? 0 : 1).getY(), pos.getZ());

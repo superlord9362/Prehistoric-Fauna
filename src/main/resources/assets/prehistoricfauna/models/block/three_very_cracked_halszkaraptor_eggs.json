@@ -2,6 +2,6 @@
 	"parent": "prehistoricfauna:block/three_small_tall_eggs",
 	"ambientocclusion": false,
 	"textures": {
-		"egg": "prehistoricfauna:blocks/halszkaraptor_egg_very_cracked"
+		"egg": "prehistoricfauna:block/halszkaraptor_egg_very_cracked"
 	}
 }

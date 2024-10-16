@@ -30,11 +30,11 @@ public class ThoracosaurusEyeLayer extends RenderLayer<Thoracosaurus, Thoracosau
 		if (!(dakotaraptorRenderer.getModel() instanceof ThoracosaurusModel)) {
 			return;
 		}
-		long roundTime = dakotaraptor.level.getDayTime() % 24000;
+		long roundTime = dakotaraptor.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos dakotaraptorPos = dakotaraptor.blockPosition();
-		int i = dakotaraptor.level.getBrightness(LightLayer.SKY, dakotaraptorPos);
-		int j = dakotaraptor.level.getBrightness(LightLayer.BLOCK, dakotaraptorPos);
+		int i = dakotaraptor.level().getBrightness(LightLayer.SKY, dakotaraptorPos);
+		int j = dakotaraptor.level().getBrightness(LightLayer.BLOCK, dakotaraptorPos);
 		int brightness;
 		if (night) {
 			brightness = j;

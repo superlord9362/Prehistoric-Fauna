@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"material": "prehistoricfauna:blocks/nest",
-		"12": "prehistoricfauna:blocks/plants",
+		"material": "prehistoricfauna:block/nest",
+		"12": "prehistoricfauna:block/plants",
 		"particle": "#material"
 	},
 	"elements": [

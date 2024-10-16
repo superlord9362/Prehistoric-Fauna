@@ -30,11 +30,11 @@ public class PoposaurusEyeLayer extends RenderLayer<Poposaurus, PoposaurusModel>
 		if (!(poposaurusRenderer.getModel() instanceof PoposaurusModel)) {
 			return;
 		}
-		long roundTime = poposaurus.level.getDayTime() % 24000;
+		long roundTime = poposaurus.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos poposaurusPos = poposaurus.blockPosition();
-		int i = poposaurus.level.getBrightness(LightLayer.SKY, poposaurusPos);
-		int j = poposaurus.level.getBrightness(LightLayer.BLOCK, poposaurusPos);
+		int i = poposaurus.level().getBrightness(LightLayer.SKY, poposaurusPos);
+		int j = poposaurus.level().getBrightness(LightLayer.BLOCK, poposaurusPos);
 		int brightness;
 		if (night) {
 			brightness = j;

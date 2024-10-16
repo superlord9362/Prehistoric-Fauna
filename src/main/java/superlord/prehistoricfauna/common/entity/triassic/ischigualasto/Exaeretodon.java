@@ -43,7 +43,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.PrehistoricFauna;
@@ -86,10 +86,9 @@ public class Exaeretodon extends DinosaurEntity {
 	private int maxHunger = 20;
 	private int warningSoundTicks;
 
-	@SuppressWarnings("deprecation")
 	public Exaeretodon(EntityType<? extends Exaeretodon> type, Level levelIn) {
 		super(type, levelIn);
-		super.maxUpStep = 1.0F;
+		super.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -156,20 +155,20 @@ public class Exaeretodon extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.EXAERETODON_IDLE;
+		return this.isAsleep() ? null : PFSounds.EXAERETODON_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.EXAERETODON_HURT;
+		return PFSounds.EXAERETODON_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.EXAERETODON_DEATH;
+		return PFSounds.EXAERETODON_DEATH.get();
 	}
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.EXAERETODON_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.EXAERETODON_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -190,7 +189,7 @@ public class Exaeretodon extends DinosaurEntity {
 	}
 
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
-		if (level.isClientSide) {
+		if (level().isClientSide()) {
 			return InteractionResult.PASS;
 		} else {
 			ItemStack stack = player.getItemInHand(hand);
@@ -273,8 +272,8 @@ public class Exaeretodon extends DinosaurEntity {
 	
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Exaeretodon entity = new Exaeretodon(PFEntities.EXAERETODON.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Exaeretodon entity = new Exaeretodon(PFEntities.EXAERETODON.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -297,11 +296,11 @@ public class Exaeretodon extends DinosaurEntity {
 				return false;
 			}
 			BlockPos blockpos = exaeretodon.blockPosition();
-			BlockState state = exaeretodon.level.getBlockState(blockpos);
+			BlockState state = exaeretodon.level().getBlockState(blockpos);
 			if (state.is(BlockTags.DIRT) && exaeretodon.isDiggingForRoots()) {
 				return true;
 			} else {
-				return exaeretodon.level.getBlockState(blockpos.below()).is(BlockTags.DIRT)&& exaeretodon.isDiggingForRoots();
+				return exaeretodon.level().getBlockState(blockpos.below()).is(BlockTags.DIRT)&& exaeretodon.isDiggingForRoots();
 			}
 		}
 
@@ -309,7 +308,7 @@ public class Exaeretodon extends DinosaurEntity {
 		public void start() {
 			diggingTimer = 40;
 			digTimer2 = 6000;
-			exaeretodon.level.broadcastEntityEvent(exaeretodon, (byte) 10);
+			exaeretodon.level().broadcastEntityEvent(exaeretodon, (byte) 10);
 			exaeretodon.getNavigation().stop();
 		}
 
@@ -335,13 +334,13 @@ public class Exaeretodon extends DinosaurEntity {
 			if (diggingTimer == 25) {
 				BlockPos blockpos = exaeretodon.blockPosition();
 				BlockPos blockpos1 = blockpos.below();
-				if (exaeretodon.level.getBlockState(blockpos1).is(BlockTags.DIRT)) {
-					BlockState state = exaeretodon.level.getBlockState(blockpos1);
-					exaeretodon.level.levelEvent(2001, blockpos1, Block.getId(state));
-					MinecraftServer server = exaeretodon.level.getServer();
+				if (exaeretodon.level().getBlockState(blockpos1).is(BlockTags.DIRT)) {
+					BlockState state = exaeretodon.level().getBlockState(blockpos1);
+					exaeretodon.level().levelEvent(2001, blockpos1, Block.getId(state));
+					MinecraftServer server = exaeretodon.level().getServer();
 					if (server != null) {
-						List<ItemStack> items = server.getLootTables().get(DIGGING_LOOT).getRandomItems(new LootContext.Builder((ServerLevel) exaeretodon.level).withRandom(exaeretodon.getRandom()).create(LootContextParamSets.EMPTY));
-						Containers.dropContents(exaeretodon.level, blockpos, NonNullList.of(ItemStack.EMPTY, items.toArray(new ItemStack[0])));
+						List<ItemStack> items = server.getLootData().getLootTable(DIGGING_LOOT).getRandomItems(new LootParams.Builder((ServerLevel) exaeretodon.level()).create(LootContextParamSets.EMPTY));
+						Containers.dropContents(exaeretodon.level(), blockpos, NonNullList.of(ItemStack.EMPTY, items.toArray(new ItemStack[0])));
 					}
 				}
 			}

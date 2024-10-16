@@ -30,11 +30,11 @@ public class ChromogisaurusEyeLayer extends RenderLayer<Chromogisaurus, Chromogi
 		if (!(chromogisaurusRenderer.getModel() instanceof ChromogisaurusModel)) {
 			return;
 		}
-		long roundTime = chromogisaurus.level.getDayTime() % 24000;
+		long roundTime = chromogisaurus.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos chromogisaurusPos = chromogisaurus.blockPosition();
-		int i = chromogisaurus.level.getBrightness(LightLayer.SKY, chromogisaurusPos);
-		int j = chromogisaurus.level.getBrightness(LightLayer.BLOCK, chromogisaurusPos);
+		int i = chromogisaurus.level().getBrightness(LightLayer.SKY, chromogisaurusPos);
+		int j = chromogisaurus.level().getBrightness(LightLayer.BLOCK, chromogisaurusPos);
 		int brightness;
 		if (night) {
 			brightness = j;

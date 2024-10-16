@@ -1,10 +1,9 @@
 package superlord.prehistoricfauna.common.blocks;
 
-import java.util.Random;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
@@ -49,7 +48,7 @@ public class TuberCropBlock extends CropBlock {
 	}
 
 	@SuppressWarnings("deprecation")
-	public void tick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
+	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		super.tick(state, world, pos, random);
 		if (!world.isAreaLoaded(pos, 1)) return;
 		if (world.getRawBrightness(pos, 0) >= 9) {
@@ -81,14 +80,14 @@ public class TuberCropBlock extends CropBlock {
 		return 1.0f;
 	}
 
-	public boolean isValidBonemealTarget(BlockGetter p_52258_, BlockPos p_52259_, BlockState state, boolean p_52261_) {
+	public boolean isValidBonemealTarget(LevelReader p_52258_, BlockPos p_52259_, BlockState state, boolean p_52261_) {
 		return !this.isMaxAge(state);
 	}
 
-	public boolean isBonemealSuccess(Level p_52268_, Random p_52269_, BlockPos p_52270_, BlockState p_52271_) {
+	public boolean isBonemealSuccess(Level p_52268_, RandomSource p_52269_, BlockPos p_52270_, BlockState p_52271_) {
 		return true;
 	}
-	public void performBonemeal(ServerLevel worldIn, Random rand, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerLevel worldIn, RandomSource rand, BlockPos pos, BlockState state) {
 		this.grow(worldIn, pos, state);
 	}
 

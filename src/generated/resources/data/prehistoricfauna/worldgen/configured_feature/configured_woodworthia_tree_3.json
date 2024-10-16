@@ -1,0 +1,27 @@
+{
+  "type": "prehistoricfauna:woodworthia_tree_3",
+  "config": {
+    "leaves_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:woodworthia_leaves",
+        "Properties": {
+          "distance": "7",
+          "persistent": "false",
+          "waterlogged": "false"
+        }
+      }
+    },
+    "max_height": 29,
+    "min_height": 24,
+    "trunk_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:woodworthia_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    }
+  }
+}

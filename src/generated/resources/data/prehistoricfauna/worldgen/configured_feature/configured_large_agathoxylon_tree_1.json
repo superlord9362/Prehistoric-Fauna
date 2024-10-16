@@ -1,0 +1,27 @@
+{
+  "type": "prehistoricfauna:big_agathoxylon_tree_1",
+  "config": {
+    "leaves_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:agathoxylon_leaves",
+        "Properties": {
+          "distance": "7",
+          "persistent": "false",
+          "waterlogged": "false"
+        }
+      }
+    },
+    "max_height": 45,
+    "min_height": 44,
+    "trunk_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:agathoxylon_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    }
+  }
+}

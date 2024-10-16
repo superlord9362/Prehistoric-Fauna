@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"textures": {
-		"0": "prehistoricfauna:blocks/neocalamites_fence_gate",
-		"particle": "prehistoricfauna:blocks/neocalamites_fence_gate"
+		"0": "prehistoricfauna:block/neocalamites_fence_gate",
+		"particle": "prehistoricfauna:block/neocalamites_fence_gate"
 	},
 	"elements": [
 		{

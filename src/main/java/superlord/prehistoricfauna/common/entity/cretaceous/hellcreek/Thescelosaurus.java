@@ -67,10 +67,9 @@ public class Thescelosaurus extends DinosaurEntity {
 	private int maxHunger = 38;
 	private int chewingTick;
 
-	@SuppressWarnings("deprecation")
 	public Thescelosaurus(EntityType<? extends Thescelosaurus> type, Level worldIn) {
 		super(type, worldIn);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -116,15 +115,15 @@ public class Thescelosaurus extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.THESCELOSAURUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.THESCELOSAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.THESCELOSAURUS_HURT;
+		return PFSounds.THESCELOSAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.THESCELOSAURUS_DEATH;
+		return PFSounds.THESCELOSAURUS_DEATH.get();
 	}
 
 	@Override
@@ -133,8 +132,8 @@ public class Thescelosaurus extends DinosaurEntity {
 	}
 
 	private void spawnItem(ItemStack stack) {
-		ItemEntity itemEntity = new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), stack);
-		this.level.addFreshEntity(itemEntity);
+		ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), stack);
+		this.level().addFreshEntity(itemEntity);
 	}
 	
 	class MeleeAttackGoal extends net.minecraft.world.entity.ai.goal.MeleeAttackGoal {
@@ -230,8 +229,8 @@ public class Thescelosaurus extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Thescelosaurus entity = new Thescelosaurus(PFEntities.THESCELOSAURUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Thescelosaurus entity = new Thescelosaurus(PFEntities.THESCELOSAURUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 

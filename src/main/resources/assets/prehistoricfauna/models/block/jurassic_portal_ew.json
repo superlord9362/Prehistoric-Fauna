@@ -1,7 +1,7 @@
 {
     "textures": {
-        "particle": "prehistoricfauna:blocks/jurassic_portal",
-        "portal": "prehistoricfauna:blocks/jurassic_portal"
+        "particle": "prehistoricfauna:block/jurassic_portal",
+        "portal": "prehistoricfauna:block/jurassic_portal"
     },
     "elements": [
         {   "from": [ 6, 0, 0 ],

@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "prehistoricfauna:blocks/scytophyllum_top"
+        "cross": "prehistoricfauna:block/scytophyllum_top"
     }
 }

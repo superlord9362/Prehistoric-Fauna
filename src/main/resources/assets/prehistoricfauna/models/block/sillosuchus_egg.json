@@ -2,6 +2,6 @@
 	"parent": "prehistoricfauna:block/one_large_tall_egg",
 	"ambientocclusion": false,
 	"textures": {
-		"egg": "prehistoricfauna:blocks/sillosuchus_egg"
+		"egg": "prehistoricfauna:block/sillosuchus_egg"
 	}
 }

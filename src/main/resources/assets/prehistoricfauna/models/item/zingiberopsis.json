@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:blocks/zingiberopsis_main_stem_top"
+        "layer0": "prehistoricfauna:block/zingiberopsis_main_stem_top"
     }
 }

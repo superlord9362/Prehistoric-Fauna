@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "prehistoricfauna:item/heidiphyllum_chest_boat"
+    }
+}

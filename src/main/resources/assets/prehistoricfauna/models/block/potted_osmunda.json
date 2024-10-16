@@ -5,7 +5,7 @@
 	"textures": {
 		"1": "block/dirt",
 		"2": "block/flower_pot",
-		"3": "prehistoricfauna:blocks/osmunda_new",
+		"3": "prehistoricfauna:block/osmunda_new",
 		"particle": "block/dirt"
 	},
 	"elements": [

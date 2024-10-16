@@ -2,6 +2,6 @@
 	"credit": "Made with Blockbench",
 	"parent": "prehistoricfauna:block/aepyornithomimus_nest_and_egg_two_plants",
 	"textures": {
-		"egg": "prehistoricfauna:blocks/aepyornithomimus_egg_very_cracked"
+		"egg": "prehistoricfauna:block/aepyornithomimus_egg_very_cracked"
 	}
 }

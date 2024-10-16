@@ -1,0 +1,14 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 591239123,
+    "separation": 40,
+    "spacing": 60
+  },
+  "structures": [
+    {
+      "structure": "prehistoricfauna:chinle_hut",
+      "weight": 1
+    }
+  ]
+}

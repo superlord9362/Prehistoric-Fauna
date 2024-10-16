@@ -3,9 +3,8 @@ package superlord.prehistoricfauna.common.util;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 
-public abstract class AbstractSubRegistryHelper<T extends IForgeRegistryEntry<T>> implements ISubRegistryHelper<T> {
+public abstract class AbstractSubRegistryHelper<T> implements ISubRegistryHelper<T> {
 	protected final RegistryHelper parent;
 	protected final DeferredRegister<T> deferredRegister;
 

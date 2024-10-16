@@ -1,7 +1,7 @@
 {   "parent": "block/thin_block",
     "textures": {
-        "particle": "prehistoricfauna:blocks/moss",
-        "texture": "prehistoricfauna:blocks/moss"
+        "particle": "prehistoricfauna:block/moss",
+        "texture": "prehistoricfauna:block/moss"
     },
     "elements": [
         {   "from": [ 0, 0, 0 ],

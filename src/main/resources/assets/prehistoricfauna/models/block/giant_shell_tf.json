@@ -2,13 +2,13 @@
 	"credit": "Made with Blockbench",
 	"parent": "minecraft:block/block",
 	"textures": {
-		"2": "prehistoricfauna:blocks/giant_shell_tf_front",
-		"3": "prehistoricfauna:blocks/giant_shell_tf_left",
-		"4": "prehistoricfauna:blocks/giant_shell_empty",
-		"5": "prehistoricfauna:blocks/giant_shell_empty_down",
-		"6": "prehistoricfauna:blocks/giant_shell_tf_right",
-		"7": "prehistoricfauna:blocks/giant_shell_tf_top",
-		"particle": "prehistoricfauna:blocks/giant_shell_tf_front"
+		"2": "prehistoricfauna:block/giant_shell_tf_front",
+		"3": "prehistoricfauna:block/giant_shell_tf_left",
+		"4": "prehistoricfauna:block/giant_shell_empty",
+		"5": "prehistoricfauna:block/giant_shell_empty_down",
+		"6": "prehistoricfauna:block/giant_shell_tf_right",
+		"7": "prehistoricfauna:block/giant_shell_tf_top",
+		"particle": "prehistoricfauna:block/giant_shell_tf_front"
 	},
 	"elements": [
 		{

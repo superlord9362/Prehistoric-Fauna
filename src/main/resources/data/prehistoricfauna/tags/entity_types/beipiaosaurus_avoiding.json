@@ -1,10 +1,12 @@
 {
 	"replace": false,
 	"values": [
-		"prehistoricfauna:tyrannosaurus",
-		"prehistoricfauna:yutyrannus",
-		"prehistoricfauna:allosaurus",
-		"prehistoricfauna:triceratops",
-		"prehistoricfauna:camarasaurus"
+		"#prehistoricfauna:twenty_hunger_animals",
+		"#prehistoricfauna:thirty_hunger_animals",
+		"#prehistoricfauna:forty_hunger_animals",
+		"#prehistoricfauna:sixty_hunger_animals",
+		"#prehistoricfauna:eighty_hunger_animals",
+		"#prehistoricfauna:one_hundred_hunger_animals",
+		"#prehistoricfauna:two_hundred_hunger_animals"
 	]
 }

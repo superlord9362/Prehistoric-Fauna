@@ -14,17 +14,17 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AgeableMob;
@@ -42,7 +42,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.Tags;
@@ -96,7 +95,7 @@ public class DinosaurEntity extends TamableAnimal {
 		super(p_21803_, p_21804_);
 	}
 
-	public static boolean canDinosaurSpawn(EntityType<? extends Animal> animal, LevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random random) {
+	public static boolean canDinosaurSpawn(EntityType<? extends Animal> animal, ServerLevelAccessor worldIn, MobSpawnType reason, BlockPos pos, RandomSource random) {
 		return (worldIn.getBlockState(pos.below()).is(BlockTags.DIRT) || worldIn.getBlockState(pos.below()).is(Tags.Blocks.SAND)) && worldIn.getRawBrightness(pos, 0) > 8;
 	}
 
@@ -648,27 +647,27 @@ public class DinosaurEntity extends TamableAnimal {
 			} else {
 				if (this.isMolluscivorous()) {
 					if (itemstack.is(PFTags.SHELLFISH_3_HUNGER)) {
-						p_230254_1_.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.fullHunger"), true);
+						p_230254_1_.displayClientMessage(Component.translatable("entity.prehistoricfauna.fullHunger"), true);
 					}
 				}
 				if (this.isOvivorous()) {
 					if (itemstack.is(PFTags.EGGS_5_HUNGER) || itemstack.is(PFTags.EGGS_10_HUNGER) || itemstack.is(PFTags.EGGS_15_HUNGER)) {
-						p_230254_1_.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.fullHunger"), true);
+						p_230254_1_.displayClientMessage(Component.translatable("entity.prehistoricfauna.fullHunger"), true);
 					}
 				}
 				if (this.isCarnivorous() || this.isOmnivorous() || this.isPiscivorous() || this.isOvivorous() || this.isMolluscivorous()) {
 					if (itemstack.is(PFTags.MEATS_2_HUNGER) || itemstack.is(PFTags.MEATS_4_HUNGER) || itemstack.is(PFTags.MEATS_6_HUNGER) || itemstack.is(PFTags.MEATS_8_HUNGER) || itemstack.is(PFTags.MEATS_10_HUNGER) || itemstack.is(PFTags.MEATS_12_HUNGER)) {
-						p_230254_1_.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.fullHunger"), true);
+						p_230254_1_.displayClientMessage(Component.translatable("entity.prehistoricfauna.fullHunger"), true);
 					}
 				}
 				if (this.isHerbivorous() || this.isOmnivorous()) {
 					if ((itemstack.is(PFTags.PLANTS_2_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_4_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_6_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_8_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_10_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_12_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_15_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_20_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_25_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_30_HUNGER_ITEM))) {
-						p_230254_1_.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.fullHunger"), true);
+						p_230254_1_.displayClientMessage(Component.translatable("entity.prehistoricfauna.fullHunger"), true);
 					}
 				}
 				if (this.isPiscivorous()) {
 					if (itemstack.is(PFTags.FISH_2_HUNGER) || itemstack.is(PFTags.FISH_4_HUNGER)) {
-						p_230254_1_.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.fullHunger"), true);
+						p_230254_1_.displayClientMessage(Component.translatable("entity.prehistoricfauna.fullHunger"), true);
 					}
 				}
 			}
@@ -681,13 +680,13 @@ public class DinosaurEntity extends TamableAnimal {
 		super.aiStep();
 		if (this.isAsleep()) this.setDeltaMovement(0, this.getDeltaMovement().y, 0);
 		if (!this.isNoAi()) {
-			for (@SuppressWarnings("unused") Psittacosaurus psittacosaurus : this.level.getEntitiesOfClass(Psittacosaurus.class, this.getBoundingBox().inflate(5))) {
+			for (@SuppressWarnings("unused") Psittacosaurus psittacosaurus : this.level().getEntitiesOfClass(Psittacosaurus.class, this.getBoundingBox().inflate(5))) {
 				if (this.isBaby()) {
 					int i = this.getAge();
 					this.setAge(i + 2);
 				}
 			}
-			List<? extends DinosaurEntity> list = this.level.getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(48.0D, 48.0D, 48.0D));
+			List<? extends DinosaurEntity> list = this.level().getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(48.0D, 48.0D, 48.0D));
 			if (PrehistoricFaunaConfig.advancedHunger) {
 				hungerTick++;
 				if (hungerTick == 600 && !this.isBaby() || hungerTick == 300 && this.isBaby()) {
@@ -696,10 +695,10 @@ public class DinosaurEntity extends TamableAnimal {
 							this.setHunger(currentHunger - 1);
 						}
 						if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage == true && this.getHealth() > (this.getMaxHealth() / 2)) {
-							this.hurt(DamageSource.STARVE, 1);
+							this.hurt(this.damageSources().starve(), 1);
 						}
-						if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage == true && level.getDifficulty() == Difficulty.HARD && this.getHealth() <= (this.getMaxHealth() / 2)) {
-							this.hurt(DamageSource.STARVE, 1);
+						if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage == true && level().getDifficulty() == Difficulty.HARD && this.getHealth() <= (this.getMaxHealth() / 2)) {
+							this.hurt(this.damageSources().starve(), 1);
 						}
 					}
 					hungerTick = 0;
@@ -747,14 +746,14 @@ public class DinosaurEntity extends TamableAnimal {
 				lastInLove--;
 			}
 		}
-		if (!this.level.isClientSide) {
+		if (!this.level().isClientSide()) {
 			if (this.warryTicks != 0) warryTicks--;
 			//System.out.println(warryTicks);
 		}
 	}
 
 	public void setAwakeTicks(int ticks) {
-		if (!this.level.isClientSide) {
+		if (!this.level().isClientSide()) {
 			this.warryTicks = ticks;
 		}
 	}
@@ -823,7 +822,7 @@ public class DinosaurEntity extends TamableAnimal {
 	}
 
 	public boolean onAttackAnimationFinish(Entity target) {
-		return target.hurt(DamageSource.mobAttack(this), (float) ((int) this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
+		return target.hurt(this.damageSources().mobAttack(this), (float) ((int) this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
 	}
 
 	//lerped number from 0.0 - 1.0 that determines where in the sleep animation this entity is

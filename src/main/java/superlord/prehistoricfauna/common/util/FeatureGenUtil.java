@@ -4,21 +4,19 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.LevelSimulatedReader;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.material.Material;
 
 public class FeatureGenUtil {
 
 	public static boolean isPlant(LevelSimulatedReader world, BlockPos pos) {
-		return world.isStateAtPosition(pos, (state) -> state.is(BlockTags.LEAVES) || state.getMaterial() == Material.LEAVES || state.getMaterial() == Material.PLANT || state.getMaterial() == Material.REPLACEABLE_PLANT || state.getMaterial() == Material.WATER_PLANT || state.getMaterial() == Material.REPLACEABLE_FIREPROOF_PLANT);
+        return world.isStateAtPosition(pos, (state) -> state.is(BlockTags.LEAVES) || state.is(BlockTags.REPLACEABLE));
 	}
 	
 	public static boolean isTerrainOrRock(LevelSimulatedReader world, BlockPos pos) {
-        return world.isStateAtPosition(pos, (state) -> state.is(BlockTags.BASE_STONE_OVERWORLD) || state.getMaterial() == Material.STONE || state.is(BlockTags.BASE_STONE_OVERWORLD) || state.getMaterial() == Material.DIRT || state.is(BlockTags.SAND) || state.getMaterial() == Material.SAND || state.getBlock() == Blocks.GRASS_BLOCK);
+        return world.isStateAtPosition(pos, (state) -> state.is(BlockTags.BASE_STONE_OVERWORLD) || state.is(BlockTags.DIRT) || state.is(BlockTags.BASE_STONE_NETHER) || state.is(BlockTags.DIRT));
     }
 
 	public static boolean isAir(LevelSimulatedReader reader, BlockPos pos) {

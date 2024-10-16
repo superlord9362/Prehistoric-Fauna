@@ -1,7 +1,7 @@
 {
     "parent": "block/cube_column",
     "textures": {
-        "end": "prehistoricfauna:blocks/woodworthia_log",
-        "side": "prehistoricfauna:blocks/woodworthia_log"
+        "end": "prehistoricfauna:block/woodworthia_log",
+        "side": "prehistoricfauna:block/woodworthia_log"
     }
 }

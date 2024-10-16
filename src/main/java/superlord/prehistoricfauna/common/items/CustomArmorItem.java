@@ -14,14 +14,13 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 
 public class CustomArmorItem extends ArmorItem {
 	
-	public CustomArmorItem(ArmorMaterial materialIn, EquipmentSlot slot, Item.Properties builder) {
+	public CustomArmorItem(ArmorMaterial materialIn, Type slot, Item.Properties builder) {
 		super(materialIn, slot, builder);
 	}
 	
 	@Override
-    public void initializeClient(java.util.function.Consumer<net.minecraftforge.client.IItemRenderProperties> consumer)
-    {
-        consumer.accept((net.minecraftforge.client.IItemRenderProperties) PrehistoricFauna.PROXY.getArmorRenderProperties());
+	public void initializeClient(java.util.function.Consumer<net.minecraftforge.client.extensions.common.IClientItemExtensions> consumer) {
+		consumer.accept((net.minecraftforge.client.extensions.common.IClientItemExtensions) PrehistoricFauna.PROXY.getArmorRenderProperties());
     }
 
 	@Override

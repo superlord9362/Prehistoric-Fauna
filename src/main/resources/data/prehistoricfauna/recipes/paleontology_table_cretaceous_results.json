@@ -1,9 +1,0 @@
-{
-	"type": "prehistoricfauna:paleontology_table",
-	"ingredients": [
- 		{
- 			"item": "prehistoricfauna:cretaceous_fossil"
- 		}
-	],
-	"output": "prehistoricfauna:gameplay/paleontology_table/cretaceous_fossil"
-}

@@ -1,10 +1,9 @@
 package superlord.prehistoricfauna.common.feature;
 
-import java.util.Random;
-
 import com.mojang.serialization.Codec;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -24,7 +23,7 @@ public class AlgaeFeature extends Feature<CrassostreaOystersConfig> {
 	public boolean place(FeaturePlaceContext<CrassostreaOystersConfig> context) {
 		BlockPos pos = context.origin();
 		WorldGenLevel worldIn = context.level();
-		Random rand = context.random();
+		RandomSource rand = context.random();
 		int i = 0;
 
 		for(int j = 0; j < context.config().count; ++j) {

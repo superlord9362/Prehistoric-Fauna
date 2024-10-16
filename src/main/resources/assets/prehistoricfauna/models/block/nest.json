@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
     "parent": "block/cube_all",
 	"textures": {
-		"material": "prehistoricfauna:blocks/nest",
+		"material": "prehistoricfauna:block/nest",
 		"particle": "#material"
 	},
 	"elements": [

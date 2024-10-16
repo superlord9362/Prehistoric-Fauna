@@ -1,78 +1,160 @@
 package superlord.prehistoricfauna.init;
 
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
-import net.minecraft.core.Registry;
-import net.minecraft.world.level.levelgen.feature.StructureFeature;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import com.mojang.serialization.Codec;
+
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.structure.Structure;
+import net.minecraft.world.level.levelgen.structure.StructureSet;
+import net.minecraft.world.level.levelgen.structure.StructureSpawnOverride;
+import net.minecraft.world.level.levelgen.structure.StructureType;
+import net.minecraft.world.level.levelgen.structure.TerrainAdjustment;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStructurePlacement;
+import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegistryObject;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.common.feature.structures.*;
-import superlord.prehistoricfauna.common.feature.structures.structurepiece.*;
+import superlord.prehistoricfauna.common.structure.piece.ChinleHutPieces.ChinleHutPiece;
+import superlord.prehistoricfauna.common.structure.piece.DjadochtaHutPieces.DjadochtaHutPiece;
+import superlord.prehistoricfauna.common.structure.piece.GeologistCampPieces.GeologistCampPiece;
+import superlord.prehistoricfauna.common.structure.piece.HellCreekHutPieces.HellCreekHutPiece;
+import superlord.prehistoricfauna.common.structure.piece.IschigualastoHutPieces.IschigualastoHutPiece;
+import superlord.prehistoricfauna.common.structure.piece.KayentaHutPieces.KayentaHutPiece;
+import superlord.prehistoricfauna.common.structure.piece.MorrisonHutPieces.MorrisonHutPiece;
+import superlord.prehistoricfauna.common.structure.piece.TimeTemplePieces.TimeTemplePiece;
+import superlord.prehistoricfauna.common.structure.piece.YixianHutPieces.YixianHutPiece;
+import superlord.prehistoricfauna.common.structure.*;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
-@Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class PFStructures {
 
-	public static final StructureFeature<NoneFeatureConfiguration> TIME_TEMPLE = new TimeTempleStructure(NoneFeatureConfiguration.CODEC);
-	public static final StructureFeature<NoneFeatureConfiguration> GEOLOGIST_CAMP = new GeologistCampStructure(NoneFeatureConfiguration.CODEC);
-	public static final StructureFeature<NoneFeatureConfiguration> PORTAL_CHAMBER = new PortalChamberStructure(NoneFeatureConfiguration.CODEC);
+	public static final ResourceKey<Structure> CHINLE_HUT = createKey("chinle_hut");
+	public static final ResourceKey<Structure> ISCHIGUALASTO_HUT = createKey("ischigualasto_hut");
 
-	public static final StructureFeature<NoneFeatureConfiguration> YIXIAN_HUT = new YixianHutStructure(NoneFeatureConfiguration.CODEC);
-	public static final StructureFeature<NoneFeatureConfiguration> DJADOCHTA_HUT = new DjadochtaHutStructure(NoneFeatureConfiguration.CODEC);
-	public static final StructureFeature<NoneFeatureConfiguration> HELL_CREEK_HUT = new HellCreekHutStructure(NoneFeatureConfiguration.CODEC);
+	public static final ResourceKey<Structure> MORRISON_HUT = createKey("morrison_hut");
+	public static final ResourceKey<Structure> KAYENTA_HUT = createKey("kayenta_hut");
 
-	public static final StructureFeature<NoneFeatureConfiguration> MORRISON_HUT = new MorrisonHutStructure(NoneFeatureConfiguration.CODEC);
-	public static final StructureFeature<NoneFeatureConfiguration> KAYENTA_HUT = new KayentaHutStructure(NoneFeatureConfiguration.CODEC);
+	public static final ResourceKey<Structure> HELL_CREEK_HUT = createKey("hell_creek_hut");
+	public static final ResourceKey<Structure> DJADOCHTA_HUT = createKey("djadochta_hut");
+	public static final ResourceKey<Structure> YIXIAN_HUT = createKey("yixian_hut");
 
-	public static final StructureFeature<NoneFeatureConfiguration> ISCHIGUALASTO_HUT = new IschigualastoHutStructure(NoneFeatureConfiguration.CODEC);
-	public static final StructureFeature<NoneFeatureConfiguration> CHINLE_HUT = new ChinleHutStructure(NoneFeatureConfiguration.CODEC);
+	public static final ResourceKey<Structure> TIME_TEMPLE = createKey("time_temple");
+	public static final ResourceKey<Structure> GEOLOGIST_CAMP = createKey("geologist_camp");
 
-	public static StructurePieceType TIME_TEMPLE_PIECE;
-	public static StructurePieceType GEOLOGIST_CAMP_PIECE;
-	public static StructurePieceType PORTAL_CHAMBER_PIECE;
-	
-	public static StructurePieceType YIXIAN_HUT_PIECE;
-	public static StructurePieceType DJADOCHTA_HUT_PIECE;
-	public static StructurePieceType HELL_CREEK_HUT_PIECE;
+	public static void bootstrap(BootstapContext<Structure> bootstap) {
+		HolderGetter<Biome> holdergetter = bootstap.lookup(Registries.BIOME);
+		bootstap.register(CHINLE_HUT, new ChinleHutStructure(structure(holdergetter.getOrThrow(PFTags.HAS_CHINLE_HUT), TerrainAdjustment.NONE)));
+		bootstap.register(ISCHIGUALASTO_HUT, new IschigualastoHutStructure(structure(holdergetter.getOrThrow(PFTags.HAS_ISCHIGUALASTO_HUT), TerrainAdjustment.NONE)));
 
-	public static StructurePieceType MORRISON_HUT_PIECE;
-	public static StructurePieceType KAYENTA_HUT_PIECE;
+		bootstap.register(MORRISON_HUT, new MorrisonHutStructure(structure(holdergetter.getOrThrow(PFTags.HAS_MORRISON_HUT), TerrainAdjustment.NONE)));
+		bootstap.register(KAYENTA_HUT, new KayentaHutStructure(structure(holdergetter.getOrThrow(PFTags.HAS_KAYENTA_HUT), TerrainAdjustment.NONE)));
 
-	public static StructurePieceType ISCHIGUALASTO_HUT_PIECE;
-	public static StructurePieceType CHINLE_HUT_PIECE;
-	
-	public static StructurePieceType setPieceId(StructurePieceType.StructureTemplateType type, String name) {
-		return Registry.register(Registry.STRUCTURE_PIECE, name.toLowerCase(Locale.ROOT), type);
+		bootstap.register(HELL_CREEK_HUT, new HellCreekHutStructure(structure(holdergetter.getOrThrow(PFTags.HAS_HELL_CREEK_HUT), TerrainAdjustment.NONE)));
+		bootstap.register(DJADOCHTA_HUT, new DjadochtaHutStructure(structure(holdergetter.getOrThrow(PFTags.HAS_DJADOCHTA_HUT), TerrainAdjustment.NONE)));
+		bootstap.register(YIXIAN_HUT, new YixianHutStructure(structure(holdergetter.getOrThrow(PFTags.HAS_YIXIAN_HUT), TerrainAdjustment.NONE)));
+
+		bootstap.register(TIME_TEMPLE, new TimeTempleStructure(structure(holdergetter.getOrThrow(PFTags.HAS_TIME_TEMPLE), TerrainAdjustment.NONE)));
+		bootstap.register(GEOLOGIST_CAMP, new GeologistCampStructure(structure(holdergetter.getOrThrow(PFTags.HAS_GEOLOGIST_CAMP), TerrainAdjustment.NONE)));
 	}
-	
-	@SubscribeEvent
-	public static void registerFeature(RegistryEvent.Register<StructureFeature<?>> registry) {
-		registry.getRegistry().register(TIME_TEMPLE.setRegistryName("prehistoricfauna:time_temple"));
-		registry.getRegistry().register(GEOLOGIST_CAMP.setRegistryName("prehistoricfauna:geologist_camp"));
-		registry.getRegistry().register(PORTAL_CHAMBER.setRegistryName("prehistoricfauna:portal_chamber"));
-		registry.getRegistry().register(YIXIAN_HUT.setRegistryName("prehistoricfauna:yixian_hut"));
-		registry.getRegistry().register(DJADOCHTA_HUT.setRegistryName("prehistoricfauna:djadochta_hut"));
-		registry.getRegistry().register(HELL_CREEK_HUT.setRegistryName("prehistoricfauna:hell_creek_hut"));
-		registry.getRegistry().register(MORRISON_HUT.setRegistryName("prehistoricfauna:morrison_hut"));
-		registry.getRegistry().register(KAYENTA_HUT.setRegistryName("prehistoricfauna:kayenta_hut"));
-		registry.getRegistry().register(ISCHIGUALASTO_HUT.setRegistryName("prehistoricfauna:ischigualasto_hut"));
-		registry.getRegistry().register(CHINLE_HUT.setRegistryName("prehistoricfauna:chinle_hut"));
+
+	private static Structure.StructureSettings structure(HolderSet<Biome> p_256015_, Map<MobCategory, StructureSpawnOverride> p_256297_, GenerationStep.Decoration p_255729_, TerrainAdjustment p_255865_) {
+		return new Structure.StructureSettings(p_256015_, p_256297_, p_255729_, p_255865_);
 	}
-	
-	public static void init() {
-		TIME_TEMPLE_PIECE = setPieceId(TimeTempleStructurePiece.Piece::new, "TTSP");
-		GEOLOGIST_CAMP_PIECE = setPieceId(GeologistCampStructurePiece.Piece::new, "GCSP");
-		PORTAL_CHAMBER_PIECE = setPieceId(PortalChamberStructurePiece.Piece::new, "PCSP");
-		YIXIAN_HUT_PIECE = setPieceId(YixianHutStructurePiece.Piece::new, "YHSP");
-		DJADOCHTA_HUT_PIECE = setPieceId(DjadochtaHutStructurePiece.Piece::new, "DHSP");
-		HELL_CREEK_HUT_PIECE = setPieceId(HellCreekHutStructurePiece.Piece::new, "HCHSP");
-		MORRISON_HUT_PIECE = setPieceId(MorrisonHutStructurePiece.Piece::new, "MHSP");
-		KAYENTA_HUT_PIECE = setPieceId(KayentaHutStructurePiece.Piece::new, "KHSP");
-		ISCHIGUALASTO_HUT_PIECE = setPieceId(IschigualastoHutStructurePiece.Piece::new, "IHSP");
-		CHINLE_HUT_PIECE = setPieceId(ChinleHutStructurePiece.Piece::new, "CHSP");
+
+	private static Structure.StructureSettings structure(HolderSet<Biome> p_256501_, TerrainAdjustment p_255704_) {
+		return structure(p_256501_, Map.of(), GenerationStep.Decoration.SURFACE_STRUCTURES, p_255704_);
 	}
-	
+
+	private static ResourceKey<Structure> createKey(String p_209873_) {
+		return ResourceKey.create(Registries.STRUCTURE, new ResourceLocation(PrehistoricFauna.MOD_ID, p_209873_));
+	}
+
+	public static final ResourceKey<StructureSet> CHINLE_HUT_STRUCTURE_SET = registerStructureSet("chinle_hut");
+	public static final ResourceKey<StructureSet> ISCHIGUALASTO_HUT_STRUCTURE_SET = registerStructureSet("ischigualasto_hut");
+
+	public static final ResourceKey<StructureSet> MORRISON_HUT_STRUCTURE_SET = registerStructureSet("morrison_hut");
+	public static final ResourceKey<StructureSet> KAYENTA_HUT_STRUCTURE_SET = registerStructureSet("kayenta_hut");
+
+	public static final ResourceKey<StructureSet> HELL_CREEK_HUT_STRUCTURE_SET = registerStructureSet("hell_creek_hut");
+	public static final ResourceKey<StructureSet> DJADOCHTA_HUT_STRUCTURE_SET = registerStructureSet("djadochta_hut");
+	public static final ResourceKey<StructureSet> YIXIAN_HUT_STRUCTURE_SET = registerStructureSet("yixian_hut");
+
+	public static final ResourceKey<StructureSet> TIME_TEMPLE_STRUCTURE_SET = registerStructureSet("time_temple");
+	public static final ResourceKey<StructureSet> GEOLOGIST_CAMP_STRUCTURE_SET = registerStructureSet("geologist_camp");
+
+	public static void bootstrapStructureSet(BootstapContext<StructureSet> bootstap) {
+		HolderGetter<Structure> holdergetter = bootstap.lookup(Registries.STRUCTURE);
+		bootstap.register(CHINLE_HUT_STRUCTURE_SET, new StructureSet(List.of(StructureSet.entry(holdergetter.getOrThrow(CHINLE_HUT))), new RandomSpreadStructurePlacement(PrehistoricFaunaConfig.chinleHutMaxDistance, PrehistoricFaunaConfig.chinleHutMinDistance, RandomSpreadType.LINEAR, 591239123)));
+		bootstap.register(ISCHIGUALASTO_HUT_STRUCTURE_SET, new StructureSet(List.of(StructureSet.entry(holdergetter.getOrThrow(ISCHIGUALASTO_HUT))), new RandomSpreadStructurePlacement(PrehistoricFaunaConfig.ischigualastoHutMaxDistance, PrehistoricFaunaConfig.ischigualastoHutMinDistance, RandomSpreadType.LINEAR, 96234812)));
+
+		bootstap.register(MORRISON_HUT_STRUCTURE_SET, new StructureSet(List.of(StructureSet.entry(holdergetter.getOrThrow(MORRISON_HUT))), new RandomSpreadStructurePlacement(PrehistoricFaunaConfig.morrisonHutMaxDistance, PrehistoricFaunaConfig.morrisonHutMinDistance, RandomSpreadType.LINEAR, 612341942)));
+		bootstap.register(KAYENTA_HUT_STRUCTURE_SET, new StructureSet(List.of(StructureSet.entry(holdergetter.getOrThrow(KAYENTA_HUT))), new RandomSpreadStructurePlacement(PrehistoricFaunaConfig.kayentaHutMaxDistance, PrehistoricFaunaConfig.kayentaHutMinDistance, RandomSpreadType.LINEAR, 851282139)));
+
+		bootstap.register(HELL_CREEK_HUT_STRUCTURE_SET, new StructureSet(List.of(StructureSet.entry(holdergetter.getOrThrow(HELL_CREEK_HUT))), new RandomSpreadStructurePlacement(PrehistoricFaunaConfig.hellCreekHutMaxDistance, PrehistoricFaunaConfig.hellCreekHutMinDistance, RandomSpreadType.LINEAR, 6248341)));
+		bootstap.register(DJADOCHTA_HUT_STRUCTURE_SET, new StructureSet(List.of(StructureSet.entry(holdergetter.getOrThrow(DJADOCHTA_HUT))), new RandomSpreadStructurePlacement(PrehistoricFaunaConfig.djadochtaHutMaxDistance, PrehistoricFaunaConfig.djadochtaHutMinDistance, RandomSpreadType.LINEAR, 85923812)));
+		bootstap.register(YIXIAN_HUT_STRUCTURE_SET, new StructureSet(List.of(StructureSet.entry(holdergetter.getOrThrow(YIXIAN_HUT))), new RandomSpreadStructurePlacement(PrehistoricFaunaConfig.yixianHutMaxDistance, PrehistoricFaunaConfig.yixianHutMinDistance, RandomSpreadType.LINEAR, 5381239)));
+
+		bootstap.register(TIME_TEMPLE_STRUCTURE_SET, new StructureSet(List.of(StructureSet.entry(holdergetter.getOrThrow(TIME_TEMPLE))), new RandomSpreadStructurePlacement(PrehistoricFaunaConfig.timeTempleMaxDistance, PrehistoricFaunaConfig.timeTempleMinDistance, RandomSpreadType.LINEAR, 9560612)));
+		bootstap.register(GEOLOGIST_CAMP_STRUCTURE_SET, new StructureSet(List.of(StructureSet.entry(holdergetter.getOrThrow(GEOLOGIST_CAMP))), new RandomSpreadStructurePlacement(PrehistoricFaunaConfig.geologistCampMaxDistance, PrehistoricFaunaConfig.geologistCampMinDistance, RandomSpreadType.LINEAR, 46712832)));
+	}
+
+	private static ResourceKey<StructureSet> registerStructureSet(String p_209839_) {
+		return ResourceKey.create(Registries.STRUCTURE_SET, new ResourceLocation(PrehistoricFauna.MOD_ID, p_209839_));
+	}
+
+	public interface PFStructureType<S extends Structure> {
+		public static final DeferredRegister<StructureType<? extends Structure>> REGISTRY = DeferredRegister.create(Registries.STRUCTURE_TYPE, PrehistoricFauna.MOD_ID);
+
+		RegistryObject<StructureType<ChinleHutStructure>> CHINLE_HUT = register("chinle_hut", ChinleHutStructure.CODEC);
+		RegistryObject<StructureType<IschigualastoHutStructure>> ISCHIGUALASTO_HUT = register("ischigualasto_hut", IschigualastoHutStructure.CODEC);
+
+		RegistryObject<StructureType<MorrisonHutStructure>> MORRISON_HUT = register("morrison_hut", MorrisonHutStructure.CODEC);
+		RegistryObject<StructureType<KayentaHutStructure>> KAYENTA_HUT = register("kayenta_hut", KayentaHutStructure.CODEC);
+
+		RegistryObject<StructureType<HellCreekHutStructure>> HELL_CREEK_HUT = register("hell_creek_hut", HellCreekHutStructure.CODEC);
+		RegistryObject<StructureType<DjadochtaHutStructure>> DJADOCHTA_HUT = register("djadochta_hut", DjadochtaHutStructure.CODEC);
+		RegistryObject<StructureType<YixianHutStructure>> YIXIAN_HUT = register("yixian_hut", YixianHutStructure.CODEC);
+
+		RegistryObject<StructureType<TimeTempleStructure>> TIME_TEMPLE = register("time_temple", TimeTempleStructure.CODEC);
+		RegistryObject<StructureType<GeologistCampStructure>> GEOLOGIST_CAMP = register("geologist_camp", GeologistCampStructure.CODEC);
+
+		private static <S extends Structure> RegistryObject<StructureType<S>> register(String string, Codec<S> codec) {
+			return REGISTRY.register(string, () -> StructureType.register(string, codec));
+		}
+	}
+
+	public interface PFStructurePieceType {
+		public static final DeferredRegister<StructurePieceType> REGISTRY = DeferredRegister.create(Registries.STRUCTURE_PIECE, PrehistoricFauna.MOD_ID);
+
+		RegistryObject<StructurePieceType> CHINLE_HUT = register(ChinleHutPiece::new, "chinle_hut");
+		RegistryObject<StructurePieceType> ISCHIGUALASTO_HUT = register(IschigualastoHutPiece::new, "ischigualasto_hut");
+
+		RegistryObject<StructurePieceType> MORRISON_HUT = register(MorrisonHutPiece::new, "morrison_hut");
+		RegistryObject<StructurePieceType> KAYENTA_HUT = register(KayentaHutPiece::new, "kayenta_hut");
+
+		RegistryObject<StructurePieceType> HELL_CREEK_HUT = register(HellCreekHutPiece::new, "hell_creek_hut");
+		RegistryObject<StructurePieceType> DJADOCHTA_HUT = register(DjadochtaHutPiece::new, "djadochta_hut");
+		RegistryObject<StructurePieceType> YIXIAN_HUT = register(YixianHutPiece::new, "yixian_hut");
+
+		RegistryObject<StructurePieceType> TIME_TEMPLE = register(TimeTemplePiece::new, "time_temple");
+		RegistryObject<StructurePieceType> GEOLOGIST_CAMP = register(GeologistCampPiece::new, "geologist_camp");
+
+		private static RegistryObject<StructurePieceType> register(StructurePieceType.StructureTemplateType type, String string) {
+			return REGISTRY.register(string, () -> StructurePieceType.setTemplatePieceId(type, string.toLowerCase(Locale.ROOT)));
+		}
+
+	}
+
 }

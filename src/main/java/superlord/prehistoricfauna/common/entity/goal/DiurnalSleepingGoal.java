@@ -15,10 +15,11 @@ public class DiurnalSleepingGoal extends Goal {
 		this.entity = sleeper;
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public boolean canUse() {
-		Level level = entity.level;
-		for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(2D, 2D, 2D))) {
+		Level level = entity.level();
+		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(2D, 2D, 2D))) {
 			if (!player.isShiftKeyDown()) return false;
 		}
 		if (PrehistoricFaunaConfig.sleeping = true && level.getDayTime() % 24000 >= 12000 && level.getDayTime() % 24000 <= 24000 && entity.getTarget() == null && !entity.isTame() && !entity.isInWater() && !entity.isInLava() && entity.getLastHurtByMob() == null && entity.warryTicks <= 0) {
@@ -28,10 +29,11 @@ public class DiurnalSleepingGoal extends Goal {
 		}
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public boolean canContinueToUse() {
-		Level level = entity.level;
-		for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(2D, 2D, 2D))) {
+		Level level = entity.level();
+		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(2D, 2D, 2D))) {
 			if (player.isShiftKeyDown()) {
 				if (level.getDayTime() % 24000 >= 0 && level.getDayTime() % 24000 < 12000 || entity.getTarget() != null || !super.canContinueToUse() || entity.isTame() || entity.isInWater() || entity.isInLava() || entity.getLastHurtByMob() != null) {
 					stop();
@@ -59,8 +61,8 @@ public class DiurnalSleepingGoal extends Goal {
 
 	public void tick() {
 		super.tick();
-		Level level = entity.level;
-		for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(2D, 2D, 2D))) {
+		Level level = entity.level();
+		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(2D, 2D, 2D))) {
 			if (!player.isShiftKeyDown()) {
 				stop();
 			}

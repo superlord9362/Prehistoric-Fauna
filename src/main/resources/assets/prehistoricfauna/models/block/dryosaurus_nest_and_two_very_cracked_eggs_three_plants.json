@@ -2,6 +2,6 @@
 	"credit": "Made with Blockbench",
 	"parent": "prehistoricfauna:block/dryosaurus_nest_and_two_eggs_three_plants",
 	"textures": {
-		"egg": "prehistoricfauna:blocks/dryosaurus_egg_very_cracked"
+		"egg": "prehistoricfauna:block/dryosaurus_egg_very_cracked"
 	}
 }

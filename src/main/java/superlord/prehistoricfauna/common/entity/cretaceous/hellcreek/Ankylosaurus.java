@@ -43,7 +43,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.PrehistoricFauna;
@@ -73,17 +73,16 @@ public class Ankylosaurus extends DinosaurEntity {
 	private int warningSoundTicks = 200;
 	private int maxHunger = 200;
 
-	@SuppressWarnings("deprecation")
 	public Ankylosaurus(EntityType<? extends Ankylosaurus> type, Level worldIn) {
 		super(type, worldIn);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1);;
 		super.maxHunger = maxHunger;
 	}
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Ankylosaurus entity = new Ankylosaurus(PFEntities.ANKYLOSAURUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Ankylosaurus entity = new Ankylosaurus(PFEntities.ANKYLOSAURUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -159,22 +158,23 @@ public class Ankylosaurus extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? PFSounds.ANKYLOSAURUS_SNORES : PFSounds.ANKYLOSAURUS_IDLE;
+		return this.isAsleep() ? PFSounds.ANKYLOSAURUS_SNORES.get() : PFSounds.ANKYLOSAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.ANKYLOSAURUS_HURT;
+		return PFSounds.ANKYLOSAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.ANKYLOSAURUS_DEATH;
+		return PFSounds.ANKYLOSAURUS_DEATH.get();
 	}
 
+	@SuppressWarnings("deprecation")
 	protected void playStepSound(BlockPos pos, BlockState state) {
 		if (this.isBaby()) {
-			if (!state.getMaterial().isLiquid()) {
-				BlockState blockstate = this.level.getBlockState(pos.above());
-				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level, pos, this) : state.getSoundType(level, pos, this);
+			if (!state.liquid()) {
+				BlockState blockstate = this.level().getBlockState(pos.above());
+				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level(), pos, this) : state.getSoundType(level(), pos, this);
 				this.playSound(soundtype.getStepSound(), soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			}
 		} else {
@@ -184,7 +184,7 @@ public class Ankylosaurus extends DinosaurEntity {
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.ANKYLOSAURUS_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.ANKYLOSAURUS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -282,11 +282,11 @@ public class Ankylosaurus extends DinosaurEntity {
 				return false;
 			} else {
 				BlockPos blockpos = ankylosaurus.blockPosition();
-				BlockState state = ankylosaurus.level.getBlockState(blockpos);
+				BlockState state = ankylosaurus.level().getBlockState(blockpos);
 				if (state.is(BlockTags.DIRT)) {
 					return true;
 				} else {
-					return ankylosaurus.level.getBlockState(blockpos.below()).is(BlockTags.DIRT);
+					return ankylosaurus.level().getBlockState(blockpos.below()).is(BlockTags.DIRT);
 				}
 			}
 		}
@@ -295,7 +295,7 @@ public class Ankylosaurus extends DinosaurEntity {
 		public void start() {
 			diggingTimer = 40;
 			digTimer2 = 6000;
-			ankylosaurus.level.broadcastEntityEvent(ankylosaurus, (byte) 10);
+			ankylosaurus.level().broadcastEntityEvent(ankylosaurus, (byte) 10);
 			ankylosaurus.setTuberDigging(true);
 			ankylosaurus.getNavigation().stop();
 		}
@@ -322,13 +322,13 @@ public class Ankylosaurus extends DinosaurEntity {
 			if (diggingTimer == 25) {
 				BlockPos blockpos = ankylosaurus.blockPosition();
 				BlockPos blockpos1 = blockpos.below();
-				if (ankylosaurus.level.getBlockState(blockpos1).is(BlockTags.DIRT)) {
-					BlockState state = ankylosaurus.level.getBlockState(blockpos1);
-					ankylosaurus.level.levelEvent(2001, blockpos1, Block.getId(state));
-					MinecraftServer server = ankylosaurus.level.getServer();
+				if (ankylosaurus.level().getBlockState(blockpos1).is(BlockTags.DIRT)) {
+					BlockState state = ankylosaurus.level().getBlockState(blockpos1);
+					ankylosaurus.level().levelEvent(2001, blockpos1, Block.getId(state));
+					MinecraftServer server = ankylosaurus.level().getServer();
 					if (server != null) {
-						List<ItemStack> items = server.getLootTables().get(DIGGING_LOOT).getRandomItems(new LootContext.Builder((ServerLevel) ankylosaurus.level).withRandom(ankylosaurus.getRandom()).create(LootContextParamSets.EMPTY));
-						Containers.dropContents(ankylosaurus.level, blockpos, NonNullList.of(ItemStack.EMPTY, items.toArray(new ItemStack[0])));
+						List<ItemStack> items = server.getLootData().getLootTable(DIGGING_LOOT).getRandomItems(new LootParams.Builder((ServerLevel) ankylosaurus.level()).create(LootContextParamSets.EMPTY));
+						Containers.dropContents(ankylosaurus.level(), blockpos, NonNullList.of(ItemStack.EMPTY, items.toArray(new ItemStack[0])));
 					}
 				}
 			}

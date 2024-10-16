@@ -5,7 +5,7 @@
 	"textures": {
 		"1": "minecraft:block/dirt",
 		"2": "minecraft:block/flower_pot",
-		"3": "prehistoricfauna:blocks/clathopteris",
+		"3": "prehistoricfauna:block/clathopteris",
 		"particle": "minecraft:block/dirt"
 	},
 	"elements": [

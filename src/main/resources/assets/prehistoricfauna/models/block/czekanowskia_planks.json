@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "prehistoricfauna:blocks/czekanowskia_planks"
+        "all": "prehistoricfauna:block/czekanowskia_planks"
     }
 }

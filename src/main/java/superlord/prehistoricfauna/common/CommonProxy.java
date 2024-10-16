@@ -49,19 +49,19 @@ public class CommonProxy {
 	public static void onBlockClicked(PlayerInteractEvent.RightClickBlock event) {
 		if (event.getItemStack().getItem() == Items.BONE_MEAL) {
 			boolean flag = false;
-			Level world = event.getWorld();
+			Level world = event.getLevel();
 			BlockPos pos = event.getPos();
-			BlockState state = event.getWorld().getBlockState(event.getPos());
-			Player player = event.getPlayer();
+			BlockState state = event.getLevel().getBlockState(event.getPos());
+			Player player = event.getEntity();
 			if (state.getBlock() == Blocks.DIRT && world.getBlockState(pos.above()).getBlock() == Blocks.AIR) {
 				for(BlockPos blockpos : BlockPos.betweenClosed(event.getPos().offset(-1, -1, -1), event.getPos().offset(1, 1, 1))) {
-					BlockState blockstate = event.getWorld().getBlockState(blockpos);
+					BlockState blockstate = event.getLevel().getBlockState(blockpos);
 					if (blockstate.is(PFBlocks.MOSSY_DIRT.get())) {
 						flag = true;
 					}
 				}
 				if (flag) {
-					event.getWorld().setBlock(event.getPos(), PFBlocks.MOSSY_DIRT.get().defaultBlockState(), 3);
+					event.getLevel().setBlock(event.getPos(), PFBlocks.MOSSY_DIRT.get().defaultBlockState(), 3);
 					double d0 = (double)pos.getX() + 0.5D;
 					double d1 = (double)pos.getY() + 1.7D;
 					double d2 = (double)pos.getZ() + 0.5D;

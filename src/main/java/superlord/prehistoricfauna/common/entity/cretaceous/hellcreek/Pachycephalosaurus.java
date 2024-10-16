@@ -64,10 +64,9 @@ public class Pachycephalosaurus extends DinosaurEntity {
 	private static final EntityDataAccessor<Boolean> RAMMING = SynchedEntityData.defineId(Pachycephalosaurus.class, EntityDataSerializers.BOOLEAN);
 	public int rammingTime = 0;
 
-	@SuppressWarnings("deprecation")
 	public Pachycephalosaurus(EntityType<? extends Pachycephalosaurus> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = this.maxHunger;
 	}
 
@@ -130,7 +129,7 @@ public class Pachycephalosaurus extends DinosaurEntity {
 
 	public void aiStep() {
 		super.aiStep();
-		for (LivingEntity entity : this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(8, 4, 8))) {
+		for (LivingEntity entity : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(8, 4, 8))) {
 			if (entity.hasEffect(PFEffects.GINKGO_SPLATTERED.get())) {
 				this.setTarget(entity);
 			}
@@ -138,7 +137,7 @@ public class Pachycephalosaurus extends DinosaurEntity {
 		int ramTime = this.random.nextInt(5400) + 600;
 		for (int i = this.rammingTime; i < ramTime; i++) {
 			if (i == ramTime) {
-				for (LivingEntity entity : this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(8, 4, 8))) {
+				for (LivingEntity entity : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(8, 4, 8))) {
 					if (entity.getBbWidth() <= 0.1 && entity.getBbHeight() <= 0.1) {
 						this.setRamming(true);
 						this.setTarget(entity);
@@ -150,15 +149,15 @@ public class Pachycephalosaurus extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.PACHYCEPHALOSAURUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.PACHYCEPHALOSAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.PACHYCEPHALOSAURUS_HURT;
+		return PFSounds.PACHYCEPHALOSAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.PACHYCEPHALOSAURUS_DEATH;
+		return PFSounds.PACHYCEPHALOSAURUS_DEATH.get();
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -198,8 +197,8 @@ public class Pachycephalosaurus extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Pachycephalosaurus entity = new Pachycephalosaurus(PFEntities.PACHYCEPHALOSAURUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Pachycephalosaurus entity = new Pachycephalosaurus(PFEntities.PACHYCEPHALOSAURUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 

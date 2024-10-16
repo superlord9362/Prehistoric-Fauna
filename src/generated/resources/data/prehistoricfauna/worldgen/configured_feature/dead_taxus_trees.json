@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": "prehistoricfauna:dead_taxus_tree_8",
+    "features": [
+      {
+        "chance": 0.125,
+        "feature": "prehistoricfauna:dead_taxus_tree_1"
+      },
+      {
+        "chance": 0.125,
+        "feature": "prehistoricfauna:dead_taxus_tree_2"
+      },
+      {
+        "chance": 0.125,
+        "feature": "prehistoricfauna:dead_taxus_tree_3"
+      },
+      {
+        "chance": 0.125,
+        "feature": "prehistoricfauna:dead_taxus_tree_4"
+      },
+      {
+        "chance": 0.125,
+        "feature": "prehistoricfauna:dead_taxus_tree_5"
+      },
+      {
+        "chance": 0.125,
+        "feature": "prehistoricfauna:dead_taxus_tree_6"
+      },
+      {
+        "chance": 0.125,
+        "feature": "prehistoricfauna:dead_taxus_tree_7"
+      }
+    ]
+  }
+}

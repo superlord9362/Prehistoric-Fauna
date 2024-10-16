@@ -1,6 +1,6 @@
 {
     "parent": "block/leaves",
     "textures": {
-        "all": "prehistoricfauna:blocks/yellow_ginkgo_leaves"
+        "all": "prehistoricfauna:block/yellow_ginkgo_leaves"
     }
 }

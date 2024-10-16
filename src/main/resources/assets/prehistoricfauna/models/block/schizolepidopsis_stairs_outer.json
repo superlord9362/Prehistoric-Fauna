@@ -1,8 +1,8 @@
 {
     "parent": "block/outer_stairs",
     "textures": {
-        "bottom": "prehistoricfauna:blocks/schizolepidopsis_planks",
-        "top": "prehistoricfauna:blocks/schizolepidopsis_planks",
-        "side": "prehistoricfauna:blocks/schizolepidopsis_planks"
+        "bottom": "prehistoricfauna:block/schizolepidopsis_planks",
+        "top": "prehistoricfauna:block/schizolepidopsis_planks",
+        "side": "prehistoricfauna:block/schizolepidopsis_planks"
     }
 }

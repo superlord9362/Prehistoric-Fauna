@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"1": "prehistoricfauna:blocks/bisonia",
-		"particle": "prehistoricfauna:blocks/bisonia"
+		"1": "prehistoricfauna:block/bisonia",
+		"particle": "prehistoricfauna:block/bisonia"
 	},
 	"elements": [
 		{

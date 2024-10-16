@@ -1,12 +1,12 @@
 package superlord.prehistoricfauna.common.blocks;
 
-import java.util.Random;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
@@ -27,11 +27,11 @@ public class AncientPlantBlock extends BushBlock implements BonemealableBlock, n
 		return SHAPE;
 	}
 
-	public boolean isValidBonemealTarget(BlockGetter p_57325_, BlockPos p_57326_, BlockState p_57327_, boolean p_57328_) {
+	public boolean isValidBonemealTarget(LevelReader p_57325_, BlockPos p_57326_, BlockState p_57327_, boolean p_57328_) {
 		return true;
 	}
 
-	public boolean isBonemealSuccess(Level p_57330_, Random p_57331_, BlockPos p_57332_, BlockState p_57333_) {
+	public boolean isBonemealSuccess(Level p_57330_, RandomSource p_57331_, BlockPos p_57332_, BlockState p_57333_) {
 		return true;
 	}
 
@@ -40,7 +40,7 @@ public class AncientPlantBlock extends BushBlock implements BonemealableBlock, n
 	}
 
 	@Override
-	public void performBonemeal(ServerLevel p_50893_, Random p_50894_, BlockPos p_50895_, BlockState p_50896_) {
+	public void performBonemeal(ServerLevel p_50893_, RandomSource p_50894_, BlockPos p_50895_, BlockState p_50896_) {
 	      popResource(p_50893_, p_50895_, new ItemStack(this));
 	}
 }

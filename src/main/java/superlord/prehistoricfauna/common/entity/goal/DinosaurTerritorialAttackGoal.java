@@ -16,12 +16,13 @@ public class DinosaurTerritorialAttackGoal extends NearestAttackableTargetGoal<P
 	 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
 	 * method as well.
 	 */
+	@SuppressWarnings("resource")
 	public boolean canUse() {
 		if (dinosaur.isBaby()) {
 			return false;
 		} else {
 			if (super.canUse()) {
-				for(DinosaurEntity dinosaur : dinosaur.level.getEntitiesOfClass(DinosaurEntity.class, dinosaur.getBoundingBox().inflate(24.0D, 4.0D, 24.0D))) {
+				for(DinosaurEntity dinosaur : dinosaur.level().getEntitiesOfClass(DinosaurEntity.class, dinosaur.getBoundingBox().inflate(24.0D, 4.0D, 24.0D))) {
 					if (!dinosaur.trusts(this.target.getUUID()) && dinosaur.isTerritorial() && !dinosaur.isTame()) {
 						return true;
 					}

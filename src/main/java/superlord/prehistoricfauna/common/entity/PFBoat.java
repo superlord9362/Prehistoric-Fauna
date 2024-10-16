@@ -2,6 +2,7 @@ package superlord.prehistoricfauna.common.entity;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -44,6 +45,10 @@ public class PFBoat extends Boat {
 		compound.putString("WoodType", this.getPFBoatType().getName());
 	}
 
+	public double getPassengersRidingOffset() {
+		return this.getPFBoatType() == PFBoatTypes.NEOCALAMITES ? 0.25D : -0.1D;
+	}
+
 	@Override
 	protected void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
@@ -56,7 +61,7 @@ public class PFBoat extends Boat {
 	}
 
 	@Override
-	public Packet<?> getAddEntityPacket() {
+	public Packet<ClientGamePacketListener> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
@@ -69,12 +74,12 @@ public class PFBoat extends Boat {
 	}
 
 	@Override
-	public Boat.Type getBoatType() {
+	public Boat.Type getVariant() {
 		return Boat.Type.OAK;
 	}
 
 	@Override
-	public void setType(Boat.Type boatType) {
+	public void setVariant(Boat.Type boatType) {
 	}
 
 	@Override
@@ -125,7 +130,7 @@ public class PFBoat extends Boat {
 			return PFItems.PODOZAMITES_BOAT.get();
 		}
 	}
-	
+
 	public enum PFBoatTypes {
 		ARAUCARIA(PFBlocks.ARAUCARIA_PLANKS.get(), "araucaria"),
 		METASEQUOIA(PFBlocks.METASEQUOIA_PLANKS.get(), "metasequoia"),
@@ -147,28 +152,29 @@ public class PFBoat extends Boat {
 		TAXUS(PFBlocks.TAXUS_PLANKS.get(), "taxus"),
 		CZEKANOWSKIA(PFBlocks.CZEKANOWSKIA_PLANKS.get(), "czekanowskia"),
 		SCHIZOLEPIDOPSIS(PFBlocks.SCHIZOLEPIDOPSIS_PLANKS.get(), "schizolepidopsis"),
-		PODOZAMITES(PFBlocks.PODOZAMITES_PLANKS.get(), "podozamites");
-		
+		PODOZAMITES(PFBlocks.PODOZAMITES_PLANKS.get(), "podozamites"),
+		NEOCALAMITES(PFBlocks.NEOCALAMITES_PLANKS.get(), "neocalamites");
+
 		private final String name;
 		private final Block planks;
-		
+
 		PFBoatTypes(Block planks, String name) {
 			this.name = name;
 			this.planks = planks;
 		}
-		
+
 		public String getName() {
 			return this.name;
 		}
-		
+
 		public Block getPlanks() {
 			return this.planks;
 		}
-		
+
 		public String toString() {
 			return this.name;
 		}
-		
+
 		public static PFBoatTypes byId(int id) {
 			PFBoatTypes[] boatEntityType = values();
 			if (id < 0 || id >= boatEntityType.length) {
@@ -176,10 +182,10 @@ public class PFBoat extends Boat {
 			}
 			return boatEntityType[id];
 		}
-		
+
 		public static PFBoatTypes byName(String name) {
 			PFBoatTypes[] boatEntityType = values();
-			
+
 			for (int i = 0; i < boatEntityType.length; ++i) {
 				if (boatEntityType[i].getName().equals(name)) {
 					return boatEntityType[i];
@@ -187,7 +193,7 @@ public class PFBoat extends Boat {
 			}
 			return boatEntityType[0];
 		}
-		
+
 	}
-	
+
 }

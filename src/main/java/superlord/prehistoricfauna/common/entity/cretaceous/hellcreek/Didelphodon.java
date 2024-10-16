@@ -16,6 +16,7 @@ import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -96,17 +97,16 @@ public class Didelphodon extends DinosaurEntity {
 	private float interestedAngle;
 	private float interestedAngleO;
 
-	@SuppressWarnings("deprecation")
 	public Didelphodon(EntityType<? extends Didelphodon> type, Level level) {
 		super(type, level);
 		this.setCanPickUpLoot(true);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1);;
 		super.maxHunger = maxHunger;
 	}
 
 	private void spawnItem(ItemStack stack) {
-		ItemEntity item = new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), stack);
-		this.level.addFreshEntity(item);
+		ItemEntity item = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), stack);
+		this.level().addFreshEntity(item);
 	}
 
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
@@ -132,7 +132,7 @@ public class Didelphodon extends DinosaurEntity {
 	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
 		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
 		Item item = itemstack.getItem();
-		if (this.level.isClientSide) {
+		if (this.level().isClientSide) {
 			boolean flag = this.isOwnedBy(p_230254_1_) || this.isTame() || item == Items.BONE && !this.isTame();
 			return flag ? InteractionResult.CONSUME : InteractionResult.PASS;
 		} else {
@@ -146,9 +146,9 @@ public class Didelphodon extends DinosaurEntity {
 						this.navigation.stop();
 						this.setTarget((LivingEntity)null);
 						this.setOrderedToSit(true);
-						this.level.broadcastEntityEvent(this, (byte)7);
+						this.level().broadcastEntityEvent(this, (byte)7);
 					} else {
-						this.level.broadcastEntityEvent(this, (byte)6);
+						this.level().broadcastEntityEvent(this, (byte)6);
 					}
 				}
 				return InteractionResult.SUCCESS;
@@ -174,13 +174,13 @@ public class Didelphodon extends DinosaurEntity {
 	}
 
 	public void aiStep() {
-		if (!this.level.isClientSide && this.isAlive() && this.isEffectiveAi()) {
+		if (!this.level().isClientSide() && this.isAlive() && this.isEffectiveAi()) {
 			++this.eatTicks;
 			ItemStack stack = this.getItemBySlot(EquipmentSlot.MAINHAND);
 			if (this.canEatItem(stack)) {
 				if (this.eatTicks > 100) {
 					if (this.isTame()) {
-						ItemStack itemStack = stack.finishUsingItem(level, this);
+						ItemStack itemStack = stack.finishUsingItem(level(), this);
 						ItemStack openedStack = PFItems.RAW_OYSTER.get().getDefaultInstance();
 						if (!itemStack.isEmpty()) {
 							this.setItemSlot(EquipmentSlot.MAINHAND, itemStack);
@@ -201,7 +201,7 @@ public class Didelphodon extends DinosaurEntity {
 						}
 						itemStack.shrink(1);
 					} else {
-						ItemStack itemStack = stack.finishUsingItem(level, this);
+						ItemStack itemStack = stack.finishUsingItem(level(), this);
 						if (PrehistoricFaunaConfig.advancedHunger) {
 							if (this.getCurrentHunger() + 5 >= this.maxHunger) {
 								this.setHunger(this.maxHunger);
@@ -293,15 +293,15 @@ public class Didelphodon extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.DIDELPHODON_IDLE;
+		return this.isAsleep() ? null : PFSounds.DIDELPHODON_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSource) {
-		return PFSounds.DIDELPHODON_HURT;
+		return PFSounds.DIDELPHODON_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.DIDELPHODON_DEATH;
+		return PFSounds.DIDELPHODON_DEATH.get();
 	}
 
 	@Override
@@ -320,7 +320,7 @@ public class Didelphodon extends DinosaurEntity {
 			if (!itemStack.isEmpty()) {
 				for (int i = 0; i < 8; i++) {
 					Vec3 vector3d = (new Vec3(((double)this.random.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, 0.0D)).xRot(-this.xRot * ((float)Math.PI / 180F)).yRot(-this.yRot * ((float)Math.PI / 180F));
-					this.level.addParticle(new ItemParticleOption(ParticleTypes.ITEM, itemStack), this.getX() + this.getLookAngle().x / 2.0D,  this.getY(), this.getZ() + this.getLookAngle().z / 2.0D, vector3d.x, vector3d.y + 0.05D, vector3d.z);
+					this.level().addParticle(new ItemParticleOption(ParticleTypes.ITEM, itemStack), this.getX() + this.getLookAngle().x / 2.0D,  this.getY(), this.getZ() + this.getLookAngle().z / 2.0D, vector3d.x, vector3d.y + 0.05D, vector3d.z);
 				}
 			}
 		} else {
@@ -369,7 +369,7 @@ public class Didelphodon extends DinosaurEntity {
 			this.didelphodon.setHasBaby(true);
 			this.animal.resetLove();
 			this.partner.resetLove();
-			Random random = this.animal.getRandom();
+			RandomSource random = this.animal.getRandom();
 			if (this.level.getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
 				this.level.addFreshEntity(new ExperienceOrb(this.level, this.animal.getX(), this.animal.getY(), this.animal.getZ(), random.nextInt(7) + 1));
 			}
@@ -445,7 +445,7 @@ public class Didelphodon extends DinosaurEntity {
 				if (this.didelphodon.isBirthing < 1) {
 					this.didelphodon.setBirthing(true);
 				} else if (this.didelphodon.isBirthing > 200) {
-					Level level = this.didelphodon.level;
+					Level level = this.didelphodon.level();
 					int amount = level.random.nextInt(4) + 1;
 					for (int i = 0; i < amount; i++) {
 						Didelphodon baby = new Didelphodon(PFEntities.DIDELPHODON.get(), level);
@@ -481,8 +481,8 @@ public class Didelphodon extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Didelphodon entity = new Didelphodon(PFEntities.DIDELPHODON.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Didelphodon entity = new Didelphodon(PFEntities.DIDELPHODON.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -495,6 +495,7 @@ public class Didelphodon extends DinosaurEntity {
 			super.start();
 		}
 
+		@SuppressWarnings("deprecation")
 		public boolean canUse() {
 			return Didelphodon.this.isInWater() && Didelphodon.this.getFluidHeight(FluidTags.WATER) > 0.25D || Didelphodon.this.isInLava();
 		}
@@ -540,12 +541,12 @@ public class Didelphodon extends DinosaurEntity {
 		}
 
 		protected void eatOyster() {
-			if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(Didelphodon.this.level, Didelphodon.this)) {
-				BlockState blockstate = Didelphodon.this.level.getBlockState(this.blockPos);
+			if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(Didelphodon.this.level(), Didelphodon.this)) {
+				BlockState blockstate = Didelphodon.this.level().getBlockState(this.blockPos);
 				if (blockstate.is(PFBlocks.CRASSOSTREA_OYSTER.get())) {
 					int i = blockstate.getValue(CrassostreaOysterBlock.AGE);
 					blockstate.setValue(CrassostreaOysterBlock.AGE, Integer.valueOf(0));
-					int j = 1 + Didelphodon.this.level.random.nextInt(2) + (i == 3 ? 1 : 0);
+					int j = 1 + Didelphodon.this.level().getRandom().nextInt(2) + (i == 3 ? 1 : 0);
 					ItemStack itemstack = Didelphodon.this.getItemBySlot(EquipmentSlot.MAINHAND);
 					if (itemstack.isEmpty()) {
 						Didelphodon.this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(PFItems.CRASSOSTREA_OYSTER.get()));
@@ -553,9 +554,9 @@ public class Didelphodon extends DinosaurEntity {
 					}
 
 					if (j > 0) {
-						Block.popResource(Didelphodon.this.level, this.blockPos, new ItemStack(PFItems.CRASSOSTREA_OYSTER.get(), j));
+						Block.popResource(Didelphodon.this.level(), this.blockPos, new ItemStack(PFItems.CRASSOSTREA_OYSTER.get(), j));
 					}
-					Didelphodon.this.level.setBlock(this.blockPos, blockstate.setValue(CrassostreaOysterBlock.AGE, Integer.valueOf(0)), 2);
+					Didelphodon.this.level().setBlock(this.blockPos, blockstate.setValue(CrassostreaOysterBlock.AGE, Integer.valueOf(0)), 2);
 				}
 			}
 		}

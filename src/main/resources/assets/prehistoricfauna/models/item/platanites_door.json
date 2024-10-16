@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/platanites_door"
+        "layer0": "prehistoricfauna:item/platanites_door"
     }
 }

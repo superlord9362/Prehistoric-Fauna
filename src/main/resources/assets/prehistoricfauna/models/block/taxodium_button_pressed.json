@@ -1,6 +1,6 @@
 {
     "parent": "block/button_pressed",
     "textures": {
-        "texture": "prehistoricfauna:blocks/taxodium_planks"
+        "texture": "prehistoricfauna:block/taxodium_planks"
     }
 }

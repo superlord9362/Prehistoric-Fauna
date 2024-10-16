@@ -53,10 +53,9 @@ public class Basilemys extends DinosaurEntity {
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(PFBlocks.HORSETAIL.get().asItem());
 	private int maxHunger = 20;
 
-	@SuppressWarnings("deprecation")
 	public Basilemys(EntityType<? extends Basilemys> type, Level level) {
 		super(type, level);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1);
 		super.maxHunger = maxHunger;
 	}
 
@@ -106,15 +105,15 @@ public class Basilemys extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.BASILEMYS_IDLE;
+		return this.isAsleep() ? null : PFSounds.BASILEMYS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.BASILEMYS_HURT;
+		return PFSounds.BASILEMYS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.BASILEMYS_DEATH;
+		return PFSounds.BASILEMYS_DEATH.get();
 	}
 
 	@Override
@@ -171,8 +170,8 @@ public class Basilemys extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Basilemys entity = new Basilemys(PFEntities.BASILEMYS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Basilemys entity = new Basilemys(PFEntities.BASILEMYS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 	

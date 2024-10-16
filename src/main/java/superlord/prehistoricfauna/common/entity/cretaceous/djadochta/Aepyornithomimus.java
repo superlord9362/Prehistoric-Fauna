@@ -70,10 +70,9 @@ public class Aepyornithomimus extends HerdDinosaurEntity {
 	public int maxHunger = 25;
 	private int chewingTick;
 
-	@SuppressWarnings("deprecation")
 	public Aepyornithomimus(EntityType<? extends Aepyornithomimus> type, Level world) {
 		super(type, world);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -87,8 +86,8 @@ public class Aepyornithomimus extends HerdDinosaurEntity {
 	}
 
 	private void spawnItem(ItemStack stack) {
-		ItemEntity itemEntity = new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), stack);
-		this.level.addFreshEntity(itemEntity);
+		ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), stack);
+		this.level().addFreshEntity(itemEntity);
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -125,15 +124,15 @@ public class Aepyornithomimus extends HerdDinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.AEPYORNITHOMIMUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.AEPYORNITHOMIMUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.AEPYORNITHOMIMUS_HURT;
+		return PFSounds.AEPYORNITHOMIMUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.AEPYORNITHOMIMUS_DEATH;
+		return PFSounds.AEPYORNITHOMIMUS_DEATH.get();
 	}
 
 	@Override
@@ -207,8 +206,8 @@ public class Aepyornithomimus extends HerdDinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Aepyornithomimus entity = new Aepyornithomimus(PFEntities.AEPYORNITHOMIMUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Aepyornithomimus entity = new Aepyornithomimus(PFEntities.AEPYORNITHOMIMUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 

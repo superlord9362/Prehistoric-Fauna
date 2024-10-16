@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "prehistoricfauna:blocks/podozamites_sapling"
+        "cross": "prehistoricfauna:block/podozamites_sapling"
     }
 }

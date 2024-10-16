@@ -2,6 +2,6 @@
 	"parent": "prehistoricfauna:block/four_medium_tall_eggs",
 	"ambientocclusion": false,
 	"textures": {
-		"egg": "prehistoricfauna:blocks/desmatosuchus_egg"
+		"egg": "prehistoricfauna:block/desmatosuchus_egg"
 	}
 }

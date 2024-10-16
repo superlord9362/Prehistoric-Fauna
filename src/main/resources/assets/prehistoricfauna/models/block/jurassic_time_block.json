@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "prehistoricfauna:blocks/jurassic_portal"
+        "all": "prehistoricfauna:block/jurassic_portal"
     }
 }

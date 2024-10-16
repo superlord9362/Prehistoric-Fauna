@@ -1,13 +1,12 @@
 package superlord.prehistoricfauna.common.blocks;
 
-import java.util.Random;
-
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.EntityTypeTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -36,7 +35,7 @@ public class PtilophyllumBaseBlock extends Block {
 		this.registerDefaultState(this.stateDefinition.any().setValue(AGE, Integer.valueOf(0)));
 	}
 
-	public void tick(BlockState p_51678_, ServerLevel p_51679_, BlockPos p_51680_, Random p_51681_) {
+	public void tick(BlockState p_51678_, ServerLevel p_51679_, BlockPos p_51680_, RandomSource p_51681_) {
 		if (!p_51678_.canSurvive(p_51679_, p_51680_)) {
 			p_51679_.destroyBlock(p_51680_, true);
 		}
@@ -47,7 +46,7 @@ public class PtilophyllumBaseBlock extends Block {
 		return p_51696_.getValue(AGE) < 5;
 	}
 
-	public void randomTick(BlockState p_51702_, ServerLevel p_51703_, BlockPos p_51704_, Random p_51705_) {
+	public void randomTick(BlockState p_51702_, ServerLevel p_51703_, BlockPos p_51704_, RandomSource p_51705_) {
 		BlockPos blockpos = p_51704_.above();
 		if (p_51703_.isEmptyBlock(blockpos) && blockpos.getY() < p_51703_.getMaxBuildHeight()) {
 			int i = p_51702_.getValue(AGE);
@@ -170,14 +169,14 @@ public class PtilophyllumBaseBlock extends Block {
 		p_51694_.add(AGE);
 	}
 
-	public static void generatePlant(LevelAccessor p_51666_, BlockPos p_51667_, Random p_51668_, int p_51669_) {
+	public static void generatePlant(LevelAccessor p_51666_, BlockPos p_51667_, RandomSource p_51668_, int p_51669_) {
 		p_51666_.setBlock(p_51667_, ((PtilophyllumBlock)PFBlocks.PTILOPHYLLUM_WOOD.get()).getStateForPlacement(p_51666_, p_51667_), 2);
 		growTreeRecursive(p_51666_, p_51667_, p_51668_, p_51667_, p_51669_, 0);
 	}
 
 
 
-	private static void growTreeRecursive(LevelAccessor p_51671_, BlockPos p_51672_, Random p_51673_, BlockPos p_51674_, int p_51675_, int p_51676_) {
+	private static void growTreeRecursive(LevelAccessor p_51671_, BlockPos p_51672_, RandomSource p_51673_, BlockPos p_51674_, int p_51675_, int p_51676_) {
 		PtilophyllumBlock ptilophyllumBlock = (PtilophyllumBlock)PFBlocks.PTILOPHYLLUM_WOOD.get();
 		int i = p_51673_.nextInt(4) + 1;
 		if (p_51676_ == 0) {

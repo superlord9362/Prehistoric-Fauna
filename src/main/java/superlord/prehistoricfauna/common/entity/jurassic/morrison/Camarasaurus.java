@@ -1,7 +1,6 @@
 package superlord.prehistoricfauna.common.entity.jurassic.morrison;
 
 import java.util.List;
-import java.util.Random;
 
 import javax.annotation.Nullable;
 
@@ -16,6 +15,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
@@ -71,10 +71,9 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 	private int maxHunger = 500;
 	private int warningSoundTicks;
 
-	@SuppressWarnings("deprecation")
 	public Camarasaurus(EntityType<? extends Camarasaurus> type, Level level) {
 		super(type, level);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -140,11 +139,12 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 	
+	@SuppressWarnings("deprecation")
 	protected void playStepSound(BlockPos pos, BlockState state) {
 		if (this.isBaby()) {
-			if (!state.getMaterial().isLiquid()) {
-				BlockState blockstate = this.level.getBlockState(pos.above());
-				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level, pos, this) : state.getSoundType(level, pos, this);
+			if (!state.liquid()) {
+				BlockState blockstate = this.level().getBlockState(pos.above());
+				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level(), pos, this) : state.getSoundType(level(), pos, this);
 				this.playSound(soundtype.getStepSound(), soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			}
 		} else {
@@ -157,20 +157,20 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? PFSounds.CAMARASAURUS_SNORES : PFSounds.CAMARASAURUS_IDLE;
+		return this.isAsleep() ? PFSounds.CAMARASAURUS_SNORES.get() : PFSounds.CAMARASAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.CAMARASAURUS_HURT;
+		return PFSounds.CAMARASAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.CAMARASAURUS_DEATH;
+		return PFSounds.CAMARASAURUS_DEATH.get();
 	}
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.CAMARASAURUS_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.CAMARASAURUS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -223,9 +223,9 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 			
 		} else {
 			if (!this.isBaby() && PrehistoricFaunaConfig.sauropodTrampling) {
-				for (LivingEntity entity : this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(1, 0, 1))) {
+				for (LivingEntity entity : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(1, 0, 1))) {
 					if (!(entity instanceof Camarasaurus) && entity.getMaxHealth() < 60) {
-						entity.hurt(PFDamageSources.SAUROPOD_TRAMPLING, (float) 5.0D);
+						entity.hurt(PFDamageSources.causeSauropodTramplingDamage(entity.level().registryAccess(), this), (float) 5.0D);
 					}
 				}
 			}
@@ -337,7 +337,7 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 			this.camarasaurus.setHasBaby(true);
 			this.animal.resetLove();
 			this.partner.resetLove();
-			Random random = this.animal.getRandom();
+			RandomSource random = this.animal.getRandom();
 			if (this.level.getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
 				this.level.addFreshEntity(new ExperienceOrb(this.level, this.animal.getX(), this.animal.getY(), this.animal.getZ(), random.nextInt(7) + 1));
 			}
@@ -374,8 +374,8 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Camarasaurus entity = new Camarasaurus(PFEntities.CAMARASAURUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Camarasaurus entity = new Camarasaurus(PFEntities.CAMARASAURUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -392,7 +392,7 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 
 		public boolean canUse() {
 			if (this.babyCamarasaurus.isBaby() && !this.babyCamarasaurus.isJuvenile()) {
-				List<? extends Camarasaurus> list = this.babyCamarasaurus.level.getEntitiesOfClass(this.babyCamarasaurus.getClass(), this.babyCamarasaurus.getBoundingBox().inflate(8.0D, 4.0D, 8.0D));
+				List<? extends Camarasaurus> list = this.babyCamarasaurus.level().getEntitiesOfClass(this.babyCamarasaurus.getClass(), this.babyCamarasaurus.getBoundingBox().inflate(8.0D, 4.0D, 8.0D));
 				Camarasaurus camarasaurus = null;
 				double d0 = Double.MAX_VALUE;
 				for (Camarasaurus tyrannosaurus1 : list) {

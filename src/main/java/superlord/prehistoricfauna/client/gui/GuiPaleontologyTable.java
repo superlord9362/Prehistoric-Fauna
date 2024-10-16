@@ -2,8 +2,8 @@ package superlord.prehistoricfauna.client.gui;
 
 import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -35,21 +35,21 @@ public class GuiPaleontologyTable extends AbstractContainerScreen<PaleontologyTa
 	}
 
 	@Override
-	protected void renderBg(PoseStack matrixStack, float partialTicks, int mouseX, int mouseY)
+	protected void renderBg(GuiGraphics matrixStack, float partialTicks, int mouseX, int mouseY)
 	{
 		Lighting.setupForFlatItems();
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		RenderSystem.setShaderTexture(0, TEXTURE);
-		this.blit(matrixStack, leftPos, topPos, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+		matrixStack.blit(TEXTURE, leftPos, topPos, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 		if (menu.isCrafting()) {
-			this.blit(matrixStack, this.leftPos, this.topPos, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-			this.blit(matrixStack, this.leftPos + 60, this.topPos + 44, 178, 2, this.menu.getScaledProgress(26), 16);
+			matrixStack.blit(TEXTURE, this.leftPos, this.topPos, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+			matrixStack.blit(TEXTURE, this.leftPos + 60, this.topPos + 44, 178, 2, this.menu.getScaledProgress(26), 16);
 		}
 	}
 
 	@Override
-	public void render(PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+	public void render(GuiGraphics matrixStack, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(matrixStack);
 		super.render(matrixStack, mouseX, mouseY, partialTicks);
 		this.renderTooltip(matrixStack, mouseX, mouseY);

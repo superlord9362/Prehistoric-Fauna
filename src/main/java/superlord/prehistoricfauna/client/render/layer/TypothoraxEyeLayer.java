@@ -30,11 +30,11 @@ public class TypothoraxEyeLayer extends RenderLayer<Typothorax, TypothoraxModel>
 		if (!(typothoraxRenderer.getModel() instanceof TypothoraxModel)) {
 			return;
 		}
-		long roundTime = typothorax.level.getDayTime() % 24000;
+		long roundTime = typothorax.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos typothoraxPos = typothorax.blockPosition();
-		int i = typothorax.level.getBrightness(LightLayer.SKY, typothoraxPos);
-		int j = typothorax.level.getBrightness(LightLayer.BLOCK, typothoraxPos);
+		int i = typothorax.level().getBrightness(LightLayer.SKY, typothoraxPos);
+		int j = typothorax.level().getBrightness(LightLayer.BLOCK, typothoraxPos);
 		int brightness;
 		if (night) {
 			brightness = j;

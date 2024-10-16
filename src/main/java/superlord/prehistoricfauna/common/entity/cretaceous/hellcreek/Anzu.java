@@ -57,10 +57,9 @@ public class Anzu extends DinosaurEntity {
 	private int maxHunger = 75;
 	private int warningSoundTicks;
 
-	@SuppressWarnings("deprecation")
 	public Anzu(EntityType<? extends TamableAnimal> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1);
 		super.maxHunger = this.maxHunger;
 	}
 
@@ -95,20 +94,20 @@ public class Anzu extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.ANZU_IDLE;
+		return this.isAsleep() ? null : PFSounds.ANZU_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.ANZU_HURT;
+		return PFSounds.ANZU_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.ANZU_DEATH;
+		return PFSounds.ANZU_DEATH.get();
 	}
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.ANZU_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.ANZU_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -194,8 +193,8 @@ public class Anzu extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Anzu entity = new Anzu(PFEntities.ANZU.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Anzu entity = new Anzu(PFEntities.ANZU.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -225,10 +224,10 @@ public class Anzu extends DinosaurEntity {
 				for(int i1 = 0; i1 <= l; i1 = i1 > 0 ? -i1 : 1 - i1) {
 					for(int j1 = i1 < l && i1 > -l ? l : 0; j1 <= l; j1 = j1 > 0 ? -j1 : 1 - j1) {
 						blockpos$mutableblockpos.setWithOffset(blockpos, i1, k - 1, j1);
-						Block eggs = level.getBlockState(blockpos$mutableblockpos).getBlock();
-						if (this.isWithinRestriction(blockpos$mutableblockpos) && (level.getBlockState(blockpos$mutableblockpos).is(Blocks.TURTLE_EGG) && level.getBlockState(blockpos$mutableblockpos).getValue(TurtleEggBlock.EGGS) >= 1 || eggs instanceof DinosaurEggBlock && level.getBlockState(blockpos$mutableblockpos).getValue(DinosaurEggBlock.EGGS) >= 1 || eggs instanceof NestAndEggsBlock && level.getBlockState(blockpos$mutableblockpos).getValue(NestAndEggsBlock.EGGS) >= 1)) {
+						Block eggs = level().getBlockState(blockpos$mutableblockpos).getBlock();
+						if (this.isWithinRestriction(blockpos$mutableblockpos) && (level().getBlockState(blockpos$mutableblockpos).is(Blocks.TURTLE_EGG) && level().getBlockState(blockpos$mutableblockpos).getValue(TurtleEggBlock.EGGS) >= 1 || eggs instanceof DinosaurEggBlock && level().getBlockState(blockpos$mutableblockpos).getValue(DinosaurEggBlock.EGGS) >= 1 || eggs instanceof NestAndEggsBlock && level().getBlockState(blockpos$mutableblockpos).getValue(NestAndEggsBlock.EGGS) >= 1)) {
 							if (!this.isBaby()) {
-								for (LivingEntity entity : this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(10, 4, 10))) {
+								for (LivingEntity entity : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(10, 4, 10))) {
 									if (entity instanceof DinosaurEntity dinosaur) {
 										if (dinosaur.isOvivorous()) {
 											this.setTarget(dinosaur);

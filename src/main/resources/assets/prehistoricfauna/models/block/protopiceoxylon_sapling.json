@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "prehistoricfauna:blocks/protopiceoxylon_sapling"
+        "cross": "prehistoricfauna:block/protopiceoxylon_sapling"
     }
 }

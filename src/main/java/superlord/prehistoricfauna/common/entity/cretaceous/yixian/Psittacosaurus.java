@@ -66,10 +66,9 @@ import superlord.prehistoricfauna.init.PFSounds;
 public class Psittacosaurus extends DinosaurEntity {
 	public int maxHunger = 25;
 
-	@SuppressWarnings("deprecation")
 	public Psittacosaurus(EntityType<? extends Psittacosaurus> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1);
 		super.maxHunger = this.maxHunger;
 	}
 
@@ -120,15 +119,15 @@ public class Psittacosaurus extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.PSITTACOSAURUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.PSITTACOSAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.PSITTACOSAURUS_HURT;
+		return PFSounds.PSITTACOSAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.PSITTACOSAURUS_DEATH;
+		return PFSounds.PSITTACOSAURUS_DEATH.get();
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -168,8 +167,8 @@ public class Psittacosaurus extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Psittacosaurus entity = new Psittacosaurus(PFEntities.PSITTACOSAURUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Psittacosaurus entity = new Psittacosaurus(PFEntities.PSITTACOSAURUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -235,7 +234,7 @@ public class Psittacosaurus extends DinosaurEntity {
 		@Override
 		public void start() {
 			super.start();
-			for (Animal mob : entity.level.getEntitiesOfClass(Animal.class, entity.getBoundingBox().inflate(5), e -> e != entity)) {
+			for (Animal mob : entity.level().getEntitiesOfClass(Animal.class, entity.getBoundingBox().inflate(5), e -> e != entity)) {
 				mob.getNavigation().moveTo(entity, mob.getSpeed() + 0.4);
 			}
 		}

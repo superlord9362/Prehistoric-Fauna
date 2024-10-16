@@ -1,10 +1,9 @@
 package superlord.prehistoricfauna.common.feature;
 
-import java.util.Random;
-
 import com.mojang.serialization.Codec;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -50,7 +49,7 @@ public class NeocalamitesFeature extends Feature<JohnstoniaConfig> {
 	public void placeCalamites(FeaturePlaceContext<JohnstoniaConfig> context) {
 		BlockPos pos = context.origin();
 		WorldGenLevel world = context.level();
-		Random rand = context.random();
+		RandomSource rand = context.random();
 		context.config();
 		for (int j = 0; j < JohnstoniaConfig.count; ++j) {
 			int k = rand.nextInt(8) - rand.nextInt(8);

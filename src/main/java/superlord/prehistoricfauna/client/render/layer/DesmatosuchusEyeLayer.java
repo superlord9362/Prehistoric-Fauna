@@ -30,11 +30,11 @@ public class DesmatosuchusEyeLayer extends RenderLayer<Desmatosuchus, Desmatosuc
 		if (!(desmatosuchusRenderer.getModel() instanceof DesmatosuchusModel)) {
 			return;
 		}
-		long roundTime = desmatosuchus.level.getDayTime() % 24000;
+		long roundTime = desmatosuchus.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos desmatosuchusPos = desmatosuchus.blockPosition();
-		int i = desmatosuchus.level.getBrightness(LightLayer.SKY, desmatosuchusPos);
-		int j = desmatosuchus.level.getBrightness(LightLayer.BLOCK, desmatosuchusPos);
+		int i = desmatosuchus.level().getBrightness(LightLayer.SKY, desmatosuchusPos);
+		int j = desmatosuchus.level().getBrightness(LightLayer.BLOCK, desmatosuchusPos);
 		int brightness;
 		if (night) {
 			brightness = j;

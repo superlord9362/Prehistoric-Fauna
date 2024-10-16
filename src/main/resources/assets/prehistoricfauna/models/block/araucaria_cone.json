@@ -1,9 +1,9 @@
 {   "parent": "block/block",
     "textures": {
-        "particle": "prehistoricfauna:blocks/araucaria_cone",
-        "bottom": "prehistoricfauna:blocks/araucaria_cone_base",
-        "top": "prehistoricfauna:blocks/araucaria_cone_top",
-        "side": "prehistoricfauna:blocks/araucaria_cone"
+        "particle": "prehistoricfauna:block/araucaria_cone",
+        "bottom": "prehistoricfauna:block/araucaria_cone_base",
+        "top": "prehistoricfauna:block/araucaria_cone_top",
+        "side": "prehistoricfauna:block/araucaria_cone"
     },
     "elements": [
         {   "from": [ 0, 0, 0 ],

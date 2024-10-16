@@ -1,0 +1,73 @@
+{
+	"input": ["prehistoricfauna:cretaceous_fossil"],
+	"entries": [
+		{
+			"weight": 10,
+			"item": "prehistoricfauna:chalk"
+		},
+		{
+			"weight": 7.5,
+			"item": "prehistoricfauna:small_ammonite_fossil"
+		},
+		{
+			"weight": 7.5,
+			"item": "prehistoricfauna:medium_ammonite_fossil"
+		},
+		{
+			"weight": 7.5,
+			"item": "prehistoricfauna:large_ammonite_fossil"
+		},
+		{
+			"weight": 5,
+			"item": "prehistoricfauna:petrified_wood"
+		},
+		{
+			"weight": 1,
+			"item": "prehistoricfauna:giant_ammonite_fossil_piece_bb"
+		},
+		{
+			"weight": 1,
+			"item": "prehistoricfauna:giant_ammonite_fossil_piece_bf"
+		},
+		{
+			"weight": 1,
+			"item": "prehistoricfauna:giant_ammonite_fossil_piece_tb"
+		},
+		{
+			"weight": 1,
+			"item": "prehistoricfauna:giant_ammonite_fossil_piece_tf"
+		},
+		{
+			"weight": 25,
+			"item": "prehistoricfauna:fossilized_bones"
+		},
+		{
+			"weight": 1.25,
+			"item": "prehistoricfauna:tyrannosaurus_skull"
+		},
+		{
+			"weight": 1.25,
+			"item": "prehistoricfauna:ankylosaurus_skull"
+		},
+		{
+			"weight": 1.25,
+			"item": "prehistoricfauna:velociraptor_skull"
+		},
+		{
+			"weight": 1.25,
+			"item": "prehistoricfauna:plesiohadros_skull"
+		},
+		{
+			"weight": 2.5,
+			"item": "prehistoricfauna:triceratops_skull"
+		},
+		{
+			"weight": 2.5,
+			"item": "prehistoricfauna:protoceratops_skull"
+		},
+		{
+			"weight": 2.5,
+			"item": "prehistoricfauna:psittacosaurus_skull"
+		}
+	]
+}

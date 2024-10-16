@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": "prehistoricfauna:podozamties_tree_6",
+    "features": [
+      {
+        "chance": 0.1667,
+        "feature": "prehistoricfauna:podozamties_tree_1"
+      },
+      {
+        "chance": 0.1667,
+        "feature": "prehistoricfauna:podozamties_tree_2"
+      },
+      {
+        "chance": 0.1667,
+        "feature": "prehistoricfauna:podozamties_tree_3"
+      },
+      {
+        "chance": 0.1667,
+        "feature": "prehistoricfauna:podozamties_tree_4"
+      },
+      {
+        "chance": 0.1667,
+        "feature": "prehistoricfauna:podozamties_tree_5"
+      }
+    ]
+  }
+}

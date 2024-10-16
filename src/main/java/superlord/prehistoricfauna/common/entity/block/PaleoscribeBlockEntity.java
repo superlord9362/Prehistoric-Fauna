@@ -15,7 +15,6 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.util.Mth;
 import net.minecraft.world.ContainerHelper;
@@ -28,6 +27,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.entity.block.container.PaleoscribeContainer;
 import superlord.prehistoricfauna.common.entity.block.messages.MessageUpdatePaleoscribe;
@@ -109,7 +109,7 @@ public class PaleoscribeBlockEntity extends BaseContainerBlockEntity implements 
 
     @Override
     public @NotNull ItemStack removeItem(int index, int count) {
-        if (!this.stacks.get(index).isEmpty()) {
+    	if (!this.stacks.get(index).isEmpty()) {
             ItemStack itemstack;
 
             if (this.stacks.get(index).getCount() <= count) {
@@ -140,18 +140,24 @@ public class PaleoscribeBlockEntity extends BaseContainerBlockEntity implements 
         }
     }
 
-    @Override
+	@Override
     public void setItem(int index, ItemStack stack) {
-        boolean flag = !stack.isEmpty() && stack.sameItem(this.stacks.get(index)) && ItemStack.tagMatches(stack, this.stacks.get(index));
-        this.stacks.set(index, stack);
-
-        if (!stack.isEmpty() && stack.getCount() > this.getMaxStackSize()) {
-            stack.setCount(this.getMaxStackSize());
-        }
-        if (index == 0 && !flag) {
-            this.setChanged();
-            selectedPages = randomizePages(getItem(0), getItem(1));
-        }
+    	boolean isSame = !stack.isEmpty() && ItemStack.isSameItem(stack, this.stacks.get(index)) && ItemStack.matches(stack, this.stacks.get(index));
+    	this.stacks.set(index, stack);
+    	if (!stack.isEmpty() && stack.getCount() > this.getMaxStackSize()) {
+    		stack.setCount(this.getMaxStackSize());
+    	}
+    	if (!isSame) {
+    		this.setChanged();
+    		if (this.stacks.get(1).isEmpty()) {
+    			selectedPages[0] = null;
+    			selectedPages[1] = null;
+    			selectedPages[2] = null;
+    			PrehistoricFauna.sendMSGToAll(new MessageUpdatePaleoscribe(worldPosition.asLong(), -1, -1, -1, false, 0));
+    		} else {
+    			selectedPages = randomizePages(getItem(0), getItem(1));
+    		}
+    	}
     }
 
     public EnumPaleoPages[] randomizePages(ItemStack paleopedia, ItemStack manuscript) {
@@ -233,7 +239,7 @@ public class PaleoscribeBlockEntity extends BaseContainerBlockEntity implements 
 
     @Override
     public @NotNull Component getName() {
-        return new TranslatableComponent("block.prehistoricfauna.paleoscribe");
+        return Component.translatable("block.prehistoricfauna.paleoscribe");
     }
 
     @Override
@@ -298,7 +304,7 @@ public class PaleoscribeBlockEntity extends BaseContainerBlockEntity implements 
 
     @Override
     public <T> net.minecraftforge.common.util.@NotNull LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.@NotNull Capability<T> capability, @Nullable Direction facing) {
-        if (!this.remove && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+        if (!this.remove && facing != null && capability == ForgeCapabilities.ITEM_HANDLER) {
             if (facing == Direction.DOWN)
                 return handlers[1].cast();
             else

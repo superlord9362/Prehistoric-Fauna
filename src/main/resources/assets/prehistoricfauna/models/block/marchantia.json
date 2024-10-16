@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "prehistoricfauna:blocks/marchantia"
+        "cross": "prehistoricfauna:block/marchantia"
     }
 }

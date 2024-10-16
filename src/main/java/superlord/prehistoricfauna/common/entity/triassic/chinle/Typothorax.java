@@ -38,7 +38,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.PrehistoricFauna;
@@ -70,10 +70,9 @@ import superlord.prehistoricfauna.init.PFSounds;
 public class Typothorax extends DinosaurEntity {
 	private int maxHunger = 25;
 
-	@SuppressWarnings("deprecation")
 	public Typothorax(EntityType<? extends TamableAnimal> type, Level levelIn) {
 		super(type, levelIn);
-		super.maxUpStep = 1.0F;
+		super.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -94,15 +93,15 @@ public class Typothorax extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.TYPOTHORAX_IDLE;
+		return this.isAsleep() ? null : PFSounds.TYPOTHORAX_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.TYPOTHORAX_HURT;
+		return PFSounds.TYPOTHORAX_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.TYPOTHORAX_DEATH;
+		return PFSounds.TYPOTHORAX_DEATH.get();
 	}
 
 	@Override
@@ -161,8 +160,8 @@ public class Typothorax extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Typothorax entity = new Typothorax(PFEntities.TYPOTHORAX.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Typothorax entity = new Typothorax(PFEntities.TYPOTHORAX.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -189,11 +188,11 @@ public class Typothorax extends DinosaurEntity {
 					return false;
 				} else {
 					BlockPos blockpos = typothorax.blockPosition();
-					BlockState state = typothorax.level.getBlockState(blockpos);
+					BlockState state = typothorax.level().getBlockState(blockpos);
 					if (state.is(BlockTags.DIRT)) {
 						return true;
 					} else {
-						return typothorax.level.getBlockState(blockpos.below()).is(BlockTags.DIRT);
+						return typothorax.level().getBlockState(blockpos.below()).is(BlockTags.DIRT);
 					}
 				}
 			} else {
@@ -205,7 +204,7 @@ public class Typothorax extends DinosaurEntity {
 		public void start() {
 			diggingTimer = 40;
 			digTimer2 = 6000;
-			typothorax.level.broadcastEntityEvent(typothorax, (byte) 10);
+			typothorax.level().broadcastEntityEvent(typothorax, (byte) 10);
 			typothorax.getNavigation().stop();
 		}
 
@@ -230,13 +229,13 @@ public class Typothorax extends DinosaurEntity {
 			if (diggingTimer == 25) {
 				BlockPos blockpos = typothorax.blockPosition();
 				BlockPos blockpos1 = blockpos.below();
-				if (typothorax.level.getBlockState(blockpos1).is(BlockTags.DIRT)) {
-					BlockState state = typothorax.level.getBlockState(blockpos1);
-					typothorax.level.levelEvent(2001, blockpos1, Block.getId(state));
-					MinecraftServer server = typothorax.level.getServer();
+				if (typothorax.level().getBlockState(blockpos1).is(BlockTags.DIRT)) {
+					BlockState state = typothorax.level().getBlockState(blockpos1);
+					typothorax.level().levelEvent(2001, blockpos1, Block.getId(state));
+					MinecraftServer server = typothorax.level().getServer();
 					if (server != null) {
-						List<ItemStack> items = server.getLootTables().get(DIGGING_LOOT).getRandomItems(new LootContext.Builder((ServerLevel) typothorax.level).withRandom(typothorax.getRandom()).create(LootContextParamSets.EMPTY));
-						Containers.dropContents(typothorax.level, blockpos, NonNullList.of(ItemStack.EMPTY, items.toArray(new ItemStack[0])));
+						List<ItemStack> items = server.getLootData().getLootTable(DIGGING_LOOT).getRandomItems(new LootParams.Builder((ServerLevel) typothorax.level()).create(LootContextParamSets.EMPTY));
+						Containers.dropContents(typothorax.level(), blockpos, NonNullList.of(ItemStack.EMPTY, items.toArray(new ItemStack[0])));
 					}
 				}
 			}

@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/didelphodon_pelt"
+        "layer0": "prehistoricfauna:item/didelphodon_pelt"
     }
 }

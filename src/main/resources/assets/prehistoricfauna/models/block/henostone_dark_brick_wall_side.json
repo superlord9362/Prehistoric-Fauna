@@ -1,6 +1,6 @@
 {
     "parent": "block/template_wall_side",
     "textures": {
-        "wall": "prehistoricfauna:blocks/henostone_bricks_dark"
+        "wall": "prehistoricfauna:block/henostone_bricks_dark"
     }
 }

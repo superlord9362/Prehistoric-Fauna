@@ -2,6 +2,6 @@
     "parent": "prehistoricfauna:block/big_cross",
 	"ambientocclusion": false,
     "textures": {
-		"bush": "prehistoricfauna:blocks/marmarthia0growth1"
+		"bush": "prehistoricfauna:block/marmarthia0growth1"
     }
 }

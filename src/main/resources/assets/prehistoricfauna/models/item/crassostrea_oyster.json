@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/crassostrea_oysters"
+        "layer0": "prehistoricfauna:item/crassostrea_oysters"
     }
 }

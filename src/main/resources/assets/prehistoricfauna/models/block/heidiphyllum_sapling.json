@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "prehistoricfauna:blocks/heidiphyllum_sapling"
+        "cross": "prehistoricfauna:block/heidiphyllum_sapling"
     }
 }

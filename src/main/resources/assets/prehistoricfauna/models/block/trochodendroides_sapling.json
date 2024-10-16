@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "prehistoricfauna:blocks/trochodendroides_sapling"
+        "cross": "prehistoricfauna:block/trochodendroides_sapling"
     }
 }

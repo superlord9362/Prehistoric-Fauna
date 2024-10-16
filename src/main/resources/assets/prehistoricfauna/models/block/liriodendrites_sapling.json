@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "prehistoricfauna:blocks/liriodendrites_sapling"
+        "cross": "prehistoricfauna:block/liriodendrites_sapling"
     }
 }

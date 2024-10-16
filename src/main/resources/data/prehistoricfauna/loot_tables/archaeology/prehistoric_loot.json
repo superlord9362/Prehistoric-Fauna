@@ -1,0 +1,126 @@
+{
+  "type": "minecraft:archaeology",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:monkey_sherd",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:horn_sherd",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:leaf_sherd",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:boss_sherd",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:tyrant_sherd",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:vintage_sherd",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:trilobite_sherd",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:brick"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:eggshells"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:fossilized_bones"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:emerald"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stick"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:suspicious_stew",
+          "functions": [
+            {
+              "function": "minecraft:set_stew_effect",
+              "effects": [
+                {
+                  "type": "minecraft:night_vision",
+                  "duration": {
+                    "type": "minecraft:uniform",
+                    "min": 7,
+                    "max": 10
+                  }
+                },
+                {
+                  "type": "minecraft:jump_boost",
+                  "duration": {
+                    "type": "minecraft:uniform",
+                    "min": 7,
+                    "max": 10
+                  }
+                },
+                {
+                  "type": "minecraft:weakness",
+                  "duration": {
+                    "type": "minecraft:uniform",
+                    "min": 6,
+                    "max": 8
+                  }
+                },
+                {
+                  "type": "minecraft:blindness",
+                  "duration": {
+                    "type": "minecraft:uniform",
+                    "min": 5,
+                    "max": 7
+                  }
+                },
+                {
+                  "type": "minecraft:poison",
+                  "duration": {
+                    "type": "minecraft:uniform",
+                    "min": 10,
+                    "max": 20
+                  }
+                },
+                {
+                  "type": "minecraft:saturation",
+                  "duration": {
+                    "type": "minecraft:uniform",
+                    "min": 7,
+                    "max": 10
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "random_sequence": "prehistoricfauna:archaeology/prehistoric_loot"
+}

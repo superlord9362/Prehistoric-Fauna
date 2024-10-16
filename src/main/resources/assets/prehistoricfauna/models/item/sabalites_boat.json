@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/sabalites_boat"
+        "layer0": "prehistoricfauna:item/sabalites_boat"
     }
 }

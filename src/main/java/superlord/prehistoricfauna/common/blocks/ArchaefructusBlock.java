@@ -1,13 +1,12 @@
 package superlord.prehistoricfauna.common.blocks;
 
-import java.util.Random;
-
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -52,11 +51,11 @@ public class ArchaefructusBlock extends BushBlock implements BonemealableBlock {
 		return this.mayPlaceOn(p_56110_.getBlockState(blockpos), p_56110_, blockpos);
 	}
 
-	public boolean isValidBonemealTarget(BlockGetter p_154510_, BlockPos p_154511_, BlockState p_154512_, boolean p_154513_) {
+	public boolean isValidBonemealTarget(LevelReader p_154510_, BlockPos p_154511_, BlockState p_154512_, boolean p_154513_) {
 		return true;
 	}
 
-	public boolean isBonemealSuccess(Level p_154515_, Random p_154516_, BlockPos p_154517_, BlockState p_154518_) {
+	public boolean isBonemealSuccess(Level p_154515_, RandomSource p_154516_, BlockPos p_154517_, BlockState p_154518_) {
 		return true;
 	}
 	
@@ -68,7 +67,7 @@ public class ArchaefructusBlock extends BushBlock implements BonemealableBlock {
 		return Block.OffsetType.XZ;
 	}
 	
-	public void performBonemeal(ServerLevel p_154498_, Random p_154499_, BlockPos p_154500_, BlockState p_154501_) {
+	public void performBonemeal(ServerLevel p_154498_, RandomSource p_154499_, BlockPos p_154500_, BlockState p_154501_) {
 		BlockState blockstate = PFBlocks.TALL_ARCHAEFRUCTUS.get().defaultBlockState();
 		BlockState blockstate1 = blockstate.setValue(TallArchaefructusBlock.HALF, DoubleBlockHalf.UPPER);
 		BlockPos blockpos = p_154500_.above();

@@ -1,6 +1,6 @@
 {
     "parent": "block/template_orientable_trapdoor_top",
     "textures": {
-        "texture": "prehistoricfauna:blocks/platanites_trapdoor"
+        "texture": "prehistoricfauna:block/platanites_trapdoor"
     }
 }

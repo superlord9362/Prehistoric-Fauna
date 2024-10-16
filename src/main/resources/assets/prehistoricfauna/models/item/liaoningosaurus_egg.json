@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/liaoningosaurus_egg"
+        "layer0": "prehistoricfauna:item/liaoningosaurus_egg"
     }
 }

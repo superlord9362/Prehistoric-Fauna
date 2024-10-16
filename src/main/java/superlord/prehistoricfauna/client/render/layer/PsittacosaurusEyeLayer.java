@@ -30,11 +30,11 @@ public class PsittacosaurusEyeLayer extends RenderLayer<Psittacosaurus, Psittaco
 		if (!(psittacosaurusRenderer.getModel() instanceof PsittacosaurusModel)) {
 			return;
 		}
-		long roundTime = psittacosaurus.level.getDayTime() % 24000;
+		long roundTime = psittacosaurus.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos psittacosaurusPos = psittacosaurus.blockPosition();
-		int i = psittacosaurus.level.getBrightness(LightLayer.SKY, psittacosaurusPos);
-		int j = psittacosaurus.level.getBrightness(LightLayer.BLOCK, psittacosaurusPos);
+		int i = psittacosaurus.level().getBrightness(LightLayer.SKY, psittacosaurusPos);
+		int j = psittacosaurus.level().getBrightness(LightLayer.BLOCK, psittacosaurusPos);
 		int brightness;
 		if (night) {
 			brightness = j;

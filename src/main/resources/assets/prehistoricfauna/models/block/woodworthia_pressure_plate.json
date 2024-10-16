@@ -1,6 +1,6 @@
 {
     "parent": "block/pressure_plate_up",
     "textures": {
-        "texture": "prehistoricfauna:blocks/woodworthia_planks"
+        "texture": "prehistoricfauna:block/woodworthia_planks"
     }
 }

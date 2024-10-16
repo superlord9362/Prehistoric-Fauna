@@ -31,11 +31,11 @@ public class YutyrannusBabyEyeLayer extends RenderLayer<Yutyrannus, EntityModel<
 		if (!(yutyrannusRenderer.getModel() instanceof YutyrannusBabyModel)) {
 			return;
 		}
-		long roundTime = yutyrannus.level.getDayTime() % 24000;
+		long roundTime = yutyrannus.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos yutyrannusPos = yutyrannus.blockPosition();
-		int i = yutyrannus.level.getBrightness(LightLayer.SKY, yutyrannusPos);
-		int j = yutyrannus.level.getBrightness(LightLayer.BLOCK, yutyrannusPos);
+		int i = yutyrannus.level().getBrightness(LightLayer.SKY, yutyrannusPos);
+		int j = yutyrannus.level().getBrightness(LightLayer.BLOCK, yutyrannusPos);
 		int brightness;
 		if (night) {
 			brightness = j;

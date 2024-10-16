@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "prehistoricfauna:blocks/neocalamites_texture",
-		"particle": "prehistoricfauna:blocks/neocalamites_texture"
+		"0": "prehistoricfauna:block/neocalamites_texture",
+		"particle": "prehistoricfauna:block/neocalamites_texture"
 	},
 	"elements": [
 		{

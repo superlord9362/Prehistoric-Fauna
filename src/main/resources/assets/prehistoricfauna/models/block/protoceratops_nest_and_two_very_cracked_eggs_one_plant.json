@@ -2,6 +2,6 @@
 	"credit": "Made with Blockbench",
 	"parent": "prehistoricfauna:block/protoceratops_nest_and_two_eggs_one_plant",
 	"textures": {
-		"egg": "prehistoricfauna:blocks/protoceratops_egg_very_cracked"
+		"egg": "prehistoricfauna:block/protoceratops_egg_very_cracked"
 	}
 }

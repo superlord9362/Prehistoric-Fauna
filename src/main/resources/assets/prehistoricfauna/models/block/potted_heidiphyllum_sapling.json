@@ -1,6 +1,6 @@
 {
     "parent": "block/flower_pot_cross",
     "textures": {
-        "plant": "prehistoricfauna:blocks/heidiphyllum_sapling"
+        "plant": "prehistoricfauna:block/heidiphyllum_sapling"
     }
 }

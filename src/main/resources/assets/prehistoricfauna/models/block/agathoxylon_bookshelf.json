@@ -1,7 +1,7 @@
 {
 	"parent": "block/cube_column",
 	"textures": {
-		"end": "prehistoricfauna:blocks/agathoxylon_planks",
-		"side": "prehistoricfauna:blocks/agathoxylon_bookshelf"
+		"end": "prehistoricfauna:block/agathoxylon_planks",
+		"side": "prehistoricfauna:block/agathoxylon_bookshelf"
 	}
 }

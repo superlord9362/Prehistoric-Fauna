@@ -1,0 +1,14 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 851282139,
+    "separation": 40,
+    "spacing": 60
+  },
+  "structures": [
+    {
+      "structure": "prehistoricfauna:kayenta_hut",
+      "weight": 1
+    }
+  ]
+}

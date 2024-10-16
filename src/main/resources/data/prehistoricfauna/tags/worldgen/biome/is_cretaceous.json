@@ -1,0 +1,22 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:djadochta_alluvial_plains",
+		"prehistoricfauna:djadochta_arroyo",
+		"prehistoricfauna:djadochta_dunes",
+		"prehistoricfauna:hell_creek_bluffs",
+		"prehistoricfauna:hell_creek_clearing",
+		"prehistoricfauna:hell_creek_hardwood_forest",
+		"prehistoricfauna:hell_creek_redwoods",
+		"prehistoricfauna:hell_creek_river",
+		"prehistoricfauna:hell_creek_swamp",
+		"prehistoricfauna:cretaceous_dripstone_cave",
+		"prehistoricfauna:cretaceous_henostone_cave",
+		"prehistoricfauna:yixian_forest",
+		"prehistoricfauna:yixian_lakes",
+		"prehistoricfauna:yixian_regrowth",
+		"prehistoricfauna:yixian_snowy_forest",
+		"prehistoricfauna:yixian_snowy_mountains",
+		"prehistoricfauna:yixian_volcano"
+	]
+}

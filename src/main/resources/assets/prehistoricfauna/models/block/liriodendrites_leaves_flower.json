@@ -1,6 +1,6 @@
 {
     "parent": "block/leaves",
     "textures": {
-        "all": "prehistoricfauna:blocks/liriodendrites_leaves_flower"
+        "all": "prehistoricfauna:block/liriodendrites_leaves_flower"
     }
 }

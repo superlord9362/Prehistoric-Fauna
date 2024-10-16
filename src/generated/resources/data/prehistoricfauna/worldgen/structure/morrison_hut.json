@@ -1,0 +1,6 @@
+{
+  "type": "prehistoricfauna:morrison_hut",
+  "biomes": "#prehistoricfauna:has_structure/morrison_hut",
+  "spawn_overrides": {},
+  "step": "surface_structures"
+}

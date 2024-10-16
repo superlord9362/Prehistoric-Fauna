@@ -7,10 +7,10 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BushBlock;
+import net.minecraft.world.level.block.IceBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -38,14 +38,14 @@ public class QuereuxiaPadBlock extends BushBlock {
 	protected boolean mayPlaceOn(BlockState p_58174_, BlockGetter p_58175_, BlockPos p_58176_) {
 		FluidState fluidstate = p_58175_.getFluidState(p_58176_);
 		FluidState fluidstate1 = p_58175_.getFluidState(p_58176_.above());
-		return (fluidstate.getType() == Fluids.WATER || p_58174_.getMaterial() == Material.ICE) && fluidstate1.getType() == Fluids.EMPTY;
+		return (fluidstate.getType() == Fluids.WATER || p_58174_.getBlock() instanceof IceBlock) && fluidstate1.getType() == Fluids.EMPTY;
 	}
 
 	public boolean canSurvive(BlockState p_51028_, LevelReader p_51029_, BlockPos p_51030_) {
 		BlockPos blockpos = p_51030_.below();
 		return p_51029_.getBlockState(blockpos).is(PFBlocks.QUEREUXIA_STEM.get());
 	}
-	
+
 	public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter level, BlockPos pos, Player player) {
 		return new ItemStack(PFItems.QUEREUXIA.get().asItem());
 	}

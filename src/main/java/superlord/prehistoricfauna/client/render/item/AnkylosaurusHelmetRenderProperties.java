@@ -5,13 +5,13 @@ import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.client.IItemRenderProperties;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import superlord.prehistoricfauna.client.ClientEvents;
 import superlord.prehistoricfauna.client.model.armor.AnkylosaurusHelmetModel;
 import superlord.prehistoricfauna.client.model.armor.DesmatosuchusChestplateModel;
 import superlord.prehistoricfauna.init.PFItems;
 
-public class AnkylosaurusHelmetRenderProperties implements IItemRenderProperties {
+public class AnkylosaurusHelmetRenderProperties implements IClientItemExtensions {
 	
 	private static boolean init;
 	

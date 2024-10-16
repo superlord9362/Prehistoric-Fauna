@@ -1,15 +1,13 @@
 package superlord.prehistoricfauna.common.entity.block;
 
-import java.util.Optional;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -22,13 +20,13 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.entity.block.container.PaleontologyTableMenu;
-import superlord.prehistoricfauna.common.entity.block.recipe.RecipePaleontologyTable;
+import superlord.prehistoricfauna.common.recipes.PaleontologyTableRecipeJsonManager;
 import superlord.prehistoricfauna.init.PFBlockEntities;
 import superlord.prehistoricfauna.init.PFTags;
 
@@ -121,13 +119,13 @@ public class PaleontologyTableBlockEntity extends BlockEntity implements MenuPro
 	
 	@Override
 	public Component getDisplayName() {
-		return new TranslatableComponent("container." + PrehistoricFauna.MOD_ID + ".paleontology_table");
+		return Component.translatable("container." + PrehistoricFauna.MOD_ID + ".paleontology_table");
 	}
 	
 	@Nonnull
 	@Override
 	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-		if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+		if (cap == ForgeCapabilities.ITEM_HANDLER) {
 			if (side == null) {
 				return lazyItemHandlerOptional.cast();
 			} else {
@@ -178,7 +176,7 @@ public class PaleontologyTableBlockEntity extends BlockEntity implements MenuPro
 			blockEntity.progress = Math.min(blockEntity.progress + 1, blockEntity.maxProgress);
 			setChanged(world, pos, state);
 			if (blockEntity.progress >= blockEntity.maxProgress && !world.isClientSide()) {
-				craftItem(blockEntity);
+				craftItem(world.registryAccess(), blockEntity);
 			}
 		} else {
 			blockEntity.resetProgress();
@@ -188,24 +186,27 @@ public class PaleontologyTableBlockEntity extends BlockEntity implements MenuPro
 	
 	private static boolean hasRecipe(PaleontologyTableBlockEntity entity) {
 		Level world = entity.level;
+		if (PaleontologyTableRecipeJsonManager.getRecipes().isEmpty() && !world.isClientSide()) {
+			PaleontologyTableRecipeJsonManager.populateRecipeMap(world);
+		}
 		SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
 		for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
 			inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
 		}
-		Optional<RecipePaleontologyTable> match = world.getRecipeManager().getRecipeFor(RecipePaleontologyTable.Type.INSTANCE, inventory, world);
-		return match.isPresent() && canInsertAmountIntoOutputSlot(inventory);
+		boolean hasRecipe = PaleontologyTableRecipeJsonManager.containsRecipe(inventory.getItem(0).getItem());
+		return hasRecipe && canInsertAmountIntoOutputSlot(inventory);
 	}
 	
 	@SuppressWarnings("unused")
-	private static void craftItem(PaleontologyTableBlockEntity entity) {
+	private static void craftItem(RegistryAccess p_266740_, PaleontologyTableBlockEntity entity) {
 		Level world = entity.level;
 		SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
 		for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
 			inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
 		}
-		Optional<RecipePaleontologyTable> match = world.getRecipeManager().getRecipeFor(RecipePaleontologyTable.Type.INSTANCE, inventory, world);
-		if (match.isPresent()) {
-			ItemStack result = match.get().assemble(inventory);
+		boolean hasRecipe = PaleontologyTableRecipeJsonManager.containsRecipe(inventory.getItem(0).getItem());
+		if (hasRecipe) {
+			ItemStack result = PaleontologyTableRecipeJsonManager.getRandomItemStack(inventory.getItem(0).getItem(), world);
 			entity.itemHandler.extractItem(0, 1, false);
 			boolean success = false;
 			for (int i = 1, n = entity.itemHandler.getSlots(); i < n; i++) {

@@ -65,17 +65,15 @@ public class TrapBlock extends Block {
 	}	
 
 	public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
-		if (!worldIn.isClientSide) {
-//			if (!(entityIn instanceof TrilobiteSentinelEntity) || !(entityIn instanceof TimeGuardianEntity)) {
-				int i = this.getRedstoneStrength(state);
-				if (i == 0) {
-					this.updateState(worldIn, pos, state, i);
-				}
-				if(state.getValue(POWERED)) {
-					entityIn.hurt(PFDamageSources.HENOSTONE_TRAP, 2.0F);
-				}
-//			}
+		//			if (!(entityIn instanceof TrilobiteSentinelEntity) || !(entityIn instanceof TimeGuardianEntity)) {
+		int i = this.getRedstoneStrength(state);
+		if (i == 0) {
+			this.updateState(worldIn, pos, state, i);
 		}
+		if(state.getValue(POWERED)) {
+			entityIn.hurt(PFDamageSources.causeHenostoneTrapDamage(entityIn.level().registryAccess()), 2.0F);
+		}
+		//			}
 	}
 
 	protected void updateState(Level worldIn, BlockPos pos, BlockState state, int oldRedstoneStrength) {

@@ -22,7 +22,7 @@ public class HalszkaraptorRenderer extends MobRenderer<Halszkaraptor, Halszkarap
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public HalszkaraptorRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new HalszkaraptorModel(renderManagerIn.bakeLayer(ClientEvents.HALSZKARAPTOR)), 0.35F);
-		this.addLayer(new ItemInHandLayer(this));
+		this.addLayer(new ItemInHandLayer(this, renderManagerIn.getItemInHandRenderer()));
 	}
 
 	protected void scale(Halszkaraptor halszkaraptor, PoseStack matrixStackIn, float partialTickTime) {

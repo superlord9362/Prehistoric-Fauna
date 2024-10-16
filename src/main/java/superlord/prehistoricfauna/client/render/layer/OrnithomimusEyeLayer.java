@@ -30,11 +30,11 @@ public class OrnithomimusEyeLayer extends RenderLayer<Ornithomimus, Ornithomimus
 		if (!(ornithomimusRenderer.getModel() instanceof OrnithomimusModel)) {
 			return;
 		}
-		long roundTime = ornithomimus.level.getDayTime() % 24000;
+		long roundTime = ornithomimus.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos ornithomimusPos = ornithomimus.blockPosition();
-		int i = ornithomimus.level.getBrightness(LightLayer.SKY, ornithomimusPos);
-		int j = ornithomimus.level.getBrightness(LightLayer.BLOCK, ornithomimusPos);
+		int i = ornithomimus.level().getBrightness(LightLayer.SKY, ornithomimusPos);
+		int j = ornithomimus.level().getBrightness(LightLayer.BLOCK, ornithomimusPos);
 		int brightness;
 		if (night) {
 			brightness = j;

@@ -30,11 +30,11 @@ public class VelociraptorEyeLayer extends RenderLayer<Velociraptor, Velociraptor
 		if (!(velociraptorRenderer.getModel() instanceof VelociraptorModel)) {
 			return;
 		}
-		long roundTime = velociraptor.level.getDayTime() % 24000;
+		long roundTime = velociraptor.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos velociraptorPos = velociraptor.blockPosition();
-		int i = velociraptor.level.getBrightness(LightLayer.SKY, velociraptorPos);
-		int j = velociraptor.level.getBrightness(LightLayer.BLOCK, velociraptorPos);
+		int i = velociraptor.level().getBrightness(LightLayer.SKY, velociraptorPos);
+		int j = velociraptor.level().getBrightness(LightLayer.BLOCK, velociraptorPos);
 		int brightness;
 		if (night) {
 			brightness = j;

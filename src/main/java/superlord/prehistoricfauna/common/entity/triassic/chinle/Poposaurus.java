@@ -69,10 +69,9 @@ public class Poposaurus extends DinosaurEntity {
 	private int warningSoundTicks;
 	private Goal attackAnimals;
 
-	@SuppressWarnings("deprecation")
 	public Poposaurus(EntityType<? extends Poposaurus> type, Level levelIn) {
 		super(type, levelIn);
-		super.maxUpStep = 1.0F;
+		super.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 	
@@ -156,15 +155,15 @@ public class Poposaurus extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.POPOSAURUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.POPOSAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.POPOSAURUS_HURT;
+		return PFSounds.POPOSAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.POPOSAURUS_DEATH;
+		return PFSounds.POPOSAURUS_DEATH.get();
 	}
 
 	protected void playStepSound(BlockPos pos, BlockState state) {
@@ -173,7 +172,7 @@ public class Poposaurus extends DinosaurEntity {
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.CERATOSAURUS_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.CERATOSAURUS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -207,7 +206,7 @@ public class Poposaurus extends DinosaurEntity {
 			double d0 = this.getAttackReachSqr(enemy);
 			if (distToEnemySqr <= d0 && this.isTimeToAttack()) {
 				this.resetAttackCooldown();
-				Poposaurus.this.playSound(PFSounds.POPOSAURUS_BITE, 1.0F, Poposaurus.this.getVoicePitch());
+				Poposaurus.this.playSound(PFSounds.POPOSAURUS_BITE.get(), 1.0F, Poposaurus.this.getVoicePitch());
 				this.mob.doHurtTarget(enemy);
 			} else if (distToEnemySqr <= d0 * 2.0D) {
 				if (this.isTimeToAttack()) {
@@ -238,8 +237,8 @@ public class Poposaurus extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Poposaurus entity = new Poposaurus(PFEntities.POPOSAURUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Poposaurus entity = new Poposaurus(PFEntities.POPOSAURUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 	

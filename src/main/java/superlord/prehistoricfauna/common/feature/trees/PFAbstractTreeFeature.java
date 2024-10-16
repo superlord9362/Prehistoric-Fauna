@@ -3,7 +3,6 @@ package superlord.prehistoricfauna.common.feature.trees;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.Set;
 
 import com.google.common.collect.Lists;
@@ -16,6 +15,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.LevelWriter;
 import net.minecraft.world.level.WorldGenLevel;
@@ -30,7 +30,6 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.BitSetDiscreteVoxelShape;
 import net.minecraft.world.phys.shapes.DiscreteVoxelShape;
 import superlord.prehistoricfauna.common.feature.util.PFTreeConfig;
@@ -48,8 +47,8 @@ public abstract class PFAbstractTreeFeature<TC extends PFTreeConfig> extends Fea
 		super(configCodec);
 	}
 
-	public static boolean canLogPlaceHere(LevelSimulatedReader worldReader, BlockPos pos) {
-		return worldReader.isStateAtPosition(pos, (state) -> state.getMaterial() == Material.AIR || state.getMaterial() == Material.WATER) || FeatureGenUtil.isPlant(worldReader, pos);
+	public static boolean canLogPlaceHere(LevelSimulatedReader worldReader, BlockPos blockPos) {
+        return worldReader.isStateAtPosition(blockPos, (state) -> state.isAir() || state.getFluidState().isEmpty()) || FeatureGenUtil.isPlant(worldReader, blockPos);
 	}
 
 	public boolean isAnotherTreeHere(LevelSimulatedReader worldReader, BlockPos pos) {
@@ -65,7 +64,7 @@ public abstract class PFAbstractTreeFeature<TC extends PFTreeConfig> extends Fea
 		});
 	}
 
-	public void buildTrunkBase(BlockPos centerPos, Set<BlockPos> treeBlocksSet, WorldGenLevel reader, PFTreeConfig config, Random rand, BoundingBox boundingBox, BlockPos... trunkPositions) {
+	public void buildTrunkBase(BlockPos centerPos, Set<BlockPos> treeBlocksSet, WorldGenLevel reader, PFTreeConfig config, RandomSource rand, BoundingBox boundingBox, BlockPos... trunkPositions) {
 		if (config.isPlacementForced())
 			return;
 		BlockState ground = reader.getBlockState(centerPos.relative(Direction.DOWN));
@@ -93,28 +92,28 @@ public abstract class PFAbstractTreeFeature<TC extends PFTreeConfig> extends Fea
 		}
 	}
 
-	public void placeTrunk(BlockPos startPos, PFTreeConfig config, Random random, Set<BlockPos> blockSet, WorldGenLevel reader, BlockPos pos, BoundingBox boundingBox) {
+	public void placeTrunk(BlockPos startPos, PFTreeConfig config, RandomSource random, Set<BlockPos> blockSet, WorldGenLevel reader, BlockPos pos, BoundingBox boundingBox) {
 		pos = getTransformedPos(config, startPos, pos);
 		if (canLogPlaceHere(reader, pos)) {
 			this.setFinalBlockState(blockSet, reader, pos, config.getTrunkProvider().getState(random, pos), boundingBox);
 		}
 	}
 
-	public void placeBranch(BlockPos startPos, PFTreeConfig config, Random random, Set<BlockPos> blockSet, WorldGenLevel reader, BlockPos pos, BoundingBox boundingBox) {
+	public void placeBranch(BlockPos startPos, PFTreeConfig config, RandomSource random, Set<BlockPos> blockSet, WorldGenLevel reader, BlockPos pos, BoundingBox boundingBox) {
 		pos = getTransformedPos(config, startPos, pos);
 		if (canLogPlaceHere(reader, pos)) {
 			this.setFinalBlockState(blockSet, reader, pos, config.getTrunkProvider().getState(random, pos), boundingBox);
 		}
 	}
 
-	public void placeLeaves(BlockPos startPos, PFTreeConfig config, Random random, Set<BlockPos> blockSet, WorldGenLevel reader, BlockPos pos, BoundingBox boundingBox) {
+	public void placeLeaves(BlockPos startPos, PFTreeConfig config, RandomSource random, Set<BlockPos> blockSet, WorldGenLevel reader, BlockPos pos, BoundingBox boundingBox) {
 		pos = getTransformedPos(config, startPos, pos);
 		if (isAir(reader, pos)) {
 			this.setFinalBlockState(blockSet, reader, pos, config.getLeavesProvider().getState(random, pos), boundingBox);
 		}
 	}
 
-	public void placeLeaves(BlockPos startPos, PFTreeConfig config, Random random, WorldGenLevel reader, int x, int y, int z, BoundingBox boundingBox, Set<BlockPos> pos) {
+	public void placeLeaves(BlockPos startPos, PFTreeConfig config, RandomSource random, WorldGenLevel reader, int x, int y, int z, BoundingBox boundingBox, Set<BlockPos> pos) {
 		BlockPos blockPos = new BlockPos(x, y, z);
 		blockPos = getTransformedPos(config, startPos, blockPos);
 		if (isAir(reader, blockPos)) {
@@ -136,7 +135,7 @@ public abstract class PFAbstractTreeFeature<TC extends PFTreeConfig> extends Fea
 
 	public boolean canSaplingGrowHere(LevelSimulatedReader reader, BlockPos pos) {
 		return reader.isStateAtPosition(pos, (state) -> {
-			return state.is(BlockTags.LOGS) || state.is(BlockTags.LEAVES) || state.isAir() || state.getMaterial() == Material.PLANT || state.getMaterial() == Material.REPLACEABLE_PLANT || state.getMaterial() == Material.WATER_PLANT || state.getMaterial() == Material.LEAVES || state.getMaterial() == Material.DIRT;
+            return state.is(BlockTags.LOGS) || state.is(BlockTags.LEAVES) || state.isAir() || state.is(BlockTags.REPLACEABLE_BY_TREES);
 		});
 	}
 
@@ -256,7 +255,7 @@ public abstract class PFAbstractTreeFeature<TC extends PFTreeConfig> extends Fea
 		return false;
 	}
 
-	public void buildTrunk(WorldGenLevel reader, PFTreeConfig config, Random random, BlockPos operatingPos, int downRange) {
+	public void buildTrunk(WorldGenLevel reader, PFTreeConfig config, RandomSource random, BlockPos operatingPos, int downRange) {
 		MutableBlockPos mutable = new MutableBlockPos().set(operatingPos);
 
 		for (int moveDown = 0; moveDown < downRange; moveDown++) {
@@ -306,7 +305,7 @@ public abstract class PFAbstractTreeFeature<TC extends PFTreeConfig> extends Fea
 		return place(featurePlaceContext.level(), featurePlaceContext.chunkGenerator(), featurePlaceContext.random(), featurePlaceContext.origin(), featurePlaceContext.config());
 	}
 
-	public boolean place(WorldGenLevel worldIn, ChunkGenerator generator, Random rand, BlockPos pos, TC config) {
+	public boolean place(WorldGenLevel worldIn, ChunkGenerator generator, RandomSource rand, BlockPos pos, TC config) {
 
 		Rotation rotation = Rotation.values()[rand.nextInt(Rotation.values().length)];
 		Mirror mirror = Mirror.values()[rand.nextInt(Mirror.values().length)];
@@ -315,7 +314,7 @@ public abstract class PFAbstractTreeFeature<TC extends PFTreeConfig> extends Fea
 		return placeTree(worldIn, rand, pos, config);
 	}
 
-	public boolean placeTree(WorldGenLevel worldIn, Random rand, BlockPos pos, TC config) {
+	public boolean placeTree(WorldGenLevel worldIn, RandomSource rand, BlockPos pos, TC config) {
 		Set<BlockPos> set = Sets.newHashSet();
 		BoundingBox mutableboundingbox = new BoundingBox(pos);
 		boolean flag = this.generate(set, worldIn, rand, pos, mutableboundingbox, false, config);
@@ -404,7 +403,7 @@ public abstract class PFAbstractTreeFeature<TC extends PFTreeConfig> extends Fea
 		}
 	}
 
-	protected abstract boolean generate(Set<BlockPos> changedBlocks, WorldGenLevel worldIn, Random rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, TC config);
+	protected abstract boolean generate(Set<BlockPos> changedBlocks, WorldGenLevel worldIn, RandomSource rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, TC config);
 
 	static {
 		SPREADABLE_TO_NON_SPREADABLE.put(Blocks.GRASS_BLOCK, Blocks.DIRT);

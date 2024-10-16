@@ -1,0 +1,13 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:kayenta_dry_forest",
+		"prehistoricfauna:kayenta_desert",
+		"prehistoricfauna:kayenta_buttes",
+		"prehistoricfauna:kayenta_river",
+		"prehistoricfauna:jurassic_henostone_cave",
+		"prehistoricfauna:jurassic_dripstone_cave",
+		"prehistoricfauna:morrison_hills",
+		"prehistoricfauna:morrison_savanna"
+	]
+}

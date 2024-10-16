@@ -59,10 +59,9 @@ public class Stegosaurus extends DinosaurEntity {
 	private int maxHunger = 200;
 	private int warningSoundTicks;
 
-	@SuppressWarnings("deprecation")
 	public Stegosaurus(EntityType<? extends Stegosaurus> type, Level levelIn) {
 		super(type, levelIn);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 	
@@ -125,22 +124,23 @@ public class Stegosaurus extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? PFSounds.STEGOSAURUS_SNORES : PFSounds.STEGOSAURUS_IDLE;
+		return this.isAsleep() ? PFSounds.STEGOSAURUS_SNORES.get() : PFSounds.STEGOSAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.STEGOSAURUS_HURT;
+		return PFSounds.STEGOSAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.STEGOSAURUS_DEATH;
+		return PFSounds.STEGOSAURUS_DEATH.get();
 	}
 
+	@SuppressWarnings("deprecation")
 	protected void playStepSound(BlockPos pos, BlockState state) {
 		if (this.isBaby()) {
-			if (!state.getMaterial().isLiquid()) {
-				BlockState blockstate = this.level.getBlockState(pos.above());
-				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level, pos, this) : state.getSoundType(level, pos, this);
+			if (!state.liquid()) {
+				BlockState blockstate = this.level().getBlockState(pos.above());
+				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level(), pos, this) : state.getSoundType(level(), pos, this);
 				this.playSound(soundtype.getStepSound(), soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			}
 		} else {
@@ -150,7 +150,7 @@ public class Stegosaurus extends DinosaurEntity {
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.STEGOSAURUS_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.STEGOSAURUS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -228,8 +228,8 @@ public class Stegosaurus extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Stegosaurus entity = new Stegosaurus(PFEntities.STEGOSAURUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Stegosaurus entity = new Stegosaurus(PFEntities.STEGOSAURUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 	

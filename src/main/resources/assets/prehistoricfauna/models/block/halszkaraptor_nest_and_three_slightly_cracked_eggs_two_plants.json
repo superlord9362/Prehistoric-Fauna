@@ -2,6 +2,6 @@
 	"credit": "Made with Blockbench",
 	"parent": "prehistoricfauna:block/halszkaraptor_nest_and_three_eggs_two_plants",
 	"textures": {
-		"egg": "prehistoricfauna:blocks/halszkaraptor_egg_slightly_cracked"
+		"egg": "prehistoricfauna:block/halszkaraptor_egg_slightly_cracked"
 	}
 }

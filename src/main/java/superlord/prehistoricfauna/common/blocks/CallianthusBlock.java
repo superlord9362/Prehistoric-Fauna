@@ -13,6 +13,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BushBlock;
+import net.minecraft.world.level.block.IceBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -23,9 +24,7 @@ import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.PlantType;
-import superlord.prehistoricfauna.init.PFBlocks;
 
 public class CallianthusBlock extends BushBlock {
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -77,14 +76,13 @@ public class CallianthusBlock extends BushBlock {
 
 	public void playerWillDestroy(Level p_52878_, BlockPos p_52879_, BlockState p_52880_, Player p_52881_) {
 		if (!p_52878_.isClientSide) {
-			if (p_52881_.isCreative() || p_52880_.is(PFBlocks.CALLIANTHUS.get())) {
+			if (p_52881_.isCreative()) {
 				preventCreativeDropFromBottomOrTopPart(p_52878_, p_52879_, p_52880_, p_52881_);
 			} else {
 				dropResources(p_52880_, p_52878_, p_52879_, (BlockEntity)null, p_52881_, p_52881_.getMainHandItem());
 			}
 		}
 		if (p_52878_.getBlockState(p_52879_.above()).getBlock() == this) p_52878_.destroyBlock(p_52879_.above(), true);
-
 		super.playerWillDestroy(p_52878_, p_52879_, p_52880_, p_52881_);
 	}
 
@@ -121,7 +119,7 @@ public class CallianthusBlock extends BushBlock {
 	protected boolean mayPlaceOn(BlockState p_58174_, BlockGetter p_58175_, BlockPos p_58176_) {
 		FluidState fluidstate = p_58175_.getFluidState(p_58176_);
 		FluidState fluidstate1 = p_58175_.getFluidState(p_58176_.above());
-		return (fluidstate.getType() == Fluids.WATER || p_58174_.getMaterial() == Material.ICE) && fluidstate1.getType() == Fluids.EMPTY;
+		return (fluidstate.getType() == Fluids.WATER || p_58174_.getBlock() instanceof IceBlock) && fluidstate1.getType() == Fluids.EMPTY;
 	}
 
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {

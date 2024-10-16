@@ -20,6 +20,7 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue pachycephalosaurusHellCreekRedwoodsSpawnWeight;
 	public final ForgeConfigSpec.IntValue ornithomimusHellCreekRedwoodsSpawnWeight;
 	public final ForgeConfigSpec.IntValue palaeosaniwaHellCreekRedwoodsSpawnWeight;
+	public final ForgeConfigSpec.IntValue parapsephurusHellCreekRedwoodsSpawnWeight;
 	public final ForgeConfigSpec.IntValue thescelosaurusHellCreekRedwoodsSpawnWeight;
 	public final ForgeConfigSpec.IntValue thoracosaurusHellCreekRedwoodsSpawnWeight;
 	public final ForgeConfigSpec.IntValue triceratopsHellCreekRedwoodsSpawnWeight;
@@ -43,6 +44,7 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue ornithomimusHellCreekHardwoodForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue pachycephalosaurusHellCreekHardwoodForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue palaeosaniwaHellCreekHardwoodForestSpawnWeight;
+	public final ForgeConfigSpec.IntValue parapsephurusHellCreekHardwoodForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue thescelosaurusHellCreekHardwoodForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue thoracosaurusHellCreekHardwoodForestSpawnWeight;
 	public final ForgeConfigSpec.IntValue triceratopsHellCreekHardwoodForestSpawnWeight;
@@ -66,6 +68,7 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue ornithomimusHellCreekClearingSpawnWeight;
 	public final ForgeConfigSpec.IntValue pachycephalosaurusHellCreekClearingSpawnWeight;
 	public final ForgeConfigSpec.IntValue palaeosaniwaHellCreekClearingSpawnWeight;
+	public final ForgeConfigSpec.IntValue parapsephurusHellCreekClearingSpawnWeight;
 	public final ForgeConfigSpec.IntValue thescelosaurusHellCreekClearingSpawnWeight;
 	public final ForgeConfigSpec.IntValue thoracosaurusHellCreekClearingSpawnWeight;
 	public final ForgeConfigSpec.IntValue triceratopsHellCreekClearingSpawnWeight;
@@ -91,6 +94,7 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue lepisosteusHellCreekBluffsSpawnWeight;
 	public final ForgeConfigSpec.IntValue cyclurusHellCreekBluffsSpawnWeight;
 	public final ForgeConfigSpec.IntValue palaeosaniwaHellCreekBluffsSpawnWeight;
+	public final ForgeConfigSpec.IntValue parapsephurusHellCreekBluffsSpawnWeight;
 	public final ForgeConfigSpec.IntValue ornithomimusHellCreekBluffsSpawnWeight;
 	public final ForgeConfigSpec.IntValue cephaloleichnitesHellCreekBluffsSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelHellCreekBluffsSpawnWeight;
@@ -114,6 +118,7 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue ornithomimusHellCreekSwampSpawnWeight;
 	public final ForgeConfigSpec.IntValue pachycephalosaurusHellCreekSwampSpawnWeight;
 	public final ForgeConfigSpec.IntValue palaeosaniwaHellCreekSwampSpawnWeight;
+	public final ForgeConfigSpec.IntValue parapsephurusHellCreekSwampSpawnWeight;
 	public final ForgeConfigSpec.IntValue ankylosaurusHellCreekSwampSpawnWeight;
 	public final ForgeConfigSpec.IntValue cephaloleichnitesHellCreekSwampSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelHellCreekSwampSpawnWeight;
@@ -135,6 +140,7 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue ornithomimusHellCreekRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue pachycephalosaurusHellCreekRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue palaeosaniwaHellCreekRiverSpawnWeight;
+	public final ForgeConfigSpec.IntValue parapsephurusHellCreekRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue thescelosaurusHellCreekRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue thoracosaurusHellCreekRiverSpawnWeight;
 	public final ForgeConfigSpec.IntValue triceratopsHellCreekRiverSpawnWeight;
@@ -502,6 +508,9 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue zhenyuanlongYixianVolcanoSpawnWeight;
 	public final ForgeConfigSpec.IntValue caveSentinelYixianVolcanoSpawnWeight;
 	public final ForgeConfigSpec.IntValue landSentinelYixianVolcanoSpawnWeight;
+	
+	//Henostone Cave
+	public final ForgeConfigSpec.IntValue caveSentinelHenostoneCaveSpawnWeight;
 
 	public final ForgeConfigSpec.BooleanValue superSecretSetting;
 	public final ForgeConfigSpec.IntValue cretaceousDimensionID;
@@ -519,6 +528,8 @@ public class ServerConfig {
 	public final ForgeConfigSpec.IntValue kayentaHutMaxDistance;
 	public final ForgeConfigSpec.IntValue chinleHutMinDistance;
 	public final ForgeConfigSpec.IntValue chinleHutMaxDistance;
+	public final ForgeConfigSpec.IntValue yixianHutMinDistance;
+	public final ForgeConfigSpec.IntValue yixianHutMaxDistance;
 	public final ForgeConfigSpec.IntValue geologistCampMinDistance;
 	public final ForgeConfigSpec.IntValue geologistCampMaxDistance;
 	public final ForgeConfigSpec.IntValue timeTempleMinDistance;
@@ -620,6 +631,7 @@ public class ServerConfig {
 		this.ornithomimusHellCreekClearingSpawnWeight = buildInt(builder, "Ornithomimus Hell Creek Clearing Spawn Rate", "all", 12, 0, 300, "The spawn rate of Ornithomimus in the Hell Creek Clearing biome. Default is 12");
 		this.pachycephalosaurusHellCreekClearingSpawnWeight = buildInt(builder, "Pachycephalosaurus Hell Creek Clearing Spawn Rate", "all", 5, 0, 300, "The spawn rate of Pachycephalosaurus in the Hell Creek Clearing biome. Default is 5");
 		this.palaeosaniwaHellCreekClearingSpawnWeight = buildInt(builder, "Palaeosaniwa Hell Creek Clearing Spawn Rate", "all", 2, 0, 300, "The spawn rate of Palaeosaniwa in the Hell Creek Clearing biome. Default is 2");
+		this.parapsephurusHellCreekClearingSpawnWeight = buildInt(builder, "Parapsephurus Hell Creek Clearing Spawn Rate", "all", 0, 0, 300, "The spawn rate of Parapsephurus in the Hell Creek Clearing biome. Default is 0");
 		this.thescelosaurusHellCreekClearingSpawnWeight = buildInt(builder, "Thescelosaurus Hell Creek Clearing Spawn Rate", "all", 4, 0, 300, "The spawn rate of Thescelosaurus in the Hell Creek Clearing biome. Default is 4");
 		this.thoracosaurusHellCreekClearingSpawnWeight = buildInt(builder, "Thoracosaurus Hell Creek Clearing Spawn Rate", "all", 0, 0, 300, "The spawn rate of Thoracosaurus in the Hell Creek Clearing biome. Default is 0");
 		this.triceratopsHellCreekClearingSpawnWeight = buildInt(builder, "Triceratops Hell Creek Clearing Spawn Rate", "all", 15, 0, 300, "The spawn rate of Triceratops in the Hell Creek Clearing biome. Default is 15");
@@ -644,6 +656,7 @@ public class ServerConfig {
 		this.ornithomimusHellCreekBluffsSpawnWeight = buildInt(builder, "Ornithomimus Hell Creek Bluffs Spawn Rate", "all", 0, 0, 300, "The spawn rate of Ornithomimus in the Hell Creek Bluffs biome. Default is 0");
 		this.pachycephalosaurusHellCreekBluffsSpawnWeight = buildInt(builder, "Pachycephalosaurus Hell Creek Bluffs Spawn Rate", "all", 0, 0, 300, "The spawn rate of Pachycephalosaurus in the Hell Creek Bluffs biome. Default is 0");
 		this.palaeosaniwaHellCreekBluffsSpawnWeight = buildInt(builder, "Palaeosaniwa Hell Creek Bluffs Spawn Rate", "all", 1, 0, 300, "The spawn rate of Palaeosaniwa in the Hell Creek Bluffs biome. Default is 1");
+		this.parapsephurusHellCreekBluffsSpawnWeight = buildInt(builder, "Parapsephurus Hell Creek Bluffs Spawn Rate", "all", 0, 0, 300, "The spawn rate of Parapsephurus in the Hell Creek Bluffs biome. Default is 0");
 		this.thescelosaurusHellCreekBluffsSpawnWeight = buildInt(builder, "Thescelosaurus Hell Creek Bluffs Spawn Rate", "all", 5, 0, 300, "The spawn rate of Thescelosaurus in the Hell Creek Bluffs biome. Default is 5");
 		this.thoracosaurusHellCreekBluffsSpawnWeight = buildInt(builder, "Thoracosaurus Hell Creek Bluffs Spawn Rate", "all", 0, 0, 300, "The spawn rate of Thoracosaurus in the Hell Creek Bluffs biome. Default is 0");
 		this.triceratopsHellCreekBluffsSpawnWeight = buildInt(builder, "Triceratops Hell Creek Bluffs Spawn Rate", "all", 0, 0, 300, "The spawn rate of Triceratops in the Hell Creek Bluffs biome. Default is 0");
@@ -668,6 +681,7 @@ public class ServerConfig {
 		this.ornithomimusHellCreekHardwoodForestSpawnWeight = buildInt(builder, "Ornithomimus Hell Creek Hardwood Forest Spawn Rate", "all", 3, 0, 300, "The spawn rate of Ornithomimus in the Hell Creek Hardwood Forest biome. Default is 3");
 		this.pachycephalosaurusHellCreekHardwoodForestSpawnWeight = buildInt(builder, "Pachycephalosaurus Hell Creek Hardwood Forest Spawn Rate", "all", 8, 0, 300, "The spawn rate of Pachycephalosaurus in the Hell Creek Hardwood Forest biome. Default is 8");
 		this.palaeosaniwaHellCreekHardwoodForestSpawnWeight = buildInt(builder, "Palaeosaniwa Hell Creek Hardwood Forest Spawn Rate", "all", 2, 0, 300, "The spawn rate of Palaeosaniwa in the Hell Creek Hardwood Forest biome. Default is 2");
+		this.parapsephurusHellCreekHardwoodForestSpawnWeight = buildInt(builder, "Parapsephurus Hell Creek Hardwood Forest Spawn Rate", "all", 0, 0, 300, "The spawn rate of Parapsephurus in the Hell Creek Hardwood Forest biome. Default is 0");
 		this.thescelosaurusHellCreekHardwoodForestSpawnWeight = buildInt(builder, "Thescelosaurus Hell Creek Hardwood Forest Spawn Rate", "all", 4, 0, 300, "The spawn rate of Thescelosaurus in the Hell Creek Hardwood Forest biome. Default is 4");
 		this.thoracosaurusHellCreekHardwoodForestSpawnWeight = buildInt(builder, "Thoracosaurus Hell Creek Hardwood Forest Spawn Rate", "all", 0, 0, 300, "The spawn rate of Thoracosaurus in the Hell Creek Hardwood Forest biome. Default is 0");
 		this.triceratopsHellCreekHardwoodForestSpawnWeight = buildInt(builder, "Triceratops Hell Creek Hardwood Forest Spawn Rate", "all", 12, 0, 300, "The spawn rate of Triceratops in the Hell Creek Hardwood Forest biome. Default is 12");
@@ -692,6 +706,7 @@ public class ServerConfig {
 		this.ornithomimusHellCreekRedwoodsSpawnWeight = buildInt(builder, "Ornithomimus Hell Creek Redwoods Spawn Rate", "all", 3, 0, 300, "The spawn rate of Ornithomimus in the Hell Creek Redwoods biome. Default is 3");
 		this.pachycephalosaurusHellCreekRedwoodsSpawnWeight = buildInt(builder, "Pachycephalosaurus Hell Creek Redwoods Spawn Rate", "all", 10, 0, 300, "The spawn rate of Pachycephalosaurus in the Hell Creek Redwoods biome. Default is 10");
 		this.palaeosaniwaHellCreekRedwoodsSpawnWeight = buildInt(builder, "Palaeosaniwa Hell Creek Redwoods Spawn Rate", "all", 4, 0, 300, "The spawn rate of Palaeosaniwa in the Hell Creek Redwoods biome. Default is 4");
+		this.parapsephurusHellCreekRedwoodsSpawnWeight = buildInt(builder, "Parapsephurus Hell Creek Redwoods Spawn Rate", "all", 0, 0, 300, "The spawn rate of Parapsephurus in the Hell Creek Redwoods biome. Default is 0");
 		this.thescelosaurusHellCreekRedwoodsSpawnWeight = buildInt(builder, "Thescelosaurus Hell Creek Redwoods Spawn Rate", "all", 11, 0, 300, "The spawn rate of Thescelosaurus in the Hell Creek Redwoods biome. Default is 11");
 		this.thoracosaurusHellCreekRedwoodsSpawnWeight = buildInt(builder, "Thoracosaurus Hell Creek Redwoods Spawn Rate", "all", 0, 0, 300, "The spawn rate of Thoracosaurus in the Hell Creek Redwoods biome. Default is 0");
 		this.triceratopsHellCreekRedwoodsSpawnWeight = buildInt(builder, "Triceratops Hell Creek Redwoods Spawn Rate", "all", 7, 0, 300, "The spawn rate of Triceratops in the Hell Creek Redwoods biome. Default is 7");
@@ -716,6 +731,7 @@ public class ServerConfig {
 		this.ornithomimusHellCreekRiverSpawnWeight = buildInt(builder, "Ornithomimus Hell Creek River Spawn Rate", "all", 0, 0, 300, "The spawn rate of Ornithomimus in the Hell Creek River biome. Default is 0");
 		this.pachycephalosaurusHellCreekRiverSpawnWeight = buildInt(builder, "Pachycephalosaurus Hell Creek RIver Spawn Rate", "all", 2, 0, 300, "The spawn rate of Pachycephalosaurus in the Hell Creek River biome. Default is 2");
 		this.palaeosaniwaHellCreekRiverSpawnWeight = buildInt(builder, "Palaeosaniwa Hell Creek River Spawn Rate", "all", 1, 0, 300, "The spawn rate of Palaeosaniwa in the Hell Creek River biome. Default is 1");
+		this.parapsephurusHellCreekRiverSpawnWeight = buildInt(builder, "Parapsephurus Hell Creek River Spawn Rate", "all", 6, 0, 300, "The spawn rate of Parapsephurus in the Hell Creek River biome. Default is 6");
 		this.thescelosaurusHellCreekRiverSpawnWeight = buildInt(builder, "Thescelosaurus Hell Creek River Spawn Rate", "all", 7, 0, 300, "The spawn rate of Thescelosaurus in the Hell Creek River biome. Default is 7");
 		this.thoracosaurusHellCreekRiverSpawnWeight = buildInt(builder, "Thoracosaurus Hell Creek River Spawn Rate", "all", 3, 0, 300, "The spawn rate of Thoracosaurus in the Hell Creek River biome. Default is 3");
 		this.triceratopsHellCreekRiverSpawnWeight = buildInt(builder, "Triceratops Hell Creek River Spawn Rate", "all", 11, 0, 300, "The spawn rate of Triceratops in the Hell Creek River biome. Default is 11");
@@ -740,6 +756,7 @@ public class ServerConfig {
 		this.ornithomimusHellCreekSwampSpawnWeight = buildInt(builder, "Ornithomimus Hell Creek Swamp Spawn Rate", "all", 0, 0, 300, "The spawn rate of Ornithomimus in the Hell Creek Swamp biome. Default is 0");
 		this.pachycephalosaurusHellCreekSwampSpawnWeight = buildInt(builder, "Pachycephalosaurus Hell Creek Swamp Spawn Rate", "all", 2, 0, 300, "The spawn rate of Pachycephalosaurus in the Hell Creek Swamp biome. Default is 2");
 		this.palaeosaniwaHellCreekSwampSpawnWeight = buildInt(builder, "Palaeosaniwa Hell Creek Swamp Spawn Rate", "all", 0, 0, 300, "The spawn rate of Palaeosaniwa in th Hell Creek Swamp biome. Default is 0");
+		this.parapsephurusHellCreekSwampSpawnWeight = buildInt(builder, "Parapsephurus Hell Creek River Spawn Rate", "all", 4, 0, 300, "The spawn rate of Parapsephurus in the Hell Creek River biome. Default is 4");
 		this.thescelosaurusHellCreekSwampSpawnWeight = buildInt(builder, "Thescelosaurus Hell Creek Swamp Spawn Rate", "all", 7, 0, 300, "The spawn rate of Thescelosaurus in the Hell Creek Swamp biome. Default is 7");
 		this.thoracosaurusHellCreekSwampSpawnWeight = buildInt(builder, "Thoracosaurus Hell Creek Swamp Spawn Rate", "all", 3, 0, 300, "The spawn rate of Thoracosaurus in the Hell Creek Swamp biome. Default is 3");
 		this.triceratopsHellCreekSwampSpawnWeight = buildInt(builder, "Triceratops Hell Creek Swamp Spawn Rate", "all", 10, 0, 300, "The spawn rate of Triceratops in the Hell Creek Swamp biome. Default is 10");
@@ -1076,6 +1093,9 @@ public class ServerConfig {
 		this.caveSentinelIschigualastoRiverSpawnWeight = buildInt(builder, "Cave Sentinel Ischigualasto River Spawn Rate", "all", 5, 0, 300, "The spawn rate of Cave Sentinels in the Ischigualasto River biome. Default is 5");
 		this.landSentinelIschigualastoRiverSpawnWeight = buildInt(builder, "Land Sentinel Ischigualasto River Spawn Rate", "all", 2, 0, 300, "The spawn rate of Land Sentinels in the Ischigualasto River biome. Default is 2");
 		builder.pop(2);
+		builder.push("Henostone Caves");
+		this.caveSentinelHenostoneCaveSpawnWeight = buildInt(builder, "Cave Sentinel Henostone Cave Spawn Rate", "all", 10, 0, 300, "The spawn rate of Cave Sentinels in the Henostone Cave biome. Default is 10");
+		builder.pop();
 		builder.push("Misc Settings");
 		this.superSecretSetting = buildBoolean(builder, "Super Secret Setting", "all", false, "Even I don't know what it does. Default is false");
 		this.cretaceousDimensionID = buildInt(builder, "Cretaceous Dimension ID", "all", 9, Integer.MIN_VALUE, Integer.MAX_VALUE, "Cretaceous Dimension ID. Default is 9");
@@ -1097,6 +1117,8 @@ public class ServerConfig {
 		this.kayentaHutMaxDistance = buildInt(builder, "Kayenta Ruined Time Traveller's Hut Max Distance", "all", 60, 1, 300, "The farthest two Kayenta Ruined Time Traveller's Huts can spawn from eachother. Keep this value higher than the min. Default is 60");
 		this.chinleHutMinDistance = buildInt(builder, "Chinle Ruined Time Traveller's Hut Min Distance", "all", 40, 1, 300, "The closest two Chinle Ruined Time Traveller's Huts can spawn from eachother. Keep this value lower than the max. Default is 40");
 		this.chinleHutMaxDistance = buildInt(builder, "Chinle Ruined Time Traveller's Hut Max Distance", "all", 60, 1, 300, "The farthest two Chinle Ruined Time Traveller's Huts can spawn from eachother. Keep this value higher than the min. Default is 60");
+		this.yixianHutMinDistance = buildInt(builder, "Yixian Ruined Time Traveller's Hut Min Distance", "all", 40, 1, 300, "The closest two Yixian Ruined Time Traveller's Huts can spawn from eachother. Keep this value lower than the max. Default is 40");
+		this.yixianHutMaxDistance = buildInt(builder, "Yixian Ruined Time Traveller's Hut Max Distance", "all", 60, 1, 300, "The farthest two Yixian Ruined Time Traveller's Huts can spawn from eachother. Keep this value higher than the min. Default is 60");
 		this.geologistCampMinDistance = buildInt(builder, "Geologist Camp Min Distance", "all", 25, 1, 300, "The closest two Geologist Camps can spawn from eachother. Keep this value lower than the max. Default is 25");
 		this.geologistCampMaxDistance = buildInt(builder, "Geologist Camp Max Distance", "all", 50, 1, 300, "The farthest two Geologist Camps can spawn from eachother. Keep this value higher than the min. Default is 50");
 		this.timeTempleMinDistance = buildInt(builder, "Time Temple Min Distance", "all", 75, 1, 300, "The closest two Time Temples can spawn from eachother. Keep this value lower than the max. Default is 75");

@@ -8,27 +8,27 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexFormat;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.client.gui.ForgeIngameGui;
+import net.minecraftforge.client.gui.overlay.ForgeGui;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.init.PFItems;
 
-@Mixin(ForgeIngameGui.class)
+@Mixin(ForgeGui.class)
 public abstract class TuberOverlayMixin {
 
 	private static final ResourceLocation TUBER_LOCATION = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/misc/tuber_head.png");
 
 	@SuppressWarnings({ "resource" })
-	@Inject(method = "Lnet/minecraftforge/client/gui/ForgeIngameGui;renderHelmet(FLcom/mojang/blaze3d/vertex/PoseStack;)V", at = @At("HEAD"), remap = false)
-	void renderHelmet(float f, PoseStack guiGraphics, CallbackInfo ci) {
+	@Inject(method = "Lnet/minecraftforge/client/gui/overlay/ForgeGui;renderHelmet(FLnet/minecraft/client/gui/GuiGraphics;)V", at = @At("HEAD"), remap = false)
+	void renderHelmet(float f, GuiGraphics guiGraphics, CallbackInfo ci) {
 		ItemStack itemstack = Minecraft.getInstance().player.getInventory().getArmor(3);
 		if (Minecraft.getInstance().options.getCameraType().isFirstPerson() && !itemstack.isEmpty()) {
 			Item item = itemstack.getItem();

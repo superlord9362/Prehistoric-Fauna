@@ -60,10 +60,9 @@ public class Sillosuchus extends DinosaurEntity {
 	private int maxHunger = 150;
 	private int warningSoundTicks;
 
-	@SuppressWarnings("deprecation")
 	public Sillosuchus(EntityType<? extends Sillosuchus> type, Level levelIn) {
 		super(type, levelIn);
-		super.maxUpStep = 1.0F;
+		super.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -130,22 +129,23 @@ public class Sillosuchus extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? PFSounds.SILLOSUCHUS_SNORES : PFSounds.SILLOSUCHUS_IDLE;
+		return this.isAsleep() ? PFSounds.SILLOSUCHUS_SNORES.get() : PFSounds.SILLOSUCHUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.SILLOSUCHUS_HURT;
+		return PFSounds.SILLOSUCHUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.SILLOSUCHUS_DEATH;
+		return PFSounds.SILLOSUCHUS_DEATH.get();
 	}
 
+	@SuppressWarnings("deprecation")
 	protected void playStepSound(BlockPos pos, BlockState state) {
 		if (this.isBaby()) {
-			if (!state.getMaterial().isLiquid()) {
-				BlockState blockstate = this.level.getBlockState(pos.above());
-				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level, pos, this) : state.getSoundType(level, pos, this);
+			if (!state.liquid()) {
+				BlockState blockstate = this.level().getBlockState(pos.above());
+				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level(), pos, this) : state.getSoundType(level(), pos, this);
 				this.playSound(soundtype.getStepSound(), soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			}
 		} else {
@@ -155,7 +155,7 @@ public class Sillosuchus extends DinosaurEntity {
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.SILLOSUCHUS_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.SILLOSUCHUS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -218,8 +218,8 @@ public class Sillosuchus extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Sillosuchus entity = new Sillosuchus(PFEntities.SILLOSUCHUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Sillosuchus entity = new Sillosuchus(PFEntities.SILLOSUCHUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 	

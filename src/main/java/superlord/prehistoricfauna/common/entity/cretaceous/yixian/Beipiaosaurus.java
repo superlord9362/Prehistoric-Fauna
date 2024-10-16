@@ -66,10 +66,9 @@ public class Beipiaosaurus extends DinosaurEntity {
 	private int maxHunger = 38;
 	private int warningSoundTicks;
 
-	@SuppressWarnings("deprecation")
 	public Beipiaosaurus(EntityType<? extends TamableAnimal> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1);
 		super.maxHunger = this.maxHunger;
 	}
 
@@ -134,20 +133,20 @@ public class Beipiaosaurus extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.BEIPIAOSAURUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.BEIPIAOSAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.BEIPIAOSAURUS_HURT;
+		return PFSounds.BEIPIAOSAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.BEIPIAOSAURUS_DEATH;
+		return PFSounds.BEIPIAOSAURUS_DEATH.get();
 	}
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.BEIPIAOSAURUS_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.BEIPIAOSAURUS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -169,8 +168,8 @@ public class Beipiaosaurus extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Beipiaosaurus entity = new Beipiaosaurus(PFEntities.BEIPIAOSAURUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Beipiaosaurus entity = new Beipiaosaurus(PFEntities.BEIPIAOSAURUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -276,16 +275,16 @@ public class Beipiaosaurus extends DinosaurEntity {
 		}
 
 		protected void stripLog() {
-			if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(Beipiaosaurus.this.level, Beipiaosaurus.this)) {
-				BlockState blockstate = Beipiaosaurus.this.level.getBlockState(this.blockPos);
-				level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, blockstate), blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0.0D, 0.0D, 0.0D);
-				level.removeBlock(this.blockPos, true);
-				level.getBlockState(blockPos.below()).getToolModifiedState(null, net.minecraftforge.common.ToolActions.AXE_STRIP, blocksBuilding);
-				level.getBlockState(blockPos.east()).getToolModifiedState(null, net.minecraftforge.common.ToolActions.AXE_STRIP, blocksBuilding);
-				level.getBlockState(blockPos.west()).getToolModifiedState(null, net.minecraftforge.common.ToolActions.AXE_STRIP, blocksBuilding);
-				level.getBlockState(blockPos.north()).getToolModifiedState(null, net.minecraftforge.common.ToolActions.AXE_STRIP, blocksBuilding);
-				level.getBlockState(blockPos.south()).getToolModifiedState(null, net.minecraftforge.common.ToolActions.AXE_STRIP, blocksBuilding);
-				level.getBlockState(blockPos.above()).getToolModifiedState(null, net.minecraftforge.common.ToolActions.AXE_STRIP, blocksBuilding);
+			if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(Beipiaosaurus.this.level(), Beipiaosaurus.this)) {
+				BlockState blockstate = Beipiaosaurus.this.level().getBlockState(this.blockPos);
+				level().addParticle(new BlockParticleOption(ParticleTypes.BLOCK, blockstate), blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0.0D, 0.0D, 0.0D);
+				level().removeBlock(this.blockPos, true);
+				level().getBlockState(blockPos.below()).getToolModifiedState(null, net.minecraftforge.common.ToolActions.AXE_STRIP, blocksBuilding);
+				level().getBlockState(blockPos.east()).getToolModifiedState(null, net.minecraftforge.common.ToolActions.AXE_STRIP, blocksBuilding);
+				level().getBlockState(blockPos.west()).getToolModifiedState(null, net.minecraftforge.common.ToolActions.AXE_STRIP, blocksBuilding);
+				level().getBlockState(blockPos.north()).getToolModifiedState(null, net.minecraftforge.common.ToolActions.AXE_STRIP, blocksBuilding);
+				level().getBlockState(blockPos.south()).getToolModifiedState(null, net.minecraftforge.common.ToolActions.AXE_STRIP, blocksBuilding);
+				level().getBlockState(blockPos.above()).getToolModifiedState(null, net.minecraftforge.common.ToolActions.AXE_STRIP, blocksBuilding);
 			}
 		}
 

@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"parent": "prehistoricfauna:block/nest_three_small_tall_eggs_no_plants",
 	"textures": {
-		"egg": "prehistoricfauna:blocks/beipiaosaurus_egg",
-		"material": "prehistoricfauna:blocks/nest"
+		"egg": "prehistoricfauna:block/beipiaosaurus_egg",
+		"material": "prehistoricfauna:block/nest"
 	}
 }

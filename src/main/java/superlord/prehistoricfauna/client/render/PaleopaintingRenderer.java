@@ -3,11 +3,12 @@ package superlord.prehistoricfauna.client.render;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.joml.Matrix3f;
+import org.joml.Matrix4f;
+
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Matrix3f;
-import com.mojang.math.Matrix4f;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -32,7 +33,7 @@ public class PaleopaintingRenderer extends EntityRenderer<Paleopainting> {
 
 	public void render(Paleopainting entityIn, float entityYaw, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int packedLightIn) {
 		matrixStack.pushPose();
-		matrixStack.mulPose(Vector3f.YP.rotationDegrees(180.0F - entityYaw));
+		matrixStack.mulPose(Axis.YP.rotationDegrees(180.0F - entityYaw));
 		Paleopainting.PaleopaintingType painting = entityIn.paleopainting;
 		float f = 0.0625F;
 		matrixStack.scale(f, f, f);
@@ -91,7 +92,7 @@ public class PaleopaintingRenderer extends EntityRenderer<Paleopainting> {
 					break;
 				}
 
-				int light = LevelRenderer.getLightColor(painting.level, new BlockPos(x, y, z));
+				int light = LevelRenderer.getLightColor(painting.level(), new BlockPos(x, y, z));
 				float spriteMinU = (d0 * (i - k)) / 16f;
 				float spriteMaxU = (d0 * (i - (k + 1))) / 16f;
 				float spriteMinV = (d1 * (j - l)) / 16f;

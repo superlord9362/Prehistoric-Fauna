@@ -82,10 +82,9 @@ public class Megapnosaurus extends DinosaurEntity {
 	private int warningSoundTicks;
 	private Goal attackAnimals;
 
-	@SuppressWarnings("deprecation")
 	public Megapnosaurus(EntityType<? extends Megapnosaurus> type, Level worldIn) {
 		super(type, worldIn);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 	
@@ -187,20 +186,20 @@ public class Megapnosaurus extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.MEGAPNOSAURUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.MEGAPNOSAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.MEGAPNOSAURUS_HURT;
+		return PFSounds.MEGAPNOSAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.MEGAPNOSAURUS_DEATH;
+		return PFSounds.MEGAPNOSAURUS_DEATH.get();
 	}
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.MEGAPNOSAURUS_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.MEGAPNOSAURUS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -264,8 +263,8 @@ public class Megapnosaurus extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Megapnosaurus entity = new Megapnosaurus(PFEntities.MEGAPNOSAURUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Megapnosaurus entity = new Megapnosaurus(PFEntities.MEGAPNOSAURUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 	

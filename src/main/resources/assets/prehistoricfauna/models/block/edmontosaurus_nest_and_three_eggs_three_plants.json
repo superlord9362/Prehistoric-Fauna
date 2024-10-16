@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"parent": "prehistoricfauna:block/nest_three_giant_tall_eggs_three_plants",
 	"textures": {
-		"egg": "prehistoricfauna:blocks/edmontosaurus_egg",
-		"material": "prehistoricfauna:blocks/nest",
-		"plants": "prehistoricfauna:blocks/plants"
+		"egg": "prehistoricfauna:block/edmontosaurus_egg",
+		"material": "prehistoricfauna:block/nest",
+		"plants": "prehistoricfauna:block/plants"
 	}
 }

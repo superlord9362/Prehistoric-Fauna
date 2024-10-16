@@ -24,6 +24,7 @@ public abstract class AbstractBottomDwellerFish extends AbstractFish {
 			this.fish = fish;
 		}
 
+		@SuppressWarnings("deprecation")
 		public void tick() {
 			if (this.fish.isEyeInFluid(FluidTags.WATER)) {
 				this.fish.setDeltaMovement(this.fish.getDeltaMovement().add(0.0D, -0.005D, 0.0D));
@@ -38,7 +39,7 @@ public abstract class AbstractBottomDwellerFish extends AbstractFish {
 					float f1 = (float)(Mth.atan2(d2, d0) * (double)(180F / (float)Math.PI)) - 90.0F;
 					this.fish.setYRot(this.rotlerp(this.fish.getYRot(), f1, 90.0F));
 					this.fish.yBodyRot = this.fish.getYRot();
-					if (this.fish.horizontalCollision && this.fish.level.getBlockState(this.fish.blockPosition().above()).getBlock() == Blocks.WATER) {
+					if (this.fish.horizontalCollision && this.fish.level().getBlockState(this.fish.blockPosition().above()).getBlock() == Blocks.WATER) {
 						this.fish.setDeltaMovement(this.fish.getDeltaMovement().add(0.0D, 0.025D, 0.0D));
 					}
 				}

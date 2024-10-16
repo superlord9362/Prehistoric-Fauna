@@ -3,10 +3,10 @@
 	"ambientocclusion": false,
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "prehistoricfauna:blocks/phlebopteris",
+		"0": "prehistoricfauna:block/phlebopteris",
 		"1": "minecraft:block/dirt",
 		"2": "minecraft:block/flower_pot",
-		"particle": "prehistoricfauna:blocks/phlebopteris"
+		"particle": "prehistoricfauna:block/phlebopteris"
 	},
 	"elements": [
 		{

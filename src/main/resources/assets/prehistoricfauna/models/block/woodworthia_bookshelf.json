@@ -1,7 +1,7 @@
 {
 	"parent": "block/cube_column",
 	"textures": {
-		"end": "prehistoricfauna:blocks/woodworthia_planks",
-		"side": "prehistoricfauna:blocks/woodworthia_bookshelf"
+		"end": "prehistoricfauna:block/woodworthia_planks",
+		"side": "prehistoricfauna:block/woodworthia_bookshelf"
 	}
 }

@@ -1,7 +1,7 @@
 {
     "parent": "block/cube_column",
     "textures": {
-        "end": "prehistoricfauna:blocks/czekanowskia_log",
-        "side": "prehistoricfauna:blocks/czekanowskia_log"
+        "end": "prehistoricfauna:block/czekanowskia_log",
+        "side": "prehistoricfauna:block/czekanowskia_log"
     }
 }

@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/cube_column",
 	"textures": {
-		"2": "prehistoricfauna:blocks/ptilophyllum_wood_single",
-		"particle": "prehistoricfauna:blocks/ptilophyllum_wood_single"
+		"2": "prehistoricfauna:block/ptilophyllum_wood_single",
+		"particle": "prehistoricfauna:block/ptilophyllum_wood_single"
 	},
 	"elements": [
 		{

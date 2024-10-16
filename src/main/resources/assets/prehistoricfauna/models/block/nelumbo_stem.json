@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "prehistoricfauna:blocks/nelumbo_stem"
+        "cross": "prehistoricfauna:block/nelumbo_stem"
     }
 }

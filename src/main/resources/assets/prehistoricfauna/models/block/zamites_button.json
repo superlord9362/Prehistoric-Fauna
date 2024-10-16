@@ -1,6 +1,6 @@
 {
     "parent": "block/button",
     "textures": {
-        "texture": "prehistoricfauna:blocks/zamites_planks"
+        "texture": "prehistoricfauna:block/zamites_planks"
     }
 }

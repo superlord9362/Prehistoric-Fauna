@@ -1,11 +1,11 @@
 package superlord.prehistoricfauna.common.feature.trees.schilderia;
 
-import java.util.Random;
 import java.util.Set;
 
 import com.mojang.serialization.Codec;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import superlord.prehistoricfauna.common.feature.trees.PFAbstractTreeFeature;
@@ -17,7 +17,7 @@ public class Schilderia1 extends PFAbstractTreeFeature<PFTreeConfig> {
         super(configIn);
     }
 
-	protected boolean generate(Set<BlockPos> changedBlocks, WorldGenLevel world, Random rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
+	protected boolean generate(Set<BlockPos> changedBlocks, WorldGenLevel world, RandomSource rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
 
         int randTreeHeight = config.getMinHeight() + rand.nextInt(config.getMaxPossibleHeight());
         BlockPos.MutableBlockPos mainmutable = new BlockPos.MutableBlockPos().set(pos);

@@ -1,0 +1,9 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#prehistoricfauna:is_cretaceous",
+  "features": [
+    "prehistoricfauna:placed_cretaceous_fossilized_sandstone",
+    "prehistoricfauna:placed_cretaceous_fossilized_siltstone"
+  ],
+  "step": "underground_ores"
+}

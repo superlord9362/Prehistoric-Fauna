@@ -30,11 +30,11 @@ public class PostosuchusEyeLayer extends RenderLayer<Postosuchus, PostosuchusMod
 		if (!(postosuchusRenderer.getModel() instanceof PostosuchusModel)) {
 			return;
 		}
-		long roundTime = postosuchus.level.getDayTime() % 24000;
+		long roundTime = postosuchus.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos postosuchusPos = postosuchus.blockPosition();
-		int i = postosuchus.level.getBrightness(LightLayer.SKY, postosuchusPos);
-		int j = postosuchus.level.getBrightness(LightLayer.BLOCK, postosuchusPos);
+		int i = postosuchus.level().getBrightness(LightLayer.SKY, postosuchusPos);
+		int j = postosuchus.level().getBrightness(LightLayer.BLOCK, postosuchusPos);
 		int brightness;
 		if (night) {
 			brightness = j;

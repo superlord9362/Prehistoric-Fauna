@@ -2,6 +2,6 @@
 	"parent": "prehistoricfauna:block/one_small_round_egg",
 	"ambientocclusion": false,
 	"textures": {
-		"egg": "prehistoricfauna:blocks/trilophosaurus_egg_very_cracked"
+		"egg": "prehistoricfauna:block/trilophosaurus_egg_very_cracked"
 	}
 }

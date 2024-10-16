@@ -79,10 +79,9 @@ import superlord.prehistoricfauna.init.PFTags;
 public class Incisivosaurus extends DinosaurEntity {
 	private int maxHunger = 15;
 
-	@SuppressWarnings("deprecation")
 	public Incisivosaurus(EntityType<? extends Incisivosaurus> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1);
 		super.maxHunger = maxHunger;
 	}
 	
@@ -168,15 +167,15 @@ public class Incisivosaurus extends DinosaurEntity {
 	}
 	
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.INCISIVOSAURUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.INCISIVOSAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.INCISIVOSAURUS_HURT;
+		return PFSounds.INCISIVOSAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.INCISIVOSAURUS_DEATH;
+		return PFSounds.INCISIVOSAURUS_DEATH.get();
 	}
 
 	public boolean onAttackAnimationFinish(Entity entityIn) {
@@ -189,8 +188,8 @@ public class Incisivosaurus extends DinosaurEntity {
 	
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Incisivosaurus entity = new Incisivosaurus(PFEntities.INCISIVOSAURUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Incisivosaurus entity = new Incisivosaurus(PFEntities.INCISIVOSAURUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 	
@@ -246,7 +245,7 @@ public class Incisivosaurus extends DinosaurEntity {
 					dinosaur.setEating(true);
 				}
 				if (this.field_220731_g % 5 == 1) {
-					dinosaur.level.playSound((Player)null, this.blockPos, SoundEvents.GRASS_HIT, SoundSource.NEUTRAL, 1, 1);
+					dinosaur.level().playSound((Player)null, this.blockPos, SoundEvents.GRASS_HIT, SoundSource.NEUTRAL, 1, 1);
 				}
 			}
 			if (dinosaur.getCurrentHunger() >= 13) {
@@ -256,9 +255,9 @@ public class Incisivosaurus extends DinosaurEntity {
 		}
 
 		protected void eatBerry() {
-			ItemEntity entity = new ItemEntity(level, dinosaur.getX(), dinosaur.getY(), dinosaur.getZ(), new ItemStack(PFItems.ARAUCARIA_CONE.get(), dinosaur.random.nextInt(4) + 1));
-			level.addFreshEntity(entity);
-			dinosaur.level.setBlockAndUpdate(this.blockPos, Blocks.AIR.defaultBlockState());
+			ItemEntity entity = new ItemEntity(level(), dinosaur.getX(), dinosaur.getY(), dinosaur.getZ(), new ItemStack(PFItems.ARAUCARIA_CONE.get(), dinosaur.random.nextInt(4) + 1));
+			level().addFreshEntity(entity);
+			dinosaur.level().setBlockAndUpdate(this.blockPos, Blocks.AIR.defaultBlockState());
 		}
 
 		/**

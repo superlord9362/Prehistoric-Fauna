@@ -1,9 +1,9 @@
 package superlord.prehistoricfauna.common.entity.henos;
 
-import java.util.Random;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -23,10 +23,9 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class CaveSentinel extends Monster {
 
-	@SuppressWarnings("deprecation")
 	public CaveSentinel(EntityType<? extends Monster> type, Level world) {
 		super(type, world);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1);
 	}
 
 	@Override
@@ -47,15 +46,15 @@ public class CaveSentinel extends Monster {
 	}
 
 	@SuppressWarnings("deprecation")
-	public static boolean canSpawn(EntityType<CaveSentinel> batIn, ServerLevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random randomIn) {
+	public static boolean canSpawn(EntityType<CaveSentinel> batIn, ServerLevelAccessor worldIn, MobSpawnType reason, BlockPos pos, RandomSource randomIn) {
 		if (pos.getY() >= worldIn.getSeaLevel()) {
 			return false;
 		} else {
-			return isValidLightLevel(worldIn, pos, randomIn) && checkMobSpawnRules(batIn, worldIn, reason, pos, randomIn);
+			return worldIn.getDifficulty() != Difficulty.PEACEFUL && isValidLightLevel(worldIn, pos, randomIn) && checkMobSpawnRules(batIn, worldIn, reason, pos, randomIn) && worldIn.getLevel().isNight() && randomIn.nextFloat() > 0.95F;
 		}
 	}
 	
-	public static boolean isValidLightLevel(ServerLevelAccessor worldIn, BlockPos pos, Random randomIn) {
+	public static boolean isValidLightLevel(ServerLevelAccessor worldIn, BlockPos pos, RandomSource randomIn) {
 	      if (worldIn.getBrightness(LightLayer.SKY, pos) > randomIn.nextInt(32)) {
 	         return false;
 	      } else {
@@ -73,8 +72,9 @@ public class CaveSentinel extends Monster {
 			super(CaveSentinel.this, 1.25D, true);
 		}
 
+		@SuppressWarnings("deprecation")
 		public boolean canContinueToUse() {
-			float f = this.mob.getBrightness();
+			float f = this.mob.getLightLevelDependentMagicValue();
 			if (f >= 0.5F && this.mob.getRandom().nextInt(100) == 0) {
 				this.mob.setTarget((LivingEntity)null);
 				return false;

@@ -2,6 +2,6 @@
 	"parent": "prehistoricfauna:block/two_medium_round_eggs",
 	"ambientocclusion": false,
 	"textures": {
-		"egg": "prehistoricfauna:blocks/saurosuchus_egg_slightly_cracked"
+		"egg": "prehistoricfauna:block/saurosuchus_egg_slightly_cracked"
 	}
 }

@@ -19,37 +19,113 @@
     "cretaceous_hut": {
       "trigger": "minecraft:location",
       "conditions": {
-        "feature": "prehistoricfauna:hell_creek_hut"
+        "player": [
+			  {
+				  "condition": "minecraft:entity_properties",
+				  "entity": "this",
+				  "predicate": {
+					  "location": {
+						  "structure": "prehistoricfauna:hell_creek_hut"
+					  }
+				  }
+			  }
+		  ]
       }
     },
 	"jurassic_hut": {
       "trigger": "minecraft:location",
       "conditions": {
-        "feature": "prehistoricfauna:morrison_hut"
+        "player": [
+			  {
+				  "condition": "minecraft:entity_properties",
+				  "entity": "this",
+				  "predicate": {
+					  "location": {
+						  "structure": "prehistoricfauna:morrison_hut"
+					  }
+				  }
+			  }
+		  ]
       }
     },
 	"triassic_hut": {
       "trigger": "minecraft:location",
       "conditions": {
-        "feature": "prehistoricfauna:ischigualasto_hut"
+        "player": [
+			  {
+				  "condition": "minecraft:entity_properties",
+				  "entity": "this",
+				  "predicate": {
+					  "location": {
+						  "structure": "prehistoricfauna:ischigualasto_hut"
+					  }
+				  }
+			  }
+		  ]
       }
     },
     "djadochta_hut": {
 		"trigger": "minecraft:location",
 		"conditions": {
-			"feature": "prehistoricfauna:djadochta_hut"
+			"player": [
+			  {
+				  "condition": "minecraft:entity_properties",
+				  "entity": "this",
+				  "predicate": {
+					  "location": {
+						  "structure": "prehistoricfauna:djadochta_hut"
+					  }
+				  }
+			  }
+		  ]
 		}
 	},
     "kayenta_hut": {
 		"trigger": "minecraft:location",
 		"conditions": {
-			"feature": "prehistoricfauna:kayenta_hut"
+			"player": [
+			  {
+				  "condition": "minecraft:entity_properties",
+				  "entity": "this",
+				  "predicate": {
+					  "location": {
+						  "structure": "prehistoricfauna:kayenta_hut"
+					  }
+				  }
+			  }
+		  ]
 		}
 	},
     "chinle_hut": {
 		"trigger": "minecraft:location",
 		"conditions": {
-			"feature": "prehistoricfauna:chinle_hut"
+			"player": [
+			  {
+				  "condition": "minecraft:entity_properties",
+				  "entity": "this",
+				  "predicate": {
+					  "location": {
+						  "structure": "prehistoricfauna:chinle_hut"
+					  }
+				  }
+			  }
+		  ]
+		}
+	},
+	"yixian_hut": {
+		"trigger": "minecraft:location",
+		"conditions": {
+			"player": [
+			  {
+				  "condition": "minecraft:entity_properties",
+				  "entity": "this",
+				  "predicate": {
+					  "location": {
+						  "structure": "prehistoricfauna:yixian_hut"
+					  }
+				  }
+			  }
+		  ]
 		}
 	}
   },
@@ -60,7 +136,8 @@
 		"triassic_hut",
 		"djadochta_hut",
 		"kayenta_hut",
-		"chinle_hut"
+		"chinle_hut",
+		"yixian_hut"
     ]
   ]
 }

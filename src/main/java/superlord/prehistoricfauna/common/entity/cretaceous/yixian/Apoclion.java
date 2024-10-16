@@ -1,7 +1,5 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.yixian;
 
-import java.util.Random;
-
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
@@ -13,6 +11,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.AgeableMob;
@@ -37,7 +36,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
@@ -67,11 +66,11 @@ public class Apoclion extends Animal {
 	private void switchNavigator(boolean rightsideUp) {
 		if (rightsideUp) {
 			this.moveControl = new MoveControl(this);
-			this.navigation = new WallClimberNavigation(this, level);
+			this.navigation = new WallClimberNavigation(this, level());
 			this.isUpsideDownNavigator = false;
 		} else {
 			this.moveControl = new FlightMoveController(this, 0.6F, false);
-			this.navigation = new DirectPathNavigator(this, level);
+			this.navigation = new DirectPathNavigator(this, level());
 			this.isUpsideDownNavigator = true;
 		}
 	}
@@ -126,29 +125,27 @@ public class Apoclion extends Animal {
 	}
 
 
-	@SuppressWarnings({ "deprecation", "unused" })
 	public void tick() {
 		super.tick();
 		if (attachChangeProgress > 0F) {
 			attachChangeProgress -= 0.25F;
 		}
-		this.maxUpStep = 0.5F;
+		this.setMaxUpStep(0.5F);
 		Vec3 vector3d = this.getDeltaMovement();
-		if (!this.level.isClientSide) {
-			this.setBesideClimbableBlock(this.horizontalCollision || this.verticalCollision && !this.isOnGround());
-			if (this.isOnGround() || this.isInWaterOrBubble() || this.isInLava()) {
+		if (!this.level().isClientSide()) {
+			this.setBesideClimbableBlock(this.horizontalCollision || this.verticalCollision && !this.onGround());
+			if (this.onGround() || this.isInWaterOrBubble() || this.isInLava()) {
 				this.entityData.set(ATTACHED_FACE, Direction.DOWN);
 			} else  if (this.verticalCollision) {
 				this.entityData.set(ATTACHED_FACE, Direction.UP);
 			}else {
-				boolean flag = false;
 				Direction closestDirection = Direction.DOWN;
 				double closestDistance = 100;
 				for (Direction dir : HORIZONTALS) {
 					BlockPos antPos = new BlockPos(Mth.floor(this.getX()), Mth.floor(this.getY()), Mth.floor(this.getZ()));
 					BlockPos offsetPos = antPos.relative(dir);
 					Vec3 offset = Vec3.atCenterOf(offsetPos);
-					if (closestDistance > this.position().distanceTo(offset) && level.loadedAndEntityCanStandOnFace(offsetPos, this, dir.getOpposite())) {
+					if (closestDistance > this.position().distanceTo(offset) && level().loadedAndEntityCanStandOnFace(offsetPos, this, dir.getOpposite())) {
 						closestDistance = this.position().distanceTo(offset);
 						closestDirection = dir;
 					}
@@ -165,7 +162,7 @@ public class Apoclion extends Animal {
 					Vec3 vec = Vec3.atLowerCornerOf(this.getAttachmentFacing().getNormal());
 					this.setDeltaMovement(this.getDeltaMovement().add(vec.normalize().multiply(0.1F, 0.1F, 0.1F)));
 				}
-				if (!this.onGround && vector3d.y < 0.0D) {
+				if (!this.onGround() && vector3d.y < 0.0D) {
 					this.setDeltaMovement(this.getDeltaMovement().multiply(1.0D, 0.5D, 1.0D));
 					flag = true;
 				}
@@ -186,7 +183,7 @@ public class Apoclion extends Animal {
 			attachChangeProgress = 1F;
 		}
 		this.prevAttachDir = this.getAttachmentFacing();
-		if (!!this.level.isClientSide) {
+		if (!!this.level().isClientSide()) {
 			if (this.getAttachmentFacing() == Direction.UP && !this.isUpsideDownNavigator) {
 				switchNavigator(false);
 			}
@@ -247,7 +244,7 @@ public class Apoclion extends Animal {
 		return null;
 	}
 
-	public static boolean canBugSpawn(EntityType<? extends PathfinderMob> animal, LevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random random) {
+	public static boolean canBugSpawn(EntityType<? extends PathfinderMob> animal, ServerLevelAccessor worldIn, MobSpawnType reason, BlockPos pos, RandomSource random) {
 		return (worldIn.getBlockState(pos.below()).is(BlockTags.DIRT) || worldIn.getBlockState(pos.below()).is(Tags.Blocks.SAND) || worldIn.getBlockState(pos.below()).is(BlockTags.LEAVES) || worldIn.getBlockState(pos.below()).is(BlockTags.LOGS_THAT_BURN)) && worldIn.getRawBrightness(pos, 0) > 8;
 	}
 

@@ -40,7 +40,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -100,15 +99,15 @@ public class Henos extends Animal {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return PFSounds.HENOS_IDLE;
+		return PFSounds.HENOS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.HENOS_HURT;
+		return PFSounds.HENOS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.HENOS_DEATH;
+		return PFSounds.HENOS_DEATH.get();
 	}
 
 	@Override
@@ -138,10 +137,10 @@ public class Henos extends Animal {
 			for(int l1 = j; l1 <= i1; ++l1) {
 				for(int i2 = k; i2 <= j1; ++i2) {
 					BlockPos blockpos = new BlockPos(k1, l1, i2);
-					BlockState blockstate = this.level.getBlockState(blockpos);
-					if (!blockstate.isAir() && blockstate.getMaterial() != Material.FIRE) {
-						if (net.minecraftforge.common.ForgeHooks.canEntityDestroy(this.level, blockpos, this) && !blockstate.is(BlockTags.DRAGON_IMMUNE) && !blockstate.is(PFTags.HENOSTONE)) {
-							flag1 = this.level.removeBlock(blockpos, false) || flag1;
+					BlockState blockstate = this.level().getBlockState(blockpos);
+					if (!blockstate.isAir() && !blockstate.is(BlockTags.FIRE)) {
+						if (net.minecraftforge.common.ForgeHooks.canEntityDestroy(this.level(), blockpos, this) && !blockstate.is(BlockTags.DRAGON_IMMUNE) && !blockstate.is(PFTags.HENOSTONE)) {
+							flag1 = this.level().removeBlock(blockpos, false) || flag1;
 						} else {
 							flag = true;
 						}
@@ -152,7 +151,7 @@ public class Henos extends Animal {
 
 		if (flag1) {
 			BlockPos blockpos1 = new BlockPos(i + this.random.nextInt(l - i + 1), j + this.random.nextInt(i1 - j + 1), k + this.random.nextInt(j1 - k + 1));
-			this.level.levelEvent(2008, blockpos1, 0);
+			this.level().levelEvent(2008, blockpos1, 0);
 		}
 
 		return flag;
@@ -160,7 +159,7 @@ public class Henos extends Animal {
 
 	public void aiStep() {
 
-		if (!this.level.isClientSide) {
+		if (!this.level().isClientSide()) {
 			this.inWall = this.checkWalls(this.getBoundingBox());
 		}
 
@@ -188,7 +187,7 @@ public class Henos extends Animal {
 		}
 		if (getTarget() != null && (!getTarget().isAlive() || getTarget().getHealth() <= 0))
 			setTarget(null);
-		if (!level.isClientSide) {
+		if (!level().isClientSide()) {
 			if (!isNoAi()) {
 				if (isActive()) {
 					if (getTarget() == null) {
@@ -214,7 +213,7 @@ public class Henos extends Animal {
 			}
 		}
 		yBodyRot = yHeadRot;
-		if (!level.isClientSide && hasHealingShield()){
+		if (!level().isClientSide() && hasHealingShield()){
 			if(this.getTarget() == null){
 				this.heal(0.3F);
 			}else{
@@ -228,11 +227,11 @@ public class Henos extends Animal {
 		}
 		if (this.entityData.get(MELEE_TICK) > 0 && isUsingRegularAttack()) {
 			if (Math.max(rightPunchProgress, leftPunchProgress) == 5 && this.getTarget() != null && this.distanceTo(this.getTarget()) < this.getTarget().getBbWidth() + this.getBbWidth() + 2.0F) {
-				this.getTarget().hurt(DamageSource.mobAttack(this), 2);
+				this.getTarget().hurt(this.damageSources().mobAttack(this), 2);
 				if (this.getTarget().isBlocking()) {
 					((Player)this.getTarget()).getCooldowns().addCooldown(Items.SHIELD, 100);
 					((Player)this.getTarget()).stopUsingItem();
-					this.level.broadcastEntityEvent(((Player)this.getTarget()), (byte)30);
+					this.level().broadcastEntityEvent(((Player)this.getTarget()), (byte)30);
 				}
 			}
 			this.entityData.set(MELEE_TICK, this.entityData.get(MELEE_TICK) - 1);
@@ -273,12 +272,12 @@ public class Henos extends Animal {
 			double d4 = this.random.nextDouble();
 			while (d4 < d3) {
 				d4 += 3.0D - this.random.nextDouble() * 2.5D;
-				this.level.addParticle(PFParticles.BOSS_LASER, this.getX() + d0 * d4, this.getEyeY() + d1 * d4, this.getZ() + d2 * d4, (random.nextFloat() - 0.5F) * 0.1F, random.nextFloat() * 0.2F, (random.nextFloat() - 0.5F) * 0.1F);
+				this.level().addParticle(PFParticles.BOSS_LASER.get(), this.getX() + d0 * d4, this.getEyeY() + d1 * d4, this.getZ() + d2 * d4, (random.nextFloat() - 0.5F) * 0.1F, random.nextFloat() * 0.2F, (random.nextFloat() - 0.5F) * 0.1F);
 			}
 		}
-		if(this.hasHealingShield() && level.isClientSide){
+		if(this.hasHealingShield() && level().isClientSide()){
 			for(int i = 0; i < 2 + random.nextInt(2); i++){
-				this.level.addParticle(PFParticles.BOSS_HEAL, this.getRandomX(2.0D), this.getY(), this.getRandomZ(2.0D), this.getX(), this.getY(0.75F), this.getZ());
+				this.level().addParticle(PFParticles.BOSS_HEAL.get(), this.getRandomX(2.0D), this.getY(), this.getRandomZ(2.0D), this.getX(), this.getY(0.75F), this.getZ());
 			}
 		}
 		if (this.getLaserTick() < 0) {
@@ -419,7 +418,7 @@ public class Henos extends Animal {
 		if (!this.hasLaserTarget()) {
 			return this.getTarget();
 		} else {
-			return (LivingEntity)this.level.getEntity(this.entityData.get(LASER_TARGET_ENTITY));
+			return (LivingEntity)this.level().getEntity(this.entityData.get(LASER_TARGET_ENTITY));
 		}
 	}
 
@@ -537,7 +536,7 @@ public class Henos extends Animal {
 			if (observer == null || subject == null) return false;
 			AABB axisalignedbb = subject.getBoundingBox().inflate(0.30000001192092896D);
 			Vec3 subjectLocation = new Vec3(subject.getX(), subject.getY() + subject.getEyeHeight(), subject.getZ());
-			HitResult traceToBlocks = subject.level.clip(new ClipContext(observer, subjectLocation, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, subject));
+			HitResult traceToBlocks = subject.level().clip(new ClipContext(observer, subjectLocation, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, subject));
 			if (traceToBlocks.getType() != HitResult.Type.MISS) subjectLocation = traceToBlocks.getLocation();
 			Optional<Vec3> traceToEntity = axisalignedbb.clip(observer, subjectLocation);
 			return traceToEntity.isPresent();
@@ -586,7 +585,7 @@ public class Henos extends Animal {
 		}
 
 		private void updateLaser() {
-			if (this.henos.level != null) {
+			if (this.henos.level() != null) {
 				if (henos.getTarget() != null) {
 					double targetX = henos.getTarget().getX();
 					double targetY = henos.getTarget().getY() + henos.getTarget().getEyeHeight() * 0.5F;
@@ -611,7 +610,7 @@ public class Henos extends Animal {
 					double range = 30d;
 					Vec3 hitVec = lureVec.add(laserAngle.scale(range));
 
-					HitResult trace = henos.level.clip(new ClipContext(lureVec, hitVec, ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, henos));
+					HitResult trace = henos.level().clip(new ClipContext(lureVec, hitVec, ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, henos));
 					if (trace.getType() != HitResult.Type.MISS) {
 						hitVec = trace.getLocation();
 					}
@@ -619,12 +618,12 @@ public class Henos extends Animal {
 					henos.setLaserY((float) hitVec.y);
 					henos.setLaserZ((float) hitVec.z);
 					float f = 1.0F;
-					if (this.henos.level.getDifficulty() == Difficulty.HARD) {
+					if (this.henos.level().getDifficulty() == Difficulty.HARD) {
 						f += 2.0F;
 					}
 
 					LivingEntity base = null;
-					for (LivingEntity entity : henos.level.getEntitiesOfClass(LivingEntity.class, henos.getBoundingBox().inflate(30))) {
+					for (LivingEntity entity : henos.level().getEntitiesOfClass(LivingEntity.class, henos.getBoundingBox().inflate(30))) {
 						AABB axisalignedbb = entity.getBoundingBox().inflate(0.30000001192092896D);
 						Optional<Vec3> traceToEntity = axisalignedbb.clip(lureVec, hitVec);
 						if (traceToEntity.isPresent() && canSeeEntity(lureVec, entity) && entity != henos && (base == null || henos.distanceTo(entity) < henos.distanceTo(base)))
@@ -632,7 +631,7 @@ public class Henos extends Animal {
 					}
 
 					if (base != null) {
-						base.hurt(DamageSource.mobAttack(this.henos), (float) this.henos.getAttribute(Attributes.ATTACK_DAMAGE).getValue() / 2);
+						base.hurt(henos.damageSources().mobAttack(this.henos), (float) this.henos.getAttribute(Attributes.ATTACK_DAMAGE).getValue() / 2);
 						if (!base.isBlocking()) {
 							base.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 140 * (int) f, 2));
 							base.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 140 * (int) f, 2));
@@ -650,11 +649,11 @@ public class Henos extends Animal {
 			if (henos.getLaserTick() == 0) {
 				this.henos.setChargingBeam(false);
 				this.henos.setUsingBeam(true);
-				this.henos.playSound(PFSounds.HENOS_LASER, 1.0F, this.henos.getVoicePitch());
+				this.henos.playSound(PFSounds.HENOS_LASER.get(), 1.0F, this.henos.getVoicePitch());
 			} else if (henos.getLaserTick() > 0) {
 				this.updateLaser();
 				if(laserSoundTick % 17 == 0){
-					this.henos.playSound(PFSounds.HENOS_LASER_LOOP, 1.0F, this.henos.getVoicePitch());
+					this.henos.playSound(PFSounds.HENOS_LASER_LOOP.get(), 1.0F, this.henos.getVoicePitch());
 				}
 				laserSoundTick++;
 			}

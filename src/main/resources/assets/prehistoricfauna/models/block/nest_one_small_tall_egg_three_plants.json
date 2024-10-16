@@ -3,7 +3,7 @@
 	"textures": {
 		"egg": "#egg",
 		"material": "#material",
-		"12": "prehistoricfauna:blocks/plants",
+		"12": "prehistoricfauna:block/plants",
 		"particle": "#material"
 	},
 	"elements": [

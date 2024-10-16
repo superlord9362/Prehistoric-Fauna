@@ -92,10 +92,9 @@ import superlord.prehistoricfauna.init.PFTags;
 
 public class Telmasaurus extends DinosaurEntity {
 
-	@SuppressWarnings("deprecation")
 	public Telmasaurus(EntityType<? extends TamableAnimal> type, Level worldIn) {
 		super(type, worldIn);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -107,8 +106,8 @@ public class Telmasaurus extends DinosaurEntity {
 	}
 
 	private void spawnItem(ItemStack stack) {
-		ItemEntity itemEntity = new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), stack);
-		this.level.addFreshEntity(itemEntity);
+		ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), stack);
+		this.level().addFreshEntity(itemEntity);
 	}
 	
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
@@ -227,15 +226,15 @@ public class Telmasaurus extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.TELMASAURUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.TELMASAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.TELMASAURUS_HURT;
+		return PFSounds.TELMASAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.TELMASAURUS_DEATH;
+		return PFSounds.TELMASAURUS_DEATH.get();
 	}
 	
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
@@ -301,9 +300,9 @@ public class Telmasaurus extends DinosaurEntity {
 		}
 
 		protected void eatBerry() {
-			if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(Telmasaurus.this.level, Telmasaurus.this)) {
-				BlockState blockstate = Telmasaurus.this.level.getBlockState(this.blockPos);
-				level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, blockstate), blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0.0D, 0.0D, 0.0D);
+			if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(Telmasaurus.this.level(), Telmasaurus.this)) {
+				BlockState blockstate = Telmasaurus.this.level().getBlockState(this.blockPos);
+				level().addParticle(new BlockParticleOption(ParticleTypes.BLOCK, blockstate), blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0.0D, 0.0D, 0.0D);
 				if (blockstate.is(Blocks.TURTLE_EGG)) {
 					int i = blockstate.getValue(TurtleEggBlock.EGGS);
 					blockstate.setValue(TurtleEggBlock.EGGS, Integer.valueOf(1));
@@ -312,11 +311,11 @@ public class Telmasaurus extends DinosaurEntity {
 						Telmasaurus.this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.TURTLE_EGG));
 					}
 					if (i > 1) {
-						Telmasaurus.this.level.setBlockAndUpdate(this.blockPos, blockstate.setValue(TurtleEggBlock.EGGS, i - 1));
-						level.playSound((Player)null, this.blockPos, SoundEvents.TURTLE_EGG_BREAK, SoundSource.NEUTRAL, 1, 1);
+						Telmasaurus.this.level().setBlockAndUpdate(this.blockPos, blockstate.setValue(TurtleEggBlock.EGGS, i - 1));
+						level().playSound((Player)null, this.blockPos, SoundEvents.TURTLE_EGG_BREAK, SoundSource.NEUTRAL, 1, 1);
 					} else {
-						Telmasaurus.this.level.setBlockAndUpdate(this.blockPos, Blocks.AIR.defaultBlockState());
-						level.playSound((Player)null, this.blockPos, SoundEvents.TURTLE_EGG_BREAK, SoundSource.NEUTRAL, 1, 1);
+						Telmasaurus.this.level().setBlockAndUpdate(this.blockPos, Blocks.AIR.defaultBlockState());
+						level().playSound((Player)null, this.blockPos, SoundEvents.TURTLE_EGG_BREAK, SoundSource.NEUTRAL, 1, 1);
 					}
 				}
 				Block eggs = blockstate.getBlock();
@@ -328,11 +327,11 @@ public class Telmasaurus extends DinosaurEntity {
 						Telmasaurus.this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(eggs.asItem()));
 					}
 					if (i > 1) {
-						Telmasaurus.this.level.setBlockAndUpdate(this.blockPos, blockstate.setValue(DinosaurEggBlock.EGGS, i - 1));
-						level.playSound((Player)null, this.blockPos, SoundEvents.TURTLE_EGG_BREAK, SoundSource.NEUTRAL, 1, 1);
+						Telmasaurus.this.level().setBlockAndUpdate(this.blockPos, blockstate.setValue(DinosaurEggBlock.EGGS, i - 1));
+						level().playSound((Player)null, this.blockPos, SoundEvents.TURTLE_EGG_BREAK, SoundSource.NEUTRAL, 1, 1);
 					} else {
-						Telmasaurus.this.level.setBlockAndUpdate(this.blockPos, Blocks.AIR.defaultBlockState());
-						level.playSound((Player)null, this.blockPos, SoundEvents.TURTLE_EGG_BREAK, SoundSource.NEUTRAL, 1, 1);
+						Telmasaurus.this.level().setBlockAndUpdate(this.blockPos, Blocks.AIR.defaultBlockState());
+						level().playSound((Player)null, this.blockPos, SoundEvents.TURTLE_EGG_BREAK, SoundSource.NEUTRAL, 1, 1);
 					}
 				}
 			}
@@ -397,8 +396,8 @@ public class Telmasaurus extends DinosaurEntity {
 	}
 
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Telmasaurus entity = new Telmasaurus(PFEntities.TELMASAURUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Telmasaurus entity = new Telmasaurus(PFEntities.TELMASAURUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -442,9 +441,9 @@ public class Telmasaurus extends DinosaurEntity {
 		}
 
 		protected void eatBerry() {
-			if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(Telmasaurus.this.level, Telmasaurus.this)) {
-				BlockState blockstate = Telmasaurus.this.level.getBlockState(this.blockPos);
-				level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, blockstate), blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0.0D, 0.0D, 0.0D);
+			if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(Telmasaurus.this.level(), Telmasaurus.this)) {
+				BlockState blockstate = Telmasaurus.this.level().getBlockState(this.blockPos);
+				level().addParticle(new BlockParticleOption(ParticleTypes.BLOCK, blockstate), blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0.0D, 0.0D, 0.0D);
 				if (blockstate.is(Blocks.TURTLE_EGG)) {
 					int i = blockstate.getValue(TurtleEggBlock.EGGS);
 					blockstate.setValue(TurtleEggBlock.EGGS, Integer.valueOf(1));
@@ -453,11 +452,11 @@ public class Telmasaurus extends DinosaurEntity {
 						Telmasaurus.this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.TURTLE_EGG));
 					}
 					if (i > 1) {
-						Telmasaurus.this.level.setBlockAndUpdate(this.blockPos, blockstate.setValue(TurtleEggBlock.EGGS, i - 1));
-						level.playSound((Player)null, this.blockPos, SoundEvents.TURTLE_EGG_BREAK, SoundSource.NEUTRAL, 1, 1);
+						Telmasaurus.this.level().setBlockAndUpdate(this.blockPos, blockstate.setValue(TurtleEggBlock.EGGS, i - 1));
+						level().playSound((Player)null, this.blockPos, SoundEvents.TURTLE_EGG_BREAK, SoundSource.NEUTRAL, 1, 1);
 					} else {
-						Telmasaurus.this.level.setBlockAndUpdate(this.blockPos, Blocks.AIR.defaultBlockState());
-						level.playSound((Player)null, this.blockPos, SoundEvents.TURTLE_EGG_BREAK, SoundSource.NEUTRAL, 1, 1);
+						Telmasaurus.this.level().setBlockAndUpdate(this.blockPos, Blocks.AIR.defaultBlockState());
+						level().playSound((Player)null, this.blockPos, SoundEvents.TURTLE_EGG_BREAK, SoundSource.NEUTRAL, 1, 1);
 					}
 				}
 				Block eggs = blockstate.getBlock();
@@ -469,11 +468,11 @@ public class Telmasaurus extends DinosaurEntity {
 						Telmasaurus.this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(eggs.asItem()));
 					}
 					if (i > 1) {
-						Telmasaurus.this.level.setBlockAndUpdate(this.blockPos, blockstate.setValue(DinosaurEggBlock.EGGS, i - 1));
-						level.playSound((Player)null, this.blockPos, SoundEvents.TURTLE_EGG_BREAK, SoundSource.NEUTRAL, 1, 1);
+						Telmasaurus.this.level().setBlockAndUpdate(this.blockPos, blockstate.setValue(DinosaurEggBlock.EGGS, i - 1));
+						level().playSound((Player)null, this.blockPos, SoundEvents.TURTLE_EGG_BREAK, SoundSource.NEUTRAL, 1, 1);
 					} else {
-						Telmasaurus.this.level.setBlockAndUpdate(this.blockPos, Blocks.AIR.defaultBlockState());
-						level.playSound((Player)null, this.blockPos, SoundEvents.TURTLE_EGG_BREAK, SoundSource.NEUTRAL, 1, 1);
+						Telmasaurus.this.level().setBlockAndUpdate(this.blockPos, Blocks.AIR.defaultBlockState());
+						level().playSound((Player)null, this.blockPos, SoundEvents.TURTLE_EGG_BREAK, SoundSource.NEUTRAL, 1, 1);
 					}
 				}
 			}

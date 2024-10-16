@@ -30,11 +30,11 @@ public class CalsoyasuchusEyeLayer extends RenderLayer<Calsoyasuchus, Calsoyasuc
 		if (!(calsoyasuchusRenderer.getModel() instanceof CalsoyasuchusModel)) {
 			return;
 		}
-		long roundTime = calsoyasuchus.level.getDayTime() % 24000;
+		long roundTime = calsoyasuchus.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos calsoyasuchusPos = calsoyasuchus.blockPosition();
-		int i = calsoyasuchus.level.getBrightness(LightLayer.SKY, calsoyasuchusPos);
-		int j = calsoyasuchus.level.getBrightness(LightLayer.BLOCK, calsoyasuchusPos);
+		int i = calsoyasuchus.level().getBrightness(LightLayer.SKY, calsoyasuchusPos);
+		int j = calsoyasuchus.level().getBrightness(LightLayer.BLOCK, calsoyasuchusPos);
 		int brightness;
 		if (night) {
 			brightness = j;

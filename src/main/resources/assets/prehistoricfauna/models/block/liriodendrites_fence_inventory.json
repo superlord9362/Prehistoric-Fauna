@@ -1,6 +1,6 @@
 {
     "parent": "block/fence_inventory",
     "textures": {
-        "texture": "prehistoricfauna:blocks/liriodendrites_planks"
+        "texture": "prehistoricfauna:block/liriodendrites_planks"
     }
 }

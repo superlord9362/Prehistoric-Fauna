@@ -1,0 +1,27 @@
+{
+  "type": "prehistoricfauna:brachyphyllum_tree_4",
+  "config": {
+    "leaves_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:brachyphyllum_leaves",
+        "Properties": {
+          "distance": "7",
+          "persistent": "false",
+          "waterlogged": "false"
+        }
+      }
+    },
+    "max_height": 23,
+    "min_height": 20,
+    "trunk_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:brachyphyllum_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    }
+  }
+}

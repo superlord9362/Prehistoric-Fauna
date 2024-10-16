@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/carpet",
   "textures": {
-    "wool": "prehistoricfauna:blocks/thatch"
+    "wool": "prehistoricfauna:block/thatch"
   }
 }

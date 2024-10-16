@@ -36,28 +36,28 @@ public class CarnivoreEatFromFeederGoal extends MoveToBlockGoal {
 	}
 
 	protected BlockPos getMoveToTarget() {
-		if (!dinosaur.level.getBlockState(blockPos.north()).isCollisionShapeFullBlock(dinosaur.level, blockPos.north())) {
+		if (!dinosaur.level().getBlockState(blockPos.north()).isCollisionShapeFullBlock(dinosaur.level(), blockPos.north())) {
 			return this.blockPos.north();
 		} else {
-			if (!dinosaur.level.getBlockState(blockPos.south()).isCollisionShapeFullBlock(dinosaur.level, blockPos.south())) {
+			if (!dinosaur.level().getBlockState(blockPos.south()).isCollisionShapeFullBlock(dinosaur.level(), blockPos.south())) {
 				return this.blockPos.south();
 			} else {
-				if (!dinosaur.level.getBlockState(blockPos.east()).isCollisionShapeFullBlock(dinosaur.level, blockPos.east())) {
+				if (!dinosaur.level().getBlockState(blockPos.east()).isCollisionShapeFullBlock(dinosaur.level(), blockPos.east())) {
 					return this.blockPos.east();
 				} else {
-					if (!dinosaur.level.getBlockState(blockPos.west()).isCollisionShapeFullBlock(dinosaur.level, blockPos.west())) {
+					if (!dinosaur.level().getBlockState(blockPos.west()).isCollisionShapeFullBlock(dinosaur.level(), blockPos.west())) {
 						return this.blockPos.west();
 					} else {
-						if (!dinosaur.level.getBlockState(blockPos.north().east()).isCollisionShapeFullBlock(dinosaur.level, blockPos.north().east())) {
+						if (!dinosaur.level().getBlockState(blockPos.north().east()).isCollisionShapeFullBlock(dinosaur.level(), blockPos.north().east())) {
 							return this.blockPos.north().east();
 						} else {
-							if (!dinosaur.level.getBlockState(blockPos.north().west()).isCollisionShapeFullBlock(dinosaur.level, blockPos.north().west())) {
+							if (!dinosaur.level().getBlockState(blockPos.north().west()).isCollisionShapeFullBlock(dinosaur.level(), blockPos.north().west())) {
 								return this.blockPos.north().west();
 							} else {
-								if (!dinosaur.level.getBlockState(blockPos.south().east()).isCollisionShapeFullBlock(dinosaur.level, blockPos.south().east())) {
+								if (!dinosaur.level().getBlockState(blockPos.south().east()).isCollisionShapeFullBlock(dinosaur.level(), blockPos.south().east())) {
 									return this.blockPos.south().east();
 								} else {
-									if (!dinosaur.level.getBlockState(blockPos.south().west()).isCollisionShapeFullBlock(dinosaur.level, blockPos.south().west())) {
+									if (!dinosaur.level().getBlockState(blockPos.south().west()).isCollisionShapeFullBlock(dinosaur.level(), blockPos.south().west())) {
 										return this.blockPos.south().west();
 									} else return blockPos.above();
 								}
@@ -81,7 +81,7 @@ public class CarnivoreEatFromFeederGoal extends MoveToBlockGoal {
 				dinosaur.setEating(true);
 			}
 			if (this.field_220731_g % 5 == 1) {
-				dinosaur.level.playSound((Player)null, this.blockPos, PFSounds.MEAT_EATING, SoundSource.NEUTRAL, 1, 1);
+				dinosaur.level().playSound((Player)null, this.blockPos, PFSounds.MEAT_EATING.get(), SoundSource.NEUTRAL, 1, 1);
 			}
 		}
 		if (dinosaur.getCurrentHunger() >= 13) {
@@ -93,22 +93,22 @@ public class CarnivoreEatFromFeederGoal extends MoveToBlockGoal {
 	protected void eatBerry() {
 		int missingHunger = dinosaur.maxHunger - dinosaur.getCurrentHunger();
 		int hunger = dinosaur.getCurrentHunger();
-		FeederBlock block = (FeederBlock) dinosaur.level.getBlockState(this.blockPos).getBlock();
-		int foodContained = block.getFoodAmount(dinosaur.level, this.blockPos);
+		FeederBlock block = (FeederBlock) dinosaur.level().getBlockState(this.blockPos).getBlock();
+		int foodContained = block.getFoodAmount(dinosaur.level(), this.blockPos);
 		if (missingHunger <= foodContained) {
-			block.setFoodAmount(foodContained - missingHunger, dinosaur.level, this.blockPos);
+			block.setFoodAmount(foodContained - missingHunger, dinosaur.level(), this.blockPos);
 			dinosaur.setHunger(dinosaur.maxHunger);
 			dinosaur.setEating(false);
 		} else if (foodContained - missingHunger < 0) {
-			block.setFoodAmount(0, dinosaur.level, this.blockPos);
+			block.setFoodAmount(0, dinosaur.level(), this.blockPos);
 			dinosaur.setHunger(hunger + foodContained);
 			dinosaur.setEating(false);
-			dinosaur.level.setBlock(blockPos, block.defaultBlockState(), 0);
+			dinosaur.level().setBlock(blockPos, block.defaultBlockState(), 0);
 		}
 		if (dinosaur.getBbHeight() >= 1.5F) {
-			dinosaur.level.playSound((Player)null, this.blockPos, PFSounds.LARGE_MEAT_GULP, SoundSource.NEUTRAL, 1, 1);
+			dinosaur.level().playSound((Player)null, this.blockPos, PFSounds.LARGE_MEAT_GULP.get(), SoundSource.NEUTRAL, 1, 1);
 		} else {
-			dinosaur.level.playSound((Player)null, this.blockPos, PFSounds.SMALL_MEAT_GULP, SoundSource.NEUTRAL, 1, 1);
+			dinosaur.level().playSound((Player)null, this.blockPos, PFSounds.SMALL_MEAT_GULP.get(), SoundSource.NEUTRAL, 1, 1);
 		}
 	}
 

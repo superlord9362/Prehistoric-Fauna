@@ -1,0 +1,27 @@
+{
+  "type": "prehistoricfauna:taxodium_tree_5",
+  "config": {
+    "leaves_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:taxodium_leaves",
+        "Properties": {
+          "distance": "7",
+          "persistent": "false",
+          "waterlogged": "false"
+        }
+      }
+    },
+    "max_height": 38,
+    "min_height": 29,
+    "trunk_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:taxodium_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    }
+  }
+}

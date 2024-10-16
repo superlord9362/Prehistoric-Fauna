@@ -1,9 +1,8 @@
 package superlord.prehistoricfauna.common.blocks;
 
-import java.util.Random;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -16,11 +15,11 @@ public class LiriodendritesLeavesBlock extends LeavesBlock {
 
 	public LiriodendritesLeavesBlock(Block.Properties builder) {
 		super(builder);
-		this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), Integer.valueOf(0)).setValue(DISTANCE, Integer.valueOf(1)).setValue(PERSISTENT, Boolean.valueOf(false)));
+		this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), Integer.valueOf(0)).setValue(WATERLOGGED, Boolean.valueOf(false)).setValue(DISTANCE, Integer.valueOf(1)).setValue(PERSISTENT, Boolean.valueOf(false)));
 	}
 
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(AGE, DISTANCE, PERSISTENT);
+		builder.add(AGE, DISTANCE, PERSISTENT, WATERLOGGED);
 	}
 
 	public IntegerProperty getAgeProperty() {
@@ -44,7 +43,7 @@ public class LiriodendritesLeavesBlock extends LeavesBlock {
 	}
 
 	@SuppressWarnings("deprecation")
-	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
+	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
 		super.tick(state, worldIn, pos, rand);
 		if(!worldIn.isAreaLoaded(pos, 1)) return;
 		if(worldIn.getRawBrightness(pos, 0) >= 9) {

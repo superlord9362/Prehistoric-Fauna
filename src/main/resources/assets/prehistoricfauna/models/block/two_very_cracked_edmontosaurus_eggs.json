@@ -2,6 +2,6 @@
 	"parent": "prehistoricfauna:block/two_giant_tall_eggs",
 	"ambientocclusion": false,
 	"textures": {
-		"egg": "prehistoricfauna:blocks/edmontosaurus_egg_very_cracked"
+		"egg": "prehistoricfauna:block/edmontosaurus_egg_very_cracked"
 	}
 }

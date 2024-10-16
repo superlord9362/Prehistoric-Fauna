@@ -17,7 +17,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -50,7 +49,7 @@ public abstract class PrehistoricEntity extends Animal {
 				double d0 = this.random.nextGaussian() * 0.02D;
 				double d1 = this.random.nextGaussian() * 0.02D;
 				double d2 = this.random.nextGaussian() * 0.02D;
-				this.level.addParticle(ParticleTypes.HEART, this.getRandomX(1.0D), this.getRandomY() + 0.5D, this.getRandomZ(1.0D), d0, d1, d2);
+				this.level().addParticle(ParticleTypes.HEART, this.getRandomX(1.0D), this.getRandomY() + 0.5D, this.getRandomZ(1.0D), d0, d1, d2);
 			}
 		}
 
@@ -62,17 +61,12 @@ public abstract class PrehistoricEntity extends Animal {
 	}
 
 	public boolean hurt(DamageSource p_27567_, float p_27568_) {
-	      if (this.isInvulnerableTo(p_27567_)) {
-	         return false;
-	      } else {
-	         this.inLove = 0;
-	         return super.hurt(p_27567_, p_27568_);
-	      }
-	   }
-
-	@SuppressWarnings("deprecation")
-	public float getWalkTargetValue(BlockPos pos, LevelReader worldIn) {
-		return worldIn.getBlockState(pos.below()).getBlock() == Blocks.GRASS_BLOCK ? 10.0F : worldIn.getBrightness(pos) - 0.5F;
+		if (this.isInvulnerableTo(p_27567_)) {
+			return false;
+		} else {
+			this.inLove = 0;
+			return super.hurt(p_27567_, p_27568_);
+		}
 	}
 
 	public void addAdditionalSaveData(CompoundTag compound) {
@@ -106,8 +100,9 @@ public abstract class PrehistoricEntity extends Animal {
 		return false;
 	}
 
+	@SuppressWarnings("resource")
 	protected int getExperienceReward(Player player) {
-		return 1 + this.level.random.nextInt(3);
+		return 1 + this.level().random.nextInt(3);
 	}
 
 	protected void usePlayerItem(Player player, ItemStack stack) {
@@ -127,7 +122,7 @@ public abstract class PrehistoricEntity extends Animal {
 			this.playerInLove = player.getUUID();
 		}
 
-		this.level.broadcastEntityEvent(this, (byte)18);
+		this.level().broadcastEntityEvent(this, (byte)18);
 	}
 
 	public void setInLove(int ticks) {
@@ -139,7 +134,7 @@ public abstract class PrehistoricEntity extends Animal {
 		if (this.playerInLove == null) {
 			return null;
 		} else {
-			Player playerentity = this.level.getPlayerByUUID(this.playerInLove);
+			Player playerentity = this.level().getPlayerByUUID(this.playerInLove);
 			return playerentity instanceof ServerPlayer ? (ServerPlayer)playerentity : null;
 		}
 	}
@@ -169,7 +164,7 @@ public abstract class PrehistoricEntity extends Animal {
 				double d0 = this.random.nextGaussian() * 0.02D;
 				double d1 = this.random.nextGaussian() * 0.02D;
 				double d2 = this.random.nextGaussian() * 0.02D;
-				this.level.addParticle(ParticleTypes.HEART, this.getRandomX(1.0D), this.getRandomY() + 0.5D, this.getRandomZ(1.0D), d0, d1, d2);
+				this.level().addParticle(ParticleTypes.HEART, this.getRandomX(1.0D), this.getRandomY() + 0.5D, this.getRandomZ(1.0D), d0, d1, d2);
 			}
 		} else {
 			super.handleEntityEvent(id);

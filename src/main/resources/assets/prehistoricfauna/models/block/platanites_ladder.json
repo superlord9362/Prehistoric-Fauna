@@ -1,7 +1,7 @@
 {
 	"parent": "block/ladder",
 	"textures": {
-		"particle": "prehistoricfauna:blocks/platanites_ladder",
-		"texture": "prehistoricfauna:blocks/platanites_ladder"
+		"particle": "prehistoricfauna:block/platanites_ladder",
+		"texture": "prehistoricfauna:block/platanites_ladder"
 	}
 }

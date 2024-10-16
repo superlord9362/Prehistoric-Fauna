@@ -1,6 +1,6 @@
 {
 	"parent": "prehistoricfauna:block/hedge_extended",
 	"textures": {
-		"leaf": "prehistoricfauna:blocks/platanites_leaves"
+		"leaf": "prehistoricfauna:block/platanites_leaves"
 	} 
 }

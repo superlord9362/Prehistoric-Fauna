@@ -1,6 +1,6 @@
 {
     "parent": "block/button",
     "textures": {
-        "texture": "prehistoricfauna:blocks/podozamites_planks"
+        "texture": "prehistoricfauna:block/podozamites_planks"
     }
 }

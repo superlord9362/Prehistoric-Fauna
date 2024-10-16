@@ -2,13 +2,13 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/cube_bottom_top",
 	"textures": {
-		"0": "prehistoricfauna:blocks/paleo_table_bottom",
-		"1": "prehistoricfauna:blocks/paleo_table_side_1",
-		"2": "prehistoricfauna:blocks/paleo_table_side_2",
-		"3": "prehistoricfauna:blocks/paleo_table_side_3",
-		"4": "prehistoricfauna:blocks/paleo_table_side_4",
-		"5": "prehistoricfauna:blocks/paleo_table_top",
-		"particle": "prehistoricfauna:blocks/paleo_table_bottom"
+		"0": "prehistoricfauna:block/paleo_table_bottom",
+		"1": "prehistoricfauna:block/paleo_table_side_1",
+		"2": "prehistoricfauna:block/paleo_table_side_2",
+		"3": "prehistoricfauna:block/paleo_table_side_3",
+		"4": "prehistoricfauna:block/paleo_table_side_4",
+		"5": "prehistoricfauna:block/paleo_table_top",
+		"particle": "prehistoricfauna:block/paleo_table_bottom"
 	},
 	"elements": [
 		{

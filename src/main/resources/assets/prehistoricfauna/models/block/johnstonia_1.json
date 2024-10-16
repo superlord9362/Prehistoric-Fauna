@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "prehistoricfauna:blocks/johnstonia_2"
+        "cross": "prehistoricfauna:block/johnstonia_2"
     }
 }

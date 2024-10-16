@@ -1,6 +1,6 @@
 {
     "parent": "block/fence_inventory",
     "textures": {
-        "texture": "prehistoricfauna:blocks/woodworthia_planks"
+        "texture": "prehistoricfauna:block/woodworthia_planks"
     }
 }

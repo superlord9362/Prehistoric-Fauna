@@ -78,10 +78,9 @@ public class Sinosauropteryx extends DinosaurEntity {
 	private int maxHunger = 15;
 	private int warningSoundTicks;
 
-	@SuppressWarnings("deprecation")
 	public Sinosauropteryx(EntityType<? extends Sinosauropteryx> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1);
 		super.maxHunger = maxHunger;
 	}
 	
@@ -174,20 +173,20 @@ public class Sinosauropteryx extends DinosaurEntity {
 	}
 	
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.SINOSAUROPTERYX_IDLE;
+		return this.isAsleep() ? null : PFSounds.SINOSAUROPTERYX_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.SINOSAUROPTERYX_HURT;
+		return PFSounds.SINOSAUROPTERYX_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.SINOSAUROPTERYX_DEATH;
+		return PFSounds.SINOSAUROPTERYX_DEATH.get();
 	}
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.SINOSAUROPTERYX_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.SINOSAUROPTERYX_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -246,8 +245,8 @@ public class Sinosauropteryx extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Sinosauropteryx entity = new Sinosauropteryx(PFEntities.SINOSAUROPTERYX.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Sinosauropteryx entity = new Sinosauropteryx(PFEntities.SINOSAUROPTERYX.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 	

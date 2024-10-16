@@ -1,7 +1,7 @@
 {
 	"parent": "block/ladder",
 	"textures": {
-		"particle": "prehistoricfauna:blocks/czekanowskia_ladder",
-		"texture": "prehistoricfauna:blocks/czekanowskia_ladder"
+		"particle": "prehistoricfauna:block/czekanowskia_ladder",
+		"texture": "prehistoricfauna:block/czekanowskia_ladder"
 	}
 }

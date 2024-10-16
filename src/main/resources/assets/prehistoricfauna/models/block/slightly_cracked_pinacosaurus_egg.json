@@ -2,6 +2,6 @@
 	"parent": "prehistoricfauna:block/one_medium_round_egg",
 	"ambientocclusion": false,
 	"textures": {
-		"egg": "prehistoricfauna:blocks/pinacosaurus_egg_slightly_cracked"
+		"egg": "prehistoricfauna:block/pinacosaurus_egg_slightly_cracked"
 	}
 }

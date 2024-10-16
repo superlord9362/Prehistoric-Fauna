@@ -3,7 +3,7 @@ package superlord.prehistoricfauna.common.entity.fossil.triassic;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -172,14 +172,14 @@ public class PostosuchusSkeleton extends PrehistoricEntity {
 				this.setSleeping(false);
 	    	} else if (player.isShiftKeyDown() && !this.isPushableState() && !this.isLooking()) {
 	    		this.setPushable(true);
-				player.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.skeleton.pushable"), true);
+				player.displayClientMessage(Component.translatable("entity.prehistoricfauna.skeleton.pushable"), true);
 	    	} else if (player.isShiftKeyDown() && this.isPushableState()) {
 	    		this.setPushable(false);
 	    		this.setLooking(true);
-				player.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.skeleton.rotating"), true);
+				player.displayClientMessage(Component.translatable("entity.prehistoricfauna.skeleton.rotating"), true);
 	    	} else if (player.isShiftKeyDown() && this.isLooking()) {
 	    		this.setLooking(false);
-				player.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.skeleton.neutral"), true);
+				player.displayClientMessage(Component.translatable("entity.prehistoricfauna.skeleton.neutral"), true);
 	    	}
 	    }
         return super.mobInteract(player, hand);
@@ -189,12 +189,12 @@ public class PostosuchusSkeleton extends PrehistoricEntity {
 	}
 
 	private void playBrokenSound() {
-		this.level.playSound((Player)null, this.getX(), this.getY(), this.getZ(), SoundEvents.SKELETON_HURT, this.getSoundSource(), 1.0F, 1.0F);
+		this.level().playSound((Player)null, this.getX(), this.getY(), this.getZ(), SoundEvents.SKELETON_HURT, this.getSoundSource(), 1.0F, 1.0F);
 	}
 
 	private void playParticles() {
-		if (this.level instanceof ServerLevel) {
-			((ServerLevel)this.level).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.BONE_BLOCK.defaultBlockState()), this.getX(), this.getY(0.6666666666666666D), this.getZ(), 10, (double)(this.getBbWidth() / 4.0F), (double)(this.getBbHeight() / 4.0F), (double)(this.getBbWidth() / 4.0F), 0.05D);
+		if (this.level() instanceof ServerLevel) {
+			((ServerLevel)this.level()).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.BONE_BLOCK.defaultBlockState()), this.getX(), this.getY(0.6666666666666666D), this.getZ(), 10, (double)(this.getBbWidth() / 4.0F), (double)(this.getBbHeight() / 4.0F), (double)(this.getBbWidth() / 4.0F), 0.05D);
 		}
 	}
 
@@ -221,7 +221,7 @@ public class PostosuchusSkeleton extends PrehistoricEntity {
 	}
 
 	private void spawnFossil(DamageSource p_213815_1_) {
-	      Block.popResource(this.level, this.blockPosition(), new ItemStack(PFItems.POSTOSUCHUS_SKELETON.get()));
+	      Block.popResource(this.level(), this.blockPosition(), new ItemStack(PFItems.POSTOSUCHUS_SKELETON.get()));
 	}
 	
 	static class LookAtPlayerGoal extends net.minecraft.world.entity.ai.goal.LookAtPlayerGoal {

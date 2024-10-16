@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": "prehistoricfauna:small_platanites_tree_4",
+    "features": [
+      {
+        "chance": 0.25,
+        "feature": "prehistoricfauna:small_platanites_tree_1"
+      },
+      {
+        "chance": 0.25,
+        "feature": "prehistoricfauna:small_platanites_tree_2"
+      },
+      {
+        "chance": 0.25,
+        "feature": "prehistoricfauna:small_platanites_tree_3"
+      }
+    ]
+  }
+}

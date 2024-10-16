@@ -68,10 +68,9 @@ public class Hyperodapedon extends DinosaurEntity {
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(PFBlocks.SCYTOPHYLLUM.get().asItem());
 	private int maxHunger = 10;
 
-	@SuppressWarnings("deprecation")
 	public Hyperodapedon(EntityType<? extends Hyperodapedon> type, Level level) {
 		super(type, level);
-		super.maxUpStep = 1.0F;
+		super.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -131,15 +130,15 @@ public class Hyperodapedon extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.HYPERODAPEDON_IDLE;
+		return this.isAsleep() ? null : PFSounds.HYPERODAPEDON_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.HYPERODAPEDON_HURT;
+		return PFSounds.HYPERODAPEDON_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.HYPERODAPEDON_DEATH;
+		return PFSounds.HYPERODAPEDON_DEATH.get();
 	}
 
 	@Override
@@ -168,8 +167,8 @@ public class Hyperodapedon extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Hyperodapedon entity = new Hyperodapedon(PFEntities.HYPERODAPEDON.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Hyperodapedon entity = new Hyperodapedon(PFEntities.HYPERODAPEDON.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 	

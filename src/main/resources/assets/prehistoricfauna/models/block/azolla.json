@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "prehistoricfauna:blocks/azolla",
-		"particle": "prehistoricfauna:blocks/azolla"
+		"0": "prehistoricfauna:block/azolla",
+		"particle": "prehistoricfauna:block/azolla"
 	},
 	"elements": [
 		{

@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:blocks/liriodendrites_ladder"
+        "layer0": "prehistoricfauna:block/liriodendrites_ladder"
     }
 }

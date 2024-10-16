@@ -22,7 +22,7 @@ public class TelmasaurusRenderer extends MobRenderer<Telmasaurus, TelmasaurusMod
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public TelmasaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new TelmasaurusModel(renderManagerIn.bakeLayer(ClientEvents.TELMASAURUS)), 0.25F);
-		this.addLayer(new ItemInHandLayer(this));
+		this.addLayer(new ItemInHandLayer(this, renderManagerIn.getItemInHandRenderer()));
 	}
 
 	protected void scale(Telmasaurus thescelosaurus, PoseStack matrixStackIn, float partialTickTime) {

@@ -1,7 +1,6 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.hellcreek;
 
 import java.util.List;
-import java.util.Random;
 
 import javax.annotation.Nullable;
 
@@ -16,6 +15,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -81,10 +81,9 @@ public class Tyrannosaurus extends DinosaurEntity {
 	public int attackTick = 0;
 	private Goal panicGoal;
 
-	@SuppressWarnings("deprecation")
 	public Tyrannosaurus(EntityType<? extends Tyrannosaurus> type, Level worldIn) {
 		super(type, worldIn);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1);
 		super.maxHunger = maxHunger;
 	}
 
@@ -170,24 +169,25 @@ public class Tyrannosaurus extends DinosaurEntity {
 	protected SoundEvent getAmbientSound() {
 		if (this.isAsleep() ) {
 			if (!this.isBaby()) {
-				return PFSounds.TYRANNOSAURUS_SNORES;
+				return PFSounds.TYRANNOSAURUS_SNORES.get();
 			} else return null;
-		} else return PFSounds.TYRANNOSAURUS_IDLE;
+		} else return PFSounds.TYRANNOSAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.TYRANNOSAURUS_HURT;
+		return PFSounds.TYRANNOSAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.TYRANNOSAURUS_DEATH;
+		return PFSounds.TYRANNOSAURUS_DEATH.get();
 	}
 
+	@SuppressWarnings("deprecation")
 	protected void playStepSound(BlockPos pos, BlockState state) {
 		if (this.isBaby()) {
-			if (!state.getMaterial().isLiquid()) {
-				BlockState blockstate = this.level.getBlockState(pos.above());
-				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level, pos, this) : state.getSoundType(level, pos, this);
+			if (!state.liquid()) {
+				BlockState blockstate = this.level().getBlockState(pos.above());
+				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level(), pos, this) : state.getSoundType(level(), pos, this);
 				this.playSound(soundtype.getStepSound(), soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			}
 		} else {
@@ -197,7 +197,7 @@ public class Tyrannosaurus extends DinosaurEntity {
 	
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.TYRANNOSAURUS_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.TYRANNOSAURUS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -254,7 +254,7 @@ public class Tyrannosaurus extends DinosaurEntity {
 			double d0 = this.getAttackReachSqr(enemy);
 			if (distToEnemySqr <= d0 && this.isTimeToAttack()) {
 				this.resetAttackCooldown();
-				Tyrannosaurus.this.playSound(PFSounds.TYRANNOSAURUS_BITE, 1.0F, Tyrannosaurus.this.getVoicePitch());
+				Tyrannosaurus.this.playSound(PFSounds.TYRANNOSAURUS_BITE.get(), 1.0F, Tyrannosaurus.this.getVoicePitch());
 				this.mob.doHurtTarget(enemy);
 			} else if (distToEnemySqr <= d0 * 2.0D) {
 				if (this.isTimeToAttack()) {
@@ -325,7 +325,7 @@ public class Tyrannosaurus extends DinosaurEntity {
 			this.tyrannosaurus.setHasBaby(true);
 			this.animal.resetLove();
 			this.partner.resetLove();
-			Random random = this.animal.getRandom();
+			RandomSource random = this.animal.getRandom();
 			if (this.level.getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
 				this.level.addFreshEntity(new ExperienceOrb(this.level, this.animal.getX(), this.animal.getY(), this.animal.getZ(), random.nextInt(7) + 1));
 			}
@@ -374,7 +374,7 @@ public class Tyrannosaurus extends DinosaurEntity {
 
 		public boolean canUse() {
 			if (this.babyTyrannosaurus.isBaby() && !this.babyTyrannosaurus.isJuvenile()) {
-				List<? extends Tyrannosaurus> list = this.babyTyrannosaurus.level.getEntitiesOfClass(this.babyTyrannosaurus.getClass(), this.babyTyrannosaurus.getBoundingBox().inflate(8.0D, 4.0D, 8.0D));
+				List<? extends Tyrannosaurus> list = this.babyTyrannosaurus.level().getEntitiesOfClass(this.babyTyrannosaurus.getClass(), this.babyTyrannosaurus.getBoundingBox().inflate(8.0D, 4.0D, 8.0D));
 				Tyrannosaurus tyrannosaurus = null;
 				double d0 = Double.MAX_VALUE;
 				for (Tyrannosaurus tyrannosaurus1 : list) {
@@ -430,8 +430,8 @@ public class Tyrannosaurus extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Tyrannosaurus entity = new Tyrannosaurus(PFEntities.TYRANNOSAURUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Tyrannosaurus entity = new Tyrannosaurus(PFEntities.TYRANNOSAURUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 

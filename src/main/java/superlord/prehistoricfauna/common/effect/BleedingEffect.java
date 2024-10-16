@@ -13,8 +13,8 @@ public class BleedingEffect extends MobEffect {
 	
 	@Override
 	public void applyEffectTick(LivingEntity entityLivingBase, int amplifier) {
-		if (entityLivingBase.getDeltaMovement().x !=  0 && entityLivingBase.getDeltaMovement().y != 0 && entityLivingBase.getDeltaMovement().z != 0) {
-			entityLivingBase.hurt(PFDamageSources.BLEEDING, 1.0F);
+		if (entityLivingBase.getDeltaMovement().x !=  0 || entityLivingBase.getDeltaMovement().y != 0 || entityLivingBase.getDeltaMovement().z != 0) {
+			entityLivingBase.hurt(PFDamageSources.causeBleedingDamage(entityLivingBase.level().registryAccess()), 1.0F);
 		}
 	}
 	

@@ -1,7 +1,7 @@
 {
 	"parent": "block/cube_column",
 	"textures": {
-		"end": "prehistoricfauna:blocks/zamites_planks",
-		"side": "prehistoricfauna:blocks/zamites_bookshelf"
+		"end": "prehistoricfauna:block/zamites_planks",
+		"side": "prehistoricfauna:block/zamites_bookshelf"
 	}
 }

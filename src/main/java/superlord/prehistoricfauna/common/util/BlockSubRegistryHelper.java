@@ -1,20 +1,12 @@
 package superlord.prehistoricfauna.common.util;
 
-import javax.annotation.Nullable;
-
-import org.apache.commons.lang3.tuple.Pair;
-
 import com.google.common.base.Supplier;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.DeferredRegister;
@@ -52,49 +44,46 @@ public class BlockSubRegistryHelper extends AbstractSubRegistryHelper<Block> {
 			return new ChestBlockEntityWithoutLevelRenderer<>(dispatcher, entityModelSet, new PFChestBlockEntity(BlockPos.ZERO, Blocks.CHEST.defaultBlockState()));
 		});
 	}
-	
-	public <B extends Block> RegistryObject<B> createCompatBlock(String modId, String name, Supplier<? extends B> supplier, @Nullable CreativeModeTab group) {
+
+	public <B extends Block> RegistryObject<B> createBlock(String name, Supplier<? extends B> supplier) {
 		RegistryObject<B> block = this.deferredRegister.register(name, supplier);
-		this.itemRegister.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(areModsLoaded(modId) ? group : null)));
+		this.itemRegister.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+		return block;
+	}
+
+	public <B extends Block> RegistryObject<B> createBlock(String name, Supplier<? extends B> supplier, Item.Properties properties) {
+		RegistryObject<B> block = this.deferredRegister.register(name, supplier);
+		this.itemRegister.register(name, () -> new BlockItem(block.get(), properties));
+		return block;
+	}
+
+	public RegistryObject<PFChestBlock> createChestBlock(String name, String materialName, Block.Properties properties) {
+		String modId = this.parent.getModId();
+		String chestMaterialsName = ChestManager.registerMaterials(modId, materialName, false);
+		RegistryObject<PFChestBlock> block = this.deferredRegister.register(name, () -> new PFChestBlock(chestMaterialsName, properties));
+		this.itemRegister.register(name, () -> new BEWLRFuelBlockItem(block.get(), new Item.Properties(), () -> () -> chestBEWLR(false), 300));
+		return block;
+	}
+
+	public RegistryObject<PFChestBlock> createChestBlock(String materialName, Block.Properties properties) {
+		return createChestBlock(materialName + "_chest", materialName, properties);
+	}
+
+	@SuppressWarnings("unused")
+	public RegistryObject<PFTrappedChestBlock> createTrappedChestBlock(String name, String materialName, Block.Properties properties) {
+		String modId = this.parent.getModId();
+		RegistryObject<PFTrappedChestBlock> block = this.deferredRegister.register(name, () -> new PFTrappedChestBlock(modId + ":" + materialName + "_trapped", properties));
+		String chestMaterialsName = ChestManager.registerMaterials(modId, materialName, true);
+		this.itemRegister.register(name, () -> new BEWLRFuelBlockItem(block.get(), new Item.Properties(), () -> () -> chestBEWLR(true), 300));
 		return block;
 	}
 	
-	public <B extends Block> RegistryObject<B> createCompatBlock(String name, Supplier<? extends B> supplier, @Nullable CreativeModeTab group, String... modIds) {
-		RegistryObject<B> block = this.deferredRegister.register(name, supplier);
-		this.itemRegister.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(areModsLoaded(modIds) ? group : null)));
-		return block;
+	public RegistryObject<PFTrappedChestBlock> createTrappedChestBlock(String materialName, Block.Properties properties) {
+		return createTrappedChestBlock(materialName + "_trapped_chest", materialName, properties);
 	}
-	
-	public Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> createCompatChestBlocks(String compatModId, String name, MaterialColor color) {
-		boolean isModLoaded = areModsLoaded(compatModId);
-		CreativeModeTab chestGroup = isModLoaded ? CreativeModeTab.TAB_DECORATIONS : null;
-		CreativeModeTab trappedChestGroup = isModLoaded ? CreativeModeTab.TAB_REDSTONE : null;
-		String modId = this.parent.getModId();
-		String chestName = name + "_chest";
-		String trappedChestName = name + "_trapped_chest";
-		RegistryObject<PFChestBlock> chest = this.deferredRegister.register(chestName, () -> new PFChestBlock(modId + ":" + name, Block.Properties.of(Material.WOOD, color).strength(2.5F).sound(SoundType.WOOD)));
-		RegistryObject<PFTrappedChestBlock> trappedChest = this.deferredRegister.register(trappedChestName, () -> new PFTrappedChestBlock(modId + ":" + name + "_trapped", Block.Properties.of(Material.WOOD, color).strength(2.5F).sound(SoundType.WOOD)));
-		this.itemRegister.register(chestName, () -> new BEWLRFuelBlockItem(chest.get(), new Item.Properties().tab(chestGroup), () -> () -> chestBEWLR(false), 300));
-		this.itemRegister.register(trappedChestName, () -> new BEWLRFuelBlockItem(trappedChest.get(), new Item.Properties().tab(trappedChestGroup), () -> () -> chestBEWLR(true), 300));
-		ChestManager.putChestInfo(modId, name, false);
-		ChestManager.putChestInfo(modId, name, true);
-		return Pair.of(chest, trappedChest);
+
+	public RegistryObject<PFTrappedChestBlock> createTrappedChestBlockNamed(String materialName, Block.Properties properties) {
+		return createTrappedChestBlock("trapped_" + materialName + "_chest", materialName, properties);
 	}
-	
-	public Pair<RegistryObject<PFChestBlock>, RegistryObject<PFTrappedChestBlock>> createCompatChestBlocks(String name, MaterialColor color, String... modIds) {
-		boolean isInGroup = areModsLoaded(modIds);
-		CreativeModeTab chestGroup = isInGroup ? CreativeModeTab.TAB_DECORATIONS : null;
-		CreativeModeTab trappedChestGroup = isInGroup ? CreativeModeTab.TAB_REDSTONE : null;
-		String modId = this.parent.getModId();
-		String chestName = name + "_chest";
-		String trappedChestName = name + "_trapped_chest";
-		RegistryObject<PFChestBlock> chest = this.deferredRegister.register(chestName, () -> new PFChestBlock(modId + ":" + name, Block.Properties.of(Material.WOOD, color).strength(2.5F).sound(SoundType.WOOD)));
-		RegistryObject<PFTrappedChestBlock> trappedChest = this.deferredRegister.register(trappedChestName, () -> new PFTrappedChestBlock(modId + ":" + name + "_trapped", Block.Properties.of(Material.WOOD, color).strength(2.5F).sound(SoundType.WOOD)));
-		this.itemRegister.register(chestName, () -> new BEWLRFuelBlockItem(chest.get(), new Item.Properties().tab(chestGroup), () -> () -> chestBEWLR(false), 300));
-		this.itemRegister.register(trappedChestName, () -> new BEWLRFuelBlockItem(trappedChest.get(), new Item.Properties().tab(trappedChestGroup), () -> () -> chestBEWLR(true), 300));
-		ChestManager.putChestInfo(modId, name, false);
-		ChestManager.putChestInfo(modId, name, true);
-		return Pair.of(chest, trappedChest);
-	}
-	
+
 }

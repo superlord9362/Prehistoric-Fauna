@@ -1,7 +1,5 @@
 package superlord.prehistoricfauna.common.blocks;
 
-import java.util.Random;
-
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
@@ -9,6 +7,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -70,7 +69,7 @@ public class CrassostreaOysterBlock extends BushBlock implements BonemealableBlo
 	}
 
 	@SuppressWarnings("deprecation")
-	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
+	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
 		super.tick(state, worldIn, pos, rand);
 		if(!worldIn.isAreaLoaded(pos, 1)) return;
 		if(worldIn.getRawBrightness(pos, 0) >= 9) {
@@ -132,14 +131,14 @@ public class CrassostreaOysterBlock extends BushBlock implements BonemealableBlo
 		return new ItemStack(this.getBaseSeedId());
 	}
 
-	public boolean isValidBonemealTarget(BlockGetter p_52258_, BlockPos p_52259_, BlockState state, boolean p_52261_) {
+	public boolean isValidBonemealTarget(LevelReader p_52258_, BlockPos p_52259_, BlockState state, boolean p_52261_) {
 		return !this.isMaxAge(state);
 	}
 
-	public boolean isBonemealSuccess(Level p_52268_, Random p_52269_, BlockPos p_52270_, BlockState p_52271_) {
+	public boolean isBonemealSuccess(Level p_52268_, RandomSource p_52269_, BlockPos p_52270_, BlockState p_52271_) {
 		return true;
 	}
-	public void performBonemeal(ServerLevel worldIn, Random rand, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerLevel worldIn, RandomSource rand, BlockPos pos, BlockState state) {
 		this.grow(worldIn, pos, state);
 	}
 

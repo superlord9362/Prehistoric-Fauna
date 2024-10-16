@@ -68,16 +68,14 @@ public class Yutyrannus extends HuntingDinosaurEntity {
 	private int warningSoundTicks;
 	public int attackTick = 0;
 	
-	@SuppressWarnings("deprecation")
 	public Yutyrannus(EntityType<? extends Yutyrannus> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1);
 		super.maxHunger = maxHunger;
 	}
 	
 	public boolean isFood(ItemStack stack) {
-		return stack.getItem() == PFItems.RAW_SMALL_MARGINOCEPHALIAN_MEAT.get(); 
-		//To-Do: Large Raw Sauropodomorph
+		return stack.getItem() == PFItems.RAW_LARGE_SAUROPOD_MEAT.get(); 
 	}
 	
 	protected void registerGoals() {
@@ -131,22 +129,23 @@ public class Yutyrannus extends HuntingDinosaurEntity {
 	}
 	
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.YUTYRANNUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.YUTYRANNUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.YUTYRANNUS_HURT;
+		return PFSounds.YUTYRANNUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.YUTYRANNUS_DEATH;
+		return PFSounds.YUTYRANNUS_DEATH.get();
 	}
 
+	@SuppressWarnings("deprecation")
 	protected void playStepSound(BlockPos pos, BlockState state) {
 		if (this.isBaby()) {
-			if (!state.getMaterial().isLiquid()) {
-				BlockState blockstate = this.level.getBlockState(pos.above());
-				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level, pos, this) : state.getSoundType(level, pos, this);
+			if (!state.liquid()) {
+				BlockState blockstate = this.level().getBlockState(pos.above());
+				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level(), pos, this) : state.getSoundType(level(), pos, this);
 				this.playSound(soundtype.getStepSound(), soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			}
 		} else {
@@ -156,7 +155,7 @@ public class Yutyrannus extends HuntingDinosaurEntity {
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.YUTYRANNUS_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.YUTYRANNUS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -179,7 +178,7 @@ public class Yutyrannus extends HuntingDinosaurEntity {
 	public void aiStep() {
 		super.aiStep();
 		if (this.isHunting()) {
-			for(Yutyrannus yutyrannus : this.level.getEntitiesOfClass(Yutyrannus.class, this.getBoundingBox().inflate(8.0D, 4.0D, 8.0D))) {
+			for(Yutyrannus yutyrannus : this.level().getEntitiesOfClass(Yutyrannus.class, this.getBoundingBox().inflate(8.0D, 4.0D, 8.0D))) {
 				if (!yutyrannus.isBaby()) yutyrannus.setHunting(true);
 			}
 		}
@@ -194,7 +193,7 @@ public class Yutyrannus extends HuntingDinosaurEntity {
 			double d0 = this.getAttackReachSqr(enemy);
 			if (distToEnemySqr <= d0 && this.isTimeToAttack()) {
 				this.resetAttackCooldown();
-				Yutyrannus.this.playSound(PFSounds.YUTYRANNUS_BITE, 1.0F, Yutyrannus.this.getVoicePitch());
+				Yutyrannus.this.playSound(PFSounds.YUTYRANNUS_BITE.get(), 1.0F, Yutyrannus.this.getVoicePitch());
 				this.mob.doHurtTarget(enemy);
 			} else if (distToEnemySqr <= d0 * 2.0D) {
 				if (this.isTimeToAttack()) {
@@ -225,8 +224,8 @@ public class Yutyrannus extends HuntingDinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Yutyrannus entity = new Yutyrannus(PFEntities.YUTYRANNUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Yutyrannus entity = new Yutyrannus(PFEntities.YUTYRANNUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 	

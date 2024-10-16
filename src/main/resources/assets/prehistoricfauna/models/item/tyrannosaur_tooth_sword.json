@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "prehistoricfauna:items/tooth_sword"
+        "layer0": "prehistoricfauna:item/tooth_sword"
     }
 }

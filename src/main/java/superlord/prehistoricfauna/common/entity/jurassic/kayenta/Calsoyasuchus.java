@@ -82,11 +82,10 @@ public class Calsoyasuchus extends DinosaurEntity {
 	private int maxHunger = 15;
 	private int warningSoundTicks;
 
-	@SuppressWarnings("deprecation")
 	public Calsoyasuchus(EntityType<? extends DinosaurEntity> type, Level worldIn) {
 		super(type, worldIn);
 		this.moveControl = new Calsoyasuchus.CalsoyasuchusMoveControl(this);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -206,20 +205,20 @@ public class Calsoyasuchus extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.CALSOYASUCHUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.CALSOYASUCHUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.CALSOYASUCHUS_HURT;
+		return PFSounds.CALSOYASUCHUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.CALSOYASUCHUS_DEATH;
+		return PFSounds.CALSOYASUCHUS_DEATH.get();
 	}
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.CALSOYASUCHUS_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.CALSOYASUCHUS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -244,12 +243,13 @@ public class Calsoyasuchus extends DinosaurEntity {
 			super(Calsoyasuchus.this, Player.class, 20, true, true, (Predicate<LivingEntity>)null);
 		}
 
+		@SuppressWarnings("resource")
 		public boolean canUse() {
 			if (Calsoyasuchus.this.isBaby()) {
 				return false;
 			} else {
 				if (super.canUse()) {
-					for (@SuppressWarnings("unused") Calsoyasuchus calsoyasuchus : Calsoyasuchus.this.level.getEntitiesOfClass(Calsoyasuchus.class, Calsoyasuchus.this.getBoundingBox().inflate(8.0D, 4.0D, 8.0D))) {	
+					for (@SuppressWarnings("unused") Calsoyasuchus calsoyasuchus : Calsoyasuchus.this.level().getEntitiesOfClass(Calsoyasuchus.class, Calsoyasuchus.this.getBoundingBox().inflate(8.0D, 4.0D, 8.0D))) {	
 						if (Calsoyasuchus.this.isBaby()) {
 							return true;
 						}
@@ -315,8 +315,8 @@ public class Calsoyasuchus extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Calsoyasuchus entity = new Calsoyasuchus(PFEntities.CALSOYASUCHUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Calsoyasuchus entity = new Calsoyasuchus(PFEntities.CALSOYASUCHUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -357,7 +357,7 @@ public class Calsoyasuchus extends DinosaurEntity {
 		}
 		
 		public boolean canContinueToUse() {
-			return !this.calsoyasuchus.isInWater() && this.tryTicks <= GIVE_UP_TICKS && this.isValidTarget(this.calsoyasuchus.level, this.blockPos);
+			return !this.calsoyasuchus.isInWater() && this.tryTicks <= GIVE_UP_TICKS && this.isValidTarget(this.calsoyasuchus.level(), this.blockPos);
 		}
 		
 		public boolean canUse() {
@@ -384,7 +384,7 @@ public class Calsoyasuchus extends DinosaurEntity {
 			if (!this.shouldPanic() || !this.mob.isBaby()) {
 				return false;
 			} else {
-				BlockPos blockpos = this.lookForWater(this.mob.level, this.mob, 7);
+				BlockPos blockpos = this.lookForWater(this.mob.level(), this.mob, 7);
 				if (blockpos != null) {
 					this.posX = (double)blockpos.getX();
 					this.posY = (double)blockpos.getY();

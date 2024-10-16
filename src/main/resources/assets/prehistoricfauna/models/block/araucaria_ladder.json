@@ -1,7 +1,7 @@
 {
 	"parent": "block/ladder",
 	"textures": {
-		"particle": "prehistoricfauna:blocks/araucaria_ladder",
-		"texture": "prehistoricfauna:blocks/araucaria_ladder"
+		"particle": "prehistoricfauna:block/araucaria_ladder",
+		"texture": "prehistoricfauna:block/araucaria_ladder"
 	}
 }

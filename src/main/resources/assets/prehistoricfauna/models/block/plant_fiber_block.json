@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "prehistoricfauna:blocks/plant_fiber_block_top",
-    "side": "prehistoricfauna:blocks/plant_fiber_block_side"
+    "end": "prehistoricfauna:block/plant_fiber_block_top",
+    "side": "prehistoricfauna:block/plant_fiber_block_side"
   }
 }

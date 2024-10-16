@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"parent": "prehistoricfauna:block/nest_three_giant_round_eggs_no_plants",
 	"textures": {
-		"egg": "prehistoricfauna:blocks/camarasaurus_egg",
-		"material": "prehistoricfauna:blocks/nest"
+		"egg": "prehistoricfauna:block/camarasaurus_egg",
+		"material": "prehistoricfauna:block/nest"
 	}
 }

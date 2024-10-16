@@ -12,7 +12,7 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import superlord.prehistoricfauna.common.entity.block.PaleontologyTableBlockEntity;
@@ -26,20 +26,20 @@ public class PaleontologyTableMenu extends AbstractContainerMenu {
 	private final ContainerData data;
 	
 	public PaleontologyTableMenu(int containerId, Inventory inventory, FriendlyByteBuf extraData) {
-		this(containerId, inventory, inventory.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(10));
+		this(containerId, inventory, inventory.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(10));
 	}
 	
 	public PaleontologyTableMenu(int containerId, Inventory inventory, BlockEntity entity, ContainerData data) {
 		super(PFContainers.PALEONTOLOGY_TABLE.get(), containerId);
 		checkContainerSize(inventory, 10);
 		blockEntity = ((PaleontologyTableBlockEntity)entity);
-		this.world = inventory.player.level;
+		this.world = inventory.player.level();
 		this.data = data;
 		
 		addPlayerInventory(inventory);
 		addPlayerHotbar(inventory);
 		
-		this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
+		this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
 			this.addSlot(new SlotItemHandler(handler, 0, 36, 42));
 			this.addSlot(new PaleontologyTaleResultSlot(handler, 1, 92, 23));
 			this.addSlot(new PaleontologyTaleResultSlot(handler, 2, 92, 41));
@@ -123,7 +123,7 @@ public class PaleontologyTableMenu extends AbstractContainerMenu {
     	}
     }
     
-    private class PaleontologyTaleResultSlot extends SlotItemHandler {
+	private class PaleontologyTaleResultSlot extends SlotItemHandler {
     	public PaleontologyTaleResultSlot(IItemHandler itemHandler, int index, int x, int y) {
     		super(itemHandler, index, x, y);
     	}

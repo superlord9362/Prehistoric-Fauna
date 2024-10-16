@@ -1,6 +1,6 @@
 {
     "parent": "block/template_orientable_trapdoor_top",
     "textures": {
-        "texture": "prehistoricfauna:blocks/schilderia_trapdoor"
+        "texture": "prehistoricfauna:block/schilderia_trapdoor"
     }
 }

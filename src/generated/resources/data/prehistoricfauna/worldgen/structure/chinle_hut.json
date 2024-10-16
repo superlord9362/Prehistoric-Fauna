@@ -1,0 +1,6 @@
+{
+  "type": "prehistoricfauna:chinle_hut",
+  "biomes": "#prehistoricfauna:has_structure/chinle_hut",
+  "spawn_overrides": {},
+  "step": "surface_structures"
+}

@@ -31,11 +31,11 @@ public class DilophosaurusEyeLayer extends RenderLayer<Dilophosaurus, EntityMode
 		if (!(dilophosaurusRenderer.getModel() instanceof DilophosaurusModel)) {
 			return;
 		}
-		long roundTime = dilophosaurus.level.getDayTime() % 24000;
+		long roundTime = dilophosaurus.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos dilophosaurusPos = dilophosaurus.blockPosition();
-		int i = dilophosaurus.level.getBrightness(LightLayer.SKY, dilophosaurusPos);
-		int j = dilophosaurus.level.getBrightness(LightLayer.BLOCK, dilophosaurusPos);
+		int i = dilophosaurus.level().getBrightness(LightLayer.SKY, dilophosaurusPos);
+		int j = dilophosaurus.level().getBrightness(LightLayer.BLOCK, dilophosaurusPos);
 		int brightness;
 		if (night) {
 			brightness = j;

@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "prehistoricfauna:blocks/dicroidium_3"
+        "cross": "prehistoricfauna:block/dicroidium_3"
     }
 }

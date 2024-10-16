@@ -59,11 +59,11 @@ public class MessageUpdatePaleoscribe {
                 player = PrehistoricFauna.PROXY.getClientSidePlayer();
             }
             if (player != null) {
-                if (player.level != null) {
+                if (player.level() != null) {
                     BlockPos pos = BlockPos.of(message.blockPos);
-                    if (player.level.getBlockEntity(pos) != null) {
-                        if (player.level.getBlockEntity(pos) instanceof PaleoscribeBlockEntity) {
-                        	PaleoscribeBlockEntity paleoscribe = (PaleoscribeBlockEntity) player.level.getBlockEntity(pos);
+                    if (player.level().getBlockEntity(pos) != null) {
+                        if (player.level().getBlockEntity(pos) instanceof PaleoscribeBlockEntity) {
+                        	PaleoscribeBlockEntity paleoscribe = (PaleoscribeBlockEntity) player.level().getBlockEntity(pos);
                             if(message.updateStack){
                                 ItemStack bookStack = paleoscribe.getItem(0);
                                 if(bookStack.getItem() == PFItems.PALEOPEDIA.get()){

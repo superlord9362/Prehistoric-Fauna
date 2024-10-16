@@ -4,7 +4,6 @@ import java.util.Random;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -34,7 +33,7 @@ public class PoisonGasBlock extends Block {
 	public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
 		if (entity instanceof LivingEntity livingEntity) {
 			int age = state.getValue(AGE);
-			if (pos.getY() == livingEntity.eyeBlockPosition().getY()) {
+			if (pos.getY() == livingEntity.getEyePosition().y()) {
 				if (livingEntity instanceof Player player) {
 					if (!player.getAbilities().instabuild) {
 						if (age < 3) {
@@ -61,7 +60,7 @@ public class PoisonGasBlock extends Block {
 							livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON, 30, 2));
 							livingEntity.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 30, 2));
 							livingEntity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 30, 2));
-							livingEntity.hurt(DamageSource.IN_WALL, 1.0F);
+							livingEntity.hurt(world.damageSources().inWall(), 1.0F);
 						}
 					}
 				} else {
@@ -89,7 +88,7 @@ public class PoisonGasBlock extends Block {
 						livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON, 30, 2));
 						livingEntity.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 30, 2));
 						livingEntity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 30, 2));
-						livingEntity.hurt(DamageSource.IN_WALL, 1.0F);
+						livingEntity.hurt(world.damageSources().inWall(), 1.0F);
 					}
 				}
 			}

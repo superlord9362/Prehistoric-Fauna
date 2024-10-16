@@ -3,7 +3,7 @@ import java.util.Calendar;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.model.geom.ModelPart;
@@ -26,7 +26,7 @@ import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.entity.LidBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.ChestType;
-import superlord.prehistoricfauna.client.util.ChestManager.ChestInfo;
+import superlord.prehistoricfauna.client.util.ChestManager.ChestMaterials;
 import superlord.prehistoricfauna.common.blocks.compat.IChestBlock;
 
 /**
@@ -80,7 +80,7 @@ public class PFChestBlockEntityRenderer<T extends BlockEntity & LidBlockEntity> 
 			matrixStackIn.pushPose();
 			float f = blockstate.getValue(ChestBlock.FACING).toYRot();
 			matrixStackIn.translate(0.5D, 0.5D, 0.5D);
-			matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(-f));
+			matrixStackIn.mulPose(Axis.YP.rotationDegrees(-f));
 			matrixStackIn.translate(-0.5D, -0.5D, -0.5D);
 			DoubleBlockCombiner.NeighborCombineResult<? extends ChestBlockEntity> icallbackwrapper;
 			if (flag) {
@@ -111,18 +111,18 @@ public class PFChestBlockEntityRenderer<T extends BlockEntity & LidBlockEntity> 
 	public Material getChestMaterial(T t, ChestType type) {
 		if (this.isChristmas) {
 			return switch (type) {
-			case SINGLE -> Sheets.CHEST_XMAS_LOCATION;
-			case LEFT -> Sheets.CHEST_XMAS_LOCATION_LEFT;
-			case RIGHT -> Sheets.CHEST_XMAS_LOCATION_RIGHT;
+				case SINGLE -> Sheets.CHEST_XMAS_LOCATION;
+				case LEFT -> Sheets.CHEST_XMAS_LOCATION_LEFT;
+				case RIGHT -> Sheets.CHEST_XMAS_LOCATION_RIGHT;
 			};
 		} else {
 			Block inventoryBlock = itemBlock;
 			if (inventoryBlock == null) inventoryBlock = t.getBlockState().getBlock();
-			ChestInfo chestInfo = ChestManager.getInfoForChest(((IChestBlock) inventoryBlock).getChestType());
+			ChestMaterials chestMaterials = ChestManager.getMaterials(((IChestBlock) inventoryBlock).getChestType());
 			return switch (type) {
-			case SINGLE -> chestInfo != null ? chestInfo.getSingleMaterial() : Sheets.CHEST_LOCATION;
-			case LEFT -> chestInfo != null ? chestInfo.getLeftMaterial() : Sheets.CHEST_LOCATION_LEFT;
-			case RIGHT -> chestInfo != null ? chestInfo.getRightMaterial() : Sheets.CHEST_LOCATION_RIGHT;
+				case SINGLE -> chestMaterials != null ? chestMaterials.singleMaterial() : Sheets.CHEST_LOCATION;
+				case LEFT -> chestMaterials != null ? chestMaterials.leftMaterial() : Sheets.CHEST_LOCATION_LEFT;
+				case RIGHT -> chestMaterials != null ? chestMaterials.rightMaterial() : Sheets.CHEST_LOCATION_RIGHT;
 			};
 		}
 	}

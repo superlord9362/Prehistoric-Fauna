@@ -13,7 +13,7 @@
     "show_toast": false,
     "announce_to_chat": false,
     "hidden": false,
-    "background": "prehistoricfauna:textures/blocks/jurassic_siltstone.png"
+    "background": "prehistoricfauna:textures/block/jurassic_siltstone.png"
   },
   "criteria": {
     "tick": {

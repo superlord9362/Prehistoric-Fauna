@@ -47,7 +47,7 @@ public class HerbivoreEatGoal extends MoveToBlockGoal {
 				dinosaur.setEating(true);
 			}
 			if (this.field_220731_g % 5 == 1) {
-				dinosaur.level.playSound((Player)null, this.blockPos, SoundEvents.GRASS_HIT, SoundSource.NEUTRAL, 1, 1);
+				dinosaur.level().playSound((Player)null, this.blockPos, SoundEvents.GRASS_HIT, SoundSource.NEUTRAL, 1, 1);
 			}
 		}
 		if (dinosaur.getCurrentHunger() >= 13) {
@@ -57,7 +57,7 @@ public class HerbivoreEatGoal extends MoveToBlockGoal {
 	}
 
 	protected void eatBerry() {
-		BlockState blockstate = dinosaur.level.getBlockState(this.blockPos);
+		BlockState blockstate = dinosaur.level().getBlockState(this.blockPos);
 
 		if (blockstate.is(PFTags.PLANTS_2_HUNGER)) {
 			int hunger = dinosaur.getCurrentHunger();

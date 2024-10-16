@@ -1,7 +1,7 @@
 {
     "parent": "block/cube_column",
     "textures": {
-        "end": "prehistoricfauna:blocks/schilderia_log_top",
-        "side": "prehistoricfauna:blocks/schilderia_log"
+        "end": "prehistoricfauna:block/schilderia_log_top",
+        "side": "prehistoricfauna:block/schilderia_log"
     }
 }

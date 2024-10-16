@@ -61,10 +61,9 @@ public class Placerias extends DinosaurEntity {
 	private int maxHunger = 50;
 	private int warningSoundTicks;
 
-	@SuppressWarnings("deprecation")
 	public Placerias(EntityType<? extends Placerias> type, Level level) {
 		super(type, level);
-		super.maxUpStep = 1.0F;
+		super.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -131,20 +130,20 @@ public class Placerias extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.PLACERIAS_IDLE;
+		return this.isAsleep() ? null : PFSounds.PLACERIAS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.PLACERIAS_HURT;
+		return PFSounds.PLACERIAS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.PLACERIAS_DEATH;
+		return PFSounds.PLACERIAS_DEATH.get();
 	}
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.PLACERIAS_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.PLACERIAS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -204,8 +203,8 @@ public class Placerias extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Placerias entity = new Placerias(PFEntities.PLACERIAS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Placerias entity = new Placerias(PFEntities.PLACERIAS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 	

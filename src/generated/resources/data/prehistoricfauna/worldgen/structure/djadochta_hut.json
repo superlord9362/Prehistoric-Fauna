@@ -1,0 +1,6 @@
+{
+  "type": "prehistoricfauna:djadochta_hut",
+  "biomes": "#prehistoricfauna:has_structure/djadochta_hut",
+  "spawn_overrides": {},
+  "step": "surface_structures"
+}

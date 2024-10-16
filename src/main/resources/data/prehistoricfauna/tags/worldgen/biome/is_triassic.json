@@ -1,0 +1,15 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:chinle_flats",
+		"prehistoricfauna:chinle_swamp",
+		"prehistoricfauna:chinle_wooded_mountains",
+		"prehistoricfauna:chinle_river",
+		"prehistoricfauna:triassic_henostone_cave",
+		"prehistoricfauna:triassic_dripstone_cave",
+		"prehistoricfauna:ischigualasto_clearing",
+		"prehistoricfauna:ischigualasto_forest",
+		"prehistoricfauna:ischigualasto_hills",
+		"prehistoricfauna:ischigualasto_river"
+	]
+}

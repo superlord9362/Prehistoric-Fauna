@@ -1,11 +1,10 @@
 package superlord.prehistoricfauna.common.feature.trees.sabalites;
 
-import java.util.Random;
-
 import com.mojang.serialization.Codec;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.WorldGenLevel;
@@ -32,7 +31,7 @@ public class SabalitesFeature extends Feature<JohnstoniaConfig> {
 	@Override
 	public boolean place(FeaturePlaceContext<JohnstoniaConfig> context) {
 		BlockPos pos = context.origin();
-		Random rand = context.random();
+		RandomSource rand = context.random();
 		WorldGenLevel level = context.level();
 		int height = rand.nextInt(10) + 1;
 		if (level.getBlockState(pos.below()).isSolidRender(level, pos.below())) {

@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.FireBlock;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -372,7 +372,7 @@ public class CommonEvents {
 	}
 	
 	@SubscribeEvent
-    public void onEntityJoinWorld(LivingSpawnEvent.SpecialSpawn event) {
+    public void onEntityJoinWorld(MobSpawnEvent.FinalizeSpawn  event) {
         try {
         	if (event.getEntity() instanceof Zombie) {
         		Zombie zombie = (Zombie) event.getEntity();

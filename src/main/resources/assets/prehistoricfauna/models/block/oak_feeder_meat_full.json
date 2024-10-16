@@ -2,6 +2,6 @@
     "parent": "prehistoricfauna:block/feeder_full",
     "textures": {
         "planks": "minecraft:block/oak_planks",
-        "food": "prehistoricfauna:blocks/meat"
+        "food": "prehistoricfauna:block/meat"
     }
 }

@@ -1,0 +1,120 @@
+{
+  "carvers": {},
+  "downfall": 1.3,
+  "effects": {
+    "fog_color": 6119264,
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2.0,
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000
+    },
+    "sky_color": 5200483,
+    "water_color": 3756360,
+    "water_fog_color": 4279367
+  },
+  "features": [
+    [],
+    [],
+    [
+      "minecraft:amethyst_geode"
+    ],
+    [],
+    [],
+    [],
+    [
+      "minecraft:ore_coal_upper",
+      "minecraft:ore_coal_lower",
+      "minecraft:ore_iron_upper",
+      "minecraft:ore_iron_middle",
+      "minecraft:ore_iron_small",
+      "minecraft:ore_gold",
+      "minecraft:ore_gold_lower",
+      "minecraft:ore_redstone",
+      "minecraft:ore_redstone_lower",
+      "minecraft:ore_diamond",
+      "minecraft:ore_diamond_large",
+      "minecraft:ore_diamond_buried",
+      "minecraft:ore_lapis",
+      "minecraft:ore_lapis_buried",
+      "minecraft:ore_copper_large",
+      "minecraft:underwater_magma"
+    ],
+    [],
+    [],
+    [
+      "prehistoricfauna:placed_clubmoss",
+      "prehistoricfauna:placed_cladophlebis",
+      "prehistoricfauna:placed_ruffordia",
+      "prehistoricfauna:placed_archaefructus",
+      "prehistoricfauna:placed_rare_czekanowskia_trees",
+      "prehistoricfauna:placed_rare_taxus_trees",
+      "prehistoricfauna:placed_rare_schizolepidopsis_trees",
+      "prehistoricfauna:placed_dead_czekanowskia_trees",
+      "prehistoricfauna:placed_dead_taxus_trees",
+      "prehistoricfauna:placed_dead_schizolepidopsis_trees",
+      "prehistoricfauna:placed_ash",
+      "prehistoricfauna:placed_rare_podozamites_trees",
+      "prehistoricfauna:placed_dead_podozamites_trees",
+      "prehistoricfauna:placed_sparse_brachyphyllum",
+      "prehistoricfauna:placed_nothodichocarpum"
+    ]
+  ],
+  "has_precipitation": false,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [
+      {
+        "type": "prehistoricfauna:incisivosaurus",
+        "maxCount": 4,
+        "minCount": 1,
+        "weight": 3
+      },
+      {
+        "type": "prehistoricfauna:liaoningosaurus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 5
+      },
+      {
+        "type": "prehistoricfauna:psittacosaurus",
+        "maxCount": 5,
+        "minCount": 2,
+        "weight": 4
+      },
+      {
+        "type": "prehistoricfauna:sinosauropteryx",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 3
+      },
+      {
+        "type": "prehistoricfauna:yutyrannus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 1
+      }
+    ],
+    "misc": [],
+    "monster": [
+      {
+        "type": "prehistoricfauna:cave_sentinel",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 5
+      },
+      {
+        "type": "prehistoricfauna:land_sentinel",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 2
+      }
+    ],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.2
+}

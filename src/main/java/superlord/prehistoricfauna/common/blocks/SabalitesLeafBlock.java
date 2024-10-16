@@ -25,7 +25,7 @@ public class SabalitesLeafBlock extends LeavesBlock {
 	
 	public SabalitesLeafBlock(Properties p_54422_) {
 		super(p_54422_);
-		this.registerDefaultState(this.stateDefinition.any().setValue(DISTANCE, Integer.valueOf(1)).setValue(PERSISTENT, Boolean.valueOf(false)).setValue(FACING, Direction.NORTH).setValue(DIRECTION, LeafDirection.STRAIGHT));
+		this.registerDefaultState(this.stateDefinition.any().setValue(DISTANCE, Integer.valueOf(1)).setValue(WATERLOGGED, Boolean.valueOf(false)).setValue(PERSISTENT, Boolean.valueOf(false)).setValue(FACING, Direction.NORTH).setValue(DIRECTION, LeafDirection.STRAIGHT));
 	}
 	
 	@OnlyIn(Dist.CLIENT)
@@ -38,7 +38,7 @@ public class SabalitesLeafBlock extends LeavesBlock {
 	}
 
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_54447_) {
-		p_54447_.add(DISTANCE, PERSISTENT, FACING, DIRECTION);
+		p_54447_.add(DISTANCE, PERSISTENT, FACING, DIRECTION, WATERLOGGED);
 	}
 	
 	public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor world, BlockPos pos, BlockPos pos1) {

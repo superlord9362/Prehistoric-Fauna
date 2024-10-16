@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "prehistoricfauna:blocks/archaefructus"
+        "cross": "prehistoricfauna:block/archaefructus"
     }
 }

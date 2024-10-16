@@ -1,7 +1,7 @@
 {
     "textures": {
-        "particle": "prehistoricfauna:blocks/triassic_portal",
-        "portal": "prehistoricfauna:blocks/triassic_portal"
+        "particle": "prehistoricfauna:block/triassic_portal",
+        "portal": "prehistoricfauna:block/triassic_portal"
     },
     "elements": [
         {   "from": [ 0, 0, 6 ],

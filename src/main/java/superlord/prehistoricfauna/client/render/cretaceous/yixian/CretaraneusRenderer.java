@@ -2,7 +2,7 @@ package superlord.prehistoricfauna.client.render.cretaceous.yixian;
 
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -27,45 +27,45 @@ public class CretaraneusRenderer extends MobRenderer<Cretaraneus, CretaraneusMod
 
         float trans = entityLiving.isBaby() ? 0.25F : 0.1F;
 		if(entityLiving.getAttachmentFacing() == Direction.DOWN){
-			matrixStackIn.mulPose(Vector3f.YP.rotationDegrees (180.0F - rotationYaw));
+			matrixStackIn.mulPose(Axis.YP.rotationDegrees (180.0F - rotationYaw));
 			matrixStackIn.translate(0.0D, trans, 0.0D);
 			if(entityLiving.yo < entityLiving.getY()){
-				matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(90 * (1 - progresso)));
+				matrixStackIn.mulPose(Axis.XP.rotationDegrees(90 * (1 - progresso)));
 			}else{
-				matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(-90 * (1 - progresso)));
+				matrixStackIn.mulPose(Axis.XP.rotationDegrees(-90 * (1 - progresso)));
 			}
 			matrixStackIn.translate(0.0D, -trans, 0.0D);
 
 		}else if(entityLiving.getAttachmentFacing() == Direction.UP){
-			matrixStackIn.mulPose(Vector3f.YP.rotationDegrees (180.0F - rotationYaw));
-			matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(180));
-			matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(180));
+			matrixStackIn.mulPose(Axis.YP.rotationDegrees (180.0F - rotationYaw));
+			matrixStackIn.mulPose(Axis.XP.rotationDegrees(180));
+			matrixStackIn.mulPose(Axis.YP.rotationDegrees(180));
 			matrixStackIn.translate(0.0D, -trans * 2.5, 0.0D);
 
 		}else{
 			matrixStackIn.translate(0.0D, trans, 0.0D);
 			switch (entityLiving.getAttachmentFacing()){
 			case NORTH:
-				matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(90.0F * progresso));
-				matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(0));
+				matrixStackIn.mulPose(Axis.XP.rotationDegrees(90.0F * progresso));
+				matrixStackIn.mulPose(Axis.ZP.rotationDegrees(0));
 				break;
 			case SOUTH:
-				matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(180.0F));
-				matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(90.0F * progresso ));
+				matrixStackIn.mulPose(Axis.YP.rotationDegrees(180.0F));
+				matrixStackIn.mulPose(Axis.XP.rotationDegrees(90.0F * progresso ));
 				break;
 			case WEST:
-				matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(90.0F));
-				matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(90F - 90.0F * progresso));
-				matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(-90.0F));
+				matrixStackIn.mulPose(Axis.XP.rotationDegrees(90.0F));
+				matrixStackIn.mulPose(Axis.YP.rotationDegrees(90F - 90.0F * progresso));
+				matrixStackIn.mulPose(Axis.ZP.rotationDegrees(-90.0F));
 				break;
 			case EAST:
-				matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(90.0F ));
-				matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(90.0F * progresso - 90F));
-				matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(90.0F));
+				matrixStackIn.mulPose(Axis.XP.rotationDegrees(90.0F ));
+				matrixStackIn.mulPose(Axis.YP.rotationDegrees(90.0F * progresso - 90F));
+				matrixStackIn.mulPose(Axis.ZP.rotationDegrees(90.0F));
 				break;
 			}
 			if(entityLiving.getDeltaMovement().y <= -0.001F){
-				matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(-180.0F));
+				matrixStackIn.mulPose(Axis.YP.rotationDegrees(-180.0F));
 			}
 			matrixStackIn.translate(0.0D, -trans, 0.0D);
 		}

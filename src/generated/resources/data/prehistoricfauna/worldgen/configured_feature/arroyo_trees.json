@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": "prehistoricfauna:small_metasequoia_tree_3",
+    "features": [
+      {
+        "chance": 0.15,
+        "feature": "prehistoricfauna:small_metasequoia_tree_1"
+      },
+      {
+        "chance": 0.15,
+        "feature": "prehistoricfauna:small_metasequoia_tree_2"
+      },
+      {
+        "chance": 0.15,
+        "feature": "prehistoricfauna:ginkgo_tree_1"
+      },
+      {
+        "chance": 0.15,
+        "feature": "prehistoricfauna:ginkgo_tree_2"
+      },
+      {
+        "chance": 0.15,
+        "feature": "prehistoricfauna:ginkgo_tree_3"
+      },
+      {
+        "chance": 0.15,
+        "feature": "prehistoricfauna:ginkgo_tree_4"
+      }
+    ]
+  }
+}

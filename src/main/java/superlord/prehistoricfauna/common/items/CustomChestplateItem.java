@@ -2,7 +2,6 @@ package superlord.prehistoricfauna.common.items;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -18,21 +17,20 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 
 public class CustomChestplateItem extends ArmorItem {
 
-	public CustomChestplateItem(ArmorMaterial materialIn, EquipmentSlot slot, Item.Properties builder) {
+	public CustomChestplateItem(ArmorMaterial materialIn, Type slot, Item.Properties builder) {
 		super(materialIn, slot, builder);
 	}
 
 	@Override
-	public void initializeClient(java.util.function.Consumer<net.minecraftforge.client.IItemRenderProperties> consumer)
-	{
-		consumer.accept((net.minecraftforge.client.IItemRenderProperties) PrehistoricFauna.PROXY.getArmorRenderProperties());
+	public void initializeClient(java.util.function.Consumer<net.minecraftforge.client.extensions.common.IClientItemExtensions> consumer) {
+	consumer.accept((net.minecraftforge.client.extensions.common.IClientItemExtensions) PrehistoricFauna.PROXY.getArmorRenderProperties());
 	}
 
 	@Override
 	public void onArmorTick(ItemStack stack, Level world, Player player) {
 		if (player.hurtMarked && player.getLastHurtByMob() != null) {
 			LivingEntity attacker = player.getLastHurtByMob();
-			attacker.hurt(DamageSource.thorns(attacker), 1);
+			attacker.hurt(attacker.damageSources().thorns(attacker), 1);
 		}
 	}
 

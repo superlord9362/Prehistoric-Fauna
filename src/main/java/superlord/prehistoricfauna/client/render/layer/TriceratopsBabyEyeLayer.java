@@ -31,11 +31,11 @@ public class TriceratopsBabyEyeLayer extends RenderLayer<Triceratops, EntityMode
 		if (!(triceratopsRenderer.getModel() instanceof TriceratopsBabyModel)) {
 			return;
 		}
-		long roundTime = triceratops.level.getDayTime() % 24000;
+		long roundTime = triceratops.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos triceratopsPos = triceratops.blockPosition();
-		int i = triceratops.level.getBrightness(LightLayer.SKY, triceratopsPos);
-		int j = triceratops.level.getBrightness(LightLayer.BLOCK, triceratopsPos);
+		int i = triceratops.level().getBrightness(LightLayer.SKY, triceratopsPos);
+		int j = triceratops.level().getBrightness(LightLayer.BLOCK, triceratopsPos);
 		int brightness;
 		if (night) {
 			brightness = j;

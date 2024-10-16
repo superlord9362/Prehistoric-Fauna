@@ -1,7 +1,7 @@
 {
 	"parent": "block/cube_column",
 	"textures": {
-		"end": "prehistoricfauna:blocks/ginkgo_planks",
-		"side": "prehistoricfauna:blocks/ginkgo_bookshelf"
+		"end": "prehistoricfauna:block/ginkgo_planks",
+		"side": "prehistoricfauna:block/ginkgo_bookshelf"
 	}
 }

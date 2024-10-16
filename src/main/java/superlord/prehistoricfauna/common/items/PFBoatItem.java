@@ -20,18 +20,18 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.entity.PFBoat;
 import superlord.prehistoricfauna.common.entity.PFBoat.PFBoatTypes;
 
-public class PFBoatItem  extends Item {
-	
+public class PFBoatItem extends Item {
+
 	private static final Predicate<Entity> RIDERS = EntitySelector.NO_SPECTATORS.and(Entity::canBeCollidedWith);
 	private final PFBoatTypes type;
-	
+
 	public PFBoatItem(PFBoat.PFBoatTypes type, Item.Properties properties) {
 		super(properties);
 		this.type = type;
 	}
-	
+
 	@Override
-	   public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+	public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		HitResult raytraceresult = getPlayerPOVHitResult(world, player, ClipContext.Fluid.ANY);
 		if (raytraceresult.getType() == HitResult.Type.MISS) {
@@ -44,7 +44,7 @@ public class PFBoatItem  extends Item {
 				for (Entity entity : list) {
 					AABB axisalignedbb = entity.getBoundingBox().inflate(entity.getPickRadius());
 					if (axisalignedbb.contains(vec3d1)) {
-                        return InteractionResultHolder.pass(itemstack);
+						return InteractionResultHolder.pass(itemstack);
 					}
 				}
 			}
@@ -65,9 +65,9 @@ public class PFBoatItem  extends Item {
 					player.awardStat(Stats.ITEM_USED.get(this));
 					return InteractionResultHolder.sidedSuccess(itemstack, world.isClientSide());
 				}
- 			} else {
- 				return InteractionResultHolder.pass(itemstack);
- 			}
+			} else {
+				return InteractionResultHolder.pass(itemstack);
+			}
 		}
 	}
 }

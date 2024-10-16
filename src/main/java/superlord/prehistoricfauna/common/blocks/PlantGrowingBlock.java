@@ -1,11 +1,11 @@
 package superlord.prehistoricfauna.common.blocks;
 
-import java.util.Random;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
@@ -28,15 +28,15 @@ public class PlantGrowingBlock extends BushBlock implements BonemealableBlock, n
 		return SHAPE;
 	}
 
-	public boolean isValidBonemealTarget(BlockGetter p_57325_, BlockPos p_57326_, BlockState p_57327_, boolean p_57328_) {
+	public boolean isValidBonemealTarget(LevelReader p_57325_, BlockPos p_57326_, BlockState p_57327_, boolean p_57328_) {
 		return true;
 	}
 
-	public boolean isBonemealSuccess(Level p_57330_, Random p_57331_, BlockPos p_57332_, BlockState p_57333_) {
+	public boolean isBonemealSuccess(Level p_57330_, RandomSource p_57331_, BlockPos p_57332_, BlockState p_57333_) {
 		return true;
 	}
 
-	public void performBonemeal(ServerLevel p_57320_, Random p_57321_, BlockPos p_57322_, BlockState p_57323_) {
+	public void performBonemeal(ServerLevel p_57320_, RandomSource p_57321_, BlockPos p_57322_, BlockState p_57323_) {
 		DoublePlantBlock doubleplantblock1 = (DoublePlantBlock)(p_57323_.is(PFBlocks.OSMUNDACAULIS.get()) ? PFBlocks.TALL_OSMUNDACAULIS.get() : PFBlocks.TALL_OTOZAMITES.get());
 		if (doubleplantblock1.defaultBlockState().canSurvive(p_57320_, p_57322_) && p_57320_.isEmptyBlock(p_57322_.above())) {
 			DoublePlantBlock.placeAt(p_57320_, doubleplantblock1.defaultBlockState(), p_57322_, 2);

@@ -1,7 +1,7 @@
 {
     "parent": "block/cube_column",
     "textures": {
-        "end": "prehistoricfauna:blocks/taxus_log",
-        "side": "prehistoricfauna:blocks/taxus_log"
+        "end": "prehistoricfauna:block/taxus_log",
+        "side": "prehistoricfauna:block/taxus_log"
     }
 }

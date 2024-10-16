@@ -1,6 +1,6 @@
 {
     "parent": "block/fence_side",
     "textures": {
-        "texture": "prehistoricfauna:blocks/dryophyllum_planks"
+        "texture": "prehistoricfauna:block/dryophyllum_planks"
     }
 }

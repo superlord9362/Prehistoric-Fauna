@@ -2,6 +2,6 @@
 	"parent": "prehistoricfauna:block/three_small_tall_eggs",
 	"ambientocclusion": false,
 	"textures": {
-		"egg": "prehistoricfauna:blocks/coelophysis_egg"
+		"egg": "prehistoricfauna:block/coelophysis_egg"
 	}
 }

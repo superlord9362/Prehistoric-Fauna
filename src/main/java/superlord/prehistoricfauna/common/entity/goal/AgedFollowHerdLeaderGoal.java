@@ -41,7 +41,7 @@ public class AgedFollowHerdLeaderGoal extends Goal {
 			Predicate<AgedHerdDinosaurEntity> predicate = (dinosaur) -> {
 				return dinosaur.canBeFollowed() || !dinosaur.hasGroupLeader();
 			};
-			List<? extends AgedHerdDinosaurEntity> list = this.taskOwner.level.getEntitiesOfClass(this.taskOwner.getClass(), this.taskOwner.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), predicate);
+			List<? extends AgedHerdDinosaurEntity> list = this.taskOwner.level().getEntitiesOfClass(this.taskOwner.getClass(), this.taskOwner.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), predicate);
 			AgedHerdDinosaurEntity dinosaurEntity = DataFixUtils.orElse(list.stream().filter(AgedHerdDinosaurEntity::canBeFollowed).findAny(), this.taskOwner);
 			dinosaurEntity.addFollowers(list.stream().filter((dinosaur) -> {
 				return !dinosaur.hasGroupLeader();

@@ -1,6 +1,6 @@
 {
     "parent": "block/leaves",
     "textures": {
-        "all": "prehistoricfauna:blocks/czekanowskia_leaves"
+        "all": "prehistoricfauna:block/czekanowskia_leaves"
     }
 }

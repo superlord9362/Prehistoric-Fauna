@@ -92,12 +92,11 @@ public class Thoracosaurus extends DinosaurEntity {
 	public float ridingXZ;
 	public float ridingY = 1F;
 
-	@SuppressWarnings("deprecation")
 	public Thoracosaurus(EntityType<? extends DinosaurEntity> type, Level world) {
 		super(type, world);
 	      this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
 		this.moveControl = new Thoracosaurus.ThoracosaurusMoveControl(this);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 	
@@ -128,7 +127,6 @@ public class Thoracosaurus extends DinosaurEntity {
 		return worldIn.getFluidState(pos.below()).isEmpty() && worldIn.getFluidState(pos).is(FluidTags.WATER) ? 10.0F : super.getWalkTargetValue(pos, worldIn);
 	}
 	
-	@SuppressWarnings("deprecation")
 	public void travel(Vec3 travelVector) {
 		if (this.isAlive()) {
 			if (this.isVehicle() && this.canBeControlledByRider() && this.isSaddled()) {
@@ -141,7 +139,6 @@ public class Thoracosaurus extends DinosaurEntity {
 				this.yHeadRot = this.yBodyRot;
 				float f = livingEntity.xxa * 0.5F;
 				float f1 = livingEntity.zza;
-				this.maxUpStep = 1.0F;
 				if (this.canBeControlledByRider()) {
 					if (this.isInWater()) { 
 						if (this.getRidingPlayer().jumping) this.setDeltaMovement(this.getDeltaMovement().add(0.0D, 0.05D, 0.0D));
@@ -152,9 +149,9 @@ public class Thoracosaurus extends DinosaurEntity {
 				} else if (livingEntity instanceof Player) {
 					this.setDeltaMovement(Vec3.ZERO);
 				}
-				if (this.onGround) {
+				if (this.onGround()) {
 				}
-				this.calculateEntityAnimation(this, false);
+				this.calculateEntityAnimation(false);
 			} else {
 				if (this.isEffectiveAi() && this.isInWater()) {
 					this.moveRelative(this.getSpeed(), travelVector);
@@ -171,8 +168,8 @@ public class Thoracosaurus extends DinosaurEntity {
 	}
 	
 	@Override
-	public boolean canBeRiddenInWater(Entity entity) {
-		return true;
+	public boolean dismountsUnderwater() {
+		return false;
 	}
 	
 	@Nullable
@@ -187,7 +184,7 @@ public class Thoracosaurus extends DinosaurEntity {
 			double d3 = this.getBoundingBox().maxY + 0.75D;
 
 			while(true) {
-				double d4 = this.level.getBlockFloorHeight(blockpos$mutable);
+				double d4 = this.level().getBlockFloorHeight(blockpos$mutable);
 				if ((double)blockpos$mutable.getY() + d4 > d3) {
 					break;
 				}
@@ -195,7 +192,7 @@ public class Thoracosaurus extends DinosaurEntity {
 				if (DismountHelper.isBlockFloorValid(d4)) {
 					AABB axisalignedbb = p_234236_2_.getLocalBoundsForPose(pose);
 					Vec3 vector3d = new Vec3(d0, (double)blockpos$mutable.getY() + d4, d2);
-					if (DismountHelper.canDismountTo(this.level, p_234236_2_, axisalignedbb.move(vector3d))) {
+					if (DismountHelper.canDismountTo(this.level(), p_234236_2_, axisalignedbb.move(vector3d))) {
 						p_234236_2_.setPose(pose);
 						return vector3d;
 					}
@@ -276,22 +273,23 @@ public class Thoracosaurus extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.THORACOSAURUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.THORACOSAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.THORACOSAURUS_HURT;
+		return PFSounds.THORACOSAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.THORACOSAURUS_DEATH;
+		return PFSounds.THORACOSAURUS_DEATH.get();
 	}
 
+	@SuppressWarnings("deprecation")
 	protected void playStepSound(BlockPos pos, BlockState blockIn) {
 		if (this.isBaby()) {
-			if (!blockIn.getMaterial().isLiquid()) {
-				BlockState blockstate = this.level.getBlockState(pos.above());
-				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level, pos, this) : blockIn.getSoundType(level, pos, this);
+			if (!blockIn.liquid()) {
+				BlockState blockstate = this.level().getBlockState(pos.above());
+				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level(), pos, this) : blockIn.getSoundType(level(), pos, this);
 				this.playSound(soundtype.getStepSound(), soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			}
 		} else {
@@ -301,7 +299,7 @@ public class Thoracosaurus extends DinosaurEntity {
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.THORACOSAURUS_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.THORACOSAURUS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -319,9 +317,9 @@ public class Thoracosaurus extends DinosaurEntity {
 					this.navigation.stop();
 					this.setTarget((LivingEntity)null);
 					this.setOrderedToSit(true);
-					this.level.broadcastEntityEvent(this, (byte)7);
+					this.level().broadcastEntityEvent(this, (byte)7);
 				} else {
-					this.level.broadcastEntityEvent(this, (byte)6);
+					this.level().broadcastEntityEvent(this, (byte)6);
 				}
 				return InteractionResult.SUCCESS;
 			}
@@ -332,7 +330,7 @@ public class Thoracosaurus extends DinosaurEntity {
 					stack.shrink(1);
 				}
 				this.setSaddled(true);
-				this.level.playSound(player, this.getX(), this.getY(), this.getZ(), SoundEvents.HORSE_SADDLE, SoundSource.NEUTRAL, 0.5F, 1.0F);
+				this.level().playSound(player, this.getX(), this.getY(), this.getZ(), SoundEvents.HORSE_SADDLE, SoundSource.NEUTRAL, 0.5F, 1.0F);
 				return InteractionResult.SUCCESS;
 			}
 		}
@@ -406,8 +404,8 @@ public class Thoracosaurus extends DinosaurEntity {
 	}
 
 	@Override
-	public void positionRider(Entity passenger) {
-		super.positionRider(passenger);
+	public void positionRider(Entity passenger, Entity.MoveFunction p_289531_) {
+		super.positionRider(passenger, p_289531_);
 		if (this.isTame()) {
 			float radius = ridingXZ * 0.7F * -3;
 			float angle = (0.01745329251F * this.yBodyRotO);
@@ -447,9 +445,19 @@ public class Thoracosaurus extends DinosaurEntity {
 	}
 
 	@Nullable
-	public Entity getControllingPassenger() {
-		if (this.isTame()) return this.getPassengers().isEmpty() ? null : this.getPassengers().get(0);
-		else return null;
+	public LivingEntity getControllingPassenger() {
+		Entity entity = this.getFirstPassenger();
+	      if (entity instanceof Mob) {
+	         return (Mob)entity;
+	      } else {
+	         if (this.isSaddled()) {
+	            entity = this.getFirstPassenger();
+	            if (entity instanceof Player) {
+	               return (Player)entity;
+	            }
+	         }
+	         return null;
+	      }
 	}
 
 	public boolean canBeControlledByRider() {
@@ -553,8 +561,8 @@ public class Thoracosaurus extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob mob) {
-		Thoracosaurus entity = new Thoracosaurus(PFEntities.THORACOSAURUS.get(), this.level);
-		entity.finalizeSpawn(level, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Thoracosaurus entity = new Thoracosaurus(PFEntities.THORACOSAURUS.get(), this.level());
+		entity.finalizeSpawn(level, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -581,7 +589,7 @@ public class Thoracosaurus extends DinosaurEntity {
 		}
 		
 		public boolean canContinueToUse() {
-			return !this.thoracosaurus.isInWater() && this.tryTicks <= GIVE_UP_TICKS && this.isValidTarget(this.thoracosaurus.level, this.blockPos);
+			return !this.thoracosaurus.isInWater() && this.tryTicks <= GIVE_UP_TICKS && this.isValidTarget(this.thoracosaurus.level(), this.blockPos);
 		}
 		
 		public boolean canUse() {
@@ -608,7 +616,7 @@ public class Thoracosaurus extends DinosaurEntity {
 			if (!this.shouldPanic() || !this.mob.isBaby()) {
 				return false;
 			} else {
-				BlockPos blockpos = this.lookForWater(this.mob.level, this.mob, 7);
+				BlockPos blockpos = this.lookForWater(this.mob.level(), this.mob, 7);
 				if (blockpos != null) {
 					this.posX = (double)blockpos.getX();
 					this.posY = (double)blockpos.getY();

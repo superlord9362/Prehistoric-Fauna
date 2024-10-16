@@ -54,10 +54,9 @@ public class Palaeosaniwa extends DinosaurEntity {
 
 	private int maxHunger = 20;
 	
-	@SuppressWarnings("deprecation")
 	public Palaeosaniwa(EntityType<? extends Palaeosaniwa> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.maxUpStep= 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 	
@@ -96,15 +95,15 @@ public class Palaeosaniwa extends DinosaurEntity {
 	}
 	
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.PALAEOSANIWA_IDLE;
+		return this.isAsleep() ? null : PFSounds.PALAEOSANIWA_IDLE.get();
 	}
 	
 	protected SoundEvent getHurtSound(DamageSource source) {
-		return PFSounds.PALAEOSANIWA_HURT;
+		return PFSounds.PALAEOSANIWA_HURT.get();
 	}
 	
 	protected SoundEvent getDeathSound() {
-		return PFSounds.PALAEOSANIWA_DEATH;
+		return PFSounds.PALAEOSANIWA_DEATH.get();
 	}
 
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
@@ -126,8 +125,8 @@ public class Palaeosaniwa extends DinosaurEntity {
 	
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Palaeosaniwa entity = new Palaeosaniwa(PFEntities.PALAEOSANIWA.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Palaeosaniwa entity = new Palaeosaniwa(PFEntities.PALAEOSANIWA.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 	

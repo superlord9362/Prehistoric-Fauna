@@ -16,7 +16,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -28,6 +28,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
@@ -119,10 +120,9 @@ public class Triceratops extends AbstractChestedHorse  {
 	private float prevSleepProgress = 0.0F;
 	public int warryTicks = 0;
 
-	@SuppressWarnings("deprecation")
 	public Triceratops(EntityType<? extends Triceratops> type, Level worldIn) {
 		super(type, worldIn);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 	}
 
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
@@ -131,8 +131,8 @@ public class Triceratops extends AbstractChestedHorse  {
 	}
 
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Triceratops entity = new Triceratops(PFEntities.TRICERATOPS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Triceratops entity = new Triceratops(PFEntities.TRICERATOPS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 	
@@ -295,7 +295,7 @@ public class Triceratops extends AbstractChestedHorse  {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isSleeping() ? PFSounds.TRICERATOPS_SNORES : PFSounds.TRICERATOPS_IDLE;
+		return this.isSleeping() ? PFSounds.TRICERATOPS_SNORES.get() : PFSounds.TRICERATOPS_IDLE.get();
 	}
 
 	@Override
@@ -304,15 +304,15 @@ public class Triceratops extends AbstractChestedHorse  {
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.TRICERATOPS_HURT;
+		return PFSounds.TRICERATOPS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.TRICERATOPS_DEATH;
+		return PFSounds.TRICERATOPS_DEATH.get();
 	}
 
 	protected SoundEvent getAngrySound() {
-		return PFSounds.TRICERATOPS_WARN;
+		return PFSounds.TRICERATOPS_WARN.get();
 	}
 
 	@Override	
@@ -325,10 +325,10 @@ public class Triceratops extends AbstractChestedHorse  {
 		if (i <= 0) {
 			return false;
 		} else {
-			this.hurt(DamageSource.FALL, (float)i);
+			this.hurt(this.damageSources().fall(), (float)i);
 			if (this.isVehicle()) {
 				for(Entity entity : this.getIndirectPassengers()) {
-					entity.hurt(DamageSource.FALL, (float)i);
+					entity.hurt(this.damageSources().fall(), (float)i);
 				}
 			}
 
@@ -337,12 +337,13 @@ public class Triceratops extends AbstractChestedHorse  {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void playStepSound(BlockPos pos, BlockState state) {
 		if (this.isBaby()) {
-			if (!state.getMaterial().isLiquid()) {
-				BlockState blockstate = this.level.getBlockState(pos.above());
-				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level, pos, this) : state.getSoundType(level, pos, this);
+			if (!state.liquid()) {
+				BlockState blockstate = this.level().getBlockState(pos.above());
+				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level(), pos, this) : state.getSoundType(level(), pos, this);
 				this.playSound(soundtype.getStepSound(), soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			}
 		} else {
@@ -352,7 +353,7 @@ public class Triceratops extends AbstractChestedHorse  {
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.TRICERATOPS_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.TRICERATOPS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -449,12 +450,12 @@ public class Triceratops extends AbstractChestedHorse  {
 	}
 
 	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
-		Level world = p_230254_1_.level;
+		Level world = p_230254_1_.level();
 		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
 		Item item = itemstack.getItem();
 		if (this.isFood(itemstack)) {
 			int i = this.getAge();
-			if (!this.level.isClientSide && i == 0 && this.canFallInLove()) {
+			if (!this.level().isClientSide() && i == 0 && this.canFallInLove()) {
 				this.usePlayerItem(p_230254_1_, p_230254_2_, itemstack);
 				this.setInLove(p_230254_1_);
 				return InteractionResult.SUCCESS;
@@ -469,8 +470,8 @@ public class Triceratops extends AbstractChestedHorse  {
 				return super.mobInteract(p_230254_1_, p_230254_2_);
 			}
 			if (this.isTamed() && p_230254_1_.isSecondaryUseActive()) {
-				this.openInventory(p_230254_1_);
-				return InteractionResult.sidedSuccess(this.level.isClientSide);
+				this.openCustomInventoryScreen(p_230254_1_);
+				return InteractionResult.sidedSuccess(this.level().isClientSide());
 			}
 
 			if (this.isVehicle()) {
@@ -482,7 +483,7 @@ public class Triceratops extends AbstractChestedHorse  {
 
 			if (!this.isTamed()) {
 				this.makeMad();
-				return InteractionResult.sidedSuccess(this.level.isClientSide);
+				return InteractionResult.sidedSuccess(this.level().isClientSide());
 			}
 
 			if (!this.hasChest() && itemstack.getItem() == Blocks.CHEST.asItem()) {
@@ -493,12 +494,12 @@ public class Triceratops extends AbstractChestedHorse  {
 				}
 
 				this.createInventory();
-				return InteractionResult.sidedSuccess(this.level.isClientSide);
+				return InteractionResult.sidedSuccess(this.level().isClientSide());
 			}
 
 			if (!this.isBaby() && !this.isSaddled() && itemstack.getItem() == Items.SADDLE) {
-				this.openInventory(p_230254_1_);
-				return InteractionResult.sidedSuccess(this.level.isClientSide);
+				this.openCustomInventoryScreen(p_230254_1_);
+				return InteractionResult.sidedSuccess(this.level().isClientSide());
 			}
 		}
 		if (PrehistoricFaunaConfig.advancedHunger) {
@@ -624,7 +625,7 @@ public class Triceratops extends AbstractChestedHorse  {
 				}
 			}
 			if ((itemstack.is(PFTags.PLANTS_2_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_4_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_6_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_8_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_10_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_12_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_15_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_20_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_25_HUNGER_ITEM) || itemstack.is(PFTags.PLANTS_30_HUNGER_ITEM))) {
-				p_230254_1_.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.fullHunger"), true);
+				p_230254_1_.displayClientMessage(Component.translatable("entity.prehistoricfauna.fullHunger"), true);
 			}
 		}
 		if (this.isBaby()) {
@@ -639,7 +640,7 @@ public class Triceratops extends AbstractChestedHorse  {
 			}
 		} else {
 			this.doPlayerRide(p_230254_1_);
-			return InteractionResult.sidedSuccess(this.level.isClientSide);
+			return InteractionResult.sidedSuccess(this.level().isClientSide());
 		}
 	}
 
@@ -689,7 +690,7 @@ public class Triceratops extends AbstractChestedHorse  {
 	}
 
 	public boolean onAttackAnimationFinish(Entity target) {
-		return target.hurt(DamageSource.mobAttack(this), (float) ((int) this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
+		return target.hurt(this.damageSources().mobAttack(this), (float) ((int) this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
 	}
 	
 	public float getSleepProgress(float partialTick) {
@@ -728,7 +729,7 @@ public class Triceratops extends AbstractChestedHorse  {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue((double) 0.2F);
 		}
 		if (!this.isNoAi()) {
-			List<? extends Triceratops> list = this.level.getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(20.0D, 20.0D, 20.0D));
+			List<? extends Triceratops> list = this.level().getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(20.0D, 20.0D, 20.0D));
 			if (PrehistoricFaunaConfig.advancedHunger) {
 				hungerTick++;
 				if (hungerTick == 600 && !this.isBaby() || hungerTick == 300 && this.isBaby() && !this.isJuvenile() || hungerTick == 450 && this.isJuvenile()) {
@@ -737,10 +738,10 @@ public class Triceratops extends AbstractChestedHorse  {
 							this.setHunger(currentHunger - 1);
 						}
 						if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage == true && this.getHealth() > (this.getMaxHealth() / 2)) {
-							this.hurt(DamageSource.STARVE, 1);
+							this.hurt(this.damageSources().starve(), 1);
 						}
-						if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage == true && level.getDifficulty() == Difficulty.HARD && this.getHealth() <= (this.getMaxHealth() / 2)) {
-							this.hurt(DamageSource.STARVE, 1);
+						if (currentHunger == 0 && PrehistoricFaunaConfig.hungerDamage == true && level().getDifficulty() == Difficulty.HARD && this.getHealth() <= (this.getMaxHealth() / 2)) {
+							this.hurt(this.damageSources().starve(), 1);
 						}
 					}
 					hungerTick = 0;
@@ -787,7 +788,7 @@ public class Triceratops extends AbstractChestedHorse  {
 				lastInLove--;
 			}
 		}
-		if (!this.level.isClientSide) {
+		if (!this.level().isClientSide()) {
 			if (this.warryTicks != 0) warryTicks--;
 		}
 	}
@@ -816,8 +817,8 @@ public class Triceratops extends AbstractChestedHorse  {
 		}
 	}
 
-	public void positionRider(Entity p_30642_) {
-		super.positionRider(p_30642_);
+	public void positionRider(Entity p_30642_, Entity.MoveFunction p_289531_) {
+		super.positionRider(p_30642_, p_289531_);
 		if (p_30642_ instanceof Mob) {
 			Mob mob = (Mob)p_30642_;
 			this.yBodyRot = mob.yBodyRot;
@@ -832,7 +833,7 @@ public class Triceratops extends AbstractChestedHorse  {
 
 	public void travel(Vec3 p_30633_) {
 		if (this.isAlive()) {
-			if (this.isVehicle() && this.canBeControlledByRider() && this.isSaddled()) {
+			if (this.isVehicle() && this.hasControllingPassenger() && this.isSaddled()) {
 				LivingEntity livingentity = (LivingEntity)this.getControllingPassenger();
 				this.setYRot(livingentity.getYRot());
 				this.yRotO = this.getYRot();
@@ -847,12 +848,12 @@ public class Triceratops extends AbstractChestedHorse  {
 					this.gallopSoundCounter = 0;
 				}
 
-				if (this.onGround && this.playerJumpPendingScale == 0.0F && this.isStanding() && !this.allowStandSliding) {
+				if (this.onGround() && this.playerJumpPendingScale == 0.0F && this.isStanding() && !this.allowStandSliding) {
 					f = 0.0F;
 					f1 = 0.0F;
 				}
 
-				if (this.playerJumpPendingScale > 0.0F && !this.isJumping() && this.onGround) {
+				if (this.playerJumpPendingScale > 0.0F && !this.isJumping() && this.onGround()) {
 					double d1 = 0;
 					Vec3 vec3 = this.getDeltaMovement();
 					this.setDeltaMovement(vec3.x, d1, vec3.z);
@@ -866,7 +867,6 @@ public class Triceratops extends AbstractChestedHorse  {
 					this.playerJumpPendingScale = 0.0F;
 				}
 
-				this.flyingSpeed = this.getSpeed() * 0.1F;
 				if (this.isControlledByLocalInstance()) {
 					this.setSpeed((float)this.getAttributeValue(Attributes.MOVEMENT_SPEED));
 					super.travel(new Vec3((double)f, p_30633_.y, (double)f1));
@@ -874,15 +874,14 @@ public class Triceratops extends AbstractChestedHorse  {
 					this.setDeltaMovement(Vec3.ZERO);
 				}
 
-				if (this.onGround) {
+				if (this.onGround()) {
 					this.playerJumpPendingScale = 0.0F;
 					this.setIsJumping(false);
 				}
 
-				this.calculateEntityAnimation(this, false);
+				this.calculateEntityAnimation(false);
 				this.tryCheckInsideBlocks();
 			} else {
-				this.flyingSpeed = 0.02F;
 				super.travel(p_30633_);
 			}
 		}
@@ -910,12 +909,13 @@ public class Triceratops extends AbstractChestedHorse  {
 		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
 		 * method as well.
 		 */
+		@SuppressWarnings("resource")
 		public boolean canUse() {
 			if (Triceratops.this.isBaby() && !Triceratops.this.isJuvenile() || Triceratops.this.isTamed()) {
 				return false;
 			} else {
 				if (super.canUse()) {
-					for(Triceratops triceratops : Triceratops.this.level.getEntitiesOfClass(Triceratops.class, Triceratops.this.getBoundingBox().inflate(8.0D, 4.0D, 8.0D))) {
+					for(Triceratops triceratops : Triceratops.this.level().getEntitiesOfClass(Triceratops.class, Triceratops.this.getBoundingBox().inflate(8.0D, 4.0D, 8.0D))) {
 						if (!triceratops.trusts(this.target.getUUID()) && (triceratops.isProtective() || triceratops.isTerritorial()) && Triceratops.this.getTarget() != null) {
 							if (triceratops.isBaby() && !triceratops.isJuvenile()) {
 								return true;
@@ -931,11 +931,6 @@ public class Triceratops extends AbstractChestedHorse  {
 		protected double getFollowDistance() {
 			return super.getFollowDistance() * 0.5D;
 		}
-	}
-
-	@Override
-	protected float generateRandomMaxHealth() {
-		return this.getMaxHealth();
 	}
 
 	public class DinosaurHurtByTargetGoal extends HurtByTargetGoal {
@@ -1059,7 +1054,7 @@ public class Triceratops extends AbstractChestedHorse  {
 				if (this.triceratops.isDigging < 1) {
 					this.triceratops.setDigging(true);
 				} else if (this.triceratops.isDigging > 200) {
-					Level world = this.triceratops.level;
+					Level world = this.triceratops.level();
 					world.playSound((Player)null, blockpos, SoundEvents.TURTLE_LAY_EGG, SoundSource.BLOCKS, 0.3F, 0.9F + world.random.nextFloat() * 0.2F);
 					world.setBlock(blockpos, PFBlocks.TRICERATOPS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(random.nextInt(3) + 1)), 0);
 					this.triceratops.setHasEgg(false);
@@ -1147,7 +1142,7 @@ public class Triceratops extends AbstractChestedHorse  {
 			this.triceratops.setHasEgg(true);
 			this.animal.resetLove();
 			this.partner.resetLove();
-			Random randomom = this.animal.getRandom();
+			RandomSource randomom = this.animal.getRandom();
 			if (this.level.getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
 				this.level.addFreshEntity(new ExperienceOrb(this.level, this.animal.getX(), this.animal.getY(), this.animal.getZ(), randomom.nextInt(7) + 1));
 			}
@@ -1233,8 +1228,8 @@ public class Triceratops extends AbstractChestedHorse  {
 		}
 
 		if (this.isBaby() && i > 0) {
-			this.level.addParticle(ParticleTypes.HAPPY_VILLAGER, this.getRandomX(1.0D), this.getRandomY() + 0.5D, this.getRandomZ(1.0D), 0.0D, 0.0D, 0.0D);
-			if (!this.level.isClientSide) {
+			this.level().addParticle(ParticleTypes.HAPPY_VILLAGER, this.getRandomX(1.0D), this.getRandomY() + 0.5D, this.getRandomZ(1.0D), 0.0D, 0.0D, 0.0D);
+			if (!this.level().isClientSide()) {
 				this.ageUp(i);
 			}
 
@@ -1257,7 +1252,7 @@ public class Triceratops extends AbstractChestedHorse  {
 
 		public boolean canUse() {
 			if (this.babyTriceratops.isBaby() && !this.babyTriceratops.isJuvenile()) {
-				List<? extends Triceratops> list = this.babyTriceratops.level.getEntitiesOfClass(this.babyTriceratops.getClass(), this.babyTriceratops.getBoundingBox().inflate(8.0D, 4.0D, 8.0D));
+				List<? extends Triceratops> list = this.babyTriceratops.level().getEntitiesOfClass(this.babyTriceratops.getClass(), this.babyTriceratops.getBoundingBox().inflate(8.0D, 4.0D, 8.0D));
 				Triceratops triceratopsEntity = null;
 				double d0 = Double.MAX_VALUE;
 				for (Triceratops triceratopsEntity1 : list) {
@@ -1323,7 +1318,7 @@ public class Triceratops extends AbstractChestedHorse  {
 
 		@Override
 		public boolean canUse() {
-			Level level = entity.level;
+			Level level = entity.level();
 			List<? extends Player> list = level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D));
 			if (PrehistoricFaunaConfig.unscheduledSleeping = true && entity.getRandom().nextInt(1000) == 0 && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isInWater() && !entity.isInLava() && !list.isEmpty()) {
 				return true;
@@ -1334,7 +1329,7 @@ public class Triceratops extends AbstractChestedHorse  {
 
 		@Override
 		public boolean canContinueToUse() {
-			Level level = entity.level;
+			Level level = entity.level();
 			List<? extends Player> list = level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D));
 			if (sleepTimer >= 6000 || entity.getLastHurtByMob() != null || entity.getTarget() != null || super.canContinueToUse() || entity.isInWater() || entity.isInLava() || !list.isEmpty()) {
 				entity.setSleeping(false);
@@ -1346,7 +1341,7 @@ public class Triceratops extends AbstractChestedHorse  {
 
 		public void tick() {
 			super.tick();
-			Level level = entity.level;
+			Level level = entity.level();
 			List<? extends Player> list = level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D));
 			sleepTimer++;
 			if (sleepTimer >= 6000 || entity.getLastHurtByMob() != null || entity.getTarget() != null || entity.isInWater() || entity.isInLava() || !list.isEmpty()) {
@@ -1385,17 +1380,19 @@ public class Triceratops extends AbstractChestedHorse  {
 			this.entity = sleeper;
 		}
 
+		@SuppressWarnings("resource")
 		@Override
 		public boolean canUse() {
-			for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
+			for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
 				if (!player.isShiftKeyDown()) return false;
 			}
 			return (PrehistoricFaunaConfig.sleeping = true && entity.getRandom().nextInt(1000) == 0 && entity.getLastHurtByMob() == null && !entity.isTamed() && entity.getRidingPlayer() == null && !entity.isInWater() && !entity.isInLava() && !PrehistoricFaunaConfig.unscheduledSleeping && entity.warryTicks == 0);
 		}
 
+		@SuppressWarnings("resource")
 		@Override
 		public boolean canContinueToUse() {
-			for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
+			for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
 				if (!player.isShiftKeyDown()) {
 					stop();
 					return false;
@@ -1410,7 +1407,7 @@ public class Triceratops extends AbstractChestedHorse  {
 		public void tick() {
 			super.tick();
 			sleepTimer++;
-			for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
+			for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
 				if (!player.isShiftKeyDown()) {
 					stop();
 				}
@@ -1477,7 +1474,7 @@ public class Triceratops extends AbstractChestedHorse  {
 					Triceratops.this.setEating(true);
 				}
 				if (this.field_220731_g % 5 == 1) {
-					Triceratops.this.level.playSound((Player)null, this.blockPos, SoundEvents.GRASS_HIT, SoundSource.NEUTRAL, 1, 1);
+					Triceratops.this.level().playSound((Player)null, this.blockPos, SoundEvents.GRASS_HIT, SoundSource.NEUTRAL, 1, 1);
 				}
 			}
 			if (Triceratops.this.getCurrentHunger() >= 13) {
@@ -1487,7 +1484,7 @@ public class Triceratops extends AbstractChestedHorse  {
 		}
 
 		protected void eatBerry() {
-			BlockState blockstate = Triceratops.this.level.getBlockState(this.blockPos);
+			BlockState blockstate = Triceratops.this.level().getBlockState(this.blockPos);
 
 			if (blockstate.is(PFTags.PLANTS_2_HUNGER)) {
 				int hunger = Triceratops.this.getCurrentHunger();
@@ -1669,28 +1666,28 @@ public class Triceratops extends AbstractChestedHorse  {
 		}
 
 		protected BlockPos getMoveToTarget() {
-			if (!Triceratops.this.level.getBlockState(blockPos.north()).isCollisionShapeFullBlock(level, blockPos.north())) {
+			if (!Triceratops.this.level().getBlockState(blockPos.north()).isCollisionShapeFullBlock(level(), blockPos.north())) {
 				return this.blockPos.north();
 			} else {
-				if (!Triceratops.this.level.getBlockState(blockPos.south()).isCollisionShapeFullBlock(level, blockPos.south())) {
+				if (!Triceratops.this.level().getBlockState(blockPos.south()).isCollisionShapeFullBlock(level(), blockPos.south())) {
 					return this.blockPos.south();
 				} else {
-					if (!Triceratops.this.level.getBlockState(blockPos.east()).isCollisionShapeFullBlock(level, blockPos.east())) {
+					if (!Triceratops.this.level().getBlockState(blockPos.east()).isCollisionShapeFullBlock(level(), blockPos.east())) {
 						return this.blockPos.east();
 					} else {
-						if (!Triceratops.this.level.getBlockState(blockPos.west()).isCollisionShapeFullBlock(level, blockPos.west())) {
+						if (!Triceratops.this.level().getBlockState(blockPos.west()).isCollisionShapeFullBlock(level(), blockPos.west())) {
 							return this.blockPos.west();
 						} else {
-							if (!Triceratops.this.level.getBlockState(blockPos.north().east()).isCollisionShapeFullBlock(level, blockPos.north().east())) {
+							if (!Triceratops.this.level().getBlockState(blockPos.north().east()).isCollisionShapeFullBlock(level(), blockPos.north().east())) {
 								return this.blockPos.north().east();
 							} else {
-								if (!Triceratops.this.level.getBlockState(blockPos.north().west()).isCollisionShapeFullBlock(level, blockPos.north().west())) {
+								if (!Triceratops.this.level().getBlockState(blockPos.north().west()).isCollisionShapeFullBlock(level(), blockPos.north().west())) {
 									return this.blockPos.north().west();
 								} else {
-									if (!Triceratops.this.level.getBlockState(blockPos.south().east()).isCollisionShapeFullBlock(level, blockPos.south().east())) {
+									if (!Triceratops.this.level().getBlockState(blockPos.south().east()).isCollisionShapeFullBlock(level(), blockPos.south().east())) {
 										return this.blockPos.south().east();
 									} else {
-										if (!Triceratops.this.level.getBlockState(blockPos.south().west()).isCollisionShapeFullBlock(level, blockPos.south().west())) {
+										if (!Triceratops.this.level().getBlockState(blockPos.south().west()).isCollisionShapeFullBlock(level(), blockPos.south().west())) {
 											return this.blockPos.south().west();
 										} else return blockPos.above();
 									}
@@ -1714,7 +1711,7 @@ public class Triceratops extends AbstractChestedHorse  {
 					Triceratops.this.setEating(true);
 				}
 				if (this.field_220731_g % 5 == 1) {
-					Triceratops.this.level.playSound((Player)null, this.blockPos, SoundEvents.GRASS_HIT, SoundSource.NEUTRAL, 1, 1);
+					Triceratops.this.level().playSound((Player)null, this.blockPos, SoundEvents.GRASS_HIT, SoundSource.NEUTRAL, 1, 1);
 				}
 			}
 			if (Triceratops.this.getCurrentHunger() >= 13) {
@@ -1726,15 +1723,14 @@ public class Triceratops extends AbstractChestedHorse  {
 		protected void eatBerry() {
 			int missingHunger = Triceratops.this.maxHunger - Triceratops.this.getCurrentHunger();
 			int hunger = Triceratops.this.getCurrentHunger();
-			FeederBlock block = (FeederBlock) Triceratops.this.level.getBlockState(this.blockPos).getBlock();
-			int foodContained = block.getFoodAmount(Triceratops.this.level, this.blockPos);
+			FeederBlock block = (FeederBlock) Triceratops.this.level().getBlockState(this.blockPos).getBlock();
+			int foodContained = block.getFoodAmount(Triceratops.this.level(), this.blockPos);
 			if (missingHunger <= foodContained) {
-				block.setFoodAmount(foodContained - missingHunger, level, this.blockPos);
+				block.setFoodAmount(foodContained - missingHunger, level(), this.blockPos);
 				Triceratops.this.setHunger(Triceratops.this.maxHunger);
 				Triceratops.this.setEating(false);
-				System.out.println(foodContained);
 			} else if (foodContained - missingHunger < 0) {
-				block.setFoodAmount(0, level, this.blockPos);
+				block.setFoodAmount(0, level(), this.blockPos);
 				Triceratops.this.setHunger(hunger + foodContained);
 				Triceratops.this.setEating(false);
 			}
@@ -1780,12 +1776,13 @@ public class Triceratops extends AbstractChestedHorse  {
 		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
 		 * method as well.
 		 */
+		@SuppressWarnings("resource")
 		public boolean canUse() {
 			if (dinosaur.isBaby()) {
 				return false;
 			} else {
 				if (super.canUse()) {
-					for(Triceratops dinosaur : dinosaur.level.getEntitiesOfClass(Triceratops.class, dinosaur.getBoundingBox().inflate(24.0D, 4.0D, 24.0D))) {
+					for(Triceratops dinosaur : dinosaur.level().getEntitiesOfClass(Triceratops.class, dinosaur.getBoundingBox().inflate(24.0D, 4.0D, 24.0D))) {
 						if (!dinosaur.trusts(this.target.getUUID()) && dinosaur.isTerritorial() && !dinosaur.isTamed()) {
 							return true;
 						}

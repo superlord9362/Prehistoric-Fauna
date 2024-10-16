@@ -152,7 +152,7 @@ public class PaleoscribeContainer extends AbstractContainerMenu {
         ItemStack itemstack1 = this.tileFurnace.getItem(1);
         int i = 3;
 
-        if (!playerIn.level.isClientSide && !playerIn.isCreative()) {
+        if (!playerIn.level().isClientSide() && !playerIn.isCreative()) {
             itemstack1.shrink(i);
             if (itemstack1.isEmpty()) {
                 this.tileFurnace.setItem(1, ItemStack.EMPTY);
@@ -168,20 +168,26 @@ public class PaleoscribeContainer extends AbstractContainerMenu {
         } else if (this.possiblePagesInt[id] > 0 && !itemstack.isEmpty()) {
             EnumPaleoPages page = getPossiblePages()[Mth.clamp(id, 0, 2)];
             if (page != null) {
-                if (itemstack.getItem() == PFItems.PALEOPEDIA.get()) {
-                    this.tileFurnace.setItem(0, itemstack);
-                    if (PrehistoricFauna.PROXY.getReferencedBE() instanceof PaleoscribeBlockEntity) {
-                        if (playerIn.level.isClientSide) {
-                        	PrehistoricFauna.sendMSGToServer(new MessageUpdatePaleoscribe(PrehistoricFauna.PROXY.getReferencedBE().getBlockPos().asLong(), 0, 0, 0, true, page.ordinal()));
-                        }
-                        ((PaleoscribeBlockEntity) PrehistoricFauna.PROXY.getReferencedBE()).randomizePages(itemstack, itemstack1);
-                    }
-                }
+            	if (itemstack.getItem() == PFItems.PALEOPEDIA.get()) {
+            		this.tileFurnace.setItem(0, itemstack);
+            		if (PrehistoricFauna.PROXY.getReferencedBE() instanceof PaleoscribeBlockEntity) {
+            			if (!playerIn.level().isClientSide()) {
+            				if (itemstack.getItem() == PFItems.PALEOPEDIA.get()) {
+            					EnumPaleoPages.addPage(EnumPaleoPages.fromInt(page.ordinal()), itemstack);
+            				}
+            				if (this.tileFurnace instanceof PaleoscribeBlockEntity paleoscribeEntity) {
+            					paleoscribeEntity.randomizePages(itemstack, itemstack1);
+            				}
+            			} else {
+            				PrehistoricFauna.sendMSGToServer(new MessageUpdatePaleoscribe(PrehistoricFauna.PROXY.getReferencedBE().getBlockPos().asLong(), 0, 0, 0, true, page.ordinal()));
+            			}
+            		}
+            	}
 
                 this.tileFurnace.setChanged();
                 //this.xpSeed = playerIn.getXPSeed();
                 this.slotsChanged(this.tileFurnace);
-                playerIn.level.playSound(null, playerIn.blockPosition(), SoundEvents.BOOK_PAGE_TURN, SoundSource.BLOCKS, 1.0F, playerIn.level.random.nextFloat() * 0.1F + 0.9F);
+                playerIn.level().playSound(null, playerIn.blockPosition(), SoundEvents.BOOK_PAGE_TURN, SoundSource.BLOCKS, 1.0F, playerIn.level().getRandom().nextFloat() * 0.1F + 0.9F);
             }
             onUpdate();
             return true;

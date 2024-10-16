@@ -1,0 +1,27 @@
+{
+  "type": "prehistoricfauna:podozamites_tree_5",
+  "config": {
+    "leaves_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:podozamites_leaves",
+        "Properties": {
+          "distance": "7",
+          "persistent": "false",
+          "waterlogged": "false"
+        }
+      }
+    },
+    "max_height": 23,
+    "min_height": 19,
+    "trunk_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:podozamites_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    }
+  }
+}

@@ -15,19 +15,21 @@ public class NocturnalSleepGoal extends Goal {
 		this.entity = sleeper;
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public boolean canUse() {
-		Level world = entity.level;
-		for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
+		Level world = entity.level();
+		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
 			if (!player.isShiftKeyDown()) return false;
 		}
 		return (PrehistoricFaunaConfig.sleeping = true && world.getDayTime() % 24000 >= 0 && world.getDayTime() % 24000 <= 12000 && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isInWater() && !entity.isInLava() && !PrehistoricFaunaConfig.unscheduledSleeping && entity.warryTicks == 0);
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public boolean canContinueToUse() {
-		Level world = entity.level;
-		for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
+		Level world = entity.level();
+		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
 			if (player.isShiftKeyDown()) {
 				if (world.getDayTime() % 24000 >= 12000 && world.getDayTime() % 24000 <= 24000 || entity.getLastHurtByMob() != null || !super.canContinueToUse() || entity.getTarget() != null || entity.isInWater() || entity.isInLava()) {
 					stop();
@@ -56,8 +58,8 @@ public class NocturnalSleepGoal extends Goal {
 
 	public void tick() {
 		super.tick();
-		Level world = entity.level;
-		for(Player player : entity.level.getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
+		Level world = entity.level();
+		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
 			if (!player.isShiftKeyDown()) {
 				stop();
 			}

@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/cooked_acipenser"
+        "layer0": "prehistoricfauna:item/cooked_acipenser"
     }
 }

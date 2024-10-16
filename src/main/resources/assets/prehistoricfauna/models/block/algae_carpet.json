@@ -2,11 +2,11 @@
 	"credit": "Made with Blockbench",
     "parent": "block/leaves",
 	"textures": {
-		"0": "prehistoricfauna:blocks/algae",
-		"1": "prehistoricfauna:blocks/algae_side",
-		"2": "prehistoricfauna:blocks/algae_top",
-		"particle": "prehistoricfauna:blocks/algae",
-		"missing": "prehistoricfauna:blocks/empty_texture"
+		"0": "prehistoricfauna:block/algae",
+		"1": "prehistoricfauna:block/algae_side",
+		"2": "prehistoricfauna:block/algae_top",
+		"particle": "prehistoricfauna:block/algae",
+		"missing": "prehistoricfauna:block/empty_texture"
 	},
 	"elements": [
 		{

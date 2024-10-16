@@ -2,8 +2,7 @@ package superlord.prehistoricfauna.common.world.chunkgen;
 
 import java.util.function.Function;
 
-import com.mojang.serialization.Codec;
-
+import net.minecraft.util.KeyDispatchDataCodec;
 import net.minecraft.world.level.levelgen.DensityFunction;
 import superlord.prehistoricfauna.common.util.FastNoise;
 
@@ -42,7 +41,7 @@ public class FastNoiseDensityFunction implements DensityFunction.SimpleFunction 
     }
 
     @Override
-    public Codec<? extends DensityFunction> codec() {
+    public KeyDispatchDataCodec<? extends DensityFunction> codec() {
         return null;
     }
 

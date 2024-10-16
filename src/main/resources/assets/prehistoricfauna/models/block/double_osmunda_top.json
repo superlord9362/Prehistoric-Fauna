@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "prehistoricfauna:blocks/double_osmunda_top"
+        "cross": "prehistoricfauna:block/double_osmunda_top"
     }
 }

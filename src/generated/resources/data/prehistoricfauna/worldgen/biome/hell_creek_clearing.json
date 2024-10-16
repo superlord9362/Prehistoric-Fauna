@@ -1,0 +1,216 @@
+{
+  "carvers": {},
+  "downfall": 0.7,
+  "effects": {
+    "fog_color": 12638463,
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2.0,
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000
+    },
+    "sky_color": 8306591,
+    "water_color": 8150344,
+    "water_fog_color": 7032379
+  },
+  "features": [
+    [],
+    [],
+    [
+      "minecraft:amethyst_geode"
+    ],
+    [],
+    [],
+    [],
+    [
+      "minecraft:ore_dirt",
+      "minecraft:ore_gravel",
+      "minecraft:ore_granite_upper",
+      "minecraft:ore_granite_lower",
+      "minecraft:ore_diorite_upper",
+      "minecraft:ore_diorite_lower",
+      "minecraft:ore_andesite_upper",
+      "minecraft:ore_andesite_lower",
+      "minecraft:ore_tuff",
+      "minecraft:ore_coal_upper",
+      "minecraft:ore_coal_lower",
+      "minecraft:ore_iron_upper",
+      "minecraft:ore_iron_middle",
+      "minecraft:ore_iron_small",
+      "minecraft:ore_gold",
+      "minecraft:ore_gold_lower",
+      "minecraft:ore_redstone",
+      "minecraft:ore_redstone_lower",
+      "minecraft:ore_diamond",
+      "minecraft:ore_diamond_large",
+      "minecraft:ore_diamond_buried",
+      "minecraft:ore_lapis",
+      "minecraft:ore_lapis_buried",
+      "minecraft:ore_copper_large",
+      "minecraft:underwater_magma"
+    ],
+    [],
+    [],
+    [
+      "minecraft:glow_lichen",
+      "prehistoricfauna:placed_clearing_humulus",
+      "prehistoricfauna:placed_clearing_clubmoss",
+      "prehistoricfauna:placed_clearing_rare_small_araucaria_trees",
+      "prehistoricfauna:placed_clearing_very_common_osmunda",
+      "prehistoricfauna:placed_clearing_very_common_tall_osmunda",
+      "prehistoricfauna:placed_clearing_very_rare_lowered_horsetails",
+      "prehistoricfauna:placed_clearing_sabalites",
+      "prehistoricfauna:placed_clearing_very_rare_small_ginkgo_trees",
+      "prehistoricfauna:placed_clearing_rare_small_metasequoia_trees",
+      "prehistoricfauna:placed_clearing_fallen_metasequoia_log",
+      "prehistoricfauna:placed_clearing_fallen_platanites_log",
+      "prehistoricfauna:placed_clearing_fallen_ginkgo_log",
+      "prehistoricfauna:placed_clearing_rare_platanites_trees"
+    ],
+    [
+      "prehistoricfauna:placed_mud_disk"
+    ]
+  ],
+  "has_precipitation": true,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [
+      {
+        "type": "prehistoricfauna:ankylosaurus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 1
+      },
+      {
+        "type": "prehistoricfauna:anzu",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 2
+      },
+      {
+        "type": "prehistoricfauna:basilemys",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 5
+      },
+      {
+        "type": "prehistoricfauna:cephaloleichnites",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 7
+      },
+      {
+        "type": "prehistoricfauna:dakotaraptor",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 2
+      },
+      {
+        "type": "prehistoricfauna:didelphodon",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 5
+      },
+      {
+        "type": "prehistoricfauna:edmontosaurus",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 12
+      },
+      {
+        "type": "prehistoricfauna:ornithomimus",
+        "maxCount": 6,
+        "minCount": 3,
+        "weight": 12
+      },
+      {
+        "type": "prehistoricfauna:pachycephalosaurus",
+        "maxCount": 3,
+        "minCount": 2,
+        "weight": 5
+      },
+      {
+        "type": "prehistoricfauna:palaeosaniwa",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 2
+      },
+      {
+        "type": "prehistoricfauna:thescelosaurus",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 4
+      },
+      {
+        "type": "prehistoricfauna:triceratops",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 15
+      },
+      {
+        "type": "prehistoricfauna:tyrannosaurus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 9
+      }
+    ],
+    "misc": [],
+    "monster": [
+      {
+        "type": "prehistoricfauna:cave_sentinel",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 5
+      },
+      {
+        "type": "prehistoricfauna:land_sentinel",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 2
+      }
+    ],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": [
+      {
+        "type": "prehistoricfauna:acipenser",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 4
+      },
+      {
+        "type": "prehistoricfauna:cyclurus",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 7
+      },
+      {
+        "type": "prehistoricfauna:gar",
+        "maxCount": 4,
+        "minCount": 1,
+        "weight": 11
+      },
+      {
+        "type": "prehistoricfauna:lonchidion",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 6
+      },
+      {
+        "type": "prehistoricfauna:melvius",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 5
+      },
+      {
+        "type": "prehistoricfauna:myledaphus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 9
+      }
+    ]
+  },
+  "temperature": 0.8
+}

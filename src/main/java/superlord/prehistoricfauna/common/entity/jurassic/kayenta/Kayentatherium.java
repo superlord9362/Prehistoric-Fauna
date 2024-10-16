@@ -77,11 +77,10 @@ public class Kayentatherium extends DinosaurEntity {
 	private int maxHunger = 15;
 	private int warningSoundTicks;
 
-	@SuppressWarnings("deprecation")
 	public Kayentatherium(EntityType<? extends Kayentatherium> type, Level worldIn) {
 		super(type, worldIn);
 		this.moveControl = new Kayentatherium.MoveHelperController(this);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -170,15 +169,15 @@ public class Kayentatherium extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.KAYENTATHERIUM_IDLE;
+		return this.isAsleep() ? null : PFSounds.KAYENTATHERIUM_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.KAYENTATHERIUM_HURT;
+		return PFSounds.KAYENTATHERIUM_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.KAYENTATHERIUM_DEATH;
+		return PFSounds.KAYENTATHERIUM_DEATH.get();
 	}
 
 	public void tick() {
@@ -198,8 +197,8 @@ public class Kayentatherium extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Kayentatherium entity = new Kayentatherium(PFEntities.KAYENTATHERIUM.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Kayentatherium entity = new Kayentatherium(PFEntities.KAYENTATHERIUM.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 	
@@ -249,6 +248,7 @@ public class Kayentatherium extends DinosaurEntity {
 			this.kayentatherium = kayentatherium;
 		}
 
+		@SuppressWarnings("deprecation")
 		public void tick() {
 			if (this.kayentatherium.isEyeInFluid(FluidTags.WATER)) {
 				this.kayentatherium.setDeltaMovement(this.kayentatherium.getDeltaMovement().add(0.0D, 0.005D, 0.0D));

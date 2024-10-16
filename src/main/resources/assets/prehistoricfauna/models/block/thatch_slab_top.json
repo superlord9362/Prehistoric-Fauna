@@ -2,9 +2,9 @@
 	"credit": "Made with Blockbench",
 	"ambientocclusion": false,
 	"textures": {
-		"0": "prehistoricfauna:blocks/thatch",
-		"1": "prehistoricfauna:blocks/thatch_hair",
-		"particle": "prehistoricfauna:blocks/thatch"
+		"0": "prehistoricfauna:block/thatch",
+		"1": "prehistoricfauna:block/thatch_hair",
+		"particle": "prehistoricfauna:block/thatch"
 	},
 	"elements": [
 		{

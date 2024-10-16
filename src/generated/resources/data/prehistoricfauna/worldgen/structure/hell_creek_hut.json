@@ -1,0 +1,6 @@
+{
+  "type": "prehistoricfauna:hell_creek_hut",
+  "biomes": "#prehistoricfauna:has_structure/hell_creek_hut",
+  "spawn_overrides": {},
+  "step": "surface_structures"
+}

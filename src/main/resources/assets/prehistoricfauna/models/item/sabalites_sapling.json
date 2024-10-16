@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:blocks/sabalites_sapling"
+        "layer0": "prehistoricfauna:block/sabalites_sapling"
     }
 }

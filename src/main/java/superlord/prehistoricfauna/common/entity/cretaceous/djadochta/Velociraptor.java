@@ -9,7 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -150,14 +150,13 @@ public class Velociraptor extends DinosaurEntity {
 		return new WallClimberNavigation(this, worldIn);
 	}
 
-	@SuppressWarnings("deprecation")
 	public Velociraptor(EntityType<? extends Velociraptor> type, Level worldIn) {
 		super(type, worldIn);
 		this.lookControl = new Velociraptor.LookHelperController();
 		this.moveControl = new Velociraptor.MoveHelperController();
 		this.setPathfindingMalus(BlockPathTypes.DANGER_OTHER, 0.0F);
 		this.setPathfindingMalus(BlockPathTypes.DAMAGE_OTHER, 0.0F);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);;
 		super.maxHunger = maxHunger;
 	}
 
@@ -224,7 +223,7 @@ public class Velociraptor extends DinosaurEntity {
 		}));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 	}
-	
+
 	@Override
 	public void setAge(int age) {
 		super.setAge(age);
@@ -236,19 +235,19 @@ public class Velociraptor extends DinosaurEntity {
 	}
 
 	public void aiStep() {
-		if (!this.level.isClientSide && this.isAlive()) {
+		if (!this.level().isClientSide() && this.isAlive()) {
 			++this.eatTicks;
 			ItemStack itemstack = this.getItemBySlot(EquipmentSlot.MAINHAND);
 			if (this.canEatItem(itemstack)) {
 				if (this.eatTicks > 600) {
-					ItemStack itemstack1 = itemstack.finishUsingItem(this.level, this);
+					ItemStack itemstack1 = itemstack.finishUsingItem(this.level(), this);
 					if (!itemstack1.isEmpty()) {
 						this.setItemSlot(EquipmentSlot.MAINHAND, itemstack1);
 					}
 
 					this.eatTicks = 0;
 				} else if (this.eatTicks > 560 && this.random.nextFloat() < 0.1F) {
-					this.level.broadcastEntityEvent(this, (byte)45);
+					this.level().broadcastEntityEvent(this, (byte)45);
 				}
 			}
 
@@ -262,7 +261,7 @@ public class Velociraptor extends DinosaurEntity {
 			if (this.getVehicle() != null) {
 				if (this.getVehicle() == this.getTarget() && this.tickCount % 20 == 0) {
 					AttributeInstance iattributeinstance = this.getAttribute(Attributes.ATTACK_DAMAGE);
-					this.getTarget().hurt(DamageSource.mobAttack(this), (float) iattributeinstance.getBaseValue());
+					this.getTarget().hurt(this.damageSources().mobAttack(this), (float) iattributeinstance.getBaseValue());
 				}
 			}
 		}
@@ -292,7 +291,7 @@ public class Velociraptor extends DinosaurEntity {
 
 	@SuppressWarnings("deprecation")
 	private boolean canEatItem(ItemStack itemStackIn) {
-		return itemStackIn.getItem().isEdible() && itemStackIn.getItem().getFoodProperties().isMeat() && this.getTarget() == null && this.onGround && !this.isSleeping();
+		return itemStackIn.getItem().isEdible() && itemStackIn.getItem().getFoodProperties().isMeat() && this.getTarget() == null && this.onGround() && !this.isSleeping();
 	}
 
 	protected boolean isMovementBlocked() {
@@ -306,17 +305,17 @@ public class Velociraptor extends DinosaurEntity {
 	}
 
 	private void spitOutItem(ItemStack stackIn) {
-		if (!stackIn.isEmpty() && !this.level.isClientSide) {
-			ItemEntity itementity = new ItemEntity(this.level, this.getX() + this.getLookAngle().x, this.getY() + 1.0D, this.getZ() + this.getLookAngle().z, stackIn);
+		if (!stackIn.isEmpty() && !this.level().isClientSide) {
+			ItemEntity itementity = new ItemEntity(this.level(), this.getX() + this.getLookAngle().x, this.getY() + 1.0D, this.getZ() + this.getLookAngle().z, stackIn);
 			itementity.setPickUpDelay(40);
 			itementity.setThrower(this.getUUID());
-			this.level.addFreshEntity(itementity);
+			this.level().addFreshEntity(itementity);
 		}
 	}
 
 	private void dropItemStack(ItemStack stackIn) {
-		ItemEntity itementity = new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), stackIn);
-		this.level.addFreshEntity(itementity);
+		ItemEntity itementity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), stackIn);
+		this.level().addFreshEntity(itementity);
 	}
 
 	protected void pickUpItem(ItemEntity item) {
@@ -367,7 +366,7 @@ public class Velociraptor extends DinosaurEntity {
 			if (!itemstack.isEmpty()) {
 				for(int i = 0; i < 8; ++i) {
 					Vec3 vec3d = (new Vec3(((double)this.random.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, 0.0D)).xRot(-this.xRot * ((float)Math.PI / 180F)).yRot(-this.yRot * ((float)Math.PI / 180F));
-					this.level.addParticle(new ItemParticleOption(ParticleTypes.ITEM, itemstack), this.getX() + this.getLookAngle().x / 2.0D, this.getY(), this.getZ() + this.getLookAngle().z / 2.0D, vec3d.x, vec3d.y + 0.05D, vec3d.z);
+					this.level().addParticle(new ItemParticleOption(ParticleTypes.ITEM, itemstack), this.getX() + this.getLookAngle().x / 2.0D, this.getY(), this.getZ() + this.getLookAngle().z / 2.0D, vec3d.x, vec3d.y + 0.05D, vec3d.z);
 				}
 			}
 		} else {
@@ -380,7 +379,7 @@ public class Velociraptor extends DinosaurEntity {
 	public void push(Entity entity) {
 		super.push(entity);
 		if (this.getTarget() != null) {
-			if (this.getTarget() == entity && !onGround && this.getVehicle() != entity && !(entity instanceof Player)) {
+			if (this.getTarget() == entity && !onGround() && this.getVehicle() != entity && !(entity instanceof Player)) {
 				this.startRiding(entity);
 			}
 		}
@@ -479,7 +478,7 @@ public class Velociraptor extends DinosaurEntity {
 		super.tick();
 		if (this.isEffectiveAi()) {
 			boolean flag = this.isInWater();
-			if (flag || this.getTarget() != null || this.level.isThundering()) {
+			if (flag || this.getTarget() != null || this.level().isThundering()) {
 				this.func_213454_em();
 			}
 
@@ -487,10 +486,10 @@ public class Velociraptor extends DinosaurEntity {
 				this.setSitting(false);
 			}
 
-			if (this.isStuck() && this.level.random.nextFloat() < 0.2F) {
-				BlockPos blockpos = new BlockPos(this.position());
-				BlockState blockstate = this.level.getBlockState(blockpos);
-				this.level.levelEvent(2001, blockpos, Block.getId(blockstate));
+			if (this.isStuck() && this.level().random.nextFloat() < 0.2F) {
+				BlockPos blockpos = new BlockPos(this.blockPosition());
+				BlockState blockstate = this.level().getBlockState(blockpos);
+				this.level().levelEvent(2001, blockpos, Block.getId(blockstate));
 			}
 		}
 
@@ -515,17 +514,17 @@ public class Velociraptor extends DinosaurEntity {
 			this.crouchAmount = 0.0F;
 		}
 
-		if (!this.level.isClientSide) {
+		if (!this.level().isClientSide()) {
 			if (this.horizontalCollision) {
 				Boolean logBlock;
-				BlockPos blockpos1 = new BlockPos(this.position().x() + 1, this.position().y() + 1, this.position().z());
-				BlockPos blockpos2 = new BlockPos(this.position().x() - 1, this.position().y() + 1, this.position().z());
-				BlockPos blockpos3 = new BlockPos(this.position().x(), this.position().y() + 1, this.position().z() + 1);
-				BlockPos blockpos4 = new BlockPos(this.position().x(), this.position().y() + 1, this.position().z() - 1);
-				BlockState blockstate1 = this.level.getBlockState(blockpos1);
-				BlockState blockstate2 = this.level.getBlockState(blockpos2);
-				BlockState blockstate3 = this.level.getBlockState(blockpos3);
-				BlockState blockstate4 = this.level.getBlockState(blockpos4);
+				BlockPos blockpos1 = new BlockPos((int) this.position().x() + 1, (int) this.position().y() + 1, (int) this.position().z());
+				BlockPos blockpos2 = new BlockPos((int) this.position().x() - 1, (int) this.position().y() + 1, (int) this.position().z());
+				BlockPos blockpos3 = new BlockPos((int) this.position().x(), (int) this.position().y() + 1, (int) this.position().z() + 1);
+				BlockPos blockpos4 = new BlockPos((int) this.position().x(), (int) this.position().y() + 1, (int) this.position().z() - 1);
+				BlockState blockstate1 = this.level().getBlockState(blockpos1);
+				BlockState blockstate2 = this.level().getBlockState(blockpos2);
+				BlockState blockstate3 = this.level().getBlockState(blockpos3);
+				BlockState blockstate4 = this.level().getBlockState(blockpos4);
 				if (blockstate1.is(BlockTags.LOGS) || blockstate1.is(BlockTags.PLANKS) || blockstate1.is(BlockTags.WOODEN_DOORS) || blockstate1.is(BlockTags.WOODEN_FENCES) || blockstate1.is(BlockTags.WOODEN_SLABS) || blockstate1.is(BlockTags.WOODEN_STAIRS) || blockstate2.is(BlockTags.LOGS) || blockstate2.is(BlockTags.PLANKS) || blockstate2.is(BlockTags.WOODEN_DOORS) || blockstate2.is(BlockTags.WOODEN_FENCES) || blockstate2.is(BlockTags.WOODEN_SLABS) || blockstate2.is(BlockTags.WOODEN_STAIRS)  || blockstate3.is(BlockTags.LOGS) || blockstate3.is(BlockTags.PLANKS) || blockstate3.is(BlockTags.WOODEN_DOORS) || blockstate3.is(BlockTags.WOODEN_FENCES) || blockstate3.is(BlockTags.WOODEN_SLABS) || blockstate3.is(BlockTags.WOODEN_STAIRS) || blockstate4.is(BlockTags.LOGS) || blockstate4.is(BlockTags.PLANKS) || blockstate4.is(BlockTags.WOODEN_DOORS) || blockstate4.is(BlockTags.WOODEN_FENCES) || blockstate4.is(BlockTags.WOODEN_SLABS) || blockstate4.is(BlockTags.WOODEN_STAIRS)) {
 					logBlock = true;
 					if (climbingTickCooldown == 0 && climbingTicks < 600) {
@@ -635,20 +634,20 @@ public class Velociraptor extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound()  {
-		return this.isAsleep() ? null : PFSounds.VELOCIRAPTOR_IDLE;
+		return this.isAsleep() ? null : PFSounds.VELOCIRAPTOR_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.VELOCIRAPTOR_HURT;
+		return PFSounds.VELOCIRAPTOR_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.VELOCIRAPTOR_DEATH;
+		return PFSounds.VELOCIRAPTOR_DEATH.get();
 	}
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.VELOCIRAPTOR_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.VELOCIRAPTOR_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -666,7 +665,7 @@ public class Velociraptor extends DinosaurEntity {
 			double d4 = d2 == 0.0D ? d1 * (double)((float)j / 6.0F) : d3 / d2;
 
 			for(int k = 1; k < 4; ++k) {
-				if (!p_213481_0_.level.getBlockState(new BlockPos(p_213481_0_.getX() + d4, p_213481_0_.getY() + (double)k, p_213481_0_.getZ() + d3)).getMaterial().isReplaceable()) {
+				if (!p_213481_0_.level().getBlockState(new BlockPos((int) p_213481_0_.getX() + (int) d4, (int) p_213481_0_.getY() + k, (int) p_213481_0_.getZ() + (int) d3)).canBeReplaced()) {
 					return false;
 				}
 			}
@@ -700,12 +699,12 @@ public class Velociraptor extends DinosaurEntity {
 		}
 
 		protected boolean func_220813_g() {
-			BlockPos blockpos = new BlockPos(Velociraptor.this.position());
-			return !Velociraptor.this.level.canSeeSky(blockpos) && Velociraptor.this.getWalkTargetValue(blockpos) >= 0.0F;
+			BlockPos blockpos = new BlockPos(Velociraptor.this.blockPosition());
+			return !Velociraptor.this.level().canSeeSky(blockpos) && Velociraptor.this.getWalkTargetValue(blockpos) >= 0.0F;
 		}
 
 		protected boolean func_220814_h() {
-			return !Velociraptor.this.level.getNearbyEntities(LivingEntity.class, this.field_220816_b, Velociraptor.this, Velociraptor.this.getBoundingBox().inflate(12.0D, 6.0D, 12.0D)).isEmpty();
+			return !Velociraptor.this.level().getNearbyEntities(LivingEntity.class, this.field_220816_b, Velociraptor.this, Velociraptor.this.getBoundingBox().inflate(12.0D, 6.0D, 12.0D)).isEmpty();
 		}
 	}
 
@@ -746,15 +745,15 @@ public class Velociraptor extends DinosaurEntity {
 
 		public boolean canUse() {
 			if (!Velociraptor.this.isSleeping() && this.mob.getTarget() == null) {
-				if (Velociraptor.this.level.isThundering()) {
+				if (Velociraptor.this.level().isThundering()) {
 					return true;
 				} else if (this.cooldown > 0) {
 					--this.cooldown;
 					return false;
 				} else {
 					this.cooldown = 100;
-					BlockPos blockpos = new BlockPos(this.mob.position());
-					return Velociraptor.this.level.isDay() && Velociraptor.this.level.canSeeSky(blockpos) && !((ServerLevel)Velociraptor.this.level).isVillage(blockpos) && this.setWantedPos();
+					BlockPos blockpos = new BlockPos(this.mob.blockPosition());
+					return Velociraptor.this.level().isDay() && Velociraptor.this.level().canSeeSky(blockpos) && !((ServerLevel)Velociraptor.this.level()).isVillage(blockpos) && this.setWantedPos();
 				}
 			} else {
 				return false;
@@ -923,7 +922,7 @@ public class Velociraptor extends DinosaurEntity {
 			LivingEntity livingentity = Velociraptor.this.getTarget();
 			if (livingentity != null && livingentity.isAlive()) {
 				double d0 = Velociraptor.this.getDeltaMovement().y;
-				return (!(d0 * d0 < (double)0.05F) || !(Math.abs(Velociraptor.this.xRot) < 15.0F) || !Velociraptor.this.onGround) && !Velociraptor.this.isStuck();
+				return (!(d0 * d0 < (double)0.05F) || !(Math.abs(Velociraptor.this.xRot) < 15.0F) || !Velociraptor.this.onGround()) && !Velociraptor.this.isStuck();
 			} else {
 				return false;
 			}
@@ -971,7 +970,7 @@ public class Velociraptor extends DinosaurEntity {
 
 			if (livingentity != null && Velociraptor.this.distanceTo(livingentity) <= 2.0F) {
 				Velociraptor.this.doHurtTarget(livingentity);
-			} else if (Velociraptor.this.xRot > 0.0F && Velociraptor.this.onGround && (float)Velociraptor.this.getDeltaMovement().y != 0.0F && Velociraptor.this.level.getBlockState(new BlockPos(Velociraptor.this.position())).getBlock() == Blocks.SNOW) {
+			} else if (Velociraptor.this.xRot > 0.0F && Velociraptor.this.onGround() && (float)Velociraptor.this.getDeltaMovement().y != 0.0F && Velociraptor.this.level().getBlockState(Velociraptor.this.blockPosition()).getBlock() == Blocks.SNOW) {
 				Velociraptor.this.xRot = 60.0F;
 				Velociraptor.this.setTarget((LivingEntity)null);
 			}
@@ -1087,8 +1086,8 @@ public class Velociraptor extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Velociraptor entity = new Velociraptor(PFEntities.VELOCIRAPTOR.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Velociraptor entity = new Velociraptor(PFEntities.VELOCIRAPTOR.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -1112,37 +1111,104 @@ public class Velociraptor extends DinosaurEntity {
 	public InteractionResult mobInteract(Player player, InteractionHand p_230254_2_) {
 		ItemStack itemstack = player.getItemInHand(p_230254_2_);
 		Item item = itemstack.getItem();
-		if (this.level.isClientSide) {
+		if (this.level().isClientSide) {
 			boolean flag = this.isOwnedBy(player) || this.isTame() || this.isFood(itemstack) && !this.isTame();
 			return flag ? InteractionResult.CONSUME : InteractionResult.PASS;
+
 		} else {
 			if (this.isTame()) {
-				if (this.isFood(itemstack)) {
-					if (this.getHealth() < this.getMaxHealth()) {
-						if (!player.getAbilities().instabuild) {
+				if (this.getCurrentHunger() < this.maxHunger && (itemstack.is(PFTags.MEATS_2_HUNGER) || itemstack.is(PFTags.MEATS_4_HUNGER) || itemstack.is(PFTags.MEATS_6_HUNGER) || itemstack.is(PFTags.MEATS_8_HUNGER) || itemstack.is(PFTags.MEATS_10_HUNGER) || itemstack.is(PFTags.MEATS_12_HUNGER))) {
+					if (itemstack.is(PFTags.MEATS_2_HUNGER)) {
+						if (this.getCurrentHunger() + 2 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(this.getCurrentHunger() + 2);
+						}
+						if (!player.isCreative()) {
 							itemstack.shrink(1);
 						}
-						this.heal((float)item.getFoodProperties().getNutrition());
-						return InteractionResult.SUCCESS;
-					} else {
-						if (this.canFallInLove()) {
-							this.setInLove(player);
-							if (!player.isCreative()) {
-								itemstack.shrink(1);
-							}
+					}
+					if (itemstack.is(PFTags.MEATS_4_HUNGER)) {
+						if (this.getCurrentHunger() + 4 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(this.getCurrentHunger() + 4);
+						}
+						if (!player.isCreative()) {
+							itemstack.shrink(1);
+						}
+					}
+					if (itemstack.is(PFTags.MEATS_6_HUNGER)) {
+						if (this.getCurrentHunger() + 6 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(this.getCurrentHunger() + 6);
+						}
+						if (!player.isCreative()) {
+							itemstack.shrink(1);
+						}
+					}
+					if (itemstack.is(PFTags.MEATS_8_HUNGER)) {
+						if (this.getCurrentHunger() + 8 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(this.getCurrentHunger() + 8);
+						}
+						if (!player.isCreative()) {
+							itemstack.shrink(1);
+						}
+					}
+					if (itemstack.is(PFTags.MEATS_10_HUNGER)) {
+						if (this.getCurrentHunger() + 10 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(this.getCurrentHunger() + 10);
+						}
+						if (!player.isCreative()) {
+							itemstack.shrink(1);
+						}
+					}
+					if (itemstack.is(PFTags.MEATS_12_HUNGER)) {
+						if (this.getCurrentHunger() + 12 >= this.maxHunger) {
+							this.setHunger(this.maxHunger);
+						} else {
+							this.setHunger(this.getCurrentHunger() + 12);
+						}
+						if (!player.isCreative()) {
+							itemstack.shrink(1);
 						}
 					}
 				} else {
-					if (this.isTameSitting()) {
-						this.setTameSitting(false);
-						this.setTameWandering(true);
-						player.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.velociraptor.wandering"), true);
-					} else if(this.isTameWandering()) {
-						this.setTameWandering(false);
-						player.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.velociraptor.following"), true);
+					player.displayClientMessage(Component.translatable("entity.prehistoricfauna.fullHunger"), true);
+				}
+				if (this.getOwner() == player) {
+					if (this.isFood(itemstack)) {
+						if (this.getHealth() < this.getMaxHealth()) {
+							if (!player.getAbilities().instabuild) {
+								itemstack.shrink(1);
+							}
+							this.heal((float)item.getFoodProperties().getNutrition());
+							return InteractionResult.SUCCESS;
+						} else {
+							if (this.canFallInLove()) {
+								this.setInLove(player);
+								if (!player.isCreative()) {
+									itemstack.shrink(1);
+								}
+							}
+						}
 					} else {
-						this.setTameSitting(true);
-						player.displayClientMessage(new TranslatableComponent("entity.prehistoricfauna.velociraptor.sitting"), true);
+						if (this.isTameSitting()) {
+							this.setTameSitting(false);
+							this.setTameWandering(true);
+							player.displayClientMessage(Component.translatable("entity.prehistoricfauna.velociraptor.wandering"), true);
+						} else if(this.isTameWandering()) {
+							this.setTameWandering(false);
+							player.displayClientMessage(Component.translatable("entity.prehistoricfauna.velociraptor.following"), true);
+						} else {
+							this.setTameSitting(true);
+							player.displayClientMessage(Component.translatable("entity.prehistoricfauna.velociraptor.sitting"), true);
+						}
 					}
 				}
 			} else {
@@ -1156,9 +1222,9 @@ public class Velociraptor extends DinosaurEntity {
 						this.navigation.stop();
 						this.setTarget((LivingEntity)null);
 						this.setTameSitting(true);
-						this.level.broadcastEntityEvent(this, (byte)7);
+						this.level().broadcastEntityEvent(this, (byte)7);
 					} else {
-						this.level.broadcastEntityEvent(this, (byte)6);
+						this.level().broadcastEntityEvent(this, (byte)6);
 					}
 
 					return InteractionResult.SUCCESS;

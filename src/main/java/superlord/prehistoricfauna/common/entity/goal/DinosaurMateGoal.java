@@ -1,10 +1,9 @@
 package superlord.prehistoricfauna.common.entity.goal;
 
-import java.util.Random;
-
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.ai.goal.BreedGoal;
@@ -35,7 +34,7 @@ public class DinosaurMateGoal extends BreedGoal {
 		this.dinosaur.setHasBaby(true);
 		this.animal.resetLove();
 		this.partner.resetLove();
-		Random randomom = this.animal.getRandom();
+		RandomSource randomom = this.animal.getRandom();
 		if (this.level.getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
 			this.level.addFreshEntity(new ExperienceOrb(this.level, this.animal.getX(), this.animal.getY(), this.animal.getZ(), randomom.nextInt(7) + 1));
 		}

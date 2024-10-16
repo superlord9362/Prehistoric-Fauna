@@ -31,11 +31,11 @@ public class StegosaurusEyeLayer extends RenderLayer<Stegosaurus, EntityModel<St
 		if (!(stegosaurusRenderer.getModel() instanceof StegosaurusModel)) {
 			return;
 		}
-		long roundTime = stegosaurus.level.getDayTime() % 24000;
+		long roundTime = stegosaurus.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos stegosaurusPos = stegosaurus.blockPosition();
-		int i = stegosaurus.level.getBrightness(LightLayer.SKY, stegosaurusPos);
-		int j = stegosaurus.level.getBrightness(LightLayer.BLOCK, stegosaurusPos);
+		int i = stegosaurus.level().getBrightness(LightLayer.SKY, stegosaurusPos);
+		int j = stegosaurus.level().getBrightness(LightLayer.BLOCK, stegosaurusPos);
 		int brightness;
 		if (night) {
 			brightness = j;

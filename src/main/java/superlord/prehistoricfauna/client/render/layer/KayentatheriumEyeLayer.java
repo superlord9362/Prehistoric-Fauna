@@ -30,11 +30,11 @@ public class KayentatheriumEyeLayer extends RenderLayer<Kayentatherium, Kayentat
 		if (!(kayentatheriumRenderer.getModel() instanceof KayentatheriumModel)) {
 			return;
 		}
-		long roundTime = kayentatherium.level.getDayTime() % 24000;
+		long roundTime = kayentatherium.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos kayentatheriumPos = kayentatherium.blockPosition();
-		int i = kayentatherium.level.getBrightness(LightLayer.SKY, kayentatheriumPos);
-		int j = kayentatherium.level.getBrightness(LightLayer.BLOCK, kayentatheriumPos);
+		int i = kayentatherium.level().getBrightness(LightLayer.SKY, kayentatheriumPos);
+		int j = kayentatherium.level().getBrightness(LightLayer.BLOCK, kayentatheriumPos);
 		int brightness;
 		if (night) {
 			brightness = j;

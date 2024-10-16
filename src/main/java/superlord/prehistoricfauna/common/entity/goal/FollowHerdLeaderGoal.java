@@ -39,7 +39,7 @@ public class FollowHerdLeaderGoal extends Goal {
 			Predicate<HerdDinosaurEntity> predicate = (dinosaur) -> {
 				return dinosaur.canBeFollowed() || !dinosaur.isFollower();
 			};
-			List<? extends HerdDinosaurEntity> list = this.taskOwner.level.getEntitiesOfClass(this.taskOwner.getClass(), this.taskOwner.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), predicate);
+			List<? extends HerdDinosaurEntity> list = this.taskOwner.level().getEntitiesOfClass(this.taskOwner.getClass(), this.taskOwner.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), predicate);
 			HerdDinosaurEntity dinosaurEntity = DataFixUtils.orElse(list.stream().filter(HerdDinosaurEntity::canBeFollowed).findAny(), this.taskOwner);
 			dinosaurEntity.addFollowers(list.stream().filter((dinosaur) -> {
 				return !dinosaur.isFollower();

@@ -2,6 +2,6 @@
 	"parent": "prehistoricfauna:block/two_small_round_eggs",
 	"ambientocclusion": false,
 	"textures": {
-		"egg": "prehistoricfauna:blocks/telmasaurus_egg_slightly_cracked"
+		"egg": "prehistoricfauna:block/telmasaurus_egg_slightly_cracked"
 	}
 }

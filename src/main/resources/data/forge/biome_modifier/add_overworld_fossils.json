@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": [
+    "prehistoricfauna:placed_fossilized_chalk",
+    "prehistoricfauna:placed_fossilized_sandstone",
+    "prehistoricfauna:placed_fossilized_siltstone"
+  ],
+  "step": "underground_ores"
+}

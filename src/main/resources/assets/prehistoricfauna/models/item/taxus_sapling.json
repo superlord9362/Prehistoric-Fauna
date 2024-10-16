@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:blocks/taxus_sapling"
+        "layer0": "prehistoricfauna:block/taxus_sapling"
     }
 }

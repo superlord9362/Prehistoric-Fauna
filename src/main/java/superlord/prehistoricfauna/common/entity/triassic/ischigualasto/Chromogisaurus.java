@@ -72,10 +72,9 @@ public class Chromogisaurus extends DinosaurEntity {
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(PFBlocks.JOHNSTONIA.get().asItem());
 	private int maxHunger = 15;
 
-	@SuppressWarnings("deprecation")
 	public Chromogisaurus(EntityType<? extends Chromogisaurus> type, Level level) {
 		super(type, level);
-		super.maxUpStep = 1.0F;
+		super.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -145,15 +144,15 @@ public class Chromogisaurus extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.CHROMOGISAURUS_IDLE;
+		return this.isAsleep() ? null : PFSounds.CHROMOGISAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.CHROMOGISAURUS_HURT;
+		return PFSounds.CHROMOGISAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.CHROMOGISAURUS_DEATH;
+		return PFSounds.CHROMOGISAURUS_DEATH.get();
 	}
 
 	@Override
@@ -182,8 +181,8 @@ public class Chromogisaurus extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Chromogisaurus entity = new Chromogisaurus(PFEntities.CHROMOGISAURUS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Chromogisaurus entity = new Chromogisaurus(PFEntities.CHROMOGISAURUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 

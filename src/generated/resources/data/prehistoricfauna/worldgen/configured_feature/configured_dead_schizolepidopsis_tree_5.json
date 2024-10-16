@@ -1,0 +1,22 @@
+{
+  "type": "prehistoricfauna:schizolepidopsis_tree_5",
+  "config": {
+    "leaves_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:air"
+      }
+    },
+    "max_height": 19,
+    "min_height": 15,
+    "trunk_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:stripped_schizolepidopsis_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    }
+  }
+}

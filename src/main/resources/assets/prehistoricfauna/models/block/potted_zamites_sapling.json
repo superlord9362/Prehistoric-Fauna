@@ -1,6 +1,6 @@
 {
     "parent": "block/flower_pot_cross",
     "textures": {
-        "plant": "prehistoricfauna:blocks/zamites_sapling"
+        "plant": "prehistoricfauna:block/zamites_sapling"
     }
 }

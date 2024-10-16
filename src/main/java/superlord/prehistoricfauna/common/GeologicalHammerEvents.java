@@ -23,7 +23,6 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBloc
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.common.items.PFSpawnEggItem;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFItems;
@@ -82,19 +81,19 @@ public class GeologicalHammerEvents {
 	public static void onBlockClicked(RightClickBlock event) {
 		if (event.getItemStack().getItem() == Items.BONE_MEAL) {
 			boolean flag = false;
-			Level world = event.getWorld();
+			Level world = event.getLevel();
 			BlockPos pos = event.getPos();
-			BlockState state = event.getWorld().getBlockState(event.getPos());
-			Player player = event.getPlayer();
+			BlockState state = event.getLevel().getBlockState(event.getPos());
+			Player player = event.getEntity();
 			if (state.getBlock() == Blocks.DIRT && world.getBlockState(pos.above()).getBlock() == Blocks.AIR) {
 				for(BlockPos blockpos : BlockPos.betweenClosed(event.getPos().offset(-1, -1, -1), event.getPos().offset(1, 1, 1))) {
-					BlockState blockstate = event.getWorld().getBlockState(blockpos);
+					BlockState blockstate = event.getLevel().getBlockState(blockpos);
 					if (blockstate.is(PFBlocks.MOSSY_DIRT.get())) {
 						flag = true;
 					}
 				}
 				if (flag) {
-					event.getWorld().setBlock(event.getPos(), PFBlocks.MOSSY_DIRT.get().defaultBlockState(), 3);
+					event.getLevel().setBlock(event.getPos(), PFBlocks.MOSSY_DIRT.get().defaultBlockState(), 3);
 					double d0 = (double)pos.getX() + 0.5D;
 					double d1 = (double)pos.getY() + 1.7D;
 					double d2 = (double)pos.getZ() + 0.5D;
@@ -106,12 +105,12 @@ public class GeologicalHammerEvents {
 			}
 		}
 		if(event.getItemStack().getItem() == PFItems.GEOLOGY_HAMMER.get() && PrehistoricFaunaConfig.geologyHammerMining == true) {
-			Level world = event.getWorld();
+			Level world = event.getLevel();
 			BlockPos pos = event.getPos();
 			BlockState state = world.getBlockState(pos);
 			Block block3 = VANILLA_ROCK_SMASHING_MAP.get(state.getBlock());
 			if (state.getBlock() == PFBlocks.SMOOTH_CHALK.get()) {
-				Player entity = event.getPlayer();
+				Player entity = event.getEntity();
 				world.playSound(entity, pos, SoundEvents.STONE_HIT, SoundSource.BLOCKS, 1.0F, 1.0F);
 				double d0 = (double)pos.getX() + 0.5D;
 				double d1 = (double)pos.getY() + 0.7D;
@@ -127,7 +126,7 @@ public class GeologicalHammerEvents {
 				}
 			}
 			if (state.getBlock() == PFBlocks.CHALK.get()) {
-				Player entity = event.getPlayer();
+				Player entity = event.getEntity();
 				world.playSound(entity, pos, SoundEvents.STONE_HIT, SoundSource.BLOCKS, 1.0F, 1.0F);
 				double d0 = (double)pos.getX() + 0.5D;
 				double d1 = (double)pos.getY() + 0.7D;
@@ -153,7 +152,7 @@ public class GeologicalHammerEvents {
 				}
 			}
 			if (state.getBlock() == PFBlocks.SILTSTONE.get()) {
-				Player entity = event.getPlayer();
+				Player entity = event.getEntity();
 				world.playSound(entity, pos, SoundEvents.STONE_HIT, SoundSource.BLOCKS, 1.0F, 1.0F);
 				double d0 = (double)pos.getX() + 0.5D;
 				double d1 = (double)pos.getY() + 0.7D;
@@ -179,7 +178,7 @@ public class GeologicalHammerEvents {
 				}
 			}
 			if (state.getBlock() == PFBlocks.SANDSTONE.get()) {
-				Player entity = event.getPlayer();
+				Player entity = event.getEntity();
 				world.playSound(entity, pos, SoundEvents.STONE_HIT, SoundSource.BLOCKS, 1.0F, 1.0F);
 				double d0 = (double)pos.getX() + 0.5D;
 				double d1 = (double)pos.getY() + 0.7D;
@@ -205,7 +204,7 @@ public class GeologicalHammerEvents {
 				}
 			}
 			if (state.getBlock() == PFBlocks.POLISHED_CHALK.get()) {
-				Player entity = event.getPlayer();
+				Player entity = event.getEntity();
 				world.playSound(entity, pos, SoundEvents.STONE_HIT, SoundSource.BLOCKS, 1.0F, 1.0F);
 				double d0 = (double)pos.getX() + 0.5D;
 				double d1 = (double)pos.getY() + 0.7D;
@@ -221,7 +220,7 @@ public class GeologicalHammerEvents {
 				}
 			}
 			if (state.getBlock() == PFBlocks.SMOOTH_SILTSTONE.get()) {
-				Player entity = event.getPlayer();
+				Player entity = event.getEntity();
 				world.playSound(entity, pos, SoundEvents.STONE_HIT, SoundSource.BLOCKS, 1.0F, 1.0F);
 				double d0 = (double)pos.getX() + 0.5D;
 				double d1 = (double)pos.getY() + 0.7D;
@@ -237,7 +236,7 @@ public class GeologicalHammerEvents {
 				}
 			}
 			if (state.getBlock() == PFBlocks.POLISHED_SILTSTONE.get()) {
-				Player entity = event.getPlayer();
+				Player entity = event.getEntity();
 				world.playSound(entity, pos, SoundEvents.STONE_HIT, SoundSource.BLOCKS, 1.0F, 1.0F);
 				double d0 = (double)pos.getX() + 0.5D;
 				double d1 = (double)pos.getY() + 0.7D;
@@ -253,7 +252,7 @@ public class GeologicalHammerEvents {
 				}
 			}
 			if (state.getBlock() == PFBlocks.SMOOTH_SANDSTONE.get()) {
-				Player entity = event.getPlayer();
+				Player entity = event.getEntity();
 				world.playSound(entity, pos, SoundEvents.STONE_HIT, SoundSource.BLOCKS, 1.0F, 1.0F);
 				double d0 = (double)pos.getX() + 0.5D;
 				double d1 = (double)pos.getY() + 0.7D;
@@ -269,7 +268,7 @@ public class GeologicalHammerEvents {
 				}
 			}
 			if (state.getBlock() == PFBlocks.POLISHED_SANDSTONE.get()) {
-				Player entity = event.getPlayer();
+				Player entity = event.getEntity();
 				world.playSound(entity, pos, SoundEvents.STONE_HIT, SoundSource.BLOCKS, 1.0F, 1.0F);
 				double d0 = (double)pos.getX() + 0.5D;
 				double d1 = (double)pos.getY() + 0.7D;
@@ -285,7 +284,7 @@ public class GeologicalHammerEvents {
 				}
 			}
 			if (state.getBlock() == PFBlocks.HENOSTONE_BRICKS.get()) {
-				Player entity = event.getPlayer();
+				Player entity = event.getEntity();
 				world.playSound(entity, pos, SoundEvents.STONE_HIT, SoundSource.BLOCKS, 1.0F, 1.0F);
 				double d0 = (double)pos.getX() + 0.5D;
 				double d1 = (double)pos.getY() + 0.7D;
@@ -301,7 +300,7 @@ public class GeologicalHammerEvents {
 				}
 			}
 			if(block3 != null) {
-				Player entity = event.getPlayer();
+				Player entity = event.getEntity();
 				world.playSound(entity, pos, SoundEvents.STONE_HIT, SoundSource.BLOCKS, 1.0F, 1.0F);
 				double d0 = (double)pos.getX() + 0.5D;
 				double d1 = (double)pos.getY() + 0.7D;
@@ -320,7 +319,6 @@ public class GeologicalHammerEvents {
 	}
 
 	public static void init() {
-		PFSpawnEggItem.initSpawnEggs();
 		if (PrehistoricFaunaConfig.geologyHammerMining == true) {
 			DefaultDispenseItemBehavior dispenseBehaviour = new DefaultDispenseItemBehavior() {
 				@Override

@@ -31,11 +31,11 @@ public class CeratosaurusBabyEyeLayer extends RenderLayer<Ceratosaurus, EntityMo
 		if (!(ceratosaurusRenderer.getModel() instanceof CeratosaurusBabyModel)) {
 			return;
 		}
-		long roundTime = ceratosaurus.level.getDayTime() % 24000;
+		long roundTime = ceratosaurus.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos ceratosaurusPos = ceratosaurus.blockPosition();
-		int i = ceratosaurus.level.getBrightness(LightLayer.SKY, ceratosaurusPos);
-		int j = ceratosaurus.level.getBrightness(LightLayer.BLOCK, ceratosaurusPos);
+		int i = ceratosaurus.level().getBrightness(LightLayer.SKY, ceratosaurusPos);
+		int j = ceratosaurus.level().getBrightness(LightLayer.BLOCK, ceratosaurusPos);
 		int brightness;
 		if (night) {
 			brightness = j;

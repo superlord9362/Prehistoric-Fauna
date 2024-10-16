@@ -1,7 +1,7 @@
 {
     "textures": {
-        "particle": "prehistoricfauna:blocks/ash",
-        "texture": "prehistoricfauna:blocks/ash"
+        "particle": "prehistoricfauna:block/ash",
+        "texture": "prehistoricfauna:block/ash"
     },
     "elements": [
         {   "from": [ 0, 0, 0 ],

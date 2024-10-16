@@ -11,7 +11,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -20,6 +19,8 @@ import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ItemBasedSteering;
+import net.minecraft.world.entity.ItemSteerable;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
@@ -70,23 +71,20 @@ import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
 
-public class Ischigualastia extends DinosaurEntity {
+public class Ischigualastia extends DinosaurEntity implements ItemSteerable {
 
 	private static final EntityDataAccessor<Boolean> SADDLED = SynchedEntityData.defineId(Ischigualastia.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Integer> BOOST_TIME = SynchedEntityData.defineId(Ischigualastia.class, EntityDataSerializers.INT);
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(PFBlocks.CLADOPHLEBIS.get().asItem());
+	private final ItemBasedSteering steering = new ItemBasedSteering(this.entityData, BOOST_TIME, SADDLED);
 	private int maxHunger = 100;
 	private int warningSoundTicks;
-	private boolean boosting;
-	private int boostTime;
 	public float ridingXZ;
 	public float ridingY = 1;
-	private int totalBoostTime;
 
-	@SuppressWarnings("deprecation")
 	public Ischigualastia(EntityType<? extends Ischigualastia> type, Level level) {
 		super(type, level);
-		super.maxUpStep = 1.0F;
+		super.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -97,8 +95,18 @@ public class Ischigualastia extends DinosaurEntity {
 	}
 
 	@Nullable
-	public Entity getControllingPassenger() {
-		return this.getPassengers().isEmpty() ? null : this.getPassengers().get(0);
+	public LivingEntity getControllingPassenger() {
+		if (this.getSaddled()) {
+			Entity entity = this.getFirstPassenger();
+			if (entity instanceof Player) {
+				Player player = (Player)entity;
+				if (player.getMainHandItem().is(PFItems.CLADOPHLEBIS_STICK.get()) || player.getOffhandItem().is(PFItems.CLADOPHLEBIS.get())) {
+					return player;
+				}
+			}
+		}
+
+		return null;
 	}
 
 	public boolean canBeControlledByRider() {
@@ -111,34 +119,12 @@ public class Ischigualastia extends DinosaurEntity {
 		}
 	}
 
-	@Override
-	public void positionRider(Entity passenger) {
-		super.positionRider(passenger);
-
-		float radius = ridingXZ * 0.7F * -3;
-		float angle = (0.01745329251F * this.yBodyRotO);
-		double extraX = radius * Mth.sin((float) (Math.PI + angle));
-		double extraZ = radius * Mth.cos(angle);
-		double extraY = ridingY * 4;
-		this.getRidingPlayer().setPos(this.getX() + extraX, this.getY() + extraY - 2.75F, this.getZ() + extraZ);
-	}
-
-	public Player getRidingPlayer() {
-		if (this.getControllingPassenger() instanceof Player) {
-			return (Player) getControllingPassenger();
-		} else {
-			return null;
-		}
-	}
-
-	public void onSyncedDataUpdated(EntityDataAccessor<?> key) {
-		if (BOOST_TIME.equals(key) && this.level.isClientSide) {
-			this.boosting = true;
-			this.boostTime = 0;
-			this.totalBoostTime = this.entityData.get(BOOST_TIME);
+	public void onSyncedDataUpdated(EntityDataAccessor<?> p_29480_) {
+		if (BOOST_TIME.equals(p_29480_) && this.level().isClientSide) {
+			this.steering.onSynced();
 		}
 
-		super.onSyncedDataUpdated(key);
+		super.onSyncedDataUpdated(p_29480_);
 	}
 
 	@Override
@@ -178,7 +164,7 @@ public class Ischigualastia extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new HerbivoreEatGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(0, new HerbivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 	}
-	
+
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		int temperment = random.nextInt(100);
 		if (temperment < 85) {
@@ -189,7 +175,7 @@ public class Ischigualastia extends DinosaurEntity {
 		this.setHerbivorous(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
-	
+
 	@Override
 	public void setAge(int age) {
 		super.setAge(age);
@@ -205,20 +191,20 @@ public class Ischigualastia extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.ISCHIGUALASTIA_IDLE;
+		return this.isAsleep() ? null : PFSounds.ISCHIGUALASTIA_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.ISCHIGUALASTIA_HURT;
+		return PFSounds.ISCHIGUALASTIA_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.ISCHIGUALASTIA_DEATH;
+		return PFSounds.ISCHIGUALASTIA_DEATH.get();
 	}
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.ISCHIGUALASTIA_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.ISCHIGUALASTIA_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -241,16 +227,19 @@ public class Ischigualastia extends DinosaurEntity {
 
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
-		if (itemstack.getItem() == Items.NAME_TAG) {
-			itemstack.interactLivingEntity(player, this, hand);
-		} else if (this.getSaddled() && !this.isVehicle()) {
-			if (!this.level.isClientSide) {
+		boolean flag = this.isFood(player.getItemInHand(hand));
+		if (!flag && this.getSaddled() && !this.isVehicle() && !player.isSecondaryUseActive()) {
+			if (!this.level().isClientSide()) {
 				player.startRiding(this);
+				return InteractionResult.SUCCESS;
 			}
 		} else if (this.isAlive() && !this.getSaddled() && !this.isBaby() && itemstack.getItem() == Items.SADDLE) {
 			this.setSaddled(true);
-			this.level.playSound(player, this.getX(), this.getY(), this.getZ(), SoundEvents.PIG_SADDLE, SoundSource.NEUTRAL, 0.5F, 1.0F);
-			itemstack.shrink(1);
+			this.level().playSound(player, this.getX(), this.getY(), this.getZ(), SoundEvents.PIG_SADDLE, SoundSource.NEUTRAL, 0.5F, 1.0F);
+			if (!player.getAbilities().instabuild) {
+				itemstack.shrink(1);
+			}
+			return InteractionResult.SUCCESS;
 		}
 		return super.mobInteract(player, hand);
 	}
@@ -274,60 +263,23 @@ public class Ischigualastia extends DinosaurEntity {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
-	public void travel(Vec3 positionIn) {
-		if (this.isAlive()) {
-			Entity entity = this.getPassengers().isEmpty() ? null : this.getPassengers().get(0);
-			if (this.isVehicle() && this.canBeControlledByRider()) {
-				this.setYRot(entity.getYRot());
-				this.yRotO = this.getYRot();
-				this.setXRot(entity.getXRot() * 0.5F);
-				this.setRot(this.getYRot(), this.getXRot());
-				this.yBodyRot = this.getYRot();
-				this.yHeadRot = this.yBodyRot;
-				this.maxUpStep = 1.0F;
-				this.flyingSpeed = this.getSpeed() * 0.1F;
-				if (this.boosting && this.boostTime++ > this.totalBoostTime) {
-					this.boosting = false;
-				}
-				if (this.canBeControlledByRider()) {
-					float f = (float)this.getAttribute(Attributes.MOVEMENT_SPEED).getValue() * 0.225F;
-					if (this.boosting) {
-						f += f * 1.15F * Mth.sin((float)this.boostTime / (float)this.totalBoostTime * (float)Math.PI);
-					}
-					this.setSpeed(f);
-					super.travel(new Vec3(0.0D, 0.0D, 1.0D));
-					this.lerpSteps = 0;
-				} else {
-					this.setDeltaMovement(Vec3.ZERO);
-				}
-				this.animationSpeedOld = this.animationSpeed;
-				double d1 = this.getX() - this.xo;
-				double d0 = this.getZ() - this.zo;
-				float f1 = Mth.sqrt((float) (d1 * d1 + d0 * d0)) * 4.0F;
-				if (f1 > 1.0F) {
-					f1 = 1.0F;
-				}
-				this.animationSpeed += (f1 - this.animationSpeed) * 0.4F;
-				this.animationPosition += this.animationSpeed;
-			} else {
-				this.maxUpStep = 0.5F;
-				this.flyingSpeed = 0.02F;
-				super.travel(positionIn);
-			}
-		}
+	protected void tickRidden(Player p_278330_, Vec3 p_278267_) {
+		super.tickRidden(p_278330_, p_278267_);
+		this.setRot(p_278330_.getYRot(), p_278330_.getXRot() * 0.5F);
+		this.yRotO = this.yBodyRot = this.yHeadRot = this.getYRot();
+		this.steering.tickBoost();
+	}
+
+	protected Vec3 getRiddenInput(Player p_278309_, Vec3 p_275479_) {
+		return new Vec3(0.0D, 0.0D, 1.0D);
+	}
+
+	protected float getRiddenSpeed(Player p_278258_) {
+		return (float)(this.getAttributeValue(Attributes.MOVEMENT_SPEED) * 0.225D * (double)this.steering.boostFactor());
 	}
 
 	public boolean boost() {
-		if (this.boosting) {
-			return false;
-		} else {
-			this.boosting = true;
-			this.boostTime = 0;
-			this.totalBoostTime = this.getRandom().nextInt(841) + 140;
-			this.entityData.set(BOOST_TIME, this.totalBoostTime);
-			return true;
-		}
+		return this.steering.boost(this.getRandom());
 	}
 
 	public void tick() {
@@ -385,8 +337,8 @@ public class Ischigualastia extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Ischigualastia entity = new Ischigualastia(PFEntities.ISCHIGUALASTIA.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Ischigualastia entity = new Ischigualastia(PFEntities.ISCHIGUALASTIA.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -394,11 +346,11 @@ public class Ischigualastia extends DinosaurEntity {
 	public ItemStack getPickedResult(HitResult target) {
 		return new ItemStack(PFItems.ISCHIGUALASTIA_SPAWN_EGG.get());
 	}
-	
+
 	public Item getEggItem() {
 		return PFItems.ISCHIGUALASTIA_EGG.get();
 	}
-    
+
 	public BlockState getEggBlock(Level world, BlockPos pos) {
 		return PFBlocks.ISCHIGUALASTIA_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
 	}

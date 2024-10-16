@@ -2,6 +2,6 @@
 	"parent": "prehistoricfauna:block/four_medium_tall_eggs",
 	"ambientocclusion": false,
 	"textures": {
-		"egg": "prehistoricfauna:blocks/plesiohadros_egg_very_cracked"
+		"egg": "prehistoricfauna:block/plesiohadros_egg_very_cracked"
 	}
 }

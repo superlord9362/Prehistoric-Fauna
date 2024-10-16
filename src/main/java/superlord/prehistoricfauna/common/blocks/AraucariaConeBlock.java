@@ -13,7 +13,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Fallable;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 
 public class AraucariaConeBlock extends Block implements Fallable {
 
@@ -46,9 +45,9 @@ public class AraucariaConeBlock extends Block implements Fallable {
 		return 2;
 	}
 
+	@SuppressWarnings("deprecation")
 	public static boolean isFree(BlockState p_53242_) {
-		Material material = p_53242_.getMaterial();
-		return p_53242_.isAir() || p_53242_.is(BlockTags.FIRE) || material.isLiquid() || material.isReplaceable();
+	      return p_53242_.isAir() || p_53242_.is(BlockTags.FIRE) || p_53242_.liquid() || p_53242_.canBeReplaced();
 	}
 
 }

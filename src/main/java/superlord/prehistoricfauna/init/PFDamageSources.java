@@ -1,34 +1,61 @@
 package superlord.prehistoricfauna.init;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.LivingEntity;
+import org.antlr.v4.runtime.misc.NotNull;
 
+import net.minecraft.core.Holder;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraftforge.fml.common.Mod;
+import superlord.prehistoricfauna.PrehistoricFauna;
+
+@SuppressWarnings("deprecation")
+@Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class PFDamageSources {
 	
-	public static final DamageSource HENOSTONE_TRAP = new DamageCustomDeathMessage("trap");
+    public static final ResourceKey<DamageType> TRAP = ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(PrehistoricFauna.MOD_ID, "trap"));
+    public static final ResourceKey<DamageType> SAUROPOD_TRAMPLING = ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(PrehistoricFauna.MOD_ID, "trample"));
+    public static final ResourceKey<DamageType> BLEEDING = ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(PrehistoricFauna.MOD_ID, "bleeding"));
+    
+    static class DamageCustomDeathMessage extends DamageSource {
 
-    public static final DamageSource SAUROPOD_TRAMPLING = new DamageCustomDeathMessage("trample");
-	
-    public static final DamageSource BLEEDING = new DamageCustomDeathMessage("bleeding");
+        public DamageCustomDeathMessage(Holder.Reference<DamageType> message) {
+            super(message);
+        }
 
-	
-	static class DamageCustomDeathMessage extends DamageSource {
-		
-		public DamageCustomDeathMessage(String damageTypeIn) {
-			super(damageTypeIn);
-		}
-		
-		public Component getDeathMessage(LivingEntity entityLivingBaseIn) {
-			LivingEntity livingEntity = entityLivingBaseIn.getKillCredit();
-			String s = "death.attack." + this.msgId;
-			int index = entityLivingBaseIn.getRandom().nextInt(3);
-			String s1 = s + "." + index;
-			String s2 = s + ".attack_" + index;
-			return livingEntity != null ? new TranslatableComponent(s2, entityLivingBaseIn.getDisplayName(), livingEntity.getDisplayName()) : new TranslatableComponent(s1, entityLivingBaseIn.getDisplayName());
-		}
-		
-	}
+        public DamageCustomDeathMessage(Holder.Reference<DamageType> message, Entity source) {
+            super(message, source);
+        }
+    	
+		@Override
+    	public @NotNull Component getLocalizedDeathMessage(LivingEntity entityLivingBase) {
+			int type = entityLivingBase.getRandom().nextInt(3);
+			String s = "death,attack." + this.getMsgId() + "_" + type;
+			Entity entity = this.getDirectEntity() == null ? this.getEntity() : this.getDirectEntity();
+			if (entity != null) {
+				return Component.translatable(s + ".entity", entityLivingBase.getDisplayName(), entity.getDisplayName());
+			} else {
+				return Component.translatable(s, entityLivingBase.getDisplayName());
+			}
+    	}
+    }
+    
+    public static DamageSource causeHenostoneTrapDamage(RegistryAccess registryAccess) {
+        return new DamageCustomDeathMessage(registryAccess.registry(Registries.DAMAGE_TYPE).get().getHolderOrThrow(TRAP));
+    }
+    
+    public static DamageSource causeSauropodTramplingDamage(RegistryAccess registryAccess, Entity source) {
+        return new DamageCustomDeathMessage(registryAccess.registry(Registries.DAMAGE_TYPE).get().getHolderOrThrow(SAUROPOD_TRAMPLING), source);
+    }
+    
+    public static DamageSource causeBleedingDamage(RegistryAccess registryAccess) {
+        return new DamageCustomDeathMessage(registryAccess.registry(Registries.DAMAGE_TYPE).get().getHolderOrThrow(BLEEDING));
+    }
 	
 }

@@ -1,6 +1,6 @@
 {
     "parent": "block/template_wall_side",
     "textures": {
-        "wall": "prehistoricfauna:blocks/triassic_sandstone_smooth"
+        "wall": "prehistoricfauna:block/triassic_sandstone_smooth"
     }
 }

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:multiface_growth",
+  "config": {
+    "block": "prehistoricfauna:humulus",
+    "can_be_placed_on": [
+      "prehistoricfauna:mossy_dirt",
+      "prehistoricfauna:loam",
+      "minecraft:podzol",
+      "prehistoricfauna:araucaria_log",
+      "prehistoricfauna:metasequoia_log",
+      "prehistoricfauna:taxodium_log",
+      "prehistoricfauna:dryophyllum_log",
+      "prehistoricfauna:ginkgo_log",
+      "prehistoricfauna:platanites_log"
+    ],
+    "can_place_on_ceiling": true,
+    "can_place_on_floor": true,
+    "can_place_on_wall": true,
+    "chance_of_spreading": 0.65,
+    "search_range": 50
+  }
+}

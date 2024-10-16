@@ -1,9 +1,0 @@
-{
-	"type": "prehistoricfauna:paleontology_table",
-	"ingredients": [
- 		{
- 			"item": "prehistoricfauna:jurassic_fossil"
- 		}
-	],
-	"output": "prehistoricfauna:gameplay/paleontology_table/jurassic_fossil"
-}

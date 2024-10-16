@@ -1,0 +1,45 @@
+{
+	"input": ["prehistoricfauna:triassic_fossil"],
+	"entries": [
+		{
+			"weight": 10,
+			"item": "prehistoricfauna:sandstone"
+		},
+		{
+			"weight": 7.5,
+			"item": "prehistoricfauna:small_ammonite_fossil"
+		},
+		{
+			"weight": 5,
+			"item": "prehistoricfauna:petrified_wood"
+		},
+		{
+			"weight": 25,
+			"item": "prehistoricfauna:fossilized_bones"
+		},
+		{
+			"weight": 1.25,
+			"item": "prehistoricfauna:saurosuchus_skull"
+		},
+		{
+			"weight": 1.25,
+			"item": "prehistoricfauna:herrerasaurus_skull"
+		},
+		{
+			"weight": 1.25,
+			"item": "prehistoricfauna:postosuchus_skull"
+		},
+		{
+			"weight": 1.25,
+			"item": "prehistoricfauna:coelophysis_skull"
+		},
+		{
+			"weight": 2.5,
+			"item": "prehistoricfauna:ischigualastia_skull"
+		},
+		{
+			"weight": 2.5,
+			"item": "prehistoricfauna:desmatosuchus_skull"
+		}
+	]
+}

@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "prehistoricfauna:blocks/czekanowskia_sapling"
+        "cross": "prehistoricfauna:block/czekanowskia_sapling"
     }
 }

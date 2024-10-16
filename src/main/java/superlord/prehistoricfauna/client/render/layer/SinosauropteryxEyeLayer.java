@@ -30,11 +30,11 @@ public class SinosauropteryxEyeLayer extends RenderLayer<Sinosauropteryx, Sinosa
 		if (!(sinosauropteryxRenderer.getModel() instanceof SinosauropteryxModel)) {
 			return;
 		}
-		long roundTime = sinosauropteryx.level.getDayTime() % 24000;
+		long roundTime = sinosauropteryx.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos sinosauropteryxPos = sinosauropteryx.blockPosition();
-		int i = sinosauropteryx.level.getBrightness(LightLayer.SKY, sinosauropteryxPos);
-		int j = sinosauropteryx.level.getBrightness(LightLayer.BLOCK, sinosauropteryxPos);
+		int i = sinosauropteryx.level().getBrightness(LightLayer.SKY, sinosauropteryxPos);
+		int j = sinosauropteryx.level().getBrightness(LightLayer.BLOCK, sinosauropteryxPos);
 		int brightness;
 		if (night) {
 			brightness = j;

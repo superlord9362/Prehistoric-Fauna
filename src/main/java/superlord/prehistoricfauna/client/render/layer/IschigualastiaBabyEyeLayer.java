@@ -31,11 +31,11 @@ public class IschigualastiaBabyEyeLayer extends RenderLayer<Ischigualastia, Enti
 		if (!(ischigualastiaRenderer.getModel() instanceof IschigualastiaBabyModel)) {
 			return;
 		}
-		long roundTime = ischigualastia.level.getDayTime() % 24000;
+		long roundTime = ischigualastia.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos ischigualastiaPos = ischigualastia.blockPosition();
-		int i = ischigualastia.level.getBrightness(LightLayer.SKY, ischigualastiaPos);
-		int j = ischigualastia.level.getBrightness(LightLayer.BLOCK, ischigualastiaPos);
+		int i = ischigualastia.level().getBrightness(LightLayer.SKY, ischigualastiaPos);
+		int j = ischigualastia.level().getBrightness(LightLayer.BLOCK, ischigualastiaPos);
 		int brightness;
 		if (night) {
 			brightness = j;

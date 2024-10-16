@@ -14,7 +14,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 
 public class RegistryHelper {
 	private final Map<IForgeRegistry<?>, ISubRegistryHelper<?>> subHelpers = Maps.newHashMap();
@@ -39,22 +38,22 @@ public class RegistryHelper {
 		return new ResourceLocation(this.modId, name);
 	}
 	
-	public <K extends IForgeRegistryEntry<K>> void putSubHelper(IForgeRegistry<K> registry, ISubRegistryHelper<K> subHelper) {
+	public <V> void putSubHelper(IForgeRegistry<V> registry, ISubRegistryHelper<V> subHelper) {
 		this.subHelpers.put(registry, subHelper);
 	}
 	
 	protected void putDefaultSubHelpers() {
 		this.putSubHelper(ForgeRegistries.ITEMS, new ItemSubRegistryHelper(this));
 		this.putSubHelper(ForgeRegistries.BLOCKS, new BlockSubRegistryHelper(this));
-		this.putSubHelper(ForgeRegistries.BLOCK_ENTITIES, new BlockEntitySubRegistryHelper(this));
+		this.putSubHelper(ForgeRegistries.BLOCK_ENTITY_TYPES, new BlockEntitySubRegistryHelper(this));
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Nonnull
-	public <T extends IForgeRegistryEntry<T>, S extends ISubRegistryHelper<T>> S getSubHelper(IForgeRegistry<T> registry) {
+	public <T, S extends ISubRegistryHelper<T>> S getSubHelper(IForgeRegistry<T> registry) {
 		S subHelper = (S) this.subHelpers.get(registry);
 		if (subHelper == null) {
-			throw new NullPointerException("No Sub Helper is registered for the forge registry of type " + registry.getRegistrySuperType());
+			throw new NullPointerException("No Sub Helper is registered for the forge registry: " + registry);
 		}
 		return subHelper;
 	}
@@ -71,7 +70,7 @@ public class RegistryHelper {
 	
 	@Nonnull
 	public <T extends AbstractSubRegistryHelper<BlockEntityType<?>>> T getBlockEntitySubHelper() {
-		return this.getSubHelper(ForgeRegistries.BLOCK_ENTITIES);
+		return this.getSubHelper(ForgeRegistries.BLOCK_ENTITY_TYPES);
 	}
 
 	public void register(IEventBus eventBus) {

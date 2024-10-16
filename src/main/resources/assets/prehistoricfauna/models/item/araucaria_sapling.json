@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:blocks/araucaria_sapling"
+        "layer0": "prehistoricfauna:block/araucaria_sapling"
     }
 }

@@ -86,10 +86,9 @@ public class Hesperornithoides extends DinosaurEntity {
 	private int climbingTicks = 0;
 	private int climbingTickCooldown = 0;
 
-	@SuppressWarnings("deprecation")
 	public Hesperornithoides(EntityType<? extends Hesperornithoides> type, Level level) {
 		super(type, level);
-		this.maxUpStep = 1.0F;
+		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -179,7 +178,7 @@ public class Hesperornithoides extends DinosaurEntity {
 
 	public void aiStep() {
 		super.aiStep();
-		if (random.nextInt(1000) == 0 && !this.isDustBathing() && !this.isAsleep() && (this.level.getBlockState(this.blockPosition().below()).getBlock() == Blocks.SAND || this.level.getBlockState(this.blockPosition().below()).getBlock() == Blocks.RED_SAND || this.level.getBlockState(this.blockPosition().below()).getBlock() == PFBlocks.HARDENED_SILT.get())) {
+		if (random.nextInt(1000) == 0 && !this.isDustBathing() && !this.isAsleep() && (this.level().getBlockState(this.blockPosition().below()).getBlock() == Blocks.SAND || this.level().getBlockState(this.blockPosition().below()).getBlock() == Blocks.RED_SAND || this.level().getBlockState(this.blockPosition().below()).getBlock() == PFBlocks.HARDENED_SILT.get())) {
 			this.setDustBathing(true);
 		}
 
@@ -187,7 +186,7 @@ public class Hesperornithoides extends DinosaurEntity {
 			double d0 = (double)this.blockPosition().getX() + random.nextDouble();
 			double d1 = (double)this.blockPosition().getY() + 0.5F;
 			double d2 = (double)this.blockPosition().getZ() + random.nextDouble();
-			this.level.addParticle(new BlockParticleOption(ParticleTypes.FALLING_DUST, this.level.getBlockState(this.blockPosition().below())), d0, d1, d2, 0.0D, 0.0D, 0.0D);
+			this.level().addParticle(new BlockParticleOption(ParticleTypes.FALLING_DUST, this.level().getBlockState(this.blockPosition().below())), d0, d1, d2, 0.0D, 0.0D, 0.0D);
 
 		}
 	}
@@ -201,15 +200,15 @@ public class Hesperornithoides extends DinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.HESPERORNITHOIDES_IDLE;
+		return this.isAsleep() ? null : PFSounds.HESPERORNITHOIDES_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.HESPERORNITHOIDES_HURT;
+		return PFSounds.HESPERORNITHOIDES_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.HESPERORNITHOIDES_DEATH;
+		return PFSounds.HESPERORNITHOIDES_DEATH.get();
 	}
 
 	protected void defineSynchedData() {
@@ -243,18 +242,18 @@ public class Hesperornithoides extends DinosaurEntity {
 
 	public void tick() {
 		super.tick();
-		if (!this.level.isClientSide) {
+		if (!this.level().isClientSide()) {
 			if (this.horizontalCollision) {
 				if (this.horizontalCollision) {
 					Boolean logBlock;
-					BlockPos blockpos1 = new BlockPos(this.position().x() + 1, this.position().y() + 1, this.position().z());
-					BlockPos blockpos2 = new BlockPos(this.position().x() - 1, this.position().y() + 1, this.position().z());
-					BlockPos blockpos3 = new BlockPos(this.position().x(), this.position().y() + 1, this.position().z() + 1);
-					BlockPos blockpos4 = new BlockPos(this.position().x(), this.position().y() + 1, this.position().z() - 1);
-					BlockState blockstate1 = this.level.getBlockState(blockpos1);
-					BlockState blockstate2 = this.level.getBlockState(blockpos2);
-					BlockState blockstate3 = this.level.getBlockState(blockpos3);
-					BlockState blockstate4 = this.level.getBlockState(blockpos4);
+					BlockPos blockpos1 = new BlockPos(this.blockPosition().getX() + 1, this.blockPosition().getY() + 1, this.blockPosition().getZ());
+					BlockPos blockpos2 = new BlockPos(this.blockPosition().getX() - 1, this.blockPosition().getY() + 1, this.blockPosition().getZ());
+					BlockPos blockpos3 = new BlockPos(this.blockPosition().getX(), this.blockPosition().getY() + 1, this.blockPosition().getZ() + 1);
+					BlockPos blockpos4 = new BlockPos(this.blockPosition().getX(), this.blockPosition().getY() + 1, this.blockPosition().getZ() - 1);
+					BlockState blockstate1 = this.level().getBlockState(blockpos1);
+					BlockState blockstate2 = this.level().getBlockState(blockpos2);
+					BlockState blockstate3 = this.level().getBlockState(blockpos3);
+					BlockState blockstate4 = this.level().getBlockState(blockpos4);
 					if (blockstate1.is(BlockTags.LOGS) || blockstate1.is(BlockTags.PLANKS) || blockstate1.is(BlockTags.WOODEN_DOORS) || blockstate1.is(BlockTags.WOODEN_FENCES) || blockstate1.is(BlockTags.WOODEN_SLABS) || blockstate1.is(BlockTags.WOODEN_STAIRS) || blockstate2.is(BlockTags.LOGS) || blockstate2.is(BlockTags.PLANKS) || blockstate2.is(BlockTags.WOODEN_DOORS) || blockstate2.is(BlockTags.WOODEN_FENCES) || blockstate2.is(BlockTags.WOODEN_SLABS) || blockstate2.is(BlockTags.WOODEN_STAIRS)  || blockstate3.is(BlockTags.LOGS) || blockstate3.is(BlockTags.PLANKS) || blockstate3.is(BlockTags.WOODEN_DOORS) || blockstate3.is(BlockTags.WOODEN_FENCES) || blockstate3.is(BlockTags.WOODEN_SLABS) || blockstate3.is(BlockTags.WOODEN_STAIRS) || blockstate4.is(BlockTags.LOGS) || blockstate4.is(BlockTags.PLANKS) || blockstate4.is(BlockTags.WOODEN_DOORS) || blockstate4.is(BlockTags.WOODEN_FENCES) || blockstate4.is(BlockTags.WOODEN_SLABS) || blockstate4.is(BlockTags.WOODEN_STAIRS)) {
 						logBlock = true;
 						if (climbingTickCooldown == 0 && climbingTicks < 600) {
@@ -336,8 +335,8 @@ public class Hesperornithoides extends DinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Hesperornithoides entity = new Hesperornithoides(PFEntities.HESPERORNITHOIDES.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Hesperornithoides entity = new Hesperornithoides(PFEntities.HESPERORNITHOIDES.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 
@@ -356,8 +355,8 @@ public class Hesperornithoides extends DinosaurEntity {
 		}
 
 		private void spawnItem(ItemStack stack) {
-			ItemEntity item = new ItemEntity(Hesperornithoides.this.level, Hesperornithoides.this.getX(), Hesperornithoides.this.getY(), Hesperornithoides.this.getZ(), stack);
-			Hesperornithoides.this.level.addFreshEntity(item);
+			ItemEntity item = new ItemEntity(Hesperornithoides.this.level(), Hesperornithoides.this.getX(), Hesperornithoides.this.getY(), Hesperornithoides.this.getZ(), stack);
+			Hesperornithoides.this.level().addFreshEntity(item);
 		}
 
 		public void tick() {

@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/changyuraptor_egg"
+        "layer0": "prehistoricfauna:item/changyuraptor_egg"
     }
 }

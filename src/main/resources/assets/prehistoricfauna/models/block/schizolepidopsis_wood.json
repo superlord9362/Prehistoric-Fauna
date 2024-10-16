@@ -1,7 +1,7 @@
 {
     "parent": "block/cube_column",
     "textures": {
-        "end": "prehistoricfauna:blocks/schizolepidopsis_log",
-        "side": "prehistoricfauna:blocks/schizolepidopsis_log"
+        "end": "prehistoricfauna:block/schizolepidopsis_log",
+        "side": "prehistoricfauna:block/schizolepidopsis_log"
     }
 }

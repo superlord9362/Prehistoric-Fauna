@@ -3,8 +3,8 @@
 	"parent": "block/block",
 	"ambientocclusion": false,
 	"textures": {
-		"0": "prehistoricfauna:blocks/neocalamites_fence",
-		"particle": "prehistoricfauna:blocks/neocalamites_fence"
+		"0": "prehistoricfauna:block/neocalamites_fence",
+		"particle": "prehistoricfauna:block/neocalamites_fence"
 	},
 	"elements": [
 		{

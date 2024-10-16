@@ -1,6 +1,6 @@
 {
     "parent": "block/leaves",
     "textures": {
-        "all": "prehistoricfauna:blocks/taxus_berry_leaves_2"
+        "all": "prehistoricfauna:block/taxus_berry_leaves_2"
     }
 }

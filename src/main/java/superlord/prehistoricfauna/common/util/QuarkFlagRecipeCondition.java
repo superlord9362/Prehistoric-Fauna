@@ -24,14 +24,13 @@ public class QuarkFlagRecipeCondition implements ICondition {
 		return this.location;
 	}
 	
-	@SuppressWarnings("removal")
 	@Override
-	public boolean test() {
+	public boolean test(IContext context) {
 		if (ModList.get().isLoaded("quark")) {
 			JsonObject dummyObject = new JsonObject();
 			dummyObject.addProperty("type", "quark:flag");
 			dummyObject.addProperty("flag", this.flag);
-			return CraftingHelper.getCondition(dummyObject).test();
+			return CraftingHelper.getCondition(dummyObject).test(context);
 		}
 		return false;
 	}

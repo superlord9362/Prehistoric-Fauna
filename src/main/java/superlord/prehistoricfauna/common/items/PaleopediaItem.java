@@ -8,15 +8,12 @@ import javax.annotation.Nullable;
 import com.google.common.primitives.Ints;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
@@ -24,12 +21,11 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.util.EnumPaleoPages;
-import superlord.prehistoricfauna.init.PFItems;
 
 public class PaleopediaItem extends Item {
 	
 	public PaleopediaItem() {
-		super(new Item.Properties().tab(PrehistoricFauna.PF_MISC).stacksTo(1).rarity(Rarity.UNCOMMON));
+		super(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON));
 	}
 	
 	@Override
@@ -37,20 +33,6 @@ public class PaleopediaItem extends Item {
         stack.setTag(new CompoundTag());
         stack.getTag().putIntArray("Pages", new int[]{0});
 
-    }
-
-    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
-        if (this.allowdedIn(group)) {
-            items.add(new ItemStack(this));
-            ItemStack stack = new ItemStack(PFItems.PALEOPEDIA.get());
-            stack.setTag(new CompoundTag());
-            int[] pages = new int[EnumPaleoPages.values().length];
-            for (int i = 0; i < EnumPaleoPages.values().length; i++) {
-                pages[i] = i;
-            }
-            stack.getTag().putIntArray("Pages", pages);
-            items.add(stack);
-        }
     }
 
     @Override
@@ -75,13 +57,13 @@ public class PaleopediaItem extends Item {
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         if (stack.getTag() != null) {
         	if (PrehistoricFauna.PROXY.shouldSeePaleopediaContents()) {
-                tooltip.add(new TranslatableComponent("paleopedia.contains").withStyle(ChatFormatting.GRAY));
+                tooltip.add(Component.translatable("paleopedia.contains").withStyle(ChatFormatting.GRAY));
                 final Set<EnumPaleoPages> pages = EnumPaleoPages.containedPages(Ints.asList(stack.getTag().getIntArray("Pages")));  
                 for (EnumPaleoPages page : pages) {
-                    tooltip.add(new TranslatableComponent(ChatFormatting.WHITE + "-").append(new TranslatableComponent("paleopedia." + EnumPaleoPages.values()[page.ordinal()].toString().toLowerCase())).withStyle(ChatFormatting.GRAY));
+                    tooltip.add(Component.translatable(ChatFormatting.WHITE + "-").append(Component.translatable("paleopedia." + EnumPaleoPages.values()[page.ordinal()].toString().toLowerCase())).withStyle(ChatFormatting.GRAY));
                 }
             } else {
-                tooltip.add(new TranslatableComponent("paleopedia.hold_shift").withStyle(ChatFormatting.GRAY));
+                tooltip.add(Component.translatable("paleopedia.hold_shift").withStyle(ChatFormatting.GRAY));
             }
 
         }

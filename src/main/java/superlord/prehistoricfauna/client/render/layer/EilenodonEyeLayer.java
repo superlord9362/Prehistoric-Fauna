@@ -30,11 +30,11 @@ public class EilenodonEyeLayer extends RenderLayer<Eilenodon, EilenodonModel> {
 		if (!(eilenodonRenderer.getModel() instanceof EilenodonModel)) {
 			return;
 		}
-		long roundTime = eilenodon.level.getDayTime() % 24000;
+		long roundTime = eilenodon.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos eilenodonPos = eilenodon.blockPosition();
-		int i = eilenodon.level.getBrightness(LightLayer.SKY, eilenodonPos);
-		int j = eilenodon.level.getBrightness(LightLayer.BLOCK, eilenodonPos);
+		int i = eilenodon.level().getBrightness(LightLayer.SKY, eilenodonPos);
+		int j = eilenodon.level().getBrightness(LightLayer.BLOCK, eilenodonPos);
 		int brightness;
 		if (night) {
 			brightness = j;

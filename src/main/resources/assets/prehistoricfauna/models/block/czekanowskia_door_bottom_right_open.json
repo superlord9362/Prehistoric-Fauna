@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom_right_open",
+  "textures": {
+    "bottom": "prehistoricfauna:block/czekanowskia_door_bottom",
+    "top": "prehistoricfauna:block/czekanowskia_door_top"
+  }
+}

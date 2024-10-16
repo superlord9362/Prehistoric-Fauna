@@ -1,6 +1,6 @@
 {
     "parent": "block/wall_inventory",
     "textures": {
-        "wall": "prehistoricfauna:blocks/cretaceous_chalk_bricks"
+        "wall": "prehistoricfauna:block/cretaceous_chalk_bricks"
     }
 }

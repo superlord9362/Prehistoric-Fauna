@@ -6,7 +6,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import superlord.prehistoricfauna.init.PFBlocks;
@@ -16,7 +15,7 @@ public class TriassicTimeBlock extends Block {
 	private static final VoxelShape AABB = Block.box(4, 4, 4, 12, 12, 12);
 
 	public TriassicTimeBlock() {
-		super(Properties.of(Material.METAL).sound(SoundType.METAL).noOcclusion().dynamicShape().strength(2.0F, 1000.0F));
+		super(Properties.of().sound(SoundType.METAL).noOcclusion().dynamicShape().strength(2.0F, 1000.0F));
 	}
 
 	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {

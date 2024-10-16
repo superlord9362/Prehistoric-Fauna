@@ -1,9 +1,8 @@
 package superlord.prehistoricfauna.common.entity.fish;
 
-import java.util.Random;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -13,7 +12,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.AbstractFish;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.init.PFItems;
@@ -36,22 +35,22 @@ public class Potamoceratodus extends AbstractFish {
 
 	@Override
 	protected SoundEvent getFlopSound() {
-		return PFSounds.FISH_FLOP;
+		return PFSounds.FISH_FLOP.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource p_28306_) {
-		return PFSounds.POTAMOCERATODUS_HURT;
+		return PFSounds.POTAMOCERATODUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.POTAMOCERATODUS_DEATH;
+		return PFSounds.POTAMOCERATODUS_DEATH.get();
 	}
 
 	@SuppressWarnings("deprecation")
-	public static boolean checkAncientFishSpawnRules(EntityType<? extends AbstractFish> type, LevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random randomIn) {
+	public static boolean checkAncientFishSpawnRules(EntityType<? extends AbstractFish> type, ServerLevelAccessor worldIn, MobSpawnType reason, BlockPos pos, RandomSource randomIn) {
 		int i = worldIn.getSeaLevel();
 		int j = i - 13;
-		return pos.getY() >= j && worldIn.getBlockState(pos).is(Blocks.WATER) && randomIn.nextFloat() > 0.95F;
+		return pos.getY() >= j && worldIn.getBlockState(pos).is(Blocks.WATER) && randomIn.nextFloat() > 0.99F;
 	}		
 	@Override
 	public ItemStack getPickedResult(HitResult target) {

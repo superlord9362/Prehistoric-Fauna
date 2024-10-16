@@ -30,11 +30,11 @@ public class PlaceriasEyeLayer extends RenderLayer<Placerias, PlaceriasModel> {
 		if (!(coelophysisRenderer.getModel() instanceof PlaceriasModel)) {
 			return;
 		}
-		long roundTime = coelophysis.level.getDayTime() % 24000;
+		long roundTime = coelophysis.level().getDayTime() % 24000;
 		boolean night = roundTime >= 13000 && roundTime <= 22000;
 		BlockPos coelophysisPos = coelophysis.blockPosition();
-		int i = coelophysis.level.getBrightness(LightLayer.SKY, coelophysisPos);
-		int j = coelophysis.level.getBrightness(LightLayer.BLOCK, coelophysisPos);
+		int i = coelophysis.level().getBrightness(LightLayer.SKY, coelophysisPos);
+		int j = coelophysis.level().getBrightness(LightLayer.BLOCK, coelophysisPos);
 		int brightness;
 		if (night) {
 			brightness = j;

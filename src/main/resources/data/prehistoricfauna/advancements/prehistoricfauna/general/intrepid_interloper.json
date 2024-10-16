@@ -23,209 +23,433 @@
 		"chinle_flats": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:chinle_flats"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:chinle_flats"
+							}
+						}
+					}
+				]
 			}
 		},
 		"chinle_swamp": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:chinle_swamp"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:chinle_swamp"
+							}
+						}
+					}
+				]
 			}
 		},
 		"chinle_wooded_mountains": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:chinle_wooded_mountains"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:chinle_wooded_mountains"
+							}
+						}
+					}
+				]
+			}
+		},
+		"chinle_river": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:chinle_river"
+							}
+						}
+					}
+				]
 			}
 		},
 		"djadochta_arroyo": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:djadochta_arroyo"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:djadochta_arroyo"
+							}
+						}
+					}
+				]
 			}
 		},
 		"djadochta_dunes": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:djadochta_dunes"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:djadochta_dunes"
+							}
+						}
+					}
+				]
 			}
 		},
 		"djadochta_alluvial_plains": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:djadochta_alluvial_plains"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:djadochta_alluvial_plains"
+							}
+						}
+					}
+				]
 			}
 		},
 		"hell_creek": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:hell_creek_hardwood_forest"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:hell_creek_hardwood_forest"
+							}
+						}
+					}
+				]
 			}
 		},
 		"hell_creek_clearing": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:hell_creek_clearing"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:hell_creek_clearing"
+							}
+						}
+					}
+				]
 			}
 		},
 		"hell_creek_hills": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:hell_creek_bluffs"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:hell_creek_bluffs"
+							}
+						}
+					}
+				]
 			}
 		},
 		"hell_creek_river": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:hell_creek_river"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:hell_creek_river"
+							}
+						}
+					}
+				]
 			}
 		},
 		"hell_creek_swamp": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:hell_creek_swamp"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:hell_creek_swamp"
+							}
+						}
+					}
+				]
 			}
 		},
 		"hell_creek_redwoods": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:hell_creek_redwoods"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:hell_creek_redwoods"
+							}
+						}
+					}
+				]
 			}
 		},
 		"yixian_forest": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:yixian_forest"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:yixian_forest"
+							}
+						}
+					}
+				]
 			}
 		},
 		"yixian_regrowth": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:yixian_regrowth"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:yixian_regrowth"
+							}
+						}
+					}
+				]
 			}
 		},
 		"yixian_snowy_forest": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:yixian_snowy_forest"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:yixian_snowy_forest"
+							}
+						}
+					}
+				]
 			}
 		},
 		"yixian_snowy_mountains": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:yixian_snowy_mountains"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:yixian_snowy_mountains"
+							}
+						}
+					}
+				]
 			}
 		},
 		"yixian_volcano": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:yixian_volcano"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:yixian_volcano"
+							}
+						}
+					}
+				]
 			}
 		},
 		"ischigualasto_clearing": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:ischigualasto_clearing"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:ischigualasto_clearing"
+							}
+						}
+					}
+				]
 			}
 		},
 		"ischigualasto_forest": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:ischigualasto_forest"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:ischigualasto_forest"
+							}
+						}
+					}
+				]
 			}
 		},
 		"ischigualasto_hills": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:ischigualasto_hills"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:ischigualasto_hills"
+							}
+						}
+					}
+				]
 			}
 		},
 		"ischigualasto_river": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:ischigualasto_river"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:ischigualasto_river"
+							}
+						}
+					}
+				]
 			}
 		},
 		"kayenta_canyon": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:kayenta_canyon"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:kayenta_buttes"
+							}
+						}
+					}
+				]
 			}
 		},
 		"kayenta_desert": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:kayenta_desert"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:kayenta_desert"
+							}
+						}
+					}
+				]
 			}
 		},
 		"kayenta_dry_forest": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:kayenta_dry_forest"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:kayenta_dry_forest"
+							}
+						}
+					}
+				]
 			}
 		},
 		"morrison_hills": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:morrison_hills"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:morrison_hills"
+							}
+						}
+					}
+				]
 			}
 		},
-		"morrison_savannah": {
+		"morrison_savanna": {
 			"trigger": "minecraft:location",
 			"conditions": {
-				"location": {
-					"biome": "prehistoricfauna:morrison_savannah"
-				}
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:morrison_savanna"
+							}
+						}
+					}
+				]
 			}
 		}
 	},
@@ -306,7 +530,10 @@
 			"morrison_hills"
 		],
 		[
-			"morrison_savannah"
+			"morrison_savanna"
+		],
+		[
+			"chinle_river"
 		]
 	]
 }

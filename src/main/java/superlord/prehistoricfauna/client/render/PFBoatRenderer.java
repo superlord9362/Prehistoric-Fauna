@@ -7,6 +7,7 @@ import com.google.common.collect.ImmutableMap;
 import com.mojang.datafixers.util.Pair;
 
 import net.minecraft.client.model.BoatModel;
+import net.minecraft.client.model.ListModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -17,10 +18,10 @@ import superlord.prehistoricfauna.common.entity.PFBoat;
 import superlord.prehistoricfauna.common.entity.PFBoat.PFBoatTypes;
 
 public class PFBoatRenderer extends BoatRenderer {
-	private final Map<PFBoatTypes, Pair<ResourceLocation, BoatModel>> boatResources;
+	private final Map<PFBoatTypes, Pair<ResourceLocation, ListModel<Boat>>> boatResources;
 
-	public PFBoatRenderer(EntityRendererProvider.Context renderContext) {
-		super(renderContext);
+	public PFBoatRenderer(EntityRendererProvider.Context renderContext, boolean isChestBoat) {
+		super(renderContext, isChestBoat);
 		boatResources = Stream.of(PFBoatTypes.values()).collect(ImmutableMap.toImmutableMap((boatType) -> {
 			return boatType;
 		}, (boatType) -> {
@@ -36,8 +37,12 @@ public class PFBoatRenderer extends BoatRenderer {
 		}));
 	}
 
+	public PFBoatRenderer(EntityRendererProvider.Context renderContext) {
+		this(renderContext, false);
+	}
+
 	@Override
-	public Pair<ResourceLocation, BoatModel> getModelWithLocation(Boat boat) {
+	public Pair<ResourceLocation, ListModel<Boat>> getModelWithLocation(Boat boat) {
 		PFBoat moddedBoat = (PFBoat) boat;
 		return boatResources.get(moddedBoat.getPFBoatType());
 	}

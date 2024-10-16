@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:blocks/woodworthia_ladder"
+        "layer0": "prehistoricfauna:block/woodworthia_ladder"
     }
 }

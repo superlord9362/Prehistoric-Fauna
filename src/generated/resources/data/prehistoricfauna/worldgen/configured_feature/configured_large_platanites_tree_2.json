@@ -1,0 +1,27 @@
+{
+  "type": "prehistoricfauna:large_platanites_tree_2",
+  "config": {
+    "leaves_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:platanites_leaves",
+        "Properties": {
+          "distance": "7",
+          "persistent": "false",
+          "waterlogged": "false"
+        }
+      }
+    },
+    "max_height": 38,
+    "min_height": 34,
+    "trunk_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:platanites_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    }
+  }
+}

@@ -4,8 +4,8 @@
 	"textures": {
 		"1": "block/dirt",
 		"2": "block/flower_pot",
-		"3": "prehistoricfauna:blocks/nothodichocarpum_vase_2",
-		"4": "prehistoricfauna:blocks/nothodichocarpum_vase_1",
+		"3": "prehistoricfauna:block/nothodichocarpum_vase_2",
+		"4": "prehistoricfauna:block/nothodichocarpum_vase_1",
 		"particle": "block/dirt"
 	},
 	"elements": [

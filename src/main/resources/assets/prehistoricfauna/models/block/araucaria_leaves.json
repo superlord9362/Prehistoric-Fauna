@@ -1,6 +1,6 @@
 {
-    "parent": "block/leaves",
+    "parent": "minecraft:block/leaves",
     "textures": {
-        "all": "prehistoricfauna:blocks/araucaria_leaves"
+        "all": "prehistoricfauna:block/araucaria_leaves"
     }
 }

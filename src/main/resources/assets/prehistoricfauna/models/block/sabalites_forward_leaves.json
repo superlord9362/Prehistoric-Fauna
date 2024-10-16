@@ -3,9 +3,9 @@
     "ambientocclusion": false,
     "parent": "block/cross",
 	"textures": {
-		"0": "prehistoricfauna:blocks/sabalites_leaves_big",
-		"1": "prehistoricfauna:blocks/sabalites_leaves_small",
-		"particle": "prehistoricfauna:blocks/sabalites_leaves_big"
+		"0": "prehistoricfauna:block/sabalites_leaves_big",
+		"1": "prehistoricfauna:block/sabalites_leaves_small",
+		"particle": "prehistoricfauna:block/sabalites_leaves_big"
 	},
 	"elements": [
 		{

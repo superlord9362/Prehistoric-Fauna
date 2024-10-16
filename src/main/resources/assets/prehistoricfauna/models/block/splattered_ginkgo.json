@@ -1,8 +1,8 @@
 {
     "ambientocclusion": false,
     "textures": {
-        "particle": "prehistoricfauna:blocks/splattered_ginkgo",
-        "splattered_ginkgo": "prehistoricfauna:blocks/splattered_ginkgo"
+        "particle": "prehistoricfauna:block/splattered_ginkgo",
+        "splattered_ginkgo": "prehistoricfauna:block/splattered_ginkgo"
     },
     "elements": [
         {   "from": [ 0, 0, 0.1 ],

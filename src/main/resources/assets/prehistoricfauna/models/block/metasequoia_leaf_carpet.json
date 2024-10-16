@@ -1,6 +1,6 @@
 {   
     "parent": "prehistoricfauna:block/leaf_carpet",
     "textures": {
-        "all": "prehistoricfauna:blocks/metasequoia_leaves"
+        "all": "prehistoricfauna:block/metasequoia_leaves"
     }
 }

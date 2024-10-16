@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:item/generated",
+	"textures": {
+		"layer0": "prehistoricfauna:item/podozamites_hanging_sign"
+	}
+}

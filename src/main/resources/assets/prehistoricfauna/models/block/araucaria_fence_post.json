@@ -1,6 +1,6 @@
 {
     "parent": "block/fence_post",
     "textures": {
-        "texture": "prehistoricfauna:blocks/araucaria_planks"
+        "texture": "prehistoricfauna:block/araucaria_planks"
     }
 }

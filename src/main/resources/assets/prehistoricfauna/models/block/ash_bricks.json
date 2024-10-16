@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "prehistoricfauna:blocks/ash_bricks"
+        "all": "prehistoricfauna:block/ash_bricks"
     }
 }

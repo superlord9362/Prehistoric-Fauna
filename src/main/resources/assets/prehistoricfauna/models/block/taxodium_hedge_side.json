@@ -1,6 +1,6 @@
 {
 	"parent": "prehistoricfauna:block/hedge_side",
 	"textures": {
-		"leaf": "prehistoricfauna:blocks/taxodium_leaves"
+		"leaf": "prehistoricfauna:block/taxodium_leaves"
 	}
 }

@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:items/ischigualastia_egg"
+        "layer0": "prehistoricfauna:item/ischigualastia_egg"
     }
 }

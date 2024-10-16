@@ -1,11 +1,11 @@
 package superlord.prehistoricfauna.common.feature.trees.schilderia;
 
-import java.util.Random;
 import java.util.Set;
 
 import com.mojang.serialization.Codec;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import superlord.prehistoricfauna.common.feature.trees.PFAbstractTreeFeature;
@@ -19,7 +19,7 @@ public class Schilderia3 extends PFAbstractTreeFeature<PFTreeConfig> {
 		super(configIn);
 	}
 	
-	protected boolean generate(Set<BlockPos> changedBlocks, WorldGenLevel world, Random rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
+	protected boolean generate(Set<BlockPos> changedBlocks, WorldGenLevel world, RandomSource rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
 
 		this.randTreeHeight = config.getMinHeight() + rand.nextInt(config.getMaxPossibleHeight());
 		this.mainmutable = new BlockPos.MutableBlockPos().set(pos);
@@ -39,7 +39,7 @@ public class Schilderia3 extends PFAbstractTreeFeature<PFTreeConfig> {
 		return true;
 	}
 
-	protected void generate1(Set<BlockPos> changedBlocks, WorldGenLevel world, Random rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
+	protected void generate1(Set<BlockPos> changedBlocks, WorldGenLevel world, RandomSource rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
 		placeTrunk(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, 0, 0), boundsIn);
 		placeTrunk(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, 1, 0), boundsIn);
 		placeTrunk(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, 2, 0), boundsIn);
@@ -1199,7 +1199,7 @@ public class Schilderia3 extends PFAbstractTreeFeature<PFTreeConfig> {
 		placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, randTreeHeight - 14, 3), boundsIn);
 	}
 	
-	protected void generate2(Set<BlockPos> changedBlocks, WorldGenLevel world, Random rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
+	protected void generate2(Set<BlockPos> changedBlocks, WorldGenLevel world, RandomSource rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
 		placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, randTreeHeight - 14, 4), boundsIn);
 		placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, randTreeHeight - 14, 5), boundsIn);
 		placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, randTreeHeight - 14, 7), boundsIn);

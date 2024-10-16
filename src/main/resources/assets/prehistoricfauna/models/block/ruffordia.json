@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "prehistoricfauna:blocks/ruffordia"
+        "cross": "prehistoricfauna:block/ruffordia"
     }
 }

@@ -1,8 +1,8 @@
 {
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "prehistoricfauna:blocks/nothodichocarpum",
-		"particle": "prehistoricfauna:blocks/nothodichocarpum"
+		"0": "prehistoricfauna:block/nothodichocarpum",
+		"particle": "prehistoricfauna:block/nothodichocarpum"
 	},
 	"elements": [
 		{

@@ -85,6 +85,7 @@ public class Coelophysis extends HerdDinosaurEntity {
 	public Coelophysis(EntityType<? extends Coelophysis> type, Level levelIn) {
 		super(type, levelIn);
 		super.maxHunger = maxHunger;
+		this.setMaxUpStep(1.0F);
 	}
 	
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
@@ -186,20 +187,20 @@ public class Coelophysis extends HerdDinosaurEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.COELOPHYSIS_IDLE;
+		return this.isAsleep() ? null : PFSounds.COELOPHYSIS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.COELOPHYSIS_HURT;
+		return PFSounds.COELOPHYSIS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.COELOPHYSIS_DEATH;
+		return PFSounds.COELOPHYSIS_DEATH.get();
 	}
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.COELOPHYSIS_WARN, 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.COELOPHYSIS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
@@ -263,8 +264,8 @@ public class Coelophysis extends HerdDinosaurEntity {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Coelophysis entity = new Coelophysis(PFEntities.COELOPHYSIS.get(), this.level);
-		entity.finalizeSpawn(p_241840_1_, this.level.getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		Coelophysis entity = new Coelophysis(PFEntities.COELOPHYSIS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
 	

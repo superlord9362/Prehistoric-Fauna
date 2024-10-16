@@ -1,9 +1,8 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.djadochta;
 
-import java.util.Random;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
@@ -21,7 +20,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraftforge.common.Tags;
 import superlord.prehistoricfauna.init.PFItems;
 
@@ -60,7 +59,7 @@ public class Gobiulus extends PathfinderMob {
 		return super.mobInteract(player, hand);
 	}
 
-	public static boolean canBugSpawn(EntityType<? extends PathfinderMob> animal, LevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random random) {
+	public static boolean canBugSpawn(EntityType<? extends PathfinderMob> animal, ServerLevelAccessor worldIn, MobSpawnType reason, BlockPos pos, RandomSource random) {
 		return (worldIn.getBlockState(pos.below()).is(BlockTags.DIRT) || worldIn.getBlockState(pos.below()).is(Tags.Blocks.SAND) || worldIn.getBlockState(pos.below()).is(BlockTags.LEAVES) || worldIn.getBlockState(pos.below()).is(BlockTags.LOGS_THAT_BURN)) && worldIn.getRawBrightness(pos, 0) > 8;
 	}
 

@@ -1,61 +1,117 @@
 package superlord.prehistoricfauna.init;
 
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BiomeDefaultFeatures;
+import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.AmbientMoodSettings;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.Biome.BiomeCategory;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
 import net.minecraft.world.level.biome.BiomeSpecialEffects;
 import net.minecraft.world.level.biome.MobSpawnSettings;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.world.biome.CretaceousBiomes;
 import superlord.prehistoricfauna.common.world.biome.JurassicBiomes;
 import superlord.prehistoricfauna.common.world.biome.TriassicBiomes;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class PFBiomes {
-	public static final DeferredRegister<Biome> REGISTER = DeferredRegister.create(ForgeRegistries.BIOMES, PrehistoricFauna.MOD_ID);
 
-	public static RegistryObject<Biome> CHINLE_FLATS = REGISTER.register("chinle_flats", TriassicBiomes::chinleFlats);
-	public static RegistryObject<Biome> CHINLE_RIVER = REGISTER.register("chinle_river", TriassicBiomes::chinleRiver);
-	public static RegistryObject<Biome> CHINLE_SWAMP = REGISTER.register("chinle_swamp", TriassicBiomes::chinleSwamp);
-	public static RegistryObject<Biome> CHINLE_WOODED_MOUNTAINS = REGISTER.register("chinle_wooded_mountains", TriassicBiomes::chinleWoodedMountains);
-	public static RegistryObject<Biome> ISCHIGUALASTO_RIVER = REGISTER.register("ischigualasto_river", TriassicBiomes::ischigualastoRiver);
-	public static RegistryObject<Biome> ISCHIGUALASTO_CLEARING = REGISTER.register("ischigualasto_clearing", TriassicBiomes::ischigualastoClearing);
-	public static RegistryObject<Biome> ISCHIGUALASTO_FOREST = REGISTER.register("ischigualasto_forest", TriassicBiomes::ischigualastoForest);
-	public static RegistryObject<Biome> ISCHIGUALASTO_HILLS = REGISTER.register("ischigualasto_hills", TriassicBiomes::ischigualastoHills);
-	
-	public static RegistryObject<Biome> KAYENTA_DRY_FOREST = REGISTER.register("kayenta_dry_forest", JurassicBiomes::kayentaDryForest);
-	public static RegistryObject<Biome> KAYENTA_BUTTES = REGISTER.register("kayenta_buttes", JurassicBiomes::kayentaButtes);
-	public static RegistryObject<Biome> KAYENTA_DESERT = REGISTER.register("kayenta_desert", JurassicBiomes::kayentaDesert);
-	public static RegistryObject<Biome> KAYENTA_RIVER = REGISTER.register("kayenta_river", JurassicBiomes::kayentaRiver);
-	public static RegistryObject<Biome> MORRISON_SAVANNA = REGISTER.register("morrison_savanna", JurassicBiomes::morrisonSavanna);
-	public static RegistryObject<Biome> MORRISON_HILLS = REGISTER.register("morrison_hills", JurassicBiomes::morrisonHills);
-	
-	public static RegistryObject<Biome> HELL_CREEK_HARDWOOD_FOREST = REGISTER.register("hell_creek_hardwood_forest", CretaceousBiomes::hellCreekHardwoodForest);
-	public static RegistryObject<Biome> HELL_CREEK_CLEARING = REGISTER.register("hell_creek_clearing", CretaceousBiomes::hellCreekClearing);
-	public static RegistryObject<Biome> HELL_CREEK_BLUFFS = REGISTER.register("hell_creek_bluffs", CretaceousBiomes::hellCreekLiriodendritesHills);
-	public static RegistryObject<Biome> HELL_CREEK_REDWOODS = REGISTER.register("hell_creek_redwoods", CretaceousBiomes::hellCreekRedwoods);
-	public static RegistryObject<Biome> HELL_CREEK_SWAMP = REGISTER.register("hell_creek_swamp", CretaceousBiomes::hellCreekSwamp);
-	public static RegistryObject<Biome> HELL_CREEK_RIVER = REGISTER.register("hell_creek_river", CretaceousBiomes::hellCreekRiver);
-	public static RegistryObject<Biome> DJADOCHTA_DUNES = REGISTER.register("djadochta_dunes", CretaceousBiomes::djadochtaDunes);
-	public static RegistryObject<Biome> DJADOCHTA_ARROYO = REGISTER.register("djadochta_arroyo", CretaceousBiomes::djadochtaArroyo);
-	public static RegistryObject<Biome> DJADOCHTA_ALLUVIAL_PLAINS = REGISTER.register("djadochta_alluvial_plains", CretaceousBiomes::djadochtaAlluvialPlains);
-	public static RegistryObject<Biome> YIXIAN_FOREST = REGISTER.register("yixian_forest", CretaceousBiomes::yixianForest);
-	public static RegistryObject<Biome> YIXIAN_LAKES = REGISTER.register("yixian_lakes", CretaceousBiomes::yixianLakes);
-	public static RegistryObject<Biome> YIXIAN_SNOWY_FOREST = REGISTER.register("yixian_snowy_forest", CretaceousBiomes::yixianSnowyForest);
-	public static RegistryObject<Biome> YIXIAN_SNOWY_MOUNTAINS = REGISTER.register("yixian_snowy_mountains", CretaceousBiomes::yixianSnowyMountains);
-	public static RegistryObject<Biome> YIXIAN_REGROWTH = REGISTER.register("yixian_regrowth", CretaceousBiomes::yixianRegrowth);
-	public static RegistryObject<Biome> YIXIAN_VOLCANO = REGISTER.register("yixian_volcano", CretaceousBiomes::yixianVolcano);
-	
-	public static RegistryObject<Biome> CRETACEOUS_DRIPSTONE_CAVE = REGISTER.register("cretaceous_dripstone_cave", PFBiomes::prehistoricDripstoneCave);
-	public static RegistryObject<Biome> JURASSIC_DRIPSTONE_CAVE = REGISTER.register("jurassic_dripstone_cave", PFBiomes::prehistoricDripstoneCave);
-	public static RegistryObject<Biome> TRIASSIC_DRIPSTONE_CAVE = REGISTER.register("triassic_dripstone_cave", PFBiomes::prehistoricDripstoneCave);
-		
-	private static Biome biome(Biome.BiomeCategory category, int waterColor, int waterFogColor, int skyColor, int fogColor, Biome.Precipitation precipitation, float temperature, float downfall, MobSpawnSettings.Builder spawnBuilder, BiomeGenerationSettings.Builder biomeBuilder) {
+	public static final ResourceKey<Biome> CHINLE_FLATS = register("chinle_flats");
+	public static final ResourceKey<Biome> CHINLE_RIVER = register("chinle_river");
+	public static final ResourceKey<Biome> CHINLE_SWAMP = register("chinle_swamp");
+	public static final ResourceKey<Biome> CHINLE_WOODED_MOUNTAINS = register("chinle_wooded_mountains");
+	public static final ResourceKey<Biome> ISCHIGUALASTO_RIVER = register("ischigualasto_river");
+	public static final ResourceKey<Biome> ISCHIGUALASTO_CLEARING = register("ischigualasto_clearing");
+	public static final ResourceKey<Biome> ISCHIGUALASTO_FOREST = register("ischigualasto_forest");
+	public static final ResourceKey<Biome> ISCHIGUALASTO_HILLS = register("ischigualasto_hills");
+
+	public static final ResourceKey<Biome> KAYENTA_DRY_FOREST = register("kayenta_dry_forest");
+	public static final ResourceKey<Biome> KAYENTA_BUTTES = register("kayenta_buttes");
+	public static final ResourceKey<Biome> KAYENTA_DESERT = register("kayenta_desert");
+	public static final ResourceKey<Biome> KAYENTA_RIVER = register("kayenta_river");
+	public static final ResourceKey<Biome> MORRISON_SAVANNA = register("morrison_savanna");
+	public static final ResourceKey<Biome> MORRISON_HILLS = register("morrison_hills");
+
+	public static final ResourceKey<Biome> HELL_CREEK_HARDWOOD_FOREST = register("hell_creek_hardwood_forest");
+	public static final ResourceKey<Biome> HELL_CREEK_CLEARING = register("hell_creek_clearing");
+	public static final ResourceKey<Biome> HELL_CREEK_BLUFFS = register("hell_creek_bluffs");
+	public static final ResourceKey<Biome> HELL_CREEK_REDWOODS = register("hell_creek_redwoods");
+	public static final ResourceKey<Biome> HELL_CREEK_SWAMP = register("hell_creek_swamp");
+	public static final ResourceKey<Biome> HELL_CREEK_RIVER = register("hell_creek_river");
+	public static final ResourceKey<Biome> DJADOCHTA_DUNES = register("djadochta_dunes");
+	public static final ResourceKey<Biome> DJADOCHTA_ARROYO = register("djadochta_arroyo");
+	public static final ResourceKey<Biome> DJADOCHTA_ALLUVIAL_PLAINS = register("djadochta_alluvial_plains");
+	public static final ResourceKey<Biome> YIXIAN_FOREST = register("yixian_forest");
+	public static final ResourceKey<Biome> YIXIAN_LAKES = register("yixian_lakes");
+	public static final ResourceKey<Biome> YIXIAN_SNOWY_FOREST = register("yixian_snowy_forest");
+	public static final ResourceKey<Biome> YIXIAN_SNOWY_MOUNTAINS = register("yixian_snowy_mountains");
+	public static final ResourceKey<Biome> YIXIAN_REGROWTH = register("yixian_regrowth");
+	public static final ResourceKey<Biome> YIXIAN_VOLCANO = register("yixian_volcano");
+
+	public static final ResourceKey<Biome> CRETACEOUS_DRIPSTONE_CAVE = register("cretaceous_dripstone_cave");
+	public static final ResourceKey<Biome> JURASSIC_DRIPSTONE_CAVE = register("jurassic_dripstone_cave");
+	public static final ResourceKey<Biome> TRIASSIC_DRIPSTONE_CAVE = register("triassic_dripstone_cave");
+	public static final ResourceKey<Biome> CRETACEOUS_HENOSTONE_CAVE = register("cretaceous_henostone_cave");
+	public static final ResourceKey<Biome> JURASSIC_HENOSTONE_CAVE = register("jurassic_henostone_cave");
+	public static final ResourceKey<Biome> TRIASSIC_HENOSTONE_CAVE = register("triassic_henostone_cave");
+
+	public static void bootstrap(BootstapContext<Biome> bootstapContext) {
+		HolderGetter<PlacedFeature> holderGetter = bootstapContext.lookup(Registries.PLACED_FEATURE);
+		HolderGetter<ConfiguredWorldCarver<?>> holderGetter1 = bootstapContext.lookup(Registries.CONFIGURED_CARVER);
+		bootstapContext.register(CHINLE_FLATS, TriassicBiomes.chinleFlats(holderGetter, holderGetter1));
+		bootstapContext.register(CHINLE_RIVER, TriassicBiomes.chinleRiver(holderGetter, holderGetter1));
+		bootstapContext.register(CHINLE_SWAMP, TriassicBiomes.chinleSwamp(holderGetter, holderGetter1));
+		bootstapContext.register(CHINLE_WOODED_MOUNTAINS, TriassicBiomes.chinleWoodedMountains(holderGetter, holderGetter1));
+		bootstapContext.register(ISCHIGUALASTO_RIVER, TriassicBiomes.ischigualastoRiver(holderGetter, holderGetter1));
+		bootstapContext.register(ISCHIGUALASTO_CLEARING, TriassicBiomes.ischigualastoClearing(holderGetter, holderGetter1));
+		bootstapContext.register(ISCHIGUALASTO_FOREST, TriassicBiomes.ischigualastoForest(holderGetter, holderGetter1));
+		bootstapContext.register(ISCHIGUALASTO_HILLS, TriassicBiomes.ischigualastoHills(holderGetter, holderGetter1));
+
+		bootstapContext.register(KAYENTA_DRY_FOREST, JurassicBiomes.kayentaDryForest(holderGetter, holderGetter1));
+		bootstapContext.register(KAYENTA_BUTTES, JurassicBiomes.kayentaButtes(holderGetter, holderGetter1));
+		bootstapContext.register(KAYENTA_DESERT, JurassicBiomes.kayentaDesert(holderGetter, holderGetter1));
+		bootstapContext.register(KAYENTA_RIVER, JurassicBiomes.kayentaRiver(holderGetter, holderGetter1));
+		bootstapContext.register(MORRISON_SAVANNA, JurassicBiomes.morrisonSavanna(holderGetter, holderGetter1));
+		bootstapContext.register(MORRISON_HILLS, JurassicBiomes.morrisonHills(holderGetter, holderGetter1));
+
+		bootstapContext.register(HELL_CREEK_HARDWOOD_FOREST, CretaceousBiomes.hellCreekHardwoodForest(holderGetter, holderGetter1));
+		bootstapContext.register(HELL_CREEK_CLEARING, CretaceousBiomes.hellCreekClearing(holderGetter, holderGetter1));
+		bootstapContext.register(HELL_CREEK_BLUFFS, CretaceousBiomes.hellCreekBluffs(holderGetter, holderGetter1));
+		bootstapContext.register(HELL_CREEK_REDWOODS, CretaceousBiomes.hellCreekRedwoods(holderGetter, holderGetter1));
+		bootstapContext.register(HELL_CREEK_SWAMP, CretaceousBiomes.hellCreekSwamp(holderGetter, holderGetter1));
+		bootstapContext.register(HELL_CREEK_RIVER, CretaceousBiomes.hellCreekRiver(holderGetter, holderGetter1));
+		bootstapContext.register(DJADOCHTA_DUNES, CretaceousBiomes.djadochtaDunes(holderGetter, holderGetter1));
+		bootstapContext.register(DJADOCHTA_ARROYO, CretaceousBiomes.djadochtaArroyo(holderGetter, holderGetter1));
+		bootstapContext.register(DJADOCHTA_ALLUVIAL_PLAINS, CretaceousBiomes.djadochtaAlluvialPlains(holderGetter, holderGetter1));
+		bootstapContext.register(YIXIAN_FOREST, CretaceousBiomes.yixianForest(holderGetter, holderGetter1));
+		bootstapContext.register(YIXIAN_LAKES, CretaceousBiomes.yixianLakes(holderGetter, holderGetter1));
+		bootstapContext.register(YIXIAN_SNOWY_FOREST, CretaceousBiomes.yixianSnowyForest(holderGetter, holderGetter1));
+		bootstapContext.register(YIXIAN_SNOWY_MOUNTAINS, CretaceousBiomes.yixianSnowyMountains(holderGetter, holderGetter1));
+		bootstapContext.register(YIXIAN_REGROWTH, CretaceousBiomes.yixianRegrowth(holderGetter, holderGetter1));
+		bootstapContext.register(YIXIAN_VOLCANO, CretaceousBiomes.yixianVolcano(holderGetter, holderGetter1));
+
+		bootstapContext.register(CRETACEOUS_DRIPSTONE_CAVE, prehistoricDripstoneCave(holderGetter, holderGetter1));
+		bootstapContext.register(JURASSIC_DRIPSTONE_CAVE, prehistoricDripstoneCave(holderGetter, holderGetter1));
+		bootstapContext.register(TRIASSIC_DRIPSTONE_CAVE, prehistoricDripstoneCave(holderGetter, holderGetter1));
+		bootstapContext.register(CRETACEOUS_HENOSTONE_CAVE, prehistoricHenostoneCave(holderGetter, holderGetter1));
+		bootstapContext.register(JURASSIC_HENOSTONE_CAVE, prehistoricHenostoneCave(holderGetter, holderGetter1));
+		bootstapContext.register(TRIASSIC_HENOSTONE_CAVE, prehistoricHenostoneCave(holderGetter, holderGetter1));
+	}
+
+	private static ResourceKey<Biome> register(String name) {
+		return ResourceKey.create(Registries.BIOME, new ResourceLocation(PrehistoricFauna.MOD_ID, name));
+	}
+
+	private static Biome biome(boolean hasPrecipitation, int waterColor, int waterFogColor, int skyColor, int fogColor, float temperature, float downfall, MobSpawnSettings.Builder spawnBuilder, BiomeGenerationSettings.Builder biomeBuilder) {
 		return (new Biome.BiomeBuilder())
-				.precipitation(precipitation)
+				.hasPrecipitation(hasPrecipitation)
 				.temperature(temperature)
 				.downfall(downfall)
 				.specialEffects((new BiomeSpecialEffects.Builder())
@@ -67,14 +123,25 @@ public class PFBiomes {
 						.build())
 				.mobSpawnSettings(spawnBuilder.build())
 				.generationSettings(biomeBuilder.build())
-				.biomeCategory(category)
 				.build();
 	}
-	
-	public static Biome prehistoricDripstoneCave() {
+
+	public static Biome prehistoricDripstoneCave(HolderGetter<PlacedFeature> placedFeatureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
 		MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
-		BiomeGenerationSettings.Builder biomeFeatures = new BiomeGenerationSettings.Builder();
-		return biome(BiomeCategory.UNDERGROUND, 7372597, 5267523, 15922646, 13622197, Biome.Precipitation.NONE, 0, 0, spawnSettings, biomeFeatures);
+		BiomeGenerationSettings.Builder biomeFeatures = new BiomeGenerationSettings.Builder(placedFeatureGetter, carverGetter);
+		BiomeDefaultFeatures.addDefaultCrystalFormations(biomeFeatures);
+		BiomeDefaultFeatures.addDefaultOres(biomeFeatures, true);
+		BiomeDefaultFeatures.addDripstone(biomeFeatures);
+		if (PrehistoricFaunaConfig.caveSentinelIschigualastoClearingSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.CAVE_SENTINEL.get(), PrehistoricFaunaConfig.caveSentinelIschigualastoClearingSpawnWeight, 1, 1));
+		return biome(false, 7372597, 5267523, 15922646, 13622197, 0, 0, spawnSettings, biomeFeatures);
 	}
-	
+
+	public static Biome prehistoricHenostoneCave(HolderGetter<PlacedFeature> placedFeatureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+		MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
+		BiomeGenerationSettings.Builder biomeFeatures = new BiomeGenerationSettings.Builder(placedFeatureGetter, carverGetter);
+		biomeFeatures.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PFPlacedFeatures.HENOSTONE_ORE);
+		if (PrehistoricFaunaConfig.caveSentinelHenostoneCaveSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.CAVE_SENTINEL.get(), PrehistoricFaunaConfig.caveSentinelHenostoneCaveSpawnWeight, 1, 1));
+		return biome(false, 7372597, 5267523, 15922646, 13622197, 0, 0, spawnSettings, biomeFeatures);
+	}
+
 }

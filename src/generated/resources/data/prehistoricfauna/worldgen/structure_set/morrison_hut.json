@@ -1,0 +1,14 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 612341942,
+    "separation": 40,
+    "spacing": 60
+  },
+  "structures": [
+    {
+      "structure": "prehistoricfauna:morrison_hut",
+      "weight": 1
+    }
+  ]
+}

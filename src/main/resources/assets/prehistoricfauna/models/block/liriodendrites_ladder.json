@@ -1,7 +1,7 @@
 {
 	"parent": "block/ladder",
 	"textures": {
-		"particle": "prehistoricfauna:blocks/liriodendrites_ladder",
-		"texture": "prehistoricfauna:blocks/liriodendrites_ladder"
+		"particle": "prehistoricfauna:block/liriodendrites_ladder",
+		"texture": "prehistoricfauna:block/liriodendrites_ladder"
 	}
 }

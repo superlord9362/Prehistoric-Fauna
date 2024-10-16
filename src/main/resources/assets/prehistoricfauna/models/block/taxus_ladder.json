@@ -1,7 +1,7 @@
 {
 	"parent": "block/ladder",
 	"textures": {
-		"particle": "prehistoricfauna:blocks/taxus_ladder",
-		"texture": "prehistoricfauna:blocks/taxus_ladder"
+		"particle": "prehistoricfauna:block/taxus_ladder",
+		"texture": "prehistoricfauna:block/taxus_ladder"
 	}
 }
