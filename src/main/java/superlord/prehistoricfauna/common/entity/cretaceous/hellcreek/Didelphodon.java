@@ -58,10 +58,9 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.common.blocks.CrassostreaOysterBlock;
-import superlord.prehistoricfauna.common.entity.DinosaurEntity;
+import superlord.prehistoricfauna.common.entity.BurrowingDinosaur;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.CarnivoreHuntGoal;
-import superlord.prehistoricfauna.common.entity.goal.CrepuscularSleepGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurWaterAvoidingRandomStrollGoal;
@@ -89,7 +88,7 @@ import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
-public class Didelphodon extends DinosaurEntity {
+public class Didelphodon extends BurrowingDinosaur {
 
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(PFBlocks.CRASSOSTREA_OYSTER.get().asItem());
 	private int maxHunger = 10;
@@ -281,7 +280,7 @@ public class Didelphodon extends DinosaurEntity {
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<Postosuchus>(this, Postosuchus.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<Coelophysis>(this, Coelophysis.class, 10F, 1.7D, 1.5D));
 		this.goalSelector.addGoal(0, new Didelphodon.CarryYoungGoal(this, 1.0D));
-		this.goalSelector.addGoal(1, new CrepuscularSleepGoal(this));
+//		this.goalSelector.addGoal(1, new CrepuscularSleepGoal(this));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 		this.goalSelector.addGoal(0, new ShellfishEatFromFeederGoal(this, (double)1.2F, 12, 2));
 		this.targetSelector.addGoal(0, new CarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213487_1_) -> {
@@ -336,6 +335,7 @@ public class Didelphodon extends DinosaurEntity {
 			this.setPassive(true);
 		}
 		this.setMolluscivorous(true);
+		this.setCrepuscular(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 

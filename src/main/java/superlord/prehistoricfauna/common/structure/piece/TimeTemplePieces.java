@@ -24,7 +24,7 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.init.PFStructures.PFStructurePieceType;
 
 public class TimeTemplePieces {
-	static final BlockPos PIVOT = new BlockPos(4, 0, 15);
+	static final BlockPos PIVOT = new BlockPos(0, 0, 0);
 	private static final ResourceLocation LOCATION = new ResourceLocation(PrehistoricFauna.MOD_ID, "time_temple");
 
 	public static void addPieces(StructureTemplateManager p_229346_, BlockPos p_229347_, Rotation p_229348_, StructurePieceAccessor p_229349_, RandomSource p_229350_) {
@@ -70,7 +70,7 @@ public class TimeTemplePieces {
 				j /= k;
 			}
 
-			this.templatePosition = new BlockPos(this.templatePosition.getX(), j, this.templatePosition.getZ());
+			this.templatePosition = new BlockPos(this.templatePosition.getX(), j - 4, this.templatePosition.getZ());
 			super.postProcess(p_229363_, p_229364_, p_229365_, p_229366_, p_229367_, p_229368_, p_229369_);
 		}
 

@@ -194,7 +194,7 @@ public class Tyrannosaurus extends DinosaurEntity {
 			this.playSound(SoundEvents.COW_STEP, 0.15F, 1F);
 		}
 	}
-	
+
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
 			this.playSound(PFSounds.TYRANNOSAURUS_WARN.get(), 1.0F, this.getVoicePitch());
@@ -431,6 +431,7 @@ public class Tyrannosaurus extends DinosaurEntity {
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
 		Tyrannosaurus entity = new Tyrannosaurus(PFEntities.TYRANNOSAURUS.get(), this.level());
+		entity.setAge(-48000);
 		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}

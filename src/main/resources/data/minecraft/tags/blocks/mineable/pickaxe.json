@@ -66,6 +66,8 @@
 		"prehistoricfauna:sandstone_regolith",
 		"prehistoricfauna:siltstone_regolith",
 		"prehistoricfauna:henostone_ore",
-		"prehistoricfauna:henostone_bricks"
+		"prehistoricfauna:henostone_bricks",
+		"prehistoricfauna:ash_bricks",
+		"prehistoricfauna:time_fragment_block"
 	]
 }

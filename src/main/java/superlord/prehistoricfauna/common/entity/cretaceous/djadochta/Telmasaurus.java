@@ -47,7 +47,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
-import superlord.prehistoricfauna.common.entity.DinosaurEntity;
+import superlord.prehistoricfauna.common.entity.BurrowingDinosaur;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ankylosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Thescelosaurus;
@@ -90,7 +90,7 @@ import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
-public class Telmasaurus extends DinosaurEntity {
+public class Telmasaurus extends BurrowingDinosaur {
 
 	public Telmasaurus(EntityType<? extends TamableAnimal> type, Level worldIn) {
 		super(type, worldIn);
@@ -247,6 +247,7 @@ public class Telmasaurus extends DinosaurEntity {
 			this.setProtective(true);
 		}
 		this.setOvivorous(true);
+		this.setDiurnal(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 

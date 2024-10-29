@@ -9,6 +9,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -24,6 +25,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.entity.PrehistoricEntity;
 import superlord.prehistoricfauna.init.PFItems;
@@ -43,7 +45,7 @@ public class ProtoceratopsSkeleton extends PrehistoricEntity {
 	private void setPushable(boolean isPushable) {
 		this.entityData.set(PUSHING, isPushable);
 	}
-	
+
 	public boolean isLooking() {
 		return this.entityData.get(LOOKING);
 	}
@@ -51,7 +53,7 @@ public class ProtoceratopsSkeleton extends PrehistoricEntity {
 	private void setLooking(boolean isLooking) {
 		this.entityData.set(LOOKING, isLooking);
 	}
-	
+
 	public boolean isDisplaying() {
 		return this.entityData.get(DISPLAY);
 	}
@@ -59,7 +61,7 @@ public class ProtoceratopsSkeleton extends PrehistoricEntity {
 	private void setDisplaying(boolean isDisplaying) {
 		this.entityData.set(DISPLAY, isDisplaying);
 	}
-	
+
 	public boolean isLaying() {
 		return this.entityData.get(LAYING);
 	}
@@ -67,7 +69,7 @@ public class ProtoceratopsSkeleton extends PrehistoricEntity {
 	private void setLaying(boolean isLaying) {
 		this.entityData.set(LAYING, isLaying);
 	}
-	
+
 	public boolean isSitting() {
 		return this.entityData.get(SITTING);
 	}
@@ -75,7 +77,7 @@ public class ProtoceratopsSkeleton extends PrehistoricEntity {
 	private void setSitting(boolean isSitting) {
 		this.entityData.set(SITTING, isSitting);
 	}
-	
+
 	public boolean isRunning() {
 		return this.entityData.get(RUNNING);
 	}
@@ -83,7 +85,7 @@ public class ProtoceratopsSkeleton extends PrehistoricEntity {
 	private void setRunning(boolean isRunning) {
 		this.entityData.set(RUNNING, isRunning);
 	}
-	
+
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(DISPLAY, false);
@@ -102,7 +104,7 @@ public class ProtoceratopsSkeleton extends PrehistoricEntity {
 		compound.putBoolean("IsPushable", this.isPushableState());
 		compound.putBoolean("IsLooking", this.isLooking());
 	}
-	
+
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound); 
 		this.setDisplaying(compound.getBoolean("IsDisplaying"));
@@ -112,7 +114,7 @@ public class ProtoceratopsSkeleton extends PrehistoricEntity {
 		this.setPushable(compound.getBoolean("IsPushable"));
 		this.setLooking(compound.getBoolean("IsLooking"));
 	}
-	
+
 	public ProtoceratopsSkeleton(EntityType<? extends ProtoceratopsSkeleton> type, Level worldIn) {
 		super(type, worldIn);
 	}
@@ -123,7 +125,7 @@ public class ProtoceratopsSkeleton extends PrehistoricEntity {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 100.0D);
+		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 1.0D);
 	}
 
 	protected int getExperiencePoints(Player player) {
@@ -137,11 +139,11 @@ public class ProtoceratopsSkeleton extends PrehistoricEntity {
 	public boolean isPushable() {
 		return this.isPushableState();
 	}
-	
+
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
-	    if (itemstack.getItem() == PFItems.GEOLOGY_HAMMER.get()) {
-	    	if (!this.isSleeping() && !this.isLaying() && !this.isSitting() && !this.isDisplaying() && !this.isRunning() && !player.isShiftKeyDown()) {
+		if (itemstack.getItem() == PFItems.GEOLOGY_HAMMER.get()) {
+			if (!this.isSleeping() && !this.isLaying() && !this.isSitting() && !this.isDisplaying() && !this.isRunning() && !player.isShiftKeyDown()) {
 				this.setDisplaying(true);
 			} else if (this.isDisplaying() && !player.isShiftKeyDown()) {
 				this.setDisplaying(false);
@@ -154,19 +156,19 @@ public class ProtoceratopsSkeleton extends PrehistoricEntity {
 				this.setSitting(true);
 			} else if (this.isSitting() && !player.isShiftKeyDown()) {
 				this.setSitting(false);
-	    	} else if (player.isShiftKeyDown() && !this.isPushableState() && !this.isLooking()) {
-	    		this.setPushable(true);
+			} else if (player.isShiftKeyDown() && !this.isPushableState() && !this.isLooking()) {
+				this.setPushable(true);
 				player.displayClientMessage(Component.translatable("entity.prehistoricfauna.skeleton.pushable"), true);
-	    	} else if (player.isShiftKeyDown() && this.isPushableState()) {
-	    		this.setPushable(false);
-	    		this.setLooking(true);
+			} else if (player.isShiftKeyDown() && this.isPushableState()) {
+				this.setPushable(false);
+				this.setLooking(true);
 				player.displayClientMessage(Component.translatable("entity.prehistoricfauna.skeleton.rotating"), true);
-	    	} else if (player.isShiftKeyDown() && this.isLooking()) {
-	    		this.setLooking(false);
+			} else if (player.isShiftKeyDown() && this.isLooking()) {
+				this.setLooking(false);
 				player.displayClientMessage(Component.translatable("entity.prehistoricfauna.skeleton.neutral"), true);
-	    	}
-	    }
-        return super.mobInteract(player, hand);
+			}
+		}
+		return super.mobInteract(player, hand);
 	}
 
 	protected void doPush(Entity entityIn) {
@@ -184,6 +186,13 @@ public class ProtoceratopsSkeleton extends PrehistoricEntity {
 
 
 	public boolean hurt(DamageSource source, float amount) {
+		if (source.is(DamageTypeTags.IS_EXPLOSION)) {
+			this.playBrokenSound();
+			this.playParticles();
+			this.spawnFossil(source);
+			this.remove(RemovalReason.KILLED);
+			this.gameEvent(GameEvent.ENTITY_DIE);
+		}
 		if (source.getDirectEntity() instanceof Player) {
 			this.playBrokenSound();
 			this.playParticles();
@@ -192,6 +201,7 @@ public class ProtoceratopsSkeleton extends PrehistoricEntity {
 				this.spawnFossil(source);
 			}
 			this.remove(RemovalReason.KILLED);
+			this.gameEvent(GameEvent.ENTITY_DIE);
 		}
 		return false;
 	}
@@ -205,18 +215,18 @@ public class ProtoceratopsSkeleton extends PrehistoricEntity {
 	}
 
 	private void spawnFossil(DamageSource p_213815_1_) {
-	      Block.popResource(this.level(), this.blockPosition(), new ItemStack(PFItems.PROTOCERATOPS_SKELETON.get()));
+		Block.popResource(this.level(), this.blockPosition(), new ItemStack(PFItems.PROTOCERATOPS_SKELETON.get()));
 	}
-	
+
 	static class LookAtPlayerGoal extends net.minecraft.world.entity.ai.goal.LookAtPlayerGoal {
 
 		ProtoceratopsSkeleton entity;
-		
+
 		public LookAtPlayerGoal(ProtoceratopsSkeleton entityIn, Class<? extends LivingEntity> watchTargetClass, float maxDistance) {
 			super(entityIn, watchTargetClass, maxDistance);
 			entity = entityIn;
 		}
-		
+
 		public boolean canUse() {
 			if (entity.isLooking()) {
 				return super.canUse();
@@ -224,18 +234,18 @@ public class ProtoceratopsSkeleton extends PrehistoricEntity {
 				return false;
 			}
 		}
-		
+
 		public boolean canContinueToUse() {
 			return super.canContinueToUse() && entity.isLooking();
 		}
-		
+
 	}
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
 		return null;
 	}
-	
+
 	@Override
 	public ItemStack getPickedResult(HitResult target) {
 		return new ItemStack(PFItems.PROTOCERATOPS_SKELETON.get());

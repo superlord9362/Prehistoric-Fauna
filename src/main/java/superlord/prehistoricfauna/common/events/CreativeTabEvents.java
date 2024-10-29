@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.common;
+package superlord.prehistoricfauna.common.events;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.ModList;

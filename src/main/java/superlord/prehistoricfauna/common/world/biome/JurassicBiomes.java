@@ -131,7 +131,6 @@ public class JurassicBiomes {
 		BiomeDefaultFeatures.addDefaultUndergroundVariety(biomeFeatures);
 		BiomeDefaultFeatures.addDefaultOres(biomeFeatures, true);
 		PFPlacedFeatures.withMorrisonSavannaVegetation(biomeFeatures);
-		biomeFeatures.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, PFPlacedFeatures.MUD_DISK);
 		biomeFeatures.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, PFPlacedFeatures.PACKED_MUD_DISK);
 		if (PrehistoricFaunaConfig.stegosaurusMorrisonSavannahSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.STEGOSAURUS.get(), PrehistoricFaunaConfig.stegosaurusMorrisonSavannahSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.dryosaurusMorrisonSavannahSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.DRYOSAURUS.get(), PrehistoricFaunaConfig.dryosaurusMorrisonSavannahSpawnWeight, 2, 4));

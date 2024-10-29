@@ -1,10 +1,9 @@
 package superlord.prehistoricfauna.common.blocks;
 
-import java.util.Random;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -35,13 +34,13 @@ public class NeocalamitesTopBlock extends Block {
 	
 	@SuppressWarnings("deprecation")
 	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (!this.canSurvive(worldIn, currentPos)) {
+		if (!this.canSurvive(stateIn, worldIn, currentPos)) {
 			worldIn.scheduleTick(currentPos, this, 1);
 		}
 		return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
 
-    public boolean canSurvive(LevelReader worldIn, BlockPos pos) {
+    public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
 		BlockState blockstate = worldIn.getBlockState(pos.below());
 		if (blockstate.getBlock() == this || blockstate.getBlock() == PFBlocks.NEOCALAMITES.get()) {
 			return true;
@@ -54,8 +53,8 @@ public class NeocalamitesTopBlock extends Block {
 		return voxelShape.move(vector3d.x, vector3d.y, vector3d.z);
 	}
 	
-	public void tick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
-		if (!this.canSurvive(world, pos)) {
+	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
+		if (!this.canSurvive(state, world, pos)) {
 			world.destroyBlock(pos, true);
 		}
 	}

@@ -55,6 +55,7 @@
       "minecraft:glow_lichen",
       "minecraft:patch_dead_bush",
       "prehistoricfauna:placed_cladophlebis",
+      "prehistoricfauna:placed_ephedra",
       "prehistoricfauna:placed_ruffordia",
       "prehistoricfauna:placed_archaefructus",
       "prehistoricfauna:placed_rare_czekanowskia_trees",
@@ -66,8 +67,7 @@
       "prehistoricfauna:placed_ash",
       "prehistoricfauna:placed_rare_podozamites_trees",
       "prehistoricfauna:placed_dead_podozamites_trees",
-      "prehistoricfauna:placed_sparse_brachyphyllum",
-      "prehistoricfauna:placed_nothodichocarpum"
+      "prehistoricfauna:placed_sparse_brachyphyllum"
     ]
   ],
   "has_precipitation": true,

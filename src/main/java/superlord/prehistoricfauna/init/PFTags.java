@@ -4,6 +4,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
@@ -27,6 +28,8 @@ public class PFTags {
 	public static final TagKey<Block> HARDENED_SILT_NESTS = registerBlockTag("hardened_silt_nests");
 	public static final TagKey<Block> NESTS = registerBlockTag("nests");
 	public static final TagKey<Block> SOFT_SHELL_EGG_BLOCKS = registerBlockTag("soft_shell_eggs");
+	public static final TagKey<Block> BURROW_BLOCKS = registerBlockTag("burrows");
+	public static final TagKey<Block> SOIL = registerBlockTag("soils");
 	public static final TagKey<Item> PLANTS_2_HUNGER_ITEM = registerItemTag("two_hunger_plants");
 	public static final TagKey<Item> INSECTS_2_HUNGER_ITEM = registerItemTag("two_hunger_insects");
 	public static final TagKey<Item> PLANTS_4_HUNGER_ITEM = registerItemTag("four_hunger_plants");
@@ -54,7 +57,7 @@ public class PFTags {
 	public static final TagKey<EntityType<?>> ANIMALS_100_HUNGER = registerEntityTag("one_hundred_hunger_animals");
 	public static final TagKey<EntityType<?>> ANIMALS_200_HUNGER = registerEntityTag("two_hundreed_hunger_animals");
 	public static final TagKey<EntityType<?>> INSECTS_2_HUNGER = registerEntityTag("two_hunger_insects");
-	
+
 	public static final TagKey<EntityType<?>> CITIPATI_HUNTING = registerEntityTag("citipati_hunting");
 	public static final TagKey<EntityType<?>> CITIPATI_BABY_HUNTING = registerEntityTag("citipati_baby_hunting");
 	public static final TagKey<EntityType<?>> TELMASAURUS_HUNTING = registerEntityTag("telmasaurus_hunting");
@@ -121,6 +124,8 @@ public class PFTags {
 	public static final TagKey<EntityType<?>> BEIPIAOSAURUS_AVOIDING = registerEntityTag("beipiaosaurus_avoiding");
 	public static final TagKey<EntityType<?>> CHANGYURAPTOR_AVOIDING = registerEntityTag("changyuraptor_avoiding");
 	
+	public static final TagKey<EntityType<?>> BURROWERS = registerEntityTag("burrowers");
+
 	public static final TagKey<Item> MEATS_2_HUNGER = registerItemTag("two_hunger_meats");
 	public static final TagKey<Item> MEATS_4_HUNGER = registerItemTag("four_hunger_meats");
 	public static final TagKey<Item> MEATS_6_HUNGER = registerItemTag("six_hunger_meats");
@@ -134,11 +139,11 @@ public class PFTags {
 	public static final TagKey<Item> EGGS_15_HUNGER = registerItemTag("fifteen_hunger_eggs");
 	public static final TagKey<Item> SHELLFISH_3_HUNGER = registerItemTag("three_hunger_shellfish");
 	public static final TagKey<Block> FEEDERS = registerBlockTag("feeders");
-	
+
 	public static final TagKey<Biome> IS_JURASSIC = registerBiomeTag("is_jurassic");
 	public static final TagKey<Biome> IS_CRETACEOUS = registerBiomeTag("is_cretaceous");
 	public static final TagKey<Biome> IS_TRIASSIC = registerBiomeTag("is_triassic");
-	
+
 	public static final TagKey<Biome> HAS_CHINLE_HUT = registerBiomeTag("has_structure/chinle_hut");
 	public static final TagKey<Biome> HAS_DJADOCHTA_HUT = registerBiomeTag("has_structure/djadochta_hut");
 	public static final TagKey<Biome> HAS_GEOLOGIST_CAMP = registerBiomeTag("has_structure/geologist_camp");
@@ -148,6 +153,8 @@ public class PFTags {
 	public static final TagKey<Biome> HAS_MORRISON_HUT = registerBiomeTag("has_structure/morrison_hut");
 	public static final TagKey<Biome> HAS_TIME_TEMPLE = registerBiomeTag("has_structure/time_temple");
 	public static final TagKey<Biome> HAS_YIXIAN_HUT = registerBiomeTag("has_structure/yixian_hut");
+	
+	public static final TagKey<PoiType> BURROWS = registerPoiTag("burrows"); 
 
 	private static TagKey<Item> registerItemTag(String name) {
 		return TagKey.create(Registries.ITEM, new ResourceLocation(PrehistoricFauna.MOD_ID, name));
@@ -160,9 +167,13 @@ public class PFTags {
 	private static TagKey<Block> registerBlockTag(String name) {
 		return TagKey.create(Registries.BLOCK, new ResourceLocation(PrehistoricFauna.MOD_ID, name));
 	}
-	
-		private static TagKey<Biome> registerBiomeTag(String name) {
-			return TagKey.create(Registries.BIOME, new ResourceLocation(PrehistoricFauna.MOD_ID, name));
-		}
+
+	private static TagKey<Biome> registerBiomeTag(String name) {
+		return TagKey.create(Registries.BIOME, new ResourceLocation(PrehistoricFauna.MOD_ID, name));
+	}
+
+	private static TagKey<PoiType> registerPoiTag(String name) {
+		return TagKey.create(Registries.POINT_OF_INTEREST_TYPE, new ResourceLocation(PrehistoricFauna.MOD_ID, name));
+	}
 
 }

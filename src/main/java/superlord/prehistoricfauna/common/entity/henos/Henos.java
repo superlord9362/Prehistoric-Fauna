@@ -21,6 +21,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AgeableMob;
@@ -80,6 +81,7 @@ public class Henos extends Animal {
 
 	public Henos(EntityType<? extends Henos> type, Level level) {
 		super(type, level);
+		super.setMaxUpStep(1.0F);
 	}
 
 	protected boolean isAffectedByFluids() {
@@ -497,13 +499,16 @@ public class Henos extends Animal {
 	}
 
 	public boolean hurt(DamageSource source, float amount) {
+		
 		if(this.hasHealingShield()){
 			float pitchMod = Mth.clamp(4 - this.getShieldLevel(), 1, 3);
 			this.playSound(SoundEvents.GENERIC_BURN, this.getSoundVolume(), this.getVoicePitch() * pitchMod);
 			this.setHealingShield(Math.max(0, this.getShieldLevel() - 1));
 			return false;
 		}else{
-			return super.hurt(source, amount);
+			if (source.is(DamageTypes.ON_FIRE) || source.is(DamageTypes.FALL) || source.is(DamageTypes.DROWN) || source.is(DamageTypes.FIREBALL) || source.is(DamageTypes.UNATTRIBUTED_FIREBALL) || source.is(DamageTypes.SWEET_BERRY_BUSH) || source.is(DamageTypes.CACTUS) || source.is(DamageTypes.FALLING_ANVIL) || source.is(DamageTypes.FALLING_BLOCK) || source.is(DamageTypes.FALLING_STALACTITE) || source.is(DamageTypes.FREEZE) || source.is(DamageTypes.HOT_FLOOR) || source.is(DamageTypes.IN_FIRE) || source.is(DamageTypes.IN_WALL) || source.is(DamageTypes.LAVA) || source.is(DamageTypes.LIGHTNING_BOLT) || source.is(DamageTypes.MAGIC) || source.is(DamageTypes.STALAGMITE)) {
+				return false;
+			} else return super.hurt(source, amount);
 		}
 	}
 

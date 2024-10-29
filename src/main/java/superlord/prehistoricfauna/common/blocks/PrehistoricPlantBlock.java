@@ -35,7 +35,7 @@ public class PrehistoricPlantBlock extends BushBlock implements BonemealableBloc
 	
 	public boolean canSurvive(BlockState p_51028_, LevelReader p_51029_, BlockPos p_51030_) {
 	      BlockPos blockpos = p_51030_.below();
-	      if (p_51028_.getBlock() == PFBlocks.HORSETAIL.get()) return isSoilBlock(p_51029_, blockpos);
+	      if (p_51028_.getBlock() == PFBlocks.HORSETAIL.get() || p_51028_.getBlock() == PFBlocks.EPHEDRA.get()) return isSoilBlock(p_51029_, blockpos);
 	      else return super.canSurvive(p_51028_, p_51029_, p_51030_);
 	   }
 

@@ -314,6 +314,8 @@ public class ClientProxy extends CommonProxy {
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.PLATANITES_TRAPDOOR.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.CALLIANTHUS.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.NOTHODICHOCARPUM.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.OAK_FEEDER.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.BURROW.get(), translucentRenderType);
 	}
 	
     public static void setupParticles(RegisterParticleProvidersEvent registry) {

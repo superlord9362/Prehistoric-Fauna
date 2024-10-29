@@ -133,6 +133,7 @@ public class Triceratops extends AbstractChestedHorse  {
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
 		Triceratops entity = new Triceratops(PFEntities.TRICERATOPS.get(), this.level());
 		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		entity.setAge(-48000);
 		return entity;
 	}
 	
@@ -291,7 +292,7 @@ public class Triceratops extends AbstractChestedHorse  {
 
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 80.0D).add(Attributes.MOVEMENT_SPEED, (double)0.2F).add(Attributes.ATTACK_DAMAGE, 10.0D).add(Attributes.FOLLOW_RANGE, 20.0D).add(Attributes.KNOCKBACK_RESISTANCE, 0.5D);
+		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 80.0D).add(Attributes.JUMP_STRENGTH, 0).add(Attributes.MOVEMENT_SPEED, (double)0.2F).add(Attributes.ATTACK_DAMAGE, 10.0D).add(Attributes.FOLLOW_RANGE, 20.0D).add(Attributes.KNOCKBACK_RESISTANCE, 0.5D);
 	}
 
 	protected SoundEvent getAmbientSound() {
@@ -898,6 +899,8 @@ public class Triceratops extends AbstractChestedHorse  {
 		p_190681_2_.getAttribute(Attributes.MAX_HEALTH).setBaseValue(d0);
 		double d2 = this.getAttributeValue(Attributes.MOVEMENT_SPEED);
 		p_190681_2_.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(d2);
+		double d3 = this.getAttributeBaseValue(Attributes.JUMP_STRENGTH);
+		p_190681_2_.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(d3);
 	}
 
 	class AttackPlayerGoal extends NearestAttackableTargetGoal<Player> {
@@ -1407,6 +1410,7 @@ public class Triceratops extends AbstractChestedHorse  {
 		public void tick() {
 			super.tick();
 			sleepTimer++;
+			entity.getNavigation().stop();;
 			for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
 				if (!player.isShiftKeyDown()) {
 					stop();

@@ -19,14 +19,13 @@ public class ArchaefructusFeature extends Feature<JohnstoniaConfig> {
 		super(codec);
 	}
 	
-	@SuppressWarnings("static-access")
 	@Override
 	public boolean place(FeaturePlaceContext<JohnstoniaConfig> context) {
 		BlockPos pos = context.origin();
 		WorldGenLevel world = context.level();
 		RandomSource rand = context.random();
 		int i = 0;
-		for (int j = 0; j < context.config().count; ++j) {
+		for (int j = 0; j < 15; ++j) {
 			int k = rand.nextInt(8) - rand.nextInt(8);
 			int l = rand.nextInt(8) - rand.nextInt(8);
 			int i1 = world.getHeight(Heightmap.Types.WORLD_SURFACE, pos.getX() + k, pos.getZ() + l);

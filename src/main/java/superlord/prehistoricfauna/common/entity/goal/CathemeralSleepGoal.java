@@ -53,6 +53,7 @@ public class CathemeralSleepGoal extends Goal {
 	public void tick() {
 		super.tick();
 		sleepTimer++;
+		entity.getNavigation().stop();;
 		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
 			if (player.isShiftKeyDown()) {
 				if (sleepTimer >= 6000 || entity.getLastHurtByMob() != null || entity.getTarget() != null || entity.isInWater() || entity.isInLava()) {

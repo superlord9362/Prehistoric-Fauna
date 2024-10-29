@@ -43,7 +43,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
-import superlord.prehistoricfauna.common.entity.DinosaurEntity;
+import superlord.prehistoricfauna.common.entity.BurrowingDinosaur;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
@@ -54,7 +54,6 @@ import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatFromFeederGoal;
 import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatGoal;
 import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
-import superlord.prehistoricfauna.common.entity.goal.NocturnalSleepGoal;
 import superlord.prehistoricfauna.common.entity.goal.SkittishFleeGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Dilophosaurus;
@@ -67,7 +66,7 @@ import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
 
-public class Typothorax extends DinosaurEntity {
+public class Typothorax extends BurrowingDinosaur {
 	private int maxHunger = 25;
 
 	public Typothorax(EntityType<? extends TamableAnimal> type, Level levelIn) {
@@ -116,7 +115,7 @@ public class Typothorax extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new DinosaurMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new NaturalMateGoal(this, 1.0D));
-		this.goalSelector.addGoal(1, new NocturnalSleepGoal(this));
+//		this.goalSelector.addGoal(1, new NocturnalSleepGoal(this));
 		this.goalSelector.addGoal(0, new HerbivoreEatGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(0, new HerbivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(4, new Typothorax.DiggingGoal(this));
@@ -141,6 +140,7 @@ public class Typothorax extends DinosaurEntity {
 			this.setSkittish(true);
 		}
 		this.setHerbivorous(true);
+		this.setNocturnal(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 	

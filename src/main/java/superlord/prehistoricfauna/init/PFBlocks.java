@@ -47,6 +47,7 @@ import superlord.prehistoricfauna.common.blocks.AmmoniteSmallShellBlock;
 import superlord.prehistoricfauna.common.blocks.AncientPlantBlock;
 import superlord.prehistoricfauna.common.blocks.AraucariaConeBlock;
 import superlord.prehistoricfauna.common.blocks.ArchaefructusBlock;
+import superlord.prehistoricfauna.common.blocks.BurrowBlock;
 import superlord.prehistoricfauna.common.blocks.CallianthusBlock;
 import superlord.prehistoricfauna.common.blocks.CarvedTuberBlock;
 import superlord.prehistoricfauna.common.blocks.CobbaniaBlock;
@@ -99,6 +100,7 @@ import superlord.prehistoricfauna.common.blocks.TallArchaefructusBlock;
 import superlord.prehistoricfauna.common.blocks.TallHorsetailBlock;
 import superlord.prehistoricfauna.common.blocks.TaxodiumKneeBlock;
 import superlord.prehistoricfauna.common.blocks.TaxusLeavesBlock;
+import superlord.prehistoricfauna.common.blocks.ThatchBlock;
 import superlord.prehistoricfauna.common.blocks.TrapBlock;
 import superlord.prehistoricfauna.common.blocks.TriassicPortalBlock;
 import superlord.prehistoricfauna.common.blocks.TriassicTimeBlock;
@@ -157,16 +159,16 @@ public class PFBlocks {
 	public static final RegistryObject<Block> AZOLLA = REGISTER.register("azolla", () -> new CobbaniaBlock(Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).strength(0F).sound(SoundType.LILY_PAD).noCollission().noOcclusion()));
 	public static final RegistryObject<Block> ARCHAEFRUCTUS = REGISTER.register("archaefructus", () -> new ArchaefructusBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).offsetType(BlockBehaviour.OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> TALL_ARCHAEFRUCTUS = REGISTER.register("tall_archaefructus", () -> new TallArchaefructusBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).offsetType(BlockBehaviour.OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
-	public static final RegistryObject<Block> NELUMBO_PAD = REGISTER.register("nelumbo", () -> new NelumboPadBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).sound(SoundType.WET_GRASS).instabreak().randomTicks()));
+	public static final RegistryObject<Block> NELUMBO_PAD = REGISTER.register("nelumbo", () -> new NelumboPadBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).sound(SoundType.LILY_PAD).instabreak().randomTicks()));
 	public static final RegistryObject<Block> NELUMBO_STEM = REGISTER.register("nelumbo_stem", () -> new NelumboStemBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).sound(SoundType.WET_GRASS).instabreak().noCollission().randomTicks()));
 	public static final RegistryObject<Block> NELUMBO_ROOTS = REGISTER.register("nelumbo_roots", () -> new 	NelumboRootsBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).sound(SoundType.WET_GRASS).instabreak().noCollission().randomTicks()));
-	public static final RegistryObject<Block> QUEREUXIA_PAD = REGISTER.register("quereuxia", () -> new QuereuxiaPadBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).sound(SoundType.WET_GRASS).instabreak().randomTicks()));
+	public static final RegistryObject<Block> QUEREUXIA_PAD = REGISTER.register("quereuxia", () -> new QuereuxiaPadBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).sound(SoundType.LILY_PAD).instabreak().randomTicks()));
 	public static final RegistryObject<Block> QUEREUXIA_STEM = REGISTER.register("quereuxia_stem", () -> new QuereuxiaStemBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).sound(SoundType.WET_GRASS).instabreak().noCollission().randomTicks()));
 	public static final RegistryObject<Block> ZINGIBEROPSIS = REGISTER.register("zingiberopsis", () -> new TallHorsetailBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> PURPLE_ZINGIBEROPSIS = REGISTER.register("purple_zingiberopsis", () -> new TallHorsetailBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> RUFFORDIA = REGISTER.register("ruffordia", () -> new AncientPlantBlock(Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> LEEFRUCTUS = REGISTER.register("leefructus", () -> new AncientPlantBlock(Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
-	public static final RegistryObject<Block> EPHEDRA = REGISTER.register("ephedra", () -> new AncientPlantBlock(Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
+	public static final RegistryObject<Block> EPHEDRA = REGISTER.register("ephedra", () -> new PrehistoricPlantBlock(Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> CALLIANTHUS = REGISTER.register("callianthus", () -> new CallianthusBlock(Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> NOTHODICHOCARPUM = REGISTER.register("nothodichocarpum", () -> new DoublePlantBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
 
@@ -649,16 +651,16 @@ public class PFBlocks {
 	public static final RegistryObject<Block> DICROIDIUM = REGISTER.register("dicroidium", () -> new DicroidiumBlock(Block.Properties.of().mapColor(MapColor.WOOD).ignitedByLava().pushReaction(PushReaction.DESTROY).offsetType(OffsetType.XZ).strength(0.5F).noCollission().sound(SoundType.GRASS)));
 	public static final RegistryObject<Block> JOHNSTONIA = REGISTER.register("johnstonia", () -> new JohnstoniaBlock(Block.Properties.of().mapColor(MapColor.WOOD).ignitedByLava().pushReaction(PushReaction.DESTROY).offsetType(OffsetType.XZ).strength(0.5F).noCollission().sound(SoundType.GRASS)));
 
-	public static final RegistryObject<Block> SANDSTONE = REGISTER.register("sandstone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> SANDSTONE = REGISTER.register("sandstone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> SANDSTONE_FOSSIL = REGISTER.register("sandstone_fossil", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> SANDSTONE_REGOLITH = REGISTER.register("sandstone_regolith", () -> new SandBlock(0x97734C, Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> SMOOTH_SANDSTONE = REGISTER.register("smooth_sandstone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> POLISHED_SANDSTONE = REGISTER.register("polished_sandstone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> SANDSTONE_BRICKS = REGISTER.register("sandstone_bricks", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> CHISELED_SANDSTONE = REGISTER.register("chiseled_sandstone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> SANDSTONE_WALL = REGISTER.register("sandstone_wall", () -> new WallBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> SMOOTH_SANDSTONE_WALL = REGISTER.register("smooth_sandstone_wall", () -> new WallBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> SANDSTONE_BRICK_WALL = REGISTER.register("sandstone_brick_wall", () -> new WallBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> SANDSTONE_REGOLITH = REGISTER.register("sandstone_regolith", () -> new SandBlock(0x97734C, Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> SMOOTH_SANDSTONE = REGISTER.register("smooth_sandstone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> POLISHED_SANDSTONE = REGISTER.register("polished_sandstone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).strength(1.5F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+	public static final RegistryObject<Block> SANDSTONE_BRICKS = REGISTER.register("sandstone_bricks", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).strength(1.5F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+	public static final RegistryObject<Block> CHISELED_SANDSTONE = REGISTER.register("chiseled_sandstone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).strength(1.5F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+	public static final RegistryObject<Block> SANDSTONE_WALL = REGISTER.register("sandstone_wall", () -> new WallBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).strength(1.5F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+	public static final RegistryObject<Block> SMOOTH_SANDSTONE_WALL = REGISTER.register("smooth_sandstone_wall", () -> new WallBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> SANDSTONE_BRICK_WALL = REGISTER.register("sandstone_brick_wall", () -> new WallBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> SANDSTONE_STAIRS = REGISTER.register("sandstone_stairs", () -> new StairBlock(SANDSTONE.get().defaultBlockState(), Block.Properties.copy(SANDSTONE.get())));
 	public static final RegistryObject<Block> SANDSTONE_SLAB = REGISTER.register("sandstone_slab", () -> new SlabBlock(Block.Properties.copy(SANDSTONE.get())));
 	public static final RegistryObject<Block> POLISHED_SANDSTONE_STAIRS = REGISTER.register("polished_sandstone_stairs", () -> new StairBlock(POLISHED_SANDSTONE.get().defaultBlockState(), Block.Properties.copy(POLISHED_SANDSTONE.get())));
@@ -666,16 +668,16 @@ public class PFBlocks {
 	public static final RegistryObject<Block> SANDSTONE_BRICK_STAIRS = REGISTER.register("sandstone_brick_stairs", () -> new StairBlock(SANDSTONE_BRICKS.get().defaultBlockState(), Block.Properties.copy(SANDSTONE_BRICKS.get())));
 	public static final RegistryObject<Block> SANDSTONE_BRICK_SLAB = REGISTER.register("sandstone_brick_slab", () -> new SlabBlock(Block.Properties.copy(SANDSTONE_BRICKS.get())));
 
-	public static final RegistryObject<Block> SILTSTONE = REGISTER.register("siltstone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> SILTSTONE = REGISTER.register("siltstone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> SILTSTONE_FOSSIL = REGISTER.register("siltstone_fossil", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> SILTSTONE_REGOLITH = REGISTER.register("siltstone_regolith", () -> new SandBlock(0x9EA369, Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> SMOOTH_SILTSTONE = REGISTER.register("smooth_siltstone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> POLISHED_SILTSTONE = REGISTER.register("polished_siltstone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> SILTSTONE_BRICKS = REGISTER.register("siltstone_bricks", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> CHISELED_SILTSTONE = REGISTER.register("chiseled_siltstone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> SILTSTONE_WALL = REGISTER.register("siltstone_wall", () -> new WallBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> SMOOTH_SILTSTONE_WALL = REGISTER.register("smooth_siltstone_wall", () -> new WallBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> SILTSTONE_BRICK_WALL = REGISTER.register("siltstone_brick_wall", () -> new WallBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> SILTSTONE_REGOLITH = REGISTER.register("siltstone_regolith", () -> new SandBlock(0x9EA369, Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> SMOOTH_SILTSTONE = REGISTER.register("smooth_siltstone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> POLISHED_SILTSTONE = REGISTER.register("polished_siltstone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> SILTSTONE_BRICKS = REGISTER.register("siltstone_bricks", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> CHISELED_SILTSTONE = REGISTER.register("chiseled_siltstone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> SILTSTONE_WALL = REGISTER.register("siltstone_wall", () -> new WallBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> SMOOTH_SILTSTONE_WALL = REGISTER.register("smooth_siltstone_wall", () -> new WallBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> SILTSTONE_BRICK_WALL = REGISTER.register("siltstone_brick_wall", () -> new WallBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> SILTSTONE_STAIRS = REGISTER.register("siltstone_stairs", () -> new StairBlock(SILTSTONE.get().defaultBlockState(), Block.Properties.copy(SILTSTONE.get())));
 	public static final RegistryObject<Block> SILTSTONE_SLAB = REGISTER.register("siltstone_slab", () -> new SlabBlock(Block.Properties.copy(SILTSTONE.get())));
 	public static final RegistryObject<Block> POLISHED_SILTSTONE_STAIRS = REGISTER.register("polished_siltstone_stairs", () -> new StairBlock(POLISHED_SILTSTONE.get().defaultBlockState(), Block.Properties.copy(POLISHED_SILTSTONE.get())));
@@ -683,16 +685,16 @@ public class PFBlocks {
 	public static final RegistryObject<Block> SILTSTONE_BRICK_STAIRS = REGISTER.register("siltstone_brick_stairs", () -> new StairBlock(SILTSTONE_BRICKS.get().defaultBlockState(), Block.Properties.copy(SILTSTONE_BRICKS.get())));
 	public static final RegistryObject<Block> SILTSTONE_BRICK_SLAB = REGISTER.register("siltstone_brick_slab", () -> new SlabBlock(Block.Properties.copy(SILTSTONE_BRICKS.get())));
 
-	public static final RegistryObject<Block> CHALK = REGISTER.register("chalk", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> CHALK = REGISTER.register("chalk", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> CHALK_FOSSIL = REGISTER.register("chalk_fossil", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> CHALK_REGOLITH = REGISTER.register("chalk_regolith", () -> new SandBlock(0xF1F1E6, Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> SMOOTH_CHALK = REGISTER.register("smooth_chalk", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> POLISHED_CHALK = REGISTER.register("polished_chalk", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> CHALK_BRICKS = REGISTER.register("chalk_bricks", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> CHISELED_CHALK = REGISTER.register("chiseled_chalk", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> CHALK_WALL = REGISTER.register("chalk_wall", () -> new WallBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> SMOOTH_CHALK_WALL = REGISTER.register("smooth_chalk_wall", () -> new WallBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> CHALK_BRICK_WALL = REGISTER.register("chalk_brick_wall", () -> new WallBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> CHALK_REGOLITH = REGISTER.register("chalk_regolith", () -> new SandBlock(0xF1F1E6, Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> SMOOTH_CHALK = REGISTER.register("smooth_chalk", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> POLISHED_CHALK = REGISTER.register("polished_chalk", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> CHALK_BRICKS = REGISTER.register("chalk_bricks", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> CHISELED_CHALK = REGISTER.register("chiseled_chalk", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> CHALK_WALL = REGISTER.register("chalk_wall", () -> new WallBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> SMOOTH_CHALK_WALL = REGISTER.register("smooth_chalk_wall", () -> new WallBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> CHALK_BRICK_WALL = REGISTER.register("chalk_brick_wall", () -> new WallBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> CHALK_STAIRS = REGISTER.register("chalk_stairs", () -> new StairBlock(CHALK.get().defaultBlockState(), Block.Properties.copy(CHALK.get())));
 	public static final RegistryObject<Block> CHALK_SLAB = REGISTER.register("chalk_slab", () -> new SlabBlock(Block.Properties.copy(CHALK.get())));
 	public static final RegistryObject<Block> POLISHED_CHALK_STAIRS = REGISTER.register("polished_chalk_stairs", () -> new StairBlock(POLISHED_CHALK.get().defaultBlockState(), Block.Properties.copy(POLISHED_CHALK.get())));
@@ -700,12 +702,12 @@ public class PFBlocks {
 	public static final RegistryObject<Block> CHALK_BRICK_STAIRS = REGISTER.register("chalk_brick_stairs", () -> new StairBlock(CHALK_BRICKS.get().defaultBlockState(), Block.Properties.copy(CHALK_BRICKS.get())));
 	public static final RegistryObject<Block> CHALK_BRICK_SLAB = REGISTER.register("chalk_brick_slab", () -> new SlabBlock(Block.Properties.copy(CHALK_BRICKS.get())));
 
-	public static final RegistryObject<Block> HENOSTONE = REGISTER.register("henostone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_GREEN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> HENOSTONE = REGISTER.register("henostone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_GREEN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> CARVED_HENOSTONE = REGISTER.register("carved_henostone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_GREEN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> HENOSTONE_BRICKS = REGISTER.register("henostone_bricks", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_GREEN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> DARK_HENOSTONE_BRICKS = REGISTER.register("dark_henostone_bricks", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_GREEN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> HENOSTONE_PILLAR = REGISTER.register("henostone_pillar", () -> new RotatedPillarBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_GREEN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> CHISELED_HENOSTONE_PILLAR = REGISTER.register("chiseled_henostone_pillar", () -> new RotatedPillarBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_GREEN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> HENOSTONE_BRICKS = REGISTER.register("henostone_bricks", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_GREEN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> DARK_HENOSTONE_BRICKS = REGISTER.register("dark_henostone_bricks", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_GREEN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> HENOSTONE_PILLAR = REGISTER.register("henostone_pillar", () -> new RotatedPillarBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_GREEN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> CHISELED_HENOSTONE_PILLAR = REGISTER.register("chiseled_henostone_pillar", () -> new RotatedPillarBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_GREEN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> HENOSTONE_STAIRS = REGISTER.register("henostone_stairs", () -> new StairBlock(HENOSTONE.get().defaultBlockState(), Block.Properties.copy(HENOSTONE.get())));
 	public static final RegistryObject<Block> HENOSTONE_SLAB = REGISTER.register("henostone_slab", () -> new SlabBlock(Block.Properties.copy(HENOSTONE.get())));
 	public static final RegistryObject<Block> HENOSTONE_WALL = REGISTER.register("henostone_wall", () -> new WallBlock(Block.Properties.copy(HENOSTONE.get())));
@@ -715,27 +717,27 @@ public class PFBlocks {
 	public static final RegistryObject<Block> DARK_HENOSTONE_BRICK_STAIRS = REGISTER.register("dark_henostone_brick_stairs", () -> new StairBlock(DARK_HENOSTONE_BRICKS.get().defaultBlockState(), Properties.copy(DARK_HENOSTONE_BRICKS.get())));
 	public static final RegistryObject<Block> DARK_HENOSTONE_BRICK_SLAB = REGISTER.register("dark_henostone_brick_slab", () -> new SlabBlock(Properties.copy(DARK_HENOSTONE_BRICKS.get())));
 	public static final RegistryObject<Block> DARK_HENOSTONE_BRICK_WALL = REGISTER.register("dark_henostone_brick_wall", () -> new WallBlock(Properties.copy(DARK_HENOSTONE_BRICKS.get())));
-	public static final RegistryObject<Block> HENOSTONE_TRAP = REGISTER.register("henostone_trap", () -> new TrapBlock(TrapBlock.Sensitivity.MOBS, Properties.of().mapColor(MapColor.TERRACOTTA_GREEN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> PORTAL_FRAME = REGISTER.register("portal_frame", () -> new PortalFrameBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_GREEN).strength(5.0F, 6.0F).sound(SoundType.METAL).lightLevel((light) -> {
+	public static final RegistryObject<Block> HENOSTONE_TRAP = REGISTER.register("henostone_trap", () -> new TrapBlock(TrapBlock.Sensitivity.MOBS, Properties.of().mapColor(MapColor.TERRACOTTA_GREEN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> PORTAL_FRAME = REGISTER.register("portal_frame", () -> new PortalFrameBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_GREEN).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).lightLevel((light) -> {
 		return 15;
 	})));
 
-	public static final RegistryObject<Block> LARGE_AMMONITE_FOSSIL = REGISTER.register("large_ammonite_fossil", () -> new AmmoniteLargeShellBlock(Properties.of().strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> MEDIUM_AMMONITE_FOSSIL = REGISTER.register("medium_ammonite_fossil", () -> new AmmoniteMediumShellBlock(Properties.of().strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> SMALL_AMMONITE_FOSSIL = REGISTER.register("small_ammonite_fossil", () -> new AmmoniteSmallShellBlock(Properties.of().strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> GIANT_AMMONITE_FOSSIL_PIECE_BF = REGISTER.register("giant_ammonite_fossil_piece_bf", () -> new AmmoniteGiantShellBlock(Properties.of().strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> GIANT_AMMONITE_FOSSIL_PIECE_BB = REGISTER.register("giant_ammonite_fossil_piece_bb", () -> new AmmoniteGiantShellBlock(Properties.of().strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> GIANT_AMMONITE_FOSSIL_PIECE_TF = REGISTER.register("giant_ammonite_fossil_piece_tf", () -> new AmmoniteGiantShellBlock(Properties.of().strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> GIANT_AMMONITE_FOSSIL_PIECE_TB = REGISTER.register("giant_ammonite_fossil_piece_tb", () -> new AmmoniteGiantShellBlock(Properties.of().strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> PLASTERED_AMMONITES = REGISTER.register("plastered_ammonites", () -> new Block(Properties.of().strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> PETRIFIED_WOOD = REGISTER.register("petrified_wood", () -> new RotatedPillarBlock(Properties.of().strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> POLISHED_PETRIFIED_WOOD = REGISTER.register("polished_petrified_wood", () -> new RotatedPillarBlock(Properties.of().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> LARGE_AMMONITE_FOSSIL = REGISTER.register("large_ammonite_fossil", () -> new AmmoniteLargeShellBlock(Properties.of().strength(1.5F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+	public static final RegistryObject<Block> MEDIUM_AMMONITE_FOSSIL = REGISTER.register("medium_ammonite_fossil", () -> new AmmoniteMediumShellBlock(Properties.of().strength(1.5F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+	public static final RegistryObject<Block> SMALL_AMMONITE_FOSSIL = REGISTER.register("small_ammonite_fossil", () -> new AmmoniteSmallShellBlock(Properties.of().strength(1.5F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+	public static final RegistryObject<Block> GIANT_AMMONITE_FOSSIL_PIECE_BF = REGISTER.register("giant_ammonite_fossil_piece_bf", () -> new AmmoniteGiantShellBlock(Properties.of().strength(1.5F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+	public static final RegistryObject<Block> GIANT_AMMONITE_FOSSIL_PIECE_BB = REGISTER.register("giant_ammonite_fossil_piece_bb", () -> new AmmoniteGiantShellBlock(Properties.of().strength(1.5F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+	public static final RegistryObject<Block> GIANT_AMMONITE_FOSSIL_PIECE_TF = REGISTER.register("giant_ammonite_fossil_piece_tf", () -> new AmmoniteGiantShellBlock(Properties.of().strength(1.5F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+	public static final RegistryObject<Block> GIANT_AMMONITE_FOSSIL_PIECE_TB = REGISTER.register("giant_ammonite_fossil_piece_tb", () -> new AmmoniteGiantShellBlock(Properties.of().strength(1.5F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+	public static final RegistryObject<Block> PLASTERED_AMMONITES = REGISTER.register("plastered_ammonites", () -> new Block(Properties.of().strength(1.5F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+	public static final RegistryObject<Block> PETRIFIED_WOOD = REGISTER.register("petrified_wood", () -> new RotatedPillarBlock(Properties.of().strength(1.5F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+	public static final RegistryObject<Block> POLISHED_PETRIFIED_WOOD = REGISTER.register("polished_petrified_wood", () -> new RotatedPillarBlock(Properties.of().strength(1.5F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
 	public static final RegistryObject<PaleoscribeBlock> PALEOSCRIBE = REGISTER.register("paleoscribe", () -> new PaleoscribeBlock());
 	public static final RegistryObject<PaleontologyTableBlock> PALEONTOLOGY_TABLE = REGISTER.register("paleontology_table", () -> new PaleontologyTableBlock(Properties.of().strength(2.0F).sound(SoundType.WOOD)));
 
 	public static final RegistryObject<Block> PLANT_FIBER_BLOCK = REGISTER.register("plant_fiber_block", () -> new HayBlock(Properties.of().strength(0.5F).sound(SoundType.GRASS)));
-	public static final RegistryObject<Block> THATCH = REGISTER.register("thatch", () -> new HayBlock(Properties.of().strength(0.6F).sound(SoundType.GRASS)));
+	public static final RegistryObject<Block> THATCH = REGISTER.register("thatch", () -> new ThatchBlock(Properties.of().strength(0.6F).sound(SoundType.GRASS)));
 	public static final RegistryObject<Block> THATCH_STAIRS = REGISTER.register("thatch_stairs", () -> new StairBlock(THATCH.get().defaultBlockState(), Block.Properties.copy(THATCH.get())));
 	public static final RegistryObject<Block> THATCH_SLAB = REGISTER.register("thatch_slab", () -> new SlabBlock(Properties.copy(THATCH.get())));
 	public static final RegistryObject<Block> THATCH_CARPET = REGISTER.register("thatch_carpet", () -> new CarpetBlock(Properties.of().strength(0.1F).sound(SoundType.GRASS)));
@@ -808,11 +810,13 @@ public class PFBlocks {
 	public static final RegistryObject<CretaceousPortalBlock> CRETACEOUS_PORTAL = REGISTER.register("cretaceous_portal", () -> new CretaceousPortalBlock(Block.Properties.of().noCollission().randomTicks().strength(-1.0F).sound(SoundType.GLASS).noLootTable()));
 	public static final RegistryObject<Block> CRETACEOUS_TIME_BLOCK = REGISTER.register("cretaceous_time_block", () -> new CretaceousTimeBlock());
 
-	public static final RegistryObject<FeederBlock> OAK_FEEDER = REGISTER.register("oak_feeder", () -> new FeederBlock(Properties.of().strength(2.0F, 3.0F).sound(SoundType.METAL)));
+	public static final RegistryObject<FeederBlock> OAK_FEEDER = REGISTER.register("oak_feeder", () -> new FeederBlock(Properties.of().strength(2.0F, 3.0F).sound(SoundType.METAL).isViewBlocking(PFBlocks::never).noOcclusion()));
 
 	public static final RegistryObject<AraucariaConeBlock> ARAUCARIA_CONE = REGISTER.register("araucaria_cone", () -> new AraucariaConeBlock(Properties.of().strength(1.0F, 1.0F).sound(SoundType.WOOD)));
 
 	public static final RegistryObject<Block> ASH_BRICKS = REGISTER.register("ash_bricks", () -> new Block(Properties.of().mapColor(MapColor.TERRACOTTA_BLACK).requiresCorrectToolForDrops().strength(2.0F, 6.0F).sound(SoundType.STONE)));
+	
+	public static final RegistryObject<Block> BURROW = REGISTER.register("burrow", () -> new BurrowBlock(Properties.of().instabreak().sound(SoundType.GRASS).noOcclusion().noCollission()));
 
 	public static final RegistryObject<Block> METASEQUOIA_VERTICAL_SLAB = HELPER.createBlock("metasequoia_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(METASEQUOIA_SLAB.get())));
 	public static final RegistryObject<Block> ARAUCARIA_VERTICAL_SLAB = HELPER.createBlock("araucaria_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(ARAUCARIA_SLAB.get())));
@@ -1203,7 +1207,8 @@ public class PFBlocks {
 
 	public static final RegistryObject<Block> POISON_GAS = REGISTER.register("poison_gas", () -> new PoisonGasBlock(BlockBehaviour.Properties.of().noCollission().noLootTable().randomTicks()));
 	public static final RegistryObject<Block> SPLATTERED_GINKGO = REGISTER.register("splattered_ginkgo", () -> new SplatteredGinkgoBlock(BlockBehaviour.Properties.of().noCollission().instabreak().noLootTable().randomTicks()));
-	public static final RegistryObject<Block> HENOSTONE_ORE = REGISTER.register("henostone_ore", () -> new Block(Block.Properties.of().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> HENOSTONE_ORE = REGISTER.register("henostone_ore", () -> new Block(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> TIME_FRAGMENT_BLOCK = REGISTER.register("time_fragment_block", () -> new Block(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 
 	private static RotatedPillarBlock createLog() {
 		return new RotatedPillarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).ignitedByLava().strength(2.0F).sound(SoundType.WOOD));

@@ -187,8 +187,8 @@ public class CitipatiModel extends EntityModel<Citipati> {
 					this.Body.xRot = -0.25F;
 					this.Tail.xRot = 0.25F;
 					this.Neck.xRot = 0.25F;
-					this.WingLeft.zRot = -1.5F + Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
-					this.WingRight.zRot = 1.5F - Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
+					this.WingRight.zRot = -1.5F + Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
+					this.WingLeft.zRot = 1.5F - Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
 					this.ThighLeft.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.ThighRight.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.Tail.yRot = Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;

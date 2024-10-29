@@ -1,6 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"ambientocclusion": false,
+    "shade": false,
 	"textures": {
 		"0": "prehistoricfauna:block/thatch",
 		"1": "prehistoricfauna:block/thatch_hair",

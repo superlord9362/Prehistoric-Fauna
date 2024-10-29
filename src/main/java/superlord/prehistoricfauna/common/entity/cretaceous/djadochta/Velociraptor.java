@@ -989,11 +989,13 @@ public class Velociraptor extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			return Velociraptor.this.getLastHurtByMob() == null && Velociraptor.this.getRandom().nextFloat() < 0.02F && !Velociraptor.this.isSleeping() && Velociraptor.this.getTarget() == null && Velociraptor.this.getNavigation().isDone() && !this.func_220814_h() && !Velociraptor.this.func_213480_dY() && !Velociraptor.this.isCrouching() && !Velociraptor.this.isAsleep();
+			return (Velociraptor.this.getLastHurtByMob() == null && Velociraptor.this.getRandom().nextFloat() < 0.02F && !Velociraptor.this.isSleeping() && Velociraptor.this.getTarget() == null && Velociraptor.this.getNavigation().isDone() && !this.func_220814_h() && !Velociraptor.this.func_213480_dY() && !Velociraptor.this.isCrouching() && !Velociraptor.this.isAsleep() || Velociraptor.this.isTameSitting());
 		}
 
 		public boolean canContinueToUse() {
-			return this.field_220822_f > 0;
+			if (Velociraptor.this.isTameSitting()) {
+				return true;
+			} else return this.field_220822_f > 0;
 		}
 
 		public void start() {
@@ -1008,6 +1010,8 @@ public class Velociraptor extends DinosaurEntity {
 		}
 
 		public void tick() {
+			Velociraptor.this.getNavigation().stop();
+
 			--this.field_220821_e;
 			if (this.field_220821_e <= 0) {
 				--this.field_220822_f;
@@ -1241,7 +1245,7 @@ public class Velociraptor extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			return super.canUse();
+			return super.canUse() && !Velociraptor.this.isTameSitting() && !Velociraptor.this.isTameWandering();
 		}
 
 	}

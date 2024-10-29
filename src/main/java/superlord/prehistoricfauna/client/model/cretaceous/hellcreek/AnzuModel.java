@@ -208,14 +208,20 @@ public class AnzuModel extends EntityModel<Anzu> {
 				this.LeftFoot.y = Mth.lerp(sleepProgress, 17F, 16.9F);
 				this.LeftFoot.xRot = Mth.lerp(sleepProgress, 1.6144F, 0);
 			} else {
+				this.RightThigh.xRot = Mth.sin(0.4F * limbSwing) * 0.25F * limbSwingAmount;
+				this.RightLeg.xRot = Mth.sin(limbSwing*0.4F) * 0.65F * limbSwingAmount - (0.25F * limbSwingAmount * 2);
+				this.RightFoot.xRot = Mth.sin(limbSwing * 0.4F) * 0.325F * limbSwingAmount + (0.35F * limbSwingAmount * 2);
+				this.LeftThigh.xRot = Mth.sin(0.4F * limbSwing + (float)Math.PI) * 0.25F * limbSwingAmount;
+				this.LeftLeg.xRot = Mth.sin(limbSwing*0.4F + (float)Math.PI) * 0.65F * limbSwingAmount - (0.25F * limbSwingAmount * 2);
+				this.LeftFoot.xRot = Mth.sin(limbSwing * 0.4F + (float)Math.PI) * 0.325F * limbSwingAmount + (0.35F * limbSwingAmount * 2);
 				this.Head.yRot = netHeadYaw * ((float)Math.PI / 180F);
 				this.Head.xRot = (headPitch * ((float) Math.PI / 180F)) + (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + attackProgress * (float) Math.toRadians(40F);
-				this.RightThigh.xRot = Mth.sin(limbSwing * 0.4F) * 0.75F * limbSwingAmount;
-				this.RightLeg.xRot =  -Mth.abs( Mth.sin(limbSwing * 0.75F) * 0.75F * limbSwingAmount);
-				this.RightFoot.xRot = Mth.abs( Mth.sin(limbSwing * 0.75F) * -1.25F * limbSwingAmount);
-				this.LeftThigh.xRot = Mth.sin(limbSwing * 0.4F) * -0.75F * limbSwingAmount;
-				this.LeftLeg.xRot =  -Mth.abs( Mth.sin(limbSwing * 0.75F) * -0.75F * limbSwingAmount);
-				this.LeftFoot.xRot = Mth.abs( Mth.sin(limbSwing * 0.75F) * 1.25F * limbSwingAmount);
+//				this.RightThigh.xRot = Mth.sin(limbSwing * 0.4F) * 0.75F * limbSwingAmount;
+//				this.RightLeg.xRot =  -Mth.abs( Mth.sin(limbSwing * 0.75F) * 0.75F * limbSwingAmount);
+//				this.RightFoot.xRot = Mth.abs( Mth.sin(limbSwing * 0.75F) * -1.25F * limbSwingAmount);
+//				this.LeftThigh.xRot = Mth.sin(limbSwing * 0.4F) * -0.75F * limbSwingAmount;
+//				this.LeftLeg.xRot =  -Mth.abs( Mth.sin(limbSwing * 0.75F) * -0.75F * limbSwingAmount);
+//				this.LeftFoot.xRot = Mth.abs( Mth.sin(limbSwing * 0.75F) * 1.25F * limbSwingAmount);
 				this.Tail1.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) + (Mth.sin(limbSwing * 0.6F) * 0.15F * limbSwingAmount) - 0.1F;
 				this.Tail2.xRot = Mth.sin(limbSwing * 0.6F) * 0.15F * limbSwingAmount + 0.1F;
 				this.Tail1.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
@@ -226,16 +232,16 @@ public class AnzuModel extends EntityModel<Anzu> {
 				this.RightArm.zRot = -Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(50F);
 				this.Neck1.xRot = Mth.abs(Mth.sin(limbSwing * 0.2F) * 0.25F * limbSwingAmount) + 0.25F;
 				this.Neck2.xRot = Mth.abs(Mth.sin(limbSwing * 0.2F) * 0.25F * limbSwingAmount) - 0.1F;
-				if (entity.isInWater()) {
-					this.RightArm.zRot = -1.5F + Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
-					this.LeftArm.zRot = 1.5F - Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
-					this.LeftThigh.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
-					this.RightThigh.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
-					this.Tail1.yRot = Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;
-					this.LeftLeg.xRot = -0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
-					this.RightLeg.xRot = 0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
-					this.Body1.y = 34;
-				}
+//				if (entity.isInWater()) {
+//					this.RightArm.zRot = -1.5F + Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
+//					this.LeftArm.zRot = 1.5F - Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
+//					this.LeftThigh.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
+//					this.RightThigh.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
+//					this.Tail1.yRot = Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;
+//					this.LeftLeg.xRot = -0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
+//					this.RightLeg.xRot = 0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
+//					this.Body1.y = 34;
+//				}
 			}
 		}
 	}

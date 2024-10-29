@@ -552,7 +552,7 @@ public class PFConfiguredFeatures {
 		FeatureUtils.register(bootstapContext, MARMARTHIA, PFFeatures.MARMARTHIA.get(), new JohnstoniaConfig(1));
 		FeatureUtils.register(bootstapContext, LEEFRUCTUS, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.LEEFRUCTUS.get()), 32));
 		FeatureUtils.register(bootstapContext, RUFFORDIA, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.RUFFORDIA.get()), 32));
-		FeatureUtils.register(bootstapContext, EPHEDRA, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.EPHEDRA.get()), 32));
+		FeatureUtils.register(bootstapContext, EPHEDRA, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.EPHEDRA.get()), 16));
 		FeatureUtils.register(bootstapContext, ARCHAEFRUCTUS, PFFeatures.ARCHAEFRUCTUS.get(), new JohnstoniaConfig(15));
 		FeatureUtils.register(bootstapContext, DOUBLE_ARCHAEFRUCTUS, PFFeatures.TALL_ARCHAEFRUCTUS.get(), new JohnstoniaConfig(15));
 

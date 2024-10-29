@@ -60,6 +60,8 @@ public class PFDimensions {
     public static final RegistryObject<PoiType> TRIASSIC_PORTAL = POI_TYPES.register("triassic_portal", () -> new PoiType(ImmutableSet.copyOf(PFBlocks.TRIASSIC_PORTAL.get().getStateDefinition().getPossibleStates()), 0, 1));
     public static final RegistryObject<PoiType> JURASSIC_PORTAL = POI_TYPES.register("jurassic_portal", () -> new PoiType(ImmutableSet.copyOf(PFBlocks.JURASSIC_PORTAL.get().getStateDefinition().getPossibleStates()), 0, 1));
     public static final RegistryObject<PoiType> CRETACEOUS_PORTAL = POI_TYPES.register("cretaceous_portal", () -> new PoiType(ImmutableSet.copyOf(PFBlocks.CRETACEOUS_PORTAL.get().getStateDefinition().getPossibleStates()), 0, 1));
+   
+    public static final RegistryObject<PoiType> BURROW = POI_TYPES.register("burrow", () -> new PoiType(ImmutableSet.copyOf(PFBlocks.BURROW.get().getStateDefinition().getPossibleStates()), 0, 1));
 
 	public static void bootstrapType(BootstapContext<DimensionType> context) {
 		context.register(CRETACEOUS_TYPE, new DimensionType(

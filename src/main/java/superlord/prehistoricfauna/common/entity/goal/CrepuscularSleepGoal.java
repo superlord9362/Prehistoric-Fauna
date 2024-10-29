@@ -67,6 +67,7 @@ public class CrepuscularSleepGoal extends Goal {
 
 	public void tick() {
 		super.tick();
+		entity.getNavigation().stop();;
 		Level level = entity.level();
 		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(2D, 2D, 2D))) {
 			if (!player.isShiftKeyDown()) {

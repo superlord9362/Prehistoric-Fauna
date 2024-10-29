@@ -47,7 +47,6 @@ import net.minecraftforge.resource.ResourcePackLoader;
 import net.minecraftforge.server.ServerLifecycleHooks;
 import superlord.prehistoricfauna.client.ClientProxy;
 import superlord.prehistoricfauna.common.CommonProxy;
-import superlord.prehistoricfauna.common.GeologicalHammerEvents;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.block.messages.MessageUpdatePaleoscribe;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Aepyornithomimus;
@@ -173,6 +172,7 @@ import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Hyperodap
 import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Ischigualastia;
 import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Saurosuchus;
 import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Sillosuchus;
+import superlord.prehistoricfauna.common.events.GeologicalHammerEvents;
 import superlord.prehistoricfauna.common.network.KeyInputMessage;
 import superlord.prehistoricfauna.common.recipes.PaleontologyTableRecipeS2C;
 import superlord.prehistoricfauna.common.util.QuarkFlagRecipeCondition;

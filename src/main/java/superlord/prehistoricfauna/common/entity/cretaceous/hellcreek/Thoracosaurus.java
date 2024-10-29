@@ -89,6 +89,8 @@ public class Thoracosaurus extends DinosaurEntity {
 	private static final EntityDataAccessor<Boolean> SADDLED = SynchedEntityData.defineId(Thoracosaurus.class, EntityDataSerializers.BOOLEAN);
 	private int maxHunger = 90;
 	private int warningSoundTicks;
+	private int grabTicks = 0;
+	private int grabCooldownTicks = 0;
 	public float ridingXZ;
 	public float ridingY = 1F;
 
@@ -368,9 +370,9 @@ public class Thoracosaurus extends DinosaurEntity {
 	public void setAge(int age) {
 		super.setAge(age);
 		if (this.getAge() >= -24000 && this.getAge() < 0) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(15);
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
 		} else if (this.getAge() >= 0) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(30);
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(40);
 		}
 	}
 
@@ -386,7 +388,7 @@ public class Thoracosaurus extends DinosaurEntity {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 30D).add(Attributes.FOLLOW_RANGE, 20D).add(Attributes.MOVEMENT_SPEED, 0.2D).add(Attributes.ATTACK_DAMAGE, 5D);
+		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 40D).add(Attributes.ARMOR, 2D).add(Attributes.FOLLOW_RANGE, 20D).add(Attributes.MOVEMENT_SPEED, 0.2D).add(Attributes.ATTACK_DAMAGE, 5D);
 	}
 
 	static class SwimGoal extends RandomSwimmingGoal {
@@ -492,7 +494,7 @@ public class Thoracosaurus extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			return super.canUse() && Thoracosaurus.this.isVehicle();
+			return super.canUse() && (Thoracosaurus.this.isVehicle() || Thoracosaurus.this.grabCooldownTicks != 0);
 		}
 
 		public void stop() {
@@ -511,6 +513,21 @@ public class Thoracosaurus extends DinosaurEntity {
 			this.ejectPassengers();
 		}
 		return super.hurt(dmg, i);
+	}
+	
+	public void aiStep() {
+		super.aiStep();
+		if (!this.isTame() && this.getFirstPassenger() != null) {
+			grabTicks++;
+			if (grabTicks == 100) {
+				this.getFirstPassenger().stopRiding();
+				this.grabCooldownTicks = 500;
+				this.grabTicks = 0;
+			}
+		}
+		if (this.grabCooldownTicks != 0) {
+			grabCooldownTicks--;
+		}
 	}
 
 	class GrabAttackGoal extends net.minecraft.world.entity.ai.goal.MeleeAttackGoal {
@@ -540,7 +557,7 @@ public class Thoracosaurus extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			return super.canUse() && !Thoracosaurus.this.isVehicle();
+			return super.canUse() && !Thoracosaurus.this.isVehicle() && Thoracosaurus.this.grabCooldownTicks == 0;
 		}
 
 		public void tick() {

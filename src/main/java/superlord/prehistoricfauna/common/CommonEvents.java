@@ -115,7 +115,7 @@ public class CommonEvents {
 		compostibleBlocks(0.3F, PFBlocks.LEEFRUCTUS.get());
 		compostibleBlocks(0.3F, PFBlocks.RUFFORDIA.get());
 		compostibleBlocks(0.3F, PFBlocks.EPHEDRA.get());
-//		compostibleBlocks(0.3F, PFBlocks.ARCHAEAMPHORA.get());
+		//		compostibleBlocks(0.3F, PFBlocks.ARCHAEAMPHORA.get());
 		compostibleBlocks(0.3F, PFBlocks.BISONIA.get());
 		compostibleBlocks(0.3F, PFItems.MARMARTHIA_BERRIES.get());
 		compostibleBlocks(0.5F, PFBlocks.TALL_HORSETAIL.get());
@@ -353,7 +353,7 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.LEEFRUCTUS.get(), 60, 100);
 		registerFlammable(PFBlocks.EPHEDRA.get(), 60, 100);
 		registerFlammable(PFBlocks.RUFFORDIA.get(), 60, 100);
-//		registerFlammable(PFBlocks.ARCHAEAMPHORA.get(), 60, 100);
+		//		registerFlammable(PFBlocks.ARCHAEAMPHORA.get(), 60, 100);
 		registerFlammable(PFBlocks.ARCHAEFRUCTUS.get(), 60, 100);
 		registerFlammable(PFBlocks.TALL_ARCHAEFRUCTUS.get(), 60, 100);
 		registerFlammable(PFBlocks.TALL_OSMUNDACAULIS.get(), 60, 100);
@@ -370,77 +370,77 @@ public class CommonEvents {
 		FireBlock fire = (FireBlock) Blocks.FIRE;
 		fire.setFlammable(block, flameOdds, burnOdds);
 	}
-	
+
 	@SubscribeEvent
-    public void onEntityJoinWorld(MobSpawnEvent.FinalizeSpawn  event) {
-        try {
-        	if (event.getEntity() instanceof Zombie) {
-        		Zombie zombie = (Zombie) event.getEntity();
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.AEPYORNITHOMIMUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.CITIPATI_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.GOYOCEPHALE_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.HALSZKARAPTOR_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.KOL_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.OVIRAPTOR_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.PINACOSAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.PLESIOHADROS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.PROTOCERATOPS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.TELMASAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.UDANOCERATOPS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.VELOCIRAPTOR_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.ANKYLOSAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.BASILEMYS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.DAKOTARAPTOR_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.EDMONTOSAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.ORNITHOMIMUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.PACHYCEPHALOSAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.PALAEOSANIWA_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.THESCELOSAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.THORACOSAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.TRICERATOPS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.TYRANNOSAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.INCISIVOSAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.PSITTACOSAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SINOSAUROPTERYX_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.YUTYRANNUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.CALSOYASUCHUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.DILOPHOSAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.KAYENTATHERIUM_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.MEGAPNOSAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SARAHSAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SCELIDOSAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SCUTELLOSAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.ALLOSAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.CAMARASAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.CERATOSAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.DRYOSAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.EILENODON_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.HESPERORNITHOIDES_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.STEGOSAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.COELOPHYSIS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.DESMATOSUCHUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.PLACERIAS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.POPOSAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.POSTOSUCHUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.TRILOPHOSAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.TYPOTHORAX_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.CHROMOGISAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.EXAERETODON_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.HERRERASAURUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.HYPERODAPEDON_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.ISCHIGUALASTIA_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SAUROSUCHUS_EGG.get(), zombie, 1.0D, 3));
-        		zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SILLOSUCHUS_EGG.get(), zombie, 1.0D, 3));
-        	}
-        } catch (Exception e) {
-            PrehistoricFauna.LOGGER.warn("Could not allow Zombies to smash dinosaur eggs!");
-        }
+	public void onEntityJoinWorld(MobSpawnEvent.FinalizeSpawn  event) {
+		try {
+			if (event.getEntity() instanceof Zombie) {
+				Zombie zombie = (Zombie) event.getEntity();
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.AEPYORNITHOMIMUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.CITIPATI_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.GOYOCEPHALE_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.HALSZKARAPTOR_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.KOL_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.OVIRAPTOR_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.PINACOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.PLESIOHADROS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.PROTOCERATOPS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.TELMASAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.UDANOCERATOPS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.VELOCIRAPTOR_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.ANKYLOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.BASILEMYS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.DAKOTARAPTOR_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.EDMONTOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.ORNITHOMIMUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.PACHYCEPHALOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.PALAEOSANIWA_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.THESCELOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.THORACOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.TRICERATOPS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.TYRANNOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.INCISIVOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.PSITTACOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SINOSAUROPTERYX_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.YUTYRANNUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.CALSOYASUCHUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.DILOPHOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.KAYENTATHERIUM_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.MEGAPNOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SARAHSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SCELIDOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SCUTELLOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.ALLOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.CAMARASAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.CERATOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.DRYOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.EILENODON_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.HESPERORNITHOIDES_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.STEGOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.COELOPHYSIS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.DESMATOSUCHUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.PLACERIAS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.POPOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.POSTOSUCHUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.TRILOPHOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.TYPOTHORAX_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.CHROMOGISAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.EXAERETODON_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.HERRERASAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.HYPERODAPEDON_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.ISCHIGUALASTIA_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SAUROSUCHUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SILLOSUCHUS_EGG.get(), zombie, 1.0D, 3));
+			}
+		} catch (Exception e) {
+			PrehistoricFauna.LOGGER.warn("Could not allow Zombies to smash dinosaur eggs!");
+		}
 	}
-	
-//	@SubscribeEvent
-//	public static void limnicEruptionEvent(WorldTickEvent event) {
-//		Level world = event.world;
-//		world.getBiomeManager().getBiome(world.block)
-//	}
+
+	//	@SubscribeEvent
+	//	public static void limnicEruptionEvent(WorldTickEvent event) {
+	//		Level world = event.world;
+	//		world.getBiomeManager().getBiome(world.block)
+	//	}
 
 }

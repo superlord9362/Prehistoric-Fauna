@@ -81,7 +81,7 @@ public class Ischigualastia extends DinosaurEntity implements ItemSteerable {
 	private int warningSoundTicks;
 	public float ridingXZ;
 	public float ridingY = 1;
-
+	
 	public Ischigualastia(EntityType<? extends Ischigualastia> type, Level level) {
 		super(type, level);
 		super.setMaxUpStep(1.0F);
@@ -213,6 +213,10 @@ public class Ischigualastia extends DinosaurEntity implements ItemSteerable {
 		super.defineSynchedData();
 		this.entityData.define(SADDLED, false);
 		this.entityData.define(BOOST_TIME, 0);
+	}
+	
+	public double getPassengersRidingOffset() {
+		return 1.7F;
 	}
 
 	public void addAdditionalSaveData(CompoundTag compound) {

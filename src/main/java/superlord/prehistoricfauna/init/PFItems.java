@@ -63,6 +63,7 @@ public class PFItems {
 	public static final DeferredRegister<Item> FOOD_REGISTER = DeferredRegister.create(ForgeRegistries.ITEMS, PrehistoricFauna.MOD_ID);
 	
 	//Building Blocks
+	public static final RegistryObject<BlockItem> BURROW = BUILDING_REGISTER.register("burrow", () -> new BlockItem(PFBlocks.BURROW.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> HENOSTONE = BUILDING_REGISTER.register("henostone", () -> new BlockItem(PFBlocks.HENOSTONE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> CARVED_HENOSTONE = BUILDING_REGISTER.register("carved_henostone", () -> new BlockItem(PFBlocks.CARVED_HENOSTONE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> HENOSTONE_BRICKS = BUILDING_REGISTER.register("henostone_bricks", () -> new BlockItem(PFBlocks.HENOSTONE_BRICKS.get(), new Item.Properties()));
@@ -76,6 +77,7 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> DARK_HENOSTONE_BRICK_STAIRS = BUILDING_REGISTER.register("dark_henostone_brick_stairs", () -> new BlockItem(PFBlocks.DARK_HENOSTONE_BRICK_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> DARK_HENOSTONE_BRICK_SLAB = BUILDING_REGISTER.register("dark_henostone_brick_slab", () -> new BlockItem(PFBlocks.DARK_HENOSTONE_BRICK_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> HENOSTONE_ORE = BUILDING_REGISTER.register("henostone_ore", () -> new BlockItem(PFBlocks.HENOSTONE_ORE.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> TIME_FRAGMENT_BLOCK = BUILDING_REGISTER.register("time_fragment_block", () -> new BlockItem(PFBlocks.TIME_FRAGMENT_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> METASEQUOIA_LOG = BUILDING_REGISTER.register("metasequoia_log", () -> new BlockItem(PFBlocks.METASEQUOIA_LOG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> STRIPPED_METASEQUOIA_LOG = BUILDING_REGISTER.register("stripped_metasequoia_log", () -> new BlockItem(PFBlocks.STRIPPED_METASEQUOIA_LOG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> METASEQUOIA_WOOD = BUILDING_REGISTER.register("metasequoia_wood", () -> new BlockItem(PFBlocks.METASEQUOIA_WOOD.get(), new Item.Properties()));

@@ -32,7 +32,7 @@ import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
-import superlord.prehistoricfauna.common.entity.DinosaurEntity;
+import superlord.prehistoricfauna.common.entity.BurrowingDinosaur;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
@@ -44,7 +44,6 @@ import superlord.prehistoricfauna.common.entity.goal.DinosaurWaterAvoidingRandom
 import superlord.prehistoricfauna.common.entity.goal.InsectivoreEatFromFeederGoal;
 import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
-import superlord.prehistoricfauna.common.entity.goal.NocturnalSleepGoal;
 import superlord.prehistoricfauna.common.entity.goal.SkittishFleeGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Dilophosaurus;
@@ -60,7 +59,7 @@ import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
-public class Kol extends DinosaurEntity {
+public class Kol extends BurrowingDinosaur {
 
 	private int maxHunger = 38;
 
@@ -96,7 +95,7 @@ public class Kol extends DinosaurEntity {
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<Dilophosaurus>(this, Dilophosaurus.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<Poposaurus>(this, Poposaurus.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(7, new AvoidEntityGoal<Postosuchus>(this, Postosuchus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(1, new NocturnalSleepGoal(this));
+//		this.goalSelector.addGoal(1, new NocturnalSleepGoal(this));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 		this.goalSelector.addGoal(0, new KolDigBugsGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(0, new InsectivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
@@ -163,6 +162,7 @@ public class Kol extends DinosaurEntity {
 			this.setProtective(true);
 		}
 		this.setInsectivorous(true);
+		this.setNocturnal(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 

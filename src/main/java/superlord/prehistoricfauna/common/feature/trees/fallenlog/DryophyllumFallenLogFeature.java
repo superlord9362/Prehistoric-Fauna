@@ -31,14 +31,13 @@ public class DryophyllumFallenLogFeature extends Feature<JohnstoniaConfig> {
 		return (world.getBlockState(pos).getBlock() == Blocks.COARSE_DIRT || world.getBlockState(pos).getBlock() == PFBlocks.PACKED_LOAM.get() || world.getBlockState(pos).getBlock() == PFBlocks.SILT.get() || world.getBlockState(pos).getBlock() == Blocks.SAND || world.getBlockState(pos).getBlock() == Blocks.GRAVEL || world.getBlockState(pos).getBlock() == Blocks.CLAY || world.getBlockState(pos).getBlock() == Blocks.DIRT || world.getBlockState(pos).getBlock() == Blocks.PODZOL || world.getBlockState(pos).getBlock() == PFBlocks.MOSSY_DIRT.get() || world.getBlockState(pos).getBlock() == PFBlocks.LOAM.get());
 	}
 
-	@SuppressWarnings("static-access")
 	@Override
 	public boolean place(FeaturePlaceContext<JohnstoniaConfig> context) {
 		BlockPos pos = context.origin();
 		WorldGenLevel world = context.level();
 		RandomSource rand = context.random();
 		int i = 0;
-		for (int j = 0; j < context.config().count; ++j) {
+		for (int j = 0; j < 1; ++j) {
 			int placeChance = rand.nextInt(100);
 			int length = rand.nextInt(5) + 3;
 			int direction = rand.nextInt(2);

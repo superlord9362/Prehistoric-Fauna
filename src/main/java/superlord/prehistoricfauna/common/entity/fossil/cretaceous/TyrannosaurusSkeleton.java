@@ -159,7 +159,7 @@ public class TyrannosaurusSkeleton extends PrehistoricEntity {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 100.0D);
+		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 1.0D);
 	}
 
 	protected int getExperiencePoints(Player player) {

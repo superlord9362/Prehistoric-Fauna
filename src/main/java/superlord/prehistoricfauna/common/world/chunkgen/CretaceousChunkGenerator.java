@@ -222,7 +222,7 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 	private boolean shouldHaveFluid(BlockPos pos) {
 		BiomeManager biomeManager = new BiomeManager((CretaceousBiomeSource)this.getBiomeSource(), this.seed);
 		Holder<Biome> biome = biomeManager.getBiome(new BlockPos(pos.getX(), pos.getY(), pos.getZ()));
-		if (pos.getY() <= this.getSeaLevel())
+		if (pos.getY() < this.getSeaLevel())
 			return ((biome.is(PFBiomes.HELL_CREEK_RIVER) || biome.is(PFBiomes.HELL_CREEK_SWAMP) || biome.is(PFBiomes.YIXIAN_LAKES) || biome.is(PFBiomes.DJADOCHTA_ARROYO) && pos.getY() > 45) || noise.GetNoise(pos.getX() * 0.8F, pos.getY(), pos.getZ() * 0.8F) > 0.7);
 		return false;
 	}

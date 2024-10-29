@@ -1079,6 +1079,7 @@ public class PFPlacedFeatures {
 
 	public static void withYixianRegrowthPlants(BiomeGenerationSettings.Builder builder) {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, EPHEDRA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RUFFORDIA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ARCHAEFRUCTUS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_CZEKANOWSKIA_TREES);
@@ -1091,7 +1092,6 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_PODOZAMITES_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DEAD_PODOZAMITES_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NOTHODICHOCARPUM);
 	}
 
 	private static List<PlacementModifier> orePlacement(PlacementModifier p_195347_, PlacementModifier p_195348_) {

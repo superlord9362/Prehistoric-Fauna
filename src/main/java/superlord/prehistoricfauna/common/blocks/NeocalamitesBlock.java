@@ -1,12 +1,11 @@
 package superlord.prehistoricfauna.common.blocks;
 
-import java.util.Random;
-
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
@@ -68,13 +67,14 @@ public class NeocalamitesBlock extends Block implements IPlantable, SimpleWaterl
 		return SHAPE_COLLISION.move(vector3d.x, vector3d.y, vector3d.z);
 	}
 
-	public void tick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
-		if (!this.canSurvive(world, pos)) {
+	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
+		if (!this.canSurvive(state, world, pos)) {
 			world.destroyBlock(pos, true);
 		}
 	}
 
-	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
+	@Override
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		if ((world.isEmptyBlock(pos.above()) || world.getBlockState(pos.above()).getBlock() == PFBlocks.NEOCALAMITES_TOP.get() && world.isEmptyBlock(pos.above(2))) && state.getValue(PLAYER_PLACED) == true) {
 			int i;
 			for (i = 1; world.getBlockState(pos.below(i)).is(this); ++i) {
@@ -125,7 +125,7 @@ public class NeocalamitesBlock extends Block implements IPlantable, SimpleWaterl
 		return i;
 	}
 
-	public boolean canSurvive(LevelReader world, BlockPos pos) {
+	public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
 		BlockState soil = world.getBlockState(pos.below());
 		BlockState waterState = world.getBlockState(pos);
 		BlockState aboveWaterState = world.getBlockState(pos.above());

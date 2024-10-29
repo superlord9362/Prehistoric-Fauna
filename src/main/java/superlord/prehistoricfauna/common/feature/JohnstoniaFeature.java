@@ -19,14 +19,13 @@ public class JohnstoniaFeature extends Feature<JohnstoniaConfig> {
 		super(func);
 	}
 
-	@SuppressWarnings("static-access")
 	@Override
 	public boolean place(FeaturePlaceContext<JohnstoniaConfig> context) {
 		BlockPos pos = context.origin();
 		WorldGenLevel worldIn = context.level();
 		RandomSource rand = context.random();
 		int i = 0;
-		for(int j = 0; j < context.config().count; ++j) {
+		for(int j = 0; j < 3; ++j) {
 			int k = rand.nextInt(8) - rand.nextInt(8);
 			int l = rand.nextInt(8) - rand.nextInt(8);
 			int i1 = worldIn.getHeight(Heightmap.Types.WORLD_SURFACE, pos.getX() + k, pos.getZ() + l);

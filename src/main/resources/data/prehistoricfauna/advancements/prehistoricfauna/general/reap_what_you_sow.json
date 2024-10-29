@@ -26,7 +26,9 @@
 			"source_entity": {
 				"equipment": {
 					"mainhand": {
-						"item": "prehistoricfauna:dromaeosaur_claw_scythe"
+						"items": [
+							"prehistoricfauna:dromaeosaur_claw_scythe"
+						]
 					}
 				}
 			}

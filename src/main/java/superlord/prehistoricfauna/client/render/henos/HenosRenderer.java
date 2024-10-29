@@ -30,6 +30,7 @@ import superlord.prehistoricfauna.client.ClientEvents;
 import superlord.prehistoricfauna.client.model.henos.HenosModel;
 import superlord.prehistoricfauna.client.model.henos.HenosSummonedModel;
 import superlord.prehistoricfauna.client.render.layer.HenosGemGlowLayer;
+import superlord.prehistoricfauna.client.render.layer.HenosLaserGlowLayer;
 import superlord.prehistoricfauna.common.entity.henos.Henos;
 import superlord.prehistoricfauna.init.PFRenderTypes;
 
@@ -54,6 +55,7 @@ public class HenosRenderer extends MobRenderer<Henos, EntityModel<Henos>> {
 		super(renderManagerIn, new HenosModel(renderManagerIn.bakeLayer(ClientEvents.HENOS), 0.0F), 1.25F);
 		this.addLayer(new HenosGemGlowLayer(this));
 		this.addLayer(new HealingLayer(this));
+		this.addLayer(new HenosLaserGlowLayer(this));
 		HENOS = new HenosModel(renderManagerIn.bakeLayer(ClientEvents.HENOS), 0);
 		HENOS_HEALING = new HenosModel(renderManagerIn.bakeLayer(ClientEvents.HENOS), 0.5F);
 		SUMMONED = new HenosSummonedModel(renderManagerIn.bakeLayer(ClientEvents.SUMMONED_HENOS), 0);

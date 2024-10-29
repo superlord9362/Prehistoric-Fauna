@@ -978,6 +978,7 @@ public class Dakotaraptor extends DinosaurEntity {
 		}
 
 		public void tick() {
+			Dakotaraptor.this.getNavigation().stop();;
 			--this.field_220821_e;
 			if (this.field_220821_e <= 0) {
 				--this.field_220822_f;

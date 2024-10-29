@@ -6,12 +6,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
@@ -87,6 +87,7 @@ public class NestAndEggsBlock extends Block {
 		} else if (!(stack.is(PFTags.EGGS_5_HUNGER) || stack.is(PFTags.EGGS_10_HUNGER) || stack.is(PFTags.EGGS_15_HUNGER)) && !(stack.is(PFTags.PLANTS_2_HUNGER_ITEM) || stack.is(PFTags.PLANTS_4_HUNGER_ITEM) || stack.is(PFTags.PLANTS_6_HUNGER_ITEM) || stack.is(PFTags.PLANTS_8_HUNGER_ITEM) || stack.is(PFTags.PLANTS_10_HUNGER_ITEM) || stack.is(PFTags.PLANTS_12_HUNGER_ITEM) || stack.is(PFTags.PLANTS_15_HUNGER_ITEM) || stack.is(PFTags.PLANTS_20_HUNGER_ITEM) || stack.is(PFTags.PLANTS_25_HUNGER_ITEM) || stack.is(PFTags.PLANTS_30_HUNGER_ITEM))) {
 			if (state.getValue(EGGS) > 1) {
 				world.setBlock(pos, state.setValue(EGGS, Integer.valueOf(i - 1)), 2);
+
 			} else {
 				world.setBlock(pos, PFBlocks.NEST.get().defaultBlockState().setValue(NestBlock.PLANT_LEVEL, filledState.getValue(PLANT_LEVEL)), 0);
 			}
@@ -112,9 +113,9 @@ public class NestAndEggsBlock extends Block {
 				}
 				ItemEntity item = new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(PFItems.TRICERATOPS_EGG.get()));
 				world.addFreshEntity(item);
+				return InteractionResult.sidedSuccess(world.isClientSide);
 			}
 		} else {
-
 			if (state.getValue(EGGS) != MAX_EGGS) {
 				if (heldItem instanceof BlockItem) {
 					BlockItem blockItem = (BlockItem) stack.getItem();
@@ -124,6 +125,7 @@ public class NestAndEggsBlock extends Block {
 							if (!player.isCreative()) {
 								stack.shrink(1);
 							}
+							return InteractionResult.sidedSuccess(world.isClientSide);
 						}
 					}
 				}
@@ -132,7 +134,7 @@ public class NestAndEggsBlock extends Block {
 		return InteractionResult.PASS;
 	}
 
-	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
+	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
 		if (this.shouldUpdateHatchLevel(worldIn, state)) {
 			int i = state.getValue(HATCH);
 			if (i < 2) {
@@ -147,25 +149,29 @@ public class NestAndEggsBlock extends Block {
 				for (int j = 0; j < state.getValue(EGGS); ++j) {
 					worldIn.levelEvent(2001, pos, Block.getId(state));
 					Entity dinosaurEntity = this.entityTypeSupplier.get().create(worldIn);
-					if (dinosaurEntity instanceof DinosaurEntity) {
-						DinosaurEntity dinosaur = (DinosaurEntity)dinosaurEntity;
+					if (dinosaurEntity instanceof DinosaurEntity dinosaur) {
 						for(Player player : dinosaur.level().getEntitiesOfClass(Player.class, dinosaur.getBoundingBox().inflate(8.0D, 8.0D, 8.0D))) {
 							dinosaur.addTrustedUUID(player.getUUID());
 						}
-						if (dinosaur instanceof Camarasaurus) {
-							((Animal)dinosaurEntity).setAge(-72000);
-						} else if (dinosaur instanceof Tyrannosaurus) {
-							((Animal)dinosaurEntity).setAge(-48000);
-						} else {
-							((Animal)dinosaurEntity).setAge(-24000);
-						}
+						dinosaur.setAge(-24000);
 					}
-					if (dinosaurEntity instanceof Triceratops) {
-						Triceratops dinosaur = (Triceratops)dinosaurEntity;
-						for(Player player : dinosaur.level().getEntitiesOfClass(Player.class, dinosaur.getBoundingBox().inflate(8.0D, 8.0D, 8.0D))) {
-							dinosaur.addTrustedUUID(player.getUUID());
+					if (dinosaurEntity instanceof Camarasaurus camarasaurus) {
+						for (Player player : camarasaurus.level().getEntitiesOfClass(Player.class, camarasaurus.getBoundingBox().inflate(8, 8, 8))) {
+							camarasaurus.addTrustedUUID(player.getUUID());
 						}
-						((Animal)dinosaurEntity).setAge(-48000);
+						camarasaurus.setAge(-72000);
+					}
+					if (dinosaurEntity instanceof Tyrannosaurus tyrannosaurus) {
+						for(Player player : tyrannosaurus.level().getEntitiesOfClass(Player.class, tyrannosaurus.getBoundingBox().inflate(8.0D, 8.0D, 8.0D))) {
+							tyrannosaurus.addTrustedUUID(player.getUUID());
+						}
+						tyrannosaurus.setAge(-48000);
+					}
+					if (dinosaurEntity instanceof Triceratops triceratops) {
+						for(Player player : triceratops.level().getEntitiesOfClass(Player.class, triceratops.getBoundingBox().inflate(8.0D, 8.0D, 8.0D))) {
+							triceratops.addTrustedUUID(player.getUUID());
+						}
+						triceratops.setAge(-48000);
 					}
 					dinosaurEntity.moveTo((double) pos.getX() + 0.3D + (double) j * 0.2D, (double) pos.getY(), (double) pos.getZ() + 0.3D, 0.0F, 0.0F);
 					worldIn.addFreshEntity(dinosaurEntity);

@@ -13,34 +13,34 @@ import superlord.prehistoricfauna.common.feature.util.PFTreeConfig;
 
 public class Taxus3 extends PFAbstractTreeFeature<PFTreeConfig> {
 
-    public Taxus3(Codec<PFTreeConfig> configIn) {
-        super(configIn);
-    }
+	public Taxus3(Codec<PFTreeConfig> configIn) {
+		super(configIn);
+	}
 
 	protected boolean generate(Set<BlockPos> changedBlocks, WorldGenLevel world, RandomSource rand, BlockPos pos, BoundingBox boundsIn, boolean isSapling, PFTreeConfig config) {
 
-        int randTreeHeight = config.getMinHeight() + rand.nextInt(config.getMaxPossibleHeight());
-        BlockPos.MutableBlockPos mainmutable = new BlockPos.MutableBlockPos().set(pos);
+		int randTreeHeight = config.getMinHeight() + rand.nextInt(config.getMaxPossibleHeight());
+		BlockPos.MutableBlockPos mainmutable = new BlockPos.MutableBlockPos().set(pos);
 
-        if (pos.getY() + randTreeHeight + 1 < world.getHeight()) {
-            if (!this.isAnotherTreeNearby(world, pos, randTreeHeight, 0, isSapling)) {
-                return false;
-            } else if (!this.doesSaplingHaveSpaceToGrow(world, pos, randTreeHeight, 7, 5, 5, isSapling)) {
-                return false;
-            } else {
-            	for (int buildTrunk = 0; buildTrunk <= randTreeHeight; buildTrunk++) {
+		if (pos.getY() + randTreeHeight + 1 < world.getHeight()) {
+			if (!this.isAnotherTreeNearby(world, pos, randTreeHeight, 0, isSapling)) {
+				return false;
+			} else if (!this.doesSaplingHaveSpaceToGrow(world, pos, randTreeHeight, 7, 5, 5, isSapling)) {
+				return false;
+			} else {
+				for (int buildTrunk = 0; buildTrunk <= randTreeHeight; buildTrunk++) {
 					placeTrunk(pos, config, rand, changedBlocks, world, mainmutable, boundsIn);
-//					if (buildTrunk <= 0) {
-//						placeTrunk(pos, config, rand, changedBlocks, world, mainmutable, boundsIn);
-//						placeTrunk(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(1, buildTrunk, 0), boundsIn);
-//						placeTrunk(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(1, buildTrunk, 1), boundsIn);
-//						placeTrunk(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, buildTrunk, 1), boundsIn);
-//					}
+					//if (buildTrunk <= 0) {
+						//placeTrunk(pos, config, rand, changedBlocks, world, mainmutable, boundsIn);
+						//placeTrunk(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(1, buildTrunk, 0), boundsIn);
+						//placeTrunk(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(1, buildTrunk, 1), boundsIn);
+						//placeTrunk(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, buildTrunk, 1), boundsIn);
+					//}
 					mainmutable.move(Direction.UP);
 				}
-				
-            	mainmutable.set(pos);
-				
+
+				mainmutable.set(pos);
+
 				placeTrunk(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, 0, 0), boundsIn);
 				placeTrunk(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, 1, 0), boundsIn);
 				placeTrunk(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, 2, 0), boundsIn);
@@ -147,8 +147,8 @@ public class Taxus3 extends PFAbstractTreeFeature<PFTreeConfig> {
 				placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(1, randTreeHeight + 2, 0), boundsIn);
 				placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, randTreeHeight + 3, 0), boundsIn);
 				placeLeaves(pos, config, rand, changedBlocks, world, mainmutable.set(pos).move(0, randTreeHeight + 4, 0), boundsIn);
-            }
-        }
-        return true;
-    }
+			}
+		}
+		return true;
+	}
 }

@@ -29,7 +29,7 @@ public class Schizolepidopsis1 extends PFAbstractTreeFeature<PFTreeConfig> {
             } else if (!this.doesSaplingHaveSpaceToGrow(world, pos, randTreeHeight, 7, 5, 5, isSapling)) {
                 return false;
             } else {
-            	buildTrunkBase(pos, changedBlocks, world, config, rand, boundsIn, mainmutable.set(pos).move(0, 0, 0).immutable());
+//            	buildTrunkBase(pos, changedBlocks, world, config, rand, boundsIn, mainmutable.set(pos).move(0, 0, 0).immutable());
             	for (int buildTrunk = 0; buildTrunk <= randTreeHeight; buildTrunk++) {
 					placeTrunk(pos, config, rand, changedBlocks, world, mainmutable, boundsIn);
 					mainmutable.move(Direction.UP);

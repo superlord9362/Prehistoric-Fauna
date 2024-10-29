@@ -376,6 +376,7 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
 		Camarasaurus entity = new Camarasaurus(PFEntities.CAMARASAURUS.get(), this.level());
 		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		entity.setAge(-72000);
 		return entity;
 	}
 

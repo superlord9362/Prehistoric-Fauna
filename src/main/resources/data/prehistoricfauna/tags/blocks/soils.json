@@ -1,0 +1,18 @@
+{
+	"replace": false,
+	"values": [
+		"minecraft:grass_block",
+		"minecraft:dirt",
+		"minecraft:podzol",
+		"minecraft:mycelium",
+		"minecraft:sand",
+		"minecraft:red_sand",
+		"minecraft:gravel",
+		"minecraft:clay",
+		"prehistoricfauna:silt",
+		"prehistoricfauna:hardened_silt",
+		"prehistoricfauna:mossy_dirt",
+		"prehistoricfauna:loam",
+		"prehistoricfauna:packed_loam"
+	]
+}

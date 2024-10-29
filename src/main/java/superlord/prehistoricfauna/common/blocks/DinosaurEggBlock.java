@@ -10,6 +10,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -104,7 +105,7 @@ public class DinosaurEggBlock extends Block {
 
 	}
 
-	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
+	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
 		if (this.shouldUpdateHatchLevel(worldIn, state, pos) && onSand(worldIn, pos)) {
 			int i = state.getValue(HATCH);
 			if (i < 2) {

@@ -1,13 +1,12 @@
 package superlord.prehistoricfauna.common.blocks;
 
-import java.util.Random;
-
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
@@ -25,7 +24,7 @@ public class NelumboRootsBlock extends Block {
 		super(p_49795_);
 	}
 	
-	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		if (world.getBlockState(pos.above()).getBlock() == Blocks.WATER) {
 			world.setBlockAndUpdate(pos.above(), PFBlocks.NELUMBO_STEM.get().defaultBlockState());
 		}

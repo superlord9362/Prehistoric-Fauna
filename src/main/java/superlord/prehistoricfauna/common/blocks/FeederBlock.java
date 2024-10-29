@@ -49,6 +49,10 @@ public class FeederBlock extends BaseEntityBlock {
 		p_51967_[8] = p_51967_[7];
 	});
 
+	public boolean useShapeForLightOcclusion(BlockState p_56395_) {
+		return true;
+	}
+
 	public FeederBlock(Properties p_49795_) {
 		super(p_49795_);
 		this.registerDefaultState(this.stateDefinition.any().setValue(MEAT, false).setValue(PLANT, false).setValue(EGG, false).setValue(SHELLFISH, false).setValue(FISH, false).setValue(INSECT, false).setValue(FOOD_LEVEL, 0));
@@ -502,7 +506,7 @@ public class FeederBlock extends BaseEntityBlock {
 	public boolean hasFish(BlockState state) {
 		return state.getValue(FISH);
 	}
-	
+
 	public boolean hasInsects(BlockState state) {
 		return state.getValue(INSECT);
 	}
@@ -513,6 +517,10 @@ public class FeederBlock extends BaseEntityBlock {
 
 	public VoxelShape getInteractionShape(BlockState p_51969_, BlockGetter p_51970_, BlockPos p_51971_) {
 		return OUTER_SHAPE;
+	}
+
+	public VoxelShape getVisualShape(BlockState p_48735_, BlockGetter p_48736_, BlockPos p_48737_, CollisionContext p_48738_) {
+		return SHAPES[p_48735_.getValue(FOOD_LEVEL)];
 	}
 
 	public VoxelShape getCollisionShape(BlockState p_51990_, BlockGetter p_51991_, BlockPos p_51992_, CollisionContext p_51993_) {

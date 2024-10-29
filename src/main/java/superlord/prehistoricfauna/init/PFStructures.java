@@ -114,8 +114,8 @@ public class PFStructures {
 		return ResourceKey.create(Registries.STRUCTURE_SET, new ResourceLocation(PrehistoricFauna.MOD_ID, p_209839_));
 	}
 
-	public interface PFStructureType<S extends Structure> {
-		public static final DeferredRegister<StructureType<? extends Structure>> REGISTRY = DeferredRegister.create(Registries.STRUCTURE_TYPE, PrehistoricFauna.MOD_ID);
+	public interface PFStructureType<S extends Structure> extends StructureType<S> {
+		public static final DeferredRegister<StructureType<?>> REGISTRY = DeferredRegister.create(Registries.STRUCTURE_TYPE, PrehistoricFauna.MOD_ID);
 
 		RegistryObject<StructureType<ChinleHutStructure>> CHINLE_HUT = register("chinle_hut", ChinleHutStructure.CODEC);
 		RegistryObject<StructureType<IschigualastoHutStructure>> ISCHIGUALASTO_HUT = register("ischigualasto_hut", IschigualastoHutStructure.CODEC);

@@ -74,6 +74,9 @@ public class DinosaurEntity extends TamableAnimal {
 	private static final EntityDataAccessor<Boolean> PISCIVORE = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> MOLLUSCIVORE = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> INSECTIVORE = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> NOCTURNAL = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> DIURNAL = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> CREPUSCULAR = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Optional<UUID>> DATA_TRUSTED_ID_0 = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.OPTIONAL_UUID);
 	private static final EntityDataAccessor<Optional<UUID>> DATA_TRUSTED_ID_1 = SynchedEntityData.defineId(DinosaurEntity.class, EntityDataSerializers.OPTIONAL_UUID);
 	public static final Predicate<Entity> AVOID_PLAYERS = (p_28463_) -> {
@@ -275,6 +278,30 @@ public class DinosaurEntity extends TamableAnimal {
 	public void setPiscivorous(boolean isPiscivorous) {
 		this.entityData.set(PISCIVORE, isPiscivorous);
 	}
+	
+	public boolean isDiurnal() {
+		return this.entityData.get(DIURNAL);
+	}
+
+	public void setDiurnal(boolean isDiurnal) {
+		this.entityData.set(DIURNAL, isDiurnal);
+	}
+	
+	public boolean isNocturnal() {
+		return this.entityData.get(NOCTURNAL);
+	}
+
+	public void setNocturnal(boolean isNocturnal) {
+		this.entityData.set(NOCTURNAL, isNocturnal);
+	}
+	
+	public boolean isCrepuscular() {
+		return this.entityData.get(CREPUSCULAR);
+	}
+
+	public void setCrepuscular(boolean isCrepuscular) {
+		this.entityData.set(CREPUSCULAR, isCrepuscular);
+	}
 
 	List<UUID> getTrustedUUIDs() {
 		List<UUID> list = Lists.newArrayList();
@@ -323,6 +350,9 @@ public class DinosaurEntity extends TamableAnimal {
 		this.entityData.define(MOLLUSCIVORE, false);
 		this.entityData.define(PISCIVORE, false);
 		this.entityData.define(INSECTIVORE, false);
+		this.entityData.define(DIURNAL, false);
+		this.entityData.define(CREPUSCULAR, false);
+		this.entityData.define(NOCTURNAL, false);
 	}
 	
 	public void addAdditionalSaveData(CompoundTag compound) {
@@ -355,6 +385,9 @@ public class DinosaurEntity extends TamableAnimal {
 		compound.putBoolean("IsMolluscivorous", this.isMolluscivorous());
 		compound.putBoolean("IsPiscivorous", this.isPiscivorous());
 		compound.putBoolean("IsInsectivorous", this.isInsectivorous());
+		compound.putBoolean("IsDiurnal", this.isDiurnal());
+		compound.putBoolean("IsNocturnal", this.isNocturnal());
+		compound.putBoolean("IsCrepuscular", this.isCrepuscular());
 	}
 
 	public void readAdditionalSaveData(CompoundTag compound) {
@@ -383,6 +416,9 @@ public class DinosaurEntity extends TamableAnimal {
 		this.setMolluscivorous(compound.getBoolean("IsMolluscivorous"));
 		this.setPiscivorous(compound.getBoolean("IsPiscivorous"));
 		this.setInsectivorous(compound.getBoolean("IsInsectivorous"));
+		this.setDiurnal(compound.getBoolean("IsDiurnal"));
+		this.setNocturnal(compound.getBoolean("IsNocturnal"));
+		this.setCrepuscular(compound.getBoolean("IsCrepuscular"));
 	}
 
 	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
@@ -680,10 +716,10 @@ public class DinosaurEntity extends TamableAnimal {
 		super.aiStep();
 		if (this.isAsleep()) this.setDeltaMovement(0, this.getDeltaMovement().y, 0);
 		if (!this.isNoAi()) {
-			for (@SuppressWarnings("unused") Psittacosaurus psittacosaurus : this.level().getEntitiesOfClass(Psittacosaurus.class, this.getBoundingBox().inflate(5))) {
-				if (this.isBaby()) {
+			for (Psittacosaurus psittacosaurus : this.level().getEntitiesOfClass(Psittacosaurus.class, this.getBoundingBox().inflate(5))) {
+				if (this.isBaby() && !psittacosaurus.isBaby()) {
 					int i = this.getAge();
-					this.setAge(i + 2);
+					if (this.getAge() < -1) this.setAge(i + 2);
 				}
 			}
 			List<? extends DinosaurEntity> list = this.level().getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(48.0D, 48.0D, 48.0D));

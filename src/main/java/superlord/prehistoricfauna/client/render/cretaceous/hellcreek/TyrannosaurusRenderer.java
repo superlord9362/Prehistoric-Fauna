@@ -57,9 +57,9 @@ public class TyrannosaurusRenderer extends MobRenderer<Tyrannosaurus, EntityMode
 		}
 	}
 
-	protected void scale(Tyrannosaurus triceratops, PoseStack matrixStackIn, float partialTickTime) {
-		if(triceratops.isBaby()) {
-			if (!triceratops.isJuvenile()) {
+	protected void scale(Tyrannosaurus tyrannosaurus, PoseStack matrixStackIn, float partialTickTime) {
+		if(tyrannosaurus.isBaby()) {
+			if (!tyrannosaurus.isJuvenile()) {
 				model = BABY_TYRANNOSAURUS_MODEL;
 			} else {
 				model = JUVENILE_TYRANNOSAURUS_MODEL;
@@ -67,7 +67,7 @@ public class TyrannosaurusRenderer extends MobRenderer<Tyrannosaurus, EntityMode
 		} else {
 			model = TYRANNOSAURUS_MODEL;
 		}
-		super.scale(triceratops, matrixStackIn, partialTickTime);
+		super.scale(tyrannosaurus, matrixStackIn, partialTickTime);
 	}
 
 	@Override

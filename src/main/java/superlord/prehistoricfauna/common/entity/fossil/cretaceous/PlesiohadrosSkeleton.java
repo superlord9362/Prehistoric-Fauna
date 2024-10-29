@@ -9,6 +9,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -147,7 +148,7 @@ public class PlesiohadrosSkeleton extends PrehistoricEntity {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 100.0D);
+		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 1.0D);
 	}
 
 	protected int getExperiencePoints(Player player) {
@@ -214,6 +215,14 @@ public class PlesiohadrosSkeleton extends PrehistoricEntity {
 
 
 	public boolean hurt(DamageSource source, float amount) {
+		System.out.println(source);
+		if (source.is(DamageTypeTags.IS_EXPLOSION)) {
+			this.playBrokenSound();
+			this.playParticles();
+			this.spawnFossil(source);
+			this.kill();
+            return false;
+         }
 		if (source.getDirectEntity() instanceof Player) {
 			this.playBrokenSound();
 			this.playParticles();

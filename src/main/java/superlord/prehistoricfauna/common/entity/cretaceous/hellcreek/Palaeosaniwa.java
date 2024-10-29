@@ -28,11 +28,11 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.common.entity.BurrowingDinosaur;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.AvoidHealthyAdultGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.CarnivoreEatFromFeederGoal;
-import superlord.prehistoricfauna.common.entity.goal.CrepuscularSleepGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
@@ -50,7 +50,7 @@ import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
-public class Palaeosaniwa extends DinosaurEntity {
+public class Palaeosaniwa extends BurrowingDinosaur {
 
 	private int maxHunger = 20;
 	
@@ -77,7 +77,7 @@ public class Palaeosaniwa extends DinosaurEntity {
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.targetSelector.addGoal(3, new DinosaurTerritorialAttackGoal(this));
 		this.targetSelector.addGoal(1, new DinosaurHurtByTargetGoal(this));
-		this.goalSelector.addGoal(1, new CrepuscularSleepGoal(this));
+//		this.goalSelector.addGoal(1, new CrepuscularSleepGoal(this));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new DinosaurMateGoal(this, 1.0D));
@@ -116,6 +116,7 @@ public class Palaeosaniwa extends DinosaurEntity {
 			this.setSkittish(true);
 		}
 		this.setCarnivorous(true);
+		this.setCrepuscular(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 	

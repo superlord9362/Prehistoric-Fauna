@@ -22,7 +22,6 @@ public class PFRaftRenderer extends BoatRenderer {
 
 	public PFRaftRenderer(EntityRendererProvider.Context renderContext, boolean isChestBoat) {
 		super(renderContext, isChestBoat);
-		System.out.println("Hi");
 		boatResources = Stream.of(PFRaftTypes.values()).collect(ImmutableMap.toImmutableMap((boatType) -> {
 			return boatType;
 		}, (boatType) -> {

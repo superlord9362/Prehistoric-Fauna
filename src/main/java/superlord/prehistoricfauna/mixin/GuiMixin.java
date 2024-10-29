@@ -52,7 +52,7 @@ public class GuiMixin {
 				}
 
 				RenderSystem.setShaderTexture(0, BleedingHeartType.ATLAS);
-				stack.blit(Gui.GUI_ICONS_LOCATION, x, y, pos.getLeft(), pos.getRight(), 9, 9, BleedingHeartType.ATLAS_W, BleedingHeartType.ATLAS_H);
+				stack.blit(BleedingHeartType.ATLAS, x, y, pos.getLeft(), pos.getRight(), 9, 9, BleedingHeartType.ATLAS_W, BleedingHeartType.ATLAS_H);
 				RenderSystem.setShaderTexture(0, Gui.GUI_ICONS_LOCATION);
 
 				cbi.cancel();

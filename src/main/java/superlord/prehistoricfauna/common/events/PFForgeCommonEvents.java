@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.common;
+package superlord.prehistoricfauna.common.events;
 
 import java.util.List;
 import java.util.Map;

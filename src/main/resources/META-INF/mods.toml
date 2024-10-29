@@ -6,9 +6,9 @@ modId="prehistoricfauna"
 version="2.3.0"
 displayName="Prehistoric Fauna"
 credits="AGSuko, Antlion, Bastion, Baular, Coda, Corgi Taco, Obsolerus, RafaMv, Ralof, Seal, superlord9362, Weastian"
-authors="${mod_authors}"
+authors="superlord9362, Corgi Taco, RafaMv, Alexthe668, cappin"
 description='''
-${mod_description}
+Travel to the past to discover worlds time forgot. Bring back animals long extinct, or join their world.
 '''
 [[dependencies.prehistoricfauna]]
     modId="forge"

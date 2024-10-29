@@ -57,7 +57,7 @@ public class LowerHorsetailsFeature extends Feature<JohnstoniaConfig> {
 		WorldGenLevel world = context.level();
 		RandomSource rand = context.random();
 		context.config();
-		for (int j = 0; j < JohnstoniaConfig.count; ++j) {
+		for (int j = 0; j < 8; ++j) {
 			int k = rand.nextInt(8) - rand.nextInt(8);
 			int l = rand.nextInt(8) - rand.nextInt(8);
 			int i1 = world.getHeight(Heightmap.Types.WORLD_SURFACE, pos.getX() + k, pos.getZ() + l);

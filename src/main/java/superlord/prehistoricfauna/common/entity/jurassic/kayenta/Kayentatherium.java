@@ -36,7 +36,7 @@ import net.minecraft.world.level.pathfinder.AmphibiousNodeEvaluator;
 import net.minecraft.world.level.pathfinder.PathFinder;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
-import superlord.prehistoricfauna.common.entity.DinosaurEntity;
+import superlord.prehistoricfauna.common.entity.BurrowingDinosaur;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Citipati;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Pinacosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Plesiohadros;
@@ -45,7 +45,6 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ankylosauru
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
-import superlord.prehistoricfauna.common.entity.goal.CrepuscularSleepGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
@@ -73,7 +72,7 @@ import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
 
-public class Kayentatherium extends DinosaurEntity {
+public class Kayentatherium extends BurrowingDinosaur {
 	private int maxHunger = 15;
 	private int warningSoundTicks;
 
@@ -124,7 +123,7 @@ public class Kayentatherium extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new DinosaurMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new NaturalMateGoal(this, 1.0D));
-		this.goalSelector.addGoal(1, new CrepuscularSleepGoal(this));
+//		this.goalSelector.addGoal(1, new CrepuscularSleepGoal(this));
 		this.goalSelector.addGoal(0, new HerbivoreEatGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 	}
@@ -139,6 +138,7 @@ public class Kayentatherium extends DinosaurEntity {
 			this.setPassive(true);
 		}
 		this.setHerbivorous(true);
+		this.setCrepuscular(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
