@@ -92,6 +92,12 @@
         "weight": 1
       },
       {
+        "type": "prehistoricfauna:dilong",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 3
+      },
+      {
         "type": "prehistoricfauna:incisivosaurus",
         "maxCount": 4,
         "minCount": 1,
@@ -110,6 +116,12 @@
         "weight": 4
       },
       {
+        "type": "prehistoricfauna:repenomamus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 1
+      },
+      {
         "type": "prehistoricfauna:sinosauropteryx",
         "maxCount": 3,
         "minCount": 1,
@@ -120,6 +132,12 @@
         "maxCount": 2,
         "minCount": 1,
         "weight": 2
+      },
+      {
+        "type": "prehistoricfauna:zhenyuanlong",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 1
       }
     ],
     "misc": [],

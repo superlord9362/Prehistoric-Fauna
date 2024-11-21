@@ -9,6 +9,7 @@ import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import superlord.prehistoricfauna.client.ClientEvents;
 import superlord.prehistoricfauna.client.model.armor.AnkylosaurusHelmetModel;
 import superlord.prehistoricfauna.client.model.armor.DesmatosuchusChestplateModel;
+import superlord.prehistoricfauna.client.model.armor.EggshellHelmetModel;
 import superlord.prehistoricfauna.init.PFItems;
 
 public class AnkylosaurusHelmetRenderProperties implements IClientItemExtensions {
@@ -17,14 +18,17 @@ public class AnkylosaurusHelmetRenderProperties implements IClientItemExtensions
 	
 	public static AnkylosaurusHelmetModel ANKYLOSAURUS_HELMET_MODEL;
 	public static DesmatosuchusChestplateModel DESMATOSUCHUS_CHESTPLATE_MODEL;
+	public static EggshellHelmetModel EGGSHELL_HELMET_MODEL;
 	
 	public static void initializeModels() {
 		init = true;
 		ANKYLOSAURUS_HELMET_MODEL = new AnkylosaurusHelmetModel(Minecraft.getInstance().getEntityModels().bakeLayer(ClientEvents.ANKYLOSAURUS_HELMET));
 		DESMATOSUCHUS_CHESTPLATE_MODEL = new DesmatosuchusChestplateModel(Minecraft.getInstance().getEntityModels().bakeLayer(ClientEvents.DESMATOSUCHUS_CHESTPLATE));
+		EGGSHELL_HELMET_MODEL = new EggshellHelmetModel(Minecraft.getInstance().getEntityModels().bakeLayer(ClientEvents.EGGSHELL_HELMET));
 	}
 	
-	public HumanoidModel<?> getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel<?> _default) {
+	@Override
+	public HumanoidModel<?> getHumanoidArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel<?> _default) {
 		if (!init) {
 			initializeModels();
 		}
@@ -33,6 +37,9 @@ public class AnkylosaurusHelmetRenderProperties implements IClientItemExtensions
 		}
 		if (itemStack.getItem() == PFItems.DESMATOSUCHUS_CHESTPLACE.get()) {
 			return DESMATOSUCHUS_CHESTPLATE_MODEL;
+		}
+		if (itemStack.getItem() == PFItems.EGG_HELMET.get()) {
+			return EGGSHELL_HELMET_MODEL;
 		}
 		return _default;
 	}

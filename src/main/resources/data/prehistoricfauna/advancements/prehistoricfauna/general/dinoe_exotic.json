@@ -371,14 +371,6 @@
                 }
             }
         },
-        "thoracosaurus": {
-            "trigger": "minecraft:bred_animals",
-            "conditions": {
-                "parent": {
-                    "type": "prehistoricfauna:thoracosaurus"
-                }
-            }
-        },
         "goyocephale": {
             "trigger": "minecraft:bred_animals",
             "conditions": {
@@ -592,9 +584,6 @@
         ],
         [
             "palaeosaniwa"
-        ],
-        [
-            "thoracosaurus"
         ],
         [
             "goyocephale"

@@ -53,14 +53,6 @@ import superlord.prehistoricfauna.common.entity.goal.OmnivoreEatFromFeederGoal;
 import superlord.prehistoricfauna.common.entity.goal.ProtectBabyGoal;
 import superlord.prehistoricfauna.common.entity.goal.SkittishFleeGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
-import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Dilophosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Ceratosaurus;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Poposaurus;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Postosuchus;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Herrerasaurus;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Saurosuchus;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
@@ -93,16 +85,9 @@ public class Ornithomimus extends HerdDinosaurEntity {
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.goalSelector.addGoal(7, new SkittishFleeGoal(this, Player.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Allosaurus>(this, Allosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Ceratosaurus>(this, Ceratosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Camarasaurus>(this, Camarasaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Dakotaraptor>(this, Dakotaraptor.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Tyrannosaurus>(this, Tyrannosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Herrerasaurus>(this, Herrerasaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Saurosuchus>(this, Saurosuchus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Dilophosaurus>(this, Dilophosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Poposaurus>(this, Poposaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Postosuchus>(this, Postosuchus.class, 10F, 1.5D, 1.75D));
+		this.goalSelector.addGoal(8, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
+			return p_213487_0_.getType().is(PFTags.ORNITHOMIMUS_AVOIDING);
+		}));
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new FollowHerdLeaderGoal(this));
 		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
@@ -251,7 +236,7 @@ public class Ornithomimus extends HerdDinosaurEntity {
 			this.dinosaur = entity;
 		}
 
-		public double getTargetDistanceSq() {
+		public double acceptedDistance() {
 			return 2.0D;
 		}
 

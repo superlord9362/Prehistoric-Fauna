@@ -187,7 +187,7 @@ public class PaleoscribeContainer extends AbstractContainerMenu {
                 this.tileFurnace.setChanged();
                 //this.xpSeed = playerIn.getXPSeed();
                 this.slotsChanged(this.tileFurnace);
-                playerIn.level().playSound(null, playerIn.blockPosition(), SoundEvents.BOOK_PAGE_TURN, SoundSource.BLOCKS, 1.0F, playerIn.level().getRandom().nextFloat() * 0.1F + 0.9F);
+                playerIn.level().playSound(null, playerIn.blockPosition(), SoundEvents.BOOK_PAGE_TURN, SoundSource.BLOCKS, 1.0F, playerIn.getRandom().nextFloat() * 0.1F + 0.9F);
             }
             onUpdate();
             return true;

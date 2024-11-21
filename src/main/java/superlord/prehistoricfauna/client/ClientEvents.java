@@ -1,14 +1,26 @@
 package superlord.prehistoricfauna.client;
 
+import org.joml.Matrix4f;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
+
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.saveddata.maps.MapDecoration;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -52,6 +64,10 @@ import superlord.prehistoricfauna.init.*;
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientEvents {
+	public static PoseStack lastVanillaMapPoseStack;
+	public static MultiBufferSource lastVanillaMapRenderBuffer;
+	public static int lastVanillaMapRenderPackedLight;
+	private static final RenderType TIME_TEMPLE_MAP_ICONS = RenderType.text(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/misc/time_temple_map_icon.png"));
 
 	@SubscribeEvent
 	public static void init(final FMLClientSetupEvent event) {
@@ -211,6 +227,7 @@ public class ClientEvents {
 	public static ModelLayerLocation ANKYLOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "ankylosaurus"), "ankylosaurus");
 	public static ModelLayerLocation ANKYLOSAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "ankylosaurus_baby"), "ankylosaurus_baby");
 	public static ModelLayerLocation ANZU = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "anzu"), "anzu");
+	public static ModelLayerLocation ANZU_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "anzu_baby"), "anzu_baby");
 	public static ModelLayerLocation BASILEMYS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "basilemys"), "basilemys");
 	public static ModelLayerLocation DAKOTARAPTOR = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "dakotaraptor"), "dakotaraptor");
 	public static ModelLayerLocation DAKOTARAPTOR_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "dakotaraptor_baby"), "dakotaraptor_baby");
@@ -221,7 +238,7 @@ public class ClientEvents {
 	public static ModelLayerLocation PACHYCEPHALOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "pachycephalosaurus"), "pachycephalosaurus");
 	public static ModelLayerLocation PALAEOSANIWA = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "palaeosaniwa"), "palaeosaniwa");
 	public static ModelLayerLocation THESCELOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "thescelosaurus"), "thescelosaurus");
-	public static ModelLayerLocation THORACOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "thoracosaurus"), "thoracosaurus");
+	public static ModelLayerLocation BRACHYCHAMPSA = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "brachychampsa"), "brachychampsa");
 	public static ModelLayerLocation TRICERATOPS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "triceratops"), "triceratops");
 	public static ModelLayerLocation TRICERATOPS_JUVENILE = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "triceratops_juvenile"), "triceratops_juvenile");
 	public static ModelLayerLocation TRICERATOPS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "triceratops_baby"), "triceratops_baby");
@@ -245,14 +262,15 @@ public class ClientEvents {
 	public static ModelLayerLocation TELMASAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "telmasaurus"), "telmasaurus");
 	public static ModelLayerLocation UDANOCERATOPS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "udanoceratops"), "udanoceratops");
 	public static ModelLayerLocation VELOCIRAPTOR = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "velociraptor"), "velociraptor");
-	
+
 	//Bugs
 	public static ModelLayerLocation DERMESTID_BEETLE = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "dermestid_beetle"), "dermestid_beetle");
 	public static ModelLayerLocation GOBIULUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "gobiulus"), "gobiulus");
 	public static ModelLayerLocation CEPHALOLEICHNITES = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "cephaloleichnites"), "cephaloleichnites");
 	public static ModelLayerLocation APOCLION = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "apoclion"), "apoclion");
 	public static ModelLayerLocation CRETARANEUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "cretaraneus"), "cretaraneus");
-	
+	public static ModelLayerLocation LIAONEMOBIUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "liaonemobius"), "liaonemobius");
+
 	//Yixian
 	public static ModelLayerLocation BEIPIAOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "beipiaosaurus"), "beipiaosaurus");
 	public static ModelLayerLocation CHANGYURAPTOR = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "changyuraptor"), "changyuraptor");
@@ -268,7 +286,7 @@ public class ClientEvents {
 	public static ModelLayerLocation YUTYRANNUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "yutyrannus"), "yutyrannus");
 	public static ModelLayerLocation YUTYRANNUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "yutyrannus_baby"), "yutyrannus_baby");
 	public static ModelLayerLocation ZHENYUANLONG = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "zhenyuanlong"), "zhenyuanlong");
-	
+
 	//Kayenta
 	public static ModelLayerLocation CALSOYASUCHUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "calsoyasuchus"), "calsoyasuchus");
 	public static ModelLayerLocation DILOPHOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "dilophosaurus"), "dilophosaurus");
@@ -329,9 +347,10 @@ public class ClientEvents {
 	public static ModelLayerLocation SINAMIA = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "sinamia"), "sinamia");
 	public static ModelLayerLocation YANOSTEUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "yanosteus"), "yanosteus");
 	public static ModelLayerLocation PARAPSEPHURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "parapsephurus"), "parapsephurus");
-	
+
 	public static ModelLayerLocation ANKYLOSAURUS_HELMET = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "ankylosaurus_helmet"), "ankylosaurus_helmet");
 	public static ModelLayerLocation DESMATOSUCHUS_CHESTPLATE = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "desmatosuchus_chestplate"), "desmatosuchus_chestplate");
+	public static ModelLayerLocation EGGSHELL_HELMET = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "eggshell_helmet"), "eggshell_helmet");
 
 	//Henos
 	public static ModelLayerLocation HENOS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "henos"), "henos");
@@ -440,7 +459,7 @@ public class ClientEvents {
 		event.registerEntityRenderer(PFEntities.CAVE_SENTINEL.get(), CaveSentinelRenderer::new);
 		event.registerEntityRenderer(PFEntities.LAND_SENTINEL.get(), LandSentinelRenderer::new);
 		event.registerEntityRenderer(PFEntities.ACIPENSER.get(), AcipenserRenderer::new);
-		event.registerEntityRenderer(PFEntities.THORACOSAURUS.get(), ThoracosaurusRenderer::new);
+		event.registerEntityRenderer(PFEntities.BRACHYCHAMPSA.get(), BrachychampsaRenderer::new);
 		event.registerEntityRenderer(PFEntities.PALAEOSANIWA.get(), PalaeosaniwaRenderer::new);;
 		event.registerEntityRenderer(PFEntities.OVIRAPTOR.get(), OviraptorRenderer::new);
 		event.registerEntityRenderer(PFEntities.DERMESTID_BEETLE.get(), DermestidBeetleRenderer::new);
@@ -469,7 +488,15 @@ public class ClientEvents {
 		event.registerEntityRenderer(PFEntities.LIAONINGOSAURUS.get(), LiaoningosaurusRenderer::new);
 		event.registerEntityRenderer(PFEntities.CHANGYURAPTOR.get(), ChangyuraptorRenderer::new);
 		event.registerEntityRenderer(PFEntities.PARAPSEPHURUS.get(), ParapsephurusRenderer::new);
-		
+		event.registerEntityRenderer(PFEntities.BYRONOSAURUS.get(), ByronosaurusRenderer::new);
+		event.registerEntityRenderer(PFEntities.REPENOMAMUS.get(), RepenomamusRenderer::new);
+		event.registerEntityRenderer(PFEntities.RUIXINIA.get(), RuixiniaRenderer::new);
+		event.registerEntityRenderer(PFEntities.DONGBEITITAN.get(), DongbeititanRenderer::new);
+		event.registerEntityRenderer(PFEntities.DILONG.get(), DilongRenderer::new);
+		event.registerEntityRenderer(PFEntities.LIAONEMOBIUS.get(), LiaonemobiusRenderer::new);
+		event.registerEntityRenderer(PFEntities.ZHENYUANLONG.get(), ZhenyuanlongRenderer::new);
+		event.registerEntityRenderer(PFEntities.JINZHOUSAURUS.get(), JinzhousaurusRenderer::new);
+
 		event.registerBlockEntityRenderer(PFBlockEntities.CHEST.get(), PFChestBlockEntityRenderer::new);
 		event.registerBlockEntityRenderer(PFBlockEntities.TRAPPED_CHEST.get(), PFChestBlockEntityRenderer::new);
 	}
@@ -482,6 +509,7 @@ public class ClientEvents {
 		event.registerLayerDefinition(LAND_SENTINEL, LandSentinelModel::createBodyLayer);
 		event.registerLayerDefinition(ANKYLOSAURUS_HELMET, () -> AnkylosaurusHelmetModel.createArmorLayer(new CubeDeformation(1)));
 		event.registerLayerDefinition(DESMATOSUCHUS_CHESTPLATE, () -> DesmatosuchusChestplateModel.createArmorLayer(new CubeDeformation(0)));
+		event.registerLayerDefinition(EGGSHELL_HELMET, () -> EggshellHelmetModel.createArmorLayer(new CubeDeformation(0)));
 
 		//Ankylosaurus Skeleton and Skull
 		event.registerLayerDefinition(ANKYLOSAURUS_SKELETON, AnkylosaurusSkeletonModel::createBodyLayer);
@@ -657,10 +685,11 @@ public class ClientEvents {
 		event.registerLayerDefinition(TYRANNOSAURUS, TyrannosaurusModel::createBodyLayer);
 		event.registerLayerDefinition(TYRANNOSAURUS_JUVENILE, TyrannosaurusJuvenileModel::createBodyLayer);
 		event.registerLayerDefinition(TYRANNOSAURUS_BABY, TyrannosaurusBabyModel::createBodyLayer);
-		event.registerLayerDefinition(THORACOSAURUS, ThoracosaurusModel::createBodyLayer);
+		event.registerLayerDefinition(BRACHYCHAMPSA, BrachychampsaModel::createBodyLayer);
 		event.registerLayerDefinition(PACHYCEPHALOSAURUS, PachycephalosaurusModel::createBodyLayer);
 		event.registerLayerDefinition(CEPHALOLEICHNITES, CephaloleichnitesModel::createBodyLayer);
 		event.registerLayerDefinition(ANZU, AnzuModel::createBodyLayer);
+		event.registerLayerDefinition(ANZU_BABY, AnzuBabyModel::createBodyLayer);
 		//Djadochta
 		event.registerLayerDefinition(AEPYORNITHOMIMUS, AepyornithomimusModel::createBodyLayer);
 		event.registerLayerDefinition(CITIPATI, CitipatiModel::createBodyLayer);
@@ -679,17 +708,25 @@ public class ClientEvents {
 		event.registerLayerDefinition(UDANOCERATOPS, UdanoceratopsModel::createBodyLayer);
 		event.registerLayerDefinition(GOYOCEPHALE, GoyocephaleModel::createBodyLayer);
 		event.registerLayerDefinition(KOL, KolModel::createBodyLayer);
+		event.registerLayerDefinition(BYRONOSAURUS, ByronosaurusModel::createBodyLayer);
 		//Yixian
 		event.registerLayerDefinition(BEIPIAOSAURUS, BeipiaosaurusModel::createBodyLayer);
 		event.registerLayerDefinition(CHANGYURAPTOR, ChangyuraptorModel::createBodyLayer);
+		event.registerLayerDefinition(DILONG, DilongModel::createBodyLayer);
+		event.registerLayerDefinition(DONGBEITITAN, DongbeititanModel::createBodyLayer);
 		event.registerLayerDefinition(INCISIVOSAURUS, IncisivosaurusModel::createBodyLayer);
+		event.registerLayerDefinition(JINZHOUSAURUS, JinzhousaurusModel::createBodyLayer);
 		event.registerLayerDefinition(LIAONINGOSAURUS, LiaoningosaurusModel::createBodyLayer);
 		event.registerLayerDefinition(PSITTACOSAURUS, PsittacosaurusModel::createBodyLayer);
+		event.registerLayerDefinition(REPENOMAMUS, RepenomamusModel::createBodyLayer);
+		event.registerLayerDefinition(RUIXINIA, RuixiniaModel::createBodyLayer);
 		event.registerLayerDefinition(SINOSAUROPTERYX, SinosauropteryxModel::createBodyLayer);;
 		event.registerLayerDefinition(YUTYRANNUS, YutyrannusModel::createBodyLayer);
 		event.registerLayerDefinition(YUTYRANNUS_BABY, YutyrannusBabyModel::createBodyLayer);
 		event.registerLayerDefinition(APOCLION, ApoclionModel::createBodyLayer);
 		event.registerLayerDefinition(CRETARANEUS, CretaraneusModel::createBodyLayer);
+		event.registerLayerDefinition(LIAONEMOBIUS, LiaonemobiusModel::createBodyLayer);
+		event.registerLayerDefinition(ZHENYUANLONG, ZhenyuanlongModel::createBodyLayer);
 		//Kayenta
 		event.registerLayerDefinition(CALSOYASUCHUS, CalsoyasuchusModel::createBodyLayer);
 		event.registerLayerDefinition(DILOPHOSAURUS, DilophosaurusModel::createBodyLayer);
@@ -757,31 +794,70 @@ public class ClientEvents {
 			}
 		}
 	}
-	
+
 
 	@Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 	public class InputEvents {
-		
+
 		@SubscribeEvent
 		public static void onKeyPress(InputEvent.Key event) {
 			Minecraft mc = Minecraft.getInstance();
 			if (mc.level == null) return;
 			onInput(mc, event.getKey(), event.getAction());
 		}
-		
+
 		@SubscribeEvent
 		public static void onMouseClick(InputEvent.MouseButton event) {
 			Minecraft mc = Minecraft.getInstance();
 			if (mc.level == null) return;
 			onInput(mc, event.getButton(), event.getAction());
 		}
-		
+
 		private static void onInput(Minecraft mc, int key, int action) {
 			if (mc.screen == null && PFKeybinds.sinkKey.consumeClick()) {
 				PrehistoricFauna.NETWORK_WRAPPER.sendToServer(new KeyInputMessage(key));
 			}
 		}
-		
+
 	}
 
+	@SuppressWarnings({ "resource", "unused" })
+	public static void renderVanillaMapDecoration(MapDecoration mapdecoration, int k) {
+        if(mapdecoration.getType() == PFMapTypes.TIME_TEMPLE){
+            MultiBufferSource multiBufferSource = lastVanillaMapRenderBuffer == null ? Minecraft.getInstance().renderBuffers().bufferSource() : lastVanillaMapRenderBuffer;
+            PoseStack poseStack = lastVanillaMapPoseStack == null ? new PoseStack() : lastVanillaMapPoseStack;
+            poseStack.pushPose();
+            poseStack.translate(0.0F + (float)mapdecoration.getX() / 2.0F + 64.0F, 0.0F + (float)mapdecoration.getY() / 2.0F + 64.0F, -0.02F);
+            poseStack.mulPose(Axis.ZP.rotationDegrees((float)(mapdecoration.getRot() * 360) / 16.0F));
+            poseStack.scale(4.0F, 4.0F, 3.0F);
+            poseStack.translate(-0.125F, 0.125F, 0.0F);
+            byte b0 = PFMapTypes.getMapIconRenderOrdinal(mapdecoration.getType());
+            float f1 = (float)(b0 % 16 + 0) / 16.0F;
+            float f2 = (float)(b0 / 16 + 0) / 16.0F;
+            float f3 = (float)(b0 % 16 + 1) / 16.0F;
+            float f4 = (float)(b0 / 16 + 1) / 16.0F;
+            Matrix4f matrix4f1 = poseStack.last().pose();
+            float f5 = -0.001F;
+            VertexConsumer vertexconsumer1 = multiBufferSource.getBuffer(TIME_TEMPLE_MAP_ICONS);
+            vertexconsumer1.vertex(matrix4f1, -1.0F, 1.0F, (float)k * -0.001F).color(255, 255, 255, 255).uv(f1, f2).uv2(lastVanillaMapRenderPackedLight).endVertex();
+            vertexconsumer1.vertex(matrix4f1, 1.0F, 1.0F, (float)k * -0.001F).color(255, 255, 255, 255).uv(f3, f2).uv2(lastVanillaMapRenderPackedLight).endVertex();
+            vertexconsumer1.vertex(matrix4f1, 1.0F, -1.0F, (float)k * -0.001F).color(255, 255, 255, 255).uv(f3, f4).uv2(lastVanillaMapRenderPackedLight).endVertex();
+            vertexconsumer1.vertex(matrix4f1, -1.0F, -1.0F, (float)k * -0.001F).color(255, 255, 255, 255).uv(f1, f4).uv2(lastVanillaMapRenderPackedLight).endVertex();
+            poseStack.popPose();
+            System.out.println(mapdecoration.getName());
+            if (mapdecoration.getName() != null) {
+            	System.out.println("Hello");
+                Font font = Minecraft.getInstance().font;
+                Component component = mapdecoration.getName();
+                float f6 = (float)font.width(component);
+                float f7 = Mth.clamp(25.0F / f6, 0.0F, 6.0F / 9.0F);
+                poseStack.pushPose();
+                poseStack.translate(0.0F + (float)mapdecoration.getX() / 2.0F + 64.0F - f6 * f7 / 2.0F, 0.0F + (float)mapdecoration.getY() / 2.0F + 64.0F + 4.0F, -0.025F);
+                poseStack.scale(f7, f7, 1.0F);
+                poseStack.translate(0.0F, 0.0F, -0.1F);
+                font.drawInBatch(component, 0.0F, 0.0F, -1, false, poseStack.last().pose(), multiBufferSource, Font.DisplayMode.NORMAL, Integer.MIN_VALUE, lastVanillaMapRenderPackedLight);
+                poseStack.popPose();
+            }
+        }
+    }
 }

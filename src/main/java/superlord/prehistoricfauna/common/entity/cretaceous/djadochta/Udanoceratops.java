@@ -32,10 +32,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ankylosaurus;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
 import superlord.prehistoricfauna.common.entity.goal.AggressiveTempermentAttackGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.CathemeralSleepGoal;
@@ -51,14 +47,11 @@ import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.ProtectBabyGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
-import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Dilophosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Stegosaurus;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
+import superlord.prehistoricfauna.init.PFTags;
 
 public class Udanoceratops extends DinosaurEntity {
 	private int maxHunger = 25;
@@ -103,15 +96,9 @@ public class Udanoceratops extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new DinosaurMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new NaturalMateGoal(this, 1.0D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal<Camarasaurus>(this, Camarasaurus.class, 7F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal<Velociraptor>(this, Velociraptor.class, 7F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal<Allosaurus>(this, Allosaurus.class, 7F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal<Stegosaurus>(this, Stegosaurus.class, 7F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal<Triceratops>(this, Triceratops.class, 7F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal<Ankylosaurus>(this, Ankylosaurus.class, 7F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal<Tyrannosaurus>(this, Tyrannosaurus.class, 7F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal<Dakotaraptor>(this, Dakotaraptor.class, 7F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Dilophosaurus>(this, Dilophosaurus.class, 10F, 1.5D, 1.75D));
+		this.goalSelector.addGoal(8, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
+			return p_213487_0_.getType().is(PFTags.UDANOCERATOPS_AVOIDING);
+		}));
 		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
 		this.goalSelector.addGoal(0, new HerbivoreEatGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(0, new HerbivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));

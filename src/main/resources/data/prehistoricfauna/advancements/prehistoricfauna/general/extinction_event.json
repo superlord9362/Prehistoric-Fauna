@@ -371,14 +371,6 @@
 			}
 		}
 	},
-	"thoracosaurus": {
-		"trigger": "minecraft:player_killed_entity",
-		"conditions": {
-			"entity": {
-				"type": "prehistoricfauna:thoracosaurus"
-			}
-		}
-	},
 	"goyocephale": {
 		"trigger": "minecraft:player_killed_entity",
 		"conditions": {
@@ -456,6 +448,46 @@
 		"conditions": {
 			"entity": {
 				"type": "prehistoricfauna:incisivosaurus"
+			}
+		}
+	},
+	"anzu": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:anzu"
+			}
+		}
+	},
+	"changyuraptor": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:changyuraptor"
+			}
+		}
+	},
+	"beipiaosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:beipiaosaurus"
+			}
+		}
+	},
+	"liaoningosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:liaoningosaurus"
+			}
+		}
+	},
+	"byronosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:byronosaurus"
 			}
 		}
 	}
@@ -594,9 +626,6 @@
 		"palaeosaniwa"
 	],
 	[
-		"thoracosaurus"
-	],
-	[
 		"goyocephale"
 	],
 	[
@@ -625,6 +654,21 @@
 	],
 	[
 		"incisivosaurus"
+	],
+	[
+		"anzu"
+	],
+	[
+		"beipiaosaurus"
+	],
+	[
+		"liaoningosaurus"
+	],
+	[
+		"changyuraptor"
+	],
+	[
+		"byronosaurus"
 	]
   ]
 }

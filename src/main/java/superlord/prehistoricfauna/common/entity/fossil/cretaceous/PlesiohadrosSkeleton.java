@@ -25,6 +25,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.entity.PrehistoricEntity;
 import superlord.prehistoricfauna.init.PFItems;
@@ -215,13 +216,12 @@ public class PlesiohadrosSkeleton extends PrehistoricEntity {
 
 
 	public boolean hurt(DamageSource source, float amount) {
-		System.out.println(source);
 		if (source.is(DamageTypeTags.IS_EXPLOSION)) {
 			this.playBrokenSound();
 			this.playParticles();
 			this.spawnFossil(source);
-			this.kill();
-            return false;
+			this.remove(RemovalReason.KILLED);
+			this.gameEvent(GameEvent.ENTITY_DIE);
          }
 		if (source.getDirectEntity() instanceof Player) {
 			this.playBrokenSound();
@@ -231,6 +231,7 @@ public class PlesiohadrosSkeleton extends PrehistoricEntity {
 				this.spawnFossil(source);
 			}
 			this.remove(RemovalReason.KILLED);
+			this.gameEvent(GameEvent.ENTITY_DIE);
 		}
 		return false;
 	}

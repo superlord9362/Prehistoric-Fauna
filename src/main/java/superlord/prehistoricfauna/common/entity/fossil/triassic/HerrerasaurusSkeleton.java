@@ -9,6 +9,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -24,6 +25,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.entity.PrehistoricEntity;
 import superlord.prehistoricfauna.init.PFItems;
@@ -99,7 +101,7 @@ public class HerrerasaurusSkeleton extends PrehistoricEntity {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 100.0D);
+		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 1.0D);
 	}
 
 	protected int getExperiencePoints(Player player) {
@@ -155,6 +157,13 @@ public class HerrerasaurusSkeleton extends PrehistoricEntity {
 
 
 	public boolean hurt(DamageSource source, float amount) {
+		if (source.is(DamageTypeTags.IS_EXPLOSION)) {
+			this.playBrokenSound();
+			this.playParticles();
+			this.spawnFossil(source);
+			this.remove(RemovalReason.KILLED);
+			this.gameEvent(GameEvent.ENTITY_DIE);
+         }
 		if (source.getDirectEntity() instanceof Player) {
 			this.playBrokenSound();
 			this.playParticles();
@@ -163,6 +172,7 @@ public class HerrerasaurusSkeleton extends PrehistoricEntity {
 				this.spawnFossil(source);
 			}
 			this.remove(RemovalReason.KILLED);
+			this.gameEvent(GameEvent.ENTITY_DIE);
 		}
 		return false;
 	}

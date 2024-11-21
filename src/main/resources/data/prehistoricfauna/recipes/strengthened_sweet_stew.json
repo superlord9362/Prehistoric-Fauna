@@ -1,0 +1,24 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+		"item": "prehistoricfauna:taxus_berries"
+    },
+    {
+		"item": "prehistoricfauna:taxus_berries"
+    },
+    {
+		"item": "prehistoricfauna:taxus_berries"
+    },
+    {
+		"item": "minecraft:bowl"
+	},
+	{
+		"item": "prehistoricfauna:bottled_syrup"
+	}
+  ],
+  "result": {
+    "item": "prehistoricfauna:strengthened_sweet_stew",
+    "count": 1
+  }
+}

@@ -48,6 +48,7 @@ import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.BreedGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowParentGoal;
@@ -287,6 +288,9 @@ public class Triceratops extends AbstractChestedHorse  {
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 		this.goalSelector.addGoal(0, new Triceratops.HerbivoreEatGoal((double)1.2F, 12, 2));
 		this.goalSelector.addGoal(1, new RunAroundLikeCrazyGoal(this, 1.2F));
+		this.goalSelector.addGoal(8, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
+			return p_213487_0_.getType().is(PFTags.TRICERATOPS_AVOIDING);
+		}));
 	}
 
 
@@ -1450,7 +1454,7 @@ public class Triceratops extends AbstractChestedHorse  {
 			super(Triceratops.this, p_i50737_2_, p_i50737_4_, p_i50737_5_);
 		}
 
-		public double getTargetDistanceSq() {
+		public double acceptedDistance() {
 			return 2.0D;
 		}
 
@@ -1653,7 +1657,7 @@ public class Triceratops extends AbstractChestedHorse  {
 			super(Triceratops.this, p_i50737_2_, p_i50737_4_, p_i50737_5_);
 		}
 
-		public double getTargetDistanceSq() {
+		public double acceptedDistance() {
 			return 2.0D;
 		}
 

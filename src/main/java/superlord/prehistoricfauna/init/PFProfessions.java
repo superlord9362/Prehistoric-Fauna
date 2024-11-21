@@ -11,20 +11,22 @@ import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import net.minecraft.world.item.trading.MerchantOffer;
 
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class PFProfessions {
     public static final DeferredRegister<PoiType> POI_TYPES = DeferredRegister.create(ForgeRegistries.POI_TYPES, PrehistoricFauna.MOD_ID);
-    public static final RegistryObject<PoiType> PALEONTOLOGY_TABLE_POI = POI_TYPES.register("geologist_poi", () -> new PoiType(ImmutableSet.copyOf(PFBlocks.PALEONTOLOGY_TABLE.get().getStateDefinition().getPossibleStates()), 1, 1));
     public static final DeferredRegister<VillagerProfession> PROFESSIONS = DeferredRegister.create(ForgeRegistries.VILLAGER_PROFESSIONS, PrehistoricFauna.MOD_ID);
-    public static final RegistryObject<VillagerProfession> GEOLOGIST = PROFESSIONS.register("scribe", ()-> new VillagerProfession("geologist", (entry) -> entry.value().equals(PALEONTOLOGY_TABLE_POI.get()), (entry) -> entry.value().equals(PALEONTOLOGY_TABLE_POI.get()), ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_MASON));
-
+    
+    public static final RegistryObject<PoiType> GEOLOGIST_POI = POI_TYPES.register("geologist_poi", () -> new PoiType(ImmutableSet.copyOf(PFBlocks.PALEONTOLOGY_TABLE.get().getStateDefinition().getPossibleStates()), 1, 1));
+    
+    public static final RegistryObject<VillagerProfession> GEOLOGIST = PROFESSIONS.register("geologist", () -> new VillagerProfession("geologist", holder -> holder.get() == GEOLOGIST_POI.get(), holder -> holder.get() == GEOLOGIST_POI.get(), ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_MASON));
+    
     public static void addGeologistTrades(Int2ObjectMap<List<VillagerTrades.ItemListing>> trades) {
     	 final float emeraldForItemsMultiplier = 0.05F; 
          final float itemForEmeraldMultiplier = 0.05F;

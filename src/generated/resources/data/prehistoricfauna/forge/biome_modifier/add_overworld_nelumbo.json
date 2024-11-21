@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_features",
+  "biomes": [
+    "minecraft:swamp",
+    "minecraft:mangrove_swamp",
+    "minecraft:river"
+  ],
+  "features": "prehistoricfauna:placed_rare_nelumbo",
+  "step": "vegetal_decoration"
+}

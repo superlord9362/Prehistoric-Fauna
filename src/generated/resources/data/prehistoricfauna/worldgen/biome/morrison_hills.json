@@ -69,7 +69,14 @@
   "has_precipitation": false,
   "spawn_costs": {},
   "spawners": {
-    "ambient": [],
+    "ambient": [
+      {
+        "type": "prehistoricfauna:dermestid_beetle",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 7
+      }
+    ],
     "axolotls": [],
     "creature": [
       {
@@ -113,12 +120,6 @@
         "maxCount": 4,
         "minCount": 2,
         "weight": 2
-      },
-      {
-        "type": "prehistoricfauna:dermestid_beetle",
-        "maxCount": 3,
-        "minCount": 1,
-        "weight": 7
       }
     ],
     "misc": [],

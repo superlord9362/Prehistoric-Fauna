@@ -1,0 +1,11 @@
+{
+	"replace": false,
+	"values": [
+		"#prehistoricfauna:eighty_hunger_animals",
+		"#prehistoricfauna:one_hundred_hunger_animals",
+		"#prehistoricfauna:two_hundred_hunger_animals",
+		"prehistoricfauna:ceratosaurus",
+		"prehistoricfauna:allosaurus",
+		"prehistoricfauna:yutyrannus"
+	]
+}

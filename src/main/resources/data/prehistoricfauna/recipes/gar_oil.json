@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:raw_gar"
+    },
+	{
+		"item": "minecraft:glass_bottle"
+	}
+  ],
+  "result": {
+    "item": "prehistoricfauna:gar_oil"
+  }
+}

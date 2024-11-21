@@ -61,11 +61,6 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ankylosaurus;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Palaeosaniwa;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.CarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
@@ -78,19 +73,6 @@ import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.PiscivoreEatFromFeederGoal;
 import superlord.prehistoricfauna.common.entity.goal.SkittishFleeGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
-import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Dilophosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Megapnosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Ceratosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Stegosaurus;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Coelophysis;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Poposaurus;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Postosuchus;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Exaeretodon;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Herrerasaurus;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Saurosuchus;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Sillosuchus;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
@@ -101,7 +83,7 @@ public class Halszkaraptor extends DinosaurEntity {
 
 	public int ticksSinceEaten;
 
-	private int maxHunger = 15;
+	private int maxHunger = 10;
 
 	public Halszkaraptor(EntityType<? extends TamableAnimal> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
@@ -146,26 +128,9 @@ public class Halszkaraptor extends DinosaurEntity {
 			return p_213487_1_.getType().is(PFTags.HALSZKARAPTOR_HUNTING);
 		}));
 		this.goalSelector.addGoal(7, new SkittishFleeGoal(this, Player.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Allosaurus>(this, Allosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Ceratosaurus>(this, Ceratosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Camarasaurus>(this, Camarasaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Stegosaurus>(this, Stegosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Dakotaraptor>(this, Dakotaraptor.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Tyrannosaurus>(this, Tyrannosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Triceratops>(this, Triceratops.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Ankylosaurus>(this, Ankylosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Palaeosaniwa>(this, Palaeosaniwa.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Exaeretodon>(this, Exaeretodon.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Herrerasaurus>(this, Herrerasaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Saurosuchus>(this, Saurosuchus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Sillosuchus>(this, Sillosuchus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Dilophosaurus>(this, Dilophosaurus.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Halszkaraptor>(this, Halszkaraptor.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Megapnosaurus>(this, Megapnosaurus.class, 10F, 1.2D, 1.5D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Poposaurus>(this, Poposaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Postosuchus>(this, Postosuchus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Coelophysis>(this, Coelophysis.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Velociraptor>(this, Velociraptor.class, 10F, 1.2D, 1.5D));
+		this.goalSelector.addGoal(8, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
+			return p_213487_0_.getType().is(PFTags.HALSZKARAPTOR_AVOIDING);
+		}));
 	}
 
 	public int getMaxAirSupply() {
@@ -202,9 +167,9 @@ public class Halszkaraptor extends DinosaurEntity {
 	public void setAge(int age) {
 		super.setAge(age);
 		if (this.getAge() >= -24000 && this.getAge() < 0) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(3);
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(2);
 		} else if(this.getAge() >= 0) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(6);
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(4);
 		}
 	}
 
@@ -216,12 +181,13 @@ public class Halszkaraptor extends DinosaurEntity {
 		} else {
 			this.setPassive(true);
 		}
+		this.setDiurnal(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0D).add(Attributes.MOVEMENT_SPEED, 0.23D).add(Attributes.FOLLOW_RANGE, 15).add(Attributes.ATTACK_DAMAGE, 1);
+		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 4.0D).add(Attributes.MOVEMENT_SPEED, 0.23D).add(Attributes.FOLLOW_RANGE, 15).add(Attributes.ATTACK_DAMAGE, 1);
 	}
 
 	protected SoundEvent getAmbientSound() {

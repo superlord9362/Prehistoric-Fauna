@@ -150,8 +150,8 @@ public class BurrowBlock extends BaseEntityBlock {
 		if (p_153907_.getBlockState(p_153909_).getBlock() instanceof FireBlock) {
 			BlockEntity blockentity = p_153907_.getBlockEntity(p_153908_);
 			if (blockentity instanceof BurrowBlockEntity) {
-				BurrowBlockEntity beehiveblockentity = (BurrowBlockEntity)blockentity;
-				beehiveblockentity.emptyAllLivingFromBurrow((Player)null, p_153904_, BurrowBlockEntity.BurrowerReleaseStatus.EMERGENCY);
+				BurrowBlockEntity burrowblockentity = (BurrowBlockEntity)blockentity;
+				burrowblockentity.emptyAllLivingFromBurrow((Player)null, p_153904_, BurrowBlockEntity.BurrowerReleaseStatus.EMERGENCY);
 			}
 		}
 		if (!hasAnyFace(p_153904_)) {
@@ -280,9 +280,9 @@ public class BurrowBlock extends BaseEntityBlock {
 	@SuppressWarnings("deprecation")
 	public void playerDestroy(Level p_49584_, Player p_49585_, BlockPos p_49586_, BlockState p_49587_, @Nullable BlockEntity p_49588_, ItemStack p_49589_) {
 		super.playerDestroy(p_49584_, p_49585_, p_49586_, p_49587_, p_49588_, p_49589_);
-		if (!p_49584_.isClientSide && p_49588_ instanceof BurrowBlockEntity beehiveblockentity) {
+		if (!p_49584_.isClientSide && p_49588_ instanceof BurrowBlockEntity burrowblockentity) {
 			if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, p_49589_) == 0) {
-				beehiveblockentity.emptyAllLivingFromBurrow(p_49585_, p_49587_, BurrowBlockEntity.BurrowerReleaseStatus.EMERGENCY);
+				burrowblockentity.emptyAllLivingFromBurrow(p_49585_, p_49587_, BurrowBlockEntity.BurrowerReleaseStatus.EMERGENCY);
 				p_49584_.updateNeighbourForOutputSignal(p_49586_, this);
 			}
 		}
@@ -326,13 +326,13 @@ public class BurrowBlock extends BaseEntityBlock {
 		if (!p_49608_.isClientSide && p_49611_.isCreative() && p_49608_.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)) {
 			BlockEntity blockentity = p_49608_.getBlockEntity(p_49609_);
 			if (blockentity instanceof BurrowBlockEntity) {
-				BurrowBlockEntity beehiveblockentity = (BurrowBlockEntity)blockentity;
+				BurrowBlockEntity burrowblockentity = (BurrowBlockEntity)blockentity;
 				ItemStack itemstack = new ItemStack(this);
-				boolean flag = !beehiveblockentity.isEmpty();
+				boolean flag = !burrowblockentity.isEmpty();
 				if (flag) {
 					if (flag) {
 						CompoundTag compoundtag = new CompoundTag();
-						compoundtag.put("Burrowers", beehiveblockentity.writeBurrowers());
+						compoundtag.put("Burrowers", burrowblockentity.writeBurrowers());
 						BlockItem.setBlockEntityData(itemstack, PFBlockEntities.BURROW.get(), compoundtag);
 					}
 					CompoundTag compoundtag1 = new CompoundTag();
@@ -353,8 +353,8 @@ public class BurrowBlock extends BaseEntityBlock {
 		if (entity instanceof PrimedTnt || entity instanceof Creeper || entity instanceof WitherSkull || entity instanceof WitherBoss || entity instanceof MinecartTNT) {
 			BlockEntity blockentity = p_287581_.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
 			if (blockentity instanceof BurrowBlockEntity) {
-				BurrowBlockEntity beehiveblockentity = (BurrowBlockEntity)blockentity;
-				beehiveblockentity.emptyAllLivingFromBurrow((Player)null, p_49636_, BurrowBlockEntity.BurrowerReleaseStatus.EMERGENCY);
+				BurrowBlockEntity burrowblockentity = (BurrowBlockEntity)blockentity;
+				burrowblockentity.emptyAllLivingFromBurrow((Player)null, p_49636_, BurrowBlockEntity.BurrowerReleaseStatus.EMERGENCY);
 			}
 		}
 

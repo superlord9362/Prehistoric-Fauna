@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_features",
+  "biomes": [
+    "minecraft:windswept_forest",
+    "minecraft:taiga",
+    "minecraft:grove"
+  ],
+  "features": "prehistoricfauna:placed_taxus_trees",
+  "step": "vegetal_decoration"
+}

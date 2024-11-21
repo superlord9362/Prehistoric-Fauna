@@ -13,6 +13,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.Pose;
@@ -37,8 +38,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.common.entity.HerdDinosaurEntity;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
 import superlord.prehistoricfauna.common.entity.goal.CathemeralSleepGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
@@ -51,19 +50,11 @@ import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.SkittishFleeGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
-import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Dilophosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Ceratosaurus;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Coelophysis;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Poposaurus;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Postosuchus;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Herrerasaurus;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Saurosuchus;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
+import superlord.prehistoricfauna.init.PFTags;
 
 public class Aepyornithomimus extends HerdDinosaurEntity {
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(PFBlocks.COBBANIA.get().asItem());
@@ -90,7 +81,6 @@ public class Aepyornithomimus extends HerdDinosaurEntity {
 		this.level().addFreshEntity(itemEntity);
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
@@ -104,23 +94,15 @@ public class Aepyornithomimus extends HerdDinosaurEntity {
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.goalSelector.addGoal(7, new SkittishFleeGoal(this, Player.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Allosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Ceratosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Camarasaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Dakotaraptor.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Tyrannosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Herrerasaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Saurosuchus>(this, Saurosuchus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Dilophosaurus>(this, Dilophosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Poposaurus>(this, Poposaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Postosuchus>(this, Postosuchus.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new FollowHerdLeaderGoal(this));
 		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 		this.goalSelector.addGoal(0, new HerbivoreEatGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(0, new HerbivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Coelophysis>(this, Coelophysis.class, 10F, 1.5D, 1.75D));
+		this.goalSelector.addGoal(8, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
+			return p_213487_0_.getType().is(PFTags.AEPYORNITHOMIMUS_AVOIDING);
+		}));
 	}
 
 	protected SoundEvent getAmbientSound() {

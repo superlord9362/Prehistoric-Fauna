@@ -45,24 +45,18 @@ import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.PassivePanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.SkittishFleeGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
-import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Dilophosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Ceratosaurus;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Poposaurus;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Postosuchus;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Herrerasaurus;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Saurosuchus;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEffects;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
+import superlord.prehistoricfauna.init.PFTags;
 
 public class Pachycephalosaurus extends DinosaurEntity {
 	public int maxHunger = 25;
 	private static final EntityDataAccessor<Boolean> RAMMING = SynchedEntityData.defineId(Pachycephalosaurus.class, EntityDataSerializers.BOOLEAN);
 	public int rammingTime = 0;
+	private int warningSoundTicks;
 
 	public Pachycephalosaurus(EntityType<? extends Pachycephalosaurus> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
@@ -115,16 +109,9 @@ public class Pachycephalosaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new HerbivoreEatGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(0, new HerbivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(7, new SkittishFleeGoal(this, Player.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Allosaurus>(this, Allosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Ceratosaurus>(this, Ceratosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Camarasaurus>(this, Camarasaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Dakotaraptor>(this, Dakotaraptor.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Tyrannosaurus>(this, Tyrannosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Herrerasaurus>(this, Herrerasaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Saurosuchus>(this, Saurosuchus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Dilophosaurus>(this, Dilophosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Poposaurus>(this, Poposaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal<Postosuchus>(this, Postosuchus.class, 10F, 1.5D, 1.75D));
+		this.goalSelector.addGoal(8, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
+			return p_213487_0_.getType().is(PFTags.PACHYCEPHALOSAURUS_AVOIDING);
+		}));
 	}
 
 	public void aiStep() {
@@ -160,6 +147,20 @@ public class Pachycephalosaurus extends DinosaurEntity {
 		return PFSounds.PACHYCEPHALOSAURUS_DEATH.get();
 	}
 
+	protected void playWarningSound() {
+		if (this.warningSoundTicks <= 0) {
+			this.playSound(PFSounds.PACHYCEPHALOSAURUS_WARN.get(), 1.0F, this.getVoicePitch());
+			this.warningSoundTicks = 40;
+		}
+	}
+
+	public void tick() {
+		super.tick();
+		if (this.warningSoundTicks > 0) {
+			--this.warningSoundTicks;
+		}
+	}
+
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.22D).add(Attributes.ATTACK_DAMAGE, 4).add(Attributes.ATTACK_KNOCKBACK, 3);
 	}
@@ -184,6 +185,7 @@ public class Pachycephalosaurus extends DinosaurEntity {
 		} else {
 			this.setProtective(true);
 		}
+		this.setDiurnal(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
@@ -211,7 +213,7 @@ public class Pachycephalosaurus extends DinosaurEntity {
 		public MeleeAttackGoal() {
 			super(Pachycephalosaurus.this, 1.25D, true);
 		}
-		
+
 		public boolean canUse() {
 			return !Pachycephalosaurus.this.isRamming() && super.canUse();
 		}
@@ -224,6 +226,10 @@ public class Pachycephalosaurus extends DinosaurEntity {
 			} else if (distToEnemySqr <= d0 * 2.0D) {
 				if (this.isTimeToAttack()) {
 					this.resetAttackCooldown();
+				}
+
+				if (this.getTicksUntilNextAttack() <= 10) {
+					Pachycephalosaurus.this.playWarningSound();
 				}
 			} else {
 				this.resetAttackCooldown();
@@ -270,13 +276,13 @@ public class Pachycephalosaurus extends DinosaurEntity {
 			}
 
 		}
-		
+
 		private void strongKnockback(Entity p_33340_) {
-		      double d0 = p_33340_.getX() - Pachycephalosaurus.this.getX();
-		      double d1 = p_33340_.getZ() - Pachycephalosaurus.this.getZ();
-		      double d2 = Math.max(d0 * d0 + d1 * d1, 0.001D);
-		      p_33340_.push(d0 / d2 * 4.0D, 0.2D, d1 / d2 * 4.0D);
-		   }
+			double d0 = p_33340_.getX() - Pachycephalosaurus.this.getX();
+			double d1 = p_33340_.getZ() - Pachycephalosaurus.this.getZ();
+			double d2 = Math.max(d0 * d0 + d1 * d1, 0.001D);
+			p_33340_.push(d0 / d2 * 4.0D, 0.2D, d1 / d2 * 4.0D);
+		}
 
 		public boolean canContinueToUse() {
 			return super.canContinueToUse();

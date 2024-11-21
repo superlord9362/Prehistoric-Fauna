@@ -25,7 +25,7 @@ public class UdanoceratopsRenderer extends MobRenderer<Udanoceratops, Udanocerat
 	private static final ResourceLocation SNIFFER_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/sniffer_sleeping.png");
 
 	public UdanoceratopsRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new UdanoceratopsModel(renderManagerIn.bakeLayer(ClientEvents.UDANOCERATOPS)), 0.25F);
+		super(renderManagerIn, new UdanoceratopsModel(renderManagerIn.bakeLayer(ClientEvents.UDANOCERATOPS)), 1F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new UdanoceratopsEyeLayer(this));
 		}

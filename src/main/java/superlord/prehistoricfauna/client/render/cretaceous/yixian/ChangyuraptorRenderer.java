@@ -21,7 +21,7 @@ public class ChangyuraptorRenderer extends MobRenderer<Changyuraptor, Changyurap
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ChangyuraptorRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new ChangyuraptorModel(renderManagerIn.bakeLayer(ClientEvents.CHANGYURAPTOR)), 0.5625F);
+		super(renderManagerIn, new ChangyuraptorModel(renderManagerIn.bakeLayer(ClientEvents.CHANGYURAPTOR)), 0.3125F);
 		this.addLayer(new ItemInHandLayer(this, renderManagerIn.getItemInHandRenderer()));
 	}
 

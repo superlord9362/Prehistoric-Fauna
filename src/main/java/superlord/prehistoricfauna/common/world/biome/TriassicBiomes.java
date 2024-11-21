@@ -17,7 +17,7 @@ import net.minecraft.world.level.biome.MobSpawnSettings;
 
 public class TriassicBiomes {
 	
-	private static Biome biome(boolean hasPrecipitation, int waterColor, int waterFogColor, int skyColor, int fogColor, float temperature, float downfall, MobSpawnSettings.Builder spawnBuilder, BiomeGenerationSettings.Builder biomeBuilder) {
+	private static Biome biome(boolean hasPrecipitation, int waterColor, int waterFogColor, int skyColor, int fogColor, int foliageColor, float temperature, float downfall, MobSpawnSettings.Builder spawnBuilder, BiomeGenerationSettings.Builder biomeBuilder) {
 		return (new Biome.BiomeBuilder())
 				.hasPrecipitation(hasPrecipitation)
 				.temperature(temperature)
@@ -27,6 +27,8 @@ public class TriassicBiomes {
 						.waterFogColor(waterFogColor)
 						.fogColor(fogColor)
 						.skyColor(skyColor)
+						.foliageColorOverride(foliageColor)
+						.grassColorOverride(foliageColor)
 						.ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
 						.build())
 				.mobSpawnSettings(spawnBuilder.build())
@@ -58,7 +60,7 @@ public class TriassicBiomes {
 		if (PrehistoricFaunaConfig.coelophysisChinleFlatsSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.COELOPHYSIS.get(), PrehistoricFaunaConfig.coelophysisChinleFlatsSpawnWeight, 1, 3));
 		if (PrehistoricFaunaConfig.poposaurusChinleFlatsSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.POPOSAURUS.get(), PrehistoricFaunaConfig.poposaurusChinleFlatsSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.typothoraxChinleFlatsSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.TYPOTHORAX.get(), PrehistoricFaunaConfig.typothoraxChinleFlatsSpawnWeight, 1, 4));
-		return biome(true, 7372597, 5267523, 15922646, 13622197, 0.9F, 0.9F, spawnSettings, biomeFeatures);
+		return biome(true, 7372597, 5267523, 15922646, 13622197, 7372597, 0.9F, 0.9F, spawnSettings, biomeFeatures);
 	}
 	
 	public static Biome chinleRiver(HolderGetter<PlacedFeature> placedFeatureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
@@ -83,7 +85,7 @@ public class TriassicBiomes {
 		if (PrehistoricFaunaConfig.poposaurusChinleRiverSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.POPOSAURUS.get(), PrehistoricFaunaConfig.poposaurusChinleRiverSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.typothoraxChinleRiverSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.TYPOTHORAX.get(), PrehistoricFaunaConfig.typothoraxChinleRiverSpawnWeight, 1, 4));
         if (PrehistoricFaunaConfig.lonchidionChinleRiverSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.LONCHIDION.get(), PrehistoricFaunaConfig.lonchidionChinleRiverSpawnWeight, 1, 2));
-        return biome(true, 7372597, 5267523, 15922646, 13622197, 0.9F, 0.9F, spawnSettings, biomeFeatures);
+        return biome(true, 7372597, 5267523, 15922646, 13622197, 7372597, 0.9F, 0.9F, spawnSettings, biomeFeatures);
 	}
 	
 	public static Biome chinleSwamp(HolderGetter<PlacedFeature> placedFeatureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
@@ -108,7 +110,7 @@ public class TriassicBiomes {
 		if (PrehistoricFaunaConfig.poposaurusChinleSwampSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.POPOSAURUS.get(), PrehistoricFaunaConfig.poposaurusChinleSwampSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.typothoraxChinleSwampSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.TYPOTHORAX.get(), PrehistoricFaunaConfig.typothoraxChinleSwampSpawnWeight, 1, 4));
         if (PrehistoricFaunaConfig.lonchidionChinleSwampSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.LONCHIDION.get(), PrehistoricFaunaConfig.lonchidionChinleSwampSpawnWeight, 1, 2));
-		return biome(true, 7372597, 5267523, 15922646, 13622197, 0.9F, 0.9F, spawnSettings, biomeFeatures);
+		return biome(true, 7372597, 5267523, 15922646, 13622197, 7372597, 0.9F, 0.9F, spawnSettings, biomeFeatures);
 	}
 	
 	public static Biome chinleWoodedMountains(HolderGetter<PlacedFeature> placedFeatureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
@@ -133,7 +135,7 @@ public class TriassicBiomes {
 		if (PrehistoricFaunaConfig.poposaurusChinleWoodedMountainsSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.POPOSAURUS.get(), PrehistoricFaunaConfig.poposaurusChinleWoodedMountainsSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.typothoraxChinleWoodedMountainsSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.TYPOTHORAX.get(), PrehistoricFaunaConfig.typothoraxChinleWoodedMountainsSpawnWeight, 1, 4));
         if (PrehistoricFaunaConfig.lonchidionChinleWoodedMountainsSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.LONCHIDION.get(), PrehistoricFaunaConfig.lonchidionChinleWoodedMountainsSpawnWeight, 1, 2));
-		return biome(true, 7372597, 5267523, 15922646, 13622197, 0.9F, 0.9F, spawnSettings, biomeFeatures);
+		return biome(true, 7372597, 5267523, 15922646, 13622197, 7372597, 0.9F, 0.9F, spawnSettings, biomeFeatures);
 	}
 	
 	public static Biome ischigualastoClearing(HolderGetter<PlacedFeature> placedFeatureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
@@ -155,7 +157,7 @@ public class TriassicBiomes {
 		if (PrehistoricFaunaConfig.caveSentinelIschigualastoClearingSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.CAVE_SENTINEL.get(), PrehistoricFaunaConfig.caveSentinelIschigualastoClearingSpawnWeight, 1, 1));
 		if (PrehistoricFaunaConfig.ceratodusIschigualastoClearingSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.CERATODUS.get(), PrehistoricFaunaConfig.ceratodusIschigualastoClearingSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.landSentinelIschigualastoClearingSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.LAND_SENTINEL.get(), PrehistoricFaunaConfig.landSentinelIschigualastoClearingSpawnWeight, 1, 1));
-		return biome(true, 4417619, 4219470, 10464974, 12638463, 0.75F, 0.9F, spawnSettings, biomeFeatures);
+		return biome(true, 4417619, 4219470, 10464974, 12638463, 5468447, 0.75F, 0.9F, spawnSettings, biomeFeatures);
 	}
 	
 	public static Biome ischigualastoForest(HolderGetter<PlacedFeature> placedFeatureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
@@ -176,7 +178,7 @@ public class TriassicBiomes {
 		if (PrehistoricFaunaConfig.caveSentinelIschigualastoForestSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.CAVE_SENTINEL.get(), PrehistoricFaunaConfig.caveSentinelIschigualastoForestSpawnWeight, 1, 1));
 		if (PrehistoricFaunaConfig.ceratodusIschigualastoForestSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.CERATODUS.get(), PrehistoricFaunaConfig.ceratodusIschigualastoForestSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.landSentinelIschigualastoForestSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.LAND_SENTINEL.get(), PrehistoricFaunaConfig.landSentinelIschigualastoForestSpawnWeight, 1, 1));
-		return biome(true, 4417619, 4219470, 10464974, 12638463, 0.75F, 0.9F, spawnSettings, biomeFeatures);
+		return biome(true, 4417619, 4219470, 10464974, 12638463, 5468447, 0.75F, 0.9F, spawnSettings, biomeFeatures);
 	}
 	
 	public static Biome ischigualastoHills(HolderGetter<PlacedFeature> placedFeatureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
@@ -197,7 +199,7 @@ public class TriassicBiomes {
 		if (PrehistoricFaunaConfig.ceratodusIschigualastoHillsSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.CERATODUS.get(), PrehistoricFaunaConfig.ceratodusIschigualastoHillsSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.caveSentinelIschigualastoHillsSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.CAVE_SENTINEL.get(), PrehistoricFaunaConfig.caveSentinelIschigualastoHillsSpawnWeight, 1, 1));
 		if (PrehistoricFaunaConfig.landSentinelIschigualastoHillsSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.LAND_SENTINEL.get(), PrehistoricFaunaConfig.landSentinelIschigualastoHillsSpawnWeight, 1, 1));
-		return biome(true, 4417619, 4219470, 10464974, 12638463, 0.75F, 0.9F, spawnSettings, biomeFeatures);
+		return biome(true, 4417619, 4219470, 10464974, 12638463, 5468447, 0.75F, 0.9F, spawnSettings, biomeFeatures);
 	}
 	
 	public static Biome ischigualastoRiver(HolderGetter<PlacedFeature> placedFeatureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
@@ -217,7 +219,7 @@ public class TriassicBiomes {
 		if (PrehistoricFaunaConfig.caveSentinelIschigualastoRiverSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.CAVE_SENTINEL.get(), PrehistoricFaunaConfig.caveSentinelIschigualastoRiverSpawnWeight, 1, 1));
 		if (PrehistoricFaunaConfig.ceratodusIschigualastoRiverSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.CERATODUS.get(), PrehistoricFaunaConfig.ceratodusIschigualastoRiverSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.landSentinelIschigualastoRiverSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.LAND_SENTINEL.get(), PrehistoricFaunaConfig.landSentinelIschigualastoRiverSpawnWeight, 1, 1));
-		return biome(true, 4417619, 4219470, 10464974, 12638463, 0.75F, 0.9F, spawnSettings, biomeFeatures);
+		return biome(true, 4417619, 4219470, 10464974, 12638463, 5468447, 0.75F, 0.9F, spawnSettings, biomeFeatures);
 	}
 
 }

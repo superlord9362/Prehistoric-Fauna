@@ -104,7 +104,9 @@ public class Allosaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(2, new DinosaurMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(2, new NaturalMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal<Camarasaurus>(this, Camarasaurus.class, 7F, 1.5D, 1.75D));
+		this.goalSelector.addGoal(8, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
+			return p_213487_0_.getType().is(PFTags.ALLOSAURUS_AVOIDING);
+		}));
 		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
 		this.goalSelector.addGoal(0, new CarnivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 		this.targetSelector.addGoal(0, new CarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213487_0_) -> {

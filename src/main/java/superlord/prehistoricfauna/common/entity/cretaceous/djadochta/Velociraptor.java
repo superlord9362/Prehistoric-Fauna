@@ -58,7 +58,6 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -72,9 +71,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.EntityEvent.Size;
 import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ankylosaurus;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.CarnivoreEatFromFeederGoal;
@@ -93,13 +89,6 @@ import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.OpportunistAttackGoal;
 import superlord.prehistoricfauna.common.entity.goal.ProtectBabyGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
-import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Dilophosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Ceratosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Stegosaurus;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Poposaurus;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Postosuchus;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
@@ -173,7 +162,6 @@ public class Velociraptor extends DinosaurEntity {
 		this.entityData.define(TAME_WANDER, false);
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	protected void registerGoals() {
 		this.attackAnimals = new Velociraptor.TamedHuntGoal(this, Animal.class, 10, false, false, (p_213487_0_) -> {
 			return p_213487_0_.getType().is(PFTags.VELOCIRAPTOR_HUNTING);
@@ -198,16 +186,9 @@ public class Velociraptor extends DinosaurEntity {
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.goalSelector.addGoal(13, new Velociraptor.SitAndLookGoal());
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, Ankylosaurus.class, 7F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, Triceratops.class, 7F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, Tyrannosaurus.class, 7F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, Camarasaurus.class, 7F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, Stegosaurus.class, 7F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, Allosaurus.class, 7F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, Ceratosaurus.class, 7F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Dilophosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Poposaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Postosuchus.class, 10F, 1.5D, 1.75D));
+		this.goalSelector.addGoal(8, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
+			return p_213487_0_.getType().is(PFTags.VELOCIRAPTOR_AVOIDING);
+		}));
 		this.goalSelector.addGoal(0, new SitWhenOrderedToGoal(this));
 		this.targetSelector.addGoal(0, new OwnerHurtByTargetGoal(this));
 		this.targetSelector.addGoal(0, new OwnerHurtTargetGoal(this));
@@ -332,29 +313,6 @@ public class Velociraptor extends DinosaurEntity {
 			this.take(item, itemstack.getCount());
 			item.remove(RemovalReason.DISCARDED);
 			this.eatTicks = 0;
-		}
-
-	}
-
-	protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
-		if (this.random.nextFloat() < 0.2F) {
-			float f = this.random.nextFloat();
-			ItemStack itemstack;
-			if (f < 0.05F) {
-				itemstack = new ItemStack(Items.EMERALD);
-			} else if (f < 0.2F) {
-				itemstack = new ItemStack(Items.EGG);
-			} else if (f < 0.4F) {
-				itemstack = this.random.nextBoolean() ? new ItemStack(Items.RABBIT_FOOT) : new ItemStack(Items.RABBIT_HIDE);
-			} else if (f < 0.6F) {
-				itemstack = new ItemStack(Items.WHEAT);
-			} else if (f < 0.8F) {
-				itemstack = new ItemStack(Items.LEATHER);
-			} else {
-				itemstack = new ItemStack(Items.FEATHER);
-			}
-
-			this.setItemSlot(EquipmentSlot.MAINHAND, itemstack);
 		}
 
 	}

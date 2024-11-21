@@ -29,7 +29,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.common.entity.BurrowingDinosaur;
-import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.AvoidHealthyAdultGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.CarnivoreEatFromFeederGoal;
@@ -52,7 +51,8 @@ import superlord.prehistoricfauna.init.PFTags;
 
 public class Palaeosaniwa extends BurrowingDinosaur {
 
-	private int maxHunger = 20;
+	private int maxHunger = 38;
+	private int warningSoundTicks;
 	
 	public Palaeosaniwa(EntityType<? extends Palaeosaniwa> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
@@ -60,12 +60,26 @@ public class Palaeosaniwa extends BurrowingDinosaur {
 		super.maxHunger = maxHunger;
 	}
 	
+	protected void playWarningSound() {
+		if (this.warningSoundTicks <= 0) {
+			this.playSound(PFSounds.PALAEOSANIWA_WARN.get(), 1.0F, this.getVoicePitch());
+			this.warningSoundTicks = 40;
+		}
+	}
+	
+	public void tick() {
+		super.tick();
+		if (this.warningSoundTicks > 0) {
+			--this.warningSoundTicks;
+		}
+	}
+	
 	public void setAge(int age) {
 		super.setAge(age);
 		if (this.getAge() >= -24000 && this.getAge() < 0) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(4);
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(7);
 		} else if(this.getAge() >= 0) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(8);
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(15);
 		}
 	}
 	
@@ -77,13 +91,16 @@ public class Palaeosaniwa extends BurrowingDinosaur {
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.targetSelector.addGoal(3, new DinosaurTerritorialAttackGoal(this));
 		this.targetSelector.addGoal(1, new DinosaurHurtByTargetGoal(this));
+		this.goalSelector.addGoal(1, new Palaeosaniwa.MeleeAttackGoal());
 //		this.goalSelector.addGoal(1, new CrepuscularSleepGoal(this));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new DinosaurMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new NaturalMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new BabyPanicGoal(this));
-		this.goalSelector.addGoal(0, new AvoidHealthyAdultGoal<DinosaurEntity>(this, DinosaurEntity.class, 10F, 1.5D, 1.75D));
+		this.goalSelector.addGoal(8, new AvoidHealthyAdultGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
+			return p_213487_0_.getType().is(PFTags.PALAEOSANIWA_AVOIDING);
+		}));
 		this.goalSelector.addGoal(7, new SkittishFleeGoal(this, Player.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(0, new CarnivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(0, new LowHealthOrBabyHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_237491_0_) -> {
@@ -121,7 +138,7 @@ public class Palaeosaniwa extends BurrowingDinosaur {
 	}
 	
 	public static AttributeSupplier.Builder createAttributes() {
-		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 8.0D).add(Attributes.MOVEMENT_SPEED, 0.2D).add(Attributes.ATTACK_DAMAGE, 3.0D);
+		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 15.0D).add(Attributes.MOVEMENT_SPEED, 0.2D).add(Attributes.ATTACK_DAMAGE, 5.0D);
 	}
 	
 	@Override
@@ -157,6 +174,9 @@ public class Palaeosaniwa extends BurrowingDinosaur {
 			} else if (distToEnemySqr <= d0 * 2.0D) {
 				if (this.isTimeToAttack()) {
 					this.resetAttackCooldown();
+				}
+				if (this.getTicksUntilNextAttack() <= 10) {
+					Palaeosaniwa.this.playWarningSound();
 				}
 			} else {
 				this.resetAttackCooldown();

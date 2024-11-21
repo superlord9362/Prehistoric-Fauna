@@ -11,6 +11,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
@@ -18,6 +19,7 @@ import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowParentGoal;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
@@ -90,6 +92,9 @@ public class Anzu extends DinosaurEntity {
 		}));
 		this.targetSelector.addGoal(0, new BabyCarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213487_0_) -> {
 			return p_213487_0_.getType().is(PFTags.ANZU_BABY_HUNTING);
+		}));
+		this.goalSelector.addGoal(8, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
+			return p_213487_0_.getType().is(PFTags.ANZU_AVOIDING);
 		}));
 	}
 
@@ -234,7 +239,7 @@ public class Anzu extends DinosaurEntity {
 										}
 									}
 									if (entity instanceof Player player) {
-										if (!trusts(player.getUUID()) && !isPassive()) {
+										if (!trusts(player.getUUID()) && !isPassive() || !player.getItemBySlot(EquipmentSlot.HEAD).is(PFItems.EGG_HELMET.get())) {
 											this.setTarget(player);
 										}
 									}

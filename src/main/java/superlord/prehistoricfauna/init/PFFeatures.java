@@ -25,6 +25,7 @@ import superlord.prehistoricfauna.common.feature.NeocalamitesFeature;
 import superlord.prehistoricfauna.common.feature.NoisySphereFeature;
 import superlord.prehistoricfauna.common.feature.PtilophyllumFeature;
 import superlord.prehistoricfauna.common.feature.QuereuxiaFeature;
+import superlord.prehistoricfauna.common.feature.RareNelumboFeature;
 import superlord.prehistoricfauna.common.feature.TallArchaefructusFeature;
 import superlord.prehistoricfauna.common.feature.TaxodiumKneeFeature;
 import superlord.prehistoricfauna.common.feature.WaterloggedHorsetailsFeature;
@@ -310,6 +311,7 @@ public class PFFeatures {
     public static final RegistryObject<MetasequoiaFallenLogFeature> METASEQUOIA_FALLEN_LOG = REGISTER.register("metasequoia_fallen_log", () -> new MetasequoiaFallenLogFeature(JohnstoniaConfig.CODEC.stable()));
     public static final RegistryObject<GinkgoFallenLogFeature> GINKGO_FALLEN_LOG = REGISTER.register("ginkgo_fallen_log", () -> new GinkgoFallenLogFeature(JohnstoniaConfig.CODEC.stable()));
     public static final RegistryObject<NelumboFeature> NELUMBO = REGISTER.register("nelubmo", () -> new NelumboFeature(CrassostreaOystersConfig.CODEC.stable()));
+    public static final RegistryObject<RareNelumboFeature> RARE_NELUMBO = REGISTER.register("rare_nelubmo", () -> new RareNelumboFeature(CrassostreaOystersConfig.CODEC.stable()));
     public static final RegistryObject<QuereuxiaFeature> QUEREUXIA = REGISTER.register("quereuxia", () -> new QuereuxiaFeature(CrassostreaOystersConfig.CODEC.stable()));
 
 }

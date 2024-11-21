@@ -11,6 +11,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -96,7 +97,7 @@ public class NestAndEggsBlock extends Block {
 					if (parentEntity instanceof DinosaurEntity parentDinosaur) {
 						Entity parent = this.entityTypeSupplier.get().create(world);
 						if (parentDinosaur.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE) &&  !parentDinosaur.isBaby() && !parentDinosaur.trusts(player.getUUID()) && !parentDinosaur.isTame() && parentDinosaur == parent) {
-							parentDinosaur.setTarget(player);
+							if (!player.getItemBySlot(EquipmentSlot.HEAD).is(PFItems.EGG_HELMET.get())) parentDinosaur.setTarget(player);
 						}
 					}
 				}
@@ -107,7 +108,7 @@ public class NestAndEggsBlock extends Block {
 					if (parentEntity instanceof Triceratops parentDinosaur) {
 						Entity parent = this.entityTypeSupplier.get().create(world);
 						if (parentDinosaur.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE) && !parentDinosaur.isBaby() && !parentDinosaur.trusts(player.getUUID()) && !parentDinosaur.isTamed() && parentDinosaur == parent) {
-							parentDinosaur.setTarget(player);
+							if (!player.getItemBySlot(EquipmentSlot.HEAD).is(PFItems.EGG_HELMET.get())) parentDinosaur.setTarget(player);
 						}
 					}
 				}

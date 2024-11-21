@@ -19,7 +19,7 @@ public class PalaeosaniwaRenderer extends MobRenderer<Palaeosaniwa, Palaeosaniwa
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/palaeosaniwa/melanistic_sleeping.png");
 
 	public PalaeosaniwaRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new PalaeosaniwaModel(renderManagerIn.bakeLayer(ClientEvents.PALAEOSANIWA)), 0.25F);
+		super(renderManagerIn, new PalaeosaniwaModel(renderManagerIn.bakeLayer(ClientEvents.PALAEOSANIWA)), 0.5F);
 	}
 
 	protected void scale(Palaeosaniwa thescelosaurus, PoseStack matrixStackIn, float partialTickTime) {

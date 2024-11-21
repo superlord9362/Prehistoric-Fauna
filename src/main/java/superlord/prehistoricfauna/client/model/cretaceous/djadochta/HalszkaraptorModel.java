@@ -74,10 +74,8 @@ public class HalszkaraptorModel extends EntityModel<Halszkaraptor> implements Ar
 			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
 				this.RLeg.y = Mth.lerp(sleepProgress, 3, 0);
 				this.LLeg.y = Mth.lerp(sleepProgress, 3, 0);
-				this.RWing.y = Mth.lerp(sleepProgress, 1, 0.3F);
 				this.RWing.xRot = Mth.lerp(sleepProgress, 0, -0.33004175888896664F);
 				this.RWing.yRot = Mth.lerp(sleepProgress, 0, -0.21537363235926135F);
-				this.LWing.y = Mth.lerp(sleepProgress, 1, 0.3F);
 				this.LWing.xRot = Mth.lerp(sleepProgress, 0, -0.33004175888896664F);
 				this.LWing.yRot = Mth.lerp(sleepProgress, 0, 0.21537363235926135F);
 				this.Neck.y = Mth.lerp(sleepProgress, 0, 2.4F);
@@ -93,10 +91,8 @@ public class HalszkaraptorModel extends EntityModel<Halszkaraptor> implements Ar
 			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
 				this.RLeg.y = Mth.lerp(sleepProgress, 0, 3);
 				this.LLeg.y = Mth.lerp(sleepProgress, 0, 3);
-				this.RWing.y = Mth.lerp(sleepProgress, 0.3F, 1F);
 				this.RWing.xRot = Mth.lerp(sleepProgress, -0.33004175888896664F, 0);
 				this.RWing.yRot = Mth.lerp(sleepProgress, -0.21537363235926135F, 0);
-				this.LWing.y = Mth.lerp(sleepProgress, 0.3F, 1F);
 				this.LWing.xRot = Mth.lerp(sleepProgress, -0.33004175888896664F, 0);
 				this.LWing.yRot = Mth.lerp(sleepProgress, 0.21537363235926135F, 0);
 				this.Neck.y = Mth.lerp(sleepProgress, 2.4F, 0F);
@@ -158,10 +154,8 @@ public class HalszkaraptorModel extends EntityModel<Halszkaraptor> implements Ar
 	public void sleepPose() {
 		this.RLeg.y = 0;
 		this.LLeg.y = 0;
-		this.RWing.y = 0.3F;
 		this.RWing.xRot = -0.33004175888896664F;
 		this.RWing.yRot = -0.21537363235926135F;
-		this.LWing.y = 0.3F;
 		this.LWing.xRot = -0.33004175888896664F;
 		this.LWing.yRot = 0.21537363235926135F;
 		this.Neck.y = 2.4F;

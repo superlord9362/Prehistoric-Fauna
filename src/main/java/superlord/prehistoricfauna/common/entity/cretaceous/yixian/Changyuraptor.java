@@ -123,6 +123,7 @@ public class Changyuraptor extends DinosaurEntity {
 			this.setSkittish(true);
 		}
 		this.setInsectivorous(true);
+		this.setCrepuscular(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 

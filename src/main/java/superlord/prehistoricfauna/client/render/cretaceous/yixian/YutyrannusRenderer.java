@@ -34,7 +34,7 @@ public class YutyrannusRenderer extends MobRenderer<Yutyrannus, EntityModel<Yuty
 	private static YutyrannusBabyModel BABY_YUTYRANNUS;
 
 	public YutyrannusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new YutyrannusModel(renderManagerIn.bakeLayer(ClientEvents.YUTYRANNUS)), 0.25F);
+		super(renderManagerIn, new YutyrannusModel(renderManagerIn.bakeLayer(ClientEvents.YUTYRANNUS)), 1F);
 		YUTYRANNUS_MODEL = new YutyrannusModel(renderManagerIn.bakeLayer(ClientEvents.YUTYRANNUS));
 		BABY_YUTYRANNUS = new YutyrannusBabyModel(renderManagerIn.bakeLayer(ClientEvents.YUTYRANNUS_BABY));
 		if (PrehistoricFaunaConfig.eyeShine) {

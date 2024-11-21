@@ -3,6 +3,8 @@
   "downfall": 0.7,
   "effects": {
     "fog_color": 12638463,
+    "foliage_color": 5468447,
+    "grass_color": 5468447,
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2.0,
@@ -77,7 +79,14 @@
   "has_precipitation": true,
   "spawn_costs": {},
   "spawners": {
-    "ambient": [],
+    "ambient": [
+      {
+        "type": "prehistoricfauna:cephaloleichnites",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 7
+      }
+    ],
     "axolotls": [],
     "creature": [
       {
@@ -97,12 +106,6 @@
         "maxCount": 2,
         "minCount": 1,
         "weight": 8
-      },
-      {
-        "type": "prehistoricfauna:cephaloleichnites",
-        "maxCount": 3,
-        "minCount": 1,
-        "weight": 7
       },
       {
         "type": "prehistoricfauna:dakotaraptor",

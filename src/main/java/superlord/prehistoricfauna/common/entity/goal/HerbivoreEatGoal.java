@@ -19,7 +19,7 @@ public class HerbivoreEatGoal extends MoveToBlockGoal {
 		this.dinosaur = entity;
 	}
 
-	public double getTargetDistanceSq() {
+	public double acceptedDistance() {
 		return 2.0D;
 	}
 

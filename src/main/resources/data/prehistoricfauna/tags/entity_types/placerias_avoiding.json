@@ -1,0 +1,17 @@
+{
+	"replace": false,
+	"values": [
+		"#prehistoricfauna:sixty_hunger_animals",
+		"#prehistoricfauna:eighty_hunger_animals",
+		"#prehistoricfauna:one_hundred_hunger_animals",
+		"#prehistoricfauna:two_hundred_hunger_animals",
+		"prehistoricfauna:palaeosaniwa",
+		"prehistoricfauna:poposaurus",
+		"prehistoricfauna:postosuchus",
+		"prehistoricfauna:dakotaraptor",
+		"prehistoricfauna:dilophosaurus",
+		"prehistoricfauna:saurosuchus",
+		"prehistoricfauna:ceratosaurus",
+		"prehistoricfauna:herrerasaurus"
+	]
+}

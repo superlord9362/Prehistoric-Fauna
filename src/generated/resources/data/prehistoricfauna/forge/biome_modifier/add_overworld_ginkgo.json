@@ -1,0 +1,9 @@
+{
+  "type": "forge:add_features",
+  "biomes": "minecraft:stony_peaks",
+  "features": [
+    "prehistoricfauna:placed_small_ginkgo_trees",
+    "prehistoricfauna:placed_rare_large_ginkgo_trees"
+  ],
+  "step": "vegetal_decoration"
+}

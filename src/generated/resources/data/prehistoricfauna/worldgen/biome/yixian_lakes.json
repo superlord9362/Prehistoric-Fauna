@@ -77,15 +77,28 @@
   "has_precipitation": true,
   "spawn_costs": {},
   "spawners": {
-    "ambient": [],
-    "axolotls": [],
-    "creature": [
+    "ambient": [
       {
         "type": "prehistoricfauna:apoclion",
         "maxCount": 3,
         "minCount": 1,
         "weight": 6
       },
+      {
+        "type": "prehistoricfauna:cretaraneus",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 3
+      },
+      {
+        "type": "prehistoricfauna:liaonemobius",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 5
+      }
+    ],
+    "axolotls": [],
+    "creature": [
       {
         "type": "prehistoricfauna:beipiaosaurus",
         "maxCount": 2,
@@ -99,16 +112,28 @@
         "weight": 2
       },
       {
-        "type": "prehistoricfauna:cretaraneus",
-        "maxCount": 1,
+        "type": "prehistoricfauna:dilong",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 4
+      },
+      {
+        "type": "prehistoricfauna:dongbeititan",
+        "maxCount": 4,
         "minCount": 1,
-        "weight": 3
+        "weight": 14
       },
       {
         "type": "prehistoricfauna:incisivosaurus",
         "maxCount": 4,
         "minCount": 1,
         "weight": 4
+      },
+      {
+        "type": "prehistoricfauna:jinzhousaurus",
+        "maxCount": 5,
+        "minCount": 2,
+        "weight": 12
       },
       {
         "type": "prehistoricfauna:liaoningosaurus",
@@ -123,6 +148,18 @@
         "weight": 18
       },
       {
+        "type": "prehistoricfauna:repenomamus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 13
+      },
+      {
+        "type": "prehistoricfauna:ruixinia",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 12
+      },
+      {
         "type": "prehistoricfauna:sinosauropteryx",
         "maxCount": 3,
         "minCount": 1,
@@ -133,6 +170,12 @@
         "maxCount": 2,
         "minCount": 1,
         "weight": 9
+      },
+      {
+        "type": "prehistoricfauna:zhenyuanlong",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 5
       }
     ],
     "misc": [],

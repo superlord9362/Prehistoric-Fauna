@@ -184,15 +184,17 @@ public class ProtoceratopsSkeleton extends PrehistoricEntity {
 		}
 	}
 
-
+	@Override
 	public boolean hurt(DamageSource source, float amount) {
 		if (source.is(DamageTypeTags.IS_EXPLOSION)) {
 			this.playBrokenSound();
 			this.playParticles();
 			this.spawnFossil(source);
-			this.remove(RemovalReason.KILLED);
-			this.gameEvent(GameEvent.ENTITY_DIE);
-		}
+//			this.remove(RemovalReason.KILLED);
+//			this.gameEvent(GameEvent.ENTITY_DIE);
+			System.out.println(this.getKillCredit());
+			return super.hurt(source, amount);
+		} 
 		if (source.getDirectEntity() instanceof Player) {
 			this.playBrokenSound();
 			this.playParticles();
@@ -202,6 +204,7 @@ public class ProtoceratopsSkeleton extends PrehistoricEntity {
 			}
 			this.remove(RemovalReason.KILLED);
 			this.gameEvent(GameEvent.ENTITY_DIE);
+			return true;
 		}
 		return false;
 	}

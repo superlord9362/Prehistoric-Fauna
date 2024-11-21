@@ -9,6 +9,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -32,6 +33,15 @@ public class ZamitesSaplingBlock extends BushBlock implements BonemealableBlock 
 		return SHAPE;
 	}
 
+	public boolean isSoilBlock(LevelReader world, BlockPos pos) {
+		return (world.getBlockState(pos).getBlock() == Blocks.COARSE_DIRT || world.getBlockState(pos).getBlock() == PFBlocks.PACKED_LOAM.get() || world.getBlockState(pos).getBlock() == PFBlocks.SILT.get() || world.getBlockState(pos).getBlock() == Blocks.SAND || world.getBlockState(pos).getBlock() == Blocks.GRAVEL || world.getBlockState(pos).getBlock() == Blocks.CLAY || world.getBlockState(pos).getBlock() == Blocks.DIRT || world.getBlockState(pos).getBlock() == PFBlocks.MOSSY_DIRT.get() || world.getBlockState(pos).getBlock() == Blocks.PODZOL || world.getBlockState(pos).getBlock() == PFBlocks.HARDENED_SILT.get() || world.getBlockState(pos).getBlock() == PFBlocks.LOAM.get() || world.getBlockState(pos).getBlock() == Blocks.RED_SAND || world.getBlockState(pos).getBlock() == Blocks.GRASS_BLOCK);
+	}
+
+	public boolean canSurvive(BlockState p_51028_, LevelReader p_51029_, BlockPos p_51030_) {
+		BlockPos blockpos = p_51030_.below();
+		return isSoilBlock(p_51029_, blockpos);
+	}
+
 	@SuppressWarnings("deprecation")
 	public void randomTick(BlockState p_56003_, ServerLevel p_56004_, BlockPos p_56005_, RandomSource p_56006_) {
 		if (p_56004_.getMaxLocalRawBrightness(p_56005_.above()) >= 9 && p_56006_.nextInt(7) == 0) {
@@ -40,7 +50,7 @@ public class ZamitesSaplingBlock extends BushBlock implements BonemealableBlock 
 		}
 
 	}
-	
+
 	public static boolean isAir(LevelSimulatedReader worldgenlevel, BlockPos pos) {
 		if (worldgenlevel instanceof BlockGetter) // FORGE: Redirect to state method when possible
 			return worldgenlevel.isStateAtPosition(pos, state -> state.isAir());
@@ -92,7 +102,7 @@ public class ZamitesSaplingBlock extends BushBlock implements BonemealableBlock 
 				}
 				if (isAir(level, new BlockPos(x, pos.getY() + height + 1, z))) level.setBlock(new BlockPos(x, pos.getY() + height + 1, z), PFBlocks.ZAMITES_LEAVES.get().defaultBlockState(), 2);
 			}
-			}
+		}
 
 	}
 

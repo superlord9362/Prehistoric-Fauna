@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:araucaria_nuts"
+    },
+	{
+		"item": "minecraft:glass_bottle"
+	}
+  ],
+  "result": {
+    "item": "prehistoricfauna:fermented_drink"
+  }
+}

@@ -1,14 +1,14 @@
 {
 	"replace": false,
 	"values": [
-		"prehistoricfauna:telmasaurus",
-		"prehistoricfauna:chromogisaurus",
-		"prehistoricfauna:kayentatherium",
-		"prehistoricfauna:megapnosaurus",
 		"minecraft:parrot",
+		"prehistoricfauna:telmasaurus",
+		"prehistoricfauna:didelphodon",
+		"prehistoricfauna:incisivosaurus",
+		"prehistoricfauna:changyuraptor",
+		"prehistoricfauna:megapnosaurus",
+		"prehistoricfauna:kayentatherium",
 		"prehistoricfauna:calsoyasuchus",
-		"prehistoricfauna:halszkaraptor",
-		"prehistoricfauna:sinosauropteryx",
-		"prehistoricfauna:incisivosaurus"
+		"prehistoricfauna:chromogisaurus"
 	]
 }

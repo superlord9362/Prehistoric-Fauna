@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_features",
+  "biomes": [
+    "minecraft:windswept_forest",
+    "minecraft:sunflower_plains",
+    "minecraft:cherry_grove"
+  ],
+  "features": "prehistoricfauna:placed_rare_small_yellow_ginkgo_trees",
+  "step": "vegetal_decoration"
+}

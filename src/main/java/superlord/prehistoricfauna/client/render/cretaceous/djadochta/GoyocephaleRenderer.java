@@ -22,7 +22,7 @@ public class GoyocephaleRenderer extends MobRenderer<Goyocephale, GoyocephaleMod
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/goyocephale/melanistic_sleeping.png");
 	
 	public GoyocephaleRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new GoyocephaleModel(renderManagerIn.bakeLayer(ClientEvents.GOYOCEPHALE)), 0.5F);
+		super(renderManagerIn, new GoyocephaleModel(renderManagerIn.bakeLayer(ClientEvents.GOYOCEPHALE)), 0.6F);
 	}
 	
 	protected void scale(Goyocephale goyocephale, PoseStack stack, float partialTick) {

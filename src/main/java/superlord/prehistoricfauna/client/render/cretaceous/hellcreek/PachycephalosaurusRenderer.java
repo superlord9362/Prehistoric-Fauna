@@ -24,7 +24,7 @@ public class PachycephalosaurusRenderer extends MobRenderer<Pachycephalosaurus, 
 	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/pachycephalosaurus/melanistic_baby_sleeping.png");
 
 	public PachycephalosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new PachycephalosaurusModel(renderManagerIn.bakeLayer(ClientEvents.PACHYCEPHALOSAURUS)), 0.55F);
+		super(renderManagerIn, new PachycephalosaurusModel(renderManagerIn.bakeLayer(ClientEvents.PACHYCEPHALOSAURUS)), 0.875F);
 	}
 
 	protected void scale(Pachycephalosaurus pachycephalosaurus, PoseStack matrixStackIn, float partialTickTime) {

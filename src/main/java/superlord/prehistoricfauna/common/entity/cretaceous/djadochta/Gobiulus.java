@@ -21,6 +21,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.common.Tags;
 import superlord.prehistoricfauna.init.PFItems;
 
@@ -61,6 +62,11 @@ public class Gobiulus extends PathfinderMob {
 
 	public static boolean canBugSpawn(EntityType<? extends PathfinderMob> animal, ServerLevelAccessor worldIn, MobSpawnType reason, BlockPos pos, RandomSource random) {
 		return (worldIn.getBlockState(pos.below()).is(BlockTags.DIRT) || worldIn.getBlockState(pos.below()).is(Tags.Blocks.SAND) || worldIn.getBlockState(pos.below()).is(BlockTags.LEAVES) || worldIn.getBlockState(pos.below()).is(BlockTags.LOGS_THAT_BURN)) && worldIn.getRawBrightness(pos, 0) > 8;
+	}
+	
+	@Override
+	public ItemStack getPickedResult(HitResult target) {
+		return new ItemStack(PFItems.GOBIULUS_SPAWN_EGG.get());
 	}
 
 }

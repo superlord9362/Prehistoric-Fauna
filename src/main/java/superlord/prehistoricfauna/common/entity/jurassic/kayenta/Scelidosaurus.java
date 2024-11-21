@@ -1,5 +1,7 @@
 package superlord.prehistoricfauna.common.entity.jurassic.kayenta;
 
+import java.util.function.Predicate;
+
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
@@ -37,12 +39,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
-import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Pinacosaurus;
-import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Plesiohadros;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ankylosaurus;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.CathemeralSleepGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
@@ -57,20 +53,11 @@ import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.ProtectBabyGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Ceratosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Stegosaurus;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Poposaurus;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Postosuchus;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Herrerasaurus;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Ischigualastia;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Saurosuchus;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Sillosuchus;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
+import superlord.prehistoricfauna.init.PFTags;
 
 public class Scelidosaurus extends DinosaurEntity {
 	private static final EntityDataAccessor<Boolean> BIPEDAL = SynchedEntityData.defineId(Scelidosaurus.class, EntityDataSerializers.BOOLEAN);
@@ -132,23 +119,9 @@ public class Scelidosaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, Dilophosaurus.class, 10, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, Pinacosaurus.class, 10, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, Plesiohadros.class, 10, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, Ankylosaurus.class, 10, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, Dakotaraptor.class, 10, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, Triceratops.class, 10, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, Tyrannosaurus.class, 10, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, Allosaurus.class, 10, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, Camarasaurus.class, 10, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, Ceratosaurus.class, 10, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, Stegosaurus.class, 10, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, Herrerasaurus.class, 10, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, Ischigualastia.class, 10, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, Saurosuchus.class, 10, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, Sillosuchus.class, 10, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, Poposaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new BipedalAvoidEntityGoal(this, Postosuchus.class, 10F, 1.5D, 1.75D));
+		this.goalSelector.addGoal(8, new BipedalAvoidEntityGoal(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
+			return p_213487_0_.getType().is(PFTags.SCELIDOSAURUS_AVOIDING);
+		}));
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
 		this.goalSelector.addGoal(0, new HerbivoreEatGoal(this, (double)1.2F, 12, 2));
@@ -274,8 +247,8 @@ public class Scelidosaurus extends DinosaurEntity {
 	class BipedalAvoidEntityGoal extends AvoidEntityGoal {
 
 		@SuppressWarnings("unchecked")
-		public BipedalAvoidEntityGoal(PathfinderMob entityIn, Class classToAvoidIn, float avoidDistanceIn, double farSpeedIn, double nearSpeedIn) {
-			super(entityIn, classToAvoidIn, avoidDistanceIn, farSpeedIn, nearSpeedIn);
+		public BipedalAvoidEntityGoal(PathfinderMob entityIn, Class classToAvoidIn, float avoidDistanceIn, double farSpeedIn, double nearSpeedIn, Predicate<LivingEntity> predicate) {
+			super(entityIn, classToAvoidIn, avoidDistanceIn, farSpeedIn, nearSpeedIn, predicate);
 		}
 
 		public void tick() {

@@ -48,11 +48,6 @@ import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.common.entity.BurrowingDinosaur;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ankylosaurus;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Thescelosaurus;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.CarnivoreHuntGoal;
@@ -71,18 +66,8 @@ import superlord.prehistoricfauna.common.entity.goal.OvivoreEatFromFeederGoal;
 import superlord.prehistoricfauna.common.entity.goal.ProtectBabyGoal;
 import superlord.prehistoricfauna.common.entity.goal.SkittishFleeGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
-import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Dilophosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Dryosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Stegosaurus;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Coelophysis;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Poposaurus;
-import superlord.prehistoricfauna.common.entity.triassic.chinle.Postosuchus;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Exaeretodon;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Herrerasaurus;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Saurosuchus;
-import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Sillosuchus;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
@@ -185,25 +170,9 @@ public class Telmasaurus extends BurrowingDinosaur {
 		this.goalSelector.addGoal(8, new AvoidEntityGoal(this, Allosaurus.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(8, new SkittishFleeGoal(this, Player.class, 10F, 1.5D, 1.75D));
 		this.targetSelector.addGoal(2, new OpportunistAttackGoal(this, Player.class, true));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal(this, Citipati.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal(this, Tyrannosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal(this, Velociraptor.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal(this, Telmasaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal(this, Protoceratops.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal(this, Triceratops.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal(this, Thescelosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal(this, Ankylosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal(this, Dakotaraptor.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal(this, Stegosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal(this, Dryosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal(this, Exaeretodon.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal(this, Herrerasaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal(this, Sillosuchus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal(this, Saurosuchus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Dilophosaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Poposaurus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Postosuchus.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(7, new AvoidEntityGoal(this, Coelophysis.class, 10F, 1.7D, 1.5D));
+		this.goalSelector.addGoal(8, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
+			return p_213487_0_.getType().is(PFTags.TELMASAURUS_AVOIDING);
+		}));
 		this.goalSelector.addGoal(1, new DiurnalSleepingGoal(this));
 		this.goalSelector.addGoal(0, new OvivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(0, new OpportunistHuntingGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_237491_0_) -> {
@@ -268,7 +237,7 @@ public class Telmasaurus extends BurrowingDinosaur {
 			super(Telmasaurus.this, p_i50737_2_, p_i50737_4_, p_i50737_5_);
 		}
 
-		public double getTargetDistanceSq() {
+		public double acceptedDistance() {
 			return 2.0D;
 		}
 
@@ -409,7 +378,7 @@ public class Telmasaurus extends BurrowingDinosaur {
 			super(Telmasaurus.this, p_i50737_2_, p_i50737_4_, p_i50737_5_);
 		}
 
-		public double getTargetDistanceSq() {
+		public double acceptedDistance() {
 			return 2.0D;
 		}
 

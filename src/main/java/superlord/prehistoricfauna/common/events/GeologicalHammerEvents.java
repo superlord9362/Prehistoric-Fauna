@@ -11,10 +11,13 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseCoralPlantTypeBlock;
+import net.minecraft.world.level.block.BaseCoralWallFanBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
@@ -101,6 +104,155 @@ public class GeologicalHammerEvents {
 					if (!player.isCreative()) {
 						event.getItemStack().shrink(1);
 					}
+				}
+			}
+		}
+		if (event.getItemStack().getItem() == PFItems.BOTTLED_SAP.get()) {
+			Level world = event.getLevel();
+			BlockPos pos = event.getPos();
+			BlockState state = world.getBlockState(pos);
+			Player player = event.getEntity();
+			if (state.getBlock() == Blocks.BRAIN_CORAL_BLOCK) {
+				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_BRAIN_CORAL_BLOCK.get().defaultBlockState(), 3);
+				if (!player.isCreative()) {
+					event.getItemStack().shrink(1);
+					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
+				}
+			}
+			if (state.getBlock() == Blocks.BUBBLE_CORAL_BLOCK) {
+				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_BUBBLE_CORAL_BLOCK.get().defaultBlockState(), 3);
+				if (!player.isCreative()) {
+					event.getItemStack().shrink(1);
+					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
+				}
+			}
+			if (state.getBlock() == Blocks.TUBE_CORAL_BLOCK) {
+				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_TUBE_CORAL_BLOCK.get().defaultBlockState(), 3);
+				if (!player.isCreative()) {
+					event.getItemStack().shrink(1);
+					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
+				}
+			}
+			if (state.getBlock() == Blocks.FIRE_CORAL_BLOCK) {
+				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_FIRE_CORAL_BLOCK.get().defaultBlockState(), 3);
+				if (!player.isCreative()) {
+					event.getItemStack().shrink(1);
+					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
+				}
+			}
+			if (state.getBlock() == Blocks.HORN_CORAL_BLOCK) {
+				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_HORN_CORAL_BLOCK.get().defaultBlockState(), 3);
+				if (!player.isCreative()) {
+					event.getItemStack().shrink(1);
+					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
+				}
+			}
+			
+			if (state.getBlock() == Blocks.BRAIN_CORAL) {
+				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_BRAIN_CORAL.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)), 3);
+				if (!player.isCreative()) {
+					event.getItemStack().shrink(1);
+					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
+				}
+			}
+			if (state.getBlock() == Blocks.BUBBLE_CORAL) {
+				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_BUBBLE_CORAL.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)), 3);
+				if (!player.isCreative()) {
+					event.getItemStack().shrink(1);
+					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
+				}
+			}
+			if (state.getBlock() == Blocks.TUBE_CORAL) {
+				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_TUBE_CORAL.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)), 3);
+				if (!player.isCreative()) {
+					event.getItemStack().shrink(1);
+					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
+				}
+			}
+			if (state.getBlock() == Blocks.FIRE_CORAL) {
+				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_FIRE_CORAL.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)), 3);
+				if (!player.isCreative()) {
+					event.getItemStack().shrink(1);
+					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
+				}
+			}
+			if (state.getBlock() == Blocks.HORN_CORAL) {
+				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_HORN_CORAL.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)), 3);
+				if (!player.isCreative()) {
+					event.getItemStack().shrink(1);
+					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
+				}
+			}
+			
+			if (state.getBlock() == Blocks.BRAIN_CORAL_FAN) {
+				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_BRAIN_CORAL_FAN.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)), 3);
+				if (!player.isCreative()) {
+					event.getItemStack().shrink(1);
+					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
+				}
+			}
+			if (state.getBlock() == Blocks.BUBBLE_CORAL_FAN) {
+				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_BUBBLE_CORAL_FAN.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)), 3);
+				if (!player.isCreative()) {
+					event.getItemStack().shrink(1);
+					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
+				}
+			}
+			if (state.getBlock() == Blocks.TUBE_CORAL_FAN) {
+				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_TUBE_CORAL_FAN.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)), 3);
+				if (!player.isCreative()) {
+					event.getItemStack().shrink(1);
+					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
+				}
+			}
+			if (state.getBlock() == Blocks.FIRE_CORAL_FAN) {
+				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_FIRE_CORAL_FAN.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)), 3);
+				if (!player.isCreative()) {
+					event.getItemStack().shrink(1);
+					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
+				}
+			}
+			if (state.getBlock() == Blocks.HORN_CORAL_FAN) {
+				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_HORN_CORAL_FAN.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)), 3);
+				if (!player.isCreative()) {
+					event.getItemStack().shrink(1);
+					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
+				}
+			}
+			
+			if (state.getBlock() == Blocks.BRAIN_CORAL_WALL_FAN) {
+				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_BRAIN_CORAL_WALL_FAN.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)).setValue(BaseCoralWallFanBlock.FACING, state.getValue(BaseCoralWallFanBlock.FACING)), 3);
+				if (!player.isCreative()) {
+					event.getItemStack().shrink(1);
+					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
+				}
+			}
+			if (state.getBlock() == Blocks.BUBBLE_CORAL_WALL_FAN) {
+				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_BUBBLE_CORAL_WALL_FAN.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)).setValue(BaseCoralWallFanBlock.FACING, state.getValue(BaseCoralWallFanBlock.FACING)), 3);
+				if (!player.isCreative()) {
+					event.getItemStack().shrink(1);
+					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
+				}
+			}
+			if (state.getBlock() == Blocks.TUBE_CORAL_WALL_FAN) {
+				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_TUBE_CORAL_WALL_FAN.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)).setValue(BaseCoralWallFanBlock.FACING, state.getValue(BaseCoralWallFanBlock.FACING)), 3);
+				if (!player.isCreative()) {
+					event.getItemStack().shrink(1);
+					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
+				}
+			}
+			if (state.getBlock() == Blocks.FIRE_CORAL_WALL_FAN) {
+				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_FIRE_CORAL_WALL_FAN.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)).setValue(BaseCoralWallFanBlock.FACING, state.getValue(BaseCoralWallFanBlock.FACING)), 3);
+				if (!player.isCreative()) {
+					event.getItemStack().shrink(1);
+					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
+				}
+			}
+			if (state.getBlock() == Blocks.HORN_CORAL_WALL_FAN) {
+				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_HORN_CORAL_WALL_FAN.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)).setValue(BaseCoralWallFanBlock.FACING, state.getValue(BaseCoralWallFanBlock.FACING)), 3);
+				if (!player.isCreative()) {
+					event.getItemStack().shrink(1);
+					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
 				}
 			}
 		}

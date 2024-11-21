@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/brachychampsa_nest_and_four_eggs_no_plants",
+	"textures": {
+		"egg": "prehistoricfauna:block/brachychampsa_egg_slightly_cracked"
+	}
+}

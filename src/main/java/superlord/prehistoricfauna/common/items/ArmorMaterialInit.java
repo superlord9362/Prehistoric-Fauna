@@ -33,6 +33,14 @@ public enum ArmorMaterialInit implements StringRepresentable, ArmorMaterial {
 		armor.put(ArmorItem.Type.HELMET, 3);
 	}), 10, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, 0.0F, () -> {
 		return Ingredient.of(PFItems.THYREOPHORAN_SCUTE.get());
+	}),
+	EGG(PrehistoricFauna.MOD_ID + ":egg", 26, Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
+		armor.put(ArmorItem.Type.BOOTS, 1);
+		armor.put(ArmorItem.Type.LEGGINGS, 2);
+		armor.put(ArmorItem.Type.CHESTPLATE, 3);
+		armor.put(ArmorItem.Type.HELMET, 1);
+	}), 1, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, 0.0F, () -> {
+		return Ingredient.of(PFItems.EGGSHELLS.get());
 	});
 
 	private static final EnumMap<ArmorItem.Type, Integer> HEALTH_FUNCTION_FOR_TYPE = Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266653_) -> {

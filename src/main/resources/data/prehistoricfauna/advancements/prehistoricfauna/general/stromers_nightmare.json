@@ -20,7 +20,7 @@
       "trigger": "minecraft:player_killed_entity",
       "conditions": {
         "entity": {
-          "type": "prehistoricfauna:protoceratops_skeleton"
+          "type": "minecraft:armor_stand"
         },
         "killing_blow": {
 			"direct_entity": {

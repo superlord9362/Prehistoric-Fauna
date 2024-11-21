@@ -30,15 +30,21 @@ import superlord.prehistoricfauna.common.entity.PFBoat.PFBoatTypes;
 import superlord.prehistoricfauna.common.entity.PFRaft;
 import superlord.prehistoricfauna.common.items.ArmorMaterialInit;
 import superlord.prehistoricfauna.common.items.BottledBugItem;
+import superlord.prehistoricfauna.common.items.BottledSyrupItem;
+import superlord.prehistoricfauna.common.items.CalciumSupplementItem;
 import superlord.prehistoricfauna.common.items.CobbaniaBlockItem;
 import superlord.prehistoricfauna.common.items.CretaceousTimeTotemItem;
 import superlord.prehistoricfauna.common.items.CustomArmorItem;
 import superlord.prehistoricfauna.common.items.CustomChestplateItem;
 import superlord.prehistoricfauna.common.items.DinosaurEggItem;
+import superlord.prehistoricfauna.common.items.EggHelmetItem;
+import superlord.prehistoricfauna.common.items.FermentedDrinkItem;
 import superlord.prehistoricfauna.common.items.FermentedGinkgoBerryItem;
 import superlord.prehistoricfauna.common.items.FossilItem;
+import superlord.prehistoricfauna.common.items.GarOilItem;
 import superlord.prehistoricfauna.common.items.HorsetailTeaItem;
 import superlord.prehistoricfauna.common.items.JurassicTimeTotemItem;
+import superlord.prehistoricfauna.common.items.LungfishOilItem;
 import superlord.prehistoricfauna.common.items.PFBoatItem;
 import superlord.prehistoricfauna.common.items.PFBucketItem;
 import superlord.prehistoricfauna.common.items.PFChestBoatItem;
@@ -588,6 +594,7 @@ public class PFItems {
 	public static final RegistryObject<Item> ARAUCARIA_CONE = DECORATION_REGISTER.register("araucaria_cone", () -> new BlockItem(PFBlocks.ARAUCARIA_CONE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> NEST = DECORATION_REGISTER.register("nest", () -> new BlockItem(PFBlocks.NEST.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> AEPYORNITHOMIMUS_EGG = DECORATION_REGISTER.register("aepyornithomimus_egg", () -> new DinosaurEggItem(PFBlocks.AEPYORNITHOMIMUS_EGG.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> BYRONOSAURUS_EGG = DECORATION_REGISTER.register("byronosaurus_egg", () -> new DinosaurEggItem(PFBlocks.BYRONOSAURUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> CITIPATI_EGG = DECORATION_REGISTER.register("citipati_egg", () -> new DinosaurEggItem(PFBlocks.CITIPATI_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> GOYOCEPHALE_EGG = DECORATION_REGISTER.register("goyocephale_egg", () -> new DinosaurEggItem(PFBlocks.GOYOCEPHALE_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> HALSZKARAPTOR_EGG = DECORATION_REGISTER.register("halszkaraptor_egg", () -> new DinosaurEggItem(PFBlocks.HALSZKARAPTOR_EGG.get(), new Item.Properties()));
@@ -602,22 +609,27 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> ANKYLOSAURUS_EGG = DECORATION_REGISTER.register("ankylosaurus_egg", () -> new DinosaurEggItem(PFBlocks.ANKYLOSAURUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> ANZU_EGG = DECORATION_REGISTER.register("anzu_egg", () -> new DinosaurEggItem(PFBlocks.ANZU_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> BASILEMYS_EGG = DECORATION_REGISTER.register("basilemys_egg", () -> new DinosaurEggItem(PFBlocks.BASILEMYS_EGG.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> BRACHYCHAMPSA_EGG = DECORATION_REGISTER.register("brachychampsa_egg", () -> new DinosaurEggItem(PFBlocks.BRACHYCHAMPSA_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> DAKOTARAPTOR_EGG = DECORATION_REGISTER.register("dakotaraptor_egg", () -> new DinosaurEggItem(PFBlocks.DAKOTARAPTOR_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> EDMONTOSAURUS_EGG = DECORATION_REGISTER.register("edmontosaurus_egg", () -> new DinosaurEggItem(PFBlocks.EDMONTOSAURUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> ORNITHOMIMUS_EGG = DECORATION_REGISTER.register("ornithomimus_egg", () -> new DinosaurEggItem(PFBlocks.ORNITHOMIMUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> PACHYCEPHALOSAURUS_EGG = DECORATION_REGISTER.register("pachycephalosaurus_egg", () -> new DinosaurEggItem(PFBlocks.PACHYCEPHALOSAURUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> PALAEOSANIWA_EGG = DECORATION_REGISTER.register("palaeosaniwa_egg", () -> new DinosaurEggItem(PFBlocks.PALAEOSANIWA_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> THESCELOSAURUS_EGG = DECORATION_REGISTER.register("thescelosaurus_egg", () -> new DinosaurEggItem(PFBlocks.THESCELOSAURUS_EGG.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> THORACOSAURUS_EGG = DECORATION_REGISTER.register("thoracosaurus_egg", () -> new DinosaurEggItem(PFBlocks.THORACOSAURUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> TRICERATOPS_EGG = DECORATION_REGISTER.register("triceratops_egg", () -> new DinosaurEggItem(PFBlocks.TRICERATOPS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> TYRANNOSAURUS_EGG = DECORATION_REGISTER.register("tyrannosaurus_egg", () -> new DinosaurEggItem(PFBlocks.TYRANNOSAURUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> BEIPIAOSAURUS_EGG = DECORATION_REGISTER.register("beipiaosaurus_egg", () -> new DinosaurEggItem(PFBlocks.BEIPIAOSAURUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> CHANGYURAPTOR_EGG = DECORATION_REGISTER.register("changyuraptor_egg", () -> new DinosaurEggItem(PFBlocks.CHANGYURAPTOR_EGG.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> DILONG_EGG = DECORATION_REGISTER.register("dilong_egg", () -> new DinosaurEggItem(PFBlocks.DILONG_EGG.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> DONGBEITITAN_EGG = DECORATION_REGISTER.register("dongbeititan_egg", () -> new DinosaurEggItem(PFBlocks.DONGBEITITAN_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> INCISIVOSAURUS_EGG = DECORATION_REGISTER.register("incisivosaurus_egg", () -> new DinosaurEggItem(PFBlocks.INCISIVOSAURUS_EGG.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> JINZHOUSAURUS_EGG = DECORATION_REGISTER.register("jinzhousaurus_egg", () -> new DinosaurEggItem(PFBlocks.JINZHOUSAURUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> LIAONINGOSAURUS_EGG = DECORATION_REGISTER.register("liaoningosaurus_egg", () -> new DinosaurEggItem(PFBlocks.LIAONINGOSAURUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> PSITTACOSAURUS_EGG = DECORATION_REGISTER.register("psittacosaurus_egg", () -> new DinosaurEggItem(PFBlocks.PSITTACOSAURUS_EGG.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> RUIXINIA_EGG = DECORATION_REGISTER.register("ruixinia_egg", () -> new DinosaurEggItem(PFBlocks.RUIXINIA_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SINOSAUROPTERYX_EGG = DECORATION_REGISTER.register("sinosauropteryx_egg", () -> new DinosaurEggItem(PFBlocks.SINOSAUROPTERYX_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> YUTYRANNUS_EGG = DECORATION_REGISTER.register("yutyrannus_egg", () -> new DinosaurEggItem(PFBlocks.YUTYRANNUS_EGG.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> ZHENYUANLONG_EGG = DECORATION_REGISTER.register("zhenyuanlong_egg", () -> new DinosaurEggItem(PFBlocks.ZHENYUANLONG_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> CALSOYASUCHUS_EGG = DECORATION_REGISTER.register("calsoyasuchus_egg", () -> new DinosaurEggItem(PFBlocks.CALSOYASUCHUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> DILOPHOSAURUS_EGG = DECORATION_REGISTER.register("dilophosaurus_egg", () -> new DinosaurEggItem(PFBlocks.DILOPHOSAURUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> KAYENTATHERIUM_EGG = DECORATION_REGISTER.register("kayentatherium_egg", () -> new DinosaurEggItem(PFBlocks.KAYENTATHERIUM_EGG.get(), new Item.Properties()));
@@ -646,8 +658,28 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> ISCHIGUALASTIA_EGG = DECORATION_REGISTER.register("ischigualastia_egg", () -> new DinosaurEggItem(PFBlocks.ISCHIGUALASTIA_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SAUROSUCHUS_EGG = DECORATION_REGISTER.register("saurosuchus_egg", () -> new DinosaurEggItem(PFBlocks.SAUROSUCHUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SILLOSUCHUS_EGG = DECORATION_REGISTER.register("sillosuchus_egg", () -> new DinosaurEggItem(PFBlocks.SILLOSUCHUS_EGG.get(), new Item.Properties()));
+
+	public static final RegistryObject<BlockItem> COATED_TUBE_CORAL_BLOCK = DECORATION_REGISTER.register("coated_tube_coral_block", () -> new BlockItem(PFBlocks.COATED_TUBE_CORAL_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> COATED_BRAIN_CORAL_BLOCK = DECORATION_REGISTER.register("coated_brain_coral_block", () -> new BlockItem(PFBlocks.COATED_BRAIN_CORAL_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> COATED_BUBBLE_CORAL_BLOCK = DECORATION_REGISTER.register("coated_bubble_coral_block", () -> new BlockItem(PFBlocks.COATED_BUBBLE_CORAL_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> COATED_FIRE_CORAL_BLOCK = DECORATION_REGISTER.register("coated_fire_coral_block", () -> new BlockItem(PFBlocks.COATED_FIRE_CORAL_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> COATED_HORN_CORAL_BLOCK = DECORATION_REGISTER.register("coated_horn_coral_block", () -> new BlockItem(PFBlocks.COATED_HORN_CORAL_BLOCK.get(), new Item.Properties()));
+
+	public static final RegistryObject<BlockItem> COATED_TUBE_CORAL = DECORATION_REGISTER.register("coated_tube_coral", () -> new BlockItem(PFBlocks.COATED_TUBE_CORAL.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> COATED_BRAIN_CORAL = DECORATION_REGISTER.register("coated_brain_coral", () -> new BlockItem(PFBlocks.COATED_BRAIN_CORAL.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> COATED_BUBBLE_CORAL = DECORATION_REGISTER.register("coated_bubble_coral", () -> new BlockItem(PFBlocks.COATED_BUBBLE_CORAL.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> COATED_FIRE_CORAL = DECORATION_REGISTER.register("coated_fire_coral", () -> new BlockItem(PFBlocks.COATED_FIRE_CORAL.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> COATED_HORN_CORAL = DECORATION_REGISTER.register("coated_horn_coral", () -> new BlockItem(PFBlocks.COATED_HORN_CORAL.get(), new Item.Properties()));
+
+	public static final RegistryObject<BlockItem> COATED_TUBE_CORAL_FAN = DECORATION_REGISTER.register("coated_tube_coral_fan", () -> new StandingAndWallBlockItem(PFBlocks.COATED_TUBE_CORAL_FAN.get(), PFBlocks.COATED_TUBE_CORAL_WALL_FAN.get(), new Item.Properties(), Direction.DOWN));
+	public static final RegistryObject<BlockItem> COATED_BRAIN_CORAL_FAN = DECORATION_REGISTER.register("coated_brain_coral_fan", () -> new StandingAndWallBlockItem(PFBlocks.COATED_BRAIN_CORAL_FAN.get(), PFBlocks.COATED_BRAIN_CORAL_WALL_FAN.get(), new Item.Properties(), Direction.DOWN));
+	public static final RegistryObject<BlockItem> COATED_BUBBLE_CORAL_FAN = DECORATION_REGISTER.register("coated_bubble_coral_fan", () -> new StandingAndWallBlockItem(PFBlocks.COATED_BUBBLE_CORAL_FAN.get(), PFBlocks.COATED_BUBBLE_CORAL_WALL_FAN.get(), new Item.Properties(), Direction.DOWN));
+	public static final RegistryObject<BlockItem> COATED_FIRE_CORAL_FAN = DECORATION_REGISTER.register("coated_fire_coral_fan", () -> new StandingAndWallBlockItem(PFBlocks.COATED_FIRE_CORAL_FAN.get(), PFBlocks.COATED_FIRE_CORAL_WALL_FAN.get(), new Item.Properties(), Direction.DOWN));
+	public static final RegistryObject<BlockItem> COATED_HORN_CORAL_FAN = DECORATION_REGISTER.register("coated_horn_coral_fan", () -> new StandingAndWallBlockItem(PFBlocks.COATED_HORN_CORAL_FAN.get(), PFBlocks.COATED_HORN_CORAL_WALL_FAN.get(), new Item.Properties(), Direction.DOWN));
+	
 	//Spawn Eggs
 	public static final RegistryObject<Item> AEPYORNITHOMIMUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("aepyornithomimus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.AEPYORNITHOMIMUS, 0x1E1E23, 0x512626, new Item.Properties()));
+	public static final RegistryObject<Item> BYRONOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("byronosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.BYRONOSAURUS, 0x76433D, 0xDBC5BA, new Item.Properties()));
 	public static final RegistryObject<Item> CITIPATI_SPAWN_EGG = SPAWN_EGG_REGISTER.register("citipati_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CITIPATI, 0x704121, 0xD5AA7C, new Item.Properties()));
 	public static final RegistryObject<Item> DERMESTID_BEETLE_SPAWN_EGG = SPAWN_EGG_REGISTER.register("dermestid_beetle_spawn_egg", () -> new PFSpawnEggItem(PFEntities.DERMESTID_BEETLE, 0xA27560, 0x322930, new Item.Properties()));
 	public static final RegistryObject<Item> GOBIULUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("gobiulus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.GOBIULUS, 0x794F44, 0xE75738, new Item.Properties()));
@@ -666,6 +698,7 @@ public class PFItems {
 	public static final RegistryObject<Item> ANKYLOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("ankylosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.ANKYLOSAURUS, 0x202C0C, 0x908730, new Item.Properties()));
 	public static final RegistryObject<Item> ANZU_SPAWN_EGG = SPAWN_EGG_REGISTER.register("anzu_spawn_egg", () -> new PFSpawnEggItem(PFEntities.ANZU, 0x06A5B0, 0x9B783C, new Item.Properties()));
 	public static final RegistryObject<Item> BASILEMYS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("basilemys_spawn_egg", () -> new PFSpawnEggItem(PFEntities.BASILEMYS, 0x6B3727, 0x373519, new Item.Properties()));
+	public static final RegistryObject<Item> BRACHYCHAMPSA_SPAWN_EGG = SPAWN_EGG_REGISTER.register("brachychampsa_spawn_egg", () -> new PFSpawnEggItem(PFEntities.BRACHYCHAMPSA, 0x4C3C44, 0x9E7B7B, new Item.Properties()));
 	public static final RegistryObject<Item> CEPHALOLEICHNITES_SPAWN_EGG = SPAWN_EGG_REGISTER.register("cephaloleichnites_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CEPHALOLEICHNITES, 0x822B1A, 0x1F2135, new Item.Properties()));
 	public static final RegistryObject<Item> CYCLURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("cyclurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CYCLURUS, 0x5E6B3B, 0x968B53, new Item.Properties()));
 	public static final RegistryObject<Item> DAKOTARAPTOR_SPAWN_EGG = SPAWN_EGG_REGISTER.register("dakotaraptor_spawn_egg", () -> new PFSpawnEggItem(PFEntities.DAKOTARAPTOR, 0x453018, 0x986529, new Item.Properties()));
@@ -680,21 +713,27 @@ public class PFItems {
 	public static final RegistryObject<Item> PALAEOSANIWA_SPAWN_EGG = SPAWN_EGG_REGISTER.register("palaeosaniwa_spawn_egg", () -> new PFSpawnEggItem(PFEntities.PALAEOSANIWA, 0x89bcb8, 0x994b2f, new Item.Properties()));
 	public static final RegistryObject<Item> PARAPSEPHURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("parapsephurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.PARAPSEPHURUS, 0x515F4D, 0xAE8129, new Item.Properties()));
 	public static final RegistryObject<Item> THESCELOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("thescelosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.THESCELOSAURUS, 0x582C20, 0x496659, new Item.Properties()));
-	public static final RegistryObject<Item> THORACOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("thoracosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.THORACOSAURUS, 0x3F351B, 0x7A5C33, new Item.Properties()));
 	public static final RegistryObject<Item> TRICERATOPS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("triceratops_spawn_egg", () -> new PFSpawnEggItem(PFEntities.TRICERATOPS, 0x494427, 0xABA37B, new Item.Properties()));
 	public static final RegistryObject<Item> TYRANNOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("tyrannosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.TYRANNOSAURUS, 0x56483E, 0x541714, new Item.Properties()));
 	public static final RegistryObject<Item> APOCLION_SPAWN_EGG = SPAWN_EGG_REGISTER.register("apoclion_spawn_egg", () -> new PFSpawnEggItem(PFEntities.APOCLION, 0x684E46, 0xD29760, new Item.Properties()));
 	public static final RegistryObject<Item> BEIPIAOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("beipiaosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.BEIPIAOSAURUS, 0xBE7C36, 0x23150D, new Item.Properties()));
 	public static final RegistryObject<Item> CHANGYURAPTOR_SPAWN_EGG = SPAWN_EGG_REGISTER.register("changyuraptor_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CHANGYURAPTOR, 0x873F3F, 0x9E9AB3, new Item.Properties()));
 	public static final RegistryObject<Item> CRETARANEUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("cretaraneus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CRETARANEUS, 0x4A4343, 0x984840, new Item.Properties()));
+	public static final RegistryObject<Item> DILONG_SPAWN_EGG = SPAWN_EGG_REGISTER.register("dilong_spawn_egg", () -> new PFSpawnEggItem(PFEntities.DILONG, 0xA6A5A2, 0x2B546E, new Item.Properties()));
+	public static final RegistryObject<Item> DONGBEITITAN_SPAWN_EGG = SPAWN_EGG_REGISTER.register("dongbeititan_spawn_egg", () -> new PFSpawnEggItem(PFEntities.DONGBEITITAN, 0x702F20, 0xB05D42, new Item.Properties()));
 	public static final RegistryObject<Item> INCISIVOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("incisivosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.INCISIVOSAURUS, 0x3B5244, 0xD08952, new Item.Properties()));
+	public static final RegistryObject<Item> JINZHOUSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("jinzhousaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.JINZHOUSAURUS, 0x715F56, 0x627AAE, new Item.Properties()));
+	public static final RegistryObject<Item> LIAONEMOBIUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("liaonemobius_spawn_egg", () -> new PFSpawnEggItem(PFEntities.LIAONEMOBIUS, 0x301600, 0xED9212, new Item.Properties()));
 	public static final RegistryObject<Item> LIAONINGOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("liaoningosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.LIAONINGOSAURUS, 0xD5A45B, 0xD61F1A, new Item.Properties()));
 	public static final RegistryObject<Item> PROTOPSEPHURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("protopsephurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.PROTOPSEPHURUS, 0x797D81, 0x88686C, new Item.Properties()));
 	public static final RegistryObject<Item> PSITTACOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("psittacosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.PSITTACOSAURUS, 0x8D4224, 0xD49B44, new Item.Properties()));
+	public static final RegistryObject<Item> REPENOMAMUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("repenomamus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.REPENOMAMUS, 0xDDC8BC, 0x382C2A, new Item.Properties()));
+	public static final RegistryObject<Item> RUIXINIA_SPAWN_EGG = SPAWN_EGG_REGISTER.register("ruixinia_spawn_egg", () -> new PFSpawnEggItem(PFEntities.RUIXINIA, 0x352A2D, 0x8D2525, new Item.Properties()));
 	public static final RegistryObject<Item> SINAMIA_SPAWN_EGG = SPAWN_EGG_REGISTER.register("sinamia_spawn_egg", () -> new PFSpawnEggItem(PFEntities.SINAMIA, 0x5B5126, 0x39402E, new Item.Properties()));
 	public static final RegistryObject<Item> SINOSAUROPTERYX_SPAWN_EGG = SPAWN_EGG_REGISTER.register("sinosauropteryx_spawn_egg", () -> new PFSpawnEggItem(PFEntities.SINOSAUROPTERYX, 0x9E5D33, 0xEDEADD, new Item.Properties()));
 	public static final RegistryObject<Item> YANOSTEUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("yanosteus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.YANOSTEUS, 0x644E5B, 0x484A52, new Item.Properties()));
 	public static final RegistryObject<Item> YUTYRANNUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("yutyrannus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.YUTYRANNUS, 0x463F36, 0xE9D3C3, new Item.Properties()));
+	public static final RegistryObject<Item> ZHENYUANLONG_SPAWN_EGG = SPAWN_EGG_REGISTER.register("zhenyuanlong_spawn_egg", () -> new PFSpawnEggItem(PFEntities.ZHENYUANLONG, 0x1E2844, 0xBA5F2A, new Item.Properties()));
 	public static final RegistryObject<Item> CALSOYASUCHUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("calsoyasuchus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CALSOYASUCHUS, 0xCBC1AB, 0x573E2E, new Item.Properties()));
 	public static final RegistryObject<Item> DILOPHOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("dilophosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.DILOPHOSAURUS, 0x896329, 0x86121B, new Item.Properties()));
 	public static final RegistryObject<Item> KAYENTATHERIUM_SPAWN_EGG = SPAWN_EGG_REGISTER.register("kayentatherium_spawn_egg", () -> new PFSpawnEggItem(PFEntities.KAYENTATHERIUM, 0x513D34, 0xA59E8B, new Item.Properties()));
@@ -806,8 +845,10 @@ public class PFItems {
 	public static final RegistryObject<Item> DIDELPHODON_HIDE = REGISTER.register("didelphodon_hide", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> EXAERETODON_HIDE = REGISTER.register("exaeretodon_hide", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> KAYENTATHERIUM_HIDE = REGISTER.register("kayentatherium_hide", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> REPENOMAMUS_HIDE = REGISTER.register("repenomamus_hide", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> ANKYLOSAURUS_HELMET = REGISTER.register("ankylosaurus_helmet", () -> new CustomArmorItem(ArmorMaterialInit.ANKYLOSAURUS, ArmorItem.Type.HELMET, new Item.Properties()));
 	public static final RegistryObject<Item> DESMATOSUCHUS_CHESTPLACE = REGISTER.register("desmatosuchus_chestplate", () -> new CustomChestplateItem(ArmorMaterialInit.DESMATOSUCHUS, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+	public static final RegistryObject<Item> EGG_HELMET = REGISTER.register("eggshell_helmet", () -> new EggHelmetItem(ArmorMaterialInit.EGG, ArmorItem.Type.HELMET, new Item.Properties()));
 	public static final RegistryObject<Item> TYRANNOSAUR_TOOTH_SWORD = REGISTER.register("tyrannosaur_tooth_sword", () -> new TyrannosaurToothSwordItem(PFItemTiers.TYRANNOSAURUS, 3, -2.4F, new Item.Properties()));
 	public static final RegistryObject<Item> THAGOMIZER_PICKAXE = REGISTER.register("thagomizer_pickaxe", () -> new PickaxeItem(PFItemTiers.THAGOMIZER, 2, -2.8F, new Item.Properties()));
 	public static final RegistryObject<Item> DROMAEOSAUR_CLAW_SCYTHE = REGISTER.register("dromaeosaur_claw_scythe", () -> new PFHoeItem(PFItemTiers.DAKOTARAPTOR, new Item.Properties()));
@@ -886,6 +927,9 @@ public class PFItems {
 	public static final RegistryObject<Item> BOTTLED_CEPHALOLEICHNITES = REGISTER.register("bottled_cephaloleichnites", () -> new BottledBugItem(PFEntities.CEPHALOLEICHNITES, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> BOTTLED_APOCLION = REGISTER.register("bottled_apoclion", () -> new BottledBugItem(PFEntities.APOCLION, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> BOTTLED_CRETARANEUS = REGISTER.register("bottled_cretaraneus", () -> new BottledBugItem(PFEntities.CRETARANEUS, new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> BOTTLED_LIAONEMOBIUS = REGISTER.register("bottled_liaonemobius", () -> new BottledBugItem(PFEntities.LIAONEMOBIUS, new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> BOTTLED_SAP = REGISTER.register("bottled_sap", () -> new Item(new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> EGGSHELL_POWDER = REGISTER.register("eggshell_powder", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> MONKEY_SHERD = REGISTER.register("monkey_sherd", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> HORN_SHERD = REGISTER.register("horn_sherd", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> LEAF_SHERD = REGISTER.register("leaf_sherd", () -> new Item(new Item.Properties()));
@@ -974,9 +1018,47 @@ public class PFItems {
 	@SuppressWarnings("deprecation")
 	public static final RegistryObject<Item> DEAD_MILLIPEDE = FOOD_REGISTER.register("dead_millipede", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(1).effect(new MobEffectInstance(MobEffects.POISON, 300, 0), 1).build())));
 	public static final RegistryObject<Item> DEAD_BEETLE = FOOD_REGISTER.register("dead_beetle", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(1).build())));
+	public static final RegistryObject<Item> DEAD_HOPPER = FOOD_REGISTER.register("dead_hopper", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(1).build())));
 	public static final RegistryObject<Item> DEAD_SPIDER = FOOD_REGISTER.register("dead_spider", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(1).build())));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> FERNY_STEW = FOOD_REGISTER.register("ferny_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.HEAL, 0, 1), 1).build()).stacksTo(1)));
+//	@SuppressWarnings("deprecation")
+//	public static final RegistryObject<Item> H_CYCAD_STEW = FOOD_REGISTER.register("herbivore_cycad_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 6000), 1).build()).stacksTo(1)));
+//	@SuppressWarnings("deprecation")
+//	public static final RegistryObject<Item> C_CYCAD_STEW = FOOD_REGISTER.register("carnivore_cycad_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.SLOW_FALLING, 6000), 1).build()).stacksTo(1)));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> H_ZAMITES_STEW = FOOD_REGISTER.register("herbivore_zamites_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 6000), 1).build()).stacksTo(1)));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> C_ZAMITES_STEW = FOOD_REGISTER.register("carnivore_zamites_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.JUMP, 6000), 1).build()).stacksTo(1)));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> CLUBMOSS_STEW = FOOD_REGISTER.register("clubmoss_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.WATER_BREATHING, 6000), 1).build()).stacksTo(1)));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> MARCHANITA_STEW = FOOD_REGISTER.register("marchantia_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.SATURATION, 6000), 1).effect(new MobEffectInstance(MobEffects.HEALTH_BOOST, 6000), 1).build()).stacksTo(1)));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> SWEET_STEW = FOOD_REGISTER.register("sweet_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.REGENERATION, 1200), 1).build()).stacksTo(1)));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> STRENGTHENED_FERNY_STEW = FOOD_REGISTER.register("strengthened_ferny_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.HEAL, 0, 3), 1).build()).stacksTo(1)));
+//	@SuppressWarnings("deprecation")
+//	public static final RegistryObject<Item> STRENGTHENED_H_CYCAD_STEW = FOOD_REGISTER.register("strengthened_herbivore_cycad_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 6000, 1), 1).build()).stacksTo(1)));
+//	@SuppressWarnings("deprecation")
+//	public static final RegistryObject<Item> STRENGTHENED_C_CYCAD_STEW = FOOD_REGISTER.register("strengthened_carnivore_cycad_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.SLOW_FALLING, 6000, 1), 1).build()).stacksTo(1)));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> STRENGTHENED_H_ZAMITES_STEW = FOOD_REGISTER.register("strengthened_herbivore_zamites_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 6000, 1), 1).build()).stacksTo(1)));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> STRENGTHENED_C_ZAMITES_STEW = FOOD_REGISTER.register("strengthened_carnivore_zamites_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.JUMP, 6000, 1), 1).build()).stacksTo(1)));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> STRENGTHENED_CLUBMOSS_STEW = FOOD_REGISTER.register("strengthened_clubmoss_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.WATER_BREATHING, 6000, 1), 1).build()).stacksTo(1)));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> STRENGTHENED_MARCHANITA_STEW = FOOD_REGISTER.register("strengthened_marchantia_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.SATURATION, 6000, 1), 1).effect(new MobEffectInstance(MobEffects.HEALTH_BOOST, 6000), 1).build()).stacksTo(1)));
+	@SuppressWarnings("deprecation")
+	public static final RegistryObject<Item> STRENGTHENED_SWEET_STEW = FOOD_REGISTER.register("strengthened_sweet_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.REGENERATION, 1200, 1), 1).build()).stacksTo(1)));
 	public static final RegistryObject<Item> HORSETAIL_TEA = FOOD_REGISTER.register("horsetail_tea", () -> new HorsetailTeaItem(new Item.Properties().stacksTo(16)));
-	
+	public static final RegistryObject<Item> BOTTLED_SYRUP = FOOD_REGISTER.register("bottled_syrup", () -> new BottledSyrupItem(new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> LUNGFISH_OIL = FOOD_REGISTER.register("lungfish_oil", () -> new LungfishOilItem(new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> GAR_OIL = FOOD_REGISTER.register("gar_oil", () -> new GarOilItem(new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> FERMENTED_DRINK = FOOD_REGISTER.register("fermented_drink", () -> new FermentedDrinkItem(new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> CALCIUM_SUPPLEMENT = FOOD_REGISTER.register("calcium_supplement", () -> new CalciumSupplementItem(new Item.Properties().stacksTo(1)));
+
 	private static TagKey<BannerPattern> registerPattern(String name) {
 		return BannerPatternTags.create(name);
 	}

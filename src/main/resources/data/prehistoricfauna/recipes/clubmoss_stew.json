@@ -1,0 +1,18 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+		"item": "prehistoricfauna:clubmoss"
+    },
+    {
+		"item": "minecraft:bowl"
+	},
+	{
+		"tag": "prehistoricfauna:herbivore_meats"
+	}
+  ],
+  "result": {
+    "item": "prehistoricfauna:clubmoss_stew",
+    "count": 1
+  }
+}

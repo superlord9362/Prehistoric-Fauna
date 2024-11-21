@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/zhenyuanlong_nest_and_four_eggs_three_plants",
+	"textures": {
+		"egg": "prehistoricfauna:block/zhenyuanlong_egg_slightly_cracked"
+	}
+}

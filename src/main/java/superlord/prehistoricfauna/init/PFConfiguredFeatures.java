@@ -259,12 +259,14 @@ public class PFConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> LEEFRUCTUS = registerConfiguredFeature("configured_leefructus");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> RUFFORDIA = registerConfiguredFeature("configured_ruffordia");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> EPHEDRA = registerConfiguredFeature("configured_ephedra");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> RARE_EPHEDRA = registerConfiguredFeature("configured_rare_ephedra");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ARCHAEFRUCTUS = registerConfiguredFeature("configured_archaefructus");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DOUBLE_ARCHAEFRUCTUS = registerConfiguredFeature("configured_double_archaefructus");
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> CRASSOSTREA_OYSTERS = registerConfiguredFeature("configured_crassostrea_oyster");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ALGAE = registerConfiguredFeature("configured_algae");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> NELUMBO = registerConfiguredFeature("configured_nelumbo");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> RARE_NELUMBO = registerConfiguredFeature("configured_rare_nelumbo");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> QUEREUXIA = registerConfiguredFeature("configured_quereuxia");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> COBBANIA = registerConfiguredFeature("configured_cobbania");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> AZOLLA = registerConfiguredFeature("configured_azolla");
@@ -553,12 +555,14 @@ public class PFConfiguredFeatures {
 		FeatureUtils.register(bootstapContext, LEEFRUCTUS, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.LEEFRUCTUS.get()), 32));
 		FeatureUtils.register(bootstapContext, RUFFORDIA, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.RUFFORDIA.get()), 32));
 		FeatureUtils.register(bootstapContext, EPHEDRA, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.EPHEDRA.get()), 16));
+		FeatureUtils.register(bootstapContext, RARE_EPHEDRA, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.EPHEDRA.get()), 4));
 		FeatureUtils.register(bootstapContext, ARCHAEFRUCTUS, PFFeatures.ARCHAEFRUCTUS.get(), new JohnstoniaConfig(15));
 		FeatureUtils.register(bootstapContext, DOUBLE_ARCHAEFRUCTUS, PFFeatures.TALL_ARCHAEFRUCTUS.get(), new JohnstoniaConfig(15));
 
 		FeatureUtils.register(bootstapContext, CRASSOSTREA_OYSTERS, PFFeatures.CRASSOSTREA_OYSTERS.get(), new CrassostreaOystersConfig(24));
 		FeatureUtils.register(bootstapContext, ALGAE, PFFeatures.ALGAE.get(), new CrassostreaOystersConfig(24));
 		FeatureUtils.register(bootstapContext, NELUMBO, PFFeatures.NELUMBO.get(), new CrassostreaOystersConfig(24));
+		FeatureUtils.register(bootstapContext, RARE_NELUMBO, PFFeatures.RARE_NELUMBO.get(), new CrassostreaOystersConfig(8));
 		FeatureUtils.register(bootstapContext, QUEREUXIA, PFFeatures.QUEREUXIA.get(), new CrassostreaOystersConfig(24));
 		FeatureUtils.register(bootstapContext, COBBANIA, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.COBBANIA.get()), 32));
 		FeatureUtils.register(bootstapContext, AZOLLA, PFFeatures.AZOLLA.get(), new JohnstoniaConfig(25));

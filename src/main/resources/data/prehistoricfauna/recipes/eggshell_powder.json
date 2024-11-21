@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:eggshells"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:eggshell_powder",
+    "count": 3
+  }
+}

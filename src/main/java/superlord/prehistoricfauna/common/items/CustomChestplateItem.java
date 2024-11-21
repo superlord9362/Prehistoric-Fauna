@@ -1,5 +1,7 @@
 package superlord.prehistoricfauna.common.items;
 
+import java.util.function.Consumer;
+
 import javax.annotation.Nullable;
 
 import net.minecraft.world.entity.Entity;
@@ -13,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import superlord.prehistoricfauna.PrehistoricFauna;
 
 public class CustomChestplateItem extends ArmorItem {
@@ -22,8 +25,8 @@ public class CustomChestplateItem extends ArmorItem {
 	}
 
 	@Override
-	public void initializeClient(java.util.function.Consumer<net.minecraftforge.client.extensions.common.IClientItemExtensions> consumer) {
-	consumer.accept((net.minecraftforge.client.extensions.common.IClientItemExtensions) PrehistoricFauna.PROXY.getArmorRenderProperties());
+	public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+		consumer.accept((IClientItemExtensions) PrehistoricFauna.PROXY.getArmorRenderProperties());
 	}
 
 	@Override

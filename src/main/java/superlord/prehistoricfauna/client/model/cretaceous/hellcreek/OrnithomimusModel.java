@@ -166,8 +166,8 @@ public class OrnithomimusModel extends EntityModel<Ornithomimus> {
 				this.LeftWing.yRot = Mth.lerp(sleepProgress, 0.19547687289441354F, 0);
 				this.LeftWing.zRot = Mth.lerp(sleepProgress, -0.10471975511965977F, 0);
 			} else {
-				this.Neck1.xRot = (Mth.cos(-1.0F + limbSwing * walkSpeed * 0.3F) * walkDegree * 0.3F * limbSwingAmount + 0.35F) + (headPitch * ((float) Math.PI / 180F)) + attackProgress * (float) Math.toRadians(25F);
-				this.Body.xRot = Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3)) + Mth.cos(1.0F + limbSwing * walkSpeed * 0.3F) * walkDegree * 0.1F * limbSwingAmount;
+				this.Neck1.xRot = Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3)) + (Mth.cos(-1.0F + limbSwing * walkSpeed * 0.3F) * walkDegree * 0.3F * limbSwingAmount + 0.35F) + (headPitch * ((float) Math.PI / 180F)) + attackProgress * (float) Math.toRadians(25F);
+				this.Body.xRot = /**Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))*/ + Mth.cos(1.0F + limbSwing * walkSpeed * 0.3F) * walkDegree * 0.1F * limbSwingAmount;
 				this.Tail1.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5)) + Mth.cos(limbSwing * walkSpeed * 0.3F) * walkDegree * 0.1F * limbSwingAmount - 0.05F;
 				this.Tail2.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5)) + Mth.cos(-1.0F + limbSwing * walkSpeed * 0.3F) * walkDegree * 0.15F * limbSwingAmount + 0.05F;
 				this.Tail1.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5) + Mth.cos(limbSwing * walkSpeed * 0.15F) * walkDegree * 0.6F * limbSwingAmount;
@@ -240,7 +240,11 @@ public class OrnithomimusModel extends EntityModel<Ornithomimus> {
 		this.RightThigh.xRot = 0;
 		this.RightThigh.yRot = 0;
 		this.LeftWing.xRot = 0F;
+		this.LeftWing.yRot = 0F;
 		this.LeftWing.zRot = 0F;
+		this.RightWing.xRot = 0F;
+		this.RightWing.yRot = 0F;
+		this.RightWing.zRot = 0F;
 		this.Neck1.z = -10.25F;
 	}
 

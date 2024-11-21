@@ -324,10 +324,10 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 		float frequency3 = 3.5F;
 		sample += Mth.abs(noise.GetNoise(x * frequency3, y * frequency3, z * frequency3) * 0.05F);
 		sample -= 0.15F;
-
 		if (biome.is(PFBiomes.HELL_CREEK_SWAMP)) {
 			sample -= swampNoise;
 			sample *= 4.3F;
+			sample -= 5.75F;
 		}
 		if (biome.is(PFBiomes.HELL_CREEK_RIVER)) {
 			sample -= riverNoise;
@@ -338,21 +338,18 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 			sample *= 5.9F;
 			sample += 2.5;
 			sample -= (y - this.settings.value().seaLevel() - hugeCliffNoise * 64) / (16.0F / bigRockNoise * (hugeCliffWobble + 1));
-			//sample *= 2.9F;
 		}
 		if (biome.is(PFBiomes.YIXIAN_SNOWY_MOUNTAINS) || biome.is(PFBiomes.YIXIAN_VOLCANO) || biome.is(PFBiomes.YIXIAN_REGROWTH) || biome.is(PFBiomes.YIXIAN_SNOWY_FOREST)) {
 			sample *= 0.5F;
 			sample -= (y - this.settings.value().seaLevel() - hugeCliffNoise * 64) / (16.0F / bigRockNoise * (hugeCliffWobble + 1));
 		}
 		if (biome.is(PFBiomes.HELL_CREEK_HARDWOOD_FOREST) || biome.is(PFBiomes.HELL_CREEK_CLEARING) || biome.is(PFBiomes.YIXIAN_FOREST) || biome.is(PFBiomes.DJADOCHTA_ARROYO) || biome.is(PFBiomes.HELL_CREEK_REDWOODS) || biome.is(PFBiomes.HELL_CREEK_SWAMP) || biome.is(PFBiomes.HELL_CREEK_RIVER) || biome.is(PFBiomes.DJADOCHTA_ALLUVIAL_PLAINS)) {
-			//sample *= 12.6F;
 			sample -= flatsNoise;
-			//sample *= 12.5;
 		}
 		if (biome.is(PFBiomes.YIXIAN_LAKES)) {
 			sample -= lakeNoise;
 			sample *= 6.3F;
-			//sample *= 0.6F;
+			sample -= 5F;
 		}
 		if (biome.is(PFBiomes.HELL_CREEK_BLUFFS) || biome.is(PFBiomes.DJADOCHTA_DUNES)) {
 			sample *= 1.6F;
@@ -360,11 +357,6 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 			sample -= (y - this.settings.value().seaLevel() - hillNoise * 64) / (16.0F / bigHillRockNoise * (hillWobble + 1));
 			sample *= 6.6F;
 		}
-		//		if (biome.is(PFBiomes.PREHISTORIC_DRIPSTONE_CAVE)) {
-		//			sample *= 1.6F;
-		//			sample += 0.4;
-		//			sample -= (y - this.settings.value().seaLevel() - hillNoise * 64) / (16.0F / bigHillRockNoise * (hillWobble + 1));
-		//			sample *= 6.6F;
 		if (y < 60) {
 			sample *= 1;
 			sample += 0.4;
@@ -379,18 +371,10 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 			caveSample /= 2;
 			caveSample *= 1.5;
 			caveSample -= 0.02;
-
-			//		float caveSample2;
-			//		float sample12 = noise.GetNoise(x + 10392, y + 120834429, z + 10392);
-			//		float sample22 = noise.GetNoise(x + 10392, y + 2391405, z + 10392);
-			//		caveSample2 = sample12 * sample12 + sample22 * sample22;
-			//		caveSample2 *= 0.5;
-			//		caveSample2 -= 0.01;
-
 			sample = Math.min(sample, caveSample);
-			//		sample = Math.min(sample, caveSample2);
-			//		}
 		}
+		
+		
 		return sample;
 	}
 

@@ -205,6 +205,7 @@ public class Plesiohadros extends HerdDinosaurEntity {
 			this.setTerritorial(true);
 		}
 		this.setHerbivorous(blocksBuilding);
+		this.setDiurnal(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 	

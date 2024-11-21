@@ -21,7 +21,7 @@ public class OrnithomimusRenderer extends MobRenderer<Ornithomimus, Ornithomimus
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ornithomimus/melanistic_sleeping.png");
 
 	public OrnithomimusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new OrnithomimusModel(renderManagerIn.bakeLayer(ClientEvents.ORNITHOMIMUS)), 0.25F);
+		super(renderManagerIn, new OrnithomimusModel(renderManagerIn.bakeLayer(ClientEvents.ORNITHOMIMUS)), 0.75F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new OrnithomimusEyeLayer(this));
 		}

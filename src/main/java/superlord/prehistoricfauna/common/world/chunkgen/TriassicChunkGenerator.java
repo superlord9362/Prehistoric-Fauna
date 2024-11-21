@@ -231,6 +231,10 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 		float smoothness = 0.001F;
 		float h = Mth.clamp(0.5F + 0.5F * (sample - floor) / smoothness, 0.0F, 1.0F);
 		sample = Mth.lerp(sample, floor, h) - smoothness * h * (1.0F - h);
+		
+		float fluctuationFrequency = 0.05F; // Low frequency for smooth changes
+		float fluctuationNoise = noise.GetNoise(x * fluctuationFrequency, y * fluctuationFrequency, z * fluctuationFrequency) * 0.1F; // Adjust amplitude as needed
+		sample += fluctuationNoise;
 		if (biome.is(PFBiomes.CHINLE_RIVER) || biome.is(PFBiomes.ISCHIGUALASTO_RIVER)) {
 			float riverFrequency = 0.1F;
 			float riverNoise = noise.GetNoise((float) x * riverFrequency, 0, (float) z * riverFrequency);
@@ -247,6 +251,7 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 			swampNoise *= (y - seaLevel) * 1.1;
 			sample *= 2.3F;
 			sample -= swampNoise;
+			sample -= 5.75F;
 		} else if (biome.is(PFBiomes.CHINLE_WOODED_MOUNTAINS)) {
 			float bigRockFrequency = 0.4F;
 			float rockNoise = noise.GetNoise(x * bigRockFrequency, (y * frequency1) + 512, z * bigRockFrequency);

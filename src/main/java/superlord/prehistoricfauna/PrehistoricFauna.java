@@ -3,7 +3,9 @@ package superlord.prehistoricfauna;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -11,6 +13,8 @@ import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.mojang.serialization.Codec;
 
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.client.renderer.CubeMap;
@@ -25,6 +29,7 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -42,6 +47,8 @@ import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.resource.PathPackResources;
 import net.minecraftforge.resource.ResourcePackLoader;
 import net.minecraftforge.server.ServerLifecycleHooks;
@@ -50,6 +57,7 @@ import superlord.prehistoricfauna.common.CommonProxy;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.block.messages.MessageUpdatePaleoscribe;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Aepyornithomimus;
+import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Byronosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Citipati;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.DermestidBeetle;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Gobiulus;
@@ -66,6 +74,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Velocirapto
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ankylosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Anzu;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Basilemys;
+import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Brachychampsa;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Cephaloleichnites;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Didelphodon;
@@ -74,18 +83,23 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ornithomimu
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Pachycephalosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Palaeosaniwa;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Thescelosaurus;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Thoracosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Apoclion;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Beipiaosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Changyuraptor;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Cretaraneus;
+import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Dilong;
+import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Dongbeititan;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Incisivosaurus;
+import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Liaonemobius;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Liaoningosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Psittacosaurus;
+import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Repenomamus;
+import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Ruixinia;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Sinosauropteryx;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Yutyrannus;
+import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Zhenyuanlong;
 import superlord.prehistoricfauna.common.entity.fish.Acipenser;
 import superlord.prehistoricfauna.common.entity.fish.Arganodus;
 import superlord.prehistoricfauna.common.entity.fish.Ceratodus;
@@ -191,8 +205,10 @@ import superlord.prehistoricfauna.init.PFEffects;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFFeatures;
 import superlord.prehistoricfauna.init.PFItems;
+import superlord.prehistoricfauna.init.PFMobSpawnsModifier;
 import superlord.prehistoricfauna.init.PFParticles;
 import superlord.prehistoricfauna.init.PFPotDecorations;
+import superlord.prehistoricfauna.init.PFProfessions;
 import superlord.prehistoricfauna.init.PFRecipes;
 import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFStructures.PFStructurePieceType;
@@ -206,6 +222,7 @@ public class PrehistoricFauna {
 	public static final String MOD_ID = "prehistoricfauna";	
 	public static final Logger LOGGER = LogManager.getLogger();
 	public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
+	public static final List<Runnable> CALLBACKS = new ArrayList<>();
 	@SuppressWarnings("deprecation")
 	public static CommonProxy PROXY = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 	private static final String PROTOCOL_VERSION = "1";
@@ -221,9 +238,9 @@ public class PrehistoricFauna {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		final ModLoadingContext modLoadingContext = ModLoadingContext.get();
 
-		bus.addListener(this::doClientStuff);
 		bus.addListener(this::setup);
 		bus.addListener(this::onModConfigEvent);
+		bus.addListener(this::doClientStuff);
 
 		PFBlocks.REGISTER.register(bus);
 		PFItems.REGISTER.register(bus);
@@ -235,6 +252,8 @@ public class PrehistoricFauna {
 
 		PFEntities.REGISTER.register(bus);
 		PFBlockEntities.REGISTER.register(bus);
+		PFProfessions.POI_TYPES.register(bus);
+		PFProfessions.PROFESSIONS.register(bus);
 		REGISTRY_HELPER.getBlockSubHelper().register(bus);
 		REGISTRY_HELPER.getItemSubHelper().register(bus);
 		REGISTRY_HELPER.getBlockEntitySubHelper().register(bus);
@@ -251,14 +270,17 @@ public class PrehistoricFauna {
 		PFParticles.REGISTRY.register(bus);
 		PFStructurePieceType.REGISTRY.register(bus);
 		PFStructureType.REGISTRY.register(bus);
+		final DeferredRegister<Codec<? extends BiomeModifier>> biomeModifiers = DeferredRegister.create(ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, PrehistoricFauna.MOD_ID);
+		biomeModifiers.register(bus);
+		biomeModifiers.register("pf_entity_spawns", PFMobSpawnsModifier::makeCodec);
 		modLoadingContext.registerConfig(ModConfig.Type.CLIENT, PFConfigHolder.CLIENT_SPEC);
 		modLoadingContext.registerConfig(ModConfig.Type.COMMON, PFConfigHolder.SERVER_SPEC);
 		CraftingHelper.register(new QuarkFlagRecipeCondition.Serializer());
-		
+
 		bus.addListener(this::gatherData);
 
 		bus.addListener(this::registerEntityAttributes);
-		
+
 		PROXY.init();
 	}
 
@@ -272,7 +294,7 @@ public class PrehistoricFauna {
 			PrehistoricFaunaConfig.bakeClient(config);
 		}
 	}
-	
+
 	public void gatherData(GatherDataEvent event) {
 		DataGenerator dataGenerator = event.getGenerator();
 		PackOutput packOutput = dataGenerator.getPackOutput();
@@ -377,7 +399,7 @@ public class PrehistoricFauna {
 		event.put(PFEntities.LAND_SENTINEL.get(), LandSentinel.createAttributes().build());
 		event.put(PFEntities.LONCHIDION.get(), Lonchidion.createAttributes().build());
 		event.put(PFEntities.ACIPENSER.get(), Acipenser.createAttributes().build());
-		event.put(PFEntities.THORACOSAURUS.get(), Thoracosaurus.createAttributes().build());
+		event.put(PFEntities.BRACHYCHAMPSA.get(), Brachychampsa.createAttributes().build());
 		event.put(PFEntities.OVIRAPTOR.get(), Oviraptor.createAttributes().build());
 		event.put(PFEntities.PALAEOSANIWA.get(), Palaeosaniwa.createAttributes().build());
 		event.put(PFEntities.DERMESTID_BEETLE.get(), DermestidBeetle.createAttributes().build());
@@ -405,10 +427,20 @@ public class PrehistoricFauna {
 		event.put(PFEntities.LIAONINGOSAURUS.get(), Liaoningosaurus.createAttributes().build());
 		event.put(PFEntities.CHANGYURAPTOR.get(), Changyuraptor.createAttributes().build());
 		event.put(PFEntities.PARAPSEPHURUS.get(), Parapsephurus.createAttributes().build());
+		event.put(PFEntities.BYRONOSAURUS.get(), Byronosaurus.createAttributes().build());
+		event.put(PFEntities.REPENOMAMUS.get(), Repenomamus.createAttributes().build());
+		event.put(PFEntities.RUIXINIA.get(), Ruixinia.createAttributes().build());
+		event.put(PFEntities.DONGBEITITAN.get(), Dongbeititan.createAttributes().build());
+		event.put(PFEntities.DILONG.get(), Dilong.createAttributes().build());
+		event.put(PFEntities.LIAONEMOBIUS.get(), Liaonemobius.createAttributes().build());
+		event.put(PFEntities.ZHENYUANLONG.get(), Zhenyuanlong.createAttributes().build());
+		event.put(PFEntities.JINZHOUSAURUS.get(), Zhenyuanlong.createAttributes().build());
 	}
 
 	private void doClientStuff(final FMLClientSetupEvent event) {
 		trySetRandomPanorama();
+		CALLBACKS.forEach(Runnable::run);
+		CALLBACKS.clear();
 	}
 
 	@SuppressWarnings({ "deprecation" })
@@ -496,7 +528,7 @@ public class PrehistoricFauna {
 		SpawnPlacements.register(PFEntities.ISCHIGUALASTIA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.SAUROSUCHUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.SILLOSUCHUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
-		SpawnPlacements.register(PFEntities.THORACOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Thoracosaurus::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.BRACHYCHAMPSA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Brachychampsa::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.OVIRAPTOR.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.PALAEOSANIWA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.HALSZKARAPTOR.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
@@ -514,6 +546,11 @@ public class PrehistoricFauna {
 		SpawnPlacements.register(PFEntities.ANZU.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.LIAONINGOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.CHANGYURAPTOR.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.BYRONOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.REPENOMAMUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.RUIXINIA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.DONGBEITITAN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.DILONG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.LAND_SENTINEL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, LandSentinel::canSpawn);
 		SpawnPlacements.register(PFEntities.CAVE_SENTINEL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, CaveSentinel::canSpawn);
 		SpawnPlacements.register(PFEntities.PROTOPSEPHURUS.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Protopsephurus::checkAncientFishSpawnRules);
@@ -524,6 +561,9 @@ public class PrehistoricFauna {
 		SpawnPlacements.register(PFEntities.CRETARANEUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Cretaraneus::canBugSpawn);
 		SpawnPlacements.register(PFEntities.APOCLION.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Apoclion::canBugSpawn);
 		SpawnPlacements.register(PFEntities.CEPHALOLEICHNITES.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Cephaloleichnites::canBugSpawn);
+		SpawnPlacements.register(PFEntities.LIAONEMOBIUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Liaonemobius::canBugSpawn);
+		SpawnPlacements.register(PFEntities.ZHENYUANLONG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.JINZHOUSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, DinosaurEntity::canDinosaurSpawn);
 		GeologicalHammerEvents.init();
 		event.enqueueWork(() -> {
 			PFPotDecorations.expandVanillaDefinitions();
@@ -564,7 +604,7 @@ public class PrehistoricFauna {
 	public static <MSG> void sendMSGToServer(MSG message) {
 		PrehistoricFauna.NETWORK_WRAPPER.sendToServer(message);
 	}
-	
+
 	public static <MSG> void sendToPlayer(MSG message, ServerPlayer player) {
 		PrehistoricFauna.NETWORK_WRAPPER.send(PacketDistributor.PLAYER.with(() -> player), message);
 	}

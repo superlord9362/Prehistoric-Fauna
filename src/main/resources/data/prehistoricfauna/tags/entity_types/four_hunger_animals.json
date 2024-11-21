@@ -1,11 +1,12 @@
 {
 	"replace": false,
 	"values": [
-		"prehistoricfauna:didelphodon",
 		"prehistoricfauna:eilenodon",
 		"prehistoricfauna:hyperodapedon",
 		"minecraft:chicken",
 		"prehistoricfauna:hesperornithoides",
-		"prehistoricfauna:scutellosaurus"
+		"prehistoricfauna:scutellosaurus",
+		"prehistoricfauna:halszkaraptor",
+		"prehistoricfauna:sinosauropteryx"
 	]
 }

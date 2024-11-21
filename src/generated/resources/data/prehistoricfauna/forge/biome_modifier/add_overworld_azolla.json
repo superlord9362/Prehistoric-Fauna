@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_features",
+  "biomes": [
+    "minecraft:swamp",
+    "minecraft:mangrove_swamp",
+    "minecraft:plains"
+  ],
+  "features": "prehistoricfauna:placed_azolla",
+  "step": "vegetal_decoration"
+}

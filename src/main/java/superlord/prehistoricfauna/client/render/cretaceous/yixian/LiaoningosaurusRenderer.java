@@ -19,7 +19,7 @@ public class LiaoningosaurusRenderer extends MobRenderer<Liaoningosaurus, Liaoni
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/liaoningosaurus/melanistic_sleeping.png");
 
 	public LiaoningosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new LiaoningosaurusModel(renderManagerIn.bakeLayer(ClientEvents.LIAONINGOSAURUS)), 0.5625F);
+		super(renderManagerIn, new LiaoningosaurusModel(renderManagerIn.bakeLayer(ClientEvents.LIAONINGOSAURUS)), 1F);
 	}
 
 	protected void scale(Liaoningosaurus liaoningosaurus, PoseStack matrixStackIn, float partialTickTime) {

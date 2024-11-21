@@ -14,6 +14,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraftforge.network.NetworkHooks;
+import superlord.prehistoricfauna.common.blocks.SplatteredGinkgoBlock;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEffects;
 import superlord.prehistoricfauna.init.PFEntities;
@@ -60,7 +61,7 @@ public class FermentedGinkgoBerry extends ThrowableItemProjectile {
 
 	protected void onHitBlock(BlockHitResult result) {
 		if (this.level().getBlockState(result.getBlockPos().relative(result.getDirection())).isAir()) {
-			this.level().setBlockAndUpdate(result.getBlockPos().relative(result.getDirection()), PFBlocks.SPLATTERED_GINKGO.get().defaultBlockState());
+			this.level().setBlockAndUpdate(result.getBlockPos().relative(result.getDirection()), PFBlocks.SPLATTERED_GINKGO.get().defaultBlockState().setValue(SplatteredGinkgoBlock.getFaceProperty(result.getDirection().getOpposite()), Boolean.valueOf(true)));
 		}
 		super.onHitBlock(result);
 	}

@@ -114,6 +114,7 @@ public class Beipiaosaurus extends DinosaurEntity {
 			this.setTerritorial(true);
 		}
 		this.setOmnivorous(true);
+		this.setDiurnal(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
@@ -229,8 +230,8 @@ public class Beipiaosaurus extends DinosaurEntity {
 		public StripLogGoal(double p_i50737_2_, int p_i50737_4_, int p_i50737_5_) {
 			super(Beipiaosaurus.this, p_i50737_2_, p_i50737_4_, p_i50737_5_);
 		}
-
-		public double getTargetDistanceSq() {
+		
+		public double acceptedDistance() {
 			return 2.0D;
 		}
 
@@ -279,12 +280,24 @@ public class Beipiaosaurus extends DinosaurEntity {
 				BlockState blockstate = Beipiaosaurus.this.level().getBlockState(this.blockPos);
 				level().addParticle(new BlockParticleOption(ParticleTypes.BLOCK, blockstate), blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0.0D, 0.0D, 0.0D);
 				level().removeBlock(this.blockPos, true);
-				level().getBlockState(blockPos.below()).getToolModifiedState(null, net.minecraftforge.common.ToolActions.AXE_STRIP, blocksBuilding);
-				level().getBlockState(blockPos.east()).getToolModifiedState(null, net.minecraftforge.common.ToolActions.AXE_STRIP, blocksBuilding);
-				level().getBlockState(blockPos.west()).getToolModifiedState(null, net.minecraftforge.common.ToolActions.AXE_STRIP, blocksBuilding);
-				level().getBlockState(blockPos.north()).getToolModifiedState(null, net.minecraftforge.common.ToolActions.AXE_STRIP, blocksBuilding);
-				level().getBlockState(blockPos.south()).getToolModifiedState(null, net.minecraftforge.common.ToolActions.AXE_STRIP, blocksBuilding);
-				level().getBlockState(blockPos.above()).getToolModifiedState(null, net.minecraftforge.common.ToolActions.AXE_STRIP, blocksBuilding);
+				if (AxeItem.STRIPPABLES.containsKey(level().getBlockState(this.blockPos.east()).getBlock())) {
+					level().setBlockAndUpdate(this.blockPos.east(), getAxeStrippingState(level().getBlockState(blockPos.east())));
+				}
+				if (AxeItem.STRIPPABLES.containsKey(level().getBlockState(this.blockPos.west()).getBlock())) {
+					level().setBlockAndUpdate(this.blockPos.west(), getAxeStrippingState(level().getBlockState(blockPos.west())));
+				}
+				if (AxeItem.STRIPPABLES.containsKey(level().getBlockState(this.blockPos.north()).getBlock())) {
+					level().setBlockAndUpdate(this.blockPos.north(), getAxeStrippingState(level().getBlockState(blockPos.north())));
+				}
+				if (AxeItem.STRIPPABLES.containsKey(level().getBlockState(this.blockPos.south()).getBlock())) {
+					level().setBlockAndUpdate(this.blockPos.south(), getAxeStrippingState(level().getBlockState(blockPos.south())));
+				}
+				if (AxeItem.STRIPPABLES.containsKey(level().getBlockState(this.blockPos.above()).getBlock())) {
+					level().setBlockAndUpdate(this.blockPos.above(), getAxeStrippingState(level().getBlockState(blockPos.above())));
+				}
+				if (AxeItem.STRIPPABLES.containsKey(level().getBlockState(this.blockPos.below()).getBlock())) {
+					level().setBlockAndUpdate(this.blockPos.below(), getAxeStrippingState(level().getBlockState(blockPos.below())));
+				}
 			}
 		}
 

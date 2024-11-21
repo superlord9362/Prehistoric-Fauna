@@ -74,8 +74,8 @@ public class LiaoningosaurusModel extends EntityModel<Liaoningosaurus> {
 
 		PartDefinition RightArm = Body.addOrReplaceChild("RightArm", CubeListBuilder.create().texOffs(0, 30).addBox(-2.0F, -0.5F, -1.5F, 3.0F, 9.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(7.0F, -8.5F, -7.5F));
 
-		PartDefinition Tail1 = Body.addOrReplaceChild("Tail1", CubeListBuilder.create().texOffs(32, 30).addBox(-2.5F, -2.5F, 0.0F, 5.0F, 5.0F, 11.0F, new CubeDeformation(0.0F))
-		.texOffs(-1, 86).addBox(-4.5F, 0.0F, 0.0F, 9.0F, 0.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -10.5F, 10.0F));
+		PartDefinition Tail1 = Body.addOrReplaceChild("Tail1", CubeListBuilder.create().texOffs(42, 30).addBox(-2.5F, -2.5F, -1.0F, 5.0F, 5.0F, 12.0F, new CubeDeformation(0.0F))
+				.texOffs(-1, 86).addBox(-4.5F, 0.0F, 0.0F, 9.0F, 0.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -10.5F, 10.0F));
 
 		PartDefinition Tail2 = Tail1.addOrReplaceChild("Tail2", CubeListBuilder.create().texOffs(72, 25).addBox(-4.5F, 0.0F, 0.0F, 9.0F, 0.0F, 13.0F, new CubeDeformation(0.0F))
 		.texOffs(0, 30).addBox(-1.5F, -1.5F, 0.0F, 3.0F, 3.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 11.0F));
@@ -253,6 +253,8 @@ public class LiaoningosaurusModel extends EntityModel<Liaoningosaurus> {
 		this.LeftThigh.yRot = 0;
 		this.LeftThigh.zRot = 0;
 		this.RightArm.xRot = 0F;
+		this.RightArm.yRot = 0;
+		this.RightArm.zRot = 0;
 		this.LeftArm.x = -7;
 		this.LeftArm.y = -8.5F;
 		this.LeftArm.xRot = 0;

@@ -21,7 +21,7 @@ public class KolRenderer extends MobRenderer<Kol, KolModel> {
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/kol/melanistic_sleeping.png");
 
 	public KolRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new KolModel(renderManagerIn.bakeLayer(ClientEvents.KOL)), 0.25F);
+		super(renderManagerIn, new KolModel(renderManagerIn.bakeLayer(ClientEvents.KOL)), 0.5F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new KolEyeLayer(this));
 		}

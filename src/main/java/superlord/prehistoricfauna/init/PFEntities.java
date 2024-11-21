@@ -13,6 +13,7 @@ import superlord.prehistoricfauna.common.entity.PFRaft;
 import superlord.prehistoricfauna.common.entity.Paleopainting;
 import superlord.prehistoricfauna.common.entity.WallFossil;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Aepyornithomimus;
+import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Byronosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Citipati;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.DermestidBeetle;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Gobiulus;
@@ -29,6 +30,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Velocirapto
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ankylosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Anzu;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Basilemys;
+import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Brachychampsa;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Cephaloleichnites;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Didelphodon;
@@ -37,18 +39,24 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ornithomimu
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Pachycephalosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Palaeosaniwa;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Thescelosaurus;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Thoracosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Apoclion;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Beipiaosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Changyuraptor;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Cretaraneus;
+import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Dilong;
+import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Dongbeititan;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Incisivosaurus;
+import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Jinzhousaurus;
+import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Liaonemobius;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Liaoningosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Psittacosaurus;
+import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Repenomamus;
+import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Ruixinia;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Sinosauropteryx;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Yutyrannus;
+import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Zhenyuanlong;
 import superlord.prehistoricfauna.common.entity.fish.Acipenser;
 import superlord.prehistoricfauna.common.entity.fish.Arganodus;
 import superlord.prehistoricfauna.common.entity.fish.Ceratodus;
@@ -204,6 +212,7 @@ public class PFEntities {
 	public static final RegistryObject<EntityType<Ankylosaurus>> ANKYLOSAURUS = REGISTER.register("ankylosaurus", () -> EntityType.Builder.<Ankylosaurus>of(Ankylosaurus::new, MobCategory.CREATURE).sized(2F, 2F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "ankylosaurus").toString()));
 	public static final RegistryObject<EntityType<Anzu>> ANZU = REGISTER.register("anzu", () -> EntityType.Builder.<Anzu>of(Anzu::new, MobCategory.CREATURE).sized(0.875F, 2.3125F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "anzu").toString()));
 	public static final RegistryObject<EntityType<Basilemys>> BASILEMYS = REGISTER.register("basilemys", () -> EntityType.Builder.<Basilemys>of(Basilemys::new, MobCategory.CREATURE).sized(0.75F, 0.375F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "basilemys").toString()));
+	public static final RegistryObject<EntityType<Brachychampsa>> BRACHYCHAMPSA = REGISTER.register("brachychampsa", () -> EntityType.Builder.<Brachychampsa>of(Brachychampsa::new, MobCategory.CREATURE).sized(0.875F, 0.5625F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "brachychampsa").toString()));
 	public static final RegistryObject<EntityType<Dakotaraptor>> DAKOTARAPTOR = REGISTER.register("dakotaraptor", () -> EntityType.Builder.<Dakotaraptor>of(Dakotaraptor::new, MobCategory.CREATURE).sized(0.875F, 2.15F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "dakotaraptor").toString()));
 	public static final RegistryObject<EntityType<Didelphodon>> DIDELPHODON = REGISTER.register("didelphodon", () -> EntityType.Builder.<Didelphodon>of(Didelphodon::new, MobCategory.CREATURE).sized(0.35F, 0.4F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "didelphodon").toString()));
 	public static final RegistryObject<EntityType<Edmontosaurus>> EDMONTOSAURUS = REGISTER.register("edmontosaurus", () -> EntityType.Builder.<Edmontosaurus>of(Edmontosaurus::new, MobCategory.CREATURE).sized(2.125F, 4.375F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "edmontosaurus").toString()));
@@ -211,12 +220,13 @@ public class PFEntities {
 	public static final RegistryObject<EntityType<Pachycephalosaurus>> PACHYCEPHALOSAURUS = REGISTER.register("pachycephalosaurus", () -> EntityType.Builder.<Pachycephalosaurus>of(Pachycephalosaurus::new, MobCategory.CREATURE).sized(0.875F, 1.875F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "pachycephalosaurus").toString()));
 	public static final RegistryObject<EntityType<Palaeosaniwa>> PALAEOSANIWA = REGISTER.register("palaeosaniwa", () -> EntityType.Builder.<Palaeosaniwa>of(Palaeosaniwa::new, MobCategory.CREATURE).sized(0.5F, 0.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "palaeosaniwa").toString()));
 	public static final RegistryObject<EntityType<Thescelosaurus>> THESCELOSAURUS = REGISTER.register("thescelosaurus", () -> EntityType.Builder.<Thescelosaurus>of(Thescelosaurus::new, MobCategory.CREATURE).sized(0.55F, 1.25F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "thescelosaurus").toString()));
-	public static final RegistryObject<EntityType<Thoracosaurus>> THORACOSAURUS = REGISTER.register("thoracosaurus", () -> EntityType.Builder.<Thoracosaurus>of(Thoracosaurus::new, MobCategory.CREATURE).sized(1, 1).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "thoracosaurus").toString()));
+//	public static final RegistryObject<EntityType<Thoracosaurus>> THORACOSAURUS = REGISTER.register("thoracosaurus", () -> EntityType.Builder.<Thoracosaurus>of(Thoracosaurus::new, MobCategory.CREATURE).sized(1, 1).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "thoracosaurus").toString()));
 	public static final RegistryObject<EntityType<Triceratops>> TRICERATOPS = REGISTER.register("triceratops", () -> EntityType.Builder.<Triceratops>of(Triceratops::new, MobCategory.CREATURE).sized(2F, 2.6F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "triceratops").toString()));
 	public static final RegistryObject<EntityType<Tyrannosaurus>> TYRANNOSAURUS = REGISTER.register("tyrannosaurus", () -> EntityType.Builder.<Tyrannosaurus>of(Tyrannosaurus::new, MobCategory.CREATURE).sized(2F, 4F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "tyrannosaurus").toString()));
 	
 	//Djadochta
 	public static final RegistryObject<EntityType<Aepyornithomimus>> AEPYORNITHOMIMUS = REGISTER.register("aepyornithomimus", () -> EntityType.Builder.<Aepyornithomimus>of(Aepyornithomimus::new, MobCategory.CREATURE).sized(0.9375F, 1.25F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "aepyornithomimus").toString()));
+	public static final RegistryObject<EntityType<Byronosaurus>> BYRONOSAURUS = REGISTER.register("byronosaurus", () -> EntityType.Builder.<Byronosaurus>of(Byronosaurus::new, MobCategory.CREATURE).sized(0.375F, 0.75F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "byronosaurus").toString()));
 	public static final RegistryObject<EntityType<Citipati>> CITIPATI = REGISTER.register("citipati", () -> EntityType.Builder.<Citipati>of(Citipati::new, MobCategory.CREATURE).sized(0.5625F, 1.9F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "citipati").toString()));
 	public static final RegistryObject<EntityType<Goyocephale>> GOYOCEPHALE = REGISTER.register("goyocephale", () -> EntityType.Builder.<Goyocephale>of(Goyocephale::new, MobCategory.CREATURE).sized(0.6F, 0.875F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "goyocephale").toString()));
 	public static final RegistryObject<EntityType<Halszkaraptor>> HALSZKARAPTOR = REGISTER.register("halszkaraptor", () -> EntityType.Builder.<Halszkaraptor>of(Halszkaraptor::new, MobCategory.CREATURE).sized(0.35F, 0.75F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "halszkaraptor").toString()));
@@ -234,15 +244,22 @@ public class PFEntities {
 	public static final RegistryObject<EntityType<Cephaloleichnites>> CEPHALOLEICHNITES = REGISTER.register("cephaloleichnites", () -> EntityType.Builder.<Cephaloleichnites>of(Cephaloleichnites::new, MobCategory.AMBIENT).sized(0.25F, 0.25F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "cephaloleichnites").toString()));
 	public static final RegistryObject<EntityType<Apoclion>> APOCLION = REGISTER.register("apoclion", () -> EntityType.Builder.<Apoclion>of(Apoclion::new, MobCategory.AMBIENT).sized(0.25F, 0.25F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "apoclion").toString()));
 	public static final RegistryObject<EntityType<Cretaraneus>> CRETARANEUS = REGISTER.register("cretaraneus", () -> EntityType.Builder.<Cretaraneus>of(Cretaraneus::new, MobCategory.AMBIENT).sized(0.25F, 0.25F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "cretaraneus").toString()));
+	public static final RegistryObject<EntityType<Liaonemobius>> LIAONEMOBIUS = REGISTER.register("liaonemobius", () -> EntityType.Builder.<Liaonemobius>of(Liaonemobius::new, MobCategory.AMBIENT).sized(0.25F, 0.25F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "liaonemobius").toString()));
 	
 	//Yixian
-	public static final RegistryObject<EntityType<Beipiaosaurus>> BEIPIAOSAURUS = REGISTER.register("beipiaosaurus", () -> EntityType.Builder.<Beipiaosaurus>of(Beipiaosaurus::new, MobCategory.AMBIENT).sized(0.4375F, 1.375F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "beipiaosaurus").toString()));
-	public static final RegistryObject<EntityType<Changyuraptor>> CHANGYURAPTOR = REGISTER.register("changyuraptor", () -> EntityType.Builder.<Changyuraptor>of(Changyuraptor::new, MobCategory.AMBIENT).sized(0.3125F, 0.6875F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "beipiaosaurus").toString()));
+	public static final RegistryObject<EntityType<Beipiaosaurus>> BEIPIAOSAURUS = REGISTER.register("beipiaosaurus", () -> EntityType.Builder.<Beipiaosaurus>of(Beipiaosaurus::new, MobCategory.CREATURE).sized(0.4375F, 1.375F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "beipiaosaurus").toString()));
+	public static final RegistryObject<EntityType<Changyuraptor>> CHANGYURAPTOR = REGISTER.register("changyuraptor", () -> EntityType.Builder.<Changyuraptor>of(Changyuraptor::new, MobCategory.CREATURE).sized(0.3125F, 0.6875F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "beipiaosaurus").toString()));
+	public static final RegistryObject<EntityType<Dilong>> DILONG = REGISTER.register("dilong", () -> EntityType.Builder.<Dilong>of(Dilong::new, MobCategory.CREATURE).sized(0.375F, 0.625F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "dilong").toString()));
+	public static final RegistryObject<EntityType<Dongbeititan>> DONGBEITITAN = REGISTER.register("dongbeititan", () -> EntityType.Builder.<Dongbeititan>of(Dongbeititan::new, MobCategory.CREATURE).sized(2.25F, 3.125F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "dongbeititan").toString()));
 	public static final RegistryObject<EntityType<Incisivosaurus>> INCISIVOSAURUS = REGISTER.register("incisivosaurus", () -> EntityType.Builder.<Incisivosaurus>of(Incisivosaurus::new, MobCategory.CREATURE).sized(0.3125F, 0.6875F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "incisivosaurus").toString()));
+	public static final RegistryObject<EntityType<Jinzhousaurus>> JINZHOUSAURUS = REGISTER.register("jinzhousaurus", () -> EntityType.Builder.<Jinzhousaurus>of(Jinzhousaurus::new, MobCategory.CREATURE).sized(0.875F, 1.375F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "jinzhousaurus").toString()));
 	public static final RegistryObject<EntityType<Liaoningosaurus>> LIAONINGOSAURUS = REGISTER.register("liaoningosaurus", () -> EntityType.Builder.<Liaoningosaurus>of(Liaoningosaurus::new, MobCategory.AMBIENT).sized(1, 0.875F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "liaoningosaurus").toString()));
 	public static final RegistryObject<EntityType<Psittacosaurus>> PSITTACOSAURUS = REGISTER.register("psittacosaurus", () -> EntityType.Builder.<Psittacosaurus>of(Psittacosaurus::new, MobCategory.CREATURE).sized(0.5F, 0.9375F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "psittacosaurus").toString()));
+	public static final RegistryObject<EntityType<Repenomamus>> REPENOMAMUS = REGISTER.register("repenomamus", () -> EntityType.Builder.<Repenomamus>of(Repenomamus::new, MobCategory.CREATURE).sized(0.3125F, 0.375F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "repenomamus").toString()));
+	public static final RegistryObject<EntityType<Ruixinia>> RUIXINIA = REGISTER.register("ruixinia", () -> EntityType.Builder.<Ruixinia>of(Ruixinia::new, MobCategory.CREATURE).sized(1.5F, 2.625F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "ruixinia").toString()));
 	public static final RegistryObject<EntityType<Sinosauropteryx>> SINOSAUROPTERYX = REGISTER.register("sinosauropteryx", () -> EntityType.Builder.<Sinosauropteryx>of(Sinosauropteryx::new, MobCategory.CREATURE).sized(0.25F, 0.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "sinosauropteryx").toString()));
 	public static final RegistryObject<EntityType<Yutyrannus>> YUTYRANNUS = REGISTER.register("yutyrannus", () -> EntityType.Builder.<Yutyrannus>of(Yutyrannus::new, MobCategory.CREATURE).sized(1.0F, 2.4375F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "yutyrannus").toString()));
+	public static final RegistryObject<EntityType<Zhenyuanlong>> ZHENYUANLONG = REGISTER.register("zhenyuanlong", () -> EntityType.Builder.<Zhenyuanlong>of(Zhenyuanlong::new, MobCategory.CREATURE).sized(0.375F, 0.75F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "zhenyuanlong").toString()));
 	
 	//Kayenta
 	public static final RegistryObject<EntityType<Calsoyasuchus>> CALSOYASUCHUS = REGISTER.register("calsoyasuchus", () -> EntityType.Builder.<Calsoyasuchus>of(Calsoyasuchus::new, MobCategory.CREATURE).sized(0.5F, 0.3F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "calsoyasuchus").toString()));

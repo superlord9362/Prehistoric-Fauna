@@ -94,7 +94,7 @@ public class DinosaurEntity extends TamableAnimal {
 	public int warryTicks = 0;
 	int hungerTick = 0;
 
-	protected DinosaurEntity(EntityType<? extends TamableAnimal> p_21803_, Level p_21804_) {
+	public DinosaurEntity(EntityType<? extends TamableAnimal> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
 	}
 
@@ -262,7 +262,7 @@ public class DinosaurEntity extends TamableAnimal {
 	public void setMolluscivorous(boolean isMolluscivorous) {
 		this.entityData.set(MOLLUSCIVORE, isMolluscivorous);
 	}
-	
+
 	public boolean isInsectivorous() {
 		return this.entityData.get(INSECTIVORE);
 	}
@@ -278,7 +278,7 @@ public class DinosaurEntity extends TamableAnimal {
 	public void setPiscivorous(boolean isPiscivorous) {
 		this.entityData.set(PISCIVORE, isPiscivorous);
 	}
-	
+
 	public boolean isDiurnal() {
 		return this.entityData.get(DIURNAL);
 	}
@@ -286,7 +286,7 @@ public class DinosaurEntity extends TamableAnimal {
 	public void setDiurnal(boolean isDiurnal) {
 		this.entityData.set(DIURNAL, isDiurnal);
 	}
-	
+
 	public boolean isNocturnal() {
 		return this.entityData.get(NOCTURNAL);
 	}
@@ -294,7 +294,7 @@ public class DinosaurEntity extends TamableAnimal {
 	public void setNocturnal(boolean isNocturnal) {
 		this.entityData.set(NOCTURNAL, isNocturnal);
 	}
-	
+
 	public boolean isCrepuscular() {
 		return this.entityData.get(CREPUSCULAR);
 	}
@@ -354,7 +354,7 @@ public class DinosaurEntity extends TamableAnimal {
 		this.entityData.define(CREPUSCULAR, false);
 		this.entityData.define(NOCTURNAL, false);
 	}
-	
+
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 		List<UUID> list = this.getTrustedUUIDs();
@@ -716,6 +716,39 @@ public class DinosaurEntity extends TamableAnimal {
 		super.aiStep();
 		if (this.isAsleep()) this.setDeltaMovement(0, this.getDeltaMovement().y, 0);
 		if (!this.isNoAi()) {
+			if (this.isAsleep()) {
+				if (this.isDiurnal()) {
+					if (this.level().getDayTime() % 24000 > 0 && this.level().getDayTime() % 24000 < 12000) {
+						this.setAsleep(false);
+						this.setAwakeTicks(100);
+						this.setFallingAsleep();
+					}
+				}
+				if (this.isNocturnal()) {
+					if (this.level().getDayTime() % 24000 > 12000 && this.level().getDayTime() % 24000 < 24000) {
+						this.setAsleep(false);
+						this.setAwakeTicks(100);
+						this.setFallingAsleep();
+					}
+				}
+				if (this.isCrepuscular() && (this.level().getDayTime() % 24000 <= 2000 || this.level().getDayTime() % 24000 >= 9000 && level().getDayTime() <= 14000 ||  this.level().getDayTime() % 24000 >= 21000)) {
+					this.setAsleep(false);
+					this.setAwakeTicks(100);
+					this.setFallingAsleep();
+				}
+				if (this.getLastHurtByMob() != null || this.isInWater() || this.isInLava() || this.isOnFire() || this.isInWall() || this.isInPowderSnow) {
+					this.setAsleep(false);
+					this.setAwakeTicks(100);
+					this.setFallingAsleep();
+				}
+				for(Player player : this.level().getEntitiesOfClass(Player.class, this.getBoundingBox().inflate(2D, 2D, 2D))) {
+					if (!player.isShiftKeyDown()) {
+						this.setAsleep(false);
+						this.setAwakeTicks(100);
+						this.setFallingAsleep();
+					}
+				}
+			}
 			for (Psittacosaurus psittacosaurus : this.level().getEntitiesOfClass(Psittacosaurus.class, this.getBoundingBox().inflate(5))) {
 				if (this.isBaby() && !psittacosaurus.isBaby()) {
 					int i = this.getAge();
@@ -798,7 +831,7 @@ public class DinosaurEntity extends TamableAnimal {
 		super.tick();
 		prevSleepProgress = sleepProgress;
 		prevMeleeProgress = meleeProgress;
-//		System.out.println(this.entityData.get(SLEEP_TICK));
+		//		System.out.println(this.entityData.get(SLEEP_TICK));
 		if (this.entityData.get(SLEEP_TICK) > 0) {
 			this.entityData.set(SLEEP_TICK, this.entityData.get(SLEEP_TICK) - 1);
 			if (sleepProgress < 1.0F) {
@@ -843,7 +876,7 @@ public class DinosaurEntity extends TamableAnimal {
 	public boolean trusts(UUID p_28530_) {
 		return this.getTrustedUUIDs().contains(p_28530_);
 	}
-	
+
 	public void setFallingAsleep() {
 		this.entityData.set(SLEEP_TICK, 15);
 	}

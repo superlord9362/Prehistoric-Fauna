@@ -1,0 +1,9 @@
+{
+  "type": "forge:add_features",
+  "biomes": "minecraft:old_growth_spruce_taiga",
+  "features": [
+    "prehistoricfauna:placed_large_metasequoia_trees",
+    "prehistoricfauna:placed_rare_small_metasequoia_trees"
+  ],
+  "step": "vegetal_decoration"
+}

@@ -1,0 +1,21 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+		"item": "prehistoricfauna:liverwort"
+    },
+    {
+		"item": "minecraft:bowl"
+	},
+	{
+		"tag": "prehistoricfauna:herbivore_meats"
+	},
+	{
+		"item": "prehistoricfauna:bottled_syrup"
+	}
+  ],
+  "result": {
+    "item": "prehistoricfauna:strengthened_marchantia_stew",
+    "count": 1
+  }
+}

@@ -220,16 +220,16 @@ public class BeipiaosaurusModel extends EntityModel<Beipiaosaurus> {
 				this.RightArm.yRot = Mth.lerp(sleepProgress, 0.0552F, 0);
 				this.RightArm.zRot = Mth.lerp(sleepProgress, -0.1587F, 0);
 			} else {
-				this.LeftThigh.xRot = (Mth.sin(limbSwing * 0.5F) * 0.48F * limbSwingAmount) + Mth.abs((Mth.sin(0.15F * limbSwing) * -0.5F * limbSwingAmount)) + 0.4363F;
+				this.LeftThigh.xRot = (Mth.sin(limbSwing * 0.5F) * 0.48F * limbSwingAmount) - Mth.abs(Mth.sin(0.15F * limbSwing) * 0.15F * limbSwingAmount) + 0.4363F;
 				this.LeftLeg.xRot = Mth.sin(limbSwing * 0.5F) * 0.5F * limbSwingAmount;
 				this.LeftFoot.xRot = Mth.abs(Mth.sin(limbSwing * 0.5F) * 0.75F * limbSwingAmount);
-				this.RightThigh.xRot = (Mth.sin(limbSwing * 0.5F) * -0.48F * limbSwingAmount) + Mth.abs((Mth.sin(0.15F * limbSwing) * -0.5F * limbSwingAmount)) + 0.4363F;
+				this.RightThigh.xRot = (Mth.sin(limbSwing * 0.5F) * -0.48F * limbSwingAmount) - Mth.abs(Mth.sin(0.15F * limbSwing) * 0.15F * limbSwingAmount) + 0.4363F;
 				this.RightLeg.xRot = Mth.sin(limbSwing * 0.5F) * -0.75F * limbSwingAmount;
 				this.RightFoot.xRot = Mth.abs(Mth.sin(limbSwing * 0.5F) * -0.75F * limbSwingAmount);
 				this.Body.y = (Mth.sin(0.75F * limbSwing) * 0.45F * limbSwingAmount) + (Mth.sin(0.25F * ageInTicks / 3) * 0.15F) + 5.9F;
 				this.Body.xRot = Mth.abs(Mth.sin(0.15F * limbSwing) * 0.15F * limbSwingAmount) - 0.4363F;
-				this.RightThigh.y = (Mth.sin(0.75F * limbSwing) * -0.45F * limbSwingAmount) + (Mth.sin(0.25F * ageInTicks / 3) * -0.15F) + 4F;
-				this.LeftThigh.y = (Mth.sin(0.75F * limbSwing) * -0.45F * limbSwingAmount) + (Mth.sin(0.25F * ageInTicks / 3) * -0.15F) + 4F;
+				this.RightThigh.y = -((Mth.sin(0.75F * limbSwing) * 0.45F * limbSwingAmount) + (Mth.sin(0.25F * ageInTicks / 3) * 0.15F)) + 4F;
+				this.LeftThigh.y = -((Mth.sin(0.75F * limbSwing) * 0.45F * limbSwingAmount) + (Mth.sin(0.25F * ageInTicks / 3) * 0.15F)) + 4F;
 				this.Neck.xRot = (headPitch * ((float)Math.PI / 180F)) + (Mth.abs(Mth.sin(limbSwing * 0.15F) * -0.1F * limbSwingAmount) + Mth.abs(Mth.sin(0.25F * ageInTicks / 3) * 0.05F)) + 0.6807F;
 				this.Neck.yRot = netHeadYaw * ((float)Math.PI / 180F);
 				this.Head.xRot = (Mth.abs(Mth.sin(limbSwing * 0.25F) * 0.1F * limbSwingAmount) + Mth.abs(Mth.sin(0.25F * ageInTicks / 3) * -0.05F)) - 0.1571F;

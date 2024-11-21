@@ -271,18 +271,6 @@
                 ]
             }
         },
-        "thoracosaurus": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-                "items": [
-                    {
-                        "items": [
-                            "prehistoricfauna:thoracosaurus_egg"
-                        ]
-                    }
-                ]
-            }
-        },
         "triceratops": {
             "trigger": "minecraft:inventory_changed",
             "conditions": {
@@ -779,9 +767,6 @@
 		],
         [
 			"thescelosaurus"
-		],
-        [
-			"thoracosaurus"
 		],
         [
 			"triceratops"

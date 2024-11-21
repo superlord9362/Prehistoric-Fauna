@@ -19,7 +19,7 @@ public class IncisivosaurusRenderer extends MobRenderer<Incisivosaurus, Incisivo
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/incisivosaurus/melanistic_sleeping.png");
 
 	public IncisivosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new IncisivosaurusModel(renderManagerIn.bakeLayer(ClientEvents.INCISIVOSAURUS)), 0.5625F);
+		super(renderManagerIn, new IncisivosaurusModel(renderManagerIn.bakeLayer(ClientEvents.INCISIVOSAURUS)), 0.3125F);
 	}
 
 	protected void scale(Incisivosaurus incisivosaurus, PoseStack matrixStackIn, float partialTickTime) {

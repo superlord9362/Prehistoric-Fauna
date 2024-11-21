@@ -18,6 +18,25 @@ import net.minecraft.world.level.biome.MobSpawnSettings;
 
 public class JurassicBiomes {
 
+	private static Biome biome(boolean hasPrecipitation, int waterColor, int waterFogColor, int skyColor, int fogColor, int foliageColor, float temperature, float downfall, MobSpawnSettings.Builder spawnBuilder, BiomeGenerationSettings.Builder biomeBuilder) {
+		return (new Biome.BiomeBuilder())
+				.hasPrecipitation(hasPrecipitation)
+				.temperature(temperature)
+				.downfall(downfall)
+				.specialEffects((new BiomeSpecialEffects.Builder())
+						.waterColor(waterColor)
+						.waterFogColor(waterFogColor)
+						.fogColor(fogColor)
+						.skyColor(skyColor)
+						.foliageColorOverride(foliageColor)
+						.grassColorOverride(foliageColor)
+						.ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+						.build())
+				.mobSpawnSettings(spawnBuilder.build())
+				.generationSettings(biomeBuilder.build())
+				.build();
+	}
+	
 	private static Biome biome(boolean hasPrecipitation, int waterColor, int waterFogColor, int skyColor, int fogColor, float temperature, float downfall, MobSpawnSettings.Builder spawnBuilder, BiomeGenerationSettings.Builder biomeBuilder) {
 		return (new Biome.BiomeBuilder())
 				.hasPrecipitation(hasPrecipitation)
@@ -54,7 +73,7 @@ public class JurassicBiomes {
 		if (PrehistoricFaunaConfig.scutellosaurusKayentaDryForestSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.SCUTELLOSAURUS.get(), PrehistoricFaunaConfig.scutellosaurusKayentaDryForestSpawnWeight, 2, 4));
 		if (PrehistoricFaunaConfig.megapnosaurusKayentaDryForestSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.MEGAPNOSAURUS.get(), PrehistoricFaunaConfig.megapnosaurusKayentaDryForestSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.kayentatheriumKayentaDryForestSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.KAYENTATHERIUM.get(), PrehistoricFaunaConfig.kayentatheriumKayentaDryForestSpawnWeight, 1, 2));
-		return biome(true, 0x215FA4, 0x376682, 0x94addf, 0xde9757, 1.2F, 0.1F, spawnSettings, biomeFeatures);
+		return biome(true, 0x215FA4, 0x376682, 0x94addf, 0xde9757, 0x53711f, 1.2F, 0.1F, spawnSettings, biomeFeatures);
 	}
 	
 	public static Biome kayentaButtes(HolderGetter<PlacedFeature> placedFeatureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
@@ -76,7 +95,7 @@ public class JurassicBiomes {
 		if (PrehistoricFaunaConfig.scutellosaurusKayentaButtesSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.SCUTELLOSAURUS.get(), PrehistoricFaunaConfig.scutellosaurusKayentaButtesSpawnWeight, 2, 3));
 		if (PrehistoricFaunaConfig.megapnosaurusKayentaButtesSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.MEGAPNOSAURUS.get(), PrehistoricFaunaConfig.megapnosaurusKayentaButtesSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.kayentatheriumKayentaButtesSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.KAYENTATHERIUM.get(), PrehistoricFaunaConfig.kayentatheriumKayentaButtesSpawnWeight, 1, 2));
-		return biome(true, 0x215FA4, 0x376682, 0x94addf, 0xde9757, 1.2F, 0.1F, spawnSettings, biomeFeatures);
+		return biome(true, 0x215FA4, 0x376682, 0x94addf, 0xde9757, 0x53711f, 1.2F, 0.1F, spawnSettings, biomeFeatures);
 	}
 	
 	public static Biome kayentaDesert(HolderGetter<PlacedFeature> placedFeatureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
@@ -99,7 +118,7 @@ public class JurassicBiomes {
 		if (PrehistoricFaunaConfig.scutellosaurusKayentaDesertSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.SCUTELLOSAURUS.get(), PrehistoricFaunaConfig.scutellosaurusKayentaDesertSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.megapnosaurusKayentaDesertSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.MEGAPNOSAURUS.get(), PrehistoricFaunaConfig.megapnosaurusKayentaDesertSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.kayentatheriumKayentaDesertSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.KAYENTATHERIUM.get(), PrehistoricFaunaConfig.kayentatheriumKayentaDesertSpawnWeight, 1, 2));
-		return biome(false, 0x215FA4, 0x376682, 0x94addf, 0xde9757, 1.2F, 0F, spawnSettings, biomeFeatures);
+		return biome(false, 0x215FA4, 0x376682, 0x94addf, 0xde9757, 0x53711f, 1.2F, 0F, spawnSettings, biomeFeatures);
 	}
 	
 	public static Biome kayentaRiver(HolderGetter<PlacedFeature> placedFeatureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
@@ -121,7 +140,7 @@ public class JurassicBiomes {
 		if (PrehistoricFaunaConfig.scutellosaurusKayentaRiverSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.SCUTELLOSAURUS.get(), PrehistoricFaunaConfig.scutellosaurusKayentaRiverSpawnWeight, 2, 4));
 		if (PrehistoricFaunaConfig.megapnosaurusKayentaRiverSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.MEGAPNOSAURUS.get(), PrehistoricFaunaConfig.megapnosaurusKayentaRiverSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.kayentatheriumKayentaRiverSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.KAYENTATHERIUM.get(), PrehistoricFaunaConfig.kayentatheriumKayentaRiverSpawnWeight, 1, 2));
-		return biome(true, 0x215FA4, 0x376682, 0x94addf, 0xde9757, 1.2F, 0.1F, spawnSettings, biomeFeatures);
+		return biome(true, 0x215FA4, 0x376682, 0x94addf, 0xde9757, 0x53711f, 1.2F, 0.1F, spawnSettings, biomeFeatures);
 	}
 	
 	public static Biome morrisonSavanna(HolderGetter<PlacedFeature> placedFeatureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
@@ -141,7 +160,7 @@ public class JurassicBiomes {
 		if (PrehistoricFaunaConfig.camarasaurusMorrisonSavannahSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.CAMARASAURUS.get(), PrehistoricFaunaConfig.camarasaurusMorrisonSavannahSpawnWeight, 2, 4));
 		if (PrehistoricFaunaConfig.ceratodusMorrisonSavannahSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.CERATODUS.get(), PrehistoricFaunaConfig.ceratodusMorrisonSavannahSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.potamoceratodusMorrisonSavannahSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.POTAMOCERATODUS.get(), PrehistoricFaunaConfig.potamoceratodusMorrisonSavannahSpawnWeight, 1, 2));
-		if (PrehistoricFaunaConfig.dermestidBeetleMorrisonSavannahSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.DERMESTID_BEETLE.get(), PrehistoricFaunaConfig.dermestidBeetleMorrisonSavannahSpawnWeight, 1, 3));
+		if (PrehistoricFaunaConfig.dermestidBeetleMorrisonSavannahSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.DERMESTID_BEETLE.get(), PrehistoricFaunaConfig.dermestidBeetleMorrisonSavannahSpawnWeight, 1, 3));
 		if (PrehistoricFaunaConfig.caveSentinelMorrisonSavannahSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.CAVE_SENTINEL.get(), PrehistoricFaunaConfig.caveSentinelMorrisonSavannahSpawnWeight, 1, 1));
 		if (PrehistoricFaunaConfig.landSentinelMorrisonSavannahSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.LAND_SENTINEL.get(), PrehistoricFaunaConfig.landSentinelMorrisonSavannahSpawnWeight, 1, 1));
 		return biome(false, 0xab986d, 0x9c8c67, 0x7CACFF, 12638463, 1F, 0.2F, spawnSettings, biomeFeatures);
@@ -164,7 +183,7 @@ public class JurassicBiomes {
 		if (PrehistoricFaunaConfig.camarasaurusMorrisonSavannahSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.CAMARASAURUS.get(), PrehistoricFaunaConfig.camarasaurusMorrisonSavannahSpawnWeight, 2, 4));
 		if (PrehistoricFaunaConfig.ceratodusMorrisonSavannahSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.CERATODUS.get(), PrehistoricFaunaConfig.ceratodusMorrisonSavannahSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.potamoceratodusMorrisonSavannahSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.POTAMOCERATODUS.get(), PrehistoricFaunaConfig.potamoceratodusMorrisonSavannahSpawnWeight, 1, 2));
-		if (PrehistoricFaunaConfig.dermestidBeetleMorrisonHillsSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.DERMESTID_BEETLE.get(), PrehistoricFaunaConfig.dermestidBeetleMorrisonHillsSpawnWeight, 1, 3));
+		if (PrehistoricFaunaConfig.dermestidBeetleMorrisonHillsSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.DERMESTID_BEETLE.get(), PrehistoricFaunaConfig.dermestidBeetleMorrisonHillsSpawnWeight, 1, 3));
 		if (PrehistoricFaunaConfig.caveSentinelMorrisonSavannahSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.CAVE_SENTINEL.get(), PrehistoricFaunaConfig.caveSentinelMorrisonSavannahSpawnWeight, 1, 1));
 		if (PrehistoricFaunaConfig.landSentinelMorrisonSavannahSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.LAND_SENTINEL.get(), PrehistoricFaunaConfig.landSentinelMorrisonSavannahSpawnWeight, 1, 1));
 		return biome(false, 0xab986d, 0x9c8c67, 0x7CACFF, 12638463, 1F, 0.2F, spawnSettings, biomeFeatures);

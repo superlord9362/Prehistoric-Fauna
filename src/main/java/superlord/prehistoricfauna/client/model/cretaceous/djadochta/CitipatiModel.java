@@ -57,7 +57,7 @@ public class CitipatiModel extends EntityModel<Citipati> {
 
 		PartDefinition ThighRight = Body.addOrReplaceChild("ThighRight", CubeListBuilder.create().texOffs(0, 44).mirror().addBox(0.0F, -1.0F, -2.0F, 3.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(1.0F, 1.0F, 6.0F));
 
-		PartDefinition LegRight = ThighRight.addOrReplaceChild("LegRight", CubeListBuilder.create().texOffs(0, 60).mirror().addBox(-2.0F, 0.0F, -4.0F, 3.0F, 9.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(1.5F, 8.0F, 4.0F));
+		PartDefinition LegRight = ThighRight.addOrReplaceChild("LegRight", CubeListBuilder.create().texOffs(0, 60).addBox(-2.0F, 0.0F, -4.0F, 3.0F, 9.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(1.5F, 8.0F, 4.0F));
 
 		PartDefinition WingRight = Body.addOrReplaceChild("WingRight", CubeListBuilder.create().texOffs(42, 21).mirror().addBox(0.0F, -1.0F, -2.0F, 2.0F, 11.0F, 6.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(2.0F, 1.0F, -3.0F));
 

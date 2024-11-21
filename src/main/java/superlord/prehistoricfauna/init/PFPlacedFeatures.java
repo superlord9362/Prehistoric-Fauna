@@ -59,6 +59,7 @@ public class PFPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> NEOCALAMITES = registerPlacedFeature("placed_neocalamites");
 	public static final ResourceKey<PlacedFeature> ALGAE = registerPlacedFeature("placed_algae");
 	public static final ResourceKey<PlacedFeature> NELUMBO = registerPlacedFeature("placed_nelumbo");
+	public static final ResourceKey<PlacedFeature> RARE_NELUMBO = registerPlacedFeature("placed_rare_nelumbo");
 	public static final ResourceKey<PlacedFeature> QUEREUXIA = registerPlacedFeature("placed_quereuxia");
 	public static final ResourceKey<PlacedFeature> D_QUEREUXIA = registerPlacedFeature("placed_d_quereuxia");
 	public static final ResourceKey<PlacedFeature> CRASSOSTREA_OYSTERS = registerPlacedFeature("placed_crassostrea_oysters");
@@ -99,6 +100,7 @@ public class PFPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> ARCHAEFRUCTUS = registerPlacedFeature("placed_archaefructus");
 	public static final ResourceKey<PlacedFeature> TALL_ARCHAEFRUCTUS = registerPlacedFeature("placed_tall_archaefructus");
 	public static final ResourceKey<PlacedFeature> EPHEDRA = registerPlacedFeature("placed_ephedra");
+	public static final ResourceKey<PlacedFeature> RARE_EPHEDRA = registerPlacedFeature("placed_rare_ephedra");
 	public static final ResourceKey<PlacedFeature> LEEFRUCTUS = registerPlacedFeature("placed_leefructus");
 	public static final ResourceKey<PlacedFeature> RUFFORDIA = registerPlacedFeature("placed_ruffordia");
 
@@ -397,6 +399,7 @@ public class PFPlacedFeatures {
 		PlacementUtils.register(bootstapContext, NEOCALAMITES, holderGetter.getOrThrow(PFConfiguredFeatures.NEOCALAMITES), List.of(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
 		PlacementUtils.register(bootstapContext, ALGAE, holderGetter.getOrThrow(PFConfiguredFeatures.ALGAE), worldSurfaceSquaredWithCount(2));
 		PlacementUtils.register(bootstapContext, NELUMBO, holderGetter.getOrThrow(PFConfiguredFeatures.NELUMBO), worldSurfaceSquaredWithCount(2));
+		PlacementUtils.register(bootstapContext, RARE_NELUMBO, holderGetter.getOrThrow(PFConfiguredFeatures.RARE_NELUMBO), worldSurfaceSquaredWithCount(2));
 		PlacementUtils.register(bootstapContext, QUEREUXIA, holderGetter.getOrThrow(PFConfiguredFeatures.QUEREUXIA), worldSurfaceSquaredWithCount(2));
 		PlacementUtils.register(bootstapContext, D_QUEREUXIA, holderGetter.getOrThrow(PFConfiguredFeatures.QUEREUXIA), worldSurfaceSquaredWithCount(2));
 		PlacementUtils.register(bootstapContext, CRASSOSTREA_OYSTERS, holderGetter.getOrThrow(PFConfiguredFeatures.CRASSOSTREA_OYSTERS), worldSurfaceSquaredWithCount(2));
@@ -437,6 +440,7 @@ public class PFPlacedFeatures {
 		PlacementUtils.register(bootstapContext, ARCHAEFRUCTUS, holderGetter.getOrThrow(PFConfiguredFeatures.ARCHAEFRUCTUS), worldSurfaceSquaredWithCount(4));
 		PlacementUtils.register(bootstapContext, TALL_ARCHAEFRUCTUS, holderGetter.getOrThrow(PFConfiguredFeatures.DOUBLE_ARCHAEFRUCTUS), worldSurfaceSquaredWithCount(3));
 		PlacementUtils.register(bootstapContext, EPHEDRA, holderGetter.getOrThrow(PFConfiguredFeatures.EPHEDRA), worldSurfaceSquaredWithCount(3));
+		PlacementUtils.register(bootstapContext, RARE_EPHEDRA, holderGetter.getOrThrow(PFConfiguredFeatures.RARE_EPHEDRA), worldSurfaceSquaredWithCount(1));
 		PlacementUtils.register(bootstapContext, LEEFRUCTUS, holderGetter.getOrThrow(PFConfiguredFeatures.LEEFRUCTUS), worldSurfaceSquaredWithCount(3));
 		PlacementUtils.register(bootstapContext, RUFFORDIA, holderGetter.getOrThrow(PFConfiguredFeatures.RUFFORDIA), worldSurfaceSquaredWithCount(3));
 

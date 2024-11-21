@@ -25,6 +25,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.entity.PrehistoricEntity;
 import superlord.prehistoricfauna.init.PFItems;
@@ -44,7 +45,7 @@ public class AnkylosaurusSkeleton extends PrehistoricEntity {
 	private void setPushable(boolean isPushable) {
 		this.entityData.set(PUSHING, isPushable);
 	}
-	
+
 	public boolean isLooking() {
 		return this.entityData.get(LOOKING);
 	}
@@ -52,7 +53,7 @@ public class AnkylosaurusSkeleton extends PrehistoricEntity {
 	private void setLooking(boolean isLooking) {
 		this.entityData.set(LOOKING, isLooking);
 	}
-	
+
 	public boolean isActionLeft() {
 		return this.entityData.get(ACTION_LEFT_POSE);
 	}
@@ -60,7 +61,7 @@ public class AnkylosaurusSkeleton extends PrehistoricEntity {
 	private void setActionLeft(boolean isActionLeft) {
 		this.entityData.set(ACTION_LEFT_POSE, isActionLeft);
 	}
-	
+
 	public boolean isActionRight() {
 		return this.entityData.get(ACTION_RIGHT_POSE);
 	}
@@ -68,7 +69,7 @@ public class AnkylosaurusSkeleton extends PrehistoricEntity {
 	private void setActionRight(boolean isActionRight) {
 		this.entityData.set(ACTION_RIGHT_POSE, isActionRight);
 	}
-	
+
 	public boolean isSquatting() {
 		return this.entityData.get(SQUATTING_POSE);
 	}
@@ -76,7 +77,7 @@ public class AnkylosaurusSkeleton extends PrehistoricEntity {
 	private void setSquatting(boolean isSquatting) {
 		this.entityData.set(SQUATTING_POSE, isSquatting);
 	}
-	
+
 	public boolean isResting() {
 		return this.entityData.get(RESTING_POSE);
 	}
@@ -84,7 +85,7 @@ public class AnkylosaurusSkeleton extends PrehistoricEntity {
 	private void setResting(boolean isResting) {
 		this.entityData.set(RESTING_POSE, isResting);
 	}
-	
+
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(SQUATTING_POSE, false);
@@ -103,7 +104,7 @@ public class AnkylosaurusSkeleton extends PrehistoricEntity {
 		compound.putBoolean("IsPushable", this.isPushableState());
 		compound.putBoolean("IsLooking", this.isLooking());
 	}
-	
+
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound); 
 		this.setActionLeft(compound.getBoolean("IsActionLeft"));
@@ -113,7 +114,7 @@ public class AnkylosaurusSkeleton extends PrehistoricEntity {
 		this.setPushable(compound.getBoolean("IsPushable"));
 		this.setLooking(compound.getBoolean("IsLooking"));
 	}
-	
+
 	public AnkylosaurusSkeleton(EntityType<? extends AnkylosaurusSkeleton> type, Level worldIn) {
 		super(type, worldIn);
 	}
@@ -138,36 +139,36 @@ public class AnkylosaurusSkeleton extends PrehistoricEntity {
 	public boolean isPushable() {
 		return this.isPushableState();
 	}
-	
+
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
-	    if (itemstack.getItem() == PFItems.GEOLOGY_HAMMER.get()) {
-	    	if (!this.isSquatting() && !this.isActionLeft() && !this.isActionRight() && !this.isResting() && !player.isShiftKeyDown()) {
-	    		this.setResting(true);
-	    	} else if (this.isResting() && !player.isShiftKeyDown()) {
-	    		this.setResting(false);
-	    		this.setActionLeft(true);
-	    	} else if (this.isActionLeft() && !player.isShiftKeyDown()) {
-	    		this.setActionLeft(false);
-	    		this.setActionRight(true);
-	    	} else if (this.isActionRight() && !player.isShiftKeyDown()) {
-	    		this.setActionRight(false);
-	    		this.setSquatting(true);
-	    	} else if (this.isSquatting() && !player.isShiftKeyDown()) {
-	    		this.setSquatting(false);
-	    	} else if (player.isShiftKeyDown() && !this.isPushableState() && !this.isLooking()) {
-	    		this.setPushable(true);
+		if (itemstack.getItem() == PFItems.GEOLOGY_HAMMER.get()) {
+			if (!this.isSquatting() && !this.isActionLeft() && !this.isActionRight() && !this.isResting() && !player.isShiftKeyDown()) {
+				this.setResting(true);
+			} else if (this.isResting() && !player.isShiftKeyDown()) {
+				this.setResting(false);
+				this.setActionLeft(true);
+			} else if (this.isActionLeft() && !player.isShiftKeyDown()) {
+				this.setActionLeft(false);
+				this.setActionRight(true);
+			} else if (this.isActionRight() && !player.isShiftKeyDown()) {
+				this.setActionRight(false);
+				this.setSquatting(true);
+			} else if (this.isSquatting() && !player.isShiftKeyDown()) {
+				this.setSquatting(false);
+			} else if (player.isShiftKeyDown() && !this.isPushableState() && !this.isLooking()) {
+				this.setPushable(true);
 				player.displayClientMessage(Component.translatable("entity.prehistoricfauna.skeleton.pushable"), true);
-	    	} else if (player.isShiftKeyDown() && this.isPushableState()) {
-	    		this.setPushable(false);
-	    		this.setLooking(true);
+			} else if (player.isShiftKeyDown() && this.isPushableState()) {
+				this.setPushable(false);
+				this.setLooking(true);
 				player.displayClientMessage(Component.translatable("entity.prehistoricfauna.skeleton.rotating"), true);
-	    	} else if (player.isShiftKeyDown() && this.isLooking()) {
-	    		this.setLooking(false);
+			} else if (player.isShiftKeyDown() && this.isLooking()) {
+				this.setLooking(false);
 				player.displayClientMessage(Component.translatable("entity.prehistoricfauna.skeleton.neutral"), true);
-	    	}
-	    }
-        return super.mobInteract(player, hand);
+			}
+		}
+		return super.mobInteract(player, hand);
 	}
 
 	protected void doPush(Entity entityIn) {
@@ -189,9 +190,10 @@ public class AnkylosaurusSkeleton extends PrehistoricEntity {
 			this.playBrokenSound();
 			this.playParticles();
 			this.spawnFossil(source);
-			this.kill();
-            return false;
-         }
+			this.remove(RemovalReason.KILLED);
+			this.gameEvent(GameEvent.ENTITY_DIE);
+			return true;
+		}
 		if (source.getDirectEntity() instanceof Player) {
 			this.playBrokenSound();
 			this.playParticles();
@@ -200,6 +202,7 @@ public class AnkylosaurusSkeleton extends PrehistoricEntity {
 				this.spawnFossil(source);
 			}
 			this.remove(RemovalReason.KILLED);
+			this.gameEvent(GameEvent.ENTITY_DIE);
 		}
 		return false;
 	}
@@ -213,18 +216,18 @@ public class AnkylosaurusSkeleton extends PrehistoricEntity {
 	}
 
 	private void spawnFossil(DamageSource p_213815_1_) {
-	      Block.popResource(this.level(), this.blockPosition(), new ItemStack(PFItems.ANKYLOSAURUS_SKELETON.get()));
+		Block.popResource(this.level(), this.blockPosition(), new ItemStack(PFItems.ANKYLOSAURUS_SKELETON.get()));
 	}
-	
+
 	static class LookAtPlayerGoal extends net.minecraft.world.entity.ai.goal.LookAtPlayerGoal {
 
 		AnkylosaurusSkeleton entity;
-		
+
 		public LookAtPlayerGoal(AnkylosaurusSkeleton entityIn, Class<? extends LivingEntity> watchTargetClass, float maxDistance) {
 			super(entityIn, watchTargetClass, maxDistance);
 			entity = entityIn;
 		}
-		
+
 		public boolean canUse() {
 			if (entity.isLooking()) {
 				return super.canUse();
@@ -232,18 +235,18 @@ public class AnkylosaurusSkeleton extends PrehistoricEntity {
 				return false;
 			}
 		}
-		
+
 		public boolean canContinueToUse() {
 			return super.canContinueToUse() && entity.isLooking();
 		}
-		
+
 	}
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
 		return null;
 	}
-	
+
 	@Override
 	public ItemStack getPickedResult(HitResult target) {
 		return new ItemStack(PFItems.ANKYLOSAURUS_SKELETON.get());

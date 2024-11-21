@@ -11,6 +11,10 @@ public class CrassostreaOystersConfig implements FeatureConfiguration {
 	public CrassostreaOystersConfig(int count) {
 		this.count = count;
 	}
+	
+	public int getCount() {
+		return count; 
+	}
 
 	public static final Codec<CrassostreaOystersConfig> CODEC;
 	public static final CrassostreaOystersConfig field_236559_b_ = new CrassostreaOystersConfig(count);

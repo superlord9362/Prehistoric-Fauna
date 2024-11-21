@@ -194,7 +194,7 @@ public class IncisivosaurusModel extends EntityModel<Incisivosaurus> {
 
 	public void resetModel() {
 		this.Body.xRot = 0;
-		this.Body.zRot = -0.0087F;
+		this.Body.zRot = 0;
 		this.LeftLeg.xRot = 0;
 		this.LeftLeg.yRot = 0;
 		this.LeftLeg.zRot = 0;
@@ -230,7 +230,7 @@ public class IncisivosaurusModel extends EntityModel<Incisivosaurus> {
 		this.RightThigh.y = 2.0F;
 		this.RightThigh.z = 5.9F;
 		this.RightLeg.x = 0F;
-		this.RightLeg.y = 3.0F;
+		this.RightLeg.y = 3F;
 		this.RightLeg.z = 1.0F;
 		this.LeftWing.x = -0.5F;
 		this.LeftWing.y = 2.0F;

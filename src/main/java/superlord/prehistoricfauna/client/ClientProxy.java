@@ -17,6 +17,7 @@ import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.saveddata.maps.MapDecoration;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
@@ -28,6 +29,7 @@ import superlord.prehistoricfauna.client.render.item.AnkylosaurusHelmetRenderPro
 import superlord.prehistoricfauna.common.CommonProxy;
 import superlord.prehistoricfauna.common.particle.BossHealParticle;
 import superlord.prehistoricfauna.common.particle.BossLaserParticle;
+import superlord.prehistoricfauna.common.particle.GinkgoParticle;
 import superlord.prehistoricfauna.common.particle.PFPortalParticle;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFParticles;
@@ -316,12 +318,33 @@ public class ClientProxy extends CommonProxy {
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.NOTHODICHOCARPUM.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.OAK_FEEDER.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.BURROW.get(), translucentRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.SPLATTERED_GINKGO.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.COATED_BRAIN_CORAL.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.COATED_BRAIN_CORAL_FAN.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.COATED_BRAIN_CORAL_WALL_FAN.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.COATED_BUBBLE_CORAL.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.COATED_BUBBLE_CORAL_FAN.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.COATED_BUBBLE_CORAL_WALL_FAN.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.COATED_FIRE_CORAL.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.COATED_FIRE_CORAL_FAN.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.COATED_FIRE_CORAL_WALL_FAN.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.COATED_HORN_CORAL.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.COATED_HORN_CORAL_FAN.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.COATED_HORN_CORAL_WALL_FAN.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.COATED_TUBE_CORAL.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.COATED_TUBE_CORAL_FAN.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.COATED_TUBE_CORAL_WALL_FAN.get(), cutoutRenderType);
 	}
 	
     public static void setupParticles(RegisterParticleProvidersEvent registry) {
     	registry.registerSpriteSet(PFParticles.BOSS_HEAL.get(), BossHealParticle.Provider::new);
     	registry.registerSpriteSet(PFParticles.BOSS_LASER.get(), BossLaserParticle.Provider::new);
     	registry.registerSpriteSet(PFParticles.PORTAL_PARTICLE.get(), PFPortalParticle.Provider::new);
+    	registry.registerSpriteSet(PFParticles.GINKGO_LEAVES.get(), (p_277215_) -> {
+         return (p_277217_, p_277218_, p_277219_, p_277220_, p_277221_, p_277222_, p_277223_, p_277224_) -> {
+            return new GinkgoParticle(p_277218_, p_277219_, p_277220_, p_277221_, p_277215_);
+         };
+      });
     }
 
 	@Override
@@ -349,6 +372,10 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public Object getArmorRenderProperties() {
 		return new AnkylosaurusHelmetRenderProperties();
+	}
+	
+	public void renderVanillaMapDecoration(MapDecoration mapDecoration, int index) {
+		ClientEvents.renderVanillaMapDecoration(mapDecoration, index + 1);
 	}
 
 }

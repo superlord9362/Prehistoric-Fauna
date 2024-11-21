@@ -1,0 +1,24 @@
+{
+	"replace": false,
+	"values": [
+		"#prehistoricfauna:ten_hunger_animals",
+		"#prehistoricfauna:fifteen_hunger_animals",
+		"#prehistoricfauna:twenty_hunger_animals",
+		"#prehistoricfauna:thirty_hunger_animals",
+		"#prehistoricfauna:forty_hunger_animals",
+		"#prehistoricfauna:sixty_hunger_animals",
+		"#prehistoricfauna:eighty_hunger_animals",
+		"#prehistoricfauna:one_hundred_hunger_animals",
+		"#prehistoricfauna:two_hundred_hunger_animals",
+		"prehistoricfauna:velociraptor",
+		"prehistoricfauna:palaeosaniwa",
+		"prehistoricfauna:repenomamus",
+		"prehistoricfauna:dilong",
+		"prehistoricfauna:byronosaurus",
+		"prehistoricfauna:telmasaurus",
+		"prehistoricfauna:changyuraptor",
+		"prehistoricfauna:megapnosaurus",
+		"prehistoricfauna:calsoyasuchus",
+		"prehistoricfauna:hesperornithoides"
+	]
+}

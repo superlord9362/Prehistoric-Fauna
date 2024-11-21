@@ -128,7 +128,7 @@ public class YutyrannusModel extends EntityModel<Yutyrannus> {
 			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
 				this.Chest.xRot = Mth.lerp(sleepProgress, 0, 0.41887902047863906F);
 				this.Chest.yRot = Mth.lerp(sleepProgress, 0, -0.5235987755982988F);
-				this.Neck.xRot = Mth.lerp(sleepProgress, 0.0698F, 0.8203047484373349F);
+				this.Neck.xRot = Mth.lerp(sleepProgress, 0.0698F, 1.0203047484373349F);
 				this.Neck.yRot = Mth.lerp(sleepProgress, 0, -0.3490658503988659F);
 				this.Neck.zRot = Mth.lerp(sleepProgress, 0, -0.10471975511965977F);
 				this.RightFoot.xRot = Mth.lerp(sleepProgress, 0, 1.5707963267948966F);
@@ -141,7 +141,7 @@ public class YutyrannusModel extends EntityModel<Yutyrannus> {
 				this.Back.xRot = Mth.lerp(sleepProgress, 0, -0.17453292519943295F);
 				this.Tail1.xRot = Mth.lerp(sleepProgress, -0.0349F, -0.24434609527920614F);
 				this.Tail1.yRot = Mth.lerp(sleepProgress, 0, 0.593411945678072F);
-				this.Head1.xRot = Mth.lerp(sleepProgress, 0, -0.9075712110370513F);
+				this.Head1.xRot = Mth.lerp(sleepProgress, 0, -0.9875712110370513F);
 				this.Head1.yRot = Mth.lerp(sleepProgress, 0, -0.06981317007977318F);
 				this.Head1.zRot = Mth.lerp(sleepProgress, 0, 0.3490658503988659F);
 				this.LeftArm.xRot = Mth.lerp(sleepProgress, 0.0698F, 1.3264502315156905F);
@@ -152,33 +152,21 @@ public class YutyrannusModel extends EntityModel<Yutyrannus> {
 				this.RightLeg1.xRot = Mth.lerp(sleepProgress, 0, -0.6981317007977318F);
 				this.RightLeg1.yRot = Mth.lerp(sleepProgress, 0, -0.2792526803190927F);
 				this.LeftFoot.xRot = Mth.lerp(sleepProgress, 0, 1.5707963267948966F);
-				this.Back.y = Mth.lerp(sleepProgress, -7F, -1.6F);
-				this.Chest.x = Mth.lerp(sleepProgress, 0, 4);
-				this.Chest.y = Mth.lerp(sleepProgress, 1, -1);
-				this.Chest.z = Mth.lerp(sleepProgress, 11, -20);
-				this.RightArm.x = Mth.lerp(sleepProgress, 5, 11);
-				this.RightArm.z = Mth.lerp(sleepProgress, -10, -14);
-				this.Neck.y = Mth.lerp(sleepProgress, -3, 10);
-				this.Neck.z = Mth.lerp(sleepProgress, -13, -20);
-				this.Head1.x = Mth.lerp(sleepProgress, 0, -1);
-				this.Head1.y = Mth.lerp(sleepProgress, -3.2F, -15);
-				this.Tail1.x = Mth.lerp(sleepProgress, 0, 3);
-				this.Tail1.z = Mth.lerp(sleepProgress, 7, 19.5F);
-				this.Tail2.x = Mth.lerp(sleepProgress, 0, 0.6F);
-				this.LeftLeg1.y = Mth.lerp(sleepProgress, -5.2F, -5);
-				this.LeftLeg2.y = Mth.lerp(sleepProgress, 11, 22);
-				this.LeftLeg2.z = Mth.lerp(sleepProgress, 3, 8);
-				this.RightLeg1.x = Mth.lerp(sleepProgress, 2, 7);
-				this.RightLeg1.y = Mth.lerp(sleepProgress, -5.2F, -5);
-				this.RightLeg1.z = Mth.lerp(sleepProgress, 3, 2);
-				this.RightLeg2.y = Mth.lerp(sleepProgress, 11, 22);
-				this.RightLeg2.z = Mth.lerp(sleepProgress, 3, 8);
+				this.Back.y = Mth.lerp(sleepProgress, -7F, 11F);
+				this.Chest.z = Mth.lerp(sleepProgress, 11, -8);
+				this.Tail1.z = Mth.lerp(sleepProgress, 7, 5F);
+				this.LeftLeg1.y = Mth.lerp(sleepProgress, -5.2F, 13);
+				this.LeftLeg2.y = Mth.lerp(sleepProgress, 11, 12);
+				this.LeftLeg2.z = Mth.lerp(sleepProgress, 3, 2);
+				this.RightLeg1.y = Mth.lerp(sleepProgress, -5.2F, 13);
+				this.RightLeg2.y = Mth.lerp(sleepProgress, 11, 12);
+				this.RightLeg2.z = Mth.lerp(sleepProgress, 3, 2);
 			} else sleepPose();
 		} else {
 			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
 				this.Chest.xRot = Mth.lerp(sleepProgress, 0.41887902047863906F, 0);
 				this.Chest.yRot = Mth.lerp(sleepProgress, -0.5235987755982988F, 0);
-				this.Neck.xRot = Mth.lerp(sleepProgress, 0.8203047484373349F, 0.0698F);
+				this.Neck.xRot = Mth.lerp(sleepProgress, 1.0203047484373349F, 0.0698F);
 				this.Neck.yRot = Mth.lerp(sleepProgress, -0.3490658503988659F, 0);
 				this.Neck.zRot = Mth.lerp(sleepProgress, -0.10471975511965977F, 0);
 				this.RightFoot.xRot = Mth.lerp(sleepProgress, 1.5707963267948966F, 0);
@@ -191,7 +179,7 @@ public class YutyrannusModel extends EntityModel<Yutyrannus> {
 				this.Back.xRot = Mth.lerp(sleepProgress, -0.17453292519943295F, 0);
 				this.Tail1.xRot = Mth.lerp(sleepProgress, -0.24434609527920614F, -0.0349F);
 				this.Tail1.yRot = Mth.lerp(sleepProgress, 0.593411945678072F, 0);
-				this.Head1.xRot = Mth.lerp(sleepProgress, -0.9075712110370513F, 0);
+				this.Head1.xRot = Mth.lerp(sleepProgress, -0.9875712110370513F, 0);
 				this.Head1.yRot = Mth.lerp(sleepProgress, -0.06981317007977318F, 0);
 				this.Head1.zRot = Mth.lerp(sleepProgress, 0.3490658503988659F, 0);
 				this.LeftArm.xRot = Mth.lerp(sleepProgress, 1.3264502315156905F, 0.0698F);
@@ -202,27 +190,15 @@ public class YutyrannusModel extends EntityModel<Yutyrannus> {
 				this.RightLeg1.xRot = Mth.lerp(sleepProgress, -0.6981317007977318F, 0);
 				this.RightLeg1.yRot = Mth.lerp(sleepProgress, -0.2792526803190927F, 0);
 				this.LeftFoot.xRot = Mth.lerp(sleepProgress, 1.5707963267948966F, 0);
-				this.Back.y = Mth.lerp(sleepProgress, -1.6F, -7F);
-				this.Chest.x = Mth.lerp(sleepProgress, 4, 0);
-				this.Chest.y = Mth.lerp(sleepProgress, -1, 1);
-				this.Chest.z = Mth.lerp(sleepProgress, -20, 11);
-				this.RightArm.x = Mth.lerp(sleepProgress, 11, 5);
-				this.RightArm.z = Mth.lerp(sleepProgress, -14, -10);
-				this.Neck.y = Mth.lerp(sleepProgress, 10, -3);
-				this.Neck.z = Mth.lerp(sleepProgress, -20, -13);
-				this.Head1.x = Mth.lerp(sleepProgress, -1, 0);
-				this.Head1.y = Mth.lerp(sleepProgress, -15F, -3.2F);
-				this.Tail1.x = Mth.lerp(sleepProgress, 3, 0);
-				this.Tail1.z = Mth.lerp(sleepProgress, 19.5F, 7F);
-				this.Tail2.x = Mth.lerp(sleepProgress, 0.6F, 0);
-				this.LeftLeg1.y = Mth.lerp(sleepProgress, -5, -5.2F);
+				this.Back.y = Mth.lerp(sleepProgress, 11F, -7F);
+				this.Chest.z = Mth.lerp(sleepProgress, -8, 11);
+				this.Tail1.z = Mth.lerp(sleepProgress, 5F, 7F);
+				this.LeftLeg1.y = Mth.lerp(sleepProgress, 13, -5.2F);
 				this.LeftLeg2.y = Mth.lerp(sleepProgress, 22, 11);
-				this.LeftLeg2.z = Mth.lerp(sleepProgress, 8, 3);
-				this.RightLeg1.x = Mth.lerp(sleepProgress, 7, 2);
-				this.RightLeg1.y = Mth.lerp(sleepProgress, -5, -5.2F);
-				this.RightLeg1.z = Mth.lerp(sleepProgress, 2, 3);
-				this.RightLeg2.y = Mth.lerp(sleepProgress, 22, 11);
-				this.RightLeg2.z = Mth.lerp(sleepProgress, 8, 3);
+				this.LeftLeg2.z = Mth.lerp(sleepProgress, 2, 3);
+				this.RightLeg1.y = Mth.lerp(sleepProgress, 13, -5.2F);
+				this.RightLeg2.y = Mth.lerp(sleepProgress, 12, 11);
+				this.RightLeg2.z = Mth.lerp(sleepProgress, 2, 3);
 			} else {
 				this.LeftLeg1.xRot = Mth.cos(1.0F + limbSwing * speed * 0.3F) * degree * 0.6F * limbSwingAmount - 0.05F;
 				this.LeftLeg2.xRot = Mth.cos(1.0F + limbSwing * speed * 0.3F) * degree * 0.4F * limbSwingAmount + 0.05F;
@@ -327,12 +303,13 @@ public class YutyrannusModel extends EntityModel<Yutyrannus> {
 		this.RightLeg1.z = 3;
 		this.RightLeg2.y = 11;
 		this.RightLeg2.z = 3;
+		this.Jaw1.xRot = 0;
 	}
 
 	public void sleepPose() {
 		this.Chest.xRot = 0.41887902047863906F;
 		this.Chest.yRot = -0.5235987755982988F;
-		this.Neck.xRot = 0.8203047484373349F;
+		this.Neck.xRot = 1.0203047484373349F;
 		this.Neck.yRot = -0.3490658503988659F;
 		this.Neck.zRot = -0.10471975511965977F;
 		this.RightFoot.xRot = 1.5707963267948966F;
@@ -345,7 +322,7 @@ public class YutyrannusModel extends EntityModel<Yutyrannus> {
 		this.Back.xRot = -0.17453292519943295F;
 		this.Tail1.xRot = -0.24434609527920614F;
 		this.Tail1.yRot = 0.593411945678072F;
-		this.Head1.xRot = -0.9075712110370513F;
+		this.Head1.xRot = -0.9875712110370513F;
 		this.Head1.yRot = -0.06981317007977318F;
 		this.Head1.zRot = 0.3490658503988659F;
 		this.LeftArm.xRot = 1.3264502315156905F;
@@ -356,29 +333,15 @@ public class YutyrannusModel extends EntityModel<Yutyrannus> {
 		this.RightLeg1.xRot = -0.6981317007977318F;
 		this.RightLeg1.yRot = -0.2792526803190927F;
 		this.LeftFoot.xRot = 1.5707963267948966F;
-		this.Back.y = -1.6F;
-		this.Chest.x = 4;
-		this.Chest.y = -1;
-		this.Chest.z = -20;
-		this.RightArm.x = 11;
-		this.RightArm.z = -14;
-		this.Neck.y = 10;
-		this.Neck.z = -20;
-		this.Head1.x = -1;
-		this.Head1.y = -15;
-		this.Head1.z = -6;
-		this.Tail1.x = 3;
-		this.Tail1.z = 19.5F;
-		this.Tail2.x = 0.6F;
-		this.LeftLeg1.y = -5;
-		this.LeftLeg1.z = 3;
-		this.LeftLeg2.y = 22;
-		this.LeftLeg2.z = 8;
-		this.RightLeg1.x = 7;
-		this.RightLeg1.y = -5;
-		this.RightLeg1.z = 2;
-		this.RightLeg2.y = 22;
-		this.RightLeg2.z = 8;
+		this.Back.y = 11F;
+		this.Chest.z = -8;
+		this.Tail1.z = 5F;
+		this.LeftLeg1.y = 13;
+		this.LeftLeg2.y = 12;
+		this.LeftLeg2.z = 2;
+		this.RightLeg1.y = 13;
+		this.RightLeg2.y = 12;
+		this.RightLeg2.z = 2;
 	}
 
 	@Override

@@ -8,7 +8,12 @@
 		"EnderMaskMixin",
 		"GuiMixin",
 		"LivingEntityMixin",
-		"TuberOverlayMixin"
+		"TuberOverlayMixin",
+		"MapDecorationMixin",
+		"MapDecorationTypeMixin"
+	],
+	"client": [
+		"MapRendererMapInstanceMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

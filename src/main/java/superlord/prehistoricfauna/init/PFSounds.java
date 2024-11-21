@@ -61,13 +61,18 @@ public class PFSounds {
 	public static final RegistryObject<SoundEvent> THORACOSAURUS_HURT = createSoundEvent("thoracosaurus_hurt");
 	public static final RegistryObject<SoundEvent> THORACOSAURUS_DEATH = createSoundEvent("thoracosaurus_death");
 	public static final RegistryObject<SoundEvent> THORACOSAURUS_WARN = createSoundEvent("thoracosaurus_warn");
+	public static final RegistryObject<SoundEvent> BRACHYCHAMPSA_IDLE = createSoundEvent("brachychampsa_idle");
+	public static final RegistryObject<SoundEvent> BRACHYCHAMPSA_HURT = createSoundEvent("brachychampsa_hurt");
+	public static final RegistryObject<SoundEvent> BRACHYCHAMPSA_DEATH = createSoundEvent("brachychampsa_death");
+	public static final RegistryObject<SoundEvent> BRACHYCHAMPSA_WARN = createSoundEvent("brachychampsa_warn");
 	public static final RegistryObject<SoundEvent> PALAEOSANIWA_IDLE = createSoundEvent("palaeosaniwa_idle");
 	public static final RegistryObject<SoundEvent> PALAEOSANIWA_HURT = createSoundEvent("palaeosaniwa_hurt");
 	public static final RegistryObject<SoundEvent> PALAEOSANIWA_WARN = createSoundEvent("palaeosaniwa_warn");
 	public static final RegistryObject<SoundEvent> PALAEOSANIWA_DEATH = createSoundEvent("palaeosaniwa_death");
 	public static final RegistryObject<SoundEvent> PACHYCEPHALOSAURUS_IDLE = createSoundEvent("pachycephalosaurus_idle");
+	public static final RegistryObject<SoundEvent> PACHYCEPHALOSAURUS_WARN = createSoundEvent("pachycephalosaurus_warn");
 	public static final RegistryObject<SoundEvent> PACHYCEPHALOSAURUS_HURT = createSoundEvent("pachycephalosaurus_hurt");
-	public static final RegistryObject<SoundEvent> PACHYCEPHALOSAURUS_DEATH = createSoundEvent("pachycehpalosaurus_death");
+	public static final RegistryObject<SoundEvent> PACHYCEPHALOSAURUS_DEATH = createSoundEvent("pachycephalosaurus_death");
 	public static final RegistryObject<SoundEvent> ORNITHOMIMUS_IDLE = createSoundEvent("ornithomimus_idle");
 	public static final RegistryObject<SoundEvent> ORNITHOMIMUS_HURT = createSoundEvent("ornithomimus_hurt");
 	public static final RegistryObject<SoundEvent> ORNITHOMIMUS_WARN = createSoundEvent("ornithomimus_warn");
@@ -125,6 +130,10 @@ public class PFSounds {
 	public static final RegistryObject<SoundEvent> KOL_IDLE = createSoundEvent("kol_idle");
 	public static final RegistryObject<SoundEvent> KOL_HURT = createSoundEvent("kol_hurt");
 	public static final RegistryObject<SoundEvent> KOL_DEATH = createSoundEvent("kol_death");
+	public static final RegistryObject<SoundEvent> BYRONOSAURUS_IDLE = createSoundEvent("byronosaurus_idle");
+	public static final RegistryObject<SoundEvent> BYRONOSAURUS_HURT = createSoundEvent("byronosaurus_hurt");
+	public static final RegistryObject<SoundEvent> BYRONOSAURUS_WARN = createSoundEvent("byronosaurus_warn");
+	public static final RegistryObject<SoundEvent> BYRONOSAURUS_DEATH = createSoundEvent("byronosaurus_death");
 	//Yixian
 	public static final RegistryObject<SoundEvent> BEIPIAOSAURUS_IDLE = createSoundEvent("beipiaosaurus_idle");
 	public static final RegistryObject<SoundEvent> BEIPIAOSAURUS_WARN = createSoundEvent("beipiaosaurus_warn");
@@ -138,6 +147,7 @@ public class PFSounds {
 	public static final RegistryObject<SoundEvent> DILONG_HURT = createSoundEvent("dilong_hurt");
 	public static final RegistryObject<SoundEvent> DILONG_DEATH = createSoundEvent("dilong_death");
 	public static final RegistryObject<SoundEvent> DONGBEITITAN_IDLE = createSoundEvent("dongbeititan_idle");
+	public static final RegistryObject<SoundEvent> DONGBEITITAN_SNORES = createSoundEvent("dongbeititan_snores");
 	public static final RegistryObject<SoundEvent> DONGBEITITAN_WARN = createSoundEvent("dongbeititan_warn");
 	public static final RegistryObject<SoundEvent> DONGBEITITAN_HURT = createSoundEvent("dongbeititan_hurt");
 	public static final RegistryObject<SoundEvent> DONGBEITITAN_DEATH = createSoundEvent("dongbeititan_death");
@@ -162,6 +172,7 @@ public class PFSounds {
 	public static final RegistryObject<SoundEvent> REPENOMAMUS_HURT = createSoundEvent("repenomamus_hurt");
 	public static final RegistryObject<SoundEvent> REPENOMAMUS_DEATH = createSoundEvent("repenomamus_death");
 	public static final RegistryObject<SoundEvent> RUIXINIA_IDLE = createSoundEvent("ruixinia_idle");
+	public static final RegistryObject<SoundEvent> RUIXINIA_SNORES = createSoundEvent("ruixinia_snores");
 	public static final RegistryObject<SoundEvent> RUIXINIA_WARN = createSoundEvent("ruixinia_warn");
 	public static final RegistryObject<SoundEvent> RUIXINIA_HURT = createSoundEvent("ruixinia_hurt");
 	public static final RegistryObject<SoundEvent> RUIXINIA_DEATH = createSoundEvent("ruixinia_death");

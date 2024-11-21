@@ -82,10 +82,6 @@ import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.ProtectBabyGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Ceratosaurus;
-import superlord.prehistoricfauna.common.entity.jurassic.morrison.Stegosaurus;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
@@ -161,13 +157,9 @@ public class Dakotaraptor extends DinosaurEntity {
 		this.goalSelector.addGoal(13, new Dakotaraptor.SitAndLookGoal());
 		this.targetSelector.addGoal(0, new HostileCarnivoreGoal(this, Player.class, false));
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, Ankylosaurus.class, 7F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, Triceratops.class, 7F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, Tyrannosaurus.class, 7F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, Camarasaurus.class, 7F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, Stegosaurus.class, 7F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, Allosaurus.class, 7F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, Ceratosaurus.class, 7F, 1.5D, 1.75D));
+		this.goalSelector.addGoal(8, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
+			return p_213487_0_.getType().is(PFTags.DAKOTARAPTOR_AVOIDING);
+		}));
 		this.goalSelector.addGoal(1, new CrepuscularSleepGoal(this));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 		this.targetSelector.addGoal(0, new CarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213498_0_) -> {
@@ -339,6 +331,7 @@ public class Dakotaraptor extends DinosaurEntity {
 			this.setTerritorial(true);
 		}
 		this.setCarnivorous(true);
+		this.setCrepuscular(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 

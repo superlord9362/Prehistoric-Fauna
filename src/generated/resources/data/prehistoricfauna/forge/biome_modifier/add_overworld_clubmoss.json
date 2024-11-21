@@ -1,0 +1,12 @@
+{
+  "type": "forge:add_features",
+  "biomes": [
+    "minecraft:windswept_forest",
+    "minecraft:windswept_hills",
+    "minecraft:windswept_gravelly_hills",
+    "minecraft:meadow",
+    "minecraft:swamp"
+  ],
+  "features": "prehistoricfauna:placed_clubmoss",
+  "step": "vegetal_decoration"
+}

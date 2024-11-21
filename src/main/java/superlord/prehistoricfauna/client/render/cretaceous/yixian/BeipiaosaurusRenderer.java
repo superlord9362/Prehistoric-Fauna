@@ -19,7 +19,7 @@ public class BeipiaosaurusRenderer extends MobRenderer<Beipiaosaurus, Beipiaosau
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/beipiaosaurus/melanistic_sleeping.png");
 
 	public BeipiaosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new BeipiaosaurusModel(renderManagerIn.bakeLayer(ClientEvents.BEIPIAOSAURUS)), 0.5625F);
+		super(renderManagerIn, new BeipiaosaurusModel(renderManagerIn.bakeLayer(ClientEvents.BEIPIAOSAURUS)), 0.4375F);
 	}
 
 	protected void scale(Beipiaosaurus beipiaosaurus, PoseStack matrixStackIn, float partialTickTime) {

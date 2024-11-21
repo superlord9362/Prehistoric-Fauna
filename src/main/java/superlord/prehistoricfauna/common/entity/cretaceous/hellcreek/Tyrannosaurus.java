@@ -107,7 +107,6 @@ public class Tyrannosaurus extends DinosaurEntity {
 		return stack.getItem() == PFItems.RAW_LARGE_MARGINOCEPHALIAN_MEAT.get();
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	protected void registerGoals() {
 		super.registerGoals();
 
@@ -118,7 +117,6 @@ public class Tyrannosaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.goalSelector.addGoal(4, new Tyrannosaurus.TyrannosaurusFollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal(this, Ankylosaurus.class, 7F, 1.25D, 1.25D));
 		this.goalSelector.addGoal(1, new Tyrannosaurus.MeleeAttackGoal());
 		this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
 		this.targetSelector.addGoal(2, new ProtectBabyGoal(this));
@@ -145,6 +143,9 @@ public class Tyrannosaurus extends DinosaurEntity {
 		}));
 		this.targetSelector.addGoal(0, new BabyCarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213487_0_) -> {
 			return p_213487_0_.getType().is(PFTags.TYRANNOSAURUS_BABY_HUNTING);
+		}));
+		this.goalSelector.addGoal(8, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
+			return p_213487_0_.getType().is(PFTags.TYRANNOSAURUS_AVOIDING);
 		}));
 	}
 
@@ -431,8 +432,8 @@ public class Tyrannosaurus extends DinosaurEntity {
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
 		Tyrannosaurus entity = new Tyrannosaurus(PFEntities.TYRANNOSAURUS.get(), this.level());
-		entity.setAge(-48000);
 		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		entity.setAge(-48000);
 		return entity;
 	}
 

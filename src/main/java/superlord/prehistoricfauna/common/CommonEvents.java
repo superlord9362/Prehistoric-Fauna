@@ -58,7 +58,17 @@ public class CommonEvents {
 					.put(PFBlocks.SCHIZOLEPIDOPSIS_LOG.get(), PFBlocks.STRIPPED_SCHIZOLEPIDOPSIS_LOG.get())
 					.put(PFBlocks.SCHIZOLEPIDOPSIS_WOOD.get(), PFBlocks.STRIPPED_SCHIZOLEPIDOPSIS_WOOD.get())
 					.put(PFBlocks.PODOZAMITES_LOG.get(), PFBlocks.STRIPPED_PODOZAMITES_LOG.get())
-					.put(PFBlocks.PODOZAMITES_WOOD.get(), PFBlocks.STRIPPED_PODOZAMITES_WOOD.get()).build();
+					.put(PFBlocks.PODOZAMITES_WOOD.get(), PFBlocks.STRIPPED_PODOZAMITES_WOOD.get())
+					.put(PFBlocks.GINKGO_LOG.get(), PFBlocks.STRIPPED_GINKGO_LOG.get())
+					.put(PFBlocks.GINKGO_WOOD.get(), PFBlocks.STRIPPED_GINKGO_WOOD.get())
+					.put(PFBlocks.TROCHODENDROIDES_LOG.get(), PFBlocks.STRIPPED_TROCHODENDROIDES_LOG.get())
+					.put(PFBlocks.TROCHODENDROIDES_WOOD.get(), PFBlocks.STRIPPED_TROCHODENDROIDES_WOOD.get())
+					.put(PFBlocks.BRACHYPHYLLUM_LOG.get(), PFBlocks.STRIPPED_BRACHYPHYLLUM_LOG.get())
+					.put(PFBlocks.BRACHYPHYLLUM_WOOD.get(), PFBlocks.STRIPPED_BRACHYPHYLLUM_WOOD.get())
+					.put(PFBlocks.WOODWORTHIA_LOG.get(), PFBlocks.STRIPPED_WOODWORTHIA_LOG.get())
+					.put(PFBlocks.WOODWORTHIA_WOOD.get(), PFBlocks.STRIPPED_WOODWORTHIA_WOOD.get())
+					.put(PFBlocks.SCHILDERIA_LOG.get(), PFBlocks.STRIPPED_SCHILDERIA_LOG.get())
+					.put(PFBlocks.SCHILDERIA_WOOD.get(), PFBlocks.STRIPPED_SCHILDERIA_WOOD.get()).build();
 			registerFlammables();
 		});
 	}
@@ -396,7 +406,7 @@ public class CommonEvents {
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.PACHYCEPHALOSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.PALAEOSANIWA_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.THESCELOSAURUS_EGG.get(), zombie, 1.0D, 3));
-				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.THORACOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.BRACHYCHAMPSA_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.TRICERATOPS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.TYRANNOSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.INCISIVOSAURUS_EGG.get(), zombie, 1.0D, 3));
@@ -431,11 +441,13 @@ public class CommonEvents {
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.ISCHIGUALASTIA_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SAUROSUCHUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SILLOSUCHUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.BYRONOSAURUS_EGG.get(), zombie, 1.0D, 3));
 			}
 		} catch (Exception e) {
 			PrehistoricFauna.LOGGER.warn("Could not allow Zombies to smash dinosaur eggs!");
 		}
 	}
+	
 
 	//	@SubscribeEvent
 	//	public static void limnicEruptionEvent(WorldTickEvent event) {

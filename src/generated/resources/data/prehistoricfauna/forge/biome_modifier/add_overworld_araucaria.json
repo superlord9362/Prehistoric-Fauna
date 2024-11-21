@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "minecraft:savanna_plateau",
+  "features": "prehistoricfauna:placed_small_araucaria_trees",
+  "step": "vegetal_decoration"
+}

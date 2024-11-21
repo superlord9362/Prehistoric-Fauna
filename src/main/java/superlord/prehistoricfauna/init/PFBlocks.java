@@ -4,6 +4,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.flag.FeatureFlag;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.BaseCoralFanBlock;
+import net.minecraft.world.level.block.BaseCoralPlantTypeBlock;
+import net.minecraft.world.level.block.BaseCoralWallFanBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ButtonBlock;
@@ -60,6 +63,7 @@ import superlord.prehistoricfauna.common.blocks.DicroidiumBlock;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.blocks.FeederBlock;
 import superlord.prehistoricfauna.common.blocks.FossilCrateBlock;
+import superlord.prehistoricfauna.common.blocks.GinkgoLeavesBlock;
 import superlord.prehistoricfauna.common.blocks.HardenedSiltBlock;
 import superlord.prehistoricfauna.common.blocks.HumulusBlock;
 import superlord.prehistoricfauna.common.blocks.JohnstoniaBlock;
@@ -653,7 +657,7 @@ public class PFBlocks {
 
 	public static final RegistryObject<Block> SANDSTONE = REGISTER.register("sandstone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> SANDSTONE_FOSSIL = REGISTER.register("sandstone_fossil", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> SANDSTONE_REGOLITH = REGISTER.register("sandstone_regolith", () -> new SandBlock(0x97734C, Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> SANDSTONE_REGOLITH = REGISTER.register("sandstone_regolith", () -> new SandBlock(0x97734C, Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.NETHERRACK)));
 	public static final RegistryObject<Block> SMOOTH_SANDSTONE = REGISTER.register("smooth_sandstone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> POLISHED_SANDSTONE = REGISTER.register("polished_sandstone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).strength(1.5F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 	public static final RegistryObject<Block> SANDSTONE_BRICKS = REGISTER.register("sandstone_bricks", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).strength(1.5F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
@@ -670,7 +674,7 @@ public class PFBlocks {
 
 	public static final RegistryObject<Block> SILTSTONE = REGISTER.register("siltstone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> SILTSTONE_FOSSIL = REGISTER.register("siltstone_fossil", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> SILTSTONE_REGOLITH = REGISTER.register("siltstone_regolith", () -> new SandBlock(0x9EA369, Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> SILTSTONE_REGOLITH = REGISTER.register("siltstone_regolith", () -> new SandBlock(0x9EA369, Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.NETHERRACK)));
 	public static final RegistryObject<Block> SMOOTH_SILTSTONE = REGISTER.register("smooth_siltstone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> POLISHED_SILTSTONE = REGISTER.register("polished_siltstone", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> SILTSTONE_BRICKS = REGISTER.register("siltstone_bricks", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
@@ -687,7 +691,7 @@ public class PFBlocks {
 
 	public static final RegistryObject<Block> CHALK = REGISTER.register("chalk", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> CHALK_FOSSIL = REGISTER.register("chalk_fossil", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> CHALK_REGOLITH = REGISTER.register("chalk_regolith", () -> new SandBlock(0xF1F1E6, Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> CHALK_REGOLITH = REGISTER.register("chalk_regolith", () -> new SandBlock(0xF1F1E6, Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.NETHERRACK)));
 	public static final RegistryObject<Block> SMOOTH_CHALK = REGISTER.register("smooth_chalk", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> POLISHED_CHALK = REGISTER.register("polished_chalk", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> CHALK_BRICKS = REGISTER.register("chalk_bricks", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
@@ -1089,7 +1093,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> TYRANNOSAURUS_EGG = REGISTER.register("tyrannosaurus_egg", () -> new DinosaurEggBlock(PFEntities.TYRANNOSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> BASILEMYS_EGG = REGISTER.register("basilemys_egg", () -> new DinosaurEggBlock(PFEntities.BASILEMYS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> DAKOTARAPTOR_EGG = REGISTER.register("dakotaraptor_egg", () -> new DinosaurEggBlock(PFEntities.DAKOTARAPTOR, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
-	public static final RegistryObject<Block> THORACOSAURUS_EGG = REGISTER.register("thoracosaurus_egg", () -> new DinosaurEggBlock(PFEntities.THORACOSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> BRACHYCHAMPSA_EGG = REGISTER.register("brachychampsa_egg", () -> new DinosaurEggBlock(PFEntities.BRACHYCHAMPSA, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> PALAEOSANIWA_EGG = REGISTER.register("palaeosaniwa_egg", () -> new DinosaurEggBlock(PFEntities.PALAEOSANIWA, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> PROTOCERATOPS_EGG = REGISTER.register("protoceratops_egg", () -> new DinosaurEggBlock(PFEntities.PROTOCERATOPS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> VELOCIRAPTOR_EGG = REGISTER.register("velociraptor_egg", () -> new DinosaurEggBlock(PFEntities.VELOCIRAPTOR, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
@@ -1142,6 +1146,12 @@ public class PFBlocks {
 	public static final RegistryObject<Block> ANZU_EGG = REGISTER.register("anzu_egg", () -> new DinosaurEggBlock(PFEntities.ANZU, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> LIAONINGOSAURUS_EGG = REGISTER.register("liaoningosaurus_egg", () -> new DinosaurEggBlock(PFEntities.LIAONINGOSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> CHANGYURAPTOR_EGG = REGISTER.register("changyuraptor_egg", () -> new DinosaurEggBlock(PFEntities.CHANGYURAPTOR, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> BYRONOSAURUS_EGG = REGISTER.register("byronosaurus_egg", () -> new DinosaurEggBlock(PFEntities.BYRONOSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> RUIXINIA_EGG = REGISTER.register("ruixinia_egg", () -> new DinosaurEggBlock(PFEntities.RUIXINIA, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> DONGBEITITAN_EGG = REGISTER.register("dongbeititan_egg", () -> new DinosaurEggBlock(PFEntities.DONGBEITITAN, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> DILONG_EGG = REGISTER.register("dilong_egg", () -> new DinosaurEggBlock(PFEntities.DILONG, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> ZHENYUANLONG_EGG = REGISTER.register("zhenyuanlong_egg", () -> new DinosaurEggBlock(PFEntities.ZHENYUANLONG, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> JINZHOUSAURUS_EGG = REGISTER.register("jinzhousaurus_egg", () -> new DinosaurEggBlock(PFEntities.JINZHOUSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 
 	public static final RegistryObject<Block> NEST = REGISTER.register("nest", () -> new NestBlock(Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
 
@@ -1150,7 +1160,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> DAKOTARAPTOR_NEST = REGISTER.register("dakotaraptor_nest", () -> new NestAndEggsBlock(PFEntities.DAKOTARAPTOR, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
 	public static final RegistryObject<Block> PALAEOSANIWA_NEST = REGISTER.register("palaeosaniwa_nest", () -> new NestAndEggsBlock(PFEntities.PALAEOSANIWA, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
 	public static final RegistryObject<Block> THESCELOSAURUS_NEST = REGISTER.register("thescelosaurus_nest", () -> new NestAndEggsBlock(PFEntities.THESCELOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> THORACOSAURUS_NEST = REGISTER.register("thoracosaurus_nest", () -> new NestAndEggsBlock(PFEntities.THORACOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
+	public static final RegistryObject<Block> BRACHYCHAMPSA_NEST = REGISTER.register("brachychampsa_nest", () -> new NestAndEggsBlock(PFEntities.BRACHYCHAMPSA, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
 	public static final RegistryObject<Block> TRICERATOPS_NEST = REGISTER.register("triceratops_nest", () -> new NestAndEggsBlock(PFEntities.TRICERATOPS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
 	public static final RegistryObject<Block> TYRANNOSAURUS_NEST = REGISTER.register("tyrannosaurus_nest", () -> new NestAndEggsBlock(PFEntities.TYRANNOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
 	public static final RegistryObject<Block> AEPYORNITHOMIMUS_NEST = REGISTER.register("aepyornithomimus_nest", () -> new NestAndEggsBlock(PFEntities.AEPYORNITHOMIMUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
@@ -1204,12 +1214,41 @@ public class PFBlocks {
 	public static final RegistryObject<Block> ANZU_NEST = REGISTER.register("anzu_nest", () -> new NestAndEggsBlock(PFEntities.ANZU, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
 	public static final RegistryObject<Block> LIAONINGOSAURUS_NEST = REGISTER.register("liaoningosaurus_nest", () -> new NestAndEggsBlock(PFEntities.LIAONINGOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
 	public static final RegistryObject<Block> CHANGYURAPTOR_NEST = REGISTER.register("changyuraptor_nest", () -> new NestAndEggsBlock(PFEntities.CHANGYURAPTOR, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
+	public static final RegistryObject<Block> BYRONOSAURUS_NEST = REGISTER.register("byronosaurus_nest", () -> new NestAndEggsBlock(PFEntities.BYRONOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
+	public static final RegistryObject<Block> RUIXINIA_NEST = REGISTER.register("ruixinia_nest", () -> new NestAndEggsBlock(PFEntities.RUIXINIA, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
+	public static final RegistryObject<Block> DONGBEITITAN_NEST = REGISTER.register("dongbeititan_nest", () -> new NestAndEggsBlock(PFEntities.DONGBEITITAN, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
+	public static final RegistryObject<Block> DILONG_NEST = REGISTER.register("dilong_nest", () -> new NestAndEggsBlock(PFEntities.DILONG, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
+	public static final RegistryObject<Block> ZHENYUANLONG_NEST = REGISTER.register("zhenyuanlong_nest", () -> new NestAndEggsBlock(PFEntities.ZHENYUANLONG, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
+	public static final RegistryObject<Block> JINZHOUSAURUS_NEST = REGISTER.register("jinzhousaurus_nest", () -> new NestAndEggsBlock(PFEntities.ZHENYUANLONG, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
 
 	public static final RegistryObject<Block> POISON_GAS = REGISTER.register("poison_gas", () -> new PoisonGasBlock(BlockBehaviour.Properties.of().noCollission().noLootTable().randomTicks()));
 	public static final RegistryObject<Block> SPLATTERED_GINKGO = REGISTER.register("splattered_ginkgo", () -> new SplatteredGinkgoBlock(BlockBehaviour.Properties.of().noCollission().instabreak().noLootTable().randomTicks()));
 	public static final RegistryObject<Block> HENOSTONE_ORE = REGISTER.register("henostone_ore", () -> new Block(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> TIME_FRAGMENT_BLOCK = REGISTER.register("time_fragment_block", () -> new Block(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 
+	public static final RegistryObject<Block> COATED_TUBE_CORAL_BLOCK = REGISTER.register("coated_tube_coral_block", () -> new Block(Block.Properties.copy(Blocks.TUBE_CORAL_BLOCK)));
+	public static final RegistryObject<Block> COATED_BRAIN_CORAL_BLOCK = REGISTER.register("coated_brain_coral_block", () -> new Block(Block.Properties.copy(Blocks.BRAIN_CORAL_BLOCK)));
+	public static final RegistryObject<Block> COATED_BUBBLE_CORAL_BLOCK = REGISTER.register("coated_bubble_coral_block", () -> new Block(Block.Properties.copy(Blocks.BUBBLE_CORAL_BLOCK)));
+	public static final RegistryObject<Block> COATED_FIRE_CORAL_BLOCK = REGISTER.register("coated_fire_coral_block", () -> new Block(Block.Properties.copy(Blocks.FIRE_CORAL_BLOCK)));
+	public static final RegistryObject<Block> COATED_HORN_CORAL_BLOCK = REGISTER.register("coated_horn_coral_block", () -> new Block(Block.Properties.copy(Blocks.HORN_CORAL_BLOCK)));
+	
+	public static final RegistryObject<Block> COATED_TUBE_CORAL = REGISTER.register("coated_tube_coral", () -> new BaseCoralPlantTypeBlock(Block.Properties.copy(Blocks.TUBE_CORAL)));
+	public static final RegistryObject<Block> COATED_BRAIN_CORAL = REGISTER.register("coated_brain_coral", () -> new BaseCoralPlantTypeBlock(Block.Properties.copy(Blocks.BRAIN_CORAL)));
+	public static final RegistryObject<Block> COATED_BUBBLE_CORAL = REGISTER.register("coated_bubble_coral", () -> new BaseCoralPlantTypeBlock(Block.Properties.copy(Blocks.BUBBLE_CORAL)));
+	public static final RegistryObject<Block> COATED_FIRE_CORAL = REGISTER.register("coated_fire_coral", () -> new BaseCoralPlantTypeBlock(Block.Properties.copy(Blocks.FIRE_CORAL)));
+	public static final RegistryObject<Block> COATED_HORN_CORAL = REGISTER.register("coated_horn_coral", () -> new BaseCoralPlantTypeBlock(Block.Properties.copy(Blocks.HORN_CORAL)));
+	
+	public static final RegistryObject<Block> COATED_TUBE_CORAL_FAN = REGISTER.register("coated_tube_coral_fan", () -> new BaseCoralFanBlock(Block.Properties.copy(Blocks.DEAD_TUBE_CORAL_FAN)));
+	public static final RegistryObject<Block> COATED_BRAIN_CORAL_FAN = REGISTER.register("coated_brain_coral_fan", () -> new BaseCoralFanBlock(Block.Properties.copy(Blocks.DEAD_BRAIN_CORAL_FAN)));
+	public static final RegistryObject<Block> COATED_BUBBLE_CORAL_FAN = REGISTER.register("coated_bubble_coral_fan", () -> new BaseCoralFanBlock(Block.Properties.copy(Blocks.DEAD_BUBBLE_CORAL_FAN)));
+	public static final RegistryObject<Block> COATED_FIRE_CORAL_FAN = REGISTER.register("coated_fire_coral_fan", () -> new BaseCoralFanBlock(Block.Properties.copy(Blocks.DEAD_FIRE_CORAL_FAN)));
+	public static final RegistryObject<Block> COATED_HORN_CORAL_FAN = REGISTER.register("coated_horn_coral_fan", () -> new BaseCoralFanBlock(Block.Properties.copy(Blocks.DEAD_HORN_CORAL_FAN)));
+	public static final RegistryObject<Block> COATED_TUBE_CORAL_WALL_FAN = REGISTER.register("coated_tube_coral_wall_fan", () -> new BaseCoralWallFanBlock(Block.Properties.copy(Blocks.DEAD_TUBE_CORAL_WALL_FAN)));
+	public static final RegistryObject<Block> COATED_BRAIN_CORAL_WALL_FAN = REGISTER.register("coated_brain_coral_wall_fan", () -> new BaseCoralWallFanBlock(Block.Properties.copy(Blocks.DEAD_BRAIN_CORAL_WALL_FAN)));
+	public static final RegistryObject<Block> COATED_BUBBLE_CORAL_WALL_FAN = REGISTER.register("coated_bubble_coral_wall_fan", () -> new BaseCoralWallFanBlock(Block.Properties.copy(Blocks.DEAD_BUBBLE_CORAL_WALL_FAN)));
+	public static final RegistryObject<Block> COATED_FIRE_CORAL_WALL_FAN = REGISTER.register("coated_fire_coral_wall_fan", () -> new BaseCoralWallFanBlock(Block.Properties.copy(Blocks.DEAD_FIRE_CORAL_WALL_FAN)));
+	public static final RegistryObject<Block> COATED_HORN_CORAL_WALL_FAN = REGISTER.register("coated_horn_coral_wall_fan", () -> new BaseCoralWallFanBlock(Block.Properties.copy(Blocks.DEAD_HORN_CORAL_WALL_FAN)));
+	
 	private static RotatedPillarBlock createLog() {
 		return new RotatedPillarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).ignitedByLava().strength(2.0F).sound(SoundType.WOOD));
 	}
@@ -1219,7 +1258,7 @@ public class PFBlocks {
 	}
 	
 	private static LeavesBlock yellowLeaves(SoundType sound) {
-		return new LeavesBlock(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_YELLOW).ignitedByLava().pushReaction(PushReaction.DESTROY).isRedstoneConductor(PFBlocks::never).strength(0.2F).randomTicks().sound(sound).noOcclusion().isValidSpawn(PFBlocks::allowsSpawnOnLeaves).isSuffocating(PFBlocks::never).isViewBlocking(PFBlocks::never));
+		return new GinkgoLeavesBlock(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_YELLOW).ignitedByLava().pushReaction(PushReaction.DESTROY).isRedstoneConductor(PFBlocks::never).strength(0.2F).randomTicks().sound(sound).noOcclusion().isValidSpawn(PFBlocks::allowsSpawnOnLeaves).isSuffocating(PFBlocks::never).isViewBlocking(PFBlocks::never));
 	}
 
 	private static TaxusLeavesBlock taxusLeaves(SoundType p_152615_) {

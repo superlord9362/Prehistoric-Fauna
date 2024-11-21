@@ -26,7 +26,7 @@ public class PsittacosaurusRenderer extends MobRenderer<Psittacosaurus, Psittaco
 	private static final ResourceLocation MELANISTIC_PSYCHO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/psittacosaurus/melanistic_psycho_sleeping.png");
 
 	public PsittacosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new PsittacosaurusModel(renderManagerIn.bakeLayer(ClientEvents.PSITTACOSAURUS)), 0.25F);
+		super(renderManagerIn, new PsittacosaurusModel(renderManagerIn.bakeLayer(ClientEvents.PSITTACOSAURUS)), 0.5F);
 	}
 
 	protected void scale(Psittacosaurus psittacosaurus, PoseStack matrixStackIn, float partialTickTime) {

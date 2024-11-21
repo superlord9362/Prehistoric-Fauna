@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "S S"
+  ],
+  "key": {
+    "S": {
+      "item": "prehistoricfauna:eggshells"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:eggshell_helmet",
+    "count": 1
+  }
+}

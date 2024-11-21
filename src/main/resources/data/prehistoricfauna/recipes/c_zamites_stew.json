@@ -1,0 +1,18 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+		"item": "prehistoricfauna:zamites_fronds"
+    },
+    {
+		"item": "minecraft:bowl"
+	},
+	{
+		"tag": "prehistoricfauna:carnivore_meats"
+	}
+  ],
+  "result": {
+    "item": "prehistoricfauna:carnivore_zamites_stew",
+    "count": 1
+  }
+}

@@ -25,6 +25,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.entity.PrehistoricEntity;
 import superlord.prehistoricfauna.init.PFItems;
@@ -129,8 +130,8 @@ public class AnkylosaurusSkull extends PrehistoricEntity {
 			this.playBrokenSound();
 			this.playParticles();
 			this.spawnFossil(source);
-			this.kill();
-            return false;
+			this.remove(RemovalReason.KILLED);
+			this.gameEvent(GameEvent.ENTITY_DIE);
          }
 		if (source.getDirectEntity() instanceof Player) {
 			this.playBrokenSound();
@@ -140,6 +141,7 @@ public class AnkylosaurusSkull extends PrehistoricEntity {
 				this.spawnFossil(source);
 			}
 			this.remove(RemovalReason.KILLED);
+			this.gameEvent(GameEvent.ENTITY_DIE);
 		}
 		return false;
 	}

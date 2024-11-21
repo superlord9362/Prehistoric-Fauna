@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:repenomamus_hide"
+    },
+	{
+		"item": "prehistoricfauna:repenomamus_hide"
+	}
+  ],
+  "result": {
+    "item": "minecraft:leather"
+  }
+}

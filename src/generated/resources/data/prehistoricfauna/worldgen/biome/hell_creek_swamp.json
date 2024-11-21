@@ -3,6 +3,8 @@
   "downfall": 0.7,
   "effects": {
     "fog_color": 12638463,
+    "foliage_color": 5468447,
+    "grass_color": 5468447,
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2.0,
@@ -87,18 +89,19 @@
   "has_precipitation": true,
   "spawn_costs": {},
   "spawners": {
-    "ambient": [],
+    "ambient": [
+      {
+        "type": "prehistoricfauna:cephaloleichnites",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 3
+      }
+    ],
     "axolotls": [],
     "creature": [
       {
         "type": "prehistoricfauna:basilemys",
         "maxCount": 2,
-        "minCount": 1,
-        "weight": 3
-      },
-      {
-        "type": "prehistoricfauna:cephaloleichnites",
-        "maxCount": 3,
         "minCount": 1,
         "weight": 3
       },
@@ -121,10 +124,10 @@
         "weight": 7
       },
       {
-        "type": "prehistoricfauna:thoracosaurus",
+        "type": "prehistoricfauna:brachychampsa",
         "maxCount": 1,
         "minCount": 1,
-        "weight": 3
+        "weight": 8
       },
       {
         "type": "prehistoricfauna:triceratops",

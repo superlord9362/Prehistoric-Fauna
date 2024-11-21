@@ -16,5 +16,6 @@ public class PFParticles {
     public static final RegistryObject<SimpleParticleType> PORTAL_PARTICLE = REGISTRY.register("portal_particle", ()-> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> BOSS_LASER = REGISTRY.register("boss_laser", ()-> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> BOSS_HEAL = REGISTRY.register("boss_heal", ()-> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> GINKGO_LEAVES = REGISTRY.register("ginkgo_leaves", ()-> new SimpleParticleType(false));
 
 }

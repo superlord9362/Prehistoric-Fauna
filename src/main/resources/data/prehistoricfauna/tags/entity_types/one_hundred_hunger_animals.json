@@ -1,6 +1,8 @@
 {
 	"replace": false,
 	"values": [
-		"prehistoricfauna:tyrannosaurus"
+		"prehistoricfauna:tyrannosaurus",
+		"prehistoricfauna:edmontosaurus",
+		"prehistoricfauna:dongbeititan"
 	]
 }

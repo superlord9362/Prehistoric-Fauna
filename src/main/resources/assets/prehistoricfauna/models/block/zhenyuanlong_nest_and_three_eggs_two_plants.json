@@ -1,0 +1,9 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "prehistoricfauna:block/nest_three_small_tall_eggs_two_plants",
+	"textures": {
+		"egg": "prehistoricfauna:block/zhenyuanlong_egg",
+		"material": "prehistoricfauna:block/nest",
+		"plants": "prehistoricfauna:block/plants"
+	}
+}

@@ -33,26 +33,26 @@ public class HerdDinosaurEntity extends DinosaurEntity {
 		return !this.isFollower();
 	}
 
-	   public boolean isFollower() {
+	public boolean isFollower() {
 		return this.groupLeader != null && this.groupLeader.isAlive();
 	}
 
 	public HerdDinosaurEntity startFollowing(HerdDinosaurEntity groupLeaderIn) {
 		this.groupLeader = groupLeaderIn;
-		groupLeaderIn.increaseGroupSize();
+		groupLeaderIn.addFollower();
 		return groupLeaderIn;
 	}
 
 	public void stopFollowing() {
-		this.groupLeader.decreaseGroupSize();
+		this.groupLeader.removeFollower();
 		this.groupLeader = null;
 	}
 
-	private void increaseGroupSize() {
+	private void addFollower() {
 		++this.groupSize;
 	}
 
-	private void decreaseGroupSize() {
+	private void removeFollower() {
 		--this.groupSize;
 	}
 
@@ -60,9 +60,6 @@ public class HerdDinosaurEntity extends DinosaurEntity {
 		return this.hasFollowers() && this.groupSize < this.getMaxGroupSize();
 	}
 
-	/**
-	 * Called to update the entity's position/logic.
-	 */
 	public void tick() {
 		super.tick();
 		if (this.hasFollowers() && this.level().random.nextInt(200) == 1) {

@@ -122,6 +122,12 @@
         "maxCount": 3,
         "minCount": 1,
         "weight": 6
+      },
+      {
+        "type": "prehistoricfauna:byronosaurus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 4
       }
     ],
     "misc": [],

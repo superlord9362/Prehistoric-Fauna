@@ -19,7 +19,7 @@ public class PiscivoreEatFromFeederGoal extends MoveToBlockGoal {
 		this.dinosaur = dinosaur;
 	}
 
-	public double getTargetDistanceSq() {
+	public double acceptedDistance() {
 		return 2.0D;
 	}
 

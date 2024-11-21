@@ -73,20 +73,12 @@
   "has_precipitation": true,
   "spawn_costs": {},
   "spawners": {
-    "ambient": [],
-    "axolotls": [],
-    "creature": [
+    "ambient": [
       {
         "type": "prehistoricfauna:apoclion",
         "maxCount": 3,
         "minCount": 1,
         "weight": 12
-      },
-      {
-        "type": "prehistoricfauna:beipiaosaurus",
-        "maxCount": 2,
-        "minCount": 1,
-        "weight": 8
       },
       {
         "type": "prehistoricfauna:cretaraneus",
@@ -95,10 +87,37 @@
         "weight": 6
       },
       {
+        "type": "prehistoricfauna:liaonemobius",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 8
+      }
+    ],
+    "axolotls": [],
+    "creature": [
+      {
+        "type": "prehistoricfauna:beipiaosaurus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 8
+      },
+      {
+        "type": "prehistoricfauna:dilong",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 3
+      },
+      {
         "type": "prehistoricfauna:incisivosaurus",
         "maxCount": 4,
         "minCount": 1,
         "weight": 6
+      },
+      {
+        "type": "prehistoricfauna:jinzhousaurus",
+        "maxCount": 5,
+        "minCount": 2,
+        "weight": 1
       },
       {
         "type": "prehistoricfauna:liaoningosaurus",
@@ -111,6 +130,18 @@
         "maxCount": 5,
         "minCount": 2,
         "weight": 9
+      },
+      {
+        "type": "prehistoricfauna:repenomamus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 4
+      },
+      {
+        "type": "prehistoricfauna:ruixinia",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 1
       },
       {
         "type": "prehistoricfauna:sinosauropteryx",
