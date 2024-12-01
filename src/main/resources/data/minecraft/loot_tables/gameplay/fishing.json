@@ -22,21 +22,24 @@
           "type": "minecraft:loot_table",
           "conditions": [
             {
-              "condition": "minecraft:entity_properties",
-              "predicate": {
-                "fishing_hook": {
-                  "in_open_water": true
-                }
-              },
-              "entity": "this"
-            }
-          ],
-			"conditions": [
-            {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "dimension": "minecraft:overworld"
-              }
+				"condition": "minecraft:all_of",
+				"terms": [
+					{
+						"condition": "minecraft:entity_properties",
+						"predicate": {
+							"fishing_hook": {
+								"in_open_water": true
+							}
+						},
+						"entity": "this"
+					},
+					{
+						"condition": "minecraft:location_check",
+						"predicate": {
+							"dimension": "minecraft:overworld"
+						}
+					}
+				]
             }
           ],
           "weight": 5,
@@ -64,10 +67,27 @@
           "name": "prehistoricfauna:fishing/junk",
 			"conditions": [
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "dimension": "prehistoricfauna:triassic_dimension"
-              }
+				"condition": "minecraft:any_of",
+				"terms": [
+					{
+						"condition": "minecraft:location_check",
+						"predicate": {
+							"dimension": "prehistoricfauna:triassic"
+						}
+					},
+					{
+						"condition": "minecraft:location_check",
+						"predicate": {
+							"dimension": "prehistoricfauna:jurassic"
+						}
+					},
+					{
+						"condition": "minecraft:location_check",
+						"predicate": {
+							"dimension": "prehistoricfauna:cretaceous"
+						}
+					}
+				]
             }
           ]
         },
@@ -75,21 +95,41 @@
           "type": "minecraft:loot_table",
           "conditions": [
             {
-              "condition": "minecraft:entity_properties",
-              "predicate": {
-                "fishing_hook": {
-                  "in_open_water": true
-                }
-              },
-              "entity": "this"
-            }
-          ],
-			"conditions": [
-            {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "dimension": "prehistoricfauna:triassic_dimension"
-              }
+				"condition": "minecraft:all_of",
+				"terms": [
+					{
+						"condition": "minecraft:entity_properties",
+						"predicate": {
+							"fishing_hook": {
+								"in_open_water": true
+							}
+						},
+						"entity": "this"
+					},
+					{
+						"condition": "minecraft:any_of",
+						"terms": [
+							{
+						"condition": "minecraft:location_check",
+						"predicate": {
+							"dimension": "prehistoricfauna:triassic"
+						}
+					},
+					{
+						"condition": "minecraft:location_check",
+						"predicate": {
+							"dimension": "prehistoricfauna:jurassic"
+						}
+					},
+					{
+						"condition": "minecraft:location_check",
+						"predicate": {
+							"dimension": "prehistoricfauna:cretaceous"
+						}
+					}
+						]
+					}
+				]
             }
           ],
           "weight": 5,
@@ -103,116 +143,27 @@
           "name": "prehistoricfauna:fishing/fish",
 			"conditions": [
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "dimension": "prehistoricfauna:triassic_dimension"
-              }
-            }
-          ]
-        },
-{
-          "type": "minecraft:loot_table",
-          "weight": 10,
-          "quality": -2,
-          "name": "prehistoricfauna:fishing/junk",
-			"conditions": [
-            {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "dimension": "prehistoricfauna:jurassic_dimension"
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:loot_table",
-          "conditions": [
-            {
-              "condition": "minecraft:entity_properties",
-              "predicate": {
-                "fishing_hook": {
-                  "in_open_water": true
-                }
-              },
-              "entity": "this"
-            }
-          ],
-			"conditions": [
-            {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "dimension": "prehistoricfauna:jurassic_dimension"
-              }
-            }
-          ],
-          "weight": 5,
-          "quality": 2,
-          "name": "prehistoricfauna:fishing/treasure"
-        },
-        {
-          "type": "minecraft:loot_table",
-          "weight": 85,
-          "quality": -1,
-          "name": "prehistoricfauna:fishing/fish",
-			"conditions": [
-            {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "dimension": "prehistoricfauna:jurassic_dimension"
-              }
-            }
-          ]
-        },
-{
-          "type": "minecraft:loot_table",
-          "weight": 10,
-          "quality": -2,
-          "name": "prehistoricfauna:fishing/junk",
-			"conditions": [
-            {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "dimension": "prehistoricfauna:cretaceous_dimension"
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:loot_table",
-          "conditions": [
-            {
-              "condition": "minecraft:entity_properties",
-              "predicate": {
-                "fishing_hook": {
-                  "in_open_water": true
-                }
-              },
-              "entity": "this"
-            }
-          ],
-			"conditions": [
-            {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "dimension": "prehistoricfauna:cretaceous_dimension"
-              }
-            }
-          ],
-          "weight": 5,
-          "quality": 2,
-          "name": "prehistoricfauna:fishing/treasure"
-        },
-        {
-          "type": "minecraft:loot_table",
-          "weight": 85,
-          "quality": -1,
-          "name": "prehistoricfauna:fishing/fish",
-			"conditions": [
-            {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "dimension": "prehistoricfauna:cretaceous_dimension"
-              }
+				"condition": "minecraft:any_of",
+				"terms": [
+					{
+						"condition": "minecraft:location_check",
+						"predicate": {
+							"dimension": "prehistoricfauna:triassic"
+						}
+					},
+					{
+						"condition": "minecraft:location_check",
+						"predicate": {
+							"dimension": "prehistoricfauna:jurassic"
+						}
+					},
+					{
+						"condition": "minecraft:location_check",
+						"predicate": {
+							"dimension": "prehistoricfauna:cretaceous"
+						}
+					}
+				]
             }
           ]
         }

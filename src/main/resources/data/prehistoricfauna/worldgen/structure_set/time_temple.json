@@ -1,0 +1,17 @@
+{
+  "structures": [
+    {
+      "structure": "prehistoricfauna:time_temple",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 9132841291,
+
+    "spacing": 60,
+
+    "separation": 30,
+
+    "type": "minecraft:random_spread"
+  }
+}

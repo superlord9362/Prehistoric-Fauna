@@ -1,9 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "minecraft:swamp",
-  "features": [
-    "prehistoricfauna:placed_osmunda",
-    "prehistoricfauna:placed_tall_osmunda"
-  ],
-  "step": "vegetal_decoration"
-}

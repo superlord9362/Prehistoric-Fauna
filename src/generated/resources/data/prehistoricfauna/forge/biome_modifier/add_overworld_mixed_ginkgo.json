@@ -1,9 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "minecraft:meadow",
-  "features": [
-    "prehistoricfauna:placed_small_mixed_ginkgo_trees",
-    "prehistoricfauna:placed_rare_large_mixed_ginkgo_trees"
-  ],
-  "step": "vegetal_decoration"
-}

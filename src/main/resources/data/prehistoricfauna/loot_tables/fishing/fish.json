@@ -2,24 +2,26 @@
   "type": "minecraft:fishing",
   "pools": [
     {
-      "rolls": 1.0,
+      "bonus_rolls": 0,
       "entries": [
         {
           "type": "minecraft:item",
-			"conditions": [
+          "name": "prehistoricfauna:raw_potamoceratodus",
+          "weight": 25,
+          "conditions": [
             {
               "condition": "minecraft:any_of",
               "terms": [
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "prehistoricfauna:morrison_hills"
+                    "biome": "prehistoricfauna:kayenta_river"
                   }
                 },
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "prehistoricfauna:morrison_savannah"
+                    "biome": "prehistoricfauna:kayenta_desert"
                   }
                 },
                 {
@@ -37,409 +39,49 @@
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "prehistoricfauna:kayenta_desert"
+                    "biome": "prehistoricfauna:morrison_savanna"
                   }
                 },
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "prehistoricfauna:kayenta_river"
+                    "biome": "prehistoricfauna:morrison_hills"
                   }
-                },
-                {
-					"condition": "minecraft:location_check",
-					"predicate": {
-						"biome": "prehistoricfauna:ischigualasto_clearing"
-					}
-				},
-                {
-					"condition": "minecraft:location_check",
-					"predicate": {
-						"biome": "prehistoricfauna:ischigualasto_forest"
-					}
-				},
-                {
-					"condition": "minecraft:location_check",
-					"predicate": {
-						"biome": "prehistoricfauna:ischigualasto_hills"
-					}
-				},
-                {
-					"condition": "minecraft:location_check",
-					"predicate": {
-						"biome": "prehistoricfauna:ischigualasto_river"
-					}
-				}
+                }
               ]
             }
-          ],
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:raw_ceratodus",
           "weight": 60,
-          "name": "prehistoricfauna:raw_ceratodus"
-        },
-        {
-          "type": "minecraft:item",
-			"conditions": [
+          "conditions": [
             {
               "condition": "minecraft:any_of",
               "terms": [
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_hardwood_forest"
+                    "biome": "prehistoricfauna:ischigualasto_hills"
                   }
                 },
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_clearing"
+                    "biome": "prehistoricfauna:ischigualasto_forest"
                   }
                 },
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_bluffs"
+                    "biome": "prehistoricfauna:ischigualasto_clearing"
                   }
                 },
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_swamp"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_redwoods"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_river"
-                  }
-                }
-              ]
-            }
-          ],
-          "weight": 50,
-          "name": "prehistoricfauna:raw_gar"
-        },
-        {
-          "type": "minecraft:item",
-			"conditions": [
-            {
-              "condition": "minecraft:any_of",
-              "terms": [
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_hardwood_forest"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_clearing"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_bluffs"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_swamp"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_redwoods"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_river"
-                  }
-                }
-              ]
-            }
-          ],
-          "weight": 50,
-          "name": "prehistoricfauna:raw_acipenser"
-        },
-        {
-          "type": "minecraft:item",
-			"conditions": [
-            {
-              "condition": "minecraft:any_of",
-              "terms": [
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_hardwood_forest"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_clearing"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_bluffs"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_swamp"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_redwoods"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_river"
-                  }
-                }
-              ]
-            }
-          ],
-          "weight": 30,
-          "name": "prehistoricfauna:raw_melvius"
-        },
-        {
-          "type": "minecraft:item",
-			"conditions": [
-            {
-              "condition": "minecraft:any_of",
-              "terms": [
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_hardwood_forest"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_swamp"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_redwoods"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_clearing"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_bluffs"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_river"
-                  }
-                }
-              ]
-            }
-          ],
-          "weight": 10,
-          "name": "prehistoricfauna:raw_myledaphus"
-        },
-        {
-          "type": "minecraft:item",
-			"conditions": [
-            {
-              "condition": "minecraft:any_of",
-              "terms": [
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_hardwood_forest"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_clearing"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_bluffs"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_swamp"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_redwoods"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_river"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:chinle_swamp"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:chinle_river"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:chinle_wooded_mountains"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:chinle_flats"
-                  }
-                }
-              ]
-            }
-          ],
-          "weight": 10,
-          "name": "prehistoricfauna:raw_lonchidion"
-        },
-        {
-			"type": "minecraft:item",
-			"conditions": [
-				{
-					"condition": "minecraft:any_of",
-					"terms": [
-						{
-							"condition": "minecraft:location_check",
-							"predicate": {
-								"biome": "prehistoricfauna:djadochta_dunes"
-							}
-						},
-						{
-							"condition": "minecraft:location_check",
-							"predicate": {
-								"biome": "prehistoricfauna:djadochta_arroyo"
-							}
-						},
-						{
-							"condition": "minecraft:location_check",
-							"predicate": {
-								"biome": "prehistoricfauna:djadochta_alluvial_plains"
-							}
-						}
-					]
-				}
-			],
-			"weight": 25,
-			"name": "prehistoricfauna:raw_harenaichthys"
-		},
-        {
-          "type": "minecraft:item",
-			"conditions": [
-            {
-              "condition": "minecraft:any_of",
-              "terms": [
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_hardwood_forest"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_clearing"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_bluffs"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_swamp"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_redwoods"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:hell_creek_river"
-                  }
-                }
-              ]
-            }
-          ],
-          "weight": 25,
-          "name": "prehistoricfauna:raw_cyclurus"
-        },
-		{
-			"type": "minecraft:item",
-			"conditions": [
-            {
-              "condition": "minecraft:any_of",
-              "terms": [
-				  {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:morrison_hills"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:morrison_savannah"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:kayenta_buttes"
+                    "biome": "prehistoricfauna:ischigualasto_river"
                   }
                 },
                 {
@@ -451,7 +93,7 @@
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "prehistoricfauna:kayenta_desert"
+                    "biome": "prehistoricfauna:kayenta_buttes"
                   }
                 },
                 {
@@ -459,256 +101,526 @@
                   "predicate": {
                     "biome": "prehistoricfauna:kayenta_river"
                   }
-                }
-              ]
-            }
-          ],
-			"weight": 25,
-			"name": "prehistoricfauna:raw_potamoceratodus"
-		},
-        {
-          "type": "minecraft:item",
-			"conditions": [
-            {
-              "condition": "minecraft:any_of",
-              "terms": [
+                },
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "prehistoricfauna:chinle_swamp"
+                    "biome": "prehistoricfauna:kayenta_river"
                   }
                 },
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "prehistoricfauna:chinle_river"
+                    "biome": "prehistoricfauna:morrison_savanna"
                   }
                 },
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "prehistoricfauna:chinle_wooded_mountains"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:chinle_flats"
+                    "biome": "prehistoricfauna:morrison_hills"
                   }
                 }
               ]
             }
-          ],
-          "weight": 13,
-          "name": "prehistoricfauna:raw_mooreodontus"
+          ]
         },
         {
           "type": "minecraft:item",
-			"conditions": [
-            {
-              "condition": "minecraft:any_of",
-              "terms": [
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:chinle_swamp"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:chinle_river"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:chinle_wooded_mountains"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:chinle_flats"
-                  }
-                }
-              ]
-            }
-          ],
-          "weight": 20,
-          "name": "prehistoricfauna:raw_arganodus"
-        },
-        {
-          "type": "minecraft:item",
-			"conditions": [
-            {
-              "condition": "minecraft:any_of",
-              "terms": [
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:chinle_swamp"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:chinle_river"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:chinle_wooded_mountains"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:chinle_flats"
-                  }
-                }
-              ]
-            }
-          ],
-          "weight": 20,
-          "name": "prehistoricfauna:raw_chinlea"
-        },
-        {
-          "type": "minecraft:item",
-			"conditions": [
-            {
-              "condition": "minecraft:any_of",
-              "terms": [
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:chinle_swamp"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:chinle_river"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:chinle_wooded_mountains"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:chinle_flats"
-                  }
-                }
-              ]
-            }
-          ],
-          "weight": 50,
-          "name": "prehistoricfauna:raw_saurichthys"
-        },
-        {
-          "type": "minecraft:item",
-			"conditions": [
-            {
-              "condition": "minecraft:any_of",
-              "terms": [
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:yixian_forest"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:yixian_lakes"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:yixian_regrowth"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:yixian_snowy_forest"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:yixian_snowy_mountains"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:yixian_snowy_volcano"
-                  }
-                }
-              ]
-            }
-          ],
+          "name": "prehistoricfauna:raw_cyclurus",
           "weight": 25,
-          "name": "prehistoricfauna:raw_protopsephurus"
-        },
-        {
-          "type": "minecraft:item",
-			"conditions": [
+          "conditions": [
             {
               "condition": "minecraft:any_of",
               "terms": [
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "prehistoricfauna:yixian_forest"
+                    "biome": "prehistoricfauna:hell_creek_river"
                   }
                 },
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "prehistoricfauna:yixian_lakes"
+                    "biome": "prehistoricfauna:hell_creek_swamp"
                   }
                 },
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "prehistoricfauna:yixian_regrowth"
+                    "biome": "prehistoricfauna:hell_creek_redwoods"
                   }
                 },
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "prehistoricfauna:yixian_snowy_forest"
+                    "biome": "prehistoricfauna:hell_creek_bluffs"
                   }
                 },
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "prehistoricfauna:yixian_snowy_mountains"
+                    "biome": "prehistoricfauna:hell_creek_clearing"
                   }
                 },
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "prehistoricfauna:yixian_snowy_volcano"
+                    "biome": "prehistoricfauna:hell_creek_hardwood_forest"
                   }
                 }
               ]
             }
-          ],
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:raw_gar",
+          "weight": 50,
+          "conditions": [
+            {
+              "condition": "minecraft:any_of",
+              "terms": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_river"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_swamp"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_redwoods"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_bluffs"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_clearing"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_hardwood_forest"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:raw_myledaphus",
+          "weight": 10,
+          "conditions": [
+            {
+              "condition": "minecraft:any_of",
+              "terms": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_river"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_swamp"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_redwoods"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_bluffs"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_bluffs"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_clearing"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_hardwood_forest"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:raw_saurichthys",
+          "weight": 50,
+          "conditions": [
+            {
+              "condition": "minecraft:any_of",
+              "terms": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:chinle_flats"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:chinle_river"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:chinle_swamp"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:chinle_wooded_mountains"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:raw_chinlea",
+          "weight": 20,
+          "conditions": [
+            {
+              "condition": "minecraft:any_of",
+              "terms": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:chinle_flats"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:chinle_river"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:chinle_swamp"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:chinle_wooded_mountains"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:raw_mooreodontus",
+          "weight": 13,
+          "conditions": [
+            {
+              "condition": "minecraft:any_of",
+              "terms": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:chinle_flats"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:chinle_river"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:chinle_swamp"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:chinle_wooded_mountains"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:raw_arganodus",
+          "weight": 20,
+          "conditions": [
+            {
+              "condition": "minecraft:any_of",
+              "terms": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:chinle_flats"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:chinle_river"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:chinle_swamp"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:chinle_wooded_mountains"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:raw_melvius",
           "weight": 30,
-          "name": "prehistoricfauna:raw_yanosteus"
+          "conditions": [
+            {
+              "condition": "minecraft:any_of",
+              "terms": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_hardwood_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_clearing"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_bluffs"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_redwoods"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_swamp"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_river"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "minecraft:item",
-			"conditions": [
+          "name": "prehistoricfauna:raw_lonchidion",
+          "weight": 10,
+          "conditions": [
+            {
+              "condition": "minecraft:any_of",
+              "terms": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:chinle_flats"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:chinle_river"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:chinle_swamp"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:chinle_wooded_mountains"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_hardwood_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_clearing"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_bluffs"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_redwoods"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_swamp"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_river"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:raw_acipenser",
+          "weight": 50,
+          "conditions": [
+            {
+              "condition": "minecraft:any_of",
+              "terms": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_hardwood_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_bluffs"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_clearing"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_redwoods"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_swamp"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_river"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:raw_harenaichthys",
+          "weight": 25,
+          "conditions": [
+            {
+              "condition": "minecraft:any_of",
+              "terms": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:djadochta_dunes"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:djadochta_arroyo"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:djadochta_alluvial_plains"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:raw_protopsephurus",
+          "weight": 25,
+          "conditions": [
             {
               "condition": "minecraft:any_of",
               "terms": [
@@ -727,7 +639,49 @@
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
+                    "biome": "prehistoricfauna:yixian_snowy_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:yixian_snowy_mountains"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
                     "biome": "prehistoricfauna:yixian_regrowth"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:yixian_volcano"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:raw_sinamia",
+          "weight": 40,
+          "conditions": [
+            {
+              "condition": "minecraft:any_of",
+              "terms": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:yixian_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:yixian_lakes"
                   }
                 },
                 {
@@ -745,16 +699,118 @@
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "prehistoricfauna:yixian_snowy_volcano"
+                    "biome": "prehistoricfauna:yixian_regrowth"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:yixian_volcano"
                   }
                 }
               ]
             }
-          ],
-          "weight": 40,
-          "name": "prehistoricfauna:raw_sinamia"
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:raw_yanosteus",
+          "weight": 30,
+          "conditions": [
+            {
+              "condition": "minecraft:any_of",
+              "terms": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:yixian_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:yixian_lakes"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:yixian_snowy_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:yixian_snowy_mountains"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:yixian_regrowth"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:yixian_volcano"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:raw_parapsephurus",
+          "weight": 13,
+          "conditions": [
+            {
+              "condition": "minecraft:any_of",
+              "terms": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_hardwood_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_bluffs"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_clearing"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_redwoods"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_swamp"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:hell_creek_river"
+                  }
+                }
+              ]
+            }
+          ]
         }
-      ]
+      ],
+      "rolls": 1
     }
-  ]
+  ],
+  "random_sequence": "minecraft:gameplay/fishing/fish"
 }

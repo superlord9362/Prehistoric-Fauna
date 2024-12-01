@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -55,9 +56,14 @@ public class NestBlock extends Block {
 		return 3;
 	}
 	
-	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
+	@Override
+	public boolean isRandomlyTicking(BlockState state) {
+		return !state.getValue(PLAYER_PLACED);
+	}
+	
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		int decayChance = random.nextInt(5);
-		if (decayChance == 0 && state.getValue(PLAYER_PLACED) != true) {
+		if (decayChance == 0) {
 			world.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
 		}
 	}

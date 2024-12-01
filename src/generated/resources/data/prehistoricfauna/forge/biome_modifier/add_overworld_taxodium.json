@@ -1,9 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "minecraft:swamp",
-  "features": [
-    "prehistoricfauna:placed_rare_taxodium_trees",
-    "prehistoricfauna:placed_taxodium_knees"
-  ],
-  "step": "vegetal_decoration"
-}

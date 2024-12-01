@@ -372,7 +372,6 @@ public class PFPlacedFeatures {
 
 	public static final ResourceKey<PlacedFeature> PTILOPHYLLUM = registerPlacedFeature("placed_ptilophyllum");
 
-
 	public static void bootstrap(BootstapContext<PlacedFeature> bootstapContext) {
 		HolderGetter<ConfiguredFeature<?, ?>> holderGetter = bootstapContext.lookup(Registries.CONFIGURED_FEATURE);
 		PlacementUtils.register(bootstapContext, FOSSILIZED_CHALK, holderGetter.getOrThrow(PFConfiguredFeatures.FOSSILIZED_CHALK), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(49), VerticalAnchor.absolute(59))));

@@ -12,8 +12,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.VisibleForDebug;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -115,7 +113,7 @@ public class BurrowBlockEntity extends BlockEntity {
 			this.storeBurrower(compoundtag, p_58747_);
 			if (this.level != null) {
 				BlockPos blockpos = this.getBlockPos();
-				this.level.playSound((Player)null, (double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ(), SoundEvents.BEEHIVE_ENTER, SoundSource.BLOCKS, 1.0F, 1.0F);
+//				this.level.playSound((Player)null, (double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ(), SoundEvents.BEEHIVE_ENTER, SoundSource.BLOCKS, 1.0F, 1.0F);
 				this.level.gameEvent(GameEvent.BLOCK_CHANGE, blockpos, GameEvent.Context.of(p_58745_, this.getBlockState()));
 			}
 
@@ -162,7 +160,7 @@ public class BurrowBlockEntity extends BlockEntity {
 							entity.moveTo(d0, d1, d2, entity.getYRot(), entity.getXRot());
 						}
 
-						p_155137_.playSound((Player)null, p_155138_, SoundEvents.BEEHIVE_EXIT, SoundSource.BLOCKS, 1.0F, 1.0F);
+//						p_155137_.playSound((Player)null, p_155138_, SoundEvents.BEEHIVE_EXIT, SoundSource.BLOCKS, 1.0F, 1.0F);
 						p_155137_.gameEvent(GameEvent.BLOCK_CHANGE, p_155138_, GameEvent.Context.of(entity, p_155137_.getBlockState(p_155138_)));
 						return p_155137_.addFreshEntity(entity);
 					}
@@ -207,12 +205,6 @@ public class BurrowBlockEntity extends BlockEntity {
 
 	public static void serverTick(Level p_155145_, BlockPos p_155146_, BlockState p_155147_, BurrowBlockEntity p_155148_) {
 		tickOccupants(p_155145_, p_155146_, p_155147_, p_155148_.stored);
-		if (!p_155148_.stored.isEmpty() && p_155145_.getRandom().nextDouble() < 0.005D) {
-			double d0 = (double)p_155146_.getX() + 0.5D;
-			double d1 = (double)p_155146_.getY();
-			double d2 = (double)p_155146_.getZ() + 0.5D;
-			p_155145_.playSound((Player)null, d0, d1, d2, SoundEvents.BEEHIVE_WORK, SoundSource.BLOCKS, 1.0F, 1.0F);
-		}
 	}
 
 	public void load(CompoundTag p_155156_) {

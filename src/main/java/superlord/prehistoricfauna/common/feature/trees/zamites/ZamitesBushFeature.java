@@ -10,6 +10,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -24,6 +25,9 @@ public class ZamitesBushFeature extends Feature<JohnstoniaConfig>
 		super(codec);
 	}
 
+	public static boolean isSoil(WorldGenLevel worldgenlevel, BlockPos pos) {
+		return (worldgenlevel.getBlockState(pos).is(Blocks.SAND) || worldgenlevel.getBlockState(pos).is(Blocks.RED_SAND) || worldgenlevel.getBlockState(pos).is(Blocks.GRASS_BLOCK) || worldgenlevel.getBlockState(pos).is(Blocks.PODZOL) || worldgenlevel.getBlockState(pos).is(Blocks.MYCELIUM) || worldgenlevel.getBlockState(pos).is(Blocks.DIRT) || worldgenlevel.getBlockState(pos).is(Blocks.COARSE_DIRT) || worldgenlevel.getBlockState(pos).is(PFBlocks.LOAM.get()) || worldgenlevel.getBlockState(pos).is(PFBlocks.PACKED_LOAM.get()) || worldgenlevel.getBlockState(pos).is(PFBlocks.SILT.get()) || worldgenlevel.getBlockState(pos).is(PFBlocks.HARDENED_SILT.get()) || worldgenlevel.getBlockState(pos).is(PFBlocks.MOSSY_DIRT.get()));
+	}
 
 	public static boolean isAir(LevelSimulatedReader worldgenlevel, BlockPos pos) {
 		if (worldgenlevel instanceof BlockGetter) // FORGE: Redirect to state method when possible
@@ -54,7 +58,7 @@ public class ZamitesBushFeature extends Feature<JohnstoniaConfig>
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();
-		if (worldgenlevel.getBlockState(pos.below()).isSolidRender(worldgenlevel, pos.below())) {
+		if (isSoil(worldgenlevel, pos.below())) {
 			for (int i = pos.getY(); i <= pos.getY() + height; i++) {
 				if (height == 2 && isAir(worldgenlevel, new BlockPos(x, y, z)) && isAir(worldgenlevel, new BlockPos(x, y + 1, z)) && isAir(worldgenlevel, new BlockPos(x, y + 2, z))) {
 					setBlock(worldgenlevel, new BlockPos(x, y, z), PFBlocks.ZAMITES_LOG.get().defaultBlockState());

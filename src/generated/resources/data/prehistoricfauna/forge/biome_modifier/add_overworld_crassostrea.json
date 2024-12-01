@@ -1,9 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": [
-    "minecraft:mangrove_swamp",
-    "minecraft:stony_shore"
-  ],
-  "features": "prehistoricfauna:placed_crassostrea_oysters",
-  "step": "vegetal_decoration"
-}

@@ -152,9 +152,9 @@ public class Changyuraptor extends DinosaurEntity {
 	}
 
 	public boolean onClimbable() {
-		return this.isBesideClimbableBlock();
+		return this.isClimbing();
 	}
-	
+
 	public boolean isStealing() {
 		return this.entityData.get(STEALING);
 	}
@@ -163,19 +163,19 @@ public class Changyuraptor extends DinosaurEntity {
 		this.entityData.set(STEALING, isStealing);
 	}
 
-	public boolean isBesideClimbableBlock() {
-		return (this.entityData.get(CLIMBING) & 1) != 0;
+	public boolean isClimbing() {
+		return (this.entityData.get(DATA_FLAGS_ID) & 1) != 0;
 	}
 
-	public void setBesideClimbableBlock(boolean climbing) {
-		byte b0 = this.entityData.get(CLIMBING);
-		if (climbing) {
-			b0 = (byte) (b0 | 1);
+	public void setClimbing(boolean p_33820_) {
+		byte b0 = this.entityData.get(DATA_FLAGS_ID);
+		if (p_33820_) {
+			b0 = (byte)(b0 | 1);
 		} else {
-			b0 = (byte) (b0 & -2);
+			b0 = (byte)(b0 & -2);
 		}
 
-		this.entityData.set(CLIMBING, b0);
+		this.entityData.set(DATA_FLAGS_ID, b0);
 	}
 
 	class MeleeAttackGoal extends net.minecraft.world.entity.ai.goal.MeleeAttackGoal {
@@ -224,22 +224,6 @@ public class Changyuraptor extends DinosaurEntity {
 		if (!this.level().isClientSide()) {
 			this.setClimbing(this.horizontalCollision);
 		}
-
-	}
-
-	public boolean isClimbing() {
-		return (this.entityData.get(DATA_FLAGS_ID) & 1) != 0;
-	}
-
-	public void setClimbing(boolean p_33820_) {
-		byte b0 = this.entityData.get(DATA_FLAGS_ID);
-		if (p_33820_) {
-			b0 = (byte)(b0 | 1);
-		} else {
-			b0 = (byte)(b0 & -2);
-		}
-
-		this.entityData.set(DATA_FLAGS_ID, b0);
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {

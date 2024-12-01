@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_badlands",
+  "features": "prehistoricfauna:placed_petrified_tree",
+  "step": "vegetal_decoration"
+}

@@ -194,6 +194,7 @@ import superlord.prehistoricfauna.common.util.RegistryHelper;
 import superlord.prehistoricfauna.config.PFConfigHolder;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.datagen.PFFeatureAndBiomeGenerator;
+import superlord.prehistoricfauna.init.PFBiomeModifiers;
 import superlord.prehistoricfauna.init.PFBiomeSources;
 import superlord.prehistoricfauna.init.PFBlockEntities;
 import superlord.prehistoricfauna.init.PFBlocks;
@@ -268,6 +269,7 @@ public class PrehistoricFauna {
 		PFBiomeSources.REGISTER.register(bus);
 		PFPotDecorations.REGISTER.register(bus);
 		PFParticles.REGISTRY.register(bus);
+		PFBiomeModifiers.BIOME_MODIFIER_SERIALIZERS.register(bus);
 		PFStructurePieceType.REGISTRY.register(bus);
 		PFStructureType.REGISTRY.register(bus);
 		final DeferredRegister<Codec<? extends BiomeModifier>> biomeModifiers = DeferredRegister.create(ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, PrehistoricFauna.MOD_ID);

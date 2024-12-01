@@ -118,6 +118,7 @@ public class RepenomamusModel extends EntityModel<Repenomamus> {
 	
 	public void resetModel() {
 		this.Body.y = 24;
+		this.Head.z = -6;
 		this.Tail.y = -4.85F;
 		this.Head.xRot = 0;
 		this.RightLeg.xRot = 0;

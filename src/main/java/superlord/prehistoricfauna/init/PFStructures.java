@@ -28,12 +28,10 @@ import net.minecraftforge.registries.RegistryObject;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.structure.piece.ChinleHutPieces.ChinleHutPiece;
 import superlord.prehistoricfauna.common.structure.piece.DjadochtaHutPieces.DjadochtaHutPiece;
-import superlord.prehistoricfauna.common.structure.piece.GeologistCampPieces.GeologistCampPiece;
 import superlord.prehistoricfauna.common.structure.piece.HellCreekHutPieces.HellCreekHutPiece;
 import superlord.prehistoricfauna.common.structure.piece.IschigualastoHutPieces.IschigualastoHutPiece;
 import superlord.prehistoricfauna.common.structure.piece.KayentaHutPieces.KayentaHutPiece;
 import superlord.prehistoricfauna.common.structure.piece.MorrisonHutPieces.MorrisonHutPiece;
-import superlord.prehistoricfauna.common.structure.piece.TimeTemplePieces.TimeTemplePiece;
 import superlord.prehistoricfauna.common.structure.piece.YixianHutPieces.YixianHutPiece;
 import superlord.prehistoricfauna.common.structure.*;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
@@ -50,9 +48,6 @@ public class PFStructures {
 	public static final ResourceKey<Structure> DJADOCHTA_HUT = createKey("djadochta_hut");
 	public static final ResourceKey<Structure> YIXIAN_HUT = createKey("yixian_hut");
 
-	public static final ResourceKey<Structure> TIME_TEMPLE = createKey("time_temple");
-	public static final ResourceKey<Structure> GEOLOGIST_CAMP = createKey("geologist_camp");
-
 	public static void bootstrap(BootstapContext<Structure> bootstap) {
 		HolderGetter<Biome> holdergetter = bootstap.lookup(Registries.BIOME);
 		bootstap.register(CHINLE_HUT, new ChinleHutStructure(structure(holdergetter.getOrThrow(PFTags.HAS_CHINLE_HUT), TerrainAdjustment.NONE)));
@@ -64,9 +59,6 @@ public class PFStructures {
 		bootstap.register(HELL_CREEK_HUT, new HellCreekHutStructure(structure(holdergetter.getOrThrow(PFTags.HAS_HELL_CREEK_HUT), TerrainAdjustment.NONE)));
 		bootstap.register(DJADOCHTA_HUT, new DjadochtaHutStructure(structure(holdergetter.getOrThrow(PFTags.HAS_DJADOCHTA_HUT), TerrainAdjustment.NONE)));
 		bootstap.register(YIXIAN_HUT, new YixianHutStructure(structure(holdergetter.getOrThrow(PFTags.HAS_YIXIAN_HUT), TerrainAdjustment.NONE)));
-
-		bootstap.register(TIME_TEMPLE, new TimeTempleStructure(structure(holdergetter.getOrThrow(PFTags.HAS_TIME_TEMPLE), TerrainAdjustment.NONE)));
-		bootstap.register(GEOLOGIST_CAMP, new GeologistCampStructure(structure(holdergetter.getOrThrow(PFTags.HAS_GEOLOGIST_CAMP), TerrainAdjustment.NONE)));
 	}
 
 	private static Structure.StructureSettings structure(HolderSet<Biome> p_256015_, Map<MobCategory, StructureSpawnOverride> p_256297_, GenerationStep.Decoration p_255729_, TerrainAdjustment p_255865_) {
@@ -91,9 +83,6 @@ public class PFStructures {
 	public static final ResourceKey<StructureSet> DJADOCHTA_HUT_STRUCTURE_SET = registerStructureSet("djadochta_hut");
 	public static final ResourceKey<StructureSet> YIXIAN_HUT_STRUCTURE_SET = registerStructureSet("yixian_hut");
 
-	public static final ResourceKey<StructureSet> TIME_TEMPLE_STRUCTURE_SET = registerStructureSet("time_temple");
-	public static final ResourceKey<StructureSet> GEOLOGIST_CAMP_STRUCTURE_SET = registerStructureSet("geologist_camp");
-
 	public static void bootstrapStructureSet(BootstapContext<StructureSet> bootstap) {
 		HolderGetter<Structure> holdergetter = bootstap.lookup(Registries.STRUCTURE);
 		bootstap.register(CHINLE_HUT_STRUCTURE_SET, new StructureSet(List.of(StructureSet.entry(holdergetter.getOrThrow(CHINLE_HUT))), new RandomSpreadStructurePlacement(PrehistoricFaunaConfig.chinleHutMaxDistance, PrehistoricFaunaConfig.chinleHutMinDistance, RandomSpreadType.LINEAR, 591239123)));
@@ -105,9 +94,6 @@ public class PFStructures {
 		bootstap.register(HELL_CREEK_HUT_STRUCTURE_SET, new StructureSet(List.of(StructureSet.entry(holdergetter.getOrThrow(HELL_CREEK_HUT))), new RandomSpreadStructurePlacement(PrehistoricFaunaConfig.hellCreekHutMaxDistance, PrehistoricFaunaConfig.hellCreekHutMinDistance, RandomSpreadType.LINEAR, 6248341)));
 		bootstap.register(DJADOCHTA_HUT_STRUCTURE_SET, new StructureSet(List.of(StructureSet.entry(holdergetter.getOrThrow(DJADOCHTA_HUT))), new RandomSpreadStructurePlacement(PrehistoricFaunaConfig.djadochtaHutMaxDistance, PrehistoricFaunaConfig.djadochtaHutMinDistance, RandomSpreadType.LINEAR, 85923812)));
 		bootstap.register(YIXIAN_HUT_STRUCTURE_SET, new StructureSet(List.of(StructureSet.entry(holdergetter.getOrThrow(YIXIAN_HUT))), new RandomSpreadStructurePlacement(PrehistoricFaunaConfig.yixianHutMaxDistance, PrehistoricFaunaConfig.yixianHutMinDistance, RandomSpreadType.LINEAR, 5381239)));
-
-		bootstap.register(TIME_TEMPLE_STRUCTURE_SET, new StructureSet(List.of(StructureSet.entry(holdergetter.getOrThrow(TIME_TEMPLE))), new RandomSpreadStructurePlacement(PrehistoricFaunaConfig.timeTempleMaxDistance, PrehistoricFaunaConfig.timeTempleMinDistance, RandomSpreadType.LINEAR, 9560612)));
-		bootstap.register(GEOLOGIST_CAMP_STRUCTURE_SET, new StructureSet(List.of(StructureSet.entry(holdergetter.getOrThrow(GEOLOGIST_CAMP))), new RandomSpreadStructurePlacement(PrehistoricFaunaConfig.geologistCampMaxDistance, PrehistoricFaunaConfig.geologistCampMinDistance, RandomSpreadType.LINEAR, 46712832)));
 	}
 
 	private static ResourceKey<StructureSet> registerStructureSet(String p_209839_) {
@@ -127,9 +113,6 @@ public class PFStructures {
 		RegistryObject<StructureType<DjadochtaHutStructure>> DJADOCHTA_HUT = register("djadochta_hut", DjadochtaHutStructure.CODEC);
 		RegistryObject<StructureType<YixianHutStructure>> YIXIAN_HUT = register("yixian_hut", YixianHutStructure.CODEC);
 
-		RegistryObject<StructureType<TimeTempleStructure>> TIME_TEMPLE = register("time_temple", TimeTempleStructure.CODEC);
-		RegistryObject<StructureType<GeologistCampStructure>> GEOLOGIST_CAMP = register("geologist_camp", GeologistCampStructure.CODEC);
-
 		private static <S extends Structure> RegistryObject<StructureType<S>> register(String string, Codec<S> codec) {
 			return REGISTRY.register(string, () -> StructureType.register(string, codec));
 		}
@@ -147,9 +130,6 @@ public class PFStructures {
 		RegistryObject<StructurePieceType> HELL_CREEK_HUT = register(HellCreekHutPiece::new, "hell_creek_hut");
 		RegistryObject<StructurePieceType> DJADOCHTA_HUT = register(DjadochtaHutPiece::new, "djadochta_hut");
 		RegistryObject<StructurePieceType> YIXIAN_HUT = register(YixianHutPiece::new, "yixian_hut");
-
-		RegistryObject<StructurePieceType> TIME_TEMPLE = register(TimeTemplePiece::new, "time_temple");
-		RegistryObject<StructurePieceType> GEOLOGIST_CAMP = register(GeologistCampPiece::new, "geologist_camp");
 
 		private static RegistryObject<StructurePieceType> register(StructurePieceType.StructureTemplateType type, String string) {
 			return REGISTRY.register(string, () -> StructurePieceType.setTemplatePieceId(type, string.toLowerCase(Locale.ROOT)));

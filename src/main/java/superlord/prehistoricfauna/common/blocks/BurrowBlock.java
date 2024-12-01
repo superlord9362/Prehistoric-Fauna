@@ -19,6 +19,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.item.PrimedTnt;
@@ -56,9 +57,11 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import superlord.prehistoricfauna.common.entity.BurrowingDinosaur;
 import superlord.prehistoricfauna.common.entity.block.BurrowBlockEntity;
 import superlord.prehistoricfauna.init.PFBlockEntities;
 
@@ -146,6 +149,22 @@ public class BurrowBlock extends BaseEntityBlock {
 
 	}
 
+	private void angerNearbyBurrowers(Level p_49650_, BlockPos p_49651_) {
+	      List<BurrowingDinosaur> list = p_49650_.getEntitiesOfClass(BurrowingDinosaur.class, (new AABB(p_49651_)).inflate(8.0D, 6.0D, 8.0D));
+	      if (!list.isEmpty()) {
+	         List<Player> list1 = p_49650_.getEntitiesOfClass(Player.class, (new AABB(p_49651_)).inflate(8.0D, 6.0D, 8.0D));
+	         if (list1.isEmpty()) return; //Forge: Prevent Error when no players are around.
+	         int i = list1.size();
+
+	         for(BurrowingDinosaur burrower : list) {
+	            if (burrower.getTarget() == null && burrower.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE)) {
+	            	burrower.setTarget(list1.get(p_49650_.random.nextInt(i)));
+	            }
+	         }
+	      }
+
+	   }
+	
 	public BlockState updateShape(BlockState p_153904_, Direction p_153905_, BlockState p_153906_, LevelAccessor p_153907_, BlockPos p_153908_, BlockPos p_153909_) {
 		if (p_153907_.getBlockState(p_153909_).getBlock() instanceof FireBlock) {
 			BlockEntity blockentity = p_153907_.getBlockEntity(p_153908_);
@@ -284,6 +303,7 @@ public class BurrowBlock extends BaseEntityBlock {
 			if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, p_49589_) == 0) {
 				burrowblockentity.emptyAllLivingFromBurrow(p_49585_, p_49587_, BurrowBlockEntity.BurrowerReleaseStatus.EMERGENCY);
 				p_49584_.updateNeighbourForOutputSignal(p_49586_, this);
+	            this.angerNearbyBurrowers(p_49584_, p_49586_);
 			}
 		}
 
