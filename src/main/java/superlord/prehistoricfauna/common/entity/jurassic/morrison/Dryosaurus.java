@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
@@ -49,6 +50,8 @@ import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.SkittishFleeGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
+import superlord.prehistoricfauna.common.items.PaleopediaItem;
+import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
@@ -141,6 +144,13 @@ public class Dryosaurus extends DinosaurEntity {
 				itemstack.shrink(1);
 			}
 			return InteractionResult.SUCCESS;
+		}
+		if (item instanceof PaleopediaItem paleopedia) {
+			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.DRYOSAURUS.ordinal())) {
+				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.DRYOSAURUS.ordinal()), itemstack);
+				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.dryosaurus_added"), true);
+				return InteractionResult.SUCCESS;
+			}
 		}
 		return super.mobInteract(p_230254_1_, p_230254_2_);
 	}

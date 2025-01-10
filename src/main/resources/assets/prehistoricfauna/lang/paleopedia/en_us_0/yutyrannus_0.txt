@@ -1,0 +1,39 @@
+Found In: Yixian
+
+Drops: 0-2 Feathers, 0-2 
+Tyrannosaur Teeth, 1-3 Large 
+Raw Theropod
+
+Diet: Carnivore
+
+Breeding Item: Raw Large Sauropod
+
+Max Health: 60
+
+Max Hunger: 150
+
+Temperaments: Yutyrannus has an 
+85% chance of being protective 
+and a 15% chance of being 
+territorial.
+
+
+
+
+
+
+
+
+<image><drawings_ankylosaurus.png 32 6 51 235 24 15 6.5>
+
+
+
+
+
+
+
+Sleep Cycle: Cathemeral
+
+Behavior: Yutyrannus can create 
+hunting parties, creating a large 
+group of attacking Yutyrannus.

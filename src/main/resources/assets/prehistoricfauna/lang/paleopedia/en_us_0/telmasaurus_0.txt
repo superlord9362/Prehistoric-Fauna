@@ -1,31 +1,40 @@
-Whilst observing a nest, I noticed 
-something watching me. A monitor-
-like lizard sat on the other side 
-of the nest, staring at me. For a 
-while, we just watched each other, 
-with the eggs between us. I 
-identified the lizard to be a 
-Telmasaurus. I knew that these 
-eggs belonged to a nearby Citipati 
-couple, so what was it doing here? 
-As I sat pondering this, the 
-Telmasaurus flashed forward and 
-scooped one of the eggs into its 
-mouth before running away. At 
-that moment, I realized exactly 
-what was happening. The 
-Telmasaurus eats other animals' 
-eggs!
+Found In: Djadochta
 
-While going on a stroll through the 
-arroyo today, I accidentally 
-stepped on a Telmasaurus! In 
-retaliation, the Telmasaurus spun 
-around and bit my ankle before 
-scampering off into the brush. 
-Similar to some modern-day 
-monitors, Telmasaurus seems to 
-possess a venomous bite. I do not 
-know if it is deadly, as I was able 
-to brew some horsetail tea in time 
-to battle the venom.
+Drops: 1-3 Small Raw Reptile
+
+Diet: Ovivore
+
+Breeding Item: Any egg
+
+Max Health: 6
+
+Max Hunger: 15
+
+Temperaments: Telmasaurus has 
+an 80% chance of being 
+opportunist, a 15% chance of being 
+skittish, and a 5% chance of being 
+protective.
+
+Sleep Cycle: Diurnal
+
+<image><drawings_ankylosaurus.png 27 3 4 216 18 12 8>
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Telmasaurus will steal 
+and eat eggs when hungry. This 
+can be prevented by attacking the 
+Telmasaurus. They have a 
+venomous bite, which can be cured 
+by drinking Horsetail Tea.

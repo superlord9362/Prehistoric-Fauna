@@ -136,6 +136,12 @@ public class FossilCrateBlock extends Block {
 				stack.shrink(1);
 			}
 			return InteractionResult.sidedSuccess(world.isClientSide);
+		} else if (item == PFItems.YUTYRANNUS_SKULL.get()) {
+			world.setBlock(pos, PFBlocks.YUTYRANNUS_CRATE.get().defaultBlockState(), 2);
+			if (!player.isCreative()) {
+				stack.shrink(1);
+			}
+			return InteractionResult.sidedSuccess(world.isClientSide);
 		} else {
 			return InteractionResult.PASS;
 		}

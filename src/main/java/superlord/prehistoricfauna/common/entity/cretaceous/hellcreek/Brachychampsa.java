@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -14,6 +15,8 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
@@ -74,6 +77,8 @@ import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.PiscivoreEatFromFeederGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
+import superlord.prehistoricfauna.common.items.PaleopediaItem;
+import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
@@ -81,7 +86,7 @@ import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
 public class Brachychampsa extends DinosaurEntity {
-	private int maxHunger = 90;
+	private int maxHunger = 50;
 	private int warningSoundTicks;
 	private int grabTicks = 0;
 	private int grabCooldownTicks = 0;
@@ -121,6 +126,19 @@ public class Brachychampsa extends DinosaurEntity {
 	@Override
 	public boolean dismountsUnderwater() {
 		return false;
+	}
+	
+	public InteractionResult mobInteract(Player player, InteractionHand hand) {
+		ItemStack itemstack = player.getItemInHand(hand);
+		Item item = itemstack.getItem();
+		if (item instanceof PaleopediaItem paleopedia) {
+			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.BRACHYCHAMPSA.ordinal())) {
+				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.BRACHYCHAMPSA.ordinal()), itemstack);
+				player.displayClientMessage(Component.translatable("paleopedia.brachychampsa_added"), true);
+				return InteractionResult.SUCCESS;
+			}
+		}
+		return super.mobInteract(player, hand);
 	}
 
 	@Nullable

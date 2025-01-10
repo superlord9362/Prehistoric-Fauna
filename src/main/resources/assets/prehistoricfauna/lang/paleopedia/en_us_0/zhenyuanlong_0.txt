@@ -1,0 +1,40 @@
+Found In: Yixian
+
+Drops: 0-2 Feathers, 1-3 Small 
+Raw Theropod, 0-1 Dromaeosaur 
+Claw
+
+Diet: Carnivore
+
+Breeding Item: Small Raw Theropod
+
+Max Health: 15
+
+Max Hunger: 38
+
+Temperaments: Zhenyuanlong has 
+an 80% chance of being protective, 
+a 15% chance of being territorial, 
+and a 5% chance of being 
+opportunist.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sleep Cycle: Crepuscular
+
+Behavior: When attacked, 
+Zhenyuanlong has a chance to 
+scare the attacker away. If the 
+Zhenyuanlong trusts the player, 
+it can use this ability against the 
+players attackers as well.

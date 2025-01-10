@@ -31,7 +31,7 @@ public class PaleopediaItem extends Item {
 	@Override
     public void onCraftedBy(ItemStack stack, Level worldIn, Player playerIn) {
         stack.setTag(new CompoundTag());
-        stack.getTag().putIntArray("Pages", new int[]{0});
+        stack.getTag().putIntArray("Pages", new int[]{0, 1, 2});
 
     }
 
@@ -48,8 +48,7 @@ public class PaleopediaItem extends Item {
     public void inventoryTick(ItemStack stack, Level worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (stack.getTag() == null) {
             stack.setTag(new CompoundTag());
-            stack.getTag().putIntArray("Pages", new int[]{EnumPaleoPages.INTRODUCTION.ordinal()});
-
+            stack.getTag().putIntArray("Pages", new int[]{EnumPaleoPages.INTRODUCTION.ordinal(), EnumPaleoPages.SCIENTIFIC_NOTES.ordinal(), EnumPaleoPages.PALEONTOLOGY.ordinal()});
         }
     }
 

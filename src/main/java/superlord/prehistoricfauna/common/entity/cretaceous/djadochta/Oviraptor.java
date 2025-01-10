@@ -6,12 +6,15 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
@@ -58,6 +61,8 @@ import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.OmnivoreEatFromFeederGoal;
 import superlord.prehistoricfauna.common.entity.goal.SkittishFleeGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
+import superlord.prehistoricfauna.common.items.PaleopediaItem;
+import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
@@ -124,6 +129,19 @@ public class Oviraptor extends DinosaurEntity {
 			return p_237491_0_.getType().is(PFTags.OVIRAPTOR_BABY_HUNTING);
 		}));
 		this.goalSelector.addGoal(5, new Oviraptor.SitOnEggGoal((double)1.2F, 12, 2));
+	}
+	
+	public InteractionResult mobInteract(Player player, InteractionHand hand) {
+		ItemStack itemstack = player.getItemInHand(hand);
+		Item item = itemstack.getItem();
+		if (item instanceof PaleopediaItem paleopedia) {
+			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.OVIRAPTOR.ordinal())) {
+				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.OVIRAPTOR.ordinal()), itemstack);
+				player.displayClientMessage(Component.translatable("paleopedia.oviraptor_added"), true);
+				return InteractionResult.SUCCESS;
+			}
+		}
+		return super.mobInteract(player, hand);
 	}
 	
 	@Override

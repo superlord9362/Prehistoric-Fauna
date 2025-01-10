@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
@@ -48,6 +49,8 @@ import superlord.prehistoricfauna.common.entity.goal.LowHealthOrBabyHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.ProtectBabyGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
+import superlord.prehistoricfauna.common.items.PaleopediaItem;
+import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
@@ -64,11 +67,11 @@ public class Dilong extends DinosaurEntity {
 		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
-	
+
 	public boolean isFood(ItemStack stack) {
 		return stack.getItem() == PFItems.RAW_SMALL_THEROPOD_MEAT.get();
 	}
-	
+
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new FloatGoal(this));
@@ -96,7 +99,7 @@ public class Dilong extends DinosaurEntity {
 			return p_237491_0_.getType().is(PFTags.DILONG_HUNTING);
 		}));
 	}
-	
+
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		int temperment = random.nextInt(100);
 		if (temperment < 85) {
@@ -108,11 +111,11 @@ public class Dilong extends DinosaurEntity {
 		this.setCrepuscular(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
-	
+
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 8.0D).add(Attributes.FOLLOW_RANGE, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.ATTACK_DAMAGE, 3.0D);
 	}
-	
+
 	protected SoundEvent getAmbientSound() {
 		return this.isAsleep() ? null : PFSounds.DILONG_IDLE.get();
 	}
@@ -153,14 +156,14 @@ public class Dilong extends DinosaurEntity {
 		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
-	
+
 	private void spawnItem(ItemStack stack) {
 		int i = random.nextInt(3) + 1;
 		stack.setCount(i);
 		ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), stack);
 		this.level().addFreshEntity(itemEntity);
 	}
-	
+
 	@Override
 	public void aiStep() {
 		super.aiStep();
@@ -171,7 +174,7 @@ public class Dilong extends DinosaurEntity {
 			this.spawnItem(Items.BONE_MEAL.getDefaultInstance());
 		}
 	}
-	
+
 	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
 		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
 		Item item = itemstack.getItem();
@@ -181,6 +184,13 @@ public class Dilong extends DinosaurEntity {
 				itemstack.shrink(1);
 			}
 			return InteractionResult.SUCCESS;
+		}
+		if (item instanceof PaleopediaItem paleopedia) {
+			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.DILONG.ordinal())) {
+				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.DILONG.ordinal()), itemstack);
+				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.dilong_added"), true);
+				return InteractionResult.SUCCESS;
+			}
 		}
 		return super.mobInteract(p_230254_1_, p_230254_2_);
 	}

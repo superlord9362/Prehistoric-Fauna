@@ -1,0 +1,41 @@
+Found In: Hell Creek
+
+Drops: 1-3 Small Raw 
+Archosauromorph
+
+Diet: Carnivore
+
+Breeding Item: Crassostrea Oyster
+
+Max Health: 20
+
+Max Hunger: 50
+
+Temperaments: Brachychampsa has 
+an 80% chance of being territorial, 
+and a 20% chance of being 
+aggressive.
+
+Sleep Cycle: Cathemeral
+
+<image><drawings_ankylosaurus.png 30 4 28 67 22 16 7>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Brachychampsa targets 
+turtles and other small animals in 
+the swamps of Hell Creek. It will 
+drag prey into the water to drown 
+them. On killing turtles, the turtles 
+will drop scutes.

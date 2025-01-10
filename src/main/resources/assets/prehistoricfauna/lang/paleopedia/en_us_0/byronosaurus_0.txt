@@ -1,0 +1,39 @@
+Found In: Djadochta
+
+Drops: 0-2 Feathers, 1-2 Small
+Raw Theropod
+
+Diet: Carnivore
+
+Breeding Item: Small Raw Reptile
+
+Max Health: 15
+
+Max Hunger: 38
+
+Temperaments: Byronosaurus has 
+an 80% chance of being 
+opportunist, a 15% chance of being 
+skittish, and a 5% chance of being 
+protective.
+<image><drawings_ankylosaurus.png 34 3 5 26 16 16 7>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sleep Cycle: Diurnal
+
+Behavior: Byronosaurus can find 
+animals in burrows and pull them 
+out.

@@ -1,25 +1,40 @@
-Day 5
+Found In: Hell Creek
 
-It wasn't long after I had
-arrived in Hell Creek that
-I noticed these nimble
-creatures hiding in the
-brush. I heard them before
-I saw them, rustling among
-the ferns. They always kept
-at a distance but after some
-time here I managed to get a
-closer look. Upon inspection
-it turned out to be the
-marvelous Thescelosaurus!
+Drops: 0-2 Feathers, 1-3 Small 
+Raw Ornithischian
 
-These skittish dinosaurs are
-fast. Equipped with powerful
-hindlimbs they can run away
-from other animals of the area,
-such as the Dakotaraptor.
+Diet: Herbivore
 
-Their favorite snack seems to be
-the horsetails found here in
-Hell Creek. More research will
-have to be done.
+Breeding Item: Liverwort
+
+Max Health: 15
+
+Max Hunger: 38
+
+Temperaments: Thescelosaurus 
+has an 80% chance of being 
+skittish, a 15% chance of being 
+passive, and a 5% chance of being 
+protective.
+
+
+<image><drawings_ankylosaurus.png 36 4 27 212 23 18 6>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sleep Cycle: Diurnal
+
+Behavior: Thescelosaurus can be 
+fed fibrous plants to create Plant 
+Fiber.

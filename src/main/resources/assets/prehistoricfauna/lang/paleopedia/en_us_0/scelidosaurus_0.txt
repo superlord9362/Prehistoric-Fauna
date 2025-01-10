@@ -1,31 +1,36 @@
-While observing the Sarahsaurus, 
-I noticed a bulky shape pushing 
-through the underbrush. An 
-armored creature with horns like 
-a dragon on its head was 
-lumbering towards some 
-clathopteris growing nearby. I was 
-able to identify the creature as a 
-Scelidosaurus. It was extremely 
-interesting to watch walking, as 
-there have been tracks attributed 
-to Scelidosaurus showing it as 
-capable of both bipedal and 
-quadrupedal movement. While it's 
-only a meter tall, it is related to 
-the much larger Ankylosaurus and 
-Stegosaurus.
+Found In: Kayenta
 
-While observing more 
-Scelidosaurus, I noticed a 
-Dilophosaurus charging toward 
-them. Despite only having ever 
-seen Scelidosaurus walk on all 
-four legs, they ran on only their 
-hind two! They were able to 
-escape the Dilophosaurus, and 
-when I found them again, all had 
-gone back to their quadrupedal 
-posture. Their locomotion is truly 
-astounding!
+Drops: 0-2 Osteoderms, 2-4 Small 
+Raw Thyreophoran
 
+Diet: Herbivore
+
+Breeding Item: Clathropteris
+
+Max Health: 15
+
+Max Hunger: 38
+
+Temperaments: Scelidosaurus has 
+an 80% chance of being protective, 
+a 15% chance of being territorial, 
+and a 5% chance of being passive.
+
+Sleep Cycle: Cathmeral
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Investigation underway!

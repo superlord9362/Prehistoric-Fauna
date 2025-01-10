@@ -1,38 +1,40 @@
-An animal off in the distance had 
-garnered my attention. Its general 
-appearance was as a theropod, 
-which struck me as rather odd, 
-since the dinosaur remains I have 
-previously dug up from Triassic 
-rocks have almost never been 
-quite as large-and certainly 
-never as robust-as this. Once the 
-beast stepped forth from the 
-obscuring underbrush and into 
-the clearing, it had become easily 
-discernible as a plantigrade 
-animal-standing flat on its feet, 
-instead of on the end of its toes
--which gave away that it was not 
-truly a dinosaur to begin with. I 
-should have known, but what a 
-pleasant surprise: Postosuchus!
+Found In: Chinle
 
-I followed it for some time, 
-watching as it moved through the 
-foliage. Eventually, it crouched 
-down and began to move very 
-slowly. Worried that it had noticed 
-me, I froze, only to realize what it 
-was actually doing. Only a few 
-meters ahead of it, a 
-Desmatosuchus was browsing the 
-underbrush. The Postosuchus was 
-creeping forward before it 
-rushed the Desmatosuchus, and 
-was successful in taking down its 
-prey. It's fascinating that unlike 
-Poposaurus, a pursuit predator, 
-Postosuchus has taken a much 
-more ambush-centric role in the 
-ecosystem.
+Drops: 1-3 Large Raw 
+Archosauromorph
+
+Diet: Carnivore
+
+Breeding Item: Large Raw 
+Archosauromorph
+
+Max Health: 20
+
+Max Hunger: 50
+
+Temperaments: Postosuchus has an 
+85% chance of being protective, 
+and a 15% chance of being 
+territorial.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sleep Cycle: Cathemeral
+
+Behavior: Postosuchus is one of 
+the two major predators of the 
+Chinle Formation. Unlike 
+Poposaurus, Postosuchus will stalk 
+its prey before lunging forward 
+for the kill.

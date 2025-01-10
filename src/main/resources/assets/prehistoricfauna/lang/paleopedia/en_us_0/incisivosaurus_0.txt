@@ -1,0 +1,40 @@
+Found In: Yixian
+
+Drops: 0-2 Feathers, 1-3 Small 
+Raw Theropod
+
+Diet: Omnivore
+
+Breeding Item: Araucaria Nuts
+
+Max Health: 6
+
+Max Hunger: 15
+
+Temperaments: Incisivosaurus has 
+an 85% chance of being skittish, 
+and a 15% chance of being 
+passive.
+
+Sleep Cycle: Diurnal 
+
+<image><drawings_ankylosaurus.png 35 3 57 88 11 17 7>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Incisivosaurus can use 
+it’s large teeth to break open 
+Araucaria Cones, revealing more 
+Araucaria Nuts than if the player 
+breaks one open.

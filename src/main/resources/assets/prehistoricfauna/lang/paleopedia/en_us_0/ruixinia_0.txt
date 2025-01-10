@@ -1,0 +1,40 @@
+Found In: Yixian
+
+Drops: 1-3 Large Raw Sauropod
+
+Diet: Herbivore
+
+Breeding Item: Callianthus
+
+Max Health: 60
+
+Max Hunger: 150
+
+Temperaments: Ruixinia has an 85% 
+chance of being protective, and a 
+15% chance of being territorial.
+
+Sleep Cycle: Diurnal 
+<image><drawings_ankylosaurus.png 40 3 54 190 20 20 5.8>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Ruixinia can crush 
+certain items that land below their 
+feet, such as Henostone. These 
+items have a chance to be 
+crushed into a different item 
+under their weight.

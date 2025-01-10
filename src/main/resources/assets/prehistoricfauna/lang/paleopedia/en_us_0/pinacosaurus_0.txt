@@ -1,28 +1,39 @@
-When I was lost in the dunes, I was 
-extremely fortunate enough to 
-have found a herd of these 
-ankylosaurid dinosaurs. My best 
-guess is that these would be 
-Pinacosaurus. Being weary and 
-dehydrated from the hot desert 
-sun, I collapsed on its back and 
-passed out. When I awoke, I had 
-arrived here at the Arroyo.
+Found In: Djadochta
 
-As the days passed, I stayed near 
-the Pinacosaurus herd. They seem 
-to love the horsetails that grow 
-here. At times, I've seen smaller 
-animals, such as Telmasaurus and 
-Velociraptor, catch rides on the 
-Pinacosaurus, similar to what I did. 
-At night, they all hunker down and 
-sleep until dawn.
+Drops: 0-2 Osteoderms, 1-3 Large
+Raw Thyreophoran
 
-Unlike the Ankylosaurus of Hell 
-Creek, Pinacosaurus is far more 
-docile. Whilst they still are highly 
-willing to attack anything that 
-comes near their young, I am able 
-to safely approach a lone 
-Pinacosaurus.
+Diet: Herbivore
+
+Breeding Item: Horsetails
+
+Max Health: 40
+
+Max Hunger: 100
+
+Temperaments: Pinacosaurus has 
+an 85% chance of being protective, 
+and a 15% chance of being 
+territorial.
+
+Sleep Cycle: Diurnal
+
+<image><drawings_ankylosaurus.png 36 3 5 149 17 19 6.5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Pinacosaurus can be 
+ridden by small animals and the 
+player. However, it cannot be 
+controlled.

@@ -1,25 +1,40 @@
-At night, I still hear Jefferson's 
-screams. After the Dilophosaurus 
-attack, we fled, attempting to get 
-back home. Jefferson had been 
-hurt badly and needed a moment 
-to rest. I shouldn't have left him 
-to look for water. On my way, I 
-noticed a bunch of small crested 
-theropods cocking their heads at 
-me. I recognized them immediately 
-as Megapnosaurus. I was still 
-strong enough to fight back, so 
-they left me alone. I didn't think of 
-it at the time, but Jefferson was 
-too weak to fight back. Before I 
-even took another step, I could 
-hear his screams. When I got back, 
-it was too late. They had swarmed 
-him. 
+Found In: Kayenta
 
-I had noticed this behavior 
-before, with them swarming an 
-injured Scelidosaurus, but seeing 
-it happen to my friend. I can 
-never forget it.
+Drops: 0-2 Feathers, 1-3 Small 
+Raw Theropod
+
+Diet: Carnivore
+
+Breeding Item: Small Raw 
+Thyreophoran
+
+Max Health: 6
+
+Max Hunger: 15
+
+Temperaments: Megapnosaurus 
+have an 80% chance of being 
+opportunist, a 15% chance of being 
+skittish, and a 5% chance of being 
+protective.
+
+
+
+
+
+
+
+
+
+
+
+Sleep Cycle: Nocturnal
+
+Behavior: Megapnosaurus will 
+attack animals and players that 
+are weakened, and are at half 
+health or below. When a 
+Megapnosaurus is attacked, 
+others in the area will fight 
+against the aggressor, creating 
+small but dangerous packs.

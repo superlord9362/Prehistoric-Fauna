@@ -76,6 +76,11 @@
 				},
 				{
 					"type": "minecraft:item",
+					"weight": 1.25,
+					"name": "prehistoricfauna:yutyrannus_skull"
+				},
+				{
+					"type": "minecraft:item",
 					"weight": 2.5,
 					"name": "prehistoricfauna:triceratops_skull"
 				},

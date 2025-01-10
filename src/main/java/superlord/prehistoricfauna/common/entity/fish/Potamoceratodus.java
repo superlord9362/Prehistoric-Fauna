@@ -2,6 +2,8 @@ package superlord.prehistoricfauna.common.entity.fish;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
@@ -10,11 +12,13 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.AbstractFish;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.HitResult;
+import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
 
@@ -44,6 +48,20 @@ public class Potamoceratodus extends AbstractFish {
 
 	protected SoundEvent getDeathSound() {
 		return PFSounds.POTAMOCERATODUS_DEATH.get();
+	}
+	
+	public void aiStep() {
+		super.aiStep();
+		if (this.getHealth() == 1 && this.getAirSupply() == -15) {
+			PotamoceratodusCocoon potamoceratodus = new PotamoceratodusCocoon(PFEntities.POTAMOCERATODUS_COCOON.get(), this.level());
+			potamoceratodus.setPos(this.getX(), this.getY(), this.getZ());
+			this.level().addFreshEntity(potamoceratodus);
+			if (this.hasCustomName()) {
+				potamoceratodus.setCustomName(getCustomName());
+			}
+			this.level().playSound((Player)null, new BlockPos((int) this.getX(), (int) this.getY(), (int) this.getZ()), SoundEvents.FROG_TONGUE, SoundSource.NEUTRAL);
+			this.remove(RemovalReason.DISCARDED);
+		}
 	}
 
 	@SuppressWarnings("deprecation")

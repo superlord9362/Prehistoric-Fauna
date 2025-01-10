@@ -89,6 +89,8 @@ import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.OpportunistAttackGoal;
 import superlord.prehistoricfauna.common.entity.goal.ProtectBabyGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
+import superlord.prehistoricfauna.common.items.PaleopediaItem;
+import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
@@ -247,7 +249,7 @@ public class Velociraptor extends DinosaurEntity {
 			}
 		}
 
-		if (this.isSleeping() || this.isMovementBlocked()) {
+		if (this.isSleeping() || this.isMovementBlocked() || this.isAsleep() || this.isTameSitting()) {
 			this.jumping = false;
 			this.xxa = 0.0F;
 			this.zza = 0.0F;
@@ -1073,6 +1075,13 @@ public class Velociraptor extends DinosaurEntity {
 	public InteractionResult mobInteract(Player player, InteractionHand p_230254_2_) {
 		ItemStack itemstack = player.getItemInHand(p_230254_2_);
 		Item item = itemstack.getItem();
+		if (item instanceof PaleopediaItem paleopedia) {
+			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.VELOCIRAPTOR.ordinal())) {
+				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.VELOCIRAPTOR.ordinal()), itemstack);
+				player.displayClientMessage(Component.translatable("paleopedia.velociraptor_added"), true);
+				return InteractionResult.SUCCESS;
+			}
+		}
 		if (this.level().isClientSide) {
 			boolean flag = this.isOwnedBy(player) || this.isTame() || this.isFood(itemstack) && !this.isTame();
 			return flag ? InteractionResult.CONSUME : InteractionResult.PASS;

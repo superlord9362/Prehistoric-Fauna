@@ -221,7 +221,7 @@ public class SpawnSkeletonItem extends Item {
 			tooltip.add(Component.translatable("chinle").withStyle(ChatFormatting.GRAY));
 			tooltip.add(Component.translatable("triassic").withStyle(ChatFormatting.DARK_GRAY));
 		}
-		if (stack.getItem() == PFItems.PSITTACOSAURUS_SKELETON.get() || stack.getItem() == PFItems.PSITTACOSAURUS_SKULL.get()) {
+		if (stack.getItem() == PFItems.PSITTACOSAURUS_SKELETON.get() || stack.getItem() == PFItems.PSITTACOSAURUS_SKULL.get() || stack.getItem() == PFItems.YUTYRANNUS_SKULL.get() || stack.getItem() == PFItems.YUTYRANNUS_SKELETON.get()) {
 			tooltip.add(Component.translatable("yixian").withStyle(ChatFormatting.GRAY));
 			tooltip.add(Component.translatable("cretaceous").withStyle(ChatFormatting.DARK_GRAY));
 		}

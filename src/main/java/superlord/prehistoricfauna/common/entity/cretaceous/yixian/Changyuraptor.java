@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -58,6 +59,8 @@ import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.SkittishFleeGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
+import superlord.prehistoricfauna.common.items.PaleopediaItem;
+import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
@@ -336,6 +339,14 @@ public class Changyuraptor extends DinosaurEntity {
 			this.spawnItem(this.getMainHandItem());
 			this.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.AIR));
 			itemstack.shrink(1);
+		}
+		Item item = itemstack.getItem();
+		if (item instanceof PaleopediaItem paleopedia) {
+			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.CHANGYURAPTOR.ordinal())) {
+				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.CHANGYURAPTOR.ordinal()), itemstack);
+				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.changyuraptor_added"), true);
+				return InteractionResult.SUCCESS;
+			}
 		}
 		return super.mobInteract(p_230254_1_, p_230254_2_);
 	}

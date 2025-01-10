@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "prehistoricfauna:block/sap",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "prehistoricfauna:block/sap",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "prehistoricfauna:block/sap"
+    },
+    "facing=west": {
+      "model": "prehistoricfauna:block/sap",
+      "y": 90
+    }
+  }
+}

@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -67,6 +68,8 @@ import superlord.prehistoricfauna.common.entity.goal.DinosaurWaterAvoidingRandom
 import superlord.prehistoricfauna.common.entity.goal.ShellfishEatFromFeederGoal;
 import superlord.prehistoricfauna.common.entity.goal.SkittishFleeGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
+import superlord.prehistoricfauna.common.items.PaleopediaItem;
+import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
@@ -117,7 +120,14 @@ public class Didelphodon extends BurrowingDinosaur {
 	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
 		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
 		Item item = itemstack.getItem();
-		if (this.level().isClientSide) {
+			if (item instanceof PaleopediaItem paleopedia) {
+				if (!itemstack.getTag().contains("Pages", EnumPaleoPages.DIDELPHODON.ordinal())) {
+					EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.DIDELPHODON.ordinal()), itemstack);
+					p_230254_1_.displayClientMessage(Component.translatable("paleopedia.didelphodon_added"), true);
+					return InteractionResult.SUCCESS;
+				}
+			}
+			if (this.level().isClientSide) {
 			boolean flag = this.isOwnedBy(p_230254_1_) || this.isTame() || item == Items.BONE && !this.isTame();
 			return flag ? InteractionResult.CONSUME : InteractionResult.PASS;
 		} else {
@@ -152,9 +162,9 @@ public class Didelphodon extends BurrowingDinosaur {
 	public void setAge(int age) {
 		super.setAge(age);
 		if (this.getAge() >= -24000 && this.getAge() < 0) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(3);
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(2);
 		} else if(this.getAge() >= 0) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(6);
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(4);
 		}
 	}
 

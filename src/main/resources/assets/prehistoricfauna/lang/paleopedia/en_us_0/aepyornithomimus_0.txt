@@ -1,25 +1,37 @@
-While studying the horsetails that 
-grow here, I stumbled upon a 
-flock of Aepyornithomimus! A flock 
-of seven were eating away at 
-Cobbania growing along the shore 
-before they noticed me. 
-Interestingly, they all ran in a 
-group from me, rather than 
-scampering off into different 
-directions like other animals I've 
-encountered.
+Found In: Djadochta
 
-These feathered theropods 
-belong to a group known as 
-ornithomimids, or bird-mimics. Their 
-behavior reminded me of birds 
-back home flying away when 
-children came near them. After 
-several hours of cautious 
-observation, several fell asleep, 
-while others stayed awake for 
-several more hours. I believe that 
-they are cathemeral, and don't 
-necessarily sleep on any form of 
-schedule.
+Drops: 0-2 Feathers, 1-3 Small 
+Raw Theropod
+
+Diet: Herbivore
+
+Breeding Item: Cobbania
+
+Max Health: 10
+
+Max Hunger: 25
+
+Temperaments: Aepyornithomimus 
+has an 85% chance of being 
+skittish and a 15% chance of being 
+passive.
+
+Sleep Cycle: Cathemeral
+
+<image><drawings_ankylosaurus.png 32 4 4 4 18 15 7>
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Aepyornithomimus can be
+fed fibrous plants to create Plant 
+Fiber.

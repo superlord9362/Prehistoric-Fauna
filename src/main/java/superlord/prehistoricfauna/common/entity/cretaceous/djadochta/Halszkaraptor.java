@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -73,6 +74,8 @@ import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.PiscivoreEatFromFeederGoal;
 import superlord.prehistoricfauna.common.entity.goal.SkittishFleeGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
+import superlord.prehistoricfauna.common.items.PaleopediaItem;
+import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
@@ -144,11 +147,11 @@ public class Halszkaraptor extends DinosaurEntity {
 	protected float getWaterSlowDown() {
 		return 0.8F;
 	}
-	
+
 	public float getWalkTargetValue(BlockPos pos, LevelReader worldIn) {
 		return worldIn.getFluidState(pos.below()).isEmpty() && worldIn.getFluidState(pos).is(FluidTags.WATER) ? 10.0F : super.getWalkTargetValue(pos, worldIn);
 	}
-	
+
 	public void travel(Vec3 travelVector) {
 		if (this.isEffectiveAi() && this.isInWater()) {
 			this.moveRelative(this.getSpeed(), travelVector);
@@ -260,35 +263,35 @@ public class Halszkaraptor extends DinosaurEntity {
 	protected boolean func_212800_dy() {
 		return true;
 	}
-	
+
 	static class HalszkaraptorPathNavigation extends WaterBoundPathNavigation {
 		HalszkaraptorPathNavigation(Halszkaraptor halszkaraptor, Level level) {
 			super(halszkaraptor, level);
 		}
-		
+
 		protected boolean canUpdatePath() {
 			return true;
 		}
-		
+
 		protected PathFinder createPathFinder(int maxNodes) {
 			this.nodeEvaluator = new AmphibiousNodeEvaluator(true);
 			return new PathFinder(this.nodeEvaluator, maxNodes);
 		}
-		
+
 		public boolean isStableDestination(BlockPos pos) {
 			return !this.level.getBlockState(pos.below()).isAir();
 		}
-		
+
 	}
-	
+
 	static class HalszkaraptorMoveControl extends MoveControl {
 		private final Halszkaraptor halszkaraptor;
-		
+
 		HalszkaraptorMoveControl(Halszkaraptor halszkaraptor) {
 			super(halszkaraptor);
 			this.halszkaraptor = halszkaraptor;
 		}
-		
+
 		public void tick() {
 			if (this.operation == MoveControl.Operation.MOVE_TO && !this.halszkaraptor.getNavigation().isDone()) {
 				double d0 = this.wantedX - this.halszkaraptor.getX();
@@ -306,11 +309,20 @@ public class Halszkaraptor extends DinosaurEntity {
 				this.halszkaraptor.setSpeed(0.0F);
 			}
 		}
-		
+
 	}
-	
+
 	@Override
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
+		ItemStack itemstack = player.getItemInHand(hand);
+		Item item = itemstack.getItem();
+		if (item instanceof PaleopediaItem paleopedia) {
+			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.HALSZKARAPTOR.ordinal())) {
+				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.HALSZKARAPTOR.ordinal()), itemstack);
+				player.displayClientMessage(Component.translatable("paleopedia.halszkaraptor_added"), true);
+				return InteractionResult.SUCCESS;
+			}
+		}
 		ItemStack heldItem = player.getItemInHand(hand);
 		if (heldItem.getItem() == PFItems.HARENAICHTHYS.get() && this.isAlive() && this.hasItemInSlot(EquipmentSlot.MAINHAND)) {
 			ItemStack halszkaraptorItem = this.getMainHandItem();
@@ -323,7 +335,7 @@ public class Halszkaraptor extends DinosaurEntity {
 		}
 		return super.mobInteract(player, hand);
 	}
-	
+
 	protected PathNavigation createNavigation(Level level) {
 		return new Halszkaraptor.HalszkaraptorPathNavigation(this, level);
 	}
@@ -376,12 +388,12 @@ public class Halszkaraptor extends DinosaurEntity {
 
 	static class HalszkaraptorRandomStrollGoal extends RandomStrollGoal {
 		private final Halszkaraptor halszkaraptor;
-		
+
 		HalszkaraptorRandomStrollGoal(Halszkaraptor halszkaraptor, double speed, int interval) {
 			super(halszkaraptor, speed, interval);
 			this.halszkaraptor = halszkaraptor;
 		}
-		
+
 		public boolean canUse() {
 			return !this.mob.isInWater() && !this.halszkaraptor.hasBaby() ? super.canUse() : false;
 		}
@@ -390,27 +402,27 @@ public class Halszkaraptor extends DinosaurEntity {
 	static class HalszkaraptorGoToWaterGoal extends MoveToBlockGoal {
 		private static final int GIVE_UP_TICKS = 1200;
 		private final Halszkaraptor halszkaraptor;
-		
+
 		HalszkaraptorGoToWaterGoal(Halszkaraptor halszkaraptor, double speed) {
 			super(halszkaraptor, halszkaraptor.isBaby() ? 2.0D : speed, 24);
 			this.halszkaraptor = halszkaraptor;
 			this.verticalSearchStart = -1;
 		}
-		
+
 		public boolean canContinueToUse() {
 			return !this.halszkaraptor.isInWater() && this.tryTicks <= GIVE_UP_TICKS && this.isValidTarget(this.halszkaraptor.level(), this.blockPos);
 		}
-		
+
 		public boolean canUse() {
 			if (this.halszkaraptor.isBaby() && !this.halszkaraptor.isInWater()) {
 				return super.canUse();
 			} else return !this.halszkaraptor.isInWater() && !this.halszkaraptor.hasBaby() ? super.canUse() : false;
 		}
-		
+
 		public boolean shouldRecalculatePath() {
 			return this.tryTicks % 160 == 0;
 		}
-		
+
 		protected boolean isValidTarget(LevelReader level, BlockPos pos) {
 			return level.getBlockState(pos).is(Blocks.WATER);
 		}

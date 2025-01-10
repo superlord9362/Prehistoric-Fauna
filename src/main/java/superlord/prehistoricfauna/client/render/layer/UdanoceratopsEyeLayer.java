@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
@@ -16,13 +17,13 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.cretaceous.djadochta.UdanoceratopsModel;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Udanoceratops;
 
-public class UdanoceratopsEyeLayer extends RenderLayer<Udanoceratops, UdanoceratopsModel> {
+public class UdanoceratopsEyeLayer extends RenderLayer<Udanoceratops, EntityModel<Udanoceratops>> {
 	
 	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/udanoceratops_eyeglow.png"));
 	private static final RenderType TEXTURE_SNIFFER = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/sniffer_eyeglow.png"));
-	private final RenderLayerParent<Udanoceratops, UdanoceratopsModel> udanoceratopsRenderer;
+	private final RenderLayerParent<Udanoceratops, EntityModel<Udanoceratops>> udanoceratopsRenderer;
 	
-	public UdanoceratopsEyeLayer(RenderLayerParent<Udanoceratops, UdanoceratopsModel> rendererIn) {
+	public UdanoceratopsEyeLayer(RenderLayerParent<Udanoceratops, EntityModel<Udanoceratops>> rendererIn) {
 		super(rendererIn);
 		this.udanoceratopsRenderer = rendererIn;
 	}

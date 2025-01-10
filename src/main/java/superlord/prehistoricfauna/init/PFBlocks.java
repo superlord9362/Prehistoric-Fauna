@@ -97,6 +97,7 @@ import superlord.prehistoricfauna.common.blocks.QuereuxiaStemBlock;
 import superlord.prehistoricfauna.common.blocks.SabalitesCrownLogBlock;
 import superlord.prehistoricfauna.common.blocks.SabalitesLeafBlock;
 import superlord.prehistoricfauna.common.blocks.SabalitesSaplingBlock;
+import superlord.prehistoricfauna.common.blocks.SapBlock;
 import superlord.prehistoricfauna.common.blocks.SmallCarvedTuberBlock;
 import superlord.prehistoricfauna.common.blocks.SmallTuberBlock;
 import superlord.prehistoricfauna.common.blocks.SplatteredGinkgoBlock;
@@ -766,6 +767,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> SARAHSAURUS_CRATE = REGISTER.register("sarahsaurus_crate", () -> new CrateBlock(Properties.copy(FOSSIL_CRATE.get())));
 	public static final RegistryObject<Block> SCELIDOSAURUS_CRATE = REGISTER.register("scelidosaurus_crate", () -> new CrateBlock(Properties.copy(FOSSIL_CRATE.get())));
 	public static final RegistryObject<Block> PSITTACOSAURUS_CRATE = REGISTER.register("psittacosaurus_crate", () -> new CrateBlock(Properties.copy(FOSSIL_CRATE.get())));
+	public static final RegistryObject<Block> YUTYRANNUS_CRATE = REGISTER.register("yutyrannus_crate", () -> new CrateBlock(Properties.copy(FOSSIL_CRATE.get())));
 
 	public static final RegistryObject<Block> CARVED_TUBER = REGISTER.register("carved_tuber", () -> new CarvedTuberBlock(Properties.of().strength(1.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> CARVED_TUBER_SOUL_LIT = REGISTER.register("carved_tuber_soul_lit", () -> new CarvedTuberBlock(Properties.of().strength(1.0F).sound(SoundType.WOOD).lightLevel((light) -> {
@@ -1219,13 +1221,14 @@ public class PFBlocks {
 	public static final RegistryObject<Block> DONGBEITITAN_NEST = REGISTER.register("dongbeititan_nest", () -> new NestAndEggsBlock(PFEntities.DONGBEITITAN, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
 	public static final RegistryObject<Block> DILONG_NEST = REGISTER.register("dilong_nest", () -> new NestAndEggsBlock(PFEntities.DILONG, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
 	public static final RegistryObject<Block> ZHENYUANLONG_NEST = REGISTER.register("zhenyuanlong_nest", () -> new NestAndEggsBlock(PFEntities.ZHENYUANLONG, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> JINZHOUSAURUS_NEST = REGISTER.register("jinzhousaurus_nest", () -> new NestAndEggsBlock(PFEntities.ZHENYUANLONG, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
+	public static final RegistryObject<Block> JINZHOUSAURUS_NEST = REGISTER.register("jinzhousaurus_nest", () -> new NestAndEggsBlock(PFEntities.JINZHOUSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
 
 	public static final RegistryObject<Block> POISON_GAS = REGISTER.register("poison_gas", () -> new PoisonGasBlock(BlockBehaviour.Properties.of().noCollission().noLootTable().randomTicks()));
 	public static final RegistryObject<Block> SPLATTERED_GINKGO = REGISTER.register("splattered_ginkgo", () -> new SplatteredGinkgoBlock(BlockBehaviour.Properties.of().noCollission().instabreak().noLootTable().randomTicks()));
 	public static final RegistryObject<Block> HENOSTONE_ORE = REGISTER.register("henostone_ore", () -> new Block(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> TIME_FRAGMENT_BLOCK = REGISTER.register("time_fragment_block", () -> new Block(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
-
+	public static final RegistryObject<Block> SAP = REGISTER.register("sap", () -> new SapBlock(Block.Properties.of().instabreak().sound(SoundType.SLIME_BLOCK).noCollission().randomTicks().pushReaction(PushReaction.DESTROY)));
+	
 	public static final RegistryObject<Block> COATED_TUBE_CORAL_BLOCK = REGISTER.register("coated_tube_coral_block", () -> new Block(Block.Properties.copy(Blocks.TUBE_CORAL_BLOCK)));
 	public static final RegistryObject<Block> COATED_BRAIN_CORAL_BLOCK = REGISTER.register("coated_brain_coral_block", () -> new Block(Block.Properties.copy(Blocks.BRAIN_CORAL_BLOCK)));
 	public static final RegistryObject<Block> COATED_BUBBLE_CORAL_BLOCK = REGISTER.register("coated_bubble_coral_block", () -> new Block(Block.Properties.copy(Blocks.BUBBLE_CORAL_BLOCK)));

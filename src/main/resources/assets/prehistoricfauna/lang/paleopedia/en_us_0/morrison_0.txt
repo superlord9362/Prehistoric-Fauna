@@ -1,38 +1,41 @@
-Day ???
-Upon finding a fossil from the 
-Jurassic, I've attempted to 
-re-enter the portal. Crossing 
-through, I've found myself in a hot 
-and dry place, where a great bowl 
-of blue sky surrounds me. The 
-fauna and flora I can see in the 
-region make me believe I have 
-entered the Morrison formation 
-from the Jurassic period. This 
-portal must be studied further.
-For now, I will do as I did in Hell 
-Creek, and begin an investigation 
-of the local fauna and flora, 
-recording everything I can. I have 
-given up on keeping track of 
-time though. The days have begun 
-to all blur together.
+Modern Location: Arizona, 
+Colorado, Idaho, Kansas, Montana, 
+Nebraska, New Mexico, North 
+Dakota, Oklahoma, South Dakota, 
+Texas, Utah, Wyoming, United 
+States, North America
 
-Plants of the Morrison
+Time: Kimmeridgian-Tithonian, 
+Jurassic, 156.3-146.8 million years 
+ago.
 
-Araucaria
-Like Hell Creek, Araucaria seems to 
-be somewhat abundant here, 
-although much smaller. I wonder 
-how much older this species of 
-the tree is?
+Animals: 
+-Dinosaurs
+--Allosaurus
+--Camarasaurus
+--Ceratosaurus
+--Dryosaurus
+--Hesperornithoides
+--Stegosaurus
 
-Protopiceoxylon
-This is the other type of sturdy 
-tree in the region. Growing up to 
-25 meters tall, these trees are 
-fully extinct by the modern-day. 
-They seem to prefer the dryer 
-regions of this savanna. It's truly 
-fascinating to see them. Their 
-wood is extremely beautiful.
+-Reptiles
+--Eilenodon
+
+-Fish
+--Ceratodus
+--Potamoceratodus
+
+Plants: 
+-Land Plants
+--Cladophlebis
+--Conioptris
+--Dead Cycadeoid
+--Horsetails
+--Osmundacaulis
+
+-Trees
+--Araucaria
+--Podozamites
+--Protopicoxylon
+--Ptilophyllum
+--Zamites

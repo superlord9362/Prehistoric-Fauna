@@ -1,25 +1,38 @@
-While I was observing a nest, a 
-very interesting theropod 
-dinosaur approached. Sporting 
-fluffy feathers and a noticeable 
-head crest, I knew that I was in 
-the presence of the oviraptorid 
-Citipati. Despite being an 
-"egg-thief", the Citipati 
-approached the eggs, puffed out 
-its feathers, and roosted on them, 
-providing shade from the midday 
-sun. Upon arrival though, a large 
-lizard cautiously approached the 
-nest. Before it could grab an egg, 
-another Citiapti rushed out of the 
-nearby plant covering and began 
-to chase it.
+Found In: Djadochta
 
-After several hours, the other 
-Citipati returned carrying what 
-looked to be the corpse of that 
-lizard. They shared it, and when 
-the sun set, began to doze off. 
-Despite the great heat, these 
-Citipati appear to be diurnal.
+Drops: 0-2 Feathers, 1-3 Small
+Raw Theropod
+
+Diet: Omnivore
+
+Breeding Item: Small Raw Reptile
+
+Max Health: 15
+
+Max Hunger: 38
+
+Temperaments: Citipati has an 80% 
+chance of being protective, a 15% 
+chance of being passive, and a 5% 
+chance of being territorial.
+
+Sleep Cycle: Diurnal
+<image><drawings_ankylosaurus.png 32 4 4 45 17 18 7>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Citipati can increase the 
+speed at which eggs hatch.

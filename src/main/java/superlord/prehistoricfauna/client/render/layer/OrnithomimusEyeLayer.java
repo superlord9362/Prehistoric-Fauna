@@ -3,6 +3,7 @@ package superlord.prehistoricfauna.client.render.layer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
@@ -15,12 +16,12 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.OrnithomimusModel;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ornithomimus;
 
-public class OrnithomimusEyeLayer extends RenderLayer<Ornithomimus, OrnithomimusModel> {
+public class OrnithomimusEyeLayer extends RenderLayer<Ornithomimus, EntityModel<Ornithomimus>> {
 	
 	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ornithomimus/ornithomimus_eyeglow.png"));
-	private final RenderLayerParent<Ornithomimus, OrnithomimusModel> ornithomimusRenderer;
+	private final RenderLayerParent<Ornithomimus, EntityModel<Ornithomimus>> ornithomimusRenderer;
 	
-	public OrnithomimusEyeLayer(RenderLayerParent<Ornithomimus, OrnithomimusModel> rendererIn) {
+	public OrnithomimusEyeLayer(RenderLayerParent<Ornithomimus, EntityModel<Ornithomimus>> rendererIn) {
 		super(rendererIn);
 		this.ornithomimusRenderer = rendererIn;
 	}

@@ -1,0 +1,39 @@
+Found In: Djadochta
+
+Drops: 0-2 Feathers, 1-3 Small
+Raw Theropod
+
+Diet: Piscivore
+
+Breeding Item: Harenaichthys
+
+Max Health: 6
+
+Max Hunger: 15
+
+Temperaments: Halszkaraptor has 
+an 85% chance of being skittish 
+and a 15% chance of being 
+passive.
+
+Sleep Cycle: Diurnal
+
+<image><drawings_ankylosaurus.png 24 3 6 90 15 12 9>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Halszkaraptor can fish 
+items when fishing. The player can 
+trade a Harenaichthys to get the 
+item from the Halszkaraptor.

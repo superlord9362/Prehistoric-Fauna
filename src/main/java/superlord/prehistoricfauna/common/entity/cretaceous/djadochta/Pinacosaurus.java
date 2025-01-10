@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -52,6 +53,8 @@ import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.ProtectBabyGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
+import superlord.prehistoricfauna.common.items.PaleopediaItem;
+import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
@@ -174,6 +177,15 @@ public class Pinacosaurus extends DinosaurEntity {
 	}
 
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
+			ItemStack itemstack = player.getItemInHand(hand);
+			Item item = itemstack.getItem();
+			if (item instanceof PaleopediaItem paleopedia) {
+				if (!itemstack.getTag().contains("Pages", EnumPaleoPages.PINACOSAURUS.ordinal())) {
+					EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.PINACOSAURUS.ordinal()), itemstack);
+					player.displayClientMessage(Component.translatable("paleopedia.pinacosaurus_added"), true);
+					return InteractionResult.SUCCESS;
+				}
+			}
 		if (!this.isVehicle() && !player.isSecondaryUseActive() && !this.isBaby() && !this.isSleeping()) {
 			boolean flag = this.isFood(player.getItemInHand(hand));
 			if (!flag && !this.isVehicle() && !player.isSecondaryUseActive()) {

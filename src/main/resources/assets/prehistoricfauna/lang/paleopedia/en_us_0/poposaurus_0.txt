@@ -1,21 +1,40 @@
-While documenting the mountain, I 
-was able to witness something 
-amazing. A large, bipedal reptile 
-was chasing down a Placerias in 
-the distance! I must assume that 
-this was Poposaurus! It ran after 
-the lone Placerias, and soon had 
-caught up and subdued its prey. 
-Watching these prehistoric animals 
-hunt is always fascinating, so long 
-as it's from afar!
+Found In: Chinle
 
-On my way home today, I stumbled 
-upon a Poposaurus! Luckily for me, 
-it was asleep, hinting towards a 
-Cathemeral sleep cycle, as the 
-sun was only at noon. While it was 
-lucky for me that the Poposaurus 
-was asleep this time, I must be 
-more careful when traversing the 
-area in the future.
+Drops: 1-3 Large Raw 
+Archosauromorph
+
+Diet: Carnivore
+
+Breeding Item: Large Raw Synapsid
+
+Max Health: 20
+
+Max Hunger: 50
+
+Temperaments: Poposaurus has an 
+80% chance of being territorial, a 
+15% chance of being protective, 
+and a 5% chance of being 
+aggressive.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sleep Cycle: Cathemeral
+
+Behavior: Poposaurus is one of 
+the two major predators of the 
+Chinle Formation. Unlike 
+Postosuchus, Poposaurus is a 
+pursuit predator, actively chasing 
+its prey down.

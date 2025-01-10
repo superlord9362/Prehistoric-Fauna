@@ -1,0 +1,40 @@
+Found In: Yixian
+
+Drops: 1-3 Large Raw 
+Ornithischian
+
+Diet: Herbivore
+
+Breeding Item: Ruffordia
+
+Max Health: 20
+
+Max Hunger: 50
+
+Temperaments: Jinzhousaurus has 
+an 85% of being protective, and 
+a 15% chance of being territorial.
+
+Sleep Cycle: Diurnal
+
+<image><drawings_ankylosaurus.png 29 4 54 111 20 14 7.5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+Behavior: Jinzhousaurus will 
+occasionally scratch at logs, 
+causing sap to leak out. The 
+player can bottle this sap and 
+use it in a wide variety of ways.

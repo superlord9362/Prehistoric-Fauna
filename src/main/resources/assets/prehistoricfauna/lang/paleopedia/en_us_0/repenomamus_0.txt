@@ -1,0 +1,41 @@
+Found In: Yixian
+
+Drops: 0-2 Repenomamus Hides
+
+Diet: Carnivore
+
+Breeding Item: Small Raw 
+Marginocephalian
+
+Max Health: 8
+
+Max Hunger: 20
+
+Temperaments: Repenomamus has 
+an 80% chance of being 
+opportunist, 15% of being 
+territorial, and a 5% chance of 
+being protective.
+
+
+<image><drawings_ankylosaurus.png 34 3 56 171 15 17 7>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sleep Cycle: Nocturnal
+
+Behavior: Repenomamus targets 
+weakened animals, as well as small 
+or young ones.
+

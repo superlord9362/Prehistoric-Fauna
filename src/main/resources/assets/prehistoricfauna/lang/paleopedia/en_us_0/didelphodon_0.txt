@@ -1,31 +1,40 @@
-Day 13:
+Found In: Hell Creek
 
-Once again wandering through 
-Hell Creek forests, I discovered a 
-burrow.I decided to wait for its 
-owner.After some time of 
-observation I saw the owner of 
-this burrow.It was a small mammal 
-covered in fur.
-After a short observation, I 
-realized that this is Didelphodon.
-It was quite big, as for mammals 
-of this period,but still unable to 
-stand a chance against dinosaurs.
-Living in burrows, these animals 
-apparently provide themselves with 
-complete safety, since they cannot 
-be reached there. when I 
-approached, the Didelphodon ran 
-and hid, rather than challenge me.
+Drops: 0-2 Didelphodon Hides
 
-Day 14:
+Diet: Molluscivore
 
-I found out that these little 
-animals love to eat Crassostrea 
-Oysters! Upon feeding two 
-Didelphodons with Crassostrea 
-Oysters, they ran to their burrow.
-Given some time, the two returned
-with several young clinging to 
-their mother.
+Breeding Item: Crassostrea Oyster
+
+Max Health: 4
+
+Max Hunger: 10
+
+Temperaments: Didelphodon has an 
+80% chance of being skittish, and a 
+20% chance of being passive.
+
+Sleep Cycle: Crepuscular 
+
+<image><drawings_ankylosaurus.png 26 4 28 113 20 12 8>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Didelphodon can dive 
+underwater to collect 
+Crassostrea Oysters. If fed 
+Oysters, they can break them 
+open for the player to eat.

@@ -1,22 +1,41 @@
-Today on my journey, I 
-discovered a large foot print 
-in the sand. I noted the obvious 
-theropod shape and size, and 
-quickly deduced it must have been 
-Allosaurus. The track was luckily 
-old, so I felt somewhat safe. I do 
-not believe I am ready to study an 
-Allosaurus quite yet, with all my 
-equipment left in the Cretaceous.
+Found In: Morrison
 
-Despite what I wrote last week, I 
-was unlucky enough to stumble 
-across an Allosaurus eating. 
-Luckily, it was more interested in 
-it's Stegosaurus meal than it was in 
-me. It's large size, green color, 
-and large crests made it stand out 
-against the bleak landscape. While 
-beautiful, I do not wish to have 
-another encounter with an 
-Allosaurus for a long while.
+Drops: 1-3 Large Raw Theropod
+
+Diet: Carnivore
+
+Breeding Item: Large Raw 
+Thyreophoran
+
+Max Health: 60
+
+Max Hunger: 150
+
+Temperaments: Allosaurus has an 
+80% chance of being territorial, a 
+15% chance of being aggressive, 
+and a 5% chance of being 
+protective.
+
+<image><drawings_ankylosaurus.png 30 3 127 2 22 19 7>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sleep Cycle: Cathemeral
+
+Behavior: Allosaurus is the apex 
+predator of the Morrison, and will 
+cause bleeding with it’s bites.

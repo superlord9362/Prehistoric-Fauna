@@ -1,29 +1,40 @@
-While roaming the Morrison, I 
-stumbled across a giant foot print. 
-As I could easily stand in it, I 
-deduced it was some form of 
-sauropod. I quickly discovered 
-what kind, as I felt a low rumbling 
-shake the earth beneath me. I 
-turned to find a herd of 
-Camarasaurus! These giants 
-roamed in a large herd, each 
-staying within the same general 
-area. Their red noses stood out 
-against the rest of it's brown 
-body. Everything I saw in the area 
-made sure to keep a wide path from 
-these Camarasaurus, with their 
-sheer size intimidating everything. 
-I will have to keep my distance, 
-but I must find out more about 
-them.
+Found In: Morrison
 
-Today, I was lucky enough to spot 
-them eating in the distance. They 
-large adults were eating from the 
-tops of the Ptilophyllum, while the 
-young babies were scrounging off 
-of the leaves that fell from their 
-parents mouths. Truly fascinating 
-how these beasts live.
+Drops: 1-3 Large Raw Sauropod
+
+Diet: Herbivore
+
+Breeding Item: Ptilophyllum Fronds
+
+Max Health: 200
+
+Max Hunger: 500
+
+Temperaments: Camarasaurus has 
+an 85% chance of being protective, 
+and a 15% chance of being 
+territorial.
+
+Sleep Cycle: Diurnal
+
+<image><drawings_ankylosaurus.png 34 3 127 22 22 20 6.5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Camarasaurus, due to its 
+large size, crushes many animals 
+smaller than it under its immense 
+weight.

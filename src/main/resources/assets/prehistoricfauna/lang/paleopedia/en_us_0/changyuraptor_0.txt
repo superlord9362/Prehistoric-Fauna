@@ -1,0 +1,41 @@
+Found In: Yixian
+
+Drops: 0-2 Feathers, 1-3 Small 
+Raw Theropod
+
+Diet: Insectivore
+
+Breeding Item: Dead Spider
+
+Max Health: 6
+
+Max Hunger: 15
+
+Temperaments: Changyuraptor has 
+an 85% chance of being passive, 
+and a 15% chance of being skittish.
+
+Sleep Cycle: Crepuscular
+<image><drawings_ankylosaurus.png 45 4 56 23 15 19 5.5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Changyuraptor can steal 
+items from the players hands. 
+They will drop them after a while, 
+or it can be bartered for or 
+taken by force. Changyuraptor 
+also can rarely be found already 
+carrying an item they stole from 
+someone else long ago.

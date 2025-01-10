@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -64,6 +65,8 @@ import superlord.prehistoricfauna.common.entity.goal.NocturnalSleepGoal;
 import superlord.prehistoricfauna.common.entity.goal.ProtectBabyGoal;
 import superlord.prehistoricfauna.common.entity.goal.SkittishFleeGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
+import superlord.prehistoricfauna.common.items.PaleopediaItem;
+import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
@@ -120,7 +123,7 @@ public class Exaeretodon extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new HerbivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(5, new Exaeretodon.DiggingGoal(this));
 	}
-	
+
 	@Override
 	public void setAge(int age) {
 		super.setAge(age);
@@ -181,6 +184,13 @@ public class Exaeretodon extends DinosaurEntity {
 				}
 				this.setDiggingForRoots(true);
 				return InteractionResult.SUCCESS;
+			}
+			if (item instanceof PaleopediaItem paleopedia) {
+				if (!stack.getTag().contains("Pages", EnumPaleoPages.EXAERETODON.ordinal())) {
+					EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.EXAERETODON.ordinal()), stack);
+					player.displayClientMessage(Component.translatable("paleopedia.exaeretodon_added"), true);
+					return InteractionResult.SUCCESS;
+				}
 			}
 			return super.mobInteract(player, hand);
 		}
@@ -251,7 +261,7 @@ public class Exaeretodon extends DinosaurEntity {
 		this.setNocturnal(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
-	
+
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
 		Exaeretodon entity = new Exaeretodon(PFEntities.EXAERETODON.get(), this.level());
@@ -333,11 +343,11 @@ public class Exaeretodon extends DinosaurEntity {
 	public ItemStack getPickedResult(HitResult target) {
 		return new ItemStack(PFItems.EXAERETODON_SPAWN_EGG.get());
 	}
-	
+
 	public Item getEggItem() {
 		return PFItems.EXAERETODON_EGG.get();
 	}
-    
+
 	public BlockState getEggBlock(Level world, BlockPos pos) {
 		return PFBlocks.EXAERETODON_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
 	}

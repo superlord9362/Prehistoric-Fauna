@@ -1,24 +1,40 @@
+Found In: Morrison
 
-On my first day, I've already 
-discovered a herd of Stegosaurus, 
-with some Dryosaurus mingling 
-about. These large beasts are 
-truly majestic, and their low 
-gurgles reverberate through me. 
-Their four thagomizers are large, 
-and I'll have to be careful. One 
-swing from their tail, and it could 
-kill me. I will have to find a 
-way to study them while keeping a 
-distance.
+Drops: 0-2 Thagomizers, 1-3 
+Large Raw Thyreophoran
 
-Besides the Dryosaurus, it seems 
-most dinosaurs tend to stay away 
-from the Stegosaurus, excluding 
-the Allosaurus, who hunt them, 
-and the Camarasaurus, who are too 
-big to care. I've also noticed that 
-the Stegosaurus are eating the 
-leaves from the Zamites, which 
-are too tall for the Dryosaurus 
-to reach.
+Diet: Herbivore
+
+Breeding Item: Zamites Cone
+
+Max Health: 80
+
+Max Hunger: 200
+
+Temperaments: Stegosaurus has 
+an 80% chance of being territorial, 
+a 15% chance of being protective, 
+and a 5% chance of being 
+aggressive.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sleep Cycle: Cathemeral
+
+Behavior: Stegosaurus are highly 
+territorial, and will attack almost 
+anything that gets to close with its 
+thagomizers. The thagomizers are 
+capable of inflicting bleeding on 
+those they hit.

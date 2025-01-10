@@ -4,9 +4,12 @@ import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -43,6 +46,8 @@ import superlord.prehistoricfauna.common.entity.goal.LowHealthOrBabyHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.SkittishFleeGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
+import superlord.prehistoricfauna.common.items.PaleopediaItem;
+import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
@@ -53,6 +58,10 @@ public class Palaeosaniwa extends BurrowingDinosaur {
 
 	private int maxHunger = 38;
 	private int warningSoundTicks;
+	
+	public boolean isFood(ItemStack stack) {
+		return stack.getItem() == PFItems.RAW_SMALL_ORNITHISCHIAN_MEAT.get();
+	}
 	
 	public Palaeosaniwa(EntityType<? extends Palaeosaniwa> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
@@ -109,6 +118,19 @@ public class Palaeosaniwa extends BurrowingDinosaur {
 		this.goalSelector.addGoal(0, new LowHealthOrBabyHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_237491_0_) -> {
 			return p_237491_0_.getType().is(PFTags.PALAEOSANIWA_BABY_HUNTING);
 		}));
+	}
+	
+	public InteractionResult mobInteract(Player player, InteractionHand hand) {
+		ItemStack itemstack = player.getItemInHand(hand);
+		Item item = itemstack.getItem();
+		if (item instanceof PaleopediaItem paleopedia) {
+			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.PALAEOSANIWA.ordinal())) {
+				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.PALAEOSANIWA.ordinal()), itemstack);
+				player.displayClientMessage(Component.translatable("paleopedia.palaeosaniwa_added"), true);
+				return InteractionResult.SUCCESS;
+			}
+		}
+		return super.mobInteract(player, hand);
 	}
 	
 	protected SoundEvent getAmbientSound() {

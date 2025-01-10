@@ -1,28 +1,41 @@
-I was not the only creature who 
-joined the Pinacosaurus on their 
-journey across the dunes. A small 
-dromaeosaur rode on another 
-Pinacosaurus nearby. I gave it 
-some of my meat rations one night, 
-and it has stayed close to me 
-ever since. I quite like my new 
-companion. I believe I shall name 
-him Manfredd.
+Found In: Djadochta
 
-Unlike the larger Dakotaraptors of 
-Hell Creek, Velociraptor seems to 
-be much more of a curious and 
-friendly animal. That is not to say 
-though that it will not attack.
+Drops: 0-2 Feathers, 1-3 Small 
+Raw Theropod, 0-1 Dromaeosaur
+Claw
 
-While observing a group of 
-Protoceratops with Manfredd, they 
-noticed me! I was unprepared for 
-a Protoceratops charge, and 
-prepared for its beak, but it 
-never came. Manfredd had 
-stepped in front of me, and that 
-seemed to give the Protoceratops 
-pause. The Protoceratops seem 
-unwilling to approach 
-Velociraptors. Truly fascinating!
+Diet: Carnivore
+
+Breeding Item: Small Raw 
+Marginocephalian
+
+Max Health: 8
+
+Max Hunger: 20
+
+Temperaments: Velociraptor has an 
+80% chance of being protective, a 
+15% chance of being opportunist, 
+and a 5% chance of being 
+
+
+<image><drawings_ankylosaurus.png 35 3 6 258 15 13 7>
+
+
+
+
+
+
+
+
+
+territorial.
+
+Sleep Cycle: Crepuscular
+
+Behavior: Velociraptor is capable 
+of jumping onto it’s prey and 
+dealing damage while riding them, in 
+a move called Raptor-Prey 
+Restraint. They can also be tamed 
+using Small Raw Marginocephalian.

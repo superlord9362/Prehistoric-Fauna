@@ -162,8 +162,8 @@ public class GuiPaleopedia extends Screen {
 			drawPerPage(ms, bookPages);
 			int pageLeft = bookPages * 2 + 1;
 			int pageRight = pageLeft + 1;
-			font.drawInBatch("" + pageLeft, centerX, centerY - (int) (Y * 0.13), 0X303030, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
-			font.drawInBatch("" + pageRight, centerX, centerY - (int) (Y * 0.13), 0X303030, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+			font.drawInBatch("" + pageLeft, centerX- (int) (X * -0.13), centerY - (int) (Y * -0.84), 0X303030, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+			font.drawInBatch("" + pageRight, centerX - (int) (X * -0.635), centerY - (int) (Y * -0.84), 0X303030, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
 		}
 		ms.pose().popPose();
 		this.renderables.forEach((widget -> widget.render(ms, mouseX, mouseY, partialTicks)));
@@ -317,7 +317,109 @@ public class GuiPaleopedia extends Screen {
 		String s = StatCollector.translateToLocal("paleopedia." + this.pageType.toString().toLowerCase(Locale.ROOT));
 		float scale = font.width(s) <= 100 ? 1.5F : font.width(s) * 0.0125F;
 		ms.pose().scale(scale, scale, scale);
-		font.drawInBatch(s, 25, 7, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		if (this.pageType == EnumPaleoPages.DJADOCHTA) {
+			font.drawInBatch(s, 30, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.SCIENTIFIC_NOTES) {
+			font.drawInBatch(s, 33, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.OVIRAPTOR) {
+			font.drawInBatch(s, 50, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.PROTOCERATOPS) {
+			font.drawInBatch(s, 35, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.UDANOCERATOPS) {
+			font.drawInBatch(s, 35, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.HELL_CREEK) {
+			font.drawInBatch(s, 33, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.ANZU) {
+			font.drawInBatch(s, 57, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.BASILEMYS) {
+			font.drawInBatch(s, 50, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.BRACHYCHAMPSA) {
+			font.drawInBatch(s, 34, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.EDMONTOSAURUS) {
+			font.drawInBatch(s, 33, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.PACHYCEPHALOSAURUS) {
+			font.drawInBatch(s, 28, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.THESCELOSAURUS) {
+			font.drawInBatch(s, 30, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.TYRANNOSAURUS) {
+			font.drawInBatch(s, 33, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.YIXIAN) {
+			font.drawInBatch(s, 33, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.BEIPIAOSAURUS) {
+			font.drawInBatch(s, 35, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.CHANGYURAPTOR) {
+			font.drawInBatch(s, 34, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.DILONG) {
+			font.drawInBatch(s, 55, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.INCISIVOSAURUS) {
+			font.drawInBatch(s, 35, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.JINZHOUSAURUS) {
+			font.drawInBatch(s, 35, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.LIAONINGOSAURUS) {
+			font.drawInBatch(s, 32, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.PSITTACOSAURUS) {
+			font.drawInBatch(s, 34, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.RUIXINIA) {
+			font.drawInBatch(s, 52, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.SINOSAUROPTERYX) {
+			font.drawInBatch(s, 30, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.ZHENYUANLONG) {
+			font.drawInBatch(s, 37, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.KAYENTA) {
+			font.drawInBatch(s, 27, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.CALSOYASUCHUS) {
+			font.drawInBatch(s, 33, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.DILOPHOSAURUS) {
+			font.drawInBatch(s, 33, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.KAYENTATHERIUM) {
+			font.drawInBatch(s, 33, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.MEGAPNOSAURUS) {
+			font.drawInBatch(s, 33, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.SCELIDOSAURUS) {
+			font.drawInBatch(s, 33, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.SCUTELLOSAURUS) {
+			font.drawInBatch(s, 33, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.MORRISON) {
+			font.drawInBatch(s, 24, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.ALLOSAURUS) {
+			font.drawInBatch(s, 43, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.CAMARASAURUS) {
+			font.drawInBatch(s, 35, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.CERATOSAURUS) {
+			font.drawInBatch(s, 35, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.EILENODON) {
+			font.drawInBatch(s, 45, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.HESPERORNITHOIDES) {
+			font.drawInBatch(s, 27, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.CHINLE) {
+			font.drawInBatch(s, 33, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.DESMATOSUCHUS) {
+			font.drawInBatch(s, 33, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.PLACERIAS) {
+			font.drawInBatch(s, 46, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.TRILOPHOSAURUS) {
+			font.drawInBatch(s, 33, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.ISCHIGUALASTO) {
+			float scale1 = font.width(s) <= 100 ? 1.5F : font.width(s) * 0.007F;
+			ms.pose().scale(scale1, scale1, scale1);
+			font.drawInBatch(s, 23, 10, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.HYPERODAPEDON) {
+			font.drawInBatch(s, 33, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.ISCHIGUALASTIA) {
+			font.drawInBatch(s, 35, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.CHROMOGISAURUS) {
+			font.drawInBatch(s, 33, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.HERRERASAURUS) {
+			font.drawInBatch(s, 33, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.AEPYORNITHOMIMUS) {
+			font.drawInBatch(s, 27, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.BYRONOSAURUS) {
+			font.drawInBatch(s, 35, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.CITIPATI || this.pageType == EnumPaleoPages.KOL) {
+			font.drawInBatch(s, 55, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else {
+			font.drawInBatch(s, 40, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		}
 		ms.pose().popPose();
 	}
 

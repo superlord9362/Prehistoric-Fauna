@@ -378,6 +378,54 @@
 				}
 			]
 		}
+	},
+	"psittacosaurus_skull": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:psittacosaurus_skull"
+					]
+				}
+			]
+		}
+	},
+	"yutyrannus_skull": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:yutyrannus_skull"
+					]
+				}
+			]
+		}
+	},
+	"psittacosaurus_skeleton": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:psittacosaurus_skeleton"
+					]
+				}
+			]
+		}
+	},
+	"yutyrannus_skeleton": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:yutyrannus_skeleton"
+					]
+				}
+			]
+		}
 	}
 	},
   "requirements": [
@@ -470,6 +518,18 @@
 	],
 	[
 		"postosuchus_skull"
+	],
+	[
+		"psittacosaurus_skull"
+	],
+	[
+		"psittacosaurus_skeleton"
+	],
+	[
+		"yutyrannus_skull"
+	],
+	[
+		"yutyrannus_skeleton"
 	]
   ]
 }

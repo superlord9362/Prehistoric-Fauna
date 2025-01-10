@@ -81,6 +81,8 @@ import net.minecraft.world.phys.Vec3;
 import superlord.prehistoricfauna.common.blocks.FeederBlock;
 import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
+import superlord.prehistoricfauna.common.items.PaleopediaItem;
+import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
@@ -463,6 +465,13 @@ public class Triceratops extends AbstractChestedHorse  {
 			if (!this.level().isClientSide() && i == 0 && this.canFallInLove()) {
 				this.usePlayerItem(p_230254_1_, p_230254_2_, itemstack);
 				this.setInLove(p_230254_1_);
+				return InteractionResult.SUCCESS;
+			}
+		}
+		if (item instanceof PaleopediaItem paleopedia) {
+			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.TRICERATOPS.ordinal())) {
+				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.TRICERATOPS.ordinal()), itemstack);
+				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.triceratops_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}

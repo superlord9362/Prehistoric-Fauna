@@ -1,0 +1,41 @@
+Found In: Hell Creek
+
+Drops: 1-6 Large Raw
+Ornithischian
+
+Diet: Herbivore
+
+Breeding Item: Osmunda
+
+Max Health: 100
+
+Max Hunger: 250
+
+Temperaments: Edmontosaurus has 
+an 80% chance of being protective, 
+a 15% chance of being aggressive, 
+and a 5% chance of being 
+territorial.
+
+<image><drawings_ankylosaurus.png 36 4 26 129 24 18 6>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sleep Cycle: Diurnal
+
+Behavior: Edmontosaurus can be 
+more passive in groups, but are 
+hostile when alone. They will 
+broadcast if there are any 
+carnivores near them.

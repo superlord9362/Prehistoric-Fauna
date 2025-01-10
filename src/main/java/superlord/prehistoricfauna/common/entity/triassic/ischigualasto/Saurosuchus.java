@@ -65,6 +65,8 @@ import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.ProtectBabyGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
+import superlord.prehistoricfauna.common.items.PaleopediaItem;
+import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEffects;
@@ -84,7 +86,7 @@ public class Saurosuchus extends DinosaurEntity {
 		super.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
-	
+
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
 		if (this.isBaby()) {
 			return 0.625F;
@@ -130,7 +132,7 @@ public class Saurosuchus extends DinosaurEntity {
 			return p_213487_1_.getType().is(PFTags.SAUROSUCHUS_BABY_HUNTING);
 		}));
 	}
-	
+
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		int temperment = random.nextInt(100);
 		if (temperment < 80) {
@@ -143,7 +145,7 @@ public class Saurosuchus extends DinosaurEntity {
 		this.setCarnivorous(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
-	
+
 	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
 		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
 		if (PrehistoricFaunaConfig.advancedHunger) {
@@ -207,9 +209,17 @@ public class Saurosuchus extends DinosaurEntity {
 				p_230254_1_.displayClientMessage(Component.translatable("entity.prehistoricfauna.fullHunger"), true);
 			}
 		}
+		Item item = itemstack.getItem();
+		if (item instanceof PaleopediaItem paleopedia) {
+			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.SAUROSUCHUS.ordinal())) {
+				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.SAUROSUCHUS.ordinal()), itemstack);
+				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.saurosuchus_added"), true);
+				return InteractionResult.SUCCESS;
+			}
+		}
 		return super.mobInteract(p_230254_1_, p_230254_2_);
 	}
-	
+
 	@Override
 	public void setAge(int age) {
 		super.setAge(age);
@@ -409,16 +419,16 @@ public class Saurosuchus extends DinosaurEntity {
 		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
-	
+
 	@Override
 	public ItemStack getPickedResult(HitResult target) {
 		return new ItemStack(PFItems.SAUROSUCHUS_SPAWN_EGG.get());
 	}
-	
+
 	public Item getEggItem() {
 		return PFItems.SAUROSUCHUS_EGG.get();
 	}
-    
+
 	public BlockState getEggBlock(Level world, BlockPos pos) {
 		return PFBlocks.SAUROSUCHUS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
 	}

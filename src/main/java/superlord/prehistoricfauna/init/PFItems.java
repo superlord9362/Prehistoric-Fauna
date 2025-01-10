@@ -780,6 +780,7 @@ public class PFItems {
 	public static final RegistryObject<Item> TRICERATOPS_SKULL = SKELETON_REGISTER.register("triceratops_skull", () -> new SpawnSkeletonItem(PFEntities.TRICERATOPS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> TYRANNOSAURUS_SKULL = SKELETON_REGISTER.register("tyrannosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.TYRANNOSAURUS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> PSITTACOSAURUS_SKULL = SKELETON_REGISTER.register("psittacosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.PSITTACOSAURUS_SKULL, new Item.Properties()));
+	public static final RegistryObject<Item> YUTYRANNUS_SKULL = SKELETON_REGISTER.register("yutyrannus_skull", () -> new SpawnSkeletonItem(PFEntities.YUTYRANNUS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> DILOPHOSAURUS_SKULL = SKELETON_REGISTER.register("dilophosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.DILOPHOSAURUS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> SARAHSAURUS_SKULL = SKELETON_REGISTER.register("sarahsaurus_skull", () -> new SpawnSkeletonItem(PFEntities.SARAHSAURUS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> SCELIDOSAURUS_SKULL = SKELETON_REGISTER.register("scelidosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.SCELIDOSAURUS_SKULL, new Item.Properties()));
@@ -800,6 +801,7 @@ public class PFItems {
 	public static final RegistryObject<Item> TRICERATOPS_SKELETON = SKELETON_REGISTER.register("triceratops_skeleton", () -> new SpawnSkeletonItem(PFEntities.TRICERATOPS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> TYRANNOSAURUS_SKELETON = SKELETON_REGISTER.register("tyrannosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.TYRANNOSAURUS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> PSITTACOSAURUS_SKELETON = SKELETON_REGISTER.register("psittacosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.PSITTACOSAURUS_SKELETON, new Item.Properties()));
+	public static final RegistryObject<Item> YUTYRANNUS_SKELETON = SKELETON_REGISTER.register("yutyrannus_skeleton", () -> new SpawnSkeletonItem(PFEntities.YUTYRANNUS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> DILOPHOSAURUS_SKELETON = SKELETON_REGISTER.register("dilophosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.DILOPHOSAURUS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> SARAHSAURUS_SKELETON = SKELETON_REGISTER.register("sarahsaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.SARAHSAURUS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> SCELIDOSAURUS_SKELETON = SKELETON_REGISTER.register("scelidosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.SCELIDOSAURUS_SKELETON, new Item.Properties()));
@@ -1021,7 +1023,7 @@ public class PFItems {
 	public static final RegistryObject<Item> DEAD_HOPPER = FOOD_REGISTER.register("dead_hopper", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(1).build())));
 	public static final RegistryObject<Item> DEAD_SPIDER = FOOD_REGISTER.register("dead_spider", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(1).build())));
 	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> FERNY_STEW = FOOD_REGISTER.register("ferny_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.HEAL, 0, 1), 1).build()).stacksTo(1)));
+	public static final RegistryObject<Item> FERNY_STEW = FOOD_REGISTER.register("ferny_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.HEAL, 1, 2), 1).build()).stacksTo(1)));
 //	@SuppressWarnings("deprecation")
 //	public static final RegistryObject<Item> H_CYCAD_STEW = FOOD_REGISTER.register("herbivore_cycad_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 6000), 1).build()).stacksTo(1)));
 //	@SuppressWarnings("deprecation")

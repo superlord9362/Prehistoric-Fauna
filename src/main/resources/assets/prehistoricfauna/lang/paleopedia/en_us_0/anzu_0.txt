@@ -1,0 +1,39 @@
+Found In: Hell Creek
+
+Drops: 0-2 Feathers, 1-3 Large 
+Raw Theropod
+
+Diet: Omnivore
+
+Breeding Item: Bisonia
+
+Max Health: 30
+
+Max Hunger: 75
+
+Temperaments: Anzu has a 50% 
+chance of being protective, a 45% 
+chance of being territorial, and a 
+5% chance of being passive.
+
+Sleep Cycle: Cathemeral
+
+
+
+
+
+
+
+
+
+
+
+
+
+<image><drawings_ankylosaurus.png 32 2 29 23 18 17 7>
+
+Behavior: Anzu is very protective 
+of nests and eggs, attacking 
+anything that gets close to them. 
+This can be avoided by wearing an 
+eggshell helmet.

@@ -1,27 +1,37 @@
-On my return trip from the river, I 
-witnessed one of the most 
-terrifying sights here in 
-Ischigualasto. Laying down in the 
-underbrush was a sleeping 
-Saurosuchus. While the apex 
-predator of the area, they spend 
-most of their time sleeping. These 
-ancient crocodilian ancestors rule 
-the area and gladly prey upon the 
-largest animals, such as 
-Ischigualastia and Sillosuchus. 
-Luckily it was only sleeping, or I 
-wouldn't be writing this right now.
+Found In: Ischigualasto
 
-When traveling, I discovered an 
-Ischigualastia corpse. Luckily the 
-predator had left the site, so I felt 
-safe to investigate. The bite marks 
-indicate that Saurosuchus was the 
-attacker. This confirms my theory 
-that while Ischigualastia is large, 
-the Saurosuchus is able to take it 
-down. Whether they commonly eat 
-the Ischigualastia or if this was a 
-rare occasion, I don't know. More 
-research will have to be done.
+Drops: 1-3 Large Raw 
+Archosauromorph
+
+Diet: Carnivore
+
+Breeding Item: Large Raw Synapsid
+
+Max Health: 30
+
+Max Hunger: 75
+
+Temperaments: Saurosuchus has 
+an 80% chance of being territorial, 
+a 15% chance of being protective, 
+and a 5% chance of being 
+aggressive.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sleep Cycle: Cathemeral
+
+Behavior: Investigation underway!

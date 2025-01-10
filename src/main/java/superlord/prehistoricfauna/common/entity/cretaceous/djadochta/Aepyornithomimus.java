@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
@@ -50,6 +51,8 @@ import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.SkittishFleeGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
+import superlord.prehistoricfauna.common.items.PaleopediaItem;
+import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
@@ -125,6 +128,13 @@ public class Aepyornithomimus extends HerdDinosaurEntity {
 	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
 		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
 		Item item = itemstack.getItem();
+		if (item instanceof PaleopediaItem paleopedia) {
+			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.AEPYORNITHOMIMUS.ordinal())) {
+				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.AEPYORNITHOMIMUS.ordinal()), itemstack);
+				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.aepyornithomimus_added"), true);
+				return InteractionResult.SUCCESS;
+			}
+		}
 		if (this.chewingTick == 0 && (item == PFItems.PTILOPHYLLUM_FRONDS.get() || item == PFBlocks.DICROIDIUM.get().asItem() || item == PFBlocks.JOHNSTONIA.get().asItem() || item == PFBlocks.MICHELILLOA.get().asItem() || item == PFBlocks.SCYTOPHYLLUM.get().asItem() || item == PFBlocks.METASEQUOIA_SAPLING.get().asItem() || item == PFBlocks.PROTOPICEOXYLON_SAPLING.get().asItem() || item == PFBlocks.PROTOJUNIPEROXYLON_SAPLING.get().asItem() || item == PFBlocks.HEIDIPHYLLUM_SAPLING.get().asItem())) {
 			this.chewingTick = 600;
 			if (!p_230254_1_.isCreative()) {

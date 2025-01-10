@@ -1,41 +1,40 @@
-Day: 32
+Found In: Hell Creek
 
-While trying to look for more 
-creatures to study, I heard very 
-deep and loud growling noises 
-echoing in the woods, which 
-frightened me. After  recovering 
-a bit, I realized out that it was 
-the apex predator of these lands.
-The speculations must've been 
-true... The roar had a deep bass 
-to it that would scare the life out 
-of a human, even from afar.
-I haven't seen one of them yet, but 
-I have found large teeth near old 
-Triceratops carcasses.
+Drops: 0-2 Tyrannosaur Teeth, 
+1-3 Large Raw Theropod
 
-Day  39:
+Diet: Carnivore
 
-I found tracks that could only 
-belong to Tyrannosaurus. I 
-followed them and they lead to a 
-small creek downhill, from there, 
-nothing. I spent more time 
-searching that day and right when 
-the sun set, I saw one. The giant 
-beast was walking down a valley 
-with its younglings. The coloration 
-of the specimen was a dark brown, 
-with red impressions on the neck.
+Breeding Item: Large Raw 
+Ornithischian
 
-Regarding a feather coat, I only 
-saw tiny patches of very small 
-protofeathers that were barely 
-visible. The infants that were 
-walking along the parent, they 
-were quite different from their 
-bulky mother. They were quite 
-agile, unlike the adult, and were
-constantly doing something in the 
-background.
+Max Health: 100
+
+Max Hunger: 250
+
+Temperaments: Tyrannosaurus has 
+an 80% chance of being protective, 
+a 15% chance of being territorial, 
+and a 5% chance of being 
+aggressive.
+
+
+
+
+
+
+
+
+
+
+
+
+Sleep Cycle: Cathemeral
+
+Behavior: Tyrannosaurus is 
+extremely large, and can hunt 
+just about anything it chooses to. 
+The younger sub-adults are more 
+speedy, and hunt a different 
+range of prey than the giant 
+adults.

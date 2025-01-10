@@ -1,18 +1,36 @@
+Found In: Morrison
 
-While moving along a river today, 
-I spotted two Ceratosaurus! Their 
-coloration is quite beautiful, 
-although it made them easy for me 
-to spot. Their large horn and eye 
-ridges make them a very 
-interesting sight to see.
+Drops: 1-3 Large Raw Theropod
 
-They seem to live near this river, 
-as I saw them again today. This 
-time, they had a Dryosaurus corpse 
-nearby for their dinner. Their 
-muscular legs allow them to chase 
-after and catch the agile 
-Dryosaurus. I will have to be 
-careful not to catch their 
-attention.
+Diet: Carnivore
+
+Breeding Item: Small Raw 
+Ornithischian
+
+Max Health: 40
+
+Max Hunger: 100
+
+Temperaments: Ceratosaurus has 
+an 85% chance of being protective, 
+and a 15% chance of being 
+protective.
+
+Sleep Cycle: Crepuscular
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Investigation underway!

@@ -1,0 +1,40 @@
+Modern Location: Liaoning 
+Province, China, Asia
+
+Time: Barremian, Cretaceous, 
+125.8-124.1 million years ago
+
+Animals: 
+-Dinosaurs:
+--Beipiaosaurus
+--Changyuraptor
+--Dilong
+--Dongbeititan
+--Incisivosaurus
+--Jinzhousaurus
+--Liaoningosaurus
+--Psittacosaurus
+--Ruixinia
+--Sinosauropteryx
+--Yutyrannus
+
+--Zhenyuanlong
+
+-Mammals:
+--Repenomamus
+
+-Bugs:
+--Apoclion
+--Cretaraneus
+--Liaonemobius
+
+-Fish:
+--Protopsephurus
+--Sinamia
+--Yanosteus
+
+Plants: 
+-Water Plants:
+--Algae
+--Archaefructus
+--Callianthus

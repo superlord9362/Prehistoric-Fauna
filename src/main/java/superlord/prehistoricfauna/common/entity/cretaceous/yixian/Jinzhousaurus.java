@@ -4,10 +4,17 @@ import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
@@ -22,16 +29,19 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowParentGoal;
+import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.common.blocks.SapBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
@@ -47,6 +57,8 @@ import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.ProtectBabyGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
+import superlord.prehistoricfauna.common.items.PaleopediaItem;
+import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
@@ -54,25 +66,27 @@ import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
 public class Jinzhousaurus extends DinosaurEntity {
+	private static final EntityDataAccessor<Boolean> SCRATCHING = SynchedEntityData.defineId(Jinzhousaurus.class, EntityDataSerializers.BOOLEAN);
 	private int maxHunger = 50;
 	private int warningSoundTicks;
-	
+	int scratchTick = 3000;
+
 	public Jinzhousaurus(EntityType<? extends TamableAnimal> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
 		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
-	
+
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
 		Jinzhousaurus entity = new Jinzhousaurus(PFEntities.JINZHOUSAURUS.get(), this.level());
 		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
-	
+
 	public boolean isFood(ItemStack stack) {
 		return stack.getItem() == PFBlocks.RUFFORDIA.get().asItem();
 	}
-	
+
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
@@ -89,6 +103,7 @@ public class Jinzhousaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.goalSelector.addGoal(1, new BabyPanicGoal(this));
 		this.goalSelector.addGoal(1, new Jinzhousaurus.MeleeAttackGoal());
+		this.goalSelector.addGoal(1, new Jinzhousaurus.StripLogGoal((double)1.2F, 12, 2));
 		this.targetSelector.addGoal(1, new DinosaurHurtByTargetGoal(this));
 		this.targetSelector.addGoal(3, new ProtectBabyGoal(this));
 		this.targetSelector.addGoal(3, new DinosaurTerritorialAttackGoal(this));
@@ -97,6 +112,19 @@ public class Jinzhousaurus extends DinosaurEntity {
 		}));
 	}
 	
+	public InteractionResult mobInteract(Player player, InteractionHand hand) {
+		ItemStack itemstack = player.getItemInHand(hand);
+		Item item = itemstack.getItem();
+		if (item instanceof PaleopediaItem paleopedia) {
+			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.JINZHOUSAURUS.ordinal())) {
+				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.JINZHOUSAURUS.ordinal()), itemstack);
+				player.displayClientMessage(Component.translatable("paleopedia.jinzhousaurus_added"), true);
+				return InteractionResult.SUCCESS;
+			}
+		}
+		return super.mobInteract(player, hand);
+	}
+
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.2D).add(Attributes.ATTACK_DAMAGE, 3.0D).add(Attributes.FOLLOW_RANGE, 20.0D);
 	}
@@ -126,20 +154,54 @@ public class Jinzhousaurus extends DinosaurEntity {
 		}
 	}
 
+	public boolean isScratching() {
+		return this.entityData.get(SCRATCHING);
+	}
+
+	public void setScratching(boolean scratching) {
+		this.entityData.set(SCRATCHING, scratching);
+	}
+
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(SCRATCHING, false);
+	}
+
+	public void addAdditionalSaveData(CompoundTag compound) {
+		super.addAdditionalSaveData(compound);
+		compound.putBoolean("Scratching", this.isScratching());
+	}
+
+	public void setAdditionalSaveData(CompoundTag compound) {
+		super.readAdditionalSaveData(compound);
+		this.setScratching(compound.getBoolean("Scratching"));
+	}
+
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
 			this.playSound(PFSounds.JINZHOUSAURUS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
-	
+
 	public void tick() {
 		super.tick();
 		if (this.warningSoundTicks > 0) {
 			--this.warningSoundTicks;
 		}
 	}
-	
+
+	public void aiStep() {
+		super.aiStep();
+		if (scratchTick != 0 && !this.isScratching()) {
+			scratchTick--;
+		}
+		if (scratchTick == 0) {
+			this.setScratching(true);
+			scratchTick = 3000;
+		}
+	}
+
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		int temperment = random.nextInt(100);
 		if (temperment < 85) {
@@ -151,7 +213,7 @@ public class Jinzhousaurus extends DinosaurEntity {
 		this.setDiurnal(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
-	
+
 	@Override
 	public void setAge(int age) {
 		super.setAge(age);
@@ -161,7 +223,7 @@ public class Jinzhousaurus extends DinosaurEntity {
 			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
 		}
 	}
-	
+
 	public boolean onAttackAnimationFinish(Entity entityIn) {
 		boolean flag = super.onAttackAnimationFinish(entityIn);
 		if (flag) {
@@ -170,7 +232,7 @@ public class Jinzhousaurus extends DinosaurEntity {
 
 		return flag;
 	}
-	
+
 	class MeleeAttackGoal extends net.minecraft.world.entity.ai.goal.MeleeAttackGoal {
 		public MeleeAttackGoal() {
 			super(Jinzhousaurus.this, 1.25D, true);
@@ -207,18 +269,77 @@ public class Jinzhousaurus extends DinosaurEntity {
 			return (double)(8.0F + attackTarget.getBbWidth());
 		}
 	}
-	
+
 	@Override
 	public ItemStack getPickedResult(HitResult target) {
 		return new ItemStack(PFItems.JINZHOUSAURUS_SPAWN_EGG.get());
 	}
-	
+
 	public Item getEggItem() {
 		return PFItems.JINZHOUSAURUS_EGG.get();
 	}
-    
+
 	public BlockState getEggBlock(Level world, BlockPos pos) {
 		return PFBlocks.JINZHOUSAURUS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+	}
+
+	class StripLogGoal extends MoveToBlockGoal {
+		protected int field_220731_g;
+
+		public StripLogGoal(double p_i50737_2_, int p_i50737_4_, int p_i50737_5_) {
+			super(Jinzhousaurus.this, p_i50737_2_, p_i50737_4_, p_i50737_5_);
+		}
+		
+		public boolean canUse() {
+			return super.canUse() && Jinzhousaurus.this.isScratching();
+		}
+		
+		public boolean canContinueToUse() {
+			return super.canContinueToUse() && Jinzhousaurus.this.isScratching();
+		}
+		
+		public void stop() {
+			Jinzhousaurus.this.setScratching(false);
+		}
+
+		public double acceptedDistance() {
+			return 2.0D;
+		}
+
+		public boolean shouldMove() {
+			return this.tryTicks % 100 == 0;
+		}
+
+		/**
+		 * Return true to set given position as destination
+		 */
+		protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
+			BlockState blockstate = worldIn.getBlockState(pos);
+			return (blockstate.is(BlockTags.LOGS));
+		}
+
+		/**
+		 * Keep ticking a continuous task that has already been started
+		 */
+		public void tick() {
+			if (this.isReachedTarget()) {
+				if (this.field_220731_g >= 40) {
+					this.causeSap();
+				} else {
+					++this.field_220731_g;
+				}
+			}
+			super.tick();
+		}
+		public void causeSap() {
+			if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(Jinzhousaurus.this.level(), Jinzhousaurus.this)) {
+				if (level().getBlockState(this.blockPos.relative(Jinzhousaurus.this.getDirection().getOpposite())).isAir()) {
+					level().setBlockAndUpdate(this.blockPos.relative(Jinzhousaurus.this.getDirection().getOpposite()), PFBlocks.SAP.get().defaultBlockState().setValue(SapBlock.FACING, Jinzhousaurus.this.getDirection()));
+					stop();
+				}
+			}
+		}
+
 	}
 
 }

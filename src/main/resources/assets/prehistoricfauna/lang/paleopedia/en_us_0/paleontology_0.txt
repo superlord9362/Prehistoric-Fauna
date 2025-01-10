@@ -1,0 +1,38 @@
+The day of my expedition draws 
+near! I've been gathering the 
+resources needed to craft myself 
+a new Geological Hammer and a 
+Paleontology Table. These are 
+both important tools for any 
+budding paleontologist, and 
+needed in any fossil hunting 
+expedition!
+<image><drawings_ankylosaurus.png 25 93 373 19 116 54 1.25>
+
+
+
+
+
+
+
+
+
+
+
+Using a regular pickaxe has a high 
+chance of destroying the fossil 
+hidden within the stone, but with a 
+geological hammer, one will always 
+get a fossil.
+
+Fossils can be found at different 
+levels, with older fossils being 
+found deeper underground. 
+Cretaceous fossils can be found 
+in chalk, while Jurassic and 
+Triassic fossils can be found in 
+siltstone and sandstone 
+respectively. Once fossils are 
+collected, one will need a 
+paleontology table for cleaning 
+them!

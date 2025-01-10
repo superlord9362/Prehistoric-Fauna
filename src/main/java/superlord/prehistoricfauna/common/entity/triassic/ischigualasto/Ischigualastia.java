@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -58,6 +59,8 @@ import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.ProtectBabyGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
+import superlord.prehistoricfauna.common.items.PaleopediaItem;
+import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
@@ -74,7 +77,7 @@ public class Ischigualastia extends DinosaurEntity implements ItemSteerable {
 	private int warningSoundTicks;
 	public float ridingXZ;
 	public float ridingY = 1;
-	
+
 	public Ischigualastia(EntityType<? extends Ischigualastia> type, Level level) {
 		super(type, level);
 		super.setMaxUpStep(1.0F);
@@ -201,7 +204,7 @@ public class Ischigualastia extends DinosaurEntity implements ItemSteerable {
 		this.entityData.define(SADDLED, false);
 		this.entityData.define(BOOST_TIME, 0);
 	}
-	
+
 	public double getPassengersRidingOffset() {
 		return 1.7F;
 	}
@@ -219,6 +222,14 @@ public class Ischigualastia extends DinosaurEntity implements ItemSteerable {
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		boolean flag = this.isFood(player.getItemInHand(hand));
+		Item item = itemstack.getItem();
+		if (item instanceof PaleopediaItem paleopedia) {
+			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.ISCHIGUALASTIA.ordinal())) {
+				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.ISCHIGUALASTIA.ordinal()), itemstack);
+				player.displayClientMessage(Component.translatable("paleopedia.ischigualastia_added"), true);
+				return InteractionResult.SUCCESS;
+			}
+		}
 		if (!flag && this.getSaddled() && !this.isVehicle() && !player.isSecondaryUseActive()) {
 			if (!this.level().isClientSide()) {
 				player.startRiding(this);

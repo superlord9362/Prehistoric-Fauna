@@ -1,0 +1,41 @@
+Found In: Yixian
+
+Drops: 0-2 Feathers, 1-2 Small 
+Raw Theropod
+
+Diet: Carnivore
+
+Breeding Item: Small Raw Theropod
+
+Max Health: 8
+
+Max Hunger: 20
+
+Temperaments: Dilong has an 85% 
+chance of being opportunist, and 
+a 15% chance of being protective.
+
+Sleep Cycle: Crepuscular 
+
+<image><drawings_ankylosaurus.png 31 3 54 46 20 17 7>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Dilong has powerful 
+jaws, which can easily crush bone. 
+If they trust the player, they can 
+break bones into bonemeal, giving 
+more bonemeal than regular 
+crafting can occasionally.

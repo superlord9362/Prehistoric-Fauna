@@ -26,7 +26,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.border.WorldBorder;
 import net.minecraft.world.level.dimension.DimensionType;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.portal.PortalInfo;
 import net.minecraft.world.level.portal.PortalShape;
 import net.minecraft.world.phys.Vec3;
@@ -49,74 +48,74 @@ public class CretaceousTeleporter implements ITeleporter {
 
 	public Optional<BlockUtil.FoundRectangle> getExistingPortal(BlockPos pos) {
 		PoiManager poimanager = this.world.getPoiManager();
-		int i = 64; //TODO: correct?
-		poimanager.ensureLoadedAndValid(this.world, pos, i);
-		Optional<PoiRecord> optional = poimanager.getInSquare(type ->
-		type.is(PFDimensions.CRETACEOUS_PORTAL.getKey()), pos, i, PoiManager.Occupancy.ANY)
-				.sorted(Comparator.comparingDouble((ToDoubleFunction<PoiRecord>) poi ->
-				poi.getPos().distSqr(pos))
-						.thenComparingInt(poi ->
-						poi.getPos().getY()))
-				.filter(poi ->
-				CretaceousTeleporter.this.world.getBlockState(poi.getPos()).hasProperty(BlockStateProperties.HORIZONTAL_AXIS))
-				.findFirst();
-		return optional.map((poi) -> {
-			BlockPos blockpos = poi.getPos();
-			this.world.getChunkSource().addRegionTicket(TicketType.PORTAL, new ChunkPos(blockpos), 3, blockpos);
-			BlockState blockstate = this.world.getBlockState(blockpos);
-			return BlockUtil.getLargestRectangleAround(blockpos, blockstate.getValue(BlockStateProperties.HORIZONTAL_AXIS), 21, Direction.Axis.Y, 21, (posIn) -> this.world.getBlockState(posIn) == blockstate);
-		});
+        int i = 16; //TODO: correct?
+        poimanager.ensureLoadedAndValid(this.world, pos, i);
+        Optional<PoiRecord> optional = poimanager.getInSquare(type ->
+                type.is(PFDimensions.CRETACEOUS_PORTAL.getKey()), pos, i, PoiManager.Occupancy.ANY)
+                .sorted(Comparator.comparingDouble((ToDoubleFunction<PoiRecord>) poi ->
+                        poi.getPos().distSqr(pos))
+                        .thenComparingInt(poi ->
+                                poi.getPos().getY()))
+                .filter(poi ->
+                CretaceousTeleporter.this.world.getBlockState(poi.getPos()).hasProperty(BlockStateProperties.HORIZONTAL_AXIS))
+                .findFirst();
+        return optional.map((poi) -> {
+            BlockPos blockpos = poi.getPos();
+            this.world.getChunkSource().addRegionTicket(TicketType.PORTAL, new ChunkPos(blockpos), 3, blockpos);
+            BlockState blockstate = this.world.getBlockState(blockpos);
+            return BlockUtil.getLargestRectangleAround(blockpos, blockstate.getValue(BlockStateProperties.HORIZONTAL_AXIS), 21, Direction.Axis.Y, 21, (posIn) -> this.world.getBlockState(posIn) == blockstate);
+        });
 	}
 
 	public Optional<BlockUtil.FoundRectangle> makePortal(BlockPos pos, Direction.Axis axis) {
 		Direction direction = Direction.get(Direction.AxisDirection.POSITIVE, axis);
-		double d0 = -1.0D;
-		BlockPos blockpos = null;
-		double d1 = -1.0D;
-		BlockPos blockpos1 = null;
-		WorldBorder border = this.world.getWorldBorder();
-		int height = this.world.getHeight() - 1;
-		BlockPos.MutableBlockPos mutable = pos.mutable();
+        double d0 = -1.0D;
+        BlockPos blockpos = null;
+        double d1 = -1.0D;
+        BlockPos blockpos1 = null;
+        WorldBorder border = this.world.getWorldBorder();
+        int height = Math.min(this.world.getMaxBuildHeight(), this.world.getMinBuildHeight() + this.world.getLogicalHeight()) - 1;
+        BlockPos.MutableBlockPos mutable = pos.mutable();
 
-		for (BlockPos.MutableBlockPos mut : BlockPos.spiralAround(pos, 16, Direction.EAST, Direction.SOUTH)) {
-			int j = Math.min(height, this.world.getHeight(Heightmap.Types.MOTION_BLOCKING, mut.getX(), mut.getZ()));
-			if (border.isWithinBounds(mut) && border.isWithinBounds(mut.move(direction, 1))) {
-				mut.move(direction.getOpposite(), 1);
+        for (BlockPos.MutableBlockPos mut : BlockPos.spiralAround(pos, 16, Direction.EAST, Direction.SOUTH)) {
+            if (border.isWithinBounds(mut) && border.isWithinBounds(mut.move(direction, 1))) {
+                mut.move(direction.getOpposite(), 1);
 
-				for(int l = j; l >= 0; --l) {
-					mut.setY(l);
-					if (this.world.isEmptyBlock(mut)) {
-						int i1;
-						for(i1 = l; l > 0 && this.world.isEmptyBlock(mut.move(Direction.DOWN)); --l) {
-						}
+                for(int l = height; l >= this.world.getMinBuildHeight(); --l) {
+                    mut.setY(l);
+                    if (this.canReplaceBlock(mut)) {
+                        int i1 = l;
+                        while (l > this.world.getMinBuildHeight() && this.canReplaceBlock(mut.move(Direction.DOWN))) {
+                            --l;
+                        }
 
-						if (l + 4 <= height) {
-							int j1 = i1 - l;
-							if (j1 <= 0 || j1 >= 3) {
-								mut.setY(l);
-								if (this.checkRegionForPlacement(mut, mutable, direction, 0)) {
-									double d2 = pos.distSqr(mut);
-									if (this.checkRegionForPlacement(mut, mutable, direction, -1) && this.checkRegionForPlacement(mut, mutable, direction, 1) && (d0 == -1.0D || d0 > d2)) {
-										d0 = d2;
-										blockpos = mut.immutable();
-									}
+                        if (l + 4 <= height) {
+                            int j1 = i1 - l;
+                            if (j1 <= 0 || j1 >= 3) {
+                                mut.setY(l);
+                                if (this.checkRegionForPlacement(mut, mutable, direction, 0)) {
+                                    double d2 = pos.distSqr(mut);
+                                    if (this.checkRegionForPlacement(mut, mutable, direction, -1) && this.checkRegionForPlacement(mut, mutable, direction, 1) && (d0 == -1.0D || d0 > d2)) {
+                                        d0 = d2;
+                                        blockpos = mut.immutable();
+                                    }
 
-									if (d0 == -1.0D && (d1 == -1.0D || d1 > d2)) {
-										d1 = d2;
-										blockpos1 = mut.immutable();
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
+                                    if (d0 == -1.0D && (d1 == -1.0D || d1 > d2)) {
+                                        d1 = d2;
+                                        blockpos1 = mut.immutable();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
-		if (d0 == -1.0D && d1 != -1.0D) {
-			blockpos = blockpos1;
-			d0 = d1;
-		}
+        if (d0 == -1.0D && d1 != -1.0D) {
+            blockpos = blockpos1;
+            d0 = d1;
+        }
 
 		//Place the frame blocks
 		if (d0 == -1.0D) {
@@ -157,6 +156,11 @@ public class CretaceousTeleporter implements ITeleporter {
 
 		return Optional.of(new BlockUtil.FoundRectangle(blockpos.immutable(), 2, 3));
 	}
+	
+	private boolean canReplaceBlock(BlockPos.MutableBlockPos mutable) {
+        BlockState state = this.world.getBlockState(mutable);
+        return state.canBeReplaced() && state.getFluidState().isEmpty();
+    }
 
 	@SuppressWarnings("deprecation")
 	private boolean checkRegionForPlacement(BlockPos originalPos, BlockPos.MutableBlockPos offsetPos, Direction directionIn, int offsetScale) {

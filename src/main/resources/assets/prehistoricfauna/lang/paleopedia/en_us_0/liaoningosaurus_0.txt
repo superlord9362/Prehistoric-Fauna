@@ -1,0 +1,38 @@
+Found In: Yixian
+
+Drops: 0-2 Osteoderms, 2-4 Small 
+Raw Thyreophoran
+
+Diet: Herbivore 
+
+Breeding Item: Ephedra
+
+Max Health: 20
+
+Max Hunger: 50
+
+Temperaments: Liaoningosaurus 
+has an 85% chance of being 
+protective, and a 15% chance of 
+being passive.
+
+Sleep Cycle: Diurnal
+
+<image><drawings_ankylosaurus.png 31 4 53 131 21 16 7>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Liaoningosaurus can dig 
+through ash, pulling buried items 
+out.

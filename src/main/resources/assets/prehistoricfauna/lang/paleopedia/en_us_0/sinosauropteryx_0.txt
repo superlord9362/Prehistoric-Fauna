@@ -1,0 +1,40 @@
+Found In: Yixian
+
+Drops: 0-2 Feathers, 1-3 Small 
+Raw Theropod
+
+Diet: Carnivore
+
+Breeding Item: Ephedra Berries
+
+Max Health: 4
+
+Max Hunger: 10
+
+Temperaments: Sinosauropteryx 
+has an 80% chance of being 
+skittish, a 15% chance of being 
+passive, and a 5% chance of being 
+opportunist.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sleep Cycle: Crepuscular
+
+Behavior: Sinosauropteryx can be 
+tamed by feeding it Ephedra. 
+Tamed Sinosauropteryx will give 
+gifts to their owners occasionally 
+in the morning.

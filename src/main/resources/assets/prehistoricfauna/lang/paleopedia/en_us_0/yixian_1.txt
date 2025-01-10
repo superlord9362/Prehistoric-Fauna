@@ -1,0 +1,17 @@
+-Land Plants:
+--Cladophlebis
+--Coniopteris
+--Ephedra
+--Horsetails
+--Leefructus
+--Nothodichocarpum
+--Ruffordia
+
+-Trees:
+--Araucaria
+--Brachyphyllum
+--Czekanowskia
+--Ginkgo
+--Podozamites
+--Schizolepidopsis
+--Taxus

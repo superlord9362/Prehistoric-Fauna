@@ -1,0 +1,41 @@
+Found In: Hell Creek
+
+Drops: 1-3 Small Raw
+Reptile
+
+Diet: Carnivore
+
+Breeding Item: Small Raw 
+Ornithischian
+
+Max Health: 15
+
+Max Hunger: 38
+
+Temperaments: Palaeosaniwa has 
+an 80% chance of being 
+opportunist, a 15% chance of being 
+territorial, and a 5% chance of 
+being skittish.
+
+<image><drawings_ankylosaurus.png 37 3 27 191 23 19 6>
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sleep Cycle: Crepuscular
+
+Behavior: Palaeosaniwa targets 
+unhealthy and young animals, 
+attacking them with a venomous 
+bite. This bite can be cured by 
+drinking Horsetail Tea.

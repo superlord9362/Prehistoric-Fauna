@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -29,6 +30,7 @@ import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowParentGoal;
 import net.minecraft.world.entity.player.Player;
@@ -60,10 +62,13 @@ import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.ProtectBabyGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
+import superlord.prehistoricfauna.common.items.PaleopediaItem;
+import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
+import superlord.prehistoricfauna.init.PFTags;
 
 public class Plesiohadros extends HerdDinosaurEntity {
 	private static final EntityDataAccessor<Boolean> DEOXIDATED = SynchedEntityData.defineId(Plesiohadros.class, EntityDataSerializers.BOOLEAN);
@@ -130,6 +135,9 @@ public class Plesiohadros extends HerdDinosaurEntity {
 		this.goalSelector.addGoal(0, new HerbivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
+		this.goalSelector.addGoal(8, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
+			return p_213487_0_.getType().is(PFTags.PLESIOHADROS_AVOIDING);
+		}));
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -196,7 +204,7 @@ public class Plesiohadros extends HerdDinosaurEntity {
 			--this.warningSoundTicks;
 		}
 	}
-	
+
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		int temperment = random.nextInt(100);
 		if (temperment < 85) {
@@ -208,7 +216,7 @@ public class Plesiohadros extends HerdDinosaurEntity {
 		this.setDiurnal(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
-	
+
 	@Override
 	public void setAge(int age) {
 		super.setAge(age);
@@ -243,6 +251,14 @@ public class Plesiohadros extends HerdDinosaurEntity {
 	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
 		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
 		Item item = itemstack.getItem();
+
+		if (item instanceof PaleopediaItem paleopedia) {
+			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.PLESIOHADROS.ordinal())) {
+				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.PLESIOHADROS.ordinal()), itemstack);
+				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.plesiohadros_added"), true);
+				return InteractionResult.SUCCESS;
+			}
+		}
 		if (!this.isTame()) {
 			if (item == PFBlocks.COBBANIA.get().asItem()) {
 				if (!p_230254_1_.getAbilities().instabuild) {
@@ -288,12 +304,12 @@ public class Plesiohadros extends HerdDinosaurEntity {
 		if (this.isAlive()) {
 			if (this.isVehicle() && this.canBeControlledByRider() && this.isSaddled()) {
 				LivingEntity livingentity = (LivingEntity)this.getControllingPassenger();
-	            this.setYRot(livingentity.getYRot());
-	            this.yRotO = this.getYRot();
-	            this.setXRot(livingentity.getXRot() * 0.5F);
-	            this.setRot(this.getYRot(), this.getXRot());
-	            this.yBodyRot = this.getYRot();
-	            this.yHeadRot = this.yBodyRot;
+				this.setYRot(livingentity.getYRot());
+				this.yRotO = this.getYRot();
+				this.setXRot(livingentity.getXRot() * 0.5F);
+				this.setRot(this.getYRot(), this.getXRot());
+				this.yBodyRot = this.getYRot();
+				this.yHeadRot = this.yBodyRot;
 				float f = livingentity.xxa * 0.5F;
 				float f1 = livingentity.zza;
 
@@ -317,17 +333,17 @@ public class Plesiohadros extends HerdDinosaurEntity {
 	@Nullable
 	public LivingEntity getControllingPassenger() {
 		Entity entity = this.getFirstPassenger();
-	      if (entity instanceof Mob) {
-	         return (Mob)entity;
-	      } else {
-	         if (this.isSaddled()) {
-	            entity = this.getFirstPassenger();
-	            if (entity instanceof Player) {
-	               return (Player)entity;
-	            }
-	         }
-	         return null;
-	      }
+		if (entity instanceof Mob) {
+			return (Mob)entity;
+		} else {
+			if (this.isSaddled()) {
+				entity = this.getFirstPassenger();
+				if (entity instanceof Player) {
+					return (Player)entity;
+				}
+			}
+			return null;
+		}
 	}
 
 	public boolean canBeControlledByRider() {
@@ -446,16 +462,16 @@ public class Plesiohadros extends HerdDinosaurEntity {
 			return (double)(8.0F + attackTarget.getBbWidth());
 		}
 	}
-	
+
 	@Override
 	public ItemStack getPickedResult(HitResult target) {
 		return new ItemStack(PFItems.PLESIOHADROS_SPAWN_EGG.get());
 	}
-	
+
 	public Item getEggItem() {
 		return PFItems.PLESIOHADROS_EGG.get();
 	}
-    
+
 	public BlockState getEggBlock(Level world, BlockPos pos) {
 		return PFBlocks.PLESIOHADROS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
 	}
