@@ -181,7 +181,7 @@ public class Thescelosaurus extends BurrowingDinosaur {
 			}
 			return InteractionResult.SUCCESS;
 		}
-		if (item instanceof PaleopediaItem paleopedia) {
+		if (item instanceof PaleopediaItem) {
 			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.THESCELOSAURUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.THESCELOSAURUS.ordinal()), itemstack);
 				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.thescelosaurus_added"), true);

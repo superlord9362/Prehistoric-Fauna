@@ -17,6 +17,7 @@ Temperaments: Triceratops has an
 and a 5% chance of being 
 aggressive.
 
+<image><drawings_ankylosaurus.png 36 4 26 234 24 18 6>
 
 
 

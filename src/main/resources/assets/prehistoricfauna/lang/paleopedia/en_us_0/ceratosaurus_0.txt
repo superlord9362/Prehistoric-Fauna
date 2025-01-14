@@ -18,6 +18,7 @@ protective.
 
 Sleep Cycle: Crepuscular
 
+<image><drawings_ankylosaurus.png 37 5 127 45 23 17 6>
 
 
 

@@ -119,7 +119,7 @@ public class Poposaurus extends DinosaurEntity {
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
-		if (item instanceof PaleopediaItem paleopedia) {
+		if (item instanceof PaleopediaItem) {
 			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.POPOSAURUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.POPOSAURUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.poposaurus_added"), true);

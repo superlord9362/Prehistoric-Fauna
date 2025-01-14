@@ -136,7 +136,7 @@ public class Citipati extends DinosaurEntity {
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
-		if (item instanceof PaleopediaItem paleopedia) {
+		if (item instanceof PaleopediaItem) {
 			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.CITIPATI.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.CITIPATI.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.citipati_added"), true);

@@ -1,15 +1,25 @@
 package superlord.prehistoricfauna.common.entity.henos;
 
+import java.util.function.Predicate;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
@@ -25,12 +35,47 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.init.PFItems;
+import superlord.prehistoricfauna.init.PFTags;
 
 public class LandSentinel extends Monster {
+	private static final EntityDataAccessor<Integer> DIMENSION = SynchedEntityData.defineId(LandSentinel.class, EntityDataSerializers.INT);
+
+	public static final Predicate<LivingEntity> NON_TRIASSIC = (p_289448_) -> {
+		return !p_289448_.getType().is(PFTags.TRIASSIC_ENTITIES);
+	};
+	public static final Predicate<LivingEntity> NON_JURASSIC = (p_289448_) -> {
+		return !p_289448_.getType().is(PFTags.JURASSIC_ENTITIES);
+	};
+	public static final Predicate<LivingEntity> NON_CRETACEOUS = (p_289448_) -> {
+		return !p_289448_.getType().is(PFTags.CRETACEOUS_ENTITIES);
+	};
 
 	public LandSentinel(EntityType<? extends Monster> type, Level world) {
 		super(type, world);
 		this.setMaxUpStep(1);
+	}
+	
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(DIMENSION, 0);
+	}
+	
+	public void addAdditionalSaveData(CompoundTag compound) {
+		super.addAdditionalSaveData(compound);
+		compound.putInt("Dimension", this.getDimensionInt());
+	}
+	
+	public void readAdditionalSaveData(CompoundTag compound) {
+		super.readAdditionalSaveData(compound);
+		this.setDimensionInt(compound.getInt("Dimension"));
+	}
+	
+	public int getDimensionInt() {
+		return this.entityData.get(DIMENSION);
+	}
+	
+	private void setDimensionInt(int dimensionInt) {
+		this.entityData.set(DIMENSION, dimensionInt);
 	}
 	
 	public boolean hurt(DamageSource source, float amount) {
@@ -47,7 +92,17 @@ public class LandSentinel extends Monster {
 		this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new MeleeAttackGoal());
 	}
-
+	
+	@SuppressWarnings("deprecation")
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+		if (worldIn.getBiome(this.getOnPos()).is(PFTags.IS_CRETACEOUS)) {
+			this.setDimensionInt(0);
+		} else if (worldIn.getBiome(this.getOnPos()).is(PFTags.IS_JURASSIC)) {
+			this.setDimensionInt(1);
+		} else this.setDimensionInt(2);
+		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+	}
+	
 	public boolean canBreatheUnderwater() {
 		return true;
 	}
@@ -73,11 +128,11 @@ public class LandSentinel extends Monster {
 			return false;
 		}
 	}
-	
+
 	protected void playStepSound(BlockPos pos, BlockState blockIn) {
 		this.playSound(SoundEvents.STONE_STEP, 0.15F, 1.0F);
 	}
-	
+
 	class MeleeAttackGoal extends net.minecraft.world.entity.ai.goal.MeleeAttackGoal {
 		public MeleeAttackGoal() {
 			super(LandSentinel.this, 1.25D, true);
@@ -102,7 +157,7 @@ public class LandSentinel extends Monster {
 			return (double)(6F + attackTarget.getBbWidth());
 		}
 	}
-	
+
 	@Override
 	public ItemStack getPickedResult(HitResult target) {
 		return new ItemStack(PFItems.LAND_SENTINEL_SPAWN_EGG.get());

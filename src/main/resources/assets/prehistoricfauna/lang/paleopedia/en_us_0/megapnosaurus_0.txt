@@ -18,6 +18,7 @@ opportunist, a 15% chance of being
 skittish, and a 5% chance of being 
 protective.
 
+<image><drawings_ankylosaurus.png 40 4 101 68 24 15 5.5>
 
 
 

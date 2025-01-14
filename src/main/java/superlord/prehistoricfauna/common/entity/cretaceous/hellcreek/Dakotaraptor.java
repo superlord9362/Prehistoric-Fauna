@@ -179,7 +179,7 @@ public class Dakotaraptor extends DinosaurEntity {
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
-		if (item instanceof PaleopediaItem paleopedia) {
+		if (item instanceof PaleopediaItem) {
 			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.DAKOTARAPTOR.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.DAKOTARAPTOR.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.dakotaraptor_added"), true);
@@ -451,7 +451,7 @@ public class Dakotaraptor extends DinosaurEntity {
 				this.setSitting(false);
 			}
 
-			if (this.isStuck() && this.level().random.nextFloat() < 0.2F) {
+			if (this.isStuck() && this.getRandom().nextFloat() < 0.2F) {
 				BlockPos blockpos = new BlockPos(this.blockPosition());
 				BlockState blockstate = this.level().getBlockState(blockpos);
 				this.level().levelEvent(2001, blockpos, Block.getId(blockstate));

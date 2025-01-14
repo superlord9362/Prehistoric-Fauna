@@ -18,6 +18,7 @@ territorial.
 
 Sleep Cycle: Cathemeral
 
+<image><drawings_ankylosaurus.png 33 5 202 26 22 14 6.5>
 
 
 

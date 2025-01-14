@@ -15,7 +15,6 @@ public class CrepuscularSleepGoal extends Goal {
 		this.entity = sleeper;
 	}
 
-	@SuppressWarnings("resource")
 	@Override
 	public boolean canUse() {
 		Level level = entity.level();
@@ -25,7 +24,6 @@ public class CrepuscularSleepGoal extends Goal {
 		return PrehistoricFaunaConfig.sleeping = true && (level.getDayTime() % 24000 >= 2000 && level.getDayTime() % 24000 <= 9000 || level.getDayTime() % 24000 >= 14000 && level.getDayTime() % 24000 <= 21000) && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isTame() && !entity.isInWater() && !entity.isInLava() && !PrehistoricFaunaConfig.unscheduledSleeping && entity.warryTicks == 0;
 	}
 
-	@SuppressWarnings("resource")
 	@Override
 	public boolean canContinueToUse() {
 		Level level = entity.level();

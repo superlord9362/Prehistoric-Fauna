@@ -18,6 +18,7 @@ a 15% chance of being territorial,
 and a 5% chance of being 
 aggressive.
 
+<image><drawings_ankylosaurus.png 52 5 27 253 23 20 4.5>
 
 
 

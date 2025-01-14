@@ -210,7 +210,7 @@ public class Saurosuchus extends DinosaurEntity {
 			}
 		}
 		Item item = itemstack.getItem();
-		if (item instanceof PaleopediaItem paleopedia) {
+		if (item instanceof PaleopediaItem) {
 			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.SAUROSUCHUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.SAUROSUCHUS.ordinal()), itemstack);
 				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.saurosuchus_added"), true);

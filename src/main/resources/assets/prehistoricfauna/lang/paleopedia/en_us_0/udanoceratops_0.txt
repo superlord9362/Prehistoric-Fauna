@@ -18,6 +18,7 @@ aggressive.
 
 Sleep Cycle: Cathemeral
 
+<image><drawings_ankylosaurus.png 36 4 2 234 23 18 6>
 
 
 

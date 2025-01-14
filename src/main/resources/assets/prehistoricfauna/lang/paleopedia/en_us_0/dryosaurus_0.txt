@@ -16,6 +16,7 @@ Temperaments: Dryosaurus has an
 
 Sleep Cycle: Diurnal 
 
+<image><drawings_ankylosaurus.png 34 6 127 69 22 14 6.5>
 
 
 

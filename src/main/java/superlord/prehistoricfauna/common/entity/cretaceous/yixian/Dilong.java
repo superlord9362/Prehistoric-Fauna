@@ -185,7 +185,7 @@ public class Dilong extends DinosaurEntity {
 			}
 			return InteractionResult.SUCCESS;
 		}
-		if (item instanceof PaleopediaItem paleopedia) {
+		if (item instanceof PaleopediaItem) {
 			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.DILONG.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.DILONG.ordinal()), itemstack);
 				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.dilong_added"), true);

@@ -19,7 +19,6 @@ public class ProtectBabyGoal extends NearestAttackableTargetGoal<LivingEntity> {
 	 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
 	 * method as well.
 	 */
-	@SuppressWarnings("resource")
 	public boolean canUse() {
 		if (dinosaur.isBaby() || dinosaur.isTame()) {
 			return false;

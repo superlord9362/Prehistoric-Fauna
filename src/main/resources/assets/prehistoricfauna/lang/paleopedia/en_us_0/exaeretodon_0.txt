@@ -17,6 +17,7 @@ and a 5% chance of being skittish.
 
 Sleep Cycle: Nocturnal
 
+<image><drawings_ankylosaurus.png 33 9 227 31 22 8 6.5>
 
 
 

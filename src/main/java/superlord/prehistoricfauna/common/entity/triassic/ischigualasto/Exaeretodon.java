@@ -185,7 +185,7 @@ public class Exaeretodon extends DinosaurEntity {
 				this.setDiggingForRoots(true);
 				return InteractionResult.SUCCESS;
 			}
-			if (item instanceof PaleopediaItem paleopedia) {
+			if (item instanceof PaleopediaItem) {
 				if (!stack.getTag().contains("Pages", EnumPaleoPages.EXAERETODON.ordinal())) {
 					EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.EXAERETODON.ordinal()), stack);
 					player.displayClientMessage(Component.translatable("paleopedia.exaeretodon_added"), true);

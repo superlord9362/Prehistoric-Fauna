@@ -19,6 +19,7 @@ and a 5% chance of being
 opportunist.
 
 
+<image><drawings_ankylosaurus.png 42 3 53 253 22 20 5.5>
 
 
 

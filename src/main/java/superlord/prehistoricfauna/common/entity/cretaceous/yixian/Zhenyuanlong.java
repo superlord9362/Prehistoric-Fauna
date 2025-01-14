@@ -131,7 +131,7 @@ public class Zhenyuanlong extends DinosaurEntity {
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
-		if (item instanceof PaleopediaItem paleopedia) {
+		if (item instanceof PaleopediaItem) {
 			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.ZHENYUANLONG.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.ZHENYUANLONG.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.zhenyuanlong_added"), true);
@@ -322,7 +322,6 @@ public class Zhenyuanlong extends DinosaurEntity {
 			this.setFlags(EnumSet.of(Goal.Flag.TARGET));
 		}
 
-		@SuppressWarnings("resource")
 		public boolean canUse() {
 			for (Player player : Zhenyuanlong.this.level().getEntitiesOfClass(Player.class, Zhenyuanlong.this.getBoundingBox().inflate(4, 4, 4))) {
 				return Zhenyuanlong.this.trusts(player.getUUID()) && player.getLastAttacker() != null;

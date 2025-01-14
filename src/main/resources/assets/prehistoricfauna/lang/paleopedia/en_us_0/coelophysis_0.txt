@@ -18,6 +18,7 @@ Temperaments: Coelophysis has an
 and a 5% chance of being skittish.
 
 
+<image><drawings_ankylosaurus.png 33 5 201 5 23 15 6.5>
 
 
 

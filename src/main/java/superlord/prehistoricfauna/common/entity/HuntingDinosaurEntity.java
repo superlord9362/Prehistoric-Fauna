@@ -69,7 +69,7 @@ public class HuntingDinosaurEntity extends DinosaurEntity {
 	 */
 	public void tick() {
 		super.tick();
-		if (this.hasFollowers() && this.level().random.nextInt(200) == 1) {
+		if (this.hasFollowers() && this.getRandom().nextInt(200) == 1) {
 			List<? extends HuntingDinosaurEntity> list = this.level().getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D));
 			if (list.size() <= 1) {
 				this.groupSize = 1;

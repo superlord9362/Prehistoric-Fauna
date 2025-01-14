@@ -18,6 +18,7 @@ passive.
 Sleep Cycle: Cathemeral
 
 
+<image><drawings_ankylosaurus.png 33 5 226 4 23 16 6.5>
 
 
 

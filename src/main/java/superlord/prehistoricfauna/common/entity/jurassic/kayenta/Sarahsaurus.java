@@ -108,7 +108,7 @@ public class Sarahsaurus extends DinosaurEntity {
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
-		if (item instanceof PaleopediaItem paleopedia) {
+		if (item instanceof PaleopediaItem) {
 			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.SARAHSAURUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.SARAHSAURUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.sarahsaurus_added"), true);
@@ -236,7 +236,6 @@ public class Sarahsaurus extends DinosaurEntity {
 			super(Sarahsaurus.this, Player.class, 20, true, true, (Predicate<LivingEntity>)null);
 		}
 
-		@SuppressWarnings("resource")
 		public boolean canUse() {
 			if (Sarahsaurus.this.isBaby()) {
 				return false;

@@ -135,7 +135,7 @@ public class Eilenodon extends BurrowingDinosaur {
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
-		if (item instanceof PaleopediaItem paleopedia) {
+		if (item instanceof PaleopediaItem) {
 			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.EILENODON.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.EILENODON.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.eilenodon_added"), true);

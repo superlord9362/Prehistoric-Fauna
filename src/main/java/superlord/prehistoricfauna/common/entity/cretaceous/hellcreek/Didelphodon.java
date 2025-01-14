@@ -120,14 +120,14 @@ public class Didelphodon extends BurrowingDinosaur {
 	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
 		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
 		Item item = itemstack.getItem();
-			if (item instanceof PaleopediaItem paleopedia) {
+			if (item instanceof PaleopediaItem) {
 				if (!itemstack.getTag().contains("Pages", EnumPaleoPages.DIDELPHODON.ordinal())) {
 					EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.DIDELPHODON.ordinal()), itemstack);
 					p_230254_1_.displayClientMessage(Component.translatable("paleopedia.didelphodon_added"), true);
 					return InteractionResult.SUCCESS;
 				}
 			}
-			if (this.level().isClientSide) {
+			if (this.level().isClientSide()) {
 			boolean flag = this.isOwnedBy(p_230254_1_) || this.isTame() || item == Items.BONE && !this.isTame();
 			return flag ? InteractionResult.CONSUME : InteractionResult.PASS;
 		} else {

@@ -99,7 +99,7 @@ public class Kol extends BurrowingDinosaur {
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
-		if (item instanceof PaleopediaItem paleopedia) {
+		if (item instanceof PaleopediaItem) {
 			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.KOL.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.KOL.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.kol_added"), true);

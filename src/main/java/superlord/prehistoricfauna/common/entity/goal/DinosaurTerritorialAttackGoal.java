@@ -16,7 +16,6 @@ public class DinosaurTerritorialAttackGoal extends NearestAttackableTargetGoal<P
 	 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
 	 * method as well.
 	 */
-	@SuppressWarnings("resource")
 	public boolean canUse() {
 		if (dinosaur.isBaby()) {
 			return false;

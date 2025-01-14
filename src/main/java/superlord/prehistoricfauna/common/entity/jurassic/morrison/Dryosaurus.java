@@ -145,7 +145,7 @@ public class Dryosaurus extends DinosaurEntity {
 			}
 			return InteractionResult.SUCCESS;
 		}
-		if (item instanceof PaleopediaItem paleopedia) {
+		if (item instanceof PaleopediaItem) {
 			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.DRYOSAURUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.DRYOSAURUS.ordinal()), itemstack);
 				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.dryosaurus_added"), true);

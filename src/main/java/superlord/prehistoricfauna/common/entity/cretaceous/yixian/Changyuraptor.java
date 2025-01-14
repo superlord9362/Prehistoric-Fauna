@@ -341,7 +341,7 @@ public class Changyuraptor extends DinosaurEntity {
 			itemstack.shrink(1);
 		}
 		Item item = itemstack.getItem();
-		if (item instanceof PaleopediaItem paleopedia) {
+		if (item instanceof PaleopediaItem) {
 			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.CHANGYURAPTOR.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.CHANGYURAPTOR.ordinal()), itemstack);
 				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.changyuraptor_added"), true);

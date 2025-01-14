@@ -223,7 +223,7 @@ public class Ischigualastia extends DinosaurEntity implements ItemSteerable {
 		ItemStack itemstack = player.getItemInHand(hand);
 		boolean flag = this.isFood(player.getItemInHand(hand));
 		Item item = itemstack.getItem();
-		if (item instanceof PaleopediaItem paleopedia) {
+		if (item instanceof PaleopediaItem) {
 			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.ISCHIGUALASTIA.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.ISCHIGUALASTIA.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.ischigualastia_added"), true);

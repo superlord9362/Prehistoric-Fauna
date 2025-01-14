@@ -287,7 +287,7 @@ public class BurrowingDinosaur extends DinosaurEntity {
 	@VisibleForDebug
 	public class GoToBurrowGoal extends BurrowingDinosaur.BaseBurrowerGoal {
 		public static final int MAX_TRAVELLING_TICKS = 600;
-		int travellingTicks = BurrowingDinosaur.this.level().random.nextInt(10);
+		int travellingTicks = BurrowingDinosaur.this.getRandom().nextInt(10);
 		private static final int MAX_BLACKLISTED_TARGETS = 3;
 		final List<BlockPos> blacklistedTargets = Lists.newArrayList();
 		@Nullable

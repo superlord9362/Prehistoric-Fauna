@@ -173,14 +173,14 @@ public class Sinosauropteryx extends DinosaurEntity {
 	public InteractionResult mobInteract(Player player, InteractionHand p_230254_2_) {
 		ItemStack itemstack = player.getItemInHand(p_230254_2_);
 		Item item = itemstack.getItem();
-		if (item instanceof PaleopediaItem paleopedia) {
+		if (item instanceof PaleopediaItem) {
 			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.SINOSAUROPTERYX.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.SINOSAUROPTERYX.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.sinosauropteryx_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}
-		if (this.level().isClientSide) {
+		if (this.level().isClientSide()) {
 			boolean flag = this.isOwnedBy(player) || this.isTame() || this.isFood(itemstack) && !this.isTame();
 			return flag ? InteractionResult.CONSUME : InteractionResult.PASS;
 		} else {
