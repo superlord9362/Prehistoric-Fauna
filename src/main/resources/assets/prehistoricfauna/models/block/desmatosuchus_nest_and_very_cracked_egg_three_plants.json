@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/desmatosuchus_nest_and_egg_three_plants",
-	"textures": {
-		"egg": "prehistoricfauna:block/desmatosuchus_egg_very_cracked"
-	}
-}

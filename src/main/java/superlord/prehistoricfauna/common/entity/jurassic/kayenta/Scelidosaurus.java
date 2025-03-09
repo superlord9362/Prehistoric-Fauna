@@ -40,7 +40,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.CathemeralSleepGoal;
@@ -66,15 +66,18 @@ import superlord.prehistoricfauna.init.PFTags;
 
 public class Scelidosaurus extends DinosaurEntity {
 	private static final EntityDataAccessor<Boolean> BIPEDAL = SynchedEntityData.defineId(Scelidosaurus.class, EntityDataSerializers.BOOLEAN);
+	public static final EntityDataAccessor<Integer> BIPEDAL_TICK = SynchedEntityData.defineId(Scelidosaurus.class, EntityDataSerializers.INT);
 	private int maxHunger = 38;
 	private int warningSoundTicks;
+	private float bipedalProgress = 0.0F;
+	private float prevBipedalProgress = 0.0F;
 
 	public Scelidosaurus(EntityType<? extends Scelidosaurus> type, Level worldIn) {
 		super(type, worldIn);
 		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
-	
+
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
 		if (this.isBaby()) return 0.4F;
 		else return 0.8F;
@@ -89,13 +92,14 @@ public class Scelidosaurus extends DinosaurEntity {
 	}
 
 	private void setBipedal(boolean isBipedal) {
+		this.entityData.set(BIPEDAL_TICK, 15);
 		this.entityData.set(BIPEDAL, isBipedal);
-		this.setFallingAsleep();
 	}
 
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(BIPEDAL, false);
+		this.entityData.define(BIPEDAL_TICK, 0);
 	}
 
 	public void addAdditionalSaveData(CompoundTag compound) {
@@ -124,7 +128,7 @@ public class Scelidosaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
-		this.goalSelector.addGoal(8, new BipedalAvoidEntityGoal(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
+		this.goalSelector.addGoal(8, new BipedalAvoidEntityGoal(this, this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
 			return p_213487_0_.getType().is(PFTags.SCELIDOSAURUS_AVOIDING);
 		}));
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
@@ -132,7 +136,7 @@ public class Scelidosaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new HerbivoreEatGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(0, new HerbivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 	}
-	
+
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
@@ -145,7 +149,7 @@ public class Scelidosaurus extends DinosaurEntity {
 		}
 		return super.mobInteract(player, hand);
 	}
-	
+
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		int temperment = random.nextInt(100);
 		if (temperment < 80) {
@@ -183,6 +187,21 @@ public class Scelidosaurus extends DinosaurEntity {
 		if (this.warningSoundTicks > 0) {
 			--this.warningSoundTicks;
 		}
+		prevBipedalProgress = bipedalProgress;
+		if (this.entityData.get(BIPEDAL_TICK) > 0) {
+			this.entityData.set(BIPEDAL_TICK, this.entityData.get(BIPEDAL_TICK) - 1);
+			if (bipedalProgress < 1.0F) {
+				bipedalProgress = Math.min(bipedalProgress + 0.1F, 1.0F);
+			}
+		} else {
+			if (bipedalProgress > 0F) {
+				bipedalProgress = Math.max(bipedalProgress - 0.2F, 0.0F);
+			}
+		}
+	}
+	
+	public float getBipedalProgress(float partialTick) {
+		return prevBipedalProgress + (bipedalProgress - prevBipedalProgress) * partialTick;
 	}
 
 	public boolean onAttackAnimationFinish(Entity entityIn) {
@@ -206,7 +225,7 @@ public class Scelidosaurus extends DinosaurEntity {
 	public void handleEntityEvent(byte id) {
 		super.handleEntityEvent(id);
 	}
-	
+
 	@Override
 	public void setAge(int age) {
 		super.setAge(age);
@@ -263,35 +282,44 @@ public class Scelidosaurus extends DinosaurEntity {
 
 	@SuppressWarnings("rawtypes")
 	class BipedalAvoidEntityGoal extends AvoidEntityGoal {
+		Scelidosaurus scelidosaurus;
 
 		@SuppressWarnings("unchecked")
-		public BipedalAvoidEntityGoal(PathfinderMob entityIn, Class classToAvoidIn, float avoidDistanceIn, double farSpeedIn, double nearSpeedIn, Predicate<LivingEntity> predicate) {
+		public BipedalAvoidEntityGoal(Scelidosaurus scelidosaurus, PathfinderMob entityIn, Class classToAvoidIn, float avoidDistanceIn, double farSpeedIn, double nearSpeedIn, Predicate<LivingEntity> predicate) {
 			super(entityIn, classToAvoidIn, avoidDistanceIn, farSpeedIn, nearSpeedIn, predicate);
+			this.scelidosaurus = scelidosaurus;
 		}
 
+		public void start() {
+			super.start();
+			scelidosaurus.setBipedal(true);
+		}
+		
 		public void tick() {
 			super.tick();
-			Scelidosaurus.this.setBipedal(true);
+			if (!scelidosaurus.isBipedal()) {
+				scelidosaurus.setBipedal(true);
+			}
 		}
 
 		public void stop() {
-			Scelidosaurus.this.setBipedal(false);
+			scelidosaurus.setBipedal(false);
 			super.stop();
 		}
 
 	}
-	
+
 	@Override
 	public ItemStack getPickedResult(HitResult target) {
 		return new ItemStack(PFItems.SCELIDOSAURUS_SPAWN_EGG.get());
 	}
-	
+
 	public Item getEggItem() {
 		return PFItems.SCELIDOSAURUS_EGG.get();
 	}
-    
+
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.SCELIDOSAURUS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+		return PFBlocks.SCELIDOSAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 
 }

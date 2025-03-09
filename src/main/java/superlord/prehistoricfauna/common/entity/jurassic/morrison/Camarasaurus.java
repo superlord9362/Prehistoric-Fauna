@@ -49,7 +49,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.AgedHerdDinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.AgedFollowHerdLeaderGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
@@ -84,6 +84,11 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
 	}
+	
+	@Override
+	public double moveToRange() {
+		return 20;
+	}
 
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
 		if (this.isBaby() && !this.isJuvenile()) {
@@ -98,7 +103,7 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 		return this.entityData.get(IS_HATCHLING);
 	}
 	
-	private void setHatchling(boolean isHatchling) {
+	public void setHatchling(boolean isHatchling) {
 		this.entityData.set(IS_HATCHLING, isHatchling);
 	}
 	
@@ -106,7 +111,7 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 		return this.entityData.get(IS_JUVENILE);
 	}
 
-	private void setJuvenile(boolean isJuvenile) {
+	public void setJuvenile(boolean isJuvenile) {
 		this.entityData.set(IS_JUVENILE, isJuvenile);
 	}
 
@@ -478,7 +483,7 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 	}
     
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.CAMARASAURUS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+		return PFBlocks.CAMARASAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 
 }

@@ -7,6 +7,9 @@ import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
@@ -31,10 +34,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.HerdDinosaurEntity;
-import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Ruixinia;
 import superlord.prehistoricfauna.common.entity.goal.AggressiveTempermentAttackGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
@@ -61,13 +63,27 @@ import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
 public class Edmontosaurus extends HerdDinosaurEntity {
-	private int warningSoundTicks = 200;
+	private static final EntityDataAccessor<Boolean> IS_JUVENILE = SynchedEntityData.defineId(Edmontosaurus.class, EntityDataSerializers.BOOLEAN);
+private int warningSoundTicks = 200;
 	public int maxHunger = 250;
 
 	public Edmontosaurus(EntityType<? extends Edmontosaurus> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
 		this.setMaxUpStep(1);
 		super.maxHunger = this.maxHunger;
+	}
+	
+	@Override
+	public double moveToRange() {
+		return 15;
+	}
+	
+	public boolean isJuvenile() {
+		return this.entityData.get(IS_JUVENILE);
+	}
+
+	public void setJuvenile(boolean isJuvenile) {
+		this.entityData.set(IS_JUVENILE, isJuvenile);
 	}
 
 	public boolean isFood(ItemStack stack) {
@@ -118,9 +134,13 @@ public class Edmontosaurus extends HerdDinosaurEntity {
 	@Override
 	public void setAge(int age) {
 		super.setAge(age);
-		if (this.getAge() >= -24000 && this.getAge() < 0) {
+		if (this.getAge() < -24000) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(25);
+		} else if (this.getAge() >= -24000 && this.getAge() < 0) {
+			this.setJuvenile(true);
 			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(50);
 		} else if(this.getAge() >= 0) {
+			this.setJuvenile(false);
 			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(100);
 		}
 	}
@@ -136,6 +156,21 @@ public class Edmontosaurus extends HerdDinosaurEntity {
 			}
 		}
 		return super.mobInteract(player, hand);
+	}
+	
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(IS_JUVENILE, false);
+	}
+
+	public void addAdditionalSaveData(CompoundTag compound) {
+		super.addAdditionalSaveData(compound);
+		compound.putBoolean("IsJuvenile", this.isJuvenile());
+	}
+
+	public void readAdditionalSaveData(CompoundTag compound) {
+		super.readAdditionalSaveData(compound);
+		this.setJuvenile(compound.getBoolean("IsJuvenile"));
 	}
 
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
@@ -157,12 +192,13 @@ public class Edmontosaurus extends HerdDinosaurEntity {
 	}
 
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.EDMONTOSAURUS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+		return PFBlocks.EDMONTOSAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
 		Edmontosaurus entity = new Edmontosaurus(PFEntities.EDMONTOSAURUS.get(), this.level());
+		entity.setAge(-48000);
 		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
@@ -188,7 +224,7 @@ public class Edmontosaurus extends HerdDinosaurEntity {
 			if (!(this.getDeltaMovement().x == 0 && this.getDeltaMovement().y == 0 && this.getDeltaMovement().z == 0)) {
 				if (PrehistoricFaunaConfig.sauropodTrampling) {
 					for (LivingEntity entity : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(1, 0, 1))) {
-						if (!(entity instanceof Ruixinia) && entity.getMaxHealth() < 60) {
+						if (!(entity instanceof Edmontosaurus) && entity.getMaxHealth() < 60) {
 							entity.hurt(PFDamageSources.causeSauropodTramplingDamage(entity.level().registryAccess(), this), (float) 5.0D);
 						}
 					}

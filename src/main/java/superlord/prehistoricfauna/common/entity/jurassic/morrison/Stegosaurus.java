@@ -36,7 +36,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.AggressiveTempermentAttackGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
@@ -114,7 +114,7 @@ public class Stegosaurus extends DinosaurEntity {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.STEGOSAURUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.stegosaurus_added"), true);
 				return InteractionResult.SUCCESS;
-			}
+			} else return InteractionResult.SUCCESS;
 		}
 		return super.mobInteract(player, hand);
 	}
@@ -266,7 +266,7 @@ public class Stegosaurus extends DinosaurEntity {
 	}
     
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.STEGOSAURUS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+		return PFBlocks.STEGOSAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 
 }

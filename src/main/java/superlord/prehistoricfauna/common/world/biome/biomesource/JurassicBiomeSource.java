@@ -14,7 +14,6 @@ import net.minecraft.world.level.biome.BiomeManager.NoiseBiomeSource;
 import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.biome.Climate.Sampler;
 import superlord.prehistoricfauna.common.util.FastNoise;
-import superlord.prehistoricfauna.common.world.chunkgen.CretaceousChunkGenerator;
 import superlord.prehistoricfauna.common.world.chunkgen.JurassicChunkGenerator;
 import superlord.prehistoricfauna.init.PFBiomes;
 
@@ -93,7 +92,7 @@ public class JurassicBiomeSource extends BiomeSource implements NoiseBiomeSource
 		double tempNoise = tempNoise(x, y, z, JurassicChunkGenerator.noise);
 		double humidityNoise = humidityNoise(x, y, z, JurassicChunkGenerator.noise);
 		double hillinessNoise = hillinessNoise(x, y, z, JurassicChunkGenerator.noise);
-		double caveTimeLineNoise = caveTimeLineNoise(x, y, z, CretaceousChunkGenerator.noise);
+		double caveTimeLineNoise = caveTimeLineNoise(x, y, z, JurassicChunkGenerator.noise);
 		if (y < 6) {
 			if (humidityNoise > 0.4D) return prehistoricDripstoneCave;
 			if (caveTimeLineNoise > 0.8D) return henostoneCave;

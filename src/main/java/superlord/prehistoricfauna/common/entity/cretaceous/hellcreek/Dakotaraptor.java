@@ -67,7 +67,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.AggressiveTempermentAttackGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
@@ -100,6 +100,7 @@ public class Dakotaraptor extends DinosaurEntity {
 	private static final Predicate<LivingEntity> IS_PREY = (p_213498_0_) -> {
 		return p_213498_0_.getType().is(PFTags.ANIMALS_3_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_4_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_6_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_8_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_10_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_15_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_20_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_30_HUNGER);
 	};
+	public static final EntityDataAccessor<Integer> SIT_TICK = SynchedEntityData.defineId(Dakotaraptor.class, EntityDataSerializers.INT);
 	private Goal attackAnimals;
 	private float interestedAngle;
 	private float interestedAngleO;
@@ -110,6 +111,8 @@ public class Dakotaraptor extends DinosaurEntity {
 	private int maxHunger = 75;
 	private int climbingTicks = 0;
 	private int climbingTickCooldown = 0;
+	private float sitProgress = 0.0F;
+	private float prevSitProgress = 0.0F;
 
 	public boolean isFood(ItemStack stack) {
 		return stack.getItem() == PFItems.RAW_SMALL_ORNITHISCHIAN_MEAT.get();
@@ -134,6 +137,7 @@ public class Dakotaraptor extends DinosaurEntity {
 		super.defineSynchedData();
 		this.entityData.define(DAKOTARAPTOR_FLAGS, (byte)0);
 		this.entityData.define(CLIMBING, (byte)0);
+		this.entityData.define(SIT_TICK, 0);
 	}
 
 	protected void registerGoals() {
@@ -396,7 +400,7 @@ public class Dakotaraptor extends DinosaurEntity {
 
 	public void setSitting(boolean p_213466_1_) {
 		this.setDakotaraptorFlag(1, p_213466_1_);
-		this.setFallingAsleep();
+		this.entityData.set(SIT_TICK, 15);
 	}
 
 	public boolean isStuck() {
@@ -506,7 +510,22 @@ public class Dakotaraptor extends DinosaurEntity {
 				}
 			}
 		}
-
+		
+		prevSitProgress = sitProgress;
+		if (this.entityData.get(SIT_TICK) > 0) {
+			this.entityData.set(SIT_TICK, this.entityData.get(SIT_TICK) - 1);
+			if (sitProgress < 1.0F) {
+				sitProgress = Math.min(sitProgress + 0.1F, 1.0F);
+			}
+		} else {
+			if (sitProgress > 0F) {
+				sitProgress = Math.max(sitProgress - 0.2F, 0.0F);
+			}
+		}
+	}
+	
+	public float getSitProgress(float partialTick) {
+		return prevSitProgress + (sitProgress - prevSitProgress) * partialTick;
 	}
 
 	public boolean isOnLadder() {
@@ -1137,6 +1156,6 @@ public class Dakotaraptor extends DinosaurEntity {
 	}
 
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.DAKOTARAPTOR_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+		return PFBlocks.DAKOTARAPTOR_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 }

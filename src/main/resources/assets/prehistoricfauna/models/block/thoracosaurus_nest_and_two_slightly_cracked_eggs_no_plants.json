@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/thoracosaurus_nest_and_two_eggs_no_plants",
-	"textures": {
-		"egg": "prehistoricfauna:block/thoracosaurus_egg_slightly_cracked"
-	}
-}

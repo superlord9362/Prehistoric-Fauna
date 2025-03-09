@@ -33,7 +33,7 @@ public class ArchaefructusBlock extends BushBlock implements BonemealableBlock {
 	}
 
 	protected boolean mayPlaceOn(BlockState p_154539_, BlockGetter p_154540_, BlockPos p_154541_) {
-		return p_154539_.isFaceSturdy(p_154540_, p_154541_, Direction.UP) && !p_154539_.is(Blocks.MAGMA_BLOCK) && (p_154540_.getBlockState(p_154541_.above()).isAir() || p_154540_.getBlockState(p_154541_.above(2)).isAir() && p_154540_.getBlockState(p_154541_.above()).is(Blocks.WATER));
+		return p_154539_.isFaceSturdy(p_154540_, p_154541_, Direction.UP) && !p_154539_.is(Blocks.MAGMA_BLOCK);
 	}
 
 	@Nullable

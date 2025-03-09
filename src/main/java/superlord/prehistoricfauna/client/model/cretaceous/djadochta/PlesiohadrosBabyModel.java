@@ -177,11 +177,11 @@ public class PlesiohadrosBabyModel extends EntityModel<Plesiohadros> {
 					this.RForeleg.zRot = 0.2F;
 				}
 				if (entity.isInWater()) {
-					this.Torso.y = 17;
-					this.LLeg.y = 17;
-					this.RLeg.y = 17;
-					this.LForeleg.y = 24;
-					this.RForeleg.y = 24;
+					this.Torso.y = 14;
+					this.LLeg.y = 18;
+					this.RLeg.y = 18;
+//					this.LForeleg.y = 24;
+//					this.RForeleg.y = 24;
 					this.LLeg.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.RLeg.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.LLeg2.xRot = -0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);

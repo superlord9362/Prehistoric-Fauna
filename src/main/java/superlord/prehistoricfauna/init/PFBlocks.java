@@ -42,86 +42,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.common.blocks.AlgaeBlock;
-import superlord.prehistoricfauna.common.blocks.AmmoniteGiantShellBlock;
-import superlord.prehistoricfauna.common.blocks.AmmoniteLargeShellBlock;
-import superlord.prehistoricfauna.common.blocks.AmmoniteMediumShellBlock;
-import superlord.prehistoricfauna.common.blocks.AmmoniteSmallShellBlock;
-import superlord.prehistoricfauna.common.blocks.AncientPlantBlock;
-import superlord.prehistoricfauna.common.blocks.AraucariaConeBlock;
-import superlord.prehistoricfauna.common.blocks.ArchaefructusBlock;
-import superlord.prehistoricfauna.common.blocks.BurrowBlock;
-import superlord.prehistoricfauna.common.blocks.CallianthusBlock;
-import superlord.prehistoricfauna.common.blocks.CarvedTuberBlock;
-import superlord.prehistoricfauna.common.blocks.CobbaniaBlock;
-import superlord.prehistoricfauna.common.blocks.CrassostreaOysterBlock;
-import superlord.prehistoricfauna.common.blocks.CrateBlock;
-import superlord.prehistoricfauna.common.blocks.CretaceousPortalBlock;
-import superlord.prehistoricfauna.common.blocks.CretaceousTimeBlock;
-import superlord.prehistoricfauna.common.blocks.DeadCycadBlock;
-import superlord.prehistoricfauna.common.blocks.DicroidiumBlock;
-import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
-import superlord.prehistoricfauna.common.blocks.FeederBlock;
-import superlord.prehistoricfauna.common.blocks.FossilCrateBlock;
-import superlord.prehistoricfauna.common.blocks.GinkgoLeavesBlock;
-import superlord.prehistoricfauna.common.blocks.HardenedSiltBlock;
-import superlord.prehistoricfauna.common.blocks.HumulusBlock;
-import superlord.prehistoricfauna.common.blocks.JohnstoniaBlock;
-import superlord.prehistoricfauna.common.blocks.JurassicPortalBlock;
-import superlord.prehistoricfauna.common.blocks.JurassicTimeBlock;
-import superlord.prehistoricfauna.common.blocks.LiriodendritesLeavesBlock;
-import superlord.prehistoricfauna.common.blocks.MarmarthiaBlock;
-import superlord.prehistoricfauna.common.blocks.MossBlock;
-import superlord.prehistoricfauna.common.blocks.NelumboPadBlock;
-import superlord.prehistoricfauna.common.blocks.NelumboRootsBlock;
-import superlord.prehistoricfauna.common.blocks.NelumboStemBlock;
-import superlord.prehistoricfauna.common.blocks.NeocalamitesBlock;
-import superlord.prehistoricfauna.common.blocks.NeocalamitesTopBlock;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
-import superlord.prehistoricfauna.common.blocks.NestBlock;
-import superlord.prehistoricfauna.common.blocks.PFCeilingHangingSignBlock;
-import superlord.prehistoricfauna.common.blocks.PFSaplingBlock;
-import superlord.prehistoricfauna.common.blocks.PFStandingSignBlock;
-import superlord.prehistoricfauna.common.blocks.PFWallHangingSignBlock;
-import superlord.prehistoricfauna.common.blocks.PFWallSignBlock;
-import superlord.prehistoricfauna.common.blocks.PaleontologyTableBlock;
-import superlord.prehistoricfauna.common.blocks.PaleoscribeBlock;
-import superlord.prehistoricfauna.common.blocks.PlantGrowingBlock;
-import superlord.prehistoricfauna.common.blocks.PoisonGasBlock;
-import superlord.prehistoricfauna.common.blocks.PortalFrameBlock;
-import superlord.prehistoricfauna.common.blocks.PrehistoricPlantBlock;
-import superlord.prehistoricfauna.common.blocks.PtilophyllumBaseBlock;
-import superlord.prehistoricfauna.common.blocks.PtilophyllumBlock;
-import superlord.prehistoricfauna.common.blocks.QuereuxiaPadBlock;
-import superlord.prehistoricfauna.common.blocks.QuereuxiaStemBlock;
-import superlord.prehistoricfauna.common.blocks.SabalitesCrownLogBlock;
-import superlord.prehistoricfauna.common.blocks.SabalitesLeafBlock;
-import superlord.prehistoricfauna.common.blocks.SabalitesSaplingBlock;
-import superlord.prehistoricfauna.common.blocks.SapBlock;
-import superlord.prehistoricfauna.common.blocks.SmallCarvedTuberBlock;
-import superlord.prehistoricfauna.common.blocks.SmallTuberBlock;
-import superlord.prehistoricfauna.common.blocks.SplatteredGinkgoBlock;
-import superlord.prehistoricfauna.common.blocks.TallArchaefructusBlock;
-import superlord.prehistoricfauna.common.blocks.TallHorsetailBlock;
-import superlord.prehistoricfauna.common.blocks.TaxodiumKneeBlock;
-import superlord.prehistoricfauna.common.blocks.TaxusLeavesBlock;
-import superlord.prehistoricfauna.common.blocks.ThatchBlock;
-import superlord.prehistoricfauna.common.blocks.TrapBlock;
-import superlord.prehistoricfauna.common.blocks.TriassicPortalBlock;
-import superlord.prehistoricfauna.common.blocks.TriassicTimeBlock;
-import superlord.prehistoricfauna.common.blocks.TuberBlock;
-import superlord.prehistoricfauna.common.blocks.TuberCropBlock;
-import superlord.prehistoricfauna.common.blocks.ZamitesFrondsBlock;
-import superlord.prehistoricfauna.common.blocks.ZamitesSaplingBlock;
-import superlord.prehistoricfauna.common.blocks.compat.PFBeehiveBlock;
-import superlord.prehistoricfauna.common.blocks.compat.PFChestBlock;
-import superlord.prehistoricfauna.common.blocks.compat.PFTrappedChestBlock;
-import superlord.prehistoricfauna.common.entity.block.compat.HedgeBlock;
-import superlord.prehistoricfauna.common.entity.block.compat.LeafCarpetBlock;
-import superlord.prehistoricfauna.common.entity.block.compat.PFBookshelfBlock;
-import superlord.prehistoricfauna.common.entity.block.compat.PFLadderBlock;
-import superlord.prehistoricfauna.common.entity.block.compat.VerticalSlabBlock;
-import superlord.prehistoricfauna.common.entity.block.compat.WoodPostBlock;
+import superlord.prehistoricfauna.common.blocks.*;
+import superlord.prehistoricfauna.common.blocks.compat.*;
 import superlord.prehistoricfauna.common.util.BlockSubRegistryHelper;
 import superlord.prehistoricfauna.common.util.trees.PFTreeSpawners;
 
@@ -169,11 +91,11 @@ public class PFBlocks {
 	public static final RegistryObject<Block> NELUMBO_ROOTS = REGISTER.register("nelumbo_roots", () -> new 	NelumboRootsBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).sound(SoundType.WET_GRASS).instabreak().noCollission().randomTicks()));
 	public static final RegistryObject<Block> QUEREUXIA_PAD = REGISTER.register("quereuxia", () -> new QuereuxiaPadBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).sound(SoundType.LILY_PAD).instabreak().randomTicks()));
 	public static final RegistryObject<Block> QUEREUXIA_STEM = REGISTER.register("quereuxia_stem", () -> new QuereuxiaStemBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).sound(SoundType.WET_GRASS).instabreak().noCollission().randomTicks()));
-	public static final RegistryObject<Block> ZINGIBEROPSIS = REGISTER.register("zingiberopsis", () -> new TallHorsetailBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
-	public static final RegistryObject<Block> PURPLE_ZINGIBEROPSIS = REGISTER.register("purple_zingiberopsis", () -> new TallHorsetailBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
+	public static final RegistryObject<Block> ZINGIBEROPSIS = REGISTER.register("zingiberopsis", () -> new ZingiberopsisBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
+	public static final RegistryObject<Block> PURPLE_ZINGIBEROPSIS = REGISTER.register("purple_zingiberopsis", () -> new ZingiberopsisBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> RUFFORDIA = REGISTER.register("ruffordia", () -> new AncientPlantBlock(Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> LEEFRUCTUS = REGISTER.register("leefructus", () -> new AncientPlantBlock(Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
-	public static final RegistryObject<Block> EPHEDRA = REGISTER.register("ephedra", () -> new PrehistoricPlantBlock(Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
+	public static final RegistryObject<Block> EPHEDRA = REGISTER.register("ephedra", () -> new AncientPlantBlock(Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> CALLIANTHUS = REGISTER.register("callianthus", () -> new CallianthusBlock(Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> NOTHODICHOCARPUM = REGISTER.register("nothodichocarpum", () -> new DoublePlantBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
 
@@ -323,7 +245,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> STRIPPED_LIRIODENDRITES_LOG = REGISTER.register("stripped_liriodendrites_log", () -> createLog());
 	public static final RegistryObject<Block> LIRIODENDRITES_WOOD = REGISTER.register("liriodendrites_wood", () -> createLog());
 	public static final RegistryObject<Block> STRIPPED_LIRIODENDRITES_WOOD = REGISTER.register("stripped_liriodendrites_wood", () -> createLog());
-	public static final RegistryObject<Block> LIRIODENDRITES_LEAVES = REGISTER.register("liriodendrites_leaves", () -> new LiriodendritesLeavesBlock(BlockBehaviour.Properties.of().strength(0.2F).randomTicks().sound(SoundType.GRASS).randomTicks().noOcclusion().isValidSpawn(PFBlocks::allowsSpawnOnLeaves).isSuffocating(PFBlocks::never).isViewBlocking(PFBlocks::never)));
+	public static final RegistryObject<Block> LIRIODENDRITES_LEAVES = REGISTER.register("liriodendrites_leaves", () -> new LiriodendritesLeavesBlock(BlockBehaviour.Properties.of().strength(0.2F).randomTicks().sound(SoundType.GRASS).randomTicks().noOcclusion().isValidSpawn(PFBlocks::allowsSpawnOnLeaves).isSuffocating(PFBlocks::never).isViewBlocking(PFBlocks::never).mapColor(MapColor.COLOR_LIGHT_GREEN)));
 	public static final RegistryObject<Block> LIRIODENDRITES_SAPLING = REGISTER.register("liriodendrites_sapling", () -> new PFSaplingBlock(new PFTreeSpawners.Liriodendrites(), Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).noCollission().randomTicks().strength(0F).sound(SoundType.GRASS)));
 	public static final RegistryObject<Block> LIRIODENDRITES_DOOR = REGISTER.register("liriodendrites_door", () -> new DoorBlock(Block.Properties.of().instrument(NoteBlockInstrument.BASS).ignitedByLava().pushReaction(PushReaction.DESTROY).mapColor(MapColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion(), PFWoodTypes.LIRIODENDRITES_TYPE));
 	public static final RegistryObject<Block> LIRIODENDRITES_PRESSURE_PLATE = REGISTER.register("liriodendrites_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.of().forceSolidOn().instrument(NoteBlockInstrument.BASS).mapColor(MapColor.WOOD).ignitedByLava().pushReaction(PushReaction.DESTROY).noCollission().strength(0.5F).sound(SoundType.WOOD), PFWoodTypes.LIRIODENDRITES_TYPE));
@@ -768,7 +690,11 @@ public class PFBlocks {
 	public static final RegistryObject<Block> SCELIDOSAURUS_CRATE = REGISTER.register("scelidosaurus_crate", () -> new CrateBlock(Properties.copy(FOSSIL_CRATE.get())));
 	public static final RegistryObject<Block> PSITTACOSAURUS_CRATE = REGISTER.register("psittacosaurus_crate", () -> new CrateBlock(Properties.copy(FOSSIL_CRATE.get())));
 	public static final RegistryObject<Block> YUTYRANNUS_CRATE = REGISTER.register("yutyrannus_crate", () -> new CrateBlock(Properties.copy(FOSSIL_CRATE.get())));
-
+	public static final RegistryObject<Block> GOYOCEPHALE_CRATE = REGISTER.register("goyocephale_crate", () -> new CrateBlock(Properties.copy(FOSSIL_CRATE.get())));
+	public static final RegistryObject<Block> DONGBEITITAN_CRATE = REGISTER.register("dongbeititan_crate", () -> new CrateBlock(Properties.copy(FOSSIL_CRATE.get())));
+	public static final RegistryObject<Block> ANZU_CRATE = REGISTER.register("anzu_crate", () -> new CrateBlock(Properties.copy(FOSSIL_CRATE.get())));
+	public static final RegistryObject<Block> LIAONINGOSAURUS_CRATE = REGISTER.register("liaoningosaurus_crate", () -> new CrateBlock(Properties.copy(FOSSIL_CRATE.get())));
+	
 	public static final RegistryObject<Block> CARVED_TUBER = REGISTER.register("carved_tuber", () -> new CarvedTuberBlock(Properties.of().strength(1.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> CARVED_TUBER_SOUL_LIT = REGISTER.register("carved_tuber_soul_lit", () -> new CarvedTuberBlock(Properties.of().strength(1.0F).sound(SoundType.WOOD).lightLevel((light) -> {
 		return 10;
@@ -821,6 +747,9 @@ public class PFBlocks {
 	public static final RegistryObject<AraucariaConeBlock> ARAUCARIA_CONE = REGISTER.register("araucaria_cone", () -> new AraucariaConeBlock(Properties.of().strength(1.0F, 1.0F).sound(SoundType.WOOD)));
 
 	public static final RegistryObject<Block> ASH_BRICKS = REGISTER.register("ash_bricks", () -> new Block(Properties.of().mapColor(MapColor.TERRACOTTA_BLACK).requiresCorrectToolForDrops().strength(2.0F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> ASH_BRICK_STAIRS = REGISTER.register("ash_brick_stairs", () -> new StairBlock(ASH_BRICKS.get().defaultBlockState(), Properties.copy(ASH_BRICKS.get())));
+	public static final RegistryObject<Block> ASH_BRICK_SLAB = REGISTER.register("ash_brick_slab", () -> new SlabBlock(Properties.copy(ASH_BRICKS.get())));
+	public static final RegistryObject<Block> ASH_BRICK_WALL = REGISTER.register("ash_brick_wall", () -> new WallBlock(Properties.copy(ASH_BRICKS.get())));
 	
 	public static final RegistryObject<Block> BURROW = REGISTER.register("burrow", () -> new BurrowBlock(Properties.of().instabreak().sound(SoundType.GRASS).noOcclusion().noCollission()));
 
@@ -858,6 +787,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> HENOSTONE_VERTICAL_SLAB = HELPER.createBlock("henostone_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(HENOSTONE_SLAB.get())));
 	public static final RegistryObject<Block> HENOSTONE_BRICK_VERTICAL_SLAB = HELPER.createBlock("henostone_brick_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(HENOSTONE_BRICK_SLAB.get())));
 	public static final RegistryObject<Block> HENOSTONE_DARK_BRICK_VERTICAL_SLAB = HELPER.createBlock("dark_henostone_brick_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(DARK_HENOSTONE_BRICK_SLAB.get())));
+	public static final RegistryObject<Block> ASH_BRICK_VERTICAL_SLAB = HELPER.createBlock("ash_brick_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(ASH_BRICK_SLAB.get())));
 	public static final RegistryObject<Block> THATCH_VERTICAL_SLAB = HELPER.createBlock("thatch_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(THATCH_SLAB.get())));
 
 	public static final RegistryObject<Block> METASEQUOIA_VERTICAL_PLANKS = HELPER.createBlock("metasequoia_vertical_planks", () -> new Block(Properties.copy(METASEQUOIA_PLANKS.get())));
@@ -1155,75 +1085,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> ZHENYUANLONG_EGG = REGISTER.register("zhenyuanlong_egg", () -> new DinosaurEggBlock(PFEntities.ZHENYUANLONG, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> JINZHOUSAURUS_EGG = REGISTER.register("jinzhousaurus_egg", () -> new DinosaurEggBlock(PFEntities.JINZHOUSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 
-	public static final RegistryObject<Block> NEST = REGISTER.register("nest", () -> new NestBlock(Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-
-	public static final RegistryObject<Block> ANKYLOSAURUS_NEST = REGISTER.register("ankylosaurus_nest", () -> new NestAndEggsBlock(PFEntities.ANKYLOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> BASILEMYS_NEST = REGISTER.register("basilemys_nest", () -> new NestAndEggsBlock(PFEntities.BASILEMYS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> DAKOTARAPTOR_NEST = REGISTER.register("dakotaraptor_nest", () -> new NestAndEggsBlock(PFEntities.DAKOTARAPTOR, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> PALAEOSANIWA_NEST = REGISTER.register("palaeosaniwa_nest", () -> new NestAndEggsBlock(PFEntities.PALAEOSANIWA, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> THESCELOSAURUS_NEST = REGISTER.register("thescelosaurus_nest", () -> new NestAndEggsBlock(PFEntities.THESCELOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> BRACHYCHAMPSA_NEST = REGISTER.register("brachychampsa_nest", () -> new NestAndEggsBlock(PFEntities.BRACHYCHAMPSA, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> TRICERATOPS_NEST = REGISTER.register("triceratops_nest", () -> new NestAndEggsBlock(PFEntities.TRICERATOPS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> TYRANNOSAURUS_NEST = REGISTER.register("tyrannosaurus_nest", () -> new NestAndEggsBlock(PFEntities.TYRANNOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> AEPYORNITHOMIMUS_NEST = REGISTER.register("aepyornithomimus_nest", () -> new NestAndEggsBlock(PFEntities.AEPYORNITHOMIMUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> CITIPATI_NEST = REGISTER.register("citipati_nest", () -> new NestAndEggsBlock(PFEntities.CITIPATI, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> HALSZKARAPTOR_NEST = REGISTER.register("halszkaraptor_nest", () -> new NestAndEggsBlock(PFEntities.HALSZKARAPTOR, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> OVIRAPTOR_NEST = REGISTER.register("oviraptor_nest", () -> new NestAndEggsBlock(PFEntities.OVIRAPTOR, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> PINACOSAURUS_NEST = REGISTER.register("pinacosaurus_nest", () -> new NestAndEggsBlock(PFEntities.PINACOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> PLESIOHADROS_NEST = REGISTER.register("plesiohadros_nest", () -> new NestAndEggsBlock(PFEntities.PLESIOHADROS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> PROTOCERATOPS_NEST = REGISTER.register("protoceratops_nest", () -> new NestAndEggsBlock(PFEntities.PROTOCERATOPS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> TELMASAURUS_NEST = REGISTER.register("telmasaurus_nest", () -> new NestAndEggsBlock(PFEntities.TELMASAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> VELOCIRAPTOR_NEST = REGISTER.register("velociraptor_nest", () -> new NestAndEggsBlock(PFEntities.VELOCIRAPTOR, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> CALSOYASUCHUS_NEST = REGISTER.register("calsoyasuchus_nest", () -> new NestAndEggsBlock(PFEntities.CALSOYASUCHUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> DILOPHOSAURUS_NEST = REGISTER.register("dilophosaurus_nest", () -> new NestAndEggsBlock(PFEntities.DILOPHOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> KAYENTATHERIUM_NEST = REGISTER.register("kayentatherium_nest", () -> new NestAndEggsBlock(PFEntities.KAYENTATHERIUM, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> MEGAPNOSAURUS_NEST = REGISTER.register("megapnosaurus_nest", () -> new NestAndEggsBlock(PFEntities.MEGAPNOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> SARAHSAURUS_NEST = REGISTER.register("sarahsaurus_nest", () -> new NestAndEggsBlock(PFEntities.SARAHSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> SCELIDOSAURUS_NEST = REGISTER.register("scelidosaurus_nest", () -> new NestAndEggsBlock(PFEntities.SCELIDOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> SCUTELLOSAURUS_NEST = REGISTER.register("scutellosaurus_nest", () -> new NestAndEggsBlock(PFEntities.SCUTELLOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> ALLOSAURUS_NEST = REGISTER.register("allosaurus_nest", () -> new NestAndEggsBlock(PFEntities.ALLOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> CAMARASAURUS_NEST = REGISTER.register("camarasaurus_nest", () -> new NestAndEggsBlock(PFEntities.CAMARASAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> CERATOSAURUS_NEST = REGISTER.register("ceratosaurus_nest", () -> new NestAndEggsBlock(PFEntities.CERATOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> DRYOSAURUS_NEST = REGISTER.register("dryosaurus_nest", () -> new NestAndEggsBlock(PFEntities.DRYOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> EILENODON_NEST = REGISTER.register("eilenodon_nest", () -> new NestAndEggsBlock(PFEntities.EILENODON, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> HESPERORNITHOIDES_NEST = REGISTER.register("hesperornithoides_nest", () -> new NestAndEggsBlock(PFEntities.HESPERORNITHOIDES, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> STEGOSAURUS_NEST = REGISTER.register("stegosaurus_nest", () -> new NestAndEggsBlock(PFEntities.STEGOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> COELOPHYSIS_NEST = REGISTER.register("coelophysis_nest", () -> new NestAndEggsBlock(PFEntities.COELOPHYSIS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> DESMATOSUCHUS_NEST = REGISTER.register("desmatosuchus_nest", () -> new NestAndEggsBlock(PFEntities.DESMATOSUCHUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> PLACERIAS_NEST = REGISTER.register("placerias_nest", () -> new NestAndEggsBlock(PFEntities.PLACERIAS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> POPOSAURUS_NEST = REGISTER.register("poposaurus_nest", () -> new NestAndEggsBlock(PFEntities.POPOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> POSTOSUCHUS_NEST = REGISTER.register("postosuchus_nest", () -> new NestAndEggsBlock(PFEntities.POSTOSUCHUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> TRILOPHOSAURUS_NEST = REGISTER.register("trilophosaurus_nest", () -> new NestAndEggsBlock(PFEntities.TRILOPHOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> TYPOTHORAX_NEST = REGISTER.register("typothorax_nest", () -> new NestAndEggsBlock(PFEntities.TYPOTHORAX, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> CHROMOGISAURUS_NEST = REGISTER.register("chromogisaurus_nest", () -> new NestAndEggsBlock(PFEntities.CHROMOGISAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> EXAERETODON_NEST = REGISTER.register("exaeretodon_nest", () -> new NestAndEggsBlock(PFEntities.EXAERETODON, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> HERRERASAURUS_NEST = REGISTER.register("herrerasaurus_nest", () -> new NestAndEggsBlock(PFEntities.HERRERASAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> HYPERODAPEDON_NEST = REGISTER.register("hyperodapedon_nest", () -> new NestAndEggsBlock(PFEntities.HYPERODAPEDON, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> ISCHIGUALASTIA_NEST = REGISTER.register("ischigualastia_nest", () -> new NestAndEggsBlock(PFEntities.ISCHIGUALASTIA, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> SAUROSUCHUS_NEST = REGISTER.register("saurosuchus_nest", () -> new NestAndEggsBlock(PFEntities.SAUROSUCHUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> SILLOSUCHUS_NEST = REGISTER.register("sillosuchus_nest", () -> new NestAndEggsBlock(PFEntities.SILLOSUCHUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> UDANOCERATOPS_NEST = REGISTER.register("udanoceratops_nest", () -> new NestAndEggsBlock(PFEntities.UDANOCERATOPS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> GOYOCEPHALE_NEST = REGISTER.register("goyocephale_nest", () -> new NestAndEggsBlock(PFEntities.GOYOCEPHALE, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> PACHYCEPHALOSAURUS_NEST = REGISTER.register("pachycephalosaurus_nest", () -> new NestAndEggsBlock(PFEntities.PACHYCEPHALOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> ORNITHOMIMUS_NEST = REGISTER.register("ornithomimus_nest", () -> new NestAndEggsBlock(PFEntities.ORNITHOMIMUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> KOL_NEST = REGISTER.register("kol_nest", () -> new NestAndEggsBlock(PFEntities.KOL, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> YUTYRANNUS_NEST = REGISTER.register("yutyrannus_nest", () -> new NestAndEggsBlock(PFEntities.YUTYRANNUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> PSITTACOSAURUS_NEST = REGISTER.register("psittacosaurus_nest", () -> new NestAndEggsBlock(PFEntities.PSITTACOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> SINOSAUROPTERYX_NEST = REGISTER.register("sinosauropteryx_nest", () -> new NestAndEggsBlock(PFEntities.SINOSAUROPTERYX, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> INCISIVOSAURUS_NEST = REGISTER.register("incisivosaurus_nest", () -> new NestAndEggsBlock(PFEntities.INCISIVOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> EDMONTOSAURUS_NEST = REGISTER.register("edmontosaurus_nest", () -> new NestAndEggsBlock(PFEntities.EDMONTOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> BEIPIAOSAURUS_NEST = REGISTER.register("beipiaosaurus_nest", () -> new NestAndEggsBlock(PFEntities.BEIPIAOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> ANZU_NEST = REGISTER.register("anzu_nest", () -> new NestAndEggsBlock(PFEntities.ANZU, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> LIAONINGOSAURUS_NEST = REGISTER.register("liaoningosaurus_nest", () -> new NestAndEggsBlock(PFEntities.LIAONINGOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> CHANGYURAPTOR_NEST = REGISTER.register("changyuraptor_nest", () -> new NestAndEggsBlock(PFEntities.CHANGYURAPTOR, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> BYRONOSAURUS_NEST = REGISTER.register("byronosaurus_nest", () -> new NestAndEggsBlock(PFEntities.BYRONOSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> RUIXINIA_NEST = REGISTER.register("ruixinia_nest", () -> new NestAndEggsBlock(PFEntities.RUIXINIA, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> DONGBEITITAN_NEST = REGISTER.register("dongbeititan_nest", () -> new NestAndEggsBlock(PFEntities.DONGBEITITAN, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> DILONG_NEST = REGISTER.register("dilong_nest", () -> new NestAndEggsBlock(PFEntities.DILONG, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> ZHENYUANLONG_NEST = REGISTER.register("zhenyuanlong_nest", () -> new NestAndEggsBlock(PFEntities.ZHENYUANLONG, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-	public static final RegistryObject<Block> JINZHOUSAURUS_NEST = REGISTER.register("jinzhousaurus_nest", () -> new NestAndEggsBlock(PFEntities.JINZHOUSAURUS, Block.Properties.of().strength(0.6F).sound(SoundType.WOOD).randomTicks()));
-
-	public static final RegistryObject<Block> POISON_GAS = REGISTER.register("poison_gas", () -> new PoisonGasBlock(BlockBehaviour.Properties.of().noCollission().noLootTable().randomTicks()));
+	public static final RegistryObject<Block> POISON_GAS = REGISTER.register("poison_gas", () -> new PoisonGasBlock(BlockBehaviour.Properties.of().noCollission().noLootTable().randomTicks().replaceable()));
 	public static final RegistryObject<Block> SPLATTERED_GINKGO = REGISTER.register("splattered_ginkgo", () -> new SplatteredGinkgoBlock(BlockBehaviour.Properties.of().noCollission().instabreak().noLootTable().randomTicks()));
 	public static final RegistryObject<Block> HENOSTONE_ORE = REGISTER.register("henostone_ore", () -> new Block(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> TIME_FRAGMENT_BLOCK = REGISTER.register("time_fragment_block", () -> new Block(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
@@ -1251,7 +1113,9 @@ public class PFBlocks {
 	public static final RegistryObject<Block> COATED_BUBBLE_CORAL_WALL_FAN = REGISTER.register("coated_bubble_coral_wall_fan", () -> new BaseCoralWallFanBlock(Block.Properties.copy(Blocks.DEAD_BUBBLE_CORAL_WALL_FAN)));
 	public static final RegistryObject<Block> COATED_FIRE_CORAL_WALL_FAN = REGISTER.register("coated_fire_coral_wall_fan", () -> new BaseCoralWallFanBlock(Block.Properties.copy(Blocks.DEAD_FIRE_CORAL_WALL_FAN)));
 	public static final RegistryObject<Block> COATED_HORN_CORAL_WALL_FAN = REGISTER.register("coated_horn_coral_wall_fan", () -> new BaseCoralWallFanBlock(Block.Properties.copy(Blocks.DEAD_HORN_CORAL_WALL_FAN)));
-	
+
+	public static final RegistryObject<Block> CRETACEOUS_BOSS_SPAWN = REGISTER.register("cretaceous_boss_spawn", () -> new CretaceousBossBlock(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+
 	private static RotatedPillarBlock createLog() {
 		return new RotatedPillarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).ignitedByLava().strength(2.0F).sound(SoundType.WOOD));
 	}

@@ -552,6 +552,7 @@ public class PrehistoricFaunaConfig {
 	public static boolean geologyHammerMining = true;
 	public static int baseStoneWeight = 97;
 	public static int fossilWeight = 3;
+	public static boolean giveAncientJournalOnStartup = true;
 	
 	public static boolean sleeping = true;
 	public static boolean advancedHunger = true;
@@ -561,7 +562,6 @@ public class PrehistoricFaunaConfig {
 	public static boolean hostileCarnivores = false;
 	public static boolean unscheduledSleeping = false;
 	public static boolean sauropodTrampling = true;
-	public static boolean softShellAndHardShellEggs = true;
 	public static boolean eggHeating = true;
 	
 	public static boolean extantWorldGeneration = true;
@@ -572,15 +572,15 @@ public class PrehistoricFaunaConfig {
 	
 	public static boolean tyrannosaurusFeathersOrScaled = true;
 	public static boolean thescelosaurusFeathersOrScaled = false;
-	public static boolean dryosaurusFeathersOrScaled = true;
-	public static boolean dilophosaurusFeathersOrScaled = true;
+//	public static boolean dryosaurusFeathersOrScaled = true;
+//	public static boolean dilophosaurusFeathersOrScaled = true;
 	public static boolean megapnosaurusFeathersOrScaled = false;
 	public static boolean coelophysisFeathersOrScaled = false;
-	public static boolean chromogisaurusFeathersOrScaled = false;
-	public static boolean herrerasaurusFeathersOrScaled = true;
+//	public static boolean chromogisaurusFeathersOrScaled = false;
+//	public static boolean herrerasaurusFeathersOrScaled = true;
 	public static boolean protoceratopsFeathersOrScaled = true;
-	public static boolean sarahsaurusFeathersOrScaled = true;
-	public static boolean jinzhousaurusFeathersOrScaled = true;
+//	public static boolean sarahsaurusFeathersOrScaled = true;
+//	public static boolean jinzhousaurusFeathersOrScaled = true;
 	
 	public static void bakeClient(final ModConfig config) {
 		eyeShine = PFConfigHolder.CLIENT.eyeShine.get();
@@ -588,15 +588,15 @@ public class PrehistoricFaunaConfig {
 	
 		tyrannosaurusFeathersOrScaled = PFConfigHolder.CLIENT.tyrannosaurusFeathersOrScaled.get();
 		thescelosaurusFeathersOrScaled = PFConfigHolder.CLIENT.thescelosaurusFeathersOrScaled.get();
-		dryosaurusFeathersOrScaled = PFConfigHolder.CLIENT.dryosaurusFeathersOrScaled.get();
-		dilophosaurusFeathersOrScaled = PFConfigHolder.CLIENT.dilophosaurusFeathersOrScaled.get();
+//		dryosaurusFeathersOrScaled = PFConfigHolder.CLIENT.dryosaurusFeathersOrScaled.get();
+//		dilophosaurusFeathersOrScaled = PFConfigHolder.CLIENT.dilophosaurusFeathersOrScaled.get();
 		megapnosaurusFeathersOrScaled = PFConfigHolder.CLIENT.megapnosaurusFeathersOrScaled.get();
 		coelophysisFeathersOrScaled = PFConfigHolder.CLIENT.coelophysisFeathersOrScaled.get();
-		chromogisaurusFeathersOrScaled = PFConfigHolder.CLIENT.chromogisaurusFeathersOrScaled.get();
-		herrerasaurusFeathersOrScaled = PFConfigHolder.CLIENT.herrerasaurusFeathersOrScaled.get();
+//		chromogisaurusFeathersOrScaled = PFConfigHolder.CLIENT.chromogisaurusFeathersOrScaled.get();
+//		herrerasaurusFeathersOrScaled = PFConfigHolder.CLIENT.herrerasaurusFeathersOrScaled.get();
 		protoceratopsFeathersOrScaled = PFConfigHolder.CLIENT.protoceratopsFeathersOrScaled.get();
-		sarahsaurusFeathersOrScaled = PFConfigHolder.CLIENT.sarahsaurusFeathersOrScaled.get();
-		jinzhousaurusFeathersOrScaled = PFConfigHolder.CLIENT.jinzhousaurusFeathersOrScaled.get();
+//		sarahsaurusFeathersOrScaled = PFConfigHolder.CLIENT.sarahsaurusFeathersOrScaled.get();
+//		jinzhousaurusFeathersOrScaled = PFConfigHolder.CLIENT.jinzhousaurusFeathersOrScaled.get();
 	}
 	
 	public static void bakeServer(final ModConfig config) {
@@ -1155,12 +1155,12 @@ public class PrehistoricFaunaConfig {
 			hostileCarnivores = PFConfigHolder.SERVER.hostileCarnivores.get();
 			unscheduledSleeping = PFConfigHolder.SERVER.unscheduledSleeping.get();
 			sauropodTrampling = PFConfigHolder.SERVER.sauropodTrampling.get();
+			giveAncientJournalOnStartup = PFConfigHolder.SERVER.giveAncientJournalOnStartup.get();
 			
 			extantWorldGeneration = PFConfigHolder.SERVER.extantWorldGeneration.get();
 			extantEntitySpawns = PFConfigHolder.SERVER.extantEntitySpawns.get();
 			
 
-			softShellAndHardShellEggs = PFConfigHolder.SERVER.softShellAndHardShellEggs.get();
 			eggHeating = PFConfigHolder.SERVER.eggHeating.get();
 		} catch (Exception e) {
 			PrehistoricFauna.LOGGER.warn("An exception was caused trying to load the config for Prehistoric Fauna");

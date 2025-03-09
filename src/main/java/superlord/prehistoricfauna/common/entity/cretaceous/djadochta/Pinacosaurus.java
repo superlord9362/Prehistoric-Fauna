@@ -37,7 +37,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
@@ -177,25 +177,28 @@ public class Pinacosaurus extends DinosaurEntity {
 	}
 
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
-			ItemStack itemstack = player.getItemInHand(hand);
-			Item item = itemstack.getItem();
-			if (item instanceof PaleopediaItem) {
-				if (!itemstack.getTag().contains("Pages", EnumPaleoPages.PINACOSAURUS.ordinal())) {
-					EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.PINACOSAURUS.ordinal()), itemstack);
-					player.displayClientMessage(Component.translatable("paleopedia.pinacosaurus_added"), true);
-					return InteractionResult.SUCCESS;
+		ItemStack itemstack = player.getItemInHand(hand);
+		Item item = itemstack.getItem();
+		if (item instanceof PaleopediaItem) {
+			//For some reason doesn't work when it checks for Pinaco? Check later
+			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.OVIRAPTOR.ordinal())) {
+				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.PINACOSAURUS.ordinal()), itemstack);
+				player.displayClientMessage(Component.translatable("paleopedia.pinacosaurus_added"), true);
+				return InteractionResult.SUCCESS;
+			} else return InteractionResult.SUCCESS;
+		}
+		if (itemstack.isEmpty()) {
+			if (!this.isVehicle() && !player.isSecondaryUseActive() && !this.isBaby() && !this.isSleeping()) {
+				boolean flag = this.isFood(player.getItemInHand(hand));
+				if (!flag && !this.isVehicle() && !player.isSecondaryUseActive()) {
+					if (!this.level().isClientSide()) {
+						player.startRiding(this);
+					}
+					return InteractionResult.sidedSuccess(this.level().isClientSide());
 				}
+			} else if (!this.getPassengers().isEmpty()) {
+				this.ejectPassengers();
 			}
-		if (!this.isVehicle() && !player.isSecondaryUseActive() && !this.isBaby() && !this.isSleeping()) {
-			boolean flag = this.isFood(player.getItemInHand(hand));
-			if (!flag && !this.isVehicle() && !player.isSecondaryUseActive()) {
-				if (!this.level().isClientSide()) {
-					player.startRiding(this);
-				}
-				return InteractionResult.sidedSuccess(this.level().isClientSide());
-			}
-		} else if (!this.getPassengers().isEmpty()) {
-			this.ejectPassengers();
 		}
 		return super.mobInteract(player, hand);
 	}
@@ -308,7 +311,7 @@ public class Pinacosaurus extends DinosaurEntity {
 	}
 
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.PINACOSAURUS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+		return PFBlocks.PINACOSAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 
 }

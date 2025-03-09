@@ -18,6 +18,7 @@ passive.
 
 Sleep Cycle: Diurnal
 
+<image><drawings_ankylosaurus.png 33 5 202 109 23 16 6.5>
 
 
 

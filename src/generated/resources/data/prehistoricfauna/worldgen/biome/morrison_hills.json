@@ -6,8 +6,14 @@
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2.0,
-      "sound": "minecraft:ambient.cave",
+      "sound": "prehistoricfauna:cave_1",
       "tick_delay": 6000
+    },
+    "music": {
+      "max_delay": 24000,
+      "min_delay": 12000,
+      "replace_current_music": false,
+      "sound": "prehistoricfauna:ambience_1"
     },
     "sky_color": 8170751,
     "water_color": 11245677,
@@ -53,17 +59,17 @@
     [],
     [
       "minecraft:glow_lichen",
-      "prehistoricfauna:placed_ptilophyllum",
-      "prehistoricfauna:placed_dead_osmundacaulis",
-      "prehistoricfauna:placed_zamites",
-      "prehistoricfauna:placed_lowered_horsetails",
-      "prehistoricfauna:placed_coniopteris",
-      "prehistoricfauna:placed_osmundacaulis",
-      "prehistoricfauna:placed_tall_osmundacaulis",
       "prehistoricfauna:placed_cladophlebis",
+      "prehistoricfauna:placed_coniopteris",
+      "prehistoricfauna:placed_lowered_horsetails",
+      "prehistoricfauna:placed_osmundacaulis",
+      "prehistoricfauna:placed_dead_osmundacaulis",
+      "prehistoricfauna:placed_tall_osmundacaulis",
+      "prehistoricfauna:placed_ptilophyllum",
+      "prehistoricfauna:placed_sparse_brachyphyllum",
       "prehistoricfauna:placed_morrison_tress",
       "prehistoricfauna:placed_rare_podozamites_trees",
-      "prehistoricfauna:placed_sparse_brachyphyllum"
+      "prehistoricfauna:placed_zamites"
     ]
   ],
   "has_precipitation": false,

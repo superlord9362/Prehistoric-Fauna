@@ -1,6 +1,6 @@
 Found In: Chinle
 
-Drops: 1-3 Large Raw 
+Drops: 1-2 Large Raw 
 Archosauromorph
 
 Diet: Carnivore
@@ -17,6 +17,7 @@ Temperaments: Postosuchus has an
 and a 15% chance of being 
 territorial.
 
+<image><drawings_ankylosaurus.png 37 4 202 87 22 17 6>
 
 
 

@@ -70,6 +70,7 @@ public class IschigualastiaSkeleton extends PrehistoricEntity {
 		compound.putBoolean("IsStretching", this.isStretching());
 		compound.putBoolean("IsPushable", this.isPushableState());
 		compound.putBoolean("IsLooking", this.isLooking());
+		compound.putFloat("Rotation", this.getYHeadRot());
 	}
 	
 	public void readAdditionalSaveData(CompoundTag compound) {
@@ -77,6 +78,8 @@ public class IschigualastiaSkeleton extends PrehistoricEntity {
 		this.setStretching(compound.getBoolean("IsStretching"));
 		this.setPushable(compound.getBoolean("IsPushable"));
 		this.setLooking(compound.getBoolean("IsLooking"));
+		this.setYBodyRot(compound.getFloat("Rotation"));
+		this.setYHeadRot(compound.getFloat("Rotation"));
 	}
 	
 	public IschigualastiaSkeleton(EntityType<? extends IschigualastiaSkeleton> type, Level worldIn) {

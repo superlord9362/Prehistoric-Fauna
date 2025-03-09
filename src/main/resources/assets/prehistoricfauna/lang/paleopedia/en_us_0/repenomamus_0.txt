@@ -1,6 +1,7 @@
 Found In: Yixian
 
-Drops: 0-2 Repenomamus Hides
+Drops: 0-2 Repenomamus Hides, 1 
+Small Raw Synapsid
 
 Diet: Carnivore
 

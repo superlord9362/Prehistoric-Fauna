@@ -103,6 +103,7 @@ public class DilophosaurusSkeleton extends PrehistoricEntity {
 		compound.putBoolean("IsSitting", this.isSitting());
 		compound.putBoolean("IsPushable", this.isPushableState());
 		compound.putBoolean("IsLooking", this.isLooking());
+		compound.putFloat("Rotation", this.getYHeadRot());
 	}
 	
 	public void readAdditionalSaveData(CompoundTag compound) {
@@ -113,6 +114,8 @@ public class DilophosaurusSkeleton extends PrehistoricEntity {
 		this.setSitting(compound.getBoolean("IsSitting"));
 		this.setPushable(compound.getBoolean("IsPushable"));
 		this.setLooking(compound.getBoolean("IsLooking"));
+		this.setYBodyRot(compound.getFloat("Rotation"));
+		this.setYHeadRot(compound.getFloat("Rotation"));
 	}
 	
 	public DilophosaurusSkeleton(EntityType<? extends DilophosaurusSkeleton> type, Level worldIn) {

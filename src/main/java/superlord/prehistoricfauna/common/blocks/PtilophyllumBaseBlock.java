@@ -54,7 +54,7 @@ public class PtilophyllumBaseBlock extends Block {
 				boolean flag = false;
 				boolean flag1 = false;
 				BlockState blockstate = p_51703_.getBlockState(p_51704_.below());
-				if (blockstate.is(Blocks.DIRT) || blockstate.is(Blocks.GRASS_BLOCK) || blockstate.is(Blocks.MYCELIUM) || blockstate.is(Blocks.PODZOL) || blockstate.is(Blocks.COARSE_DIRT) || blockstate.is(Blocks.ROOTED_DIRT) || blockstate.is(PFBlocks.MOSSY_DIRT.get()) || blockstate.is(PFBlocks.SILT.get()) || blockstate.is(PFBlocks.HARDENED_SILT.get()) || blockstate.is(PFBlocks.LOAM.get()) || blockstate.is(PFBlocks.PACKED_LOAM.get())) {
+				if (blockstate.is(Blocks.DIRT) || blockstate.is(Blocks.GRASS_BLOCK) || blockstate.is(Blocks.MYCELIUM) || blockstate.is(Blocks.PODZOL) || blockstate.is(Blocks.COARSE_DIRT) || blockstate.is(Blocks.ROOTED_DIRT) || blockstate.is(PFBlocks.MOSSY_DIRT.get()) || blockstate.is(PFBlocks.SILT.get()) || blockstate.is(PFBlocks.HARDENED_SILT.get()) || blockstate.is(PFBlocks.LOAM.get()) || blockstate.is(PFBlocks.PACKED_LOAM.get()) || blockstate.is(Blocks.MUD) || blockstate.is(Blocks.PACKED_MUD) || blockstate.is(Blocks.SAND) || blockstate.is(Blocks.RED_SAND)) {
 					flag = true;
 				} else if (blockstate.is(this.plant)) {
 					int j = 1;
@@ -62,7 +62,7 @@ public class PtilophyllumBaseBlock extends Block {
 					for(int k = 0; k < 4; ++k) {
 						BlockState blockstate1 = p_51703_.getBlockState(p_51704_.below(j + 1));
 						if (!blockstate1.is(this.plant)) {
-							if (blockstate1.is(Blocks.DIRT) || blockstate1.is(Blocks.GRASS_BLOCK) || blockstate1.is(Blocks.MYCELIUM) || blockstate1.is(Blocks.PODZOL) || blockstate1.is(Blocks.COARSE_DIRT) || blockstate1.is(Blocks.ROOTED_DIRT) || blockstate1.is(PFBlocks.MOSSY_DIRT.get()) || blockstate1.is(PFBlocks.SILT.get()) || blockstate1.is(PFBlocks.HARDENED_SILT.get()) || blockstate1.is(PFBlocks.LOAM.get()) || blockstate1.is(PFBlocks.PACKED_LOAM.get())) {
+							if (blockstate1.is(Blocks.DIRT) || blockstate1.is(Blocks.GRASS_BLOCK) || blockstate1.is(Blocks.MYCELIUM) || blockstate1.is(Blocks.PODZOL) || blockstate1.is(Blocks.COARSE_DIRT) || blockstate1.is(Blocks.ROOTED_DIRT) || blockstate1.is(PFBlocks.MOSSY_DIRT.get()) || blockstate1.is(PFBlocks.SILT.get()) || blockstate1.is(PFBlocks.HARDENED_SILT.get()) || blockstate1.is(PFBlocks.LOAM.get()) || blockstate1.is(PFBlocks.PACKED_LOAM.get()) || blockstate.is(Blocks.MUD) || blockstate.is(Blocks.PACKED_MUD) || blockstate.is(Blocks.SAND) || blockstate.is(Blocks.RED_SAND)) {
 								flag1 = true;
 							}
 							break;
@@ -139,7 +139,7 @@ public class PtilophyllumBaseBlock extends Block {
 
 	public boolean canSurvive(BlockState p_51683_, LevelReader p_51684_, BlockPos p_51685_) {
 		BlockState blockstate = p_51684_.getBlockState(p_51685_.below());
-		if (!blockstate.is(this.plant) && !blockstate.is(Blocks.DIRT) && !blockstate.is(Blocks.GRASS_BLOCK) && !blockstate.is(Blocks.MYCELIUM) && !blockstate.is(Blocks.PODZOL) && !blockstate.is(Blocks.COARSE_DIRT) && !blockstate.is(Blocks.ROOTED_DIRT) && !blockstate.is(PFBlocks.MOSSY_DIRT.get()) && !blockstate.is(PFBlocks.SILT.get()) && !blockstate.is(PFBlocks.HARDENED_SILT.get()) && !blockstate.is(PFBlocks.LOAM.get()) && !blockstate.is(PFBlocks.PACKED_LOAM.get()) && !blockstate.is(Blocks.SAND) && !blockstate.is(Blocks.RED_SAND)) {
+		if (!blockstate.is(this.plant) && !blockstate.is(Blocks.DIRT) && !blockstate.is(Blocks.GRASS_BLOCK) && !blockstate.is(Blocks.MYCELIUM) && !blockstate.is(Blocks.PODZOL) && !blockstate.is(Blocks.COARSE_DIRT) && !blockstate.is(Blocks.ROOTED_DIRT) && !blockstate.is(PFBlocks.MOSSY_DIRT.get()) && !blockstate.is(PFBlocks.SILT.get()) && !blockstate.is(PFBlocks.HARDENED_SILT.get()) && !blockstate.is(PFBlocks.LOAM.get()) && !blockstate.is(PFBlocks.PACKED_LOAM.get()) && !blockstate.is(Blocks.SAND) && !blockstate.is(Blocks.RED_SAND) && !blockstate.is(Blocks.MUD) && !blockstate.is(Blocks.PACKED_MUD)) {
 			if (!blockstate.isAir()) {
 				return false;
 			} else {

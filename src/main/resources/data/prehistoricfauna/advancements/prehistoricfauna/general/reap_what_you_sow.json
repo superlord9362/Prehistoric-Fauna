@@ -36,22 +36,24 @@
       }
     },
     "killed_velociraptor": {
-		"trigger": "minecraft:player_killed_entity",
-		"conditions": {
-			"entity": {
-				"type": "prehistoricfauna:velociraptor"
-			},
-			"killing_blow": {
-				"source_entity": {
-					"equipment": {
-						"mainhand": {
-							"item": "prehistoricfauna:dromaeosaur_claw_scythe"
-						}
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+	"entity": {
+          "type": "prehistoricfauna:velociraptor"
+        },
+		"killing_blow": {
+			"source_entity": {
+				"equipment": {
+					"mainhand": {
+						"items": [
+							"prehistoricfauna:dromaeosaur_claw_scythe"
+						]
 					}
 				}
 			}
 		}
-	}
+      }
+    }
   },
   "requirements": [
     [

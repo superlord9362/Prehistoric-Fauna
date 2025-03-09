@@ -147,6 +147,7 @@ public class YutyrannusSkeleton extends PrehistoricEntity {
 		compound.putBoolean("IsCarcass", this.isCarcass());
 		compound.putBoolean("IsPushable", this.isPushableState());
 		compound.putBoolean("IsLooking", this.isLooking());
+		compound.putFloat("Rotation", this.getYHeadRot());
 	}
 
 	public void readAdditionalSaveData(CompoundTag compound) {
@@ -161,6 +162,8 @@ public class YutyrannusSkeleton extends PrehistoricEntity {
 		this.setCarcass(compound.getBoolean("IsCarcass"));
 		this.setPushable(compound.getBoolean("IsPushable"));
 		this.setLooking(compound.getBoolean("IsLooking"));
+		this.setYBodyRot(compound.getFloat("Rotation"));
+		this.setYHeadRot(compound.getFloat("Rotation"));
 	}
 
 	public YutyrannusSkeleton(EntityType<? extends YutyrannusSkeleton> type, Level worldIn) {
@@ -276,7 +279,7 @@ public class YutyrannusSkeleton extends PrehistoricEntity {
 	}
 
 	private void spawnFossil(DamageSource p_213815_1_) {
-		Block.popResource(this.level(), this.blockPosition(), new ItemStack(PFItems.ANKYLOSAURUS_SKELETON.get()));
+		Block.popResource(this.level(), this.blockPosition(), new ItemStack(PFItems.YUTYRANNUS_SKELETON.get()));
 	}
 
 	static class LookAtPlayerGoal extends net.minecraft.world.entity.ai.goal.LookAtPlayerGoal {

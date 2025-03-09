@@ -560,8 +560,8 @@ public class ServerConfig {
 	public final ForgeConfigSpec.BooleanValue hostileCarnivores;
 	public final ForgeConfigSpec.BooleanValue unscheduledSleeping;
 	public final ForgeConfigSpec.BooleanValue sauropodTrampling;
-	public final ForgeConfigSpec.BooleanValue softShellAndHardShellEggs;
 	public final ForgeConfigSpec.BooleanValue eggHeating;
+	public final ForgeConfigSpec.BooleanValue giveAncientJournalOnStartup;
 	
 	public final ForgeConfigSpec.BooleanValue extantWorldGeneration;
 	public final ForgeConfigSpec.BooleanValue extantEntitySpawns;
@@ -1130,6 +1130,7 @@ public class ServerConfig {
 		this.triassicDimensionID = buildInt(builder, "Triassic Dimension ID", "all", 7, Integer.MIN_VALUE, Integer.MAX_VALUE, "Triassic Dimension ID. Default is 7");
 		this.spaceTimeContinuumWarping = buildBoolean(builder, "Space Time Continuum Warping", "all", false, "Warning: Messing with the time space continuum may lead to unforseen consequences. Recommended to keep false for servers. Default is false");
 		this.geologyHammerMining = buildBoolean(builder, "Geological Hammer Stone Breaking", "all", true, "Toggles whether stones can be broken down using the Geological Hammer. Default is true");
+		this.giveAncientJournalOnStartup = buildBoolean(builder, "Give Ancient Journal on Start", "all", true, "Toggles whether players will recieve an Ancient Journal when they first join the world. Default is true");
 		builder.pop();
 		builder.push("Structures");
 		this.hellCreekHutMinDistance = buildInt(builder, "Hell Creek Ruined Time Traveller's Hut Min Distance", "all", 40, 1, 300, "The closest two Hell Creek Ruined Time Traveller's Huts can spawn from eachother. Keep this value lower than the max. Default is 40");
@@ -1170,7 +1171,6 @@ public class ServerConfig {
 		this.sauropodTrampling = buildBoolean(builder, "Sauropod Trampling", "all", true, "Toggles whether large sauropods can trample smaller animals. Default is true");
 		builder.pop();
 		builder.push("Eggs");
-		this.softShellAndHardShellEggs = buildBoolean(builder, "Hard Shell and Soft Shell Eggs", "all", true, "Toggles whether eggs are split into hard shell and soft shell categories, affecting hatching requirements. Default is true");
 		this.eggHeating = buildBoolean(builder, "Egg Heat Requirement", "all", true, "Toggles whether eggs need heat to hatch, and whether they can die without heat. Default is true");
 		builder.pop();
 	}

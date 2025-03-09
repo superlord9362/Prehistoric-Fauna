@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/protoceratops_nest_and_four_eggs_one_plant",
-	"textures": {
-		"egg": "prehistoricfauna:block/protoceratops_egg_slightly_cracked"
-	}
-}

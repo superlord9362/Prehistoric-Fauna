@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/changyuraptor_nest_and_egg_one_plant",
-	"textures": {
-		"egg": "prehistoricfauna:block/changyuraptor_egg_very_cracked"
-	}
-}

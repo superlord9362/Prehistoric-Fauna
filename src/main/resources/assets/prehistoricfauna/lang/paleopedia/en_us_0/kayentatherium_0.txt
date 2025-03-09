@@ -1,6 +1,7 @@
 Found In: Kayenta
 
-Drops: 0-2 Kayentatherium Hides
+Drops: 0-2 Kayentatherium Hides,
+1 Small Raw Synapsid
 
 Diet: Herbivore
 

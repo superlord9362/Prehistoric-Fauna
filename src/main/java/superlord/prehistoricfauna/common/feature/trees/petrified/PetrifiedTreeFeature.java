@@ -48,15 +48,19 @@ public class PetrifiedTreeFeature extends Feature<JohnstoniaConfig>
 		int z = pos.getZ();
 		if (world.getBlockState(pos.below()).getBlock() != Blocks.WATER && world.getBlockState(pos.below()).isCollisionShapeFullBlock(world, pos.below()) && !world.getBlockState(pos.below()).is(PFTags.HENOSTONE)) {
 			if (height == 3) {
-				if (isAir(world, new BlockPos(x, y, z))) setBlock(world, new BlockPos(x, y, z), PFBlocks.PETRIFIED_WOOD.get().defaultBlockState());
-				if (isAir(world, new BlockPos(x, y + 1, z))) setBlock(world, new BlockPos(x, y + 1, z), PFBlocks.PETRIFIED_WOOD.get().defaultBlockState());
-				if (isAir(world, new BlockPos(x, y + 2, z))) setBlock(world, new BlockPos(x, y + 2, z), PFBlocks.PETRIFIED_WOOD.get().defaultBlockState());
-				return true;
+				if (isAir(world, new BlockPos(x, y, z)) && isAir(world, new BlockPos(x, y + 1, z)) && isAir(world, new BlockPos(x, y + 2, z))) {
+					setBlock(world, new BlockPos(x, y, z), PFBlocks.PETRIFIED_WOOD.get().defaultBlockState());
+					setBlock(world, new BlockPos(x, y + 1, z), PFBlocks.PETRIFIED_WOOD.get().defaultBlockState());
+					setBlock(world, new BlockPos(x, y + 2, z), PFBlocks.PETRIFIED_WOOD.get().defaultBlockState());
+					return true;
+				}
 			}
 			if (height == 2) {
-				if (isAir(world, new BlockPos(x, y, z))) setBlock(world, new BlockPos(x, y, z), PFBlocks.PETRIFIED_WOOD.get().defaultBlockState());
-				if (isAir(world, new BlockPos(x, y + 1, z))) setBlock(world, new BlockPos(x, y + 1, z), PFBlocks.PETRIFIED_WOOD.get().defaultBlockState());
-				return true;
+				if (isAir(world, new BlockPos(x, y, z)) && isAir(world, new BlockPos(x, y + 1, z))) {
+					setBlock(world, new BlockPos(x, y, z), PFBlocks.PETRIFIED_WOOD.get().defaultBlockState());
+					setBlock(world, new BlockPos(x, y + 1, z), PFBlocks.PETRIFIED_WOOD.get().defaultBlockState());
+					return true;
+				}
 			}
 		}
 		return false;

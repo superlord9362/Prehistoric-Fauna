@@ -1,0 +1,69 @@
+{
+	"name": "prehistoricfauna:settlement/yixian/decorations",
+	"fallback": "prehistoricfauna:settlement/yixian/decorations",
+	"elements": [
+		{
+			"weight": 3,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/yixian/decorations/yixian_lamp_pole_1",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 3,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/yixian/decorations/yixian_lamp_pole_2",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 3,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/yixian/decorations/yixian_lamp_pole_3",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 3,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/yixian/decorations/yixian_lamp_pole_4",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/yixian/decorations/yixian_plant_1",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/yixian/decorations/yixian_plant_2",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/yixian/decorations/yixian_lamp",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		}
+	]
+}

@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -23,11 +24,11 @@ import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFItems;
 
 public class QuereuxiaRootsBlock extends Block {
-	
+
 	public QuereuxiaRootsBlock(Properties p_49795_) {
 		super(p_49795_);
 	}
-	
+
 	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		if (world.getBlockState(pos.above()).getBlock() == Blocks.WATER) {
 			world.setBlockAndUpdate(pos.above(), PFBlocks.QUEREUXIA_STEM.get().defaultBlockState());
@@ -62,6 +63,12 @@ public class QuereuxiaRootsBlock extends Block {
 		return false;
 	}
 
+	public boolean canSurvive(BlockState p_51028_, LevelReader p_51029_, BlockPos p_51030_) {
+		BlockPos blockpos = p_51030_.below();
+		if (p_51028_.getBlock() == this) return (p_51029_.getBlockState(blockpos).is(Blocks.SAND) || p_51029_.getBlockState(blockpos).is(Blocks.RED_SAND) || p_51029_.getBlockState(blockpos).is(Blocks.GRAVEL) || p_51029_.getBlockState(blockpos).is(Blocks.DIRT) || p_51029_.getBlockState(blockpos).is(Blocks.COARSE_DIRT) || p_51029_.getBlockState(blockpos).is(Blocks.ROOTED_DIRT) || p_51029_.getBlockState(blockpos).is(Blocks.GRASS_BLOCK) || p_51029_.getBlockState(blockpos).is(Blocks.MYCELIUM) || p_51029_.getBlockState(blockpos).is(Blocks.PODZOL) || p_51029_.getBlockState(blockpos).is(Blocks.CLAY) || p_51029_.getBlockState(blockpos).is(Blocks.MUD) || p_51029_.getBlockState(blockpos).is(Blocks.PACKED_MUD) || p_51029_.getBlockState(blockpos).is(PFBlocks.SILT.get()) || p_51029_.getBlockState(blockpos).is(PFBlocks.HARDENED_SILT.get()) || p_51029_.getBlockState(blockpos).is(PFBlocks.LOAM.get()) || p_51029_.getBlockState(blockpos).is(PFBlocks.PACKED_LOAM.get()) || p_51029_.getBlockState(blockpos).is(PFBlocks.MOSSY_DIRT.get()));
+		return this.mayPlaceOn(p_51029_.getBlockState(blockpos), p_51029_, blockpos);
+	}
+
 	public boolean placeLiquid(LevelAccessor p_154520_, BlockPos p_154521_, BlockState p_154522_, FluidState p_154523_) {
 		return false;
 	}
@@ -69,5 +76,5 @@ public class QuereuxiaRootsBlock extends Block {
 	public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter level, BlockPos pos, Player player) {
 		return new ItemStack(PFItems.QUEREUXIA.get().asItem());
 	}
-	
+
 }

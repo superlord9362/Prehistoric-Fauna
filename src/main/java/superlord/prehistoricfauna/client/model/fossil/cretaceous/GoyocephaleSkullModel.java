@@ -1,0 +1,43 @@
+package superlord.prehistoricfauna.client.model.fossil.cretaceous;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeDeformation;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
+import superlord.prehistoricfauna.common.entity.fossil.cretaceous.GoyocephaleSkull;
+
+public class GoyocephaleSkullModel extends EntityModel<GoyocephaleSkull> {
+	private final ModelPart Skull;
+
+	public GoyocephaleSkullModel(ModelPart root) {
+		this.Skull = root.getChild("Skull");
+	}
+
+	@SuppressWarnings("unused")
+	public static LayerDefinition createBodyLayer() {
+		MeshDefinition meshdefinition = new MeshDefinition();
+		PartDefinition partdefinition = meshdefinition.getRoot();
+
+		PartDefinition Skull = partdefinition.addOrReplaceChild("Skull", CubeListBuilder.create().texOffs(1, 30).addBox(-1.5F, -1.9999F, -4.0F, 3.0F, 2.0F, 4.0F, new CubeDeformation(0.0F))
+		.texOffs(1, 25).addBox(-2.5F, -2.0F, -1.0F, 5.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 1.0F));
+
+		return LayerDefinition.create(meshdefinition, 64, 56);
+	}
+
+	@Override
+	public void setupAnim(GoyocephaleSkull entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+
+	}
+
+	@Override
+	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+		Skull.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+	}
+}

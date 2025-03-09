@@ -36,6 +36,10 @@ public class AgedHerdDinosaurEntity extends DinosaurEntity {
 	public boolean hasGroupLeader() {
 		return this.groupLeader != null && this.groupLeader.isAlive() && !groupLeader.isBaby();
 	}
+	
+	public double moveToRange() {
+		return 1;
+	}
 
 	public AgedHerdDinosaurEntity startFollowing(AgedHerdDinosaurEntity groupLeaderIn) {
 		this.groupLeader = groupLeaderIn;
@@ -84,7 +88,7 @@ public class AgedHerdDinosaurEntity extends DinosaurEntity {
 
 	public void pathToLeader() {
 		if (this.hasGroupLeader()) {
-			this.getNavigation().moveTo(this.groupLeader, 1.0D);
+			this.getNavigation().moveTo(this.groupLeader, 1);
 		}
 
 	}

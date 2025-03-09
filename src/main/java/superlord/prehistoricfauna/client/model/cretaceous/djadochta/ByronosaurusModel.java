@@ -166,7 +166,7 @@ public class ByronosaurusModel extends EntityModel<Byronosaurus> {
 					this.Tail.yRot = Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;
 					this.LeftThigh.xRot = -0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.RightThigh.xRot = 0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
-					this.Root.y = 34;
+					this.Root.y = 26;
 				}
 			}
 		}

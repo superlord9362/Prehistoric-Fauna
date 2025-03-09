@@ -1,11 +1,17 @@
 {
 	"replace": false,
 	"values": [
+		"minecraft:turtle_egg",
+		"prehistoricfauna:pinacosaurus_egg",
+		"prehistoricfauna:ischigualastia_egg",
+		"prehistoricfauna:saurosuchus_egg",
+		"prehistoricfauna:anzu_egg",
 		"prehistoricfauna:dakotaraptor_egg",
 		"prehistoricfauna:pachycephalosaurus_egg",
 		"prehistoricfauna:citipati_egg",
 		"prehistoricfauna:plesiohadros_egg",
 		"prehistoricfauna:udanoceratops_egg",
+		"prehistoricfauna:jinzhousaurus_egg",
 		"prehistoricfauna:yutyrannus_egg",
 		"prehistoricfauna:ceratosaurus_egg",
 		"prehistoricfauna:dilophosaurus_egg",
@@ -16,10 +22,6 @@
 		"prehistoricfauna:herrerasaurus_egg",
 		"prehistoricfauna:desmatosuchus_egg",
 		"prehistoricfauna:dryosaurus_egg",
-		"prehistoricfauna:ornithomimus_egg",
-		"prehistoricfauna:ischigualastia_egg",
-		"prehistoricfauna:saurosuchus_egg",
-		"minecraft:turtle_egg",
-		"prehistoricfauna:pinacosaurus_egg"
+		"prehistoricfauna:ornithomimus_egg"
 	]
 }

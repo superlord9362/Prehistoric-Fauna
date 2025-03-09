@@ -243,6 +243,25 @@ public class BeipiaosaurusModel extends EntityModel<Beipiaosaurus> {
 				this.LeftClaw2.zRot = (-Math.abs(0.3F * Mth.sin(0.2F * ageInTicks / 3)));
 				this.LeftClaw3.zRot = (-Math.abs(0.15F * Mth.sin(0.2F * ageInTicks / 3)));
 				this.LeftArm.zRot = (Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3))) + (Mth.cos(3.0F + limbSwing * 0.4F) * 0.1F * limbSwingAmount) + attackProgress * (float) Math.toRadians(85F);
+				if (entity.isInWater()) {
+//					this.RightThigh.y = 20;
+//					this.LeftThigh.y = 20;
+					this.Body.y = 16;
+					this.Body.xRot = -0.25F;
+					this.Tail.xRot = 0.125F;
+					this.Neck.xRot = 0.5F;
+					this.RightThigh.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
+					this.LeftThigh.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
+					this.RightLeg.xRot = -0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
+					this.LeftLeg.xRot = 0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
+					this.RightFoot.xRot = 0.5F - (0.3F * Mth.sin(0.2F * ageInTicks / 1.5F));
+					this.LeftFoot.xRot = 0.5F + (0.3F * Mth.sin(0.2F * ageInTicks / 1.5F));
+					this.LeftArm.xRot = 0.25F;
+					this.RightArm.xRot = 0.25F;
+					this.RightArm.zRot = -1.5F + Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
+					this.LeftArm.zRot = 1.5F - Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
+					this.Tail.yRot = (Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * Mth.sin(0.15F * ageInTicks / 1.5F));
+				}
 			}
 		}
 	}

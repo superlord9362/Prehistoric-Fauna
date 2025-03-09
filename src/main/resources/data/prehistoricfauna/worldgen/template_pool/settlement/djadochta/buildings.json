@@ -1,0 +1,105 @@
+{
+	"name": "prehistoricfauna:settlement/djadochta/buildings",
+	"fallback": "prehistoricfauna:settlement/djadochta/buildings",
+	"elements": [
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/djadochta/buildings/djadochta_fletchers",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/djadochta/buildings/djadochta_stables",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/djadochta/buildings/djadochta_well",
+				"processors": "minecraft:empty",
+				"projection": "rigid"
+			}
+		},
+		{
+			"weight": 6,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/djadochta/buildings/djadochta_house_1",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 6,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/djadochta/buildings/djadochta_house_2",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 6,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/djadochta/buildings/djadochta_house_3",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 6,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/djadochta/buildings/djadochta_house_4",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 6,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/djadochta/buildings/djadochta_house_5",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 6,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/djadochta/buildings/djadochta_house_6",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 6,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/djadochta/buildings/djadochta_house_7",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 6,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/djadochta/buildings/djadochta_house_8",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		}
+	]
+}

@@ -2027,6 +2027,84 @@
 			}
         ]
     },
+    "boss_walk": {
+		"category": "neutral",
+		"subtitle": "prheistoricfauna.subtitle.cretaceousBossWalk",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/cretaceous_boss/boss_walk1",
+				"stream": true
+			},
+			{
+				"name": "prehistoricfauna:prehistoric/cretaceous_boss/boss_walk2",
+				"stream": true
+			}
+		]
+	},
+    "boss_idle": {
+		"category": "neutral",
+		"subtitle": "prheistoricfauna.subtitle.cretaceousBossIdle",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/cretaceous_boss/boss_idle1",
+				"stream": true
+			},
+			{
+				"name": "prehistoricfauna:prehistoric/cretaceous_boss/boss_idle2",
+				"stream": true
+			}
+		]
+	},
+    "boss_roar": {
+		"category": "neutral",
+		"subtitle": "prheistoricfauna.subtitle.cretaceousBossRoar",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/cretaceous_boss/boss_roar",
+				"stream": true
+			}
+		]
+	},
+    "boss_hurt": {
+		"category": "neutral",
+		"subtitle": "prheistoricfauna.subtitle.cretaceousBossHurt",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/cretaceous_boss/boss_hurt",
+				"stream": true
+			}
+		]
+	},
+    "boss_death": {
+		"category": "neutral",
+		"subtitle": "prheistoricfauna.subtitle.cretaceousBossDeath",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/cretaceous_boss/boss_death",
+				"stream": true
+			}
+		]
+	},
+    "boss_bite": {
+		"category": "neutral",
+		"subtitle": "prheistoricfauna.subtitle.cretaceousBossBite",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/cretaceous_boss/boss_bite",
+				"stream": true
+			}
+		]
+	},
+    "boss_bite_all": {
+		"category": "neutral",
+		"subtitle": "prheistoricfauna.subtitle.cretaceousBossBite",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/cretaceous_boss/boss_megabite",
+				"stream": true
+			}
+		]
+	},
 	"scutellosaurus_hurt": {
         "category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.scutellosaurusHurt",
@@ -2897,6 +2975,16 @@
 			}
 		]
 	},
+	"pachycephalosaurus_warn": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.pachycephalosaurusWarning",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/pachycephalosaurus/pachycephalosaurus_warning",
+				"stream": true
+			}
+		]
+	},
 	"ornithomimus_idle": {
 		"category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.ornithomimusIdle",
@@ -2927,6 +3015,16 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/ornithomimus/ornithomimus_hurt",
+				"stream": true
+			}
+		]
+	},
+	"ornithomimus_warn": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.ornithomimusWarning",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/ornithomimus/ornithomimus_warning",
 				"stream": true
 			}
 		]
@@ -3092,7 +3190,7 @@
 		"subtitle": "prehistoricfauna.subtitle.goyocephaleDeath",
 		"sounds": [
 			{
-				"name": "prehistoricfauna:prehistoric/goyocephale/goyocephale_hurt",
+				"name": "prehistoricfauna:prehistoric/goyocephale/goyocephale_death",
 				"stream": true
 			}
 		]
@@ -3209,6 +3307,16 @@
 			}
 		]
 	},
+	"dilong_warn": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.dilongWarning",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/dilong/dilong_warning",
+				"stream": true
+			}
+		]
+	},
 	"dongbeititan_idle": {
 		"category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.dongbeititanIdle",
@@ -3249,6 +3357,16 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/dongbeititan/dongbeititan_warning",
+				"stream": true
+			}
+		]
+	},
+	"dongbeititan_snores": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.dongbeititanSnores",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/snoring/large_snoring",
 				"stream": true
 			}
 		]
@@ -3497,6 +3615,16 @@
 			}
 		]
 	},
+	"ruixinia_snores": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.ruixiniaSnores",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/snoring/large_snoring",
+				"stream": true
+			}
+		]
+	},
 	"sinosauropteryx_idle": {
 		"category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.sinosauropteryxIdle",
@@ -3585,6 +3713,16 @@
 			}
 		]
 	},
+	"yutyrannus_bite": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.yutyrannusBite",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/bite/large_bite",
+				"stream": true
+			}
+		]
+	},
 	"zhenyuanlong_idle": {
 		"category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.zhenyuanlongIdle",
@@ -3631,7 +3769,7 @@
 	},
 	"byronosaurus_idle": {
 		"category": "neutral",
-		"subtitle": "prehsitoricfauna.subtitle.byronosaurusIdle",
+		"subtitle": "prehistoricfauna.subtitle.byronosaurusIdle",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/byronosaurus/byronosaurus_idle1",
@@ -3669,6 +3807,50 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/byronosaurus/byronosaurus_hurt",
+				"stream": true
+			}
+		]
+	},
+	"brachychampsa_idle": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.brachychampsaIdle",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/brachychampsa/brachychampsa_idle1",
+				"stream": true
+			},
+			{
+				"name": "prehistoricfauna:prehistoric/brachychampsa/brachychampsa_idle2",
+				"stream": true
+			}
+		]
+	},
+	"brachychampsa_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.brachychampsaHurt",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/brachychampsa/brachychampsa_hurt",
+				"stream": true
+			}
+		]
+	},
+	"brachychampsa_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.brachychampsaDeath",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/brachychampsa/brachychampsa_death",
+				"stream": true
+			}
+		]
+	},
+	"brachychampsa_warn": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.brachychampsaWarning",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/brachychampsa/brachychampsa_warning",
 				"stream": true
 			}
 		]
@@ -3723,6 +3905,14 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:music/ambience_1",
+				"stream": true
+			},
+			{
+				"name": "prehistoricfauna:music/night_1",
+				"stream": true
+			},
+			{
+				"name": "prehistoricfauna:music/night_2",
 				"stream": true
 			}
 		]

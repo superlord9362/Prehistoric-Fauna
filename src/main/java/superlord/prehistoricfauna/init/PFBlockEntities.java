@@ -8,6 +8,7 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.blocks.compat.PFBeehiveBlock;
 import superlord.prehistoricfauna.common.blocks.compat.PFChestBlock;
 import superlord.prehistoricfauna.common.blocks.compat.PFTrappedChestBlock;
+import superlord.prehistoricfauna.common.entity.CretaceousBossBlockEntity;
 import superlord.prehistoricfauna.common.entity.block.BurrowBlockEntity;
 import superlord.prehistoricfauna.common.entity.block.FeederBlockEntity;
 import superlord.prehistoricfauna.common.entity.block.PFHangingSignBlockEntity;
@@ -79,5 +80,6 @@ public class PFBlockEntities {
 	public static final RegistryObject<BlockEntityType<PFTrappedChestBlockEntity>> TRAPPED_CHEST = HELPER.createBlockEntity("trapped_chest", PFTrappedChestBlockEntity::new, PFTrappedChestBlock.class);
 	public static final RegistryObject<BlockEntityType<FeederBlockEntity>> FEEDER = REGISTER.register("feeder", () -> BlockEntityType.Builder.of(FeederBlockEntity::new, PFBlocks.OAK_FEEDER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<BurrowBlockEntity>> BURROW = REGISTER.register("burrow", () -> BlockEntityType.Builder.of(BurrowBlockEntity::new, PFBlocks.BURROW.get()).build(null));
+	public static final RegistryObject<BlockEntityType<CretaceousBossBlockEntity>> CRETACEOUS_BOSS = REGISTER.register("cretaceous_boss", () -> BlockEntityType.Builder.of(CretaceousBossBlockEntity::new, PFBlocks.CRETACEOUS_BOSS_SPAWN.get()).build(null));
     
 }

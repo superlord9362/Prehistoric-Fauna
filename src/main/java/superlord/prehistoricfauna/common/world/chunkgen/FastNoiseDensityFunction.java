@@ -15,12 +15,12 @@ public class FastNoiseDensityFunction implements DensityFunction.SimpleFunction 
         this.transformer = transformer;
     }
 
-    protected FastNoiseDensityFunction(FastNoise noise) {
+    public FastNoiseDensityFunction(FastNoise noise) {
         this.noise = noise;
         this.transformer = (noiseContext -> (double) noiseContext.noise.GetSimplex((float) noiseContext.x, (float) noiseContext.y, (float) noiseContext.z));
     }
 
-    protected FastNoiseDensityFunction(FastNoise noise, float offset) {
+    public FastNoiseDensityFunction(FastNoise noise, float offset) {
         this.noise = noise;
         this.transformer = (noiseContext -> (double) noiseContext.noise.GetSimplex((float) noiseContext.x, (float) noiseContext.y + offset, (float) noiseContext.z));
     }

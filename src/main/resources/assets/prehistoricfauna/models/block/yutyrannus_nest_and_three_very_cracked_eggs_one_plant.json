@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/yutyrannus_nest_and_three_eggs_one_plant",
-	"textures": {
-		"egg": "prehistoricfauna:block/yutyrannus_egg_very_cracked"
-	}
-}

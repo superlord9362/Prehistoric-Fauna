@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/herrerasaurus_nest_and_egg_three_plants",
-	"textures": {
-		"egg": "prehistoricfauna:block/herrerasaurus_egg_very_cracked"
-	}
-}

@@ -1,6 +1,7 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.djadochta;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -21,6 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.common.Tags;
 import superlord.prehistoricfauna.init.PFItems;
@@ -47,6 +49,10 @@ public class Gobiulus extends PathfinderMob {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 1.0D).add(Attributes.MOVEMENT_SPEED, 0.15D);
 	}
 
+	protected void playStepSound(BlockPos p_33543_, BlockState p_33544_) {
+		this.playSound(SoundEvents.SILVERFISH_STEP, 0.15F, 1.0F);
+	}
+
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
@@ -63,7 +69,7 @@ public class Gobiulus extends PathfinderMob {
 	public static boolean canBugSpawn(EntityType<? extends PathfinderMob> animal, ServerLevelAccessor worldIn, MobSpawnType reason, BlockPos pos, RandomSource random) {
 		return (worldIn.getBlockState(pos.below()).is(BlockTags.DIRT) || worldIn.getBlockState(pos.below()).is(Tags.Blocks.SAND) || worldIn.getBlockState(pos.below()).is(BlockTags.LEAVES) || worldIn.getBlockState(pos.below()).is(BlockTags.LOGS_THAT_BURN)) && worldIn.getRawBrightness(pos, 0) > 8;
 	}
-	
+
 	@Override
 	public ItemStack getPickedResult(HitResult target) {
 		return new ItemStack(PFItems.GOBIULUS_SPAWN_EGG.get());

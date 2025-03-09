@@ -12,6 +12,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -19,6 +20,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
@@ -45,7 +47,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.CarnivoreHuntGoal;
@@ -127,7 +129,31 @@ public class Changyuraptor extends DinosaurEntity {
 		}
 		this.setInsectivorous(true);
 		this.setCrepuscular(true);
+		this.populateDefaultEquipmentSlots(worldIn.getRandom(), difficultyIn);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+	}
+
+	protected void populateDefaultEquipmentSlots(RandomSource p_218171_, DifficultyInstance p_218172_) {
+		if (p_218171_.nextFloat() < 0.2F) {
+			float f = p_218171_.nextFloat();
+			ItemStack itemstack;
+			if (f < 0.05F) {
+				itemstack = new ItemStack(PFItems.FERMENTED_GINKO_BERRY.get());
+			} else if (f < 0.2F) {
+				itemstack = new ItemStack(PFItems.TIME_GEM_SHARD.get());
+			} else if (f < 0.4F) {
+				itemstack = p_218171_.nextBoolean() ? new ItemStack(PFItems.DEAD_HOPPER.get()) : new ItemStack(PFItems.DEAD_BEETLE.get());
+			} else if (f < 0.6F) {
+				itemstack = new ItemStack(PFItems.TUBER.get());
+			} else if (f < 0.8F) {
+				itemstack = new ItemStack(PFItems.REPENOMAMUS_HIDE.get());
+			} else {
+				itemstack = new ItemStack(Items.FEATHER);
+			}
+
+			this.setItemSlot(EquipmentSlot.MAINHAND, itemstack);
+		}
+
 	}
 
 	@Override
@@ -262,7 +288,7 @@ public class Changyuraptor extends DinosaurEntity {
 	}
 
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.CHANGYURAPTOR_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+		return PFBlocks.CHANGYURAPTOR_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 
 	public boolean causeFallDamage(float p_148875_, float p_148876_, DamageSource p_148877_) {
@@ -354,7 +380,7 @@ public class Changyuraptor extends DinosaurEntity {
 	protected void customServerAiStep() {
 		super.customServerAiStep();
 		if (this.getFallingTicks() != 0) {
-			if (this.targetPosition == null || this.targetPosition.closerToCenterThan(this.position(), 2.0D)) {
+			if (this.targetPosition == null || this.targetPosition.closerToCenterThan(this.position(), 12.0D)) {
 				this.targetPosition = new BlockPos((int) this.getX() + this.random.nextInt(7) - this.random.nextInt(7), (int) this.getY() + this.random.nextInt(6) - 2, (int) this.getZ() + this.random.nextInt(7) - this.random.nextInt(7));
 			}
 

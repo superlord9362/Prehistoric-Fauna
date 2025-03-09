@@ -40,7 +40,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
@@ -322,6 +322,7 @@ public class Zhenyuanlong extends DinosaurEntity {
 			this.setFlags(EnumSet.of(Goal.Flag.TARGET));
 		}
 
+		@SuppressWarnings("resource")
 		public boolean canUse() {
 			for (Player player : Zhenyuanlong.this.level().getEntitiesOfClass(Player.class, Zhenyuanlong.this.getBoundingBox().inflate(4, 4, 4))) {
 				return Zhenyuanlong.this.trusts(player.getUUID()) && player.getLastAttacker() != null;
@@ -358,7 +359,7 @@ public class Zhenyuanlong extends DinosaurEntity {
 	}
     
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.ZHENYUANLONG_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+		return PFBlocks.ZHENYUANLONG_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 	
 }

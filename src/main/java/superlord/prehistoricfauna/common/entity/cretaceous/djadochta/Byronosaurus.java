@@ -34,7 +34,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.block.BurrowBlockEntity;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
@@ -46,11 +46,11 @@ import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurWaterAvoidingRandomStrollGoal;
-import superlord.prehistoricfauna.common.entity.goal.DiurnalSleepingGoal;
 import superlord.prehistoricfauna.common.entity.goal.HostileCarnivoreGoal;
 import superlord.prehistoricfauna.common.entity.goal.HuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
+import superlord.prehistoricfauna.common.entity.goal.NocturnalSleepGoal;
 import superlord.prehistoricfauna.common.entity.goal.OpportunistAttackGoal;
 import superlord.prehistoricfauna.common.entity.goal.OpportunistBabyHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.OpportunistHuntingGoal;
@@ -108,7 +108,7 @@ public class Byronosaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(3, new SkittishFleeGoal(this, Player.class, 10F, 1.5D, 1.75D));
 		this.targetSelector.addGoal(2, new OpportunistAttackGoal(this, Player.class, true));
 		this.targetSelector.addGoal(2, new ProtectBabyGoal(this));
-		this.goalSelector.addGoal(1, new DiurnalSleepingGoal(this));
+		this.goalSelector.addGoal(1, new NocturnalSleepGoal(this));
 		this.goalSelector.addGoal(8, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
 			return p_213487_0_.getType().is(PFTags.BYRONOSAURUS_AVOIDING);
 		}));
@@ -131,7 +131,7 @@ public class Byronosaurus extends DinosaurEntity {
 			this.setProtective(true);
 		}
 		this.setCarnivorous(true);
-		this.setDiurnal(true);
+		this.setNocturnal(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
@@ -250,7 +250,7 @@ public class Byronosaurus extends DinosaurEntity {
 	}
 
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.BYRONOSAURUS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+		return PFBlocks.BYRONOSAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 
 	public class ByronosaurusDigBurrowGoal extends MoveToBlockGoal {

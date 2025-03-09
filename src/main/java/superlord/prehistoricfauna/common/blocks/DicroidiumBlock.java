@@ -63,7 +63,7 @@ public class DicroidiumBlock extends BushBlock implements BonemealableBlock {
 		worldIn.setBlock(pos.above(), this.defaultBlockState().setValue(LAYER, 1), 2);
 		worldIn.setBlock(pos.above(2), this.defaultBlockState().setValue(LAYER, 2), 2);
 		worldIn.setBlock(pos.above(3), this.defaultBlockState().setValue(LAYER, 3), 2);
-		worldIn.setBlock(pos.above(4), this.defaultBlockState().setValue(LAYER, 4), 5);
+		worldIn.setBlock(pos.above(4), this.defaultBlockState().setValue(LAYER, 4), 2);
 	}
 
 	@Override

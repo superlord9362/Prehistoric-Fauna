@@ -114,6 +114,7 @@ public class PsittacosaurusSkeleton extends PrehistoricEntity {
 		compound.putBoolean("IsSprinting", this.isRunning());
 		compound.putBoolean("IsPushable", this.isPushableState());
 		compound.putBoolean("IsLooking", this.isLooking());
+		compound.putFloat("Rotation", this.getYHeadRot());
 	}
 	
 	public void readAdditionalSaveData(CompoundTag compound) {
@@ -125,6 +126,8 @@ public class PsittacosaurusSkeleton extends PrehistoricEntity {
 		this.setRunning(compound.getBoolean("IsSprinting"));
 		this.setPushable(compound.getBoolean("IsPushable"));
 		this.setLooking(compound.getBoolean("IsLooking"));
+		this.setYBodyRot(compound.getFloat("Rotation"));
+		this.setYHeadRot(compound.getFloat("Rotation"));
 	}
 	
 	public PsittacosaurusSkeleton(EntityType<? extends PsittacosaurusSkeleton> type, Level worldIn) {

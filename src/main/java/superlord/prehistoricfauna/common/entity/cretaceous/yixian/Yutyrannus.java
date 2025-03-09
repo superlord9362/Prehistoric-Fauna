@@ -7,6 +7,9 @@ import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -36,7 +39,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.HuntingDinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
@@ -54,6 +57,7 @@ import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.ProtectBabyGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
+import superlord.prehistoricfauna.common.entity.henos.CorruptedTheropod;
 import superlord.prehistoricfauna.common.items.PaleopediaItem;
 import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
@@ -64,20 +68,30 @@ import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
 public class Yutyrannus extends HuntingDinosaurEntity {
+	private static final EntityDataAccessor<Boolean> CONVERTING_TO_BOSS = SynchedEntityData.defineId(Yutyrannus.class, EntityDataSerializers.BOOLEAN);
+	private int ticksTillConversion = 600;
 	private int maxHunger = 150;
 	private int warningSoundTicks;
 	public int attackTick = 0;
-	
+
 	public Yutyrannus(EntityType<? extends Yutyrannus> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
 		this.setMaxUpStep(1);
 		super.maxHunger = maxHunger;
 	}
-	
+
 	public boolean isFood(ItemStack stack) {
 		return stack.getItem() == PFItems.RAW_LARGE_SAUROPOD_MEAT.get(); 
 	}
 	
+	public boolean isConvertingToBoss() {
+		return this.entityData.get(CONVERTING_TO_BOSS);
+	}
+	
+	private void setConvertingToBoss(boolean isConverting) {
+		this.entityData.set(CONVERTING_TO_BOSS, isConverting);
+	}
+
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new FloatGoal(this));
@@ -110,7 +124,7 @@ public class Yutyrannus extends HuntingDinosaurEntity {
 			return p_213487_1_.getType().is(PFTags.YUTYRANNUS_BABY_HUNTING);
 		}));
 	}
-	
+
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
@@ -121,9 +135,15 @@ public class Yutyrannus extends HuntingDinosaurEntity {
 				return InteractionResult.SUCCESS;
 			}
 		}
+		if (item == PFItems.TIME_TOTEM.get() || item == PFItems.CRETACEOUS_TIME_TOTEM.get() || item == PFItems.JURASIC_TIME_TOTEM.get() || item == PFItems.TRIASSIC_TIME_TOTEM.get()) {
+			setConvertingToBoss(true);
+			if (!player.isCreative()) {
+				itemstack.shrink(1);
+			}
+		}
 		return super.mobInteract(player, hand);
 	}
-	
+
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		int temperment = random.nextInt(100);
 		if (temperment < 85) {
@@ -134,11 +154,11 @@ public class Yutyrannus extends HuntingDinosaurEntity {
 		this.setCarnivorous(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
-	
+
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 60.0D).add(Attributes.FOLLOW_RANGE, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.ATTACK_DAMAGE, 10.0D);
 	}
-	
+
 	protected SoundEvent getAmbientSound() {
 		return this.isAsleep() ? null : PFSounds.YUTYRANNUS_IDLE.get();
 	}
@@ -149,6 +169,21 @@ public class Yutyrannus extends HuntingDinosaurEntity {
 
 	protected SoundEvent getDeathSound() {
 		return PFSounds.YUTYRANNUS_DEATH.get();
+	}
+	
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(CONVERTING_TO_BOSS, false);
+	}
+
+	public void addAdditionalSaveData(CompoundTag compound) {
+		super.addAdditionalSaveData(compound);
+		compound.putBoolean("ConvertingToBoss", this.isConvertingToBoss());
+	}
+
+	public void readAdditionalSaveData(CompoundTag compound) {
+		super.readAdditionalSaveData(compound);
+		this.setConvertingToBoss(compound.getBoolean("ConvertingToBoss"));
 	}
 
 	@SuppressWarnings("deprecation")
@@ -170,7 +205,7 @@ public class Yutyrannus extends HuntingDinosaurEntity {
 			this.warningSoundTicks = 40;
 		}
 	}
-	
+
 	public void tick() {
 		super.tick();
 		if (this.warningSoundTicks > 0) {
@@ -185,12 +220,22 @@ public class Yutyrannus extends HuntingDinosaurEntity {
 		}
 		return flag;
 	}
-	
+
 	public void aiStep() {
 		super.aiStep();
 		if (this.isHunting()) {
 			for(Yutyrannus yutyrannus : this.level().getEntitiesOfClass(Yutyrannus.class, this.getBoundingBox().inflate(8.0D, 4.0D, 8.0D))) {
 				if (!yutyrannus.isBaby()) yutyrannus.setHunting(true);
+			}
+		}
+		if (this.isConvertingToBoss() && this.isEffectiveAi()) {
+			if (this.ticksTillConversion > 0) {
+				ticksTillConversion--;
+			} else {
+				CorruptedTheropod boss = new CorruptedTheropod(PFEntities.CORRUPTED_THEROPOD.get(), this.level());
+				boss.moveTo(this.getX(), this.getY(), this.getZ());
+				this.level().addFreshEntity(boss);
+				this.remove(RemovalReason.DISCARDED);
 			}
 		}
 	}
@@ -239,20 +284,20 @@ public class Yutyrannus extends HuntingDinosaurEntity {
 		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
-	
+
 	@Override
 	public ItemStack getPickedResult(HitResult target) {
 		return new ItemStack(PFItems.YUTYRANNUS_SPAWN_EGG.get());
 	}
-	
+
 	public Item getEggItem() {
 		return PFItems.YUTYRANNUS_EGG.get();
 	}
-    
+
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.YUTYRANNUS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+		return PFBlocks.YUTYRANNUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public class YutyrannusCarnivoreHuntGoal extends NearestAttackableTargetGoal {
 		double huntSpeed;

@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/sarahsaurus_nest_and_egg_three_plants",
-	"textures": {
-		"egg": "prehistoricfauna:block/sarahsaurus_egg_slightly_cracked"
-	}
-}

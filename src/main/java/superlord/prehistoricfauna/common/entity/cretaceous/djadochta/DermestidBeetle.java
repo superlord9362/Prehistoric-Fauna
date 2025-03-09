@@ -9,6 +9,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -62,6 +63,10 @@ public class DermestidBeetle extends Animal {
 		super(p_20966_, p_20967_);
 		this.setPathfindingMalus(BlockPathTypes.WATER, -1.0F);
 		switchNavigator(true);
+	}
+
+	protected void playStepSound(BlockPos p_33543_, BlockState p_33544_) {
+		this.playSound(SoundEvents.SILVERFISH_STEP, 0.15F, 1.0F);
 	}
 
 	private void switchNavigator(boolean rightsideUp) {
@@ -255,7 +260,7 @@ public class DermestidBeetle extends Animal {
 	public static boolean canBugSpawn(EntityType<? extends PathfinderMob> animal, ServerLevelAccessor worldIn, MobSpawnType reason, BlockPos pos, RandomSource random) {
 		return (worldIn.getBlockState(pos.below()).is(BlockTags.DIRT) || worldIn.getBlockState(pos.below()).is(Tags.Blocks.SAND) || worldIn.getBlockState(pos.below()).is(BlockTags.LEAVES) || worldIn.getBlockState(pos.below()).is(BlockTags.LOGS_THAT_BURN)) && worldIn.getRawBrightness(pos, 0) > 8;
 	}
-	
+
 	@Override
 	public ItemStack getPickedResult(HitResult target) {
 		return new ItemStack(PFItems.DERMESTID_BEETLE_SPAWN_EGG.get());

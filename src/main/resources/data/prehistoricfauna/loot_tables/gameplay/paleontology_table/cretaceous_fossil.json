@@ -93,6 +93,26 @@
 					"type": "minecraft:item",
 					"weight": 2.5,
 					"name": "prehistoricfauna:psittacosaurus_skull"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 2.5,
+					"name": "prehistoricfauna:dongbeititan_skull"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 2.5,
+					"name": "prehistoricfauna:goyocephale_skull"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 2.5,
+					"name": "prehistoricfauna:anzu_skull"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 2.5,
+					"name": "prehistoricfauna:liaoningosaurus_skull"
 				}
 			]
 		}

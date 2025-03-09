@@ -205,7 +205,7 @@ public class ProtoceratopsModel extends EntityModel<Protoceratops> {
 					this.Neck.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.45F) + 0.15F;
 				}
 				if (entity.isInWater()) {
-					this.Body.y = 9;
+					this.Body.y = 14;
 					this.Body.xRot = -0.125F;
 					this.Tail.xRot = 0.0625F;
 					this.Tailtip.xRot = 0.0625F;

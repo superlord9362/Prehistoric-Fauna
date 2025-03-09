@@ -161,7 +161,7 @@ public class PsittacosaurusModel extends EntityModel<Psittacosaurus> {
 					this.Neck.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.75F) + 0.5F;
 				}
 				if (entity.isInWater()) {
-					this.Body.y = 10;
+					this.Body.y = 15;
 					this.Body.xRot = -0.5F;
 					this.Tail1.xRot = 0.25F;
 					this.Tail2.xRot = 0.25F;

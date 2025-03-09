@@ -1,6 +1,6 @@
 Found In: Ischigualasto
 
-Drops: 1-3 Small Raw Theropod
+Drops: 2-5 Small Raw Theropod
 
 Diet: Carnivore
 
@@ -18,6 +18,7 @@ being protective.
 
 Sleep Cycle: Diurnal
 
+<image><drawings_ankylosaurus.png 33 5 227 44 23 17 6.5>
 
 
 

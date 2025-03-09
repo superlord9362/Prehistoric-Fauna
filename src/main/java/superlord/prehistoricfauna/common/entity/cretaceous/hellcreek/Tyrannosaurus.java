@@ -49,7 +49,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.AggressiveTempermentAttackGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
@@ -69,6 +69,7 @@ import superlord.prehistoricfauna.common.entity.goal.JuvenileHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.ProtectBabyGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
+import superlord.prehistoricfauna.common.entity.henos.CorruptedTheropod;
 import superlord.prehistoricfauna.common.items.PaleopediaItem;
 import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
@@ -81,7 +82,9 @@ import superlord.prehistoricfauna.init.PFTags;
 
 public class Tyrannosaurus extends DinosaurEntity {
 	private static final EntityDataAccessor<Boolean> IS_JUVENILE = SynchedEntityData.defineId(Tyrannosaurus.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> CONVERTING_TO_BOSS = SynchedEntityData.defineId(Tyrannosaurus.class, EntityDataSerializers.BOOLEAN);
 	private int maxHunger = 250;
+	private int ticksTillConversion = 600;
 	private int warningSoundTicks;
 	public int attackTick = 0;
 	private Goal panicGoal;
@@ -104,8 +107,16 @@ public class Tyrannosaurus extends DinosaurEntity {
 		return this.entityData.get(IS_JUVENILE);
 	}
 
-	private void setJuvenile(boolean isJuvenile) {
+	public void setJuvenile(boolean isJuvenile) {
 		this.entityData.set(IS_JUVENILE, isJuvenile);
+	}
+	
+	public boolean isConvertingToBoss() {
+		return this.entityData.get(CONVERTING_TO_BOSS);
+	}
+	
+	private void setConvertingToBoss(boolean isConverting) {
+		this.entityData.set(CONVERTING_TO_BOSS, isConverting);
 	}
 
 	public boolean isFood(ItemStack stack) {
@@ -162,6 +173,12 @@ public class Tyrannosaurus extends DinosaurEntity {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.TYRANNOSAURUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.tyrannosaurus_added"), true);
 				return InteractionResult.SUCCESS;
+			}
+		}
+		if (item == PFItems.TIME_TOTEM.get() || item == PFItems.CRETACEOUS_TIME_TOTEM.get() || item == PFItems.JURASIC_TIME_TOTEM.get() || item == PFItems.TRIASSIC_TIME_TOTEM.get()) {
+			setConvertingToBoss(true);
+			if (!player.isCreative()) {
+				itemstack.shrink(1);
 			}
 		}
 		return super.mobInteract(player, hand);
@@ -224,14 +241,31 @@ public class Tyrannosaurus extends DinosaurEntity {
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(IS_JUVENILE, false);
+		this.entityData.define(CONVERTING_TO_BOSS, false);
 	}
 
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
+		compound.putBoolean("ConvertingToBoss", this.isConvertingToBoss());
 	}
 
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
+		this.setConvertingToBoss(compound.getBoolean("ConvertingToBoss"));
+	}
+	
+	public void aiStep() {
+		super.aiStep();
+		if (this.isConvertingToBoss() && this.isEffectiveAi()) {
+			if (this.ticksTillConversion > 0) {
+				ticksTillConversion--;
+			} else {
+				CorruptedTheropod boss = new CorruptedTheropod(PFEntities.CORRUPTED_THEROPOD.get(), this.level());
+				boss.moveTo(this.getX(), this.getY(), this.getZ());
+				this.level().addFreshEntity(boss);
+				this.remove(RemovalReason.DISCARDED);
+			}
+		}
 	}
 
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
@@ -465,6 +499,6 @@ public class Tyrannosaurus extends DinosaurEntity {
 	}
 
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.TYRANNOSAURUS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+		return PFBlocks.TYRANNOSAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 }

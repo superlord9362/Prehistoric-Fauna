@@ -80,16 +80,16 @@ public class ZamitesBushFeature extends Feature<JohnstoniaConfig>
 				}
 				if (frondsChance == 0) {
 					if (frondsDirection == 0) {
-						if (isAir(worldgenlevel, new BlockPos(x + 1, pos.getY() + frondsHeight, z))) setBlock(worldgenlevel, new BlockPos(x + 1, pos.getY() + frondsHeight, z), PFBlocks.ZAMITES_FROND.get().defaultBlockState().setValue(ZamitesFrondsBlock.FACING, Direction.WEST));
+						if (isAir(worldgenlevel, new BlockPos(x + 1, pos.getY() + frondsHeight, z)) && !isAir(worldgenlevel, new BlockPos(x, pos.getY() + frondsHeight, z))) setBlock(worldgenlevel, new BlockPos(x + 1, pos.getY() + frondsHeight, z), PFBlocks.ZAMITES_FROND.get().defaultBlockState().setValue(ZamitesFrondsBlock.FACING, Direction.WEST));
 					}
 					if (frondsDirection == 1) {
-						if (isAir(worldgenlevel, new BlockPos(x + 0, pos.getY() + frondsHeight, z + 1))) setBlock(worldgenlevel, new BlockPos(x + 0, pos.getY() + frondsHeight, z + 1), PFBlocks.ZAMITES_FROND.get().defaultBlockState().setValue(ZamitesFrondsBlock.FACING, Direction.NORTH));
+						if (isAir(worldgenlevel, new BlockPos(x + 0, pos.getY() + frondsHeight, z + 1)) && !isAir(worldgenlevel, new BlockPos(x, pos.getY() + frondsHeight, z))) setBlock(worldgenlevel, new BlockPos(x + 0, pos.getY() + frondsHeight, z + 1), PFBlocks.ZAMITES_FROND.get().defaultBlockState().setValue(ZamitesFrondsBlock.FACING, Direction.NORTH));
 					}
 					if (frondsDirection == 2) {
-						if (isAir(worldgenlevel, new BlockPos(x + 0, pos.getY() + frondsHeight, z - 1))) setBlock(worldgenlevel, new BlockPos(x + 0, pos.getY() + frondsHeight, z - 1), PFBlocks.ZAMITES_FROND.get().defaultBlockState().setValue(ZamitesFrondsBlock.FACING, Direction.SOUTH));
+						if (isAir(worldgenlevel, new BlockPos(x + 0, pos.getY() + frondsHeight, z - 1)) && !isAir(worldgenlevel, new BlockPos(x, pos.getY() + frondsHeight, z))) setBlock(worldgenlevel, new BlockPos(x + 0, pos.getY() + frondsHeight, z - 1), PFBlocks.ZAMITES_FROND.get().defaultBlockState().setValue(ZamitesFrondsBlock.FACING, Direction.SOUTH));
 					}
 					if (frondsDirection == 3) {
-						if (isAir(worldgenlevel, new BlockPos(x - 1, pos.getY() + frondsHeight, z - 0))) setBlock(worldgenlevel, new BlockPos(x - 1, pos.getY() + frondsHeight, z - 0), PFBlocks.ZAMITES_FROND.get().defaultBlockState().setValue(ZamitesFrondsBlock.FACING, Direction.EAST));
+						if (isAir(worldgenlevel, new BlockPos(x - 1, pos.getY() + frondsHeight, z)) && !isAir(worldgenlevel, new BlockPos(x, pos.getY() + frondsHeight, z))) setBlock(worldgenlevel, new BlockPos(x - 1, pos.getY() + frondsHeight, z - 0), PFBlocks.ZAMITES_FROND.get().defaultBlockState().setValue(ZamitesFrondsBlock.FACING, Direction.EAST));
 					}
 				}
 				if (secondFrondsChance == 2) {

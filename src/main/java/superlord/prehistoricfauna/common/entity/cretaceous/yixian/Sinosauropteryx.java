@@ -10,9 +10,12 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -23,6 +26,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -32,6 +36,7 @@ import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
 import net.minecraft.world.entity.ai.goal.FollowParentGoal;
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
@@ -41,15 +46,18 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.CarnivoreEatFromFeederGoal;
@@ -79,16 +87,30 @@ import superlord.prehistoricfauna.init.PFTags;
 
 public class Sinosauropteryx extends DinosaurEntity {
 	private static final EntityDataAccessor<Boolean> TAME_SIT = SynchedEntityData.defineId(Sinosauropteryx.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> SITTING = SynchedEntityData.defineId(Sinosauropteryx.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> TAME_WANDER = SynchedEntityData.defineId(Sinosauropteryx.class, EntityDataSerializers.BOOLEAN);
+	public static final EntityDataAccessor<Integer> SIT_TICK = SynchedEntityData.defineId(Sinosauropteryx.class, EntityDataSerializers.INT);
 	private int maxHunger = 10;
 	private int warningSoundTicks;
+	private float sitProgress = 0.0F;
+	private float prevSitProgress = 0.0F;
 
 	public boolean isTameSitting() {
 		return this.entityData.get(TAME_SIT);
 	}
 
 	private void setTameSitting(boolean isTameSitting) {
+		this.entityData.set(SIT_TICK, 15);
 		this.entityData.set(TAME_SIT, isTameSitting);
+	}
+	
+	public boolean isSitting() {
+		return this.entityData.get(SITTING);
+	}
+
+	private void setSitting(boolean isSitting) {
+		this.entityData.set(SIT_TICK, 15);
+		this.entityData.set(SITTING, isSitting);
 	}
 
 	public boolean isTameWandering() {
@@ -131,6 +153,8 @@ public class Sinosauropteryx extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new SitWhenOrderedToGoal(this));
 		this.targetSelector.addGoal(0, new OwnerHurtByTargetGoal(this));
 		this.targetSelector.addGoal(0, new OwnerHurtTargetGoal(this));
+		this.targetSelector.addGoal(0, new SinosauropteryxRelaxOnOwnerGoal(this));
+		this.targetSelector.addGoal(0, new SinosauropteryxSitOnBedGoal(this, 1.1D, 8));
 		this.goalSelector.addGoal(0, new SinosauropteryxFollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, true));
 		this.goalSelector.addGoal(0, new CarnivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 		this.targetSelector.addGoal(0, new CarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213487_0_) -> {
@@ -157,6 +181,7 @@ public class Sinosauropteryx extends DinosaurEntity {
 		super.addAdditionalSaveData(compound);
 		compound.putBoolean("IsTamedSitting", this.isTameSitting());
 		compound.putBoolean("IsTamedWander", this.isTameWandering());
+		compound.putBoolean("IsSitting", this.isSitting());
 	}
 
 	/**
@@ -166,6 +191,7 @@ public class Sinosauropteryx extends DinosaurEntity {
 		super.readAdditionalSaveData(compound);
 		this.setTameSitting(compound.getBoolean("IsTamedSitting"));
 		this.setTameWandering(compound.getBoolean("IsTamedWander"));
+		this.setSitting(compound.getBoolean("IsSitting"));
 	}
 
 	@SuppressWarnings("deprecation")
@@ -285,7 +311,7 @@ public class Sinosauropteryx extends DinosaurEntity {
 						itemstack.shrink(1);
 					}
 
-					if (this.random.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
+					if (this.getRandom().nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
 						this.tame(player);
 						this.navigation.stop();
 						this.setTarget((LivingEntity)null);
@@ -303,7 +329,7 @@ public class Sinosauropteryx extends DinosaurEntity {
 	}
 
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
-		int temperment = random.nextInt(100);
+		int temperment = getRandom().nextInt(100);
 		if (temperment < 80) {
 			this.setSkittish(true);
 		} else if (temperment >= 80 && temperment < 95) {
@@ -320,6 +346,8 @@ public class Sinosauropteryx extends DinosaurEntity {
 		super.defineSynchedData();
 		this.entityData.define(TAME_SIT, false);
 		this.entityData.define(TAME_WANDER, false);
+		this.entityData.define(SITTING, false);
+		this.entityData.define(SIT_TICK, 0);
 	}
 
 	@Override
@@ -360,6 +388,21 @@ public class Sinosauropteryx extends DinosaurEntity {
 		if (this.warningSoundTicks > 0) {
 			--this.warningSoundTicks;
 		}
+		prevSitProgress = sitProgress;
+		if (this.entityData.get(SIT_TICK) > 0) {
+			this.entityData.set(SIT_TICK, this.entityData.get(SIT_TICK) - 1);
+			if (sitProgress < 1.0F) {
+				sitProgress = Math.min(sitProgress + 0.1F, 1.0F);
+			}
+		} else {
+			if (sitProgress > 0F) {
+				sitProgress = Math.max(sitProgress - 0.2F, 0.0F);
+			}
+		}
+	}
+	
+	public float getSitProgress(float partialTick) {
+		return prevSitProgress + (sitProgress - prevSitProgress) * partialTick;
 	}
 
 	public boolean onAttackAnimationFinish(Entity entityIn) {
@@ -409,15 +452,8 @@ public class Sinosauropteryx extends DinosaurEntity {
 
 	public void aiStep() {
 		super.aiStep();
-		if (this.isTame() && level().getDayTime() % 24000 == 100) {
-			BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-			blockpos$mutableblockpos.set(this.isLeashed() ? this.getLeashHolder().blockPosition() : this.blockPosition());
-			blockpos$mutableblockpos.set(this.blockPosition());
-			LootTable loottable = this.level().getServer().getLootData().getLootTable(BuiltInLootTables.CAT_MORNING_GIFT);
-			LootParams lootparams = (new LootParams.Builder((ServerLevel)this.level())).withParameter(LootContextParams.ORIGIN, this.position()).withParameter(LootContextParams.THIS_ENTITY, this).create(LootContextParamSets.GIFT);
-			for(ItemStack itemstack : loottable.getRandomItems(lootparams)) {
-				this.level().addFreshEntity(new ItemEntity(this.level(), (double)blockpos$mutableblockpos.getX() - (double)Mth.sin(this.yBodyRot * ((float)Math.PI / 180F)), (double)blockpos$mutableblockpos.getY(), (double)blockpos$mutableblockpos.getZ() + (double)Mth.cos(this.yBodyRot * ((float)Math.PI / 180F)), itemstack));
-			}
+		if (this.isSitting() || this.isTameSitting()) {
+			this.getNavigation().stop();
 		}
 	}
 
@@ -438,7 +474,7 @@ public class Sinosauropteryx extends DinosaurEntity {
 	}
 
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.SINOSAUROPTERYX_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+		return PFBlocks.SINOSAUROPTERYX_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 
 	public class SinosauropteryxFollowOwnerGoal extends FollowOwnerGoal {
@@ -502,5 +538,163 @@ public class Sinosauropteryx extends DinosaurEntity {
 			this.field_220821_e = 80 + Sinosauropteryx.this.getRandom().nextInt(20);
 		}
 	}
+
+	class SinosauropteryxSitOnBedGoal extends MoveToBlockGoal {
+		private final Sinosauropteryx sinosauropteryx;
+
+		public SinosauropteryxSitOnBedGoal(Sinosauropteryx sinosauropteryx, double p_25136_, int p_25137_) {
+			super(sinosauropteryx, p_25136_, p_25137_, 6);
+			this.sinosauropteryx = sinosauropteryx;
+			this.verticalSearchStart = -2;
+			this.setFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE));
+		}
+
+		public boolean canUse() {
+			return this.sinosauropteryx.isTame() && !this.sinosauropteryx.isOrderedToSit() && super.canUse();
+		}
+
+		public void start() {
+			super.start();
+			this.sinosauropteryx.setInSittingPose(false);
+		}
+
+		protected int nextStartTick(PathfinderMob p_25140_) {
+			return 40;
+		}
+
+		public void stop() {
+			super.stop();
+			this.sinosauropteryx.setSitting(false);
+		}
+
+		public void tick() {
+			super.tick();
+			this.sinosauropteryx.setInSittingPose(false);
+			if (!this.isReachedTarget()) {
+				this.sinosauropteryx.setSitting(false);
+			} else if (!this.sinosauropteryx.isSitting()) {
+				this.sinosauropteryx.setSitting(true);
+			}
+
+		}
+
+		protected boolean isValidTarget(LevelReader p_25142_, BlockPos p_25143_) {
+			return p_25142_.isEmptyBlock(p_25143_.above()) && p_25142_.getBlockState(p_25143_).is(BlockTags.BEDS);
+		}
+	}
+	
+	static class SinosauropteryxRelaxOnOwnerGoal extends Goal {
+		private static final ResourceLocation GIFT_LOOT = new ResourceLocation(PrehistoricFauna.MOD_ID, "gameplay/sinosauropteryx_gift");
+		private final Sinosauropteryx sinosauropteryx;
+	      @Nullable
+	      private Player ownerPlayer;
+	      @Nullable
+	      private BlockPos goalPos;
+	      private int onBedTicks;
+
+	      public SinosauropteryxRelaxOnOwnerGoal(Sinosauropteryx sinosauropteryx) {
+	         this.sinosauropteryx = sinosauropteryx;
+	      }
+
+	      public boolean canUse() {
+	         if (!this.sinosauropteryx.isTame()) {
+	            return false;
+	         } else if (this.sinosauropteryx.isOrderedToSit()) {
+	            return false;
+	         } else {
+	            LivingEntity livingentity = this.sinosauropteryx.getOwner();
+	            if (livingentity instanceof Player) {
+	               this.ownerPlayer = (Player)livingentity;
+	               if (!livingentity.isSleeping()) {
+	                  return false;
+	               }
+
+	               if (this.sinosauropteryx.distanceToSqr(this.ownerPlayer) > 100.0D) {
+	                  return false;
+	               }
+
+	               BlockPos blockpos = this.ownerPlayer.blockPosition();
+	               BlockState blockstate = this.sinosauropteryx.level().getBlockState(blockpos);
+	               if (blockstate.is(BlockTags.BEDS)) {
+	                  this.goalPos = blockstate.getOptionalValue(BedBlock.FACING).map((p_28209_) -> {
+	                     return blockpos.relative(p_28209_.getOpposite());
+	                  }).orElseGet(() -> {
+	                     return new BlockPos(blockpos);
+	                  });
+	                  return !this.spaceIsOccupied();
+	               }
+	            }
+
+	            return false;
+	         }
+	      }
+
+	      @SuppressWarnings("resource")
+		private boolean spaceIsOccupied() {
+	         for(Sinosauropteryx sinosauropteryx : this.sinosauropteryx.level().getEntitiesOfClass(Sinosauropteryx.class, (new AABB(this.goalPos)).inflate(2.0D))) {
+	            if (sinosauropteryx != this.sinosauropteryx && (sinosauropteryx.isSitting())) {
+	               return true;
+	            }
+	         }
+
+	         return false;
+	      }
+
+	      public boolean canContinueToUse() {
+	         return this.sinosauropteryx.isTame() && !this.sinosauropteryx.isOrderedToSit() && this.ownerPlayer != null && this.ownerPlayer.isSleeping() && this.goalPos != null && !this.spaceIsOccupied();
+	      }
+
+	      public void start() {
+	         if (this.goalPos != null) {
+	            this.sinosauropteryx.setInSittingPose(false);
+	            this.sinosauropteryx.getNavigation().moveTo((double)this.goalPos.getX(), (double)this.goalPos.getY(), (double)this.goalPos.getZ(), (double)1.1F);
+	         }
+
+	      }
+
+	      public void stop() {
+	         this.sinosauropteryx.setSitting(false);
+	         float f = this.sinosauropteryx.level().getTimeOfDay(1.0F);
+	         if (this.ownerPlayer.getSleepTimer() >= 100 && (double)f > 0.77D && (double)f < 0.8D && (double)this.sinosauropteryx.level().getRandom().nextFloat() < 0.7D) {
+	            this.giveMorningGift();
+	         }
+
+	         this.onBedTicks = 0;
+	         this.sinosauropteryx.getNavigation().stop();
+	      }
+
+	      private void giveMorningGift() {
+	         RandomSource randomsource = this.sinosauropteryx.getRandom();
+	         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+	         blockpos$mutableblockpos.set(this.sinosauropteryx.isLeashed() ? this.sinosauropteryx.getLeashHolder().blockPosition() : this.sinosauropteryx.blockPosition());
+	         this.sinosauropteryx.randomTeleport((double)(blockpos$mutableblockpos.getX() + randomsource.nextInt(11) - 5), (double)(blockpos$mutableblockpos.getY() + randomsource.nextInt(5) - 2), (double)(blockpos$mutableblockpos.getZ() + randomsource.nextInt(11) - 5), false);
+	         blockpos$mutableblockpos.set(this.sinosauropteryx.blockPosition());
+	         LootTable loottable = this.sinosauropteryx.level().getServer().getLootData().getLootTable(GIFT_LOOT);
+	         LootParams lootparams = (new LootParams.Builder((ServerLevel)this.sinosauropteryx.level())).withParameter(LootContextParams.ORIGIN, this.sinosauropteryx.position()).withParameter(LootContextParams.THIS_ENTITY, this.sinosauropteryx).create(LootContextParamSets.GIFT);
+
+	         for(ItemStack itemstack : loottable.getRandomItems(lootparams)) {
+	            this.sinosauropteryx.level().addFreshEntity(new ItemEntity(this.sinosauropteryx.level(), (double)blockpos$mutableblockpos.getX() - (double)Mth.sin(this.sinosauropteryx.yBodyRot * ((float)Math.PI / 180F)), (double)blockpos$mutableblockpos.getY(), (double)blockpos$mutableblockpos.getZ() + (double)Mth.cos(this.sinosauropteryx.yBodyRot * ((float)Math.PI / 180F)), itemstack));
+	         }
+
+	      }
+
+	      public void tick() {
+	         if (this.ownerPlayer != null && this.goalPos != null) {
+	            this.sinosauropteryx.setInSittingPose(false);
+	            this.sinosauropteryx.getNavigation().moveTo((double)this.goalPos.getX(), (double)this.goalPos.getY(), (double)this.goalPos.getZ(), (double)1.1F);
+	            if (this.sinosauropteryx.distanceToSqr(this.ownerPlayer) < 2.5D) {
+	               ++this.onBedTicks;
+	               if (this.onBedTicks > this.adjustedTickDelay(16)) {
+	                  this.sinosauropteryx.setSitting(true);
+	               } else {
+	                  this.sinosauropteryx.lookAt(this.ownerPlayer, 45.0F, 45.0F);
+	               }
+	            } else {
+	               this.sinosauropteryx.setSitting(false);
+	            }
+	         }
+
+	      }
+	   }
 
 }

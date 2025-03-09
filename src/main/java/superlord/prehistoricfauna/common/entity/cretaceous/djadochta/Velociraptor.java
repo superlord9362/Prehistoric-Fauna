@@ -69,7 +69,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.EntityEvent.Size;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
@@ -106,6 +106,7 @@ public class Velociraptor extends DinosaurEntity {
 	};
 	private static final EntityDataAccessor<Boolean> TAME_SIT = SynchedEntityData.defineId(Velociraptor.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> TAME_WANDER = SynchedEntityData.defineId(Velociraptor.class, EntityDataSerializers.BOOLEAN);
+	public static final EntityDataAccessor<Integer> SIT_TICK = SynchedEntityData.defineId(Velociraptor.class, EntityDataSerializers.INT);
 	private int maxHunger = 20;
 	private Goal attackAnimals;
 	private float interestedAngle;
@@ -116,6 +117,8 @@ public class Velociraptor extends DinosaurEntity {
 	private int eatTicks;
 	private int climbingTicks = 0;
 	private int climbingTickCooldown = 0;
+	private float sitProgress = 0.0F;
+	private float prevSitProgress = 0.0F;
 
 	public boolean isTameSitting() {
 		return this.entityData.get(TAME_SIT);
@@ -162,6 +165,7 @@ public class Velociraptor extends DinosaurEntity {
 		this.entityData.define(CLIMBING, (byte)0);
 		this.entityData.define(TAME_SIT, false);
 		this.entityData.define(TAME_WANDER, false);
+		this.entityData.define(SIT_TICK, 0);
 	}
 
 	protected void registerGoals() {
@@ -391,7 +395,8 @@ public class Velociraptor extends DinosaurEntity {
 
 	public void setSitting(boolean p_213466_1_) {
 		this.setVelociraptorFlag(1, p_213466_1_);
-		this.setFallingAsleep();
+		this.entityData.set(SIT_TICK, 15);
+//		this.setFallingAsleep();
 	}
 
 	public boolean isStuck() {
@@ -501,6 +506,21 @@ public class Velociraptor extends DinosaurEntity {
 				}
 			}
 		}
+		prevSitProgress = sitProgress;
+		if (this.entityData.get(SIT_TICK) > 0) {
+			this.entityData.set(SIT_TICK, this.entityData.get(SIT_TICK) - 1);
+			if (sitProgress < 1.0F) {
+				sitProgress = Math.min(sitProgress + 0.1F, 1.0F);
+			}
+		} else {
+			if (sitProgress > 0F) {
+				sitProgress = Math.max(sitProgress - 0.2F, 0.0F);
+			}
+		}
+	}
+	
+	public float getSitProgress(float partialTick) {
+		return prevSitProgress + (sitProgress - prevSitProgress) * partialTick;
 	}
 
 	public boolean isOnLadder() {
@@ -949,13 +969,13 @@ public class Velociraptor extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			return (Velociraptor.this.getLastHurtByMob() == null && Velociraptor.this.getRandom().nextFloat() < 0.02F && !Velociraptor.this.isSleeping() && Velociraptor.this.getTarget() == null && Velociraptor.this.getNavigation().isDone() && !this.func_220814_h() && !Velociraptor.this.func_213480_dY() && !Velociraptor.this.isCrouching() && !Velociraptor.this.isAsleep() || Velociraptor.this.isTameSitting());
+			return Velociraptor.this.getLastHurtByMob() == null && !Velociraptor.this.isInWater() && Velociraptor.this.getRandom().nextFloat() < 0.02F && !Velociraptor.this.isSleeping() && Velociraptor.this.getTarget() == null && Velociraptor.this.getNavigation().isDone() && !Velociraptor.this.func_213480_dY() && !Velociraptor.this.isCrouching() || Velociraptor.this.isTameSitting();
 		}
 
 		public boolean canContinueToUse() {
 			if (Velociraptor.this.isTameSitting()) {
 				return true;
-			} else return this.field_220822_f > 0;
+			} else return this.field_220822_f > 0 && !Velociraptor.this.isInWater();
 		}
 
 		public void start() {
@@ -1227,7 +1247,7 @@ public class Velociraptor extends DinosaurEntity {
 	}
 
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.VELOCIRAPTOR_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+		return PFBlocks.VELOCIRAPTOR_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 
 }

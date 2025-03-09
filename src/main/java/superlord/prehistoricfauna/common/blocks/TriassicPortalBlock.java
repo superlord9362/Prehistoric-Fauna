@@ -160,6 +160,7 @@ public class TriassicPortalBlock extends Block {
 		private final LevelAccessor world;
 		private final Direction.Axis axis;
 		private final Direction rightDir;
+		private final Direction leftDir;
 		private int portalBlockCount;
 		private BlockPos bottomLeft;
 		private int height;
@@ -171,6 +172,7 @@ public class TriassicPortalBlock extends Block {
 			this.world = world;
 			axis = facing;
 			rightDir = facing == Direction.Axis.X ? Direction.WEST : Direction.SOUTH;
+			leftDir = facing == Direction.Axis.X ? Direction.EAST : Direction.NORTH;
 			bottomLeft = calculateBottomLeft(pos);
 			if (bottomLeft == null) {
 				bottomLeft = pos;
@@ -272,6 +274,11 @@ public class TriassicPortalBlock extends Block {
 			BlockState state = PORTAL.defaultBlockState().setValue(TriassicPortalBlock.AXIS, this.axis);
 			BlockPos.betweenClosed(bottomLeft, bottomLeft.relative(Direction.UP, height -1).relative(rightDir, width - 1)).forEach((pos) -> {
 				this.world.setBlock(pos, state, 18);
+			});
+			BlockPos.betweenClosed(bottomLeft.relative(Direction.DOWN, height - (height - 1)).relative(leftDir, width - (width - 1)), bottomLeft.relative(Direction.UP, height).relative(rightDir, width)).forEach((pos) -> {
+				if (this.world.getBlockState(pos).is(PFBlocks.PORTAL_FRAME.get())) {
+					this.world.setBlock(pos, PFBlocks.PORTAL_FRAME.get().defaultBlockState().setValue(PortalFrameBlock.ACTIVATED, true), 18);	
+				}
 			});
 		}
 

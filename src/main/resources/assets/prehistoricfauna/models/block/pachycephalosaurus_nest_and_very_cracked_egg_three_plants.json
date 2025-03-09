@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/pachycephalosaurus_nest_and_egg_three_plants",
-	"textures": {
-		"egg": "prehistoricfauna:block/pachycephalosaurus_egg_very_cracked"
-	}
-}

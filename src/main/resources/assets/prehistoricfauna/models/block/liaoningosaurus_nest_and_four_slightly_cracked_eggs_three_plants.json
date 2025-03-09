@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/liaoningosaurus_nest_and_four_eggs_three_plants",
-	"textures": {
-		"egg": "prehistoricfauna:block/liaoningosaurus_egg_slightly_cracked"
-	}
-}

@@ -35,11 +35,21 @@ public class TyrannosaurusRenderer extends MobRenderer<Tyrannosaurus, EntityMode
 	private static final ResourceLocation SUB_TYRANNOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/tyrannosaurusrex_sub.png");
 	private static final ResourceLocation SUB_TYRANNOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/tyrannosaurusrex_sub_sleeping.png");
 	private static final ResourceLocation SUB_ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/albino_sub.png");
+	private static final ResourceLocation SUB_MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/melanistic_sub.png");
+	private static final ResourceLocation SUB_MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/melanistic_sub_sleeping.png");
 	private static final ResourceLocation SUB_ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/albino_sub_sleeping.png");
 	private static final ResourceLocation RETRO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/retro.png");
 	private static final ResourceLocation RETRO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/retro_sleeping.png");
 	private static final ResourceLocation MEGATRON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/megatron.png");
 	private static final ResourceLocation MEGATRON_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/megatron_sleeping.png");
+
+	private static final ResourceLocation BABY_TYRANNOSAURUS_FEATHER = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/tyrannosaurus_baby_feather.png");
+	private static final ResourceLocation BABY_TYRANNOSAURUS_FEATHER_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/tyrannosaurus_baby_feather_sleeping.png");
+	private static final ResourceLocation BABY_ALBINO_FEATHER = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/albino_baby_feather.png");
+	private static final ResourceLocation BABY_ALBINO_FEATHER_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/albino_baby_feather_sleeping.png");
+	private static final ResourceLocation BABY_MELANISTIC_FEATHER = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/melanistic_baby_feather.png");
+	private static final ResourceLocation BABY_MELANISTIC_FEATHER_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/melanistic_baby_feather_sleeping.png");
+
 
 	private static TyrannosaurusModel TYRANNOSAURUS_MODEL;
 	private static TyrannosaurusJuvenileModel JUVENILE_TYRANNOSAURUS_MODEL;
@@ -83,38 +93,66 @@ public class TyrannosaurusRenderer extends MobRenderer<Tyrannosaurus, EntityMode
 				return MEGATRON_SLEEPING;
 			} else return MEGATRON;
 		}
-		if (entity.isAlbino() && !entity.isBaby()) {
-			if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-				return ALBINO_SLEEPING;
-			} else return ALBINO;
-		} else if (entity.isAlbino() && entity.isBaby() && !entity.isJuvenile()) {
-			if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-				return BABY_ALBINO_SLEEPING;
-			} else return BABY_ALBINO;
-		} else if (entity.isAlbino() && entity.isJuvenile()) {
-			if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-				return SUB_ALBINO_SLEEPING;
-			} else return SUB_ALBINO;
-		} else if (entity.isMelanistic() && !entity.isBaby()) {
-			if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-				return MELANISTIC_SLEEPING;
-			} else return MELANISTIC;
-		} else if (entity.isMelanistic() && entity.isBaby() && !entity.isJuvenile()) {
-			if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-				return BABY_MELANISTIC_SLEEPING;
-			} else return BABY_MELANISTIC;
-		} else if(entity.isBaby() && !entity.isJuvenile()) {
-			if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-				return BABY_TYRANNOSAURUS_SLEEPING;
-			} else return BABY_TYRANNOSAURUS;
-		} else if (entity.isJuvenile()) {
-			if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-				return SUB_TYRANNOSAURUS_SLEEPING;
-			} else return SUB_TYRANNOSAURUS;
+		if (entity.isBaby()) {
+			if (!entity.isJuvenile()) {
+				if (PrehistoricFaunaConfig.tyrannosaurusFeathersOrScaled) {
+					if (entity.isAlbino()) {
+						if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+							return BABY_ALBINO_SLEEPING;
+						} else return BABY_ALBINO;
+					} else if (entity.isMelanistic()) {
+						if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+							return BABY_MELANISTIC_SLEEPING;
+						} else return BABY_MELANISTIC;
+					} else {
+						if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+							return BABY_TYRANNOSAURUS_SLEEPING;
+						} else return BABY_TYRANNOSAURUS;
+					}
+				} else {
+					if (entity.isAlbino()) {
+						if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+							return BABY_ALBINO_FEATHER_SLEEPING;
+						} else return BABY_ALBINO_FEATHER;
+					} else if (entity.isMelanistic()) {
+						if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+							return BABY_MELANISTIC_FEATHER_SLEEPING;
+						} else return BABY_MELANISTIC_FEATHER;
+					} else {
+						if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+							return BABY_TYRANNOSAURUS_FEATHER_SLEEPING;
+						} else return BABY_TYRANNOSAURUS_FEATHER;
+					}
+				}
+			} else {
+				if (entity.isAlbino()) {
+					if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+						return SUB_ALBINO_SLEEPING;
+					} else return SUB_ALBINO;
+				} else if (entity.isMelanistic()) {
+					if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+						return SUB_MELANISTIC_SLEEPING;
+					} else return SUB_MELANISTIC;
+				} else {
+					if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+						return SUB_TYRANNOSAURUS_SLEEPING;
+					} else return SUB_TYRANNOSAURUS;
+				}
+			}
 		} else {
-			if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-				return TYRANNOSAURUS_SLEEPING;
-			} else return TYRANNOSAURUS;
+			if (entity.isAlbino()) {
+				if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+					return ALBINO_SLEEPING;
+				} else return ALBINO;
+			} else if (entity.isMelanistic()) {
+				if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+					return MELANISTIC_SLEEPING;
+				} else return MELANISTIC;
+			} else {
+				if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+					return TYRANNOSAURUS_SLEEPING;
+				} else return TYRANNOSAURUS;
+			}
 		}
 	}
 

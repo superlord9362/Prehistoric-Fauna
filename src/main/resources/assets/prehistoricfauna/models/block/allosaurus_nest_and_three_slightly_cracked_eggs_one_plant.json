@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/allosaurus_nest_and_three_eggs_one_plant",
-	"textures": {
-		"egg": "prehistoricfauna:block/allosaurus_egg_slightly_cracked"
-	}
-}

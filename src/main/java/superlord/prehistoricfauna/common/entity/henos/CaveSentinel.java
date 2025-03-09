@@ -1,17 +1,29 @@
 package superlord.prehistoricfauna.common.entity.henos;
 
+import java.util.function.Predicate;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
@@ -25,9 +37,24 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.init.PFItems;
+import superlord.prehistoricfauna.init.PFTags;
 
 public class CaveSentinel extends Monster {
+	private static final EntityDataAccessor<Integer> DIMENSION = SynchedEntityData.defineId(CaveSentinel.class, EntityDataSerializers.INT);
 
+	public static final Predicate<LivingEntity> NON_TRIASSIC = (p_289448_) -> {
+		return !p_289448_.getType().is(PFTags.TRIASSIC_ENTITIES);
+	};
+	public static final Predicate<LivingEntity> NON_JURASSIC = (p_289448_) -> {
+		return !p_289448_.getType().is(PFTags.JURASSIC_ENTITIES);
+	};
+	public static final Predicate<LivingEntity> NON_CRETACEOUS = (p_289448_) -> {
+		return !p_289448_.getType().is(PFTags.CRETACEOUS_ENTITIES);
+	};
+	private Goal cretaceousTargetGoal;
+	private Goal jurassicTargetGoal;
+	private Goal triassicTargetGoal;
+	
 	public CaveSentinel(EntityType<? extends Monster> type, Level world) {
 		super(type, world);
 		this.setMaxUpStep(1);
@@ -38,14 +65,67 @@ public class CaveSentinel extends Monster {
 			return false;
 		} else return super.hurt(source, amount);
 	}
+	
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(DIMENSION, 0);
+	}
+
+	public void addAdditionalSaveData(CompoundTag compound) {
+		super.addAdditionalSaveData(compound);
+		compound.putInt("Dimension", this.getDimensionInt());
+	}
+
+	public void readAdditionalSaveData(CompoundTag compound) {
+		super.readAdditionalSaveData(compound);
+		this.setDimensionInt(compound.getInt("Dimension"));
+		if (this.level() instanceof ServerLevel) {
+			this.setTargetGoals();
+		}
+	}
+
+	public int getDimensionInt() {
+		return this.entityData.get(DIMENSION);
+	}
+
+	private void setDimensionInt(int dimensionInt) {
+		this.entityData.set(DIMENSION, dimensionInt);
+	}
 
 	@Override
 	protected void registerGoals() {
-		targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, 0, true, false, null));
+		this.cretaceousTargetGoal = new NearestAttackableTargetGoal<>(this, LivingEntity.class, 0, true, false, NON_CRETACEOUS);
+		this.jurassicTargetGoal = new NearestAttackableTargetGoal<>(this, LivingEntity.class, 0, true, false, NON_JURASSIC);
+		this.triassicTargetGoal = new NearestAttackableTargetGoal<>(this, LivingEntity.class, 0, true, false, NON_TRIASSIC);
 		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
 		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 		this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new CaveSentinel.MeleeAttackGoal());
+	}
+	
+	@SuppressWarnings("deprecation")
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+		if (worldIn.getBiome(this.getOnPos()).is(PFTags.IS_CRETACEOUS)) {
+			this.setDimensionInt(0);
+		} else if (worldIn.getBiome(this.getOnPos()).is(PFTags.IS_JURASSIC)) {
+			this.setDimensionInt(1);
+		} else this.setDimensionInt(2);
+		if (worldIn instanceof ServerLevel) {
+			this.setTargetGoals();
+		}
+		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+	}
+	
+	private void setTargetGoals() {
+		if (this.getDimensionInt() == 0) {
+			this.targetSelector.addGoal(0, this.cretaceousTargetGoal);
+		}
+		if (this.getDimensionInt() == 1) {
+			this.targetSelector.addGoal(0, this.jurassicTargetGoal);
+		}
+		if (this.getDimensionInt() == 2) {
+			this.targetSelector.addGoal(0, this.triassicTargetGoal);
+		}
 	}
 
 	public boolean canBreatheUnderwater() {

@@ -10,7 +10,8 @@
 		"LivingEntityMixin",
 		"TuberOverlayMixin",
 		"MapDecorationMixin",
-		"MapDecorationTypeMixin"
+		"MapDecorationTypeMixin",
+		"WeatherCommandMixin"
 	],
 	"client": [
 		"MapRendererMapInstanceMixin"

@@ -7,7 +7,7 @@ both important tools for any
 budding paleontologist, and 
 needed in any fossil hunting 
 expedition!
-<image><drawings_ankylosaurus.png 25 93 373 19 116 54 1.25>
+<image><drawings_ankylosaurus.png 28 93 377 88 108 62 1.25>
 
 
 

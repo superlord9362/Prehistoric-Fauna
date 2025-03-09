@@ -154,8 +154,8 @@ public class AepyornithomimusModel extends EntityModel<Aepyornithomimus> {
 					this.Tailbase.xRot = 0.25F;
 					this.Tailtip.xRot = 0.25F;
 					this.HeadNeck.xRot = 0.5F;
-					this.Wingleft.zRot = -1.5F + Math.abs(-1F * Mth.sin(0.2F * ageInTicks / 2));
-					this.Wingright.zRot = 1.5F - Math.abs(-1F * Mth.sin(0.2F * ageInTicks / 2));
+					this.Wingright.zRot = -1.5F + Math.abs(-1F * Mth.sin(0.2F * ageInTicks / 2));
+					this.Wingleft.zRot = 1.5F - Math.abs(-1F * Mth.sin(0.2F * ageInTicks / 2));
 					this.Thighleft.xRot = -0.5F * Mth.sin(0.15F * ageInTicks / 1.5F);
 					this.Thighleft_1.xRot = 0.5F * Mth.sin(0.15F * ageInTicks / 1.5F);
 					this.Tailbase.yRot = Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;

@@ -162,8 +162,8 @@ public class GuiPaleopedia extends Screen {
 			drawPerPage(ms, bookPages);
 			int pageLeft = bookPages * 2 + 1;
 			int pageRight = pageLeft + 1;
-			font.drawInBatch("" + pageLeft, centerX- (int) (X * -0.13), centerY - (int) (Y * -0.84), 0X303030, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
-			font.drawInBatch("" + pageRight, centerX - (int) (X * -0.635), centerY - (int) (Y * -0.84), 0X303030, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+			font.drawInBatch("" + pageLeft, centerX- (int) (X * 0.049), centerY - (int) (Y * -0.83), 0X303030, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+			font.drawInBatch("" + pageRight, centerX - (int) (X * -0.808), centerY - (int) (Y * -0.83), 0X303030, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
 		}
 		ms.pose().popPose();
 		this.renderables.forEach((widget -> widget.render(ms, mouseX, mouseY, partialTicks)));

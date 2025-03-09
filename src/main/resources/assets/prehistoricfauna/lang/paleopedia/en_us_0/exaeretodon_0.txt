@@ -1,6 +1,7 @@
 Found In: Ischigualasto
 
-Drops: 0-2 Exaeretodon Hide
+Drops: 0-2 Exaeretodon Hide,
+1/2 Small Raw Synapsid
 
 Diet: Herbivore
 

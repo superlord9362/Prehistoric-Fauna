@@ -1,7 +1,5 @@
 package superlord.prehistoricfauna.common.blocks;
 
-import java.util.Random;
-
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
@@ -168,7 +166,7 @@ public class MarmarthiaBlock extends BushBlock implements BonemealableBlock {
 		worldIn.setBlock(pos, state.setValue(GROWTH, Integer.valueOf(i)), 2);
 	}
 
-	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
 		int i = state.getValue(GROWTH);
 		int j = state.getValue(BERRIES);
 		int k = state.getValue(LAYER);

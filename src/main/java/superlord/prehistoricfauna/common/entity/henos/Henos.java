@@ -748,6 +748,7 @@ public class Henos extends Animal {
 	public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob p_146744_) {
 		return null;
 	}
+	
 	@Override
 	public ItemStack getPickedResult(HitResult target) {
 		return new ItemStack(PFItems.HENOS_SPAWN_EGG.get());

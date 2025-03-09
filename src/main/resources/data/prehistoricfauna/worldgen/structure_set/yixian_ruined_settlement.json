@@ -1,0 +1,14 @@
+{
+	"placement": {
+		"type": "minecraft:random_spread",
+		"salt": 61329423,
+		"separation": 44,
+		"spacing": 80
+	},
+	"structures": [
+		{
+			"structure": "prehistoricfauna:yixian_ruined_settlement",
+			"weight": 1
+		}
+	]
+}

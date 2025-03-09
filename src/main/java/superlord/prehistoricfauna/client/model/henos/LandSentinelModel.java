@@ -118,12 +118,12 @@ public class LandSentinelModel extends EntityModel<LandSentinel> {
 		this.ArmLeft.yRot = -(-0.025F * Mth.sin(0.1F * ageInTicks));
 		this.Arm2Left.zRot = -(-0.025F * Mth.sin(0.1F * ageInTicks));
 		this.Arm2Left.yRot = -(-0.025F * Mth.sin(0.1F * ageInTicks));
-		this.LegLeftFront.zRot = -Math.abs(Mth.cos(limbSwing * walkSpeed * 0.15F) * walkDegree * 1F * limbSwingAmount);
-		this.LegRightFront.zRot = Math.abs(-(Mth.cos(limbSwing * walkSpeed * 0.15F) * walkDegree * 1F * limbSwingAmount));
-		this.LegLeftMid.zRot = -Math.abs(Mth.cos(limbSwing * walkSpeed * 0.15F + 1) * walkDegree * 1F * limbSwingAmount);
-		this.LegRightMid.zRot = Math.abs(-(Mth.cos(limbSwing * walkSpeed * 0.15F + 1) * walkDegree * 1F * limbSwingAmount));
-		this.LegLeftBack.zRot = -Math.abs(Mth.cos(limbSwing * walkSpeed * 0.15F + 2) * walkDegree * 1F * limbSwingAmount);
-		this.LegRightBack.zRot = Math.abs(-(Mth.cos(limbSwing * walkSpeed * 0.15F + 2) * walkDegree * 1F * limbSwingAmount));
+		this.LegLeftFront.zRot = Math.abs(Mth.cos(limbSwing * walkSpeed * 0.15F) * walkDegree * 0.5F * limbSwingAmount);
+		this.LegRightFront.zRot = -Math.abs(-(Mth.cos(limbSwing * walkSpeed * 0.15F) * walkDegree * 0.5F * limbSwingAmount));
+		this.LegLeftMid.zRot = Math.abs(Mth.cos(limbSwing * walkSpeed * 0.15F + 1) * walkDegree * 0.5F * limbSwingAmount);
+		this.LegRightMid.zRot = -Math.abs(-(Mth.cos(limbSwing * walkSpeed * 0.15F + 1) * walkDegree * 0.5F * limbSwingAmount));
+		this.LegLeftBack.zRot = Math.abs(Mth.cos(limbSwing * walkSpeed * 0.15F + 2) * walkDegree * 0.5F * limbSwingAmount);
+		this.LegRightBack.zRot = -Math.abs(-(Mth.cos(limbSwing * walkSpeed * 0.15F + 2) * walkDegree * 0.5F * limbSwingAmount));
 	}
 
 	@Override

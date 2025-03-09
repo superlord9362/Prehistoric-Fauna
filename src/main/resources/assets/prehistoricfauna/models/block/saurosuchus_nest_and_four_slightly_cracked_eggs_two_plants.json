@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/saurosuchus_nest_and_four_eggs_two_plants",
-	"textures": {
-		"egg": "prehistoricfauna:block/saurosuchus_egg_slightly_cracked"
-	}
-}

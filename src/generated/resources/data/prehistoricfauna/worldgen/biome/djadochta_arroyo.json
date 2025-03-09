@@ -1,13 +1,19 @@
 {
   "carvers": {},
-  "downfall": 1.0,
+  "downfall": 0.2,
   "effects": {
     "fog_color": 12638463,
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2.0,
-      "sound": "minecraft:ambient.cave",
+      "sound": "prehistoricfauna:cave_1",
       "tick_delay": 6000
+    },
+    "music": {
+      "max_delay": 24000,
+      "min_delay": 12000,
+      "replace_current_music": false,
+      "sound": "prehistoricfauna:ambience_1"
     },
     "sky_color": 6262941,
     "water_color": 6719083,
@@ -55,13 +61,13 @@
     [],
     [
       "minecraft:glow_lichen",
-      "prehistoricfauna:placed_lowered_horsetails",
       "prehistoricfauna:placed_cobbania",
-      "prehistoricfauna:placed_trochodendroides_trees",
-      "prehistoricfauna:placed_arroyo_trees",
+      "prehistoricfauna:placed_lowered_horsetails",
       "prehistoricfauna:placed_d_quereuxia",
-      "prehistoricfauna:placed_fallen_metasequoia_log",
-      "prehistoricfauna:placed_fallen_ginkgo_log"
+      "prehistoricfauna:placed_arroyo_trees",
+      "prehistoricfauna:placed_trochodendroides_trees",
+      "prehistoricfauna:placed_fallen_ginkgo_log",
+      "prehistoricfauna:placed_fallen_metasequoia_log"
     ]
   ],
   "has_precipitation": false,
@@ -188,5 +194,5 @@
       }
     ]
   },
-  "temperature": 0.2
+  "temperature": 1.0
 }

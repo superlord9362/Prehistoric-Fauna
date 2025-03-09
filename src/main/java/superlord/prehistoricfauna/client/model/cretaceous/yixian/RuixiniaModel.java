@@ -126,7 +126,7 @@ public class RuixiniaModel extends EntityModel<Ruixinia> {
 				this.Body.zRot = Mth.lerp(sleepProgress, 0, -1.2701F);
 				//10.0F, -0.4363F, 0.0F, 0.0F
 				this.Neck1.y = Mth.lerp(sleepProgress, 10, 10.6F);
-				this.Neck1.xRot = Mth.lerp(sleepProgress, -4.363F, 0.4171F);
+				this.Neck1.xRot = Mth.lerp(sleepProgress, -0.4363F, 0.4171F);
 				this.Neck1.yRot = Mth.lerp(sleepProgress, 0, 0.0232F);
 				this.Neck1.zRot = Mth.lerp(sleepProgress, 0, 0.0561F);
 				//-7.0F, -0.0873F, 0.0F, 0.0F
@@ -190,7 +190,7 @@ public class RuixiniaModel extends EntityModel<Ruixinia> {
 				this.Body.zRot = Mth.lerp(sleepProgress, -1.2701F, 0);
 				//10.0F, -0.4363F, 0.0F, 0.0F
 				this.Neck1.y = Mth.lerp(sleepProgress, 10.6F, 10);
-				this.Neck1.xRot = Mth.lerp(sleepProgress, 0.4171F, -4.363F);
+				this.Neck1.xRot = Mth.lerp(sleepProgress, 0.4171F, -0.4363F);
 				this.Neck1.yRot = Mth.lerp(sleepProgress, 0.0232F, 0);
 				this.Neck1.zRot = Mth.lerp(sleepProgress, 0.0561F, 0);
 				//-7.0F, -0.0873F, 0.0F, 0.0F
@@ -252,10 +252,10 @@ public class RuixiniaModel extends EntityModel<Ruixinia> {
 				this.Tail2.xRot = (-Math.abs(-0.05F * Mth.sin(0.05F * ageInTicks / 5))) + (Mth.cos(1.0F + limbSwing * speed * 0.3F) * degree * 0.2F * limbSwingAmount) + 0.1396F;
 				this.Tail2.yRot = (-0.12F * Mth.sin(0.05F * ageInTicks / 5)) + (Mth.cos(1.0F + limbSwing * speed * 0.15F) * degree * 0.5F * limbSwingAmount);
 				this.Neck1.xRot = (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount) + (headPitch * ((float) Math.PI / 270F)) + (attackProgress * (float)Math.toRadians(50))-0.4363F;
-				this.Neck1.yRot = (Mth.cos(limbSwing * speed * 0.15F) * degree * 0.1F * limbSwingAmount) + (netHeadYaw * ((float) Math.PI / 180F));
-				this.Neck2.xRot = Mth.cos(limbSwing * speed * 0.3F) * degree * 0.1F * limbSwingAmount -0.0873F;
-				this.Neck2.yRot = Mth.cos(limbSwing * speed * 0.15F) * degree * 0.1F * limbSwingAmount;
-				this.Head.xRot = (-Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.1F * limbSwingAmount) + 0.7418F;
+				this.Neck1.yRot = (Mth.cos(limbSwing * speed * 0.15F) * degree * 0.1F * limbSwingAmount) + (netHeadYaw * ((float) Math.PI / 360F));
+				this.Neck2.xRot = Mth.cos(limbSwing * speed * 0.3F) * degree * 0.1F * limbSwingAmount -0.0873F + (headPitch * ((float) Math.PI / 270F));
+				this.Neck2.yRot = Mth.cos(limbSwing * speed * 0.15F) * degree * 0.1F * limbSwingAmount + (netHeadYaw * ((float) Math.PI / 270));
+				this.Head.xRot = (-Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.1F * limbSwingAmount) + 0.7418F  - (headPitch * ((float) Math.PI / 270F)); 
 				this.RightThigh.xRot = Mth.cos(limbSwing * 0.3F) * 0.5F * limbSwingAmount;
 				this.RightLeg.xRot = Mth.cos(limbSwing * 0.3F) * 0.2F * limbSwingAmount + 0.05F;
 				this.RightFoot.xRot = Mth.cos(1.0F + limbSwing * 0.3F) * 0.4F * limbSwingAmount;
@@ -273,8 +273,8 @@ public class RuixiniaModel extends EntityModel<Ruixinia> {
 					this.Body.xRot = -0.25F;
 					this.Tail1.xRot = 0.125F;
 					this.Tail2.xRot = 0.125F;
-					this.RightThigh.y = 14;
-					this.LeftThigh.y = 14;
+					this.RightThigh.y = 27;
+					this.LeftThigh.y = 27;
 					this.RightThigh.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.LeftThigh.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.LeftArm.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
@@ -283,7 +283,7 @@ public class RuixiniaModel extends EntityModel<Ruixinia> {
 					this.LeftLeg.xRot = 0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.RightFoot.xRot = 0.5F - (0.3F * Mth.sin(0.2F * ageInTicks / 1.5F));
 					this.LeftFoot.xRot = 0.5F + (0.3F * Mth.sin(0.2F * ageInTicks / 1.5F));
-					this.Neck1.xRot = 0.5F;
+//					this.Neck1.xRot = 0.5F;
 					this.Tail1.yRot = (Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * Mth.sin(0.15F * ageInTicks / 1.5F));
 					this.Tail2.yRot = (Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * Mth.sin(0.15F * ageInTicks / 1.5F));
 				}

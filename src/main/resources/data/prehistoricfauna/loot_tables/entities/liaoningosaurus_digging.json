@@ -1,0 +1,91 @@
+{
+  "pools": [
+    {
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:ash_ball",
+          "weight": 30
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_nugget",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stick",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:hanging_roots",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:rooted_dirt",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:tuff",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:basalt",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blackstone",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:obsidian",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:tuber",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:fossilized_bones",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:horn_sherd",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:leaf_sherd",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:tyrant_sherd",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:vintage_sherd",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:trilobite_sherd",
+          "weight": 2
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "random_sequence": "prehistoricfauna:entities/liaoningosaurus_digging"
+}

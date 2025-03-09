@@ -103,6 +103,7 @@ public class AnkylosaurusSkeleton extends PrehistoricEntity {
 		compound.putBoolean("IsSquatting", this.isSquatting());
 		compound.putBoolean("IsPushable", this.isPushableState());
 		compound.putBoolean("IsLooking", this.isLooking());
+		compound.putFloat("Rotation", this.getYHeadRot());
 	}
 
 	public void readAdditionalSaveData(CompoundTag compound) {
@@ -113,6 +114,8 @@ public class AnkylosaurusSkeleton extends PrehistoricEntity {
 		this.setSquatting(compound.getBoolean("IsSquatting"));
 		this.setPushable(compound.getBoolean("IsPushable"));
 		this.setLooking(compound.getBoolean("IsLooking"));
+		this.setYBodyRot(compound.getFloat("Rotation"));
+		this.setYHeadRot(compound.getFloat("Rotation"));
 	}
 
 	public AnkylosaurusSkeleton(EntityType<? extends AnkylosaurusSkeleton> type, Level worldIn) {

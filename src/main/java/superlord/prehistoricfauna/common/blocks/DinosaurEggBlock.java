@@ -11,12 +11,18 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -32,16 +38,21 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.registries.RegistryObject;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
+import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Edmontosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
+import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Dongbeititan;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFTags;
 
 public class DinosaurEggBlock extends Block {
@@ -65,7 +76,7 @@ public class DinosaurEggBlock extends Block {
 		this.destroyEgg(p_154857_, p_154859_, p_154858_, p_154860_, 100);
 		super.stepOn(p_154857_, p_154858_, p_154859_, p_154860_);
 	}
-	
+
 	@Override
 	public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
 		BlockState blockstate = worldIn.getBlockState(pos.below());
@@ -76,16 +87,39 @@ public class DinosaurEggBlock extends Block {
 		if (!(p_154848_ instanceof Zombie)) {
 			this.destroyEgg(p_154845_, p_154846_, p_154847_, p_154848_, 3);
 		}
-
 		super.fallOn(p_154845_, p_154846_, p_154847_, p_154848_, p_154849_);
 	}
 
 	private void destroyEgg(Level p_154851_, BlockState p_154852_, BlockPos p_154853_, Entity p_154854_, int p_154855_) {
+		Entity dinosaurEntity = this.entityTypeSupplier.get().create(p_154851_);
 		if (this.canDestroyEgg(p_154851_, p_154854_)) {
-			if (!p_154851_.isClientSide && p_154851_.random.nextInt(p_154855_) == 0 && p_154852_.is(Blocks.TURTLE_EGG)) {
+			if (!p_154851_.isClientSide && p_154851_.random.nextInt(p_154855_) == 0 && p_154852_.is(this)) {
 				this.decreaseEggs(p_154851_, p_154853_, p_154852_);
+				if (dinosaurEntity instanceof DinosaurEntity dinosaur) {
+					for (Entity parentEntity : p_154851_.getEntities(dinosaurEntity, new AABB(p_154853_.getX() - 4, p_154853_.getY() - 4, p_154853_.getZ() - 4, p_154853_.getX() + 4, p_154853_.getY() + 4, p_154853_.getZ() + 4))) {
+						if (parentEntity instanceof DinosaurEntity parentDinosaur) {
+							Entity parent = this.entityTypeSupplier.get().create(p_154851_);
+							if (p_154854_ instanceof Player player) {
+								if (parentDinosaur.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE) &&  !parentDinosaur.isBaby() && !parentDinosaur.trusts(player.getUUID()) && !parentDinosaur.isTame() && parentDinosaur == parent) {
+									if (!player.getItemBySlot(EquipmentSlot.HEAD).is(PFItems.EGG_HELMET.get())) parentDinosaur.setTarget(player);
+								}
+							}
+						}
+					}
+				}
+				if (dinosaurEntity instanceof Triceratops triceratops) {
+					for (Entity parentEntity : p_154851_.getEntities(triceratops, new AABB(p_154853_.getX() - 4, p_154853_.getY() - 4, p_154853_.getZ() - 4, p_154853_.getX() + 4, p_154853_.getY() + 4, p_154853_.getZ() + 4))) {
+						if (parentEntity instanceof Triceratops parentDinosaur) {
+							Entity parent = this.entityTypeSupplier.get().create(p_154851_);
+							if (p_154854_ instanceof Player player) {
+								if (parentDinosaur.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE) && !parentDinosaur.isBaby() && !parentDinosaur.trusts(player.getUUID()) && !parentDinosaur.isTamed() && parentDinosaur == parent) {
+									if (!player.getItemBySlot(EquipmentSlot.HEAD).is(PFItems.EGG_HELMET.get())) parentDinosaur.setTarget(player);
+								}
+							}
+						}
+					}
+				}
 			}
-
 		}
 	}
 
@@ -102,7 +136,42 @@ public class DinosaurEggBlock extends Block {
 			p_57792_.setBlock(p_57793_, p_57794_.setValue(EGGS, Integer.valueOf(i - 1)), 2);
 			p_57792_.levelEvent(2001, p_57793_, Block.getId(p_57794_));
 		}
+	}
 
+	public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+		Entity dinosaurEntity = this.entityTypeSupplier.get().create(world);
+		ItemStack stack = player.getItemInHand(hand);
+		Item heldItem = stack.getItem();
+		int i = state.getValue(EGGS);
+		if (heldItem != this.asItem()) {
+			if (i > 1) {
+				world.setBlock(pos, state.setValue(EGGS, Integer.valueOf(i - 1)), 2);
+			} else world.destroyBlock(pos, false);
+			if (dinosaurEntity instanceof DinosaurEntity dinosaur) {
+				for (Entity parentEntity : world.getEntities(dinosaurEntity, new AABB(pos.getX() - 4, pos.getY() - 4, pos.getZ() - 4, pos.getX() + 4, pos.getY() + 4, pos.getZ() + 4))) {
+					if (parentEntity instanceof DinosaurEntity parentDinosaur) {
+						Entity parent = this.entityTypeSupplier.get().create(world);
+						if (parentDinosaur.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE) &&  !parentDinosaur.isBaby() && !parentDinosaur.trusts(player.getUUID()) && !parentDinosaur.isTame() && parentDinosaur == parent) {
+							if (!player.getItemBySlot(EquipmentSlot.HEAD).is(PFItems.EGG_HELMET.get())) parentDinosaur.setTarget(player);
+						}
+					}
+				}
+				ItemEntity item = new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(dinosaur.getEggItem()));
+				world.addFreshEntity(item);
+			} else if (dinosaurEntity instanceof Triceratops triceratops) {
+				for (Entity parentEntity : world.getEntities(triceratops, new AABB(pos.getX() - 4, pos.getY() - 4, pos.getZ() - 4, pos.getX() + 4, pos.getY() + 4, pos.getZ() + 4))) {
+					if (parentEntity instanceof Triceratops parentDinosaur) {
+						Entity parent = this.entityTypeSupplier.get().create(world);
+						if (parentDinosaur.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE) && !parentDinosaur.isBaby() && !parentDinosaur.trusts(player.getUUID()) && !parentDinosaur.isTamed() && parentDinosaur == parent) {
+							if (!player.getItemBySlot(EquipmentSlot.HEAD).is(PFItems.EGG_HELMET.get())) parentDinosaur.setTarget(player);
+						}
+					}
+				}
+				ItemEntity item = new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(PFItems.TRICERATOPS_EGG.get()));
+				world.addFreshEntity(item);
+			}
+			return InteractionResult.sidedSuccess(world.isClientSide);
+		} else return InteractionResult.PASS;
 	}
 
 	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
@@ -127,7 +196,7 @@ public class DinosaurEggBlock extends Block {
 						}
 						if (dinosaur instanceof Camarasaurus) {
 							((Animal)dinosaurEntity).setAge(-72000);
-						} else if (dinosaur instanceof Tyrannosaurus) {
+						} else if (dinosaur instanceof Tyrannosaurus || dinosaur instanceof Edmontosaurus || dinosaur instanceof Dongbeititan) {
 							((Animal)dinosaurEntity).setAge(-48000);
 						} else {
 							((Animal)dinosaurEntity).setAge(-24000);
@@ -165,8 +234,7 @@ public class DinosaurEggBlock extends Block {
 			boolean night = roundTime >= 13000 && roundTime <= 22000;
 			int i = world.getBrightness(LightLayer.SKY, pos);
 			int j = world.getBrightness(LightLayer.BLOCK, pos);
-			int hardshellDeathTime = 24000;
-			int softshellDeathTime = 18000;
+			int hardshellDeathTime = 16000;
 			int brightness;
 			if (night) {
 				brightness = j;
@@ -174,17 +242,9 @@ public class DinosaurEggBlock extends Block {
 				brightness = Math.max(i, j);
 			}
 			if (brightness < 7) {
-				if (PrehistoricFaunaConfig.softShellAndHardShellEggs && state.is(PFTags.SOFT_SHELL_EGG_BLOCKS)) {
-					for (int l = softshellDeathTime; l > 0; l--) {
-						if (l == 0) {
-							world.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
-						}
-					}
-				} else {
-					for (int l = hardshellDeathTime; l > 0; l--) {
-						if (l == 0) {
-							world.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
-						}
+				for (int l = hardshellDeathTime; l > 0; l--) {
+					if (l == 0) {
+						world.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
 					}
 				}
 			} else {

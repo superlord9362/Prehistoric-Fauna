@@ -45,7 +45,7 @@ import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.PrehistoricFauna;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
@@ -182,7 +182,7 @@ public class Liaoningosaurus extends DinosaurEntity {
 	}
 
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.LIAONINGOSAURUS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+		return PFBlocks.LIAONINGOSAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 
 	@Override
@@ -257,10 +257,10 @@ public class Liaoningosaurus extends DinosaurEntity {
 			} else {
 				BlockPos blockpos = liaoningosaurus.blockPosition();
 				BlockState state = liaoningosaurus.level().getBlockState(blockpos);
-				if (state.is(BlockTags.DIRT)) {
+				if (state.is(PFBlocks.ASH.get())) {
 					return true;
 				} else {
-					return liaoningosaurus.level().getBlockState(blockpos.below()).is(BlockTags.DIRT);
+					return liaoningosaurus.level().getBlockState(blockpos.below()).is(PFBlocks.ASH.get());
 				}
 			}
 		}

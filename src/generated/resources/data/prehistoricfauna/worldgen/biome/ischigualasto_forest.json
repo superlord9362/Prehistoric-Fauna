@@ -8,8 +8,14 @@
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2.0,
-      "sound": "minecraft:ambient.cave",
+      "sound": "prehistoricfauna:cave_1",
       "tick_delay": 6000
+    },
+    "music": {
+      "max_delay": 24000,
+      "min_delay": 12000,
+      "replace_current_music": false,
+      "sound": "prehistoricfauna:ambience_1"
     },
     "sky_color": 10464974,
     "water_color": 4417619,
@@ -55,14 +61,14 @@
     [],
     [
       "minecraft:glow_lichen",
-      "prehistoricfauna:placed_michelilloa",
-      "prehistoricfauna:placed_neocalamites",
       "prehistoricfauna:placed_algae",
+      "prehistoricfauna:placed_cladophlebis",
+      "prehistoricfauna:placed_dicroidium",
       "prehistoricfauna:placed_lowered_horsetails",
       "prehistoricfauna:placed_waterlogged_horsetail",
-      "prehistoricfauna:placed_cladophlebis",
       "prehistoricfauna:placed_johnstonia",
-      "prehistoricfauna:placed_dicroidium",
+      "prehistoricfauna:placed_michelilloa",
+      "prehistoricfauna:placed_neocalamites",
       "prehistoricfauna:placed_scytophyllum",
       "prehistoricfauna:placed_ischigualasto_trees"
     ],

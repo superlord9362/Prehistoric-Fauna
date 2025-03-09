@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/anzu_nest_and_three_eggs_three_plants",
-	"textures": {
-		"egg": "prehistoricfauna:block/anzu_egg_slightly_cracked"
-	}
-}

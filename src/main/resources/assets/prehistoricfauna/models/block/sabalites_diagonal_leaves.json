@@ -1,7 +1,7 @@
 {
 	"credit": "Made with Blockbench",
-    "ambientocclusion": false,
-    "parent": "block/cross",
+	"parent": "block/cross",
+	"ambientocclusion": false,
 	"textures": {
 		"0": "prehistoricfauna:block/sabalites_leaves_big_diagonal",
 		"1": "prehistoricfauna:block/sabalites_leaves_small_diagonal",
@@ -9,73 +9,73 @@
 	},
 	"elements": [
 		{
-			"from": [-4.5, 8, -5],
-			"to": [16.5, 8, 16],
+			"from": [-5, 8, -5],
+			"to": [16, 8, 16],
+			"shade": false,
 			"rotation": {"angle": 0, "axis": "x", "origin": [6, 8, 5.5]},
-            "shade": false,
 			"faces": {
 				"north": {"uv": [0, 0, 16, 0], "texture": "#1"},
 				"east": {"uv": [0, 0, 16, 0], "texture": "#1"},
 				"south": {"uv": [0, 0, 16, 0], "texture": "#1"},
 				"west": {"uv": [0, 0, 16, 0], "texture": "#1"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#1"},
-				"down": {"uv": [0, 0, 16, 16], "rotation": 270, "texture": "#1"}
+				"up": {"uv": [0, 0, 10.5, 10.5], "texture": "#1"},
+				"down": {"uv": [0, 0, 10.5, 10.5], "rotation": 270, "texture": "#1"}
 			}
 		},
 		{
-			"from": [-8.5, 8, -9],
-			"to": [16.5, 8, 16],
-			"rotation": {"angle": 22.5, "axis": "x", "origin": [17, 9, 16]},
-            "shade": false,
+			"from": [-9, 8, -9],
+			"to": [16, 8, 16],
+			"shade": false,
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [16, 8, 16]},
 			"faces": {
 				"north": {"uv": [0, 0, 16, 0], "texture": "#0"},
 				"east": {"uv": [0, 0, 16, 0], "texture": "#0"},
 				"south": {"uv": [0, 0, 16, 0], "texture": "#0"},
 				"west": {"uv": [0, 0, 16, 0], "texture": "#0"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#0"},
-				"down": {"uv": [0, 0, 16, 16], "rotation": 270, "texture": "#0"}
+				"up": {"uv": [0, 0, 12.5, 12.5], "texture": "#0"},
+				"down": {"uv": [0, 0, 12.5, 12.5], "rotation": 270, "texture": "#0"}
 			}
 		},
 		{
-			"from": [-8.5, 8, -9],
-			"to": [16.5, 8, 16],
-			"rotation": {"angle": -22.5, "axis": "z", "origin": [17, 9, 16]},
-            "shade": false,
+			"from": [-9, 8, -9],
+			"to": [16, 8, 16],
+			"shade": false,
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [16, 8, 16]},
 			"faces": {
 				"north": {"uv": [0, 0, 16, 0], "texture": "#0"},
 				"east": {"uv": [0, 0, 16, 0], "texture": "#0"},
 				"south": {"uv": [0, 0, 16, 0], "texture": "#0"},
 				"west": {"uv": [0, 0, 16, 0], "texture": "#0"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#0"},
-				"down": {"uv": [0, 0, 16, 16], "rotation": 270, "texture": "#0"}
+				"up": {"uv": [0, 0, 12.5, 12.5], "texture": "#0"},
+				"down": {"uv": [0, 0, 12.5, 12.5], "rotation": 270, "texture": "#0"}
 			}
 		},
 		{
-			"from": [-8.5, 8, -9],
-			"to": [16.5, 8, 16],
-			"rotation": {"angle": -22.5, "axis": "x", "origin": [17, 9, 16]},
-            "shade": false,
+			"from": [-9, 8, -9],
+			"to": [16, 8, 16],
+			"shade": false,
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [16, 8, 16]},
 			"faces": {
 				"north": {"uv": [0, 0, 16, 0], "texture": "#0"},
 				"east": {"uv": [0, 0, 16, 0], "texture": "#0"},
 				"south": {"uv": [0, 0, 16, 0], "texture": "#0"},
 				"west": {"uv": [0, 0, 16, 0], "texture": "#0"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#0"},
-				"down": {"uv": [0, 0, 16, 16], "rotation": 270, "texture": "#0"}
+				"up": {"uv": [0, 0, 12.5, 12.5], "texture": "#0"},
+				"down": {"uv": [0, 0, 12.5, 12.5], "rotation": 270, "texture": "#0"}
 			}
 		},
 		{
-			"from": [-8.5, 8, -9],
-			"to": [16.5, 8, 16],
-			"rotation": {"angle": 22.5, "axis": "z", "origin": [17, 9, 16]},
-            "shade": false,
+			"from": [-9, 8, -9],
+			"to": [16, 8, 16],
+			"shade": false,
+			"rotation": {"angle": 22.5, "axis": "z", "origin": [16, 8, 16]},
 			"faces": {
 				"north": {"uv": [0, 0, 16, 0], "texture": "#0"},
 				"east": {"uv": [0, 0, 16, 0], "texture": "#0"},
 				"south": {"uv": [0, 0, 16, 0], "texture": "#0"},
 				"west": {"uv": [0, 0, 16, 0], "texture": "#0"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#0"},
-				"down": {"uv": [0, 0, 16, 16], "rotation": 270, "texture": "#0"}
+				"up": {"uv": [0, 0, 12.5, 12.5], "texture": "#0"},
+				"down": {"uv": [0, 0, 12.5, 12.5], "rotation": 270, "texture": "#0"}
 			}
 		}
 	],
@@ -84,33 +84,28 @@
 			"name": "sabalites_leaves_corner",
 			"origin": [8, 8, 8],
 			"color": 0,
-			"nbt": "{}",
 			"children": [
 				{
 					"name": "group",
 					"origin": [8, 8, 8],
 					"color": 0,
-					"nbt": "{}",
 					"children": [
 						{
 							"name": "group",
 							"origin": [0, 0, 0],
 							"color": 0,
-							"nbt": "{}",
 							"children": [0]
 						},
 						{
 							"name": "group",
 							"origin": [0, 0, 0],
 							"color": 0,
-							"nbt": "{}",
 							"children": [1, 2]
 						},
 						{
 							"name": "group",
 							"origin": [0, 0, 0],
 							"color": 0,
-							"nbt": "{}",
 							"children": [3, 4]
 						}
 					]

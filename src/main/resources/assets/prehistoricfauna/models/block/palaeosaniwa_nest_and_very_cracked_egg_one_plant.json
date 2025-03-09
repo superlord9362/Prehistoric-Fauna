@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/palaeosaniwa_nest_and_egg_one_plant",
-	"textures": {
-		"egg": "prehistoricfauna:block/palaeosaniwa_egg_very_cracked"
-	}
-}

@@ -116,7 +116,9 @@ public class AnzuBabyModel extends EntityModel<Anzu> {
 					this.Tail.yRot = Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;
 					this.LeftLeg.xRot = -0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.RightLeg.xRot = 0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
-					this.Body.y = 34;
+					this.Body.y = 2;
+					this.RightThigh.y = 2;
+					this.LeftThigh.y = 2;
 				}
 			}
 		}

@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/kayentatherium_nest_and_four_eggs_one_plant",
-	"textures": {
-		"egg": "prehistoricfauna:block/kayentatherium_egg_slightly_cracked"
-	}
-}

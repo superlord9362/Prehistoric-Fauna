@@ -46,7 +46,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.AgedHerdDinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.AgedFollowHerdLeaderGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
@@ -92,6 +92,11 @@ public class Ruixinia extends AgedHerdDinosaurEntity {
 	@Override
 	public boolean isFood(ItemStack stack) {
 		return stack.getItem() == PFItems.CALLIANTHUS.get();
+	}
+	
+	@Override
+	public double moveToRange() {
+		return 10;
 	}
 
 	@Override
@@ -451,7 +456,7 @@ public class Ruixinia extends AgedHerdDinosaurEntity {
 	}
 
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.RUIXINIA_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+		return PFBlocks.RUIXINIA_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 
 }

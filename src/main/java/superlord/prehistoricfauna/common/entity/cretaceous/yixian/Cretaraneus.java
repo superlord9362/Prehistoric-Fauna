@@ -9,6 +9,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -69,6 +70,10 @@ public class Cretaraneus extends Animal {
 		super(type, world);
 		this.setPathfindingMalus(BlockPathTypes.WATER, -1.0F);
 		switchNavigator(true);
+	}
+
+	protected void playStepSound(BlockPos p_33543_, BlockState p_33544_) {
+		this.playSound(SoundEvents.SILVERFISH_STEP, 0.15F, 1.0F);
 	}
 
 	private void switchNavigator(boolean rightsideUp) {

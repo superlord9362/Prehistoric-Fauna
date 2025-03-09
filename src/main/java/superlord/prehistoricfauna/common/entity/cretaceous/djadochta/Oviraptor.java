@@ -45,7 +45,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.CarnivoreHuntGoal;
@@ -86,8 +85,8 @@ public class Oviraptor extends DinosaurEntity {
 	}
 
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-		if (this.isBaby()) return 0.95F;
-		else return 1.9F;
+		if (this.isBaby()) return 0.425F;
+		else return 0.85F;
 	}
 
 	public boolean isSitting() {
@@ -348,7 +347,7 @@ public class Oviraptor extends DinosaurEntity {
 	}
 
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.OVIRAPTOR_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+		return PFBlocks.OVIRAPTOR_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 
 }

@@ -2,6 +2,7 @@ package superlord.prehistoricfauna.common.world.biome;
 
 import net.minecraft.core.HolderGetter;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
+import net.minecraft.sounds.Musics;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.AmbientMoodSettings;
 import net.minecraft.world.level.biome.Biome;
@@ -12,6 +13,7 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFPlacedFeatures;
+import superlord.prehistoricfauna.init.PFSounds;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
 import net.minecraft.world.level.biome.BiomeSpecialEffects;
 import net.minecraft.world.level.biome.MobSpawnSettings;
@@ -30,7 +32,8 @@ public class JurassicBiomes {
 						.skyColor(skyColor)
 						.foliageColorOverride(foliageColor)
 						.grassColorOverride(foliageColor)
-						.ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+						.ambientMoodSound(new AmbientMoodSettings(PFSounds.CAVE_1.getHolder().get(), 6000, 8, 2.0D))
+						.backgroundMusic(Musics.createGameMusic(PFSounds.AMBIENCE_1.getHolder().get()))
 						.build())
 				.mobSpawnSettings(spawnBuilder.build())
 				.generationSettings(biomeBuilder.build())
@@ -47,7 +50,8 @@ public class JurassicBiomes {
 						.waterFogColor(waterFogColor)
 						.fogColor(fogColor)
 						.skyColor(skyColor)
-						.ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+						.ambientMoodSound(new AmbientMoodSettings(PFSounds.CAVE_1.getHolder().get(), 6000, 8, 2.0D))
+						.backgroundMusic(Musics.createGameMusic(PFSounds.AMBIENCE_1.getHolder().get()))
 						.build())
 				.mobSpawnSettings(spawnBuilder.build())
 				.generationSettings(biomeBuilder.build())
@@ -105,8 +109,8 @@ public class JurassicBiomes {
 		BiomeDefaultFeatures.addDefaultUndergroundVariety(biomeFeatures);
 		BiomeDefaultFeatures.addDefaultOres(biomeFeatures, true);
 		biomeFeatures.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PFPlacedFeatures.DEAD_OSMUNDACAULIS);
-		PFPlacedFeatures.withKayentaDesertRocks(biomeFeatures);
 		biomeFeatures.addFeature(Decoration.VEGETAL_DECORATION, PFPlacedFeatures.ZAMITES);
+		PFPlacedFeatures.withKayentaDesertRocks(biomeFeatures);
 		if (PrehistoricFaunaConfig.calsoyasuchusKayentaDesertSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.CALSOYASUCHUS.get(), PrehistoricFaunaConfig.calsoyasuchusKayentaDesertSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.dilophosaurusKayentaDesertSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.DILOPHOSAURUS.get(), PrehistoricFaunaConfig.dilophosaurusKayentaDesertSpawnWeight, 1, 1));
 		if (PrehistoricFaunaConfig.sarahsaurusKayentaDesertSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.SARAHSAURUS.get(), PrehistoricFaunaConfig.sarahsaurusKayentaDesertSpawnWeight, 1, 3));
@@ -172,7 +176,6 @@ public class JurassicBiomes {
 		BiomeDefaultFeatures.addDefaultCrystalFormations(biomeFeatures);
 		BiomeDefaultFeatures.addDefaultUndergroundVariety(biomeFeatures);
 		BiomeDefaultFeatures.addDefaultOres(biomeFeatures, true);
-		PFPlacedFeatures.withMorrisonSavannaVegetation(biomeFeatures);
 		PFPlacedFeatures.withMorrisonHillsVegetation(biomeFeatures);
 		if (PrehistoricFaunaConfig.stegosaurusMorrisonSavannahSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.STEGOSAURUS.get(), PrehistoricFaunaConfig.stegosaurusMorrisonSavannahSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.dryosaurusMorrisonSavannahSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.DRYOSAURUS.get(), PrehistoricFaunaConfig.dryosaurusMorrisonSavannahSpawnWeight, 2, 4));

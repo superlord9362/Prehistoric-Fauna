@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:fermented_ginkgo_berry"
+    ]
+  },
+  "criteria": {
+    "has_berry": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+				"prehistoricfauna:ginkgo_berry"
+          	]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:fermented_ginkgo_berry"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_berry",
+      "has_the_recipe"
+    ]
+  ]
+}

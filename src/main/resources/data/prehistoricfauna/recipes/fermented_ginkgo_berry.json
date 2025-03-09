@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:ginkgo_berry"
+    },
+    {
+		"item": "minecraft:sugar"
+	}
+  ],
+  "result": {
+    "item": "prehistoricfauna:fermented_ginkgo_berry"
+  }
+}

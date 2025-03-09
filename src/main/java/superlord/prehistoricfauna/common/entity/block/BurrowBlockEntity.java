@@ -72,7 +72,7 @@ public class BurrowBlockEntity extends BlockEntity {
 		List<Entity> list = this.releaseAllOccupants(p_58750_, p_58751_);
 		if (p_58749_ != null) {
 			for(Entity entity : list) {
-				if (entity instanceof BurrowingDinosaur) {
+				if (entity.getType().is(PFTags.BURROWERS)) {
 					BurrowingDinosaur burrower = (BurrowingDinosaur)entity;
 					if (p_58749_.position().distanceToSqr(entity.position()) <= 16.0D) {
 						burrower.setStayOutOfBurrowCountdown(400);

@@ -9,6 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.world.chunkgen.CretaceousChunkGenerator;
 import superlord.prehistoricfauna.common.world.chunkgen.JurassicChunkGenerator;
+import superlord.prehistoricfauna.common.world.chunkgen.PrehistoricChunkGenerator;
 import superlord.prehistoricfauna.common.world.chunkgen.TriassicChunkGenerator;
 
 public class PFChunkGenerators {
@@ -17,5 +18,6 @@ public class PFChunkGenerators {
     public static final RegistryObject<Codec<TriassicChunkGenerator>> TRIASSIC_CHUNK_GENERATOR = REGISTER.register("triassic_chunk_generator", () -> TriassicChunkGenerator.CODEC);
     public static final RegistryObject<Codec<JurassicChunkGenerator>> JURASSIC_CHUNK_GENERATOR = REGISTER.register("jurassic_chunk_generator", () -> JurassicChunkGenerator.CODEC);
     public static final RegistryObject<Codec<CretaceousChunkGenerator>> CRETACEOUS_CHUNK_GENERATOR = REGISTER.register("cretaceous_chunk_generator", () -> CretaceousChunkGenerator.CODEC);
+    public static final RegistryObject<Codec<PrehistoricChunkGenerator>> PREHISTORIC_CHUNK_GENERATOR = REGISTER.register("prehistoric_chunk_generator", () -> PrehistoricChunkGenerator.CODEC);
     
 }

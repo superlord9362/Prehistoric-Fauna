@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/calsoyasuchus_nest_and_four_eggs_two_plants",
-	"textures": {
-		"egg": "prehistoricfauna:block/calsoyasuchus_egg_very_cracked"
-	}
-}

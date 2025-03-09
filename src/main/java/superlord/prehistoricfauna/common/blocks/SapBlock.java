@@ -1,7 +1,6 @@
 package superlord.prehistoricfauna.common.blocks;
 
 import java.util.Map;
-import java.util.Random;
 
 import javax.annotation.Nullable;
 
@@ -11,6 +10,7 @@ import com.google.common.collect.Maps;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -83,7 +83,7 @@ public class SapBlock extends Block {
 		return true;
 	}
 	
-	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		int grow = random.nextInt(4);
 		if (grow == 0) {
 			world.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());

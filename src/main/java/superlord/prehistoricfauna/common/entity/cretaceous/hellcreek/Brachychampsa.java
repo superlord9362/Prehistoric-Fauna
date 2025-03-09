@@ -1,6 +1,6 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.hellcreek;
 
-import java.util.Random;
+import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
@@ -14,6 +14,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -37,13 +38,17 @@ import net.minecraft.world.entity.ai.goal.FollowParentGoal;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.Turtle;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.DismountHelper;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
@@ -58,13 +63,12 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.AggressiveTempermentAttackGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.CarnivoreEatFromFeederGoal;
-import superlord.prehistoricfauna.common.entity.goal.CarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.CathemeralSleepGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
@@ -72,13 +76,13 @@ import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurTerritorialAttackGoal;
 import superlord.prehistoricfauna.common.entity.goal.HostileCarnivoreGoal;
-import superlord.prehistoricfauna.common.entity.goal.HuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.PiscivoreEatFromFeederGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
 import superlord.prehistoricfauna.common.items.PaleopediaItem;
 import superlord.prehistoricfauna.common.util.EnumPaleoPages;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
@@ -215,13 +219,13 @@ public class Brachychampsa extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new PiscivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(0, new CarnivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(3, new Brachychampsa.SwimGoal(this));
-		this.goalSelector.addGoal(0, new CarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213487_1_) -> {
+		this.goalSelector.addGoal(0, new BrachychampsaHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213487_1_) -> {
 			return p_213487_1_.getType().is(PFTags.BRACHYCHAMPSA_HUNTING);
 		}));
 		this.targetSelector.addGoal(0, new BabyCarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213487_1_) -> {
 			return p_213487_1_.getType().is(PFTags.BRACHYCHAMPSA_BABY_HUNTING);
 		}));
-		this.targetSelector.addGoal(1, new HuntGoal(this, LivingEntity.class, 10, true, false, (p_213487_1_) -> {
+		this.targetSelector.addGoal(1, new BrachychampsaNoHungerHuntGoal(this, LivingEntity.class, 10, true, false, (p_213487_1_) -> {
 			return p_213487_1_.getType().is(PFTags.BRACHYCHAMPSA_HUNTING);
 		}));
 		this.goalSelector.addGoal(8, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
@@ -234,7 +238,7 @@ public class Brachychampsa extends DinosaurEntity {
 		return false;
 	}
 
-	public static boolean canDinosaurSpawn(EntityType<? extends Animal> animal,  LevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random random) {
+	public static boolean canDinosaurSpawn(EntityType<? extends Animal> animal,  LevelAccessor worldIn, MobSpawnType reason, BlockPos pos, RandomSource random) {
 		return (worldIn.getBlockState(pos.below()).is(BlockTags.DIRT) || worldIn.getBlockState(pos).is(Blocks.WATER) || worldIn.getBlockState(pos.below()).is(Tags.Blocks.SAND)) && worldIn.getRawBrightness(pos, 0) > 8;
 	}
 
@@ -502,7 +506,7 @@ public class Brachychampsa extends DinosaurEntity {
 	}
 
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.BRACHYCHAMPSA_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+		return PFBlocks.BRACHYCHAMPSA_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 
 	static class BrachychampsaGoToWaterGoal extends MoveToBlockGoal {
@@ -620,5 +624,219 @@ public class Brachychampsa extends DinosaurEntity {
 	protected PathNavigation createNavigation(Level level) {
 		return new Brachychampsa.BrachychampsaPathNavigation(this, level);
 	}
+	
+	@SuppressWarnings("rawtypes")
+	class BrachychampsaHuntGoal extends NearestAttackableTargetGoal {
+		double huntSpeed;
+		Predicate<LivingEntity> targetPredicate;
+		DinosaurEntity dinosaur;
+
+		@SuppressWarnings("unchecked")
+		public BrachychampsaHuntGoal(DinosaurEntity goalOwnerIn, Class targetClassIn, int targetChanceIn, double huntSpeed, boolean checkSight, boolean nearbyOnly, @Nullable Predicate<LivingEntity> targetPredicate) {
+			super(goalOwnerIn, targetClassIn, targetChanceIn, checkSight, nearbyOnly, targetPredicate);
+			this.huntSpeed = huntSpeed;
+			this.targetPredicate = targetPredicate;
+			this.dinosaur = goalOwnerIn;
+		}
+
+		public boolean canUse() {
+			return super.canUse() && dinosaur.getCurrentHunger() <= dinosaur.getHalfHunger() && !dinosaur.isBaby() && PrehistoricFaunaConfig.advancedHunger == true && !targetPredicate.test(dinosaur) && !dinosaur.trusts(target.getUUID()) && !dinosaur.isOpportunist();
+		}
+
+		public boolean canContinueToUse() {
+			return dinosaur.getCurrentHunger() < dinosaur.maxHunger && PrehistoricFaunaConfig.advancedHunger == true;
+		}
+
+		public void tick() {
+			dinosaur.getNavigation().setSpeedModifier(huntSpeed);
+			if (dinosaur.getTarget() != null) {
+				LivingEntity target = dinosaur.getTarget();
+				if (!target.is(null)) {
+					if (target.getType().is(PFTags.INSECTS_2_HUNGER)) {
+						if (target.getHealth() == 0) {
+							if (dinosaur.getCurrentHunger() + 2 >= dinosaur.maxHunger) {
+								dinosaur.setHunger(dinosaur.maxHunger);
+							} else {
+								dinosaur.setHunger(dinosaur.currentHunger + 2);
+							}
+						}
+					}
+					if (target.getType().is(PFTags.ANIMALS_3_HUNGER)) {
+						if (target.getHealth() == 0) {
+							if (dinosaur.getCurrentHunger() + 3 >= dinosaur.maxHunger) {
+								dinosaur.setHunger(dinosaur.maxHunger);
+							} else {
+								dinosaur.setHunger(dinosaur.currentHunger + 3);
+							}
+						}
+					}
+					if (target.getType().is(PFTags.ANIMALS_4_HUNGER)) {
+						if (target.getHealth() == 0) {
+							if (dinosaur.getCurrentHunger() + 4 >= dinosaur.maxHunger) {
+								dinosaur.setHunger(dinosaur.maxHunger);
+							} else {
+								dinosaur.setHunger(dinosaur.currentHunger + 4);
+							}
+						}
+					}
+					if (target.getType().is(PFTags.ANIMALS_6_HUNGER)) {
+						if (target.getHealth() == 0) {
+							if (dinosaur.getCurrentHunger() + 6 >= dinosaur.maxHunger) {
+								dinosaur.setHunger(dinosaur.maxHunger);
+							} else {
+								dinosaur.setHunger(dinosaur.currentHunger + 6);
+							}
+						}
+					}
+					if (target.getType().is(PFTags.ANIMALS_8_HUNGER)) {
+						if (target.getHealth() == 0) {
+							if (dinosaur.getCurrentHunger() + 8 >= dinosaur.maxHunger) {
+								dinosaur.setHunger(dinosaur.maxHunger);
+							} else {
+								dinosaur.setHunger(dinosaur.currentHunger + 8);
+							}
+						}
+					}
+					if (target.getType().is(PFTags.ANIMALS_10_HUNGER)) {
+						if (target.getHealth() == 0) {
+							if (dinosaur.getCurrentHunger() + 10 >= dinosaur.maxHunger) {
+								dinosaur.setHunger(dinosaur.maxHunger);
+							} else {
+								dinosaur.setHunger(dinosaur.currentHunger + 10);
+							}
+						}
+					}
+					if (target.getType().is(PFTags.ANIMALS_15_HUNGER)) {
+						if (target.getHealth() == 0) {
+							if (dinosaur.getCurrentHunger() + 15 >= dinosaur.maxHunger) {
+								dinosaur.setHunger(dinosaur.maxHunger);
+							} else {
+								dinosaur.setHunger(dinosaur.currentHunger + 15);
+							}
+						}
+					}
+					if (target.getType().is(PFTags.ANIMALS_20_HUNGER)) {
+						if (target.getHealth() == 0) {
+							if (dinosaur.getCurrentHunger() + 20 >= dinosaur.maxHunger) {
+								dinosaur.setHunger(dinosaur.maxHunger);
+							} else {
+								dinosaur.setHunger(dinosaur.currentHunger + 20);
+							}
+						}
+					}
+					if (target.getType().is(PFTags.ANIMALS_30_HUNGER)) {
+						if (target.getHealth() == 0) {
+							if (dinosaur.getCurrentHunger() + 30 >= dinosaur.maxHunger) {
+								dinosaur.setHunger(dinosaur.maxHunger);
+							} else {
+								dinosaur.setHunger(dinosaur.currentHunger + 30);
+							}
+						}
+					}
+					if (target.getType().is(PFTags.ANIMALS_40_HUNGER)) {
+						if (target.getHealth() == 0) {
+							if (dinosaur.getCurrentHunger() + 40 >= dinosaur.maxHunger) {
+								dinosaur.setHunger(dinosaur.maxHunger);
+							} else {
+								dinosaur.setHunger(dinosaur.currentHunger + 40);
+							}
+						}
+					}
+					if (target.getType().is(PFTags.ANIMALS_60_HUNGER)) {
+						if (target.getHealth() == 0) {
+							if (dinosaur.getCurrentHunger() + 60 >= dinosaur.maxHunger) {
+								dinosaur.setHunger(dinosaur.maxHunger);
+							} else {
+								dinosaur.setHunger(dinosaur.currentHunger + 60);
+							}
+						}
+					}
+					if (target.getType().is(PFTags.ANIMALS_80_HUNGER)) {
+						if (target.getHealth() == 0) {
+							if (dinosaur.getCurrentHunger() + 80 >= dinosaur.maxHunger) {
+								dinosaur.setHunger(dinosaur.maxHunger);
+							} else {
+								dinosaur.setHunger(dinosaur.currentHunger + 80);
+							}
+						}
+					}
+					if (target.getType().is(PFTags.ANIMALS_100_HUNGER)) {
+						if (target.getHealth() == 0) {
+							if (dinosaur.getCurrentHunger() + 100 >= dinosaur.maxHunger) {
+								dinosaur.setHunger(dinosaur.maxHunger);
+							} else {
+								dinosaur.setHunger(dinosaur.currentHunger + 100);
+							}
+						}
+					}
+					if (target.getType().is(PFTags.ANIMALS_200_HUNGER)) {
+						if (target.getHealth() == 0) {
+							if (dinosaur.getCurrentHunger() + 200 >= dinosaur.maxHunger) {
+								dinosaur.setHunger(dinosaur.maxHunger);
+							} else {
+								dinosaur.setHunger(dinosaur.currentHunger + 200);
+							}
+						}
+					}
+					if (target instanceof Turtle || target instanceof Basilemys) {
+						if (target.getHealth() == 0) {
+							ItemEntity item = new ItemEntity(target.level(), target.getX(), target.getY(), target.getZ(), new ItemStack(Items.SCUTE));
+							item.setPos(target.getX(), target.getY(), target.getZ());
+							dinosaur.level().addFreshEntity(item);
+						}
+					}
+				} else stop();
+			} else stop();
+			super.tick();
+		}
+
+	}
+	
+	@SuppressWarnings("rawtypes")
+	class BrachychampsaNoHungerHuntGoal extends NearestAttackableTargetGoal {
+		Predicate<LivingEntity> targetPredicate;
+		DinosaurEntity dinosaur;
+		
+		@SuppressWarnings("unchecked")
+		public BrachychampsaNoHungerHuntGoal(DinosaurEntity goalOwnerIn, Class targetClassIn, int targetChanceIn, boolean checkSight, boolean nearbyOnlyIn, Predicate<LivingEntity> targetPredicate) {
+			super(goalOwnerIn, targetClassIn, targetChanceIn, checkSight, nearbyOnlyIn, targetPredicate);
+			this.targetPredicate = targetPredicate;
+			this.dinosaur = goalOwnerIn;
+		}
+		
+		public boolean canUse() {
+			if (super.canUse() && this.mob.getRandom().nextInt(249) == 0 && !this.mob.isBaby() && !PrehistoricFaunaConfig.advancedHunger && !targetPredicate.test(this.mob) && !dinosaur.trusts(target.getUUID())) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		public void tick() {
+			super.tick();
+			if (target instanceof Turtle || target instanceof Basilemys) {
+				if (target.getHealth() == 0) {
+					ItemEntity item = new ItemEntity(target.level(), target.getX(), target.getY(), target.getZ(), new ItemStack(Items.SCUTE));
+					item.setPos(target.getX(), target.getY(), target.getZ());
+					dinosaur.level().addFreshEntity(item);
+				}
+			}
+		}
+		
+		public void stop() {
+			super.stop();
+		}
+		
+		public boolean canContinueToUse() {
+			if (super.canContinueToUse() && this.mob.getRandom().nextInt(500) != 0 || this.mob.getTarget() != null && this.mob.getRandom().nextInt(500) != 0) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+	}
+
+
 
 }

@@ -92,6 +92,7 @@ public class SaurosuchusSkeleton extends PrehistoricEntity {
 		compound.putBoolean("IsActionRight", this.isActionRight());
 		compound.putBoolean("IsPushable", this.isPushableState());
 		compound.putBoolean("IsLooking", this.isLooking());
+		compound.putFloat("Rotation", this.getYHeadRot());
 	}
 	
 	public void readAdditionalSaveData(CompoundTag compound) {
@@ -101,6 +102,8 @@ public class SaurosuchusSkeleton extends PrehistoricEntity {
 		this.setActionRight(compound.getBoolean("IsActionRight"));
 		this.setPushable(compound.getBoolean("IsPushable"));
 		this.setLooking(compound.getBoolean("IsLooking"));
+		this.setYBodyRot(compound.getFloat("Rotation"));
+		this.setYHeadRot(compound.getFloat("Rotation"));
 	}
 	
 	public SaurosuchusSkeleton(EntityType<? extends SaurosuchusSkeleton> type, Level worldIn) {

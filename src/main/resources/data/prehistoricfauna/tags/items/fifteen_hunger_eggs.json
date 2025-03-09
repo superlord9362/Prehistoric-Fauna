@@ -1,13 +1,15 @@
 {
 	"replace": false,
 	"values": [
-		"prehistoricfauna:ankylosaurus_egg",
-		"prehistoricfauna:triceratops_egg",
-		"prehistoricfauna:stegosaurus_egg",
+		"prehistoricfauna:edmontosaurus_egg",
+		"prehistoricfauna:camarasaurus_egg",
+		"prehistoricfauna:dongbeititan_egg",
+		"prehistoricfauna:ruixinia_egg",
 		"prehistoricfauna:tyrannosaurus_egg",
 		"prehistoricfauna:allosaurus_egg",
 		"prehistoricfauna:sillosuchus_egg",
-		"prehistoricfauna:camarasaurus_egg",
-		"prehistoricfauna:edmontosaurus_egg"
+		"prehistoricfauna:ankylosaurus_egg",
+		"prehistoricfauna:triceratops_egg",
+		"prehistoricfauna:stegosaurus_egg"
 	]
 }

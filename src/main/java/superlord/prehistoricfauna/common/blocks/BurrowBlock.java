@@ -30,8 +30,6 @@ import net.minecraft.world.entity.vehicle.MinecartTNT;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
@@ -166,7 +164,7 @@ public class BurrowBlock extends BaseEntityBlock {
 	   }
 	
 	public BlockState updateShape(BlockState p_153904_, Direction p_153905_, BlockState p_153906_, LevelAccessor p_153907_, BlockPos p_153908_, BlockPos p_153909_) {
-		if (p_153907_.getBlockState(p_153909_).getBlock() instanceof FireBlock) {
+		if (p_153907_.getBlockState(p_153909_).getBlock() instanceof FireBlock || !this.canSurvive(p_153906_, p_153907_, p_153909_)) {
 			BlockEntity blockentity = p_153907_.getBlockEntity(p_153908_);
 			if (blockentity instanceof BurrowBlockEntity) {
 				BurrowBlockEntity burrowblockentity = (BurrowBlockEntity)blockentity;
@@ -174,6 +172,11 @@ public class BurrowBlock extends BaseEntityBlock {
 			}
 		}
 		if (!hasAnyFace(p_153904_)) {
+			BlockEntity blockentity = p_153907_.getBlockEntity(p_153908_);
+			if (blockentity instanceof BurrowBlockEntity) {
+				BurrowBlockEntity burrowblockentity = (BurrowBlockEntity)blockentity;
+				burrowblockentity.emptyAllLivingFromBurrow((Player)null, p_153904_, BurrowBlockEntity.BurrowerReleaseStatus.EMERGENCY);
+			}
 			return Blocks.AIR.defaultBlockState();
 		} else {
 			return hasFace(p_153904_, p_153905_) && !canAttachTo(p_153907_, p_153905_, p_153909_, p_153906_) ? removeFace(p_153904_, getFaceProperty(p_153905_)) : p_153904_;
@@ -296,15 +299,12 @@ public class BurrowBlock extends BaseEntityBlock {
 		return blockstate;
 	}
 
-	@SuppressWarnings("deprecation")
 	public void playerDestroy(Level p_49584_, Player p_49585_, BlockPos p_49586_, BlockState p_49587_, @Nullable BlockEntity p_49588_, ItemStack p_49589_) {
 		super.playerDestroy(p_49584_, p_49585_, p_49586_, p_49587_, p_49588_, p_49589_);
 		if (!p_49584_.isClientSide && p_49588_ instanceof BurrowBlockEntity burrowblockentity) {
-			if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, p_49589_) == 0) {
 				burrowblockentity.emptyAllLivingFromBurrow(p_49585_, p_49587_, BurrowBlockEntity.BurrowerReleaseStatus.EMERGENCY);
 				p_49584_.updateNeighbourForOutputSignal(p_49586_, this);
 	            this.angerNearbyBurrowers(p_49584_, p_49586_);
-			}
 		}
 
 	}

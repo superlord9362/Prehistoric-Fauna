@@ -45,7 +45,7 @@ public class CrassostreaOysterBlock extends BushBlock implements BonemealableBlo
 	}
 
 	protected boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
-		return state.isFaceSturdy(worldIn, pos, Direction.UP) && state.getBlock() == Blocks.SAND;
+		return state.isFaceSturdy(worldIn, pos, Direction.UP) && (state.getBlock() == Blocks.SAND || state.getBlock() == Blocks.GRAVEL);
 	}
 
 	public IntegerProperty getAgeProperty() {

@@ -60,12 +60,15 @@ public class IschigualastiaSkull extends PrehistoricEntity {
 		super.addAdditionalSaveData(compound);
 		compound.putBoolean("IsPushable", this.isPushableState());
 		compound.putBoolean("IsLooking", this.isLooking());
+		compound.putFloat("Rotation", this.getYHeadRot());
 	}
 	
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound); 
 		this.setPushable(compound.getBoolean("IsPushable"));
 		this.setLooking(compound.getBoolean("IsLooking"));
+		this.setYBodyRot(compound.getFloat("Rotation"));
+		this.setYHeadRot(compound.getFloat("Rotation"));
 	}
 	
 	public IschigualastiaSkull(EntityType<? extends IschigualastiaSkull> type, Level worldIn) {

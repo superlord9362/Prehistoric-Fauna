@@ -37,7 +37,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.HerdDinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.CathemeralSleepGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
@@ -68,6 +68,11 @@ public class Aepyornithomimus extends HerdDinosaurEntity {
 		super(type, world);
 		this.setMaxUpStep(1.0F);
 		super.maxHunger = maxHunger;
+	}
+	
+	@Override
+	public double moveToRange() {
+		return 5;
 	}
 
 	public boolean isFood(ItemStack stack) {
@@ -193,7 +198,7 @@ public class Aepyornithomimus extends HerdDinosaurEntity {
 	}
 
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.AEPYORNITHOMIMUS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+		return PFBlocks.AEPYORNITHOMIMUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 
 	@Override

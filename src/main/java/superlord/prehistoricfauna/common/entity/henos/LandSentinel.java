@@ -9,6 +9,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
@@ -22,6 +23,7 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
@@ -49,35 +51,41 @@ public class LandSentinel extends Monster {
 	public static final Predicate<LivingEntity> NON_CRETACEOUS = (p_289448_) -> {
 		return !p_289448_.getType().is(PFTags.CRETACEOUS_ENTITIES);
 	};
+	private Goal cretaceousTargetGoal;
+	private Goal jurassicTargetGoal;
+	private Goal triassicTargetGoal;
 
 	public LandSentinel(EntityType<? extends Monster> type, Level world) {
 		super(type, world);
 		this.setMaxUpStep(1);
 	}
-	
+
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(DIMENSION, 0);
 	}
-	
+
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putInt("Dimension", this.getDimensionInt());
 	}
-	
+
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 		this.setDimensionInt(compound.getInt("Dimension"));
+		if (this.level() instanceof ServerLevel) {
+			this.setTargetGoals();
+		}
 	}
-	
+
 	public int getDimensionInt() {
 		return this.entityData.get(DIMENSION);
 	}
-	
+
 	private void setDimensionInt(int dimensionInt) {
 		this.entityData.set(DIMENSION, dimensionInt);
 	}
-	
+
 	public boolean hurt(DamageSource source, float amount) {
 		if (source.is(DamageTypes.ON_FIRE) || source.is(DamageTypes.FALL) || source.is(DamageTypes.DROWN) || source.is(DamageTypes.FIREBALL) || source.is(DamageTypes.UNATTRIBUTED_FIREBALL) || source.is(DamageTypes.SWEET_BERRY_BUSH) || source.is(DamageTypes.CACTUS) || source.is(DamageTypes.FALLING_ANVIL) || source.is(DamageTypes.FALLING_BLOCK) || source.is(DamageTypes.FALLING_STALACTITE) || source.is(DamageTypes.FREEZE) || source.is(DamageTypes.HOT_FLOOR) || source.is(DamageTypes.IN_FIRE) || source.is(DamageTypes.IN_WALL) || source.is(DamageTypes.LAVA) || source.is(DamageTypes.LIGHTNING_BOLT) || source.is(DamageTypes.MAGIC) || source.is(DamageTypes.STALAGMITE)) {
 			return false;
@@ -86,13 +94,15 @@ public class LandSentinel extends Monster {
 
 	@Override
 	protected void registerGoals() {
-		targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, 0, true, false, null));
+		this.cretaceousTargetGoal = new NearestAttackableTargetGoal<>(this, LivingEntity.class, 0, true, false, NON_CRETACEOUS);
+		this.jurassicTargetGoal = new NearestAttackableTargetGoal<>(this, LivingEntity.class, 0, true, false, NON_JURASSIC);
+		this.triassicTargetGoal = new NearestAttackableTargetGoal<>(this, LivingEntity.class, 0, true, false, NON_TRIASSIC);
 		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
 		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 		this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new MeleeAttackGoal());
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		if (worldIn.getBiome(this.getOnPos()).is(PFTags.IS_CRETACEOUS)) {
@@ -100,11 +110,30 @@ public class LandSentinel extends Monster {
 		} else if (worldIn.getBiome(this.getOnPos()).is(PFTags.IS_JURASSIC)) {
 			this.setDimensionInt(1);
 		} else this.setDimensionInt(2);
+		if (worldIn instanceof ServerLevel) {
+			this.setTargetGoals();
+		}
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
-	
+
 	public boolean canBreatheUnderwater() {
 		return true;
+	}
+	
+	private void setTargetGoals() {
+		if (this.getDimensionInt() == 0) {
+			this.targetSelector.addGoal(0, this.cretaceousTargetGoal);
+		}
+		if (this.getDimensionInt() == 1) {
+			this.targetSelector.addGoal(0, this.jurassicTargetGoal);
+		}
+		if (this.getDimensionInt() == 2) {
+			this.targetSelector.addGoal(0, this.triassicTargetGoal);
+		}
+	}
+	
+	public void tick() {
+		super.tick();
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {

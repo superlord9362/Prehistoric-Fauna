@@ -1,7 +1,7 @@
 Found In: Yixian
 
-Drops: 0-2 Feathers, 1-3 Small 
-Raw Theropod
+Drops: 0-2 Feathers, 1 Small Raw 
+Theropod
 
 Diet: Carnivore
 
@@ -35,7 +35,7 @@ opportunist.
 Sleep Cycle: Crepuscular
 
 Behavior: Sinosauropteryx can be 
-tamed by feeding it Ephedra. 
-Tamed Sinosauropteryx will give 
-gifts to their owners occasionally 
-in the morning.
+tamed by feeding it Ephedra 
+berries. Tamed Sinosauropteryx 
+will give gifts to their owners 
+occasionally in the morning.

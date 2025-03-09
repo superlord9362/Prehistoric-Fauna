@@ -84,8 +84,8 @@ public class ThescelosaurusModel extends EntityModel<Thescelosaurus> {
 				this.RightLeg1.xRot = Mth.lerp(sleepProgress, 0, -1.4076080683650378F);
 				this.RightLeg1.yRot = Mth.lerp(sleepProgress, 0, -0.27366763203903305F);
 				this.Body.xRot = Mth.lerp(sleepProgress, 0, -0.19547687289441354F);
-				this.LeftArm.xRot = Mth.lerp(sleepProgress, 0, 0.7688175221876966F);
-				this.LeftArm.yRot = Mth.lerp(sleepProgress, 0, -0.004188790111159634F);
+				this.RightArm.xRot = Mth.lerp(sleepProgress, 0, 0.7688175221876966F);
+				this.RightArm.yRot = Mth.lerp(sleepProgress, 0, -0.004188790111159634F);
 				this.LeftLeg2.xRot = Mth.lerp(sleepProgress, 0, 0.03909537541112055F);
 				this.LeftLeg2.yRot = Mth.lerp(sleepProgress, 0, 3.141592653589793F);
 				this.Snout.xRot = Mth.lerp(sleepProgress, 0, 0.05235987755982988F);
@@ -94,8 +94,8 @@ public class ThescelosaurusModel extends EntityModel<Thescelosaurus> {
 				this.Tail2.zRot = Mth.lerp(sleepProgress, 0, -0.0781907508222411F);
 				this.RightLeg2.xRot = Mth.lerp(sleepProgress, 0, 0.07801621390230003F);
 				this.RightLeg2.yRot = Mth.lerp(sleepProgress, 0, 3.141592653589793F);
-				this.RightArm.xRot = Mth.lerp(sleepProgress, 0, 0.6511823678875341F);
-				this.RightArm.yRot = Mth.lerp(sleepProgress, 0, -0.11746065899211351F);
+				this.LeftArm.xRot = Mth.lerp(sleepProgress, 0, 0.6511823678875341F);
+				this.LeftArm.yRot = Mth.lerp(sleepProgress, 0, -0.11746065899211351F);
 				this.LeftLeg1.xRot = Mth.lerp(sleepProgress, 0, -1.4072589279461283F);
 				this.LeftLeg1.yRot = Mth.lerp(sleepProgress, 0, 0.35185837453889574F);
 				this.Head.xRot = Mth.lerp(sleepProgress, 0.13665927909957545F, -0.19547687289441354F);
@@ -116,20 +116,20 @@ public class ThescelosaurusModel extends EntityModel<Thescelosaurus> {
 				this.LeftLeg2.y = Mth.lerp(sleepProgress, 3, 3);
 				this.LeftLeg2.z = Mth.lerp(sleepProgress, 4, 3.7F);
 				this.Head.z = Mth.lerp(sleepProgress, -12, -11.4F);
-				this.RightArm.x = Mth.lerp(sleepProgress, -2.1F, -3.1F);
-				this.RightArm.y = Mth.lerp(sleepProgress, 3, 1);
-				this.RightArm.z = Mth.lerp(sleepProgress, -9, -10);
-				this.LeftArm.x = Mth.lerp(sleepProgress, 2.1F, 3.1F);
+				this.LeftArm.x = Mth.lerp(sleepProgress, -2.1F, -3.1F);
 				this.LeftArm.y = Mth.lerp(sleepProgress, 3, 1);
 				this.LeftArm.z = Mth.lerp(sleepProgress, -9, -10);
+				this.RightArm.x = Mth.lerp(sleepProgress, 2.1F, 3.1F);
+				this.RightArm.y = Mth.lerp(sleepProgress, 3, 1);
+				this.RightArm.z = Mth.lerp(sleepProgress, -9, -10);
 			} else sleepPose();
 		} else {
 			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
 				this.RightLeg1.xRot = Mth.lerp(sleepProgress, -1.4076080683650378F, 0);
 				this.RightLeg1.yRot = Mth.lerp(sleepProgress, -0.27366763203903305F, 0);
 				this.Body.xRot = Mth.lerp(sleepProgress, -0.19547687289441354F, 0);
-				this.LeftArm.xRot = Mth.lerp(sleepProgress, 0.7688175221876966F, 0);
-				this.LeftArm.yRot = Mth.lerp(sleepProgress, -0.004188790111159634F, 0);
+				this.RightArm.xRot = Mth.lerp(sleepProgress, 0.7688175221876966F, 0);
+				this.RightArm.yRot = Mth.lerp(sleepProgress, -0.004188790111159634F, 0);
 				this.LeftLeg2.xRot = Mth.lerp(sleepProgress, 0.03909537541112055F, 0);
 				this.LeftLeg2.yRot = Mth.lerp(sleepProgress, 3.141592653589793F, 0);
 				this.Snout.xRot = Mth.lerp(sleepProgress, 0.05235987755982988F, 0);
@@ -138,8 +138,8 @@ public class ThescelosaurusModel extends EntityModel<Thescelosaurus> {
 				this.Tail2.zRot = Mth.lerp(sleepProgress, -0.0781907508222411F, 0);
 				this.RightLeg2.xRot = Mth.lerp(sleepProgress, 0.07801621390230003F, 0);
 				this.RightLeg2.yRot = Mth.lerp(sleepProgress, 3.141592653589793F, 0);
-				this.RightArm.xRot = Mth.lerp(sleepProgress, 0.6511823678875341F, 0);
-				this.RightArm.yRot = Mth.lerp(sleepProgress, -0.11746065899211351F, 0);
+				this.LeftArm.xRot = Mth.lerp(sleepProgress, 0.6511823678875341F, 0);
+				this.LeftArm.yRot = Mth.lerp(sleepProgress, -0.11746065899211351F, 0);
 				this.LeftLeg1.xRot = Mth.lerp(sleepProgress, -1.4072589279461283F, 0);
 				this.LeftLeg1.yRot = Mth.lerp(sleepProgress, 0.35185837453889574F, 0);
 				this.Head.xRot = Mth.lerp(sleepProgress, -0.19547687289441354F, 0.13665927909957545F);
@@ -160,12 +160,12 @@ public class ThescelosaurusModel extends EntityModel<Thescelosaurus> {
 				this.LeftLeg2.y = Mth.lerp(sleepProgress, 3, 3);
 				this.LeftLeg2.z = Mth.lerp(sleepProgress, 3.7F, 4F);
 				this.Head.z = Mth.lerp(sleepProgress, -11.4F, -12F);
-				this.RightArm.x = Mth.lerp(sleepProgress, -3.1F, -2.1F);
-				this.RightArm.y = Mth.lerp(sleepProgress, 1, 3);
-				this.RightArm.z = Mth.lerp(sleepProgress, -10, -9);
-				this.LeftArm.x = Mth.lerp(sleepProgress, 3.1F, 2.1F);
+				this.LeftArm.x = Mth.lerp(sleepProgress, -3.1F, -2.1F);
 				this.LeftArm.y = Mth.lerp(sleepProgress, 1, 3);
 				this.LeftArm.z = Mth.lerp(sleepProgress, -10, -9);
+				this.RightArm.x = Mth.lerp(sleepProgress, 3.1F, 2.1F);
+				this.RightArm.y = Mth.lerp(sleepProgress, 1, 3);
+				this.RightArm.z = Mth.lerp(sleepProgress, -10, -9);
 			} else {
 				this.Head.yRot = netHeadYaw * ((float) Math.PI / 180F);
 				this.RightLeg1.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
@@ -176,8 +176,8 @@ public class ThescelosaurusModel extends EntityModel<Thescelosaurus> {
 				this.Tail2.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
 				this.Body.xRot = Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3));
 				this.Head.xRot = (headPitch * ((float) Math.PI / 180F)) + (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + attackProgress * (float) Math.toRadians(40F);
-				this.LeftArm.zRot = -Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(-50F);
-				this.RightArm.zRot = Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(50F);
+				this.RightArm.zRot = -Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(-50F);
+				this.LeftArm.zRot = Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3)) + attackProgress * (float) Math.toRadians(50F);
 				if (entity.isEating()) {
 					this.Head.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.5F) + 0.25F;
 					this.Body.xRot = 0.2F;
@@ -194,8 +194,8 @@ public class ThescelosaurusModel extends EntityModel<Thescelosaurus> {
 					this.RightLeg1.xRot = 0.5F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.LeftLeg2.xRot = -0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.RightLeg2.xRot = 0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
-					this.RightArm.xRot = 0.5F;
 					this.LeftArm.xRot = 0.5F;
+					this.RightArm.xRot = 0.5F;
 					this.Tail1.yRot = (Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * Mth.sin(0.15F * ageInTicks / 1.5F));
 					this.Tail2.yRot = (Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * Mth.sin(0.15F * ageInTicks / 1.5F));
 				}
@@ -207,9 +207,9 @@ public class ThescelosaurusModel extends EntityModel<Thescelosaurus> {
 		this.RightLeg1.xRot = 0;
 		this.RightLeg1.yRot = 0;
 		this.Body.xRot = 0;
-		this.LeftArm.xRot = 0;
-		this.LeftArm.yRot = 0;
-		this.LeftArm.zRot = 0;
+		this.RightArm.xRot = 0;
+		this.RightArm.yRot = 0;
+		this.RightArm.zRot = 0;
 		this.LeftLeg2.xRot = 0;
 		this.LeftLeg2.yRot = 0;
 		this.Snout.xRot = 0;
@@ -218,9 +218,9 @@ public class ThescelosaurusModel extends EntityModel<Thescelosaurus> {
 		this.Tail2.zRot = 0;
 		this.RightLeg2.xRot = 0;
 		this.RightLeg2.yRot = 0;
-		this.RightArm.zRot = 0;
-		this.RightArm.xRot = 0;
-		this.RightArm.yRot = 0;
+		this.LeftArm.zRot = 0;
+		this.LeftArm.xRot = 0;
+		this.LeftArm.yRot = 0;
 		this.LeftLeg1.xRot = 0;
 		this.LeftLeg1.yRot = 0;
 		this.Head.xRot = 0.13665927909957545F;
@@ -241,20 +241,20 @@ public class ThescelosaurusModel extends EntityModel<Thescelosaurus> {
 		this.LeftLeg2.y = 7;
 		this.LeftLeg2.z = 4;
 		this.Head.z = -12;
-		this.RightArm.x = -2.1F;
-		this.RightArm.y = 3;
-		this.RightArm.z = -9;
-		this.LeftArm.x = 2.1F;
+		this.LeftArm.x = -2.1F;
 		this.LeftArm.y = 3;
 		this.LeftArm.z = -9;
+		this.RightArm.x = 2.1F;
+		this.RightArm.y = 3;
+		this.RightArm.z = -9;
 	}
 
 	public void sleepPose() {
 		this.RightLeg1.xRot = -1.4076080683650378F;
 		this.RightLeg1.yRot = -0.27366763203903305F;
 		this.Body.xRot = -0.19547687289441354F;
-		this.LeftArm.xRot = 0.7688175221876966F;
-		this.LeftArm.yRot = -0.004188790111159634F;
+		this.RightArm.xRot = 0.7688175221876966F;
+		this.RightArm.yRot = -0.004188790111159634F;
 		this.LeftLeg2.xRot = 0.03909537541112055F;
 		this.LeftLeg2.yRot = 3.141592653589793F;
 		this.Snout.xRot = 0.05235987755982988F;
@@ -263,8 +263,8 @@ public class ThescelosaurusModel extends EntityModel<Thescelosaurus> {
 		this.Tail2.zRot = -0.0781907508222411F;
 		this.RightLeg2.xRot = 0.07801621390230003F;
 		this.RightLeg2.yRot = 3.141592653589793F;
-		this.RightArm.xRot = 0.6511823678875341F;
-		this.RightArm.yRot = -0.11746065899211351F;
+		this.LeftArm.xRot = 0.6511823678875341F;
+		this.LeftArm.yRot = -0.11746065899211351F;
 		this.LeftLeg1.xRot = -1.4072589279461283F;
 		this.LeftLeg1.yRot = 0.35185837453889574F;
 		this.Head.xRot = -0.19547687289441354F;
@@ -285,12 +285,12 @@ public class ThescelosaurusModel extends EntityModel<Thescelosaurus> {
 		this.LeftLeg2.y = 3;
 		this.LeftLeg2.z = 3.7F;
 		this.Head.z = -11.4F;
-		this.RightArm.x = -3.1F;
-		this.RightArm.y = 1;
-		this.RightArm.z = -10;
-		this.LeftArm.x = 3.1F;
+		this.LeftArm.x = -3.1F;
 		this.LeftArm.y = 1;
 		this.LeftArm.z = -10;
+		this.RightArm.x = 3.1F;
+		this.RightArm.y = 1;
+		this.RightArm.z = -10;
 	}
 
 	@Override

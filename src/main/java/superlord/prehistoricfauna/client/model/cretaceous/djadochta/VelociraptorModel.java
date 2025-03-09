@@ -14,6 +14,7 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Velociraptor;
+import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
 
 public class VelociraptorModel extends EntityModel<Velociraptor> {
 	private final ModelPart ThighLeft;
@@ -87,6 +88,7 @@ public class VelociraptorModel extends EntityModel<Velociraptor> {
 		float speed = 1.0f;
 		float degree = 1.0f;
 		float sleepProgress = entity.getSleepProgress(partialTick);
+		float sitProgress = entity.getSitProgress(partialTick);
 		resetModel();
 		if (entity.isAsleep()) {
 			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
@@ -109,17 +111,17 @@ public class VelociraptorModel extends EntityModel<Velociraptor> {
 				this.ThighLeft.y = Mth.lerp(sleepProgress, 15.75F, 19.5F);
 				this.ThighRight.y = Mth.lerp(sleepProgress, 15.75F, 19.5F);
 			} else sleepPose();
-		} else if (!entity.isAsleep() && (entity.isSitting() || entity.isTameSitting())) {
-			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
-				this.Body.y = Mth.lerp(sleepProgress, 15.75F, 19.5F);
-				this.ThighLeft.y = Mth.lerp(sleepProgress, 15.75F, 19.5F);
-				this.ThighRight.y = Mth.lerp(sleepProgress, 15.75F, 19.5F);
+		} else if (entity.isSitting() || entity.isTameSitting()) {
+			if (sitProgress != 0 && entity.getEntityData().get(Velociraptor.SIT_TICK) > 0) {
+				this.Body.y = Mth.lerp(sitProgress, 15.75F, 19.5F);
+				this.ThighLeft.y = Mth.lerp(sitProgress, 15.75F, 19.5F);
+				this.ThighRight.y = Mth.lerp(sitProgress, 15.75F, 19.5F);
 				//Animation
-				this.ThighRight.xRot = Mth.lerp(sleepProgress, 0, -0.6981317007977318F);
-				this.ThighLeft.xRot = Mth.lerp(sleepProgress, 0, -0.6981317007977318F);
-				this.WingLeft.xRot = Mth.lerp(sleepProgress, 0, 0.4363323129985824F);
-				this.WingLeft.zRot = Mth.lerp(sleepProgress, 0, -1.0471975511965976F);
-				this.Tail.xRot = Mth.lerp(sleepProgress, 0, -0.17453292519943295F);
+				this.ThighRight.xRot = Mth.lerp(sitProgress, 0, -0.6981317007977318F);
+				this.ThighLeft.xRot = Mth.lerp(sitProgress, 0, -0.6981317007977318F);
+				this.WingLeft.xRot = Mth.lerp(sitProgress, 0, 0.4363323129985824F);
+				this.WingLeft.zRot = Mth.lerp(sitProgress, 0, -1.0471975511965976F);
+				this.Tail.xRot = Mth.lerp(sitProgress, 0, -0.17453292519943295F);
 			} else sittingPose();
 			this.Body.xRot = Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3));
 			this.Head.xRot = (headPitch * ((float)Math.PI / 180F)) + (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3)));
@@ -145,6 +147,15 @@ public class VelociraptorModel extends EntityModel<Velociraptor> {
 				this.Body.y = Mth.lerp(sleepProgress, 19.5F, 15.75F);
 				this.ThighLeft.y = Mth.lerp(sleepProgress, 19.5F, 15.75F);
 				this.ThighRight.y = Mth.lerp(sleepProgress, 19.5F, 15.75F);
+			} else if (sitProgress != 0 && entity.getEntityData().get(Velociraptor.SIT_TICK ) > 0){
+				this.Body.y = Mth.lerp(sitProgress, 19.5F, 15.75F);
+				this.ThighLeft.y = Mth.lerp(sitProgress, 19.5F, 15.75F);
+				this.ThighRight.y = Mth.lerp(sitProgress, 19.5F, 15.75F);
+				this.ThighRight.xRot = Mth.lerp(sitProgress, -0.6981317007977318F, 0);
+				this.ThighLeft.xRot = Mth.lerp(sitProgress, -0.6981317007977318F, 0);
+				this.WingLeft.xRot = Mth.lerp(sitProgress, 0.4363323129985824F, 0);
+				this.WingLeft.zRot = Mth.lerp(sitProgress, -1.0471975511965976F, 0);
+				this.Tail.xRot = Mth.lerp(sitProgress, -0.17453292519943295F, 0);
 			} else {
 				//Idle/Walking Animations
 				this.Head.yRot = netHeadYaw * ((float)Math.PI / 180F);
@@ -157,22 +168,23 @@ public class VelociraptorModel extends EntityModel<Velociraptor> {
 				this.Head.xRot = (headPitch * ((float)Math.PI / 180F)) + (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3)));
 				this.WingLeft.zRot = (Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3))) + (Mth.cos(limbSwing * speed * 0.4F) * degree * 0.1F * limbSwingAmount) + attackProgress * (float) Math.toRadians(-85F);
 				this.WingRight.zRot = (-Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3))) + (Mth.cos(3.0F + limbSwing * speed * 0.4F) * degree * 0.1F * limbSwingAmount) + attackProgress * (float) Math.toRadians(85F);
-				if (entity.isInWater()) {
-					this.Body.y = 17;
-					this.ThighLeft.y = 17F;
-					this.ThighRight.y = 17F;
-					this.Body.xRot = -0.25F;
-					this.Tail.xRot = 0.25F;
-					this.Neck.xRot = 0.25F;
-					this.WingLeft.zRot = -1.5F + Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
-					this.WingRight.zRot = 1.5F - Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
-					this.ThighLeft.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
-					this.ThighRight.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
-					this.Tail.yRot = Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;
-					this.LegLeft.xRot = -0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
-					this.LegRight.xRot = 0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
-				}
+				
 			}
+		}
+		if (entity.isInWater()) {
+			this.Body.y = 18;
+			this.ThighLeft.y = 17F;
+			this.ThighRight.y = 17F;
+			this.Body.xRot = -0.25F;
+			this.Tail.xRot = 0.25F;
+			this.Neck.xRot = 0.25F;
+			this.WingRight.zRot = -1.5F + Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
+			this.WingLeft.zRot = 1.5F - Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
+			this.ThighLeft.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
+			this.ThighRight.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
+			this.Tail.yRot = Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount;
+			this.LegLeft.xRot = -0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
+			this.LegRight.xRot = 0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
 		}
 	}
 

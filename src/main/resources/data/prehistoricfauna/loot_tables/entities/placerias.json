@@ -36,8 +36,8 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 1.0,
-                "max": 3.0,
+                "min": 2.0,
+                "max": 5.0,
                 "type": "minecraft:uniform"
               }
             },
@@ -63,7 +63,7 @@
               }
             }
           ],
-          "name": "prehistoricfauna:raw_large_synapsid_meat"
+          "name": "prehistoricfauna:raw_small_synapsid_meat"
         }
       ]
     }

@@ -1,13 +1,19 @@
 {
   "carvers": {},
-  "downfall": 1.0,
+  "downfall": 0.2,
   "effects": {
     "fog_color": 12638463,
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2.0,
-      "sound": "minecraft:ambient.cave",
+      "sound": "prehistoricfauna:cave_1",
       "tick_delay": 6000
+    },
+    "music": {
+      "max_delay": 24000,
+      "min_delay": 12000,
+      "replace_current_music": false,
+      "sound": "prehistoricfauna:ambience_1"
     },
     "sky_color": 6262941,
     "water_color": 6719083,
@@ -53,8 +59,8 @@
     [],
     [
       "minecraft:glow_lichen",
-      "minecraft:patch_dead_bush_2",
-      "prehistoricfauna:placed_ephedra"
+      "prehistoricfauna:placed_ephedra",
+      "minecraft:patch_dead_bush_2"
     ]
   ],
   "has_precipitation": false,
@@ -149,5 +155,5 @@
     "water_ambient": [],
     "water_creature": []
   },
-  "temperature": 0.2
+  "temperature": 1.0
 }

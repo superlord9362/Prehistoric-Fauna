@@ -103,6 +103,7 @@ public class ProtoceratopsSkeleton extends PrehistoricEntity {
 		compound.putBoolean("IsRunning", this.isRunning());
 		compound.putBoolean("IsPushable", this.isPushableState());
 		compound.putBoolean("IsLooking", this.isLooking());
+		compound.putFloat("Rotation", this.getYHeadRot());
 	}
 
 	public void readAdditionalSaveData(CompoundTag compound) {
@@ -113,6 +114,8 @@ public class ProtoceratopsSkeleton extends PrehistoricEntity {
 		this.setRunning(compound.getBoolean("IsRunning"));
 		this.setPushable(compound.getBoolean("IsPushable"));
 		this.setLooking(compound.getBoolean("IsLooking"));
+		this.setYBodyRot(compound.getFloat("Rotation"));
+		this.setYHeadRot(compound.getFloat("Rotation"));
 	}
 
 	public ProtoceratopsSkeleton(EntityType<? extends ProtoceratopsSkeleton> type, Level worldIn) {
@@ -190,9 +193,6 @@ public class ProtoceratopsSkeleton extends PrehistoricEntity {
 			this.playBrokenSound();
 			this.playParticles();
 			this.spawnFossil(source);
-//			this.remove(RemovalReason.KILLED);
-//			this.gameEvent(GameEvent.ENTITY_DIE);
-			System.out.println(this.getKillCredit());
 			return super.hurt(source, amount);
 		} 
 		if (source.getDirectEntity() instanceof Player) {

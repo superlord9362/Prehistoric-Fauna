@@ -1,10 +1,9 @@
 package superlord.prehistoricfauna.common.blocks;
 
-import java.util.Random;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -49,7 +48,7 @@ public class SplatteredGinkgoBlock extends MultifaceBlock {
 		}
 	}
 
-	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		int grow = random.nextInt(4);
 		if (grow == 0) {
 			world.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());

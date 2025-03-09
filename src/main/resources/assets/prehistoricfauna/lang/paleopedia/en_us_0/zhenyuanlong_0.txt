@@ -38,4 +38,4 @@ Zhenyuanlong has a chance to
 scare the attacker away. If the 
 Zhenyuanlong trusts the player, 
 it can use this ability against the 
-players attackers as well.
+player's attackers as well.

@@ -335,6 +335,7 @@ public class ClientProxy extends CommonProxy {
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.COATED_TUBE_CORAL_FAN.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.COATED_TUBE_CORAL_WALL_FAN.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.SAP.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.CRETACEOUS_BOSS_SPAWN.get(), cutoutRenderType);
 	}
 	
     public static void setupParticles(RegisterParticleProvidersEvent registry) {

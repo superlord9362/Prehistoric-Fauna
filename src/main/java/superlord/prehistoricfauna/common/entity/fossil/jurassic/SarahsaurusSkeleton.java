@@ -93,6 +93,7 @@ public class SarahsaurusSkeleton extends PrehistoricEntity {
 		compound.putBoolean("IsSitting", this.isSitting());
 		compound.putBoolean("IsWalking", this.isWalking());
 		compound.putBoolean("IsEating", this.isEating());
+		compound.putFloat("Rotation", this.getYHeadRot());
 	}
 	
 	public void readAdditionalSaveData(CompoundTag compound) {
@@ -102,6 +103,8 @@ public class SarahsaurusSkeleton extends PrehistoricEntity {
 		this.setSitting(compound.getBoolean("IsSitting"));
 		this.setWalking(compound.getBoolean("IsWalking"));
 		this.setEating(compound.getBoolean("IsEating"));
+		this.setYBodyRot(compound.getFloat("Rotation"));
+		this.setYHeadRot(compound.getFloat("Rotation"));
 	}
 	
 	public SarahsaurusSkeleton(EntityType<? extends SarahsaurusSkeleton> type, Level worldIn) {

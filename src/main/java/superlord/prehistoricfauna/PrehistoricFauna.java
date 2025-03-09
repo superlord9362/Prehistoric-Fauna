@@ -210,6 +210,10 @@ public class PrehistoricFauna {
 		event.put(PFEntities.PSITTACOSAURUS_SKELETON.get(), PsittacosaurusSkeleton.createAttributes().build());
 		event.put(PFEntities.YUTYRANNUS_SKELETON.get(), YutyrannusSkeleton.createAttributes().build());
 		event.put(PFEntities.PSITTACOSAURUS_SKULL.get(), PsittacosaurusSkull.createAttributes().build());
+		event.put(PFEntities.GOYOCEPHALE_SKELETON.get(), GoyocephaleSkeleton.createAttributes().build());
+		event.put(PFEntities.GOYOCEPHALE_SKULL.get(), GoyocephaleSkull.createAttributes().build());
+		event.put(PFEntities.DONGBEITITAN_SKELETON.get(), DongbeititanSkeleton.createAttributes().build());
+		event.put(PFEntities.DONGBEITITAN_SKULL.get(), DongbeititanSkull.createAttributes().build());
 		event.put(PFEntities.HENOS.get(), Henos.createAttributes().build());
 		event.put(PFEntities.ARGANODUS.get(), Arganodus.createAttributes().build());
 		event.put(PFEntities.CERATODUS.get(), Ceratodus.createAttributes().build());
@@ -306,10 +310,15 @@ public class PrehistoricFauna {
 		event.put(PFEntities.CERATODUS_COCOON.get(), CeratodusCocoon.createAttributes().build());
 		event.put(PFEntities.POTAMOCERATODUS_COCOON.get(), PotamoceratodusCocoon.createAttributes().build());
 		event.put(PFEntities.ARGANODUS_COCOON.get(), ArganodusCocoon.createAttributes().build());
+		event.put(PFEntities.CORRUPTED_THEROPOD.get(), CorruptedTheropod.createAttributes().build());
+		event.put(PFEntities.ANZU_SKULL.get(), AnzuSkull.createAttributes().build());
+		event.put(PFEntities.ANZU_SKELETON.get(), AnzuSkeleton.createAttributes().build());
+		event.put(PFEntities.LIAONINGOSAURUS_SKULL.get(), LiaoningosaurusSkull.createAttributes().build());
+		event.put(PFEntities.LIAONINGOSAURUS_SKELETON.get(), LiaoningosaurusSkeleton.createAttributes().build());
 	}
-
+	
 	private void doClientStuff(final FMLClientSetupEvent event) {
-		trySetRandomPanorama();
+//		if (PrehistoricFaunaConfig.customMenuBackground) trySetRandomPanorama();
 		CALLBACKS.forEach(Runnable::run);
 		CALLBACKS.clear();
 	}
@@ -447,7 +456,7 @@ public class PrehistoricFauna {
 		if (optionalResourcePack.isPresent()) {
 			PathPackResources resourcePack = optionalResourcePack.get();
 			Set<String> folders = getSubfoldersFromDirectory(resourcePack.getSource(), "assets/" + MOD_ID + "/panoramas");
-			ResourceLocation panoramaLoc = new ResourceLocation(MOD_ID, "panoramas/djadochta/panorama");
+			ResourceLocation panoramaLoc = new ResourceLocation(MOD_ID, "panoramas/yixian/panorama");
 			if (folders.size() > 0) {
 				ResourceLocation[] ResourceLocationsArray = new ResourceLocation[6];
 				for (int i = 0; i < 6; ++i) {
@@ -458,7 +467,7 @@ public class PrehistoricFauna {
 		}
 	}
 
-	private static Set<String> getSubfoldersFromDirectory(Path modFile, String directoryName) {
+	public static Set<String> getSubfoldersFromDirectory(Path modFile, String directoryName) {
 		try {
 			Path root = modFile.toAbsolutePath();
 			return Files.walk(root, 1)

@@ -186,7 +186,7 @@ public class GoyocephaleModel extends EntityModel<Goyocephale> {
 					this.Neck.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.75F) + 0.5F;
 				}
 				if (entity.isInWater()) {
-					this.Hip.y = 10;
+					this.Hip.y = 18;
 					this.Hip.xRot = -0.5F;
 					this.Tail.xRot = 0.25F;
 					this.Neck.xRot = 0.5F;

@@ -8,8 +8,14 @@
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2.0,
-      "sound": "minecraft:ambient.cave",
+      "sound": "prehistoricfauna:cave_1",
       "tick_delay": 6000
+    },
+    "music": {
+      "max_delay": 24000,
+      "min_delay": 12000,
+      "replace_current_music": false,
+      "sound": "prehistoricfauna:ambience_1"
     },
     "sky_color": 8306591,
     "water_color": 8150344,
@@ -55,19 +61,19 @@
     [],
     [
       "minecraft:glow_lichen",
-      "prehistoricfauna:placed_clearing_humulus",
       "prehistoricfauna:placed_clearing_clubmoss",
-      "prehistoricfauna:placed_clearing_rare_small_araucaria_trees",
+      "prehistoricfauna:placed_clearing_very_rare_lowered_horsetails",
+      "prehistoricfauna:placed_clearing_humulus",
       "prehistoricfauna:placed_clearing_very_common_osmunda",
       "prehistoricfauna:placed_clearing_very_common_tall_osmunda",
-      "prehistoricfauna:placed_clearing_very_rare_lowered_horsetails",
-      "prehistoricfauna:placed_clearing_sabalites",
+      "prehistoricfauna:placed_clearing_rare_small_araucaria_trees",
       "prehistoricfauna:placed_clearing_very_rare_small_ginkgo_trees",
       "prehistoricfauna:placed_clearing_rare_small_metasequoia_trees",
+      "prehistoricfauna:placed_clearing_rare_platanites_trees",
+      "prehistoricfauna:placed_clearing_sabalites",
       "prehistoricfauna:placed_clearing_fallen_metasequoia_log",
       "prehistoricfauna:placed_clearing_fallen_platanites_log",
-      "prehistoricfauna:placed_clearing_fallen_ginkgo_log",
-      "prehistoricfauna:placed_clearing_rare_platanites_trees"
+      "prehistoricfauna:placed_clearing_fallen_ginkgo_log"
     ],
     [
       "prehistoricfauna:placed_mud_disk"

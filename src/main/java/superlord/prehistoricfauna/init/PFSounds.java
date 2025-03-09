@@ -334,6 +334,15 @@ public class PFSounds {
 	public static final RegistryObject<SoundEvent> MEAT_EATING = createSoundEvent("meat_eating");
 	public static final RegistryObject<SoundEvent> SMALL_MEAT_GULP = createSoundEvent("small_meat_gulp");
 	public static final RegistryObject<SoundEvent> LARGE_MEAT_GULP = createSoundEvent("large_meat_gulp");
+	
+	//Boss
+	public static final RegistryObject<SoundEvent> BOSS_WALK = createSoundEvent("boss_walk");
+	public static final RegistryObject<SoundEvent> BOSS_IDLE = createSoundEvent("boss_idle");
+	public static final RegistryObject<SoundEvent> BOSS_ROAR = createSoundEvent("boss_roar");
+	public static final RegistryObject<SoundEvent> BOSS_HURT = createSoundEvent("boss_hurt");
+	public static final RegistryObject<SoundEvent> BOSS_DEATH = createSoundEvent("boss_death");
+	public static final RegistryObject<SoundEvent> BOSS_BITE = createSoundEvent("boss_bite");
+	public static final RegistryObject<SoundEvent> BOSS_BITE_ALL = createSoundEvent("boss_bite_all");
 
 	//Music
 	public static final RegistryObject<SoundEvent> AMBIENCE_1 = createSoundEvent("ambience_1");
@@ -341,6 +350,8 @@ public class PFSounds {
 	public static final RegistryObject<SoundEvent> NIGHT_2 = createSoundEvent("night_2");
 	public static final RegistryObject<SoundEvent> CAVE_1 = createSoundEvent("cave_1");
 	public static final RegistryObject<SoundEvent> STRUCTURE_1 = createSoundEvent("structure_1");
+//	public static final Holder.Reference<SoundEvent> AMBIENCE_1 = registerForHolder("ambience_1");
+
 
 	private static RegistryObject<SoundEvent> createSoundEvent(final String soundName) {
 		return REGISTRY.register(soundName, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(PrehistoricFauna.MOD_ID, soundName)));

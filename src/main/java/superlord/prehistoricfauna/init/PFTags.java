@@ -205,11 +205,13 @@ public class PFTags {
 	public static final TagKey<EntityType<?>> SAUROSUCHUS_AVOIDING = registerEntityTag("saurosuchus_avoiding");
 	public static final TagKey<EntityType<?>> SILLOSUCHUS_AVOIDING = registerEntityTag("sillosuchus_avoiding");
 	
-	public static final TagKey<EntityType<?>> TRIASSIC_ENTITIES = registerEntityTag("cretaceous_entities");
-	public static final TagKey<EntityType<?>> JURASSIC_ENTITIES = registerEntityTag("cretaceous_entities");
+	public static final TagKey<EntityType<?>> TRIASSIC_ENTITIES = registerEntityTag("triassic_entities");
+	public static final TagKey<EntityType<?>> JURASSIC_ENTITIES = registerEntityTag("jurassic_entities");
 	public static final TagKey<EntityType<?>> CRETACEOUS_ENTITIES = registerEntityTag("cretaceous_entities");
 	
 	public static final TagKey<EntityType<?>> BURROWERS = registerEntityTag("burrowers");
+	
+	public static final TagKey<EntityType<?>> CRETACEOUS_BOSS_CONVERTERS = registerEntityTag("can_become_cretaceous_boss");
 
 	public static final TagKey<Item> MEATS_2_HUNGER = registerItemTag("two_hunger_meats");
 	public static final TagKey<Item> MEATS_4_HUNGER = registerItemTag("four_hunger_meats");

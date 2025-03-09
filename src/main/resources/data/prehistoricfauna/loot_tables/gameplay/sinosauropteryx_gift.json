@@ -1,0 +1,72 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:rotten_flesh",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:string",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bone",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:feather",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bone_meal",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:eggshells",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:raw_small_reptile_meat",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:dead_beetle",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:dead_spider",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:dead_hopper",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:time_gem_shard",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:ancient_journal_page",
+          "weight": 2
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "random_sequence": "prehistoricfauna:gameplay/sinosauropteryx_gift"
+}

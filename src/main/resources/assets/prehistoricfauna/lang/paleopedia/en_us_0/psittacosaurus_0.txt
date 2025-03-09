@@ -5,7 +5,7 @@ Marginocephalian
 
 Diet: Herbivore
 
-Breeding Item: Archaefructus
+Breeding Item: Leefructus
 
 Max Health: 10
 

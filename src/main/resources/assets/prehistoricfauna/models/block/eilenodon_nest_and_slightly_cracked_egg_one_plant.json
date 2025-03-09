@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/eilenodon_nest_and_egg_one_plant",
-	"textures": {
-		"egg": "prehistoricfauna:block/eilenodon_egg_slightly_cracked"
-	}
-}

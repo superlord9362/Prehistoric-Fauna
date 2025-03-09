@@ -37,7 +37,6 @@ import net.minecraft.world.level.block.TurtleEggBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.CarnivoreHuntGoal;
@@ -231,7 +230,7 @@ public class Anzu extends DinosaurEntity {
 	}
 
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.ANZU_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+		return PFBlocks.ANZU_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 
 	@Override
@@ -248,7 +247,7 @@ public class Anzu extends DinosaurEntity {
 					for(int j1 = i1 < l && i1 > -l ? l : 0; j1 <= l; j1 = j1 > 0 ? -j1 : 1 - j1) {
 						blockpos$mutableblockpos.setWithOffset(blockpos, i1, k - 1, j1);
 						Block eggs = level().getBlockState(blockpos$mutableblockpos).getBlock();
-						if (this.isWithinRestriction(blockpos$mutableblockpos) && (level().getBlockState(blockpos$mutableblockpos).is(Blocks.TURTLE_EGG) && level().getBlockState(blockpos$mutableblockpos).getValue(TurtleEggBlock.EGGS) >= 1 || eggs instanceof DinosaurEggBlock && level().getBlockState(blockpos$mutableblockpos).getValue(DinosaurEggBlock.EGGS) >= 1 || eggs instanceof NestAndEggsBlock && level().getBlockState(blockpos$mutableblockpos).getValue(NestAndEggsBlock.EGGS) >= 1)) {
+						if (this.isWithinRestriction(blockpos$mutableblockpos) && (level().getBlockState(blockpos$mutableblockpos).is(Blocks.TURTLE_EGG) && level().getBlockState(blockpos$mutableblockpos).getValue(TurtleEggBlock.EGGS) >= 1 || eggs instanceof DinosaurEggBlock && level().getBlockState(blockpos$mutableblockpos).getValue(DinosaurEggBlock.EGGS) >= 1)) {
 							if (!this.isBaby()) {
 								for (LivingEntity entity : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(10, 4, 10))) {
 									if (entity instanceof DinosaurEntity dinosaur) {

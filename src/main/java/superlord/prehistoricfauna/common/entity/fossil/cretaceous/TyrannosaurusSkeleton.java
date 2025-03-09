@@ -136,6 +136,7 @@ public class TyrannosaurusSkeleton extends PrehistoricEntity {
 		compound.putBoolean("IsPushable", this.isPushableState());
 		compound.putBoolean("IsLooking", this.isLooking());
 		compound.putBoolean("IsStalking", this.isStalking());
+		compound.putFloat("Rotation", this.getYHeadRot());
 	}
 	
 	public void readAdditionalSaveData(CompoundTag compound) {
@@ -149,6 +150,8 @@ public class TyrannosaurusSkeleton extends PrehistoricEntity {
 		this.setPushable(compound.getBoolean("IsPushable"));
 		this.setLooking(compound.getBoolean("IsLooking"));
 		this.setStalking(compound.getBoolean("IsStalking"));
+		this.setYBodyRot(compound.getFloat("Rotation"));
+		this.setYHeadRot(compound.getFloat("Rotation"));
 	}
 	
 	public TyrannosaurusSkeleton(EntityType<? extends TyrannosaurusSkeleton> type, Level worldIn) {

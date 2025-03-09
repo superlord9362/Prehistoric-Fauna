@@ -92,6 +92,7 @@ public class DesmatosuchusSkeleton extends PrehistoricEntity {
 		compound.putBoolean("IsWalkingRight", this.isWalkingRight());
 		compound.putBoolean("IsPushable", this.isPushableState());
 		compound.putBoolean("IsLooking", this.isLooking());
+		compound.putFloat("Rotation", this.getYHeadRot());
 	}
 	
 	public void readAdditionalSaveData(CompoundTag compound) {
@@ -101,6 +102,8 @@ public class DesmatosuchusSkeleton extends PrehistoricEntity {
 		this.setWalkingRight(compound.getBoolean("IsWalkingRight"));
 		this.setPushable(compound.getBoolean("IsPushable"));
 		this.setLooking(compound.getBoolean("IsLooking"));
+		this.setYBodyRot(compound.getFloat("Rotation"));
+		this.setYHeadRot(compound.getFloat("Rotation"));
 	}
 	
 	public DesmatosuchusSkeleton(EntityType<? extends DesmatosuchusSkeleton> type, Level worldIn) {

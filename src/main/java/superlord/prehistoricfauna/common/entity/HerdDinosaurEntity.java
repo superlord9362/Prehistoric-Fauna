@@ -77,10 +77,14 @@ public class HerdDinosaurEntity extends DinosaurEntity {
 	public boolean inRangeOfLeader() {
 		return this.distanceToSqr(this.groupLeader) <= 121.0D;
 	}
+	
+	public double moveToRange() {
+		return 1;
+	}
 
 	public void pathToLeader() {
 		if (this.isFollower()) {
-			this.getNavigation().moveTo(this.groupLeader, 1.0D);
+			this.getNavigation().moveTo(this.groupLeader, 1);
 		}
 
 	}

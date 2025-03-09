@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/byronosaurus_nest_and_three_eggs_one_plant",
-	"textures": {
-		"egg": "prehistoricfauna:block/byronosaurus_egg_very_cracked"
-	}
-}

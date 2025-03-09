@@ -1,0 +1,114 @@
+{
+	"name": "prehistoricfauna:settlement/yixian/buildings",
+	"fallback": "prehistoricfauna:settlement/yixian/buildings",
+	"elements": [
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/yixian/buildings/yixian_house_1",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/yixian/buildings/yixian_house_2",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}	
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/yixian/buildings/yixian_house_3",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}	
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/yixian/buildings/yixian_house_4",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}	
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/yixian/buildings/yixian_house_5",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}	
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/yixian/buildings/yixian_house_6",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}	
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/yixian/buildings/yixian_house_7",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}	
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/yixian/buildings/yixian_house_8",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}	
+		},
+		{
+			"weight": 3,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/yixian/buildings/yixian_mason",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 3,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/yixian/buildings/yixian_ephedra_farm",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/yixian/buildings/yixian_small_pagoda",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/yixian/buildings/yixian_big_pagoda",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		}
+	]
+}

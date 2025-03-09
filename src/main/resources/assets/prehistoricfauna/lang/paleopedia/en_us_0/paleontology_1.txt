@@ -1,4 +1,7 @@
-<image><recipe.png 110 90 0 0 464 216 0.3125>
+<image><recipe.png 110 100 0 0 432 248 0.3125>
+<image><drawings_ankylosaurus.png 176 90 377 150 108 62 1.25>
+
+
 
 
 
@@ -14,7 +17,10 @@ time period. The skulls can be
 mounted by themselves, or 
 combined with 8 Fossilized Bones to 
 make a proper skeletal mount of 
-the animal. However, there is no 
+the animal.
+
+
+However, there is no 
 guarantee that you’ll find bones, 
 and you may only find shells or 
 even just rock!

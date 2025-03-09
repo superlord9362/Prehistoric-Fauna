@@ -8,8 +8,14 @@
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2.0,
-      "sound": "minecraft:ambient.cave",
+      "sound": "prehistoricfauna:cave_1",
       "tick_delay": 6000
+    },
+    "music": {
+      "max_delay": 24000,
+      "min_delay": 12000,
+      "replace_current_music": false,
+      "sound": "prehistoricfauna:ambience_1"
     },
     "sky_color": 8306591,
     "water_color": 8150344,
@@ -56,24 +62,24 @@
     [],
     [
       "minecraft:glow_lichen",
-      "prehistoricfauna:placed_humulus",
+      "prehistoricfauna:placed_azolla",
+      "prehistoricfauna:placed_bisonia",
       "prehistoricfauna:placed_clubmoss",
+      "prehistoricfauna:placed_humulus",
+      "prehistoricfauna:placed_marmarthia",
+      "prehistoricfauna:placed_moss",
       "prehistoricfauna:placed_osmunda",
       "prehistoricfauna:placed_tall_osmunda",
-      "prehistoricfauna:placed_moss",
-      "prehistoricfauna:placed_marmarthia",
-      "prehistoricfauna:placed_azolla",
+      "prehistoricfauna:placed_zingiberopsis",
       "prehistoricfauna:placed_rare_dryophyllum_trees",
       "prehistoricfauna:placed_rare_small_ginkgo_trees",
-      "prehistoricfauna:placed_rare_small_metasequoia_trees",
       "prehistoricfauna:placed_common_liriodendrites_trees",
+      "prehistoricfauna:placed_rare_small_metasequoia_trees",
+      "prehistoricfauna:placed_platanites_trees",
       "prehistoricfauna:placed_fallen_dryophyllum_log",
-      "prehistoricfauna:placed_fallen_metasequoia_log",
-      "prehistoricfauna:placed_fallen_platanites_log",
       "prehistoricfauna:placed_fallen_ginkgo_log",
-      "prehistoricfauna:placed_bisonia",
-      "prehistoricfauna:placed_zingiberopsis",
-      "prehistoricfauna:placed_platanites_trees"
+      "prehistoricfauna:placed_fallen_metasequoia_log",
+      "prehistoricfauna:placed_fallen_platanites_log"
     ]
   ],
   "has_precipitation": true,

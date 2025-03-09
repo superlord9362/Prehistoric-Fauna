@@ -33,7 +33,7 @@ public class PlesiohadrosRenderer extends MobRenderer<Plesiohadros, EntityModel<
 	private static PlesiohadrosBabyModel PLESIOHADROS_BABY_MODEL;
 
 	public PlesiohadrosRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new PlesiohadrosModel(renderManagerIn.bakeLayer(ClientEvents.PLESIOHADROS)), 2F);
+		super(renderManagerIn, new PlesiohadrosModel(renderManagerIn.bakeLayer(ClientEvents.PLESIOHADROS)), 1.25F);
 		PLESIOHADROS_MODEL = new PlesiohadrosModel(renderManagerIn.bakeLayer(ClientEvents.PLESIOHADROS));
 		PLESIOHADROS_BABY_MODEL = new PlesiohadrosBabyModel(renderManagerIn.bakeLayer(ClientEvents.PLESIOHADROS_BABY));
 		this.addLayer(new PlesiohadrosSaddleLayer(this));

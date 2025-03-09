@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/exaeretodon_nest_and_two_eggs_three_plants",
-	"textures": {
-		"egg": "prehistoricfauna:block/exaeretodon_egg_very_cracked"
-	}
-}

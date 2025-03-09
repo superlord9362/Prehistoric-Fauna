@@ -1,10 +1,13 @@
 package superlord.prehistoricfauna.common.world.biome;
 
 import net.minecraft.core.HolderGetter;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
+import net.minecraft.sounds.Musics;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.AmbientMoodSettings;
+import net.minecraft.world.level.biome.AmbientParticleSettings;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
 import net.minecraft.world.level.biome.BiomeSpecialEffects;
@@ -15,6 +18,7 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFPlacedFeatures;
+import superlord.prehistoricfauna.init.PFSounds;
 
 public class CretaceousBiomes {
 
@@ -28,7 +32,27 @@ public class CretaceousBiomes {
 						.waterFogColor(waterFogColor)
 						.fogColor(fogColor)
 						.skyColor(skyColor)
-						.ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+						.ambientMoodSound(new AmbientMoodSettings(PFSounds.CAVE_1.getHolder().get(), 6000, 8, 2.0D))
+						.backgroundMusic(Musics.createGameMusic(PFSounds.AMBIENCE_1.getHolder().get()))
+						.build())
+				.mobSpawnSettings(spawnBuilder.build())
+				.generationSettings(biomeBuilder.build())
+				.build();
+	}
+	
+	private static Biome volcanoBiome(boolean hasPrecipitation, int waterColor, int waterFogColor, int skyColor, int fogColor, float temperature, float downfall, MobSpawnSettings.Builder spawnBuilder, BiomeGenerationSettings.Builder biomeBuilder) {
+		return (new Biome.BiomeBuilder())
+				.hasPrecipitation(hasPrecipitation)
+				.temperature(temperature)
+				.downfall(downfall)
+				.specialEffects((new BiomeSpecialEffects.Builder())
+						.waterColor(waterColor)
+						.waterFogColor(waterFogColor)
+						.fogColor(fogColor)
+						.skyColor(skyColor)
+						.ambientMoodSound(new AmbientMoodSettings(PFSounds.CAVE_1.getHolder().get(), 6000, 8, 2.0D))
+						.backgroundMusic(Musics.createGameMusic(PFSounds.AMBIENCE_1.getHolder().get()))
+						.ambientParticle(new AmbientParticleSettings(ParticleTypes.WHITE_ASH, 0.118093334F))
 						.build())
 				.mobSpawnSettings(spawnBuilder.build())
 				.generationSettings(biomeBuilder.build())
@@ -47,7 +71,8 @@ public class CretaceousBiomes {
 						.skyColor(skyColor)
 						.foliageColorOverride(foliageColor)
 						.grassColorOverride(foliageColor)
-						.ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+						.ambientMoodSound(new AmbientMoodSettings(PFSounds.CAVE_1.getHolder().get(), 6000, 8, 2.0D))
+						.backgroundMusic(Musics.createGameMusic(PFSounds.AMBIENCE_1.getHolder().get()))
 						.build())
 				.mobSpawnSettings(spawnBuilder.build())
 				.generationSettings(biomeBuilder.build())
@@ -262,8 +287,8 @@ public class CretaceousBiomes {
 		BiomeDefaultFeatures.addDefaultCrystalFormations(biomeFeatures);
 		BiomeDefaultFeatures.addDefaultUndergroundVariety(biomeFeatures);
 		BiomeDefaultFeatures.addDefaultOres(biomeFeatures, true);
-		biomeFeatures.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_DEAD_BUSH_2);
 		biomeFeatures.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PFPlacedFeatures.EPHEDRA);
+		biomeFeatures.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_DEAD_BUSH_2);
 		if (PrehistoricFaunaConfig.caveSentinelDjadochtaDunesSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.CAVE_SENTINEL.get(), PrehistoricFaunaConfig.caveSentinelDjadochtaDunesSpawnWeight, 1, 1));
 		if (PrehistoricFaunaConfig.landSentinelDjadochtaDunesSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.LAND_SENTINEL.get(), PrehistoricFaunaConfig.landSentinelDjadochtaDunesSpawnWeight, 1, 1));
 		if (PrehistoricFaunaConfig.protoceratopsDjadochtaDunesSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.PROTOCERATOPS.get(), PrehistoricFaunaConfig.protoceratopsDjadochtaDunesSpawnWeight, 2, 5));
@@ -282,7 +307,7 @@ public class CretaceousBiomes {
 		if (PrehistoricFaunaConfig.gobiulusDjadochtaDunesSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.GOBIULUS.get(), PrehistoricFaunaConfig.gobiulusDjadochtaDunesSpawnWeight, 1, 1));
 		if (PrehistoricFaunaConfig.kolDjadochtaDunesSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.KOL.get(), PrehistoricFaunaConfig.kolDjadochtaDunesSpawnWeight, 1, 3));
 		if (PrehistoricFaunaConfig.byronosaurusDjadochtaDunesSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.BYRONOSAURUS.get(), PrehistoricFaunaConfig.byronosaurusDjadochtaDunesSpawnWeight, 1, 2));
-		return biome(false, 0x66866b, 0x9c8c67, 0x5F909D, 12638463, 0.2F, 1F, spawnSettings, biomeFeatures);
+		return biome(false, 0x66866b, 0x9c8c67, 0x5F909D, 12638463, 1F, 0.2F, spawnSettings, biomeFeatures);
 	}
 	
 	public static Biome djadochtaArroyo(HolderGetter<PlacedFeature> placedFeatureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
@@ -292,8 +317,8 @@ public class CretaceousBiomes {
 		BiomeDefaultFeatures.addDefaultUndergroundVariety(biomeFeatures);
 		BiomeDefaultFeatures.addDefaultOres(biomeFeatures, true);
 		PFPlacedFeatures.withDjadochtaPlants(biomeFeatures);
-		PFPlacedFeatures.withDjadochtaRocks(biomeFeatures);
 		PFPlacedFeatures.withDjadochtaFallenLogs(biomeFeatures);
+		PFPlacedFeatures.withDjadochtaRocks(biomeFeatures);
 		if (PrehistoricFaunaConfig.caveSentinelDjadochtaArroyoSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.CAVE_SENTINEL.get(), PrehistoricFaunaConfig.caveSentinelDjadochtaArroyoSpawnWeight, 1, 1));
 		if (PrehistoricFaunaConfig.landSentinelDjadochtaArroyoSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.LAND_SENTINEL.get(), PrehistoricFaunaConfig.landSentinelDjadochtaArroyoSpawnWeight, 1, 1));
 		if (PrehistoricFaunaConfig.protoceratopsDjadochtaArroyoSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.PROTOCERATOPS.get(), PrehistoricFaunaConfig.protoceratopsDjadochtaArroyoSpawnWeight, 2, 5));
@@ -312,7 +337,7 @@ public class CretaceousBiomes {
 		if (PrehistoricFaunaConfig.goyocephaleDjadochtaArroyoSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.GOYOCEPHALE.get(), PrehistoricFaunaConfig.goyocephaleDjadochtaArroyoSpawnWeight, 1, 3));
 		if (PrehistoricFaunaConfig.kolDjadochtaArroyoSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.KOL.get(), PrehistoricFaunaConfig.kolDjadochtaArroyoSpawnWeight, 1, 3));
 		if (PrehistoricFaunaConfig.byronosaurusDjadochtaArroyoSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.BYRONOSAURUS.get(), PrehistoricFaunaConfig.byronosaurusDjadochtaArroyoSpawnWeight, 1, 2));
-		return biome(false, 0x66866b, 0x9c8c67, 0x5F909D, 12638463, 0.2F, 1F, spawnSettings, biomeFeatures);
+		return biome(false, 0x66866b, 0x9c8c67, 0x5F909D, 12638463, 1F, 0.2F, spawnSettings, biomeFeatures);
 	}
 	
 	public static Biome djadochtaAlluvialPlains(HolderGetter<PlacedFeature> placedFeatureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
@@ -321,9 +346,9 @@ public class CretaceousBiomes {
 		BiomeDefaultFeatures.addDefaultCrystalFormations(biomeFeatures);
 		BiomeDefaultFeatures.addDefaultUndergroundVariety(biomeFeatures);
 		BiomeDefaultFeatures.addDefaultOres(biomeFeatures, true);
-		PFPlacedFeatures.withDjadochtaRocks(biomeFeatures);
-		PFPlacedFeatures.withDjadochtaFallenLogs(biomeFeatures);
 		PFPlacedFeatures.withDjadochtaAlluvialPlainsPlants(biomeFeatures);
+		PFPlacedFeatures.withDjadochtaFallenLogs(biomeFeatures);
+		PFPlacedFeatures.withDjadochtaRocks(biomeFeatures);
 		biomeFeatures.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_DEAD_BUSH_2);
 		if (PrehistoricFaunaConfig.caveSentinelDjadochtaAlluvialPlainsSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.CAVE_SENTINEL.get(), PrehistoricFaunaConfig.caveSentinelDjadochtaAlluvialPlainsSpawnWeight, 1, 1));
 		if (PrehistoricFaunaConfig.landSentinelDjadochtaAlluvialPlainsSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.LAND_SENTINEL.get(), PrehistoricFaunaConfig.landSentinelDjadochtaAlluvialPlainsSpawnWeight, 1, 1));
@@ -343,7 +368,7 @@ public class CretaceousBiomes {
 		if (PrehistoricFaunaConfig.goyocephaleDjadochtaAlluvialPlainsSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.GOYOCEPHALE.get(), PrehistoricFaunaConfig.goyocephaleDjadochtaAlluvialPlainsSpawnWeight, 1, 3));
 		if (PrehistoricFaunaConfig.kolDjadochtaAlluvialPlainsSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.KOL.get(), PrehistoricFaunaConfig.kolDjadochtaAlluvialPlainsSpawnWeight, 1, 3));
 		if (PrehistoricFaunaConfig.byronosaurusDjadochtaAlluvialPlainsSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.BYRONOSAURUS.get(), PrehistoricFaunaConfig.byronosaurusDjadochtaAlluvialPlainsSpawnWeight, 1, 2));
-		return biome(false, 0x66866b, 0x9c8c67, 0x5F909D, 12638463, 0.2F, 1F, spawnSettings, biomeFeatures);
+		return biome(false, 0x66866b, 0x9c8c67, 0x5F909D, 12638463, 1F, 0.2F, spawnSettings, biomeFeatures);
 	}
 	
 	public static Biome yixianForest(HolderGetter<PlacedFeature> placedFeatureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
@@ -533,7 +558,7 @@ public class CretaceousBiomes {
 		if (PrehistoricFaunaConfig.zhenyuanlongYixianVolcanoSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.ZHENYUANLONG.get(), PrehistoricFaunaConfig.zhenyuanlongYixianVolcanoSpawnWeight, 1, 3));
 		if (PrehistoricFaunaConfig.caveSentinelYixianVolcanoSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.CAVE_SENTINEL.get(), PrehistoricFaunaConfig.caveSentinelYixianVolcanoSpawnWeight, 1, 1));
 		if (PrehistoricFaunaConfig.landSentinelYixianVolcanoSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.LAND_SENTINEL.get(), PrehistoricFaunaConfig.landSentinelYixianVolcanoSpawnWeight, 1, 1));
-		return biome(false, 0x395148, 0x414C47, 0x4F5A63, 0x5D5F60, 0.2F, 1.3F, spawnSettings, biomeFeatures);
+		return volcanoBiome(false, 0x395148, 0x414C47, 0x4F5A63, 0x5D5F60, 0.2F, 1.3F, spawnSettings, biomeFeatures);
 	}
 	
 }

@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/thescelosaurus_nest_and_four_eggs_no_plants",
-	"textures": {
-		"egg": "prehistoricfauna:block/thescelosaurus_egg_slightly_cracked"
-	}
-}

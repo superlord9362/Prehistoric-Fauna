@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "prehistoricfauna:block/ash_bricks",
+        "top": "prehistoricfauna:block/ash_bricks",
+        "side": "prehistoricfauna:block/ash_bricks"
+    }
+}

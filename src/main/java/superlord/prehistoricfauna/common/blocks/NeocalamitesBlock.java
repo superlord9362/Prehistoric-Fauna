@@ -129,7 +129,7 @@ public class NeocalamitesBlock extends Block implements IPlantable, SimpleWaterl
 		BlockState soil = world.getBlockState(pos.below());
 		BlockState waterState = world.getBlockState(pos);
 		BlockState aboveWaterState = world.getBlockState(pos.above());
-		if (soil.canSustainPlant(world, pos.below(), Direction.UP, this) || soil.getBlock() == Blocks.RED_SAND || soil.getBlock() == Blocks.SAND || waterState.getBlock() == Blocks.WATER && (aboveWaterState.getBlock() == Blocks.AIR || aboveWaterState.getBlock() == this)) return true;
+		if (soil.canSustainPlant(world, pos.below(), Direction.UP, this) || soil.getBlock() == Blocks.RED_SAND || soil.getBlock() == Blocks.PACKED_MUD || soil.getBlock() == Blocks.SAND || waterState.getBlock() == Blocks.WATER && (aboveWaterState.getBlock() == Blocks.AIR || aboveWaterState.getBlock() == this)) return true;
 		else return false;
 	}
 

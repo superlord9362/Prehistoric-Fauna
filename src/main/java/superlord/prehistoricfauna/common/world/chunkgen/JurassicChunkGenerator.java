@@ -197,12 +197,88 @@ public class JurassicChunkGenerator extends ChunkGenerator {
 		}
 		return Blocks.AIR.defaultBlockState();
 	}
+	
+	private float blendSmoothstep(float delta, float value1, float value2) {
+		float smoothDelta = delta * delta * (3 - 2 * delta); // Smoothstep function
+		return Mth.lerp(smoothDelta, value1, value2);
+	}
 
 	private float sampleDensity(float x, float y, float z) {
 		int seaLevel = this.settings.value().seaLevel();
 		if (y > seaLevel) y = y + 3;
 		BiomeManager biomeManager = new BiomeManager((JurassicBiomeSource)this.getBiomeSource(), this.seed);
 		Holder<Biome> biome = biomeManager.getBiome(new BlockPos((int) x, (int) y, (int) z));
+		float baseDensity = calculateBaseDensity(x, y, z, biome);
+		int blendRadius = 16;
+		int blendStep = 4;
+		float blendedDensity = baseDensity;
+		int blendCount = 1;
+		BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
+		int size = Math.floorDiv(blendRadius, blendStep);
+
+		for (BlockPos.MutableBlockPos blockPos : BlockPos.spiralAround(BlockPos.ZERO, size, Direction.EAST, Direction.SOUTH)) {
+			int nx = (int) (x + blockPos.getX() * blendStep);
+			int nz = (int) (z + blockPos.getZ() * blendStep);
+			mutableBlockPos.set(nx, (int) y, nz);
+			Holder<Biome> nearbyBiome = biomeManager.getBiome(mutableBlockPos);
+
+			if (nearbyBiome != biome) {
+				if (!nearbyBiome.is(PFBiomes.KAYENTA_RIVER) || biome.is(PFBiomes.KAYENTA_RIVER)) {
+					double distToLowCornerSqr = mutableBlockPos.distToLowCornerSqr(x, y, z);
+
+					if (distToLowCornerSqr < Mth.square(blendRadius)) {
+						float nearbyDensity = calculateBaseDensity(nx, y, nz, nearbyBiome);
+
+						double delta = distToLowCornerSqr / Mth.square(blendRadius);
+						blendedDensity += blendSmoothstep((float) delta, nearbyDensity, baseDensity);
+						blendCount++;
+					}
+				} else {
+					double distToLowCornerSqr = mutableBlockPos.distToLowCornerSqr(x, y, z);
+
+					if (distToLowCornerSqr < Mth.square(blendRadius)) {
+						double delta = distToLowCornerSqr / Mth.square(blendRadius);
+						blendedDensity += blendSmoothstep((float) delta, flatsSample(x, y, z), baseDensity);
+						blendCount++;
+					}
+				}
+			}
+		}
+
+		float finalDensity = blendedDensity / blendCount;
+
+		float smoothingNoise = noise.GetNoise(x * 0.1f, y * 0.1f, z * 0.1f);
+		finalDensity = Mth.lerp(0.2f, finalDensity, finalDensity + smoothingNoise * 0.1f);
+
+		return finalDensity;
+	}
+	
+	public float flatsSample(float x, float y, float z) {
+		int seaLevel = this.settings.value().seaLevel();
+		if (y > seaLevel) y = y + 3;
+		float frequency1 = 0.3F;
+		float sample = noise.GetNoise(x * frequency1, y * frequency1 * 0.8F, z * frequency1);
+		float floor = -0.2F;
+		float smoothness = 0.001F;
+		float h = Mth.clamp(0.5F + 0.5F * (sample - floor) / smoothness, 0.0F, 1.0F);
+		sample = Mth.lerp(sample, floor, h) - smoothness * h * (1.0F - h);
+		float flatsFrequency = 3F;
+		float flatsNoise = noise.GetNoise((float) x * flatsFrequency, 0, (float) z * flatsFrequency);
+		flatsNoise = (1.0F - flatsNoise * flatsNoise);
+		flatsNoise *= (y - seaLevel);
+		float frequency2 = 2.5F;
+		sample += Mth.abs(noise.GetNoise(x * frequency2, y * frequency2, z * frequency2) * 0.2F);
+		float frequency3 = 3.5F;
+		sample += Mth.abs(noise.GetNoise(x * frequency3, y * frequency3, z * frequency3) * 0.05F);
+		sample -= 0.15F;
+		sample -= flatsNoise;
+		 sample -= 2;
+		return sample;
+	}
+
+	public float calculateBaseDensity(float x, float y, float z, Holder<Biome> biome) {
+		int seaLevel = this.settings.value().seaLevel();
+		if (y > seaLevel) y = y + 3;
 
 		float frequency1 = 0.3F;
 		float sample = noise.GetNoise(x * frequency1, y * frequency1 * 0.8F, z * frequency1);

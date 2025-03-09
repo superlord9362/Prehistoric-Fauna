@@ -147,7 +147,7 @@ public class UdanoceratopsBabyModel extends EntityModel<Udanoceratops> {
 					this.Head.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.45F) + 0.15F;
 				}
 				if (entity.isInWater()) {
-					this.Body.y = 9;
+					this.Body.y = 20;
 					this.Body.xRot = -0.125F;
 					this.Tail.xRot = 0.0625F;
 					this.LeftThigh.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);

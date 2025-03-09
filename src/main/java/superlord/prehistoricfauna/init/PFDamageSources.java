@@ -36,7 +36,7 @@ public class PFDamageSources {
 		@Override
     	public @NotNull Component getLocalizedDeathMessage(LivingEntity entityLivingBase) {
 			int type = entityLivingBase.getRandom().nextInt(3);
-			String s = "death,attack." + this.getMsgId() + "_" + type;
+			String s = "death.attack." + this.getMsgId() + "_" + type;
 			Entity entity = this.getDirectEntity() == null ? this.getEntity() : this.getDirectEntity();
 			if (entity != null) {
 				return Component.translatable(s + ".entity", entityLivingBase.getDisplayName(), entity.getDisplayName());

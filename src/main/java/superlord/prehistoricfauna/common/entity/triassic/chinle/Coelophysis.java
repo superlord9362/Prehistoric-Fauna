@@ -34,7 +34,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.HerdDinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.CarnivoreEatFromFeederGoal;
@@ -73,6 +73,11 @@ public class Coelophysis extends HerdDinosaurEntity {
 		super(type, levelIn);
 		super.maxHunger = maxHunger;
 		this.setMaxUpStep(1.0F);
+	}
+	
+	@Override
+	public double moveToRange() {
+		return 5;
 	}
 	
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
@@ -263,7 +268,7 @@ public class Coelophysis extends HerdDinosaurEntity {
 	}
     
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.COELOPHYSIS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+		return PFBlocks.COELOPHYSIS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 
 }

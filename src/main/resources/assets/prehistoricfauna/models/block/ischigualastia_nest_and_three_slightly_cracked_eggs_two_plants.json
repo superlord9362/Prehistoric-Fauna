@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/ischigualastia_nest_and_three_eggs_two_plants",
-	"textures": {
-		"egg": "prehistoricfauna:block/ischigualastia_egg_slightly_cracked"
-	}
-}

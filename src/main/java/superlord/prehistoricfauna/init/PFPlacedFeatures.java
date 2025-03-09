@@ -6,7 +6,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
-import net.minecraft.data.worldgen.placement.MiscOverworldPlacements;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
@@ -71,7 +70,7 @@ public class PFPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> WATERLOGGED_HORSETAILS = registerPlacedFeature("placed_waterlogged_horsetail");
 	public static final ResourceKey<PlacedFeature> CONIOPTERIS = registerPlacedFeature("placed_coniopteris");
 	public static final ResourceKey<PlacedFeature> CLADOPHLEBIS = registerPlacedFeature("placed_cladophlebis");
-	public static final ResourceKey<PlacedFeature> CLATHOPTERIS = registerPlacedFeature("placed_clathopteris");
+	public static final ResourceKey<PlacedFeature> CLATHROPTERIS = registerPlacedFeature("placed_clathopteris");
 	public static final ResourceKey<PlacedFeature> PHLEBOPTERIS = registerPlacedFeature("placed_phlebopteris");
 	public static final ResourceKey<PlacedFeature> OTOZAMITES = registerPlacedFeature("placed_otozamites");
 	public static final ResourceKey<PlacedFeature> TALL_OTOZAMITES = registerPlacedFeature("placed_tall_otozamites");
@@ -103,6 +102,8 @@ public class PFPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> RARE_EPHEDRA = registerPlacedFeature("placed_rare_ephedra");
 	public static final ResourceKey<PlacedFeature> LEEFRUCTUS = registerPlacedFeature("placed_leefructus");
 	public static final ResourceKey<PlacedFeature> RUFFORDIA = registerPlacedFeature("placed_ruffordia");
+	
+	public static final ResourceKey<PlacedFeature> POISON_GAS = registerPlacedFeature("placed_poison_gas");
 
 	public static final ResourceKey<PlacedFeature> CALLIANTHUS = registerPlacedFeature("placed_callianthus");
 	public static final ResourceKey<PlacedFeature> NOTHODICHOCARPUM = registerPlacedFeature("placed_nothodichocarpum");
@@ -306,16 +307,16 @@ public class PFPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> ISCHIGUALASTO_TREES = registerPlacedFeature("placed_ischigualasto_trees");
 	public static final ResourceKey<PlacedFeature> SPARSE_ISCHIGUALASTO_TREES = registerPlacedFeature("placed_sparse_ischigualasto_trees");
 	public static final ResourceKey<PlacedFeature> MORRISON_TREES = registerPlacedFeature("placed_morrison_tress");
-	public static final ResourceKey<PlacedFeature> SPARSE_BRACHYPHYLLUM = registerPlacedFeature("placed_sparse_brachyphyllum");
-	public static final ResourceKey<PlacedFeature> DRY_FOREST_VEGETATION = registerPlacedFeature("placed_dry_forest_vegetation");
-	public static final ResourceKey<PlacedFeature> SPARSE_SMALL_ARAUCARIAS = registerPlacedFeature("placed_sparse_small_araucaria");
+	public static final ResourceKey<PlacedFeature> SPARSE_BRACHYPHYLLUM_TREES = registerPlacedFeature("placed_sparse_brachyphyllum");
+	public static final ResourceKey<PlacedFeature> KAYENTA_DRY_FOREST_TREES = registerPlacedFeature("placed_dry_forest_vegetation");
+	public static final ResourceKey<PlacedFeature> SPARSE_SMALL_ARAUCARIA_TREES = registerPlacedFeature("placed_sparse_small_araucaria");
 	public static final ResourceKey<PlacedFeature> TROCHODENDROIDES_TREES = registerPlacedFeature("placed_trochodendroides_trees");
 	public static final ResourceKey<PlacedFeature> ARROYO_TREES = registerPlacedFeature("placed_arroyo_trees");
 	public static final ResourceKey<PlacedFeature> TAXODIUM_TREES = registerPlacedFeature("placed_taxodium_trees");
-	public static final ResourceKey<PlacedFeature> RARE_DRYOPHYLLUM_TREES = registerPlacedFeature("placed_rare_dryophyllum_trees");
+	public static final ResourceKey<PlacedFeature> SPARSE_DRYOPHYLLUM_TREES = registerPlacedFeature("placed_rare_dryophyllum_trees");
 	public static final ResourceKey<PlacedFeature> COMMON_DRYOPHYLLUM_TREES = registerPlacedFeature("placed_common_dryophyllum_trees");
-	public static final ResourceKey<PlacedFeature> RARE_SMALL_METASEQUOIA_TREES = registerPlacedFeature("placed_rare_small_metasequoia_trees");
-	public static final ResourceKey<PlacedFeature> RARE_SMALL_GINKGO_TREES = registerPlacedFeature("placed_rare_small_ginkgo_trees");
+	public static final ResourceKey<PlacedFeature> SPARSE_SMALL_METASEQUOIA_TREES = registerPlacedFeature("placed_rare_small_metasequoia_trees");
+	public static final ResourceKey<PlacedFeature> SPARSE_SMALL_GINKGO_TREES = registerPlacedFeature("placed_rare_small_ginkgo_trees");
 	public static final ResourceKey<PlacedFeature> RARE_TAXODIUM_TREES = registerPlacedFeature("placed_rare_taxodium_trees");
 	public static final ResourceKey<PlacedFeature> COMMON_LIRIODENDRITES_TREES = registerPlacedFeature("placed_common_liriodendrites_trees");
 	public static final ResourceKey<PlacedFeature> VERY_RARE_SMALL_GINKGO_TREES = registerPlacedFeature("placed_very_rare_small_ginkgo_trees");
@@ -333,7 +334,7 @@ public class PFPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> SMALL_MIXED_GINKGO_TREES = registerPlacedFeature("placed_small_mixed_ginkgo_trees");
 	public static final ResourceKey<PlacedFeature> RARE_MIXED_LARGE_GINKGO_TREES = registerPlacedFeature("placed_rare_large_mixed_ginkgo_trees");
 	public static final ResourceKey<PlacedFeature> SMALL_YELLOW_GINKGO_TREES = registerPlacedFeature("placed_small_yellow_ginkgo_trees");
-	public static final ResourceKey<PlacedFeature> RARE_SMALL_YELLOW_GINKGO_TREES = registerPlacedFeature("placed_rare_small_yellow_ginkgo_trees");
+	public static final ResourceKey<PlacedFeature> SPARSE_SMALL_YELLOW_GINKGO_TREES = registerPlacedFeature("placed_rare_small_yellow_ginkgo_trees");
 	public static final ResourceKey<PlacedFeature> RARE_YELLOW_LARGE_GINKGO_TREES = registerPlacedFeature("placed_rare_large_yellow_ginkgo_trees");
 	public static final ResourceKey<PlacedFeature> SMALL_ARAUCARIA_TREES = registerPlacedFeature("placed_small_araucaria_trees");
 	public static final ResourceKey<PlacedFeature> SMALL_PLATANITES_TREES = registerPlacedFeature("placed_small_platanites_trees");
@@ -342,7 +343,7 @@ public class PFPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> TAXUS_TREES = registerPlacedFeature("placed_taxus_trees");
 	public static final ResourceKey<PlacedFeature> PODOZAMITES_TREES = registerPlacedFeature("placed_podozamites_trees");
 	public static final ResourceKey<PlacedFeature> RARE_TAXUS_TREES = registerPlacedFeature("placed_rare_taxus_trees");
-	public static final ResourceKey<PlacedFeature> RARE_PODOZAMITES_TREES = registerPlacedFeature("placed_rare_podozamites_trees");
+	public static final ResourceKey<PlacedFeature> SPARSE_PODOZAMITES_TREES = registerPlacedFeature("placed_rare_podozamites_trees");
 	public static final ResourceKey<PlacedFeature> RARE_SCHIZOLEPIDOPSIS_TREES = registerPlacedFeature("placed_rare_schizolepidopsis_trees");
 	public static final ResourceKey<PlacedFeature> RARE_CZEKANOWSKIA_TREES = registerPlacedFeature("placed_rare_czekanowskia_trees");
 	public static final ResourceKey<PlacedFeature> SCHIZOLEPIDOPSIS_TREES = registerPlacedFeature("placed_schizolepidopsis_trees");
@@ -354,7 +355,7 @@ public class PFPlacedFeatures {
 
 	public static final ResourceKey<PlacedFeature> CLEARING_HUMULUS = registerPlacedFeature("placed_clearing_humulus");
 	public static final ResourceKey<PlacedFeature> CLEARING_CLUBMOSS = registerPlacedFeature("placed_clearing_clubmoss");
-	public static final ResourceKey<PlacedFeature> CLEARING_RARE_SMALL_ARAUCARIA_TREES = registerPlacedFeature("placed_clearing_rare_small_araucaria_trees");
+	public static final ResourceKey<PlacedFeature> CLEARING_SPARSE_SMALL_ARAUCARIA_TREES = registerPlacedFeature("placed_clearing_rare_small_araucaria_trees");
 	public static final ResourceKey<PlacedFeature> CLEARING_VERY_COMMON_OSMUNDA = registerPlacedFeature("placed_clearing_very_common_osmunda");
 	public static final ResourceKey<PlacedFeature> CLEARING_VERY_COMMON_TALL_OSMUNDA = registerPlacedFeature("placed_clearing_very_common_tall_osmunda");
 	public static final ResourceKey<PlacedFeature> CLEARING_VERY_RARE_LOWERED_HORSETAILS = registerPlacedFeature("placed_clearing_very_rare_lowered_horsetails");
@@ -410,7 +411,7 @@ public class PFPlacedFeatures {
 		PlacementUtils.register(bootstapContext, WATERLOGGED_HORSETAILS, holderGetter.getOrThrow(PFConfiguredFeatures.WATERLOGGED_HORSETAILS), worldSurfaceSquaredWithCount(2));
 		PlacementUtils.register(bootstapContext, CONIOPTERIS, holderGetter.getOrThrow(PFConfiguredFeatures.CONIOPTERIS), worldSurfaceSquaredWithCount(2));
 		PlacementUtils.register(bootstapContext, CLADOPHLEBIS, holderGetter.getOrThrow(PFConfiguredFeatures.CLADOPHLEBIS), worldSurfaceSquaredWithCount(2));
-		PlacementUtils.register(bootstapContext, CLATHOPTERIS, holderGetter.getOrThrow(PFConfiguredFeatures.CLATHOPTERIS), worldSurfaceSquaredWithCount(2));
+		PlacementUtils.register(bootstapContext, CLATHROPTERIS, holderGetter.getOrThrow(PFConfiguredFeatures.CLATHOPTERIS), worldSurfaceSquaredWithCount(2));
 		PlacementUtils.register(bootstapContext, PHLEBOPTERIS, holderGetter.getOrThrow(PFConfiguredFeatures.PHLEBOPTERIS), worldSurfaceSquaredWithCount(2));
 		PlacementUtils.register(bootstapContext, OTOZAMITES, holderGetter.getOrThrow(PFConfiguredFeatures.OTOZAMITES), worldSurfaceSquaredWithCount(2));
 		PlacementUtils.register(bootstapContext, TALL_OTOZAMITES, holderGetter.getOrThrow(PFConfiguredFeatures.DOUBLE_OTOZAMITES), worldSurfaceSquaredWithCount(2));
@@ -442,6 +443,9 @@ public class PFPlacedFeatures {
 		PlacementUtils.register(bootstapContext, RARE_EPHEDRA, holderGetter.getOrThrow(PFConfiguredFeatures.RARE_EPHEDRA), worldSurfaceSquaredWithCount(1));
 		PlacementUtils.register(bootstapContext, LEEFRUCTUS, holderGetter.getOrThrow(PFConfiguredFeatures.LEEFRUCTUS), worldSurfaceSquaredWithCount(3));
 		PlacementUtils.register(bootstapContext, RUFFORDIA, holderGetter.getOrThrow(PFConfiguredFeatures.RUFFORDIA), worldSurfaceSquaredWithCount(3));
+		
+
+		PlacementUtils.register(bootstapContext, POISON_GAS, holderGetter.getOrThrow(PFConfiguredFeatures.POISON_GAS), worldSurfaceSquaredWithCount(3));
 
 		PlacementUtils.register(bootstapContext, CALLIANTHUS, holderGetter.getOrThrow(PFConfiguredFeatures.CALLIANTHUS), worldSurfaceSquaredWithCount(5));
 		PlacementUtils.register(bootstapContext, NOTHODICHOCARPUM, holderGetter.getOrThrow(PFConfiguredFeatures.NOTHODICHOCARPUM), worldSurfaceSquaredWithCount(2));
@@ -645,16 +649,16 @@ public class PFPlacedFeatures {
 		PlacementUtils.register(bootstapContext, ISCHIGUALASTO_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.ISCHIGUALASTO_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(8, 0.1F, 3)));
 		PlacementUtils.register(bootstapContext, SPARSE_ISCHIGUALASTO_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.ISCHIGUALASTO_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.1F, 1)));
 		PlacementUtils.register(bootstapContext, MORRISON_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.MORRISON_SAVANNA_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.25F, 1)));
-		PlacementUtils.register(bootstapContext, SPARSE_BRACHYPHYLLUM, holderGetter.getOrThrow(PFConfiguredFeatures.SPARSE_BRACHYPHYLLUM_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.1F, 1)));
-		PlacementUtils.register(bootstapContext, DRY_FOREST_VEGETATION, holderGetter.getOrThrow(PFConfiguredFeatures.DRY_FOREST_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(2, 0.2F, 3)));
-		PlacementUtils.register(bootstapContext, SPARSE_SMALL_ARAUCARIAS, holderGetter.getOrThrow(PFConfiguredFeatures.SPARSE_ARAUCARIA_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.1F, 1)));
+		PlacementUtils.register(bootstapContext, SPARSE_BRACHYPHYLLUM_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.SPARSE_BRACHYPHYLLUM_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.1F, 1)));
+		PlacementUtils.register(bootstapContext, KAYENTA_DRY_FOREST_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.DRY_FOREST_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(2, 0.2F, 3)));
+		PlacementUtils.register(bootstapContext, SPARSE_SMALL_ARAUCARIA_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.SPARSE_ARAUCARIA_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.1F, 1)));
 		PlacementUtils.register(bootstapContext, TROCHODENDROIDES_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.TROCHODENDROIDES_TREES), PlacementUtils.countExtra(0, 0.25F, 1), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(2), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome(), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(Blocks.OAK_SAPLING.defaultBlockState(), BlockPos.ZERO)));
 		PlacementUtils.register(bootstapContext, ARROYO_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.ARROYO_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.25F, 1)));
 		PlacementUtils.register(bootstapContext, TAXODIUM_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.TAXODIUM_TREES), PlacementUtils.countExtra(2, 0.25F, 1), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(4), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome(), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(Blocks.OAK_SAPLING.defaultBlockState(), BlockPos.ZERO)));
-		PlacementUtils.register(bootstapContext, RARE_DRYOPHYLLUM_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.DRYOPHYLLUM_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.25F, 1)));
+		PlacementUtils.register(bootstapContext, SPARSE_DRYOPHYLLUM_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.DRYOPHYLLUM_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.25F, 1)));
 		PlacementUtils.register(bootstapContext, COMMON_DRYOPHYLLUM_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.DRYOPHYLLUM_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.25F, 2)));
-		PlacementUtils.register(bootstapContext, RARE_SMALL_METASEQUOIA_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.SMALL_METASEQUOIA_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.125F, 1)));
-		PlacementUtils.register(bootstapContext, RARE_SMALL_GINKGO_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.SMALL_GINKGO_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.25F, 1)));
+		PlacementUtils.register(bootstapContext, SPARSE_SMALL_METASEQUOIA_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.SMALL_METASEQUOIA_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.125F, 1)));
+		PlacementUtils.register(bootstapContext, SPARSE_SMALL_GINKGO_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.SMALL_GINKGO_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.25F, 1)));
 		PlacementUtils.register(bootstapContext, RARE_TAXODIUM_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.TAXODIUM_TREES), PlacementUtils.countExtra(0, 0.25F, 1), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(4), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome(), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(Blocks.OAK_SAPLING.defaultBlockState(), BlockPos.ZERO)));
 		PlacementUtils.register(bootstapContext, COMMON_LIRIODENDRITES_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.LIRIODENDRITES_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.25F, 2)));
 		PlacementUtils.register(bootstapContext, VERY_RARE_SMALL_GINKGO_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.SMALL_GINKGO_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.125F, 1)));
@@ -672,7 +676,7 @@ public class PFPlacedFeatures {
 		PlacementUtils.register(bootstapContext, SMALL_MIXED_GINKGO_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.SMALL_MIXED_GINKGO_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.25F, 1)));
 		PlacementUtils.register(bootstapContext, RARE_MIXED_LARGE_GINKGO_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.LARGE_MIXED_GINKGO_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.25F, 1)));
 		PlacementUtils.register(bootstapContext, SMALL_YELLOW_GINKGO_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.SMALL_YELLOW_GINKGO_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.25F, 1)));
-		PlacementUtils.register(bootstapContext, RARE_SMALL_YELLOW_GINKGO_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.SMALL_YELLOW_GINKGO_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.0625F, 1)));
+		PlacementUtils.register(bootstapContext, SPARSE_SMALL_YELLOW_GINKGO_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.SMALL_YELLOW_GINKGO_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.0625F, 1)));
 		PlacementUtils.register(bootstapContext, RARE_YELLOW_LARGE_GINKGO_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.LARGE_YELLOW_GINKGO_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.25F, 1)));
 		PlacementUtils.register(bootstapContext, SMALL_ARAUCARIA_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.SMALL_ARAUCARIA_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.125F, 1)));
 		PlacementUtils.register(bootstapContext, SMALL_PLATANITES_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.SMALL_PLATANITES_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.25F, 1)));
@@ -681,7 +685,7 @@ public class PFPlacedFeatures {
 		PlacementUtils.register(bootstapContext, TAXUS_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.TAXUS_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.25F, 2)));
 		PlacementUtils.register(bootstapContext, PODOZAMITES_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.PODOZAMITES_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.25F, 2)));
 		PlacementUtils.register(bootstapContext, RARE_TAXUS_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.TAXUS_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.0625F, 1)));
-		PlacementUtils.register(bootstapContext, RARE_PODOZAMITES_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.PODOZAMITES_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.125F, 1)));
+		PlacementUtils.register(bootstapContext, SPARSE_PODOZAMITES_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.PODOZAMITES_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.125F, 1)));
 		PlacementUtils.register(bootstapContext, RARE_SCHIZOLEPIDOPSIS_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.SCHIZOLEPIDOPSIS_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.125F, 1)));
 		PlacementUtils.register(bootstapContext, RARE_CZEKANOWSKIA_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.CZEKANOWSKIA_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.0625F, 1)));
 		PlacementUtils.register(bootstapContext, SCHIZOLEPIDOPSIS_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.SCHIZOLEPIDOPSIS_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(2, 0.125F, 3)));
@@ -693,7 +697,7 @@ public class PFPlacedFeatures {
 
 		PlacementUtils.register(bootstapContext, CLEARING_HUMULUS, holderGetter.getOrThrow(PFConfiguredFeatures.HUMULUS), worldSurfaceSquaredWithCount(1));
 		PlacementUtils.register(bootstapContext, CLEARING_CLUBMOSS, holderGetter.getOrThrow(PFConfiguredFeatures.CLUBMOSS), worldSurfaceSquaredWithCount(1));
-		PlacementUtils.register(bootstapContext, CLEARING_RARE_SMALL_ARAUCARIA_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.SMALL_ARAUCARIA_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.0625F, 1)));
+		PlacementUtils.register(bootstapContext, CLEARING_SPARSE_SMALL_ARAUCARIA_TREES, holderGetter.getOrThrow(PFConfiguredFeatures.SMALL_ARAUCARIA_TREES), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.0625F, 1)));
 		PlacementUtils.register(bootstapContext, CLEARING_VERY_COMMON_OSMUNDA, holderGetter.getOrThrow(PFConfiguredFeatures.OSMUNDA), worldSurfaceSquaredWithCount(12));
 		PlacementUtils.register(bootstapContext, CLEARING_VERY_COMMON_TALL_OSMUNDA, holderGetter.getOrThrow(PFConfiguredFeatures.DOUBLE_OSMUNDA), worldSurfaceSquaredWithCount(6));
 		PlacementUtils.register(bootstapContext, CLEARING_VERY_RARE_LOWERED_HORSETAILS, holderGetter.getOrThrow(PFConfiguredFeatures.RARE_LOWERED_HORSETAILS), List.of(RarityFilter.onAverageOnceEvery(50), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
@@ -724,130 +728,136 @@ public class PFPlacedFeatures {
 	}
 
 	public static void withChinleFlatsPlants(BiomeGenerationSettings.Builder builder) {
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NEOCALAMITES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CHINLE_FLATS_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ALGAE);
-		//builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DOUBLE_HORSETAILS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLATHROPTERIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WATERLOGGED_HORSETAILS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLATHOPTERIS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NEOCALAMITES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DEAD_OSMUNDACAULIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OTOZAMITES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PHLEBOPTERIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CHINLE_FLATS_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZAMITES);
 	}
 
 	public static void withChinleSwampPlants(BiomeGenerationSettings.Builder builder) {
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NEOCALAMITES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CHINLE_SWAMP_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SCHILDERIA_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, AGATHOXYLON_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ALGAE);
-		//builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DOUBLE_HORSETAILS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLATHROPTERIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WATERLOGGED_HORSETAILS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLATHOPTERIS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NEOCALAMITES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OTOZAMITES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PHLEBOPTERIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, AGATHOXYLON_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CHINLE_SWAMP_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SCHILDERIA_TREES);
 	}
 
 	public static void withChinleWoodedMountainsPlants(BiomeGenerationSettings.Builder builder) {
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SCHILDERIA_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ALGAE);
-		//builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DOUBLE_HORSETAILS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLATHROPTERIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WATERLOGGED_HORSETAILS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLATHOPTERIS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MOSS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OTOZAMITES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PHLEBOPTERIS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MOSS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CHINLE_WOODED_MOUNTAINS_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PODOZAMITES_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SCHILDERIA_TREES);
 	}
 
 	public static void withChinleRiverPlants(BiomeGenerationSettings.Builder builder) {
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NEOCALAMITES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ALGAE);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLATHOPTERIS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PHLEBOPTERIS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OTOZAMITES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HORSETAILS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZAMITES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLATHROPTERIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WATERLOGGED_HORSETAILS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NEOCALAMITES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OTOZAMITES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PHLEBOPTERIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZAMITES);
 	}
 
 	public static void withIschigualastoVegetation(BiomeGenerationSettings.Builder builder) {
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MICHELILLOA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NEOCALAMITES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ALGAE);
-		//builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DOUBLE_HORSETAILS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DICROIDIUM);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WATERLOGGED_HORSETAILS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, JOHNSTONIA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DICROIDIUM);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MICHELILLOA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NEOCALAMITES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SCYTOPHYLLUM);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ISCHIGUALASTO_TREES);
 	}
 
 	public static void withSparseIschigualastoVegetation(BiomeGenerationSettings.Builder builder) {
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MICHELILLOA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NEOCALAMITES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ALGAE);
-		//builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DOUBLE_HORSETAILS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DICROIDIUM);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WATERLOGGED_HORSETAILS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, JOHNSTONIA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DICROIDIUM);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MICHELILLOA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NEOCALAMITES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SCYTOPHYLLUM);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_ISCHIGUALASTO_TREES);
 	}
 
 	public static void withMorrisonSavannaVegetation(BiomeGenerationSettings.Builder builder) {
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PTILOPHYLLUM);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DEAD_OSMUNDACAULIS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZAMITES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CONIOPTERIS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OSMUNDACAULIS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_OSMUNDACAULIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CONIOPTERIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OSMUNDACAULIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DEAD_OSMUNDACAULIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_OSMUNDACAULIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PTILOPHYLLUM);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MORRISON_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_PODOZAMITES_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_PODOZAMITES_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZAMITES);
 	}
 
 	public static void withMorrisonHillsVegetation(BiomeGenerationSettings.Builder builder) {
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CONIOPTERIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OSMUNDACAULIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DEAD_OSMUNDACAULIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_OSMUNDACAULIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PTILOPHYLLUM);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MORRISON_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_PODOZAMITES_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZAMITES);
 	}
 
 	public static void withKayentaDryForestVegetation(BiomeGenerationSettings.Builder builder) {
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DRY_FOREST_VEGETATION);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DEAD_OSMUNDACAULIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ALGAE);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZAMITES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLATHROPTERIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OTOZAMITES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLATHOPTERIS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_OTOZAMITES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LAUROZAMITES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DEAD_OSMUNDACAULIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OTOZAMITES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_OTOZAMITES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, KAYENTA_DRY_FOREST_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZAMITES);
 		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, RED_SANDSTONE_ROCK);
 	}
 
 	public static void withKayentaButtesVegetation(BiomeGenerationSettings.Builder builder) {
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_SMALL_ARAUCARIAS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DEAD_OSMUNDACAULIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ALGAE);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZAMITES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLATHROPTERIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OTOZAMITES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLATHOPTERIS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_OTOZAMITES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LAUROZAMITES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DEAD_OSMUNDACAULIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OTOZAMITES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_OTOZAMITES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_SMALL_ARAUCARIA_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZAMITES);
 		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, RED_SANDSTONE_ROCK);
 	}
 
@@ -857,11 +867,11 @@ public class PFPlacedFeatures {
 	}
 
 	public static void withDjadochtaPlants(BiomeGenerationSettings.Builder builder) {
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, COBBANIA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TROCHODENDROIDES_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ARROYO_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, D_QUEREUXIA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ARROYO_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TROCHODENDROIDES_TREES);
 	}
 
 	public static void withDjadochtaRocks(BiomeGenerationSettings.Builder builder) {
@@ -870,231 +880,225 @@ public class PFPlacedFeatures {
 	}
 
 	public static void withDjadochtaAlluvialPlainsPlants(BiomeGenerationSettings.Builder builder) {
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_YELLOW_GINKGO_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_SMALL_YELLOW_GINKGO_TREES);
 	}
 
 	public static void withDjadochtaFallenLogs(BiomeGenerationSettings.Builder builder) {
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_METASEQUOIA_LOG);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_GINKGO_LOG);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_METASEQUOIA_LOG);
 	}
 
 
 	public static void withHellCreekSwampPlants(BiomeGenerationSettings.Builder builder) {
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ALGAE);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, AZOLLA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLUBMOSS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, COBBANIA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MARCHANTIA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OSMUNDA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_OSMUNDA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MOSS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, COBBANIA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, AZOLLA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TROCHODENDROIDES_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_DRYOPHYLLUM_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_GINKGO_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_METASEQUOIA_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TAXODIUM_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NELUMBO);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OSMUNDA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, QUEREUXIA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_OSMUNDA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TAXODIUM_KNEES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ALGAE);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZINGIBEROPSIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_DRYOPHYLLUM_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_SMALL_METASEQUOIA_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SMALL_PLATANITES_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TAXODIUM_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TROCHODENDROIDES_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CRASSOSTREA_OYSTERS);
-		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, MOSSY_ROCK);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_TAXODIUM_LOG);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_DRYOPHYLLUM_LOG);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_METASEQUOIA_LOG);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_PLATANITES_LOG);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_GINKGO_LOG);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NELUMBO);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZINGIBEROPSIS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, QUEREUXIA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SMALL_PLATANITES_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_TAXODIUM_LOG);
+		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, MOSSY_ROCK);
 	}
 
 	public static void withHellCreekLiriodendritesHillsPlants(BiomeGenerationSettings.Builder builder) {
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HUMULUS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, AZOLLA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BISONIA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLUBMOSS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HUMULUS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MARMARTHIA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MOSS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OSMUNDA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_OSMUNDA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MOSS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MARMARTHIA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, AZOLLA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_DRYOPHYLLUM_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_GINKGO_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_METASEQUOIA_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZINGIBEROPSIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_DRYOPHYLLUM_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_SMALL_GINKGO_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, COMMON_LIRIODENDRITES_TREES);
-		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, MOSSY_ROCK);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_SMALL_METASEQUOIA_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PLATANITES_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_DRYOPHYLLUM_LOG);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_GINKGO_LOG);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_METASEQUOIA_LOG);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_PLATANITES_LOG);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_GINKGO_LOG);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BISONIA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZINGIBEROPSIS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PLATANITES_TREES);
+		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, MOSSY_ROCK);
 		//Nilssonia
 	}
 
 	public static void withHellCreekClearingPlants(BiomeGenerationSettings.Builder builder) {
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLEARING_HUMULUS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLEARING_CLUBMOSS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLEARING_RARE_SMALL_ARAUCARIA_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLEARING_VERY_RARE_LOWERED_HORSETAILS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLEARING_HUMULUS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLEARING_VERY_COMMON_OSMUNDA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLEARING_VERY_COMMON_TALL_OSMUNDA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLEARING_VERY_RARE_LOWERED_HORSETAILS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLEARING_SABALITES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLEARING_SPARSE_SMALL_ARAUCARIA_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLEARING_VERY_RARE_SMALL_GINKGO_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLEARING_RARE_SMALL_METASEQUOIA_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLEARING_RARE_PLATANITES_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLEARING_SABALITES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLEARING_FALLEN_METASEQUOIA_LOG);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLEARING_FALLEN_PLATANITES_LOG);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLEARING_FALLEN_GINKGO_LOG);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLEARING_RARE_PLATANITES_TREES);
 	}
 
 	public static void withHellCreekRedwoodsPlants(BiomeGenerationSettings.Builder builder) {
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HUMULUS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_ARAUCARIA_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, AZOLLA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BISONIA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HUMULUS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MARCHANTIA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MARMARTHIA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MOSS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, COMMON_OSMUNDA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, COMMON_TALL_OSMUNDA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MOSS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MARMARTHIA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, AZOLLA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TROCHODENDROIDES_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, QUEREUXIA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZINGIBEROPSIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LARGE_ARAUCARIA_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_ARAUCARIA_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, COMMON_DRYOPHYLLUM_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_SMALL_GINKGO_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VERY_RARE_LARGE_GINKGO_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_LIRIODENDRITES_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, COMMON_SMALL_METASEQUOIA_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LARGE_METASEQUOIA_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LARGE_ARAUCARIA_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_GINKGO_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VERY_RARE_LARGE_GINKGO_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PLATANITES_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_TAXODIUM_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_LIRIODENDRITES_TREES);
-		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, MOSSY_ROCK);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_TAXODIUM_LOG);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TROCHODENDROIDES_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_DRYOPHYLLUM_LOG);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_GINKGO_LOG);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_METASEQUOIA_LOG);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_PLATANITES_LOG);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_GINKGO_LOG);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BISONIA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZINGIBEROPSIS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, QUEREUXIA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PLATANITES_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_TAXODIUM_LOG);
+		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, MOSSY_ROCK);
 		//Nilssonia(?)
 	}
 
 	public static void withHellCreekRiverPlants(BiomeGenerationSettings.Builder builder) {
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ALGAE);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MARCHANTIA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MARMARTHIA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TROCHODENDROIDES_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, COMMON_DRYOPHYLLUM_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SMALL_METASEQUOIA_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_GINKGO_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ALGAE);
-		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, MOSSY_ROCK);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, QUEREUXIA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SABALITES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, COMMON_DRYOPHYLLUM_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_SMALL_GINKGO_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SMALL_METASEQUOIA_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PLATANITES_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SABALITES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TROCHODENDROIDES_TREES);
+		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, MOSSY_ROCK);
 	}
 
 	public static void withHellCreekHardwoodForestPlants(BiomeGenerationSettings.Builder builder) {
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HUMULUS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BISONIA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HUMULUS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MARCHANTIA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MOSS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MARMARTHIA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VERY_COMMON_DRYOPHYLLUM_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SMALL_GINKGO_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_LARGE_GINKGO_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_METASEQUOIA_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MOSS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NELUMBO);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, QUEREUXIA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZINGIBEROPSIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SMALL_ARAUCARIA_TREES);
-		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, MOSSY_ROCK);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VERY_COMMON_DRYOPHYLLUM_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_LARGE_GINKGO_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SMALL_GINKGO_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_SMALL_METASEQUOIA_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PLATANITES_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_DRYOPHYLLUM_LOG);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_GINKGO_LOG);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_METASEQUOIA_LOG);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_PLATANITES_LOG);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FALLEN_GINKGO_LOG);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BISONIA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NELUMBO);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZINGIBEROPSIS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, QUEREUXIA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PLATANITES_TREES);
+		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, MOSSY_ROCK);
 		//Nilssonia
 	}
 
 	public static void withYixianForestPlants(BiomeGenerationSettings.Builder builder) {
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_ARAUCARIA_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CONIOPTERIS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SMALL_MIXED_GINKGO_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_MIXED_LARGE_GINKGO_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TAXUS_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CZEKANOWSKIA_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SCHIZOLEPIDOPSIS_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, EPHEDRA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LEEFRUCTUS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RUFFORDIA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ARCHAEFRUCTUS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_ARCHAEFRUCTUS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PODOZAMITES_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CONIOPTERIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, EPHEDRA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LEEFRUCTUS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NOTHODICHOCARPUM);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RUFFORDIA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_ARAUCARIA_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CZEKANOWSKIA_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_MIXED_LARGE_GINKGO_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SMALL_MIXED_GINKGO_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PODOZAMITES_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SCHIZOLEPIDOPSIS_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TAXUS_TREES);
 	}
 
 	public static void withYixianSnowyForestPlants(BiomeGenerationSettings.Builder builder) {
-		//		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_ARAUCARIA_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CONIOPTERIS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SMALL_YELLOW_GINKGO_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_YELLOW_LARGE_GINKGO_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TAXUS_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CZEKANOWSKIA_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SCHIZOLEPIDOPSIS_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, EPHEDRA);
-		//		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LEEFRUCTUS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RUFFORDIA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ARCHAEFRUCTUS);
-		//		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_ARCHAEFRUCTUS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PODOZAMITES_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CONIOPTERIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, EPHEDRA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NOTHODICHOCARPUM);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RUFFORDIA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_ARAUCARIA_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CZEKANOWSKIA_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_YELLOW_LARGE_GINKGO_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SMALL_YELLOW_GINKGO_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PODOZAMITES_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SCHIZOLEPIDOPSIS_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TAXUS_TREES);
 	}
 
 	public static void withYixianLakesPlants(BiomeGenerationSettings.Builder builder) {
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_ARAUCARIA_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CONIOPTERIS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SMALL_MIXED_GINKGO_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_MIXED_LARGE_GINKGO_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, EPHEDRA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LEEFRUCTUS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RUFFORDIA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ARCHAEFRUCTUS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_CZEKANOWSKIA_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_TAXUS_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SCHIZOLEPIDOPSIS_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_ARCHAEFRUCTUS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_PODOZAMITES_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CALLIANTHUS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CONIOPTERIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, EPHEDRA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LOWERED_HORSETAILS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LEEFRUCTUS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NOTHODICHOCARPUM);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MiscOverworldPlacements.FREEZE_TOP_LAYER);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RUFFORDIA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_ARAUCARIA_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_CZEKANOWSKIA_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_MIXED_LARGE_GINKGO_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SMALL_MIXED_GINKGO_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_PODOZAMITES_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SCHIZOLEPIDOPSIS_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_TAXUS_TREES);
 	}
 
 	public static void withYixianRegrowthPlants(BiomeGenerationSettings.Builder builder) {
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ARCHAEFRUCTUS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CLADOPHLEBIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, EPHEDRA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RUFFORDIA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ARCHAEFRUCTUS);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_CZEKANOWSKIA_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_TAXUS_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SCHIZOLEPIDOPSIS_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DEAD_CZEKANOWSKIA_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DEAD_TAXUS_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DEAD_SCHIZOLEPIDOPSIS_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ASH);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_PODOZAMITES_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_CZEKANOWSKIA_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DEAD_PODOZAMITES_TREES);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_PODOZAMITES_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DEAD_SCHIZOLEPIDOPSIS_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SCHIZOLEPIDOPSIS_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DEAD_TAXUS_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_TAXUS_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ASH);
 	}
 
 	private static List<PlacementModifier> orePlacement(PlacementModifier p_195347_, PlacementModifier p_195348_) {

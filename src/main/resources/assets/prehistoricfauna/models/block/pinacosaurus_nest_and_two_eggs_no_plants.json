@@ -1,8 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/nest_two_medium_round_eggs_no_plants",
-	"textures": {
-		"material": "prehistoricfauna:block/nest",
-		"egg": "prehistoricfauna:block/pinacosaurus_egg"
-	}
-}

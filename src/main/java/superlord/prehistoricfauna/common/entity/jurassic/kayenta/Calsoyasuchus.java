@@ -1,6 +1,5 @@
 package superlord.prehistoricfauna.common.entity.jurassic.kayenta;
 
-import java.util.Random;
 import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
@@ -13,6 +12,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -54,7 +54,7 @@ import net.minecraft.world.level.pathfinder.PathFinder;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
@@ -218,7 +218,7 @@ public class Calsoyasuchus extends DinosaurEntity {
 		}
 	}
 
-	public static boolean canDinosaurSpawn(EntityType<? extends Animal> animal,  LevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random random) {
+	public static boolean canDinosaurSpawn(EntityType<? extends Animal> animal,  LevelAccessor worldIn, MobSpawnType reason, BlockPos pos, RandomSource random) {
 		return (worldIn.getBlockState(pos.below()).is(BlockTags.DIRT) || worldIn.getBlockState(pos).is(Blocks.WATER) || worldIn.getBlockState(pos.below()).is(Tags.Blocks.SAND)) && worldIn.getRawBrightness(pos, 0) > 8;
 	}
 
@@ -265,6 +265,7 @@ public class Calsoyasuchus extends DinosaurEntity {
 			super(Calsoyasuchus.this, Player.class, 20, true, true, (Predicate<LivingEntity>)null);
 		}
 
+		@SuppressWarnings("resource")
 		public boolean canUse() {
 			if (Calsoyasuchus.this.isBaby()) {
 				return false;
@@ -272,7 +273,7 @@ public class Calsoyasuchus extends DinosaurEntity {
 				if (super.canUse()) {
 					for (@SuppressWarnings("unused") Calsoyasuchus calsoyasuchus : Calsoyasuchus.this.level().getEntitiesOfClass(Calsoyasuchus.class, Calsoyasuchus.this.getBoundingBox().inflate(8.0D, 4.0D, 8.0D))) {	
 						if (Calsoyasuchus.this.isBaby()) {
-							return true;
+							return Calsoyasuchus.this.isBaby();
 						}
 					}
 				}
@@ -364,7 +365,7 @@ public class Calsoyasuchus extends DinosaurEntity {
 	}
 
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.CALSOYASUCHUS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+		return PFBlocks.CALSOYASUCHUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 	
 	static class CalsoyasuchusGoToWaterGoal extends MoveToBlockGoal {

@@ -103,6 +103,7 @@ public class AllosaurusSkeleton extends PrehistoricEntity {
 		compound.putBoolean("IsRetro", this.isClassical());
 		compound.putBoolean("IsPushable", this.isPushableState());
 		compound.putBoolean("IsLooking", this.isLooking());
+		compound.putFloat("Rotation", this.getYHeadRot());
 	}
 	
 	public void readAdditionalSaveData(CompoundTag compound) {
@@ -113,6 +114,8 @@ public class AllosaurusSkeleton extends PrehistoricEntity {
 		this.setClassical(compound.getBoolean("IsRetro"));
 		this.setPushable(compound.getBoolean("IsPushable"));
 		this.setLooking(compound.getBoolean("IsLooking"));
+		this.setYBodyRot(compound.getFloat("Rotation"));
+		this.setYHeadRot(compound.getFloat("Rotation"));
 	}
 	
 	public AllosaurusSkeleton(EntityType<? extends AllosaurusSkeleton> type, Level worldIn) {

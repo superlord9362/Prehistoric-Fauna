@@ -46,7 +46,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.AgedHerdDinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.AgedFollowHerdLeaderGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
@@ -86,8 +86,13 @@ public class Dongbeititan  extends AgedHerdDinosaurEntity {
 		return this.entityData.get(IS_JUVENILE);
 	}
 
-	private void setJuvenile(boolean isJuvenile) {
+	public void setJuvenile(boolean isJuvenile) {
 		this.entityData.set(IS_JUVENILE, isJuvenile);
+	}
+	
+	@Override
+	public double moveToRange() {
+		return 15;
 	}
 
 	@Override
@@ -382,7 +387,7 @@ public class Dongbeititan  extends AgedHerdDinosaurEntity {
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
 		Dongbeititan entity = new Dongbeititan(PFEntities.DONGBEITITAN.get(), this.level());
 		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
-		entity.setAge(-72000);
+		entity.setAge(-48000);
 		return entity;
 	}
 
@@ -463,7 +468,7 @@ public class Dongbeititan  extends AgedHerdDinosaurEntity {
 	}
 
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.DONGBEITITAN_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+		return PFBlocks.DONGBEITITAN_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 
 }

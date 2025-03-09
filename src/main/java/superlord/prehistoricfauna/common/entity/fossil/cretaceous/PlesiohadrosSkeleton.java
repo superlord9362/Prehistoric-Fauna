@@ -125,6 +125,7 @@ public class PlesiohadrosSkeleton extends PrehistoricEntity {
 		compound.putBoolean("IsWalking", this.isWalking());
 		compound.putBoolean("IsPushable", this.isPushableState());
 		compound.putBoolean("IsLooking", this.isLooking());
+		compound.putFloat("Rotation", this.getYHeadRot());
 	}
 	
 	public void readAdditionalSaveData(CompoundTag compound) {
@@ -137,6 +138,8 @@ public class PlesiohadrosSkeleton extends PrehistoricEntity {
 		this.setWalking(compound.getBoolean("IsWalking"));
 		this.setPushable(compound.getBoolean("IsPushable"));
 		this.setLooking(compound.getBoolean("IsLooking"));
+		this.setYBodyRot(compound.getFloat("Rotation"));
+		this.setYHeadRot(compound.getFloat("Rotation"));
 	}
 	
 	public PlesiohadrosSkeleton(EntityType<? extends PlesiohadrosSkeleton> type, Level worldIn) {

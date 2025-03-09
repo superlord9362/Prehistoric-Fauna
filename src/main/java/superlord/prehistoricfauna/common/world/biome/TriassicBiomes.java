@@ -2,18 +2,20 @@ package superlord.prehistoricfauna.common.world.biome;
 
 import net.minecraft.core.HolderGetter;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
+import net.minecraft.sounds.Musics;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.AmbientMoodSettings;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.BiomeGenerationSettings;
+import net.minecraft.world.level.biome.BiomeSpecialEffects;
+import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFPlacedFeatures;
-import net.minecraft.world.level.biome.BiomeGenerationSettings;
-import net.minecraft.world.level.biome.BiomeSpecialEffects;
-import net.minecraft.world.level.biome.MobSpawnSettings;
+import superlord.prehistoricfauna.init.PFSounds;
 
 public class TriassicBiomes {
 	
@@ -29,7 +31,8 @@ public class TriassicBiomes {
 						.skyColor(skyColor)
 						.foliageColorOverride(foliageColor)
 						.grassColorOverride(foliageColor)
-						.ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+						.ambientMoodSound(new AmbientMoodSettings(PFSounds.CAVE_1.getHolder().get(), 6000, 8, 2.0D))
+						.backgroundMusic(Musics.createGameMusic(PFSounds.AMBIENCE_1.getHolder().get()))
 						.build())
 				.mobSpawnSettings(spawnBuilder.build())
 				.generationSettings(biomeBuilder.build())
@@ -42,7 +45,6 @@ public class TriassicBiomes {
 		BiomeDefaultFeatures.addDefaultCrystalFormations(biomeFeatures);
 		BiomeDefaultFeatures.addDefaultUndergroundVariety(biomeFeatures);
 		BiomeDefaultFeatures.addDefaultOres(biomeFeatures, true);
-		biomeFeatures.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PFPlacedFeatures.DEAD_OSMUNDACAULIS);
 		PFPlacedFeatures.withChinleFlatsPlants(biomeFeatures);
 		biomeFeatures.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, PFPlacedFeatures.SILT_DISK);
 		biomeFeatures.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, PFPlacedFeatures.PACKED_MUD_DISK);
@@ -69,8 +71,7 @@ public class TriassicBiomes {
 		BiomeDefaultFeatures.addDefaultCrystalFormations(biomeFeatures);
 		BiomeDefaultFeatures.addDefaultUndergroundVariety(biomeFeatures);
 		BiomeDefaultFeatures.addDefaultOres(biomeFeatures, true);
-		biomeFeatures.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PFPlacedFeatures.DEAD_OSMUNDACAULIS);
-		PFPlacedFeatures.withChinleFlatsPlants(biomeFeatures);
+		PFPlacedFeatures.withChinleRiverPlants(biomeFeatures);
 		if (PrehistoricFaunaConfig.caveSentinelChinleRiverSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.CAVE_SENTINEL.get(), PrehistoricFaunaConfig.caveSentinelChinleRiverSpawnWeight, 1, 1));
         if (PrehistoricFaunaConfig.landSentinelChinleRiverSpawnWeight != 0)spawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(PFEntities.LAND_SENTINEL.get(), PrehistoricFaunaConfig.landSentinelChinleRiverSpawnWeight, 1, 1));
 		if (PrehistoricFaunaConfig.desmatosuchusChinleRiverSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.DESMATOSUCHUS.get(), PrehistoricFaunaConfig.desmatosuchusChinleRiverSpawnWeight, 2, 4));

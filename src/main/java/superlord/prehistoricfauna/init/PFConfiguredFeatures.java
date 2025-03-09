@@ -296,6 +296,8 @@ public class PFConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DISK_SILT = registerConfiguredFeature("disk_silt");
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> CALLIANTHUS = registerConfiguredFeature("configured_callianthus");
+	
+	public static final ResourceKey<ConfiguredFeature<?, ?>> POISON_GAS = registerConfiguredFeature("configured_poison_gas");
 
 	public static final RuleTest HENOSTONE = new TagMatchTest(PFTags.HENOSTONE);
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_HENOSTONE = registerConfiguredFeature("henostone_ore");
@@ -558,6 +560,9 @@ public class PFConfiguredFeatures {
 		FeatureUtils.register(bootstapContext, RARE_EPHEDRA, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.EPHEDRA.get()), 4));
 		FeatureUtils.register(bootstapContext, ARCHAEFRUCTUS, PFFeatures.ARCHAEFRUCTUS.get(), new JohnstoniaConfig(15));
 		FeatureUtils.register(bootstapContext, DOUBLE_ARCHAEFRUCTUS, PFFeatures.TALL_ARCHAEFRUCTUS.get(), new JohnstoniaConfig(15));
+		
+
+		FeatureUtils.register(bootstapContext, POISON_GAS, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.POISON_GAS.get()), 4));
 
 		FeatureUtils.register(bootstapContext, CRASSOSTREA_OYSTERS, PFFeatures.CRASSOSTREA_OYSTERS.get(), new CrassostreaOystersConfig(24));
 		FeatureUtils.register(bootstapContext, ALGAE, PFFeatures.ALGAE.get(), new CrassostreaOystersConfig(24));

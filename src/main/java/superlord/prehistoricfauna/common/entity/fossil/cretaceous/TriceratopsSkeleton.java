@@ -125,6 +125,7 @@ public class TriceratopsSkeleton extends PrehistoricEntity {
 		compound.putBoolean("IsActionLeft", this.isActionLeft());
 		compound.putBoolean("IsPushable", this.isPushableState());
 		compound.putBoolean("IsLooking", this.isLooking());
+		compound.putFloat("Rotation", this.getYHeadRot());
 	}
 
 	public void readAdditionalSaveData(CompoundTag compound) {
@@ -137,6 +138,8 @@ public class TriceratopsSkeleton extends PrehistoricEntity {
 		this.setActionRight(compound.getBoolean("IsActionRight"));
 		this.setPushable(compound.getBoolean("IsPushable"));
 		this.setLooking(compound.getBoolean("IsLooking"));
+		this.setYBodyRot(compound.getFloat("Rotation"));
+		this.setYHeadRot(compound.getFloat("Rotation"));
 	}
 
 	public TriceratopsSkeleton(EntityType<? extends TriceratopsSkeleton> type, Level worldIn) {

@@ -1,535 +1,625 @@
 {
-  "parent": "prehistoricfauna:prehistoricfauna/general/digger_man",
-  "display": {
-    "icon": {
-      "item": "prehistoricfauna:fossilized_bones"
-    },
-    "title": {
-      "translate": "advancements.prehistoricfauna.master_paleontologist.title"
-    },
-    "description": {
-      "translate": "advancements.prehistoricfauna.master_paleontologist.description"
-    },
-    "frame": "goal",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
-  },
+	"parent": "prehistoricfauna:prehistoricfauna/general/digger_man",
+	"display": {
+		"icon": {
+			"item": "prehistoricfauna:fossilized_bones"
+		},
+		"title": {
+			"translate": "advancements.prehistoricfauna.master_paleontologist.title"
+		},
+		"description": {
+			"translate": "advancements.prehistoricfauna.master_paleontologist.description"
+		},
+		"frame": "goal",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
 	"rewards": {
 		"experience": 50
 	},
-  "criteria": {
-    "tyrannosaurus_skull": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-				"prehistoricfauna:tyrannosaurus_skull"
-          	]
-          }
-        ]
-      }
-    },
-	"triceratops_skull": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-				"prehistoricfauna:triceratops_skull"
-          	]
-          }
-        ]
-      }
-    },
-	"ankylosaurus_skull": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-				"prehistoricfauna:ankylosaurus_skull"
-          	]
-          }
-        ]
-      }
-    },
-	"stegosaurus_skull": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-				"prehistoricfauna:stegosaurus_skull"
-          	]
-          }
-        ]
-      }
-    },
-	"ceratosaurus_skull": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-				"prehistoricfauna:ceratosaurus_skull"
-          	]
-          }
-        ]
-      }
-    },
-	"allosaurus_skull": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-				"prehistoricfauna:allosaurus_skull"
-          	]
-          }
-        ]
-      }
-    },
-	"herrerasaurus_skull": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-				"prehistoricfauna:herrerasaurus_skull"
-          	]
-          }
-        ]
-      }
-    },
-	"saurosuchus_skull": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-				"prehistoricfauna:saurosuchus_skull"
-          	]
-          }
-        ]
-      }
-    },
-	"ischigualastia_skull": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-				"prehistoricfauna:ischigualastia_skull"
-          	]
-          }
-        ]
-      }
-    },
-	"velociraptor_skull": {
-		"trigger": "minecraft:inventory_changed",
-		"conditions": {
-			"items": [
-				{
-					"items": [
-						"prehistoricfauna:velociraptor_skull"
-					]
-				}
-			]
+  	"criteria": {
+    	"tyrannosaurus_skull": {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions": {
+        		"items": [
+					{
+            			"items": [
+							"prehistoricfauna:tyrannosaurus_skull"
+          				]
+          			}
+        		]
+      		}
+    	},
+		"triceratops_skull": {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions": {
+        		"items": [
+          			{
+            			"items": [
+							"prehistoricfauna:triceratops_skull"
+          				]
+          			}
+        		]
+      		}
+    	},
+		"ankylosaurus_skull": {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions": {
+        		"items": [
+          			{
+            			"items": [
+							"prehistoricfauna:ankylosaurus_skull"
+          				]
+          			}
+        		]
+      		}
+    	},
+		"stegosaurus_skull": {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions": {
+        		"items": [
+          			{
+            			"items": [
+							"prehistoricfauna:stegosaurus_skull"
+          				]
+          			}
+        		]
+      		}
+    	},
+		"ceratosaurus_skull": {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions": {
+        		"items": [
+          			{
+            			"items": [
+							"prehistoricfauna:ceratosaurus_skull"
+          				]
+          			}
+        		]
+      		}
+    	},
+		"allosaurus_skull": {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions": {
+        		"items": [
+          			{
+            			"items": [
+							"prehistoricfauna:allosaurus_skull"
+          				]
+          			}
+        		]
+      		}
+    	},
+		"herrerasaurus_skull": {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions": {
+        		"items": [
+          			{
+            			"items": [
+							"prehistoricfauna:herrerasaurus_skull"
+          				]
+          			}
+        		]
+      		}
+    	},
+		"saurosuchus_skull": {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions": {
+        		"items": [
+          			{
+            			"items": [
+							"prehistoricfauna:saurosuchus_skull"
+          				]
+          			}
+        		]
+      		}
+    	},
+		"ischigualastia_skull": {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions": {
+        		"items": [
+          			{
+            			"items": [
+							"prehistoricfauna:ischigualastia_skull"
+          				]
+          			}
+        		]
+      		}
+    	},
+		"velociraptor_skull": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:velociraptor_skull"
+						]
+					}
+				]
+			}
+		},
+		"protoceratops_skull": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:protoceratops_skull"
+						]
+					}
+				]
+			}
+		},
+		"plesiohadros_skull": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:plesiohadros_skull"
+						]
+					}
+				]
+			}
+		},
+		"dilophosaurus_skull": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:dilophosaurus_skull"
+						]
+					}
+				]
+			}
+		},
+		"scelidosaurus_skull": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:scelidosaurus_skull"
+						]
+					}
+				]
+			}
+		},
+		"coelophysis_skull": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:coelophysis_skull"
+						]
+					}
+				]
+			}
+		},
+		"desmatosuchus_skull": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:desmatosuchus_skull"
+						]
+					}
+				]
+			}
+		},
+		"postosuchus_skull": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:postosuchus_skull"
+						]
+					}
+				]
+			}
+		},
+		"tyrannosaurus_skeleton": {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions": {
+        		"items": [
+          			{
+            			"items": [
+							"prehistoricfauna:tyrannosaurus_skeleton"
+          				]
+          			}
+        		]
+      		}
+    	},
+		"triceratops_skeleton": {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions": {
+        		"items": [
+          			{
+            			"items": [
+							"prehistoricfauna:triceratops_skeleton"
+          				]
+          			}
+        		]
+      		}
+    	},
+		"ankylosaurus_skeleton": {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions": {
+        		"items": [
+          			{
+            			"items": [
+							"prehistoricfauna:ankylosaurus_skeleton"
+          				]
+          			}
+        		]
+      		}
+    	},
+		"stegosaurus_skeleton": {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions": {
+        		"items": [
+          			{
+            			"items": [
+							"prehistoricfauna:stegosaurus_skeleton"
+          				]
+          			}
+        		]
+      		}
+    	},
+		"allosaurus_skeleton": {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions": {
+        		"items": [
+          			{
+            			"items": [
+							"prehistoricfauna:allosaurus_skeleton"
+          				]
+          			}
+        		]
+      		}
+    	},
+		"ceratosaurus_skeleton": {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions": {
+        		"items": [
+          			{
+            			"items": [
+							"prehistoricfauna:ceratosaurus_skeleton"
+          				]
+          			}
+        		]
+      		}
+		},
+		"herrerasaurus_skeleton": {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions": {
+        		"items": [
+          			{
+            			"items": [
+							"prehistoricfauna:herrerasaurus_skeleton"
+          				]
+          			}
+        		]
+      		}
+    	},
+		"saurosuchus_skeleton": {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions": {
+				"items": [
+          			{
+            			"items": [
+							"prehistoricfauna:saurosuchus_skeleton"
+          				]
+          			}
+        		]
+      		}
+    	},
+		"ischigualastia_skeleton": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+          			{
+						"items": [
+							"prehistoricfauna:ischigualastia_skeleton"
+          				]
+          			}
+        		]
+      		}
+    	},
+		"velociraptor_skeleton": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:velociraptor_skeleton"
+						]
+					}
+				]
+			}
+		},
+		"protoceratops_skeleton": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:protoceratops_skeleton"
+						]
+					}
+				]
+			}
+		},
+  		"plesiohadros_skeleton": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:plesiohadros_skeleton"
+						]
+					}
+				]
+			}
+		},
+		"coelophysis_skeleton": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:coelophysis_skeleton"
+						]
+					}
+				]
+			}
+		},
+		"psittacosaurus_skull": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:psittacosaurus_skull"
+						]
+					}
+				]
+			}
+		},
+		"yutyrannus_skull": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:yutyrannus_skull"
+						]
+					}
+				]
+			}
+		},
+		"goyocephale_skull": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:goyocephale_skull"
+						]
+					}
+				]
+			}
+		},
+		"psittacosaurus_skeleton": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:psittacosaurus_skeleton"
+						]
+					}
+				]
+			}
+		},
+		"yutyrannus_skeleton": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:yutyrannus_skeleton"
+						]
+					}
+				]
+			}
+		},
+		"goyocephale_skeleton": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:goyocephale_skeleton"
+						]
+					}
+				]
+			}
+		},
+		"dongbeititan_skull": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:dongbeititan_skull"
+						]
+					}
+				]
+			}
+		},
+		"dongbeititan_skeleton": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:dongbeititan_skeleton"
+						]
+					}
+				]
+			}
+		},
+		"anzu_skull": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:anzu_skull"
+						]
+					}
+				]
+			}
+		},
+		"anzu_skeleton": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:anzu_skeleton"
+						]
+					}
+				]
+			}
 		}
 	},
-	"protoceratops_skull": {
-		"trigger": "minecraft:inventory_changed",
-		"conditions": {
-			"items": [
-				{
-					"items": [
-						"prehistoricfauna:protoceratops_skull"
-					]
-				}
-			]
-		}
-	},
-	"plesiohadros_skull": {
-		"trigger": "minecraft:inventory_changed",
-		"conditions": {
-			"items": [
-				{
-					"items": [
-						"prehistoricfauna:plesiohadros_skull"
-					]
-				}
-			]
-		}
-	},
-	"dilophosaurus_skull": {
-		"trigger": "minecraft:inventory_changed",
-		"conditions": {
-			"items": [
-				{
-					"items": [
-						"prehistoricfauna:dilophosaurus_skull"
-					]
-				}
-			]
-		}
-	},
-	"scelidosaurus_skull": {
-		"trigger": "minecraft:inventory_changed",
-		"conditions": {
-			"items": [
-				{
-					"items": [
-						"prehistoricfauna:scelidosaurus_skull"
-					]
-				}
-			]
-		}
-	},
-	"coelophysis_skull": {
-		"trigger": "minecraft:inventory_changed",
-		"conditions": {
-			"items": [
-				{
-					"items": [
-						"prehistoricfauna:coelophysis_skull"
-					]
-				}
-			]
-		}
-	},
-	"desmatosuchus_skull": {
-		"trigger": "minecraft:inventory_changed",
-		"conditions": {
-			"items": [
-				{
-					"items": [
-						"prehistoricfauna:desmatosuchus_skull"
-					]
-				}
-			]
-		}
-	},
-	"postosuchus_skull": {
-		"trigger": "minecraft:inventory_changed",
-		"conditions": {
-			"items": [
-				{
-					"items": [
-						"prehistoricfauna:postosuchus_skull"
-					]
-				}
-			]
-		}
-	},
-	"tyrannosaurus_skeleton": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-				"prehistoricfauna:tyrannosaurus_skeleton"
-          	]
-          }
-        ]
-      }
-    },
-	"triceratops_skeleton": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-				"prehistoricfauna:triceratops_skeleton"
-          	]
-          }
-        ]
-      }
-    },
-	"ankylosaurus_skeleton": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-				"prehistoricfauna:ankylosaurus_skeleton"
-          	]
-          }
-        ]
-      }
-    },
-	"stegosaurus_skeleton": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-				"prehistoricfauna:stegosaurus_skeleton"
-          	]
-          }
-        ]
-      }
-    },
-	"allosaurus_skeleton": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-				"prehistoricfauna:allosaurus_skeleton"
-          	]
-          }
-        ]
-      }
-    },
-	"ceratosaurus_skeleton": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-				"prehistoricfauna:ceratosaurus_skeleton"
-          	]
-          }
-        ]
-      }
-    },
-	"herrerasaurus_skeleton": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-				"prehistoricfauna:herrerasaurus_skeleton"
-          	]
-          }
-        ]
-      }
-    },
-	"saurosuchus_skeleton": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-				"prehistoricfauna:saurosuchus_skeleton"
-          	]
-          }
-        ]
-      }
-    },
-	"ischigualastia_skeleton": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-				"prehistoricfauna:ischigualastia_skeleton"
-          	]
-          }
-        ]
-      }
-    },
-	"velociraptor_skeleton": {
-		"trigger": "minecraft:inventory_changed",
-		"conditions": {
-			"items": [
-				{
-					"items": [
-						"prehistoricfauna:velociraptor_skeleton"
-					]
-				}
-			]
-		}
-	},
-	"protoceratops_skeleton": {
-		"trigger": "minecraft:inventory_changed",
-		"conditions": {
-			"items": [
-				{
-					"items": [
-						"prehistoricfauna:protoceratops_skeleton"
-					]
-				}
-			]
-		}
-	},
-  "plesiohadros_skeleton": {
-		"trigger": "minecraft:inventory_changed",
-		"conditions": {
-			"items": [
-				{
-					"items": [
-						"prehistoricfauna:plesiohadros_skeleton"
-					]
-				}
-			]
-		}
-	},
-	"coelophysis_skeleton": {
-		"trigger": "minecraft:inventory_changed",
-		"conditions": {
-			"items": [
-				{
-					"items": [
-						"prehistoricfauna:coelophysis_skeleton"
-					]
-				}
-			]
-		}
-	},
-	"psittacosaurus_skull": {
-		"trigger": "minecraft:inventory_changed",
-		"conditions": {
-			"items": [
-				{
-					"items": [
-						"prehistoricfauna:psittacosaurus_skull"
-					]
-				}
-			]
-		}
-	},
-	"yutyrannus_skull": {
-		"trigger": "minecraft:inventory_changed",
-		"conditions": {
-			"items": [
-				{
-					"items": [
-						"prehistoricfauna:yutyrannus_skull"
-					]
-				}
-			]
-		}
-	},
-	"psittacosaurus_skeleton": {
-		"trigger": "minecraft:inventory_changed",
-		"conditions": {
-			"items": [
-				{
-					"items": [
-						"prehistoricfauna:psittacosaurus_skeleton"
-					]
-				}
-			]
-		}
-	},
-	"yutyrannus_skeleton": {
-		"trigger": "minecraft:inventory_changed",
-		"conditions": {
-			"items": [
-				{
-					"items": [
-						"prehistoricfauna:yutyrannus_skeleton"
-					]
-				}
-			]
-		}
-	}
-	},
-  "requirements": [
-    [
-      "tyrannosaurus_skull"
-    ],
-	[
-		"triceratops_skull"
-	],
-	[
-		"ankylosaurus_skull"
-	],
-	[
-		"ceratosaurus_skull"
-	],
-	[
-		"allosaurus_skull"
-	],
-	[
-		"stegosaurus_skull"
-	],
-	[
-		"herrerasaurus_skull"
-	],
-	[
-		"saurosuchus_skull"
-	],
-	[
-		"ischigualastia_skull"
-	],
-	[
-		"tyrannosaurus_skeleton"
-	],
-	[
-		"triceratops_skeleton"
-	],
-	[
-		"ankylosaurus_skeleton"
-	],
-	[
-		"ceratosaurus_skeleton"
-	],
-	[
-		"allosaurus_skeleton"
-	],
-	[
-		"stegosaurus_skeleton"
-	],
-	[
-		"herrerasaurus_skeleton"
-	],
-	[
-		"saurosuchus_skeleton"
-	],
-	[
-		"ischigualastia_skeleton"
-	],
-	[
-		"protoceratops_skeleton"
-	],
-	[
-		"velociraptor_skeleton"
-	],
-	[
-		"velociraptor_skull"
-	],
-	[
-		"protoceratops_skull"
-	],
-	[
-		"plesiohadros_skeleton"
-	],
-	[
-		"coelophysis_skeleton"
-	],
-	[
-		"plesiohadros_skull"
-	],
-	[
-		"dilophosaurus_skull"
-	],
-	[
-		"scelidosaurus_skull"
-	],
-	[
-		"coelophysis_skull"
-	],
-	[
-		"desmatosuchus_skull"
-	],
-	[
-		"postosuchus_skull"
-	],
-	[
-		"psittacosaurus_skull"
-	],
-	[
-		"psittacosaurus_skeleton"
-	],
-	[
-		"yutyrannus_skull"
-	],
-	[
-		"yutyrannus_skeleton"
-	]
+	"requirements": [
+		[
+			"tyrannosaurus_skull"
+    	],
+		[
+			"triceratops_skull"
+		],
+		[
+			"ankylosaurus_skull"
+		],
+		[
+			"ceratosaurus_skull"
+		],
+		[
+			"allosaurus_skull"
+		],
+		[
+			"stegosaurus_skull"
+		],
+		[
+			"herrerasaurus_skull"
+		],
+		[
+			"saurosuchus_skull"
+		],
+		[
+			"ischigualastia_skull"
+		],
+		[
+			"tyrannosaurus_skeleton"
+		],
+		[
+			"triceratops_skeleton"
+		],
+		[
+			"ankylosaurus_skeleton"
+		],
+		[
+			"ceratosaurus_skeleton"
+		],
+		[
+			"allosaurus_skeleton"
+		],
+		[
+			"stegosaurus_skeleton"
+		],
+		[
+			"herrerasaurus_skeleton"
+		],
+		[
+			"saurosuchus_skeleton"
+		],
+		[
+			"ischigualastia_skeleton"
+		],
+		[
+			"protoceratops_skeleton"
+		],
+		[
+			"velociraptor_skeleton"
+		],
+		[
+			"velociraptor_skull"
+		],
+		[
+			"protoceratops_skull"
+		],
+		[
+			"plesiohadros_skeleton"
+		],
+		[
+			"coelophysis_skeleton"
+		],
+		[
+			"plesiohadros_skull"
+		],
+		[
+			"dilophosaurus_skull"
+		],
+		[	
+			"scelidosaurus_skull"
+		],
+		[
+			"coelophysis_skull"
+		],
+		[
+			"desmatosuchus_skull"
+		],
+		[
+			"postosuchus_skull"
+		],
+		[
+			"psittacosaurus_skull"
+		],
+		[
+			"psittacosaurus_skeleton"
+		],
+		[
+			"yutyrannus_skull"
+		],
+		[
+			"yutyrannus_skeleton"
+		],
+		[
+			"goyocephale_skull"
+		],
+		[
+			"goyocephale_skeleton"
+		],
+		[
+			"dongbeititan_skull"
+		],
+		[
+			"dongbeititan_skeleton"
+		],
+		[
+			"anzu_skull"
+		],
+		[
+			"anzu_skeleton"
+		]
   ]
 }

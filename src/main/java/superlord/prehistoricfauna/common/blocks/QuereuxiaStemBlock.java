@@ -13,8 +13,8 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
@@ -23,7 +23,7 @@ import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFItems;
 
-public class QuereuxiaStemBlock extends Block {
+public class QuereuxiaStemBlock extends BushBlock {
 
 	public QuereuxiaStemBlock(Properties p_49795_) {
 		super(p_49795_);
@@ -39,7 +39,8 @@ public class QuereuxiaStemBlock extends Block {
 	}
 	
 	public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
-		return state.isFaceSturdy(worldIn, pos, Direction.UP) && state.getBlock() != Blocks.MAGMA_BLOCK || state.getBlock() == this;
+		BlockPos blockpos = pos.below();
+		return (worldIn.getBlockState(blockpos).is(Blocks.SAND) || worldIn.getBlockState(blockpos).is(Blocks.RED_SAND) || worldIn.getBlockState(blockpos).is(Blocks.GRAVEL) || worldIn.getBlockState(blockpos).is(Blocks.DIRT) || worldIn.getBlockState(blockpos).is(Blocks.COARSE_DIRT) || worldIn.getBlockState(blockpos).is(Blocks.ROOTED_DIRT) || worldIn.getBlockState(blockpos).is(Blocks.GRASS_BLOCK) || worldIn.getBlockState(blockpos).is(Blocks.MYCELIUM) || worldIn.getBlockState(blockpos).is(Blocks.PODZOL) || worldIn.getBlockState(blockpos).is(Blocks.CLAY) || worldIn.getBlockState(blockpos).is(Blocks.MUD) || worldIn.getBlockState(blockpos).is(Blocks.PACKED_MUD) || worldIn.getBlockState(blockpos).is(PFBlocks.SILT.get()) || worldIn.getBlockState(blockpos).is(PFBlocks.HARDENED_SILT.get()) || worldIn.getBlockState(blockpos).is(PFBlocks.LOAM.get()) || worldIn.getBlockState(blockpos).is(PFBlocks.PACKED_LOAM.get()) || worldIn.getBlockState(blockpos).is(PFBlocks.MOSSY_DIRT.get()) || worldIn.getBlockState(blockpos).is(this));
 	}
 	
 	@Nullable
@@ -48,7 +49,6 @@ public class QuereuxiaStemBlock extends Block {
 		return ifluidstate.is(FluidTags.WATER) && ifluidstate.getAmount() == 8 ? super.getStateForPlacement(context) : null;
 	}
 
-	@SuppressWarnings("deprecation")
 	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
 		BlockState blockstate = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 		if (!blockstate.isAir()) {

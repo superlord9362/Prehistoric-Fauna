@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.ClientEvents;
 import superlord.prehistoricfauna.client.model.cretaceous.yixian.DongbeititanBabyModel;
+import superlord.prehistoricfauna.client.model.cretaceous.yixian.DongbeititanJuvenileModel;
 import superlord.prehistoricfauna.client.model.cretaceous.yixian.DongbeititanModel;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Dongbeititan;
 
@@ -20,6 +21,13 @@ public class DongbeititanRenderer extends MobRenderer<Dongbeititan, EntityModel<
 	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/albino_sleeping.png");
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/melanistic_sleeping.png");
 
+	private static final ResourceLocation DONGBEITITAN_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/dongbeititan_juvenile.png");
+	private static final ResourceLocation ALBINO_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/albino_juvenile.png");
+	private static final ResourceLocation MELANISTIC_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/melanistic_juvenile.png");
+	private static final ResourceLocation DONGBEITITAN_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/dongbeititan_juvenile_sleeping.png");
+	private static final ResourceLocation ALBINO_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/albino_juvenile_sleeping.png");
+	private static final ResourceLocation MELANISTIC_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/melanistic_juvenile_sleeping.png");
+
 	private static final ResourceLocation DONGBEITITAN_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/dongbeititan_baby.png");
 	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/albino_baby.png");
 	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/melanistic_baby.png");
@@ -28,17 +36,21 @@ public class DongbeititanRenderer extends MobRenderer<Dongbeititan, EntityModel<
 	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/melanistic_baby_sleeping.png");
 
 	private static DongbeititanModel DONGBEITITAN_MODEL;
+	private static DongbeititanJuvenileModel JUVENILE_MODEL;
 	private static DongbeititanBabyModel BABY_MODEL;
 
 	public DongbeititanRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new DongbeititanModel(renderManagerIn.bakeLayer(ClientEvents.DONGBEITITAN)), 2.25F);
 		DONGBEITITAN_MODEL = new DongbeititanModel(renderManagerIn.bakeLayer(ClientEvents.DONGBEITITAN));
+		JUVENILE_MODEL = new DongbeititanJuvenileModel(renderManagerIn.bakeLayer(ClientEvents.DONGBEITITAN_JUVENILE));
 		BABY_MODEL = new DongbeititanBabyModel(renderManagerIn.bakeLayer(ClientEvents.DONGBEITITAN_BABY));
 	}
 
 	protected void scale(Dongbeititan dongbeititan, PoseStack matrixStackIn, float partialTickTime) {
 		if(dongbeititan.isBaby()) {
-			model = BABY_MODEL;
+			if (!dongbeititan.isJuvenile()) {
+				model = BABY_MODEL;
+			} else model = JUVENILE_MODEL;
 		} else model = DONGBEITITAN_MODEL;
 		super.scale(dongbeititan, matrixStackIn, partialTickTime);
 	}
@@ -46,18 +58,34 @@ public class DongbeititanRenderer extends MobRenderer<Dongbeititan, EntityModel<
 	@Override
 	public ResourceLocation getTextureLocation(Dongbeititan entity) {
 		if (entity.isBaby()) {
-			if (entity.isAlbino()) {
-				if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-					return ALBINO_BABY_SLEEPING;
-				} else return ALBINO_BABY;
-			} else if (entity.isMelanistic()) {
-				if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-					return MELANISTIC_BABY_SLEEPING;
-				} else return MELANISTIC_BABY;
+			if (!entity.isJuvenile()) {
+				if (entity.isAlbino()) {
+					if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+						return ALBINO_BABY_SLEEPING;
+					} else return ALBINO_BABY;
+				} else if (entity.isMelanistic()) {
+					if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+						return MELANISTIC_BABY_SLEEPING;
+					} else return MELANISTIC_BABY;
+				} else {
+					if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+						return DONGBEITITAN_BABY_SLEEPING;
+					} else return DONGBEITITAN_BABY;
+				}
 			} else {
-				if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
-					return DONGBEITITAN_BABY_SLEEPING;
-				} else return DONGBEITITAN_BABY;
+				if (entity.isAlbino()) {
+					if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+						return ALBINO_JUVENILE_SLEEPING;
+					} else return ALBINO_JUVENILE;
+				} else if (entity.isMelanistic()) {
+					if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+						return MELANISTIC_JUVENILE_SLEEPING;
+					} else return MELANISTIC_JUVENILE;
+				} else {
+					if (entity.isAsleep() || entity.tickCount % 50 >= 0 && entity.tickCount % 50 <= 5) {
+						return DONGBEITITAN_JUVENILE_SLEEPING;
+					} else return DONGBEITITAN_JUVENILE;
+				}
 			}
 		} else {
 			if (entity.isAlbino()) {

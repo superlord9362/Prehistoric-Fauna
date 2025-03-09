@@ -1,7 +1,7 @@
 Found In: Djadochta
 
-Drops: 0-2 Feathers, 1-3 Small
-Raw Theropod
+Drops: 0-2 Feathers, 1 Small Raw 
+Theropod
 
 Diet: Piscivore
 

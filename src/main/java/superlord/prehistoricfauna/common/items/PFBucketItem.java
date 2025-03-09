@@ -47,7 +47,6 @@ public class PFBucketItem extends MobBucketItem {
 	}
 
 	public void checkExtraContent(@Nullable Player player, Level world, ItemStack stack, BlockPos pos) {
-		System.out.println(stack.getTag());
 		if (world instanceof ServerLevel) {
 			this.spawn((ServerLevel) world, stack, pos);
 			world.gameEvent(player, GameEvent.ENTITY_PLACE, pos);

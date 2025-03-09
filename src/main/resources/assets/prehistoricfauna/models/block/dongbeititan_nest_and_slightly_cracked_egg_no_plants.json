@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/dongbeititan_nest_and_egg_no_plants",
-	"textures": {
-		"egg": "prehistoricfauna:block/dongbeititan_egg_slightly_cracked"
-	}
-}

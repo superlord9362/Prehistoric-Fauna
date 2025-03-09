@@ -8,8 +8,14 @@
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2.0,
-      "sound": "minecraft:ambient.cave",
+      "sound": "prehistoricfauna:cave_1",
       "tick_delay": 6000
+    },
+    "music": {
+      "max_delay": 24000,
+      "min_delay": 12000,
+      "replace_current_music": false,
+      "sound": "prehistoricfauna:ambience_1"
     },
     "sky_color": 8306591,
     "water_color": 8150344,
@@ -56,25 +62,25 @@
     [],
     [
       "minecraft:glow_lichen",
-      "prehistoricfauna:placed_humulus",
-      "prehistoricfauna:placed_lowered_horsetails",
-      "prehistoricfauna:placed_marchantia",
-      "prehistoricfauna:placed_moss",
-      "prehistoricfauna:placed_marmarthia",
-      "prehistoricfauna:placed_very_common_dryophyllum_trees",
-      "prehistoricfauna:placed_small_ginkgo_trees",
-      "prehistoricfauna:placed_rare_large_ginkgo_trees",
-      "prehistoricfauna:placed_rare_small_metasequoia_trees",
-      "prehistoricfauna:placed_small_araucaria_trees",
-      "prehistoricfauna:placed_fallen_dryophyllum_log",
-      "prehistoricfauna:placed_fallen_metasequoia_log",
-      "prehistoricfauna:placed_fallen_platanites_log",
-      "prehistoricfauna:placed_fallen_ginkgo_log",
       "prehistoricfauna:placed_bisonia",
+      "prehistoricfauna:placed_lowered_horsetails",
+      "prehistoricfauna:placed_humulus",
+      "prehistoricfauna:placed_marchantia",
+      "prehistoricfauna:placed_marmarthia",
+      "prehistoricfauna:placed_moss",
       "prehistoricfauna:placed_nelumbo",
-      "prehistoricfauna:placed_zingiberopsis",
       "prehistoricfauna:placed_quereuxia",
-      "prehistoricfauna:placed_platanites_trees"
+      "prehistoricfauna:placed_zingiberopsis",
+      "prehistoricfauna:placed_small_araucaria_trees",
+      "prehistoricfauna:placed_very_common_dryophyllum_trees",
+      "prehistoricfauna:placed_rare_large_ginkgo_trees",
+      "prehistoricfauna:placed_small_ginkgo_trees",
+      "prehistoricfauna:placed_rare_small_metasequoia_trees",
+      "prehistoricfauna:placed_platanites_trees",
+      "prehistoricfauna:placed_fallen_dryophyllum_log",
+      "prehistoricfauna:placed_fallen_ginkgo_log",
+      "prehistoricfauna:placed_fallen_metasequoia_log",
+      "prehistoricfauna:placed_fallen_platanites_log"
     ],
     [
       "prehistoricfauna:placed_mud_disk"

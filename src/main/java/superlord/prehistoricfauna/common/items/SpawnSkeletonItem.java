@@ -197,7 +197,7 @@ public class SpawnSkeletonItem extends Item {
 	}
 	
 	public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-		if (stack.getItem() == PFItems.TRICERATOPS_SKELETON.get() || stack.getItem() == PFItems.TRICERATOPS_SKULL.get() || stack.getItem() == PFItems.ANKYLOSAURUS_SKELETON.get() || stack.getItem() == PFItems.ANKYLOSAURUS_SKULL.get() || stack.getItem() == PFItems.TYRANNOSAURUS_SKELETON.get() || stack.getItem() == PFItems.TYRANNOSAURUS_SKULL.get()) {
+		if (stack.getItem() == PFItems.TRICERATOPS_SKELETON.get() || stack.getItem() == PFItems.TRICERATOPS_SKULL.get() || stack.getItem() == PFItems.ANKYLOSAURUS_SKELETON.get() || stack.getItem() == PFItems.ANKYLOSAURUS_SKULL.get() || stack.getItem() == PFItems.TYRANNOSAURUS_SKELETON.get() || stack.getItem() == PFItems.TYRANNOSAURUS_SKULL.get() || stack.getItem() == PFItems.ANZU_SKELETON.get() || stack.getItem() == PFItems.ANZU_SKULL.get()) {
 			tooltip.add(Component.translatable("hell_creek").withStyle(ChatFormatting.GRAY));
 			tooltip.add(Component.translatable("cretaceous").withStyle(ChatFormatting.DARK_GRAY));
 		}
@@ -209,7 +209,7 @@ public class SpawnSkeletonItem extends Item {
 			tooltip.add(Component.translatable("ischigualasto").withStyle(ChatFormatting.GRAY));
 			tooltip.add(Component.translatable("triassic").withStyle(ChatFormatting.DARK_GRAY));
 		}
-		if (stack.getItem() == PFItems.VELOCIRAPTOR_SKELETON.get() || stack.getItem() == PFItems.VELOCIRAPTOR_SKULL.get() || stack.getItem() == PFItems.PROTOCERATOPS_SKELETON.get() || stack.getItem() == PFItems.PROTOCERATOPS_SKULL.get() || stack.getItem() == PFItems.PLESIOHADROS_SKELETON.get() || stack.getItem() == PFItems.PLESIOHADROS_SKULL.get()) {
+		if (stack.getItem() == PFItems.VELOCIRAPTOR_SKELETON.get() || stack.getItem() == PFItems.VELOCIRAPTOR_SKULL.get() || stack.getItem() == PFItems.PROTOCERATOPS_SKELETON.get() || stack.getItem() == PFItems.PROTOCERATOPS_SKULL.get() || stack.getItem() == PFItems.PLESIOHADROS_SKELETON.get() || stack.getItem() == PFItems.PLESIOHADROS_SKULL.get() || stack.getItem() == PFItems.GOYOCEPHALE_SKELETON.get() || stack.getItem() == PFItems.GOYOCEPHALE_SKULL.get()) {
 			tooltip.add(Component.translatable("djadochta").withStyle(ChatFormatting.GRAY));
 			tooltip.add(Component.translatable("cretaceous").withStyle(ChatFormatting.DARK_GRAY));
 		}
@@ -221,7 +221,7 @@ public class SpawnSkeletonItem extends Item {
 			tooltip.add(Component.translatable("chinle").withStyle(ChatFormatting.GRAY));
 			tooltip.add(Component.translatable("triassic").withStyle(ChatFormatting.DARK_GRAY));
 		}
-		if (stack.getItem() == PFItems.PSITTACOSAURUS_SKELETON.get() || stack.getItem() == PFItems.PSITTACOSAURUS_SKULL.get() || stack.getItem() == PFItems.YUTYRANNUS_SKULL.get() || stack.getItem() == PFItems.YUTYRANNUS_SKELETON.get()) {
+		if (stack.getItem() == PFItems.PSITTACOSAURUS_SKELETON.get() || stack.getItem() == PFItems.PSITTACOSAURUS_SKULL.get() || stack.getItem() == PFItems.YUTYRANNUS_SKULL.get() || stack.getItem() == PFItems.YUTYRANNUS_SKELETON.get() || stack.getItem() == PFItems.DONGBEITITAN_SKELETON.get() || stack.getItem() == PFItems.DONGBEITITAN_SKULL.get() || stack.getItem() == PFItems.LIAONINGOSAURUS_SKELETON.get() || stack.getItem() == PFItems.LIAONINGOSAURUS_SKULL.get()) {
 			tooltip.add(Component.translatable("yixian").withStyle(ChatFormatting.GRAY));
 			tooltip.add(Component.translatable("cretaceous").withStyle(ChatFormatting.DARK_GRAY));
 		}

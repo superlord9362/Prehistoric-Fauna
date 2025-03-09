@@ -37,6 +37,11 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Edmontosaurus;
+import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
+import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
+import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Dongbeititan;
+import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
 import superlord.prehistoricfauna.init.PFItems;
 
 public class PFSpawnEggItem extends SpawnEggItem {
@@ -225,7 +230,10 @@ public class PFSpawnEggItem extends SpawnEggItem {
 		} else {
 			Mob mob;
 			if (p_43217_ instanceof AgeableMob) {
-				mob = ((AgeableMob)p_43217_).getBreedOffspring(p_43219_, (AgeableMob)p_43217_);
+				if (p_43217_ instanceof Edmontosaurus) {
+					mob = ((Edmontosaurus)p_43217_).getBreedOffspring(p_43219_, (Edmontosaurus)p_43217_);
+					
+				} else mob = ((AgeableMob)p_43217_).getBreedOffspring(p_43219_, (AgeableMob)p_43217_);
 			} else {
 				mob = p_43218_.create(p_43219_);
 			}
@@ -234,6 +242,27 @@ public class PFSpawnEggItem extends SpawnEggItem {
 				return Optional.empty();
 			} else {
 				mob.setBaby(true);
+				if (mob instanceof Edmontosaurus) {
+					((Edmontosaurus)mob).setJuvenile(false);
+					((Edmontosaurus)mob).setAge(-48000);
+				}
+				if (mob instanceof Dongbeititan) {
+					((Dongbeititan)mob).setJuvenile(false);
+					((Dongbeititan)mob).setAge(-48000);
+				}
+				if (mob instanceof Triceratops) {
+					((Triceratops)mob).setJuvenile(false);
+					((Triceratops)mob).setAge(-48000);
+				}
+				if (mob instanceof Tyrannosaurus) {
+					((Tyrannosaurus)mob).setJuvenile(false);
+					((Tyrannosaurus)mob).setAge(-48000);
+				}
+				if (mob instanceof Camarasaurus) {
+					((Camarasaurus)mob).setJuvenile(false);
+					((Camarasaurus)mob).setHatchling(true);
+					((Camarasaurus)mob).setAge(-72000);
+				}
 				if (!mob.isBaby()) {
 					return Optional.empty();
 				} else {

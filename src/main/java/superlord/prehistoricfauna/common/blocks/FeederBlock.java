@@ -205,7 +205,6 @@ public class FeederBlock extends BaseEntityBlock {
 				if (stack.is(PFTags.INSECTS_2_HUNGER_ITEM)) {
 					if (getFoodAmount(world, pos) + 10 < 1001) {
 						setFoodAmount(getFoodAmount(world, pos) + 10, world, pos);
-						System.out.println(getFoodAmount(world, pos));
 					} else {
 						setFoodAmount(1001, world, pos);
 					}

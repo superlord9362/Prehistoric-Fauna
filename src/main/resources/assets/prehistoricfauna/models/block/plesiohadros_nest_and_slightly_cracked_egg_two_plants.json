@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/plesiohadros_nest_and_egg_two_plants",
-	"textures": {
-		"egg": "prehistoricfauna:block/plesiohadros_egg_slightly_cracked"
-	}
-}

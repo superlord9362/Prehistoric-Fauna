@@ -1,6 +1,6 @@
 Found In: Kayenta
 
-Drops: 3-5 Small Raw Sauropod
+Drops: 2-4 Small Raw Sauropod
 
 Diet: Herbivore
 
@@ -17,7 +17,7 @@ territorial.
 
 Sleep Cycle: Cathemeral
 
-
+<image><drawings_ankylosaurus.png 35 4 102 86 23 19 6.2>
 
 
 

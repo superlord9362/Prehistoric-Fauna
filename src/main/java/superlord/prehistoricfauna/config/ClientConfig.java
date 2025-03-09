@@ -9,15 +9,15 @@ public class ClientConfig {
 	
 	public final ForgeConfigSpec.BooleanValue tyrannosaurusFeathersOrScaled;
 	public final ForgeConfigSpec.BooleanValue thescelosaurusFeathersOrScaled;
-	public final ForgeConfigSpec.BooleanValue dryosaurusFeathersOrScaled;
-	public final ForgeConfigSpec.BooleanValue dilophosaurusFeathersOrScaled;
+//	public final ForgeConfigSpec.BooleanValue dryosaurusFeathersOrScaled;
+//	public final ForgeConfigSpec.BooleanValue dilophosaurusFeathersOrScaled;
 	public final ForgeConfigSpec.BooleanValue megapnosaurusFeathersOrScaled;
 	public final ForgeConfigSpec.BooleanValue coelophysisFeathersOrScaled;
-	public final ForgeConfigSpec.BooleanValue chromogisaurusFeathersOrScaled;
-	public final ForgeConfigSpec.BooleanValue herrerasaurusFeathersOrScaled;
+//	public final ForgeConfigSpec.BooleanValue chromogisaurusFeathersOrScaled;
+//	public final ForgeConfigSpec.BooleanValue herrerasaurusFeathersOrScaled;
 	public final ForgeConfigSpec.BooleanValue protoceratopsFeathersOrScaled;
-	public final ForgeConfigSpec.BooleanValue sarahsaurusFeathersOrScaled;
-	public final ForgeConfigSpec.BooleanValue jinzhousaurusFeathersOrScaled;
+//	public final ForgeConfigSpec.BooleanValue sarahsaurusFeathersOrScaled;
+//	public final ForgeConfigSpec.BooleanValue jinzhousaurusFeathersOrScaled;
 
 	public ClientConfig(final ForgeConfigSpec.Builder builder) {
 		builder.push("Misc");
@@ -33,22 +33,22 @@ public class ClientConfig {
 		this.tyrannosaurusFeathersOrScaled = buildBoolean(builder, "Tyrannosaurus Scaled Texture", "all", true, "Toggles whether Tyrannosaurus is scaley or feathered. Only affects babies. False is feathered, true is scaley. Default is true");
 		builder.pop();
 		builder.push("Yixian");
-		this.jinzhousaurusFeathersOrScaled = buildBoolean(builder, "Jinzhousaurus Scaled Texture", "all", true, "Toggles whether Jinzhousaurus is scaley or feathered. False is feathered, true is scaley. Default is true");
+//		this.jinzhousaurusFeathersOrScaled = buildBoolean(builder, "Jinzhousaurus Scaled Texture", "all", true, "Toggles whether Jinzhousaurus is scaley or feathered. False is feathered, true is scaley. Default is true");
 		builder.pop();
 		builder.push("Kayenta");
-		this.dilophosaurusFeathersOrScaled = buildBoolean(builder, "Dilophosaurus Scaled Texture", "all", true, "Toggles whether Dilophosaurus is scaley or feathered. False is feathered, true is scaley. Default is true");
+//		this.dilophosaurusFeathersOrScaled = buildBoolean(builder, "Dilophosaurus Scaled Texture", "all", true, "Toggles whether Dilophosaurus is scaley or feathered. False is feathered, true is scaley. Default is true");
 		this.megapnosaurusFeathersOrScaled = buildBoolean(builder, "Megapnosaurus Scaled Texture", "all", false, "Toggles whether Megapnosaurus is scaley or feathered. False is feathered, true is scaley. Default is false");
-		this.sarahsaurusFeathersOrScaled = buildBoolean(builder, "Sarahsaurus Scaled Texture", "all", true, "Toggles whether Sarahsaurus is scaley or feathered. False is feathered, true is scaley. Default is true");
+//		this.sarahsaurusFeathersOrScaled = buildBoolean(builder, "Sarahsaurus Scaled Texture", "all", true, "Toggles whether Sarahsaurus is scaley or feathered. False is feathered, true is scaley. Default is true");
 		builder.pop();
 		builder.push("Morrison");
-		this.dryosaurusFeathersOrScaled = buildBoolean(builder, "Dryosaurus Scaled Texture", "all", true, "Toggles whether Dryosaurus is scaley or feathered. False is feathered, true is scaley. Default is true");
+//		this.dryosaurusFeathersOrScaled = buildBoolean(builder, "Dryosaurus Scaled Texture", "all", true, "Toggles whether Dryosaurus is scaley or feathered. False is feathered, true is scaley. Default is true");
 		builder.pop();
 		builder.push("Chinle");
 		this.coelophysisFeathersOrScaled = buildBoolean(builder, "Coelophysis Scaled Texture", "all", false, "Toggles whether Coelophysis is scaley or feathered. False is feathered, true is scaley. Default is false");
 		builder.pop();
 		builder.push("Ischigualasto");
-		this.chromogisaurusFeathersOrScaled = buildBoolean(builder, "Chromogisaurus Scaled Texture", "all", false, "Toggles whether Chromogisaurus is scaley or feathered. False is feathered, true is scaley. Default is false");
-		this.herrerasaurusFeathersOrScaled = buildBoolean(builder, "Herrerasaurus Scaled Texture", "all", true, "Toggles whether Herrerasaurus is scaley or feathered. False is feathered, true is scaley. Default is true");
+//		this.chromogisaurusFeathersOrScaled = buildBoolean(builder, "Chromogisaurus Scaled Texture", "all", false, "Toggles whether Chromogisaurus is scaley or feathered. False is feathered, true is scaley. Default is false");
+//		this.herrerasaurusFeathersOrScaled = buildBoolean(builder, "Herrerasaurus Scaled Texture", "all", true, "Toggles whether Herrerasaurus is scaley or feathered. False is feathered, true is scaley. Default is true");
 		builder.pop(2);
 	}
 	

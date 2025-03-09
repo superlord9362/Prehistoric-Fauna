@@ -9,6 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.world.biome.biomesource.CretaceousBiomeSource;
 import superlord.prehistoricfauna.common.world.biome.biomesource.JurassicBiomeSource;
+import superlord.prehistoricfauna.common.world.biome.biomesource.PrehistoricBiomeSource;
 import superlord.prehistoricfauna.common.world.biome.biomesource.TriassicBiomeSource;
 
 public class PFBiomeSources {
@@ -18,6 +19,7 @@ public class PFBiomeSources {
 	public static final RegistryObject<Codec<CretaceousBiomeSource>> CRETACEOUS_BIOME_SOURCE = REGISTER.register("cretaceous_biome_source", () -> CretaceousBiomeSource.CODEC);
 	public static final RegistryObject<Codec<JurassicBiomeSource>> JURASSIC_BIOME_SOURCE = REGISTER.register("jurassic_biome_source", () -> JurassicBiomeSource.CODEC);
 	public static final RegistryObject<Codec<TriassicBiomeSource>> TRIASSIC_BIOME_SOURCE = REGISTER.register("triassic_biome_source", () -> TriassicBiomeSource.CODEC);
+	public static final RegistryObject<Codec<PrehistoricBiomeSource>> PREHISTORIC_BIOME_SOURCE = REGISTER.register("prehistoric_biome_source", () -> PrehistoricBiomeSource.CODEC);
 
 
 }

@@ -230,6 +230,7 @@ public class EdmontosaurusBabyModel extends EntityModel<Edmontosaurus> {
 		this.LeftThigh.y = -9.5F;
 		this.LeftThigh.z = -3;
 		this.LeftThigh.xRot = 0;
+		this.LeftThigh.yRot = 0;
 
 
 		this.LeftFoot.xRot = 0F;

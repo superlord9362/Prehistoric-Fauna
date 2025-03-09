@@ -7,6 +7,7 @@ import com.google.common.collect.Sets;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.LevelWriter;
@@ -65,11 +66,11 @@ public class BlockHelper {
 		return new Direction[]{Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST};
 	}
 
-	public static Direction randomHorizontal(Random random) {
+	public static Direction randomHorizontal(RandomSource random) {
 		return HORIZONTAL_DIRECTIONS[random.nextInt(4)];
 	}
 
-	public static Direction randomDirection(Random random) {
+	public static Direction randomDirection(RandomSource random) {
 		return DIRECTIONS[random.nextInt(6)];
 	}
 

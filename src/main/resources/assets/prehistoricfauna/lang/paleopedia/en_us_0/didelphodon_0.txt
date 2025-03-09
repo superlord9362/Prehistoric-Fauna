@@ -1,6 +1,7 @@
 Found In: Hell Creek
 
-Drops: 0-2 Didelphodon Hides
+Drops: 0-2 Didelphodon Hides, 1 
+Small Raw Synapsid
 
 Diet: Molluscivore
 

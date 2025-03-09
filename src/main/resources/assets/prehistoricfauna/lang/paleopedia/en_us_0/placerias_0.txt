@@ -1,6 +1,6 @@
 Found In: Chinle
 
-Drops: 0-2 Leather, 1-3 Large 
+Drops: 0-2 Leather, 2-5 Small
 Raw Synapsid
 
 Diet: Herbivore

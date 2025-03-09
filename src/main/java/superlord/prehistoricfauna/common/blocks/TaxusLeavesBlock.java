@@ -1,11 +1,10 @@
 package superlord.prehistoricfauna.common.blocks;
 
-import java.util.Random;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -57,7 +56,7 @@ public class TaxusLeavesBlock extends LeavesBlock {
 	}
 	
 	@SuppressWarnings("deprecation")
-	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
 		if(!worldIn.isAreaLoaded(pos, 1)) return;
 		if(worldIn.getRawBrightness(pos, 0) >= 9) {
 			int i = this.getAge(state);

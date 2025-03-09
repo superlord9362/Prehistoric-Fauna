@@ -142,6 +142,28 @@ public class FossilCrateBlock extends Block {
 				stack.shrink(1);
 			}
 			return InteractionResult.sidedSuccess(world.isClientSide);
+		} else if (item == PFItems.GOYOCEPHALE_SKULL.get()) {
+			world.setBlock(pos, PFBlocks.GOYOCEPHALE_CRATE.get().defaultBlockState(), 2);
+			if (!player.isCreative()) {
+				stack.shrink(1);
+			}
+			return InteractionResult.sidedSuccess(world.isClientSide);
+		} else if (item == PFItems.DONGBEITITAN_SKULL.get()) {
+			world.setBlock(pos, PFBlocks.DONGBEITITAN_CRATE.get().defaultBlockState(), 2);
+			if (!player.isCreative()) {
+				stack.shrink(1);
+			}
+			return InteractionResult.sidedSuccess(world.isClientSide);
+		} else if (item == PFItems.ANZU_SKULL.get()) {
+			world.setBlock(pos, PFBlocks.ANZU_CRATE.get().defaultBlockState(), 2);
+			if (!player.isCreative()) {
+				stack.shrink(1);
+			}
+			return InteractionResult.sidedSuccess(world.isClientSide);
+		} else if (item == PFItems.LIAONINGOSAURUS_SKULL.get()) {
+			world.setBlock(pos, PFBlocks.LIAONINGOSAURUS_CRATE.get().defaultBlockState(), 2);
+			if (!player.isCreative()) stack.shrink(1);
+			return InteractionResult.sidedSuccess(world.isClientSide);
 		} else {
 			return InteractionResult.PASS;
 		}

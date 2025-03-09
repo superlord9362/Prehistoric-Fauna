@@ -1,9 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/nest_three_small_tall_eggs_one_plant",
-	"textures": {
-		"egg": "prehistoricfauna:block/velociraptor_egg",
-		"material": "prehistoricfauna:block/nest",
-		"plants": "prehistoricfauna:block/plants"
-	}
-}

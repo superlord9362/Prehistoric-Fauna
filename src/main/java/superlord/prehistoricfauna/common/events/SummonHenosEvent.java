@@ -18,7 +18,6 @@ public class SummonHenosEvent {
 	
 	@SubscribeEvent
 	public void summonHenosEvent(BlockEvent.EntityPlaceEvent event) {
-		System.out.println("Hi");
 		if (!event.isCanceled() && event.getPlacedBlock().getBlock() == PFBlocks.LARGE_AMMONITE_FOSSIL.get() && event.getLevel() instanceof Level) {
 			trySpawnGolem((Level) event.getLevel(), event.getPos());
 		}

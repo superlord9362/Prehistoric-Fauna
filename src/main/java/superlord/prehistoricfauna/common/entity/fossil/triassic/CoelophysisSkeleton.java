@@ -125,6 +125,7 @@ public class CoelophysisSkeleton extends PrehistoricEntity {
 		compound.putBoolean("IsStriding", this.isStriding());
 		compound.putBoolean("IsPushable", this.isPushableState());
 		compound.putBoolean("IsLooking", this.isLooking());
+		compound.putFloat("Rotation", this.getYHeadRot());
 	}
 	
 	public void readAdditionalSaveData(CompoundTag compound) {
@@ -137,6 +138,8 @@ public class CoelophysisSkeleton extends PrehistoricEntity {
 		this.setStriding(compound.getBoolean("IsStriding"));
 		this.setPushable(compound.getBoolean("IsPushable"));
 		this.setLooking(compound.getBoolean("IsLooking"));
+		this.setYBodyRot(compound.getFloat("Rotation"));
+		this.setYHeadRot(compound.getFloat("Rotation"));
 	}
 	
 	public CoelophysisSkeleton(EntityType<? extends CoelophysisSkeleton> type, Level worldIn) {

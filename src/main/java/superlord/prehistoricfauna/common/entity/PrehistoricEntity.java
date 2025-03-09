@@ -1,6 +1,5 @@
 package superlord.prehistoricfauna.common.entity;
 
-import java.util.Random;
 import java.util.UUID;
 
 import javax.annotation.Nullable;
@@ -9,6 +8,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
@@ -88,7 +88,7 @@ public abstract class PrehistoricEntity extends Animal {
 		this.playerInLove = compound.hasUUID("LoveCause") ? compound.getUUID("LoveCause") : null;
 	}
 
-	public static boolean checkAnimalSpawnRules(EntityType<? extends Animal> animal, LevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random random) {
+	public static boolean checkAnimalSpawnRules(EntityType<? extends Animal> animal, LevelAccessor worldIn, MobSpawnType reason, BlockPos pos, RandomSource random) {
 		return worldIn.getBlockState(pos.below()).getBlock() == Blocks.GRASS_BLOCK && worldIn.getRawBrightness(pos, 0) > 8;
 	}
 

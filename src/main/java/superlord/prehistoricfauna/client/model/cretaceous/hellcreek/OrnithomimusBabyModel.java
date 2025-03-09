@@ -160,8 +160,8 @@ public class OrnithomimusBabyModel extends EntityModel<Ornithomimus> {
 				this.LeftFoot.xRot = Mth.cos(2.0F + limbSwing * idleSpeed * 0.3F) * idleDegree * -0.3F * limbSwingAmount + Mth.cos(2.0F + limbSwing * walkSpeed * 0.3F) * walkDegree * -0.3F * limbSwingAmount;
 				this.Neck1.yRot = netHeadYaw * ((float) Math.PI / 180F);
 				if (entity.isInWater()) {
-					this.RightThigh.y = 20;
-					this.LeftThigh.y = 20;
+//					this.RightThigh.y = 20;
+//					this.LeftThigh.y = 20;
 					this.Body.y = 20;
 					this.Body.xRot = -0.25F;
 					this.Tail.xRot = 0.125F;
@@ -174,6 +174,8 @@ public class OrnithomimusBabyModel extends EntityModel<Ornithomimus> {
 					this.LeftFoot.xRot = 0.5F + (0.3F * Mth.sin(0.2F * ageInTicks / 1.5F));
 					this.LeftWing.xRot = 0.25F;
 					this.RightWing.xRot = 0.25F;
+					this.RightWing.zRot = -1.5F + Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
+					this.LeftWing.zRot = 1.5F - Math.abs(-1F * Mth.sin(0.15F * ageInTicks / 2));
 					this.Tail.yRot = (Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * Mth.sin(0.15F * ageInTicks / 1.5F));
 				}
 			}

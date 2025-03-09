@@ -114,6 +114,7 @@ public class ScelidosaurusSkeleton extends PrehistoricEntity {
 		compound.putBoolean("IsSleeping", this.isSleeping());
 		compound.putBoolean("IsPushable", this.isPushableState());
 		compound.putBoolean("IsLooking", this.isLooking());
+		compound.putFloat("Rotation", this.getYHeadRot());
 	}
 	
 	public void readAdditionalSaveData(CompoundTag compound) {
@@ -125,6 +126,8 @@ public class ScelidosaurusSkeleton extends PrehistoricEntity {
 		this.setSleeping(compound.getBoolean("IsSleeping"));
 		this.setPushable(compound.getBoolean("IsPushable"));
 		this.setLooking(compound.getBoolean("IsLooking"));
+		this.setYBodyRot(compound.getFloat("Rotation"));
+		this.setYHeadRot(compound.getFloat("Rotation"));
 	}
 	
 	public ScelidosaurusSkeleton(EntityType<? extends ScelidosaurusSkeleton> type, Level worldIn) {

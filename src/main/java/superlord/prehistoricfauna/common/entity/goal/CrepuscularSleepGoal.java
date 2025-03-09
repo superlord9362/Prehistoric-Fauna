@@ -3,6 +3,7 @@ package superlord.prehistoricfauna.common.entity.goal;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
@@ -16,15 +17,17 @@ public class CrepuscularSleepGoal extends Goal {
 	}
 
 	@Override
+	@SuppressWarnings("resource")
 	public boolean canUse() {
 		Level level = entity.level();
 		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(2D, 2D, 2D))) {
 			if (!player.isShiftKeyDown()) return false;
 		}
-		return PrehistoricFaunaConfig.sleeping = true && (level.getDayTime() % 24000 >= 2000 && level.getDayTime() % 24000 <= 9000 || level.getDayTime() % 24000 >= 14000 && level.getDayTime() % 24000 <= 21000) && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isTame() && !entity.isInWater() && !entity.isInLava() && !PrehistoricFaunaConfig.unscheduledSleeping && entity.warryTicks == 0;
+		return PrehistoricFaunaConfig.sleeping = true && (level.getDayTime() % 24000 >= 2000 && level.getDayTime() % 24000 <= 9000 || level.getDayTime() % 24000 >= 14000 && level.getDayTime() % 24000 <= 21000) && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isTame() && !entity.isInWater() && !entity.isInLava() && !entity.getBlockStateOn().is(Blocks.AIR) && !PrehistoricFaunaConfig.unscheduledSleeping && entity.warryTicks == 0;
 	}
 
 	@Override
+	@SuppressWarnings("resource")
 	public boolean canContinueToUse() {
 		Level level = entity.level();
 		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(2D, 2D, 2D))) {
@@ -57,6 +60,10 @@ public class CrepuscularSleepGoal extends Goal {
 			entity.setAsleep(false);
 			return false;
 		} else if (entity.isInLava()) {
+			stop();
+			entity.setAsleep(false);
+			return false;
+		} else if (!entity.getBlockStateOn().is(Blocks.AIR)) {
 			stop();
 			entity.setAsleep(false);
 			return false;

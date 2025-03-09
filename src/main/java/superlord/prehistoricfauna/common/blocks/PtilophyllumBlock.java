@@ -33,7 +33,7 @@ public class PtilophyllumBlock extends PipeBlock {
       Block block3 = blockReader.getBlockState(pos.east()).getBlock();
       Block block4 = blockReader.getBlockState(pos.south()).getBlock();
       Block block5 = blockReader.getBlockState(pos.west()).getBlock();
-      return this.defaultBlockState().setValue(DOWN, Boolean.valueOf(block == this || block == PFBlocks.PTILOPHYLLUM_BASE.get() || block == PFBlocks.SILT.get() || block == PFBlocks.HARDENED_SILT.get() || block == PFBlocks.LOAM.get() || block == PFBlocks.PACKED_LOAM.get() || block == PFBlocks.MOSSY_DIRT.get() || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.GRASS_BLOCK || block == Blocks.PODZOL || block == Blocks.MYCELIUM)).setValue(UP, Boolean.valueOf(block1 == this || block1 == PFBlocks.PTILOPHYLLUM_BASE.get())).setValue(NORTH, Boolean.valueOf(block2 == this || block2 == PFBlocks.PTILOPHYLLUM_BASE.get())).setValue(EAST, Boolean.valueOf(block3 == this || block3 == PFBlocks.PTILOPHYLLUM_BASE.get())).setValue(SOUTH, Boolean.valueOf(block4 == this || block4 == PFBlocks.PTILOPHYLLUM_BASE.get())).setValue(WEST, Boolean.valueOf(block5 == this || block5 == PFBlocks.PTILOPHYLLUM_BASE.get()));
+      return this.defaultBlockState().setValue(DOWN, Boolean.valueOf(block == this || block == PFBlocks.PTILOPHYLLUM_BASE.get() || block == PFBlocks.SILT.get() || block == PFBlocks.HARDENED_SILT.get() || block == PFBlocks.LOAM.get() || block == PFBlocks.PACKED_LOAM.get() || block == PFBlocks.MOSSY_DIRT.get() || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.GRASS_BLOCK || block == Blocks.PODZOL || block == Blocks.MYCELIUM || block == Blocks.SAND || block == Blocks.RED_SAND || block == Blocks.MUD || block == Blocks.PACKED_MUD)).setValue(UP, Boolean.valueOf(block1 == this || block1 == PFBlocks.PTILOPHYLLUM_BASE.get())).setValue(NORTH, Boolean.valueOf(block2 == this || block2 == PFBlocks.PTILOPHYLLUM_BASE.get())).setValue(EAST, Boolean.valueOf(block3 == this || block3 == PFBlocks.PTILOPHYLLUM_BASE.get())).setValue(SOUTH, Boolean.valueOf(block4 == this || block4 == PFBlocks.PTILOPHYLLUM_BASE.get())).setValue(WEST, Boolean.valueOf(block5 == this || block5 == PFBlocks.PTILOPHYLLUM_BASE.get()));
    }
 
    @SuppressWarnings("deprecation")
@@ -43,7 +43,7 @@ public class PtilophyllumBlock extends PipeBlock {
          return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
       } else {
          Block block = facingState.getBlock();
-         boolean flag = block == this || block == PFBlocks.PTILOPHYLLUM_BASE.get() || facing == Direction.DOWN && block == PFBlocks.SILT.get() || facing == Direction.DOWN && block == PFBlocks.HARDENED_SILT.get() || facing == Direction.DOWN && block == PFBlocks.LOAM.get() || facing == Direction.DOWN && block == PFBlocks.PACKED_LOAM.get() || facing == Direction.DOWN && block == PFBlocks.MOSSY_DIRT.get() || facing == Direction.DOWN && block == Blocks.GRASS_BLOCK || facing == Direction.DOWN && block == Blocks.DIRT || facing == Direction.DOWN && block == Blocks.COARSE_DIRT || facing == Direction.DOWN && block == Blocks.PODZOL || facing == Direction.DOWN && block == Blocks.MYCELIUM;
+         boolean flag = block == this || block == PFBlocks.PTILOPHYLLUM_BASE.get() || facing == Direction.DOWN && block == PFBlocks.SILT.get() || facing == Direction.DOWN && block == PFBlocks.HARDENED_SILT.get() || facing == Direction.DOWN && block == PFBlocks.LOAM.get() || facing == Direction.DOWN && block == PFBlocks.PACKED_LOAM.get() || facing == Direction.DOWN && block == PFBlocks.MOSSY_DIRT.get() || facing == Direction.DOWN && block == Blocks.GRASS_BLOCK || facing == Direction.DOWN && block == Blocks.DIRT || facing == Direction.DOWN && block == Blocks.COARSE_DIRT || facing == Direction.DOWN && block == Blocks.PODZOL || facing == Direction.DOWN && block == Blocks.MYCELIUM || facing == Direction.DOWN && block == Blocks.SAND || facing == Direction.DOWN && block == Blocks.RED_SAND || facing == Direction.DOWN && block == Blocks.MUD || facing == Direction.DOWN && block == Blocks.PACKED_MUD;
          return stateIn.setValue(PROPERTY_BY_DIRECTION.get(facing), Boolean.valueOf(flag));
       }
    }
@@ -68,14 +68,14 @@ public class PtilophyllumBlock extends PipeBlock {
             }
 
             Block block1 = worldIn.getBlockState(blockpos.below()).getBlock();
-            if (block1 == this || block1 == PFBlocks.SILT.get() || block1 == PFBlocks.HARDENED_SILT.get() || block1 == PFBlocks.LOAM.get() || block1 == PFBlocks.PACKED_LOAM.get() || block1 == PFBlocks.MOSSY_DIRT.get() || block1 == Blocks.DIRT || block1 == Blocks.COARSE_DIRT || block1 == Blocks.GRASS_BLOCK || block1 == Blocks.MYCELIUM || block1 == Blocks.PODZOL) {
+            if (block1 == this || block1 == PFBlocks.SILT.get() || block1 == PFBlocks.HARDENED_SILT.get() || block1 == PFBlocks.LOAM.get() || block1 == PFBlocks.PACKED_LOAM.get() || block1 == PFBlocks.MOSSY_DIRT.get() || block1 == Blocks.DIRT || block1 == Blocks.COARSE_DIRT || block1 == Blocks.GRASS_BLOCK || block1 == Blocks.MYCELIUM || block1 == Blocks.PODZOL || block1 == Blocks.SAND || block1 == Blocks.RED_SAND || block1 == Blocks.MUD || block1 == Blocks.PACKED_MUD) {
                return true;
             }
          }
       }
 
       Block block2 = blockstate.getBlock();
-      return block2 == this || block2 == PFBlocks.SILT.get() || block2 == PFBlocks.HARDENED_SILT.get() || block2 == PFBlocks.LOAM.get() || block2 == PFBlocks.PACKED_LOAM.get() || block2 == PFBlocks.MOSSY_DIRT.get() || block2 == Blocks.DIRT || block2 == Blocks.COARSE_DIRT || block2 == Blocks.GRASS_BLOCK || block2 == Blocks.PODZOL || block2 == Blocks.MYCELIUM;
+      return block2 == this || block2 == PFBlocks.SILT.get() || block2 == PFBlocks.HARDENED_SILT.get() || block2 == PFBlocks.LOAM.get() || block2 == PFBlocks.PACKED_LOAM.get() || block2 == PFBlocks.MOSSY_DIRT.get() || block2 == Blocks.DIRT || block2 == Blocks.COARSE_DIRT || block2 == Blocks.GRASS_BLOCK || block2 == Blocks.PODZOL || block2 == Blocks.MYCELIUM || block2 == Blocks.SAND || block2 == Blocks.RED_SAND || block2 == Blocks.MUD || block2 == Blocks.PACKED_MUD;
    }
 
    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {

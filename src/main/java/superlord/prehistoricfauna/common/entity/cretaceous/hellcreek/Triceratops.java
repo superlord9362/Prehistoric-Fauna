@@ -78,8 +78,8 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.blocks.FeederBlock;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.items.PaleopediaItem;
 import superlord.prehistoricfauna.common.util.EnumPaleoPages;
@@ -139,7 +139,7 @@ public class Triceratops extends AbstractChestedHorse  {
 		entity.setAge(-48000);
 		return entity;
 	}
-	
+
 	public boolean isDigging() {
 		return this.entityData.get(IS_DIGGING);
 	}
@@ -169,7 +169,7 @@ public class Triceratops extends AbstractChestedHorse  {
 		return this.entityData.get(IS_JUVENILE);
 	}
 
-	private void setJuvenile(boolean isJuvenile) {
+	public void setJuvenile(boolean isJuvenile) {
 		this.entityData.set(IS_JUVENILE, isJuvenile);
 	}
 
@@ -706,7 +706,7 @@ public class Triceratops extends AbstractChestedHorse  {
 	public boolean onAttackAnimationFinish(Entity target) {
 		return target.hurt(this.damageSources().mobAttack(this), (float) ((int) this.getAttribute(Attributes.ATTACK_DAMAGE).getValue()));
 	}
-	
+
 	public float getSleepProgress(float partialTick) {
 		return prevSleepProgress + (sleepProgress - prevSleepProgress) * partialTick;
 	}
@@ -810,7 +810,7 @@ public class Triceratops extends AbstractChestedHorse  {
 	public void setAwakeTicks(int ticks) {
 		this.warryTicks = ticks;
 	}
-	
+
 	public void setFallingAsleep() {
 		this.entityData.set(SLEEP_TICK, 15);
 	}
@@ -925,6 +925,7 @@ public class Triceratops extends AbstractChestedHorse  {
 		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
 		 * method as well.
 		 */
+		@SuppressWarnings("resource")
 		public boolean canUse() {
 			if (Triceratops.this.isBaby() && !Triceratops.this.isJuvenile() || Triceratops.this.isTamed()) {
 				return false;
@@ -1071,7 +1072,7 @@ public class Triceratops extends AbstractChestedHorse  {
 				} else if (this.triceratops.isDigging > 200) {
 					Level world = this.triceratops.level();
 					world.playSound((Player)null, blockpos, SoundEvents.TURTLE_LAY_EGG, SoundSource.BLOCKS, 0.3F, 0.9F + world.random.nextFloat() * 0.2F);
-					world.setBlock(blockpos, PFBlocks.TRICERATOPS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(random.nextInt(3) + 1)), 0);
+					world.setBlock(blockpos, PFBlocks.TRICERATOPS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(random.nextInt(4) + 1)), 0);
 					this.triceratops.setHasEgg(false);
 					this.triceratops.setDigging(false);
 					this.triceratops.setInLoveTime(600);
@@ -1396,6 +1397,7 @@ public class Triceratops extends AbstractChestedHorse  {
 		}
 
 		@Override
+		@SuppressWarnings("resource")
 		public boolean canUse() {
 			for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
 				if (!player.isShiftKeyDown()) return false;
@@ -1404,6 +1406,7 @@ public class Triceratops extends AbstractChestedHorse  {
 		}
 
 		@Override
+		@SuppressWarnings("resource")
 		public boolean canContinueToUse() {
 			for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
 				if (!player.isShiftKeyDown()) {
@@ -1790,6 +1793,7 @@ public class Triceratops extends AbstractChestedHorse  {
 		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
 		 * method as well.
 		 */
+		@SuppressWarnings("resource")
 		public boolean canUse() {
 			if (dinosaur.isBaby()) {
 				return false;

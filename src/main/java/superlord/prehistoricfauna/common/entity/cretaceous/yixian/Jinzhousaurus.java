@@ -40,7 +40,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
-import superlord.prehistoricfauna.common.blocks.NestAndEggsBlock;
+import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.blocks.SapBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
@@ -67,7 +67,7 @@ import superlord.prehistoricfauna.init.PFTags;
 
 public class Jinzhousaurus extends DinosaurEntity {
 	private static final EntityDataAccessor<Boolean> SCRATCHING = SynchedEntityData.defineId(Jinzhousaurus.class, EntityDataSerializers.BOOLEAN);
-	private int maxHunger = 50;
+	private int maxHunger = 100;
 	private int warningSoundTicks;
 	int scratchTick = 3000;
 
@@ -126,7 +126,7 @@ public class Jinzhousaurus extends DinosaurEntity {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.2D).add(Attributes.ATTACK_DAMAGE, 3.0D).add(Attributes.FOLLOW_RANGE, 20.0D);
+		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 40.0D).add(Attributes.MOVEMENT_SPEED, 0.2D).add(Attributes.ATTACK_DAMAGE, 3.0D).add(Attributes.FOLLOW_RANGE, 20.0D);
 	}
 
 	protected SoundEvent getAmbientSound() {
@@ -280,7 +280,7 @@ public class Jinzhousaurus extends DinosaurEntity {
 	}
 
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.JINZHOUSAURUS_NEST.get().defaultBlockState().setValue(NestAndEggsBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1)).setValue(NestAndEggsBlock.PLANT_LEVEL, Integer.valueOf(this.random.nextInt(3) + 1));
+		return PFBlocks.JINZHOUSAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 
 	class StripLogGoal extends MoveToBlockGoal {

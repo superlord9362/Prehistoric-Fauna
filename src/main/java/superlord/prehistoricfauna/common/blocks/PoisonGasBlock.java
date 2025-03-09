@@ -1,9 +1,8 @@
 package superlord.prehistoricfauna.common.blocks;
 
-import java.util.Random;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -33,7 +32,7 @@ public class PoisonGasBlock extends Block {
 	public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
 		if (entity instanceof LivingEntity livingEntity) {
 			int age = state.getValue(AGE);
-			if (pos.getY() == livingEntity.getEyePosition().y()) {
+			if (pos.getY() ==  (int) livingEntity.getEyePosition().y()) {
 				if (livingEntity instanceof Player player) {
 					if (!player.getAbilities().instabuild) {
 						if (age < 3) {
@@ -103,7 +102,7 @@ public class PoisonGasBlock extends Block {
 	}
 
 	@SuppressWarnings("deprecation")
-	public void tick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
+	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		if (!world.isAreaLoaded(pos, 1)) return;
 		if (!world.getBlockState(pos.below()).isSolidRender(world, pos.below()) || !world.getBlockState(pos.below()).is(this) || !world.getBlockState(pos.below()).is(Blocks.WATER)) {
 			world.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
@@ -111,7 +110,7 @@ public class PoisonGasBlock extends Block {
 	}
 
 	@SuppressWarnings("deprecation")
-	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
 		BlockPos abovePos = pos.above();
 		BlockPos northPos = pos.north();
 		BlockPos southPos = pos.south();

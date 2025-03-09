@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "prehistoricfauna:block/trilophosaurus_nest_and_egg_three_plants",
-	"textures": {
-		"egg": "prehistoricfauna:block/trilophosaurus_egg_very_cracked"
-	}
-}
