@@ -89,6 +89,8 @@ public class CorruptedTheropod extends Animal {
 	private static final EntityDataAccessor<Boolean> START_ATTACKING = SynchedEntityData.defineId(CorruptedTheropod.class, EntityDataSerializers.BOOLEAN);
 
 	private static final EntityDataAccessor<Boolean> AWAKE = SynchedEntityData.defineId(CorruptedTheropod.class, EntityDataSerializers.BOOLEAN);
+	
+	private static final EntityDataAccessor<Boolean> PLAYED_DEATH_SOUND = SynchedEntityData.defineId(CorruptedTheropod.class, EntityDataSerializers.BOOLEAN);
 
 	public int headOneAttackCooldown = 0;
 	public int headTwoAttackCooldown = 0;
@@ -355,6 +357,14 @@ public class CorruptedTheropod extends Animal {
 	public void setAwake(boolean isAwake) {
 		entityData.set(AWAKE, isAwake);
 	}
+	
+	public boolean playedDeathSound() {
+		return entityData.get(PLAYED_DEATH_SOUND);
+	}
+
+	public void setPlayedDeathSound(boolean playedDeathSound) {
+		entityData.set(PLAYED_DEATH_SOUND, playedDeathSound);
+	}
 
 	public boolean hasFiredHeadOneParticles() {
 		return entityData.get(HEAD_ONE_PARTICLES);
@@ -499,6 +509,7 @@ public class CorruptedTheropod extends Animal {
 		entityData.define(HEAD_FIVE_PARTICLES, false);
 		entityData.define(HEAD_SIX_PARTICLES, false);
 		entityData.define(START_ATTACKING, false);
+		entityData.define(PLAYED_DEATH_SOUND, false);
 		this.entityData.define(ATTACK_TICK, 0);
 		this.entityData.define(SLEEP_TICK, 0);
 	}
@@ -525,6 +536,7 @@ public class CorruptedTheropod extends Animal {
 		compound.putBoolean("HeadFiveParticles", hasFiredHeadFiveParticles());
 		compound.putBoolean("HeadSixParticles", hasFiredHeadSixParticles());
 		compound.putBoolean("IsAwake", this.isAwake());
+		compound.putBoolean("PlayedDeathSound", playedDeathSound());
 	}
 
 	@Override
@@ -552,6 +564,7 @@ public class CorruptedTheropod extends Animal {
 		setFiringHeadFiveParticles(compound.getBoolean("HeadFiveParticles"));
 		setFiringHeadSixParticles(compound.getBoolean("HeadSixParticles"));
 		this.setAwake(compound.getBoolean("IsAwake"));
+		setPlayedDeathSound(compound.getBoolean("PlayedDeathSound"));
 	}
 
 	public void setCustomName(@Nullable Component name) {
@@ -899,6 +912,10 @@ public class CorruptedTheropod extends Animal {
 				this.headThreeAttackCooldown = 25;
 				this.grabTicks = 0;
 			}
+		}
+		if (this.isDeadOrDying() && !playedDeathSound()) {
+            this.playSound(PFSounds.BOSS_SPEECH.get(), this.getSoundVolume(), this.getVoicePitch());
+            setPlayedDeathSound(true);
 		}
 		Vec3 head1 = new Vec3(-0.7, 3.6, 3.5).xRot(-getXRot() * ((float) Math.PI / 180f)).yRot(-yBodyRot * ((float) Math.PI / 180f));
 		Vec3 head2 = new Vec3(-0.55, 2.55, 3.8).xRot(-getXRot() * ((float) Math.PI / 180f)).yRot(-yBodyRot * ((float) Math.PI / 180f));
@@ -1267,7 +1284,7 @@ public class CorruptedTheropod extends Animal {
 		}
 
 		protected double getAttackReachSqr(LivingEntity attackTarget) {
-			return (double)(30 + attackTarget.getBbWidth());
+			return (double)(10 + attackTarget.getBbWidth());
 		}
 	}
 

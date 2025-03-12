@@ -24,7 +24,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowParentGoal;
-import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.OcelotAttackGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -63,7 +62,6 @@ import superlord.prehistoricfauna.init.PFTags;
 public class Postosuchus extends DinosaurEntity {
 	private int maxHunger = 50;
 	private int warningSoundTicks;
-	private Goal attackAnimals;
 
 	public Postosuchus(EntityType<? extends Postosuchus> type, Level levelIn) {
 		super(type, levelIn);
@@ -78,9 +76,9 @@ public class Postosuchus extends DinosaurEntity {
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.attackAnimals = new HuntGoal(this, LivingEntity.class, 10, false, false, (p_213487_1_) -> {
+		this.targetSelector.addGoal(0, new HuntGoal(this, LivingEntity.class, 10, false, false, (p_213487_1_) -> {
 			return p_213487_1_.getType().is(PFTags.POSTOSUCHUS_HUNTING);
-		});
+		}));
 		this.goalSelector.addGoal(1, new OcelotAttackGoal(this));
 		this.goalSelector.addGoal(1, new BabyPanicGoal(this));
 		this.targetSelector.addGoal(1, new DinosaurHurtByTargetGoal(this));
@@ -146,10 +144,6 @@ public class Postosuchus extends DinosaurEntity {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.FOLLOW_RANGE, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.ATTACK_DAMAGE, 6.0D).add(Attributes.KNOCKBACK_RESISTANCE, 0.25D);
 	}
 
-	private void setAttackGoals() {
-		this.targetSelector.addGoal(4, this.attackAnimals);
-	}
-
 	protected SoundEvent getAmbientSound() {
 		return this.isAsleep() ? null : PFSounds.POSTOSUCHUS_IDLE.get();
 	}
@@ -175,7 +169,6 @@ public class Postosuchus extends DinosaurEntity {
 
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
-		this.setAttackGoals();
 	}
 
 	public void tick() {

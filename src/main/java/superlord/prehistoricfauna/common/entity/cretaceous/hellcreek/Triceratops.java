@@ -99,7 +99,7 @@ public class Triceratops extends AbstractChestedHorse  {
 	private static final EntityDataAccessor<Boolean> SLEEPING = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> EATING = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> NATURAL_LOVE = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Integer> ATTACK_TICK = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.INT);
+	public static final EntityDataAccessor<Integer> ATTACK_TICK = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.INT);
 	public static final EntityDataAccessor<Integer> SLEEP_TICK = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Optional<UUID>> DATA_TRUSTED_ID_0 = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.OPTIONAL_UUID);
 	private static final EntityDataAccessor<Optional<UUID>> DATA_TRUSTED_ID_1 = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.OPTIONAL_UUID);
@@ -216,6 +216,11 @@ public class Triceratops extends AbstractChestedHorse  {
 
 	public int getThreeQuartersHunger() {
 		return (maxHunger / 4) * 3;
+	}
+
+	@Override
+	protected void randomizeAttributes(RandomSource p_218803_) {
+		
 	}
 
 	public boolean isEating() {
@@ -457,17 +462,8 @@ public class Triceratops extends AbstractChestedHorse  {
 	}
 
 	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
-		Level world = p_230254_1_.level();
 		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
 		Item item = itemstack.getItem();
-		if (this.isFood(itemstack)) {
-			int i = this.getAge();
-			if (!this.level().isClientSide() && i == 0 && this.canFallInLove()) {
-				this.usePlayerItem(p_230254_1_, p_230254_2_, itemstack);
-				this.setInLove(p_230254_1_);
-				return InteractionResult.SUCCESS;
-			}
-		}
 		if (item instanceof PaleopediaItem) {
 			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.TRICERATOPS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.TRICERATOPS.ordinal()), itemstack);
@@ -476,30 +472,19 @@ public class Triceratops extends AbstractChestedHorse  {
 			}
 		}
 		if (!this.isBaby()) {
-			if (item == PFItems.TRICERATOPS_SPAWN_EGG.get()) {
-				Triceratops triceratopsentity = PFEntities.TRICERATOPS.get().create(world);
-				triceratopsentity.setAge(-48000);
-				triceratopsentity.moveTo((double)this.getX() + 0.3D * 0.2D, (double)this.getY(), (double)this.getZ() + 0.3D, 0.0F, 0.0F);
-				world.addFreshEntity(triceratopsentity);
-				return super.mobInteract(p_230254_1_, p_230254_2_);
-			}
 			if (this.isTamed() && p_230254_1_.isSecondaryUseActive()) {
 				this.openCustomInventoryScreen(p_230254_1_);
 				return InteractionResult.sidedSuccess(this.level().isClientSide());
 			}
-
 			if (this.isVehicle()) {
 				return super.mobInteract(p_230254_1_, p_230254_2_);
 			}
 		}
-
 		if (!itemstack.isEmpty()) {
-
 			if (!this.isTamed()) {
 				this.makeMad();
 				return InteractionResult.sidedSuccess(this.level().isClientSide());
 			}
-
 			if (!this.hasChest() && itemstack.getItem() == Blocks.CHEST.asItem()) {
 				this.setChest(true);
 				this.playChestEquipsSound();
@@ -515,6 +500,7 @@ public class Triceratops extends AbstractChestedHorse  {
 				this.openCustomInventoryScreen(p_230254_1_);
 				return InteractionResult.sidedSuccess(this.level().isClientSide());
 			}
+			return super.mobInteract(p_230254_1_, p_230254_2_);
 		}
 		if (PrehistoricFaunaConfig.advancedHunger) {
 			int hunger = this.getCurrentHunger();
@@ -643,15 +629,7 @@ public class Triceratops extends AbstractChestedHorse  {
 			}
 		}
 		if (this.isBaby()) {
-			if (item == PFItems.TRICERATOPS_SPAWN_EGG.get()) {
-				Triceratops triceratopsentity = PFEntities.TRICERATOPS.get().create(world);
-				triceratopsentity.setAge(-24000);
-				triceratopsentity.moveTo((double)this.getX() + 0.3D * 0.2D, (double)this.getY(), (double)this.getZ() + 0.3D, 0.0F, 0.0F);
-				world.addFreshEntity(triceratopsentity);
-				return super.mobInteract(p_230254_1_, p_230254_2_);
-			} else {
-				return super.mobInteract(p_230254_1_, p_230254_2_);
-			}
+			return super.mobInteract(p_230254_1_, p_230254_2_);
 		} else {
 			this.doPlayerRide(p_230254_1_);
 			return InteractionResult.sidedSuccess(this.level().isClientSide());
@@ -718,15 +696,15 @@ public class Triceratops extends AbstractChestedHorse  {
 	@Override
 	public void setAge(int age) {
 		super.setAge(age);
-		if (this.getAge() < -24000) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
-		} else if (this.getAge() >= -24000 && this.getAge() < 0) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(40);
-			this.setJuvenile(true);
-		} else if(this.getAge() >= 0) {
-			this.setJuvenile(false);
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(80);
-		}
+		//		if (this.getAge() < -24000) {
+		//			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
+		//		} else if (this.getAge() >= -24000 && this.getAge() < 0) {
+		//			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(40);
+		//			this.setJuvenile(true);
+		//		} else if(this.getAge() >= 0) {
+		//			this.setJuvenile(false);
+		//			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(80);
+		//		}
 	}
 
 	@Override
@@ -983,6 +961,11 @@ public class Triceratops extends AbstractChestedHorse  {
 			}
 
 		}
+	}
+	
+	public boolean doHurtTarget(Entity entityIn) {
+		this.entityData.set(ATTACK_TICK, 7);
+		return true;
 	}
 
 	class MeleeAttackGoal extends net.minecraft.world.entity.ai.goal.MeleeAttackGoal {

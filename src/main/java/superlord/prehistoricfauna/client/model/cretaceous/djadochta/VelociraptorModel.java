@@ -14,7 +14,6 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Velociraptor;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotaraptor;
 
 public class VelociraptorModel extends EntityModel<Velociraptor> {
 	private final ModelPart ThighLeft;

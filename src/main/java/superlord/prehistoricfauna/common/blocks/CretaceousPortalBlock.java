@@ -63,7 +63,7 @@ public class CretaceousPortalBlock extends Block {
 	}
 
 	private boolean canCreatePortalByWorld(Level world, BlockPos pos) {
-		if (world.dimension() == Level.OVERWORLD || world.dimension() == PFDimensions.JURASSIC || world.dimension() == PFDimensions.TRIASSIC) {
+		if (world.dimension() == Level.OVERWORLD || world.dimension() == PFDimensions.CRETACEOUS || world.dimension() == PFDimensions.TRIASSIC) {
 			return true;
 		} else {
 			return world.dimension() == PFDimensions.CRETACEOUS;
@@ -273,7 +273,7 @@ public class CretaceousPortalBlock extends Block {
 		public void placePortalBlocks() {
 			BlockState state = PORTAL.defaultBlockState().setValue(CretaceousPortalBlock.AXIS, this.axis);
 			BlockPos.betweenClosed(bottomLeft, bottomLeft.relative(Direction.UP, height -1).relative(rightDir, width - 1)).forEach((pos) -> {
-				this.world.setBlock(pos, state, 3);
+				this.world.setBlock(pos, state, 18);
 			});
 			BlockPos.betweenClosed(bottomLeft.relative(Direction.DOWN, height - (height - 1)).relative(leftDir, width - (width - 1)), bottomLeft.relative(Direction.UP, height).relative(rightDir, width)).forEach((pos) -> {
 				if (this.world.getBlockState(pos).is(PFBlocks.PORTAL_FRAME.get())) {

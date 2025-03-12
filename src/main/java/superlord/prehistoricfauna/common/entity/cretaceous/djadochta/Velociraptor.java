@@ -45,8 +45,6 @@ import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.LeapAtTargetGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal;
-import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
@@ -79,6 +77,8 @@ import superlord.prehistoricfauna.common.entity.goal.CrepuscularSleepGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurOwnerHurtByTargetGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurOwnerHurtTargetGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurTerritorialAttackGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurWaterAvoidingRandomStrollGoal;
@@ -108,7 +108,6 @@ public class Velociraptor extends DinosaurEntity {
 	private static final EntityDataAccessor<Boolean> TAME_WANDER = SynchedEntityData.defineId(Velociraptor.class, EntityDataSerializers.BOOLEAN);
 	public static final EntityDataAccessor<Integer> SIT_TICK = SynchedEntityData.defineId(Velociraptor.class, EntityDataSerializers.INT);
 	private int maxHunger = 20;
-	private Goal attackAnimals;
 	private float interestedAngle;
 	private float interestedAngleO;
 	private float crouchAmount;
@@ -169,9 +168,9 @@ public class Velociraptor extends DinosaurEntity {
 	}
 
 	protected void registerGoals() {
-		this.attackAnimals = new Velociraptor.TamedHuntGoal(this, Animal.class, 10, false, false, (p_213487_0_) -> {
+		this.targetSelector.addGoal(4, new Velociraptor.TamedHuntGoal(this, Animal.class, 10, false, false, (p_213487_0_) -> {
 			return p_213487_0_.getType().is(PFTags.VELOCIRAPTOR_HUNTING);
-		});
+		}));
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new Velociraptor.JumpGoal());
 		this.goalSelector.addGoal(2, new BabyPanicGoal(this));
@@ -196,8 +195,8 @@ public class Velociraptor extends DinosaurEntity {
 			return p_213487_0_.getType().is(PFTags.VELOCIRAPTOR_AVOIDING);
 		}));
 		this.goalSelector.addGoal(0, new SitWhenOrderedToGoal(this));
-		this.targetSelector.addGoal(0, new OwnerHurtByTargetGoal(this));
-		this.targetSelector.addGoal(0, new OwnerHurtTargetGoal(this));
+		this.targetSelector.addGoal(0, new DinosaurOwnerHurtByTargetGoal(this));
+		this.targetSelector.addGoal(0, new DinosaurOwnerHurtTargetGoal(this));
 		this.goalSelector.addGoal(0, new VelociraptorFollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, true));
 		this.goalSelector.addGoal(1, new CrepuscularSleepGoal(this));
 		this.targetSelector.addGoal(0, new HostileCarnivoreGoal(this, Player.class, false));
@@ -223,6 +222,9 @@ public class Velociraptor extends DinosaurEntity {
 
 	public void aiStep() {
 		if (!this.level().isClientSide() && this.isAlive()) {
+			if (this.isSitting() || this.isTameSitting()) {
+				this.getNavigation().stop();
+			}
 			++this.eatTicks;
 			ItemStack itemstack = this.getItemBySlot(EquipmentSlot.MAINHAND);
 			if (this.canEatItem(itemstack)) {
@@ -362,11 +364,6 @@ public class Velociraptor extends DinosaurEntity {
 		}
 		return super.hurt(dmg, i);
 	}
-
-	private void setAttackGoals() {
-		this.targetSelector.addGoal(4, this.attackAnimals);
-	}
-
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putBoolean("IsSleeping", this.isSleeping());
@@ -384,7 +381,6 @@ public class Velociraptor extends DinosaurEntity {
 		this.setSleeping(compound.getBoolean("IsSleeping"));
 		this.setSitting(compound.getBoolean("IsSitting"));
 		this.setCrouching(compound.getBoolean("IsCrouching"));
-		this.setAttackGoals();
 		this.setTameSitting(compound.getBoolean("IsTamedSitting"));
 		this.setTameWandering(compound.getBoolean("IsTamedWander"));
 	}
@@ -991,13 +987,11 @@ public class Velociraptor extends DinosaurEntity {
 
 		public void tick() {
 			Velociraptor.this.getNavigation().stop();
-
 			--this.field_220821_e;
 			if (this.field_220821_e <= 0) {
 				--this.field_220822_f;
 				this.func_220817_j();
 			}
-
 			Velociraptor.this.getLookControl().setLookAt(Velociraptor.this.getX() + this.field_220819_c, Velociraptor.this.getEyeY(), Velociraptor.this.getZ() + this.field_220820_d, (float)Velociraptor.this.getMaxHeadYRot(), (float)Velociraptor.this.getMaxHeadXRot());
 		}
 

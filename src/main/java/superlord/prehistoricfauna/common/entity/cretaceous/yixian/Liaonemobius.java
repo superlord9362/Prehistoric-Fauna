@@ -9,7 +9,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -50,6 +50,7 @@ import net.minecraftforge.common.Tags;
 import superlord.prehistoricfauna.common.entity.navigation.DirectPathNavigator;
 import superlord.prehistoricfauna.common.entity.navigation.FlightMoveController;
 import superlord.prehistoricfauna.init.PFItems;
+import superlord.prehistoricfauna.init.PFSounds;
 
 public class Liaonemobius extends Animal {
 	private static final EntityDataAccessor<Direction> ATTACHED_FACE = SynchedEntityData.defineId(Liaonemobius.class, EntityDataSerializers.DIRECTION);
@@ -72,8 +73,19 @@ public class Liaonemobius extends Animal {
 		switchNavigator(true);
 	}
 
+	protected SoundEvent getAmbientSound() {
+		return PFSounds.LIAONEMOBIUS_IDLE.get();
+	}
+	
 	protected void playStepSound(BlockPos p_33543_, BlockState p_33544_) {
-		this.playSound(SoundEvents.SILVERFISH_STEP, 0.15F, 1.0F);
+	}
+
+	@Override
+	public void playAmbientSound() {
+		SoundEvent soundevent = this.getAmbientSound();
+		if (soundevent != null) {
+			this.playSound(soundevent, this.getSoundVolume() * 5, this.getVoicePitch());
+		}
 	}
 
 	private void switchNavigator(boolean rightsideUp) {
@@ -276,6 +288,7 @@ public class Liaonemobius extends Animal {
 
 	public void startJumping() {
 		this.setJumping(true);
+		this.playSound(PFSounds.LIAONEMOBIUS_HOP.get(), 0.15F, 1.0F);
 		this.jumpDuration = 10;
 		this.jumpTicks = 0;
 	}
@@ -459,4 +472,3 @@ public class Liaonemobius extends Animal {
 	}
 
 }
-

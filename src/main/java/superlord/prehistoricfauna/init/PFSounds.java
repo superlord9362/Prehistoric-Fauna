@@ -2,6 +2,8 @@ package superlord.prehistoricfauna.init;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -162,6 +164,8 @@ public class PFSounds {
 	public static final RegistryObject<SoundEvent> LIAONINGOSAURUS_WARN = createSoundEvent("liaoningosaurus_warn");
 	public static final RegistryObject<SoundEvent> LIAONINGOSAURUS_HURT = createSoundEvent("liaoningosaurus_hurt");
 	public static final RegistryObject<SoundEvent> LIAONINGOSAURUS_DEATH = createSoundEvent("liaoningosaurus_death");
+	public static final RegistryObject<SoundEvent> LIAONEMOBIUS_IDLE = createSoundEvent("liaonemobius_idle");
+	public static final RegistryObject<SoundEvent> LIAONEMOBIUS_HOP = createSoundEvent("liaonemobius_hop");
 	public static final RegistryObject<SoundEvent> PROTOPSEPHURUS_HURT = createSoundEvent("protopsephurus_hurt");
 	public static final RegistryObject<SoundEvent> PROTOPSEPHURUS_DEATH = createSoundEvent("protopsephurus_death");
 	public static final RegistryObject<SoundEvent> PSITTACOSAURUS_IDLE = createSoundEvent("psittacosaurus_idle");
@@ -334,7 +338,7 @@ public class PFSounds {
 	public static final RegistryObject<SoundEvent> MEAT_EATING = createSoundEvent("meat_eating");
 	public static final RegistryObject<SoundEvent> SMALL_MEAT_GULP = createSoundEvent("small_meat_gulp");
 	public static final RegistryObject<SoundEvent> LARGE_MEAT_GULP = createSoundEvent("large_meat_gulp");
-	
+
 	//Boss
 	public static final RegistryObject<SoundEvent> BOSS_WALK = createSoundEvent("boss_walk");
 	public static final RegistryObject<SoundEvent> BOSS_IDLE = createSoundEvent("boss_idle");
@@ -343,6 +347,7 @@ public class PFSounds {
 	public static final RegistryObject<SoundEvent> BOSS_DEATH = createSoundEvent("boss_death");
 	public static final RegistryObject<SoundEvent> BOSS_BITE = createSoundEvent("boss_bite");
 	public static final RegistryObject<SoundEvent> BOSS_BITE_ALL = createSoundEvent("boss_bite_all");
+	public static final RegistryObject<SoundEvent> BOSS_SPEECH = createSoundEvent("boss_speech");
 
 	//Music
 	public static final RegistryObject<SoundEvent> AMBIENCE_1 = createSoundEvent("ambience_1");
@@ -350,7 +355,12 @@ public class PFSounds {
 	public static final RegistryObject<SoundEvent> NIGHT_2 = createSoundEvent("night_2");
 	public static final RegistryObject<SoundEvent> CAVE_1 = createSoundEvent("cave_1");
 	public static final RegistryObject<SoundEvent> STRUCTURE_1 = createSoundEvent("structure_1");
-//	public static final Holder.Reference<SoundEvent> AMBIENCE_1 = registerForHolder("ambience_1");
+	//	public static final Holder.Reference<SoundEvent> AMBIENCE_1 = registerForHolder("ambience_1");
+
+	//Sound Types
+	@SuppressWarnings("deprecation")
+	public static final SoundType REGOLITH = new SoundType(1.0F, 1.0F, SoundEvents.NETHERRACK_BREAK, SoundEvents.BASALT_STEP, SoundEvents.NETHERRACK_PLACE, SoundEvents.NETHERRACK_HIT, SoundEvents.BASALT_FALL);
+
 
 
 	private static RegistryObject<SoundEvent> createSoundEvent(final String soundName) {

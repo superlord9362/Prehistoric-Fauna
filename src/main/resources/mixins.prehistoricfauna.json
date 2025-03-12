@@ -14,7 +14,8 @@
 		"WeatherCommandMixin"
 	],
 	"client": [
-		"MapRendererMapInstanceMixin"
+		"MapRendererMapInstanceMixin",
+		"TitleScreenMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

@@ -25,7 +25,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowParentGoal;
-import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -65,7 +64,6 @@ import superlord.prehistoricfauna.init.PFTags;
 public class Herrerasaurus extends DinosaurEntity {
 	private int maxHunger = 50;
 	private int warningSoundTicks;
-	private Goal attackAnimals;
 
 	public Herrerasaurus(EntityType<? extends Herrerasaurus> type, Level levelIn) {
 		super(type, levelIn);
@@ -86,9 +84,9 @@ public class Herrerasaurus extends DinosaurEntity {
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.attackAnimals = new HuntGoal(this, LivingEntity.class, 10, false, false, (p_213487_1_) -> {
+		this.targetSelector.addGoal(4,  new HuntGoal(this, LivingEntity.class, 10, false, false, (p_213487_1_) -> {
 			return p_213487_1_.getType().is(PFTags.HERRERASAURUS_HUNTING);
-		});
+		}));
 		this.goalSelector.addGoal(1, new Herrerasaurus.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
@@ -161,10 +159,6 @@ public class Herrerasaurus extends DinosaurEntity {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.FOLLOW_RANGE, 20.0D).add(Attributes.ATTACK_DAMAGE, 6.0D);
 	}
 
-	private void setAttackGoals() {
-		this.targetSelector.addGoal(4, this.attackAnimals);
-	}
-
 	protected SoundEvent getAmbientSound() {
 		return this.isAsleep() ? null : PFSounds.HERRERASAURUS_IDLE.get();
 	}
@@ -182,11 +176,6 @@ public class Herrerasaurus extends DinosaurEntity {
 			this.playSound(PFSounds.HERRERASAURUS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
-	}
-
-	public void readAdditionalSaveData(CompoundTag compound) {
-		super.readAdditionalSaveData(compound);
-		this.setAttackGoals();
 	}
 
 	public void tick() {

@@ -573,7 +573,7 @@ public class PrehistoricFaunaConfig {
 	public static boolean tyrannosaurusFeathersOrScaled = true;
 	public static boolean thescelosaurusFeathersOrScaled = false;
 //	public static boolean dryosaurusFeathersOrScaled = true;
-//	public static boolean dilophosaurusFeathersOrScaled = true;
+	public static boolean dilophosaurusFeathersOrScaled = true;
 	public static boolean megapnosaurusFeathersOrScaled = false;
 	public static boolean coelophysisFeathersOrScaled = false;
 //	public static boolean chromogisaurusFeathersOrScaled = false;
@@ -589,7 +589,7 @@ public class PrehistoricFaunaConfig {
 		tyrannosaurusFeathersOrScaled = PFConfigHolder.CLIENT.tyrannosaurusFeathersOrScaled.get();
 		thescelosaurusFeathersOrScaled = PFConfigHolder.CLIENT.thescelosaurusFeathersOrScaled.get();
 //		dryosaurusFeathersOrScaled = PFConfigHolder.CLIENT.dryosaurusFeathersOrScaled.get();
-//		dilophosaurusFeathersOrScaled = PFConfigHolder.CLIENT.dilophosaurusFeathersOrScaled.get();
+		dilophosaurusFeathersOrScaled = PFConfigHolder.CLIENT.dilophosaurusFeathersOrScaled.get();
 		megapnosaurusFeathersOrScaled = PFConfigHolder.CLIENT.megapnosaurusFeathersOrScaled.get();
 		coelophysisFeathersOrScaled = PFConfigHolder.CLIENT.coelophysisFeathersOrScaled.get();
 //		chromogisaurusFeathersOrScaled = PFConfigHolder.CLIENT.chromogisaurusFeathersOrScaled.get();

@@ -76,15 +76,8 @@ public class Typothorax extends BurrowingDinosaur {
 	}
 
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-		if (this.isInWater()) {
-			if (this.isBaby()) return 0.25F;
-			else return 0.5F;
-		} else {
-			if (this.isBaby()) {
-				return 0.225F;
-			}
-			else return 0.45F;
-		}
+		if (this.isBaby()) return 0.225F;
+		else return 0.45F;
 	}
 
 	public boolean isFood(ItemStack stack) {
@@ -115,7 +108,7 @@ public class Typothorax extends BurrowingDinosaur {
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new DinosaurMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new NaturalMateGoal(this, 1.0D));
-//		this.goalSelector.addGoal(1, new NocturnalSleepGoal(this));
+		//		this.goalSelector.addGoal(1, new NocturnalSleepGoal(this));
 		this.goalSelector.addGoal(0, new HerbivoreEatGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(0, new HerbivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(4, new Typothorax.DiggingGoal(this));
@@ -125,7 +118,7 @@ public class Typothorax extends BurrowingDinosaur {
 			return p_213487_0_.getType().is(PFTags.TYPOTHORAX_AVOIDING);
 		}));
 	}
-	
+
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
@@ -138,7 +131,7 @@ public class Typothorax extends BurrowingDinosaur {
 		}
 		return super.mobInteract(player, hand);
 	}
-	
+
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		int temperment = random.nextInt(100);
 		if (temperment < 85) {
@@ -150,7 +143,7 @@ public class Typothorax extends BurrowingDinosaur {
 		this.setNocturnal(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
-	
+
 	@Override
 	public void setAge(int age) {
 		super.setAge(age);
@@ -249,16 +242,16 @@ public class Typothorax extends BurrowingDinosaur {
 		}
 
 	}
-	
+
 	@Override
 	public ItemStack getPickedResult(HitResult target) {
 		return new ItemStack(PFItems.TYPOTHORAX_SPAWN_EGG.get());
 	}
-	
+
 	public Item getEggItem() {
 		return PFItems.TYPOTHORAX_EGG.get();
 	}
-    
+
 	public BlockState getEggBlock(Level world, BlockPos pos) {
 		return PFBlocks.TYPOTHORAX_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}

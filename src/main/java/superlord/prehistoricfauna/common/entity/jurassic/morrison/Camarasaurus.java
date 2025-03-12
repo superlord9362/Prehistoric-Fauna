@@ -1,6 +1,8 @@
 package superlord.prehistoricfauna.common.entity.jurassic.morrison;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Nullable;
 
@@ -51,6 +53,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.AgedHerdDinosaurEntity;
+import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Edmontosaurus;
 import superlord.prehistoricfauna.common.entity.goal.AgedFollowHerdLeaderGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
@@ -76,6 +79,7 @@ import superlord.prehistoricfauna.init.PFTags;
 public class Camarasaurus extends AgedHerdDinosaurEntity {
 	private static final EntityDataAccessor<Boolean> IS_JUVENILE = SynchedEntityData.defineId(Camarasaurus.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> IS_HATCHLING = SynchedEntityData.defineId(Camarasaurus.class, EntityDataSerializers.BOOLEAN);
+	private static final Map<LivingEntity, BlockPos> previousPositions = new HashMap<>();
 	private int maxHunger = 500;
 	private int warningSoundTicks;
 
@@ -118,6 +122,14 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 	@Override
 	public boolean isFood(ItemStack stack) {
 		return stack.getItem() == PFItems.PTILOPHYLLUM_FRONDS.get();
+	}
+	
+	@Override
+	public void playAmbientSound() {
+		SoundEvent soundevent = this.getAmbientSound();
+		if (soundevent != null) {
+			this.playSound(soundevent, this.getSoundVolume() * 10, this.getVoicePitch());
+		}
 	}
 
 	@Override
@@ -253,10 +265,18 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 			
 		} else {
 			if (!this.isBaby() && PrehistoricFaunaConfig.sauropodTrampling) {
-				for (LivingEntity entity : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(1, 0, 1))) {
-					if (!(entity instanceof Camarasaurus) && entity.getMaxHealth() < 60) {
-						entity.hurt(PFDamageSources.causeSauropodTramplingDamage(entity.level().registryAccess(), this), (float) 5.0D);
+				if (PrehistoricFaunaConfig.sauropodTrampling) {
+					BlockPos currentPosition = new BlockPos((int) this.position().x(), (int) this.position().y(), (int) this.position().z());
+			        BlockPos previousPosition = previousPositions.getOrDefault(this, currentPosition);
+					if (!previousPosition.equals(currentPosition)) {
+						for (LivingEntity entity : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(1, 0, 1))) {
+							if (!(entity instanceof Edmontosaurus) && entity.getMaxHealth() < 60) {
+								entity.hurt(PFDamageSources.causeSauropodTramplingDamage(entity.level().registryAccess(), this), (float) 5.0D);
+							}
+						}
 					}
+					previousPositions.clear();
+			        previousPositions.put(this, currentPosition);
 				}
 			}
 		}

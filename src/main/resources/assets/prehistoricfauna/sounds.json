@@ -2029,7 +2029,7 @@
     },
     "boss_walk": {
 		"category": "neutral",
-		"subtitle": "prheistoricfauna.subtitle.cretaceousBossWalk",
+		"subtitle": "prehistoricfauna.subtitle.cretaceousBossWalk",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/cretaceous_boss/boss_walk1",
@@ -2043,7 +2043,7 @@
 	},
     "boss_idle": {
 		"category": "neutral",
-		"subtitle": "prheistoricfauna.subtitle.cretaceousBossIdle",
+		"subtitle": "prehistoricfauna.subtitle.cretaceousBossIdle",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/cretaceous_boss/boss_idle1",
@@ -2057,7 +2057,7 @@
 	},
     "boss_roar": {
 		"category": "neutral",
-		"subtitle": "prheistoricfauna.subtitle.cretaceousBossRoar",
+		"subtitle": "prehistoricfauna.subtitle.cretaceousBossRoar",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/cretaceous_boss/boss_roar",
@@ -2067,7 +2067,7 @@
 	},
     "boss_hurt": {
 		"category": "neutral",
-		"subtitle": "prheistoricfauna.subtitle.cretaceousBossHurt",
+		"subtitle": "prehistoricfauna.subtitle.cretaceousBossHurt",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/cretaceous_boss/boss_hurt",
@@ -2077,7 +2077,7 @@
 	},
     "boss_death": {
 		"category": "neutral",
-		"subtitle": "prheistoricfauna.subtitle.cretaceousBossDeath",
+		"subtitle": "prehistoricfauna.subtitle.cretaceousBossDeath",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/cretaceous_boss/boss_death",
@@ -2087,7 +2087,7 @@
 	},
     "boss_bite": {
 		"category": "neutral",
-		"subtitle": "prheistoricfauna.subtitle.cretaceousBossBite",
+		"subtitle": "prehistoricfauna.subtitle.cretaceousBossBite",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/cretaceous_boss/boss_bite",
@@ -2097,10 +2097,20 @@
 	},
     "boss_bite_all": {
 		"category": "neutral",
-		"subtitle": "prheistoricfauna.subtitle.cretaceousBossBite",
+		"subtitle": "prehistoricfauna.subtitle.cretaceousBossBite",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/cretaceous_boss/boss_megabite",
+				"stream": true
+			}
+		]
+	},
+	"boss_speech": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.cretaceousBossSpeech",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/cretaceous_boss/otherworldly_speech",
 				"stream": true
 			}
 		]
@@ -3807,6 +3817,30 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/byronosaurus/byronosaurus_hurt",
+				"stream": true
+			}
+		]
+	},
+	"liaonemobius_idle": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.liaonemobiusIdle",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/liaonemobius/liaonemobius_idle1",
+				"stream": true
+			},
+			{
+				"name": "prehistoricfauna:prehistoric/liaonemobius/liaonemobius_idle2",
+				"stream": true
+			}
+		]
+	},
+	"liaonemobius_hop": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.liaonemobiusHop",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/liaonemobius/liaonemobius_hop",
 				"stream": true
 			}
 		]

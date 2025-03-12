@@ -206,7 +206,7 @@ public class AnzuSkeleton extends PrehistoricEntity {
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		if (itemstack.getItem() == PFItems.GEOLOGY_HAMMER.get()) {
-			if (!this.isShiftKeyDown()) {
+			if (!player.isShiftKeyDown()) {
 				if (!this.isRear() && !this.isRomp() && !this.isFlee() && !this.isSkulk() && !this.isDisplay() && !this.isBow() && !this.isSit() && !this.isSleep() && !this.isDeath()) {
 					this.setRear(true);
 				} else if (this.isRear()) {

@@ -26,7 +26,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowParentGoal;
-import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -66,7 +65,6 @@ import superlord.prehistoricfauna.init.PFTags;
 public class Ceratosaurus extends DinosaurEntity {
 	private int maxHunger = 100;
 	private int warningSoundTicks;
-	private Goal attackAnimals;
 
 	public Ceratosaurus(EntityType<? extends Ceratosaurus> type, Level levelIn) {
 		super(type, levelIn);
@@ -86,9 +84,9 @@ public class Ceratosaurus extends DinosaurEntity {
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.attackAnimals = new HuntGoal(this, LivingEntity.class, 10, false, false, (p_213487_1_) -> {
+		this.targetSelector.addGoal(4, new HuntGoal(this, LivingEntity.class, 10, false, false, (p_213487_1_) -> {
 			return p_213487_1_.getType().is(PFTags.CERATOSAURUS_HUNTING);
-		});
+		}));
 		this.goalSelector.addGoal(1, new Ceratosaurus.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new BabyPanicGoal(this));
 		this.targetSelector.addGoal(1, new DinosaurHurtByTargetGoal(this));
@@ -155,10 +153,6 @@ public class Ceratosaurus extends DinosaurEntity {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 40.0D).add(Attributes.FOLLOW_RANGE, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.ATTACK_DAMAGE, 8.0D).add(Attributes.KNOCKBACK_RESISTANCE, 0.25D);
 	}
 
-	private void setAttackGoals() {
-		this.targetSelector.addGoal(4, this.attackAnimals);
-	}
-
 	protected SoundEvent getAmbientSound() {
 		return this.isAsleep() ? null : PFSounds.CERATOSAURUS_IDLE.get();
 	}
@@ -189,11 +183,6 @@ public class Ceratosaurus extends DinosaurEntity {
 			this.playSound(PFSounds.CERATOSAURUS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
-	}
-
-	public void readAdditionalSaveData(CompoundTag compound) {
-		super.readAdditionalSaveData(compound);
-		this.setAttackGoals();
 	}
 
 	public void tick() {

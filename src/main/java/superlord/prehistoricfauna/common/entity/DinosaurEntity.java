@@ -731,7 +731,7 @@ public class DinosaurEntity extends TamableAnimal {
 						this.setFallingAsleep();
 					}
 				}
-				if (this.isCrepuscular() && (this.level().getDayTime() % 24000 >= 2000 && this.level().getDayTime() % 24000 <= 9000 || this.level().getDayTime() % 24000 >= 14000 && this.level().getDayTime() % 24000 <= 21000)) {
+				if (this.isCrepuscular() && (this.level().getDayTime() % 24000 < 2000 || this.level().getDayTime() % 24000 > 9000 && this.level().getDayTime() % 24000 < 14000 || this.level().getDayTime() % 24000 > 21000)) {
 					this.setAsleep(false);
 					this.setAwakeTicks(100);
 					this.setFallingAsleep();
@@ -883,7 +883,6 @@ public class DinosaurEntity extends TamableAnimal {
 		if(this.entityData.get(ATTACK_TICK) == 0){
 			this.entityData.set(ATTACK_DIR, random.nextBoolean());
 		}
-		//now simply starts counting down till the actual damage is done, starts the animation
 		this.entityData.set(ATTACK_TICK, 7);
 		return true;
 	}

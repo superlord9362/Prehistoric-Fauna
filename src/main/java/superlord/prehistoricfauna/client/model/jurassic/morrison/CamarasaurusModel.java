@@ -239,11 +239,11 @@ public class CamarasaurusModel extends EntityModel<Camarasaurus> {
 				this.RightHindLeg1.xRot = Mth.cos(limbSwing * 0.3F) * 0.5F * limbSwingAmount;
 				this.RightHindLeg2.xRot = Mth.cos(limbSwing * 0.3F) * 0.2F * limbSwingAmount + 0.05F;
 				this.RightHindLeg3.xRot = Mth.cos(1.0F + limbSwing * 0.3F) * 0.4F * limbSwingAmount;
-				this.LeftHindLeg1.xRot = Mth.cos(4.0F + limbSwing * 0.3F) * 0.5F * limbSwingAmount;
+				this.LeftHindLeg1.xRot = -Mth.cos(limbSwing * 0.3F) * 0.5F * limbSwingAmount;
 				this.LeftHindLeg2.xRot = Mth.cos(4.0F + limbSwing * 0.3F) * 0.2F * limbSwingAmount + 0.05F;
 				this.LeftHindLeg3.xRot = Mth.cos(5.0F + limbSwing * 0.3F) * 0.4F * limbSwingAmount;
 				this.RightFrontLeg.xRot = (Mth.cos(1.0F + limbSwing * 0.3F) * 0.4F * limbSwingAmount) + (attackProgress * (float)Math.toRadians(40));
-				this.LeftFrontLeg.xRot = (Mth.cos(5.0F + limbSwing * 0.3F) * 0.4F * limbSwingAmount) + (attackProgress * (float)Math.toRadians(60));
+				this.LeftFrontLeg.xRot = -(Mth.cos(1.0F + limbSwing * 0.3F) * 0.4F * limbSwingAmount) + (attackProgress * (float)Math.toRadians(60));
 				this.body.xRot = attackProgress * (float)Math.toRadians(-50);
 				if (entity.isEating()) {
 					this.Neck1.xRot = (Math.abs(Mth.sin(0.02F * ageInTicks) * 0.5F) + 0.5F) + ((Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount + 0.25F));

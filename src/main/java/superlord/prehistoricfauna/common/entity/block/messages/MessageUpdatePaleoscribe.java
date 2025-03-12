@@ -6,6 +6,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.network.NetworkEvent;
 import superlord.prehistoricfauna.PrehistoricFauna;
@@ -51,35 +53,37 @@ public class MessageUpdatePaleoscribe {
     public static class Handler {
         public Handler() {
         }
-
-        public static void handle(MessageUpdatePaleoscribe message, Supplier<NetworkEvent.Context> context) {
-            context.get().setPacketHandled(true);
-            Player player = context.get().getSender();
-            if(context.get().getDirection().getReceptionSide() == LogicalSide.CLIENT){
-                player = PrehistoricFauna.PROXY.getClientSidePlayer();
-            }
-            if (player != null) {
-                if (player.level() != null) {
-                    BlockPos pos = BlockPos.of(message.blockPos);
-                    if (player.level().getBlockEntity(pos) != null) {
-                        if (player.level().getBlockEntity(pos) instanceof PaleoscribeBlockEntity) {
-                        	PaleoscribeBlockEntity paleoscribe = (PaleoscribeBlockEntity) player.level().getBlockEntity(pos);
-                            if(message.updateStack){
-                                ItemStack bookStack = paleoscribe.getItem(0);
-                                if(bookStack.getItem() == PFItems.PALEOPEDIA.get()){
-                                    EnumPaleoPages.addPage(EnumPaleoPages.fromInt(message.pageOrdinal), bookStack);
-                                }
-                                paleoscribe.randomizePages(bookStack, paleoscribe.getItem(1));
-                            }else{
-                                paleoscribe.selectedPages[0] = EnumPaleoPages.fromInt(message.selectedPages1);
-                                paleoscribe.selectedPages[1] = EnumPaleoPages.fromInt(message.selectedPages2);
-                                paleoscribe.selectedPages[2] = EnumPaleoPages.fromInt(message.selectedPages3);
-                            }
-
-                        }
-                    }
-                }
-            }
+        
+        public static void handle(MessageUpdatePaleoscribe message, Supplier<NetworkEvent.Context> ctx) {
+        	ctx.get().enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.DEDICATED_SERVER, () -> () -> MessageUpdatePaleoscribe.Handler.handlePacket(message, ctx)));
+        	ctx.get().enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> MessageUpdatePaleoscribe.Handler.handlePacket(message, ctx)));
+        	ctx.get().setPacketHandled(true);
+        }
+        
+        @SuppressWarnings("deprecation")
+		public static void handlePacket(final MessageUpdatePaleoscribe message, final Supplier<NetworkEvent.Context> contextSupplier) {
+        	NetworkEvent.Context context = contextSupplier.get();
+        	context.enqueueWork(() -> {
+        		Player player = context.getSender();
+        		if (context.getDirection().getReceptionSide() == LogicalSide.CLIENT) player = PrehistoricFauna.PROXY.getClientSidePlayer();
+        		if (player != null) {
+        			BlockPos pos = BlockPos.of(message.blockPos);
+        			if (player.level().hasChunkAt(pos) && player.level().getBlockEntity(pos) instanceof PaleoscribeBlockEntity paleoscribe) {
+        				if (message.updateStack) {
+        					ItemStack bookStack = paleoscribe.getItem(0);
+        					if (bookStack.getItem() == PFItems.PALEOPEDIA.get()) {
+        						EnumPaleoPages.addPage(EnumPaleoPages.fromInt(message.pageOrdinal), bookStack);
+        					}
+        					paleoscribe.randomizePages(bookStack, paleoscribe.getItem(1));
+        				} else {
+        					paleoscribe.selectedPages[0] = EnumPaleoPages.fromInt(message.selectedPages1);
+        					paleoscribe.selectedPages[1] = EnumPaleoPages.fromInt(message.selectedPages2);
+        					paleoscribe.selectedPages[2] = EnumPaleoPages.fromInt(message.selectedPages3);
+        				}
+        			}
+        		}
+        	});
+        	context.setPacketHandled(true);
         }
     }
 

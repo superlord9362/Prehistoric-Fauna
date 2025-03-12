@@ -27,7 +27,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowParentGoal;
-import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -71,7 +70,6 @@ public class Allosaurus extends DinosaurEntity {
 	int hungerTick = 0;
 	private int warningSoundTicks;
 	int loveTick = 0;
-	private Goal attackAnimals;
 
 	public Allosaurus(EntityType<? extends Allosaurus> type, Level worldIn) {
 		super(type, worldIn);
@@ -81,7 +79,7 @@ public class Allosaurus extends DinosaurEntity {
 	
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
 		if (this.isBaby()) return 1.5F;
-		else return 3.0F;
+		else return 2.9F;
 	}
 
 	public boolean isFood(ItemStack stack) {
@@ -91,9 +89,9 @@ public class Allosaurus extends DinosaurEntity {
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.attackAnimals = new HuntGoal(this, LivingEntity.class, 10, false, false, (p_213487_0_) -> {
+		this.targetSelector.addGoal(4, new HuntGoal(this, LivingEntity.class, 10, false, false, (p_213487_0_) -> {
 			return p_213487_0_.getType().is(PFTags.ALLOSAURUS_HUNTING);
-		});
+		}));
 		this.goalSelector.addGoal(1, new Allosaurus.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new BabyPanicGoal(this));
 		this.targetSelector.addGoal(2, new DinosaurTerritorialAttackGoal(this));
@@ -153,10 +151,6 @@ public class Allosaurus extends DinosaurEntity {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 60.0D).add(Attributes.MOVEMENT_SPEED, (double)0.25F).add(Attributes.ATTACK_DAMAGE, 12.0D).add(Attributes.FOLLOW_RANGE, 20.0D).add(Attributes.KNOCKBACK_RESISTANCE, 0.6D);
 	}
 
-	private void setAttackGoals() {
-		this.targetSelector.addGoal(4, this.attackAnimals);
-	}
-
 	protected SoundEvent getAmbientSound() {
 		return this.isAsleep() ? PFSounds.ALLOSAURUS_SNORES.get() : PFSounds.ALLOSAURUS_IDLE.get();
 	}
@@ -197,11 +191,6 @@ public class Allosaurus extends DinosaurEntity {
 		} else if(this.getAge() >= 0) {
 			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(60);
 		}
-	}
-
-	public void readAdditionalSaveData(CompoundTag compound) {
-		super.readAdditionalSaveData(compound);
-		this.setAttackGoals();
 	}
 
 	/**

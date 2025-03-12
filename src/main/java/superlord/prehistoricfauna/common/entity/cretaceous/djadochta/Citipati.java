@@ -30,7 +30,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowParentGoal;
-import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.ai.goal.TemptGoal;
@@ -73,7 +72,6 @@ public class Citipati extends DinosaurEntity {
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(PFItems.RAW_SMALL_REPTILE_MEAT.get());
 	private static final EntityDataAccessor<Boolean> SITTING = SynchedEntityData.defineId(Citipati.class, EntityDataSerializers.BOOLEAN);
 	public int maxHunger = 38;
-	private Goal attackAnimals;
 
 	public Citipati(EntityType<? extends Citipati> type, Level world) {
 		super(type, world);
@@ -101,9 +99,9 @@ public class Citipati extends DinosaurEntity {
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.attackAnimals = new HuntGoal(this, LivingEntity.class, 10, false, false, (p_237491_0_) -> {
+		this.targetSelector.addGoal(4, new HuntGoal(this, LivingEntity.class, 10, false, false, (p_237491_0_) -> {
 			return p_237491_0_.getType().is(PFTags.CITIPATI_HUNTING);
-		});
+		}));
 		this.goalSelector.addGoal(1, new Citipati.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25F));
 		this.goalSelector.addGoal(0, new DinosaurMateGoal(this, 1.0D));
@@ -159,10 +157,6 @@ public class Citipati extends DinosaurEntity {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 15.0D).add(Attributes.MOVEMENT_SPEED, 0.26D).add(Attributes.FOLLOW_RANGE, 25.0D).add(Attributes.ATTACK_DAMAGE, 4.0D);
 	}
 
-	private void setAttackGoals() {
-		this.targetSelector.addGoal(4, attackAnimals);
-	}
-
 	protected SoundEvent getAmbientSound() {
 		return this.isAsleep() ? null : PFSounds.CITIPATI_IDLE.get();
 	}
@@ -187,7 +181,6 @@ public class Citipati extends DinosaurEntity {
 
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
-		this.setAttackGoals();
 		this.setSitting(compound.getBoolean("IsSitting"));
 	}
 

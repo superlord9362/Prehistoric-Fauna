@@ -26,7 +26,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowParentGoal;
-import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -65,8 +64,7 @@ import superlord.prehistoricfauna.init.PFTags;
 public class Poposaurus extends DinosaurEntity {
 	private int maxHunger = 50;
 	private int warningSoundTicks;
-	private Goal attackAnimals;
-
+	
 	public Poposaurus(EntityType<? extends Poposaurus> type, Level levelIn) {
 		super(type, levelIn);
 		super.setMaxUpStep(1.0F);
@@ -85,9 +83,9 @@ public class Poposaurus extends DinosaurEntity {
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.attackAnimals = new HuntGoal(this, LivingEntity.class, 10, false, false, (p_213487_1_) -> {
+		this.targetSelector.addGoal(4, new HuntGoal(this, LivingEntity.class, 10, false, false, (p_213487_1_) -> {
 			return p_213487_1_.getType().is(PFTags.POPOSAURUS_HUNTING);
-		});
+		}));
 		this.goalSelector.addGoal(1, new Poposaurus.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new BabyPanicGoal(this));
 		this.targetSelector.addGoal(1, new DinosaurHurtByTargetGoal(this));
@@ -155,11 +153,7 @@ public class Poposaurus extends DinosaurEntity {
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.FOLLOW_RANGE, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.ATTACK_DAMAGE, 5.0D).add(Attributes.KNOCKBACK_RESISTANCE, 0.25D);
 	}
-
-	private void setAttackGoals() {
-		this.targetSelector.addGoal(4, this.attackAnimals);
-	}
-
+	
 	protected SoundEvent getAmbientSound() {
 		return this.isAsleep() ? null : PFSounds.POPOSAURUS_IDLE.get();
 	}
@@ -181,11 +175,6 @@ public class Poposaurus extends DinosaurEntity {
 			this.playSound(PFSounds.POPOSAURUS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
-	}
-
-	public void readAdditionalSaveData(CompoundTag compound) {
-		super.readAdditionalSaveData(compound);
-		this.setAttackGoals();
 	}
 
 	public void tick() {

@@ -95,6 +95,15 @@ public class Ruixinia extends AgedHerdDinosaurEntity {
 	}
 	
 	@Override
+	public void playAmbientSound() {
+		SoundEvent soundevent = this.getAmbientSound();
+		if (soundevent != null) {
+			this.playSound(soundevent, this.getSoundVolume() * 10, this.getVoicePitch());
+		}
+	}
+
+	
+	@Override
 	public double moveToRange() {
 		return 10;
 	}

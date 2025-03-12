@@ -75,7 +75,6 @@ public class Hesperornithoides extends DinosaurEntity {
 	private static final EntityDataAccessor<Byte> CLIMBING = SynchedEntityData.defineId(Hesperornithoides.class, EntityDataSerializers.BYTE);
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(PFItems.RAW_SMALL_REPTILE_MEAT.get());
 	private int maxHunger = 10;
-	private Goal attackAnimals;
 	private int climbingTicks = 0;
 	private int climbingTickCooldown = 0;
 
@@ -105,9 +104,9 @@ public class Hesperornithoides extends DinosaurEntity {
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.attackAnimals = new HuntGoal(this, LivingEntity.class, 10, false, false, (p_213487_1_) -> {
+		this.goalSelector.addGoal(4, new HuntGoal(this, LivingEntity.class, 10, false, false, (p_213487_1_) -> {
 			return p_213487_1_.getType().is(PFTags.HESPERORNITHOIDES_HUNTING);
-		});
+		}));
 		this.goalSelector.addGoal(1, new Hesperornithoides.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25F));
 		this.goalSelector.addGoal(0, new DinosaurMateGoal(this, 1.0D));
@@ -187,11 +186,7 @@ public class Hesperornithoides extends DinosaurEntity {
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 4.0D).add(Attributes.MOVEMENT_SPEED, 0.26D).add(Attributes.FOLLOW_RANGE, 25.0D).add(Attributes.ATTACK_DAMAGE, 2.0D);
 	}
-
-	private void setAttackGoals() {
-		this.targetSelector.addGoal(4, attackAnimals);
-	}
-
+	
 	protected SoundEvent getAmbientSound() {
 		return this.isAsleep() ? null : PFSounds.HESPERORNITHOIDES_IDLE.get();
 	}
@@ -217,7 +212,6 @@ public class Hesperornithoides extends DinosaurEntity {
 
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
-		this.setAttackGoals();
 		this.setDustBathing(compound.getBoolean("DustBath"));
 	}
 

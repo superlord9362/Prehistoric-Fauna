@@ -29,7 +29,6 @@ public class CrepuscularSleepGoal extends Goal {
 	@Override
 	@SuppressWarnings("resource")
 	public boolean canContinueToUse() {
-		Level level = entity.level();
 		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(2D, 2D, 2D))) {
 			if (player.isShiftKeyDown()) {
 				return true;
@@ -39,68 +38,69 @@ public class CrepuscularSleepGoal extends Goal {
 				return false;
 			}
 		}
-		if (level.getDayTime() % 24000 <= 2000 || level.getDayTime() % 24000 >= 9000 && level.getDayTime() % 24000 <= 14000 || level.getDayTime() % 24000 >= 21000 && level.getDayTime() % 24000 <= 24000) {
-			stop();
-			entity.setAsleep(false);
-			return false;
-		} else if (entity.getTarget() != null) {
-			stop();
-			entity.setAsleep(false);
-			return false;
-		} else if (entity.getLastHurtByMob() != null) {
-			stop();
-			entity.setAsleep(false);
-			return false;
-		} else if (entity.isTame()) {
-			stop();
-			entity.setAsleep(false);
-			return false;
-		} else if (entity.isInWater()) {
-			stop();
-			entity.setAsleep(false);
-			return false;
-		} else if (entity.isInLava()) {
-			stop();
-			entity.setAsleep(false);
-			return false;
-		} else if (!entity.getBlockStateOn().is(Blocks.AIR)) {
-			stop();
-			entity.setAsleep(false);
-			return false;
-		} else return true;
+		if (entity.getTarget() != null || entity.getLastHurtByMob() != null || entity.isTame() || entity.isInWater() || entity.isInLava() || entity.isInPowderSnow || entity.getBlockStateOn().is(Blocks.AIR)) return false;
+//		if (entity.level().getDayTime() % 24000 < 2000 || entity.level().getDayTime() % 24000 > 9000 && entity.level().getDayTime() % 24000 < 14000 || entity.level().getDayTime() % 24000 > 21000) {
+//			stop();
+//			entity.setAsleep(false);
+//			return false;
+//		} else if (entity.getTarget() != null) {
+//			stop();
+//			entity.setAsleep(false);
+//			return false;
+//		} else if (entity.getLastHurtByMob() != null) {
+//			stop();
+//			entity.setAsleep(false);
+//			return false;
+//		} else if (entity.isTame()) {
+//			stop();
+//			entity.setAsleep(false);
+//			return false;
+//		} else if (entity.isInWater()) {
+//			stop();
+//			entity.setAsleep(false);
+//			return false;
+//		} else if (entity.isInLava()) {
+//			stop();
+//			entity.setAsleep(false);
+//			return false;
+//		} else if (!entity.getBlockStateOn().is(Blocks.AIR)) {
+//			stop();
+//			entity.setAsleep(false);
+//			return false;
+//		} 
+		return true;
 	}
 
 	public void tick() {
 		super.tick();
-		entity.getNavigation().stop();;
-		Level level = entity.level();
-		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(2D, 2D, 2D))) {
-			if (!player.isShiftKeyDown()) {
-				stop();
-				entity.setAsleep(false);
-			}
-		}
-		if (level.getDayTime() % 24000 <= 2000 || level.getDayTime() % 24000 >= 9000 && level.getDayTime() % 24000 <= 14000 || level.getDayTime() % 24000 >= 21000 && level.getDayTime() % 24000 <= 24000) {
-			stop();
-			entity.setAsleep(false);
-		} else if (entity.getTarget() != null) {
-			stop();
-			entity.setAsleep(false);
-		} else if (entity.getLastHurtByMob() != null) {
-			stop();
-			entity.setAsleep(false);
-		} else if (entity.isTame()) {
-			stop();
-			entity.setAsleep(false);
-		} else if (entity.isInWater()) {
-			stop();
-			entity.setAsleep(false);
-		} else if (entity.isInLava()) {
-			stop();
-			entity.setAsleep(false);
-		} else {
-			entity.setAsleep(true);
-		}
+//		entity.getNavigation().stop();;
+//		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(2D, 2D, 2D))) {
+//			if (!player.isShiftKeyDown()) {
+//				stop();
+//				entity.setAsleep(false);
+//			}
+//		}
+//		if (entity.level().getDayTime() % 24000 < 2000 || entity.level().getDayTime() % 24000 > 9000 && entity.level().getDayTime() % 24000 < 14000 || entity.level().getDayTime() % 24000 > 21000) {
+//			stop();
+//			entity.setAsleep(false);
+//		} else if (entity.getTarget() != null) {
+//			stop();
+//			entity.setAsleep(false);
+//		} else if (entity.getLastHurtByMob() != null) {
+//			stop();
+//			entity.setAsleep(false);
+//		} else if (entity.isTame()) {
+//			stop();
+//			entity.setAsleep(false);
+//		} else if (entity.isInWater()) {
+//			stop();
+//			entity.setAsleep(false);
+//		} else if (entity.isInLava()) {
+//			stop();
+//			entity.setAsleep(false);
+//		} else {
+//			entity.setAsleep(true);
+//		}
 	}
 
 	@Override

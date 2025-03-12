@@ -127,6 +127,54 @@
 			  }
 		  ]
 		}
+	},
+	"yixian_ruined_settlement": {
+		"trigger": "minecraft:location",
+		"conditions": {
+			"player": [
+				{
+					"condition": "minecraft:entity_properties",
+					"entity": "this",
+					"predicate": {
+						"location": {
+							"structure": "prehistoricfauna:yixian_ruined_settlement"	
+						}
+					}
+				}
+			]
+		}
+	},
+	"hell_creek_ruined_settlement": {
+		"trigger": "minecraft:location",
+		"conditions": {
+			"player": [
+				{
+					"condition": "minecraft:entity_properties",
+					"entity": "this",
+					"predicate": {
+						"location": {
+							"structure": "prehistoricfauna:hell_creek_ruined_settlement"	
+						}
+					}
+				}
+			]
+		}
+	},
+	"djadochta_ruined_settlement": {
+		"trigger": "minecraft:location",
+		"conditions": {
+			"player": [
+				{
+					"condition": "minecraft:entity_properties",
+					"entity": "this",
+					"predicate": {
+						"location": {
+							"structure": "prehistoricfauna:djadochta_ruined_settlement"	
+						}
+					}
+				}
+			]
+		}
 	}
   },
   "requirements": [
@@ -137,7 +185,10 @@
 		"djadochta_hut",
 		"kayenta_hut",
 		"chinle_hut",
-		"yixian_hut"
+		"yixian_hut",
+		"yixian_ruined_settlement",
+		"hell_creek_ruined_settlement",
+		"djadochta_ruined_settlement"
     ]
   ]
 }

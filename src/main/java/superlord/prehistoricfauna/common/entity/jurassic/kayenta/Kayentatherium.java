@@ -19,6 +19,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -38,6 +39,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.AmphibiousNodeEvaluator;
 import net.minecraft.world.level.pathfinder.PathFinder;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.BurrowingDinosaur;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
@@ -134,6 +136,24 @@ public class Kayentatherium extends BurrowingDinosaur {
 
 	protected float getWaterSlowDown() {
 		return 0.8F;
+	}
+	
+	public void travel(Vec3 travelVector) {
+		if (this.isAlive()) {
+			if (this.isEffectiveAi() && this.isInWater()) {
+				this.moveRelative(this.getSpeed(), travelVector);
+				this.move(MoverType.SELF, this.getDeltaMovement());
+				this.setDeltaMovement(this.getDeltaMovement().scale(0.5D));
+				if (this.getTarget() == null) {
+					this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.005D, 0.0D));
+				}
+				if (this.getAirSupply() < this.getMaxAirSupply() / 3) {
+					this.setDeltaMovement(this.getDeltaMovement().add(0.0D, 0.05D, 0.0D));
+				}
+			} else {
+				super.travel(travelVector);
+			}
+		}
 	}
 	
 	@Override

@@ -101,7 +101,6 @@ public class Dakotaraptor extends DinosaurEntity {
 		return p_213498_0_.getType().is(PFTags.ANIMALS_3_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_4_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_6_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_8_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_10_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_15_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_20_HUNGER) || p_213498_0_.getType().is(PFTags.ANIMALS_30_HUNGER);
 	};
 	public static final EntityDataAccessor<Integer> SIT_TICK = SynchedEntityData.defineId(Dakotaraptor.class, EntityDataSerializers.INT);
-	private Goal attackAnimals;
 	private float interestedAngle;
 	private float interestedAngleO;
 	private float crouchAmount;
@@ -141,9 +140,9 @@ public class Dakotaraptor extends DinosaurEntity {
 	}
 
 	protected void registerGoals() {
-		this.attackAnimals = new HuntGoal(this, LivingEntity.class, 10, false, false, (p_213498_0_) -> {
+		this.targetSelector.addGoal(4, new HuntGoal(this, LivingEntity.class, 10, false, false, (p_213498_0_) -> {
 			return p_213498_0_.getType().is(PFTags.DAKOTARAPTOR_HUNTING);
-		});
+		}));
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new Dakotaraptor.JumpGoal());
 		this.goalSelector.addGoal(2, new Dakotaraptor.PanicGoal());
@@ -206,6 +205,9 @@ public class Dakotaraptor extends DinosaurEntity {
 	public void aiStep() {
 		if (!this.level().isClientSide() && this.isAlive()) {
 			++this.eatTicks;
+			if (this.isSitting()) {
+				this.getNavigation().stop();
+			}
 			ItemStack itemstack = this.getItemBySlot(EquipmentSlot.MAINHAND);
 			if (this.canEatItem(itemstack)) {
 				if (this.eatTicks > 600) {
@@ -372,10 +374,6 @@ public class Dakotaraptor extends DinosaurEntity {
 		return super.hurt(dmg, i);
 	}
 
-	private void setAttackGoals() {
-		this.targetSelector.addGoal(4, this.attackAnimals);
-	}
-
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putBoolean("IsSleeping", this.isSleeping());
@@ -391,7 +389,6 @@ public class Dakotaraptor extends DinosaurEntity {
 		this.setSleeping(compound.getBoolean("IsSleeping"));
 		this.setSitting(compound.getBoolean("IsSitting"));
 		this.setCrouching(compound.getBoolean("IsCrouching"));
-		this.setAttackGoals();
 	}
 
 	public boolean isSitting() {

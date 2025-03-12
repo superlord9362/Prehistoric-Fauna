@@ -124,6 +124,9 @@ public class Calsoyasuchus extends DinosaurEntity {
 			if (this.getTarget() == null) {
 				this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.005D, 0.0D));
 			}
+			if (this.getAirSupply() < this.getMaxAirSupply() / 3) {
+				this.setDeltaMovement(this.getDeltaMovement().add(0.0D, 0.05D, 0.0D));
+			}
 		} else {
 			super.travel(travelVector);
 		}

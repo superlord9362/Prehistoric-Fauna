@@ -10,7 +10,7 @@ public class ClientConfig {
 	public final ForgeConfigSpec.BooleanValue tyrannosaurusFeathersOrScaled;
 	public final ForgeConfigSpec.BooleanValue thescelosaurusFeathersOrScaled;
 //	public final ForgeConfigSpec.BooleanValue dryosaurusFeathersOrScaled;
-//	public final ForgeConfigSpec.BooleanValue dilophosaurusFeathersOrScaled;
+	public final ForgeConfigSpec.BooleanValue dilophosaurusFeathersOrScaled;
 	public final ForgeConfigSpec.BooleanValue megapnosaurusFeathersOrScaled;
 	public final ForgeConfigSpec.BooleanValue coelophysisFeathersOrScaled;
 //	public final ForgeConfigSpec.BooleanValue chromogisaurusFeathersOrScaled;
@@ -36,7 +36,7 @@ public class ClientConfig {
 //		this.jinzhousaurusFeathersOrScaled = buildBoolean(builder, "Jinzhousaurus Scaled Texture", "all", true, "Toggles whether Jinzhousaurus is scaley or feathered. False is feathered, true is scaley. Default is true");
 		builder.pop();
 		builder.push("Kayenta");
-//		this.dilophosaurusFeathersOrScaled = buildBoolean(builder, "Dilophosaurus Scaled Texture", "all", true, "Toggles whether Dilophosaurus is scaley or feathered. False is feathered, true is scaley. Default is true");
+		this.dilophosaurusFeathersOrScaled = buildBoolean(builder, "Dilophosaurus Scaled Texture", "all", true, "Toggles whether Dilophosaurus is scaley or feathered. False is feathered, true is scaley. Default is true");
 		this.megapnosaurusFeathersOrScaled = buildBoolean(builder, "Megapnosaurus Scaled Texture", "all", false, "Toggles whether Megapnosaurus is scaley or feathered. False is feathered, true is scaley. Default is false");
 //		this.sarahsaurusFeathersOrScaled = buildBoolean(builder, "Sarahsaurus Scaled Texture", "all", true, "Toggles whether Sarahsaurus is scaley or feathered. False is feathered, true is scaley. Default is true");
 		builder.pop();

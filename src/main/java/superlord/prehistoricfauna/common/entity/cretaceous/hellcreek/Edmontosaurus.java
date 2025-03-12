@@ -1,6 +1,8 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.hellcreek;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Nullable;
 
@@ -64,7 +66,8 @@ import superlord.prehistoricfauna.init.PFTags;
 
 public class Edmontosaurus extends HerdDinosaurEntity {
 	private static final EntityDataAccessor<Boolean> IS_JUVENILE = SynchedEntityData.defineId(Edmontosaurus.class, EntityDataSerializers.BOOLEAN);
-private int warningSoundTicks = 200;
+	private int warningSoundTicks = 200;
+	private static final Map<LivingEntity, BlockPos> previousPositions = new HashMap<>();
 	public int maxHunger = 250;
 
 	public Edmontosaurus(EntityType<? extends Edmontosaurus> p_21803_, Level p_21804_) {
@@ -72,12 +75,12 @@ private int warningSoundTicks = 200;
 		this.setMaxUpStep(1);
 		super.maxHunger = this.maxHunger;
 	}
-	
+
 	@Override
 	public double moveToRange() {
 		return 15;
 	}
-	
+
 	public boolean isJuvenile() {
 		return this.entityData.get(IS_JUVENILE);
 	}
@@ -144,7 +147,7 @@ private int warningSoundTicks = 200;
 			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(100);
 		}
 	}
-	
+
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
@@ -157,7 +160,7 @@ private int warningSoundTicks = 200;
 		}
 		return super.mobInteract(player, hand);
 	}
-	
+
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(IS_JUVENILE, false);
@@ -221,14 +224,18 @@ private int warningSoundTicks = 200;
 					this.playWarningSound();
 				}
 			}
-			if (!(this.getDeltaMovement().x == 0 && this.getDeltaMovement().y == 0 && this.getDeltaMovement().z == 0)) {
-				if (PrehistoricFaunaConfig.sauropodTrampling) {
+			if (PrehistoricFaunaConfig.sauropodTrampling) {
+				BlockPos currentPosition = new BlockPos((int) this.position().x(), (int) this.position().y(), (int) this.position().z());
+		        BlockPos previousPosition = previousPositions.getOrDefault(this, currentPosition);
+				if (!previousPosition.equals(currentPosition)) {
 					for (LivingEntity entity : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(1, 0, 1))) {
 						if (!(entity instanceof Edmontosaurus) && entity.getMaxHealth() < 60) {
 							entity.hurt(PFDamageSources.causeSauropodTramplingDamage(entity.level().registryAccess(), this), (float) 5.0D);
 						}
 					}
 				}
+				previousPositions.clear();
+		        previousPositions.put(this, currentPosition);
 			}
 		}
 	}

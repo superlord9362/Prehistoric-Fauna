@@ -3,9 +3,9 @@ loaderVersion="${loader_version_range}"
 license="All Rights Reserved"
 [[mods]]
 modId="prehistoricfauna"
-version="2.3.0"
+version="2.3.1"
 displayName="Prehistoric Fauna"
-credits="AGSuko, Antlion, Baular, Coda, Corgi Taco, Definitely not Dilophosaurus, GibblyGjabble, Jen, K3pxthereemonster, Mayonnaise Eater, Obsolerus, RafaMv, Ralof, Seal, Sleepy Spino, superlord9362, Weastian"
+credits="AGSuko, Antlion, Baular, Coda, Corgi Taco, Definitely not Dilophosaurus, GibblyGjabble, Gneiss Name, Jen, K3pxthereemonster, Mayonnaise Eater, Obsolerus, RafaMv, Ralof, Seal, Sleepy Spino, superlord9362, Weastian"
 authors="superlord9362, Corgi Taco, RafaMv, Alexthe668, cappin"
 description='''
 Travel to the past to discover worlds time forgot. Bring back animals long extinct, or join their world.
