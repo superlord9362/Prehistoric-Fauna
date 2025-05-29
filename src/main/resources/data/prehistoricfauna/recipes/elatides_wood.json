@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:elatides_log"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:elatides_wood",
+    "count": 3
+  }
+}

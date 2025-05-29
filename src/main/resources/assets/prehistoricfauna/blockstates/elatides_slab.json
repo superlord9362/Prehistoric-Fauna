@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "prehistoricfauna:block/elatides_slab" },
+        "type=top": { "model": "prehistoricfauna:block/elatides_slab_top" },
+        "type=double": { "model": "prehistoricfauna:block/elatides_planks" }
+    }
+}

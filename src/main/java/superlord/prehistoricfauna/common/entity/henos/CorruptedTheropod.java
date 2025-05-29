@@ -914,7 +914,7 @@ public class CorruptedTheropod extends Animal {
 			}
 		}
 		if (this.isDeadOrDying() && !playedDeathSound()) {
-            this.playSound(PFSounds.BOSS_SPEECH.get(), this.getSoundVolume(), this.getVoicePitch());
+            this.playSound(PFSounds.BOSS_SPEECH.get(), 1.0F, 1.0F);
             setPlayedDeathSound(true);
 		}
 		Vec3 head1 = new Vec3(-0.7, 3.6, 3.5).xRot(-getXRot() * ((float) Math.PI / 180f)).yRot(-yBodyRot * ((float) Math.PI / 180f));

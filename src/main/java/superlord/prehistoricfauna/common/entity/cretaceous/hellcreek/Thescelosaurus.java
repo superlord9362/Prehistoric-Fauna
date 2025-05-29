@@ -65,7 +65,7 @@ public class Thescelosaurus extends BurrowingDinosaur {
 
 	public Thescelosaurus(EntityType<? extends Thescelosaurus> type, Level worldIn) {
 		super(type, worldIn);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 

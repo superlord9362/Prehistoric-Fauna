@@ -18,7 +18,7 @@ and a 15% chance of being passive.
 Sleep Cycle: Crepuscular
 
 
-<image><drawings_ankylosaurus.png 33 3 103 127 22 20 6.5>
+<image><drawings_ankylosaurus.png 33 3 103 190 22 20 6.5>
 
 
 

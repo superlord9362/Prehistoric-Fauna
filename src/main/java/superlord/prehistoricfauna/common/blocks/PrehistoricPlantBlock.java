@@ -53,6 +53,8 @@ public class PrehistoricPlantBlock extends BushBlock implements BonemealableBloc
 			doubleplantblock = (DoublePlantBlock) PFBlocks.TALL_OSMUNDA.get();
 		} else if (p_57323_.is(PFBlocks.ARCHAEFRUCTUS.get())) {
 			doubleplantblock = (DoublePlantBlock) PFBlocks.TALL_ARCHAEFRUCTUS.get();
+		} else if (p_57323_.is(PFBlocks.TAENIOPTERIS.get())) {
+			doubleplantblock = (DoublePlantBlock) PFBlocks.TALL_TAENIOPTERIS.get();
 		} else {
 			doubleplantblock = (DoublePlantBlock) PFBlocks.TALL_HORSETAIL.get();
 		}

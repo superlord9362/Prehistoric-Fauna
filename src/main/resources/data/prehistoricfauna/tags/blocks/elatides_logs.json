@@ -1,0 +1,9 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:elatides_log",
+		"prehistoricfauna:stripped_elatides_log",
+		"prehistoricfauna:elatides_wood",
+		"prehistoricfauna:stripped_elatides_wood"
+	]
+}

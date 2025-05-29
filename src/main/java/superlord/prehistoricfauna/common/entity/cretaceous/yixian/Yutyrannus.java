@@ -76,7 +76,7 @@ public class Yutyrannus extends HuntingDinosaurEntity {
 
 	public Yutyrannus(EntityType<? extends Yutyrannus> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.setMaxUpStep(1);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 

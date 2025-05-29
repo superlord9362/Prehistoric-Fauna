@@ -84,6 +84,12 @@
         "maxCount": 2,
         "minCount": 1,
         "weight": 1
+      },
+      {
+        "type": "prehistoricfauna:kayentachelys",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 6
       }
     ],
     "misc": [],

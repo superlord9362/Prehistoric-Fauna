@@ -111,6 +111,92 @@ public class PFTreeSpawners {
 		}
 	}
 	
+	public static class Frenelopsis extends TreeSpawner {
+		@Nullable
+		public ResourceKey<ConfiguredFeature<?, ?>> getTreeFeature(RandomSource random) {
+			int number = random.nextInt(8);
+			if (number == 0) {
+				return PFConfiguredFeatures.FRENELOPSIS_TREE_1;
+			} else if (number == 1) {
+				return PFConfiguredFeatures.FRENELOPSIS_TREE_2;
+			} else if (number == 2) {
+				return PFConfiguredFeatures.FRENELOPSIS_TREE_3;
+			} else if (number == 3) {
+				return PFConfiguredFeatures.FRENELOPSIS_TREE_4;
+			} else if (number == 4) {
+				return PFConfiguredFeatures.FRENELOPSIS_TREE_5;
+			} else if (number == 5) {
+				return PFConfiguredFeatures.FRENELOPSIS_TREE_6;
+			} else if (number == 6) {
+				return PFConfiguredFeatures.FRENELOPSIS_TREE_7;
+			} else {
+				return PFConfiguredFeatures.FRENELOPSIS_TREE_8;
+			}
+		}
+	}
+	
+	public static class Elatides extends TreeSpawner {
+		@Nullable
+		public ResourceKey<ConfiguredFeature<?, ?>> getTreeFeature(RandomSource random) {
+			int number = random.nextInt(7);
+			if (number == 0) {
+				return PFConfiguredFeatures.ELATIDES_TREE_1;
+			} else if (number == 1) {
+				return PFConfiguredFeatures.ELATIDES_TREE_2;
+			} else if (number == 2) {
+				return PFConfiguredFeatures.ELATIDES_TREE_3;
+			} else if (number == 3) {
+				return PFConfiguredFeatures.ELATIDES_TREE_4;
+			} else if (number == 4) {
+				return PFConfiguredFeatures.ELATIDES_TREE_5;
+			} else if (number == 5) {
+				return PFConfiguredFeatures.ELATIDES_TREE_6;
+			} else {
+				return PFConfiguredFeatures.ELATIDES_TREE_7;
+			}
+		}
+	}
+	
+	public static class Phoenicopsis extends TreeSpawner {
+		@Nullable
+		public ResourceKey<ConfiguredFeature<?, ?>> getTreeFeature(RandomSource random) {
+			int number = random.nextInt(6);
+			if (number == 0) {
+				return PFConfiguredFeatures.PHOENICOPSIS_TREE_1;
+			} else if (number == 1) {
+				return PFConfiguredFeatures.PHOENICOPSIS_TREE_2;
+			} else if (number == 2) {
+				return PFConfiguredFeatures.PHOENICOPSIS_TREE_3;
+			} else if (number == 3) {
+				return PFConfiguredFeatures.PHOENICOPSIS_TREE_4;
+			} else if (number == 4) {
+				return PFConfiguredFeatures.PHOENICOPSIS_TREE_5;
+			} else {
+				return PFConfiguredFeatures.PHOENICOPSIS_TREE_6;
+			}
+		}
+	}
+	
+	public static class Cupressinocladus extends TreeSpawner {
+		@Nullable
+		public ResourceKey<ConfiguredFeature<?, ?>> getTreeFeature(RandomSource random) {
+			int number = random.nextInt(6);
+			if (number == 0) {
+				return PFConfiguredFeatures.CUPRESSINOCLADUS_TREE_1;
+			} else if (number == 1) {
+				return PFConfiguredFeatures.CUPRESSINOCLADUS_TREE_2;
+			} else if (number == 2) {
+				return PFConfiguredFeatures.CUPRESSINOCLADUS_TREE_3;
+			} else if (number == 3) {
+				return PFConfiguredFeatures.CUPRESSINOCLADUS_TREE_4;
+			} else if (number == 4) {
+				return PFConfiguredFeatures.CUPRESSINOCLADUS_TREE_5;
+			} else {
+				return PFConfiguredFeatures.CUPRESSINOCLADUS_TREE_6;
+			}
+		}
+	}
+	
 	public static class Ginkgo extends HugeTreeSpawner {
 		@Nullable
 		public ResourceKey<ConfiguredFeature<?, ?>> getTreeFeature(RandomSource random) {

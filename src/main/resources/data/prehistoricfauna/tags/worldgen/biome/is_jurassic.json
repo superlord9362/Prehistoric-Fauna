@@ -5,9 +5,21 @@
 		"prehistoricfauna:kayenta_desert",
 		"prehistoricfauna:kayenta_buttes",
 		"prehistoricfauna:kayenta_river",
+		"prehistoricfauna:kayenta_dunes",
+		"prehistoricfauna:kayenta_canyons",
 		"prehistoricfauna:jurassic_henostone_cave",
 		"prehistoricfauna:jurassic_dripstone_cave",
-		"prehistoricfauna:morrison_hills",
-		"prehistoricfauna:morrison_savanna"
+		"prehistoricfauna:morrison_savanna",
+		"prehistoricfauna:morrison_salt_flats",
+		"prehistoricfauna:morrison_gallery_forest",
+		"prehistoricfauna:morrison_upland_forest",
+		"prehistoricfauna:morrison_sparse_forest",
+		"prehistoricfauna:morrison_river",
+		"prehistoricfauna:shaximiao_delta_plains",
+		"prehistoricfauna:shaximiao_lakes",
+		"prehistoricfauna:shaximiao_arid_lakes",
+		"prehistoricfauna:shaximiao_mountains",
+		"prehistoricfauna:shaximiao_gallery_forest",
+		"prehistoricfauna:shaximiao_dry_forest"
 	]
 }

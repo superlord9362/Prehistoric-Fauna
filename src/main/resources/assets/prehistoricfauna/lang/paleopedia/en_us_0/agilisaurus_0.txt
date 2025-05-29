@@ -1,0 +1,38 @@
+Found In: Shaximiao
+
+Drops: 0-2 Feathers, 1 Small Raw 
+Ornithischian
+
+Diet: Herbivore
+
+Breeding Item: Coniopteris
+
+Max Health: 6
+
+Max Hunger: 15
+
+Temperaments: Agilisaurus has an 
+85% chance of being skittish, and a 
+15% chance of being passive. 
+
+Sleep Cycle: Crepuscular
+
+<image><drawings_ankylosaurus.png 29 4 154 28 20 14 7.5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Investigation underway!

@@ -21,6 +21,10 @@
 		"#prehistoricfauna:taxus_logs",
 		"#prehistoricfauna:czekanowskia_logs",
 		"#prehistoricfauna:schizolepidopsis_logs",
-		"#prehistoricfauna:podozamites_logs"
+		"#prehistoricfauna:podozamites_logs",
+		"#prehistoricfauna:cupressinocladus_logs",
+		"#prehistoricfauna:elatides_logs",
+		"#prehistoricfauna:phoenicopsis_logs",
+		"#prehistoricfauna:frenelopsis_logs"
 	]
 }

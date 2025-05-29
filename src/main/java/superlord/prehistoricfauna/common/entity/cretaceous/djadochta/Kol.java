@@ -62,7 +62,7 @@ public class Kol extends BurrowingDinosaur {
 	public Kol(EntityType<? extends Kol> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
 		super.maxHunger = maxHunger;
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 	}
 
 	public boolean isFood(ItemStack stack) {

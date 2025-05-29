@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "prehistoricfauna:block/elatides_planks",
+        "top": "prehistoricfauna:block/elatides_planks",
+        "side": "prehistoricfauna:block/elatides_planks"
+    }
+}

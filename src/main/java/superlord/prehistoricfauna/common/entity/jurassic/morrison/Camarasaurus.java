@@ -85,7 +85,7 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 
 	public Camarasaurus(EntityType<? extends Camarasaurus> type, Level level) {
 		super(type, level);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 	
@@ -128,7 +128,8 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 	public void playAmbientSound() {
 		SoundEvent soundevent = this.getAmbientSound();
 		if (soundevent != null) {
-			this.playSound(soundevent, this.getSoundVolume() * 10, this.getVoicePitch());
+			if (!this.isAsleep() || !this.isBaby()) this.playSound(soundevent, this.getSoundVolume() * 8, this.getVoicePitch());
+			else this.playSound(soundevent, this.getSoundVolume(), this.getVoicePitch());
 		}
 	}
 
@@ -504,6 +505,10 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
     
 	public BlockState getEggBlock(Level world, BlockPos pos) {
 		return PFBlocks.CAMARASAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
+	}
+	
+	public Item getEggItem() {
+		return PFItems.CAMARASAURUS_EGG.get();
 	}
 
 }

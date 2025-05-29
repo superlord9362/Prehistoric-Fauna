@@ -15,10 +15,10 @@ public class ProtectBabyGoal extends NearestAttackableTargetGoal<LivingEntity> {
 		this.dinosaur = dinosaur;
 	}
 
-	/**
-	 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-	 * method as well.
-	 */
+	public boolean canContinueToUse() {
+		return super.canContinueToUse() && !dinosaur.isVehicle();
+	}
+	
 	@SuppressWarnings("resource")
 	public boolean canUse() {
 		if (dinosaur.isBaby() || dinosaur.isTame()) {
@@ -26,9 +26,9 @@ public class ProtectBabyGoal extends NearestAttackableTargetGoal<LivingEntity> {
 		} else {
 			if (super.canUse()) {
 				for(DinosaurEntity baby : dinosaur.level().getEntitiesOfClass(DinosaurEntity.class, dinosaur.getBoundingBox().inflate(8.0D, 4.0D, 8.0D))) {
-					if (!dinosaur.trusts(this.target.getUUID()) && (dinosaur.isProtective() || dinosaur.isTerritorial() || dinosaur.isOpportunist() || dinosaur.isAggressive()) && !dinosaur.isTame()) {
+					if (!dinosaur.trusts(this.target.getUUID()) && (dinosaur.isProtective() || dinosaur.isTerritorial() || dinosaur.isOpportunist() || dinosaur.isAggressive()) && !dinosaur.isTame() || !dinosaur.isVehicle()) {
 						if (this.target instanceof DinosaurEntity meanDinosaur) {
-							if (meanDinosaur.getBoundingBox().getSize() < baby.getBoundingBox().getSize() * 2 && meanDinosaur.isCarnivorous() && meanDinosaur != baby) {
+							if (meanDinosaur.getBoundingBox().getSize() < baby.getBoundingBox().getSize() * 2 && meanDinosaur.isCarnivorous() && !dinosaur.isCarnivorous() && meanDinosaur != baby) {
 								if (baby.isBaby() && meanDinosaur != baby) {
 									return true;
 								}	

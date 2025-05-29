@@ -19,7 +19,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -39,7 +38,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.AmphibiousNodeEvaluator;
 import net.minecraft.world.level.pathfinder.PathFinder;
 import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec3;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.BurrowingDinosaur;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
@@ -68,12 +66,16 @@ public class Kayentatherium extends BurrowingDinosaur {
 	public Kayentatherium(EntityType<? extends Kayentatherium> type, Level worldIn) {
 		super(type, worldIn);
 		this.moveControl = new Kayentatherium.MoveHelperController(this);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 
 	public boolean isFood(ItemStack stack) {
 		return stack.getItem() == PFBlocks.HORSETAIL.get().asItem();
+	}
+
+	public boolean canBreatheUnderwater() {
+		return true;
 	}
 
 	protected void registerGoals() {
@@ -94,11 +96,11 @@ public class Kayentatherium extends BurrowingDinosaur {
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new DinosaurMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new NaturalMateGoal(this, 1.0D));
-//		this.goalSelector.addGoal(1, new CrepuscularSleepGoal(this));
+		//		this.goalSelector.addGoal(1, new CrepuscularSleepGoal(this));
 		this.goalSelector.addGoal(0, new HerbivoreEatGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 	}
-	
+
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		int temperment = random.nextInt(100);
 		if (temperment < 80) {
@@ -112,7 +114,7 @@ public class Kayentatherium extends BurrowingDinosaur {
 		this.setCrepuscular(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
-	
+
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
@@ -137,25 +139,7 @@ public class Kayentatherium extends BurrowingDinosaur {
 	protected float getWaterSlowDown() {
 		return 0.8F;
 	}
-	
-	public void travel(Vec3 travelVector) {
-		if (this.isAlive()) {
-			if (this.isEffectiveAi() && this.isInWater()) {
-				this.moveRelative(this.getSpeed(), travelVector);
-				this.move(MoverType.SELF, this.getDeltaMovement());
-				this.setDeltaMovement(this.getDeltaMovement().scale(0.5D));
-				if (this.getTarget() == null) {
-					this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.005D, 0.0D));
-				}
-				if (this.getAirSupply() < this.getMaxAirSupply() / 3) {
-					this.setDeltaMovement(this.getDeltaMovement().add(0.0D, 0.05D, 0.0D));
-				}
-			} else {
-				super.travel(travelVector);
-			}
-		}
-	}
-	
+
 	@Override
 	public void setAge(int age) {
 		super.setAge(age);
@@ -203,7 +187,7 @@ public class Kayentatherium extends BurrowingDinosaur {
 		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
-	
+
 	static class SwimGoal extends RandomSwimmingGoal {
 		private final Kayentatherium kayentatherium;
 
@@ -216,11 +200,11 @@ public class Kayentatherium extends BurrowingDinosaur {
 			return this.kayentatherium.func_212800_dy() && super.canUse();
 		}
 	}
-	
+
 	protected boolean func_212800_dy() {
 		return true;
 	}
-	
+
 	class WalkAndSwimPathNavigator extends WaterBoundPathNavigation {
 
 		WalkAndSwimPathNavigator(Kayentatherium kayentatherium, Level world) {
@@ -280,21 +264,21 @@ public class Kayentatherium extends BurrowingDinosaur {
 	protected PathNavigation createNavigation(Level world) {
 		return new Kayentatherium.WalkAndSwimPathNavigator(this, world);
 	}
-	
+
 	@Override
 	public ItemStack getPickedResult(HitResult target) {
 		return new ItemStack(PFItems.KAYENTATHERIUM_SPAWN_EGG.get());
 	}
-	
+
 	public Item getEggItem() {
 		return PFItems.KAYENTATHERIUM_EGG.get();
 	}
-    
+
 	public BlockState getEggBlock(Level world, BlockPos pos) {
 		return PFBlocks.KAYENTATHERIUM_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
-    
-    class MeleeAttackGoal extends net.minecraft.world.entity.ai.goal.MeleeAttackGoal {
+
+	class MeleeAttackGoal extends net.minecraft.world.entity.ai.goal.MeleeAttackGoal {
 		public MeleeAttackGoal() {
 			super(Kayentatherium.this, 1.25D, true);
 		}

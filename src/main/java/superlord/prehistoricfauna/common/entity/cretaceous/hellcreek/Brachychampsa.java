@@ -101,7 +101,7 @@ public class Brachychampsa extends DinosaurEntity {
 		super(type, world);
 		this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
 		this.moveControl = new Brachychampsa.BrachychampsaMoveControl(this);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 

@@ -73,7 +73,7 @@ public class Jinzhousaurus extends DinosaurEntity {
 
 	public Jinzhousaurus(EntityType<? extends TamableAnimal> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -218,9 +218,9 @@ public class Jinzhousaurus extends DinosaurEntity {
 	public void setAge(int age) {
 		super.setAge(age);
 		if (this.getAge() >= -24000 && this.getAge() < 0) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(10);
-		} else if(this.getAge() >= 0) {
 			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
+		} else if(this.getAge() >= 0) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(40);
 		}
 	}
 

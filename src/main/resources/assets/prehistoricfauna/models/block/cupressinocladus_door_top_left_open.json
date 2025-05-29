@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_left_open",
+  "textures": {
+    "bottom": "prehistoricfauna:block/cupressinocladus_door_bottom",
+    "top": "prehistoricfauna:block/cupressinocladus_door_top"
+  }
+}

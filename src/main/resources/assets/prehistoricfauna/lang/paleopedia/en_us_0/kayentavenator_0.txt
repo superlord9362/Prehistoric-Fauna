@@ -1,0 +1,39 @@
+Found In: Kayenta
+
+Drops: 2-5 Small Raw Theropod
+
+Diet: Carnivore
+
+Breeding Item: Small Raw 
+Thyreophoran
+
+Max Health: 20
+
+Max Hunger: 50
+
+Temperaments: Kayentavenator has 
+an 85% chance of being protective, 
+and a 15% chance of being 
+territorial. 
+
+Sleep Cycle: Crepuscular
+
+<image><drawings_ankylosaurus.png 28 3 103 107 22 19 7.5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Investigation underway!

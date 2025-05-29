@@ -91,7 +91,7 @@ public class Tyrannosaurus extends DinosaurEntity {
 
 	public Tyrannosaurus(EntityType<? extends Tyrannosaurus> type, Level worldIn) {
 		super(type, worldIn);
-		this.setMaxUpStep(1);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 

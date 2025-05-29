@@ -1,0 +1,39 @@
+Found In: Kayenta
+
+Drops: 1 Small Raw 
+Archosauromorph
+
+Diet: Carnivore
+
+Breeding Item: Small Raw 
+Thyreophoran
+
+Max Health: 4
+
+Max Hunger: 10
+
+Temperaments: Kayentasuchus has 
+an 85% chance of being skittish, 
+and a 15% chance of being passive. 
+
+Sleep Cycle: Cathemeral
+
+<image><drawings_ankylosaurus.png 29 4 104 66 18 15 7.5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Investigation underway!

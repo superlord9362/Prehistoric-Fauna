@@ -149,7 +149,7 @@ public class Velociraptor extends DinosaurEntity {
 		this.moveControl = new Velociraptor.MoveHelperController();
 		this.setPathfindingMalus(BlockPathTypes.DANGER_OTHER, 0.0F);
 		this.setPathfindingMalus(BlockPathTypes.DAMAGE_OTHER, 0.0F);
-		this.setMaxUpStep(1.0F);;
+		this.setMaxUpStep(1.375F);;
 		super.maxHunger = maxHunger;
 	}
 

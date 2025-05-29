@@ -71,7 +71,7 @@ public class Byronosaurus extends DinosaurEntity {
 
 	public Byronosaurus(EntityType<? extends TamableAnimal> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 

@@ -336,6 +336,37 @@ public class ClientProxy extends CommonProxy {
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.COATED_TUBE_CORAL_WALL_FAN.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.SAP.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.CRETACEOUS_BOSS_SPAWN.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.HERMANOPHYTON.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.HERMANOPHYTON_TOP.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.PTEROPHYLLUM.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TALL_PTEROPHYLLUM.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.ANOMOZAMITES.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TALL_ANOMOZAMITES.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.STONEWORTS.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.SPHENOPTERIS.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.ONYCHIOPSIS.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TAENIOPTERIS.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TALL_TAENIOPTERIS.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_ANOMOZAMITES.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_PTEROPHYLLUM.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_SPHENOPTERIS.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_ONYCHIOPSIS.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_TAENIOPTERIS.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_BASSITHECA.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.BASSITHECA.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_CUPRESSINOCLADUS_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_ELATIDES_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_PHOENICOPSIS_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_FRENELOPSIS_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.CUPRESSINOCLADUS_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.ELATIDES_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.PHOENICOPSIS_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.FRENELOPSIS_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.PHOENICOPSIS_DOOR.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.PHOENICOPSIS_TRAPDOOR.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.ELATIDES_DOOR.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.CUPRESSINOCLADUS_DOOR.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.CUPRESSINOCLADUS_TRAPDOOR.get(), cutoutRenderType);
 	}
 	
     public static void setupParticles(RegisterParticleProvidersEvent registry) {

@@ -16,6 +16,7 @@ import superlord.prehistoricfauna.common.feature.CallianthusFeature;
 import superlord.prehistoricfauna.common.feature.CrassostreaOystersFeature;
 import superlord.prehistoricfauna.common.feature.DicroidiumFeature;
 import superlord.prehistoricfauna.common.feature.DjadochtaHorsetailsFeature;
+import superlord.prehistoricfauna.common.feature.HermanophytonFeature;
 import superlord.prehistoricfauna.common.feature.JohnstoniaFeature;
 import superlord.prehistoricfauna.common.feature.LandSphereReplaceFeature;
 import superlord.prehistoricfauna.common.feature.LowerHorsetailsFeature;
@@ -26,6 +27,7 @@ import superlord.prehistoricfauna.common.feature.NoisySphereFeature;
 import superlord.prehistoricfauna.common.feature.PtilophyllumFeature;
 import superlord.prehistoricfauna.common.feature.QuereuxiaFeature;
 import superlord.prehistoricfauna.common.feature.RareNelumboFeature;
+import superlord.prehistoricfauna.common.feature.StonewortsFeature;
 import superlord.prehistoricfauna.common.feature.TallArchaefructusFeature;
 import superlord.prehistoricfauna.common.feature.TaxodiumKneeFeature;
 import superlord.prehistoricfauna.common.feature.WaterloggedHorsetailsFeature;
@@ -47,6 +49,12 @@ import superlord.prehistoricfauna.common.feature.trees.brachyphyllum.Brachyphyll
 import superlord.prehistoricfauna.common.feature.trees.brachyphyllum.Brachyphyllum2;
 import superlord.prehistoricfauna.common.feature.trees.brachyphyllum.Brachyphyllum3;
 import superlord.prehistoricfauna.common.feature.trees.brachyphyllum.Brachyphyllum4;
+import superlord.prehistoricfauna.common.feature.trees.cupressinocladus.Cupressinocladus1;
+import superlord.prehistoricfauna.common.feature.trees.cupressinocladus.Cupressinocladus2;
+import superlord.prehistoricfauna.common.feature.trees.cupressinocladus.Cupressinocladus3;
+import superlord.prehistoricfauna.common.feature.trees.cupressinocladus.Cupressinocladus4;
+import superlord.prehistoricfauna.common.feature.trees.cupressinocladus.Cupressinocladus5;
+import superlord.prehistoricfauna.common.feature.trees.cupressinocladus.Cupressinocladus6;
 import superlord.prehistoricfauna.common.feature.trees.czekanowskia.Czekanowskia1;
 import superlord.prehistoricfauna.common.feature.trees.czekanowskia.Czekanowskia2;
 import superlord.prehistoricfauna.common.feature.trees.czekanowskia.Czekanowskia3;
@@ -61,11 +69,26 @@ import superlord.prehistoricfauna.common.feature.trees.dryophyllum.Dryophyllum5;
 import superlord.prehistoricfauna.common.feature.trees.dryophyllum.Dryophyllum6;
 import superlord.prehistoricfauna.common.feature.trees.dryophyllum.Dryophyllum7;
 import superlord.prehistoricfauna.common.feature.trees.dryophyllum.Dryophyllum8;
+import superlord.prehistoricfauna.common.feature.trees.elatides.Elatides1;
+import superlord.prehistoricfauna.common.feature.trees.elatides.Elatides2;
+import superlord.prehistoricfauna.common.feature.trees.elatides.Elatides3;
+import superlord.prehistoricfauna.common.feature.trees.elatides.Elatides4;
+import superlord.prehistoricfauna.common.feature.trees.elatides.Elatides5;
+import superlord.prehistoricfauna.common.feature.trees.elatides.Elatides6;
+import superlord.prehistoricfauna.common.feature.trees.elatides.Elatides7;
 import superlord.prehistoricfauna.common.feature.trees.fallenlog.DryophyllumFallenLogFeature;
 import superlord.prehistoricfauna.common.feature.trees.fallenlog.GinkgoFallenLogFeature;
 import superlord.prehistoricfauna.common.feature.trees.fallenlog.MetasequoiaFallenLogFeature;
 import superlord.prehistoricfauna.common.feature.trees.fallenlog.PlatanitesFallenLogFeature;
 import superlord.prehistoricfauna.common.feature.trees.fallenlog.TaxodiumFallenLogFeature;
+import superlord.prehistoricfauna.common.feature.trees.frenelopsis.Frenelopsis1;
+import superlord.prehistoricfauna.common.feature.trees.frenelopsis.Frenelopsis2;
+import superlord.prehistoricfauna.common.feature.trees.frenelopsis.Frenelopsis3;
+import superlord.prehistoricfauna.common.feature.trees.frenelopsis.Frenelopsis4;
+import superlord.prehistoricfauna.common.feature.trees.frenelopsis.Frenelopsis5;
+import superlord.prehistoricfauna.common.feature.trees.frenelopsis.Frenelopsis6;
+import superlord.prehistoricfauna.common.feature.trees.frenelopsis.Frenelopsis7;
+import superlord.prehistoricfauna.common.feature.trees.frenelopsis.Frenelopsis8;
 import superlord.prehistoricfauna.common.feature.trees.ginkgo.BigGinkgo1;
 import superlord.prehistoricfauna.common.feature.trees.ginkgo.BigGinkgo2;
 import superlord.prehistoricfauna.common.feature.trees.ginkgo.BigGinkgo3;
@@ -89,6 +112,12 @@ import superlord.prehistoricfauna.common.feature.trees.metasequoia.SmallMetasequ
 import superlord.prehistoricfauna.common.feature.trees.metasequoia.SmallMetasequoia2;
 import superlord.prehistoricfauna.common.feature.trees.metasequoia.SmallMetasequoia3;
 import superlord.prehistoricfauna.common.feature.trees.petrified.PetrifiedTreeFeature;
+import superlord.prehistoricfauna.common.feature.trees.phoenicopsis.Phoenicopsis1;
+import superlord.prehistoricfauna.common.feature.trees.phoenicopsis.Phoenicopsis2;
+import superlord.prehistoricfauna.common.feature.trees.phoenicopsis.Phoenicopsis3;
+import superlord.prehistoricfauna.common.feature.trees.phoenicopsis.Phoenicopsis4;
+import superlord.prehistoricfauna.common.feature.trees.phoenicopsis.Phoenicopsis5;
+import superlord.prehistoricfauna.common.feature.trees.phoenicopsis.Phoenicopsis6;
 import superlord.prehistoricfauna.common.feature.trees.platanites.LargePlatanitesTree1;
 import superlord.prehistoricfauna.common.feature.trees.platanites.LargePlatanitesTree2;
 import superlord.prehistoricfauna.common.feature.trees.platanites.LargePlatanitesTree3;
@@ -281,6 +310,37 @@ public class PFFeatures {
     public static final RegistryObject<Podozamites5> PODOZAMITES_TREE_5 = REGISTER.register("podozamites_tree_5", () -> new Podozamites5(PFTreeConfig.CODEC.stable()));
     public static final RegistryObject<Podozamites6> PODOZAMITES_TREE_6 = REGISTER.register("podozamites_tree_6", () -> new Podozamites6(PFTreeConfig.CODEC.stable()));
 
+    public static final RegistryObject<Cupressinocladus1> CUPRESSINOCLADUS_TREE_1 = REGISTER.register("cupressinocladus_tree_1", () -> new Cupressinocladus1(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Cupressinocladus2> CUPRESSINOCLADUS_TREE_2 = REGISTER.register("cupressinocladus_tree_2", () -> new Cupressinocladus2(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Cupressinocladus3> CUPRESSINOCLADUS_TREE_3 = REGISTER.register("cupressinocladus_tree_3", () -> new Cupressinocladus3(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Cupressinocladus4> CUPRESSINOCLADUS_TREE_4 = REGISTER.register("cupressinocladus_tree_4", () -> new Cupressinocladus4(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Cupressinocladus5> CUPRESSINOCLADUS_TREE_5 = REGISTER.register("cupressinocladus_tree_5", () -> new Cupressinocladus5(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Cupressinocladus6> CUPRESSINOCLADUS_TREE_6 = REGISTER.register("cupressinocladus_tree_6", () -> new Cupressinocladus6(PFTreeConfig.CODEC.stable()));
+
+    public static final RegistryObject<Elatides1> ELATIDES_TREE_1 = REGISTER.register("elatides_tree_1", () -> new Elatides1(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Elatides2> ELATIDES_TREE_2 = REGISTER.register("elatides_tree_2", () -> new Elatides2(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Elatides3> ELATIDES_TREE_3 = REGISTER.register("elatides_tree_3", () -> new Elatides3(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Elatides4> ELATIDES_TREE_4 = REGISTER.register("elatides_tree_4", () -> new Elatides4(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Elatides5> ELATIDES_TREE_5 = REGISTER.register("elatides_tree_5", () -> new Elatides5(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Elatides6> ELATIDES_TREE_6 = REGISTER.register("elatides_tree_6", () -> new Elatides6(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Elatides7> ELATIDES_TREE_7 = REGISTER.register("elatides_tree_7", () -> new Elatides7(PFTreeConfig.CODEC.stable()));
+
+    public static final RegistryObject<Phoenicopsis1> PHOENICOPSIS_TREE_1 = REGISTER.register("phoenicopsis_tree_1", () -> new Phoenicopsis1(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Phoenicopsis2> PHOENICOPSIS_TREE_2 = REGISTER.register("phoenicopsis_tree_2", () -> new Phoenicopsis2(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Phoenicopsis3> PHOENICOPSIS_TREE_3 = REGISTER.register("phoenicopsis_tree_3", () -> new Phoenicopsis3(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Phoenicopsis4> PHOENICOPSIS_TREE_4 = REGISTER.register("phoenicopsis_tree_4", () -> new Phoenicopsis4(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Phoenicopsis5> PHOENICOPSIS_TREE_5 = REGISTER.register("phoenicopsis_tree_5", () -> new Phoenicopsis5(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Phoenicopsis6> PHOENICOPSIS_TREE_6 = REGISTER.register("phoenicopsis_tree_6", () -> new Phoenicopsis6(PFTreeConfig.CODEC.stable()));
+
+    public static final RegistryObject<Frenelopsis1> FRENELOPSIS_TREE_1 = REGISTER.register("frenelopsis_tree_1", () -> new Frenelopsis1(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Frenelopsis2> FRENELOPSIS_TREE_2 = REGISTER.register("frenelopsis_tree_2", () -> new Frenelopsis2(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Frenelopsis3> FRENELOPSIS_TREE_3 = REGISTER.register("frenelopsis_tree_3", () -> new Frenelopsis3(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Frenelopsis4> FRENELOPSIS_TREE_4 = REGISTER.register("frenelopsis_tree_4", () -> new Frenelopsis4(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Frenelopsis5> FRENELOPSIS_TREE_5 = REGISTER.register("frenelopsis_tree_5", () -> new Frenelopsis5(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Frenelopsis6> FRENELOPSIS_TREE_6 = REGISTER.register("frenelopsis_tree_6", () -> new Frenelopsis6(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Frenelopsis7> FRENELOPSIS_TREE_7 = REGISTER.register("frenelopsis_tree_7", () -> new Frenelopsis7(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<Frenelopsis8> FRENELOPSIS_TREE_8 = REGISTER.register("frenelopsis_tree_8", () -> new Frenelopsis8(PFTreeConfig.CODEC.stable()));
+    
     public static final RegistryObject<ZamitesBushFeature> ZAMITES_BUSH = REGISTER.register("zamites_bush", () -> new ZamitesBushFeature(JohnstoniaConfig.CODEC.stable()));
     public static final RegistryObject<SabalitesFeature> SABALITES = REGISTER.register("sabalites", () -> new SabalitesFeature(JohnstoniaConfig.CODEC.stable()));
     
@@ -297,6 +357,7 @@ public class PFFeatures {
     public static final RegistryObject<LowerHorsetailsFeature> LOWER_HORSETAILS = REGISTER.register("lower_horsetails", () -> new LowerHorsetailsFeature(JohnstoniaConfig.CODEC.stable()));
     public static final RegistryObject<CrassostreaOystersFeature> CRASSOSTREA_OYSTERS = REGISTER.register("crassostrea_oyster", () -> new CrassostreaOystersFeature(CrassostreaOystersConfig.CODEC.stable()));
     public static final RegistryObject<AlgaeFeature> ALGAE = REGISTER.register("algae", () -> new AlgaeFeature(CrassostreaOystersConfig.CODEC.stable()));
+    public static final RegistryObject<StonewortsFeature> STONEWORTS = REGISTER.register("stoneworts", () -> new StonewortsFeature(CrassostreaOystersConfig.CODEC.stable()));
     public static final RegistryObject<NoisySphereFeature> NOISY_SPHERE = REGISTER.register("noisy_sphere", () -> new NoisySphereFeature(NoisySphereConfig.CODEC.stable()));
     public static final RegistryObject<BigBlockBlobFeature> BIG_BLOCK_BLOB = REGISTER.register("big_block_blob", () -> new BigBlockBlobFeature(BlockStateConfiguration.CODEC.stable()));
     public static final RegistryObject<TaxodiumKneeFeature> TAXODIUM_KNEES = REGISTER.register("taxodium_knees", () -> new TaxodiumKneeFeature(JohnstoniaConfig.CODEC.stable()));
@@ -313,5 +374,6 @@ public class PFFeatures {
     public static final RegistryObject<NelumboFeature> NELUMBO = REGISTER.register("nelubmo", () -> new NelumboFeature(CrassostreaOystersConfig.CODEC.stable()));
     public static final RegistryObject<RareNelumboFeature> RARE_NELUMBO = REGISTER.register("rare_nelubmo", () -> new RareNelumboFeature(CrassostreaOystersConfig.CODEC.stable()));
     public static final RegistryObject<QuereuxiaFeature> QUEREUXIA = REGISTER.register("quereuxia", () -> new QuereuxiaFeature(CrassostreaOystersConfig.CODEC.stable()));
+    public static final RegistryObject<HermanophytonFeature> HERMANOPHYTON = REGISTER.register("hermanophyton", () -> new HermanophytonFeature(JohnstoniaConfig.CODEC.stable()));
 
 }

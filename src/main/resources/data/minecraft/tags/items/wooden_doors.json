@@ -22,6 +22,10 @@
 		"prehistoricfauna:taxus_door",
 		"prehistoricfauna:czekanowskia_door",
 		"prehistoricfauna:schizolepidopsis_door",
-		"prehistoricfauna:podozamites_door"
+		"prehistoricfauna:podozamites_door",
+		"prehistoricfauna:cupressinocladus_door",
+		"prehistoricfauna:elatides_door",
+		"prehistoricfauna:phoenicopsis_door",
+		"prehistoricfauna:frenelopsis_door"
 	]
 }

@@ -1,0 +1,37 @@
+Found In: Shaximiao
+
+Drops: 2-4 Large Raw Theropod
+
+Diet: Carnivore
+
+Breeding Item: Raw Large Sauropod
+
+Max Health: 80
+
+Max Hunger: 200
+
+Temperaments: Yangchuanosaurus 
+has an 85% chance of being 
+territorial, and a 15% chance of 
+being protective.
+
+Sleep Cycle: Cathemeral
+
+<image><drawings_ankylosaurus.png 30 3 152 254 23 19 7>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Investigation underway!

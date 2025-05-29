@@ -123,7 +123,7 @@ public class Sinosauropteryx extends DinosaurEntity {
 
 	public Sinosauropteryx(EntityType<? extends Sinosauropteryx> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.setMaxUpStep(1);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 

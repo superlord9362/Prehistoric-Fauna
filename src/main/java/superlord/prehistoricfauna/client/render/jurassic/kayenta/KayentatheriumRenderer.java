@@ -21,7 +21,7 @@ public class KayentatheriumRenderer extends MobRenderer<Kayentatherium, Kayentat
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/kayentatherium/melanistic_sleeping.png");
 
 	public KayentatheriumRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new KayentatheriumModel(renderManagerIn.bakeLayer(ClientEvents.KAYENTATHERIUM)), 0.75F);
+		super(renderManagerIn, new KayentatheriumModel(renderManagerIn.bakeLayer(ClientEvents.KAYENTATHERIUM)), 0.5F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new KayentatheriumEyeLayer(this));
 		}

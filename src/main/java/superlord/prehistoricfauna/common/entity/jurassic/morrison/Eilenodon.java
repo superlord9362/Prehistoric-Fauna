@@ -75,7 +75,7 @@ public class Eilenodon extends BurrowingDinosaur {
 
 	public Eilenodon(EntityType<? extends Eilenodon> type, Level level) {
 		super(type, level);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 	

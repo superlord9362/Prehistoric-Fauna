@@ -43,13 +43,13 @@ public class CaveSentinel extends Monster {
 	private static final EntityDataAccessor<Integer> DIMENSION = SynchedEntityData.defineId(CaveSentinel.class, EntityDataSerializers.INT);
 
 	public static final Predicate<LivingEntity> NON_TRIASSIC = (p_289448_) -> {
-		return !p_289448_.getType().is(PFTags.TRIASSIC_ENTITIES);
+		return !p_289448_.getType().is(PFTags.TRIASSIC_ENTITIES) && !p_289448_.getType().is(PFTags.SENTINEL_IGNORES);
 	};
 	public static final Predicate<LivingEntity> NON_JURASSIC = (p_289448_) -> {
-		return !p_289448_.getType().is(PFTags.JURASSIC_ENTITIES);
+		return !p_289448_.getType().is(PFTags.JURASSIC_ENTITIES) && !p_289448_.getType().is(PFTags.SENTINEL_IGNORES);
 	};
 	public static final Predicate<LivingEntity> NON_CRETACEOUS = (p_289448_) -> {
-		return !p_289448_.getType().is(PFTags.CRETACEOUS_ENTITIES);
+		return !p_289448_.getType().is(PFTags.CRETACEOUS_ENTITIES) && !p_289448_.getType().is(PFTags.SENTINEL_IGNORES);
 	};
 	private Goal cretaceousTargetGoal;
 	private Goal jurassicTargetGoal;
@@ -57,7 +57,7 @@ public class CaveSentinel extends Monster {
 	
 	public CaveSentinel(EntityType<? extends Monster> type, Level world) {
 		super(type, world);
-		this.setMaxUpStep(1);
+		this.setMaxUpStep(1.375F);
 	}
 
 	public boolean hurt(DamageSource source, float amount) {

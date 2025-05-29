@@ -50,6 +50,7 @@ import superlord.prehistoricfauna.common.blocks.AmmoniteSmallShellBlock;
 import superlord.prehistoricfauna.common.blocks.AncientPlantBlock;
 import superlord.prehistoricfauna.common.blocks.AraucariaConeBlock;
 import superlord.prehistoricfauna.common.blocks.ArchaefructusBlock;
+import superlord.prehistoricfauna.common.blocks.BassithecaBlock;
 import superlord.prehistoricfauna.common.blocks.BurrowBlock;
 import superlord.prehistoricfauna.common.blocks.CallianthusBlock;
 import superlord.prehistoricfauna.common.blocks.CarvedTuberBlock;
@@ -66,6 +67,8 @@ import superlord.prehistoricfauna.common.blocks.FeederBlock;
 import superlord.prehistoricfauna.common.blocks.FossilCrateBlock;
 import superlord.prehistoricfauna.common.blocks.GinkgoLeavesBlock;
 import superlord.prehistoricfauna.common.blocks.HardenedSiltBlock;
+import superlord.prehistoricfauna.common.blocks.HermanophytonBlock;
+import superlord.prehistoricfauna.common.blocks.HermanophytonTopBlock;
 import superlord.prehistoricfauna.common.blocks.HumulusBlock;
 import superlord.prehistoricfauna.common.blocks.JohnstoniaBlock;
 import superlord.prehistoricfauna.common.blocks.JurassicPortalBlock;
@@ -157,6 +160,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> CRASSOSTREA_OYSTER = REGISTER.register("crassostrea_oyster", () -> new CrassostreaOysterBlock(Block.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).pushReaction(PushReaction.DESTROY).noCollission().strength(0.5F).randomTicks()));
 	public static final RegistryObject<Block> TUBER_CROP = REGISTER.register("tuber_crop", () -> new TuberCropBlock(Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).instabreak().noCollission().sound(SoundType.GRASS).randomTicks()));
 	public static final RegistryObject<Block> ALGAE_CARPET = REGISTER.register("algae_carpet", () -> new AlgaeBlock(Properties.of().strength(0.2F).mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).sound(SoundType.SLIME_BLOCK).noOcclusion()));
+	public static final RegistryObject<Block> STONEWORTS = REGISTER.register("stoneworts", () -> new AlgaeBlock(Properties.of().strength(0.2F).mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).sound(SoundType.SLIME_BLOCK).noOcclusion()));
 	public static final RegistryObject<Block> COBBANIA = REGISTER.register("cobbania", () -> new CobbaniaBlock(Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).instabreak().sound(SoundType.LILY_PAD).noOcclusion()));
 	public static final RegistryObject<Block> MARMARTHIA = REGISTER.register("marmarthia", () -> new MarmarthiaBlock(Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(BlockBehaviour.OffsetType.XZ).strength(1.0F).noCollission().sound(SoundType.WOOD).randomTicks()));
 	public static final RegistryObject<Block> HUMULUS = REGISTER.register("humulus", () -> new HumulusBlock(Properties.of().pushReaction(PushReaction.DESTROY).ignitedByLava().mapColor(MapColor.PLANT).strength(0.1F).noCollission().sound(SoundType.GRASS).randomTicks()));
@@ -176,6 +180,15 @@ public class PFBlocks {
 	public static final RegistryObject<Block> EPHEDRA = REGISTER.register("ephedra", () -> new AncientPlantBlock(Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> CALLIANTHUS = REGISTER.register("callianthus", () -> new CallianthusBlock(Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> NOTHODICHOCARPUM = REGISTER.register("nothodichocarpum", () -> new DoublePlantBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
+	public static final RegistryObject<Block> PTEROPHYLLUM = REGISTER.register("pterophyllum", () -> new AncientPlantBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
+	public static final RegistryObject<Block> TALL_PTEROPHYLLUM = REGISTER.register("tall_pterophyllum", () -> new AncientPlantBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak().noOcclusion()));
+	public static final RegistryObject<Block> ANOMOZAMITES = REGISTER.register("anomozamites", () -> new AncientPlantBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
+	public static final RegistryObject<Block> TALL_ANOMOZAMITES = REGISTER.register("tall_anomozamites", () -> new AncientPlantBlock(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak().noOcclusion()));
+	public static final RegistryObject<Block> ONYCHIOPSIS = REGISTER.register("onychiopsis", () -> new AncientPlantBlock(Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
+	public static final RegistryObject<Block> TAENIOPTERIS = REGISTER.register("taeniopteris", () -> new PrehistoricPlantBlock(Block.Properties.of().mapColor(MapColor.PLANT).replaceable().offsetType(BlockBehaviour.OffsetType.XZ).ignitedByLava().pushReaction(PushReaction.DESTROY).sound(SoundType.GRASS).noCollission().instabreak()));
+	public static final RegistryObject<Block> TALL_TAENIOPTERIS = REGISTER.register("tall_taeniopteris", () -> new DoublePlantBlock(Block.Properties.of().mapColor(MapColor.PLANT).replaceable().offsetType(BlockBehaviour.OffsetType.XZ).ignitedByLava().pushReaction(PushReaction.DESTROY).sound(SoundType.GRASS).noCollission().instabreak()));
+	public static final RegistryObject<Block> SPHENOPTERIS = REGISTER.register("sphenopteris", () -> new AncientPlantBlock(Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak()));
+	public static final RegistryObject<Block> BASSITHECA = REGISTER.register("bassitheca", () -> new BassithecaBlock(Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).ignitedByLava().offsetType(OffsetType.XZ).sound(SoundType.GRASS).noCollission().instabreak().randomTicks()));
 
 	public static final RegistryObject<Block> METASEQUOIA_PLANKS = REGISTER.register("metasequoia_planks", () -> new Block(Block.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).ignitedByLava().strength(2.0F, 3.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> METASEQUOIA_LOG = REGISTER.register("metasequoia_log", () -> createLog());
@@ -601,6 +614,89 @@ public class PFBlocks {
 	public static final RegistryObject<PFCeilingHangingSignBlock> PODOZAMITES_HANGING_SIGN = REGISTER.register("podozamites_hanging_sign", () -> new PFCeilingHangingSignBlock(Properties.of().mapColor(MapColor.WOOD).forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().noCollission().strength(1.0F).sound(SoundType.WOOD), PFWoodTypes.PODOZAMITES));
 	public static final RegistryObject<PFWallHangingSignBlock> PODOZAMITES_HANGING_WALL_SIGN = REGISTER.register("podozamites_hanging_wall_sign", () -> new PFWallHangingSignBlock(Properties.of().mapColor(MapColor.WOOD).forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(PODOZAMITES_HANGING_SIGN.get()), PFWoodTypes.PODOZAMITES));
 
+	public static final RegistryObject<Block> CUPRESSINOCLADUS_PLANKS = REGISTER.register("cupressinocladus_planks", () -> new Block(Block.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).ignitedByLava().strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> CUPRESSINOCLADUS_LOG = REGISTER.register("cupressinocladus_log", () -> createLog());
+	public static final RegistryObject<Block> STRIPPED_CUPRESSINOCLADUS_LOG = REGISTER.register("stripped_cupressinocladus_log", () -> createLog());
+	public static final RegistryObject<Block> CUPRESSINOCLADUS_WOOD = REGISTER.register("cupressinocladus_wood", () -> createLog());
+	public static final RegistryObject<Block> STRIPPED_CUPRESSINOCLADUS_WOOD = REGISTER.register("stripped_cupressinocladus_wood", () -> createLog());
+	public static final RegistryObject<Block> CUPRESSINOCLADUS_LEAVES = REGISTER.register("cupressinocladus_leaves", () -> leaves(SoundType.GRASS));
+	public static final RegistryObject<Block> CUPRESSINOCLADUS_SAPLING = REGISTER.register("cupressinocladus_sapling", () -> new PFSaplingBlock(new PFTreeSpawners.Cupressinocladus(), Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).noCollission().randomTicks().strength(0F).sound(SoundType.GRASS)));
+	public static final RegistryObject<Block> CUPRESSINOCLADUS_DOOR = REGISTER.register("cupressinocladus_door", () -> new DoorBlock(Block.Properties.of().instrument(NoteBlockInstrument.BASS).ignitedByLava().pushReaction(PushReaction.DESTROY).mapColor(MapColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion(), PFWoodTypes.CUPRESSINOCLADUS_TYPE));
+	public static final RegistryObject<Block> CUPRESSINOCLADUS_PRESSURE_PLATE = REGISTER.register("cupressinocladus_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.of().forceSolidOn().instrument(NoteBlockInstrument.BASS).mapColor(MapColor.WOOD).ignitedByLava().pushReaction(PushReaction.DESTROY).noCollission().strength(0.5F).sound(SoundType.WOOD), PFWoodTypes.CUPRESSINOCLADUS_TYPE));
+	public static final RegistryObject<Block> CUPRESSINOCLADUS_FENCE = REGISTER.register("cupressinocladus_fence", () -> new FenceBlock(Block.Properties.of().forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().mapColor(CUPRESSINOCLADUS_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> CUPRESSINOCLADUS_TRAPDOOR = REGISTER.register("cupressinocladus_trapdoor", () -> new TrapDoorBlock(Block.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).ignitedByLava().strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(PFBlocks::neverAllowSpawn), PFWoodTypes.CUPRESSINOCLADUS_TYPE));
+	public static final RegistryObject<Block> CUPRESSINOCLADUS_FENCE_GATE = REGISTER.register("cupressinocladus_fence_gate", () -> new FenceGateBlock(Block.Properties.of().forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().mapColor(CUPRESSINOCLADUS_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD), PFWoodTypes.CUPRESSINOCLADUS));
+	public static final RegistryObject<Block> CUPRESSINOCLADUS_BUTTON = REGISTER.register("cupressinocladus_button", () -> woodenButton(PFWoodTypes.CUPRESSINOCLADUS_TYPE));
+	public static final RegistryObject<Block> CUPRESSINOCLADUS_SLAB = REGISTER.register("cupressinocladus_slab", () -> new SlabBlock(Block.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).ignitedByLava().strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> CUPRESSINOCLADUS_STAIRS = REGISTER.register("cupressinocladus_stairs", () -> new StairBlock(CUPRESSINOCLADUS_PLANKS.get().defaultBlockState(), Block.Properties.copy(CUPRESSINOCLADUS_PLANKS.get())));
+	public static final RegistryObject<PFStandingSignBlock> CUPRESSINOCLADUS_SIGN = REGISTER.register("cupressinocladus_sign", () -> new PFStandingSignBlock(Properties.of().mapColor(MapColor.WOOD).forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().noCollission().strength(1.0F).sound(SoundType.WOOD), PFWoodTypes.CUPRESSINOCLADUS));
+	public static final RegistryObject<PFWallSignBlock> CUPRESSINOCLADUS_WALL_SIGN = REGISTER.register("cupressinocladus_wall_sign", () -> new PFWallSignBlock(Properties.of().mapColor(MapColor.WOOD).forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(CUPRESSINOCLADUS_SIGN.get()), PFWoodTypes.CUPRESSINOCLADUS));
+	public static final RegistryObject<PFCeilingHangingSignBlock> CUPRESSINOCLADUS_HANGING_SIGN = REGISTER.register("cupressinocladus_hanging_sign", () -> new PFCeilingHangingSignBlock(Properties.of().mapColor(MapColor.WOOD).forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().noCollission().strength(1.0F).sound(SoundType.WOOD), PFWoodTypes.CUPRESSINOCLADUS));
+	public static final RegistryObject<PFWallHangingSignBlock> CUPRESSINOCLADUS_HANGING_WALL_SIGN = REGISTER.register("cupressinocladus_hanging_wall_sign", () -> new PFWallHangingSignBlock(Properties.of().mapColor(MapColor.WOOD).forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(CUPRESSINOCLADUS_HANGING_SIGN.get()), PFWoodTypes.CUPRESSINOCLADUS));
+
+	public static final RegistryObject<Block> ELATIDES_PLANKS = REGISTER.register("elatides_planks", () -> new Block(Block.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).ignitedByLava().strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> ELATIDES_LOG = REGISTER.register("elatides_log", () -> createLog());
+	public static final RegistryObject<Block> STRIPPED_ELATIDES_LOG = REGISTER.register("stripped_elatides_log", () -> createLog());
+	public static final RegistryObject<Block> ELATIDES_WOOD = REGISTER.register("elatides_wood", () -> createLog());
+	public static final RegistryObject<Block> STRIPPED_ELATIDES_WOOD = REGISTER.register("stripped_elatides_wood", () -> createLog());
+	public static final RegistryObject<Block> ELATIDES_LEAVES = REGISTER.register("elatides_leaves", () -> leaves(SoundType.GRASS));
+	public static final RegistryObject<Block> ELATIDES_SAPLING = REGISTER.register("elatides_sapling", () -> new PFSaplingBlock(new PFTreeSpawners.Elatides(), Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).noCollission().randomTicks().strength(0F).sound(SoundType.GRASS)));
+	public static final RegistryObject<Block> ELATIDES_DOOR = REGISTER.register("elatides_door", () -> new DoorBlock(Block.Properties.of().instrument(NoteBlockInstrument.BASS).ignitedByLava().pushReaction(PushReaction.DESTROY).mapColor(MapColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion(), PFWoodTypes.ELATIDES_TYPE));
+	public static final RegistryObject<Block> ELATIDES_PRESSURE_PLATE = REGISTER.register("elatides_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.of().forceSolidOn().instrument(NoteBlockInstrument.BASS).mapColor(MapColor.WOOD).ignitedByLava().pushReaction(PushReaction.DESTROY).noCollission().strength(0.5F).sound(SoundType.WOOD), PFWoodTypes.ELATIDES_TYPE));
+	public static final RegistryObject<Block> ELATIDES_FENCE = REGISTER.register("elatides_fence", () -> new FenceBlock(Block.Properties.of().forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().mapColor(ELATIDES_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> ELATIDES_TRAPDOOR = REGISTER.register("elatides_trapdoor", () -> new TrapDoorBlock(Block.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).ignitedByLava().strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(PFBlocks::neverAllowSpawn), PFWoodTypes.ELATIDES_TYPE));
+	public static final RegistryObject<Block> ELATIDES_FENCE_GATE = REGISTER.register("elatides_fence_gate", () -> new FenceGateBlock(Block.Properties.of().forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().mapColor(ELATIDES_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD), PFWoodTypes.ELATIDES));
+	public static final RegistryObject<Block> ELATIDES_BUTTON = REGISTER.register("elatides_button", () -> woodenButton(PFWoodTypes.ELATIDES_TYPE));
+	public static final RegistryObject<Block> ELATIDES_SLAB = REGISTER.register("elatides_slab", () -> new SlabBlock(Block.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).ignitedByLava().strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> ELATIDES_STAIRS = REGISTER.register("elatides_stairs", () -> new StairBlock(ELATIDES_PLANKS.get().defaultBlockState(), Block.Properties.copy(ELATIDES_PLANKS.get())));
+	public static final RegistryObject<PFStandingSignBlock> ELATIDES_SIGN = REGISTER.register("elatides_sign", () -> new PFStandingSignBlock(Properties.of().mapColor(MapColor.WOOD).forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().noCollission().strength(1.0F).sound(SoundType.WOOD), PFWoodTypes.ELATIDES));
+	public static final RegistryObject<PFWallSignBlock> ELATIDES_WALL_SIGN = REGISTER.register("elatides_wall_sign", () -> new PFWallSignBlock(Properties.of().mapColor(MapColor.WOOD).forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(ELATIDES_SIGN.get()), PFWoodTypes.ELATIDES));
+	public static final RegistryObject<PFCeilingHangingSignBlock> ELATIDES_HANGING_SIGN = REGISTER.register("elatides_hanging_sign", () -> new PFCeilingHangingSignBlock(Properties.of().mapColor(MapColor.WOOD).forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().noCollission().strength(1.0F).sound(SoundType.WOOD), PFWoodTypes.ELATIDES));
+	public static final RegistryObject<PFWallHangingSignBlock> ELATIDES_HANGING_WALL_SIGN = REGISTER.register("elatides_hanging_wall_sign", () -> new PFWallHangingSignBlock(Properties.of().mapColor(MapColor.WOOD).forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(ELATIDES_HANGING_SIGN.get()), PFWoodTypes.ELATIDES));
+
+	public static final RegistryObject<Block> PHOENICOPSIS_PLANKS = REGISTER.register("phoenicopsis_planks", () -> new Block(Block.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).ignitedByLava().strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> PHOENICOPSIS_LOG = REGISTER.register("phoenicopsis_log", () -> createLog());
+	public static final RegistryObject<Block> STRIPPED_PHOENICOPSIS_LOG = REGISTER.register("stripped_phoenicopsis_log", () -> createLog());
+	public static final RegistryObject<Block> PHOENICOPSIS_WOOD = REGISTER.register("phoenicopsis_wood", () -> createLog());
+	public static final RegistryObject<Block> STRIPPED_PHOENICOPSIS_WOOD = REGISTER.register("stripped_phoenicopsis_wood", () -> createLog());
+	public static final RegistryObject<Block> PHOENICOPSIS_LEAVES = REGISTER.register("phoenicopsis_leaves", () -> leaves(SoundType.GRASS));
+	public static final RegistryObject<Block> PHOENICOPSIS_SAPLING = REGISTER.register("phoenicopsis_sapling", () -> new PFSaplingBlock(new PFTreeSpawners.Phoenicopsis(), Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).noCollission().randomTicks().strength(0F).sound(SoundType.GRASS)));
+	public static final RegistryObject<Block> PHOENICOPSIS_DOOR = REGISTER.register("phoenicopsis_door", () -> new DoorBlock(Block.Properties.of().instrument(NoteBlockInstrument.BASS).ignitedByLava().pushReaction(PushReaction.DESTROY).mapColor(MapColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion(), PFWoodTypes.PHOENICOPSIS_TYPE));
+	public static final RegistryObject<Block> PHOENICOPSIS_PRESSURE_PLATE = REGISTER.register("phoenicopsis_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.of().forceSolidOn().instrument(NoteBlockInstrument.BASS).mapColor(MapColor.WOOD).ignitedByLava().pushReaction(PushReaction.DESTROY).noCollission().strength(0.5F).sound(SoundType.WOOD), PFWoodTypes.PHOENICOPSIS_TYPE));
+	public static final RegistryObject<Block> PHOENICOPSIS_FENCE = REGISTER.register("phoenicopsis_fence", () -> new FenceBlock(Block.Properties.of().forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().mapColor(PHOENICOPSIS_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> PHOENICOPSIS_TRAPDOOR = REGISTER.register("phoenicopsis_trapdoor", () -> new TrapDoorBlock(Block.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).ignitedByLava().strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(PFBlocks::neverAllowSpawn), PFWoodTypes.PHOENICOPSIS_TYPE));
+	public static final RegistryObject<Block> PHOENICOPSIS_FENCE_GATE = REGISTER.register("phoenicopsis_fence_gate", () -> new FenceGateBlock(Block.Properties.of().forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().mapColor(PHOENICOPSIS_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD), PFWoodTypes.PHOENICOPSIS));
+	public static final RegistryObject<Block> PHOENICOPSIS_BUTTON = REGISTER.register("phoenicopsis_button", () -> woodenButton(PFWoodTypes.PHOENICOPSIS_TYPE));
+	public static final RegistryObject<Block> PHOENICOPSIS_SLAB = REGISTER.register("phoenicopsis_slab", () -> new SlabBlock(Block.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).ignitedByLava().strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> PHOENICOPSIS_STAIRS = REGISTER.register("phoenicopsis_stairs", () -> new StairBlock(PHOENICOPSIS_PLANKS.get().defaultBlockState(), Block.Properties.copy(PHOENICOPSIS_PLANKS.get())));
+	public static final RegistryObject<PFStandingSignBlock> PHOENICOPSIS_SIGN = REGISTER.register("phoenicopsis_sign", () -> new PFStandingSignBlock(Properties.of().mapColor(MapColor.WOOD).forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().noCollission().strength(1.0F).sound(SoundType.WOOD), PFWoodTypes.PHOENICOPSIS));
+	public static final RegistryObject<PFWallSignBlock> PHOENICOPSIS_WALL_SIGN = REGISTER.register("phoenicopsis_wall_sign", () -> new PFWallSignBlock(Properties.of().mapColor(MapColor.WOOD).forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(PHOENICOPSIS_SIGN.get()), PFWoodTypes.PHOENICOPSIS));
+	public static final RegistryObject<PFCeilingHangingSignBlock> PHOENICOPSIS_HANGING_SIGN = REGISTER.register("phoenicopsis_hanging_sign", () -> new PFCeilingHangingSignBlock(Properties.of().mapColor(MapColor.WOOD).forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().noCollission().strength(1.0F).sound(SoundType.WOOD), PFWoodTypes.PHOENICOPSIS));
+	public static final RegistryObject<PFWallHangingSignBlock> PHOENICOPSIS_HANGING_WALL_SIGN = REGISTER.register("phoenicopsis_hanging_wall_sign", () -> new PFWallHangingSignBlock(Properties.of().mapColor(MapColor.WOOD).forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(PHOENICOPSIS_HANGING_SIGN.get()), PFWoodTypes.PHOENICOPSIS));
+	
+	public static final RegistryObject<Block> FRENELOPSIS_PLANKS = REGISTER.register("frenelopsis_planks", () -> new Block(Block.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).ignitedByLava().strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> FRENELOPSIS_LOG = REGISTER.register("frenelopsis_log", () -> createLog());
+	public static final RegistryObject<Block> STRIPPED_FRENELOPSIS_LOG = REGISTER.register("stripped_frenelopsis_log", () -> createLog());
+	public static final RegistryObject<Block> FRENELOPSIS_WOOD = REGISTER.register("frenelopsis_wood", () -> createLog());
+	public static final RegistryObject<Block> STRIPPED_FRENELOPSIS_WOOD = REGISTER.register("stripped_frenelopsis_wood", () -> createLog());
+	public static final RegistryObject<Block> FRENELOPSIS_LEAVES = REGISTER.register("frenelopsis_leaves", () -> leaves(SoundType.GRASS));
+	public static final RegistryObject<Block> FRENELOPSIS_SAPLING = REGISTER.register("frenelopsis_sapling", () -> new PFSaplingBlock(new PFTreeSpawners.Frenelopsis(), Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).noCollission().randomTicks().strength(0F).sound(SoundType.GRASS)));
+	public static final RegistryObject<Block> FRENELOPSIS_DOOR = REGISTER.register("frenelopsis_door", () -> new DoorBlock(Block.Properties.of().instrument(NoteBlockInstrument.BASS).ignitedByLava().pushReaction(PushReaction.DESTROY).mapColor(MapColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion(), PFWoodTypes.FRENELOPSIS_TYPE));
+	public static final RegistryObject<Block> FRENELOPSIS_PRESSURE_PLATE = REGISTER.register("frenelopsis_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Block.Properties.of().forceSolidOn().instrument(NoteBlockInstrument.BASS).mapColor(MapColor.WOOD).ignitedByLava().pushReaction(PushReaction.DESTROY).noCollission().strength(0.5F).sound(SoundType.WOOD), PFWoodTypes.FRENELOPSIS_TYPE));
+	public static final RegistryObject<Block> FRENELOPSIS_FENCE = REGISTER.register("frenelopsis_fence", () -> new FenceBlock(Block.Properties.of().forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().mapColor(FRENELOPSIS_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> FRENELOPSIS_TRAPDOOR = REGISTER.register("frenelopsis_trapdoor", () -> new TrapDoorBlock(Block.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).ignitedByLava().strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(PFBlocks::neverAllowSpawn), PFWoodTypes.FRENELOPSIS_TYPE));
+	public static final RegistryObject<Block> FRENELOPSIS_FENCE_GATE = REGISTER.register("frenelopsis_fence_gate", () -> new FenceGateBlock(Block.Properties.of().forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().mapColor(FRENELOPSIS_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD), PFWoodTypes.FRENELOPSIS));
+	public static final RegistryObject<Block> FRENELOPSIS_BUTTON = REGISTER.register("frenelopsis_button", () -> woodenButton(PFWoodTypes.FRENELOPSIS_TYPE));
+	public static final RegistryObject<Block> FRENELOPSIS_SLAB = REGISTER.register("frenelopsis_slab", () -> new SlabBlock(Block.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).ignitedByLava().strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> FRENELOPSIS_STAIRS = REGISTER.register("frenelopsis_stairs", () -> new StairBlock(FRENELOPSIS_PLANKS.get().defaultBlockState(), Block.Properties.copy(FRENELOPSIS_PLANKS.get())));
+	public static final RegistryObject<PFStandingSignBlock> FRENELOPSIS_SIGN = REGISTER.register("frenelopsis_sign", () -> new PFStandingSignBlock(Properties.of().mapColor(MapColor.WOOD).forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().noCollission().strength(1.0F).sound(SoundType.WOOD), PFWoodTypes.FRENELOPSIS));
+	public static final RegistryObject<PFWallSignBlock> FRENELOPSIS_WALL_SIGN = REGISTER.register("frenelopsis_wall_sign", () -> new PFWallSignBlock(Properties.of().mapColor(MapColor.WOOD).forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(FRENELOPSIS_SIGN.get()), PFWoodTypes.FRENELOPSIS));
+	public static final RegistryObject<PFCeilingHangingSignBlock> FRENELOPSIS_HANGING_SIGN = REGISTER.register("frenelopsis_hanging_sign", () -> new PFCeilingHangingSignBlock(Properties.of().mapColor(MapColor.WOOD).forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().noCollission().strength(1.0F).sound(SoundType.WOOD), PFWoodTypes.FRENELOPSIS));
+	public static final RegistryObject<PFWallHangingSignBlock> FRENELOPSIS_HANGING_WALL_SIGN = REGISTER.register("frenelopsis_hanging_wall_sign", () -> new PFWallHangingSignBlock(Properties.of().mapColor(MapColor.WOOD).forceSolidOn().instrument(NoteBlockInstrument.BASS).ignitedByLava().noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(FRENELOPSIS_HANGING_SIGN.get()), PFWoodTypes.FRENELOPSIS));
+	
+	public static final RegistryObject<Block> HERMANOPHYTON = REGISTER.register("hermanophyton_stem", () -> new HermanophytonBlock(Block.Properties.of().pushReaction(PushReaction.DESTROY).ignitedByLava().strength(0.4F).sound(SoundType.WOOD).noOcclusion()));
+	public static final RegistryObject<Block> HERMANOPHYTON_TOP = REGISTER.register("hermanophyton_crown", () -> new HermanophytonTopBlock(Block.Properties.of().pushReaction(PushReaction.DESTROY).ignitedByLava().strength(0.4F).sound(SoundType.WOOD).noOcclusion().randomTicks()));
+	
 	public static final RegistryObject<Block> NEOCALAMITES = REGISTER.register("neocalamites", () -> new NeocalamitesBlock(Properties.of().mapColor(MapColor.COLOR_GREEN).pushReaction(PushReaction.DESTROY).ignitedByLava().strength(0.5F).sound(SoundType.BAMBOO).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> NEOCALAMITES_TOP = REGISTER.register("neocalamites_top", () -> new NeocalamitesTopBlock(Properties.copy(NEOCALAMITES.get())));
 
@@ -643,6 +739,16 @@ public class PFBlocks {
 	public static final RegistryObject<Block> POTTED_LEEFRUCTUS = REGISTER.register("potted_leefructus", () -> flowerPot(LEEFRUCTUS.get()));
 	public static final RegistryObject<Block> POTTED_EPHEDRA = REGISTER.register("potted_ephedra", () -> flowerPot(EPHEDRA.get()));
 	public static final RegistryObject<Block> POTTED_BISONIA = REGISTER.register("potted_bisonia", () -> flowerPot(BISONIA.get()));
+	public static final RegistryObject<Block> POTTED_ANOMOZAMITES = REGISTER.register("potted_anomozamites", () -> flowerPot(ANOMOZAMITES.get()));
+	public static final RegistryObject<Block> POTTED_PTEROPHYLLUM = REGISTER.register("potted_pterophyllum", () -> flowerPot(PTEROPHYLLUM.get()));
+	public static final RegistryObject<Block> POTTED_SPHENOPTERIS = REGISTER.register("potted_sphenopteris", () -> flowerPot(SPHENOPTERIS.get()));
+	public static final RegistryObject<Block> POTTED_ONYCHIOPSIS = REGISTER.register("potted_onychiopsis", () -> flowerPot(ONYCHIOPSIS.get()));
+	public static final RegistryObject<Block> POTTED_TAENIOPTERIS = REGISTER.register("potted_taeniopteris", () -> flowerPot(TAENIOPTERIS.get()));
+	public static final RegistryObject<Block> POTTED_BASSITHECA = REGISTER.register("potted_bassitheca", () -> flowerPot(BASSITHECA.get()));
+	public static final RegistryObject<Block> POTTED_CUPRESSINOCLADUS_SAPLING = REGISTER.register("potted_cupressinocladus_sapling", () -> flowerPot(CUPRESSINOCLADUS_SAPLING.get()));
+	public static final RegistryObject<Block> POTTED_ELATIDES_SAPLING = REGISTER.register("potted_elatides_sapling", () -> flowerPot(ELATIDES_SAPLING.get()));
+	public static final RegistryObject<Block> POTTED_PHOENICOPSIS_SAPLING = REGISTER.register("potted_phoenicopsis_sapling", () -> flowerPot(PHOENICOPSIS_SAPLING.get()));
+	public static final RegistryObject<Block> POTTED_FRENELOPSIS_SAPLING = REGISTER.register("potted_frenelopsis_sapling", () -> flowerPot(FRENELOPSIS_SAPLING.get()));
 
 	public static final RegistryObject<Block> MOSSY_DIRT = REGISTER.register("mossy_dirt", () -> new SnowyDirtBlock(Block.Properties.of().mapColor(MapColor.COLOR_GREEN).strength(0.6F).sound(SoundType.GRASS)));
 	public static final RegistryObject<Block> LOAM = REGISTER.register("loam", () -> new Block(Block.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(0.6F).sound(SoundType.ROOTED_DIRT)));
@@ -726,6 +832,8 @@ public class PFBlocks {
 	public static final RegistryObject<Block> PORTAL_FRAME = REGISTER.register("portal_frame", () -> new PortalFrameBlock(Block.Properties.of().mapColor(MapColor.TERRACOTTA_GREEN).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).lightLevel((light) -> {
 		return 15;
 	})));
+	
+	public static final RegistryObject<Block> SALT = REGISTER.register("salt", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).requiresCorrectToolForDrops().strength(1.5F, 6).sound(SoundType.STONE)));
 
 	public static final RegistryObject<Block> LARGE_AMMONITE_FOSSIL = REGISTER.register("large_ammonite_fossil", () -> new AmmoniteLargeShellBlock(Properties.of().strength(1.5F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 	public static final RegistryObject<Block> MEDIUM_AMMONITE_FOSSIL = REGISTER.register("medium_ammonite_fossil", () -> new AmmoniteMediumShellBlock(Properties.of().strength(1.5F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
@@ -820,7 +928,7 @@ public class PFBlocks {
 	public static final RegistryObject<CretaceousPortalBlock> CRETACEOUS_PORTAL = REGISTER.register("cretaceous_portal", () -> new CretaceousPortalBlock(Block.Properties.of().noCollission().randomTicks().strength(-1.0F).sound(SoundType.GLASS).noLootTable()));
 	public static final RegistryObject<Block> CRETACEOUS_TIME_BLOCK = REGISTER.register("cretaceous_time_block", () -> new CretaceousTimeBlock());
 
-	public static final RegistryObject<FeederBlock> OAK_FEEDER = REGISTER.register("oak_feeder", () -> new FeederBlock(Properties.of().strength(2.0F, 3.0F).sound(SoundType.METAL).isViewBlocking(PFBlocks::never).noOcclusion()));
+	public static final RegistryObject<FeederBlock> OAK_FEEDER = REGISTER.register("feeder", () -> new FeederBlock(Properties.of().strength(2.0F, 3.0F).sound(SoundType.METAL).isViewBlocking(PFBlocks::never).noOcclusion()));
 
 	public static final RegistryObject<AraucariaConeBlock> ARAUCARIA_CONE = REGISTER.register("araucaria_cone", () -> new AraucariaConeBlock(Properties.of().strength(1.0F, 1.0F).sound(SoundType.WOOD)));
 
@@ -852,6 +960,10 @@ public class PFBlocks {
 	public static final RegistryObject<Block> CZEKANOWSKIA_VERTICAL_SLAB = HELPER.createBlock("czekanowskia_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(CZEKANOWSKIA_SLAB.get())));
 	public static final RegistryObject<Block> SCHIZOLEPIDOPSIS_VERTICAL_SLAB = HELPER.createBlock("schizolepidopsis_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(SCHIZOLEPIDOPSIS_SLAB.get())));
 	public static final RegistryObject<Block> PODOZAMITES_VERTICAL_SLAB = HELPER.createBlock("podozamites_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(PODOZAMITES_SLAB.get())));
+	public static final RegistryObject<Block> CUPRESSINOCLADUS_VERTICAL_SLAB = HELPER.createBlock("cupressinocladus_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(CUPRESSINOCLADUS_SLAB.get())));
+	public static final RegistryObject<Block> ELATIDES_VERTICAL_SLAB = HELPER.createBlock("elatides_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(ELATIDES_SLAB.get())));
+	public static final RegistryObject<Block> PHOENICOPSIS_VERTICAL_SLAB = HELPER.createBlock("phoenicopsis_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(PHOENICOPSIS_SLAB.get())));
+	public static final RegistryObject<Block> FRENELOPSIS_VERTICAL_SLAB = HELPER.createBlock("frenelopsis_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(FRENELOPSIS_SLAB.get())));
 	public static final RegistryObject<Block> NEOCALAMITES_VERTICAL_SLAB = HELPER.createBlock("neocalamites_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(NEOCALAMITES_SLAB.get())));
 	public static final RegistryObject<Block> TRIASSIC_SANDSTONE_VERTICAL_SLAB = HELPER.createBlock("sandstone_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(SANDSTONE_SLAB.get())));
 	public static final RegistryObject<Block> POLISHED_TRIASSIC_SANDSTONE_VERTICAL_SLAB = HELPER.createBlock("polished_sandstone_vertical_slab", () -> new VerticalSlabBlock(Properties.copy(POLISHED_SANDSTONE_SLAB.get())));
@@ -889,6 +1001,10 @@ public class PFBlocks {
 	public static final RegistryObject<Block> CZEKANOWSKIA_VERTICAL_PLANKS = HELPER.createBlock("czekanowskia_vertical_planks", () -> new Block(Properties.copy(CZEKANOWSKIA_PLANKS.get())));
 	public static final RegistryObject<Block> SCHIZOLEPIDOPSIS_VERTICAL_PLANKS = HELPER.createBlock("schizolepidopsis_vertical_planks", () -> new Block(Properties.copy(SCHIZOLEPIDOPSIS_PLANKS.get())));
 	public static final RegistryObject<Block> PODOZAMITES_VERTICAL_PLANKS = HELPER.createBlock("podozamites_vertical_planks", () -> new Block(Properties.copy(PODOZAMITES_PLANKS.get())));
+	public static final RegistryObject<Block> CUPRESSINOCLADUS_VERTICAL_PLANKS = HELPER.createBlock("cupressinocladus_vertical_planks", () -> new Block(Properties.copy(CUPRESSINOCLADUS_PLANKS.get())));
+	public static final RegistryObject<Block> ELATIDES_VERTICAL_PLANKS = HELPER.createBlock("elatides_vertical_planks", () -> new Block(Properties.copy(ELATIDES_PLANKS.get())));
+	public static final RegistryObject<Block> PHOENICOPSIS_VERTICAL_PLANKS = HELPER.createBlock("phoenicopsis_vertical_planks", () -> new Block(Properties.copy(PHOENICOPSIS_PLANKS.get())));
+	public static final RegistryObject<Block> FRENELOPSIS_VERTICAL_PLANKS = HELPER.createBlock("frenelopsis_vertical_planks", () -> new Block(Properties.copy(FRENELOPSIS_PLANKS.get())));
 	public static final RegistryObject<Block> NEOCALAMITES_VERTICAL_PLANKS = HELPER.createBlock("neocalamites_vertical_planks", () -> new Block(Properties.copy(NEOCALAMITES_PLANKS.get())));
 
 	public static final RegistryObject<Block> METASEQUOIA_LEAF_CARPET = HELPER.createBlock("metasequoia_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.of().mapColor(MapColor.PLANT).ignitedByLava().pushReaction(PushReaction.DESTROY).strength(0.0F).sound(SoundType.GRASS).noOcclusion()));
@@ -911,6 +1027,10 @@ public class PFBlocks {
 	public static final RegistryObject<Block> CZEKANOWSKIA_LEAF_CARPET = HELPER.createBlock("czekanowskia_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.of().mapColor(MapColor.PLANT).ignitedByLava().pushReaction(PushReaction.DESTROY).strength(0.0F).sound(SoundType.GRASS).noOcclusion()));
 	public static final RegistryObject<Block> SCHIZOLEPIDOPSIS_LEAF_CARPET = HELPER.createBlock("schizolepidopsis_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.of().mapColor(MapColor.PLANT).ignitedByLava().pushReaction(PushReaction.DESTROY).strength(0.0F).sound(SoundType.GRASS).noOcclusion()));
 	public static final RegistryObject<Block> PODOZAMITES_LEAF_CARPET = HELPER.createBlock("podozamites_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.of().mapColor(MapColor.PLANT).ignitedByLava().pushReaction(PushReaction.DESTROY).strength(0.0F).sound(SoundType.GRASS).noOcclusion()));
+	public static final RegistryObject<Block> CUPRESSINOCLADUS_LEAF_CARPET = HELPER.createBlock("cupressinocladus_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.of().mapColor(MapColor.PLANT).ignitedByLava().pushReaction(PushReaction.DESTROY).strength(0.0F).sound(SoundType.GRASS).noOcclusion()));
+	public static final RegistryObject<Block> ELATIDES_LEAF_CARPET = HELPER.createBlock("elatides_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.of().mapColor(MapColor.PLANT).ignitedByLava().pushReaction(PushReaction.DESTROY).strength(0.0F).sound(SoundType.GRASS).noOcclusion()));
+	public static final RegistryObject<Block> PHOENICOPSIS_LEAF_CARPET = HELPER.createBlock("phoenicopsis_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.of().mapColor(MapColor.PLANT).ignitedByLava().pushReaction(PushReaction.DESTROY).strength(0.0F).sound(SoundType.GRASS).noOcclusion()));
+	public static final RegistryObject<Block> FRENELOPSIS_LEAF_CARPET = HELPER.createBlock("frenelopsis_leaf_carpet", () -> new LeafCarpetBlock(Block.Properties.of().mapColor(MapColor.PLANT).ignitedByLava().pushReaction(PushReaction.DESTROY).strength(0.0F).sound(SoundType.GRASS).noOcclusion()));
 
 	public static final RegistryObject<Block> METASEQUOIA_BEEHIVE = HELPER.createBlock("metasequoia_beehive", () -> new PFBeehiveBlock(Properties.copy(Blocks.BEEHIVE)));
 	public static final RegistryObject<Block> ARAUCARIA_BEEHIVE = HELPER.createBlock("araucaria_beehive", () -> new PFBeehiveBlock(Properties.copy(Blocks.BEEHIVE)));
@@ -933,6 +1053,10 @@ public class PFBlocks {
 	public static final RegistryObject<Block> CZEKANOWSKIA_BEEHIVE = HELPER.createBlock("czekanowskia_beehive", () -> new PFBeehiveBlock(Properties.copy(Blocks.BEEHIVE)));
 	public static final RegistryObject<Block> SCHIZOLEPIDOPSIS_BEEHIVE = HELPER.createBlock("schizolepidopsis_beehive", () -> new PFBeehiveBlock(Properties.copy(Blocks.BEEHIVE)));
 	public static final RegistryObject<Block> PODOZAMITES_BEEHIVE = HELPER.createBlock("podozamites_beehive", () -> new PFBeehiveBlock(Properties.copy(Blocks.BEEHIVE)));
+	public static final RegistryObject<Block> CUPRESSINOCLADUS_BEEHIVE = HELPER.createBlock("cupressinocladus_beehive", () -> new PFBeehiveBlock(Properties.copy(Blocks.BEEHIVE)));
+	public static final RegistryObject<Block> ELATIDES_BEEHIVE = HELPER.createBlock("elatides_beehive", () -> new PFBeehiveBlock(Properties.copy(Blocks.BEEHIVE)));
+	public static final RegistryObject<Block> PHOENICOPSIS_BEEHIVE = HELPER.createBlock("phoenicopsis_beehive", () -> new PFBeehiveBlock(Properties.copy(Blocks.BEEHIVE)));
+	public static final RegistryObject<Block> FRENELOPSIS_BEEHIVE = HELPER.createBlock("frenelopsis_beehive", () -> new PFBeehiveBlock(Properties.copy(Blocks.BEEHIVE)));
 	public static final RegistryObject<Block> NEOCALAMITES_BEEHIVE = HELPER.createBlock("neocalamites_beehive", () -> new PFBeehiveBlock(Properties.copy(Blocks.BEEHIVE)));
 
 	public static final RegistryObject<Block> METASEQUOIA_BOOKSHELF = HELPER.createBlock("metasequoia_bookshelf", () -> new PFBookshelfBlock(Properties.copy(Blocks.BOOKSHELF)));
@@ -956,6 +1080,10 @@ public class PFBlocks {
 	public static final RegistryObject<Block> CZEKANOWSKIA_BOOKSHELF = HELPER.createBlock("czekanowskia_bookshelf", () -> new PFBookshelfBlock(Properties.copy(Blocks.BOOKSHELF)));
 	public static final RegistryObject<Block> SCHIZOLEPIDOPSIS_BOOKSHELF = HELPER.createBlock("schizolepidopsis_bookshelf", () -> new PFBookshelfBlock(Properties.copy(Blocks.BOOKSHELF)));
 	public static final RegistryObject<Block> PODOZAMITES_BOOKSHELF = HELPER.createBlock("podozamites_bookshelf", () -> new PFBookshelfBlock(Properties.copy(Blocks.BOOKSHELF)));
+	public static final RegistryObject<Block> CUPRESSINOCLADUS_BOOKSHELF = HELPER.createBlock("cupressinocladus_bookshelf", () -> new PFBookshelfBlock(Properties.copy(Blocks.BOOKSHELF)));
+	public static final RegistryObject<Block> ELATIDES_BOOKSHELF = HELPER.createBlock("elatides_bookshelf", () -> new PFBookshelfBlock(Properties.copy(Blocks.BOOKSHELF)));
+	public static final RegistryObject<Block> PHOENICOPSIS_BOOKSHELF = HELPER.createBlock("phoenicopsis_bookshelf", () -> new PFBookshelfBlock(Properties.copy(Blocks.BOOKSHELF)));
+	public static final RegistryObject<Block> FRENELOPSIS_BOOKSHELF = HELPER.createBlock("frenelopsis_bookshelf", () -> new PFBookshelfBlock(Properties.copy(Blocks.BOOKSHELF)));
 	public static final RegistryObject<Block> NEOCALAMITES_BOOKSHELF = HELPER.createBlock("neocalamites_bookshelf", () -> new PFBookshelfBlock(Properties.copy(Blocks.BOOKSHELF)));
 
 	public static final RegistryObject<Block> METASEQUOIA_LADDER = HELPER.createBlock("metasequoia_ladder", () -> new PFLadderBlock(Properties.copy(Blocks.LADDER)));
@@ -979,6 +1107,10 @@ public class PFBlocks {
 	public static final RegistryObject<Block> CZEKANOWSKIA_LADDER = HELPER.createBlock("czekanowskia_ladder", () -> new PFLadderBlock(Properties.copy(Blocks.LADDER)));
 	public static final RegistryObject<Block> SCHIZOLEPIDOPSIS_LADDER = HELPER.createBlock("schizolepidopsis_ladder", () -> new PFLadderBlock(Properties.copy(Blocks.LADDER)));
 	public static final RegistryObject<Block> PODOZAMITES_LADDER = HELPER.createBlock("podozamites_ladder", () -> new PFLadderBlock(Properties.copy(Blocks.LADDER)));
+	public static final RegistryObject<Block> CUPRESSINOCLADUS_LADDER = HELPER.createBlock("cupressinocladus_ladder", () -> new PFLadderBlock(Properties.copy(Blocks.LADDER)));
+	public static final RegistryObject<Block> ELATIDES_LADDER = HELPER.createBlock("elatides_ladder", () -> new PFLadderBlock(Properties.copy(Blocks.LADDER)));
+	public static final RegistryObject<Block> PHOENICOPSIS_LADDER = HELPER.createBlock("phoenicopsis_ladder", () -> new PFLadderBlock(Properties.copy(Blocks.LADDER)));
+	public static final RegistryObject<Block> FRENELOPSIS_LADDER = HELPER.createBlock("frenelopsis_ladder", () -> new PFLadderBlock(Properties.copy(Blocks.LADDER)));
 	public static final RegistryObject<Block> NEOCALAMITES_LADDER = HELPER.createBlock("neocalamites_ladder", () -> new PFLadderBlock(Properties.copy(Blocks.LADDER)));
 
 	public static final RegistryObject<PFChestBlock> METASEQUOIA_CHEST 	= HELPER.createChestBlock("metasequoia", BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.5F).sound(SoundType.WOOD).ignitedByLava());
@@ -1002,6 +1134,10 @@ public class PFBlocks {
 	public static final RegistryObject<PFChestBlock> CZEKANOWSKIA_CHEST 	= HELPER.createChestBlock("czekanowskia", BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.5F).sound(SoundType.WOOD).ignitedByLava());
 	public static final RegistryObject<PFChestBlock> SCHIZOLEPIDOPSIS_CHEST 	= HELPER.createChestBlock("schizolepidopsis", BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.5F).sound(SoundType.WOOD).ignitedByLava());
 	public static final RegistryObject<PFChestBlock> PODOZAMITES_CHEST 	= HELPER.createChestBlock("podozamites", BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.5F).sound(SoundType.WOOD).ignitedByLava());
+	public static final RegistryObject<PFChestBlock> CUPRESSINOCLADUS_CHEST 	= HELPER.createChestBlock("cupressinocladus", BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.5F).sound(SoundType.WOOD).ignitedByLava());
+	public static final RegistryObject<PFChestBlock> ELATIDES_CHEST 	= HELPER.createChestBlock("elatides", BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.5F).sound(SoundType.WOOD).ignitedByLava());
+	public static final RegistryObject<PFChestBlock> PHOENICOPSIS_CHEST 	= HELPER.createChestBlock("phoenicopsis", BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.5F).sound(SoundType.WOOD).ignitedByLava());
+	public static final RegistryObject<PFChestBlock> FRENELOPSIS_CHEST 	= HELPER.createChestBlock("frenelopsis", BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.5F).sound(SoundType.WOOD).ignitedByLava());
 	public static final RegistryObject<PFChestBlock> NEOCALAMITES_CHEST 	= HELPER.createChestBlock("neocalamites", BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.5F).sound(SoundType.WOOD).ignitedByLava());
 	public static final RegistryObject<PFTrappedChestBlock> METASEQUOIA_TRAPPED_CHEST 	= HELPER.createTrappedChestBlock("metasequoia", BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.5F).sound(SoundType.WOOD).ignitedByLava());
 	public static final RegistryObject<PFTrappedChestBlock> ARAUCARIA_TRAPPED_CHEST 	= HELPER.createTrappedChestBlock("araucaria", BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.5F).sound(SoundType.WOOD).ignitedByLava());
@@ -1024,6 +1160,10 @@ public class PFBlocks {
 	public static final RegistryObject<PFTrappedChestBlock> CZEKANOWSKIA_TRAPPED_CHEST 	= HELPER.createTrappedChestBlock("czekanowskia", BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.5F).sound(SoundType.WOOD).ignitedByLava());
 	public static final RegistryObject<PFTrappedChestBlock> SCHIZOLEPIDOPSIS_TRAPPED_CHEST 	= HELPER.createTrappedChestBlock("schizolepidopsis", BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.5F).sound(SoundType.WOOD).ignitedByLava());
 	public static final RegistryObject<PFTrappedChestBlock> PODOZAMITES_TRAPPED_CHEST 	= HELPER.createTrappedChestBlock("podozamites", BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.5F).sound(SoundType.WOOD).ignitedByLava());
+	public static final RegistryObject<PFTrappedChestBlock> CUPRESSINOCLADUS_TRAPPED_CHEST 	= HELPER.createTrappedChestBlock("cupressinocladus", BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.5F).sound(SoundType.WOOD).ignitedByLava());
+	public static final RegistryObject<PFTrappedChestBlock> ELATIDES_TRAPPED_CHEST 	= HELPER.createTrappedChestBlock("elatides", BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.5F).sound(SoundType.WOOD).ignitedByLava());
+	public static final RegistryObject<PFTrappedChestBlock> PHOENICOPSIS_TRAPPED_CHEST 	= HELPER.createTrappedChestBlock("phoenicopsis", BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.5F).sound(SoundType.WOOD).ignitedByLava());
+	public static final RegistryObject<PFTrappedChestBlock> FRENELOPSIS_TRAPPED_CHEST 	= HELPER.createTrappedChestBlock("frenelopsis", BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.5F).sound(SoundType.WOOD).ignitedByLava());
 	public static final RegistryObject<PFTrappedChestBlock> NEOCALAMITES_TRAPPED_CHEST 	= HELPER.createTrappedChestBlock("neocalamites", BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.5F).sound(SoundType.WOOD).ignitedByLava());
 
 	public static final RegistryObject<Block> CHALK_PAVEMENT = HELPER.createBlock("chalk_pavement", () -> new Block(Properties.copy(CHALK_BRICKS.get())));
@@ -1075,6 +1215,14 @@ public class PFBlocks {
 	public static final RegistryObject<Block> STRIPPED_SCHIZOLEPIDOPSIS_POST = HELPER.createBlock("stripped_schizolepidopsis_post", () -> new WoodPostBlock(Properties.copy(SCHIZOLEPIDOPSIS_FENCE.get())));
 	public static final RegistryObject<Block> PODOZAMITES_POST = HELPER.createBlock("podozamites_post", () -> new WoodPostBlock(Properties.copy(PODOZAMITES_FENCE.get())));
 	public static final RegistryObject<Block> STRIPPED_PODOZAMITES_POST = HELPER.createBlock("stripped_podozamites_post", () -> new WoodPostBlock(Properties.copy(PODOZAMITES_FENCE.get())));
+	public static final RegistryObject<Block> CUPRESSINOCLADUS_POST = HELPER.createBlock("cupressinocladus_post", () -> new WoodPostBlock(Properties.copy(CUPRESSINOCLADUS_FENCE.get())));
+	public static final RegistryObject<Block> STRIPPED_CUPRESSINOCLADUS_POST = HELPER.createBlock("stripped_cupressinocladus_post", () -> new WoodPostBlock(Properties.copy(CUPRESSINOCLADUS_FENCE.get())));
+	public static final RegistryObject<Block> ELATIDES_POST = HELPER.createBlock("elatides_post", () -> new WoodPostBlock(Properties.copy(ELATIDES_FENCE.get())));
+	public static final RegistryObject<Block> STRIPPED_ELATIDES_POST = HELPER.createBlock("stripped_elatides_post", () -> new WoodPostBlock(Properties.copy(ELATIDES_FENCE.get())));
+	public static final RegistryObject<Block> PHOENICOPSIS_POST = HELPER.createBlock("phoenicopsis_post", () -> new WoodPostBlock(Properties.copy(PHOENICOPSIS_FENCE.get())));
+	public static final RegistryObject<Block> STRIPPED_PHOENICOPSIS_POST = HELPER.createBlock("stripped_phoenicopsis_post", () -> new WoodPostBlock(Properties.copy(PHOENICOPSIS_FENCE.get())));
+	public static final RegistryObject<Block> FRENELOPSIS_POST = HELPER.createBlock("frenelopsis_post", () -> new WoodPostBlock(Properties.copy(FRENELOPSIS_FENCE.get())));
+	public static final RegistryObject<Block> STRIPPED_FRENELOPSIS_POST = HELPER.createBlock("stripped_frenelopsis_post", () -> new WoodPostBlock(Properties.copy(FRENELOPSIS_FENCE.get())));
 
 	public static final RegistryObject<Block> METASEQUOIA_HEDGE = HELPER.createBlock("metasequoia_hedge", () -> new HedgeBlock(Properties.copy(METASEQUOIA_PLANKS.get())));
 	public static final RegistryObject<Block> ARAUCARIA_HEDGE = HELPER.createBlock("araucaria_hedge", () -> new HedgeBlock(Properties.copy(ARAUCARIA_PLANKS.get())));
@@ -1096,6 +1244,10 @@ public class PFBlocks {
 	public static final RegistryObject<Block> CZEKANOWSKIA_HEDGE = HELPER.createBlock("czekanowskia_hedge", () -> new HedgeBlock(Properties.copy(CZEKANOWSKIA_PLANKS.get())));
 	public static final RegistryObject<Block> SCHIZOLEPIDOPSIS_HEDGE = HELPER.createBlock("schizolepidopsis_hedge", () -> new HedgeBlock(Properties.copy(SCHIZOLEPIDOPSIS_PLANKS.get())));
 	public static final RegistryObject<Block> PODOZAMITES_HEDGE = HELPER.createBlock("podozamites_hedge", () -> new HedgeBlock(Properties.copy(PODOZAMITES_PLANKS.get())));
+	public static final RegistryObject<Block> CUPRESSINOCLADUS_HEDGE = HELPER.createBlock("cupressinocladus_hedge", () -> new HedgeBlock(Properties.copy(CUPRESSINOCLADUS_PLANKS.get())));
+	public static final RegistryObject<Block> ELATIDES_HEDGE = HELPER.createBlock("elatides_hedge", () -> new HedgeBlock(Properties.copy(ELATIDES_PLANKS.get())));
+	public static final RegistryObject<Block> PHOENICOPSIS_HEDGE = HELPER.createBlock("phoenicopsis_hedge", () -> new HedgeBlock(Properties.copy(PHOENICOPSIS_PLANKS.get())));
+	public static final RegistryObject<Block> FRENELOPSIS_HEDGE = HELPER.createBlock("frenelopsis_hedge", () -> new HedgeBlock(Properties.copy(FRENELOPSIS_PLANKS.get())));
 
 	public static final RegistryObject<Block> THESCELOSAURUS_EGG = REGISTER.register("thescelosaurus_egg", () -> new DinosaurEggBlock(PFEntities.THESCELOSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> TRICERATOPS_EGG = REGISTER.register("triceratops_egg", () -> new DinosaurEggBlock(PFEntities.TRICERATOPS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
@@ -1116,18 +1268,24 @@ public class PFBlocks {
 	public static final RegistryObject<Block> PLESIOHADROS_EGG = REGISTER.register("plesiohadros_egg", () -> new DinosaurEggBlock(PFEntities.PLESIOHADROS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> ALLOSAURUS_EGG = REGISTER.register("allosaurus_egg", () -> new DinosaurEggBlock(PFEntities.ALLOSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> STEGOSAURUS_EGG = REGISTER.register("stegosaurus_egg", () -> new DinosaurEggBlock(PFEntities.STEGOSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> TANYCOLAGREUS_EGG = REGISTER.register("tanycolagreus_egg", () -> new DinosaurEggBlock(PFEntities.TANYCOLAGREUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> CERATOSAURUS_EGG = REGISTER.register("ceratosaurus_egg", () -> new DinosaurEggBlock(PFEntities.CERATOSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> DIABLOPHIS_EGG = REGISTER.register("diablophis_egg", () -> new DinosaurEggBlock(PFEntities.DIABLOPHIS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> DRYOSAURUS_EGG = REGISTER.register("dryosaurus_egg", () -> new DinosaurEggBlock(PFEntities.DRYOSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> HESPERORNITHOIDES_EGG = REGISTER.register("hesperornithoides_egg", () -> new DinosaurEggBlock(PFEntities.HESPERORNITHOIDES, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> MACELOGNATHUS_EGG = REGISTER.register("macelognathus_egg", () -> new DinosaurEggBlock(PFEntities.MACELOGNATHUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> EILENODON_EGG = REGISTER.register("eilenodon_egg", () -> new DinosaurEggBlock(PFEntities.EILENODON, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> CAMARASAURUS_EGG = REGISTER.register("camarasaurus_egg", () -> new DinosaurEggBlock(PFEntities.CAMARASAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> CALSOYASUCHUS_EGG = REGISTER.register("calsoyasuchus_egg", () -> new DinosaurEggBlock(PFEntities.CALSOYASUCHUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> DILOPHOSAURUS_EGG = REGISTER.register("dilophosaurus_egg", () -> new DinosaurEggBlock(PFEntities.DILOPHOSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> KAYENTACHELYS_EGG = REGISTER.register("kayentachelys_egg", () -> new DinosaurEggBlock(PFEntities.KAYENTACHELYS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> KAYENTASUCHUS_EGG = REGISTER.register("kayentasuchus_egg", () -> new DinosaurEggBlock(PFEntities.KAYENTASUCHUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> SARAHSAURUS_EGG = REGISTER.register("sarahsaurus_egg", () -> new DinosaurEggBlock(PFEntities.SARAHSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> SCELIDOSAURUS_EGG = REGISTER.register("scelidosaurus_egg", () -> new DinosaurEggBlock(PFEntities.SCELIDOSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> SCUTELLOSAURUS_EGG = REGISTER.register("scutellosaurus_egg", () -> new DinosaurEggBlock(PFEntities.SCUTELLOSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> MEGAPNOSAURUS_EGG = REGISTER.register("megapnosaurus_egg", () -> new DinosaurEggBlock(PFEntities.MEGAPNOSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> KAYENTATHERIUM_EGG = REGISTER.register("kayentatherium_egg", () -> new DinosaurEggBlock(PFEntities.KAYENTATHERIUM, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> KAYENTAVENATOR_EGG = REGISTER.register("kayentavenator_egg", () -> new DinosaurEggBlock(PFEntities.KAYENTAVENATOR, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> POSTOSUCHUS_EGG = REGISTER.register("postosuchus_egg", () -> new DinosaurEggBlock(PFEntities.POSTOSUCHUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> DESMATOSUCHUS_EGG = REGISTER.register("desmatosuchus_egg", () -> new DinosaurEggBlock(PFEntities.DESMATOSUCHUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> TRILOPHOSAURUS_EGG = REGISTER.register("trilophosaurus_egg", () -> new DinosaurEggBlock(PFEntities.TRILOPHOSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
@@ -1162,6 +1320,12 @@ public class PFBlocks {
 	public static final RegistryObject<Block> DILONG_EGG = REGISTER.register("dilong_egg", () -> new DinosaurEggBlock(PFEntities.DILONG, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> ZHENYUANLONG_EGG = REGISTER.register("zhenyuanlong_egg", () -> new DinosaurEggBlock(PFEntities.ZHENYUANLONG, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> JINZHOUSAURUS_EGG = REGISTER.register("jinzhousaurus_egg", () -> new DinosaurEggBlock(PFEntities.JINZHOUSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> BASHANOSAURUS_EGG = REGISTER.register("bashanosaurus_egg", () -> new DinosaurEggBlock(PFEntities.BASHANOSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> CHUANDONGOCOELURUS_EGG = REGISTER.register("chuandongocoelurus_egg", () -> new DinosaurEggBlock(PFEntities.CHUANDONGOCOELURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> AGILISAURUS_EGG = REGISTER.register("agilisaurus_egg", () -> new DinosaurEggBlock(PFEntities.AGILISAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> GIGANTSPINOSAURUS_EGG = REGISTER.register("gigantspinosaurus_egg", () -> new DinosaurEggBlock(PFEntities.GIGANTSPINOSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> YANDUSAURUS_EGG = REGISTER.register("yandusaurus_egg", () -> new DinosaurEggBlock(PFEntities.YANDUSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> YANGCHUANOSAURUS_EGG = REGISTER.register("yangchuanosaurus_egg", () -> new DinosaurEggBlock(PFEntities.YANGCHUANOSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 
 	public static final RegistryObject<Block> POISON_GAS = REGISTER.register("poison_gas", () -> new PoisonGasBlock(BlockBehaviour.Properties.of().noCollission().noLootTable().randomTicks().replaceable()));
 	public static final RegistryObject<Block> SPLATTERED_GINKGO = REGISTER.register("splattered_ginkgo", () -> new SplatteredGinkgoBlock(BlockBehaviour.Properties.of().noCollission().instabreak().noLootTable().randomTicks()));

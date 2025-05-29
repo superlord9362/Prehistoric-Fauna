@@ -39,7 +39,6 @@ public class PtilophyllumBaseBlock extends Block {
 		if (!p_51678_.canSurvive(p_51679_, p_51680_)) {
 			p_51679_.destroyBlock(p_51680_, true);
 		}
-
 	}
 
 	public boolean isRandomlyTicking(BlockState p_51696_) {

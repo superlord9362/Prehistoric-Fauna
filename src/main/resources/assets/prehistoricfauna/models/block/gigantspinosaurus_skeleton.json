@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "bottom": "prehistoricfauna:block/fossil_crate_bottom",
+        "top": "prehistoricfauna:block/fossil_crate_top",
+        "side": "prehistoricfauna:block/gigantspinosaurus_skeleton"
+    }
+}

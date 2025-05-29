@@ -1,0 +1,27 @@
+{
+  "type": "prehistoricfauna:elatides_tree_2",
+  "config": {
+    "leaves_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:elatides_leaves",
+        "Properties": {
+          "distance": "7",
+          "persistent": "false",
+          "waterlogged": "false"
+        }
+      }
+    },
+    "max_height": 33,
+    "min_height": 16,
+    "trunk_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:elatides_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    }
+  }
+}

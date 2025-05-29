@@ -14,6 +14,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -32,7 +33,7 @@ public class DicroidiumBlock extends BushBlock implements BonemealableBlock {
 	public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
 		if (state.getBlock() == this && state.getValue(LAYER) == 0) {
 			BlockState soil = worldIn.getBlockState(pos.below());
-			return soil.getBlock().canSustainPlant(soil, worldIn, pos.below(), Direction.UP, this);
+			return soil.getBlock().canSustainPlant(soil, worldIn, pos.below(), Direction.UP, this) || soil.getBlock() == Blocks.PACKED_MUD;
 		} else {
 			if (state.getBlock() == this && state.getValue(LAYER) != 0) {
 				BlockState below = worldIn.getBlockState(pos.below());

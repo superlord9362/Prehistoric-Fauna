@@ -22,6 +22,10 @@
 		"prehistoricfauna:taxus_sign",
 		"prehistoricfauna:czekanowskia_sign",
 		"prehistoricfauna:schizolepidopsis_sign",
-		"prehistoricfauna:podozamites_sign"
+		"prehistoricfauna:podozamites_sign",
+		"prehistoricfauna:cupressinocladus_sign",
+		"prehistoricfauna:elatides_sign",
+		"prehistoricfauna:phoenicopsis_sign",
+		"prehistoricfauna:frenelopsis_sign"
 	]
 }

@@ -1,7 +1,9 @@
 {
 	"replace": false,
 	"values": [
-		"prehistoricfauna:morrison_hills",
-		"prehistoricfauna:morrison_savanna"
+		"prehistoricfauna:morrison_savanna",
+		"prehistoricfauna:morrison_sparse_forest",
+		"prehistoricfauna:morrison_gallery_forest",
+		"prehistoricfauna:morrison_upland_forest"
 	]
 }

@@ -1,0 +1,7 @@
+{
+	"parent": "block/cube_column",
+	"textures": {
+		"end": "prehistoricfauna:block/elatides_planks",
+		"side": "prehistoricfauna:block/elatides_bookshelf"
+	}
+}

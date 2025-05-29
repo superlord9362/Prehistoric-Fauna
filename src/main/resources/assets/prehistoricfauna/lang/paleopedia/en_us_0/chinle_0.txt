@@ -21,6 +21,13 @@ Animals:
 -Archosauromorphs
 --Trilophosaurus
 
+-Fish
+--Arganodus
+--Chinlea
+--Lonchidion
+--Mooreodontus
+--Saurichthys
+
 Plants:
 -Water Plants
 --Algae
@@ -31,10 +38,3 @@ Plants:
 --Horstails
 --Moss
 --Neocalamites
---Otozamites
---Phlebopteris
-
--Trees
---Agathoxylon
---Schilderia
---Podozamites

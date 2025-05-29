@@ -13,6 +13,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -30,7 +31,8 @@ public class JohnstoniaBlock extends BushBlock implements BonemealableBlock {
 	@Override
 	public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
 		if (state.getValue(LAYER) == 0) {
-			return super.canSurvive(state, worldIn, pos);
+			BlockState blockstate = worldIn.getBlockState(pos.below());
+			return super.canSurvive(state, worldIn, pos) || blockstate.getBlock() == Blocks.PACKED_MUD;
 		} else {
 			BlockState blockstate = worldIn.getBlockState(pos.below());
 			if (state.getBlock() != this) return super.canSurvive(state, worldIn, pos);

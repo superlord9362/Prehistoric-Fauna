@@ -82,7 +82,7 @@ public class Telmasaurus extends BurrowingDinosaur {
 
 	public Telmasaurus(EntityType<? extends TamableAnimal> type, Level worldIn) {
 		super(type, worldIn);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 

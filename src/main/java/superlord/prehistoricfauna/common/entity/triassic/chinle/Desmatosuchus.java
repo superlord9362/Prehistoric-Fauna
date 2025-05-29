@@ -67,7 +67,7 @@ public class Desmatosuchus extends DinosaurEntity {
 	public Desmatosuchus(EntityType<? extends TamableAnimal> type, Level levelIn) {
 		super(type, levelIn);
 		super.maxHunger = maxHunger;
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 	}
 	
 	public boolean hurt(DamageSource p_33421_, float p_33422_) {

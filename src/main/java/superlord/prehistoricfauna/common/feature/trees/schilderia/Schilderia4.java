@@ -39,7 +39,6 @@ public class Schilderia4 extends PFAbstractTreeFeature<PFTreeConfig> {
 				generate4(changedBlocks, world, rand, pos, boundsIn, isSapling, config);
 				generate5(changedBlocks, world, rand, pos, boundsIn, isSapling, config);
 				generate6(changedBlocks, world, rand, pos, boundsIn, isSapling, config);
-            	
             }
         }
         return true;

@@ -1,0 +1,6 @@
+{
+	"variants": {
+		"has_berries=false": { "model": "prehistoricfauna:block/bassitheca" },
+		"has_berries=true": { "model": "prehistoricfauna:block/bassitheca_berry" }
+	}
+}

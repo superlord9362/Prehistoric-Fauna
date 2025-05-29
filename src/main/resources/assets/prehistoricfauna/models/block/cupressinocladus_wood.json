@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "prehistoricfauna:block/cupressinocladus_log",
+        "side": "prehistoricfauna:block/cupressinocladus_log"
+    }
+}

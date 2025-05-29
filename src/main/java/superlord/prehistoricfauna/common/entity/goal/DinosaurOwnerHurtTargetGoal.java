@@ -11,9 +11,13 @@ public class DinosaurOwnerHurtTargetGoal extends OwnerHurtTargetGoal {
 		super(dinosaur);
 		this.dinosaur = dinosaur;
 	}
-	
+
 	public boolean canUse() {
-		return super.canUse() && targetMob.getMaxHealth() < dinosaur.getMaxHealth() * 2;
+		if (dinosaur.isTame()) {
+			if (dinosaur.getOwner().getLastHurtMob() != null) return super.canUse() && dinosaur.getOwner().getLastHurtMob().getMaxHealth() < dinosaur.getMaxHealth() * 2;
+			else return false;
+		}
+		else return false;
 	}
 
 }

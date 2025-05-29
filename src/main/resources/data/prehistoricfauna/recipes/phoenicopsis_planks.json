@@ -1,0 +1,13 @@
+{
+  "type": "crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "prehistoricfauna:phoenicopsis_logs"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:phoenicopsis_planks",
+    "count": 4
+  }
+}

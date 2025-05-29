@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+	" S "
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:phoenicopsis_planks"
+    },
+	"S": {
+		"item": "minecraft:stick"
+	}
+  },
+  "result": {
+    "item": "prehistoricfauna:phoenicopsis_sign",
+    "count": 3
+  }
+}

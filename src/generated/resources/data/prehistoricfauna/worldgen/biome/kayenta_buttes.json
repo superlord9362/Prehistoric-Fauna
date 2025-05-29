@@ -84,12 +84,6 @@
     "axolotls": [],
     "creature": [
       {
-        "type": "prehistoricfauna:calsoyasuchus",
-        "maxCount": 2,
-        "minCount": 1,
-        "weight": 2
-      },
-      {
         "type": "prehistoricfauna:dilophosaurus",
         "maxCount": 2,
         "minCount": 1,
@@ -124,6 +118,18 @@
         "maxCount": 2,
         "minCount": 1,
         "weight": 1
+      },
+      {
+        "type": "prehistoricfauna:kayentasuchus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 2
+      },
+      {
+        "type": "prehistoricfauna:kayentavenator",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 4
       }
     ],
     "misc": [],

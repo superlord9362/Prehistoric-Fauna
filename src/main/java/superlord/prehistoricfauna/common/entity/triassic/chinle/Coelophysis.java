@@ -70,7 +70,7 @@ public class Coelophysis extends HerdDinosaurEntity {
 	public Coelophysis(EntityType<? extends Coelophysis> type, Level levelIn) {
 		super(type, levelIn);
 		super.maxHunger = maxHunger;
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 	}
 	
 	@Override

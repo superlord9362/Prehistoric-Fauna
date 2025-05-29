@@ -1,0 +1,39 @@
+Found In: Morrison
+
+Drops: 1 Small Raw Reptile
+
+Diet: Carnivore
+
+Breeding Item: Small Raw Theropod
+
+Max Health: 4
+
+Max Hunger: 10
+
+Temperaments: Diablophis has an 
+85% chance of being skittish, and a 
+15% chance of being passive. 
+
+Sleep Cycle: Crepuscular
+
+<image><drawings_ankylosaurus.png 28 4 129 152 21 16 7.5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Investigation underway!

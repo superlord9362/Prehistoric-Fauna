@@ -81,7 +81,7 @@ public class Exaeretodon extends DinosaurEntity {
 
 	public Exaeretodon(EntityType<? extends Exaeretodon> type, Level levelIn) {
 		super(type, levelIn);
-		super.setMaxUpStep(1.0F);
+		super.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 

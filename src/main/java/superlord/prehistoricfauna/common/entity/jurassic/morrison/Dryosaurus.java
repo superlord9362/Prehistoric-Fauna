@@ -65,7 +65,7 @@ public class Dryosaurus extends DinosaurEntity {
 
 	public Dryosaurus(EntityType<? extends Dryosaurus> type, Level level) {
 		super(type, level);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 

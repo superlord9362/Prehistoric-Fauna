@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "prehistoricfauna:ginkgo_berry"
+  },
+  "result": "prehistoricfauna:cooked_ginkgo_nuts",
+  "cookingtime": 200
+}

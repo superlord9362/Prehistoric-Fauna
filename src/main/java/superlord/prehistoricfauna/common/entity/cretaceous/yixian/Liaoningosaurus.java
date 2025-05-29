@@ -73,7 +73,7 @@ public class Liaoningosaurus extends DinosaurEntity {
 
 	public Liaoningosaurus(EntityType<? extends TamableAnimal> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.setMaxUpStep(1);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = this.maxHunger;
 	}
 	

@@ -75,7 +75,7 @@ public class Citipati extends DinosaurEntity {
 
 	public Citipati(EntityType<? extends Citipati> type, Level world) {
 		super(type, world);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 

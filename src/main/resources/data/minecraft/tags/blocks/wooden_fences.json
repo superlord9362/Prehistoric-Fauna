@@ -22,6 +22,10 @@
 		"prehistoricfauna:taxus_fence",
 		"prehistoricfauna:czekanowskia_fence",
 		"prehistoricfauna:schizolepidopsis_fence",
-		"prehistoricfauna:podozamites_fence"
+		"prehistoricfauna:podozamites_fence",
+		"prehistoricfauna:cupressinocladus_fence",
+		"prehistoricfauna:elatides_fence",
+		"prehistoricfauna:phoenicopsis_fence",
+		"prehistoricfauna:frenelopsis_fence"
 	]
 }

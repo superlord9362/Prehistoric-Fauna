@@ -22,6 +22,10 @@
 		"prehistoricfauna:taxus_pressure_plate",
 		"prehistoricfauna:czekanowskia_pressure_plate",
 		"prehistoricfauna:schizolepidopsis_pressure_plate",
-		"prehistoricfauna:podozamites_pressure_plate"
+		"prehistoricfauna:podozamites_pressure_plate",
+		"prehistoricfauna:cupressinocladus_pressure_plate",
+		"prehistoricfauna:elatides_pressure_plate",
+		"prehistoricfauna:phoenicopsis_pressure_plate",
+		"prehistoricfauna:frenelopsis_pressure_plate"
 	]
 }

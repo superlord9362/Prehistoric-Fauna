@@ -67,7 +67,7 @@ public class Pinacosaurus extends DinosaurEntity {
 
 	public Pinacosaurus(EntityType<? extends Pinacosaurus> type, Level worldIn) {
 		super(type, worldIn);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 

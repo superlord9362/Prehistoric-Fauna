@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=lower": { "model": "prehistoricfauna:block/tall_taeniopteris_bottom" },
+        "half=upper":    { "model": "prehistoricfauna:block/tall_taeniopteris_top" }
+    }
+}

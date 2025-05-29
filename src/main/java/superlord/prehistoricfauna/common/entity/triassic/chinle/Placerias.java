@@ -62,7 +62,7 @@ public class Placerias extends DinosaurEntity {
 
 	public Placerias(EntityType<? extends Placerias> type, Level level) {
 		super(type, level);
-		super.setMaxUpStep(1.0F);
+		super.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 

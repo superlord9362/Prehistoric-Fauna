@@ -36,7 +36,7 @@ public class AncientPlantBlock extends BushBlock implements BonemealableBlock, n
 	public boolean isBonemealSuccess(Level p_57330_, RandomSource p_57331_, BlockPos p_57332_, BlockState p_57333_) {
 		return true;
 	}
-	
+
 	public boolean isSoilBlock(LevelReader world, BlockPos pos) {
 		return (world.getBlockState(pos).getBlock() == Blocks.COARSE_DIRT || world.getBlockState(pos).getBlock() == PFBlocks.PACKED_LOAM.get() || world.getBlockState(pos).getBlock() == PFBlocks.SILT.get() || world.getBlockState(pos).getBlock() == Blocks.SAND || world.getBlockState(pos).getBlock() == Blocks.GRAVEL || world.getBlockState(pos).getBlock() == Blocks.CLAY || world.getBlockState(pos).getBlock() == Blocks.DIRT || world.getBlockState(pos).getBlock() == PFBlocks.MOSSY_DIRT.get() || world.getBlockState(pos).getBlock() == Blocks.PODZOL || world.getBlockState(pos).getBlock() == PFBlocks.HARDENED_SILT.get() || world.getBlockState(pos).getBlock() == PFBlocks.LOAM.get() || world.getBlockState(pos).getBlock() == Blocks.RED_SAND || world.getBlockState(pos).getBlock() == Blocks.GRASS_BLOCK);
 	}
@@ -52,7 +52,9 @@ public class AncientPlantBlock extends BushBlock implements BonemealableBlock, n
 	}
 
 	@Override
-	public void performBonemeal(ServerLevel p_50893_, RandomSource p_50894_, BlockPos p_50895_, BlockState p_50896_) {
-	      popResource(p_50893_, p_50895_, new ItemStack(this));
+	public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
+		if (state.is(PFBlocks.PTEROPHYLLUM.get())) level.setBlock(pos, PFBlocks.TALL_PTEROPHYLLUM.get().defaultBlockState(), 2);
+		else if (state.is(PFBlocks.ANOMOZAMITES.get())) level.setBlock(pos, PFBlocks.TALL_ANOMOZAMITES.get().defaultBlockState(), 2);
+		else if (!state.is(PFBlocks.TALL_PTEROPHYLLUM.get()) || !state.is(PFBlocks.TALL_ANOMOZAMITES.get())) popResource(level, pos, new ItemStack(this));
 	}
 }

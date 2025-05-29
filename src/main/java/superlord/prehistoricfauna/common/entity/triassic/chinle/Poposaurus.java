@@ -67,7 +67,7 @@ public class Poposaurus extends DinosaurEntity {
 	
 	public Poposaurus(EntityType<? extends Poposaurus> type, Level levelIn) {
 		super(type, levelIn);
-		super.setMaxUpStep(1.0F);
+		super.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 	

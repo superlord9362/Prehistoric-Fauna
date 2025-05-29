@@ -82,7 +82,7 @@ public class Ankylosaurus extends DinosaurEntity {
 
 	public Ankylosaurus(EntityType<? extends Ankylosaurus> type, Level worldIn) {
 		super(type, worldIn);
-		this.setMaxUpStep(1);;
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 

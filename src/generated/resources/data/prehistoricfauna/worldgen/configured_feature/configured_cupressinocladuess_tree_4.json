@@ -1,0 +1,27 @@
+{
+  "type": "prehistoricfauna:cupressinocladus_tree_4",
+  "config": {
+    "leaves_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:cupressinocladus_leaves",
+        "Properties": {
+          "distance": "7",
+          "persistent": "false",
+          "waterlogged": "false"
+        }
+      }
+    },
+    "max_height": 26,
+    "min_height": 14,
+    "trunk_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:cupressinocladus_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    }
+  }
+}

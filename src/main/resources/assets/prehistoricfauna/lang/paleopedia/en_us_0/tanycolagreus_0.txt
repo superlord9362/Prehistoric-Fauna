@@ -1,0 +1,41 @@
+Found In: Morrison
+
+Drops: 0-2 Feathers, 2-5 Small Raw 
+Theropod
+
+Diet: Carnivore
+
+Breeding Item: Small Raw 
+Ornithischian
+
+Max Health: 15
+
+Max Hunger: 38
+
+Temperaments: Tanycolagreus has 
+an 85% chance of being protective, 
+and a 15% chance of being 
+territorial.
+
+
+
+<image><drawings_ankylosaurus.png 30 3 127 296 23 18 7>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sleep Cycle: Diurnal
+
+Behavior: Hesperornithoides will 
+shed feathers occasionally when 
+taking dust baths.

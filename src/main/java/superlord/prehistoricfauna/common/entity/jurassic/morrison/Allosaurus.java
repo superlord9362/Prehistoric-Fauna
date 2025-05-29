@@ -73,7 +73,7 @@ public class Allosaurus extends DinosaurEntity {
 
 	public Allosaurus(EntityType<? extends Allosaurus> type, Level worldIn) {
 		super(type, worldIn);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = this.maxHunger;
 	}
 	

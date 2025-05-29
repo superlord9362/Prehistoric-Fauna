@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.ClientEvents;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.CephaloleichnitesModel;
+import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Aepyornithomimus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Cephaloleichnites;
 
 public class CephaloleichnitesRenderer extends MobRenderer<Cephaloleichnites, CephaloleichnitesModel> {
@@ -20,12 +21,17 @@ public class CephaloleichnitesRenderer extends MobRenderer<Cephaloleichnites, Ce
 		super(renderManagerIn, new CephaloleichnitesModel(renderManagerIn.bakeLayer(ClientEvents.CEPHALOLEICHNITES)), 0F);
 	}
 
+	protected void scale(Cephaloleichnites thescelosaurus, PoseStack matrixStackIn, float partialTickTime) {
+		matrixStackIn.scale(1, 1, 1);
+		super.scale(thescelosaurus, matrixStackIn, partialTickTime);
+	}
+
 	@SuppressWarnings("incomplete-switch")
 	@Override
 	protected void setupRotations(Cephaloleichnites entityLiving, PoseStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
 		float progresso = 1F - (entityLiving.prevAttachChangeProgress + (entityLiving.attachChangeProgress - entityLiving.prevAttachChangeProgress) * partialTicks);
 
-        float trans = entityLiving.isBaby() ? 0.25F : 0.1F;
+		float trans = entityLiving.isBaby() ? 0.25F : 0.1F;
 		if(entityLiving.getAttachmentFacing() == Direction.DOWN){
 			matrixStackIn.mulPose(Axis.YP.rotationDegrees (180.0F - rotationYaw));
 			matrixStackIn.translate(0.0D, trans, 0.0D);

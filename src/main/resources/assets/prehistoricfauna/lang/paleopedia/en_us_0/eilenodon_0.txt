@@ -16,7 +16,7 @@ Temperaments: Eilenodon has an
 
 Sleep Cycle: Nocturnal 
 
-<image><drawings_ankylosaurus.png 37 3 128 85 14 20 6.5>
+<image><drawings_ankylosaurus.png 37 3 128 211 14 20 6.5>
 
 
 

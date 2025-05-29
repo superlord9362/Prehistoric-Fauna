@@ -12,6 +12,7 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
@@ -25,6 +26,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.common.Tags;
+import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Cretaraneus;
 import superlord.prehistoricfauna.init.PFItems;
 
 public class Gobiulus extends PathfinderMob {
@@ -39,6 +41,7 @@ public class Gobiulus extends PathfinderMob {
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
 		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, Cretaraneus.class, 6.0F, 1.0D, 1.2D));
 	}
 
 	public int getMaxAir() {

@@ -1,0 +1,13 @@
+{
+  "type": "crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "prehistoricfauna:cupressinocladus_logs"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:cupressinocladus_planks",
+    "count": 4
+  }
+}

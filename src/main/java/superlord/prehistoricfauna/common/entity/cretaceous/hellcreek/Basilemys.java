@@ -63,7 +63,7 @@ public class Basilemys extends DinosaurEntity {
 
 	public Basilemys(EntityType<? extends Basilemys> type, Level level) {
 		super(type, level);
-		this.setMaxUpStep(1);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 

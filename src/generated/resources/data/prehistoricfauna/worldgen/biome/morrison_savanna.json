@@ -59,15 +59,17 @@
     [],
     [
       "minecraft:glow_lichen",
+      "prehistoricfauna:placed_anomozamites",
+      "prehistoricfauna:placed_tall_anomoazamites",
       "prehistoricfauna:placed_cladophlebis",
       "prehistoricfauna:placed_coniopteris",
-      "prehistoricfauna:placed_lowered_horsetails",
+      "prehistoricfauna:placed_hermanophyton",
       "prehistoricfauna:placed_osmundacaulis",
       "prehistoricfauna:placed_dead_osmundacaulis",
       "prehistoricfauna:placed_tall_osmundacaulis",
+      "prehistoricfauna:placed_otozamites",
       "prehistoricfauna:placed_ptilophyllum",
-      "prehistoricfauna:placed_morrison_tress",
-      "prehistoricfauna:placed_rare_podozamites_trees",
+      "prehistoricfauna:placed_stoneworts",
       "prehistoricfauna:placed_zamites"
     ],
     [
@@ -127,6 +129,24 @@
         "type": "prehistoricfauna:camarasaurus",
         "maxCount": 4,
         "minCount": 2,
+        "weight": 4
+      },
+      {
+        "type": "prehistoricfauna:diablophis",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 5
+      },
+      {
+        "type": "prehistoricfauna:macelognathus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 1
+      },
+      {
+        "type": "prehistoricfauna:tanycolagreus",
+        "maxCount": 3,
+        "minCount": 1,
         "weight": 2
       }
     ],
@@ -158,6 +178,12 @@
         "maxCount": 2,
         "minCount": 1,
         "weight": 3
+      },
+      {
+        "type": "prehistoricfauna:morrolepis",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 4
       }
     ],
     "water_creature": []

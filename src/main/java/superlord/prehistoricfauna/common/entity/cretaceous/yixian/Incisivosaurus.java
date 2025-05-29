@@ -66,7 +66,7 @@ public class Incisivosaurus extends DinosaurEntity {
 
 	public Incisivosaurus(EntityType<? extends Incisivosaurus> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.setMaxUpStep(1);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 	

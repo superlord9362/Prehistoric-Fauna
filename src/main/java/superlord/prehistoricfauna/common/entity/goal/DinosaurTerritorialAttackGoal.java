@@ -23,13 +23,17 @@ public class DinosaurTerritorialAttackGoal extends NearestAttackableTargetGoal<P
 		} else {
 			if (super.canUse()) {
 				for(DinosaurEntity dinosaur : dinosaur.level().getEntitiesOfClass(DinosaurEntity.class, dinosaur.getBoundingBox().inflate(24.0D, 4.0D, 24.0D))) {
-					if (!dinosaur.trusts(this.target.getUUID()) && dinosaur.isTerritorial() && !dinosaur.isTame()) {
+					if (!dinosaur.trusts(this.target.getUUID()) && dinosaur.isTerritorial() && !dinosaur.isTame() && !dinosaur.isVehicle()) {
 						return true;
 					}
 				}
 			}
 			return false;
 		}
+	}
+
+	public boolean canContinueToUse() {
+		return super.canContinueToUse() && !dinosaur.isVehicle();
 	}
 
 	protected double getFollowDistance() {

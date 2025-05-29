@@ -74,7 +74,7 @@ public class Scelidosaurus extends DinosaurEntity {
 
 	public Scelidosaurus(EntityType<? extends Scelidosaurus> type, Level worldIn) {
 		super(type, worldIn);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 

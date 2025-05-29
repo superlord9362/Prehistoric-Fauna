@@ -22,6 +22,10 @@
 		"prehistoricfauna:taxus_button",
 		"prehistoricfauna:czekanowskia_button",
 		"prehistoricfauna:schizolepidopsis_button",
-		"prehistoricfauna:podozamites_button"
+		"prehistoricfauna:podozamites_button",
+		"prehistoricfauna:cupressinocladus_button",
+		"prehistoricfauna:elatides_button",
+		"prehistoricfauna:phoenicopsis_button",
+		"prehistoricfauna:frenelopsis_button"
 	]
 }

@@ -83,7 +83,7 @@ public class Saurosuchus extends DinosaurEntity {
 
 	public Saurosuchus(EntityType<? extends Saurosuchus> type, Level levelIn) {
 		super(type, levelIn);
-		super.setMaxUpStep(1.0F);
+		super.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 

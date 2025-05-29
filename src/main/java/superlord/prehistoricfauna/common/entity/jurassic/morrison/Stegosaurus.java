@@ -68,7 +68,7 @@ public class Stegosaurus extends DinosaurEntity {
 
 	public Stegosaurus(EntityType<? extends Stegosaurus> type, Level levelIn) {
 		super(type, levelIn);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 	

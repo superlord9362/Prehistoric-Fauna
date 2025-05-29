@@ -82,7 +82,7 @@ public class Dongbeititan  extends AgedHerdDinosaurEntity {
 
 	public Dongbeititan(EntityType<? extends AgedHerdDinosaurEntity> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -103,7 +103,8 @@ public class Dongbeititan  extends AgedHerdDinosaurEntity {
 	public void playAmbientSound() {
 		SoundEvent soundevent = this.getAmbientSound();
 		if (soundevent != null) {
-			this.playSound(soundevent, this.getSoundVolume() * 10, this.getVoicePitch());
+			if (!this.isAsleep() || !this.isBaby()) this.playSound(soundevent, this.getSoundVolume() * 6, this.getVoicePitch());
+			else this.playSound(soundevent, this.getSoundVolume(), this.getVoicePitch());
 		}
 	}
 

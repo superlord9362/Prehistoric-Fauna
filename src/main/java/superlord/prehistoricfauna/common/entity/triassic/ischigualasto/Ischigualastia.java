@@ -80,7 +80,7 @@ public class Ischigualastia extends DinosaurEntity implements ItemSteerable {
 
 	public Ischigualastia(EntityType<? extends Ischigualastia> type, Level level) {
 		super(type, level);
-		super.setMaxUpStep(1.0F);
+		super.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 

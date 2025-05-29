@@ -319,8 +319,8 @@ public class DinosaurEntity extends TamableAnimal {
 	}
 
 	public void removeTrustedUUID(@Nullable UUID p_28516_) {
-		this.entityData.set(DATA_TRUSTED_ID_1, null);
-		this.entityData.set(DATA_TRUSTED_ID_0, null);
+		this.entityData.set(DATA_TRUSTED_ID_1, Optional.empty());
+		this.entityData.set(DATA_TRUSTED_ID_0, Optional.empty());
 	}
 
 	protected void defineSynchedData() {
@@ -426,9 +426,9 @@ public class DinosaurEntity extends TamableAnimal {
 		if (PrehistoricFaunaConfig.advancedHunger) {
 			int hunger = this.getCurrentHunger();
 			if (hunger < this.maxHunger) {
-				if (this.isFood(itemstack) && (!this.isInLove() || !this.isInLoveNaturally())) {
+				if (this.isFood(itemstack) && (!this.isInLove() || !this.isInLoveNaturally()) && !this.isBaby()) {
 					this.setInLove(p_230254_1_);
-					itemstack.shrink(1);
+					if (!p_230254_1_.isCreative()) itemstack.shrink(1);
 				} else {
 					if (this.isInsectivorous()) {
 						if (itemstack.is(PFTags.INSECTS_2_HUNGER_ITEM)) {
@@ -668,7 +668,7 @@ public class DinosaurEntity extends TamableAnimal {
 							} else {
 								this.setHunger(hunger + 2);
 							}
-							itemstack.shrink(1);
+							if (!p_230254_1_.isCreative()) itemstack.shrink(1);
 						}
 						if (itemstack.is(PFTags.FISH_4_HUNGER)) {
 							if (hunger + 4 >= this.maxHunger) {
@@ -676,7 +676,7 @@ public class DinosaurEntity extends TamableAnimal {
 							} else {
 								this.setHunger(hunger + 4);
 							}
-							itemstack.shrink(1);
+							if (!p_230254_1_.isCreative()) itemstack.shrink(1);
 						}
 					}
 				}
@@ -872,7 +872,8 @@ public class DinosaurEntity extends TamableAnimal {
 	}
 
 	public boolean trusts(UUID p_28530_) {
-		return this.getTrustedUUIDs().contains(p_28530_);
+		if (this.getTrustedUUIDs().contains(p_28530_)) return true;
+		else return false;
 	}
 
 	public void setFallingAsleep() {

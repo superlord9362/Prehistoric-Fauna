@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "prehistoricfauna:block/stripped_frenelopsis_log",
+        "side": "prehistoricfauna:block/stripped_frenelopsis_log"
+    }
+}

@@ -181,6 +181,37 @@ public class PFConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> PODOZAMITES_TREE_5 = registerConfiguredFeature("configured_podozamites_tree_5");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> PODOZAMITES_TREE_6 = registerConfiguredFeature("configured_podozamites_tree_6");
 
+	public static final ResourceKey<ConfiguredFeature<?, ?>> CUPRESSINOCLADUS_TREE_1 = registerConfiguredFeature("configured_cupressinocladuess_tree_1");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> CUPRESSINOCLADUS_TREE_2 = registerConfiguredFeature("configured_cupressinocladuess_tree_2");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> CUPRESSINOCLADUS_TREE_3 = registerConfiguredFeature("configured_cupressinocladuess_tree_3");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> CUPRESSINOCLADUS_TREE_4 = registerConfiguredFeature("configured_cupressinocladuess_tree_4");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> CUPRESSINOCLADUS_TREE_5 = registerConfiguredFeature("configured_cupressinocladuess_tree_5");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> CUPRESSINOCLADUS_TREE_6 = registerConfiguredFeature("configured_cupressinocladuess_tree_6");
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ELATIDES_TREE_1 = registerConfiguredFeature("configured_elatides_tree_1");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ELATIDES_TREE_2 = registerConfiguredFeature("configured_elatides_tree_2");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ELATIDES_TREE_3 = registerConfiguredFeature("configured_elatides_tree_3");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ELATIDES_TREE_4 = registerConfiguredFeature("configured_elatides_tree_4");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ELATIDES_TREE_5 = registerConfiguredFeature("configured_elatides_tree_5");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ELATIDES_TREE_6 = registerConfiguredFeature("configured_elatides_tree_6");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ELATIDES_TREE_7 = registerConfiguredFeature("configured_elatides_tree_7");
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> PHOENICOPSIS_TREE_1 = registerConfiguredFeature("configured_phoenicopsis_tree_1");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> PHOENICOPSIS_TREE_2 = registerConfiguredFeature("configured_phoenicopsis_tree_2");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> PHOENICOPSIS_TREE_3 = registerConfiguredFeature("configured_phoenicopsis_tree_3");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> PHOENICOPSIS_TREE_4 = registerConfiguredFeature("configured_phoenicopsis_tree_4");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> PHOENICOPSIS_TREE_5 = registerConfiguredFeature("configured_phoenicopsis_tree_5");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> PHOENICOPSIS_TREE_6 = registerConfiguredFeature("configured_phoenicopsis_tree_6");
+	
+	public static final ResourceKey<ConfiguredFeature<?, ?>> FRENELOPSIS_TREE_1 = registerConfiguredFeature("configured_frenelopsis_tree_1");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> FRENELOPSIS_TREE_2 = registerConfiguredFeature("configured_frenelopsis_tree_2");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> FRENELOPSIS_TREE_3 = registerConfiguredFeature("configured_frenelopsis_tree_3");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> FRENELOPSIS_TREE_4 = registerConfiguredFeature("configured_frenelopsis_tree_4");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> FRENELOPSIS_TREE_5 = registerConfiguredFeature("configured_frenelopsis_tree_5");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> FRENELOPSIS_TREE_6 = registerConfiguredFeature("configured_frenelopsis_tree_6");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> FRENELOPSIS_TREE_7 = registerConfiguredFeature("configured_frenelopsis_tree_7");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> FRENELOPSIS_TREE_8 = registerConfiguredFeature("configured_frenelopsis_tree_8");
+
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DEAD_TAXUS_TREE_1 = registerConfiguredFeature("configured_dead_taxus_tree_1");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DEAD_TAXUS_TREE_2 = registerConfiguredFeature("configured_dead_taxus_tree_2");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DEAD_TAXUS_TREE_3 = registerConfiguredFeature("configured_dead_taxus_tree_3");
@@ -243,9 +274,11 @@ public class PFConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ASH = registerConfiguredFeature("configured_ash");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> HUMULUS = registerConfiguredFeature("configured_humulus");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> OTOZAMITES = registerConfiguredFeature("configured_otozamites");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> RARE_OTOZAMITES = registerConfiguredFeature("configured_rare_otozamites");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DOUBLE_OTOZAMITES = registerConfiguredFeature("configured_double_otozamites");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> LAUROZAMITES = registerConfiguredFeature("configured_laurozamites");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> CLATHOPTERIS = registerConfiguredFeature("configured_clathopteris");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> RARE_CLATHOPTERIS = registerConfiguredFeature("configured_rare_clathopteris");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> CONIOPTERIS = registerConfiguredFeature("configured_coniopteris");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> OSMUNDACAULIS = registerConfiguredFeature("configured_osmundacaulis");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DOUBLE_OSMUNDACAULIS = registerConfiguredFeature("configured_double_osmundacaulis");
@@ -265,6 +298,7 @@ public class PFConfiguredFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> CRASSOSTREA_OYSTERS = registerConfiguredFeature("configured_crassostrea_oyster");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ALGAE = registerConfiguredFeature("configured_algae");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> STONEWORTS = registerConfiguredFeature("configured_stoneworts");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> NELUMBO = registerConfiguredFeature("configured_nelumbo");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> RARE_NELUMBO = registerConfiguredFeature("configured_rare_nelumbo");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> QUEREUXIA = registerConfiguredFeature("configured_quereuxia");
@@ -287,11 +321,29 @@ public class PFConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DICROIDIUM = registerConfiguredFeature("congigured_dicroidium");
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> NEOCALAMITES = registerConfiguredFeature("congigured_neocalamites");
+	
+	public static final ResourceKey<ConfiguredFeature<?, ?>> HERMANOPHYTON = registerConfiguredFeature("configured_hermanophyton");
 
+	public static final ResourceKey<ConfiguredFeature<?, ?>> PTEROPHYLLUM = registerConfiguredFeature("configured_pterophyllum");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> TALL_PTEROPHYLLUM = registerConfiguredFeature("configured_tall_pterophyllum");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ANOMOZAMITES = registerConfiguredFeature("configured_anomozamites");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> TALL_ANOMOZAMITES = registerConfiguredFeature("configured_tall_anomozamites");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> RARE_ANOMOZAMITES = registerConfiguredFeature("configured_rare_anomozamites");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> RARE_TALL_ANOMOZAMITES = registerConfiguredFeature("configured_rare_tall_anomozamites");
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ONYCHIOPSIS = registerConfiguredFeature("configured_onychiopsis");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SPHENOPTERIS = registerConfiguredFeature("configured_sphenopteris");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> RARE_SPHENOPTERIS = registerConfiguredFeature("configured_rare_sphenopteris");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> TAENIOPTERIS = registerConfiguredFeature("configured_taeniopteris");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> TALL_TAENIOPTERIS = registerConfiguredFeature("configured_tall_taeniopteris");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> RARE_TAENIOPTERIS = registerConfiguredFeature("configured_rare_taeniopteris");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> RARE_TALL_TAENIOPTERIS = registerConfiguredFeature("configured_rare_tall_taeniopteris");
+	
 	public static final ResourceKey<ConfiguredFeature<?, ?>> CLAY_DISK = registerConfiguredFeature("congigured_clay_disk");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> GRAVEL_DISK = registerConfiguredFeature("congigured_gravel_disk");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> MUD_DISK = registerConfiguredFeature("congigured_mud_disk");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> PACKED_MUD_DISK = registerConfiguredFeature("congigured_packed_mud_disk");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> TUFF_DISK = registerConfiguredFeature("congigured_tuff_disk");
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DISK_SILT = registerConfiguredFeature("disk_silt");
 
@@ -337,7 +389,13 @@ public class PFConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DEAD_SCHIZOLEPIDOPSIS_TREES = registerConfiguredFeature("dead_schizolepidopsis_trees");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> PODOZAMITES_TREES = registerConfiguredFeature("podozamites_trees");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DEAD_PODOZAMITES_TREES = registerConfiguredFeature("dead_podozamites_trees");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> PROTOPICEOXYLON_TREES = registerConfiguredFeature("protopiceoxylon_trees");
 
+	public static final ResourceKey<ConfiguredFeature<?, ?>> CUPRESSINOCLADUS_TREES = registerConfiguredFeature("cupressinocladus_trees");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ELATIDES_TREES = registerConfiguredFeature("elatides_trees");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> PHOENICOPSIS_TREES = registerConfiguredFeature("phoenicopsis_trees");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> FRENELOPSIS_TREES = registerConfiguredFeature("frenelopsis_trees");
+	
 	@SuppressWarnings("deprecation")
 	public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> bootstapContext) {
 		FeatureUtils.register(bootstapContext, SMALL_ARAUCARIA_TREE_1, PFFeatures.SMALL_ARAUCARIA_TREE_1.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.ARAUCARIA_LOG.get()).setLeavesBlock(PFBlocks.ARAUCARIA_LEAVES.get()).setMinHeight(13).setMaxHeight(18).build());
@@ -478,6 +536,37 @@ public class PFConfiguredFeatures {
 		FeatureUtils.register(bootstapContext, PODOZAMITES_TREE_5, PFFeatures.PODOZAMITES_TREE_5.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.PODOZAMITES_LOG.get()).setLeavesBlock(PFBlocks.PODOZAMITES_LEAVES.get()).setMinHeight(19).setMaxHeight(22).build());
 		FeatureUtils.register(bootstapContext, PODOZAMITES_TREE_6, PFFeatures.PODOZAMITES_TREE_6.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.PODOZAMITES_LOG.get()).setLeavesBlock(PFBlocks.PODOZAMITES_LEAVES.get()).setMinHeight(22).setMaxHeight(25).build());
 
+		FeatureUtils.register(bootstapContext, CUPRESSINOCLADUS_TREE_1, PFFeatures.CUPRESSINOCLADUS_TREE_1.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.CUPRESSINOCLADUS_LOG.get()).setLeavesBlock(PFBlocks.CUPRESSINOCLADUS_LEAVES.get()).setMinHeight(11).setMaxHeight(24).build());
+		FeatureUtils.register(bootstapContext, CUPRESSINOCLADUS_TREE_2, PFFeatures.CUPRESSINOCLADUS_TREE_2.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.CUPRESSINOCLADUS_LOG.get()).setLeavesBlock(PFBlocks.CUPRESSINOCLADUS_LEAVES.get()).setMinHeight(12).setMaxHeight(23).build());
+		FeatureUtils.register(bootstapContext, CUPRESSINOCLADUS_TREE_3, PFFeatures.CUPRESSINOCLADUS_TREE_3.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.CUPRESSINOCLADUS_LOG.get()).setLeavesBlock(PFBlocks.CUPRESSINOCLADUS_LEAVES.get()).setMinHeight(13).setMaxHeight(24).build());
+		FeatureUtils.register(bootstapContext, CUPRESSINOCLADUS_TREE_4, PFFeatures.CUPRESSINOCLADUS_TREE_4.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.CUPRESSINOCLADUS_LOG.get()).setLeavesBlock(PFBlocks.CUPRESSINOCLADUS_LEAVES.get()).setMinHeight(14).setMaxHeight(25).build());
+		FeatureUtils.register(bootstapContext, CUPRESSINOCLADUS_TREE_5, PFFeatures.CUPRESSINOCLADUS_TREE_5.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.CUPRESSINOCLADUS_LOG.get()).setLeavesBlock(PFBlocks.CUPRESSINOCLADUS_LEAVES.get()).setMinHeight(15).setMaxHeight(25).build());
+		FeatureUtils.register(bootstapContext, CUPRESSINOCLADUS_TREE_6, PFFeatures.CUPRESSINOCLADUS_TREE_6.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.CUPRESSINOCLADUS_LOG.get()).setLeavesBlock(PFBlocks.CUPRESSINOCLADUS_LEAVES.get()).setMinHeight(16).setMaxHeight(27).build());
+		
+		FeatureUtils.register(bootstapContext, ELATIDES_TREE_1, PFFeatures.ELATIDES_TREE_1.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.ELATIDES_LOG.get()).setLeavesBlock(PFBlocks.ELATIDES_LEAVES.get()).setMinHeight(11).setMaxHeight(27).build());
+		FeatureUtils.register(bootstapContext, ELATIDES_TREE_2, PFFeatures.ELATIDES_TREE_2.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.ELATIDES_LOG.get()).setLeavesBlock(PFBlocks.ELATIDES_LEAVES.get()).setMinHeight(16).setMaxHeight(32).build());
+		FeatureUtils.register(bootstapContext, ELATIDES_TREE_3, PFFeatures.ELATIDES_TREE_3.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.ELATIDES_LOG.get()).setLeavesBlock(PFBlocks.ELATIDES_LEAVES.get()).setMinHeight(19).setMaxHeight(35).build());
+		FeatureUtils.register(bootstapContext, ELATIDES_TREE_4, PFFeatures.ELATIDES_TREE_4.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.ELATIDES_LOG.get()).setLeavesBlock(PFBlocks.ELATIDES_LEAVES.get()).setMinHeight(23).setMaxHeight(39).build());
+		FeatureUtils.register(bootstapContext, ELATIDES_TREE_5, PFFeatures.ELATIDES_TREE_5.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.ELATIDES_LOG.get()).setLeavesBlock(PFBlocks.ELATIDES_LEAVES.get()).setMinHeight(26).setMaxHeight(42).build());
+		FeatureUtils.register(bootstapContext, ELATIDES_TREE_6, PFFeatures.ELATIDES_TREE_6.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.ELATIDES_LOG.get()).setLeavesBlock(PFBlocks.ELATIDES_LEAVES.get()).setMinHeight(28).setMaxHeight(44).build());
+		FeatureUtils.register(bootstapContext, ELATIDES_TREE_7, PFFeatures.ELATIDES_TREE_7.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.ELATIDES_LOG.get()).setLeavesBlock(PFBlocks.ELATIDES_LEAVES.get()).setMinHeight(29).setMaxHeight(45).build());
+		
+		FeatureUtils.register(bootstapContext, PHOENICOPSIS_TREE_1, PFFeatures.PHOENICOPSIS_TREE_1.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.PHOENICOPSIS_LOG.get()).setLeavesBlock(PFBlocks.PHOENICOPSIS_LEAVES.get()).setMinHeight(6).setMaxHeight(17).build());
+		FeatureUtils.register(bootstapContext, PHOENICOPSIS_TREE_2, PFFeatures.PHOENICOPSIS_TREE_2.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.PHOENICOPSIS_LOG.get()).setLeavesBlock(PFBlocks.PHOENICOPSIS_LEAVES.get()).setMinHeight(9).setMaxHeight(19).build());
+		FeatureUtils.register(bootstapContext, PHOENICOPSIS_TREE_3, PFFeatures.PHOENICOPSIS_TREE_3.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.PHOENICOPSIS_LOG.get()).setLeavesBlock(PFBlocks.PHOENICOPSIS_LEAVES.get()).setMinHeight(13).setMaxHeight(21).build());
+		FeatureUtils.register(bootstapContext, PHOENICOPSIS_TREE_4, PFFeatures.PHOENICOPSIS_TREE_4.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.PHOENICOPSIS_LOG.get()).setLeavesBlock(PFBlocks.PHOENICOPSIS_LEAVES.get()).setMinHeight(17).setMaxHeight(24).build());
+		FeatureUtils.register(bootstapContext, PHOENICOPSIS_TREE_5, PFFeatures.PHOENICOPSIS_TREE_5.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.PHOENICOPSIS_LOG.get()).setLeavesBlock(PFBlocks.PHOENICOPSIS_LEAVES.get()).setMinHeight(20).setMaxHeight(26).build());
+		FeatureUtils.register(bootstapContext, PHOENICOPSIS_TREE_6, PFFeatures.PHOENICOPSIS_TREE_6.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.PHOENICOPSIS_LOG.get()).setLeavesBlock(PFBlocks.PHOENICOPSIS_LEAVES.get()).setMinHeight(21).setMaxHeight(26).build());
+		
+		FeatureUtils.register(bootstapContext, FRENELOPSIS_TREE_1, PFFeatures.FRENELOPSIS_TREE_1.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.FRENELOPSIS_LOG.get()).setLeavesBlock(PFBlocks.FRENELOPSIS_LEAVES.get()).setMinHeight(1).setMaxHeight(4).build());
+		FeatureUtils.register(bootstapContext, FRENELOPSIS_TREE_2, PFFeatures.FRENELOPSIS_TREE_2.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.FRENELOPSIS_LOG.get()).setLeavesBlock(PFBlocks.FRENELOPSIS_LEAVES.get()).setMinHeight(3).setMaxHeight(6).build());
+		FeatureUtils.register(bootstapContext, FRENELOPSIS_TREE_3, PFFeatures.FRENELOPSIS_TREE_3.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.FRENELOPSIS_LOG.get()).setLeavesBlock(PFBlocks.FRENELOPSIS_LEAVES.get()).setMinHeight(6).setMaxHeight(9).build());
+		FeatureUtils.register(bootstapContext, FRENELOPSIS_TREE_4, PFFeatures.FRENELOPSIS_TREE_4.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.FRENELOPSIS_LOG.get()).setLeavesBlock(PFBlocks.FRENELOPSIS_LEAVES.get()).setMinHeight(6).setMaxHeight(9).build());
+		FeatureUtils.register(bootstapContext, FRENELOPSIS_TREE_5, PFFeatures.FRENELOPSIS_TREE_5.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.FRENELOPSIS_LOG.get()).setLeavesBlock(PFBlocks.FRENELOPSIS_LEAVES.get()).setMinHeight(14).setMaxHeight(17).build());
+		FeatureUtils.register(bootstapContext, FRENELOPSIS_TREE_6, PFFeatures.FRENELOPSIS_TREE_6.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.FRENELOPSIS_LOG.get()).setLeavesBlock(PFBlocks.FRENELOPSIS_LEAVES.get()).setMinHeight(20).setMaxHeight(23).build());
+		FeatureUtils.register(bootstapContext, FRENELOPSIS_TREE_7, PFFeatures.FRENELOPSIS_TREE_7.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.FRENELOPSIS_LOG.get()).setLeavesBlock(PFBlocks.FRENELOPSIS_LEAVES.get()).setMinHeight(17).setMaxHeight(20).build());
+		FeatureUtils.register(bootstapContext, FRENELOPSIS_TREE_8, PFFeatures.FRENELOPSIS_TREE_8.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.FRENELOPSIS_LOG.get()).setLeavesBlock(PFBlocks.FRENELOPSIS_LEAVES.get()).setMinHeight(21).setMaxHeight(24).build());
+		
 		FeatureUtils.register(bootstapContext, DEAD_TAXUS_TREE_1, PFFeatures.TAXUS_TREE_1.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.STRIPPED_TAXUS_LOG.get()).setLeavesBlock(Blocks.AIR).setMinHeight(5).setMaxHeight(8).build());
 		FeatureUtils.register(bootstapContext, DEAD_TAXUS_TREE_2, PFFeatures.TAXUS_TREE_2.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.STRIPPED_TAXUS_LOG.get()).setLeavesBlock(Blocks.AIR).setMinHeight(4).setMaxHeight(7).build());
 		FeatureUtils.register(bootstapContext, DEAD_TAXUS_TREE_3, PFFeatures.TAXUS_TREE_3.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.STRIPPED_TAXUS_LOG.get()).setLeavesBlock(Blocks.AIR).setMinHeight(8).setMaxHeight(11).build());
@@ -541,9 +630,11 @@ public class PFConfiguredFeatures {
 		MultifaceBlock multifaceblock = (MultifaceBlock)PFBlocks.HUMULUS.get();
 		FeatureUtils.register(bootstapContext, HUMULUS, Feature.MULTIFACE_GROWTH, new MultifaceGrowthConfiguration(multifaceblock, 50, true, true, true, 0.65F, HolderSet.direct(Block::builtInRegistryHolder, PFBlocks.MOSSY_DIRT.get(), PFBlocks.LOAM.get(), Blocks.PODZOL, PFBlocks.ARAUCARIA_LOG.get(), PFBlocks.METASEQUOIA_LOG.get(), PFBlocks.TAXODIUM_LOG.get(), PFBlocks.DRYOPHYLLUM_LOG.get(), PFBlocks.GINKGO_LOG.get(), PFBlocks.PLATANITES_LOG.get())));
 		FeatureUtils.register(bootstapContext, OTOZAMITES, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.OTOZAMITES.get()), 32));
+		FeatureUtils.register(bootstapContext, RARE_OTOZAMITES, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.OTOZAMITES.get()), 16));
 		FeatureUtils.register(bootstapContext, DOUBLE_OTOZAMITES, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.TALL_OTOZAMITES.get()), 32));
 		FeatureUtils.register(bootstapContext, LAUROZAMITES, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.LAUROZAMITES.get()), 32));
 		FeatureUtils.register(bootstapContext, CLATHOPTERIS, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.CLATHROPTERIS.get()), 32));
+		FeatureUtils.register(bootstapContext, RARE_CLATHOPTERIS, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.CLATHROPTERIS.get()), 8));
 		FeatureUtils.register(bootstapContext, CONIOPTERIS, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.CONIOPTERIS.get()), 32));
 		FeatureUtils.register(bootstapContext, OSMUNDACAULIS, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.OSMUNDACAULIS.get()), 32));
 		FeatureUtils.register(bootstapContext, DOUBLE_OSMUNDACAULIS, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.TALL_OSMUNDACAULIS.get()), 32));
@@ -560,12 +651,12 @@ public class PFConfiguredFeatures {
 		FeatureUtils.register(bootstapContext, RARE_EPHEDRA, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.EPHEDRA.get()), 4));
 		FeatureUtils.register(bootstapContext, ARCHAEFRUCTUS, PFFeatures.ARCHAEFRUCTUS.get(), new JohnstoniaConfig(15));
 		FeatureUtils.register(bootstapContext, DOUBLE_ARCHAEFRUCTUS, PFFeatures.TALL_ARCHAEFRUCTUS.get(), new JohnstoniaConfig(15));
-		
 
 		FeatureUtils.register(bootstapContext, POISON_GAS, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.POISON_GAS.get()), 4));
 
 		FeatureUtils.register(bootstapContext, CRASSOSTREA_OYSTERS, PFFeatures.CRASSOSTREA_OYSTERS.get(), new CrassostreaOystersConfig(24));
 		FeatureUtils.register(bootstapContext, ALGAE, PFFeatures.ALGAE.get(), new CrassostreaOystersConfig(24));
+		FeatureUtils.register(bootstapContext, STONEWORTS, PFFeatures.STONEWORTS.get(), new CrassostreaOystersConfig(24));
 		FeatureUtils.register(bootstapContext, NELUMBO, PFFeatures.NELUMBO.get(), new CrassostreaOystersConfig(24));
 		FeatureUtils.register(bootstapContext, RARE_NELUMBO, PFFeatures.RARE_NELUMBO.get(), new CrassostreaOystersConfig(8));
 		FeatureUtils.register(bootstapContext, QUEREUXIA, PFFeatures.QUEREUXIA.get(), new CrassostreaOystersConfig(24));
@@ -589,9 +680,31 @@ public class PFConfiguredFeatures {
 
 		FeatureUtils.register(bootstapContext, NEOCALAMITES, PFFeatures.NEOCALAMITES.get(), new JohnstoniaConfig(12));
 
+		FeatureUtils.register(bootstapContext, HERMANOPHYTON, PFFeatures.HERMANOPHYTON.get(), new JohnstoniaConfig(12));
+
+		FeatureUtils.register(bootstapContext, PTEROPHYLLUM, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.PTEROPHYLLUM.get()), 32));
+		FeatureUtils.register(bootstapContext, TALL_PTEROPHYLLUM, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.TALL_PTEROPHYLLUM.get()), 16));
+		
+		FeatureUtils.register(bootstapContext, ANOMOZAMITES, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.ANOMOZAMITES.get()), 32));
+		FeatureUtils.register(bootstapContext, TALL_ANOMOZAMITES, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.TALL_ANOMOZAMITES.get()), 16));
+	
+		FeatureUtils.register(bootstapContext, RARE_ANOMOZAMITES, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.ANOMOZAMITES.get()), 16));
+		FeatureUtils.register(bootstapContext, RARE_TALL_ANOMOZAMITES, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.TALL_ANOMOZAMITES.get()), 8));
+		
+		FeatureUtils.register(bootstapContext, ONYCHIOPSIS, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.ONYCHIOPSIS.get()), 32));
+
+		FeatureUtils.register(bootstapContext, SPHENOPTERIS, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.SPHENOPTERIS.get()), 32));
+		FeatureUtils.register(bootstapContext, RARE_SPHENOPTERIS, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.SPHENOPTERIS.get()), 16));
+		
+		FeatureUtils.register(bootstapContext, TAENIOPTERIS, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.TAENIOPTERIS.get()), 16));
+		FeatureUtils.register(bootstapContext, RARE_TAENIOPTERIS, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.TAENIOPTERIS.get()), 8));
+		FeatureUtils.register(bootstapContext, TALL_TAENIOPTERIS, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.TALL_TAENIOPTERIS.get()), 16));
+		FeatureUtils.register(bootstapContext, RARE_TALL_TAENIOPTERIS, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.TALL_TAENIOPTERIS.get()), 8));
+		
 		FeatureUtils.register(bootstapContext, CLAY_DISK, PFFeatures.LAND_DISK.get(), new DiskConfiguration(RuleBasedBlockStateProvider.simple(Blocks.CLAY), BlockPredicate.matchesBlocks(List.of(PFBlocks.SILT.get(), PFBlocks.HARDENED_SILT.get(), Blocks.SAND)), UniformInt.of(1, 3), 1));
 		FeatureUtils.register(bootstapContext, GRAVEL_DISK, PFFeatures.LAND_DISK.get(), new DiskConfiguration(RuleBasedBlockStateProvider.simple(Blocks.GRAVEL), BlockPredicate.matchesBlocks(List.of(PFBlocks.SILT.get(), PFBlocks.HARDENED_SILT.get(), Blocks.SAND)), UniformInt.of(1, 3), 1));
 		FeatureUtils.register(bootstapContext, PACKED_MUD_DISK, PFFeatures.LAND_DISK.get(), new DiskConfiguration(RuleBasedBlockStateProvider.simple(Blocks.PACKED_MUD), BlockPredicate.matchesBlocks(List.of(PFBlocks.SILT.get(), PFBlocks.HARDENED_SILT.get(), Blocks.SAND, Blocks.RED_SAND, PFBlocks.MOSSY_DIRT.get(), Blocks.GRAVEL)), UniformInt.of(1, 3), 1));
+		FeatureUtils.register(bootstapContext, TUFF_DISK, PFFeatures.LAND_DISK.get(), new DiskConfiguration(RuleBasedBlockStateProvider.simple(Blocks.TUFF), BlockPredicate.matchesBlocks(List.of(PFBlocks.SILT.get(), PFBlocks.HARDENED_SILT.get(), Blocks.SAND, Blocks.RED_SAND, PFBlocks.MOSSY_DIRT.get(), Blocks.GRAVEL, Blocks.DIRT, PFBlocks.LOAM.get(), Blocks.STONE)), UniformInt.of(1, 3), 1));
 
 		FeatureUtils.register(bootstapContext, DISK_SILT, Feature.DISK, new DiskConfiguration(RuleBasedBlockStateProvider.simple(PFBlocks.SILT.get()), BlockPredicate.matchesBlocks(List.of(Blocks.DIRT, PFBlocks.LOAM.get(), PFBlocks.PACKED_LOAM.get(), PFBlocks.MOSSY_DIRT.get(), PFBlocks.HARDENED_SILT.get(), Blocks.PODZOL, Blocks.SAND)), UniformInt.of(8, 8), 4));
 		FeatureUtils.register(bootstapContext, MUD_DISK, Feature.DISK, new DiskConfiguration(RuleBasedBlockStateProvider.simple(Blocks.MUD), BlockPredicate.matchesBlocks(List.of(Blocks.DIRT, PFBlocks.LOAM.get(), PFBlocks.PACKED_LOAM.get(), PFBlocks.MOSSY_DIRT.get(), PFBlocks.HARDENED_SILT.get(), Blocks.PODZOL, Blocks.SAND)), UniformInt.of(1, 3), 1));
@@ -637,6 +750,13 @@ public class PFConfiguredFeatures {
 		FeatureUtils.register(bootstapContext, DEAD_SCHIZOLEPIDOPSIS_TREES, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.DEAD_SCHIZOLEPIDOPSIS_TREE_1), 0.1112F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.DEAD_SCHIZOLEPIDOPSIS_TREE_2), 0.1112F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.DEAD_SCHIZOLEPIDOPSIS_TREE_3), 0.1112F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.DEAD_SCHIZOLEPIDOPSIS_TREE_4), 0.1112F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.DEAD_SCHIZOLEPIDOPSIS_TREE_5), 0.1112F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.DEAD_SCHIZOLEPIDOPSIS_TREE_6), 0.1112F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.DEAD_SCHIZOLEPIDOPSIS_TREE_7), 0.1112F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.DEAD_SCHIZOLEPIDOPSIS_TREE_8), 0.1112F)), holderGetter.getOrThrow(PFPlacedFeatures.DEAD_SCHIZOLEPIDOPSIS_TREE_9)));
 		FeatureUtils.register(bootstapContext, PODOZAMITES_TREES, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PODOZAMITES_TREE_1), 0.1667F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PODOZAMITES_TREE_2), 0.1667F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PODOZAMITES_TREE_3), 0.1667F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PODOZAMITES_TREE_4), 0.1667F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PODOZAMITES_TREE_5), 0.1667F)), holderGetter.getOrThrow(PFPlacedFeatures.PODOZAMITES_TREE_6)));
 		FeatureUtils.register(bootstapContext, DEAD_PODOZAMITES_TREES, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.DEAD_PODOZAMITES_TREE_1), 0.1667F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.DEAD_PODOZAMITES_TREE_2), 0.1667F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.DEAD_PODOZAMITES_TREE_3), 0.1667F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.DEAD_PODOZAMITES_TREE_4), 0.1667F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.DEAD_PODOZAMITES_TREE_5), 0.1667F)), holderGetter.getOrThrow(PFPlacedFeatures.DEAD_PODOZAMITES_TREE_6)));
+		FeatureUtils.register(bootstapContext, PROTOPICEOXYLON_TREES, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PROTOPICEOXYLON_TREE_1_CHECKED), 0.1429F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PROTOPICEOXYLON_TREE_2_CHECKED), 0.1429F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PROTOPICEOXYLON_TREE_3_CHECKED), 0.1429F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PROTOPICEOXYLON_TREE_4_CHECKED), 0.1429F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PROTOPICEOXYLON_TREE_5_CHECKED), 0.1429F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PROTOPICEOXYLON_TREE_6_CHECKED), 0.1429F)), holderGetter.getOrThrow(PFPlacedFeatures.PROTOPICEOXYLON_TREE_7_CHECKED)));
+
+		FeatureUtils.register(bootstapContext, CUPRESSINOCLADUS_TREES, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.CUPRESSINOCLADUS_TREE_1), 0.1666F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.CUPRESSINOCLADUS_TREE_2), 0.1666F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.CUPRESSINOCLADUS_TREE_3), 0.1666F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.CUPRESSINOCLADUS_TREE_4), 0.1666F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.CUPRESSINOCLADUS_TREE_5), 0.1666F)), holderGetter.getOrThrow(PFPlacedFeatures.CUPRESSINOCLADUS_TREE_6)));
+		FeatureUtils.register(bootstapContext, PHOENICOPSIS_TREES, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PHOENICOPSIS_TREE_1), 0.1666F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PHOENICOPSIS_TREE_2), 0.1666F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PHOENICOPSIS_TREE_3), 0.1666F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PHOENICOPSIS_TREE_4), 0.1666F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PHOENICOPSIS_TREE_5), 0.1666F)), holderGetter.getOrThrow(PFPlacedFeatures.PHOENICOPSIS_TREE_6)));
+		FeatureUtils.register(bootstapContext, ELATIDES_TREES, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.ELATIDES_TREE_1), 0.1429F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.ELATIDES_TREE_2), 0.1429F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.ELATIDES_TREE_3), 0.1429F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.ELATIDES_TREE_4), 0.1429F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.ELATIDES_TREE_5), 0.1429F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.ELATIDES_TREE_6), 0.1429F)), holderGetter.getOrThrow(PFPlacedFeatures.ELATIDES_TREE_7)));
+		FeatureUtils.register(bootstapContext, FRENELOPSIS_TREES, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.FRENELOPSIS_TREE_1), 0.125F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.FRENELOPSIS_TREE_2), 0.125F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.FRENELOPSIS_TREE_3), 0.125F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.FRENELOPSIS_TREE_4), 0.125F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.FRENELOPSIS_TREE_5), 0.125F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.FRENELOPSIS_TREE_6), 0.125F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.FRENELOPSIS_TREE_7), 0.125F)), holderGetter.getOrThrow(PFPlacedFeatures.FRENELOPSIS_TREE_8)));
+
 	}
 
 	public static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(BootstapContext<ConfiguredFeature<?, ?>> bootstapContext, ResourceKey<ConfiguredFeature<?, ?>> resourceKey, F feature, FC featureConfiguration) {

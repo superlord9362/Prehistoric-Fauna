@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "prehistoricfauna:block/phoenicopsis_planks",
+        "top": "prehistoricfauna:block/phoenicopsis_planks",
+        "side": "prehistoricfauna:block/phoenicopsis_planks"
+    }
+}

@@ -77,7 +77,7 @@ public class Ruixinia extends AgedHerdDinosaurEntity {
 
 	public Ruixinia(EntityType<? extends AgedHerdDinosaurEntity> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 
@@ -98,7 +98,8 @@ public class Ruixinia extends AgedHerdDinosaurEntity {
 	public void playAmbientSound() {
 		SoundEvent soundevent = this.getAmbientSound();
 		if (soundevent != null) {
-			this.playSound(soundevent, this.getSoundVolume() * 10, this.getVoicePitch());
+			if (!this.isAsleep() || !this.isBaby()) this.playSound(soundevent, this.getSoundVolume() * 2, this.getVoicePitch());
+			else this.playSound(soundevent, this.getSoundVolume(), this.getVoicePitch());
 		}
 	}
 
@@ -466,6 +467,10 @@ public class Ruixinia extends AgedHerdDinosaurEntity {
 
 	public BlockState getEggBlock(Level world, BlockPos pos) {
 		return PFBlocks.RUIXINIA_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
+	}
+	
+	public Item getEggItem() {
+		return PFItems.RUIXINIA_EGG.get();
 	}
 
 }

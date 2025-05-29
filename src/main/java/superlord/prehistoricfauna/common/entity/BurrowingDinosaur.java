@@ -263,9 +263,9 @@ public class BurrowingDinosaur extends DinosaurEntity {
 				double d0 = (double)BurrowingDinosaur.this.blockPosition().getX() + random.nextDouble();
 				double d1 = (double)BurrowingDinosaur.this.blockPosition().getY() + 0.5F;
 				double d2 = (double)BurrowingDinosaur.this.blockPosition().getZ() + random.nextDouble();
-				if (digTicks % 2 == 0) {
+				if (digTicks % 10 == 0) {
 					BurrowingDinosaur.this.level().addParticle(new BlockParticleOption(ParticleTypes.BLOCK, BurrowingDinosaur.this.level().getBlockState(BurrowingDinosaur.this.blockPosition().below())), d0, d1, d2, 0.0D, 0.0D, 0.0D);
-					BurrowingDinosaur.this.level().playSound((Player)null, BurrowingDinosaur.this.blockPosition(), SoundEvents.GRAVEL_HIT, SoundSource.NEUTRAL, 1, 1);
+					BurrowingDinosaur.this.level().playSound((Player)null, BurrowingDinosaur.this.blockPosition(), SoundEvents.GRAVEL_HIT, SoundSource.NEUTRAL, 0.4F, 1);
 				}
 			}
 		}

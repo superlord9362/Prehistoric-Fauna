@@ -41,12 +41,6 @@
                   "predicate": {
                     "biome": "prehistoricfauna:morrison_savanna"
                   }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:morrison_hills"
-                  }
                 }
               ]
             }
@@ -112,12 +106,6 @@
                   "condition": "minecraft:location_check",
                   "predicate": {
                     "biome": "prehistoricfauna:morrison_savanna"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:morrison_hills"
                   }
                 }
               ]

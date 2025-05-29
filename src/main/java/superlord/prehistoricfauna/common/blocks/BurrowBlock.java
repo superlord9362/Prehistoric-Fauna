@@ -148,22 +148,29 @@ public class BurrowBlock extends BaseEntityBlock {
 	}
 
 	private void angerNearbyBurrowers(Level p_49650_, BlockPos p_49651_) {
-	      List<BurrowingDinosaur> list = p_49650_.getEntitiesOfClass(BurrowingDinosaur.class, (new AABB(p_49651_)).inflate(8.0D, 6.0D, 8.0D));
-	      if (!list.isEmpty()) {
-	         List<Player> list1 = p_49650_.getEntitiesOfClass(Player.class, (new AABB(p_49651_)).inflate(8.0D, 6.0D, 8.0D));
-	         if (list1.isEmpty()) return; //Forge: Prevent Error when no players are around.
-	         int i = list1.size();
+		List<BurrowingDinosaur> list = p_49650_.getEntitiesOfClass(BurrowingDinosaur.class, (new AABB(p_49651_)).inflate(8.0D, 6.0D, 8.0D));
+		if (!list.isEmpty()) {
+			List<Player> list1 = p_49650_.getEntitiesOfClass(Player.class, (new AABB(p_49651_)).inflate(8.0D, 6.0D, 8.0D));
+			if (list1.isEmpty()) return; //Forge: Prevent Error when no players are around.
+			int i = list1.size();
 
-	         for(BurrowingDinosaur burrower : list) {
-	            if (burrower.getTarget() == null && burrower.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE)) {
-	            	burrower.setTarget(list1.get(p_49650_.random.nextInt(i)));
-	            }
-	         }
-	      }
+			for(BurrowingDinosaur burrower : list) {
+				if (burrower.getTarget() == null && burrower.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE)) {
+					burrower.setTarget(list1.get(p_49650_.random.nextInt(i)));
+				}
+			}
+		}
 
-	   }
-	
+	}
+
 	public BlockState updateShape(BlockState p_153904_, Direction p_153905_, BlockState p_153906_, LevelAccessor p_153907_, BlockPos p_153908_, BlockPos p_153909_) {
+		if (!this.canSurvive(p_153904_, p_153907_, p_153908_)) {
+			BlockEntity blockentity = p_153907_.getBlockEntity(p_153908_);
+			if (blockentity instanceof BurrowBlockEntity) {
+				BurrowBlockEntity burrowblockentity = (BurrowBlockEntity)blockentity;
+				burrowblockentity.emptyAllLivingFromBurrow((Player)null, p_153904_, BurrowBlockEntity.BurrowerReleaseStatus.EMERGENCY);
+			}
+		}
 		if (p_153907_.getBlockState(p_153909_).getBlock() instanceof FireBlock || !this.canSurvive(p_153906_, p_153907_, p_153909_)) {
 			BlockEntity blockentity = p_153907_.getBlockEntity(p_153908_);
 			if (blockentity instanceof BurrowBlockEntity) {
@@ -302,9 +309,9 @@ public class BurrowBlock extends BaseEntityBlock {
 	public void playerDestroy(Level p_49584_, Player p_49585_, BlockPos p_49586_, BlockState p_49587_, @Nullable BlockEntity p_49588_, ItemStack p_49589_) {
 		super.playerDestroy(p_49584_, p_49585_, p_49586_, p_49587_, p_49588_, p_49589_);
 		if (!p_49584_.isClientSide && p_49588_ instanceof BurrowBlockEntity burrowblockentity) {
-				burrowblockentity.emptyAllLivingFromBurrow(p_49585_, p_49587_, BurrowBlockEntity.BurrowerReleaseStatus.EMERGENCY);
-				p_49584_.updateNeighbourForOutputSignal(p_49586_, this);
-	            this.angerNearbyBurrowers(p_49584_, p_49586_);
+			burrowblockentity.emptyAllLivingFromBurrow(p_49585_, p_49587_, BurrowBlockEntity.BurrowerReleaseStatus.EMERGENCY);
+			p_49584_.updateNeighbourForOutputSignal(p_49586_, this);
+			this.angerNearbyBurrowers(p_49584_, p_49586_);
 		}
 
 	}

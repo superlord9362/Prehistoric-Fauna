@@ -71,7 +71,7 @@ public class Scutellosaurus extends BurrowingDinosaur {
 
 	public Scutellosaurus(EntityType<? extends Scutellosaurus> type, Level world) {
 		super(type, world);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 

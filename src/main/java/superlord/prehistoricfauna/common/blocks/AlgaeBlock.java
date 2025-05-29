@@ -4,10 +4,13 @@ import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -49,8 +52,21 @@ public class AlgaeBlock extends Block {
 		if (!blockstate.isAir()) {
 			worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
 		}
-
+		if (!stateIn.canSurvive(worldIn, currentPos)) {
+			worldIn.scheduleTick(currentPos, this, 1);
+		}
 		return blockstate;
+	}
+	
+	public boolean canSurvive(BlockState p_51028_, LevelReader p_51029_, BlockPos p_51030_) {
+	      BlockPos blockpos = p_51030_.below();
+	      return this.mayPlaceOn(p_51029_.getBlockState(blockpos), p_51029_, blockpos);
+	   }
+
+	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
+		if (!state.canSurvive(worldIn, pos)) {
+			worldIn.destroyBlock(pos, true);
+		}
 	}
 
 	public FluidState getFluidState(BlockState state) {

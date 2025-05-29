@@ -71,19 +71,19 @@
 		},
 		{
 			"weight": 2.5,
-			"name": "prehistoricfauna:dongbeititan_skull"
+			"item": "prehistoricfauna:dongbeititan_skull"
 		},
 		{
 			"weight": 2.5,
-			"name": "prehistoricfauna:goyocephale_skull"
+			"item": "prehistoricfauna:goyocephale_skull"
 		},
 		{
 			"weight": 2.5,
-			"name": "prehistoricfauna:anzu_skull"
+			"item": "prehistoricfauna:anzu_skull"
 		},
 		{
 			"weight": 2.5,
-			"name": "prehistoricfauna:liaoningosaurus_skull"
+			"item": "prehistoricfauna:liaoningosaurus_skull"
 		}
 	]
 }

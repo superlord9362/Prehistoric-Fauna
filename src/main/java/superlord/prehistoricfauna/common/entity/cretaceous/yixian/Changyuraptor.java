@@ -80,7 +80,7 @@ public class Changyuraptor extends DinosaurEntity {
 
 	public Changyuraptor(EntityType<? extends TamableAnimal> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.setMaxUpStep(1);
+		this.setMaxUpStep(1.375F);
 		this.navigation = new WallClimberNavigation(this, level());
 	}
 

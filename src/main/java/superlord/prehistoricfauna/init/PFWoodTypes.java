@@ -29,7 +29,11 @@ public class PFWoodTypes {
 	public static final BlockSetType CZEKANOWSKIA_TYPE = BlockSetType.register(new BlockSetType(new ResourceLocation(PrehistoricFauna.MOD_ID, "czekanowskia").toString()));
 	public static final BlockSetType SCHIZOLEPIDOPSIS_TYPE = BlockSetType.register(new BlockSetType(new ResourceLocation(PrehistoricFauna.MOD_ID, "schizolepidopsis").toString()));
 	public static final BlockSetType PODOZAMITES_TYPE = BlockSetType.register(new BlockSetType(new ResourceLocation(PrehistoricFauna.MOD_ID, "podozamites").toString()));
-	
+	public static final BlockSetType CUPRESSINOCLADUS_TYPE = BlockSetType.register(new BlockSetType(new ResourceLocation(PrehistoricFauna.MOD_ID, "cupressinocladus").toString()));
+	public static final BlockSetType ELATIDES_TYPE = BlockSetType.register(new BlockSetType(new ResourceLocation(PrehistoricFauna.MOD_ID, "elatides").toString()));
+	public static final BlockSetType PHOENICOPSIS_TYPE = BlockSetType.register(new BlockSetType(new ResourceLocation(PrehistoricFauna.MOD_ID, "phoenicopsis").toString()));
+	public static final BlockSetType FRENELOPSIS_TYPE = BlockSetType.register(new BlockSetType(new ResourceLocation(PrehistoricFauna.MOD_ID, "frenelopsis").toString()));
+
 	public static WoodType METASEQUOIA = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "metasequoia").toString(), METASEQUOIA_TYPE));
 	public static WoodType ARAUCARIA = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "araucaria").toString(), ARAUCARIA_TYPE));
 	public static WoodType PROTOPICEOXYLON = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "protopiceoxylon").toString(), PROTOPICEOXYLON_TYPE));
@@ -52,5 +56,9 @@ public class PFWoodTypes {
 	public static WoodType CZEKANOWSKIA = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "czekanowskia").toString(), CZEKANOWSKIA_TYPE));
 	public static WoodType SCHIZOLEPIDOPSIS = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "schizolepidopsis").toString(), SCHIZOLEPIDOPSIS_TYPE));
 	public static WoodType PODOZAMITES = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "podozamites").toString(), PODOZAMITES_TYPE));
+	public static WoodType CUPRESSINOCLADUS = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "cupressinocladus").toString(), CUPRESSINOCLADUS_TYPE));
+	public static WoodType ELATIDES = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "elatides").toString(), ELATIDES_TYPE));
+	public static WoodType PHOENICOPSIS = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "phoenicopsis").toString(), PHOENICOPSIS_TYPE));
+	public static WoodType FRENELOPSIS = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "frenelopsis").toString(), FRENELOPSIS_TYPE));
 	
 }

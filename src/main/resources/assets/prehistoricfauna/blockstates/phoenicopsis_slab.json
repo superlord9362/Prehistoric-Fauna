@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "prehistoricfauna:block/phoenicopsis_slab" },
+        "type=top": { "model": "prehistoricfauna:block/phoenicopsis_slab_top" },
+        "type=double": { "model": "prehistoricfauna:block/phoenicopsis_planks" }
+    }
+}

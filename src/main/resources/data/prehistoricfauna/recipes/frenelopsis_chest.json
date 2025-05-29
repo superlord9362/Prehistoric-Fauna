@@ -1,0 +1,24 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"group": "frenelopsis_chest",
+	"pattern": [
+		"###",
+		"# #",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:frenelopsis_planks"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:frenelopsis_chest",
+		"count": 1
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:quark_flag",
+			"flag": "variant_chests"
+		}
+	]
+}

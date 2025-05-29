@@ -125,7 +125,7 @@ public class Triceratops extends AbstractChestedHorse  {
 
 	public Triceratops(EntityType<? extends Triceratops> type, Level worldIn) {
 		super(type, worldIn);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 	}
 
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {

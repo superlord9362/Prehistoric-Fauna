@@ -91,7 +91,7 @@ public class Calsoyasuchus extends DinosaurEntity {
 	public Calsoyasuchus(EntityType<? extends DinosaurEntity> type, Level worldIn) {
 		super(type, worldIn);
 		this.moveControl = new Calsoyasuchus.CalsoyasuchusMoveControl(this);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 

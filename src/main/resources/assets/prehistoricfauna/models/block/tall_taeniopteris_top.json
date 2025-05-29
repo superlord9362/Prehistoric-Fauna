@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "prehistoricfauna:block/tall_taeniopteris_top"
+    }
+}

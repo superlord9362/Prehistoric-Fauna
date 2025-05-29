@@ -67,7 +67,7 @@ public class Sarahsaurus extends DinosaurEntity {
 
 	public Sarahsaurus(EntityType<? extends Sarahsaurus> type, Level worldIn) {
 		super(type, worldIn);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 	

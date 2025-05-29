@@ -72,13 +72,22 @@ public class Edmontosaurus extends HerdDinosaurEntity {
 
 	public Edmontosaurus(EntityType<? extends Edmontosaurus> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.setMaxUpStep(1);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = this.maxHunger;
 	}
 
 	@Override
 	public double moveToRange() {
 		return 15;
+	}
+	
+	@Override
+	public void playAmbientSound() {
+		SoundEvent soundevent = this.getAmbientSound();
+		if (soundevent != null) {
+			if (!this.isAsleep() || !this.isBaby()) this.playSound(soundevent, this.getSoundVolume() * 4, this.getVoicePitch());
+			this.playSound(soundevent, this.getSoundVolume(), this.getVoicePitch());
+		}
 	}
 
 	public boolean isJuvenile() {

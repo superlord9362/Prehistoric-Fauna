@@ -17,7 +17,7 @@ Temperaments: Allosaurus has an
 and a 5% chance of being 
 protective.
 
-<image><drawings_ankylosaurus.png 30 3 127 2 22 19 7>
+<image><drawings_ankylosaurus.png 30 3 127 23 22 19 7>
 
 
 

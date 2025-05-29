@@ -128,7 +128,7 @@ public class Dakotaraptor extends DinosaurEntity {
 		this.moveControl = new Dakotaraptor.MoveHelperController();
 		this.setPathfindingMalus(BlockPathTypes.DANGER_OTHER, 0.0F);
 		this.setPathfindingMalus(BlockPathTypes.DAMAGE_OTHER, 0.0F);
-		this.setMaxUpStep(1);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 

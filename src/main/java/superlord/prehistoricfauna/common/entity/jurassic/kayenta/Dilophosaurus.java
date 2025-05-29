@@ -68,7 +68,7 @@ public class Dilophosaurus extends DinosaurEntity {
 
 	public Dilophosaurus(EntityType<? extends Dilophosaurus> type, Level worldIn) {
 		super(type, worldIn);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 

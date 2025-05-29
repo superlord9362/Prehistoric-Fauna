@@ -420,22 +420,6 @@
 				]
 			}
 		},
-		"morrison_hills": {
-			"trigger": "minecraft:location",
-			"conditions": {
-				"player": [
-					{
-						"condition": "minecraft:entity_properties",
-						"entity": "this",
-						"predicate": {
-							"location": {
-								"biome": "prehistoricfauna:morrison_hills"
-							}
-						}
-					}
-				]
-			}
-		},
 		"morrison_savanna": {
 			"trigger": "minecraft:location",
 			"conditions": {
@@ -525,9 +509,6 @@
 		],
 		[
 			"kayenta_dry_forest"
-		],
-		[
-			"morrison_hills"
 		],
 		[
 			"morrison_savanna"

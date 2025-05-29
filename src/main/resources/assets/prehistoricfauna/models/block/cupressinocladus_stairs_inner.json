@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "prehistoricfauna:block/cupressinocladus_planks",
+        "top": "prehistoricfauna:block/cupressinocladus_planks",
+        "side": "prehistoricfauna:block/cupressinocladus_planks"
+    }
+}

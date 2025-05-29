@@ -228,8 +228,8 @@ public class DakotaraptorModel extends EntityModel<Dakotaraptor> {
 				this.Tail2.zRot = Mth.cos(limbSwing * speed * 0.1F) * degree * 0.1F * limbSwingAmount;
 				this.Body.xRot = (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + (Mth.cos(limbSwing * speed * 0.1F) * (degree / 2) * 0.2F * limbSwingAmount) + attackProgress * (float) Math.toRadians(-30F);
 				this.Neck.xRot = Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3)) + (Mth.cos(limbSwing * speed * 0.1F) * (degree / 2) * 0.3F * limbSwingAmount + 0.1F) + (headPitch * ((float) Math.PI / 180F)) + attackProgress * (float) Math.toRadians(25F) + 0.3054F;
-				this.RightWing.zRot = (-Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3))) + (Mth.cos(limbSwing * speed * 0.4F) * degree * 0.1F * limbSwingAmount) + attackProgress * (float) Math.toRadians(-85F);
-				this.LeftWing.zRot = (Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3))) + (Mth.cos(3.0F + limbSwing * speed * 0.4F) * degree * 0.1F * limbSwingAmount) + attackProgress * (float) Math.toRadians(85F);
+				this.RightWing.zRot = (-Mth.cos(0.05F * ageInTicks) * 0.05F) + (-Mth.abs(Mth.sin(limbSwing * 0.1F) * 0.65F * limbSwingAmount));
+				this.LeftWing.zRot = (Mth.cos(0.05F * ageInTicks) * 0.05F) + (Mth.abs(Mth.sin(limbSwing * 0.1F) * 0.65F * limbSwingAmount));
 				if (entity.isInWater()) {
 					this.Body.y = 20;
 					this.Body.xRot = -0.5F;

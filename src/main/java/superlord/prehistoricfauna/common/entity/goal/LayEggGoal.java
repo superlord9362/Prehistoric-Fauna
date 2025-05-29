@@ -49,7 +49,7 @@ public class LayEggGoal  extends MoveToBlockGoal {
 	}
 
 	protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
-		if (!worldIn.isEmptyBlock(pos.above())) {
+		if (!worldIn.getBlockState(pos.above()).canBeReplaced()) {
 			return false;
 		} else {
 			Block block = worldIn.getBlockState(pos).getBlock();

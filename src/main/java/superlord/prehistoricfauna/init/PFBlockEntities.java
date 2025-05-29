@@ -47,7 +47,11 @@ public class PFBlockEntities {
 			PFBlocks.TAXUS_SIGN.get(), PFBlocks.TAXUS_WALL_SIGN.get(),
 			PFBlocks.CZEKANOWSKIA_SIGN.get(), PFBlocks.CZEKANOWSKIA_WALL_SIGN.get(),
 			PFBlocks.SCHIZOLEPIDOPSIS_SIGN.get(), PFBlocks.SCHIZOLEPIDOPSIS_WALL_SIGN.get(),
-			PFBlocks.PODOZAMITES_SIGN.get(), PFBlocks.PODOZAMITES_WALL_SIGN.get()
+			PFBlocks.PODOZAMITES_SIGN.get(), PFBlocks.PODOZAMITES_WALL_SIGN.get(),
+			PFBlocks.CUPRESSINOCLADUS_SIGN.get(), PFBlocks.CUPRESSINOCLADUS_WALL_SIGN.get(),
+			PFBlocks.ELATIDES_SIGN.get(), PFBlocks.ELATIDES_WALL_SIGN.get(),
+			PFBlocks.PHOENICOPSIS_SIGN.get(), PFBlocks.PHOENICOPSIS_WALL_SIGN.get(),
+			PFBlocks.FRENELOPSIS_SIGN.get(), PFBlocks.FRENELOPSIS_WALL_SIGN.get()
 			).build(null));
 	public static final RegistryObject<BlockEntityType<PFHangingSignBlockEntity>> HANGING_SIGN = REGISTER.register("hanging_sign", () -> BlockEntityType.Builder.of(PFHangingSignBlockEntity::new, 
 			PFBlocks.METASEQUOIA_HANGING_SIGN.get(), PFBlocks.METASEQUOIA_HANGING_WALL_SIGN.get(),
@@ -71,7 +75,11 @@ public class PFBlockEntities {
 			PFBlocks.TAXUS_HANGING_SIGN.get(), PFBlocks.TAXUS_HANGING_WALL_SIGN.get(),
 			PFBlocks.CZEKANOWSKIA_HANGING_SIGN.get(), PFBlocks.CZEKANOWSKIA_HANGING_WALL_SIGN.get(),
 			PFBlocks.SCHIZOLEPIDOPSIS_HANGING_SIGN.get(), PFBlocks.SCHIZOLEPIDOPSIS_HANGING_WALL_SIGN.get(),
-			PFBlocks.PODOZAMITES_HANGING_SIGN.get(), PFBlocks.PODOZAMITES_HANGING_WALL_SIGN.get()
+			PFBlocks.PODOZAMITES_HANGING_SIGN.get(), PFBlocks.PODOZAMITES_HANGING_WALL_SIGN.get(),
+			PFBlocks.CUPRESSINOCLADUS_HANGING_SIGN.get(), PFBlocks.CUPRESSINOCLADUS_HANGING_WALL_SIGN.get(),
+			PFBlocks.ELATIDES_HANGING_SIGN.get(), PFBlocks.ELATIDES_HANGING_WALL_SIGN.get(),
+			PFBlocks.PHOENICOPSIS_HANGING_SIGN.get(), PFBlocks.PHOENICOPSIS_HANGING_WALL_SIGN.get(),
+			PFBlocks.FRENELOPSIS_HANGING_SIGN.get(), PFBlocks.FRENELOPSIS_HANGING_WALL_SIGN.get()
 			).build(null));
     public static final RegistryObject<BlockEntityType<PaleoscribeBlockEntity>> PALEOSCRIBE = REGISTER.register("paleoscribe", () -> BlockEntityType.Builder.of(PaleoscribeBlockEntity::new, PFBlocks.PALEOSCRIBE.get()).build(null));
     public static final RegistryObject<BlockEntityType<PaleontologyTableBlockEntity>> PALEONTOLOGY_TABLE = REGISTER.register("paleontology_table", () -> BlockEntityType.Builder.of(PaleontologyTableBlockEntity::new, PFBlocks.PALEONTOLOGY_TABLE.get()).build(null));

@@ -35,9 +35,22 @@ public class PFBiomes {
 	public static final ResourceKey<Biome> KAYENTA_DRY_FOREST = register("kayenta_dry_forest");
 	public static final ResourceKey<Biome> KAYENTA_BUTTES = register("kayenta_buttes");
 	public static final ResourceKey<Biome> KAYENTA_DESERT = register("kayenta_desert");
+	public static final ResourceKey<Biome> KAYENTA_DUNES = register("kayenta_dunes");
+	public static final ResourceKey<Biome> KAYENTA_CANYONS = register("kayenta_canyons");
 	public static final ResourceKey<Biome> KAYENTA_RIVER = register("kayenta_river");
 	public static final ResourceKey<Biome> MORRISON_SAVANNA = register("morrison_savanna");
-	public static final ResourceKey<Biome> MORRISON_HILLS = register("morrison_hills");
+	public static final ResourceKey<Biome> MORRISON_SALT_FLATS = register("morrison_salt_flats");
+	public static final ResourceKey<Biome> MORRISON_GALLERY_FOREST = register("morrison_gallery_forest");
+	public static final ResourceKey<Biome> MORRISON_UPLAND_FOREST = register("morrison_upland_forest");
+	public static final ResourceKey<Biome> MORRISON_SPARSE_FOREST = register("morrison_sparse_forest");
+	public static final ResourceKey<Biome> MORRISON_RIVER = register("morrison_river");
+	public static final ResourceKey<Biome> SHAXIMIAO_DELTA_PLAINS = register("shaximiao_delta_plains"); //Lower
+	public static final ResourceKey<Biome> SHAXIMIAO_LAKES = register("shaximiao_lakes"); //Lower;
+	public static final ResourceKey<Biome> SHAXIMIAO_ARID_LAKES = register("shaximiao_arid_lakes"); //Upper
+	public static final ResourceKey<Biome> SHAXIMIAO_MOUNTAINS = register("shaximiao_mountains"); //Upper
+	public static final ResourceKey<Biome> SHAXIMIAO_GALLERY_FOREST = register("shaximiao_gallery_forest"); //Lower
+	public static final ResourceKey<Biome> SHAXIMIAO_DRY_FOREST = register("shaximiao_dry_forest"); //Upper
+	
 
 	public static final ResourceKey<Biome> HELL_CREEK_HARDWOOD_FOREST = register("hell_creek_hardwood_forest");
 	public static final ResourceKey<Biome> HELL_CREEK_CLEARING = register("hell_creek_clearing");
@@ -61,7 +74,7 @@ public class PFBiomes {
 	public static final ResourceKey<Biome> CRETACEOUS_HENOSTONE_CAVE = register("cretaceous_henostone_cave");
 	public static final ResourceKey<Biome> JURASSIC_HENOSTONE_CAVE = register("jurassic_henostone_cave");
 	public static final ResourceKey<Biome> TRIASSIC_HENOSTONE_CAVE = register("triassic_henostone_cave");
-
+	
 	public static void bootstrap(BootstapContext<Biome> bootstapContext) {
 		HolderGetter<PlacedFeature> holderGetter = bootstapContext.lookup(Registries.PLACED_FEATURE);
 		HolderGetter<ConfiguredWorldCarver<?>> holderGetter1 = bootstapContext.lookup(Registries.CONFIGURED_CARVER);
@@ -77,10 +90,22 @@ public class PFBiomes {
 		bootstapContext.register(KAYENTA_DRY_FOREST, JurassicBiomes.kayentaDryForest(holderGetter, holderGetter1));
 		bootstapContext.register(KAYENTA_BUTTES, JurassicBiomes.kayentaButtes(holderGetter, holderGetter1));
 		bootstapContext.register(KAYENTA_DESERT, JurassicBiomes.kayentaDesert(holderGetter, holderGetter1));
+		bootstapContext.register(KAYENTA_DUNES, JurassicBiomes.kayentaDunes(holderGetter, holderGetter1));
+		bootstapContext.register(KAYENTA_CANYONS, JurassicBiomes.kayentaCanyons(holderGetter, holderGetter1));
 		bootstapContext.register(KAYENTA_RIVER, JurassicBiomes.kayentaRiver(holderGetter, holderGetter1));
 		bootstapContext.register(MORRISON_SAVANNA, JurassicBiomes.morrisonSavanna(holderGetter, holderGetter1));
-		bootstapContext.register(MORRISON_HILLS, JurassicBiomes.morrisonHills(holderGetter, holderGetter1));
-
+		bootstapContext.register(MORRISON_SALT_FLATS, JurassicBiomes.morrisonSaltFlats(holderGetter, holderGetter1));
+		bootstapContext.register(MORRISON_SPARSE_FOREST, JurassicBiomes.morrisonSparseForest(holderGetter, holderGetter1));
+		bootstapContext.register(MORRISON_GALLERY_FOREST, JurassicBiomes.morrisonGalleryForest(holderGetter, holderGetter1));
+		bootstapContext.register(MORRISON_UPLAND_FOREST, JurassicBiomes.morrisonUplandForest(holderGetter, holderGetter1));
+		bootstapContext.register(MORRISON_RIVER, JurassicBiomes.morrisonRiver(holderGetter, holderGetter1));
+		bootstapContext.register(SHAXIMIAO_DELTA_PLAINS, JurassicBiomes.shaximiaoDeltaPlains(holderGetter, holderGetter1));
+		bootstapContext.register(SHAXIMIAO_LAKES, JurassicBiomes.shaximiaoLakes(holderGetter, holderGetter1));
+		bootstapContext.register(SHAXIMIAO_GALLERY_FOREST, JurassicBiomes.shaximiaoGalleryForest(holderGetter, holderGetter1));
+		bootstapContext.register(SHAXIMIAO_DRY_FOREST, JurassicBiomes.shaximiaoDryForest(holderGetter, holderGetter1));
+		bootstapContext.register(SHAXIMIAO_MOUNTAINS, JurassicBiomes.shaximiaoMountains(holderGetter, holderGetter1));
+		bootstapContext.register(SHAXIMIAO_ARID_LAKES, JurassicBiomes.shaximiaoDriedLakes(holderGetter, holderGetter1));
+		
 		bootstapContext.register(HELL_CREEK_HARDWOOD_FOREST, CretaceousBiomes.hellCreekHardwoodForest(holderGetter, holderGetter1));
 		bootstapContext.register(HELL_CREEK_CLEARING, CretaceousBiomes.hellCreekClearing(holderGetter, holderGetter1));
 		bootstapContext.register(HELL_CREEK_BLUFFS, CretaceousBiomes.hellCreekBluffs(holderGetter, holderGetter1));

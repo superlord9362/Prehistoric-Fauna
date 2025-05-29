@@ -19,7 +19,7 @@ and a 5% chance of being passive.
 Sleep Cycle: Cathmeral
 
 
-<image><drawings_ankylosaurus.png 33 6 102 110 23 14 6.5>
+<image><drawings_ankylosaurus.png 33 6 102 173 23 14 6.5>
 
 
 

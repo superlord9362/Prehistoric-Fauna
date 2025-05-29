@@ -4,9 +4,7 @@
       "type": "minecraft:overworld",
       "generator": {
         "type": "prehistoricfauna:prehistoric_chunk_generator",
-        "biome_source": {
-          "type": "prehistoricfauna:prehistoric_biome_source"
-        },
+        "biome_source": {},
         "settings": "prehistoricfauna:cretaceous_noise_settings"
       }
     },

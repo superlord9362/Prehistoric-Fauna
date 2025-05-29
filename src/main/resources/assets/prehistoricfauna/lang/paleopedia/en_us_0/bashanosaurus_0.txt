@@ -1,0 +1,39 @@
+Found In: Shaximiao
+
+Drops: 0-2 Thagomizers, 0-2 
+Osteoderms, 1-3 Small Raw 
+Thyreophoran
+
+Diet: Herbivore
+
+Breeding Item: Zamites Cone
+
+Max Health: 15
+
+Max Hunger: 38
+
+Temperaments: Bashanosaurus has 
+an 80% chance of being territorial, 
+a 15% chance of being protective,
+and a 5% chance of being 
+aggressive. 
+
+<image><drawings_ankylosaurus.png 29 4 152 47 22 16 7.25>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sleep Cycle: Crepuscular
+
+Behavior: Investigation underway!

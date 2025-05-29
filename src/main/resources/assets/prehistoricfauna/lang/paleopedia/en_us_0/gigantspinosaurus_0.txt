@@ -1,0 +1,38 @@
+Found In: Shaximiao
+
+Drops: 0-2 Thagomizers, 1-3 Large 
+Raw Thyreophoran
+
+Diet: Herbivore
+
+Breeding Item: Otozamites
+
+Max Health: 40
+
+Max Hunger: 100
+
+Temperaments: Gigantspinosaurus 
+has an 85% chance of being 
+territorial, and a 15% chance of 
+being protective.
+
+Sleep Cycle: Cathemeral
+
+<image><drawings_ankylosaurus.png 30 3 151 85 23 20 7>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Investigation underway!

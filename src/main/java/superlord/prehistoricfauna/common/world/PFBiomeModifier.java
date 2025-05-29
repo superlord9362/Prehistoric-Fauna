@@ -29,13 +29,13 @@ public class PFBiomeModifier implements BiomeModifier {
 		})).apply(p_48644_, p_48644_.stable(PFBiomeModifier::new));
 	});	
 
-	public final Holder<PlacedFeature> largeMetasequoiaTrees, rareSmallMetasequoiaTrees, smallAraucariaTrees, rareEphedra, smallGinkgoTrees, rareLargeGinkgoTrees, smallMixedGingkoTrees, rareMixedLargeGinkgoTrees, rareSmallYellowGinkgoTrees, taxusTrees, clubmoss, rareNelumbo, azolla, marchantia, algae, waterloggedHorsetails, horsetails, rareTaxodiumTrees, taxodiumKnees, osmunda, tallOsmunda, crassostreaOysters;
+	public final Holder<PlacedFeature> largeMetasequoiaTrees, rareSmallMetasequoiaTrees, smallAraucariaTrees, rareEphedra, smallGinkgoTrees, rareLargeGinkgoTrees, smallMixedGingkoTrees, rareMixedLargeGinkgoTrees, rareSmallYellowGinkgoTrees, taxusTrees, clubmoss, rareNelumbo, azolla, marchantia, algae, waterloggedHorsetails, horsetails, rareTaxodiumTrees, taxodiumKnees, osmunda, tallOsmunda, crassostreaOysters, rareLargeAraucariaTrees;
 
 	public PFBiomeModifier(HolderGetter<PlacedFeature> feature) {
-		this(feature.getOrThrow(PFPlacedFeatures.LARGE_METASEQUOIA_TREES), feature.getOrThrow(PFPlacedFeatures.SPARSE_SMALL_METASEQUOIA_TREES), feature.getOrThrow(PFPlacedFeatures.SMALL_ARAUCARIA_TREES), feature.getOrThrow(PFPlacedFeatures.RARE_EPHEDRA), feature.getOrThrow(PFPlacedFeatures.SMALL_GINKGO_TREES), feature.getOrThrow(PFPlacedFeatures.RARE_LARGE_GINKGO_TREES), feature.getOrThrow(PFPlacedFeatures.SMALL_MIXED_GINKGO_TREES), feature.getOrThrow(PFPlacedFeatures.RARE_MIXED_LARGE_GINKGO_TREES), feature.getOrThrow(PFPlacedFeatures.SPARSE_SMALL_YELLOW_GINKGO_TREES), feature.getOrThrow(PFPlacedFeatures.TAXUS_TREES), feature.getOrThrow(PFPlacedFeatures.CLUBMOSS), feature.getOrThrow(PFPlacedFeatures.RARE_NELUMBO), feature.getOrThrow(PFPlacedFeatures.AZOLLA), feature.getOrThrow(PFPlacedFeatures.MARCHANTIA), feature.getOrThrow(PFPlacedFeatures.ALGAE), feature.getOrThrow(PFPlacedFeatures.WATERLOGGED_HORSETAILS), feature.getOrThrow(PFPlacedFeatures.HORSETAILS), feature.getOrThrow(PFPlacedFeatures.RARE_TAXODIUM_TREES), feature.getOrThrow(PFPlacedFeatures.TAXODIUM_KNEES), feature.getOrThrow(PFPlacedFeatures.OSMUNDA), feature.getOrThrow(PFPlacedFeatures.TALL_OSMUNDA), feature.getOrThrow(PFPlacedFeatures.CRASSOSTREA_OYSTERS));
+		this(feature.getOrThrow(PFPlacedFeatures.LARGE_METASEQUOIA_TREES), feature.getOrThrow(PFPlacedFeatures.SPARSE_SMALL_METASEQUOIA_TREES), feature.getOrThrow(PFPlacedFeatures.SMALL_ARAUCARIA_TREES), feature.getOrThrow(PFPlacedFeatures.RARE_EPHEDRA), feature.getOrThrow(PFPlacedFeatures.SMALL_GINKGO_TREES), feature.getOrThrow(PFPlacedFeatures.RARE_LARGE_GINKGO_TREES), feature.getOrThrow(PFPlacedFeatures.SMALL_MIXED_GINKGO_TREES), feature.getOrThrow(PFPlacedFeatures.RARE_MIXED_LARGE_GINKGO_TREES), feature.getOrThrow(PFPlacedFeatures.SPARSE_SMALL_YELLOW_GINKGO_TREES), feature.getOrThrow(PFPlacedFeatures.TAXUS_TREES), feature.getOrThrow(PFPlacedFeatures.CLUBMOSS), feature.getOrThrow(PFPlacedFeatures.RARE_NELUMBO), feature.getOrThrow(PFPlacedFeatures.AZOLLA), feature.getOrThrow(PFPlacedFeatures.MARCHANTIA), feature.getOrThrow(PFPlacedFeatures.ALGAE), feature.getOrThrow(PFPlacedFeatures.WATERLOGGED_HORSETAILS), feature.getOrThrow(PFPlacedFeatures.HORSETAILS), feature.getOrThrow(PFPlacedFeatures.RARE_TAXODIUM_TREES), feature.getOrThrow(PFPlacedFeatures.TAXODIUM_KNEES), feature.getOrThrow(PFPlacedFeatures.OSMUNDA), feature.getOrThrow(PFPlacedFeatures.TALL_OSMUNDA), feature.getOrThrow(PFPlacedFeatures.CRASSOSTREA_OYSTERS), feature.getOrThrow(PFPlacedFeatures.RARE_LARGE_ARAUCARIA_TREES));
 	}
 
-	public PFBiomeModifier(Holder<PlacedFeature> largeMetasequoiaTrees, Holder<PlacedFeature> rareSmallMetasequoiaTrees, Holder<PlacedFeature> smallAraucariaTrees, Holder<PlacedFeature> rareEphedra, Holder<PlacedFeature> smallGinkgoTrees, Holder<PlacedFeature> rareLargeGinkgoTrees, Holder<PlacedFeature> smallMixedGinkgoTrees, Holder<PlacedFeature> rareMixedLargeGinkgoTrees, Holder<PlacedFeature> rareSmallYellowGinkgoTrees, Holder<PlacedFeature> taxusTrees, Holder<PlacedFeature> clubmoss, Holder<PlacedFeature> rareNelumbo, Holder<PlacedFeature> azolla, Holder<PlacedFeature> marchantia, Holder<PlacedFeature> algae, Holder<PlacedFeature> waterloggedHorsetails, Holder<PlacedFeature> horsetails, Holder<PlacedFeature> rareTaxodiumTrees, Holder<PlacedFeature> taxodiumKnees, Holder<PlacedFeature> osmunda, Holder<PlacedFeature> tallOsmunda, Holder<PlacedFeature> crassostreaOysters) {
+	public PFBiomeModifier(Holder<PlacedFeature> largeMetasequoiaTrees, Holder<PlacedFeature> rareSmallMetasequoiaTrees, Holder<PlacedFeature> smallAraucariaTrees, Holder<PlacedFeature> rareEphedra, Holder<PlacedFeature> smallGinkgoTrees, Holder<PlacedFeature> rareLargeGinkgoTrees, Holder<PlacedFeature> smallMixedGinkgoTrees, Holder<PlacedFeature> rareMixedLargeGinkgoTrees, Holder<PlacedFeature> rareSmallYellowGinkgoTrees, Holder<PlacedFeature> taxusTrees, Holder<PlacedFeature> clubmoss, Holder<PlacedFeature> rareNelumbo, Holder<PlacedFeature> azolla, Holder<PlacedFeature> marchantia, Holder<PlacedFeature> algae, Holder<PlacedFeature> waterloggedHorsetails, Holder<PlacedFeature> horsetails, Holder<PlacedFeature> rareTaxodiumTrees, Holder<PlacedFeature> taxodiumKnees, Holder<PlacedFeature> osmunda, Holder<PlacedFeature> tallOsmunda, Holder<PlacedFeature> crassostreaOysters, Holder<PlacedFeature> rareLargeAraucariaTrees) {
 		this.largeMetasequoiaTrees = largeMetasequoiaTrees;
 		this.rareSmallMetasequoiaTrees = rareSmallMetasequoiaTrees;
 		this.smallAraucariaTrees = smallAraucariaTrees;
@@ -58,6 +58,7 @@ public class PFBiomeModifier implements BiomeModifier {
 		this.osmunda = osmunda;
 		this.tallOsmunda = tallOsmunda;
 		this.crassostreaOysters = crassostreaOysters;
+		this.rareLargeAraucariaTrees = rareLargeAraucariaTrees;
 	}
 
 	@Override
@@ -72,6 +73,10 @@ public class PFBiomeModifier implements BiomeModifier {
 					if (biome.is(Biomes.SAVANNA_PLATEAU) ) {
 						builder.getGenerationSettings().addFeature(Decoration.VEGETAL_DECORATION, smallAraucariaTrees);
 					}
+					if (biome.is(Biomes.WINDSWEPT_SAVANNA)) {
+						builder.getGenerationSettings().addFeature(Decoration.VEGETAL_DECORATION, smallAraucariaTrees);
+						builder.getGenerationSettings().addFeature(Decoration.VEGETAL_DECORATION, rareLargeAraucariaTrees);
+					}
 					if (biome.is(Biomes.DESERT)) {
 						builder.getGenerationSettings().addFeature(Decoration.VEGETAL_DECORATION, rareEphedra);
 					}
@@ -81,6 +86,7 @@ public class PFBiomeModifier implements BiomeModifier {
 					if (biome.is(Biomes.STONY_PEAKS)) {
 						builder.getGenerationSettings().addFeature(Decoration.VEGETAL_DECORATION, smallGinkgoTrees);
 						builder.getGenerationSettings().addFeature(Decoration.VEGETAL_DECORATION, rareLargeGinkgoTrees);
+						builder.getGenerationSettings().addFeature(Decoration.VEGETAL_DECORATION, clubmoss);
 					}
 					if (biome.is(Biomes.MEADOW)) {
 						builder.getGenerationSettings().addFeature(Decoration.VEGETAL_DECORATION, smallMixedGingkoTrees);
@@ -90,7 +96,6 @@ public class PFBiomeModifier implements BiomeModifier {
 					if (biome.is(Biomes.WINDSWEPT_FOREST)) {
 						builder.getGenerationSettings().addFeature(Decoration.VEGETAL_DECORATION, rareSmallYellowGinkgoTrees);
 						builder.getGenerationSettings().addFeature(Decoration.VEGETAL_DECORATION, taxusTrees);
-						builder.getGenerationSettings().addFeature(Decoration.VEGETAL_DECORATION, clubmoss);
 					}
 					if (biome.is(Biomes.SUNFLOWER_PLAINS)) {
 						builder.getGenerationSettings().addFeature(Decoration.VEGETAL_DECORATION, rareSmallYellowGinkgoTrees);
@@ -125,7 +130,6 @@ public class PFBiomeModifier implements BiomeModifier {
 					}
 					if (biome.is(Biomes.MANGROVE_SWAMP)) {
 						builder.getGenerationSettings().addFeature(Decoration.VEGETAL_DECORATION, rareNelumbo);
-						builder.getGenerationSettings().addFeature(Decoration.VEGETAL_DECORATION, azolla);
 						builder.getGenerationSettings().addFeature(Decoration.VEGETAL_DECORATION, marchantia);
 						builder.getGenerationSettings().addFeature(Decoration.VEGETAL_DECORATION, algae);
 						builder.getGenerationSettings().addFeature(Decoration.VEGETAL_DECORATION, crassostreaOysters);
@@ -140,6 +144,9 @@ public class PFBiomeModifier implements BiomeModifier {
 					}
 					if (biome.is(Biomes.STONY_SHORE)) {
 						builder.getGenerationSettings().addFeature(Decoration.VEGETAL_DECORATION, crassostreaOysters);
+					}
+					if (biome.is(Biomes.JUNGLE) || biome.is(Biomes.BAMBOO_JUNGLE) || biome.is(Biomes.SPARSE_JUNGLE)) {
+						builder.getGenerationSettings().addFeature(Decoration.VEGETAL_DECORATION, marchantia);
 					}
 				}
 				if (PrehistoricFaunaConfig.extantEntitySpawns) {

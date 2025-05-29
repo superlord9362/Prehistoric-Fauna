@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "prehistoricfauna:block/cupressinocladus_planks",
+        "top": "prehistoricfauna:block/cupressinocladus_planks",
+        "side": "prehistoricfauna:block/cupressinocladus_planks"
+    }
+}

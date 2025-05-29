@@ -1,7 +1,13 @@
 package superlord.prehistoricfauna.common.blocks;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BushBlock;
@@ -9,10 +15,12 @@ import net.minecraft.world.level.block.IceBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.PlantType;
 import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFItems;
 
 public class NelumboPadBlock extends BushBlock {
 
@@ -37,9 +45,21 @@ public class NelumboPadBlock extends BushBlock {
 		return (fluidstate.getType() == Fluids.WATER || p_58174_.getBlock() instanceof IceBlock) && fluidstate1.getType() == Fluids.EMPTY;
 	}
 
+	@SuppressWarnings("deprecation")
+	public void entityInside(BlockState p_58164_, Level p_58165_, BlockPos p_58166_, Entity p_58167_) {
+		super.entityInside(p_58164_, p_58165_, p_58166_, p_58167_);
+		if (p_58165_ instanceof ServerLevel && p_58167_ instanceof Boat) {
+			p_58165_.destroyBlock(new BlockPos(p_58166_), true, p_58167_);
+		}
+	}
+
 	public boolean canSurvive(BlockState p_51028_, LevelReader p_51029_, BlockPos p_51030_) {
 		BlockPos blockpos = p_51030_.below();
 		return p_51029_.getBlockState(blockpos).is(PFBlocks.NELUMBO_STEM.get());
+	}
+
+	public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter level, BlockPos pos, Player player) {
+		return new ItemStack(PFItems.NELUMBO.get().asItem());
 	}
 
 }

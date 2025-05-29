@@ -123,6 +123,24 @@
         "maxCount": 2,
         "minCount": 1,
         "weight": 7
+      },
+      {
+        "type": "prehistoricfauna:kayentachelys",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 8
+      },
+      {
+        "type": "prehistoricfauna:kayentasuchus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 4
+      },
+      {
+        "type": "prehistoricfauna:kayentavenator",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 6
       }
     ],
     "misc": [],

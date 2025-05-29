@@ -1,0 +1,6 @@
+{
+    "parent": "block/leaves",
+    "textures": {
+        "all": "prehistoricfauna:block/cupressinocladus_leaves"
+    }
+}

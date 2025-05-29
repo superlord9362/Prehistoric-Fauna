@@ -128,6 +128,14 @@ public class PFBoat extends Boat {
 			return PFItems.SCHIZOLEPIDOPSIS_BOAT.get();
 		case PODOZAMITES:
 			return PFItems.PODOZAMITES_BOAT.get();
+		case CUPRESSINOCLADUS:
+			return PFItems.CUPRESSINOCLADUS_BOAT.get();
+		case ELATIDES:
+			return PFItems.ELATIDES_BOAT.get();
+		case PHOENICOPSIS:
+			return PFItems.PHOENICOPSIS_BOAT.get();
+		case FRENELOPSIS:
+			return PFItems.FRENELOPSIS_BOAT.get();
 		}
 	}
 
@@ -153,6 +161,10 @@ public class PFBoat extends Boat {
 		CZEKANOWSKIA(PFBlocks.CZEKANOWSKIA_PLANKS.get(), "czekanowskia"),
 		SCHIZOLEPIDOPSIS(PFBlocks.SCHIZOLEPIDOPSIS_PLANKS.get(), "schizolepidopsis"),
 		PODOZAMITES(PFBlocks.PODOZAMITES_PLANKS.get(), "podozamites"),
+		CUPRESSINOCLADUS(PFBlocks.CUPRESSINOCLADUS_PLANKS.get(), "cupressinocladus"),
+		ELATIDES(PFBlocks.ELATIDES_PLANKS.get(), "elatides"),
+		PHOENICOPSIS(PFBlocks.PHOENICOPSIS_PLANKS.get(), "phoenicopsis"),
+		FRENELOPSIS(PFBlocks.FRENELOPSIS_PLANKS.get(), "frenelopsis"),
 		NEOCALAMITES(PFBlocks.NEOCALAMITES_PLANKS.get(), "neocalamites");
 
 		private final String name;

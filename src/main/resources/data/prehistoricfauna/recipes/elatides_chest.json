@@ -1,0 +1,24 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"group": "elatides_chest",
+	"pattern": [
+		"###",
+		"# #",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:elatides_planks"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:elatides_chest",
+		"count": 1
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:quark_flag",
+			"flag": "variant_chests"
+		}
+	]
+}

@@ -169,7 +169,7 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 					if (sample > 0) {
 						BiomeManager biomeManager = new BiomeManager((TriassicBiomeSource)this.getBiomeSource(), this.seed);
 						Holder<Biome> biome = biomeManager.getBiome(new BlockPos(x + chunk.getPos().getMinBlockX(), pos.getY(), z + chunk.getPos().getMinBlockZ()));
-						if (biome.is(PFBiomes.CRETACEOUS_HENOSTONE_CAVE)) {
+						if (biome.is(PFBiomes.TRIASSIC_HENOSTONE_CAVE)) {
 							state = PFBlocks.HENOSTONE.get().defaultBlockState();
 						} else {
 							if (y < 0 +- random.nextInt(5)) {
@@ -239,7 +239,15 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 			Holder<Biome> nearbyBiome = biomeManager.getBiome(mutableBlockPos);
 
 			if (nearbyBiome != biome) {
-				if (!nearbyBiome.is(PFBiomes.ISCHIGUALASTO_HILLS) || biome.is(PFBiomes.ISCHIGUALASTO_HILLS) || !nearbyBiome.is(PFBiomes.CHINLE_RIVER) || biome.is(PFBiomes.CHINLE_RIVER)) {
+				if (nearbyBiome.is(PFBiomes.CHINLE_RIVER) || nearbyBiome.is(PFBiomes.ISCHIGUALASTO_RIVER)) {
+					double distToLowCornerSqr = mutableBlockPos.distToLowCornerSqr(x, y, z);
+
+					if (distToLowCornerSqr < Mth.square(blendRadius)) {
+						double delta = distToLowCornerSqr / Mth.square(blendRadius);
+						blendedDensity += blendSmoothstep((float) delta, flatsSample(x, y, z), baseDensity);
+						blendCount++;
+					}
+				} else {
 					double distToLowCornerSqr = mutableBlockPos.distToLowCornerSqr(x, y, z);
 
 					if (distToLowCornerSqr < Mth.square(blendRadius)) {
@@ -247,14 +255,6 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 
 						double delta = distToLowCornerSqr / Mth.square(blendRadius);
 						blendedDensity += blendSmoothstep((float) delta, nearbyDensity, baseDensity);
-						blendCount++;
-					}
-				} else {
-					double distToLowCornerSqr = mutableBlockPos.distToLowCornerSqr(x, y, z);
-
-					if (distToLowCornerSqr < Mth.square(blendRadius)) {
-						double delta = distToLowCornerSqr / Mth.square(blendRadius);
-						blendedDensity += blendSmoothstep((float) delta, flatsSample(x, y, z), baseDensity);
 						blendCount++;
 					}
 				}
@@ -268,12 +268,12 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 
 		return finalDensity;
 	}
-	
+
 	private float blendSmoothstep(float delta, float value1, float value2) {
 		float smoothDelta = delta * delta * (3 - 2 * delta); // Smoothstep function
 		return Mth.lerp(smoothDelta, value1, value2);
 	}
-	
+
 	public float flatsSample(float x, float y, float z) {
 		int seaLevel = this.settings.value().seaLevel();
 		if (y > seaLevel) y = y + 3;
@@ -293,105 +293,108 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 		sample += Mth.abs(noise.GetNoise(x * frequency3, y * frequency3, z * frequency3) * 0.05F);
 		sample -= 0.15F;
 		sample -= flatsNoise;
-		 sample -= 2;
+		sample -= 2;
 		return sample;
 	}
-	
+
 	public float calculateBaseDensity(float x, float y, float z, Holder<Biome> biome) {
 		int seaLevel = this.settings.value().seaLevel();
 		if (y > seaLevel) y = y + 3;
+
 		float frequency1 = 0.3F;
 		float sample = noise.GetNoise(x * frequency1, y * frequency1 * 0.8F, z * frequency1);
+
 		float floor = -0.2F;
 		float smoothness = 0.001F;
 		float h = Mth.clamp(0.5F + 0.5F * (sample - floor) / smoothness, 0.0F, 1.0F);
 		sample = Mth.lerp(sample, floor, h) - smoothness * h * (1.0F - h);
-		
-		float fluctuationFrequency = 0.05F; // Low frequency for smooth changes
-		float fluctuationNoise = noise.GetNoise(x * fluctuationFrequency, y * fluctuationFrequency, z * fluctuationFrequency) * 0.1F; // Adjust amplitude as needed
-		sample += fluctuationNoise;
-		if (biome.is(PFBiomes.CHINLE_RIVER) || biome.is(PFBiomes.ISCHIGUALASTO_RIVER)) {
-			float riverFrequency = 0.1F;
-			float riverNoise = noise.GetNoise((float) x * riverFrequency, 0, (float) z * riverFrequency);
-			riverNoise = (1.0F - riverNoise * riverNoise);
-			riverNoise *= (y - seaLevel);
-			sample -= riverNoise;
-			sample *= 2.3;
-			sample -= 8;
-			//return sample;
-		} else if (biome.is(PFBiomes.CHINLE_SWAMP)) {
-			float swampFrequency = 1.5F;
-			float swampNoise = noise.GetNoise((float) x * swampFrequency, 0, (float) z * swampFrequency);
-			swampNoise = (1.5F - swampNoise * swampNoise);
-			swampNoise *= (y - seaLevel) * 1.1;
-			sample *= 2.3F;
-			sample -= swampNoise;
-			sample -= 5.75F;
-		} else if (biome.is(PFBiomes.CHINLE_WOODED_MOUNTAINS)) {
-			float bigRockFrequency = 0.4F;
-			float rockNoise = noise.GetNoise(x * bigRockFrequency, (y * frequency1) + 512, z * bigRockFrequency);
-			float bigRockNoise = Mth.sqrt(sample * sample + rockNoise * rockNoise);
-			bigRockNoise = (sample < 0 || rockNoise < 0) ? 1 : bigRockNoise;
-			float bigRockStrength = 0.2F;
-			bigRockNoise *= bigRockStrength;
-			bigRockNoise += (1F - bigRockStrength);
+		float bigRockFrequency = 0.4F;
+		float rockNoise = noise.GetNoise(x * bigRockFrequency, (y * frequency1) + 512, z * bigRockFrequency);
+		float bigRockNoise = Mth.sqrt(sample * sample + rockNoise * rockNoise);
+		bigRockNoise = (sample < 0 || rockNoise < 0) ? 1 : bigRockNoise;
+		float bigRockStrength = 0.2F;
+		bigRockNoise *= bigRockStrength;
+		bigRockNoise += (1F - bigRockStrength);
 
-			float hugeCliffFrequency = 0.01F;
-			float hugeCliffNoise = noise.GetNoise((float) x * hugeCliffFrequency, 2834, (float) z * hugeCliffFrequency);
-			hugeCliffNoise = (float) Mth.clamp(Math.pow(1.3 * hugeCliffNoise, 12), 0, 1) * 0.4F;
-			float hugeCliffWobble = -0.5F * Mth.cos(2F * Mth.PI * hugeCliffNoise) + 0.5F;
-			hugeCliffWobble *= 1.5F;
+		float hugeCliffFrequency = 0.1F;
+		float hugeCliffNoise = noise.GetNoise(x * hugeCliffFrequency, 2834, z * hugeCliffFrequency);
+		hugeCliffNoise = (float) Mth.clamp(Math.pow(1.3 * hugeCliffNoise, 12), 0, 1) * 5;
+		float hugeCliffWobble = -0.5F * Mth.cos(2F * Mth.PI * hugeCliffNoise) + 0.5F;
+		hugeCliffWobble *= 1.5F;
 
-			float lumpFrequency = 4.3F;
-			float cliffLumpiness = noise.GetNoise((float) x * lumpFrequency, (float) y * lumpFrequency * 0.8F, (float) z * lumpFrequency);
-			cliffLumpiness *= hugeCliffWobble * 0.1F;
-			sample += cliffLumpiness * 0.4;
-			sample -= ((y - this.settings.value().seaLevel() - hugeCliffNoise * 64) / (16.0F / bigRockNoise * (hugeCliffWobble + 1)));
-		} else if (biome.is(PFBiomes.ISCHIGUALASTO_CLEARING) || biome.is(PFBiomes.ISCHIGUALASTO_FOREST) || biome.is(PFBiomes.CHINLE_FLATS)) {
-			float flatsFrequency = 3F;
-			float flatsNoise = noise.GetNoise((float) x * flatsFrequency, 0, (float) z * flatsFrequency);
-			flatsNoise = (1.0F - flatsNoise * flatsNoise);
-			flatsNoise *= (y - seaLevel);
-			sample -= flatsNoise;
-		} else if (biome.is(PFBiomes.ISCHIGUALASTO_HILLS)) {
-			float bigRockFrequency = 0.4F;
-			float rockNoise = noise.GetNoise(x * bigRockFrequency, (y * frequency1) + 512, z * bigRockFrequency);
-			float bigRockNoise = Mth.sqrt(sample * sample + rockNoise * rockNoise);
-			bigRockNoise = (sample < 0 || rockNoise < 0) ? 1 : bigRockNoise;
-			float bigRockStrength = 0.2F;
-			bigRockNoise *= bigRockStrength;
-			bigRockNoise += (1F - bigRockStrength);
+		float lumpFrequency = 4.3F;
+		float cliffLumpiness = noise.GetNoise(x * lumpFrequency, y * lumpFrequency * 0.8F, z * lumpFrequency);
+		cliffLumpiness *= hugeCliffWobble * 0.1F;
 
-			float hugeCliffFrequency = 0.01F;
-			float hugeCliffNoise = noise.GetNoise((float) x * hugeCliffFrequency, 2834, (float) z * hugeCliffFrequency);
-			hugeCliffNoise = (float) Mth.clamp(Math.pow(1.3 * hugeCliffNoise, 12), 0, 1) * 0.2F;
-			float hugeCliffWobble = -0.5F * Mth.cos(2F * Mth.PI * hugeCliffNoise) + 0.5F;
-			hugeCliffWobble *= 1.5F;
+		float riverFrequency = 0.1F;
+		float riverNoise = noise.GetNoise((float) x * riverFrequency, 0, (float) z * riverFrequency);
+		riverNoise = (1.0F - riverNoise * riverNoise);
+		riverNoise *= (y - seaLevel);
+		float flatsFrequency = 3F;
+		float flatsNoise = noise.GetNoise((float) x * flatsFrequency, 0, (float) z * flatsFrequency);
+		flatsNoise = (1.0F - flatsNoise * flatsNoise);
+		flatsNoise *= (y - seaLevel);
 
-			float lumpFrequency = 4.3F;
-			float cliffLumpiness = noise.GetNoise((float) x * lumpFrequency, (float) y * lumpFrequency * 0.8F, (float) z * lumpFrequency);
-			cliffLumpiness *= hugeCliffWobble * 0.1F;
-			sample += cliffLumpiness * 0.4;
-			sample -= ((y - this.settings.value().seaLevel() - hugeCliffNoise * 64) / (16.0F / bigRockNoise * (hugeCliffWobble + 1)));			
+		float bigHillRockFrequency = 0.4F;
+		float hillRockNoise = noise.GetNoise(x * bigHillRockFrequency, (y * frequency1) + 512, z * bigHillRockFrequency);
+		float bigHillRockNoise = Mth.sqrt(sample * sample + hillRockNoise * hillRockNoise);
+		bigHillRockNoise = (sample < 0 || hillRockNoise < 0) ? 1 : bigHillRockNoise;
+		float bigHillRockStrength = 0.2F;
+		bigHillRockNoise *= bigHillRockStrength;
+		bigHillRockNoise += (1F - bigHillRockStrength);
+
+		float hillFrequency = 0.1F;
+		float hillNoise = noise.GetNoise(x * hillFrequency, 2834, z * hillFrequency);
+		hillNoise = (float) Mth.clamp(Math.pow(1.3 * hillNoise, 12), 0, 1) * 0.4F;
+		float hillWobble = -0.5F * Mth.cos(2F * Mth.PI * hillNoise) + 0.5F;
+		hillWobble *= 1.5F;
+
+		float hillLumpFrequency = 4.3F;
+		float hillLumpiness = noise.GetNoise(x * hillLumpFrequency, y * hillLumpFrequency * 1.8F, z * hillLumpFrequency);
+		hillLumpiness *= hillWobble * 0.1F;
+
+		float swampFrequency = 1.5F;
+		float swampNoise = noise.GetNoise((float) x * swampFrequency, 0, (float) z * swampFrequency);
+		swampNoise = (1.5F - swampNoise * swampNoise);
+		swampNoise *= (y - seaLevel + 0.55) * 1.1;
+
+		if (biome.is(PFBiomes.ISCHIGUALASTO_HILLS)) {
+			sample += hillLumpiness;
+		}
+		if (biome.is(PFBiomes.CHINLE_WOODED_MOUNTAINS)) {
+			sample += cliffLumpiness;
 		}
 		float frequency2 = 2.5F;
 		sample += Mth.abs(noise.GetNoise(x * frequency2, y * frequency2, z * frequency2) * 0.2F);
 		float frequency3 = 3.5F;
 		sample += Mth.abs(noise.GetNoise(x * frequency3, y * frequency3, z * frequency3) * 0.05F);
 		sample -= 0.15F;
+
+		if (biome.is(PFBiomes.CHINLE_RIVER) || biome.is(PFBiomes.ISCHIGUALASTO_RIVER)) {
+			sample -= riverNoise;
+			sample *= 8;
+			sample -= 22;
+		}
+		if (biome.is(PFBiomes.ISCHIGUALASTO_CLEARING) || biome.is(PFBiomes.ISCHIGUALASTO_FOREST) || biome.is(PFBiomes.CHINLE_FLATS)) {
+			sample -= flatsNoise;
+		}
+		if (biome.is(PFBiomes.ISCHIGUALASTO_HILLS)) {
+			sample *= 1.6F;
+			sample += 0.4;
+			sample -= (y - this.settings.value().seaLevel() - hillNoise * 64) / (16.0F / bigHillRockNoise * (hillWobble + 1));
+			sample *= 1.8F;
+		}
+		if (biome.is(PFBiomes.CHINLE_WOODED_MOUNTAINS)) {
+			sample *= 2.4F;
+			sample += 1.25;
+			sample -= (y - this.settings.value().seaLevel() - hugeCliffNoise * 64) / (16.0F / bigRockNoise * (hugeCliffWobble + 1));
+		}
+		if (biome.is(PFBiomes.CHINLE_SWAMP)) {
+			sample -= swampNoise;
+			sample *= 3.3F;
+			sample -= 4.75F;
+		}
 		if (y < 60) {
-			float hillFrequency = 0.1F;
-			float hillNoise = noise.GetNoise(x * hillFrequency, 2834, z * hillFrequency);
-			hillNoise = (float) Mth.clamp(Math.pow(1.3 * hillNoise, 12), 0, 1) * 0.4F;
-			float hillWobble = -0.5F * Mth.cos(2F * Mth.PI * hillNoise) + 0.5F;
-			hillWobble *= 1.5F;
-			float bigHillRockFrequency = 0.4F;
-			float hillRockNoise = noise.GetNoise(x * bigHillRockFrequency, (y * frequency1) + 512, z * bigHillRockFrequency);
-			float bigHillRockNoise = Mth.sqrt(sample * sample + hillRockNoise * hillRockNoise);
-			bigHillRockNoise = (sample < 0 || hillRockNoise < 0) ? 1 : bigHillRockNoise;
-			float bigHillRockStrength = 0.2F;
-			bigHillRockNoise *= bigHillRockStrength;
-			bigHillRockNoise += (1F - bigHillRockStrength);
 			sample *= 1;
 			sample += 0.4;
 			sample -= (y - this.settings.value().seaLevel() - hillNoise * 64) / (16.0F / bigHillRockNoise * (hillWobble + 1));
@@ -399,12 +402,12 @@ public class TriassicChunkGenerator extends ChunkGenerator {
 		}
 		if (y > -60) {
 			float caveSample;
-			float sample1 = noise.GetNoise(x, y, z);
-			float sample2 = noise.GetNoise(x, y + 10239129,  z);
-			caveSample = sample1 * sample1  + sample2 * sample2;
+			float sample1 = noise.GetNoise(x,  y, z);
+			float sample2 = noise.GetNoise(x, y + 10381903, z);
+			caveSample = sample1 * sample1 + sample2 * sample2;
 			caveSample /= 2;
 			caveSample *= 1.5;
-			caveSample -= 0.02; 
+			caveSample -= 0.02;
 			sample = Math.min(sample, caveSample);
 		}
 		return sample;

@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Chromogis
 
 public class ChromogisaurusModel extends EntityModel<Chromogisaurus> {
 	private final ModelPart RightThigh;
-	private final ModelPart LeftLeg_1;
+	private final ModelPart RightLeg;
 	private final ModelPart LeftThigh;
 	private final ModelPart LeftLeg;
 	private final ModelPart Body;
@@ -28,7 +28,7 @@ public class ChromogisaurusModel extends EntityModel<Chromogisaurus> {
 
 	public ChromogisaurusModel(ModelPart root) {
 		this.RightThigh = root.getChild("RightThigh");
-		this.LeftLeg_1 = RightThigh.getChild("LeftLeg_1");
+		this.RightLeg = RightThigh.getChild("RightLeg");
 		this.LeftThigh = root.getChild("LeftThigh");
 		this.LeftLeg = LeftThigh.getChild("LeftLeg");
 		this.Body = root.getChild("Body");
@@ -45,7 +45,7 @@ public class ChromogisaurusModel extends EntityModel<Chromogisaurus> {
 
 		PartDefinition RightThigh = partdefinition.addOrReplaceChild("RightThigh", CubeListBuilder.create().texOffs(39, 0).addBox(-0.5F, 0.0F, -1.0F, 2.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(1.0F, 15.0F, 2.0F));
 
-		PartDefinition LeftLeg_1 = RightThigh.addOrReplaceChild("LeftLeg_1", CubeListBuilder.create().texOffs(60, 0).addBox(-1.5F, 0.0F, -3.0F, 3.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.6F, 5.0F, 1.0F));
+		PartDefinition RightLeg = RightThigh.addOrReplaceChild("RightLeg", CubeListBuilder.create().texOffs(60, 0).addBox(-1.5F, 0.0F, -3.0F, 3.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.6F, 5.0F, 1.0F));
 
 		PartDefinition LeftThigh = partdefinition.addOrReplaceChild("LeftThigh", CubeListBuilder.create().texOffs(30, 0).addBox(-1.5F, 0.0F, -1.0F, 2.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.0F, 15.0F, 2.0F));
 
@@ -94,10 +94,10 @@ public class ChromogisaurusModel extends EntityModel<Chromogisaurus> {
 				this.RightThigh.z = Mth.lerp(sleepProgress, 2, 5.0F);
 				this.RightThigh.xRot = Mth.lerp(sleepProgress, 0, -1.5653858487242918F);
 				this.RightThigh.yRot = Mth.lerp(sleepProgress, 0, -0.3127630032889644F);
-				this.LeftLeg_1.x = Mth.lerp(sleepProgress, 0.6F, 0.5F);
-				this.LeftLeg_1.y = Mth.lerp(sleepProgress, 5, 3.6F);
-				this.LeftLeg_1.z = Mth.lerp(sleepProgress, 1, 0.9F);
-				this.LeftLeg_1.zRot = Mth.lerp(sleepProgress, 0, -0.15620696472454113F);
+				this.RightLeg.x = Mth.lerp(sleepProgress, 0.6F, 0.5F);
+				this.RightLeg.y = Mth.lerp(sleepProgress, 5, 3.6F);
+				this.RightLeg.z = Mth.lerp(sleepProgress, 1, 0.9F);
+				this.RightLeg.zRot = Mth.lerp(sleepProgress, 0, -0.15620696472454113F);
 				this.RightArm.x = Mth.lerp(sleepProgress, 1, 1.9F);
 				this.RightArm.y = Mth.lerp(sleepProgress, 1, 1.4F);
 				this.RightArm.z = Mth.lerp(sleepProgress, -0.6F, -5.1F);
@@ -136,10 +136,10 @@ public class ChromogisaurusModel extends EntityModel<Chromogisaurus> {
 				this.RightThigh.z = Mth.lerp(sleepProgress, 5, 2.0F);
 				this.RightThigh.xRot = Mth.lerp(sleepProgress, -1.5653858487242918F, 0);
 				this.RightThigh.yRot = Mth.lerp(sleepProgress, -0.3127630032889644F, 0);
-				this.LeftLeg_1.x = Mth.lerp(sleepProgress, 0.5F, 0.6F);
-				this.LeftLeg_1.y = Mth.lerp(sleepProgress, 3.6F, 5);
-				this.LeftLeg_1.z = Mth.lerp(sleepProgress, 0.9F, 1);
-				this.LeftLeg_1.zRot = Mth.lerp(sleepProgress, -0.15620696472454113F, 0);
+				this.RightLeg.x = Mth.lerp(sleepProgress, 0.5F, 0.6F);
+				this.RightLeg.y = Mth.lerp(sleepProgress, 3.6F, 5);
+				this.RightLeg.z = Mth.lerp(sleepProgress, 0.9F, 1);
+				this.RightLeg.zRot = Mth.lerp(sleepProgress, -0.15620696472454113F, 0);
 				this.RightArm.x = Mth.lerp(sleepProgress, 1.9F, 1);
 				this.RightArm.y = Mth.lerp(sleepProgress, 1.4F, 1);
 				this.RightArm.z = Mth.lerp(sleepProgress, -5.1F, -0.6F);
@@ -174,10 +174,10 @@ public class ChromogisaurusModel extends EntityModel<Chromogisaurus> {
 					this.Body.xRot = -0.125F;
 					this.Tail.xRot = 0.125F;
 					this.Neck.xRot = 0.125F;
-					this.LeftLeg_1.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
+					this.RightLeg.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.RightThigh.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.LeftLeg.xRot = -0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
-					this.LeftLeg_1.xRot = 0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
+					this.RightLeg.xRot = 0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.LeftArm.xRot = 0.25F;
 					this.RightArm.xRot = 0.25F;
 					this.Tail.yRot = (Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * Mth.sin(0.15F * ageInTicks / 1.5F));
@@ -209,11 +209,11 @@ public class ChromogisaurusModel extends EntityModel<Chromogisaurus> {
 		this.RightThigh.z = 2.0F;
 		this.RightThigh.xRot = 0;
 		this.RightThigh.yRot = 0;
-		this.LeftLeg_1.x = 0.6F;
-		this.LeftLeg_1.y = 5.0F;
-		this.LeftLeg_1.z = 1.0F;
-		this.LeftLeg_1.xRot = 0;
-		this.LeftLeg_1.zRot = 0;
+		this.RightLeg.x = 0.6F;
+		this.RightLeg.y = 5.0F;
+		this.RightLeg.z = 1.0F;
+		this.RightLeg.xRot = 0;
+		this.RightLeg.zRot = 0;
 		this.RightArm.x = 1.5F;
 		this.RightArm.y = 1.0F;
 		this.RightArm.z = -6.0F;
@@ -252,10 +252,10 @@ public class ChromogisaurusModel extends EntityModel<Chromogisaurus> {
 		this.RightThigh.z = 5.0F;
 		this.RightThigh.xRot = -1.5653858487242918F;
 		this.RightThigh.yRot = -0.3127630032889644F;
-		this.LeftLeg_1.x = 0.5F;
-		this.LeftLeg_1.y = 3.6F;
-		this.LeftLeg_1.z = 0.9F;
-		this.LeftLeg_1.zRot = -0.15620696472454113F;
+		this.RightLeg.x = 0.5F;
+		this.RightLeg.y = 3.6F;
+		this.RightLeg.z = 0.9F;
+		this.RightLeg.zRot = -0.15620696472454113F;
 		this.RightArm.x = 1.9F;
 		this.RightArm.y = 1.4F;
 		this.RightArm.z = -5.1F;

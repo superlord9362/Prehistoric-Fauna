@@ -88,7 +88,7 @@ public class Didelphodon extends BurrowingDinosaur {
 	public Didelphodon(EntityType<? extends Didelphodon> type, Level level) {
 		super(type, level);
 		this.setCanPickUpLoot(true);
-		this.setMaxUpStep(1);;
+		this.setMaxUpStep(1.375F);;
 		super.maxHunger = maxHunger;
 	}
 

@@ -1,0 +1,38 @@
+Found In: Kayenta
+
+Drops: Nothing.
+
+Diet: Herbivore
+
+Breeding Item: Horsetails
+
+Max Health: 8
+
+Max Hunger: 20
+
+Temperaments: Kayentachelys has 
+an 80% chance of being passive, 
+and a 20% chance of being skittish. 
+
+Sleep Cycle: Diurnal
+
+<image><drawings_ankylosaurus.png 28 4 103 47 21 13 7.5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Investigation underway!

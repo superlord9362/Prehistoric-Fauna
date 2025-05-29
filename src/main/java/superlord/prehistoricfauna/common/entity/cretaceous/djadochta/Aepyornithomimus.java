@@ -66,7 +66,7 @@ public class Aepyornithomimus extends HerdDinosaurEntity {
 
 	public Aepyornithomimus(EntityType<? extends Aepyornithomimus> type, Level world) {
 		super(type, world);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 	

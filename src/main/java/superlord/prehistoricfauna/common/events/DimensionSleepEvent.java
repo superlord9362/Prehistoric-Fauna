@@ -20,7 +20,6 @@ public class DimensionSleepEvent {
 
 	private static final Map<Player, Long> playerSleepTimes = new ConcurrentHashMap<>();
     private static final long SLEEP_TIME_THRESHOLD = 100;
-    private static final long TIME_TO_SET = 1000;
 
     @SubscribeEvent
     public static void onPlayerSleep(PlayerSleepInBedEvent event) {
@@ -48,11 +47,14 @@ public class DimensionSleepEvent {
             MinecraftServer server = event.getServer();
             if (server != null) {
                 for (ServerLevel serverLevel : server.getAllLevels()) {
-                    int sleepingPlayers = 0;
+                	long currentDaysTime = serverLevel.getDayTime() % 24000;
+                	float newTime = 24000 - currentDaysTime;
+                	int sleepingPlayers = 0;
                     int totalPlayers = 0;
                     boolean allPlayersSleptLongEnough = true;
 
                     for (Player player : serverLevel.players()) {
+                    	
                         totalPlayers++;
                         if (player.isSleeping()) {
                             Long sleepStartTime = playerSleepTimes.get(player);
@@ -70,7 +72,7 @@ public class DimensionSleepEvent {
                         float sleepingPercentage = (sleepingPlayers / (float) totalPlayers) * 100;
                         if (sleepingPercentage >= sleepPercentage) {
                             for (ServerLevel world : server.getAllLevels()) {
-                                world.setDayTime(TIME_TO_SET);
+                                world.setDayTime(world.dayTime() + (long) newTime - 24000);
                                 world.setWeatherParameters(0, 0, false, false);
                             }
                             playerSleepTimes.clear();

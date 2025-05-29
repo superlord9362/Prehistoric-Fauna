@@ -80,7 +80,7 @@ public class Hesperornithoides extends DinosaurEntity {
 
 	public Hesperornithoides(EntityType<? extends Hesperornithoides> type, Level level) {
 		super(type, level);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 

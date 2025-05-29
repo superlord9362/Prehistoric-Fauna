@@ -21,6 +21,9 @@ Animals:
 -Reptiles
 --Eilenodon
 
+-Bugs
+--Dermestid Beetle
+
 -Fish
 --Ceratodus
 --Potamoceratodus
@@ -35,7 +38,3 @@ Plants:
 
 -Trees
 --Araucaria
---Podozamites
---Protopicoxylon
---Ptilophyllum
---Zamites

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:phoenicopsis_planks"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:phoenicopsis_button"
+  }
+}

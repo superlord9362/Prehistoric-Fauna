@@ -45,12 +45,6 @@
                     "biome": "prehistoricfauna:morrison_savannah"
                   }
                 },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "prehistoricfauna:morrison_hills"
-                  }
-                },
 				{
 					"condition": "minecraft:location_check",
 					"predicate": {

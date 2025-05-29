@@ -21,6 +21,9 @@ Animals:
 -Archosauromorphs
 --Hyperodapedon
 
+-Fish
+--Ceratodus
+
 Plants: 
 -Water Plants
 --Algae
@@ -33,8 +36,3 @@ Plants:
 --Michelilloa
 --Neocalamites
 --Scytophyllum
-
--Trees
---Agathoxylon
---Araucaria
---Heidiphyllum

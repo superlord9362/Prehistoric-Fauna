@@ -1,0 +1,6 @@
+{
+	"variants": {
+		"has_leaves=true": { "model": "prehistoricfauna:block/hermanophyton_leaves_old" },
+		"has_leaves=false": { "model": "prehistoricfauna:block/hermanophyton_stem" }
+	}
+}

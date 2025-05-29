@@ -59,7 +59,7 @@ public class Psittacosaurus extends DinosaurEntity {
 
 	public Psittacosaurus(EntityType<? extends Psittacosaurus> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
-		this.setMaxUpStep(1);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = this.maxHunger;
 	}
 

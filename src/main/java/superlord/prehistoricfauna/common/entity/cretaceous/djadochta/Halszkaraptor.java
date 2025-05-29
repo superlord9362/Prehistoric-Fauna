@@ -91,7 +91,7 @@ public class Halszkaraptor extends DinosaurEntity {
 	public Halszkaraptor(EntityType<? extends TamableAnimal> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
 		this.moveControl = new Halszkaraptor.HalszkaraptorMoveControl(this);
-		this.setMaxUpStep(1.0F);
+		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
 

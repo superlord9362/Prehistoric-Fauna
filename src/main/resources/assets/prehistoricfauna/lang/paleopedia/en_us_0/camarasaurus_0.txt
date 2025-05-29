@@ -17,7 +17,7 @@ territorial.
 
 Sleep Cycle: Diurnal
 
-<image><drawings_ankylosaurus.png 34 3 127 22 22 20 6.5>
+<image><drawings_ankylosaurus.png 34 3 127 85 22 20 6.5>
 
 
 

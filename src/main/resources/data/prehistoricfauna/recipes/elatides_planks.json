@@ -1,0 +1,13 @@
+{
+  "type": "crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "prehistoricfauna:elatides_logs"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:elatides_planks",
+    "count": 4
+  }
+}
