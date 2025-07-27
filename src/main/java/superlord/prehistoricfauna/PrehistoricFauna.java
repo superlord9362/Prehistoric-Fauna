@@ -335,9 +335,11 @@ public class PrehistoricFauna {
 	}
 	
 	private void doClientStuff(final FMLClientSetupEvent event) {
-//		if (PrehistoricFaunaConfig.customMenuBackground) trySetRandomPanorama();
-		CALLBACKS.forEach(Runnable::run);
-		CALLBACKS.clear();
+		event.enqueueWork(() -> {
+//			if (PrehistoricFaunaConfig.customMenuBackground) trySetRandomPanorama();
+			CALLBACKS.forEach(Runnable::run);
+			CALLBACKS.clear();
+		});
 	}
 
 	@SuppressWarnings({ "deprecation" })
