@@ -873,6 +873,7 @@
 	"item.prehistoricfauna.kayentachelys_spawn_egg": "Kayentachelys Spawn Egg",
 	"item.prehistoricfauna.kayentasuchus_spawn_egg": "Kayentasuchus Spawn Egg",
 	"item.prehistoricfauna.kayentavenator_spawn_egg": "Kayentavenator Spawn Egg",
+	"item.prehistoricfauna.ophiopsis_spawn_egg": "Ophiopsis Spawn Egg",
 	
 	"entity.prehistoricfauna.thescelosaurus": "Thescelosaurus",
 	"entity.prehistoricfauna.triceratops": "Triceratops",
@@ -991,6 +992,7 @@
 	"entity.prehistoricfauna.kayentachelys": "Kayentachelys",
 	"entity.prehistoricfauna.kayentasuchus": "Kayentasuchus",
 	"entity.prehistoricfauna.kayentavenator": "Kayentavenator",
+	"entity.prehistoricfauna.ophiopsis": "Ophiopsis",
 	
 	"item.prehistoricfauna.araucaria_boat": "Araucaria Boat",
 	"item.prehistoricfauna.metasequoia_boat": "Metasequoia Boat",
@@ -1184,6 +1186,9 @@
 	"item.prehistoricfauna.raw_morrolepis": "Raw Morrolepis",
 	"item.prehistoricfauna.cooked_morrolepis": "Cooked Morrolepis",
 	"item.prehistoricfauna.morrolepis_bucket": "Bucket of Morrolepis",
+	"item.prehistoricfauna.raw_ophiopsis": "Raw Ophiopsis",
+	"item.prehistoricfauna.cooked_ophiopsis": "Cooked Ophiopsis",
+	"item.prehistoricfauna.ophiopsis_bucket": "Bucket of Ophiopsis",
 	
 	"item.prehistoricfauna.bottled_sap": "Bottled Sap",
 	"item.prehistoricfauna.bottled_syrup": "Bottled Syrup",
@@ -2094,6 +2099,8 @@
 	"prehistoricfauna.subtitle.tanycolagreusWarning": "Tanycolagreus trills",
 	"prehistoricfauna.subtitle.morrolepisHurt": "Morrolepis hurts",
 	"prehistoricfauna.subtitle.morrolepisDeath": "Morrolepis dies",
+	"prehistoricfauna.subtitle.ophiopsisHurt": "Ophiopsis hurts",
+	"prehistoricfauna.subtitle.ophiopsisDeath": "Ophiopsis dies",
 	"prehistoricfauna.subtitle.agilisaurusIdle": "Agilisaurus chorts",
 	"prehistoricfauna.subtitle.agilisaurusHurt": "Agilisaurus hurts",
 	"prehistoricfauna.subtitle.agilisaurusDeath": "Agilisaurus dies",

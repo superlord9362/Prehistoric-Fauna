@@ -234,6 +234,7 @@ public class JurassicBiomes {
 		if (PrehistoricFaunaConfig.macelognathusMorrisonSavannaSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.MACELOGNATHUS.get(), PrehistoricFaunaConfig.macelognathusMorrisonSavannaSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.tanycolagreusMorrisonSavannaSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.TANYCOLAGREUS.get(), PrehistoricFaunaConfig.tanycolagreusMorrisonSavannaSpawnWeight, 1, 3));
 		if (PrehistoricFaunaConfig.morrolepisMorrisonSavannaSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.MORROLEPIS.get(), PrehistoricFaunaConfig.morrolepisMorrisonSavannaSpawnWeight, 1, 2));
+		if (PrehistoricFaunaConfig.ophiopsisMorrisonSavannaSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.OPHIOPSIS.get(), PrehistoricFaunaConfig.ophiopsisMorrisonSavannaSpawnWeight, 1, 2));
 		return biome(false, 0xab986d, 0x9c8c67, 0x7CACFF, 12638463, 1F, 0.2F, spawnSettings, biomeFeatures);
 	}
 	
@@ -259,6 +260,7 @@ public class JurassicBiomes {
 		if (PrehistoricFaunaConfig.macelognathusMorrisonRiverSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.MACELOGNATHUS.get(), PrehistoricFaunaConfig.macelognathusMorrisonRiverSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.tanycolagreusMorrisonRiverSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.TANYCOLAGREUS.get(), PrehistoricFaunaConfig.tanycolagreusMorrisonRiverSpawnWeight, 1, 3));
 		if (PrehistoricFaunaConfig.morrolepisMorrisonRiverSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.MORROLEPIS.get(), PrehistoricFaunaConfig.morrolepisMorrisonRiverSpawnWeight, 1, 2));
+		if (PrehistoricFaunaConfig.ophiopsisMorrisonRiverSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.OPHIOPSIS.get(), PrehistoricFaunaConfig.ophiopsisMorrisonRiverSpawnWeight, 1, 2));
 		return biome(false, 0xab986d, 0x9c8c67, 0x7CACFF, 12638463, 1F, 0.2F, spawnSettings, biomeFeatures);
 	}
 	
@@ -284,6 +286,7 @@ public class JurassicBiomes {
 		if (PrehistoricFaunaConfig.macelognathusMorrisonSaltFlatsSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.MACELOGNATHUS.get(), PrehistoricFaunaConfig.macelognathusMorrisonSaltFlatsSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.tanycolagreusMorrisonSaltFlatsSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.TANYCOLAGREUS.get(), PrehistoricFaunaConfig.tanycolagreusMorrisonSaltFlatsSpawnWeight, 1, 3));
 		if (PrehistoricFaunaConfig.morrolepisMorrisonSaltFlatsSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.MORROLEPIS.get(), PrehistoricFaunaConfig.morrolepisMorrisonSaltFlatsSpawnWeight, 1, 2));
+		if (PrehistoricFaunaConfig.ophiopsisMorrisonSaltFlatsSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.OPHIOPSIS.get(), PrehistoricFaunaConfig.ophiopsisMorrisonSaltFlatsSpawnWeight, 1, 2));
 		return biome(false, 0xab986d, 0x9c8c67, 0x7CACFF, 12638463, 1F, 0.2F, spawnSettings, biomeFeatures);
 	}
 	
@@ -310,6 +313,7 @@ public class JurassicBiomes {
 		if (PrehistoricFaunaConfig.macelognathusMorrisonSparseForestSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.MACELOGNATHUS.get(), PrehistoricFaunaConfig.macelognathusMorrisonSparseForestSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.tanycolagreusMorrisonSparseForestSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.TANYCOLAGREUS.get(), PrehistoricFaunaConfig.tanycolagreusMorrisonSparseForestSpawnWeight, 1, 3));
 		if (PrehistoricFaunaConfig.morrolepisMorrisonSparseForestSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.MORROLEPIS.get(), PrehistoricFaunaConfig.morrolepisMorrisonSparseForestSpawnWeight, 1, 2));
+		if (PrehistoricFaunaConfig.ophiopsisMorrisonSparseForestSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.OPHIOPSIS.get(), PrehistoricFaunaConfig.ophiopsisMorrisonSparseForestSpawnWeight, 1, 2));
 		return biome(false, 0xab986d, 0x9c8c67, 0x7CACFF, 12638463, 1F, 0.2F, spawnSettings, biomeFeatures);
 	}
 	
@@ -336,6 +340,7 @@ public class JurassicBiomes {
 		if (PrehistoricFaunaConfig.macelognathusMorrisonGalleryForestSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.MACELOGNATHUS.get(), PrehistoricFaunaConfig.macelognathusMorrisonGalleryForestSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.tanycolagreusMorrisonGalleryForestSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.TANYCOLAGREUS.get(), PrehistoricFaunaConfig.tanycolagreusMorrisonGalleryForestSpawnWeight, 1, 3));
 		if (PrehistoricFaunaConfig.morrolepisMorrisonGalleryForestSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.MORROLEPIS.get(), PrehistoricFaunaConfig.morrolepisMorrisonGalleryForestSpawnWeight, 1, 2));
+		if (PrehistoricFaunaConfig.ophiopsisMorrisonGalleryForestSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.OPHIOPSIS.get(), PrehistoricFaunaConfig.ophiopsisMorrisonGalleryForestSpawnWeight, 1, 2));
 		return biome(true, 0xab986d, 0x9c8c67, 0x7CACFF, 12638463, 1F, 0.2F, spawnSettings, biomeFeatures);
 	}
 	
@@ -362,6 +367,7 @@ public class JurassicBiomes {
 		if (PrehistoricFaunaConfig.diablophisMorrisonUplandForestSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.DIABLOPHIS.get(), PrehistoricFaunaConfig.diablophisMorrisonUplandForestSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.macelognathusMorrisonUplandForestSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.MACELOGNATHUS.get(), PrehistoricFaunaConfig.macelognathusMorrisonUplandForestSpawnWeight, 1, 2));
 		if (PrehistoricFaunaConfig.tanycolagreusMorrisonUplandForestSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.TANYCOLAGREUS.get(), PrehistoricFaunaConfig.tanycolagreusMorrisonUplandForestSpawnWeight, 1, 3));
+		if (PrehistoricFaunaConfig.ophiopsisMorrisonUplandForestSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(PFEntities.OPHIOPSIS.get(), PrehistoricFaunaConfig.ophiopsisMorrisonUplandForestSpawnWeight, 1, 2));
 		return biome(true, 0xab986d, 0x9c8c67, 0x7CACFF, 12638463, 1F, 0.2F, spawnSettings, biomeFeatures);
 	}
 	

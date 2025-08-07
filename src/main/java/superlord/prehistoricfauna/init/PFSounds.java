@@ -243,6 +243,8 @@ public class PFSounds {
 	public static final RegistryObject<SoundEvent> CERATODUS_DEATH = createSoundEvent("ceratodus_death");
 	public static final RegistryObject<SoundEvent> MORROLEPIS_HURT = createSoundEvent("morrolepis_hurt");
 	public static final RegistryObject<SoundEvent> MORROLEPIS_DEATH = createSoundEvent("morrolepis_death");
+	public static final RegistryObject<SoundEvent> OPHIOPSIS_HURT = createSoundEvent("ophiopsis_hurt");
+	public static final RegistryObject<SoundEvent> OPHIOPSIS_DEATH = createSoundEvent("ophiopsis_death");
 	//Kayenta
 	public static final RegistryObject<SoundEvent> DILOPHOSAURUS_IDLE = createSoundEvent("dilophosaurus_idle");
 	public static final RegistryObject<SoundEvent> DILOPHOSAURUS_BITE = createSoundEvent("dilophosaurus_bite");

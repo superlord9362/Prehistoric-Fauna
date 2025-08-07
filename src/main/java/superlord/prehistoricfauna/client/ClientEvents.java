@@ -429,6 +429,7 @@ public class ClientEvents {
 	public static ModelLayerLocation YANOSTEUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "yanosteus"), "yanosteus");
 	public static ModelLayerLocation PARAPSEPHURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "parapsephurus"), "parapsephurus");
 	public static ModelLayerLocation MORROLEPIS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "morrolepis"), "morrolepis");
+	public static ModelLayerLocation OPHIOPSIS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "ophiopsis"), "ophiopsis");
 
 	public static ModelLayerLocation LEPIDOTES = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "lepidotes"), "lepidotes");
 	public static ModelLayerLocation CHUNGKINGICHTHYS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "chungkingichthys"), "chungkingichthys");
@@ -614,6 +615,7 @@ public class ClientEvents {
 		event.registerEntityRenderer(PFEntities.KAYENTACHELYS.get(), KayentachelysRenderer::new);
 		event.registerEntityRenderer(PFEntities.KAYENTASUCHUS.get(), KayentasuchusRenderer::new);
 		event.registerEntityRenderer(PFEntities.KAYENTAVENATOR.get(), KayentavenatorRenderer::new);
+		event.registerEntityRenderer(PFEntities.OPHIOPSIS.get(), OphiopsisRenderer::new);
 		
 		event.registerBlockEntityRenderer(PFBlockEntities.CHEST.get(), PFChestBlockEntityRenderer::new);
 		event.registerBlockEntityRenderer(PFBlockEntities.TRAPPED_CHEST.get(), PFChestBlockEntityRenderer::new);
@@ -848,6 +850,7 @@ public class ClientEvents {
 		event.registerLayerDefinition(CHUNGKINGICHTHYS, ChungkingichthysModel::createBodyLayer);
 		event.registerLayerDefinition(LEPIDOTES, LepidotesModel::createBodyLayer);
 		event.registerLayerDefinition(MORROLEPIS, MorrolepisModel::createBodyLayer);
+		event.registerLayerDefinition(OPHIOPSIS, OphiopsisModel::createBodyLayer);
 		//Hell Creek
 		event.registerLayerDefinition(THESCELOSAURUS, ThescelosaurusModel::createBodyLayer);
 		event.registerLayerDefinition(BASILEMYS, BasilemysModel::createBodyLayer);

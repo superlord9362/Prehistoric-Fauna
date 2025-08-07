@@ -29,6 +29,7 @@ import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.ai.village.poi.PoiRecord;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
@@ -244,12 +245,12 @@ public class BurrowingDinosaur extends DinosaurEntity {
 
 		@Override
 		public boolean canUse() {
-			return BurrowingDinosaur.this.burrowPos == null && BurrowingDinosaur.this.wantsToEnterBurrow() && BurrowingDinosaur.this.getBlockStateOn().is(PFTags.SOIL);
+			return BurrowingDinosaur.this.burrowPos == null && BurrowingDinosaur.this.wantsToEnterBurrow() && BurrowingDinosaur.this.getBlockStateOn().is(PFTags.SOIL) && !BurrowingDinosaur.this.level().getBlockState(BurrowingDinosaur.this.getOnPos().above()).is(Blocks.WATER);
 		}
 		
 		@Override
 		public boolean canContinueToUse() {
-			return BurrowingDinosaur.this.burrowPos == null && BurrowingDinosaur.this.wantsToEnterBurrow() && BurrowingDinosaur.this.getBlockStateOn().is(PFTags.SOIL);
+			return BurrowingDinosaur.this.burrowPos == null && BurrowingDinosaur.this.wantsToEnterBurrow() && BurrowingDinosaur.this.getBlockStateOn().is(PFTags.SOIL) && !BurrowingDinosaur.this.level().getBlockState(BurrowingDinosaur.this.getOnPos().above()).is(Blocks.WATER);
 		}
 
 		@Override

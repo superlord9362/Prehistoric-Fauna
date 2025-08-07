@@ -11,7 +11,6 @@ import net.minecraft.resources.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.ClientEvents;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.CephaloleichnitesModel;
-import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Aepyornithomimus;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Cephaloleichnites;
 
 public class CephaloleichnitesRenderer extends MobRenderer<Cephaloleichnites, CephaloleichnitesModel> {
@@ -41,7 +40,6 @@ public class CephaloleichnitesRenderer extends MobRenderer<Cephaloleichnites, Ce
 				matrixStackIn.mulPose(Axis.XP.rotationDegrees(-90 * (1 - progresso)));
 			}
 			matrixStackIn.translate(0.0D, -trans, 0.0D);
-
 		}else if(entityLiving.getAttachmentFacing() == Direction.UP){
 			matrixStackIn.mulPose(Axis.YP.rotationDegrees (180.0F - rotationYaw));
 			matrixStackIn.mulPose(Axis.XP.rotationDegrees(180));

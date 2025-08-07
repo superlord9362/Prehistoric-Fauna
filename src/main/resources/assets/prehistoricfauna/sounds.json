@@ -1251,6 +1251,50 @@
 			}
 		]
 	},
+	"ophiopsis_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.ophiopsisHurt",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"ophiopsis_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.ophiopsisDeath",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
 	"gar_death": {
 		"category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.garDeath",

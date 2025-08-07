@@ -18,9 +18,9 @@ import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
 
-public class Mooreodontus extends AbstractFish {
+public class Ophiopsis extends AbstractFish {
 
-	public Mooreodontus(EntityType<? extends AbstractFish> p_27461_, Level p_27462_) {
+	public Ophiopsis(EntityType<? extends AbstractFish> p_27461_, Level p_27462_) {
 		super(p_27461_, p_27462_);
 	}
 
@@ -30,7 +30,7 @@ public class Mooreodontus extends AbstractFish {
 
 	@Override
 	public ItemStack getBucketItemStack() {
-		return new ItemStack(PFItems.MOOREODONTUS_BUCKET.get());
+		return new ItemStack(PFItems.OPHIOPSIS_BUCKET.get());
 	}
 
 	@Override
@@ -39,11 +39,11 @@ public class Mooreodontus extends AbstractFish {
 	}
 
 	protected SoundEvent getHurtSound(DamageSource p_28306_) {
-		return PFSounds.MOOREODONTUS_HURT.get();
+		return PFSounds.OPHIOPSIS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.MOOREODONTUS_DEATH.get();
+		return PFSounds.OPHIOPSIS_DEATH.get();
 	}
 
 	@SuppressWarnings("deprecation")
@@ -55,6 +55,6 @@ public class Mooreodontus extends AbstractFish {
 	
 	@Override
 	public ItemStack getPickedResult(HitResult target) {
-		return new ItemStack(PFItems.MOOREODONTUS_SPAWN_EGG.get());
+		return new ItemStack(PFItems.OPHIOPSIS_SPAWN_EGG.get());
 	}
 }

@@ -14,7 +14,7 @@ Max Hunger: 100
 Temperaments: Ceratosaurus has 
 an 85% chance of being protective, 
 and a 15% chance of being 
-protective.
+territorial.
 
 Sleep Cycle: Crepuscular
 

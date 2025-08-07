@@ -332,6 +332,7 @@ public class PrehistoricFauna {
 		event.put(PFEntities.KAYENTACHELYS.get(), Kayentachelys.createAttributes().build());
 		event.put(PFEntities.KAYENTASUCHUS.get(), Kayentasuchus.createAttributes().build());
 		event.put(PFEntities.KAYENTAVENATOR.get(), Kayentavenator.createAttributes().build());
+		event.put(PFEntities.OPHIOPSIS.get(), Ophiopsis.createAttributes().build());
 	}
 	
 	private void doClientStuff(final FMLClientSetupEvent event) {
@@ -479,6 +480,7 @@ public class PrehistoricFauna {
 		SpawnPlacements.register(PFEntities.MACELOGNATHUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.TANYCOLAGREUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.MORROLEPIS.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Morrolepis::checkAncientFishSpawnRules);
+		SpawnPlacements.register(PFEntities.OPHIOPSIS.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Ophiopsis::checkAncientFishSpawnRules);
 		SpawnPlacements.register(PFEntities.KAYENTACHELYS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.KAYENTASUCHUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.KAYENTAVENATOR.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);

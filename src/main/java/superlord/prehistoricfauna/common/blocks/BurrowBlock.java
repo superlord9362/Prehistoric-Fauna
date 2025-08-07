@@ -50,9 +50,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.AABB;
@@ -170,6 +168,7 @@ public class BurrowBlock extends BaseEntityBlock {
 				BurrowBlockEntity burrowblockentity = (BurrowBlockEntity)blockentity;
 				burrowblockentity.emptyAllLivingFromBurrow((Player)null, p_153904_, BurrowBlockEntity.BurrowerReleaseStatus.EMERGENCY);
 			}
+			return Blocks.AIR.defaultBlockState();
 		}
 		if (p_153907_.getBlockState(p_153909_).getBlock() instanceof FireBlock || !this.canSurvive(p_153906_, p_153907_, p_153909_)) {
 			BlockEntity blockentity = p_153907_.getBlockEntity(p_153908_);
@@ -186,6 +185,11 @@ public class BurrowBlock extends BaseEntityBlock {
 			}
 			return Blocks.AIR.defaultBlockState();
 		} else {
+			BlockEntity blockentity = p_153907_.getBlockEntity(p_153908_);
+			if (blockentity instanceof BurrowBlockEntity) {
+				BurrowBlockEntity burrowblockentity = (BurrowBlockEntity)blockentity;
+				burrowblockentity.emptyAllLivingFromBurrow((Player)null, p_153904_, BurrowBlockEntity.BurrowerReleaseStatus.EMERGENCY);
+			}
 			return hasFace(p_153904_, p_153905_) && !canAttachTo(p_153907_, p_153905_, p_153909_, p_153906_) ? removeFace(p_153904_, getFaceProperty(p_153905_)) : p_153904_;
 		}
 	}
@@ -201,13 +205,25 @@ public class BurrowBlock extends BaseEntityBlock {
 			if (hasFace(p_153888_, direction)) {
 				BlockPos blockpos = p_153890_.relative(direction);
 				if (!canAttachTo(p_153889_, direction, blockpos, p_153889_.getBlockState(blockpos))) {
+					BlockEntity blockentity = p_153889_.getBlockEntity(p_153890_);
+					if (blockentity instanceof BurrowBlockEntity) {
+						BurrowBlockEntity burrowblockentity = (BurrowBlockEntity)blockentity;
+						burrowblockentity.emptyAllLivingFromBurrow((Player)null, p_153888_, BurrowBlockEntity.BurrowerReleaseStatus.EMERGENCY);
+					}
 					return false;
 				}
 
 				flag = true;
 			}
 		}
-
+		if (!flag) {
+			BlockEntity blockentity = p_153889_.getBlockEntity(p_153890_);
+			if (blockentity instanceof BurrowBlockEntity) {
+				BurrowBlockEntity burrowblockentity = (BurrowBlockEntity)blockentity;
+				burrowblockentity.emptyAllLivingFromBurrow((Player)null, p_153888_, BurrowBlockEntity.BurrowerReleaseStatus.EMERGENCY);
+			}
+		}
+		System.out.println("Can survive: " + flag);
 		return flag;
 	}
 
@@ -226,6 +242,11 @@ public class BurrowBlock extends BaseEntityBlock {
 			BlockPos blockpos = p_221574_.relative(p_221575_);
 			return canAttachTo(p_221572_, p_221575_, blockpos, p_221572_.getBlockState(blockpos));
 		} else {
+			BlockEntity blockentity = p_221572_.getBlockEntity(p_221574_);
+			if (blockentity instanceof BurrowBlockEntity) {
+				BurrowBlockEntity burrowblockentity = (BurrowBlockEntity)blockentity;
+				burrowblockentity.emptyAllLivingFromBurrow((Player)null, p_221573_, BurrowBlockEntity.BurrowerReleaseStatus.EMERGENCY);
+			}
 			return false;
 		}
 	}
@@ -238,8 +259,6 @@ public class BurrowBlock extends BaseEntityBlock {
 			BlockState blockstate;
 			if (p_153941_.is(this)) {
 				blockstate = p_153941_;
-			} else if (this.isWaterloggable() && p_153941_.getFluidState().isSourceOfType(Fluids.WATER)) {
-				blockstate = this.defaultBlockState().setValue(BlockStateProperties.WATERLOGGED, Boolean.valueOf(true));
 			} else {
 				blockstate = this.defaultBlockState();
 			}
@@ -281,13 +300,12 @@ public class BurrowBlock extends BaseEntityBlock {
 		return (Block.isFaceFull(p_153833_.getBlockSupportShape(p_153830_, p_153832_), p_153831_.getOpposite()) || Block.isFaceFull(p_153833_.getCollisionShape(p_153830_, p_153832_), p_153831_.getOpposite()));
 	}
 
-	private boolean isWaterloggable() {
-		return this.stateDefinition.getProperties().contains(BlockStateProperties.WATERLOGGED);
-	}
-
 	private static BlockState removeFace(BlockState p_153898_, BooleanProperty p_153899_) {
 		BlockState blockstate = p_153898_.setValue(p_153899_, Boolean.valueOf(false));
-		return hasAnyFace(blockstate) ? blockstate : Blocks.AIR.defaultBlockState();
+		if (hasAnyFace(blockstate)) return blockstate;
+		else  {
+			return Blocks.AIR.defaultBlockState();			
+		}
 	}
 
 	public static BooleanProperty getFaceProperty(Direction p_153934_) {

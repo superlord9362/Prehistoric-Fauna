@@ -174,6 +174,7 @@ public class PrehistoricFaunaConfig {
 	public static int macelognathusMorrisonSavannaSpawnWeight = 1;
 	public static int maraapunisaurusMorrisonSavannaSpawnWeight = 1;
 	public static int morrolepisMorrisonSavannaSpawnWeight = 4;
+	public static int ophiopsisMorrisonSavannaSpawnWeight = 2;
 	public static int parapleuritesMorrisonSavannaSpawnWeight = 0;
 	public static int potamoceratodusMorrisonSavannaSpawnWeight = 3;
 	public static int stegosaurusMorrisonSavannaSpawnWeight = 10;
@@ -201,6 +202,7 @@ public class PrehistoricFaunaConfig {
 	public static int macelognathusMorrisonSaltFlatsSpawnWeight = 0;
 	public static int maraapunisaurusMorrisonSaltFlatsSpawnWeight = 2;
 	public static int morrolepisMorrisonSaltFlatsSpawnWeight = 0;
+	public static int ophiopsisMorrisonSaltFlatsSpawnWeight = 0;
 	public static int parapleuritesMorrisonSaltFlatsSpawnWeight = 0;
 	public static int potamoceratodusMorrisonSaltFlatsSpawnWeight = 0;
 	public static int stegosaurusMorrisonSaltFlatsSpawnWeight = 0;
@@ -228,6 +230,7 @@ public class PrehistoricFaunaConfig {
 	public static int macelognathusMorrisonSparseForestSpawnWeight = 1;
 	public static int maraapunisaurusMorrisonSparseForestSpawnWeight = 1;
 	public static int morrolepisMorrisonSparseForestSpawnWeight = 4;
+	public static int ophiopsisMorrisonSparseForestSpawnWeight = 2;
 	public static int parapleuritesMorrisonSparseForestSpawnWeight = 0;
 	public static int potamoceratodusMorrisonSparseForestSpawnWeight = 3;
 	public static int stegosaurusMorrisonSparseForestSpawnWeight = 8;
@@ -255,6 +258,7 @@ public class PrehistoricFaunaConfig {
 	public static int macelognathusMorrisonGalleryForestSpawnWeight = 4;
 	public static int maraapunisaurusMorrisonGalleryForestSpawnWeight = 0;
 	public static int morrolepisMorrisonGalleryForestSpawnWeight = 4;
+	public static int ophiopsisMorrisonGalleryForestSpawnWeight = 2;
 	public static int parapleuritesMorrisonGalleryForestSpawnWeight = 0;
 	public static int potamoceratodusMorrisonGalleryForestSpawnWeight = 4;
 	public static int stegosaurusMorrisonGalleryForestSpawnWeight = 7;
@@ -282,6 +286,7 @@ public class PrehistoricFaunaConfig {
 	public static int macelognathusMorrisonUplandForestSpawnWeight = 7;
 	public static int maraapunisaurusMorrisonUplandForestSpawnWeight = 0;
 	public static int morrolepisMorrisonUplandForestSpawnWeight = 0;
+	public static int ophiopsisMorrisonUplandForestSpawnWeight = 0;
 	public static int parapleuritesMorrisonUplandForestSpawnWeight = 0;
 	public static int potamoceratodusMorrisonUplandForestSpawnWeight = 4;
 	public static int stegosaurusMorrisonUplandForestSpawnWeight = 3;
@@ -309,6 +314,7 @@ public class PrehistoricFaunaConfig {
 	public static int macelognathusMorrisonRiverSpawnWeight = 0;
 	public static int maraapunisaurusMorrisonRiverSpawnWeight = 0;
 	public static int morrolepisMorrisonRiverSpawnWeight = 7;
+	public static int ophiopsisMorrisonRiverSpawnWeight = 4;
 	public static int parapleuritesMorrisonRiverSpawnWeight = 0;
 	public static int potamoceratodusMorrisonRiverSpawnWeight = 5;
 	public static int stegosaurusMorrisonRiverSpawnWeight = 0;
@@ -1067,6 +1073,7 @@ public class PrehistoricFaunaConfig {
 			macelognathusMorrisonSavannaSpawnWeight = PFConfigHolder.SERVER.macelognathusMorrisonSavannaSpawnWeight.get();
 			maraapunisaurusMorrisonSavannaSpawnWeight = PFConfigHolder.SERVER.maraapunisaurusMorrisonSavannaSpawnWeight.get();
 			morrolepisMorrisonSavannaSpawnWeight = PFConfigHolder.SERVER.morrolepisMorrisonSavannaSpawnWeight.get();
+			ophiopsisMorrisonSavannaSpawnWeight = PFConfigHolder.SERVER.ophiopsisMorrisonSavannaSpawnWeight.get();
 			parapleuritesMorrisonSavannaSpawnWeight = PFConfigHolder.SERVER.parapleuritesMorrisonSavannaSpawnWeight.get();
 			potamoceratodusMorrisonSavannaSpawnWeight = PFConfigHolder.SERVER.potamoceratodusMorrisonSavannaSpawnWeight.get();
 			stegosaurusMorrisonSavannaSpawnWeight = PFConfigHolder.SERVER.stegosaurusMorrisonSavannaSpawnWeight.get();
@@ -1094,6 +1101,7 @@ public class PrehistoricFaunaConfig {
 			macelognathusMorrisonSaltFlatsSpawnWeight = PFConfigHolder.SERVER.macelognathusMorrisonSaltFlatsSpawnWeight.get();
 			maraapunisaurusMorrisonSaltFlatsSpawnWeight = PFConfigHolder.SERVER.maraapunisaurusMorrisonSaltFlatsSpawnWeight.get();
 			morrolepisMorrisonSaltFlatsSpawnWeight = PFConfigHolder.SERVER.morrolepisMorrisonSaltFlatsSpawnWeight.get();
+			ophiopsisMorrisonSaltFlatsSpawnWeight = PFConfigHolder.SERVER.ophiopsisMorrisonSaltFlatsSpawnWeight.get();
 			parapleuritesMorrisonSaltFlatsSpawnWeight = PFConfigHolder.SERVER.parapleuritesMorrisonSaltFlatsSpawnWeight.get();
 			potamoceratodusMorrisonSaltFlatsSpawnWeight = PFConfigHolder.SERVER.potamoceratodusMorrisonSaltFlatsSpawnWeight.get();
 			stegosaurusMorrisonSaltFlatsSpawnWeight = PFConfigHolder.SERVER.stegosaurusMorrisonSaltFlatsSpawnWeight.get();
@@ -1121,6 +1129,7 @@ public class PrehistoricFaunaConfig {
 			macelognathusMorrisonSparseForestSpawnWeight = PFConfigHolder.SERVER.macelognathusMorrisonSparseForestSpawnWeight.get();
 			maraapunisaurusMorrisonSparseForestSpawnWeight = PFConfigHolder.SERVER.maraapunisaurusMorrisonSparseForestSpawnWeight.get();
 			morrolepisMorrisonSparseForestSpawnWeight = PFConfigHolder.SERVER.morrolepisMorrisonSparseForestSpawnWeight.get();
+			ophiopsisMorrisonSparseForestSpawnWeight = PFConfigHolder.SERVER.ophiopsisMorrisonSparseForestSpawnWeight.get();
 			parapleuritesMorrisonSparseForestSpawnWeight = PFConfigHolder.SERVER.parapleuritesMorrisonSparseForestSpawnWeight.get();
 			potamoceratodusMorrisonSparseForestSpawnWeight = PFConfigHolder.SERVER.potamoceratodusMorrisonSparseForestSpawnWeight.get();
 			stegosaurusMorrisonSparseForestSpawnWeight = PFConfigHolder.SERVER.stegosaurusMorrisonSparseForestSpawnWeight.get();
@@ -1148,6 +1157,7 @@ public class PrehistoricFaunaConfig {
 			macelognathusMorrisonGalleryForestSpawnWeight = PFConfigHolder.SERVER.macelognathusMorrisonGalleryForestSpawnWeight.get();
 			maraapunisaurusMorrisonGalleryForestSpawnWeight = PFConfigHolder.SERVER.maraapunisaurusMorrisonGalleryForestSpawnWeight.get();
 			morrolepisMorrisonGalleryForestSpawnWeight = PFConfigHolder.SERVER.morrolepisMorrisonGalleryForestSpawnWeight.get();
+			ophiopsisMorrisonGalleryForestSpawnWeight = PFConfigHolder.SERVER.ophiopsisMorrisonGalleryForestSpawnWeight.get();
 			parapleuritesMorrisonGalleryForestSpawnWeight = PFConfigHolder.SERVER.parapleuritesMorrisonGalleryForestSpawnWeight.get();
 			potamoceratodusMorrisonGalleryForestSpawnWeight = PFConfigHolder.SERVER.potamoceratodusMorrisonGalleryForestSpawnWeight.get();
 			stegosaurusMorrisonGalleryForestSpawnWeight = PFConfigHolder.SERVER.stegosaurusMorrisonGalleryForestSpawnWeight.get();
@@ -1175,6 +1185,7 @@ public class PrehistoricFaunaConfig {
 			macelognathusMorrisonUplandForestSpawnWeight = PFConfigHolder.SERVER.macelognathusMorrisonUplandForestSpawnWeight.get();
 			maraapunisaurusMorrisonUplandForestSpawnWeight = PFConfigHolder.SERVER.maraapunisaurusMorrisonUplandForestSpawnWeight.get();
 			morrolepisMorrisonUplandForestSpawnWeight = PFConfigHolder.SERVER.morrolepisMorrisonUplandForestSpawnWeight.get();
+			ophiopsisMorrisonUplandForestSpawnWeight = PFConfigHolder.SERVER.ophiopsisMorrisonUplandForestSpawnWeight.get();
 			parapleuritesMorrisonUplandForestSpawnWeight = PFConfigHolder.SERVER.parapleuritesMorrisonUplandForestSpawnWeight.get();
 			potamoceratodusMorrisonUplandForestSpawnWeight = PFConfigHolder.SERVER.potamoceratodusMorrisonUplandForestSpawnWeight.get();
 			stegosaurusMorrisonUplandForestSpawnWeight = PFConfigHolder.SERVER.stegosaurusMorrisonUplandForestSpawnWeight.get();
@@ -1202,6 +1213,7 @@ public class PrehistoricFaunaConfig {
 			macelognathusMorrisonRiverSpawnWeight = PFConfigHolder.SERVER.macelognathusMorrisonRiverSpawnWeight.get();
 			maraapunisaurusMorrisonRiverSpawnWeight = PFConfigHolder.SERVER.maraapunisaurusMorrisonRiverSpawnWeight.get();
 			morrolepisMorrisonRiverSpawnWeight = PFConfigHolder.SERVER.morrolepisMorrisonRiverSpawnWeight.get();
+			ophiopsisMorrisonRiverSpawnWeight = PFConfigHolder.SERVER.ophiopsisMorrisonRiverSpawnWeight.get();
 			parapleuritesMorrisonRiverSpawnWeight = PFConfigHolder.SERVER.parapleuritesMorrisonRiverSpawnWeight.get();
 			potamoceratodusMorrisonRiverSpawnWeight = PFConfigHolder.SERVER.potamoceratodusMorrisonRiverSpawnWeight.get();
 			stegosaurusMorrisonRiverSpawnWeight = PFConfigHolder.SERVER.stegosaurusMorrisonRiverSpawnWeight.get();
