@@ -50,6 +50,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Cretaraneus;
 import superlord.prehistoricfauna.common.entity.navigation.DirectPathNavigator;
 import superlord.prehistoricfauna.common.entity.navigation.FlightMoveController;
 import superlord.prehistoricfauna.init.PFItems;
+import superlord.prehistoricfauna.init.PFTags;
 
 public class Cephaloleichnites extends Animal {
 	private static final EntityDataAccessor<Direction> ATTACHED_FACE = SynchedEntityData.defineId(Cephaloleichnites.class, EntityDataSerializers.DIRECTION);
@@ -109,7 +110,7 @@ public class Cephaloleichnites extends Animal {
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
 		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, Cretaraneus.class, 6.0F, 1.0D, 1.2D));
+		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, PFTags.CEPHALOLEICHNITES_AVOIDING, 6.0F, 1.0D, 1.2D));
 	}
 
 	public int getMaxAir() {

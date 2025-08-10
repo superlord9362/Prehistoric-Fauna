@@ -16,7 +16,6 @@ public class CathemeralSleepGoal extends Goal {
 	}
 
 	@Override
-	@SuppressWarnings("resource")
 	public boolean canUse() {
 		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
 			if (!player.isShiftKeyDown()) return false;
@@ -25,7 +24,6 @@ public class CathemeralSleepGoal extends Goal {
 	}
 
 	@Override
-	@SuppressWarnings("resource")
 	public boolean canContinueToUse() {
 		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
 			if (player.isShiftKeyDown()) {

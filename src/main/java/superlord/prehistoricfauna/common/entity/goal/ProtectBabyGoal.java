@@ -19,7 +19,6 @@ public class ProtectBabyGoal extends NearestAttackableTargetGoal<LivingEntity> {
 		return super.canContinueToUse() && !dinosaur.isVehicle();
 	}
 	
-	@SuppressWarnings("resource")
 	public boolean canUse() {
 		if (dinosaur.isBaby() || dinosaur.isTame()) {
 			return false;

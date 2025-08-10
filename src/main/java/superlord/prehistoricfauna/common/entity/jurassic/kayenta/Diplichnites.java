@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.common.entity.cretaceous.yixian;
+package superlord.prehistoricfauna.common.entity.jurassic.kayenta;
 
 import javax.annotation.Nullable;
 
@@ -46,14 +46,14 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraftforge.common.Tags;
+import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Cretaraneus;
 import superlord.prehistoricfauna.common.entity.navigation.DirectPathNavigator;
 import superlord.prehistoricfauna.common.entity.navigation.FlightMoveController;
 import superlord.prehistoricfauna.init.PFItems;
-import superlord.prehistoricfauna.init.PFTags;
 
-public class Apoclion extends Animal {
-	private static final EntityDataAccessor<Direction> ATTACHED_FACE = SynchedEntityData.defineId(Apoclion.class, EntityDataSerializers.DIRECTION);
-	private static final EntityDataAccessor<Byte> CLIMBING = SynchedEntityData.defineId(Apoclion.class, EntityDataSerializers.BYTE);
+public class Diplichnites extends Animal {
+	private static final EntityDataAccessor<Direction> ATTACHED_FACE = SynchedEntityData.defineId(Diplichnites.class, EntityDataSerializers.DIRECTION);
+	private static final EntityDataAccessor<Byte> CLIMBING = SynchedEntityData.defineId(Diplichnites.class, EntityDataSerializers.BYTE);
 	private static final Direction[] HORIZONTALS = new Direction[]{Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST};
 	public float attachChangeProgress = 0F;
 	public float prevAttachChangeProgress = 0F;
@@ -61,7 +61,7 @@ public class Apoclion extends Animal {
 	private boolean isUpsideDownNavigator;
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public Apoclion(EntityType type, Level world) {
+	public Diplichnites(EntityType type, Level world) {
 		super(type, world);
 		this.setPathfindingMalus(BlockPathTypes.WATER, -1.0F);
 		switchNavigator(true);
@@ -109,7 +109,6 @@ public class Apoclion extends Animal {
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
 		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, PFTags.APOCLION_AVOIDING, 6.0F, 1.0D, 1.2D));
 	}
 
 	public int getMaxAir() {
@@ -127,7 +126,7 @@ public class Apoclion extends Animal {
 			if (!player.isCreative()) {
 				itemstack.shrink(1);
 			}
-			player.addItem(new ItemStack(PFItems.BOTTLED_APOCLION.get()));
+			player.addItem(new ItemStack(PFItems.BOTTLED_DIPLICHNITES.get()));
 			this.discard();
 		}
 		return super.mobInteract(player, hand);
@@ -259,7 +258,7 @@ public class Apoclion extends Animal {
 	
 	@Override
 	public ItemStack getPickedResult(HitResult target) {
-		return new ItemStack(PFItems.APOCLION_SPAWN_EGG.get());
+		return new ItemStack(PFItems.DIPLICHNITES_SPAWN_EGG.get());
 	}
 
 }

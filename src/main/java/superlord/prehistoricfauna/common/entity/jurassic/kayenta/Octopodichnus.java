@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.common.entity.cretaceous.yixian;
+package superlord.prehistoricfauna.common.entity.jurassic.kayenta;
 
 import javax.annotation.Nullable;
 
@@ -13,22 +13,26 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.MoveControl;
-import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
 import net.minecraft.world.entity.animal.Animal;
@@ -40,6 +44,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.HitResult;
@@ -51,9 +56,9 @@ import superlord.prehistoricfauna.common.entity.navigation.FlightMoveController;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFTags;
 
-public class Apoclion extends Animal {
-	private static final EntityDataAccessor<Direction> ATTACHED_FACE = SynchedEntityData.defineId(Apoclion.class, EntityDataSerializers.DIRECTION);
-	private static final EntityDataAccessor<Byte> CLIMBING = SynchedEntityData.defineId(Apoclion.class, EntityDataSerializers.BYTE);
+public class Octopodichnus extends Animal {
+	private static final EntityDataAccessor<Direction> ATTACHED_FACE = SynchedEntityData.defineId(Octopodichnus.class, EntityDataSerializers.DIRECTION);
+	private static final EntityDataAccessor<Byte> CLIMBING = SynchedEntityData.defineId(Octopodichnus.class, EntityDataSerializers.BYTE);
 	private static final Direction[] HORIZONTALS = new Direction[]{Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST};
 	public float attachChangeProgress = 0F;
 	public float prevAttachChangeProgress = 0F;
@@ -61,7 +66,7 @@ public class Apoclion extends Animal {
 	private boolean isUpsideDownNavigator;
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public Apoclion(EntityType type, Level world) {
+	public Octopodichnus(EntityType type, Level world) {
 		super(type, world);
 		this.setPathfindingMalus(BlockPathTypes.WATER, -1.0F);
 		switchNavigator(true);
@@ -107,9 +112,12 @@ public class Apoclion extends Animal {
 		super.registerGoals();
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
+		this.goalSelector.addGoal(1, new Octopodichnus.MeleeAttackGoal());
 		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, PFTags.APOCLION_AVOIDING, 6.0F, 1.0D, 1.2D));
+		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, false, false, (p_213487_1_) -> {
+			return p_213487_1_.getType().is(PFTags.OCTOPODICHNUS_HUNTING);
+		}));
 	}
 
 	public int getMaxAir() {
@@ -117,7 +125,40 @@ public class Apoclion extends Animal {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 1.0D).add(Attributes.MOVEMENT_SPEED, 0.15D);
+		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 1.0D).add(Attributes.MOVEMENT_SPEED, 0.15D).add(Attributes.ATTACK_DAMAGE, 1.0D);
+	}
+	
+	class MeleeAttackGoal extends net.minecraft.world.entity.ai.goal.MeleeAttackGoal {
+		public MeleeAttackGoal() {
+			super(Octopodichnus.this, 1.25D, true);
+		}
+
+		protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
+			double d0 = this.getAttackReachSqr(enemy);
+			if (distToEnemySqr <= d0 && this.isTimeToAttack()) {
+				this.resetAttackCooldown();
+				this.mob.doHurtTarget(enemy);
+			} else if (distToEnemySqr <= d0 * 2.0D) {
+				if (this.isTimeToAttack()) {
+					this.resetAttackCooldown();
+				}
+			} else {
+				this.resetAttackCooldown();
+			}
+
+		}
+
+		public boolean canContinueToUse() {
+			return super.canContinueToUse();
+		}
+
+		public void stop() {
+			super.stop();
+		}
+
+		protected double getAttackReachSqr(LivingEntity attackTarget) {
+			return (double)(1.0F + attackTarget.getBbWidth());
+		}
 	}
 
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
@@ -127,7 +168,7 @@ public class Apoclion extends Animal {
 			if (!player.isCreative()) {
 				itemstack.shrink(1);
 			}
-			player.addItem(new ItemStack(PFItems.BOTTLED_APOCLION.get()));
+			player.addItem(new ItemStack(PFItems.BOTTLED_OCTOPODICHNUS.get()));
 			this.discard();
 		}
 		return super.mobInteract(player, hand);
@@ -147,7 +188,7 @@ public class Apoclion extends Animal {
 				this.entityData.set(ATTACHED_FACE, Direction.DOWN);
 			} else  if (this.verticalCollision) {
 				this.entityData.set(ATTACHED_FACE, Direction.UP);
-			}else {
+			} else {
 				Direction closestDirection = Direction.DOWN;
 				double closestDistance = 100;
 				for (Direction dir : HORIZONTALS) {
@@ -206,6 +247,17 @@ public class Apoclion extends Animal {
 	private boolean isClimeableFromSide(BlockPos offsetPos, Direction opposite) {
 		return false;
 	}
+	
+	@Override
+	public void aiStep() {
+		super.aiStep();
+		for (int i = 0; i <= 200; i++) {
+			if (this.level().getBlockState(this.blockPosition()).getBlock() != Blocks.AIR && i >= 200 && this.level().getBlockState(this.blockPosition()).getBlock() == Blocks.AIR) {
+				level().setBlockAndUpdate(this.blockPosition(), Blocks.COBWEB.defaultBlockState());
+				i = 0;
+			}
+		}
+	}
 
 	protected void onInsideBlock(BlockState state) {
 
@@ -247,19 +299,46 @@ public class Apoclion extends Animal {
 		compound.putByte("AttachFace", (byte) this.entityData.get(ATTACHED_FACE).get3DDataValue());
 	}
 
+	public void makeStuckInBlock(BlockState p_33796_, Vec3 p_33797_) {
+		if (!p_33796_.is(Blocks.COBWEB)) {
+			super.makeStuckInBlock(p_33796_, p_33797_);
+		}
+	}
+
+	public boolean doHurtTarget(Entity p_32257_) {
+		if (super.doHurtTarget(p_32257_)) {
+			if (p_32257_ instanceof LivingEntity) {
+				int i = 0;
+				if (this.level().getDifficulty() == Difficulty.NORMAL) {
+					i = 7;
+				} else if (this.level().getDifficulty() == Difficulty.HARD) {
+					i = 15;
+				}
+
+				if (i > 0) {
+					((LivingEntity)p_32257_).addEffect(new MobEffectInstance(MobEffects.POISON, i * 20, 0), this);
+				}
+			}
+
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	@Nullable
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel serverWorld, AgeableMob ageableEntity) {
 		return null;
 	}
-
+	
 	public static boolean canBugSpawn(EntityType<? extends PathfinderMob> animal, ServerLevelAccessor worldIn, MobSpawnType reason, BlockPos pos, RandomSource random) {
 		return (worldIn.getBlockState(pos.below()).is(BlockTags.DIRT) || worldIn.getBlockState(pos.below()).is(Tags.Blocks.SAND) || worldIn.getBlockState(pos.below()).is(BlockTags.LEAVES) || worldIn.getBlockState(pos.below()).is(BlockTags.LOGS_THAT_BURN)) && worldIn.getRawBrightness(pos, 0) > 8;
 	}
 	
 	@Override
 	public ItemStack getPickedResult(HitResult target) {
-		return new ItemStack(PFItems.APOCLION_SPAWN_EGG.get());
+		return new ItemStack(PFItems.OCTOPODICHNUS_SPAWN_EGG.get());
 	}
 
 }

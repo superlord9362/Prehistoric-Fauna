@@ -17,7 +17,6 @@ public class CrepuscularSleepGoal extends Goal {
 	}
 
 	@Override
-	@SuppressWarnings("resource")
 	public boolean canUse() {
 		Level level = entity.level();
 		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(2D, 2D, 2D))) {
@@ -27,7 +26,6 @@ public class CrepuscularSleepGoal extends Goal {
 	}
 
 	@Override
-	@SuppressWarnings("resource")
 	public boolean canContinueToUse() {
 		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(2D, 2D, 2D))) {
 			if (player.isShiftKeyDown()) {

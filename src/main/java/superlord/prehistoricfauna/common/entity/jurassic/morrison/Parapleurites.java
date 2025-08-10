@@ -1,4 +1,4 @@
-package superlord.prehistoricfauna.common.entity.cretaceous.yixian;
+package superlord.prehistoricfauna.common.entity.jurassic.morrison;
 
 import javax.annotation.Nullable;
 
@@ -9,7 +9,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -23,6 +23,7 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.JumpControl;
 import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
@@ -42,6 +43,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -49,38 +51,248 @@ import net.minecraftforge.common.Tags;
 import superlord.prehistoricfauna.common.entity.navigation.DirectPathNavigator;
 import superlord.prehistoricfauna.common.entity.navigation.FlightMoveController;
 import superlord.prehistoricfauna.init.PFItems;
+import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
-public class Apoclion extends Animal {
-	private static final EntityDataAccessor<Direction> ATTACHED_FACE = SynchedEntityData.defineId(Apoclion.class, EntityDataSerializers.DIRECTION);
-	private static final EntityDataAccessor<Byte> CLIMBING = SynchedEntityData.defineId(Apoclion.class, EntityDataSerializers.BYTE);
+public class Parapleurites extends Animal {
+	private static final EntityDataAccessor<Direction> ATTACHED_FACE = SynchedEntityData.defineId(Parapleurites.class, EntityDataSerializers.DIRECTION);
+	private static final EntityDataAccessor<Byte> CLIMBING = SynchedEntityData.defineId(Parapleurites.class, EntityDataSerializers.BYTE);
 	private static final Direction[] HORIZONTALS = new Direction[]{Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST};
 	public float attachChangeProgress = 0F;
 	public float prevAttachChangeProgress = 0F;
 	private Direction prevAttachDir = Direction.DOWN;
-	private boolean isUpsideDownNavigator;
+	public boolean isUpsideDownNavigator;
+	private int jumpTicks;
+	private int jumpDuration;
+	private boolean wasOnGround;
+	private int jumpDelayTicks;
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public Apoclion(EntityType type, Level world) {
+	public Parapleurites(EntityType type, Level world) {
 		super(type, world);
 		this.setPathfindingMalus(BlockPathTypes.WATER, -1.0F);
+		this.jumpControl = new Parapleurites.ParapleuritesJumpControl(this);
 		switchNavigator(true);
 	}
 
+	protected SoundEvent getAmbientSound() {
+		return PFSounds.PARAPLEURITES_IDLE.get();
+	}
+
 	protected void playStepSound(BlockPos p_33543_, BlockState p_33544_) {
-		this.playSound(SoundEvents.SILVERFISH_STEP, 0.15F, 1.0F);
+	}
+
+	@Override
+	public void playAmbientSound() {
+		SoundEvent soundevent = this.getAmbientSound();
+		if (soundevent != null) {
+			this.playSound(soundevent, this.getSoundVolume() * 5, this.getVoicePitch());
+		}
 	}
 
 	private void switchNavigator(boolean rightsideUp) {
 		if (rightsideUp) {
-			this.moveControl = new MoveControl(this);
+			this.moveControl = new ParapleuritesMoveControl(this);
 			this.navigation = new WallClimberNavigation(this, level());
+			this.enableJumpControl();
 			this.isUpsideDownNavigator = false;
 		} else {
 			this.moveControl = new FlightMoveController(this, 0.6F, false);
 			this.navigation = new DirectPathNavigator(this, level());
+			this.disableJumpControl();
 			this.isUpsideDownNavigator = true;
 		}
+	}
+
+	protected float getJumpPower() {
+		float f = 0.3F;
+		if (this.horizontalCollision || this.moveControl.hasWanted() && this.moveControl.getWantedY() > this.getY() + 0.5D) {
+			f = 0.5F;
+		}
+
+		Path path = this.navigation.getPath();
+		if (path != null && !path.isDone()) {
+			Vec3 vec3 = path.getNextEntityPos(this);
+			if (vec3.y > this.getY() + 0.5D) {
+				f = 0.5F;
+			}
+		}
+
+		if (this.moveControl.getSpeedModifier() <= 0.6D) {
+			f = 0.2F;
+		}
+
+		return f + this.getJumpBoostPower();
+	}
+
+	public void setSpeedModifier(double p_29726_) {
+		this.getNavigation().setSpeedModifier(p_29726_);
+		this.moveControl.setWantedPosition(this.moveControl.getWantedX(), this.moveControl.getWantedY(), this.moveControl.getWantedZ(), p_29726_);
+	}
+
+	protected void jumpFromGround() {
+		super.jumpFromGround();
+		double d0 = this.moveControl.getSpeedModifier();
+		if (d0 > 0.0D) {
+			double d1 = this.getDeltaMovement().horizontalDistanceSqr();
+			if (d1 < 0.01D) {
+				this.moveRelative(0.1F, new Vec3(0.0D, 0.0D, 1.0D));
+			}
+		}
+
+		if (!this.level().isClientSide()) {
+			this.level().broadcastEntityEvent(this, (byte)1);
+		}
+
+	}
+
+	public float getJumpCompletion(float p_29736_) {
+		return this.jumpDuration == 0 ? 0.0F : ((float)this.jumpTicks + p_29736_) / (float)this.jumpDuration;
+	}
+
+	public void customServerAiStep() {
+		if (this.jumpDelayTicks > 0) {
+			--this.jumpDelayTicks;
+		}
+		if (this.onGround()) {
+			if (!this.wasOnGround) {
+				this.setJumping(false);
+				this.checkLandingDelay();
+			}
+			Parapleurites.ParapleuritesJumpControl parapleurites$parapleuritesjumpcontrol = (Parapleurites.ParapleuritesJumpControl)this.jumpControl;
+			if (!parapleurites$parapleuritesjumpcontrol.wantJump()) {
+				if (this.moveControl.hasWanted() && this.jumpDelayTicks == 0) {
+					Path path = this.navigation.getPath();
+					Vec3 vec3 = new Vec3(this.moveControl.getWantedX(), this.moveControl.getWantedY(), this.moveControl.getWantedZ());
+					if (path != null && !path.isDone()) {
+						vec3 = path.getNextEntityPos(this);
+					}
+
+					this.facePoint(vec3.x, vec3.z);
+					this.startJumping();
+				}
+			} else if (!parapleurites$parapleuritesjumpcontrol.canJump()) {
+				this.enableJumpControl();
+			}
+		}
+		this.wasOnGround = this.onGround();
+	}
+
+	private void facePoint(double p_29687_, double p_29688_) {
+		this.setYRot((float)(Mth.atan2(p_29688_ - this.getZ(), p_29687_ - this.getX()) * (double)(180F / (float)Math.PI)) - 90.0F);
+	}
+
+	private void enableJumpControl() {
+		((Parapleurites.ParapleuritesJumpControl)this.jumpControl).setCanJump(true);
+	}
+
+	private void disableJumpControl() {
+		((Parapleurites.ParapleuritesJumpControl)this.jumpControl).setCanJump(false);
+	}
+
+	private void setLandingDelay() {
+		if (this.moveControl.getSpeedModifier() < 2.2D) {
+			this.jumpDelayTicks = 10;
+		} else {
+			this.jumpDelayTicks = 1;
+		}
+
+	}
+
+	private void checkLandingDelay() {
+		this.setLandingDelay();
+		this.disableJumpControl();
+	}
+
+	public void aiStep() {
+		super.aiStep();
+		if (this.jumpTicks != this.jumpDuration) {
+			++this.jumpTicks;
+		} else if (this.jumpDuration != 0) {
+			this.jumpTicks = 0;
+			this.jumpDuration = 0;
+			this.setJumping(false);
+		}
+
+	}
+
+	public void handleEntityEvent(byte p_29663_) {
+		if (p_29663_ == 1) {
+			this.jumpDuration = 10;
+			this.jumpTicks = 0;
+		} else {
+			super.handleEntityEvent(p_29663_);
+		}
+
+	}
+
+	static class ParapleuritesMoveControl extends MoveControl {
+		private final Parapleurites parapleurites;
+		private double nextJumpSpeed;
+
+		public ParapleuritesMoveControl(Parapleurites p_29766_) {
+			super(p_29766_);
+			this.parapleurites = p_29766_;
+		}
+
+		public void tick() {
+			if (this.parapleurites.onGround() && !this.parapleurites.jumping && !((Parapleurites.ParapleuritesJumpControl)this.parapleurites.jumpControl).wantJump()) {
+				this.parapleurites.setSpeedModifier(0.0D);
+			} else if (this.hasWanted()) {
+				this.parapleurites.setSpeedModifier(this.nextJumpSpeed);
+			}
+
+			super.tick();
+		}
+
+		public void setWantedPosition(double p_29769_, double p_29770_, double p_29771_, double p_29772_) {
+			if (this.parapleurites.isInWater()) {
+				p_29772_ = 1.5D;
+			}
+
+			super.setWantedPosition(p_29769_, p_29770_, p_29771_, p_29772_);
+			if (p_29772_ > 0.0D) {
+				this.nextJumpSpeed = p_29772_;
+			}
+
+		}
+	}
+
+	public static class ParapleuritesJumpControl extends JumpControl {
+		private final Parapleurites parapleurites;
+		private boolean canJump;
+
+		public ParapleuritesJumpControl(Parapleurites p_186229_) {
+			super(p_186229_);
+			this.parapleurites = p_186229_;
+		}
+
+		public boolean wantJump() {
+			return this.jump;
+		}
+
+		public boolean canJump() {
+			return this.canJump;
+		}
+
+		public void setCanJump(boolean p_29759_) {
+			this.canJump = p_29759_;
+		}
+
+		public void tick() {
+			if (this.jump) {
+				this.parapleurites.startJumping();
+				this.jump = false;
+			}
+
+		}
+	}
+
+	public void startJumping() {
+		this.setJumping(true);
+		this.playSound(PFSounds.PARAPLEURITES_HOP.get(), 0.15F, 1.0F);
+		this.jumpDuration = 10;
+		this.jumpTicks = 0;
 	}
 
 	@SuppressWarnings("unused")
@@ -109,7 +321,7 @@ public class Apoclion extends Animal {
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
 		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, PFTags.APOCLION_AVOIDING, 6.0F, 1.0D, 1.2D));
+		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, PFTags.PARAPLEURITES_AVOIDING, 6.0F, 1.0D, 1.2D));
 	}
 
 	public int getMaxAir() {
@@ -127,7 +339,7 @@ public class Apoclion extends Animal {
 			if (!player.isCreative()) {
 				itemstack.shrink(1);
 			}
-			player.addItem(new ItemStack(PFItems.BOTTLED_APOCLION.get()));
+			player.addItem(new ItemStack(PFItems.BOTTLED_PARAPLEURITES.get()));
 			this.discard();
 		}
 		return super.mobInteract(player, hand);
@@ -139,7 +351,7 @@ public class Apoclion extends Animal {
 		if (attachChangeProgress > 0F) {
 			attachChangeProgress -= 0.25F;
 		}
-		this.setMaxUpStep(0.5F);
+		this.setMaxUpStep(1F);
 		Vec3 vector3d = this.getDeltaMovement();
 		if (!this.level().isClientSide()) {
 			this.setBesideClimbableBlock(this.horizontalCollision || this.verticalCollision && !this.onGround());
@@ -256,11 +468,10 @@ public class Apoclion extends Animal {
 	public static boolean canBugSpawn(EntityType<? extends PathfinderMob> animal, ServerLevelAccessor worldIn, MobSpawnType reason, BlockPos pos, RandomSource random) {
 		return (worldIn.getBlockState(pos.below()).is(BlockTags.DIRT) || worldIn.getBlockState(pos.below()).is(Tags.Blocks.SAND) || worldIn.getBlockState(pos.below()).is(BlockTags.LEAVES) || worldIn.getBlockState(pos.below()).is(BlockTags.LOGS_THAT_BURN)) && worldIn.getRawBrightness(pos, 0) > 8;
 	}
-	
+
 	@Override
 	public ItemStack getPickedResult(HitResult target) {
-		return new ItemStack(PFItems.APOCLION_SPAWN_EGG.get());
+		return new ItemStack(PFItems.PARAPLEURITES_SPAWN_EGG.get());
 	}
 
 }
-

@@ -236,7 +236,6 @@ public class Sarahsaurus extends DinosaurEntity {
 			super(Sarahsaurus.this, Player.class, 20, true, true, (Predicate<LivingEntity>)null);
 		}
 
-		@SuppressWarnings("resource")
 		public boolean canUse() {
 			if (Sarahsaurus.this.isBaby()) {
 				return false;

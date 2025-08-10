@@ -322,7 +322,6 @@ public class Zhenyuanlong extends DinosaurEntity {
 			this.setFlags(EnumSet.of(Goal.Flag.TARGET));
 		}
 
-		@SuppressWarnings("resource")
 		public boolean canUse() {
 			for (Player player : Zhenyuanlong.this.level().getEntitiesOfClass(Player.class, Zhenyuanlong.this.getBoundingBox().inflate(4, 4, 4))) {
 				return Zhenyuanlong.this.trusts(player.getUUID()) && player.getLastAttacker() != null;

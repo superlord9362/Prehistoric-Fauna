@@ -16,7 +16,6 @@ public class UnscheduledSleepingGoal extends Goal {
 	}
 
 	@Override
-	@SuppressWarnings("resource")
 	public boolean canUse() {
 		if (PrehistoricFaunaConfig.unscheduledSleeping) {
 			for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
@@ -32,7 +31,6 @@ public class UnscheduledSleepingGoal extends Goal {
 		} else return false;
 	}
 
-	@SuppressWarnings("resource")
 	@Override
 	public boolean canContinueToUse() {
 		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {

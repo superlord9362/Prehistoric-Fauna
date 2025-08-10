@@ -230,6 +230,23 @@ public class PFTags {
 	public static final TagKey<EntityType<?>> SAUROSUCHUS_AVOIDING = registerEntityTag("saurosuchus_avoiding");
 	public static final TagKey<EntityType<?>> SILLOSUCHUS_AVOIDING = registerEntityTag("sillosuchus_avoiding");
 	
+	public static final TagKey<EntityType<?>> DERMESTID_AVOIDING = registerEntityTag("dermestid_avoiding");
+	public static final TagKey<EntityType<?>> GOBIULUS_AVOIDING = registerEntityTag("gobiulus_avoiding");
+	public static final TagKey<EntityType<?>> CEPHALOLEICHNITES_AVOIDING = registerEntityTag("cephaloleichnites_avoiding");
+	public static final TagKey<EntityType<?>> APOCLION_AVOIDING = registerEntityTag("apoclion_avoiding");
+	public static final TagKey<EntityType<?>> CRETARANEUS_AVOIDING = registerEntityTag("cretaraneus_avoiding");
+	public static final TagKey<EntityType<?>> LIAONEMOBIUS_AVOIDING = registerEntityTag("liaonemobius_avoiding");
+	public static final TagKey<EntityType<?>> PARAPLEURITES_AVOIDING = registerEntityTag("parapleurites_avoiding");
+	public static final TagKey<EntityType<?>> EOPOLIS_AVOIDING = registerEntityTag("eopolis_avoiding");
+	public static final TagKey<EntityType<?>> CYLINDRICUM_AVOIDING = registerEntityTag("cylindricum_avoiding");
+	public static final TagKey<EntityType<?>> RHIPIDOBLATTINA_AVOIDING = registerEntityTag("rhipidoblattina_avoiding");
+	public static final TagKey<EntityType<?>> CICADOCORIS_AVOIDING = registerEntityTag("cicadocoris_avoiding");
+	public static final TagKey<EntityType<?>> MESOFORFUCULA_AVOIDING = registerEntityTag("mesoforficula_avoiding");
+	public static final TagKey<EntityType<?>> ABOILUS_AVOIDING = registerEntityTag("aboilus_avoiding");
+	public static final TagKey<EntityType<?>> PALEOHELCURA_AVOIDING = registerEntityTag("paleohelcura_avoiding");
+	public static final TagKey<EntityType<?>> OCTOPODICHNUS_AVOIDING = registerEntityTag("octopodichnus_avoiding");
+	public static final TagKey<EntityType<?>> DIPLICHNITES_AVOIDING = registerEntityTag("diplichnites_avoiding");
+
 	public static final TagKey<EntityType<?>> TRIASSIC_ENTITIES = registerEntityTag("triassic_entities");
 	public static final TagKey<EntityType<?>> JURASSIC_ENTITIES = registerEntityTag("jurassic_entities");
 	public static final TagKey<EntityType<?>> CRETACEOUS_ENTITIES = registerEntityTag("cretaceous_entities");
