@@ -80,7 +80,26 @@
   "has_precipitation": true,
   "spawn_costs": {},
   "spawners": {
-    "ambient": [],
+    "ambient": [
+      {
+        "type": "prehistoricfauna:diplichnites",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 2
+      },
+      {
+        "type": "prehistoricfauna:octopodichnus",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 1
+      },
+      {
+        "type": "prehistoricfauna:paleohelcura",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 4
+      }
+    ],
     "axolotls": [],
     "creature": [
       {

@@ -333,6 +333,31 @@ public class PrehistoricFauna {
 		event.put(PFEntities.KAYENTASUCHUS.get(), Kayentasuchus.createAttributes().build());
 		event.put(PFEntities.KAYENTAVENATOR.get(), Kayentavenator.createAttributes().build());
 		event.put(PFEntities.OPHIOPSIS.get(), Ophiopsis.createAttributes().build());
+		event.put(PFEntities.DIPLICHNITES.get(), Diplichnites.createAttributes().build());
+		event.put(PFEntities.OCTOPODICHNUS.get(), Octopodichnus.createAttributes().build());
+		event.put(PFEntities.PALEOHELCURA.get(), Paleohelcura.createAttributes().build());
+		event.put(PFEntities.CYLINDRICUM.get(), Cylindricum.createAttributes().build());
+		event.put(PFEntities.EOPOLIS.get(), Eopolis.createAttributes().build());
+		event.put(PFEntities.PARAPLEURITES.get(), Parapleurites.createAttributes().build());
+		event.put(PFEntities.ABOILUS.get(), Aboilus.createAttributes().build());
+		event.put(PFEntities.CICADOCORIS.get(), Cicadocoris.createAttributes().build());
+		event.put(PFEntities.MESOFORFICULA.get(), Mesoforficula.createAttributes().build());
+		event.put(PFEntities.RHIPIDOBLATTINA.get(), Rhipidoblattina.createAttributes().build());
+//		event.put(PFEntities.ALCOVASAURUS.get(), Alcovasaurus.createAttributes().build());
+//		event.put(PFEntities.BRACHIOSAURUS.get(), Brachiosaurus.createAttributes().build());
+//		event.put(PFEntities.BRONTOSAURUS.get(), Brontosaurus.createAttributes().build());
+		event.put(PFEntities.CAMPTOSAURUS.get(), Camptosaurus.createAttributes().build());
+//		event.put(PFEntities.DIPLODOCUS.get(), Diplodocus.createAttributes().build());
+		event.put(PFEntities.GARGOYLEOSAURUS.get(), Gargoyleosaurus.createAttributes().build());
+//		event.put(PFEntities.MARAAPUNISAURUS.get(), Maraapunisaurus.createAttributes().build());
+		event.put(PFEntities.TORVOSAURUS.get(), Torvosaurus.createAttributes().build());
+//		event.put(PFEntities.ABROSAURUS.get(), Abrosaurus.createAttributes().build());
+//		event.put(PFEntities.HUAYANGOSAURUS.get(), Huayangosaurus.createAttributes().build());
+//		event.put(PFEntities.MAMENCHISAURUS.get(), Mamenchisaurus.createAttributes().build());
+//		event.put(PFEntities.OMEISAURUS.get(), Omeisaurus.createAttributes().build());
+//		event.put(PFEntities.SINRAPTOR.get(), Sinraptor.createAttributes().build());
+//		event.put(PFEntities.SHUNOSAURUS.get(), Shunosaurus.createAttributes().build());
+//		event.put(PFEntities.TUOJIANGOSAURUS.get(), Tuojiangosaurus.createAttributes().build());
 	}
 	
 	private void doClientStuff(final FMLClientSetupEvent event) {
@@ -484,6 +509,31 @@ public class PrehistoricFauna {
 		SpawnPlacements.register(PFEntities.KAYENTACHELYS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.KAYENTASUCHUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.KAYENTAVENATOR.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.ABOILUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Aboilus::canBugSpawn);
+		SpawnPlacements.register(PFEntities.CICADOCORIS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Cicadocoris::canBugSpawn);
+		SpawnPlacements.register(PFEntities.MESOFORFICULA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Mesoforficula::canBugSpawn);
+		SpawnPlacements.register(PFEntities.RHIPIDOBLATTINA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Rhipidoblattina::canBugSpawn);
+		SpawnPlacements.register(PFEntities.CYLINDRICUM.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Cylindricum::canBugSpawn);
+		SpawnPlacements.register(PFEntities.EOPOLIS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Eopolis::canBugSpawn);
+		SpawnPlacements.register(PFEntities.PARAPLEURITES.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Parapleurites::canBugSpawn);
+		SpawnPlacements.register(PFEntities.DIPLICHNITES.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Diplichnites::canBugSpawn);
+		SpawnPlacements.register(PFEntities.OCTOPODICHNUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Octopodichnus::canBugSpawn);
+		SpawnPlacements.register(PFEntities.PALEOHELCURA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Paleohelcura::canBugSpawn);
+//		SpawnPlacements.register(PFEntities.ALCOVASAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+//		SpawnPlacements.register(PFEntities.BRACHIOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+//		SpawnPlacements.register(PFEntities.BRONTOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.CAMPTOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+//		SpawnPlacements.register(PFEntities.DIPLODOCUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.GARGOYLEOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+//		SpawnPlacements.register(PFEntities.MARAAPUNISAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.TORVOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+//		SpawnPlacements.register(PFEntities.ABROSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+//		SpawnPlacements.register(PFEntities.HUAYANGOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+//		SpawnPlacements.register(PFEntities.MAMENCHISAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+//		SpawnPlacements.register(PFEntities.OMEISAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+//		SpawnPlacements.register(PFEntities.SINRAPTOR.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+//		SpawnPlacements.register(PFEntities.SHUNOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+//		SpawnPlacements.register(PFEntities.TUOJIANGOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		GeologicalHammerEvents.init();
 		event.enqueueWork(() -> {
 			PFPotDecorations.expandVanillaDefinitions();

@@ -444,6 +444,8 @@ public class PFPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> RARE_PTILOPHYLLUM = registerPlacedFeature("placed_rare_ptilophyllum");
 
 	public static final ResourceKey<PlacedFeature> HERMANOPHYTON = registerPlacedFeature("placed_hermanophyton");
+	
+	public static final ResourceKey<PlacedFeature> EOPOLIS_MOUND = registerPlacedFeature("placed_eopolis_mound");
 
 	
 	public static void bootstrap(BootstapContext<PlacedFeature> bootstapContext) {
@@ -861,6 +863,8 @@ public class PFPlacedFeatures {
 		PlacementUtils.register(bootstapContext, RARE_PTILOPHYLLUM, holderGetter.getOrThrow(PFConfiguredFeatures.PTILOPHYLLUM_TREE),  List.of(RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 
 		PlacementUtils.register(bootstapContext, HERMANOPHYTON, holderGetter.getOrThrow(PFConfiguredFeatures.HERMANOPHYTON),  List.of(RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+	
+		PlacementUtils.register(bootstapContext, EOPOLIS_MOUND, holderGetter.getOrThrow(PFConfiguredFeatures.EOPOLIS_MOUND), List.of(RarityFilter.onAverageOnceEvery(5), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 	}
 
 	public static ResourceKey<PlacedFeature> registerPlacedFeature(String id) {
@@ -973,6 +977,7 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PTILOPHYLLUM);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, STONEWORTS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZAMITES);
+		builder.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, EOPOLIS_MOUND);
 	}
 
 	public static void withKayentaDryForestVegetation(BiomeGenerationSettings.Builder builder) {
@@ -1299,6 +1304,7 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_PROTOPICEOXYLON_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZAMITES);
 		builder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, PACKED_MUD_DISK);
+		builder.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, EOPOLIS_MOUND);
 	}
 	
 	public static void withShaximiaoDeltaPlainsPlants(BiomeGenerationSettings.Builder builder) {

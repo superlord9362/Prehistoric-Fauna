@@ -175,6 +175,7 @@ public class PFTags {
 	
 	public static final TagKey<EntityType<?>> CALSOYASUCHUS_AVOIDING = registerEntityTag("calsoyasuchus_avoiding");
 	public static final TagKey<EntityType<?>> DILOPHOSAURUS_AVOIDING = registerEntityTag("dilophosaurus_avoiding");
+	public static final TagKey<EntityType<?>> DIPLICHNITES_HUNTING = registerEntityTag("diplichnites_hunting");
 	public static final TagKey<EntityType<?>> KAYENTACHELYS_AVOIDING = registerEntityTag("kayentachelys_avoiding");
 	public static final TagKey<EntityType<?>> KAYENTASUCHUS_AVOIDING = registerEntityTag("kayentasuchus_avoiding");
 	public static final TagKey<EntityType<?>> KAYENTASUCHUS_HUNTING = registerEntityTag("kayentasuchus_hunting");
@@ -184,31 +185,52 @@ public class PFTags {
 	public static final TagKey<EntityType<?>> KAYENTAVENATOR_HUNTING = registerEntityTag("kayentavenator_hunting");
 	public static final TagKey<EntityType<?>> KAYENTAVENATOR_BABY_HUNTING = registerEntityTag("kayentavenator_baby_hunting");
 	public static final TagKey<EntityType<?>> MEGAPNOSAURUS_AVOIDING = registerEntityTag("megapnosaurus_avoiding");
+	public static final TagKey<EntityType<?>> OCTOPODICHNUS_HUNTING = registerEntityTag("octopodichnus_hunting");
+	public static final TagKey<EntityType<?>> PALEOHELCURA_HUNTING = registerEntityTag("paleohelcura_hunting");
 	public static final TagKey<EntityType<?>> SARAHSAURUS_AVOIDING = registerEntityTag("sarahsaurus_avoiding");
 	public static final TagKey<EntityType<?>> SCELIDOSAURUS_AVOIDING = registerEntityTag("scelidosaurus_avoiding");
 	public static final TagKey<EntityType<?>> SCUTELLOSAURUS_AVOIDING = registerEntityTag("scutellosaurus_avoiding");
 
+	public static final TagKey<EntityType<?>> ALCOVASAURUS_AVOIDING = registerEntityTag("alcovasaurus_avoiding");
 	public static final TagKey<EntityType<?>> ALLOSAURUS_AVOIDING = registerEntityTag("allosaurus_avoiding");
+	public static final TagKey<EntityType<?>> BRACHIOSAURUS_AVOIDING = registerEntityTag("brachiosaurus_avoiding");
+	public static final TagKey<EntityType<?>> BRONTOSAURUS_AVOIDING = registerEntityTag("brontosaurus_avoiding");
 	public static final TagKey<EntityType<?>> CAMARASAURUS_AVOIDING = registerEntityTag("camarasaurus_avoiding");
+	public static final TagKey<EntityType<?>> CAMPTOSAURUS_AVOIDING = registerEntityTag("camptosaurus_avoiding");
 	public static final TagKey<EntityType<?>> CERATOSAURUS_AVOIDING = registerEntityTag("ceratosaurus_avoiding");
 	public static final TagKey<EntityType<?>> DIABLOPHIS_AVOIDING = registerEntityTag("diablophis_avoiding");
 	public static final TagKey<EntityType<?>> DIABLOPHIS_HUNTING = registerEntityTag("diablophis_hunting");
 	public static final TagKey<EntityType<?>> DIABLOPHIS_BABY_HUNTING = registerEntityTag("diablophis_baby_hunting");
+	public static final TagKey<EntityType<?>> DIPLODOCUS_AVOIDING = registerEntityTag("diplodocus_avoiding");
 	public static final TagKey<EntityType<?>> DRYOSAURUS_AVOIDING = registerEntityTag("dryosaurus_avoiding");
 	public static final TagKey<EntityType<?>> EILENODON_AVOIDING = registerEntityTag("eilenodon_avoiding");
+	public static final TagKey<EntityType<?>> GARGOYLEOSAURUS_AVOIDING = registerEntityTag("gargoyleosaurus_avoiding");
 	public static final TagKey<EntityType<?>> HESPERORNITHOIDES_AVOIDING = registerEntityTag("hesperornithoides_avoiding");
 	public static final TagKey<EntityType<?>> MACELOGNATHUS_AVOIDING = registerEntityTag("macelognathus_avoiding");
+	public static final TagKey<EntityType<?>> MARAAPUNISAURUS_AVOIDING = registerEntityTag("maraapunisaurus_avoiding");
 	public static final TagKey<EntityType<?>> STEGOSAURUS_AVOIDING = registerEntityTag("stegosaurus_avoiding");
 	public static final TagKey<EntityType<?>> TANYCOLAGREUS_AVOIDING = registerEntityTag("tanycolagreus_avoiding");
 	public static final TagKey<EntityType<?>> TANYCOLAGREUS_HUNTING = registerEntityTag("tanycolagreus_hunting");
 	public static final TagKey<EntityType<?>> TANYCOLAGREUS_BABY_HUNTING = registerEntityTag("tanycolagreus_baby_hunting");
+	public static final TagKey<EntityType<?>> TORVOSAURUS_AVOIDING = registerEntityTag("torvosaurus_avoiding");
+	public static final TagKey<EntityType<?>> TORVOSAURUS_HUNTING = registerEntityTag("torvosaurus_hunting");
+	public static final TagKey<EntityType<?>> TORVOSAURUS_BABY_HUNTING = registerEntityTag("torvosaurus_baby_hunting");
 	
+	public static final TagKey<EntityType<?>> ABROSAURUS_AVOIDING = registerEntityTag("abrosaurus_avoiding");
 	public static final TagKey<EntityType<?>> AGILISAURUS_AVOIDING = registerEntityTag("agilisaurus_avoiding");
 	public static final TagKey<EntityType<?>> BASHANOSAURUS_AVOIDING = registerEntityTag("bashanosaurus_avoiding");
 	public static final TagKey<EntityType<?>> CHUANDONGOCOELURUS_AVOIDING = registerEntityTag("chuandongocoelurus_avoiding");
 	public static final TagKey<EntityType<?>> CHUANDONGOCOELURUS_HUNTING = registerEntityTag("chuandongocoelurus_hunting");
 	public static final TagKey<EntityType<?>> CHUANDONGOCOELURUS_BABY_HUNTING = registerEntityTag("chuandongocoelurus_baby_hunting");
 	public static final TagKey<EntityType<?>> GIGANTSPINOSAURUS_AVOIDING = registerEntityTag("gigantspinosaurus_avoiding");
+	public static final TagKey<EntityType<?>> HUAYANGOSAURUS_AVOIDING = registerEntityTag("huayangosaurus_avoiding");
+	public static final TagKey<EntityType<?>> MAMENCHISAURUS_AVOIDING = registerEntityTag("mamenchisaurus_avoiding");
+	public static final TagKey<EntityType<?>> OMEISAURUS_AVOIDING = registerEntityTag("omeisaurus_avoiding");
+	public static final TagKey<EntityType<?>> SINRAPTOR_AVOIDING = registerEntityTag("sinraptor_avoiding");
+	public static final TagKey<EntityType<?>> SINRAPTOR_HUNTING = registerEntityTag("sinraptor_hunting");
+	public static final TagKey<EntityType<?>> SINRAPTOR_BABY_HUNTING = registerEntityTag("sinraptor_baby_hunting");
+	public static final TagKey<EntityType<?>> SHUNOSAURUS_AVOIDING = registerEntityTag("shunosaurus_avoiding");
+	public static final TagKey<EntityType<?>> TUOJIANGOSAURUS_AVOIDING = registerEntityTag("tuojiangosaurus_avoiding");
 	public static final TagKey<EntityType<?>> YANDUSAURUS_AVOIDING = registerEntityTag("yandusaurus_avoiding");
 	public static final TagKey<EntityType<?>> YANGCHUANOSAURUS_AVOIDING = registerEntityTag("yangchuanosaurus_avoiding");
 	public static final TagKey<EntityType<?>> YANGCHUANOSAURUS_HUNTING = registerEntityTag("yangchuanosaurus_hunting");
@@ -241,7 +263,7 @@ public class PFTags {
 	public static final TagKey<EntityType<?>> CYLINDRICUM_AVOIDING = registerEntityTag("cylindricum_avoiding");
 	public static final TagKey<EntityType<?>> RHIPIDOBLATTINA_AVOIDING = registerEntityTag("rhipidoblattina_avoiding");
 	public static final TagKey<EntityType<?>> CICADOCORIS_AVOIDING = registerEntityTag("cicadocoris_avoiding");
-	public static final TagKey<EntityType<?>> MESOFORFUCULA_AVOIDING = registerEntityTag("mesoforficula_avoiding");
+	public static final TagKey<EntityType<?>> MESOFORFICULA_AVOIDING = registerEntityTag("mesoforficula_avoiding");
 	public static final TagKey<EntityType<?>> ABOILUS_AVOIDING = registerEntityTag("aboilus_avoiding");
 	public static final TagKey<EntityType<?>> PALEOHELCURA_AVOIDING = registerEntityTag("paleohelcura_avoiding");
 	public static final TagKey<EntityType<?>> OCTOPODICHNUS_AVOIDING = registerEntityTag("octopodichnus_avoiding");
@@ -287,8 +309,8 @@ public class PFTags {
 
 	public static final TagKey<Structure> ON_TIME_TEMPLE_MAPS = registerStructureTag("on_time_temple_maps");
 
-
 	public static final TagKey<PoiType> BURROWS = registerPoiTag("burrows"); 
+	public static final TagKey<PoiType> EOPOLIS_MOUNDS = registerPoiTag("eopolis_mounds");
 
 	private static TagKey<Item> registerItemTag(String name) {
 		return TagKey.create(Registries.ITEM, new ResourceLocation(PrehistoricFauna.MOD_ID, name));

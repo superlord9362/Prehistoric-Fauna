@@ -4021,6 +4021,54 @@
 			}
 		]
 	},
+	"parapleurites_idle": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.parapleuritesIdle",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/liaonemobius/liaonemobius_idle1",
+				"stream": true
+			},
+			{
+				"name": "prehistoricfauna:prehistoric/liaonemobius/liaonemobius_idle2",
+				"stream": true
+			}
+		]
+	},
+	"parapleurites_hop": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.parapleuritesHop",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/liaonemobius/liaonemobius_hop",
+				"stream": true
+			}
+		]
+	},
+	"aboilus_idle": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.aboilusIdle",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/liaonemobius/liaonemobius_idle1",
+				"stream": true
+			},
+			{
+				"name": "prehistoricfauna:prehistoric/liaonemobius/liaonemobius_idle2",
+				"stream": true
+			}
+		]
+	},
+	"aboilus_hop": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.aboilusHop",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/liaonemobius/liaonemobius_hop",
+				"stream": true
+			}
+		]
+	},
 	"brachychampsa_idle": {
 		"category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.brachychampsaIdle",
@@ -4553,6 +4601,796 @@
 			}
 		]
 	},
+	 "torvosaurus_idle": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.torvosaurusIdle",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/torvosaurus/torvosaurus_idle1",
+	             "stream": true
+	         },
+			{
+	             "name": "prehistoricfauna:prehistoric/torvosaurus/torvosaurus_idle2",
+				"stream": true
+			}
+	     ]
+	 },
+	 "torvosaurus_bite": {
+	 	"category": "neutral",
+	 	"subtitle": "prehistoricfauna.subtitle.torvosaurusBite",
+	 	"sounds": [
+	 		{
+	 			"name": "prehistoricfauna:prehistoric/bite/large_bite",
+	 			"stream": true
+	 		}
+	 	]
+	 },
+	"torvosaurus_hurt": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.torvosaurusHurt",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/torvosaurus/torvosaurus_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	 "torvosaurus_warn": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.torvosaurusWarning",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/torvosaurus/torvosaurus_warning",
+	             "stream": true
+	         }
+	     ]
+	 },
+	"torvosaurus_death": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.torvosaurusDeath",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/torvosaurus/torvosaurus_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	"torvosaurus_snores": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.torvosaurusSnores",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/snoring/large_snoring",
+				"stream": true
+			}
+		]
+	},
+	 "brachiosaurus_idle": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.brachiosaurusIdle",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/brachiosaurus/brachiosaurus_idle1",
+	             "stream": true
+	         },
+			{
+	             "name": "prehistoricfauna:prehistoric/brachiosaurus/brachiosaurus_idle2",
+				"stream": true
+			}
+	     ]
+	 },
+	"brachiosaurus_hurt": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.brachiosaurusHurt",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/brachiosaurus/brachiosaurus_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	 "brachiosaurus_warn": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.brachiosaurusWarning",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/brachiosaurus/brachiosaurus_warning",
+	             "stream": true
+	         }
+	     ]
+	 },
+	"brachiosaurus_death": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.brachiosaurusDeath",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/brachiosaurus/brachiosaurus_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	"brachiosaurus_snores": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.brachiosaurusSnores",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/snoring/large_snoring",
+				"stream": true
+			}
+		]
+	},
+	 "brontosaurus_idle": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.brontosaurusIdle",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/brontosaurus/brontosaurus_idle1",
+	             "stream": true
+	         },
+			{
+	             "name": "prehistoricfauna:prehistoric/brontosaurus/brontosaurus_idle2",
+				"stream": true
+			}
+	     ]
+	 },
+	"brontosaurus_hurt": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.brontosaurusHurt",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/brontosaurus/brontosaurus_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	 "brontosaurus_warn": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.brontosaurusWarning",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/brontosaurus/brontosaurus_warning",
+	             "stream": true
+	         }
+	     ]
+	 },
+	"brontosaurus_death": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.brontosaurusDeath",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/brontosaurus/brontosaurus_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	"brontosaurus_snores": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.brontosaurusSnores",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/snoring/large_snoring",
+				"stream": true
+			}
+		]
+	},
+	 "camptosaurus_idle": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.camptosaurusIdle",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/camptosaurus/camptosaurus_idle1",
+	             "stream": true
+	         },
+			{
+	             "name": "prehistoricfauna:prehistoric/camptosaurus/camptosaurus_idle2",
+				"stream": true
+			}
+	     ]
+	 },
+	"camptosaurus_hurt": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.camptosaurusHurt",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/camptosaurus/camptosaurus_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	 "camptosaurus_warn": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.camptosaurusWarning",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/camptosaurus/camptosaurus_warning",
+	             "stream": true
+	         }
+	     ]
+	 },
+	"camptosaurus_death": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.camptosaurusDeath",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/camptosaurus/camptosaurus_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	  "gargoyleosaurus_idle": {
+	      "category": "neutral",
+	 	"subtitle": "prehistoricfauna.subtitle.gargoyleosaurusIdle",
+	      "sounds": [
+	          {
+	              "name": "prehistoricfauna:prehistoric/gargoyleosaurus/gargoyleosaurus_idle1",
+	              "stream": true
+	          },
+	 		{
+	              "name": "prehistoricfauna:prehistoric/gargoyleosaurus/gargoyleosaurus_idle2",
+	 			"stream": true
+	 		}
+	      ]
+	  },
+	 "gargoyleosaurus_hurt": {
+	      "category": "neutral",
+	 	"subtitle": "prehistoricfauna.subtitle.gargoyleosaurusHurt",
+	      "sounds": [
+	          {
+	              "name": "prehistoricfauna:prehistoric/gargoyleosaurus/gargoyleosaurus_hurt",
+	              "stream": true
+	          }
+	      ]
+	  },
+	  "gargoyleosaurus_warn": {
+	      "category": "neutral",
+	 	"subtitle": "prehistoricfauna.subtitle.gargoyleosaurusWarning",
+	      "sounds": [
+	          {
+	              "name": "prehistoricfauna:prehistoric/gargoyleosaurus/gargoyleosaurus_warning",
+	              "stream": true
+	          }
+	      ]
+	  },
+	 "gargoyleosaurus_death": {
+	      "category": "neutral",
+	 	"subtitle": "prehistoricfauna.subtitle.gargoyleosaurusDeath",
+	      "sounds": [
+	          {
+	              "name": "prehistoricfauna:prehistoric/gargoyleosaurus/gargoyleosaurus_hurt",
+	              "stream": true
+	          }
+	      ]
+	  },
+	  "diplodocus_idle": {
+	      "category": "neutral",
+	 	"subtitle": "prehistoricfauna.subtitle.diplodocusIdle",
+	      "sounds": [
+	          {
+	              "name": "prehistoricfauna:prehistoric/diplodocus/diplodocus_idle1",
+	              "stream": true
+	          },
+	 		{
+	              "name": "prehistoricfauna:prehistoric/diplodocus/diplodocus_idle2",
+	 			"stream": true
+	 		}
+	      ]
+	  },
+	 "diplodocus_hurt": {
+	      "category": "neutral",
+	 	"subtitle": "prehistoricfauna.subtitle.diplodocusHurt",
+	      "sounds": [
+	          {
+	              "name": "prehistoricfauna:prehistoric/diplodocus/diplodocus_hurt",
+	              "stream": true
+	          }
+	      ]
+	  },
+	  "diplodocus_warn": {
+	      "category": "neutral",
+	 	"subtitle": "prehistoricfauna.subtitle.diplodocusWarning",
+	      "sounds": [
+	          {
+	              "name": "prehistoricfauna:prehistoric/diplodocus/diplodocus_warning",
+	              "stream": true
+	          }
+	      ]
+	  },
+	 "diplodocus_death": {
+	      "category": "neutral",
+	 	"subtitle": "prehistoricfauna.subtitle.diplodocusDeath",
+	      "sounds": [
+	          {
+	              "name": "prehistoricfauna:prehistoric/diplodocus/diplodocus_hurt",
+	              "stream": true
+	          }
+	      ]
+	  },
+	 "diplodocus_snores": {
+	 	"category": "neutral",
+	 	"subtitle": "prehistoricfauna.subtitle.diplodocusSnores",
+	 	"sounds": [
+	 		{
+	 			"name": "prehistoricfauna:prehistoric/snoring/large_snoring",
+	 			"stream": true
+	 		}
+	 	]
+	 },
+	 "maraapunisaurus_idle": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.maraapunisaurusIdle",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/maraapunisaurus/maraapunisaurus_idle1",
+	             "stream": true
+	         },
+			{
+	             "name": "prehistoricfauna:prehistoric/maraapunisaurus/maraapunisaurus_idle2",
+				"stream": true
+			}
+	     ]
+	 },
+	"maraapunisaurus_hurt": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.maraapunisaurusHurt",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/maraapunisaurus/maraapunisaurus_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	 "maraapunisaurus_warn": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.maraapunisaurusWarning",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/maraapunisaurus/maraapunisaurus_warning",
+	             "stream": true
+	         }
+	     ]
+	 },
+	"maraapunisaurus_death": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.maraapunisaurusDeath",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/maraapunisaurus/maraapunisaurus_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	"maraapunisaurus_snores": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.maraapunisaurusSnores",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/snoring/large_snoring",
+				"stream": true
+			}
+		]
+	},
+	 "alcovasaurus_idle": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.alcovasaurusIdle",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/alcovasaurus/alcovasaurus_idle1",
+	             "stream": true
+	         },
+			{
+	             "name": "prehistoricfauna:prehistoric/alcovasaurus/alcovasaurus_idle2",
+				"stream": true
+			}
+	     ]
+	 },
+	"alcovasaurus_hurt": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.alcovasaurusHurt",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/alcovasaurus/alcovasaurus_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	 "alcovasaurus_warn": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.alcovasaurusWarning",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/alcovasaurus/alcovasaurus_warning",
+	             "stream": true
+	         }
+	     ]
+	 },
+	"alcovasaurus_death": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.alcovasaurusDeath",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/alcovasaurus/alcovasaurus_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	"alcovasaurus_snores": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.alcovasaurusSnores",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/snoring/large_snoring",
+				"stream": true
+			}
+		]
+	},
+	 "abrosaurus_idle": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.abrosaurusIdle",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/abrosaurus/abrosaurus_idle1",
+	             "stream": true
+	         },
+			{
+	             "name": "prehistoricfauna:prehistoric/abrosaurus/abrosaurus_idle2",
+				"stream": true
+			}
+	     ]
+	 },
+	"abrosaurus_hurt": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.abrosaurusHurt",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/abrosaurus/abrosaurus_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	 "abrosaurus_warn": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.abrosaurusWarning",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/abrosaurus/abrosaurus_warning",
+	             "stream": true
+	         }
+	     ]
+	 },
+	"abrosaurus_death": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.abrosaurusDeath",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/abrosaurus/abrosaurus_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	"abrosaurus_snores": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.abrosaurusSnores",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/snoring/large_snoring",
+				"stream": true
+			}
+		]
+	},
+	 "huayangosaurus_idle": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.huayangosaurusIdle",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/huayangosaurus/huayangosaurus_idle1",
+	             "stream": true
+	         },
+			{
+	             "name": "prehistoricfauna:prehistoric/huayangosaurus/huayangosaurus_idle2",
+				"stream": true
+			}
+	     ]
+	 },
+	"huayangosaurus_hurt": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.huayangosaurusHurt",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/huayangosaurus/huayangosaurus_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	 "huayangosaurus_warn": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.huayangosaurusWarning",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/huayangosaurus/huayangosaurus_warning",
+	             "stream": true
+	         }
+	     ]
+	 },
+	"huayangosaurus_death": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.huayangosaurusDeath",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/huayangosaurus/huayangosaurus_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	  "mamenchisaurus_idle": {
+	      "category": "neutral",
+	 	"subtitle": "prehistoricfauna.subtitle.mamenchisaurusIdle",
+	      "sounds": [
+	          {
+	              "name": "prehistoricfauna:prehistoric/mamenchisaurus/mamenchisaurus_idle1",
+	              "stream": true
+	          },
+	 		{
+	              "name": "prehistoricfauna:prehistoric/mamenchisaurus/mamenchisaurus_idle2",
+	 			"stream": true
+	 		}
+	      ]
+	  },
+	 "mamenchisaurus_hurt": {
+	      "category": "neutral",
+	 	"subtitle": "prehistoricfauna.subtitle.mamenchisaurusHurt",
+	      "sounds": [
+	          {
+	              "name": "prehistoricfauna:prehistoric/mamenchisaurus/mamenchisaurus_hurt",
+	              "stream": true
+	          }
+	      ]
+	  },
+	  "mamenchisaurus_warn": {
+	      "category": "neutral",
+	 	"subtitle": "prehistoricfauna.subtitle.mamenchisaurusWarning",
+	      "sounds": [
+	          {
+	              "name": "prehistoricfauna:prehistoric/mamenchisaurus/mamenchisaurus_warning",
+	              "stream": true
+	          }
+	      ]
+	  },
+	 "mamenchisaurus_death": {
+	      "category": "neutral",
+	 	"subtitle": "prehistoricfauna.subtitle.mamenchisaurusDeath",
+	      "sounds": [
+	          {
+	              "name": "prehistoricfauna:prehistoric/mamenchisaurus/mamenchisaurus_hurt",
+	              "stream": true
+	          }
+	      ]
+	  },
+	 "mamenchisaurus_snores": {
+	 	"category": "neutral",
+	 	"subtitle": "prehistoricfauna.subtitle.mamenchisaurusSnores",
+	 	"sounds": [
+	 		{
+	 			"name": "prehistoricfauna:prehistoric/snoring/large_snoring",
+	 			"stream": true
+	 		}
+	 	]
+	 },
+	 "omeisaurus_idle": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.omeisaurusIdle",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/omeisaurus/omeisaurus_idle1",
+	             "stream": true
+	         },
+			{
+	             "name": "prehistoricfauna:prehistoric/omeisaurus/omeisaurus_idle2",
+				"stream": true
+			}
+	     ]
+	 },
+	"omeisaurus_hurt": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.omeisaurusHurt",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/omeisaurus/omeisaurus_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	 "omeisaurus_warn": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.omeisaurusWarning",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/omeisaurus/omeisaurus_warning",
+	             "stream": true
+	         }
+	     ]
+	 },
+	"omeisaurus_death": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.omeisaurusDeath",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/omeisaurus/omeisaurus_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	"omeisaurus_snores": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.omeisaurusSnores",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/snoring/large_snoring",
+				"stream": true
+			}
+		]
+	},
+	 "sinraptor_idle": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.sinraptorIdle",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/sinraptor/sinraptor_idle1",
+	             "stream": true
+	         },
+			{
+	             "name": "prehistoricfauna:prehistoric/sinraptor/sinraptor_idle2",
+				"stream": true
+			}
+	     ]
+	 },
+	 "sinraptor_bite": {
+	 	"category": "neutral",
+	 	"subtitle": "prehistoricfauna.subtitle.sinraptorBite",
+	 	"sounds": [
+	 		{
+	 			"name": "prehistoricfauna:prehistoric/bite/large_bite",
+	 			"stream": true
+	 		}
+	 	]
+	 },
+	"sinraptor_hurt": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.sinraptorHurt",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/sinraptor/sinraptor_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	 "sinraptor_warn": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.sinraptorWarning",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/sinraptor/sinraptor_warning",
+	             "stream": true
+	         }
+	     ]
+	 },
+	"sinraptor_death": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.sinraptorDeath",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/sinraptor/sinraptor_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	"sinraptor_snores": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.sinraptorSnores",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/snoring/large_snoring",
+				"stream": true
+			}
+		]
+	},
+	 "shunosaurus_idle": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.shunosaurusIdle",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/shunosaurus/shunosaurus_idle1",
+	             "stream": true
+	         },
+			{
+	             "name": "prehistoricfauna:prehistoric/shunosaurus/shunosaurus_idle2",
+				"stream": true
+			}
+	     ]
+	 },
+	"shunosaurus_hurt": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.shunosaurusHurt",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/shunosaurus/shunosaurus_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	 "shunosaurus_warn": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.shunosaurusWarning",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/shunosaurus/shunosaurus_warning",
+	             "stream": true
+	         }
+	     ]
+	 },
+	"shunosaurus_death": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.shunosaurusDeath",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/shunosaurus/shunosaurus_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	"shunosaurus_snores": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.shunosaurusSnores",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/snoring/large_snoring",
+				"stream": true
+			}
+		]
+	},
+	 "tuojiangosaurus_idle": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.tuojiangosaurusIdle",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/tuojiangosaurus/tuojiangosaurus_idle1",
+	             "stream": true
+	         },
+			{
+	             "name": "prehistoricfauna:prehistoric/tuojiangosaurus/tuojiangosaurus_idle2",
+				"stream": true
+			}
+	     ]
+	 },
+	"tuojiangosaurus_hurt": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.tuojiangosaurusHurt",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/tuojiangosaurus/tuojiangosaurus_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	 "tuojiangosaurus_warn": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.tuojiangosaurusWarning",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/tuojiangosaurus/tuojiangosaurus_warning",
+	             "stream": true
+	         }
+	     ]
+	 },
+	"tuojiangosaurus_death": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.tuojiangosaurusDeath",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/tuojiangosaurus/tuojiangosaurus_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
 	"portal": {
 		"category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.portal",

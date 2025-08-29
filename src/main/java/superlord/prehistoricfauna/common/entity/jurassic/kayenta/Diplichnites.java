@@ -13,11 +13,15 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.PathfinderMob;
@@ -29,6 +33,7 @@ import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
 import net.minecraft.world.entity.animal.Animal;
@@ -46,10 +51,10 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraftforge.common.Tags;
-import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Cretaraneus;
 import superlord.prehistoricfauna.common.entity.navigation.DirectPathNavigator;
 import superlord.prehistoricfauna.common.entity.navigation.FlightMoveController;
 import superlord.prehistoricfauna.init.PFItems;
+import superlord.prehistoricfauna.init.PFTags;
 
 public class Diplichnites extends Animal {
 	private static final EntityDataAccessor<Direction> ATTACHED_FACE = SynchedEntityData.defineId(Diplichnites.class, EntityDataSerializers.DIRECTION);
@@ -109,6 +114,13 @@ public class Diplichnites extends Animal {
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
 		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+		this.goalSelector.addGoal(1, new Diplichnites.MeleeAttackGoal());
+		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, false, false, (p_213487_1_) -> {
+			return p_213487_1_.getType().is(PFTags.DIPLICHNITES_HUNTING);
+		}));
+		this.goalSelector.addGoal(3, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
+			return p_213487_0_.getType().is(PFTags.DIPLICHNITES_AVOIDING);
+		}));
 	}
 
 	public int getMaxAir() {
@@ -116,7 +128,61 @@ public class Diplichnites extends Animal {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 1.0D).add(Attributes.MOVEMENT_SPEED, 0.15D);
+		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 1.0D).add(Attributes.MOVEMENT_SPEED, 0.15D).add(Attributes.ATTACK_DAMAGE, 1.0D);
+	}
+	
+	class MeleeAttackGoal extends net.minecraft.world.entity.ai.goal.MeleeAttackGoal {
+		public MeleeAttackGoal() {
+			super(Diplichnites.this, 1.25D, true);
+		}
+
+		protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
+			double d0 = this.getAttackReachSqr(enemy);
+			if (distToEnemySqr <= d0 && this.isTimeToAttack()) {
+				this.resetAttackCooldown();
+				this.mob.doHurtTarget(enemy);
+			} else if (distToEnemySqr <= d0 * 2.0D) {
+				if (this.isTimeToAttack()) {
+					this.resetAttackCooldown();
+				}
+			} else {
+				this.resetAttackCooldown();
+			}
+
+		}
+
+		public boolean canContinueToUse() {
+			return super.canContinueToUse();
+		}
+
+		public void stop() {
+			super.stop();
+		}
+
+		protected double getAttackReachSqr(LivingEntity attackTarget) {
+			return (double)(1.0F + attackTarget.getBbWidth());
+		}
+	}
+
+	public boolean doHurtTarget(Entity p_32257_) {
+		if (super.doHurtTarget(p_32257_)) {
+			if (p_32257_ instanceof LivingEntity) {
+				int i = 0;
+				if (this.level().getDifficulty() == Difficulty.NORMAL) {
+					i = 7;
+				} else if (this.level().getDifficulty() == Difficulty.HARD) {
+					i = 15;
+				}
+
+				if (i > 0) {
+					((LivingEntity)p_32257_).addEffect(new MobEffectInstance(MobEffects.POISON, i * 20, 0), this);
+				}
+			}
+
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
@@ -253,7 +319,7 @@ public class Diplichnites extends Animal {
 	}
 
 	public static boolean canBugSpawn(EntityType<? extends PathfinderMob> animal, ServerLevelAccessor worldIn, MobSpawnType reason, BlockPos pos, RandomSource random) {
-		return (worldIn.getBlockState(pos.below()).is(BlockTags.DIRT) || worldIn.getBlockState(pos.below()).is(Tags.Blocks.SAND) || worldIn.getBlockState(pos.below()).is(BlockTags.LEAVES) || worldIn.getBlockState(pos.below()).is(BlockTags.LOGS_THAT_BURN)) && worldIn.getRawBrightness(pos, 0) > 8;
+		return (worldIn.getBlockState(pos.below()).is(BlockTags.DIRT) || worldIn.getBlockState(pos.below()).is(PFTags.SOIL) || worldIn.getBlockState(pos.below()).is(Tags.Blocks.SAND) || worldIn.getBlockState(pos.below()).is(BlockTags.LEAVES) || worldIn.getBlockState(pos.below()).is(BlockTags.LOGS_THAT_BURN)) && worldIn.getRawBrightness(pos, 0) > 8;
 	}
 	
 	@Override

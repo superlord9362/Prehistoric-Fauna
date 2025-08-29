@@ -8,7 +8,9 @@ import net.minecraft.resources.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.ClientEvents;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.TanycolagreusModel;
+import superlord.prehistoricfauna.client.render.layer.TanycolagreusEyeLayer;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Tanycolagreus;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class TanycolagreusRenderer extends MobRenderer<Tanycolagreus, TanycolagreusModel> {
 	private static final ResourceLocation TANYCOLAGREUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tanycolagreus/tanycolagreus.png");
@@ -20,6 +22,9 @@ public class TanycolagreusRenderer extends MobRenderer<Tanycolagreus, Tanycolagr
 
 	public TanycolagreusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new TanycolagreusModel(renderManagerIn.bakeLayer(ClientEvents.TANYCOLAGREUS)), 0.5F);
+		if (PrehistoricFaunaConfig.eyeShine) {
+			this.addLayer(new TanycolagreusEyeLayer(this));
+		}
 	}
 
 	protected void scale(Tanycolagreus tanycolagreus, PoseStack matrixStackIn, float partialTickTime) {

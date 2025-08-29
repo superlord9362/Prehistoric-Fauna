@@ -18,20 +18,22 @@ import superlord.prehistoricfauna.common.entity.jurassic.morrison.Eilenodon;
 public class EilenodonModel extends EntityModel<Eilenodon> {
 	private final ModelPart Body;
 	private final ModelPart Neck;
+	private final ModelPart Tail1;
+	private final ModelPart Tail2;
 	private final ModelPart ArmL;
 	private final ModelPart ArmR;
 	private final ModelPart LegL;
 	private final ModelPart LegR;
-	private final ModelPart Tail;
 
 	public EilenodonModel(ModelPart root) {
 		this.Body = root.getChild("Body");
-		this.Neck = Body.getChild("Neck");
-		this.ArmL = Body.getChild("ArmL");
-		this.ArmR = Body.getChild("ArmR");
-		this.LegL = Body.getChild("LegL");
-		this.LegR = Body.getChild("LegR");
-		this.Tail = Body.getChild("Tail");
+		this.Neck = this.Body.getChild("Neck");
+		this.Tail1 = this.Body.getChild("Tail1");
+		this.Tail2 = this.Tail1.getChild("Tail2");
+		this.ArmL = this.Body.getChild("ArmL");
+		this.ArmR = this.Body.getChild("ArmR");
+		this.LegL = this.Body.getChild("LegL");
+		this.LegR = this.Body.getChild("LegR");
 	}
 
 	@SuppressWarnings("unused")
@@ -39,30 +41,34 @@ public class EilenodonModel extends EntityModel<Eilenodon> {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition Body = partdefinition.addOrReplaceChild("Body", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, -2.0F, -5.0F, 4.0F, 3.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 22.0F, 2.0F));
+		PartDefinition Body = partdefinition.addOrReplaceChild("Body", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, -2.0F, -5.0F, 4.0F, 3.0F, 9.0F, new CubeDeformation(0.0F))
+		.texOffs(20, 20).addBox(0.0F, -3.0F, -2.0F, 0.0F, 1.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 21.0F, 0.0F));
 
-		PartDefinition ArmR = Body.addOrReplaceChild("ArmR", CubeListBuilder.create().texOffs(28, 5).addBox(0.0F, 0.0F, -1.0F, 1.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(2.0F, -1.0F, -4.0F));
+		PartDefinition Neck = Body.addOrReplaceChild("Neck", CubeListBuilder.create().texOffs(10, 24).addBox(-1.0F, -2.0F, -2.0F, 2.0F, 3.0F, 2.0F, new CubeDeformation(0.0F))
+		.texOffs(26, 27).addBox(0.0F, -3.0F, -2.0F, 0.0F, 2.0F, 3.0F, new CubeDeformation(0.0F))
+		.texOffs(18, 27).addBox(-1.0F, -2.0F, -4.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F))
+		.texOffs(6, 30).addBox(0.0F, 0.0F, -3.0F, 0.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.0F, -4.0F));
 
-		PartDefinition LegR = Body.addOrReplaceChild("LegR", CubeListBuilder.create().texOffs(35, 5).addBox(0.0F, 0.0F, -1.0F, 1.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(2.0F, -1.0F, 1.0F));
+		PartDefinition Tail1 = Body.addOrReplaceChild("Tail1", CubeListBuilder.create().texOffs(20, 12).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 6.0F, new CubeDeformation(0.0F))
+		.texOffs(0, 24).addBox(0.0F, -2.0F, 1.0F, 0.0F, 1.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 4.0F));
 
-		PartDefinition Neck = Body.addOrReplaceChild("Neck", CubeListBuilder.create().texOffs(0, 12).addBox(-1.0F, -2.0F, -2.0F, 2.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.0F, -5.0F));
+		PartDefinition Tail2 = Tail1.addOrReplaceChild("Tail2", CubeListBuilder.create().texOffs(1, 37).addBox(0.0F, -2.5F, 0.0F, 0.0F, 3.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.5F, 6.0F));
 
-		PartDefinition HeadSpine = Neck.addOrReplaceChild("HeadSpine", CubeListBuilder.create().texOffs(9, 17).addBox(0.0F, -0.5F, -1.0F, 0.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.5F, -1.0F));
+		PartDefinition ArmL = Body.addOrReplaceChild("ArmL", CubeListBuilder.create().texOffs(10, 29).addBox(0.0F, -0.5F, -1.0F, 1.0F, 3.0F, 2.0F, new CubeDeformation(0.0F))
+		.texOffs(26, 0).addBox(-1.0F, 2.5F, -3.0F, 3.0F, 0.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.75F, 0.5F, -3.0F, 0.0F, -0.2618F, 0.0F));
 
-		PartDefinition Head = Neck.addOrReplaceChild("Head", CubeListBuilder.create().texOffs(0, 18).addBox(-1.0F, -1.0F, -2.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.0F, -2.0F));
+		PartDefinition ArmR = Body.addOrReplaceChild("ArmR", CubeListBuilder.create().texOffs(0, 30).addBox(-1.0F, -0.5F, -1.0F, 1.0F, 3.0F, 2.0F, new CubeDeformation(0.0F))
+		.texOffs(26, 3).addBox(-2.0F, 2.5F, -3.0F, 3.0F, 0.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.75F, 0.5F, -3.0F, 0.0F, 0.2618F, 0.0F));
 
-		PartDefinition Dewlap = Head.addOrReplaceChild("Dewlap", CubeListBuilder.create().texOffs(9, 11).addBox(0.0F, -1.0F, -1.0F, 0.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 2.0F, 0.0F));
+		PartDefinition LegL = Body.addOrReplaceChild("LegL", CubeListBuilder.create().texOffs(16, 31).addBox(0.0F, -0.5F, -1.0F, 1.0F, 3.0F, 2.0F, new CubeDeformation(0.0F))
+		.texOffs(18, 0).addBox(0.0F, 2.5F, -2.0F, 4.0F, 0.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.75F, 0.5F, 3.0F, 0.0F, -0.2618F, 0.0F));
 
-		PartDefinition Tail = Body.addOrReplaceChild("Tail", CubeListBuilder.create().texOffs(18, 11).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 2.0F));
-
-		PartDefinition BackSpine = Body.addOrReplaceChild("BackSpine", CubeListBuilder.create().texOffs(0, 17).addBox(0.0F, -0.5F, -1.0F, 0.0F, 2.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.5F, -4.0F));
-
-		PartDefinition LegL = Body.addOrReplaceChild("LegL", CubeListBuilder.create().texOffs(35, 0).addBox(-1.0F, 0.0F, -1.0F, 1.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.0F, -1.0F, 1.0F));
-
-		PartDefinition ArmL = Body.addOrReplaceChild("ArmL", CubeListBuilder.create().texOffs(28, 0).addBox(-1.0F, 0.0F, -1.0F, 1.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.0F, -1.0F, -4.0F));
+		PartDefinition LegR = Body.addOrReplaceChild("LegR", CubeListBuilder.create().texOffs(16, 31).mirror().addBox(-1.0F, -0.5F, -1.0F, 1.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false)
+		.texOffs(18, 0).mirror().addBox(-4.0F, 2.5F, -2.0F, 4.0F, 0.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-1.75F, 0.5F, 3.0F, 0.0F, 0.2618F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
+
 
 	@Override
 	public void setupAnim(Eilenodon entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
@@ -119,8 +125,10 @@ public class EilenodonModel extends EntityModel<Eilenodon> {
 				this.LegR.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
 				this.ArmL.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
 				this.ArmR.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-				this.Tail.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
-				this.Tail.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
+				this.Tail1.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
+				this.Tail1.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
+				this.Tail2.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
+				this.Tail2.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
 				this.Neck.xRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
 				if (entity.isEating()) {
 					this.Neck.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.45F) + 0.5F;
@@ -130,7 +138,7 @@ public class EilenodonModel extends EntityModel<Eilenodon> {
 					this.ArmL.xRot = 0.25F * Mth.sin(0.15F * ageInTicks / 1.5F);
 					this.LegL.xRot = -0.25F * Mth.sin(0.15F * ageInTicks / 1.5F);
 					this.LegR.xRot = -0.25F * Mth.sin(0.15F * ageInTicks / 1.5F);
-					this.Tail.yRot = (Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * Mth.sin(0.15F * ageInTicks / 1.5F));
+					this.Tail1.yRot = (Mth.cos(limbSwing * 2.6662F) * 1.4F * limbSwingAmount) + (0.0625F * Mth.sin(0.15F * ageInTicks / 1.5F));
 				}
 			}
 		}
@@ -141,22 +149,22 @@ public class EilenodonModel extends EntityModel<Eilenodon> {
 		this.LegR.y = -1.0F;
 		this.LegR.zRot = 0;
 		this.LegR.xRot = 0;
-		this.LegR.yRot = 0;
+		this.LegR.yRot = 0.2618F;
 		this.ArmR.y = -1.0F;
 		this.ArmR.zRot = 0;
 		this.ArmR.xRot = 0;
-		this.ArmR.yRot = 0;
+		this.ArmR.yRot = 0.2618F;
 		this.LegL.y = -1.0F;
 		this.LegL.zRot = 0;
 		this.LegL.xRot = 0;
-		this.LegL.yRot = 0;
+		this.LegL.yRot = -0.2618F;
 		this.ArmL.y = -1.0F;
 		this.ArmL.zRot = 0;
 		this.ArmL.xRot = 0;
-		this.ArmL.yRot = 0;
+		this.ArmL.yRot = -0.2618F;
 		this.Neck.xRot = 0;
-		this.Tail.xRot = 0;
-		this.Tail.yRot = 0;
+		this.Tail1.xRot = 0;
+		this.Tail1.yRot = 0;
 		this.Neck.xRot = 0;
 		this.Neck.yRot = 0;
 		this.Neck.zRot = 0;

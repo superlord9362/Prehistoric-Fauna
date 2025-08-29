@@ -84,6 +84,18 @@
         "maxCount": 3,
         "minCount": 1,
         "weight": 8
+      },
+      {
+        "type": "prehistoricfauna:cylindricum",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 2
+      },
+      {
+        "type": "prehistoricfauna:parapleurites",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 5
       }
     ],
     "axolotls": [],
@@ -177,6 +189,12 @@
         "maxCount": 2,
         "minCount": 1,
         "weight": 4
+      },
+      {
+        "type": "prehistoricfauna:ophiopsis",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 2
       }
     ],
     "water_creature": []

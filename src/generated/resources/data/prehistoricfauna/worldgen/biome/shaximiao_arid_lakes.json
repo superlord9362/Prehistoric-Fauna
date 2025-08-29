@@ -90,7 +90,26 @@
   "has_precipitation": true,
   "spawn_costs": {},
   "spawners": {
-    "ambient": [],
+    "ambient": [
+      {
+        "type": "prehistoricfauna:aboilus",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 2
+      },
+      {
+        "type": "prehistoricfauna:mesoforficula",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 1
+      },
+      {
+        "type": "prehistoricfauna:rhipidoblattina",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 2
+      }
+    ],
     "axolotls": [],
     "creature": [
       {

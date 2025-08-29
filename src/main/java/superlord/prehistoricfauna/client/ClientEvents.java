@@ -332,7 +332,17 @@ public class ClientEvents {
 	public static ModelLayerLocation APOCLION = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "apoclion"), "apoclion");
 	public static ModelLayerLocation CRETARANEUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "cretaraneus"), "cretaraneus");
 	public static ModelLayerLocation LIAONEMOBIUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "liaonemobius"), "liaonemobius");
-
+	public static ModelLayerLocation DIPLICHNITES = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "diplichnites"), "diplichnites");
+	public static ModelLayerLocation OCTOPODICHNUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "octopodichnus"), "octopodichnus");
+	public static ModelLayerLocation PALEOHELCURA = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "paleohelcura"), "paleohelcura");
+	public static ModelLayerLocation CYLINDRICUM = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "cylindricum"), "cylindricum");
+	public static ModelLayerLocation EOPOLIS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "eopolis"), "eopolis");
+	public static ModelLayerLocation PARAPLEURITES = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "parapleurites"), "parapleurites");
+	public static ModelLayerLocation ABOILUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "aboilus"), "aboilus");
+	public static ModelLayerLocation CICADOCORIS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "cicadocoris"), "cicadocoris");
+	public static ModelLayerLocation MESOFORFICULA = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "mesoforficula"), "mesoforficula");
+	public static ModelLayerLocation RHIPIDOBLATTINA = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "rhipidoblattina"), "rhipidoblattina");
+	
 	//Yixian
 	public static ModelLayerLocation BEIPIAOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "beipiaosaurus"), "beipiaosaurus");
 	public static ModelLayerLocation CHANGYURAPTOR = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "changyuraptor"), "changyuraptor");
@@ -366,28 +376,67 @@ public class ClientEvents {
 	public static ModelLayerLocation SCELIDOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "scelidosaurus"), "scelidosaurus");
 	public static ModelLayerLocation SCUTELLOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "scutellosaurus"), "scutellosaurus");
 	//Morrison
+	public static ModelLayerLocation ALCOVASAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "alcovasaurus"), "alcovasaurus");
+	public static ModelLayerLocation ALCOVASAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "alcovasaurus_baby"), "alcovasaurus_baby");
 	public static ModelLayerLocation ALLOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "allosaurus"), "allosaurus");
 	public static ModelLayerLocation ALLOSAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "allosaurus_baby"), "allosaurus_baby");
+	public static ModelLayerLocation BRACHIOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "brachiosaurus"), "brachiosaurus");
+	public static ModelLayerLocation BRACHIOSAURUS_JUVENILE = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "brachiosaurus_juvenile"), "brachiosaurus_juvenile");
+	public static ModelLayerLocation BRACHIOSAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "brachiosaurus_baby"), "brachiosaurus_baby");
+	public static ModelLayerLocation BRACHIOSAURUS_HATCHLING = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "brachiosaurus_hatchling"), "brachiosaurus_hatchling");
+	public static ModelLayerLocation BRONTOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "brontosaurus"), "brontosaurus");
+	public static ModelLayerLocation BRONTOSAURUS_JUVENILE = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "brontosaurus_juvenile"), "brontosaurus_juvenile");
+	public static ModelLayerLocation BRONTOSAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "brontosaurus_baby"), "brontosaurus_baby");
+	public static ModelLayerLocation BRONTOSAURUS_HATCHLING = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "brontosaurus_hatchling"), "brontosaurus_hatchling");
 	public static ModelLayerLocation CAMARASAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "camarasaurus"), "camarasaurus");
 	public static ModelLayerLocation CAMARASAURUS_JUVENILE = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "camarasaurus_juvenile"), "camarasaurus_juvenile");
 	public static ModelLayerLocation CAMARASAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "camarasaurus_baby"), "camarasaurus_baby");
 	public static ModelLayerLocation CAMARASAURUS_HATCHLING = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "camarasaurus_hatchling"), "camarasaurus_hatchling");
+	public static ModelLayerLocation CAMPTOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "camptosaurus"), "camptosaurus");
+	public static ModelLayerLocation CAMPTOSAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "camptosaurus_baby"), "camptosaurus_baby");
 	public static ModelLayerLocation CERATOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "ceratosaurus"), "ceratosaurus");
 	public static ModelLayerLocation CERATOSAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "ceratosaurus_baby"), "ceratosaurus_baby");
 	public static ModelLayerLocation DIABLOPHIS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "diablophis"), "diablophis");
+	public static ModelLayerLocation DIPLODOCUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "diplodocus"), "diplodocus");
+	public static ModelLayerLocation DIPLODOCUS_JUVENILE = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "diplodocus_juvenile"), "diplodocus_juvenile");
+	public static ModelLayerLocation DIPLODOCUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "diplodocus_baby"), "diplodocus_baby");
+	public static ModelLayerLocation DIPLODOCUS_HATCHLING = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "diplodocus_hatchling"), "diplodocus_hatchling");
 	public static ModelLayerLocation DRYOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "dryosaurus"), "dryosaurus");
 	public static ModelLayerLocation EILENODON = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "eilenodon"), "eilenodon");
+	public static ModelLayerLocation GARGOYLEOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "gargoyleosaurus"), "gargoyleosaurus");
 	public static ModelLayerLocation HESPERORNITHOIDES = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "hesperornithoides"), "hesperornithoides");
 	public static ModelLayerLocation MACELOGNATHUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "macelognathus"), "macelognathus");
+	public static ModelLayerLocation MARAAPUNISAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "maraapunisaurus"), "maraapunisaurus");
+	public static ModelLayerLocation MARAAPUNISAURUS_JUVENILE = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "maraapunisaurus_juvenile"), "maraapunisaurus_juvenile");
+	public static ModelLayerLocation MARAAPUNISAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "maraapunisaurus_baby"), "maraapunisaurus_baby");
+	public static ModelLayerLocation MARAAPUNISAURUS_HATCHLING = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "maraapunisaurus_hatchling"), "maraapunisaurus_hatchling");
 	public static ModelLayerLocation STEGOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "stegosaurus"), "stegosaurus");
 	public static ModelLayerLocation STEGOSAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "stegosaurus_baby"), "stegosaurus_baby");
 	public static ModelLayerLocation TANYCOLAGREUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "tanycolagreus"), "tanycolagreus");
+	public static ModelLayerLocation TORVOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "torvosaurus"), "torvosaurus");
+	public static ModelLayerLocation TORVOSAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "torvosaurus_baby"), "torvosaurus_baby");
 	//Shaximiao
+	public static ModelLayerLocation ABROSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "abrosaurus"), "abrosaurus");
+	public static ModelLayerLocation ABROSAURUS_JUVENILE = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "abrosaurus_juvenile"), "abrosaurus_juvenile");
+	public static ModelLayerLocation ABROSAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "abrosaurus_baby"), "abrosaurus_baby");
 	public static ModelLayerLocation AGILISAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "agilisaurus"), "agilisaurus");
 	public static ModelLayerLocation BASHANOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "bashanosaurus"), "bashanosaurus");
 	public static ModelLayerLocation CHUANDONGOCOELURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "chuandongocoelurus"), "chuandongocoelurus");
 	public static ModelLayerLocation GIGANTSPINOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "gigantspinosaurus"), "gigantspinosaurus");
 	public static ModelLayerLocation GIGANTSPINOSAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "gigantspinosaurus_baby"), "gigantspinosaurus_baby");
+	public static ModelLayerLocation HUAYANGOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "huayangosaurus"), "huayangosaurus");
+	public static ModelLayerLocation MAMENCHISAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "mamenchisaurus"), "mamenchisaurus");
+	public static ModelLayerLocation MAMENCHISAURUS_JUVENILE = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "mamenchisaurus_juvenile"), "mamenchisaurus_juvenile");
+	public static ModelLayerLocation MAMENCHISAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "mamenchisaurus_baby"), "mamenchisaurus_baby");
+	public static ModelLayerLocation MAMENCHISAURUS_HATCHLING = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "mamenchisaurus_hatchling"), "mamenchisaurus_hatchling");
+	public static ModelLayerLocation OMEISAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "omeisaurus"), "omeisaurus");
+	public static ModelLayerLocation OMEISAURUS_JUVENILE = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "omeisaurus_juvenile"), "omeisaurus_juvenile");
+	public static ModelLayerLocation OMEISAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "omeisaurus_baby"), "omeisaurus_baby");
+	public static ModelLayerLocation OMEISAURUS_HATCHLING = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "omeisaurus_hatchling"), "omeisaurus_hatchling");
+	public static ModelLayerLocation SINRAPTOR = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "sinraptor"), "sinraptor");
+	public static ModelLayerLocation SINRAPTOR_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "sinraptor_baby"), "sinraptor_baby");
+	public static ModelLayerLocation TUOJIANGOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "tuojiangosaurus"), "tuojiangosaurus");
+	public static ModelLayerLocation TUOJIANGOSAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "tuojiangosaurus_baby"), "tuojiangosaurus_baby");
 	public static ModelLayerLocation YANDUSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "yandusaurus"), "yandusaurus");
 	public static ModelLayerLocation YANGCHUANOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "yangchuanosaurus"), "yangchuanosaurus");
 	public static ModelLayerLocation YANGCHUANOSAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "yangchuanosaurus_baby"), "yangchuanosaurus_baby");
@@ -430,7 +479,6 @@ public class ClientEvents {
 	public static ModelLayerLocation PARAPSEPHURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "parapsephurus"), "parapsephurus");
 	public static ModelLayerLocation MORROLEPIS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "morrolepis"), "morrolepis");
 	public static ModelLayerLocation OPHIOPSIS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "ophiopsis"), "ophiopsis");
-
 	public static ModelLayerLocation LEPIDOTES = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "lepidotes"), "lepidotes");
 	public static ModelLayerLocation CHUNGKINGICHTHYS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "chungkingichthys"), "chungkingichthys");
 	
@@ -616,6 +664,19 @@ public class ClientEvents {
 		event.registerEntityRenderer(PFEntities.KAYENTASUCHUS.get(), KayentasuchusRenderer::new);
 		event.registerEntityRenderer(PFEntities.KAYENTAVENATOR.get(), KayentavenatorRenderer::new);
 		event.registerEntityRenderer(PFEntities.OPHIOPSIS.get(), OphiopsisRenderer::new);
+		event.registerEntityRenderer(PFEntities.DIPLICHNITES.get(), DiplichnitesRenderer::new);
+		event.registerEntityRenderer(PFEntities.OCTOPODICHNUS.get(), OctopodichnusRenderer::new);
+		event.registerEntityRenderer(PFEntities.PALEOHELCURA.get(), PaleohelcuraRenderer::new);
+		event.registerEntityRenderer(PFEntities.CYLINDRICUM.get(), CylindricumRenderer::new);
+		event.registerEntityRenderer(PFEntities.EOPOLIS.get(), EopolisRenderer::new);
+		event.registerEntityRenderer(PFEntities.PARAPLEURITES.get(), ParapleuritesRenderer::new);
+		event.registerEntityRenderer(PFEntities.ABOILUS.get(), AboilusRenderer::new);
+		event.registerEntityRenderer(PFEntities.CICADOCORIS.get(), CicadocorisRenderer::new);
+		event.registerEntityRenderer(PFEntities.MESOFORFICULA.get(), MesoforficulaRenderer::new);
+		event.registerEntityRenderer(PFEntities.RHIPIDOBLATTINA.get(), RhipidoblattinaRenderer::new);
+		event.registerEntityRenderer(PFEntities.GARGOYLEOSAURUS.get(), GargoyleosaurusRenderer::new);
+		event.registerEntityRenderer(PFEntities.CAMPTOSAURUS.get(), CamptosaurusRenderer::new);
+		event.registerEntityRenderer(PFEntities.TORVOSAURUS.get(), TorvosaurusRenderer::new);
 		
 		event.registerBlockEntityRenderer(PFBlockEntities.CHEST.get(), PFChestBlockEntityRenderer::new);
 		event.registerBlockEntityRenderer(PFBlockEntities.TRAPPED_CHEST.get(), PFChestBlockEntityRenderer::new);
@@ -930,6 +991,9 @@ public class ClientEvents {
 		event.registerLayerDefinition(SARAHSAURUS, SarahsaurusModel::createBodyLayer);
 		event.registerLayerDefinition(SCELIDOSAURUS, ScelidosaurusModel::createBodyLayer);
 		event.registerLayerDefinition(SCUTELLOSAURUS, ScutellosaurusModel::createBodyLayer);
+		event.registerLayerDefinition(DIPLICHNITES, DiplichnitesModel::createBodyLayer);
+		event.registerLayerDefinition(OCTOPODICHNUS, OctopodichnusModel::createBodyLayer);
+		event.registerLayerDefinition(PALEOHELCURA, PaleohelcuraModel::createBodyLayer);
 		//Morrison
 		event.registerLayerDefinition(ALLOSAURUS, AllosaurusModel::createBodyLayer);
 		event.registerLayerDefinition(ALLOSAURUS_BABY, AllosaurusBabyModel::createBodyLayer);
@@ -947,6 +1011,12 @@ public class ClientEvents {
 		event.registerLayerDefinition(STEGOSAURUS, StegosaurusModel::createBodyLayer);
 		event.registerLayerDefinition(STEGOSAURUS_BABY, StegosaurusBabyModel::createBodyLayer);
 		event.registerLayerDefinition(TANYCOLAGREUS, TanycolagreusModel::createBodyLayer);
+		event.registerLayerDefinition(CYLINDRICUM, CylindricumModel::createBodyLayer);
+		event.registerLayerDefinition(EOPOLIS, EopolisModel::createBodyLayer);
+		event.registerLayerDefinition(PARAPLEURITES, ParapleuritesModel::createBodyLayer);
+		event.registerLayerDefinition(GARGOYLEOSAURUS, GargoyleosaurusModel::createBodyLayer);
+		event.registerLayerDefinition(CAMPTOSAURUS, CamptosaurusModel::createBodyLayer);
+		event.registerLayerDefinition(TORVOSAURUS, TorvosaurusModel::createBodyLayer);
 		//Shaximiao
 		event.registerLayerDefinition(AGILISAURUS, AgilisaurusModel::createBodyLayer);
 		event.registerLayerDefinition(BASHANOSAURUS, BashanosaurusModel::createBodyLayer);
@@ -956,6 +1026,10 @@ public class ClientEvents {
 		event.registerLayerDefinition(YANDUSAURUS, YandusaurusModel::createBodyLayer);
 		event.registerLayerDefinition(YANGCHUANOSAURUS, YangchuanosaurusModel::createBodyLayer);
 		event.registerLayerDefinition(YANGCHUANOSAURUS_BABY, YangchuanosaurusBabyModel::createBodyLayer);
+		event.registerLayerDefinition(ABOILUS, AboilusModel::createBodyLayer);
+		event.registerLayerDefinition(CICADOCORIS, CicadocorisModel::createBodyLayer);
+		event.registerLayerDefinition(MESOFORFICULA, MesoforficulaModel::createBodyLayer);
+		event.registerLayerDefinition(RHIPIDOBLATTINA, RhipidoblattinaModel::createBodyLayer);
 		//Chinle
 		event.registerLayerDefinition(COELOPHYSIS, CoelophysisModel::createBodyLayer);
 		event.registerLayerDefinition(DESMATOSUCHUS, DesmatosuchusModel::createBodyLayer);

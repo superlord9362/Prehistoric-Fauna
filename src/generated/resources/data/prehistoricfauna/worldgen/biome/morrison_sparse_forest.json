@@ -26,7 +26,9 @@
       "minecraft:amethyst_geode"
     ],
     [],
-    [],
+    [
+      "prehistoricfauna:placed_eopolis_mound"
+    ],
     [],
     [
       "minecraft:ore_dirt",
@@ -89,6 +91,18 @@
         "maxCount": 3,
         "minCount": 1,
         "weight": 7
+      },
+      {
+        "type": "prehistoricfauna:cylindricum",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 3
+      },
+      {
+        "type": "prehistoricfauna:parapleurites",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 3
       }
     ],
     "axolotls": [],
@@ -188,6 +202,12 @@
         "maxCount": 2,
         "minCount": 1,
         "weight": 4
+      },
+      {
+        "type": "prehistoricfauna:ophiopsis",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 2
       }
     ],
     "water_creature": []

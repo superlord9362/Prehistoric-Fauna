@@ -396,6 +396,8 @@ public class PFConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> PHOENICOPSIS_TREES = registerConfiguredFeature("phoenicopsis_trees");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> FRENELOPSIS_TREES = registerConfiguredFeature("frenelopsis_trees");
 	
+	public static final ResourceKey<ConfiguredFeature<?, ?>> EOPOLIS_MOUND = registerConfiguredFeature("eopolis_mound");
+	
 	@SuppressWarnings("deprecation")
 	public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> bootstapContext) {
 		FeatureUtils.register(bootstapContext, SMALL_ARAUCARIA_TREE_1, PFFeatures.SMALL_ARAUCARIA_TREE_1.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.ARAUCARIA_LOG.get()).setLeavesBlock(PFBlocks.ARAUCARIA_LEAVES.get()).setMinHeight(13).setMaxHeight(18).build());
@@ -673,6 +675,7 @@ public class PFConfiguredFeatures {
 		FeatureUtils.register(bootstapContext, MOSSY_ROCK, Feature.FOREST_ROCK, new BlockStateConfiguration(Blocks.MOSSY_COBBLESTONE.defaultBlockState()));
 
 		FeatureUtils.register(bootstapContext, PTILOPHYLLUM_TREE, PFFeatures.PTILOPHYLLUM_TREE.get(), new NoneFeatureConfiguration());
+		FeatureUtils.register(bootstapContext, EOPOLIS_MOUND, PFFeatures.EOPOLIS_MOUND.get(), new NoneFeatureConfiguration());
 
 		FeatureUtils.register(bootstapContext, PETRIFIED_TREE, PFFeatures.PETRIFIED_TREE.get(), new JohnstoniaConfig(10));
 		FeatureUtils.register(bootstapContext, JOHNSTONIA, PFFeatures.JOHNSTONIA.get(), new JohnstoniaConfig(3));

@@ -16,6 +16,7 @@ import superlord.prehistoricfauna.common.feature.CallianthusFeature;
 import superlord.prehistoricfauna.common.feature.CrassostreaOystersFeature;
 import superlord.prehistoricfauna.common.feature.DicroidiumFeature;
 import superlord.prehistoricfauna.common.feature.DjadochtaHorsetailsFeature;
+import superlord.prehistoricfauna.common.feature.EopolisMoundFeature;
 import superlord.prehistoricfauna.common.feature.HermanophytonFeature;
 import superlord.prehistoricfauna.common.feature.JohnstoniaFeature;
 import superlord.prehistoricfauna.common.feature.LandSphereReplaceFeature;
@@ -375,5 +376,6 @@ public class PFFeatures {
     public static final RegistryObject<RareNelumboFeature> RARE_NELUMBO = REGISTER.register("rare_nelubmo", () -> new RareNelumboFeature(CrassostreaOystersConfig.CODEC.stable()));
     public static final RegistryObject<QuereuxiaFeature> QUEREUXIA = REGISTER.register("quereuxia", () -> new QuereuxiaFeature(CrassostreaOystersConfig.CODEC.stable()));
     public static final RegistryObject<HermanophytonFeature> HERMANOPHYTON = REGISTER.register("hermanophyton", () -> new HermanophytonFeature(JohnstoniaConfig.CODEC.stable()));
+    public static final RegistryObject<EopolisMoundFeature> EOPOLIS_MOUND = REGISTER.register("eopolis_mound", () -> new EopolisMoundFeature(NoneFeatureConfiguration.CODEC.stable()));
 
 }

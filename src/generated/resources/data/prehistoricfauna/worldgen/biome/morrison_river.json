@@ -101,6 +101,12 @@
         "maxCount": 2,
         "minCount": 1,
         "weight": 7
+      },
+      {
+        "type": "prehistoricfauna:ophiopsis",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 4
       }
     ],
     "water_creature": []
