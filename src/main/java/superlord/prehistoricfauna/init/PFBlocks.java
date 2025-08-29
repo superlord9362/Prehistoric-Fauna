@@ -1331,6 +1331,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> YANGCHUANOSAURUS_EGG = REGISTER.register("yangchuanosaurus_egg", () -> new DinosaurEggBlock(PFEntities.YANGCHUANOSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> GARGOYLEOSAURUS_EGG = REGISTER.register("gargoyleosaurus_egg", () -> new DinosaurEggBlock(PFEntities.GARGOYLEOSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 	public static final RegistryObject<Block> CAMPTOSAURUS_EGG = REGISTER.register("camptosaurus_egg", () -> new DinosaurEggBlock(PFEntities.CAMPTOSAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
+	public static final RegistryObject<Block> ALCOVASAURUS_EGG = REGISTER.register("alcovasaurus_egg", () -> new DinosaurEggBlock(PFEntities.ALCOVASAURUS, Block.Properties.of().strength(0.5F).sound(SoundType.METAL).randomTicks().noOcclusion()));
 
 	public static final RegistryObject<Block> POISON_GAS = REGISTER.register("poison_gas", () -> new PoisonGasBlock(BlockBehaviour.Properties.of().noCollission().noLootTable().randomTicks().replaceable()));
 	public static final RegistryObject<Block> SPLATTERED_GINKGO = REGISTER.register("splattered_ginkgo", () -> new SplatteredGinkgoBlock(BlockBehaviour.Properties.of().noCollission().instabreak().noLootTable().randomTicks()));

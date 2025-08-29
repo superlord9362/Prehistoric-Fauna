@@ -147,6 +147,7 @@ import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Paleohelcura;
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Sarahsaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Scelidosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Scutellosaurus;
+import superlord.prehistoricfauna.common.entity.jurassic.morrison.Alcovasaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camptosaurus;
@@ -345,7 +346,7 @@ public class PFEntities {
 	public static final RegistryObject<EntityType<Scutellosaurus>> SCUTELLOSAURUS = REGISTER.register("scutellosaurus", () -> EntityType.Builder.<Scutellosaurus>of(Scutellosaurus::new, MobCategory.CREATURE).sized(0.6F, 0.5F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "scutellosaurus").toString()));
 	
 	//Morrison
-//	public static final RegistryObject<EntityType<Alcovasaurus>> ALCOVASAURUS = REGISTER.register("alcovasaurus", () -> EntityType.Builder.<Alcovasaurus>of(Alcovasaurus::new, MobCategory.CREATURE).sized().build(new ResourceLocation(PrehistoricFauna.MOD_ID, "alcovasaurus").toString()));
+	public static final RegistryObject<EntityType<Alcovasaurus>> ALCOVASAURUS = REGISTER.register("alcovasaurus", () -> EntityType.Builder.<Alcovasaurus>of(Alcovasaurus::new, MobCategory.CREATURE).sized(1.25F, 2.375F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "alcovasaurus").toString()));
 	public static final RegistryObject<EntityType<Allosaurus>> ALLOSAURUS = REGISTER.register("allosaurus", () -> EntityType.Builder.<Allosaurus>of(Allosaurus::new, MobCategory.CREATURE).sized(1.25F, 3.0F).build(new ResourceLocation(PrehistoricFauna.MOD_ID, "allosaurus").toString()));
 //	public static final RegistryObject<EntityType<Brachiosaurus>> BRACHIOSAURUS = REGISTER.register("brachiosaurus", () -> EntityType.Builder.<Brachiosaurus>of(Brachiosaurus::new, MobCategory.CREATURE).sized().build(new ResourceLocation(PrehistoricFauna.MOD_ID, "brachiosaurus").toString()));
 //	public static final RegistryObject<EntityType<Brontosaurus>> BRONTOSAURUS = REGISTER.register("brontosaurus", () -> EntityType.Builder.<Brontosaurus>of(Brontosaurus::new, MobCategory.CREATURE).sized().build(new ResourceLocation(PrehistoricFauna.MOD_ID, "brontosaurus").toString()));

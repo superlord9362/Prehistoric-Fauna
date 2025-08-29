@@ -268,6 +268,7 @@ public class Calsoyasuchus extends DinosaurEntity {
 			super(Calsoyasuchus.this, Player.class, 20, true, true, (Predicate<LivingEntity>)null);
 		}
 
+		@SuppressWarnings("resource")
 		public boolean canUse() {
 			if (Calsoyasuchus.this.isBaby()) {
 				return false;

@@ -677,6 +677,7 @@ public class ClientEvents {
 		event.registerEntityRenderer(PFEntities.GARGOYLEOSAURUS.get(), GargoyleosaurusRenderer::new);
 		event.registerEntityRenderer(PFEntities.CAMPTOSAURUS.get(), CamptosaurusRenderer::new);
 		event.registerEntityRenderer(PFEntities.TORVOSAURUS.get(), TorvosaurusRenderer::new);
+		event.registerEntityRenderer(PFEntities.ALCOVASAURUS.get(), AlcovasaurusRenderer::new);
 		
 		event.registerBlockEntityRenderer(PFBlockEntities.CHEST.get(), PFChestBlockEntityRenderer::new);
 		event.registerBlockEntityRenderer(PFBlockEntities.TRAPPED_CHEST.get(), PFChestBlockEntityRenderer::new);
@@ -995,6 +996,7 @@ public class ClientEvents {
 		event.registerLayerDefinition(OCTOPODICHNUS, OctopodichnusModel::createBodyLayer);
 		event.registerLayerDefinition(PALEOHELCURA, PaleohelcuraModel::createBodyLayer);
 		//Morrison
+		event.registerLayerDefinition(ALCOVASAURUS, AlcovasaurusModel::createBodyLayer);;
 		event.registerLayerDefinition(ALLOSAURUS, AllosaurusModel::createBodyLayer);
 		event.registerLayerDefinition(ALLOSAURUS_BABY, AllosaurusBabyModel::createBodyLayer);
 		event.registerLayerDefinition(CAMARASAURUS, CamarasaurusModel::createBodyLayer);

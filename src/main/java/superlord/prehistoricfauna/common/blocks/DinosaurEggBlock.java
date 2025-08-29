@@ -90,7 +90,6 @@ public class DinosaurEggBlock extends Block {
 		super.fallOn(p_154845_, p_154846_, p_154847_, p_154848_, p_154849_);
 	}
 
-	@SuppressWarnings("unused")
 	private void destroyEgg(Level p_154851_, BlockState p_154852_, BlockPos p_154853_, Entity p_154854_, int p_154855_) {
 		Entity dinosaurEntity = this.entityTypeSupplier.get().create(p_154851_);
 		if (this.canDestroyEgg(p_154851_, p_154854_)) {

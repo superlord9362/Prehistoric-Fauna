@@ -16,6 +16,7 @@ public class CrepuscularSleepGoal extends Goal {
 		this.entity = sleeper;
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public boolean canUse() {
 		Level level = entity.level();
@@ -25,6 +26,7 @@ public class CrepuscularSleepGoal extends Goal {
 		return PrehistoricFaunaConfig.sleeping = true && (level.getDayTime() % 24000 >= 2000 && level.getDayTime() % 24000 <= 9000 || level.getDayTime() % 24000 >= 14000 && level.getDayTime() % 24000 <= 21000) && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isTame() && !entity.isInWater() && !entity.isInLava() && !entity.getBlockStateOn().is(Blocks.AIR) && !PrehistoricFaunaConfig.unscheduledSleeping && entity.warryTicks == 0;
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public boolean canContinueToUse() {
 		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(2D, 2D, 2D))) {
@@ -37,68 +39,8 @@ public class CrepuscularSleepGoal extends Goal {
 			}
 		}
 		if (entity.getTarget() != null || entity.getLastHurtByMob() != null || entity.isTame() || entity.isInWater() || entity.isInLava() || entity.isInPowderSnow || entity.getBlockStateOn().is(Blocks.AIR)) return false;
-//		if (entity.level().getDayTime() % 24000 < 2000 || entity.level().getDayTime() % 24000 > 9000 && entity.level().getDayTime() % 24000 < 14000 || entity.level().getDayTime() % 24000 > 21000) {
-//			stop();
-//			entity.setAsleep(false);
-//			return false;
-//		} else if (entity.getTarget() != null) {
-//			stop();
-//			entity.setAsleep(false);
-//			return false;
-//		} else if (entity.getLastHurtByMob() != null) {
-//			stop();
-//			entity.setAsleep(false);
-//			return false;
-//		} else if (entity.isTame()) {
-//			stop();
-//			entity.setAsleep(false);
-//			return false;
-//		} else if (entity.isInWater()) {
-//			stop();
-//			entity.setAsleep(false);
-//			return false;
-//		} else if (entity.isInLava()) {
-//			stop();
-//			entity.setAsleep(false);
-//			return false;
-//		} else if (!entity.getBlockStateOn().is(Blocks.AIR)) {
-//			stop();
-//			entity.setAsleep(false);
-//			return false;
-//		} 
-		return true;
-	}
 
-	public void tick() {
-		super.tick();
-//		entity.getNavigation().stop();;
-//		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(2D, 2D, 2D))) {
-//			if (!player.isShiftKeyDown()) {
-//				stop();
-//				entity.setAsleep(false);
-//			}
-//		}
-//		if (entity.level().getDayTime() % 24000 < 2000 || entity.level().getDayTime() % 24000 > 9000 && entity.level().getDayTime() % 24000 < 14000 || entity.level().getDayTime() % 24000 > 21000) {
-//			stop();
-//			entity.setAsleep(false);
-//		} else if (entity.getTarget() != null) {
-//			stop();
-//			entity.setAsleep(false);
-//		} else if (entity.getLastHurtByMob() != null) {
-//			stop();
-//			entity.setAsleep(false);
-//		} else if (entity.isTame()) {
-//			stop();
-//			entity.setAsleep(false);
-//		} else if (entity.isInWater()) {
-//			stop();
-//			entity.setAsleep(false);
-//		} else if (entity.isInLava()) {
-//			stop();
-//			entity.setAsleep(false);
-//		} else {
-//			entity.setAsleep(true);
-//		}
+		return true;
 	}
 
 	@Override

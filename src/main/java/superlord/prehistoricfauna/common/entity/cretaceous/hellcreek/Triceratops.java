@@ -903,6 +903,7 @@ public class Triceratops extends AbstractChestedHorse  {
 		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
 		 * method as well.
 		 */
+		@SuppressWarnings("resource")
 		public boolean canUse() {
 			if (Triceratops.this.isBaby() && !Triceratops.this.isJuvenile() || Triceratops.this.isTamed()) {
 				return false;
@@ -1378,6 +1379,7 @@ public class Triceratops extends AbstractChestedHorse  {
 			this.entity = sleeper;
 		}
 
+		@SuppressWarnings("resource")
 		@Override
 		public boolean canUse() {
 			for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
@@ -1386,6 +1388,7 @@ public class Triceratops extends AbstractChestedHorse  {
 			return (PrehistoricFaunaConfig.sleeping = true && entity.getRandom().nextInt(1000) == 0 && entity.getLastHurtByMob() == null && !entity.isTamed() && entity.getRidingPlayer() == null && !entity.isInWater() && !entity.isInLava() && !PrehistoricFaunaConfig.unscheduledSleeping && entity.warryTicks == 0);
 		}
 
+		@SuppressWarnings("resource")
 		@Override
 		public boolean canContinueToUse() {
 			for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
@@ -1773,6 +1776,7 @@ public class Triceratops extends AbstractChestedHorse  {
 		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
 		 * method as well.
 		 */
+		@SuppressWarnings("resource")
 		public boolean canUse() {
 			if (dinosaur.isBaby()) {
 				return false;

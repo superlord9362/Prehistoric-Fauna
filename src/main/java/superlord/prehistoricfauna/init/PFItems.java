@@ -721,6 +721,7 @@
 		public static final RegistryObject<BlockItem> SARAHSAURUS_EGG = DECORATION_REGISTER.register("sarahsaurus_egg", () -> new DinosaurEggItem(PFBlocks.SARAHSAURUS_EGG.get(), new Item.Properties()));
 		public static final RegistryObject<BlockItem> SCELIDOSAURUS_EGG = DECORATION_REGISTER.register("scelidosaurus_egg", () -> new DinosaurEggItem(PFBlocks.SCELIDOSAURUS_EGG.get(), new Item.Properties()));
 		public static final RegistryObject<BlockItem> SCUTELLOSAURUS_EGG = DECORATION_REGISTER.register("scutellosaurus_egg", () -> new DinosaurEggItem(PFBlocks.SCUTELLOSAURUS_EGG.get(), new Item.Properties()));
+		public static final RegistryObject<BlockItem> ALCOVASAURUS_EGG = DECORATION_REGISTER.register("alcovasaurus_egg", () -> new DinosaurEggItem(PFBlocks.ALCOVASAURUS_EGG.get(), new Item.Properties()));
 		public static final RegistryObject<BlockItem> ALLOSAURUS_EGG = DECORATION_REGISTER.register("allosaurus_egg", () -> new DinosaurEggItem(PFBlocks.ALLOSAURUS_EGG.get(), new Item.Properties()));
 		public static final RegistryObject<BlockItem> CAMARASAURUS_EGG = DECORATION_REGISTER.register("camarasaurus_egg", () -> new DinosaurEggItem(PFBlocks.CAMARASAURUS_EGG.get(), new Item.Properties()));
 		public static final RegistryObject<BlockItem> CAMPTOSAURUS_EGG = DECORATION_REGISTER.register("camptosaurus_egg", () -> new DinosaurEggItem(PFBlocks.CAMPTOSAURUS_EGG.get(), new Item.Properties()));
@@ -845,6 +846,7 @@
 		public static final RegistryObject<Item> SARAHSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("sarahsaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.SARAHSAURUS, 0x8C6547, 0x512123, new Item.Properties()));
 		public static final RegistryObject<Item> SCELIDOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("scelidosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.SCELIDOSAURUS, 0x4C190E, 0x221713, new Item.Properties()));
 		public static final RegistryObject<Item> SCUTELLOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("scutellosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.SCUTELLOSAURUS, 0xCAD51C, 0x6A5942, new Item.Properties()));
+		public static final RegistryObject<Item> ALCOVASAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("alcovasaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.ALCOVASAURUS, 0xDDD6C5, 0x912729, new Item.Properties()));
 		public static final RegistryObject<Item> ALLOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("allosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.ALLOSAURUS, 0x8E8B45, 0x89462C, new Item.Properties()));
 		public static final RegistryObject<Item> CAMARASAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("camarasaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CAMARASAURUS, 0x7E5E2D, 0x7E311C, new Item.Properties()));
 		public static final RegistryObject<Item> CAMPTOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("camptosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CAMPTOSAURUS, 0xA9925D, 0xDBAC31, new Item.Properties()));

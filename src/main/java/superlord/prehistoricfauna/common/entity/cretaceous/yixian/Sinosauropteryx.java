@@ -629,7 +629,8 @@ public class Sinosauropteryx extends DinosaurEntity {
 	         }
 	      }
 
-	      private boolean spaceIsOccupied() {
+	      @SuppressWarnings("resource")
+		private boolean spaceIsOccupied() {
 	         for(Sinosauropteryx sinosauropteryx : this.sinosauropteryx.level().getEntitiesOfClass(Sinosauropteryx.class, (new AABB(this.goalPos)).inflate(2.0D))) {
 	            if (sinosauropteryx != this.sinosauropteryx && (sinosauropteryx.isSitting())) {
 	               return true;

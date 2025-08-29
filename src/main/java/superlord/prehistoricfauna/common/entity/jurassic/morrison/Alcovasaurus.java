@@ -1,6 +1,4 @@
-package superlord.prehistoricfauna.common.entity.jurassic.kayenta;
-
-import java.util.function.Predicate;
+package superlord.prehistoricfauna.common.entity.jurassic.morrison;
 
 import javax.annotation.Nullable;
 
@@ -9,36 +7,36 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowParentGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
+import superlord.prehistoricfauna.common.entity.goal.AggressiveTempermentAttackGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.CathemeralSleepGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
@@ -56,115 +54,126 @@ import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
 import superlord.prehistoricfauna.common.items.PaleopediaItem;
 import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.init.PFBlocks;
+import superlord.prehistoricfauna.init.PFEffects;
 import superlord.prehistoricfauna.init.PFEntities;
 import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
-public class Sarahsaurus extends DinosaurEntity {
-	private int maxHunger = 38;
+public class Alcovasaurus extends DinosaurEntity {
+	private int maxHunger = 150;
 	private int warningSoundTicks;
 
-	public Sarahsaurus(EntityType<? extends Sarahsaurus> type, Level worldIn) {
-		super(type, worldIn);
+	public Alcovasaurus(EntityType<? extends Alcovasaurus> type, Level levelIn) {
+		super(type, levelIn);
 		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
-	
-	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-		if (this.isBaby()) return 0.725F;
-		else return 1.45F;
-	}
 
 	public boolean isFood(ItemStack stack) {
-		return stack.getItem() == PFBlocks.OTOZAMITES.get().asItem();
+		return stack.getItem() == PFBlocks.ZAMITES_LEAVES.get().asItem();
 	}
 
-	@Override
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.goalSelector.addGoal(0, new BabyPanicGoal(this));
-		this.goalSelector.addGoal(1, new Sarahsaurus.MeleeAttackGoal());
-		this.goalSelector.addGoal(0, new DinosaurMateGoal(this, 1.0D));
-		this.goalSelector.addGoal(0, new NaturalMateGoal(this, 1.0D));
-		this.targetSelector.addGoal(1, new DinosaurHurtByTargetGoal(this));
-		this.targetSelector.addGoal(2, new ProtectBabyGoal(this));
-		this.targetSelector.addGoal(2, new DinosaurTerritorialAttackGoal(this));
-		this.goalSelector.addGoal(3, new FollowParentGoal(this, 1.1D));
-		this.goalSelector.addGoal(4, new DinosaurWaterAvoidingRandomStrollGoal(this, 1.0D));
+		this.goalSelector.addGoal(1, new Alcovasaurus.MeleeAttackGoal());
+		this.goalSelector.addGoal(1, new BabyPanicGoal(this));
+		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
+		this.goalSelector.addGoal(5, new DinosaurWaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
-		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
-			return p_213487_0_.getType().is(PFTags.SARAHSAURUS_AVOIDING);
-		}));
+		this.targetSelector.addGoal(1, new DinosaurHurtByTargetGoal(this));
+		this.targetSelector.addGoal(2, new DinosaurTerritorialAttackGoal(this));
+		this.targetSelector.addGoal(3, new ProtectBabyGoal(this));
+		this.targetSelector.addGoal(2, new AggressiveTempermentAttackGoal(this));
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
+		this.goalSelector.addGoal(0, new DinosaurMateGoal(this, 1.0D));
+		this.goalSelector.addGoal(0, new NaturalMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
 		this.goalSelector.addGoal(0, new HerbivoreEatGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(0, new HerbivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
+		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
+		this.goalSelector.addGoal(8, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
+			return p_213487_0_.getType().is(PFTags.ALCOVASAURUS_AVOIDING);
+		}));
 	}
 	
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.SARAHSAURUS.ordinal())) {
-				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.SARAHSAURUS.ordinal()), itemstack);
-				player.displayClientMessage(Component.translatable("paleopedia.sarahsaurus_added"), true);
+			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.ALCOVASAURUS.ordinal())) {
+				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.ALCOVASAURUS.ordinal()), itemstack);
+				player.displayClientMessage(Component.translatable("paleopedia.alcovasaurus_added"), true);
 				return InteractionResult.SUCCESS;
-			}
+			} else return InteractionResult.SUCCESS;
 		}
 		return super.mobInteract(player, hand);
 	}
 	
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		int temperment = random.nextInt(100);
-		if (temperment < 85) {
-			this.setProtective(true);
-		} else {
+		if (temperment < 80) {
 			this.setTerritorial(true);
+		} else if (temperment >= 80 && temperment < 95) {
+			this.setProtective(true);
+		} else if (temperment >= 95) {
+			this.setAggressive(true);
 		}
 		this.setHerbivorous(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
+	
+	@Override
+	public void setAge(int age) {
+		super.setAge(age);
+		if (this.getAge() >= -24000 && this.getAge() < 0) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(30);
+		} else if(this.getAge() >= 0) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(60);
+		}
+	}
+
+	public static AttributeSupplier.Builder createAttributes() {
+		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 60.0D).add(Attributes.FOLLOW_RANGE, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.2D).add(Attributes.ATTACK_DAMAGE, 6);
+	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isAsleep() ? null : PFSounds.SARAHSAURUS_IDLE.get();
+		return this.isAsleep() ? PFSounds.ALCOVASAURUS_SNORES.get() : PFSounds.ALCOVASAURUS_IDLE.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return PFSounds.SARAHSAURUS_HURT.get();
+		return PFSounds.ALCOVASAURUS_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return PFSounds.SARAHSAURUS_DEATH.get();
+		return PFSounds.ALCOVASAURUS_DEATH.get();
+	}
+
+	@SuppressWarnings("deprecation")
+	protected void playStepSound(BlockPos pos, BlockState state) {
+		if (this.isBaby()) {
+			if (!state.liquid()) {
+				BlockState blockstate = this.level().getBlockState(pos.above());
+				SoundType soundtype = blockstate.is(Blocks.SNOW) ? blockstate.getSoundType(level(), pos, this) : state.getSoundType(level(), pos, this);
+				this.playSound(soundtype.getStepSound(), soundtype.getVolume() * 0.15F, soundtype.getPitch());
+			}
+		} else {
+			this.playSound(SoundEvents.COW_STEP, 0.15F, 1F);
+		}
 	}
 
 	protected void playWarningSound() {
 		if (this.warningSoundTicks <= 0) {
-			this.playSound(PFSounds.SARAHSAURUS_WARN.get(), 1.0F, this.getVoicePitch());
+			this.playSound(PFSounds.ALCOVASAURUS_WARN.get(), 1.0F, this.getVoicePitch());
 			this.warningSoundTicks = 40;
 		}
 	}
 
-	public boolean onAttackAnimationFinish(Entity entityIn) {
-		boolean flag = super.onAttackAnimationFinish(entityIn);
-		if (flag) {
-			this.doEnchantDamageEffects(this, entityIn);
-		}
-		return flag;
-	}	
-
-	@Override
-	protected void customServerAiStep() {
-		super.customServerAiStep();
-	}
-
-	public static AttributeSupplier.Builder createAttributes() {
-		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 15.0D).add(Attributes.MOVEMENT_SPEED, 0.22D).add(Attributes.FOLLOW_RANGE, 15).add(Attributes.ATTACK_DAMAGE, 4);
-	}
-
+	/**
+	 * Called to update the entity's position/logic.
+	 */
 	public void tick() {
 		super.tick();
 		if (this.warningSoundTicks > 0) {
@@ -172,31 +181,19 @@ public class Sarahsaurus extends DinosaurEntity {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
-	public void handleEntityEvent(byte id) {
-		super.handleEntityEvent(id);
-	}
-	
-	@Override
-	public void setAge(int age) {
-		super.setAge(age);
-		if (this.getAge() >= -24000 && this.getAge() < 0) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(7);
-		} else if(this.getAge() >= 0) {
-			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(15);
+	public boolean onAttackAnimationFinish(Entity entityIn) {
+		boolean flag = super.onAttackAnimationFinish(entityIn);
+		if (flag) {
+			this.doEnchantDamageEffects(this, entityIn);
+			((LivingEntity)entityIn).addEffect(new MobEffectInstance(PFEffects.BLEEDING.get(), 300, 0, false, false));
 		}
-	}
-	
-	@Override
-	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Sarahsaurus entity = new Sarahsaurus(PFEntities.SARAHSAURUS.get(), this.level());
-		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
-		return entity;
+
+		return flag;
 	}
 
 	class MeleeAttackGoal extends net.minecraft.world.entity.ai.goal.MeleeAttackGoal {
 		public MeleeAttackGoal() {
-			super(Sarahsaurus.this, 1.25D, true);
+			super(Alcovasaurus.this, 1.25D, true);
 		}
 
 		protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
@@ -210,7 +207,7 @@ public class Sarahsaurus extends DinosaurEntity {
 				}
 
 				if (this.getTicksUntilNextAttack() <= 10) {
-					Sarahsaurus.this.playWarningSound();
+					Alcovasaurus.this.playWarningSound();
 				}
 			} else {
 				this.resetAttackCooldown();
@@ -227,47 +224,42 @@ public class Sarahsaurus extends DinosaurEntity {
 		}
 
 		protected double getAttackReachSqr(LivingEntity attackTarget) {
-			return (double)(4.0F + attackTarget.getBbWidth());
+			return (double)(9.0F + attackTarget.getBbWidth());
 		}
 	}
 
-	class AttackPlayerGoal extends NearestAttackableTargetGoal<Player> {
-		public AttackPlayerGoal() {
-			super(Sarahsaurus.this, Player.class, 20, true, true, (Predicate<LivingEntity>)null);
+	class PanicGoal extends net.minecraft.world.entity.ai.goal.PanicGoal {
+		public PanicGoal() {
+			super(Alcovasaurus.this, 2.0D);
 		}
 
-		@SuppressWarnings("resource")
+		/**
+		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+		 * method as well.
+		 */
 		public boolean canUse() {
-			if (Sarahsaurus.this.isBaby()) {
-				return false;
-			} else {
-				if (super.canUse()) {
-					for(Sarahsaurus sarahsaurus : Sarahsaurus.this.level().getEntitiesOfClass(Sarahsaurus.class, Sarahsaurus.this.getBoundingBox().inflate(8.0D, 4.0D, 8.0D))) {
-						if (sarahsaurus.isBaby()) {
-							return true;
-						}
-					}
-				}
-				return false;
-			}
+			return !Alcovasaurus.this.isBaby() && !Alcovasaurus.this.isOnFire() ? false : super.canUse();
 		}
+	}
 
-		protected double getFollowDistance() {
-			return super.getFollowDistance() * 0.5D;
-		}
+	@Override
+	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
+		Alcovasaurus entity = new Alcovasaurus(PFEntities.ALCOVASAURUS.get(), this.level());
+		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+		return entity;
 	}
 	
 	@Override
 	public ItemStack getPickedResult(HitResult target) {
-		return new ItemStack(PFItems.SARAHSAURUS_SPAWN_EGG.get());
+		return new ItemStack(PFItems.ALCOVASAURUS_SPAWN_EGG.get());
 	}
 	
 	public Item getEggItem() {
-		return PFItems.SARAHSAURUS_EGG.get();
+		return PFItems.ALCOVASAURUS_EGG.get();
 	}
     
 	public BlockState getEggBlock(Level world, BlockPos pos) {
-		return PFBlocks.SARAHSAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
+		return PFBlocks.ALCOVASAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
 
 }

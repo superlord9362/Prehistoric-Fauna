@@ -343,7 +343,7 @@ public class PrehistoricFauna {
 		event.put(PFEntities.CICADOCORIS.get(), Cicadocoris.createAttributes().build());
 		event.put(PFEntities.MESOFORFICULA.get(), Mesoforficula.createAttributes().build());
 		event.put(PFEntities.RHIPIDOBLATTINA.get(), Rhipidoblattina.createAttributes().build());
-//		event.put(PFEntities.ALCOVASAURUS.get(), Alcovasaurus.createAttributes().build());
+		event.put(PFEntities.ALCOVASAURUS.get(), Alcovasaurus.createAttributes().build());
 //		event.put(PFEntities.BRACHIOSAURUS.get(), Brachiosaurus.createAttributes().build());
 //		event.put(PFEntities.BRONTOSAURUS.get(), Brontosaurus.createAttributes().build());
 		event.put(PFEntities.CAMPTOSAURUS.get(), Camptosaurus.createAttributes().build());
@@ -519,7 +519,7 @@ public class PrehistoricFauna {
 		SpawnPlacements.register(PFEntities.DIPLICHNITES.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Diplichnites::canBugSpawn);
 		SpawnPlacements.register(PFEntities.OCTOPODICHNUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Octopodichnus::canBugSpawn);
 		SpawnPlacements.register(PFEntities.PALEOHELCURA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Paleohelcura::canBugSpawn);
-//		SpawnPlacements.register(PFEntities.ALCOVASAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.ALCOVASAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 //		SpawnPlacements.register(PFEntities.BRACHIOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 //		SpawnPlacements.register(PFEntities.BRONTOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.CAMPTOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);

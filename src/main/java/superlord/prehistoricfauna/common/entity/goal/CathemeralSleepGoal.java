@@ -15,6 +15,7 @@ public class CathemeralSleepGoal extends Goal {
 		this.entity = sleeper;
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public boolean canUse() {
 		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
@@ -23,6 +24,7 @@ public class CathemeralSleepGoal extends Goal {
 		return (PrehistoricFaunaConfig.sleeping = true && entity.getRandom().nextInt(1000) == 0 && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isInWater() && !entity.isInLava() && !PrehistoricFaunaConfig.unscheduledSleeping && entity.warryTicks == 100);
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public boolean canContinueToUse() {
 		for(Player player : entity.level().getEntitiesOfClass(Player.class, entity.getBoundingBox().inflate(1.0D, 1.0D, 1.0D))) {
