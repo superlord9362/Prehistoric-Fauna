@@ -1,6 +1,0 @@
-{
-	"parent": "prehistoricfauna:block/post",
-	"textures": {
-		"texture": "prehistoricfauna:block/zamites_log"
-	}
-}

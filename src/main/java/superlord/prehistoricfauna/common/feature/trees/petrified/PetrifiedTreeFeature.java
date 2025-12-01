@@ -35,6 +35,12 @@ public class PetrifiedTreeFeature extends Feature<JohnstoniaConfig>
 			return p_227223_0_.isAir() || p_227223_0_.is(BlockTags.LEAVES);
 		});
 	}
+	
+
+
+	public static boolean isSoil(WorldGenLevel worldgenlevel, BlockPos pos) {
+		return (worldgenlevel.getBlockState(pos).is(Blocks.SAND) || worldgenlevel.getBlockState(pos).is(Blocks.RED_SAND) || worldgenlevel.getBlockState(pos).is(Blocks.GRASS_BLOCK) || worldgenlevel.getBlockState(pos).is(Blocks.PODZOL) || worldgenlevel.getBlockState(pos).is(Blocks.MYCELIUM) || worldgenlevel.getBlockState(pos).is(Blocks.DIRT) || worldgenlevel.getBlockState(pos).is(Blocks.COARSE_DIRT) || worldgenlevel.getBlockState(pos).is(PFBlocks.LOAM.get()) || worldgenlevel.getBlockState(pos).is(PFBlocks.PACKED_LOAM.get()) || worldgenlevel.getBlockState(pos).is(PFBlocks.SILT.get()) || worldgenlevel.getBlockState(pos).is(PFBlocks.HARDENED_SILT.get()) || worldgenlevel.getBlockState(pos).is(PFBlocks.MOSSY_DIRT.get()));
+	}
 
 
 	@Override
@@ -46,7 +52,7 @@ public class PetrifiedTreeFeature extends Feature<JohnstoniaConfig>
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();
-		if (world.getBlockState(pos.below()).getBlock() != Blocks.WATER && world.getBlockState(pos.below()).isCollisionShapeFullBlock(world, pos.below()) && !world.getBlockState(pos.below()).is(PFTags.HENOSTONE)) {
+		if (world.getBlockState(pos.below()).getBlock() != Blocks.WATER && isSoil(world, pos.below()) && !world.getBlockState(pos.below()).is(PFTags.HENOSTONE)) {
 			if (height == 3) {
 				if (isAir(world, new BlockPos(x, y, z)) && isAir(world, new BlockPos(x, y + 1, z)) && isAir(world, new BlockPos(x, y + 2, z))) {
 					setBlock(world, new BlockPos(x, y, z), PFBlocks.PETRIFIED_WOOD.get().defaultBlockState());

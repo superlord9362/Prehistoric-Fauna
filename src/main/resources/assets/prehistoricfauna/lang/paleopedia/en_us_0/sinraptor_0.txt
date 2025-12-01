@@ -1,0 +1,38 @@
+Found In: Morrison
+
+Drops: 2-4 Large Raw Theropod
+
+Diet: Carnivore
+
+Breeding Item: Large Raw 
+Thyreophoran
+
+Max Health: 60
+
+Max Hunger: 150
+
+Temperaments: Sinraptor has an 
+85% chance of being 
+territorial, and a 15% chance of 
+being protective.
+
+Sleep Cycle: Cathemeral
+
+<image><drawings_ankylosaurus.png 30 3 152 192 23 18 7>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Investigation underway!
+

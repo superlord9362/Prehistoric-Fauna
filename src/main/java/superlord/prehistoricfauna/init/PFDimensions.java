@@ -40,9 +40,9 @@ import superlord.prehistoricfauna.common.world.chunkgen.JurassicChunkGenerator;
 import superlord.prehistoricfauna.common.world.chunkgen.TriassicChunkGenerator;
 
 public class PFDimensions {
-	
-    public static final DeferredRegister<PoiType> POI_TYPES = DeferredRegister.create(Registries.POINT_OF_INTEREST_TYPE, PrehistoricFauna.MOD_ID);
-	
+
+	public static final DeferredRegister<PoiType> POI_TYPES = DeferredRegister.create(Registries.POINT_OF_INTEREST_TYPE, PrehistoricFauna.MOD_ID);
+
 	public static final ResourceKey<DimensionType> TRIASSIC_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE, new ResourceLocation(PrehistoricFauna.MOD_ID, "triassic"));
 	public static final ResourceKey<DimensionType> JURASSIC_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE, new ResourceLocation(PrehistoricFauna.MOD_ID, "jurassic"));
 	public static final ResourceKey<DimensionType> CRETACEOUS_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE, new ResourceLocation(PrehistoricFauna.MOD_ID, "cretaceous"));
@@ -56,13 +56,21 @@ public class PFDimensions {
 	public static final ResourceKey<NoiseGeneratorSettings> TRIASSIC_NOISE_GEN = ResourceKey.create(Registries.NOISE_SETTINGS, new ResourceLocation(PrehistoricFauna.MOD_ID, "triassic_noise_settings"));
 	public static final ResourceKey<NoiseGeneratorSettings> JURASSIC_NOISE_GEN = ResourceKey.create(Registries.NOISE_SETTINGS, new ResourceLocation(PrehistoricFauna.MOD_ID, "jurassic_noise_settings"));
 	public static final ResourceKey<NoiseGeneratorSettings> CRETACEOUS_NOISE_GEN = ResourceKey.create(Registries.NOISE_SETTINGS, new ResourceLocation(PrehistoricFauna.MOD_ID, "cretaceous_noise_settings"));
-	
-    public static final RegistryObject<PoiType> TRIASSIC_PORTAL = POI_TYPES.register("triassic_portal", () -> new PoiType(ImmutableSet.copyOf(PFBlocks.TRIASSIC_PORTAL.get().getStateDefinition().getPossibleStates()), 0, 1));
-    public static final RegistryObject<PoiType> JURASSIC_PORTAL = POI_TYPES.register("jurassic_portal", () -> new PoiType(ImmutableSet.copyOf(PFBlocks.JURASSIC_PORTAL.get().getStateDefinition().getPossibleStates()), 0, 1));
-    public static final RegistryObject<PoiType> CRETACEOUS_PORTAL = POI_TYPES.register("cretaceous_portal", () -> new PoiType(ImmutableSet.copyOf(PFBlocks.CRETACEOUS_PORTAL.get().getStateDefinition().getPossibleStates()), 0, 1));
-   
-    public static final RegistryObject<PoiType> BURROW = POI_TYPES.register("burrow", () -> new PoiType(ImmutableSet.copyOf(PFBlocks.BURROW.get().getStateDefinition().getPossibleStates()), 0, 1));
-    public static final RegistryObject<PoiType> EOPOLIS_MOUND = POI_TYPES.register("eopolis_mound", () -> new PoiType(ImmutableSet.copyOf(PFBlocks.EOPOLIS_MOUND.get().getStateDefinition().getPossibleStates()), 0, 1));
+
+	public static final RegistryObject<PoiType> TRIASSIC_PORTAL = POI_TYPES.register("triassic_portal", () -> new PoiType(ImmutableSet.copyOf(PFBlocks.TRIASSIC_PORTAL.get().getStateDefinition().getPossibleStates()), 0, 1));
+	public static final RegistryObject<PoiType> JURASSIC_PORTAL = POI_TYPES.register("jurassic_portal", () -> new PoiType(ImmutableSet.copyOf(PFBlocks.JURASSIC_PORTAL.get().getStateDefinition().getPossibleStates()), 0, 1));
+	public static final RegistryObject<PoiType> CRETACEOUS_PORTAL = POI_TYPES.register("cretaceous_portal", () -> new PoiType(ImmutableSet.copyOf(PFBlocks.CRETACEOUS_PORTAL.get().getStateDefinition().getPossibleStates()), 0, 1));
+
+	public static final RegistryObject<PoiType> BURROW = POI_TYPES.register("burrow", () -> new PoiType(ImmutableSet.copyOf(PFBlocks.BURROW.get().getStateDefinition().getPossibleStates()), 0, 1));
+	public static final RegistryObject<PoiType> EOPOLIS_MOUND = POI_TYPES.register("eopolis_mound", () -> new PoiType(ImmutableSet.copyOf(PFBlocks.EOPOLIS_MOUND.get().getStateDefinition().getPossibleStates()), 0, 1));
+
+	public static final ResourceKey<NormalNoise.NoiseParameters> CRETACEOUS_NOISE = ResourceKey.create(Registries.NOISE, new ResourceLocation(PrehistoricFauna.MOD_ID, "cretaceous_noise"));
+	public static final ResourceKey<NormalNoise.NoiseParameters> JURASSIC_NOISE = ResourceKey.create(Registries.NOISE, new ResourceLocation(PrehistoricFauna.MOD_ID, "jurassic_noise"));
+	public static final ResourceKey<NormalNoise.NoiseParameters> TRIASSIC_NOISE = ResourceKey.create(Registries.NOISE, new ResourceLocation(PrehistoricFauna.MOD_ID, "triassic_noise"));
+
+	public static final ResourceKey<NormalNoise.NoiseParameters> CRETACEOUS_TERRAIN_NOISE = ResourceKey.create(Registries.NOISE, new ResourceLocation(PrehistoricFauna.MOD_ID, "cretaceous_terrain_noise"));
+	public static final ResourceKey<NormalNoise.NoiseParameters> JURASSIC_TERRAIN_NOISE = ResourceKey.create(Registries.NOISE, new ResourceLocation(PrehistoricFauna.MOD_ID, "jurassic_terrain_noise"));
+	public static final ResourceKey<NormalNoise.NoiseParameters> TRIASSIC_TERRAIN_NOISE = ResourceKey.create(Registries.NOISE, new ResourceLocation(PrehistoricFauna.MOD_ID, "triassic_terrain_noise"));
 
 	public static void bootstrapType(BootstapContext<DimensionType> context) {
 		context.register(CRETACEOUS_TYPE, new DimensionType(
@@ -114,15 +122,25 @@ public class PFDimensions {
 				0F,
 				new DimensionType.MonsterSettings(false, false, UniformInt.of(0, 0), 0)));
 	}
-	
+
 	public static void bootstrapStem(BootstapContext<LevelStem> context) {
 		HolderGetter<Biome> biomeRegistry = context.lookup(Registries.BIOME);
 		HolderGetter<DimensionType> dimTypes = context.lookup(Registries.DIMENSION_TYPE);
 		HolderGetter<NoiseGeneratorSettings> noiseGenSettings = context.lookup(Registries.NOISE_SETTINGS);
-		context.register(CRETACEOUS_LEVEL_STEM, new LevelStem(dimTypes.getOrThrow(CRETACEOUS_TYPE), new CretaceousChunkGenerator(CretaceousBiomeSource.create(biomeRegistry), noiseGenSettings.getOrThrow(CRETACEOUS_NOISE_GEN))));
-		context.register(JURASSIC_LEVEL_STEM, new LevelStem(dimTypes.getOrThrow(JURASSIC_TYPE), new JurassicChunkGenerator(JurassicBiomeSource.create(biomeRegistry), noiseGenSettings.getOrThrow(JURASSIC_NOISE_GEN))));
-		context.register(TRIASSIC_LEVEL_STEM, new LevelStem(dimTypes.getOrThrow(TRIASSIC_TYPE), new TriassicChunkGenerator(TriassicBiomeSource.create(biomeRegistry), noiseGenSettings.getOrThrow(TRIASSIC_NOISE_GEN))));
+
+		context.register(CRETACEOUS_LEVEL_STEM, new LevelStem(dimTypes.getOrThrow(CRETACEOUS_TYPE), new CretaceousChunkGenerator(new CretaceousBiomeSource(biomeRegistry), noiseGenSettings.getOrThrow(CRETACEOUS_NOISE_GEN))));
+		context.register(JURASSIC_LEVEL_STEM, new LevelStem(dimTypes.getOrThrow(JURASSIC_TYPE), new JurassicChunkGenerator(new JurassicBiomeSource(biomeRegistry), noiseGenSettings.getOrThrow(JURASSIC_NOISE_GEN))));
+		context.register(TRIASSIC_LEVEL_STEM, new LevelStem(dimTypes.getOrThrow(TRIASSIC_TYPE), new TriassicChunkGenerator(new TriassicBiomeSource(biomeRegistry), noiseGenSettings.getOrThrow(TRIASSIC_NOISE_GEN))));
 	}
+
+	public static void bootstrap(BootstapContext<NormalNoise.NoiseParameters> context) {
+		context.register(CRETACEOUS_NOISE, new NormalNoise.NoiseParameters(-10, 1.0, 2.0, 1.0));
+        context.register(CRETACEOUS_TERRAIN_NOISE, new NormalNoise.NoiseParameters(0, 1.0, 1.0, 1.0));
+        context.register(JURASSIC_NOISE, new NormalNoise.NoiseParameters(-10, 1.0, 2.0, 1.0));
+        context.register(JURASSIC_TERRAIN_NOISE, new NormalNoise.NoiseParameters(0, 1.0, 1.0, 1.0));
+        context.register(TRIASSIC_NOISE, new NormalNoise.NoiseParameters(-10, 1.0, 2.0, 1.0));
+        context.register(TRIASSIC_TERRAIN_NOISE, new NormalNoise.NoiseParameters(0, 1.0, 1.0, 1.0));
+    }
 	
 	public static void bootstrapNoise(BootstapContext<NoiseGeneratorSettings> context) {
 		HolderGetter<DensityFunction> functions = context.lookup(Registries.DENSITY_FUNCTION);
@@ -155,17 +173,17 @@ public class PFDimensions {
 						DensityFunctions.zero(), //vein toggle
 						DensityFunctions.zero(), //vein ridged
 						DensityFunctions.zero() //vein gap
-				),
+						),
 				SurfaceRules.sequence(
 						SurfaceRules.ifTrue(SurfaceRules.verticalGradient("minecraft:bedrock_floor", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)), SurfaceRules.state(Blocks.BEDROCK.defaultBlockState()))
-				),
+						),
 				List.of(), //spawn targets
 				64,
 				false,
 				false,
 				false,
 				false
-		));
+				));
 		context.register(JURASSIC_NOISE_GEN, new NoiseGeneratorSettings(
 				NoiseSettings.create(0, 128, 2, 2),
 				Blocks.STONE.defaultBlockState(),
@@ -191,17 +209,17 @@ public class PFDimensions {
 						DensityFunctions.zero(), //vein toggle
 						DensityFunctions.zero(), //vein ridged
 						DensityFunctions.zero() //vein gap
-				),
+						),
 				SurfaceRules.sequence(
 						SurfaceRules.ifTrue(SurfaceRules.verticalGradient("minecraft:bedrock_floor", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)), SurfaceRules.state(Blocks.BEDROCK.defaultBlockState()))
-				),
+						),
 				List.of(), //spawn targets
 				64,
 				false,
 				false,
 				false,
 				false
-		));
+				));
 		context.register(TRIASSIC_NOISE_GEN, new NoiseGeneratorSettings(
 				NoiseSettings.create(0, 128, 2, 2),
 				Blocks.STONE.defaultBlockState(),
@@ -227,17 +245,17 @@ public class PFDimensions {
 						DensityFunctions.zero(), //vein toggle
 						DensityFunctions.zero(), //vein ridged
 						DensityFunctions.zero() //vein gap
-				),
+						),
 				SurfaceRules.sequence(
 						SurfaceRules.ifTrue(SurfaceRules.verticalGradient("minecraft:bedrock_floor", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)), SurfaceRules.state(Blocks.BEDROCK.defaultBlockState()))
-				),
+						),
 				List.of(), //spawn targets
 				64,
 				false,
 				false,
 				false,
 				false
-		));
+				));
 	}
-    
+
 }

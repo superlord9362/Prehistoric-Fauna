@@ -1,0 +1,36 @@
+Found In: Morrison
+
+Drops: 0-2 Osteoderms, 2-4 Small 
+Raw Thyreophoran
+
+Diet: Herbivore 
+
+Breeding Item: Anomozamites
+
+Max Health: 20
+
+Max Hunger: 50
+
+Temperaments: Gargoyleosaurus 
+has a 75% chance of being 
+protective, and a 25% chance of 
+being passive.
+
+Sleep Cycle: Diurnal
+
+<image><drawings_ankylosaurus.png 31 4 126 235 24 16 6.75>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Investigation underway!

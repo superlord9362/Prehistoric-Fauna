@@ -37,7 +37,7 @@ public class StegosaurusSkeletonActionRightModel extends EntityModel<Stegosaurus
 
 		PartDefinition Tail2 = Tail1.addOrReplaceChild("Tail2", CubeListBuilder.create().texOffs(95, 7).addBox(-3.0F, 0.0F, 0.0F, 6.0F, 0.0F, 30.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 34.0F, -0.0782F, -0.391F, 0.0F));
 
-		PartDefinition LeftThagomizers = Tail2.addOrReplaceChild("LeftThagomizers", CubeListBuilder.create().texOffs(41, 119).addBox(-21.0F, 0.0F, 0.0F, 21.0F, 0.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.0F, 0.0F, 19.0F, 0.0F, 0.0F, 0.754F));
+		PartDefinition LeftThagomizers = Tail2.addOrReplaceChild("LeftThagomizers", CubeListBuilder.create().texOffs(41, 119).mirror().addBox(-21.0F, 0.0F, 0.0F, 21.0F, 0.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.0F, 0.0F, 19.0F, 0.0F, 0.0F, 0.754F));
 
 		PartDefinition RightThagomizers = Tail2.addOrReplaceChild("RightThagomizers", CubeListBuilder.create().texOffs(41, 119).addBox(0.0F, 0.0F, 0.0F, 21.0F, 0.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 0.0F, 19.0F, 0.0F, 0.0F, -0.754F));
 

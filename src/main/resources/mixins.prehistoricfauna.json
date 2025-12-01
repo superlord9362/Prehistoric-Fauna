@@ -11,7 +11,8 @@
 		"TuberOverlayMixin",
 		"MapDecorationMixin",
 		"MapDecorationTypeMixin",
-		"WeatherCommandMixin"
+		"WeatherCommandMixin",
+		"ServerLevelMixin"
 	],
 	"client": [
 		"MapRendererMapInstanceMixin",

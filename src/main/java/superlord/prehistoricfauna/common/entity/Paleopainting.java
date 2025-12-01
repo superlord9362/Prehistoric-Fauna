@@ -137,14 +137,17 @@ public class Paleopainting extends HangingEntity implements IEntityAdditionalSpa
         SERENITY(64, 48),
         LAELAPS(64, 48),
         CRYOGENIAN(64, 32),
-        ELECTROCUTION(64, 48),
+        ELECTROCUTION(48, 32),
         LIFEBLOOD(16, 16),
         DUEL_OF_TIME(48, 48),
         CHRONOSTRATIGRAPHIC(16, 32),
         BURIAN(64, 48),
         NATURALIST(80, 96),
         GRAY_NATURALIST(80, 96),
-        CRICHTONIAN(16, 16);
+        CRICHTONIAN(16, 16),
+        ALLOSAURUS(32, 16),
+        NOVOPANGEA(64, 48),
+        PANGEA(64, 48);
 
         public static final PaleopaintingType[] VALUES = values();
 

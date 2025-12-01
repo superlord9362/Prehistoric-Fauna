@@ -2,9 +2,7 @@
   "type": "prehistoricfauna:cretaceous",
   "generator": {
     "type": "prehistoricfauna:cretaceous_chunk_generator",
-    "biome_source": {
-      "type": "prehistoricfauna:cretaceous_biome_source"
-    },
+    "biome_source": {},
     "settings": "prehistoricfauna:cretaceous_noise_settings"
   }
 }

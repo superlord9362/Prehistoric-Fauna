@@ -251,8 +251,8 @@ public class PFConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_PLATANITES_LOG = registerConfiguredFeature("configured_fallen_platanites_log");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_GINKGO_LOG = registerConfiguredFeature("configured_fallen_ginkgo_log");
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> ZAMITES_BUSH = registerConfiguredFeature("configured_zamites_bush");
-	public static final ResourceKey<ConfiguredFeature<?, ?>> COMMON_ZAMITES_BUSH = registerConfiguredFeature("configured_common_zamites_bush");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> MONANTHESIA_BUSH = registerConfiguredFeature("configured_monanthesia_bush");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> COMMON_MONANTHESIA_BUSH = registerConfiguredFeature("configured_common_monanthesia_bush");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> COMMON_SABALITES = registerConfiguredFeature("configured_common_sabalites");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> RARE_SABALITES = registerConfiguredFeature("configured_rare_sabalites");
 
@@ -305,6 +305,8 @@ public class PFConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> COBBANIA = registerConfiguredFeature("configured_cobbania");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> AZOLLA = registerConfiguredFeature("configured_azolla");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ZINGIBEROPSIS = registerConfiguredFeature("configured_zingiberopsis");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ZAMITES = registerConfiguredFeature("configured_zamites");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> RARE_ZAMITES = registerConfiguredFeature("configured_rare_zamites");
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> TAXODIUM_KNEES = registerConfiguredFeature("configured_taxodium_knees");
 
@@ -323,6 +325,9 @@ public class PFConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> NEOCALAMITES = registerConfiguredFeature("congigured_neocalamites");
 	
 	public static final ResourceKey<ConfiguredFeature<?, ?>> HERMANOPHYTON = registerConfiguredFeature("configured_hermanophyton");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> NILSSONIA = registerConfiguredFeature("configured_nilssonia");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> RARE_NILSSONIA = registerConfiguredFeature("configured_rare_nilssonia");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> BASSITHECA = registerConfiguredFeature("configured_bassitheca");
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> PTEROPHYLLUM = registerConfiguredFeature("configured_pterophyllum");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> TALL_PTEROPHYLLUM = registerConfiguredFeature("configured_tall_pterophyllum");
@@ -338,7 +343,9 @@ public class PFConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> TALL_TAENIOPTERIS = registerConfiguredFeature("configured_tall_taeniopteris");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> RARE_TAENIOPTERIS = registerConfiguredFeature("configured_rare_taeniopteris");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> RARE_TALL_TAENIOPTERIS = registerConfiguredFeature("configured_rare_tall_taeniopteris");
-	
+	public static final ResourceKey<ConfiguredFeature<?, ?>> DAYVAULTIA = registerConfiguredFeature("configured_dayvaultia");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ZAMIOPHYLLUM = registerConfiguredFeature("configured_zamiophyllum");
+
 	public static final ResourceKey<ConfiguredFeature<?, ?>> CLAY_DISK = registerConfiguredFeature("congigured_clay_disk");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> GRAVEL_DISK = registerConfiguredFeature("congigured_gravel_disk");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> MUD_DISK = registerConfiguredFeature("congigured_mud_disk");
@@ -608,8 +615,8 @@ public class PFConfiguredFeatures {
 		FeatureUtils.register(bootstapContext, FALLEN_PLATANITES_LOG, PFFeatures.PLATANITES_FALLEN_LOG.get(), new JohnstoniaConfig(1));
 		FeatureUtils.register(bootstapContext, FALLEN_GINKGO_LOG, PFFeatures.GINKGO_FALLEN_LOG.get(), new JohnstoniaConfig(1));
 
-		FeatureUtils.register(bootstapContext, ZAMITES_BUSH, PFFeatures.ZAMITES_BUSH.get(), new JohnstoniaConfig(1));
-		FeatureUtils.register(bootstapContext, COMMON_ZAMITES_BUSH, PFFeatures.ZAMITES_BUSH.get(), new JohnstoniaConfig(30));
+		FeatureUtils.register(bootstapContext, MONANTHESIA_BUSH, PFFeatures.MONANTHESIA_BUSH.get(), new JohnstoniaConfig(1));
+		FeatureUtils.register(bootstapContext, COMMON_MONANTHESIA_BUSH, PFFeatures.MONANTHESIA_BUSH.get(), new JohnstoniaConfig(30));
 		FeatureUtils.register(bootstapContext, COMMON_SABALITES, PFFeatures.SABALITES.get(), new JohnstoniaConfig(17));
 		FeatureUtils.register(bootstapContext, RARE_SABALITES, PFFeatures.SABALITES.get(), new JohnstoniaConfig(3));
 
@@ -684,6 +691,8 @@ public class PFConfiguredFeatures {
 		FeatureUtils.register(bootstapContext, NEOCALAMITES, PFFeatures.NEOCALAMITES.get(), new JohnstoniaConfig(12));
 
 		FeatureUtils.register(bootstapContext, HERMANOPHYTON, PFFeatures.HERMANOPHYTON.get(), new JohnstoniaConfig(12));
+		FeatureUtils.register(bootstapContext, NILSSONIA, PFFeatures.NILSSONIA.get(), new JohnstoniaConfig(12));
+		FeatureUtils.register(bootstapContext, RARE_NILSSONIA, PFFeatures.NILSSONIA.get(), new JohnstoniaConfig(6));
 
 		FeatureUtils.register(bootstapContext, PTEROPHYLLUM, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.PTEROPHYLLUM.get()), 32));
 		FeatureUtils.register(bootstapContext, TALL_PTEROPHYLLUM, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.TALL_PTEROPHYLLUM.get()), 16));
@@ -704,6 +713,12 @@ public class PFConfiguredFeatures {
 		FeatureUtils.register(bootstapContext, TALL_TAENIOPTERIS, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.TALL_TAENIOPTERIS.get()), 16));
 		FeatureUtils.register(bootstapContext, RARE_TALL_TAENIOPTERIS, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.TALL_TAENIOPTERIS.get()), 8));
 		
+		FeatureUtils.register(bootstapContext, DAYVAULTIA, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.DAYVAULTIA.get()), 32));
+		FeatureUtils.register(bootstapContext, ZAMIOPHYLLUM, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.ZAMIOPHYLLUM.get()), 16));
+		FeatureUtils.register(bootstapContext, BASSITHECA, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.BASSITHECA.get()), 16));
+		FeatureUtils.register(bootstapContext, ZAMITES, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.ZAMITES.get()), 16));
+		FeatureUtils.register(bootstapContext, RARE_ZAMITES, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(PFBlocks.ZAMITES.get()), 8));
+
 		FeatureUtils.register(bootstapContext, CLAY_DISK, PFFeatures.LAND_DISK.get(), new DiskConfiguration(RuleBasedBlockStateProvider.simple(Blocks.CLAY), BlockPredicate.matchesBlocks(List.of(PFBlocks.SILT.get(), PFBlocks.HARDENED_SILT.get(), Blocks.SAND)), UniformInt.of(1, 3), 1));
 		FeatureUtils.register(bootstapContext, GRAVEL_DISK, PFFeatures.LAND_DISK.get(), new DiskConfiguration(RuleBasedBlockStateProvider.simple(Blocks.GRAVEL), BlockPredicate.matchesBlocks(List.of(PFBlocks.SILT.get(), PFBlocks.HARDENED_SILT.get(), Blocks.SAND)), UniformInt.of(1, 3), 1));
 		FeatureUtils.register(bootstapContext, PACKED_MUD_DISK, PFFeatures.LAND_DISK.get(), new DiskConfiguration(RuleBasedBlockStateProvider.simple(Blocks.PACKED_MUD), BlockPredicate.matchesBlocks(List.of(PFBlocks.SILT.get(), PFBlocks.HARDENED_SILT.get(), Blocks.SAND, Blocks.RED_SAND, PFBlocks.MOSSY_DIRT.get(), Blocks.GRAVEL)), UniformInt.of(1, 3), 1));

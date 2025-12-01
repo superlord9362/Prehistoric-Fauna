@@ -65,11 +65,15 @@
       "prehistoricfauna:placed_coniopteris",
       "prehistoricfauna:placed_marchantia",
       "prehistoricfauna:placed_stoneworts",
+      "prehistoricfauna:placed_rare_nilssonia",
+      "prehistoricfauna:placed_bassitheca",
       "prehistoricfauna:placed_small_araucaria_trees",
       "prehistoricfauna:placed_brachyphyllum_trees",
       "prehistoricfauna:placed_elatides_trees",
       "prehistoricfauna:placed_podozamites_trees",
-      "prehistoricfauna:placed_protopiceoxylon_trees"
+      "prehistoricfauna:placed_protopiceoxylon_trees",
+      "prehistoricfauna:placed_rare_zamites",
+      "prehistoricfauna:placed_dayvaultia"
     ],
     [
       "prehistoricfauna:placed_tuff_disk"
@@ -153,6 +157,30 @@
         "maxCount": 3,
         "minCount": 1,
         "weight": 5
+      },
+      {
+        "type": "prehistoricfauna:gargoyleosaurus",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 6
+      },
+      {
+        "type": "prehistoricfauna:camptosaurus",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 8
+      },
+      {
+        "type": "prehistoricfauna:alcovasaurus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 4
+      },
+      {
+        "type": "prehistoricfauna:torvosaurus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 1
       }
     ],
     "misc": [],

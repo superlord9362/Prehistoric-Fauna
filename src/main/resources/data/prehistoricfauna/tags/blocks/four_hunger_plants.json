@@ -5,6 +5,10 @@
 		"minecraft:tall_grass",
 		"#minecraft:flowers",
 		"prehistoricfauna:moss_carpet",
-		"minecraft:bamboo"
+		"minecraft:bamboo",
+		"prehistoricfauna:azolla",
+		"prehistoricfauna:taeniopteris",
+		"prehistoricfauna:sphenopteris",
+		"prehistoricfauna:weltrichia"
 	]
 }

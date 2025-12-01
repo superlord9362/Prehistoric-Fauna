@@ -96,25 +96,25 @@ public class CamptosaurusModel extends EntityModel<Camptosaurus> {
 		resetModel();
 		if (entity.isAsleep()) {
 			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
-				this.LeftLeg.xRot = Mth.lerp(sleepProgress, 0, -0.45378560551852565F);
-				this.LeftThigh.xRot = Mth.lerp(sleepProgress, 0, -0.8726646259971648F);
+				this.LeftLeg.xRot = Mth.lerp(sleepProgress, 0, 0.85378560551852565F);
+				this.LeftThigh.xRot = Mth.lerp(sleepProgress, 0, -1.4726646259971648F);
 				this.LeftThigh.yRot = Mth.lerp(sleepProgress, 0, 0.296705972839036F);
-				this.LeftThigh.y = Mth.lerp(sleepProgress, -4F, -3F);
+				this.LeftThigh.y = Mth.lerp(sleepProgress, -4F, 0F);
 				this.LeftArm.xRot = Mth.lerp(sleepProgress, 0, 0.8726646259971648F);
-				this.LeftFoot.xRot = Mth.lerp(sleepProgress, 0, 1.5707963267948966F);
-				this.RightFoot.xRot = Mth.lerp(sleepProgress, 0, 1.5707963267948966F);
+				this.LeftFoot.xRot = Mth.lerp(sleepProgress, 0, 0.7707963267948966F);
+				this.RightFoot.xRot = Mth.lerp(sleepProgress, 0, 0.7707963267948966F);
 				this.Hips.y = Mth.lerp(sleepProgress, 0, 11.5F);
 				this.Hips.xRot = Mth.lerp(sleepProgress, 0, -0.24434609527920614F);
 				this.Tail2.xRot = Mth.lerp(sleepProgress, 0, 0.13962634015954636F);
 				this.Tail2.yRot = Mth.lerp(sleepProgress, 0, -0.593411945678072F);
 				this.Tail2.zRot = Mth.lerp(sleepProgress, 0, -0.10471975511965977F);
-				this.RightThigh.y = Mth.lerp(sleepProgress, -4F, -3F);
-				this.RightThigh.xRot = Mth.lerp(sleepProgress, 0, -0.8726646259971648F);
+				this.RightThigh.y = Mth.lerp(sleepProgress, -4F, 0F);
+				this.RightThigh.xRot = Mth.lerp(sleepProgress, 0, -1.4726646259971648F);
 				this.RightThigh.yRot = Mth.lerp(sleepProgress, 0, -0.296705972839036F);
 				this.Neck.xRot = Mth.lerp(sleepProgress, 0, 0.8726646259971648F);
 				this.Neck.yRot = Mth.lerp(sleepProgress, 0, 0.9773843811168246F);
 				this.Head.yRot = Mth.lerp(sleepProgress, 0, 0.2962634015954636F);
-				this.RightLeg.xRot = Mth.lerp(sleepProgress, 0, -0.45378560551852565F);
+				this.RightLeg.xRot = Mth.lerp(sleepProgress, 0, 0.85378560551852565F);
 				this.RightArm.xRot = Mth.lerp(sleepProgress, 0, 0.8726646259971648F);
 				this.Tail1.z = Mth.lerp(sleepProgress, 18, 17F);
 				this.Tail1.xRot = Mth.lerp(sleepProgress, 0, -0.07853981633974483F);
@@ -123,25 +123,25 @@ public class CamptosaurusModel extends EntityModel<Camptosaurus> {
 			} else sleepPose();
 		} else {
 			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
-				this.LeftLeg.xRot = Mth.lerp(sleepProgress, -0.45378560551852565F, 0);
-				this.LeftThigh.xRot = Mth.lerp(sleepProgress, -0.8726646259971648F, 0);
+				this.LeftLeg.xRot = Mth.lerp(sleepProgress, 0.85378560551852565F, 0);
+				this.LeftThigh.xRot = Mth.lerp(sleepProgress, -1.4726646259971648F, 0);
 				this.LeftThigh.yRot = Mth.lerp(sleepProgress, 0.296705972839036F, 0);
-				this.LeftThigh.y = Mth.lerp(sleepProgress, -3F, -4F);
+				this.LeftThigh.y = Mth.lerp(sleepProgress, 0F, -4F);
 				this.LeftArm.xRot = Mth.lerp(sleepProgress, 0.8726646259971648F, 0);
-				this.LeftFoot.xRot = Mth.lerp(sleepProgress, 1.5707963267948966F, 0);
-				this.RightFoot.xRot = Mth.lerp(sleepProgress, 1.5707963267948966F, 0);
+				this.LeftFoot.xRot = Mth.lerp(sleepProgress, 0.7707963267948966F, 0);
+				this.RightFoot.xRot = Mth.lerp(sleepProgress, 0.7707963267948966F, 0);
 				this.Hips.y = Mth.lerp(sleepProgress, 11.5F, 0);
 				this.Hips.xRot = Mth.lerp(sleepProgress, -0.24434609527920614F, 0);
 				this.Tail2.xRot = Mth.lerp(sleepProgress, 0.13962634015954636F, 0);
 				this.Tail2.yRot = Mth.lerp(sleepProgress, -0.593411945678072F, 0);
 				this.Tail2.zRot = Mth.lerp(sleepProgress, -0.10471975511965977F, 0);
-				this.RightThigh.y = Mth.lerp(sleepProgress, -3F, -4F);
-				this.RightThigh.xRot = Mth.lerp(sleepProgress, -0.8726646259971648F, 0);
+				this.RightThigh.y = Mth.lerp(sleepProgress, 0F, -4F);
+				this.RightThigh.xRot = Mth.lerp(sleepProgress, -1.4726646259971648F, 0);
 				this.RightThigh.yRot = Mth.lerp(sleepProgress, -0.296705972839036F, 0);
 				this.Neck.xRot = Mth.lerp(sleepProgress, 0.8726646259971648F, 0);
 				this.Neck.yRot = Mth.lerp(sleepProgress, 0.9773843811168246F, 0);
 				this.Head.yRot = Mth.lerp(sleepProgress, 0.2962634015954636F, 0);
-				this.RightLeg.xRot = Mth.lerp(sleepProgress, -0.45378560551852565F, 0);
+				this.RightLeg.xRot = Mth.lerp(sleepProgress, 0.85378560551852565F, 0);
 				this.RightArm.xRot = Mth.lerp(sleepProgress, 0.8726646259971648F, 0);
 				this.Tail1.z = Mth.lerp(sleepProgress, 17, 18F);
 				this.Tail1.xRot = Mth.lerp(sleepProgress, -0.07853981633974483F, 0);
@@ -162,13 +162,13 @@ public class CamptosaurusModel extends EntityModel<Camptosaurus> {
 					this.Neck.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.75F) + 0.5F;
 				}
 				if (entity.isInWater()) {
-					this.Hips.y = 10;
-					this.Hips.xRot = -0.5F;
-					this.Tail1.xRot = 0.25F;
-					this.Tail2.xRot = 0.25F;
-					this.Neck.xRot = 0.5F;
-					this.RightThigh.xRot = -0.5F * Mth.sin(0.2F * ageInTicks / 1.5F);
-					this.LeftThigh.xRot = 0.5F * Mth.sin(0.2F * ageInTicks / 1.5F);
+					this.Hips.y = 22;
+					this.Hips.xRot = -0.2F;
+					this.Tail1.xRot = 0.125F;
+					this.Tail2.xRot = 0.125F;
+					this.Neck.xRot = 0.25F;
+					this.RightThigh.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
+					this.LeftThigh.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.RightLeg.xRot = -0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.LeftLeg.xRot = 0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.LeftArm.xRot = 0.5F;
@@ -216,25 +216,25 @@ public class CamptosaurusModel extends EntityModel<Camptosaurus> {
 	}
 
 	public void sleepPose() {
-		this.LeftLeg.xRot = -0.45378560551852565F;
-		this.LeftThigh.xRot = -0.8726646259971648F;
+		this.LeftLeg.xRot = 0.85378560551852565F;
+		this.LeftThigh.xRot = -1.4726646259971648F;
 		this.LeftThigh.yRot = 0.296705972839036F;
-		this.LeftThigh.y = -3F;
+		this.LeftThigh.y = 0F;
 		this.LeftArm.xRot = 0.8726646259971648F;
-		this.LeftFoot.xRot = 1.5707963267948966F;
-		this.RightFoot.xRot = 1.5707963267948966F;
+		this.LeftFoot.xRot = 0.7707963267948966F;
+		this.RightFoot.xRot = 0.7707963267948966F;
 		this.Hips.y = 11.5F;
 		this.Hips.xRot = -0.24434609527920614F;
 		this.Tail2.xRot = 0.13962634015954636F;
 		this.Tail2.yRot = -0.593411945678072F;
 		this.Tail2.zRot = -0.10471975511965977F;
-		this.RightThigh.y = -3F;
-		this.RightThigh.xRot = -0.8726646259971648F;
+		this.RightThigh.y = 0F;
+		this.RightThigh.xRot = -1.4726646259971648F;
 		this.RightThigh.yRot = -0.296705972839036F;
 		this.Neck.xRot = 0.8726646259971648F;
 		this.Neck.yRot = 0.9773843811168246F;
 		this.Head.yRot = 0.2962634015954636F;
-		this.RightLeg.xRot = -0.45378560551852565F;
+		this.RightLeg.xRot = 0.85378560551852565F;
 		this.RightArm.xRot = 0.8726646259971648F;
 		this.Tail1.z = 17F;
 		this.Tail1.xRot = -0.07853981633974483F;

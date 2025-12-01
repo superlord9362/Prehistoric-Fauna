@@ -21,13 +21,18 @@ public abstract class TreeSpawner {
 	public boolean spawn(WorldGenLevel world, ChunkGenerator chunkGenerator, BlockPos pos, BlockState blockUnder, RandomSource random) {
 		ResourceKey<ConfiguredFeature<?, ?>> treeFeature = this.getTreeFeature(random);
 		Holder<ConfiguredFeature<?, ?>> holder = world.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE).getHolder(treeFeature).orElse((Holder.Reference<ConfiguredFeature<?, ?>>)null);
-        ConfiguredFeature<?, ?> configuredfeature = holder.value();
+		ConfiguredFeature<?, ?> configuredfeature = holder.value();
 		if (treeFeature == null) {
 			return false;
 		} else {
 			world.setBlock(pos, Blocks.AIR.defaultBlockState(), 4);
-			if (configuredfeature.place(world, chunkGenerator, random, pos)) {
-				return true;
+			if (configuredfeature != null ) {
+				if (configuredfeature.place(world, chunkGenerator, random, pos)) {
+					return true;
+				} else {
+					world.setBlock(pos, blockUnder, 4);
+					return false;
+				}
 			} else {
 				world.setBlock(pos, blockUnder, 4);
 				return false;

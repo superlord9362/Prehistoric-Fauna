@@ -19,8 +19,8 @@ import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFItems;
 
 @Mod.EventBusSubscriber(modid = PrehistoricFauna.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class CommonEvents {
-
+public class CommonEvents {	
+	
 	@SubscribeEvent
 	public static void init(final FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
@@ -34,8 +34,8 @@ public class CommonEvents {
 					.put(PFBlocks.ARAUCARIA_WOOD.get(), PFBlocks.STRIPPED_ARAUCARIA_WOOD.get())
 					.put(PFBlocks.PROTOPICEOXYLON_LOG.get(), PFBlocks.STRIPPED_PROTOPICEOXYLON_LOG.get())
 					.put(PFBlocks.PROTOPICEOXYLON_WOOD.get(), PFBlocks.STRIPPED_PROTOPICEOXYLON_WOOD.get())
-					.put(PFBlocks.ZAMITES_LOG.get(), PFBlocks.STRIPPED_ZAMITES_LOG.get())
-					.put(PFBlocks.ZAMITES_WOOD.get(), PFBlocks.STRIPPED_ZAMITES_WOOD.get())
+					.put(PFBlocks.MONANTHESIA_LOG.get(), PFBlocks.STRIPPED_MONANTHESIA_LOG.get())
+					.put(PFBlocks.MONANTHESIA_WOOD.get(), PFBlocks.STRIPPED_MONANTHESIA_WOOD.get())
 					.put(PFBlocks.PROTOJUNIPEROXYLON_LOG.get(), PFBlocks.STRIPPED_PROTOJUNIPEROXYLON_LOG.get())
 					.put(PFBlocks.PROTOJUNIPEROXYLON_WOOD.get(), PFBlocks.STRIPPED_PROTOJUNIPEROXYLON_WOOD.get())
 					.put(PFBlocks.HEIDIPHYLLUM_LOG.get(), PFBlocks.STRIPPED_HEIDIPHYLLUM_LOG.get())
@@ -86,7 +86,7 @@ public class CommonEvents {
 		compostibleBlocks(0.3F, PFBlocks.METASEQUOIA_LEAVES.get());
 		compostibleBlocks(0.3F, PFBlocks.ARAUCARIA_LEAVES.get());
 		compostibleBlocks(0.3F, PFBlocks.PROTOPICEOXYLON_LEAVES.get());
-		compostibleBlocks(0.3F, PFBlocks.ZAMITES_LEAVES.get());
+		compostibleBlocks(0.3F, PFBlocks.MONANTHESIA_LEAVES.get());
 		compostibleBlocks(0.3F, PFBlocks.GINKGO_LEAVES.get());
 		compostibleBlocks(0.3F, PFBlocks.YELLOW_GINKGO_LEAVES.get());
 		compostibleBlocks(0.3F, PFBlocks.PROTOJUNIPEROXYLON_LEAVES.get());
@@ -103,7 +103,7 @@ public class CommonEvents {
 		compostibleBlocks(0.3F, PFBlocks.BRACHYPHYLLUM_LEAVES.get());
 		compostibleBlocks(0.3F, PFBlocks.WOODWORTHIA_LEAVES.get());
 		compostibleBlocks(0.3F, PFBlocks.SCHILDERIA_LEAVES.get());
-		compostibleBlocks(0.3F, PFBlocks.ZAMITES_FROND.get());
+		compostibleBlocks(0.3F, PFBlocks.MONANTHESIA_FROND.get());
 		compostibleBlocks(0.3F, PFBlocks.BRACHYPHYLLUM_SAPLING.get());
 		compostibleBlocks(0.3F, PFBlocks.WOODWORTHIA_SAPLING.get());
 		compostibleBlocks(0.3F, PFBlocks.SCHILDERIA_SAPLING.get());
@@ -112,7 +112,7 @@ public class CommonEvents {
 		compostibleBlocks(0.3F, PFBlocks.METASEQUOIA_SAPLING.get());
 		compostibleBlocks(0.3F, PFBlocks.ARAUCARIA_SAPLING.get());
 		compostibleBlocks(0.3F, PFBlocks.PROTOPICEOXYLON_SAPLING.get());
-		compostibleBlocks(0.3F, PFBlocks.ZAMITES_SAPLING.get());
+		compostibleBlocks(0.3F, PFBlocks.MONANTHESIA_SAPLING.get());
 		compostibleBlocks(0.3F, PFBlocks.PROTOJUNIPEROXYLON_SAPLING.get());
 		compostibleBlocks(0.3F, PFBlocks.LIRIODENDRITES_SAPLING.get());
 		compostibleBlocks(0.3F, PFBlocks.HEIDIPHYLLUM_SAPLING.get());
@@ -177,6 +177,11 @@ public class CommonEvents {
 		compostibleBlocks(0.3F, PFBlocks.TAENIOPTERIS.get());
 		compostibleBlocks(0.3F, PFBlocks.ONYCHIOPSIS.get());
 		compostibleBlocks(0.3F, PFBlocks.SPHENOPTERIS.get());
+		compostibleBlocks(0.3F, PFBlocks.ZAMIOPHYLLUM.get());
+		compostibleBlocks(0.3F, PFBlocks.NILSSONIA.get());
+		compostibleBlocks(0.3F, PFItems.FIDDLEHEAD_SPORES.get());
+		compostibleBlocks(0.3F, PFItems.FIDDLEHEAD.get());
+		compostibleBlocks(0.3F, PFBlocks.FIDDLEHEAD_FERN.get());
 		//		compostibleBlocks(0.3F, PFBlocks.ARCHAEAMPHORA.get());
 		compostibleBlocks(0.3F, PFItems.MARMARTHIA_BERRIES.get());
 		compostibleBlocks(0.5F, PFBlocks.TALL_HORSETAIL.get());
@@ -193,6 +198,8 @@ public class CommonEvents {
 		compostibleBlocks(0.5F, PFBlocks.TALL_OTOZAMITES.get());
 		compostibleBlocks(0.5F, PFBlocks.TALL_ANOMOZAMITES.get());
 		compostibleBlocks(0.5F, PFBlocks.TALL_PTEROPHYLLUM.get());
+		compostibleBlocks(0.5F, PFBlocks.TALL_FIDDLEHEAD_FERN.get());
+		compostibleBlocks(0.5F, PFBlocks.ZAMITES.get());
 		compostibleBlocks(0.65F, PFBlocks.JOHNSTONIA.get());
 		compostibleBlocks(0.65F, PFBlocks.CLUBMOSS.get());
 		compostibleBlocks(0.65F, PFBlocks.LIVERWORT.get());
@@ -233,11 +240,11 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.SABALITES_FENCE.get(), 5, 20);
 		registerFlammable(PFBlocks.SABALITES_FENCE_GATE.get(), 5, 20);
 		registerFlammable(PFBlocks.SABALITES_STAIRS.get(), 5, 20);
-		registerFlammable(PFBlocks.ZAMITES_PLANKS.get(), 5, 20);
-		registerFlammable(PFBlocks.ZAMITES_SLAB.get(), 5, 20);
-		registerFlammable(PFBlocks.ZAMITES_FENCE.get(), 5, 20);
-		registerFlammable(PFBlocks.ZAMITES_FENCE_GATE.get(), 5, 20);
-		registerFlammable(PFBlocks.ZAMITES_STAIRS.get(), 5, 20);
+		registerFlammable(PFBlocks.MONANTHESIA_PLANKS.get(), 5, 20);
+		registerFlammable(PFBlocks.MONANTHESIA_SLAB.get(), 5, 20);
+		registerFlammable(PFBlocks.MONANTHESIA_FENCE.get(), 5, 20);
+		registerFlammable(PFBlocks.MONANTHESIA_FENCE_GATE.get(), 5, 20);
+		registerFlammable(PFBlocks.MONANTHESIA_STAIRS.get(), 5, 20);
 		registerFlammable(PFBlocks.PROTOJUNIPEROXYLON_PLANKS.get(), 5, 20);
 		registerFlammable(PFBlocks.PROTOJUNIPEROXYLON_SLAB.get(), 5, 20);
 		registerFlammable(PFBlocks.PROTOJUNIPEROXYLON_FENCE.get(), 5, 20);
@@ -346,10 +353,10 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.STRIPPED_PLATANITES_LOG.get(), 5, 5);
 		registerFlammable(PFBlocks.PLATANITES_WOOD.get(), 5, 5);
 		registerFlammable(PFBlocks.STRIPPED_PLATANITES_WOOD.get(), 5, 5);
-		registerFlammable(PFBlocks.ZAMITES_LOG.get(), 5, 5);
-		registerFlammable(PFBlocks.STRIPPED_ZAMITES_LOG.get(), 5, 5);
-		registerFlammable(PFBlocks.ZAMITES_WOOD.get(), 5, 5);
-		registerFlammable(PFBlocks.STRIPPED_ZAMITES_WOOD.get(), 5, 5);
+		registerFlammable(PFBlocks.MONANTHESIA_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.STRIPPED_MONANTHESIA_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.MONANTHESIA_WOOD.get(), 5, 5);
+		registerFlammable(PFBlocks.STRIPPED_MONANTHESIA_WOOD.get(), 5, 5);
 		registerFlammable(PFBlocks.TAXODIUM_LOG.get(), 5, 5);
 		registerFlammable(PFBlocks.STRIPPED_TAXODIUM_LOG.get(), 5, 5);
 		registerFlammable(PFBlocks.TAXODIUM_WOOD.get(), 5, 5);
@@ -434,7 +441,7 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.ARAUCARIA_LEAVES.get(), 30, 60);
 		registerFlammable(PFBlocks.METASEQUOIA_LEAVES.get(), 30, 60);
 		registerFlammable(PFBlocks.PROTOPICEOXYLON_LEAVES.get(), 30, 60);
-		registerFlammable(PFBlocks.ZAMITES_LEAVES.get(), 30, 60);
+		registerFlammable(PFBlocks.MONANTHESIA_LEAVES.get(), 30, 60);
 		registerFlammable(PFBlocks.PROTOJUNIPEROXYLON_LEAVES.get(), 30, 60);
 		registerFlammable(PFBlocks.HEIDIPHYLLUM_LEAVES.get(), 30, 60);
 		registerFlammable(PFBlocks.LIRIODENDRITES_LEAVES.get(), 30, 60);
@@ -485,12 +492,18 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.NOTHODICHOCARPUM.get(), 60, 100);
 		registerFlammable(PFBlocks.TALL_ANOMOZAMITES.get(), 60, 100);
 		registerFlammable(PFBlocks.TALL_PTEROPHYLLUM.get(), 60, 100);
+		registerFlammable(PFBlocks.NILSSONIA.get(), 60, 100);
 		registerFlammable(PFBlocks.OTOZAMITES.get(), 60, 100);
 		registerFlammable(PFBlocks.BISONIA.get(), 60, 100);
 		registerFlammable(PFBlocks.LAUROZAMITES.get(), 60, 100);
+		registerFlammable(PFBlocks.FIDDLEHEAD_FERN.get(), 60, 100);
+		registerFlammable(PFBlocks.TALL_FIDDLEHEAD_FERN.get(), 60, 100);
 		registerFlammable(PFBlocks.MOSS_CARPET.get(), 60, 20);
 		registerFlammable(PFBlocks.HUMULUS.get(), 60, 20);
 		registerFlammable(PFBlocks.MOSS_BLOCK.get(), 60, 20);
+		registerFlammable(PFBlocks.WELTRICHIA.get(), 60, 20);
+		registerFlammable(PFBlocks.ZAMIOPHYLLUM.get(), 5, 5);
+		registerFlammable(PFBlocks.ZAMITES.get(), 5, 5);
 	}
 
 	public static void registerFlammable(Block block, int flameOdds, int burnOdds) {
@@ -504,6 +517,7 @@ public class CommonEvents {
 			if (event.getEntity() instanceof Zombie) {
 				Zombie zombie = (Zombie) event.getEntity();
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.AEPYORNITHOMIMUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.BYRONOSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.CITIPATI_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.GOYOCEPHALE_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.HALSZKARAPTOR_EGG.get(), zombie, 1.0D, 3));
@@ -516,34 +530,70 @@ public class CommonEvents {
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.UDANOCERATOPS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.VELOCIRAPTOR_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.ANKYLOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.ANZU_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.BASILEMYS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.BRACHYCHAMPSA_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.DAKOTARAPTOR_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.EDMONTOSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.ORNITHOMIMUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.PACHYCEPHALOSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.PALAEOSANIWA_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.THESCELOSAURUS_EGG.get(), zombie, 1.0D, 3));
-				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.BRACHYCHAMPSA_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.TRICERATOPS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.TYRANNOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.BEIPIAOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.CHANGYURAPTOR_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.DILONG_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.DONGBEITITAN_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.INCISIVOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.JINZHOUSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.LIAONINGOSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.PSITTACOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.RUIXINIA_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SINOSAUROPTERYX_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.YUTYRANNUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.ZHENYUANLONG_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.CALSOYASUCHUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.DILOPHOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.KAYENTACHELYS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.KAYENTASUCHUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.KAYENTATHERIUM_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.KAYENTAVENATOR_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.MEGAPNOSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SARAHSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SCELIDOSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SCUTELLOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.ALCOVASAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.ALLOSAURUS_EGG.get(), zombie, 1.0D, 3));
+//				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.BRACHIOSAURUS_EGG.get(), zombie, 1.0D, 3));
+//				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.BRONTOSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.CAMARASAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.CAMPTOSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.CERATOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.DIABLOPHIS_EGG.get(), zombie, 1.0D, 3));
+//				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.DIPLODOCUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.DRYOSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.EILENODON_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.GARGOYLEOSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.HESPERORNITHOIDES_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.MACELOGNATHUS_EGG.get(), zombie, 1.0D, 3));
+//				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.MARAAPUNISAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.STEGOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.TANYCOLAGREUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.TORVOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.ABROSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.AGILISAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.BASHANOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.CHUANDONGOCOELURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.GIGANTSPINOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.HUAYANGOSAURUS_EGG.get(), zombie, 1.0D, 3));
+//				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.MAMENCHISAURUS_EGG.get(), zombie, 1.0D, 3));
+//				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.OMEISAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SINRAPTOR_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SHUNOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.TUOJIANGOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.YANDUSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.YANGCHUANOSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.COELOPHYSIS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.DESMATOSUCHUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.PLACERIAS_EGG.get(), zombie, 1.0D, 3));
@@ -558,7 +608,7 @@ public class CommonEvents {
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.ISCHIGUALASTIA_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SAUROSUCHUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SILLOSUCHUS_EGG.get(), zombie, 1.0D, 3));
-				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.BYRONOSAURUS_EGG.get(), zombie, 1.0D, 3));
+
 			}
 		} catch (Exception e) {
 			PrehistoricFauna.LOGGER.warn("Could not allow Zombies to smash dinosaur eggs!");

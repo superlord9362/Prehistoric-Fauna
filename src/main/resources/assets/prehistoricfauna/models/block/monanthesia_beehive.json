@@ -1,0 +1,10 @@
+{
+    "parent": "block/orientable_with_bottom",
+    "textures": {
+        "particle": "prehistoricfauna:block/monanthesia_beehive_side",
+        "bottom": "prehistoricfauna:block/monanthesia_beehive_end",
+        "top": "prehistoricfauna:block/monanthesia_beehive_end",
+        "front": "prehistoricfauna:block/monanthesia_beehive_front",
+        "side": "prehistoricfauna:block/monanthesia_beehive_side"
+    }
+}

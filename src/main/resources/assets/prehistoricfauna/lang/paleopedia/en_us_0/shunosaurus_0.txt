@@ -1,0 +1,41 @@
+Found In: Shaximiao
+
+Drops: 1-2 Large Raw Sauropod
+
+Diet: Herbivore
+
+Breeding Item: Cupressinocladus 
+Leaves
+
+Max Health: 60
+
+Max Hunger: 150
+
+Temperaments: Shunosaurus has 
+an 85% chance of being protective, 
+and a 15% chance of being 
+territorial.
+
+Sleep Cycle: Diurnal 
+<image><drawings_ankylosaurus.png 35 3 152 169 23 20 6.25>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Shunosaurus can crush 
+certain items that land below their 
+feet, such as Henostone. These 
+items have a chance to be 
+crushed into a different item 
+under their weight.

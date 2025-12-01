@@ -1,0 +1,12 @@
+{
+	"replace": false,
+	"values": [
+		"#prehistoricfauna:ten_hunger_animals",
+		"#prehistoricfauna:fifteen_hunger_animals",
+		"#prehistoricfauna:twenty_hunger_animals",
+		"#prehistoricfauna:thirty_hunger_animals",
+		"#prehistoricfauna:forty_hunger_animals",
+		"#prehistoricfauna:sixty_hunger_animals",
+		"#prehistoricfauna:eighty_hunger_animals"
+	]
+}

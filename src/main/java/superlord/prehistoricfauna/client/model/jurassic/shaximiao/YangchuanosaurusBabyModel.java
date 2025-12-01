@@ -167,13 +167,13 @@ public class YangchuanosaurusBabyModel extends EntityModel<Yangchuanosaurus> {
 				this.RightThigh.xRot = Mth.cos(1.0F + limbSwing * speed * 0.3F) * degree * -0.6F * limbSwingAmount;
 				this.RightFoot.xRot = Mth.cos(1.0F + limbSwing * speed * 0.3F) * degree * -0.4F * limbSwingAmount;
 				if (entity.isInWater()) {
-					this.LeftThigh.y = -6.5F;
-					this.RightThigh.y = -6.5F;
-					this.Body.y = -6;
+					this.LeftThigh.y = -4.5F;
+					this.RightThigh.y = -4.5F;
+					this.Body.y = -4;
 					this.Body.xRot = -0.125F;
-					this.Tail1.xRot = 0.0625F;
+					this.Tail1.xRot = -0.0625F;
 					this.Tail2.xRot = 0.0625F;
-					this.Neck.xRot = 0.125F;
+					this.Neck.xRot = 0.25F;
 					this.LeftThigh.xRot = -0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.RightThigh.xRot = 0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.LeftFoot.xRot = -0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);

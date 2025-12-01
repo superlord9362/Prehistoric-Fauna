@@ -69,6 +69,7 @@
       "prehistoricfauna:placed_sphenopteris",
       "prehistoricfauna:placed_rare_taeniopteris",
       "prehistoricfauna:placed_rare_tall_taeniopteris",
+      "prehistoricfauna:placed_zamiophyllum",
       "prehistoricfauna:placed_small_araucaria_trees",
       "prehistoricfauna:placed_brachyphyllum_trees",
       "prehistoricfauna:placed_cupressinocladus_trees",
@@ -124,6 +125,18 @@
         "maxCount": 2,
         "minCount": 1,
         "weight": 3
+      },
+      {
+        "type": "prehistoricfauna:sinraptor",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 2
+      },
+      {
+        "type": "prehistoricfauna:tuojiangosaurus",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 7
       }
     ],
     "misc": [],

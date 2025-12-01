@@ -1,0 +1,37 @@
+Found In: Morrison
+
+Drops: 1-2 Large Raw Ornithischian
+
+Diet: Herbivore
+
+Breeding Item: Cladophlebis
+
+Max Health: 40
+
+Max Hunger: 100
+
+Temperaments: Camptosaurus has 
+an 85% chance of being protective, 
+and a 15% chance of being 
+territorial.
+
+Sleep Cycle: Diurnal
+
+<image><drawings_ankylosaurus.png 32 6 127 110 23 16 6.5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Investigation underway!

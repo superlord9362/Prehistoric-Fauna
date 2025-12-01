@@ -111,11 +111,13 @@ public class PFPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> TALL_PTEROPHYLLUM = registerPlacedFeature("placed_tall_pterophyllum");
 	public static final ResourceKey<PlacedFeature> ONYCHIOPSIS = registerPlacedFeature("placed_onychiopsis");
 	public static final ResourceKey<PlacedFeature> SPHENOPTERIS = registerPlacedFeature("placed_sphenopteris");
+	public static final ResourceKey<PlacedFeature> DAYVAULTIA = registerPlacedFeature("placed_dayvaultia");
 	public static final ResourceKey<PlacedFeature> TAENIOPTERIS = registerPlacedFeature("placed_taeniopteris");
 	public static final ResourceKey<PlacedFeature> TALL_TAENIOPTERIS = registerPlacedFeature("placed_tall_taeniopteris");
 	public static final ResourceKey<PlacedFeature> RARE_SPHENOPTERIS = registerPlacedFeature("placed_rare_sphenopteris");
 	public static final ResourceKey<PlacedFeature> RARE_TAENIOPTERIS = registerPlacedFeature("placed_rare_taeniopteris");
 	public static final ResourceKey<PlacedFeature> RARE_TALL_TAENIOPTERIS = registerPlacedFeature("placed_rare_tall_taeniopteris");
+	public static final ResourceKey<PlacedFeature> BASSITHECA = registerPlacedFeature("placed_bassitheca");
 
 	public static final ResourceKey<PlacedFeature> ANOMOZAMITES = registerPlacedFeature("placed_anomozamites");
 	public static final ResourceKey<PlacedFeature> TALL_ANOMOZAMITES = registerPlacedFeature("placed_tall_anomoazamites");
@@ -125,6 +127,10 @@ public class PFPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> RARE_PTEROPHYLLUM = registerPlacedFeature("placed_rare_pterophyllum");
 	public static final ResourceKey<PlacedFeature> RARE_TALL_PTEROPHYLLUM = registerPlacedFeature("placed_rare_tall_pterophyllum");
 	
+	public static final ResourceKey<PlacedFeature> ZAMIOPHYLLUM = registerPlacedFeature("placed_zamiophyllum");
+	public static final ResourceKey<PlacedFeature> ZAMITES = registerPlacedFeature("placed_zamites");
+	public static final ResourceKey<PlacedFeature> RARE_ZAMITES = registerPlacedFeature("placed_rare_zamites");
+	
 	public static final ResourceKey<PlacedFeature> POISON_GAS = registerPlacedFeature("placed_poison_gas");
 
 	public static final ResourceKey<PlacedFeature> CALLIANTHUS = registerPlacedFeature("placed_callianthus");
@@ -132,8 +138,8 @@ public class PFPlacedFeatures {
 
 	public static final ResourceKey<PlacedFeature> TAXODIUM_KNEES = registerPlacedFeature("placed_taxodium_knees");
 
-	public static final ResourceKey<PlacedFeature> ZAMITES = registerPlacedFeature("placed_zamites");
-	public static final ResourceKey<PlacedFeature> RARE_ZAMITES = registerPlacedFeature("placed_rare_zamites");
+	public static final ResourceKey<PlacedFeature> MONANTHESIA = registerPlacedFeature("placed_monanthesia");
+	public static final ResourceKey<PlacedFeature> RARE_MONANTHESIA = registerPlacedFeature("placed_rare_monanthesia");
 	public static final ResourceKey<PlacedFeature> SABALITES = registerPlacedFeature("placed_sabalites");
 	public static final ResourceKey<PlacedFeature> RARE_SABALITES = registerPlacedFeature("placed_rare_sabalites");
 
@@ -444,20 +450,22 @@ public class PFPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> RARE_PTILOPHYLLUM = registerPlacedFeature("placed_rare_ptilophyllum");
 
 	public static final ResourceKey<PlacedFeature> HERMANOPHYTON = registerPlacedFeature("placed_hermanophyton");
+	public static final ResourceKey<PlacedFeature> NILSSONIA = registerPlacedFeature("placed_nilssonia");
+	public static final ResourceKey<PlacedFeature> RARE_NILSSONIA = registerPlacedFeature("placed_rare_nilssonia");
 	
 	public static final ResourceKey<PlacedFeature> EOPOLIS_MOUND = registerPlacedFeature("placed_eopolis_mound");
 
 	
 	public static void bootstrap(BootstapContext<PlacedFeature> bootstapContext) {
 		HolderGetter<ConfiguredFeature<?, ?>> holderGetter = bootstapContext.lookup(Registries.CONFIGURED_FEATURE);
-		PlacementUtils.register(bootstapContext, FOSSILIZED_CHALK, holderGetter.getOrThrow(PFConfiguredFeatures.FOSSILIZED_CHALK), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(49), VerticalAnchor.absolute(59))));
-		PlacementUtils.register(bootstapContext, FOSSILIZED_SILTSTONE, holderGetter.getOrThrow(PFConfiguredFeatures.FOSSILIZED_SILTSTONE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(39), VerticalAnchor.absolute(49))));
-		PlacementUtils.register(bootstapContext, FOSSILIZED_SANDSTONE, holderGetter.getOrThrow(PFConfiguredFeatures.FOSSILIZED_SANDSTONE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(29), VerticalAnchor.absolute(39))));
+		PlacementUtils.register(bootstapContext, FOSSILIZED_CHALK, holderGetter.getOrThrow(PFConfiguredFeatures.FOSSILIZED_CHALK), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(46), VerticalAnchor.absolute(55))));
+		PlacementUtils.register(bootstapContext, FOSSILIZED_SILTSTONE, holderGetter.getOrThrow(PFConfiguredFeatures.FOSSILIZED_SILTSTONE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(40), VerticalAnchor.absolute(46))));
+		PlacementUtils.register(bootstapContext, FOSSILIZED_SANDSTONE, holderGetter.getOrThrow(PFConfiguredFeatures.FOSSILIZED_SANDSTONE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(35), VerticalAnchor.absolute(40))));
 
-		PlacementUtils.register(bootstapContext, CRETACEOUS_FOSSILIZED_SILTSTONE, holderGetter.getOrThrow(PFConfiguredFeatures.FOSSILIZED_SILTSTONE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(49), VerticalAnchor.absolute(59))));
-		PlacementUtils.register(bootstapContext, CRETACEOUS_FOSSILIZED_SANDSTONE, holderGetter.getOrThrow(PFConfiguredFeatures.FOSSILIZED_SANDSTONE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(39), VerticalAnchor.absolute(49))));
+		PlacementUtils.register(bootstapContext, CRETACEOUS_FOSSILIZED_SILTSTONE, holderGetter.getOrThrow(PFConfiguredFeatures.FOSSILIZED_SILTSTONE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(56), VerticalAnchor.absolute(62))));
+		PlacementUtils.register(bootstapContext, CRETACEOUS_FOSSILIZED_SANDSTONE, holderGetter.getOrThrow(PFConfiguredFeatures.FOSSILIZED_SANDSTONE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(51), VerticalAnchor.absolute(56))));
 
-		PlacementUtils.register(bootstapContext, JURASSIC_FOSSILIZED_SANDSTONE, holderGetter.getOrThrow(PFConfiguredFeatures.FOSSILIZED_SANDSTONE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(49), VerticalAnchor.absolute(59))));
+		PlacementUtils.register(bootstapContext, JURASSIC_FOSSILIZED_SANDSTONE, holderGetter.getOrThrow(PFConfiguredFeatures.FOSSILIZED_SANDSTONE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(57), VerticalAnchor.absolute(62))));
 
 		PlacementUtils.register(bootstapContext, HENOSTONE_ORE, holderGetter.getOrThrow(PFConfiguredFeatures.ORE_HENOSTONE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(-40), VerticalAnchor.absolute(60))));
 
@@ -544,6 +552,12 @@ public class PFPlacedFeatures {
 		PlacementUtils.register(bootstapContext, RARE_TAENIOPTERIS, holderGetter.getOrThrow(PFConfiguredFeatures.RARE_TAENIOPTERIS), worldSurfaceSquaredWithCount(1));
 		PlacementUtils.register(bootstapContext, RARE_TALL_TAENIOPTERIS, holderGetter.getOrThrow(PFConfiguredFeatures.RARE_TALL_TAENIOPTERIS), worldSurfaceSquaredWithCount(1));
 		
+		PlacementUtils.register(bootstapContext, DAYVAULTIA, holderGetter.getOrThrow(PFConfiguredFeatures.DAYVAULTIA), worldSurfaceSquaredWithCount(2));
+		PlacementUtils.register(bootstapContext, ZAMIOPHYLLUM, holderGetter.getOrThrow(PFConfiguredFeatures.ZAMIOPHYLLUM), worldSurfaceSquaredWithCount(1));
+		PlacementUtils.register(bootstapContext, BASSITHECA, holderGetter.getOrThrow(PFConfiguredFeatures.BASSITHECA), worldSurfaceSquaredWithCount(1));
+		PlacementUtils.register(bootstapContext, ZAMITES, holderGetter.getOrThrow(PFConfiguredFeatures.ZAMITES), worldSurfaceSquaredWithCount(2));
+		PlacementUtils.register(bootstapContext, RARE_ZAMITES, holderGetter.getOrThrow(PFConfiguredFeatures.RARE_ZAMITES), worldSurfaceSquaredWithCount(1));
+
 		PlacementUtils.register(bootstapContext, POISON_GAS, holderGetter.getOrThrow(PFConfiguredFeatures.POISON_GAS), worldSurfaceSquaredWithCount(3));
 
 		PlacementUtils.register(bootstapContext, CALLIANTHUS, holderGetter.getOrThrow(PFConfiguredFeatures.CALLIANTHUS), worldSurfaceSquaredWithCount(5));
@@ -551,8 +565,8 @@ public class PFPlacedFeatures {
 
 		PlacementUtils.register(bootstapContext, TAXODIUM_KNEES, holderGetter.getOrThrow(PFConfiguredFeatures.TAXODIUM_KNEES), worldSurfaceSquaredWithCount(4));
 
-		PlacementUtils.register(bootstapContext, ZAMITES, holderGetter.getOrThrow(PFConfiguredFeatures.COMMON_ZAMITES_BUSH), List.of(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
-		PlacementUtils.register(bootstapContext, RARE_ZAMITES, holderGetter.getOrThrow(PFConfiguredFeatures.ZAMITES_BUSH), List.of(RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+		PlacementUtils.register(bootstapContext, MONANTHESIA, holderGetter.getOrThrow(PFConfiguredFeatures.COMMON_MONANTHESIA_BUSH), List.of(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+		PlacementUtils.register(bootstapContext, RARE_MONANTHESIA, holderGetter.getOrThrow(PFConfiguredFeatures.MONANTHESIA_BUSH), List.of(RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 		PlacementUtils.register(bootstapContext, SABALITES, holderGetter.getOrThrow(PFConfiguredFeatures.COMMON_SABALITES), List.of(RarityFilter.onAverageOnceEvery(4), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 		PlacementUtils.register(bootstapContext, RARE_SABALITES, holderGetter.getOrThrow(PFConfiguredFeatures.RARE_SABALITES), List.of(RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 
@@ -863,6 +877,8 @@ public class PFPlacedFeatures {
 		PlacementUtils.register(bootstapContext, RARE_PTILOPHYLLUM, holderGetter.getOrThrow(PFConfiguredFeatures.PTILOPHYLLUM_TREE),  List.of(RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 
 		PlacementUtils.register(bootstapContext, HERMANOPHYTON, holderGetter.getOrThrow(PFConfiguredFeatures.HERMANOPHYTON),  List.of(RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+		PlacementUtils.register(bootstapContext, NILSSONIA, holderGetter.getOrThrow(PFConfiguredFeatures.NILSSONIA),  List.of(RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+		PlacementUtils.register(bootstapContext, RARE_NILSSONIA, holderGetter.getOrThrow(PFConfiguredFeatures.RARE_NILSSONIA),  List.of(RarityFilter.onAverageOnceEvery(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 	
 		PlacementUtils.register(bootstapContext, EOPOLIS_MOUND, holderGetter.getOrThrow(PFConfiguredFeatures.EOPOLIS_MOUND), List.of(RarityFilter.onAverageOnceEvery(5), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 	}
@@ -890,6 +906,7 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PHLEBOPTERIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PTEROPHYLLUM);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_PTEROPHYLLUM);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NILSSONIA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CHINLE_FLATS_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZAMITES);
 	}
@@ -920,6 +937,7 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PHLEBOPTERIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PTEROPHYLLUM);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_PTEROPHYLLUM);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NILSSONIA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CHINLE_WOODED_MOUNTAINS_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PODOZAMITES_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SCHILDERIA_TREES);
@@ -976,7 +994,11 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OTOZAMITES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PTILOPHYLLUM);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, STONEWORTS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NILSSONIA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BASSITHECA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZAMITES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MONANTHESIA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DAYVAULTIA);
 		builder.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, EOPOLIS_MOUND);
 	}
 
@@ -1263,12 +1285,15 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MARCHANTIA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OTOZAMITES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, STONEWORTS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_NILSSONIA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BASSITHECA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CZEKANOWSKIA_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_LARGE_GINKGO_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ELATIDES_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SMALL_GINKGO_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PODOZAMITES_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PROTOPICEOXYLON_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_ZAMITES);
 	}
 	
 	public static void withMorrisonUplandForestPlants(BiomeGenerationSettings.Builder builder) {
@@ -1278,12 +1303,16 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CONIOPTERIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MARCHANTIA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, STONEWORTS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_NILSSONIA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BASSITHECA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SMALL_ARAUCARIA_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BRACHYPHYLLUM_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ELATIDES_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PODOZAMITES_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PROTOPICEOXYLON_TREES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_ZAMITES);
 		builder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, TUFF_DISK);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DAYVAULTIA);
 	}
 	
 	public static void withMorrisonSparseForestPlants(BiomeGenerationSettings.Builder builder) {
@@ -1298,13 +1327,17 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, OTOZAMITES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PTILOPHYLLUM);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, STONEWORTS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NILSSONIA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BASSITHECA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_CZEKANOWSKIA_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_ELATIDES_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_PODOZAMITES_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_PROTOPICEOXYLON_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZAMITES);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MONANTHESIA);
 		builder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, PACKED_MUD_DISK);
 		builder.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, EOPOLIS_MOUND);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DAYVAULTIA);
 	}
 	
 	public static void withShaximiaoDeltaPlainsPlants(BiomeGenerationSettings.Builder builder) {
@@ -1324,6 +1357,7 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, STONEWORTS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TAENIOPTERIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_TAENIOPTERIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_NILSSONIA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_ARAUCARIA_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_CZEKANOWSKIA_TREES);
@@ -1350,6 +1384,7 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, STONEWORTS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TAENIOPTERIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_TAENIOPTERIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_NILSSONIA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_ARAUCARIA_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CZEKANOWSKIA_TREES);
@@ -1376,6 +1411,7 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, STONEWORTS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TAENIOPTERIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TALL_TAENIOPTERIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_NILSSONIA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_ARAUCARIA_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_CZEKANOWSKIA_TREES);
@@ -1397,6 +1433,7 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPHENOPTERIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_TAENIOPTERIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_TALL_TAENIOPTERIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZAMIOPHYLLUM);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SMALL_ARAUCARIA_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BRACHYPHYLLUM_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CUPRESSINOCLADUS_TREES);
@@ -1422,6 +1459,7 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPHENOPTERIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_TAENIOPTERIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_TALL_TAENIOPTERIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZAMIOPHYLLUM);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SMALL_ARAUCARIA_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BRACHYPHYLLUM_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CUPRESSINOCLADUS_TREES);
@@ -1448,6 +1486,7 @@ public class PFPlacedFeatures {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, STONEWORTS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_TAENIOPTERIS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_TALL_TAENIOPTERIS);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZAMIOPHYLLUM);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RARE_SMALL_ARAUCARIA_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_BRACHYPHYLLUM_TREES);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, SPARSE_CUPRESSINOCLADUS_TREES);

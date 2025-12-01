@@ -1,0 +1,39 @@
+Found In: Morrison
+
+Drops: 2-4 Large Raw Theropod
+
+Diet: Carnivore
+
+Breeding Item: Large Raw 
+Sauropodomorph
+
+Max Health: 80
+
+Max Hunger: 200
+
+Temperaments: Torvosaurus has 
+an 80% chance of being territorial, 
+a 15% chance of being aggressive, 
+and a 5% chance of being 
+protective.
+
+<image><drawings_ankylosaurus.png 30 3 127 360 22 18 7>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sleep Cycle: Cathemeral
+
+Behavior: Investigation underway!

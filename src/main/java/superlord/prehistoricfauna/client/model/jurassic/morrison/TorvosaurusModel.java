@@ -213,9 +213,9 @@ public class TorvosaurusModel extends EntityModel<Torvosaurus> {
 				this.LeftFoot.xRot = Mth.cos(2.0F + limbSwing * idleSpeed * 0.3F) * idleDegree * -0.3F * limbSwingAmount + Mth.cos(2.0F + limbSwing * walkSpeed * 0.3F) * walkDegree * -0.3F * limbSwingAmount;
 				this.Neck.yRot = netHeadYaw * ((float) Math.PI / 180F);
 				if (entity.isInWater()) {
-					this.RightThigh.y = 20;
-					this.LeftThigh.y = 20;
-					this.Body.y = 17;
+					this.RightThigh.y = 3;
+					this.LeftThigh.y = 3;
+					this.Body.y = 0;
 					this.Body.xRot = -0.125F;
 					this.Tail1.xRot = 0.0625F;
 					this.Tail2.xRot = 0.0625F;

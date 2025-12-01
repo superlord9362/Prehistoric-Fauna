@@ -151,8 +151,8 @@ public class AgilisaurusModel extends EntityModel<Agilisaurus> {
 					this.Neck.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.75F) + 0.5F;
 				}
 				if (entity.isInWater()) {
-					this.RightThigh.y = -5;
-					this.LeftThigh.y = -5.5F;
+					this.RightThigh.y = -6;
+					this.LeftThigh.y = -6F;
 					this.Body.y = -5.5F;
 					this.Body.xRot = -0.125F;
 					this.Tail1.xRot = 0.125F;

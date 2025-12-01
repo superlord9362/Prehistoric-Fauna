@@ -79,45 +79,57 @@ public class EilenodonModel extends EntityModel<Eilenodon> {
 			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
 				this.Body.y = Mth.lerp(sleepProgress, 22, 23);
 				this.LegR.y = Mth.lerp(sleepProgress, -1, 1);
-				this.LegR.zRot = Mth.lerp(sleepProgress, 0, -1.5707963267948966F);
+				this.LegR.zRot = Mth.lerp(sleepProgress, 0, 1.5707963267948966F);
 				this.ArmR.y = Mth.lerp(sleepProgress, -1, 1);
-				this.ArmR.zRot = Mth.lerp(sleepProgress, 0, -1.5707963267948966F);
+				this.ArmR.zRot = Mth.lerp(sleepProgress, 0, 1.5707963267948966F);
 				this.LegL.y = Mth.lerp(sleepProgress, -1, 1);
-				this.LegL.zRot = Mth.lerp(sleepProgress, 0, 1.5707963267948966F);
+				this.LegL.zRot = Mth.lerp(sleepProgress, 0, -1.5707963267948966F);
 				this.ArmL.y = Mth.lerp(sleepProgress, -1, 1);
-				this.ArmL.zRot = Mth.lerp(sleepProgress, 0, 1.5707963267948966F);
+				this.ArmL.zRot = Mth.lerp(sleepProgress, 0, -1.5707963267948966F);
 				this.Neck.z = Mth.lerp(sleepProgress, -5, -4.8F);
 				this.Neck.xRot = Mth.lerp(sleepProgress, 0, 0.19547687289441354F);
 				this.Neck.yRot = Mth.lerp(sleepProgress, 0, 0.27366763203903305F);
 				this.Neck.zRot = Mth.lerp(sleepProgress, 0, -1.2901473511162753F);
+				this.ArmR.yRot = Mth.lerp(sleepProgress, 0.2618F, 0);
+				this.LegR.yRot = Mth.lerp(sleepProgress, 0.2618F, 0);
+				this.ArmL.yRot = Mth.lerp(sleepProgress, -0.2618F, 0);
+				this.LegL.yRot = Mth.lerp(sleepProgress, -0.2618F, 0);
 			} else sleepPose();
 		} else if (entity.isSitting() && !entity.isAsleep()) {
 			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
 				Body.y = Mth.lerp(sleepProgress, 22, 23);
 				LegR.y = Mth.lerp(sleepProgress, -1, 1);
-				LegR.zRot = Mth.lerp(sleepProgress, 0, -1.5707963267948966F);
+				LegR.zRot = Mth.lerp(sleepProgress, 0, 1.5707963267948966F);
 				ArmR.y = Mth.lerp(sleepProgress, -1, 1);
-				ArmR.zRot = Mth.lerp(sleepProgress, 0, -1.5707963267948966F);
+				ArmR.zRot = Mth.lerp(sleepProgress, 0, 1.5707963267948966F);
 				LegL.y = Mth.lerp(sleepProgress, -1, 1);
-				LegL.zRot = Mth.lerp(sleepProgress, 0, 1.5707963267948966F);
+				LegL.zRot = Mth.lerp(sleepProgress, 0, -1.5707963267948966F);
 				ArmL.y = Mth.lerp(sleepProgress, -1, 1);
-				ArmL.zRot = Mth.lerp(sleepProgress, 0, 1.5707963267948966F);
+				ArmL.zRot = Mth.lerp(sleepProgress, 0, -1.5707963267948966F);
+				this.ArmR.yRot = Mth.lerp(sleepProgress, 0.2618F, 0);
+				this.LegR.yRot = Mth.lerp(sleepProgress, 0.2618F, 0);
+				this.ArmL.yRot = Mth.lerp(sleepProgress, -0.2618F, 0);
+				this.LegL.yRot = Mth.lerp(sleepProgress, -0.2618F, 0);
 			} else sittingPose();
 		} else {
 			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
 				this.Body.y = Mth.lerp(sleepProgress, 23, 22);
 				this.LegR.y = Mth.lerp(sleepProgress, 1, -1);
-				this.LegR.zRot = Mth.lerp(sleepProgress, -1.5707963267948966F, 0);
+				this.LegR.zRot = Mth.lerp(sleepProgress, 1.5707963267948966F, 0);
 				this.ArmR.y = Mth.lerp(sleepProgress, 1, -1);
-				this.ArmR.zRot = Mth.lerp(sleepProgress, -1.5707963267948966F, 0);
+				this.ArmR.zRot = Mth.lerp(sleepProgress, 1.5707963267948966F, 0);
 				this.LegL.y = Mth.lerp(sleepProgress, 1, -1);
-				this.LegL.zRot = Mth.lerp(sleepProgress, 1.5707963267948966F, 0);
+				this.LegL.zRot = Mth.lerp(sleepProgress, -1.5707963267948966F, 0);
 				this.ArmL.y = Mth.lerp(sleepProgress, 1, -1);
-				this.ArmL.zRot = Mth.lerp(sleepProgress, 1.5707963267948966F, 0);
+				this.ArmL.zRot = Mth.lerp(sleepProgress, -1.5707963267948966F, 0);
 				this.Neck.z = Mth.lerp(sleepProgress, -4.8F, -5F);
 				this.Neck.xRot = Mth.lerp(sleepProgress, 0.19547687289441354F, 0);
 				this.Neck.yRot = Mth.lerp(sleepProgress, 0.27366763203903305F, 0);
 				this.Neck.zRot = Mth.lerp(sleepProgress, -1.2901473511162753F, 0);
+				this.ArmR.yRot = Mth.lerp(sleepProgress, 0, 0.2618F);
+				this.LegR.yRot = Mth.lerp(sleepProgress, 0, 0.2618F);
+				this.ArmL.yRot = Mth.lerp(sleepProgress, 0, -0.2618F);
+				this.LegL.yRot = Mth.lerp(sleepProgress, 0, -0.2618F);
 			} else {
 				this.Neck.xRot = headPitch * ((float)Math.PI / 180F);
 				this.Neck.yRot = netHeadYaw * ((float)Math.PI / 180F);
@@ -174,29 +186,37 @@ public class EilenodonModel extends EntityModel<Eilenodon> {
 	public void sleepPose() {
 		this.Body.y = 23;
 		this.LegR.y = 1;
-		this.LegR.zRot = -1.5707963267948966F;
+		this.LegR.zRot = 1.5707963267948966F;
 		this.ArmR.y = 1;
-		this.ArmR.zRot = -1.5707963267948966F;
+		this.ArmR.zRot = 1.5707963267948966F;
 		this.LegL.y = 1;
-		this.LegL.zRot = 1.5707963267948966F;
+		this.LegL.zRot = -1.5707963267948966F;
 		this.ArmL.y = 1;
-		this.ArmL.zRot = 1.5707963267948966F;
+		this.ArmL.zRot = -1.5707963267948966F;
 		this.Neck.z = -4.8F;
 		this.Neck.xRot = 0.19547687289441354F;
 		this.Neck.yRot = 0.27366763203903305F;
 		this.Neck.zRot = -1.2901473511162753F;
+		this.ArmL.yRot = 0;
+		this.ArmR.yRot = 0;
+		this.LegL.yRot = 0;
+		this.LegR.yRot = 0;
 	}
 
 	public void sittingPose () {
 		Body.y = 23;
 		LegR.y = 1;
-		LegR.zRot = -1.5707963267948966F;
+		LegR.zRot = 1.5707963267948966F;
 		ArmR.y = 1;
-		ArmR.zRot = -1.5707963267948966F;
+		ArmR.zRot = 1.5707963267948966F;
 		LegL.y = 1;
-		LegL.zRot = 1.5707963267948966F;
+		LegL.zRot = -1.5707963267948966F;
 		ArmL.y = 1;
-		ArmL.zRot = 1.5707963267948966F;
+		ArmL.zRot = -1.5707963267948966F;
+		this.ArmL.yRot = 0;
+		this.ArmR.yRot = 0;
+		this.LegL.yRot = 0;
+		this.LegR.yRot = 0;
 	}
 
 	@Override

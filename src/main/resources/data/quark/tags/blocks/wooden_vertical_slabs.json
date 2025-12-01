@@ -4,7 +4,7 @@
     "prehistoricfauna:araucaria_vertical_slab",
     "prehistoricfauna:metasequoia_vertical_slab",
     "prehistoricfauna:protopiceoxylon_vertical_slab",
-    "prehistoricfauna:zamites_vertical_slab",
+    "prehistoricfauna:monanthesia_vertical_slab",
     "prehistoricfauna:protojuniperoxylon_vertical_slab",
     "prehistoricfauna:agathoxylon_vertical_slab",
     "prehistoricfauna:heidiphyllum_vertical_slab",
@@ -20,6 +20,12 @@
     "prehistoricfauna:neocalamites_vertical_slab",
     "prehistoricfauna:platanites_vertical_slab",
     "prehistoricfauna:taxus_vertical_slab",
-    "prehistoricfauna:czekanowskia_vertical_slab"
+    "prehistoricfauna:czekanowskia_vertical_slab",
+    "prehistoricfauna:schizolepidopsis_vertical_slab",
+    "prehistoricfauna:podozamites_vertical_slab",
+    "prehistoricfauna:cupressinocladus_vertical_slab",
+    "prehistoricfauna:elatides_vertical_slab",
+    "prehistoricfauna:phoenicopsis_vertical_slab",
+    "prehistoricfauna:frenelopsis_vertical_slab"
   ]
 }

@@ -41,6 +41,30 @@
                   "predicate": {
                     "biome": "prehistoricfauna:morrison_savanna"
                   }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:morrison_gallery_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:morrison_river"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:morrison_sparse_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:morrison_upland_forest"
+                  }
                 }
               ]
             }
@@ -106,6 +130,66 @@
                   "condition": "minecraft:location_check",
                   "predicate": {
                     "biome": "prehistoricfauna:morrison_savanna"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:morrison_gallery_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:morrison_river"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:morrison_sparse_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:morrison_upland_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:shaximiao_arid_lakes"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:shaximiao_delta_plains"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:shaximiao_dry_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:shaximiao_gallery_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:shaximiao_lakes"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:shaximiao_mountains"
                   }
                 }
               ]
@@ -795,7 +879,187 @@
               ]
             }
           ]
-        }
+        },
+        {
+			"type": "minecraft:item",
+			"name": "prehistoricfauna:raw_morrolepis",
+			"weight": 10,
+			"conditions": [
+				{
+					"condition": "minecraft:any_of",
+					"terms": [
+				{
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:morrison_savanna"
+                  }
+                },		
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:morrison_gallery_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:morrison_river"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:morrison_sparse_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:morrison_upland_forest"
+                  }
+                }
+					]
+				}
+			]
+		},
+        {
+			"type": "minecraft:item",
+			"name": "prehistoricfauna:raw_ophiopsis",
+			"weight": 10,
+			"conditions": [
+				{
+					"condition": "minecraft:any_of",
+					"terms": [
+				{
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:morrison_savanna"
+                  }
+                },		
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:morrison_gallery_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:morrison_river"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:morrison_sparse_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:morrison_upland_forest"
+                  }
+                }
+					]
+				}
+			]
+		},
+        {
+			"type": "minecraft:item",
+			"name": "prehistoricfauna:raw_lepidotes",
+			"weight": 10,
+			"conditions": [
+				{
+					"condition": "minecraft:any_of",
+					"terms": [
+						{
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:shaximiao_arid_lakes"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:shaximiao_delta_plains"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:shaximiao_dry_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:shaximiao_gallery_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:shaximiao_lakes"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:shaximiao_mountains"
+                  }
+                }
+					]
+				}
+			]
+		},
+        {
+			"type": "minecraft:item",
+			"name": "prehistoricfauna:raw_chungkingichthys",
+			"weight": 10,
+			"conditions": [
+				{
+					"condition": "minecraft:any_of",
+					"terms": [
+						{
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:shaximiao_arid_lakes"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:shaximiao_delta_plains"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:shaximiao_dry_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:shaximiao_gallery_forest"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:shaximiao_lakes"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:shaximiao_mountains"
+                  }
+                }
+					]
+				}
+			]
+		}
       ],
       "rolls": 1
     }

@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,two_flowers=false": {
+      "model": "prehistoricfauna:block/one_weltrichia",
+      "y": 270
+    },
+    "facing=north,two_flowers=false": {
+      "model": "prehistoricfauna:block/one_weltrichia",
+      "y": 180
+    },
+    "facing=south,two_flowers=false": {
+      "model": "prehistoricfauna:block/one_weltrichia"
+    },
+    "facing=west,two_flowers=false": {
+      "model": "prehistoricfauna:block/one_weltrichia",
+      "y": 90
+    },
+    "facing=east,two_flowers=true": {
+      "model": "prehistoricfauna:block/two_weltrichia",
+      "y": 270
+    },
+    "facing=north,two_flowers=true": {
+      "model": "prehistoricfauna:block/two_weltrichia",
+      "y": 180
+    },
+    "facing=south,two_flowers=true": {
+      "model": "prehistoricfauna:block/two_weltrichia"
+    },
+    "facing=west,two_flowers=true": {
+      "model": "prehistoricfauna:block/two_weltrichia",
+      "y": 90
+    }
+  }
+}

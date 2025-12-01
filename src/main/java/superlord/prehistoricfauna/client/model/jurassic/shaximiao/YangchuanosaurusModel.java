@@ -275,6 +275,7 @@ public class YangchuanosaurusModel extends EntityModel<Yangchuanosaurus> {
 		this.RightThigh.xRot = -0.7428121536172364F;
 		this.RightThigh.yRot = -0.23457224414434488F;
 	}
+	
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		Root.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);

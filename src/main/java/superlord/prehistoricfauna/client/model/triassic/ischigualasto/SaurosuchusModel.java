@@ -191,6 +191,7 @@ public class SaurosuchusModel extends EntityModel<Saurosuchus> {
 					this.Body.xRot = Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3));
 					this.Neck.xRot = (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.08F * limbSwingAmount);
 					this.Head.xRot = (-Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * -0.1F * limbSwingAmount + 0.05F);
+					this.Jaw.xRot = -0.025F * Mth.cos(0.15F * ageInTicks / 3) + 0.025F + attackProgress * (float) Math.toRadians(30F);
 					if (entity.isInWater()) {
 						this.Body.y = 20;
 						this.Thigh.y = 19;

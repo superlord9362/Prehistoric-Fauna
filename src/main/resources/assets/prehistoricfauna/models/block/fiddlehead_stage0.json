@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "prehistoricfauna:block/fern_crop_1"
+  }
+}

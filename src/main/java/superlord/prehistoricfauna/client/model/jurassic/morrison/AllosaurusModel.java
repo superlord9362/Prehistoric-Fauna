@@ -254,7 +254,7 @@ public class AllosaurusModel extends EntityModel<Allosaurus> {
 		this.RightLeg2.yRot = 0;
 		this.RightLeg2.zRot = 0;
 		this.LeftLeg2.xRot = 0;
-		this.LeftLeg2.y = 14.0F;
+		this.LeftLeg2.y = 15.0F;
 		this.Tail1.xRot = 0;
 		this.Tail1.yRot = 0;
 		this.Head1.y = -14;

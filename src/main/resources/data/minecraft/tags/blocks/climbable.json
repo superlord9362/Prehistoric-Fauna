@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-		"prehistoricfauna:humulus"
+		"prehistoricfauna:humulus",
+		"#quark:ladders"
   ]
 }

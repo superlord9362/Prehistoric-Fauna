@@ -53,7 +53,7 @@ public class StegosaurusSkeletonModel extends EntityModel<StegosaurusSkeleton> {
 
 		PartDefinition Tail2_1 = Tail2.addOrReplaceChild("Tail2_1", CubeListBuilder.create().texOffs(101, 7).addBox(0.0F, -1.0F, 0.0F, 0.0F, 5.0F, 30.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition LeftThagomizers = Tail2.addOrReplaceChild("LeftThagomizers", CubeListBuilder.create().texOffs(41, 119).addBox(-21.0F, 0.0F, 0.0F, 21.0F, 0.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.0F, 0.0F, 19.0F, 0.0F, 0.0F, 0.754F));
+		PartDefinition LeftThagomizers = Tail2.addOrReplaceChild("LeftThagomizers", CubeListBuilder.create().texOffs(41, 119).mirror().addBox(-21.0F, 0.0F, 0.0F, 21.0F, 0.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.0F, 0.0F, 19.0F, 0.0F, 0.0F, 0.754F));
 
 		PartDefinition LeftTail2Plates = Tail2.addOrReplaceChild("LeftTail2Plates", CubeListBuilder.create().texOffs(166, 10).addBox(0.0F, 0.0F, 0.0F, 0.0F, 10.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.0F, -10.0F, 5.0F));
 

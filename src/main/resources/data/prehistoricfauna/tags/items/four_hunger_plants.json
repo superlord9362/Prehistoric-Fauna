@@ -9,6 +9,15 @@
 		"minecraft:wheat",
 		"minecraft:melon_slice",
 		"minecraft:sweet_berries",
-		"minecraft:glow_berries"
+		"minecraft:glow_berries",
+		"prehistoricfauna:azolla",
+		"prehistoricfauna:taeniopteris",
+		"prehistoricfauna:sphenopteris",
+		"prehistoricfauna:ephedra_berries",
+		"prehistoricfauna:ginkgo_berry",
+		"prehistoricfauna:bassitheca_berries",
+		"prehistoricfauna:weltrichia",
+		"prehistoricfauna:fiddlehead_spores",
+		"prehistoricfauna:fiddlehead"
 	]
 }

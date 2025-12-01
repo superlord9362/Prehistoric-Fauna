@@ -65,7 +65,7 @@ public class Gargoyleosaurus extends DinosaurEntity {
 	}
 	
 	public boolean isFood(ItemStack stack) {
-		return stack.getItem() == PFBlocks.CONIOPTERIS.get().asItem();
+		return stack.getItem() == PFBlocks.ANOMOZAMITES.get().asItem();
 	}
 	
 	@Override
@@ -94,10 +94,10 @@ public class Gargoyleosaurus extends DinosaurEntity {
 	
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		int temperment = random.nextInt(100);
-		if (temperment < 85) {
-			this.setTerritorial(true);
-		} else {
+		if (temperment < 75) {
 			this.setProtective(true);
+		} else {
+			this.setPassive(true);
 		}
 		this.setHerbivorous(true);
 		this.setDiurnal(true);

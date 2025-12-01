@@ -20,6 +20,7 @@ import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowParentGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.player.Player;
@@ -64,12 +65,13 @@ public class Camptosaurus extends DinosaurEntity {
 	}
 	
 	public boolean isFood(ItemStack stack) {
-		return stack.getItem() == PFBlocks.ANOMOZAMITES.get().asItem();
+		return stack.getItem() == PFBlocks.CLADOPHLEBIS.get().asItem();
 	}
 	
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
+		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new Camptosaurus.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new BabyPanicGoal(this));
 		this.goalSelector.addGoal(5, new DinosaurWaterAvoidingRandomStrollGoal(this, 1.0D));

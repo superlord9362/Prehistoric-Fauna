@@ -75,6 +75,7 @@
       "prehistoricfauna:placed_stoneworts",
       "prehistoricfauna:placed_taeniopteris",
       "prehistoricfauna:placed_tall_taeniopteris",
+      "prehistoricfauna:placed_rare_nilssonia",
       "prehistoricfauna:placed_rare_small_araucaria_trees",
       "prehistoricfauna:placed_sparse_brachyphyllum",
       "prehistoricfauna:placed_rare_czekanowskia_trees",
@@ -141,6 +142,24 @@
         "maxCount": 2,
         "minCount": 1,
         "weight": 3
+      },
+      {
+        "type": "prehistoricfauna:abrosaurus",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 4
+      },
+      {
+        "type": "prehistoricfauna:huayangosaurus",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 5
+      },
+      {
+        "type": "prehistoricfauna:shunosaurus",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 6
       }
     ],
     "misc": [],

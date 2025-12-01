@@ -26,6 +26,7 @@ public class PFFeatureAndBiomeGenerator extends DatapackBuiltinEntriesProvider {
 			.add(Registries.BIOME, PFBiomes::bootstrap)
 			.add(Registries.DIMENSION_TYPE, ctx -> PFDimensions.bootstrapType(ctx))
 			.add(Registries.NOISE_SETTINGS, ctx -> PFDimensions.bootstrapNoise(ctx))
+			.add(Registries.NOISE, ctx -> PFDimensions.bootstrap(ctx))
 			.add(Registries.LEVEL_STEM, ctx -> PFDimensions.bootstrapStem(ctx))
 			.add(ForgeRegistries.Keys.BIOME_MODIFIERS, PFBiomeModifiers::bootstrap)
 			.add(Registries.STRUCTURE, PFStructures::bootstrap)

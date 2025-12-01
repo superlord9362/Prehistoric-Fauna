@@ -4,7 +4,7 @@
     "prehistoricfauna:araucaria_ladder",
     "prehistoricfauna:metasequoia_ladder",
     "prehistoricfauna:protopiceoxylon_ladder",
-    "prehistoricfauna:zamites_ladder",
+    "prehistoricfauna:monanthesia_ladder",
     "prehistoricfauna:protojuniperoxylon_ladder",
     "prehistoricfauna:agathoxylon_ladder",
     "prehistoricfauna:heidiphyllum_ladder",
@@ -26,6 +26,10 @@
     "prehistoricfauna:phoenicopsis_ladder",
     "prehistoricfauna:frenelopsis_ladder",
     "prehistoricfauna:podozamites_ladder",
-    "prehistoricfauna:schizolepidopsis_ladder"
+    "prehistoricfauna:schizolepidopsis_ladder",
+    "prehistoricfauna:cupressinocladus_ladder",
+    "prehistoricfauna:elatides_ladder",
+    "prehistoricfauna:phoenicopsis_ladder",
+    "prehistoricfauna:frenelopsis_ladder"
   ]
 }

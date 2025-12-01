@@ -1,0 +1,6 @@
+{
+    "parent": "block/fence_post",
+    "textures": {
+        "texture": "prehistoricfauna:block/monanthesia_planks"
+    }
+}

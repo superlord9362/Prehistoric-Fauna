@@ -1,0 +1,7 @@
+{
+	"parent": "prehistoricfauna:block/one_large_round_egg",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:block/alcovasaurus_egg"
+	}
+}

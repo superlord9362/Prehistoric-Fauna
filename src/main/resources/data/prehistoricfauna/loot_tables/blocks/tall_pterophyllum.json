@@ -11,6 +11,12 @@
             {
               "type": "minecraft:item",
               "name": "prehistoricfauna:pterophyllum",
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": 2
+                }
+              ],
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -20,8 +26,7 @@
                     ]
                   }
                 }
-              ],
-              "count": 2
+              ]
             }
           ]
         }

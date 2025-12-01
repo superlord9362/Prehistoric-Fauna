@@ -56,13 +56,13 @@
 ]
       }
     },
-	"zamites": {
+	"monanthesia": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
 	{
           "items": [
-			  "prehistoricfauna:zamites_log"
+			  "prehistoricfauna:monanthesia_log"
         	]
         }
 ]
@@ -284,7 +284,7 @@
       "protopiceoxylon"
     ],
 	[
-      "zamites"
+      "monanthesia"
     ],
 	[
       "protojuniperoxylon"

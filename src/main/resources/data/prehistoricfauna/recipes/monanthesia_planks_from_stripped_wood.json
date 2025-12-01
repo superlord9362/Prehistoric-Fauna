@@ -1,0 +1,13 @@
+{
+  "type": "crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:stripped_monanthesia_wood"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:monanthesia_planks",
+    "count": 4
+  }
+}

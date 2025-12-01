@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:spider_eye"
+    ]
+  },
+  "criteria": {
+    "has_fossils": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+				"prehistoricfauna:dead_spider"
+          	]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:spider_eye"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_fossils",
+      "has_the_recipe"
+    ]
+  ]
+}

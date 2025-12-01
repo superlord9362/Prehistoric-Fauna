@@ -2,9 +2,7 @@
   "type": "prehistoricfauna:triassic",
   "generator": {
     "type": "prehistoricfauna:triassic_chunk_generator",
-    "biome_source": {
-      "type": "prehistoricfauna:triassic_biome_source"
-    },
+    "biome_source": {},
     "settings": "prehistoricfauna:triassic_noise_settings"
   }
 }

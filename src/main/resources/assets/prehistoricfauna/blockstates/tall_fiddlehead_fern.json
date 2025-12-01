@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=lower": { "model": "prehistoricfauna:block/tall_fiddlehead_fern_bottom" },
+        "half=upper":    { "model": "prehistoricfauna:block/tall_fiddlehead_fern_top" }
+    }
+}

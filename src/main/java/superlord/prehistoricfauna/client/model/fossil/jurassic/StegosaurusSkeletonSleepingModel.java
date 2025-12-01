@@ -37,7 +37,7 @@ public class StegosaurusSkeletonSleepingModel extends EntityModel<StegosaurusSke
 
 		PartDefinition RightTail2Plates = Tail2.addOrReplaceChild("RightTail2Plates", CubeListBuilder.create().texOffs(166, 14).mirror().addBox(0.0F, 0.0F, 0.0F, 0.0F, 13.0F, 25.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(1.0F, -13.0F, 0.0F));
 
-		PartDefinition LeftThagomizers = Tail2.addOrReplaceChild("LeftThagomizers", CubeListBuilder.create().texOffs(41, 119).addBox(-21.0F, 0.0F, 0.0F, 21.0F, 0.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.0F, 0.0F, 19.0F, 0.0F, 0.0F, 0.754F));
+		PartDefinition LeftThagomizers = Tail2.addOrReplaceChild("LeftThagomizers", CubeListBuilder.create().texOffs(41, 119).mirror().addBox(-21.0F, 0.0F, 0.0F, 21.0F, 0.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.0F, 0.0F, 19.0F, 0.0F, 0.0F, 0.754F));
 
 		PartDefinition LeftTail2Plates = Tail2.addOrReplaceChild("LeftTail2Plates", CubeListBuilder.create().texOffs(166, 10).addBox(0.0F, 0.0F, 0.0F, 0.0F, 10.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.0F, -10.0F, 5.0F));
 

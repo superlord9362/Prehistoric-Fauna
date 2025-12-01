@@ -96,11 +96,11 @@ public class GigantspinosaurusModel extends EntityModel<Gigantspinosaurus> {
 		PartDefinition cube_r2 = Tail2.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(36, 102).addBox(0.0F, -7.0F, -4.0F, 0.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.5009F, -1.9996F, 15.0F, 0.0F, 0.0F, 0.3927F));
 
 		PartDefinition ShoulderSpikeRight = Body.addOrReplaceChild("ShoulderSpikeRight", CubeListBuilder.create().texOffs(112, 47).addBox(-3.0F, 0.0F, 0.0F, 3.0F, 12.0F, 7.0F, new CubeDeformation(0.0F))
-		.texOffs(133, 51).addBox(-3.0F, 8.0F, 7.0F, 3.0F, 4.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(4.25F, -0.75F, -13.0F, 0.3648F, 0.524F, -0.925F));
+				.texOffs(133, 51).addBox(-3.0F, 8.0F, 7.0F, 3.0F, 4.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(4.25F, -0.75F, -13.0F, 0.0214F, 0.6283F, -1.5405F));
 
-		PartDefinition ShoulderSpikeLeft = Body.addOrReplaceChild("ShoulderSpikeLeft", CubeListBuilder.create().texOffs(112, 47).mirror().addBox(0.0F, 0.0F, 0.0F, 3.0F, 12.0F, 7.0F, new CubeDeformation(0.0F)).mirror(false)
-		.texOffs(133, 51).mirror().addBox(0.0F, 8.0F, 7.0F, 3.0F, 4.0F, 9.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-4.25F, -0.75F, -13.0F, 0.3648F, -0.524F, 0.925F));
-
+				PartDefinition ShoulderSpikeLeft = Body.addOrReplaceChild("ShoulderSpikeLeft", CubeListBuilder.create().texOffs(112, 47).mirror().addBox(0.0F, 0.0F, 0.0F, 3.0F, 12.0F, 7.0F, new CubeDeformation(0.0F)).mirror(false)
+				.texOffs(133, 51).mirror().addBox(0.0F, 8.0F, 7.0F, 3.0F, 4.0F, 9.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-4.25F, -0.75F, -13.0F, 0.0214F, -0.6283F, 1.5405F));
+				
 		PartDefinition RightThigh = root.addOrReplaceChild("RightThigh", CubeListBuilder.create().texOffs(34, 77).addBox(-2.0F, -4.0F, -4.0F, 5.0F, 15.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offset(7.0F, -21.0F, 0.0F));
 
 		PartDefinition RightLeg = RightThigh.addOrReplaceChild("RightLeg", CubeListBuilder.create().texOffs(0, 100).addBox(-2.0F, 0.0F, -3.0F, 4.0F, 8.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.5F, 11.0F, 2.0F));
@@ -134,8 +134,6 @@ public class GigantspinosaurusModel extends EntityModel<Gigantspinosaurus> {
 				this.Body.y = Mth.lerp(sleepProgress, -19, -9);
 				this.RightThigh.y = Mth.lerp(sleepProgress, -21, -10.5F);
 				this.LeftThigh.y = Mth.lerp(sleepProgress, -21, -10.5F);
-				this.LeftFoot.z = Mth.lerp(sleepProgress, 0.1F, -1F);
-				this.RightFoot.z = Mth.lerp(sleepProgress, 0.1F, -1F);
 				this.Tail1.z = Mth.lerp(sleepProgress, 12, 11.5F);
 				this.Tail2.y = Mth.lerp(sleepProgress, -0.975F, 0);
 				this.Tail2.z = Mth.lerp(sleepProgress, 13, 14);
@@ -143,19 +141,19 @@ public class GigantspinosaurusModel extends EntityModel<Gigantspinosaurus> {
 				this.RightArm.y = Mth.lerp(sleepProgress, -14, -4);
 				this.Neck.xRot = Mth.lerp(sleepProgress, 0, 0.45235987755982988F);
 				this.Neck.yRot = Mth.lerp(sleepProgress, 0, -0.3490658503988659F);
-				this.LeftThigh.xRot = Mth.lerp(sleepProgress, 0, -0.7330382858376184F);
-				this.LeftThigh.yRot = Mth.lerp(sleepProgress, 0, 0.5585053606381855F);
-				this.RightThigh.xRot = Mth.lerp(sleepProgress, 0, -0.7330382858376184F);
-				this.RightThigh.yRot = Mth.lerp(sleepProgress, 0, -0.5585053606381855F);
+				this.LeftThigh.xRot = Mth.lerp(sleepProgress, 0, 0.3748F);
+				this.LeftThigh.yRot = Mth.lerp(sleepProgress, 0, -0.2585053606381855F);
+				this.RightThigh.xRot = Mth.lerp(sleepProgress, 0, 0.3748F);
+				this.RightThigh.yRot = Mth.lerp(sleepProgress, 0, 0.2585053606381855F);
 				this.Head.xRot = Mth.lerp(sleepProgress, 0, -0.174188368183839F);
 				this.LeftArm.xRot = Mth.lerp(sleepProgress, 0, -1.4330382858376184F);
 				this.LeftArm.zRot = Mth.lerp(sleepProgress, 0, -0.4575712110370513F);
-				this.LeftLeg.xRot = Mth.lerp(sleepProgress, 0, -0.8377580409572781F);
+				this.LeftLeg.xRot = Mth.lerp(sleepProgress, 0, 1.1345F);
 				this.RightArm.xRot = Mth.lerp(sleepProgress, 0, -1.4962634015954636F);
 				this.RightArm.yRot = Mth.lerp(sleepProgress, 0, 0.13962634015954636F);
 				this.RightArm.zRot = Mth.lerp(sleepProgress, 0, -0.13962634015954636F);
-				this.RightLeg.xRot = Mth.lerp(sleepProgress, 0, -0.8377580409572781F);
-				this.Tail1.xRot = Mth.lerp(sleepProgress, 0, -0.6585053606381855F);
+				this.RightLeg.xRot = Mth.lerp(sleepProgress, 0, 1.1345F);
+				this.Tail1.xRot = Mth.lerp(sleepProgress, -0.15F, -0.6585053606381855F);
 				this.Tail1.yRot = Mth.lerp(sleepProgress, 0, 0.41887902047863906F);
 				this.Tail2.xRot = Mth.lerp(sleepProgress, 0, 0.41887902047863906F);
 				this.Tail2.yRot = Mth.lerp(sleepProgress, 0, 0.593411945678072F);
@@ -166,10 +164,8 @@ public class GigantspinosaurusModel extends EntityModel<Gigantspinosaurus> {
 		} else {
 			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
 				this.Body.y = Mth.lerp(sleepProgress, -9, -19);
-				this.RightThigh.y = Mth.lerp(sleepProgress, -10.5F, -21);
-				this.LeftThigh.y = Mth.lerp(sleepProgress, -10.5F, -21F);
-				this.LeftFoot.z = Mth.lerp(sleepProgress, -1F, 0.1F);
-				this.RightFoot.z = Mth.lerp(sleepProgress, -1, 0.1F);
+				this.RightThigh.y = Mth.lerp(sleepProgress, -10.5F, -21F);
+				this.LeftThigh.y = Mth.lerp(sleepProgress, -10.5F, -21);
 				this.Tail1.z = Mth.lerp(sleepProgress, 11.5F, 12);
 				this.Tail2.y = Mth.lerp(sleepProgress, 0, -0.975F);
 				this.Tail2.z = Mth.lerp(sleepProgress, 14, 13);
@@ -177,19 +173,19 @@ public class GigantspinosaurusModel extends EntityModel<Gigantspinosaurus> {
 				this.RightArm.y = Mth.lerp(sleepProgress, -4, -14);
 				this.Neck.xRot = Mth.lerp(sleepProgress, 0.45235987755982988F, 0);
 				this.Neck.yRot = Mth.lerp(sleepProgress, -0.3490658503988659F, 0);
-				this.LeftThigh.xRot = Mth.lerp(sleepProgress, -0.7330382858376184F, 0);
-				this.LeftThigh.yRot = Mth.lerp(sleepProgress, 0.5585053606381855F, 0);
-				this.RightThigh.xRot = Mth.lerp(sleepProgress, -0.7330382858376184F, 0);
-				this.RightThigh.yRot = Mth.lerp(sleepProgress, -0.5585053606381855F, 0);
+				this.LeftThigh.xRot = Mth.lerp(sleepProgress, 0.3748F, 0);
+				this.LeftThigh.yRot = Mth.lerp(sleepProgress, -0.2585053606381855F, 0);
+				this.RightThigh.xRot = Mth.lerp(sleepProgress, 0.3748F, 0);
+				this.RightThigh.yRot = Mth.lerp(sleepProgress, 0.2585053606381855F, 0);
 				this.Head.xRot = Mth.lerp(sleepProgress, -0.174188368183839F, 0);
 				this.LeftArm.xRot = Mth.lerp(sleepProgress, -1.4330382858376184F, 0);
 				this.LeftArm.zRot = Mth.lerp(sleepProgress, -0.4575712110370513F, 0);
-				this.LeftLeg.xRot = Mth.lerp(sleepProgress, -0.8377580409572781F, 0);
+				this.LeftLeg.xRot = Mth.lerp(sleepProgress, 1.1345F, 0);
 				this.RightArm.xRot = Mth.lerp(sleepProgress, -1.4962634015954636F, 0);
 				this.RightArm.yRot = Mth.lerp(sleepProgress, 0.13962634015954636F, 0);
 				this.RightArm.zRot = Mth.lerp(sleepProgress, -0.13962634015954636F, 0);
-				this.RightLeg.xRot = Mth.lerp(sleepProgress, -0.8377580409572781F, 0);
-				this.Tail1.xRot = Mth.lerp(sleepProgress, -0.6585053606381855F, 0);
+				this.RightLeg.xRot = Mth.lerp(sleepProgress, 1.1345F, 0);
+				this.Tail1.xRot = Mth.lerp(sleepProgress, -0.6585053606381855F, -0.15F);
 				this.Tail1.yRot = Mth.lerp(sleepProgress, 0.41887902047863906F, 0);
 				this.Tail2.xRot = Mth.lerp(sleepProgress, 0.41887902047863906F, 0);
 				this.Tail2.yRot = Mth.lerp(sleepProgress, 0.593411945678072F, 0);
@@ -281,8 +277,6 @@ public class GigantspinosaurusModel extends EntityModel<Gigantspinosaurus> {
 		this.Body.y = -9;
 		this.RightThigh.y = -10.5F;
 		this.LeftThigh.y = -10.5F;
-		this.LeftFoot.z = -1F;
-		this.RightFoot.z = -1F;
 		this.Tail1.z = 11.5F;
 		this.Tail2.y = 0;
 		this.Tail2.z = 14;
@@ -290,18 +284,18 @@ public class GigantspinosaurusModel extends EntityModel<Gigantspinosaurus> {
 		this.RightArm.y = -4;
 		this.Neck.xRot = 0.45235987755982988F;
 		this.Neck.yRot = -0.3490658503988659F;
-		this.LeftThigh.xRot = -0.7330382858376184F;
-		this.LeftThigh.yRot = 0.5585053606381855F;
-		this.RightThigh.xRot = -0.7330382858376184F;
-		this.RightThigh.yRot = -0.5585053606381855F;
+		this.LeftThigh.xRot = 0.3748F;
+		this.LeftThigh.yRot = -0.2585053606381855F;
+		this.RightThigh.xRot = 0.3748F;
+		this.RightThigh.yRot = 0.2585053606381855F;
 		this.Head.xRot = -0.174188368183839F;
 		this.LeftArm.xRot = -1.4330382858376184F;
 		this.LeftArm.zRot = -0.4575712110370513F;
-		this.LeftLeg.xRot = -0.8377580409572781F;
+		this.LeftLeg.xRot = 1.1345F;
 		this.RightArm.xRot = -1.4962634015954636F;
 		this.RightArm.yRot = 0.13962634015954636F;
 		this.RightArm.zRot = -0.13962634015954636F;
-		this.RightLeg.xRot = -0.8377580409572781F;
+		this.RightLeg.xRot = 1.1345F;
 		this.Tail1.xRot = -0.6585053606381855F;
 		this.Tail1.yRot = 0.41887902047863906F;
 		this.Tail2.xRot = 0.41887902047863906F;

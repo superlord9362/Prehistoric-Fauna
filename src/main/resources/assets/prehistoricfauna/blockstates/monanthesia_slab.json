@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "prehistoricfauna:block/monanthesia_slab" },
+        "type=top": { "model": "prehistoricfauna:block/monanthesia_slab_top" },
+        "type=double": { "model": "prehistoricfauna:block/monanthesia_planks" }
+    }
+}

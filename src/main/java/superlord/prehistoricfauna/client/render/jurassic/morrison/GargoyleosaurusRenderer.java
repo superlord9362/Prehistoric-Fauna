@@ -19,7 +19,7 @@ public class GargoyleosaurusRenderer extends MobRenderer<Gargoyleosaurus, Gargoy
 	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/gargoyleosaurus/melanistic_sleeping.png");
 
 	public GargoyleosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new GargoyleosaurusModel(renderManagerIn.bakeLayer(ClientEvents.GARGOYLEOSAURUS)), 0.25F);
+		super(renderManagerIn, new GargoyleosaurusModel(renderManagerIn.bakeLayer(ClientEvents.GARGOYLEOSAURUS)), 0.6875F);
 	}
 
 	protected void scale(Gargoyleosaurus thescelosaurus, PoseStack matrixStackIn, float partialTickTime) {

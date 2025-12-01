@@ -1,0 +1,39 @@
+Found In: Morrison
+
+Drops: 0-4 Thagomizers, 2-4 
+Large Raw Thyreophoran
+
+Diet: Herbivore
+
+Breeding Item: Dayvaultia
+
+Max Health: 60
+
+Max Hunger: 150
+
+Temperaments: Alcovasaurus has an 
+80% chance of being territorial, a 
+15% chance of being protective, 
+and a 5% chance of being 
+aggressive.
+
+<image><drawings_ankylosaurus.png 32 3 126 1 24 20 6.5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sleep Cycle: Diurnal
+
+Behavior: Investigation underway!

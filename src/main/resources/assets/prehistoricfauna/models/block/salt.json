@@ -1,6 +1,7 @@
 {
-    "parent": "block/cube_all",
+    "parent": "block/cube_column",
     "textures": {
-        "all": "prehistoricfauna:block/salt"
+        "end": "prehistoricfauna:block/salt",
+        "side": "prehistoricfauna:block/salt_side"
     }
 }

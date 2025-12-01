@@ -97,7 +97,7 @@ public class PFBoat extends Boat {
 		case LIRIODENDRITES:
 			return PFItems.LIRIODENDRITES_BOAT.get();
 		case ZAMITES:
-			return PFItems.ZAMITES_BOAT.get();
+			return PFItems.MONANTHESIA_BOAT.get();
 		case PROTOJUNIPEROXYLON:
 			return PFItems.PROTOJUNIPEROXYLON_BOAT.get();
 		case GINKGO:
@@ -145,7 +145,7 @@ public class PFBoat extends Boat {
 		PROTOPICEOXYLON(PFBlocks.PROTOPICEOXYLON_PLANKS.get(), "protopiceoxylon"),
 		HEIDIPHYLLUM(PFBlocks.HEIDIPHYLLUM_PLANKS.get(), "heidiphyllum"),
 		LIRIODENDRITES(PFBlocks.LIRIODENDRITES_PLANKS.get(), "liriodendrites"),
-		ZAMITES(PFBlocks.ZAMITES_PLANKS.get(), "zamites"),
+		ZAMITES(PFBlocks.MONANTHESIA_PLANKS.get(), "monanthesia"),
 		PROTOJUNIPEROXYLON(PFBlocks.PROTOJUNIPEROXYLON_PLANKS.get(), "protojuniperoxylon"),
 		GINKGO(PFBlocks.GINKGO_PLANKS.get(), "ginkgo"),
 		TROCHODENDROIDES(PFBlocks.TROCHODENDROIDES_PLANKS.get(), "trochodendroides"),

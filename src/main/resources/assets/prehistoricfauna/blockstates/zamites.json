@@ -1,0 +1,36 @@
+{
+	"variants": {
+		"": [
+			{
+				"model": "prehistoricfauna:block/zamites_two_branch"
+			},
+			{
+				"model": "prehistoricfauna:block/zamites_two_branch",
+				"y": 90
+			},
+			{
+				"model": "prehistoricfauna:block/zamites_two_branch",
+				"y": 180
+			},
+			{
+				"model": "prehistoricfauna:block/zamites_two_branch",
+				"y": 270
+			},
+			{
+				"model": "prehistoricfauna:block/zamites_three_branch"
+			},
+			{
+				"model": "prehistoricfauna:block/zamites_three_branch",
+				"y": 90
+			},
+			{
+				"model": "prehistoricfauna:block/zamites_three_branch",
+				"y": 180
+			},
+			{
+				"model": "prehistoricfauna:block/zamites_three_branch",
+				"y": 270
+			}
+		]
+	}
+}

@@ -1,0 +1,7 @@
+{
+	"parent": "prehistoricfauna:block/two_large_tall_eggs",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:block/sinraptor_egg"
+	}
+}

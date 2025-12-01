@@ -1,4 +1,5 @@
 {
+	"format_version": "1.21.6",
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
@@ -10,11 +11,11 @@
 			"to": [13, 10, 13],
 			"rotation": {"angle": 0, "axis": "y", "origin": [-4, 0, -4]},
 			"faces": {
-				"north": {"uv": [5, 5, 10, 10.33334], "texture": "#egg"},
+				"north": {"uv": [5, 5, 10, 10], "texture": "#egg"},
 				"east": {"uv": [10, 5, 15, 10], "texture": "#egg"},
 				"south": {"uv": [10, 10, 15, 15], "texture": "#egg"},
-				"west": {"uv": [0, 5, 5, 10.33334], "texture": "#egg"},
-				"up": {"uv": [5, 0, 10.33334, 5], "texture": "#egg"},
+				"west": {"uv": [0, 5, 5, 10], "texture": "#egg"},
+				"up": {"uv": [5, 0, 10, 5], "texture": "#egg"},
 				"down": {"uv": [10, 0, 15, 5], "texture": "#egg"}
 			}
 		}

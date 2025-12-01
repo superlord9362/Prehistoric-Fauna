@@ -13,6 +13,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
+import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -47,8 +48,14 @@ public abstract class PFAbstractTreeFeature<TC extends PFTreeConfig> extends Fea
 		super(configCodec);
 	}
 
+	@SuppressWarnings("deprecation")
 	public static boolean canLogPlaceHere(LevelSimulatedReader worldReader, BlockPos blockPos) {
-        return worldReader.isStateAtPosition(blockPos, (state) -> state.isAir() || state.getFluidState().isEmpty()) || FeatureGenUtil.isPlant(worldReader, blockPos);
+		if (worldReader instanceof WorldGenRegion region) {
+	        if (!region.hasChunkAt(blockPos)) {
+	            return false;
+	        }
+	    }
+        return (worldReader.isStateAtPosition(blockPos, (state) -> state.isAir() || state.getFluidState().isEmpty()) || FeatureGenUtil.isPlant(worldReader, blockPos));
 	}
 
 	public boolean isAnotherTreeHere(LevelSimulatedReader worldReader, BlockPos pos) {

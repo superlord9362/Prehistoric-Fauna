@@ -72,7 +72,11 @@
       "prehistoricfauna:placed_otozamites",
       "prehistoricfauna:placed_ptilophyllum",
       "prehistoricfauna:placed_stoneworts",
-      "prehistoricfauna:placed_zamites"
+      "prehistoricfauna:placed_nilssonia",
+      "prehistoricfauna:placed_bassitheca",
+      "prehistoricfauna:placed_zamites",
+      "prehistoricfauna:placed_monanthesia",
+      "prehistoricfauna:placed_dayvaultia"
     ],
     [
       "prehistoricfauna:placed_packed_mud_disk"
@@ -160,6 +164,30 @@
       {
         "type": "prehistoricfauna:tanycolagreus",
         "maxCount": 3,
+        "minCount": 1,
+        "weight": 2
+      },
+      {
+        "type": "prehistoricfauna:gargoyleosaurus",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 2
+      },
+      {
+        "type": "prehistoricfauna:camptosaurus",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 2
+      },
+      {
+        "type": "prehistoricfauna:alcovasaurus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 4
+      },
+      {
+        "type": "prehistoricfauna:torvosaurus",
+        "maxCount": 2,
         "minCount": 1,
         "weight": 2
       }

@@ -1,7 +1,0 @@
-{
-	"parent": "block/ladder",
-	"textures": {
-		"particle": "prehistoricfauna:block/zamites_ladder",
-		"texture": "prehistoricfauna:block/zamites_ladder"
-	}
-}

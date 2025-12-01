@@ -109,11 +109,11 @@ public class ClientProxy extends CommonProxy {
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.PROTOPICEOXYLON_LEAF_CARPET.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.PROTOPICEOXYLON_LADDER.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.PROTOPICEOXYLON_HEDGE.get(), cutoutRenderType);
-		ItemBlockRenderTypes.setRenderLayer(PFBlocks.ZAMITES_SAPLING.get(), cutoutRenderType);
-		ItemBlockRenderTypes.setRenderLayer(PFBlocks.ZAMITES_LEAVES.get(), cutoutRenderType);
-		ItemBlockRenderTypes.setRenderLayer(PFBlocks.ZAMITES_DOOR.get(), cutoutRenderType);
-		ItemBlockRenderTypes.setRenderLayer(PFBlocks.ZAMITES_TRAPDOOR.get(), cutoutRenderType);
-		ItemBlockRenderTypes.setRenderLayer(PFBlocks.ZAMITES_LADDER.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.MONANTHESIA_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.MONANTHESIA_LEAVES.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.MONANTHESIA_DOOR.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.MONANTHESIA_TRAPDOOR.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.MONANTHESIA_LADDER.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.PROTOJUNIPEROXYLON_SAPLING.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.PROTOJUNIPEROXYLON_LEAVES.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.PROTOJUNIPEROXYLON_DOOR.get(), cutoutRenderType);
@@ -184,7 +184,7 @@ public class ClientProxy extends CommonProxy {
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.MARMARTHIA.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.PHLEBOPTERIS.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.CRASSOSTREA_OYSTER.get(), cutoutRenderType);
-		ItemBlockRenderTypes.setRenderLayer(PFBlocks.ZAMITES_FROND.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.MONANTHESIA_FROND.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_HORSRTAIL.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_OSMUNDA.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_MARCHANTIA.get(), cutoutRenderType);
@@ -197,7 +197,7 @@ public class ClientProxy extends CommonProxy {
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_ARAUCARIA_SAPLING.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_METASEQUOIA_SAPLING.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_PROTOPICEOXYLON_SAPLING.get(), cutoutRenderType);
-		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_ZAMITES_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_MONANTHESIA_SAPLING.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_PROTOJUNIPEROXYLON_SAPLING.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_HEIDIPHYLLUM_SAPLING.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_LIRIODENDRITES_SAPLING.get(), cutoutRenderType);
@@ -367,6 +367,17 @@ public class ClientProxy extends CommonProxy {
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.ELATIDES_DOOR.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.CUPRESSINOCLADUS_DOOR.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.CUPRESSINOCLADUS_TRAPDOOR.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.DAYVAULTIA.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.WELTRICHIA.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.NILSSONIA.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.ZAMIOPHYLLUM.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.FIDDLEHEAD.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.FIDDLEHEAD_FERN.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.TALL_FIDDLEHEAD_FERN.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_FIDDLEHEAD_FERN.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.FRENELOPSIS_DOOR.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.FRENELOPSIS_TRAPDOOR.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.ZAMITES.get(), cutoutRenderType);
 	}
 	
     public static void setupParticles(RegisterParticleProvidersEvent registry) {

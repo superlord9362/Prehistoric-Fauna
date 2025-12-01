@@ -24,6 +24,7 @@ import superlord.prehistoricfauna.common.feature.LowerHorsetailsFeature;
 import superlord.prehistoricfauna.common.feature.MarmarthiaFeature;
 import superlord.prehistoricfauna.common.feature.NelumboFeature;
 import superlord.prehistoricfauna.common.feature.NeocalamitesFeature;
+import superlord.prehistoricfauna.common.feature.NilssoniaFeature;
 import superlord.prehistoricfauna.common.feature.NoisySphereFeature;
 import superlord.prehistoricfauna.common.feature.PtilophyllumFeature;
 import superlord.prehistoricfauna.common.feature.QuereuxiaFeature;
@@ -112,6 +113,7 @@ import superlord.prehistoricfauna.common.feature.trees.metasequoia.MetasequoiaTr
 import superlord.prehistoricfauna.common.feature.trees.metasequoia.SmallMetasequoia1;
 import superlord.prehistoricfauna.common.feature.trees.metasequoia.SmallMetasequoia2;
 import superlord.prehistoricfauna.common.feature.trees.metasequoia.SmallMetasequoia3;
+import superlord.prehistoricfauna.common.feature.trees.monanthesia.MonanthesiaBushFeature;
 import superlord.prehistoricfauna.common.feature.trees.petrified.PetrifiedTreeFeature;
 import superlord.prehistoricfauna.common.feature.trees.phoenicopsis.Phoenicopsis1;
 import superlord.prehistoricfauna.common.feature.trees.phoenicopsis.Phoenicopsis2;
@@ -175,7 +177,6 @@ import superlord.prehistoricfauna.common.feature.trees.woodworthia.Woodworthia1;
 import superlord.prehistoricfauna.common.feature.trees.woodworthia.Woodworthia2;
 import superlord.prehistoricfauna.common.feature.trees.woodworthia.Woodworthia3;
 import superlord.prehistoricfauna.common.feature.trees.woodworthia.Woodworthia4;
-import superlord.prehistoricfauna.common.feature.trees.zamites.ZamitesBushFeature;
 import superlord.prehistoricfauna.common.feature.util.CrassostreaOystersConfig;
 import superlord.prehistoricfauna.common.feature.util.JohnstoniaConfig;
 import superlord.prehistoricfauna.common.feature.util.NoisySphereConfig;
@@ -342,7 +343,7 @@ public class PFFeatures {
     public static final RegistryObject<Frenelopsis7> FRENELOPSIS_TREE_7 = REGISTER.register("frenelopsis_tree_7", () -> new Frenelopsis7(PFTreeConfig.CODEC.stable()));
     public static final RegistryObject<Frenelopsis8> FRENELOPSIS_TREE_8 = REGISTER.register("frenelopsis_tree_8", () -> new Frenelopsis8(PFTreeConfig.CODEC.stable()));
     
-    public static final RegistryObject<ZamitesBushFeature> ZAMITES_BUSH = REGISTER.register("zamites_bush", () -> new ZamitesBushFeature(JohnstoniaConfig.CODEC.stable()));
+    public static final RegistryObject<MonanthesiaBushFeature> MONANTHESIA_BUSH = REGISTER.register("monanthesia_bush", () -> new MonanthesiaBushFeature(JohnstoniaConfig.CODEC.stable()));
     public static final RegistryObject<SabalitesFeature> SABALITES = REGISTER.register("sabalites", () -> new SabalitesFeature(JohnstoniaConfig.CODEC.stable()));
     
     public static final RegistryObject<PtilophyllumFeature> PTILOPHYLLUM_TREE = REGISTER.register("ptilophyllum_tree", () -> new PtilophyllumFeature(NoneFeatureConfiguration.CODEC.stable()));
@@ -376,6 +377,7 @@ public class PFFeatures {
     public static final RegistryObject<RareNelumboFeature> RARE_NELUMBO = REGISTER.register("rare_nelubmo", () -> new RareNelumboFeature(CrassostreaOystersConfig.CODEC.stable()));
     public static final RegistryObject<QuereuxiaFeature> QUEREUXIA = REGISTER.register("quereuxia", () -> new QuereuxiaFeature(CrassostreaOystersConfig.CODEC.stable()));
     public static final RegistryObject<HermanophytonFeature> HERMANOPHYTON = REGISTER.register("hermanophyton", () -> new HermanophytonFeature(JohnstoniaConfig.CODEC.stable()));
+    public static final RegistryObject<NilssoniaFeature> NILSSONIA = REGISTER.register("nilssonia", () -> new NilssoniaFeature(JohnstoniaConfig.CODEC.stable()));
     public static final RegistryObject<EopolisMoundFeature> EOPOLIS_MOUND = REGISTER.register("eopolis_mound", () -> new EopolisMoundFeature(NoneFeatureConfiguration.CODEC.stable()));
 
 }

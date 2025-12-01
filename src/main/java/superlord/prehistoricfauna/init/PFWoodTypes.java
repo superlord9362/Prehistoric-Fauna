@@ -10,7 +10,7 @@ public class PFWoodTypes {
 	public static final BlockSetType METASEQUOIA_TYPE = BlockSetType.register(new BlockSetType(new ResourceLocation(PrehistoricFauna.MOD_ID, "metasequoia").toString()));
 	public static final BlockSetType ARAUCARIA_TYPE = BlockSetType.register(new BlockSetType(new ResourceLocation(PrehistoricFauna.MOD_ID, "araucaria").toString()));
 	public static final BlockSetType PROTOPICEOXYLON_TYPE = BlockSetType.register(new BlockSetType(new ResourceLocation(PrehistoricFauna.MOD_ID, "protopiceoxylon").toString()));
-	public static final BlockSetType ZAMITES_TYPE = BlockSetType.register(new BlockSetType(new ResourceLocation(PrehistoricFauna.MOD_ID, "zamites").toString()));
+	public static final BlockSetType MONANTHESIA_TYPE = BlockSetType.register(new BlockSetType(new ResourceLocation(PrehistoricFauna.MOD_ID, "monanthesia").toString()));
 	public static final BlockSetType PROTOJUNIPEROXYLON_TYPE = BlockSetType.register(new BlockSetType(new ResourceLocation(PrehistoricFauna.MOD_ID, "protojuniperoxylon").toString()));
 	public static final BlockSetType AGATHOXYLON_TYPE = BlockSetType.register(new BlockSetType(new ResourceLocation(PrehistoricFauna.MOD_ID, "agathoxylon").toString()));
 	public static final BlockSetType HEIDIPHYLLUM_TYPE = BlockSetType.register(new BlockSetType(new ResourceLocation(PrehistoricFauna.MOD_ID, "heidiphyllum").toString()));
@@ -37,7 +37,7 @@ public class PFWoodTypes {
 	public static WoodType METASEQUOIA = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "metasequoia").toString(), METASEQUOIA_TYPE));
 	public static WoodType ARAUCARIA = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "araucaria").toString(), ARAUCARIA_TYPE));
 	public static WoodType PROTOPICEOXYLON = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "protopiceoxylon").toString(), PROTOPICEOXYLON_TYPE));
-	public static WoodType ZAMITES = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "zamites").toString(), ZAMITES_TYPE));
+	public static WoodType MONANTHESIA = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "monanthesia").toString(), MONANTHESIA_TYPE));
 	public static WoodType PROTOJUNIPEROXYLON = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "protojuniperoxylon").toString(), PROTOJUNIPEROXYLON_TYPE));
 	public static WoodType AGATHOXYLON = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "agathoxylon").toString(), AGATHOXYLON_TYPE));
 	public static WoodType HEIDIPHYLLUM = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "heidiphyllum").toString(), HEIDIPHYLLUM_TYPE));

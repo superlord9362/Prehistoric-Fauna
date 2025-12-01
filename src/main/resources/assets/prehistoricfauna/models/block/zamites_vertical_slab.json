@@ -1,8 +1,0 @@
-{
-    "parent": "prehistoricfauna:block/vertical_slab",
-    "textures": {
-        "side": "prehistoricfauna:block/zamites_planks",
-        "top": "prehistoricfauna:block/zamites_planks",
-        "bottom": "prehistoricfauna:block/zamites_planks"
-    }
-}

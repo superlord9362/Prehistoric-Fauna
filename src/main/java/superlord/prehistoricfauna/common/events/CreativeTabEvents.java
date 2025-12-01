@@ -20,7 +20,7 @@ public class CreativeTabEvents {
 				event.accept(PFBlocks.ARAUCARIA_VERTICAL_SLAB.get());
 				event.accept(PFBlocks.LIRIODENDRITES_VERTICAL_SLAB.get());
 				event.accept(PFBlocks.PROTOPICEOXYLON_VERTICAL_SLAB.get());
-				event.accept(PFBlocks.ZAMITES_VERTICAL_SLAB.get());
+				event.accept(PFBlocks.MONANTHESIA_VERTICAL_SLAB.get());
 				event.accept(PFBlocks.PROTOPICEOXYLON_VERTICAL_SLAB.get());
 				event.accept(PFBlocks.HEIDIPHYLLUM_VERTICAL_SLAB.get());
 				event.accept(PFBlocks.GINKGO_VERTICAL_SLAB.get());
@@ -56,7 +56,7 @@ public class CreativeTabEvents {
 				event.accept(PFBlocks.ARAUCARIA_VERTICAL_PLANKS.get());
 				event.accept(PFBlocks.LIRIODENDRITES_VERTICAL_PLANKS.get());
 				event.accept(PFBlocks.PROTOPICEOXYLON_VERTICAL_PLANKS.get());
-				event.accept(PFBlocks.ZAMITES_VERTICAL_PLANKS.get());
+				event.accept(PFBlocks.MONANTHESIA_VERTICAL_PLANKS.get());
 				event.accept(PFBlocks.PROTOJUNIPEROXYLON_VERTICAL_PLANKS.get());
 				event.accept(PFBlocks.HEIDIPHYLLUM_VERTICAL_PLANKS.get());
 				event.accept(PFBlocks.GINKGO_VERTICAL_PLANKS.get());
@@ -79,7 +79,7 @@ public class CreativeTabEvents {
 				event.accept(PFBlocks.ARAUCARIA_BOOKSHELF.get());
 				event.accept(PFBlocks.LIRIODENDRITES_BOOKSHELF.get());
 				event.accept(PFBlocks.PROTOPICEOXYLON_BOOKSHELF.get());
-				event.accept(PFBlocks.ZAMITES_BOOKSHELF.get());
+				event.accept(PFBlocks.MONANTHESIA_BOOKSHELF.get());
 				event.accept(PFBlocks.PROTOJUNIPEROXYLON_BOOKSHELF.get());
 				event.accept(PFBlocks.HEIDIPHYLLUM_BOOKSHELF.get());
 				event.accept(PFBlocks.GINKGO_BOOKSHELF.get());
@@ -113,7 +113,7 @@ public class CreativeTabEvents {
 				event.accept(PFBlocks.STRIPPED_LIRIODENDRITES_POST.get());
 				event.accept(PFBlocks.PROTOPICEOXYLON_POST.get());
 				event.accept(PFBlocks.STRIPPED_PROTOPICEOXYLON_POST.get());
-				event.accept(PFBlocks.ZAMITES_POST.get());
+				event.accept(PFBlocks.MONANTHESIA_POST.get());
 				event.accept(PFBlocks.STRIPPED_ZAMITES_POST.get());
 				event.accept(PFBlocks.PROTOJUNIPEROXYLON_POST.get());
 				event.accept(PFBlocks.STRIPPED_PROTOJUNIPEROXYLON_POST.get());
@@ -172,7 +172,7 @@ public class CreativeTabEvents {
 				event.accept(PFBlocks.ARAUCARIA_LADDER.get());
 				event.accept(PFBlocks.LIRIODENDRITES_LADDER.get());
 				event.accept(PFBlocks.PROTOPICEOXYLON_LADDER.get());
-				event.accept(PFBlocks.ZAMITES_LADDER.get());
+				event.accept(PFBlocks.MONANTHESIA_LADDER.get());
 				event.accept(PFBlocks.PROTOJUNIPEROXYLON_LADDER.get());
 				event.accept(PFBlocks.HEIDIPHYLLUM_LADDER.get());
 				event.accept(PFBlocks.GINKGO_LADDER.get());
@@ -195,7 +195,7 @@ public class CreativeTabEvents {
 				event.accept(PFBlocks.ARAUCARIA_CHEST.get());
 				event.accept(PFBlocks.LIRIODENDRITES_CHEST.get());
 				event.accept(PFBlocks.PROTOPICEOXYLON_CHEST.get());
-				event.accept(PFBlocks.ZAMITES_CHEST.get());
+				event.accept(PFBlocks.MONANTHESIA_CHEST.get());
 				event.accept(PFBlocks.PROTOJUNIPEROXYLON_CHEST.get());
 				event.accept(PFBlocks.HEIDIPHYLLUM_CHEST.get());
 				event.accept(PFBlocks.GINKGO_CHEST.get());
@@ -218,7 +218,7 @@ public class CreativeTabEvents {
 				event.accept(PFBlocks.ARAUCARIA_TRAPPED_CHEST.get());
 				event.accept(PFBlocks.LIRIODENDRITES_TRAPPED_CHEST.get());
 				event.accept(PFBlocks.PROTOPICEOXYLON_TRAPPED_CHEST.get());
-				event.accept(PFBlocks.ZAMITES_TRAPPED_CHEST.get());
+				event.accept(PFBlocks.MONANTHESIA_TRAPPED_CHEST.get());
 				event.accept(PFBlocks.PROTOJUNIPEROXYLON_TRAPPED_CHEST.get());
 				event.accept(PFBlocks.HEIDIPHYLLUM_TRAPPED_CHEST.get());
 				event.accept(PFBlocks.GINKGO_TRAPPED_CHEST.get());
@@ -268,7 +268,7 @@ public class CreativeTabEvents {
 				event.accept(PFBlocks.ARAUCARIA_BEEHIVE.get());
 				event.accept(PFBlocks.LIRIODENDRITES_BEEHIVE.get());
 				event.accept(PFBlocks.PROTOPICEOXYLON_BEEHIVE.get());
-				event.accept(PFBlocks.ZAMITES_BEEHIVE.get());
+				event.accept(PFBlocks.MONANTHESIA_BEEHIVE.get());
 				event.accept(PFBlocks.PROTOJUNIPEROXYLON_BEEHIVE.get());
 				event.accept(PFBlocks.HEIDIPHYLLUM_BEEHIVE.get());
 				event.accept(PFBlocks.GINKGO_BEEHIVE.get());

@@ -1,0 +1,62 @@
+{
+	"variants": {
+		"top=true": [
+			{
+				"model": "prehistoricfauna:block/nilssonia_3"
+			},
+			{
+				"model": "prehistoricfauna:block/nilssonia_3"
+			},
+			{
+				"model": "prehistoricfauna:block/nilssonia_3"
+			},
+			{
+				"model": "prehistoricfauna:block/nilssonia_3"
+			},
+			{
+				"model": "prehistoricfauna:block/nilssonia_2"
+			},
+			{
+				"model": "prehistoricfauna:block/nilssonia_2",
+				"y": 90
+			},
+			{
+				"model": "prehistoricfauna:block/nilssonia_2",
+				"y": 180
+			},
+			{
+				"model": "prehistoricfauna:block/nilssonia_2",
+				"y": 270
+			}
+		],
+		"top=false": [
+			{
+				"model": "prehistoricfauna:block/nilssonia_0"
+			},
+			{
+				"model": "prehistoricfauna:block/nilssonia_0"
+			},
+			{
+				"model": "prehistoricfauna:block/nilssonia_0"
+			},
+			{
+				"model": "prehistoricfauna:block/nilssonia_0"
+			},
+			{
+				"model": "prehistoricfauna:block/nilssonia_1"
+			},
+			{
+				"model": "prehistoricfauna:block/nilssonia_1",
+				"y": 90
+			},
+			{
+				"model": "prehistoricfauna:block/nilssonia_1",
+				"y": 180
+			},
+			{
+				"model": "prehistoricfauna:block/nilssonia_1",
+				"y": 270
+			}
+		]
+	}
+}

@@ -2,7 +2,7 @@
   "type": "crafting_shapeless",
   "ingredients": [
     {
-		"item": "prehistoricfauna:zamites_fronds"
+		"item": "prehistoricfauna:monanthesia_fronds"
     },
     {
 		"item": "minecraft:bowl"

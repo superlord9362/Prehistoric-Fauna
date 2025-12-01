@@ -78,7 +78,7 @@ public class Stegosaurus extends DinosaurEntity {
 	}
 
 	public boolean isFood(ItemStack stack) {
-		return stack.getItem() == PFBlocks.ZAMITES_LEAVES.get().asItem();
+		return stack.getItem() == PFBlocks.MONANTHESIA_LEAVES.get().asItem();
 	}
 
 	protected void registerGoals() {

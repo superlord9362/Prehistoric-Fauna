@@ -187,14 +187,14 @@ public class AlcovasaurusModel extends EntityModel<Alcovasaurus> {
 					this.RightArm.zRot = -0.3F;
 				}
 				if (entity.isInWater()) {
-					this.Body.y = 3;
+					this.Body.y = 22;
 					this.Body.xRot = -0.125F;
 					this.Tail1.xRot = 0.0625F;
 					this.Tail2.xRot = 0.0625F;
-					this.RightThigh.y = 19;
-					this.LeftThigh.y = 19;
-					this.RightArm.y = 23;
-					this.LeftArm.y = 23;
+//					this.RightThigh.y = 19;
+//					this.LeftThigh.y = 19;
+//					this.RightArm.y = 23;
+//					this.LeftArm.y = 23;
 					this.RightThigh.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.LeftThigh.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.RightLeg.xRot = -0.3F * Mth.sin(0.2F * ageInTicks / 1.5F);

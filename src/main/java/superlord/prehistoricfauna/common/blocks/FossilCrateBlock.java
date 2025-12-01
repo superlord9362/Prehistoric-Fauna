@@ -164,6 +164,10 @@ public class FossilCrateBlock extends Block {
 			world.setBlock(pos, PFBlocks.LIAONINGOSAURUS_CRATE.get().defaultBlockState(), 2);
 			if (!player.isCreative()) stack.shrink(1);
 			return InteractionResult.sidedSuccess(world.isClientSide);
+		} else if (item == PFItems.BRACHIOSAURUS_SKULL.get()) {
+			world.setBlock(pos, PFBlocks.BRACHIOSAURUS_CRATE.get().defaultBlockState(), 2);
+			if (!player.isCreative()) stack.shrink(1);
+			return InteractionResult.sidedSuccess(world.isClientSide);
 		} else {
 			return InteractionResult.PASS;
 		}

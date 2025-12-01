@@ -1,0 +1,7 @@
+{
+	"parent": "prehistoricfauna:block/one_medium_round_egg",
+	"ambientocclusion": false,
+	"textures": {
+		"egg": "prehistoricfauna:block/tuojiangosaurus_egg_slightly_cracked"
+	}
+}

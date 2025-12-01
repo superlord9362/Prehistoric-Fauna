@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "prehistoricfauna:block/monanthesia_fronds",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "prehistoricfauna:block/monanthesia_fronds",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "prehistoricfauna:block/monanthesia_fronds"
+    },
+    "facing=west": {
+      "model": "prehistoricfauna:block/monanthesia_fronds",
+      "y": 90
+    }
+  }
+}

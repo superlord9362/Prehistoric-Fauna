@@ -48,7 +48,7 @@ public class TaxusLeavesBlock extends LeavesBlock {
 	}
 	
 	public boolean isRandomlyTicking(BlockState p_51696_) {
-		return p_51696_.getValue(AGE) < 2;
+		return p_51696_.getValue(AGE) < 2 || super.isRandomlyTicking(p_51696_);
 	}
 
 	public boolean isMaxAge(BlockState state) {
@@ -65,6 +65,7 @@ public class TaxusLeavesBlock extends LeavesBlock {
 				worldIn.setBlock(pos, oldState.setValue(AGE, i + 1), 2);
 			}
 		}
+		super.randomTick(state, worldIn, pos, random);
 	}
 	
 	@SuppressWarnings("deprecation")

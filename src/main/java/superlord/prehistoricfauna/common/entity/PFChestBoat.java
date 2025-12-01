@@ -98,7 +98,7 @@ public class PFChestBoat extends ChestBoat {
 		case LIRIODENDRITES:
 			return PFItems.LIRIODENDRITES_CHEST_BOAT.get();
 		case ZAMITES:
-			return PFItems.ZAMITES_CHEST_BOAT.get();
+			return PFItems.MONANTHESIA_CHEST_BOAT.get();
 		case PROTOJUNIPEROXYLON:
 			return PFItems.PROTOJUNIPEROXYLON_CHEST_BOAT.get();
 		case GINKGO:

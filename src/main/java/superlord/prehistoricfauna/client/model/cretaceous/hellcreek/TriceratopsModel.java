@@ -82,15 +82,15 @@ public class TriceratopsModel extends EntityModel<Triceratops> {
 
 		PartDefinition Saddle = Body.addOrReplaceChild("Saddle", CubeListBuilder.create().texOffs(112, 172).addBox(-12.0F, -8.0F, -24.0F, 24.0F, 31.0F, 43.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition Chest3 = Saddle.addOrReplaceChild("Chest3", CubeListBuilder.create().texOffs(215, 163).addBox(-3.0F, 0.0F, -3.0F, 3.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offset(-12.0F, -2.0F, -15.0F));
+		PartDefinition Chest3 = Saddle.addOrReplaceChild("Chest3", CubeListBuilder.create().texOffs(215, 163).mirror().addBox(-3.0F, 0.0F, -3.0F, 3.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offset(-12.0F, -2.0F, -15.0F));
 
-		PartDefinition Chest4 = Saddle.addOrReplaceChild("Chest4", CubeListBuilder.create().texOffs(215, 163).mirror().addBox(0.0F, 0.0F, -3.0F, 3.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(12.0F, -2.0F, -15.0F));
+		PartDefinition Chest4 = Saddle.addOrReplaceChild("Chest4", CubeListBuilder.create().texOffs(215, 163).addBox(0.0F, 0.0F, -3.0F, 3.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(12.0F, -2.0F, -15.0F));
 
 		PartDefinition Saddle2 = Saddle.addOrReplaceChild("Saddle2", CubeListBuilder.create().texOffs(141, 143).addBox(-14.0F, -4.0F, -4.0F, 28.0F, 8.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -12.0F, 14.0F));
 
-		PartDefinition Chest1 = Saddle.addOrReplaceChild("Chest1", CubeListBuilder.create().texOffs(207, 182).addBox(-6.0F, 0.0F, -6.0F, 6.0F, 10.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offset(-12.0F, -11.0F, 8.0F));
+		PartDefinition Chest1 = Saddle.addOrReplaceChild("Chest1", CubeListBuilder.create().texOffs(207, 182).mirror().addBox(-6.0F, 0.0F, -6.0F, 6.0F, 10.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offset(-12.0F, -11.0F, 8.0F));
 
-		PartDefinition Chest2 = Saddle.addOrReplaceChild("Chest2", CubeListBuilder.create().texOffs(207, 182).mirror().addBox(0.0F, 0.0F, -6.0F, 6.0F, 10.0F, 11.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(12.0F, -11.0F, 8.0F));
+		PartDefinition Chest2 = Saddle.addOrReplaceChild("Chest2", CubeListBuilder.create().texOffs(207, 182).addBox(0.0F, 0.0F, -6.0F, 6.0F, 10.0F, 11.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(12.0F, -11.0F, 8.0F));
 
 		PartDefinition Tail1 = Body.addOrReplaceChild("Tail1", CubeListBuilder.create().texOffs(0, 77).addBox(-6.0F, -3.0F, -2.0F, 12.0F, 13.0F, 24.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -1.0F, 19.0F, -0.3302F, -0.1155F, 0.0F));
 
@@ -115,75 +115,55 @@ public class TriceratopsModel extends EntityModel<Triceratops> {
 		resetModel();
 		if (entity.isSleeping()) {
 			if (sleepProgress != 0 && entity.getEntityData().get(Triceratops.SLEEP_TICK) > 0) {
-				this.LeftHindLeg3.xRot = Mth.lerp(sleepProgress, 0, 1.5707963267948966F);
 				this.RightFrontLeg.xRot = Mth.lerp(sleepProgress, 0, -1.2915436464758039F);
 				this.RightFrontLeg.yRot = Mth.lerp(sleepProgress, 0, -0.3490658503988659F);
-				this.Tail2.xRot = Mth.lerp(sleepProgress, 0, 0.16929693411449862F);
+				this.Tail2.xRot = Mth.lerp(sleepProgress, 0.15F, 0.16929693411449862F);
 				this.Tail2.yRot = Mth.lerp(sleepProgress, 0, 0.35185837453889574F);
 				this.Tail2.zRot = Mth.lerp(sleepProgress, 0, 0.1563815016444822F);
-				this.RightHindLeg1.xRot = Mth.lerp(sleepProgress, 0, -0.8726646259971648F);
-				this.RightHindLeg1.yRot = Mth.lerp(sleepProgress, 0, 0.23457224414434488F);
-				this.Neck.xRot = Mth.lerp(sleepProgress, 0, 0.27366763203903305F);
+				this.RightHindLeg1.xRot = Mth.lerp(sleepProgress, 0, 0.3748F);
+				this.RightHindLeg1.yRot = Mth.lerp(sleepProgress, 0, 0.1091F);
+				this.Neck.xRot = Mth.lerp(sleepProgress, 0.05F, 0.27366763203903305F);
 				this.Neck.yRot = Mth.lerp(sleepProgress, 0, -0.5473352640780661F);
-				this.LeftHindLeg1.xRot = Mth.lerp(sleepProgress, 0, -0.8726646259971648F);
-				this.LeftHindLeg1.yRot = Mth.lerp(sleepProgress, 0, -0.23457224414434488F);
-				this.RightHindLeg3.xRot = Mth.lerp(sleepProgress, 0, 1.5707963267948966F);
-				this.Head1.xRot = Mth.lerp(sleepProgress, 0, -0.007330382629510778F);
-				this.LeftHindLeg2.xRot = Mth.lerp(sleepProgress, 0, -0.6981317007977318F);
-				this.Tail1.xRot = Mth.lerp(sleepProgress, 0, -0.5141739816585629F);
+				this.LeftHindLeg1.xRot = Mth.lerp(sleepProgress, 0, 0.3748F);
+				this.LeftHindLeg1.yRot = Mth.lerp(sleepProgress, 0, -0.1091F);
+				this.Head1.xRot = Mth.lerp(sleepProgress, 0.5F, -0.007330382629510778F);
+				this.LeftHindLeg2.xRot = Mth.lerp(sleepProgress, 0, 1.1345F);
+				this.Tail1.xRot = Mth.lerp(sleepProgress, -0.3F, -0.5141739816585629F);
 				this.Tail1.yRot = Mth.lerp(sleepProgress, 0, 0.35185837453889574F);
 				this.LeftFrontLeg.xRot = Mth.lerp(sleepProgress, 0, -1.0557496272471145F);
 				this.LeftFrontLeg.yRot = Mth.lerp(sleepProgress, 0, -0.03909537541112055F);
 				this.LeftFrontLeg.zRot = Mth.lerp(sleepProgress, 0, -0.4300491170387584F);
-				this.RightHindLeg2.xRot = Mth.lerp(sleepProgress, 0, -0.6981317007977318F);
+				this.RightHindLeg2.xRot = Mth.lerp(sleepProgress, 0, 1.1345F);
 				this.Body.y = Mth.lerp(sleepProgress, -14, 1);
 				this.LeftHindLeg1.y = Mth.lerp(sleepProgress, -10, 4);
-				this.LeftHindLeg1.z = Mth.lerp(sleepProgress, 10, 14);
-				this.LeftHindLeg2.y = Mth.lerp(sleepProgress, 17, 15.3F);
-				this.LeftHindLeg2.z = Mth.lerp(sleepProgress, 6, 8);
-				this.LeftHindLeg3.y = Mth.lerp(sleepProgress, 14, 15);
 				this.RightHindLeg1.y = Mth.lerp(sleepProgress, -10, 4);
-				this.RightHindLeg1.z = Mth.lerp(sleepProgress, 10, 14);
-				this.RightHindLeg2.y = Mth.lerp(sleepProgress, 17, 15.3F);
-				this.RightHindLeg2.z = Mth.lerp(sleepProgress, 6, 8);
-				this.RightHindLeg3.y = Mth.lerp(sleepProgress, 14, 15);
 				this.RightFrontLeg.y = Mth.lerp(sleepProgress, -3, 12);
 				this.LeftFrontLeg.y = Mth.lerp(sleepProgress, -3, 12);
 			} else sleepPose();
 		} else {
 			if (sleepProgress != 0 && entity.getEntityData().get(Triceratops.SLEEP_TICK) > 0) {
-				this.LeftHindLeg3.xRot = Mth.lerp(sleepProgress, 1.5707963267948966F, 0);
 				this.RightFrontLeg.xRot = Mth.lerp(sleepProgress, -1.2915436464758039F, 0);
 				this.RightFrontLeg.yRot = Mth.lerp(sleepProgress, -0.3490658503988659F, 0);
-				this.Tail2.xRot = Mth.lerp(sleepProgress, 0.16929693411449862F, 0);
+				this.Tail2.xRot = Mth.lerp(sleepProgress, 0.16929693411449862F, 0.15F);
 				this.Tail2.yRot = Mth.lerp(sleepProgress, 0.35185837453889574F, 0);
 				this.Tail2.zRot = Mth.lerp(sleepProgress, 0.1563815016444822F, 0);
-				this.RightHindLeg1.xRot = Mth.lerp(sleepProgress, -0.8726646259971648F, 0);
-				this.RightHindLeg1.yRot = Mth.lerp(sleepProgress, 0.23457224414434488F, 0);
-				this.Neck.xRot = Mth.lerp(sleepProgress, 0.27366763203903305F, 0);
+				this.RightHindLeg1.xRot = Mth.lerp(sleepProgress, 0.3748F, 0);
+				this.RightHindLeg1.yRot = Mth.lerp(sleepProgress, 0.1091F, 0);
+				this.Neck.xRot = Mth.lerp(sleepProgress, 0.27366763203903305F, 0.05F);
 				this.Neck.yRot = Mth.lerp(sleepProgress, -0.5473352640780661F, 0);
-				this.LeftHindLeg1.xRot = Mth.lerp(sleepProgress, -0.8726646259971648F, 0);
-				this.LeftHindLeg1.yRot = Mth.lerp(sleepProgress, -0.23457224414434488F, 0);
-				this.RightHindLeg3.xRot = Mth.lerp(sleepProgress, 1.5707963267948966F, 0);
-				this.Head1.xRot = Mth.lerp(sleepProgress, -0.007330382629510778F, 0);
-				this.LeftHindLeg2.xRot = Mth.lerp(sleepProgress, -0.6981317007977318F, 0);
-				this.Tail1.xRot = Mth.lerp(sleepProgress, -0.5141739816585629F, 0);
+				this.LeftHindLeg1.xRot = Mth.lerp(sleepProgress, 0.3748F, 0);
+				this.LeftHindLeg1.yRot = Mth.lerp(sleepProgress, -0.1091F, 0);
+				this.Head1.xRot = Mth.lerp(sleepProgress, -0.007330382629510778F, 0.5F);
+				this.LeftHindLeg2.xRot = Mth.lerp(sleepProgress, 1.1345F, 0);
+				this.Tail1.xRot = Mth.lerp(sleepProgress, -0.5141739816585629F, -0.3F);
 				this.Tail1.yRot = Mth.lerp(sleepProgress, 0.35185837453889574F, 0);
 				this.LeftFrontLeg.xRot = Mth.lerp(sleepProgress, -1.0557496272471145F, 0);
 				this.LeftFrontLeg.yRot = Mth.lerp(sleepProgress, -0.03909537541112055F, 0);
 				this.LeftFrontLeg.zRot = Mth.lerp(sleepProgress, -0.4300491170387584F, 0);
-				this.RightHindLeg2.xRot = Mth.lerp(sleepProgress, -0.6981317007977318F, 0);
+				this.RightHindLeg2.xRot = Mth.lerp(sleepProgress, 1.1345F, 0);
 				this.Body.y = Mth.lerp(sleepProgress, 1, -14);
 				this.LeftHindLeg1.y = Mth.lerp(sleepProgress, 4, -10);
-				this.LeftHindLeg1.z = Mth.lerp(sleepProgress, 14, 10);
-				this.LeftHindLeg2.y = Mth.lerp(sleepProgress, 15.3F, 17F);
-				this.LeftHindLeg2.z = Mth.lerp(sleepProgress, 8, 6);
-				this.LeftHindLeg3.y = Mth.lerp(sleepProgress, 15, 14);
 				this.RightHindLeg1.y = Mth.lerp(sleepProgress, 4, -10);
-				this.RightHindLeg1.z = Mth.lerp(sleepProgress, 14, 10);
-				this.RightHindLeg2.y = Mth.lerp(sleepProgress, 15.3F, 17F);
-				this.RightHindLeg2.z = Mth.lerp(sleepProgress, 8, 6);
-				this.RightHindLeg3.y = Mth.lerp(sleepProgress, 15, 14);
 				this.RightFrontLeg.y = Mth.lerp(sleepProgress, 12, -3);
 				this.LeftFrontLeg.y = Mth.lerp(sleepProgress, 12, -3);
 			} else {
@@ -272,40 +252,28 @@ public class TriceratopsModel extends EntityModel<Triceratops> {
 	}
 
 	public void sleepPose() {
-		this.LeftHindLeg3.xRot = 1.5707963267948966F;
 		this.RightFrontLeg.xRot = -1.2915436464758039F;
 		this.RightFrontLeg.yRot = -0.3490658503988659F;
 		this.Tail2.xRot = 0.16929693411449862F;
 		this.Tail2.yRot = 0.35185837453889574F;
 		this.Tail2.zRot = 0.1563815016444822F;
-		this.RightHindLeg1.xRot = -0.8726646259971648F;
-		this.RightHindLeg1.yRot = 0.23457224414434488F;
+		this.RightHindLeg1.xRot = 0.3748F;
+		this.RightHindLeg1.yRot = 0.1091F;
 		this.Neck.xRot = 0.27366763203903305F;
 		this.Neck.yRot = -0.5473352640780661F;
-		this.LeftHindLeg1.xRot = -0.8726646259971648F;
-		this.LeftHindLeg1.yRot = -0.23457224414434488F;
-		this.RightHindLeg3.xRot = 1.5707963267948966F;
+		this.LeftHindLeg1.xRot = 0.3748F;
+		this.LeftHindLeg1.yRot = -0.1091F;
 		this.Head1.xRot = -0.007330382629510778F;
-		this.LeftHindLeg2.xRot =-0.6981317007977318F;
+		this.LeftHindLeg2.xRot = 1.1345F;
 		this.Tail1.xRot = -0.5141739816585629F;
 		this.Tail1.yRot = 0.35185837453889574F;
 		this.LeftFrontLeg.xRot = -1.0557496272471145F;
 		this.LeftFrontLeg.yRot = -0.03909537541112055F;
 		this.LeftFrontLeg.zRot = -0.4300491170387584F;
-		this.RightHindLeg2.xRot = -0.6981317007977318F;
+		this.RightHindLeg2.xRot = 1.1345F;
 		this.Body.y = 1;
 		this.LeftHindLeg1.y = 4;
-		this.LeftHindLeg1.z = 14;
-		this.LeftHindLeg2.y = 15.3F;
-		this.LeftHindLeg2.z = 8;
-		this.LeftHindLeg3.y = 15;
-		this.LeftHindLeg3.z = 1;
 		this.RightHindLeg1.y = 4;
-		this.RightHindLeg1.z = 14;
-		this.RightHindLeg2.y = 15.3F;
-		this.RightHindLeg2.z = 8;
-		this.RightHindLeg3.y = 15;
-		this.RightHindLeg3.z = 1;
 		this.RightFrontLeg.y = 12;
 		this.LeftFrontLeg.y = 12;
 	}

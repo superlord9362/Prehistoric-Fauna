@@ -80,7 +80,7 @@ public class ClientEvents {
 			Sheets.addWoodType(PFWoodTypes.ARAUCARIA);
 			Sheets.addWoodType(PFWoodTypes.PROTOPICEOXYLON);
 			Sheets.addWoodType(PFWoodTypes.LIRIODENDRITES);
-			Sheets.addWoodType(PFWoodTypes.ZAMITES);
+			Sheets.addWoodType(PFWoodTypes.MONANTHESIA);
 			Sheets.addWoodType(PFWoodTypes.PROTOJUNIPEROXYLON);
 			Sheets.addWoodType(PFWoodTypes.AGATHOXYLON);
 			Sheets.addWoodType(PFWoodTypes.HEIDIPHYLLUM);
@@ -125,6 +125,7 @@ public class ClientEvents {
 	public static ModelLayerLocation SARAHSAURUS_SKULL = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "sarahsaurus_skull"), "sarahsaurus_skull");
 	public static ModelLayerLocation SCELIDOSAURUS_SKULL = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "scelidosaurus_skull"), "scelidosaurus_skull");
 	public static ModelLayerLocation ALLOSAURUS_SKULL = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "allosaurus_skull"), "allosaurus_skull");
+	public static ModelLayerLocation BRACHIOSAURUS_SKULL = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "brachiosaurus_skull"), "brachiosaurus_skull");
 	public static ModelLayerLocation CERATOSAURUS_SKULL = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "ceratosaurus_skull"), "ceratosaurus_skull");
 	public static ModelLayerLocation STEGOSAURUS_SKULL = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "stegosaurus_skull"), "stegosaurus_skull");
 	public static ModelLayerLocation COELOPHYSIS_SKULL = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "coelophysis_skull"), "coelophysis_skull");
@@ -433,6 +434,9 @@ public class ClientEvents {
 	public static ModelLayerLocation OMEISAURUS_JUVENILE = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "omeisaurus_juvenile"), "omeisaurus_juvenile");
 	public static ModelLayerLocation OMEISAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "omeisaurus_baby"), "omeisaurus_baby");
 	public static ModelLayerLocation OMEISAURUS_HATCHLING = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "omeisaurus_hatchling"), "omeisaurus_hatchling");
+	public static ModelLayerLocation SHUNOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "shunosaurus"), "shunosaurus");
+	public static ModelLayerLocation SHUNOSAURUS_JUVENILE = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "shunosaurus_juvenile"), "shunosaurus_juvenile");
+	public static ModelLayerLocation SHUNOSAURUS_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "shunosaurus_baby"), "shunosaurus_baby");
 	public static ModelLayerLocation SINRAPTOR = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "sinraptor"), "sinraptor");
 	public static ModelLayerLocation SINRAPTOR_BABY = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "sinraptor_baby"), "sinraptor_baby");
 	public static ModelLayerLocation TUOJIANGOSAURUS = new ModelLayerLocation(new ResourceLocation(PrehistoricFauna.MOD_ID, "tuojiangosaurus"), "tuojiangosaurus");
@@ -543,6 +547,7 @@ public class ClientEvents {
 		event.registerEntityRenderer(PFEntities.PSITTACOSAURUS_SKULL.get(), PsittacosaurusSkullRenderer::new);
 		event.registerEntityRenderer(PFEntities.YUTYRANNUS_SKULL.get(), YutyrannusSkullRenderer::new);
 		event.registerEntityRenderer(PFEntities.YUTYRANNUS_SKELETON.get(), YutyrannusSkeletonRenderer::new);
+		event.registerEntityRenderer(PFEntities.BRACHIOSAURUS_SKULL.get(), BrachiosaurusSkullRenderer::new);
 		event.registerEntityRenderer(PFEntities.ARGANODUS.get(), ArganodusRenderer::new);
 		event.registerEntityRenderer(PFEntities.CERATODUS.get(), CeratodusRenderer::new);
 		event.registerEntityRenderer(PFEntities.CHINLEA.get(), ChinleaRenderer::new);
@@ -678,6 +683,11 @@ public class ClientEvents {
 		event.registerEntityRenderer(PFEntities.CAMPTOSAURUS.get(), CamptosaurusRenderer::new);
 		event.registerEntityRenderer(PFEntities.TORVOSAURUS.get(), TorvosaurusRenderer::new);
 		event.registerEntityRenderer(PFEntities.ALCOVASAURUS.get(), AlcovasaurusRenderer::new);
+		event.registerEntityRenderer(PFEntities.HUAYANGOSAURUS.get(), HuayangosaurusRenderer::new);
+		event.registerEntityRenderer(PFEntities.TUOJIANGOSAURUS.get(), TuojiangosaurusRenderer::new);
+		event.registerEntityRenderer(PFEntities.SHUNOSAURUS.get(), ShunosaurusRenderer::new);
+		event.registerEntityRenderer(PFEntities.ABROSAURUS.get(), AbrosaurusRenderer::new);
+		event.registerEntityRenderer(PFEntities.SINRAPTOR.get(), SinraptorRenderer::new);
 		
 		event.registerBlockEntityRenderer(PFBlockEntities.CHEST.get(), PFChestBlockEntityRenderer::new);
 		event.registerBlockEntityRenderer(PFBlockEntities.TRAPPED_CHEST.get(), PFChestBlockEntityRenderer::new);
@@ -708,6 +718,8 @@ public class ClientEvents {
 		event.registerLayerDefinition(ALLOSAURUS_SKELETON_ACTION_LEFT, AllosaurusSkeletonActionLeftModel::createBodyLayer);
 		event.registerLayerDefinition(ALLOSAURUS_SKELETON_ACTION_RIGHT, AllosaurusSkeletonActionRightModel::createBodyLayer);
 		event.registerLayerDefinition(ALLOSAURUS_SKULL, AllosaurusSkullModel::createBodyLayer);
+		//Brachiosaurus Skeleton and Skull
+		event.registerLayerDefinition(BRACHIOSAURUS_SKULL, BrachiosaurusSkullModel::createBodyLayer);
 		//Ceratosaurus Skeleton and Skull
 		event.registerLayerDefinition(CERATOSAURUS_SKELETON, CeratosaurusSkeletonModel::createBodyLayer);
 		event.registerLayerDefinition(CERATOSAURUS_SKELETON_RESTING, CeratosaurusSkeletonRestingModel::createBodyLayer);
@@ -997,6 +1009,7 @@ public class ClientEvents {
 		event.registerLayerDefinition(PALEOHELCURA, PaleohelcuraModel::createBodyLayer);
 		//Morrison
 		event.registerLayerDefinition(ALCOVASAURUS, AlcovasaurusModel::createBodyLayer);;
+		event.registerLayerDefinition(ALCOVASAURUS_BABY, AlcovasaurusBabyModel::createBodyLayer);
 		event.registerLayerDefinition(ALLOSAURUS, AllosaurusModel::createBodyLayer);
 		event.registerLayerDefinition(ALLOSAURUS_BABY, AllosaurusBabyModel::createBodyLayer);
 		event.registerLayerDefinition(CAMARASAURUS, CamarasaurusModel::createBodyLayer);
@@ -1018,7 +1031,9 @@ public class ClientEvents {
 		event.registerLayerDefinition(PARAPLEURITES, ParapleuritesModel::createBodyLayer);
 		event.registerLayerDefinition(GARGOYLEOSAURUS, GargoyleosaurusModel::createBodyLayer);
 		event.registerLayerDefinition(CAMPTOSAURUS, CamptosaurusModel::createBodyLayer);
+		event.registerLayerDefinition(CAMPTOSAURUS_BABY, CamptosaurusBabyModel::createBodyLayer);
 		event.registerLayerDefinition(TORVOSAURUS, TorvosaurusModel::createBodyLayer);
+		event.registerLayerDefinition(TORVOSAURUS_BABY, TorvosaurusBabyModel::createBodyLayer);
 		//Shaximiao
 		event.registerLayerDefinition(AGILISAURUS, AgilisaurusModel::createBodyLayer);
 		event.registerLayerDefinition(BASHANOSAURUS, BashanosaurusModel::createBodyLayer);
@@ -1032,6 +1047,14 @@ public class ClientEvents {
 		event.registerLayerDefinition(CICADOCORIS, CicadocorisModel::createBodyLayer);
 		event.registerLayerDefinition(MESOFORFICULA, MesoforficulaModel::createBodyLayer);
 		event.registerLayerDefinition(RHIPIDOBLATTINA, RhipidoblattinaModel::createBodyLayer);
+		event.registerLayerDefinition(HUAYANGOSAURUS, HuayangosaurusModel::createBodyLayer);
+		event.registerLayerDefinition(TUOJIANGOSAURUS, TuojiangosaurusModel::createBodyLayer);
+		event.registerLayerDefinition(TUOJIANGOSAURUS_BABY, TuojiangosaurusBabyModel::createBodyLayer);
+		event.registerLayerDefinition(SHUNOSAURUS, ShunosaurusModel::createBodyLayer);
+		event.registerLayerDefinition(SHUNOSAURUS_BABY, ShunosaurusBabyModel::createBodyLayer);
+		event.registerLayerDefinition(ABROSAURUS, AbrosaurusModel::createBodyLayer);
+		event.registerLayerDefinition(SINRAPTOR, SinraptorModel::createBodyLayer);
+		event.registerLayerDefinition(SINRAPTOR_BABY, SinraptorBabyModel::createBodyLayer);
 		//Chinle
 		event.registerLayerDefinition(COELOPHYSIS, CoelophysisModel::createBodyLayer);
 		event.registerLayerDefinition(DESMATOSUCHUS, DesmatosuchusModel::createBodyLayer);
