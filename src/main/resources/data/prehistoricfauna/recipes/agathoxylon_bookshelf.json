@@ -1,25 +1,81 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		"###",
-		"XXX",
-		"###"
-	],
-	"key": {
-		"#": {
-			"item": "prehistoricfauna:agathoxylon_planks"
-		},
-		"X": {
-			"item": "minecraft:book"
-		}
-	},
-	"result": {
-		"item": "prehistoricfauna:agathoxylon_bookshelf"
-	},
-	"conditions": [
+	"type": "forge:conditional",
+	"recipes": [
 		{
-			"type": "prehistoricfauna:quark_flag",
-			"flag": "variant_bookshelves"
+			"conditions": [
+				{
+					"type": "forge:and",
+					"values": [
+						{
+							"type": "forge:mod_loaded",
+							"modid": "woodworks"
+						},
+						{
+							"type": "woodworks:config",
+							"value": "wooden_bookshelves"
+						}
+					]
+				}
+			],
+			"recipe":  {
+				"type": "minecraft:crafting_shaped",
+				"category": "building",
+				"group": "wooden_bookshelf",
+				"pattern": [
+					"###",
+					"XXX",
+					"###"
+				],
+				"key": {
+					"#": {
+						"item": "prehistoricfauna:agathoxylon_planks"
+				    },
+				    "X": {
+						"item": "minecraft:book"
+				    }
+				},
+				"result": {
+					"item": "prehistoricfauna:agathoxylon_bookshelf"
+				}
+			}
+		},
+		{
+			"conditions": [
+				{
+					"type": "forge:and",
+					"values": [
+						{
+							"type": "forge:mod_loaded",
+							"modid": "quark"
+						},
+						{
+							"type": "quark:flag",
+							"flag": "variant_bookshelves"
+						}
+					]
+				}
+			],
+			"recipe":  {
+				"type": "minecraft:crafting_shaped",
+				"category": "building",
+				"group": "wooden_bookshelf",
+				"pattern": [
+					"###",
+					"XXX",
+					"###"
+				],
+				"key": {
+					"#": {
+						"item": "prehistoricfauna:agathoxylon_planks"
+					},
+					"X": {
+						"item": "minecraft:book"
+					}
+				},
+				"result": {
+					"item": "prehistoricfauna:agathoxylon_bookshelf"
+				}
+			}
 		}
 	]
 }

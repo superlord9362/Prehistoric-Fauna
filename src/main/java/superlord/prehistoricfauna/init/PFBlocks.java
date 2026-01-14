@@ -202,7 +202,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> NILSSONIA = REGISTER.register("nilssonia", () -> new NilssoniaBlock(Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).sound(SoundType.GRASS).instabreak().strength(1.0F).randomTicks()));
 	public static final RegistryObject<Block> FIDDLEHEAD_FERN = REGISTER.register("fiddlehead_fern", () -> new PrehistoricPlantBlock(Block.Properties.of().mapColor(MapColor.PLANT).replaceable().offsetType(BlockBehaviour.OffsetType.XZ).ignitedByLava().pushReaction(PushReaction.DESTROY).sound(SoundType.GRASS).noCollission().instabreak()));
 	public static final RegistryObject<Block> TALL_FIDDLEHEAD_FERN = REGISTER.register("tall_fiddlehead_fern", () -> new DoublePlantBlock(Block.Properties.of().mapColor(MapColor.PLANT).replaceable().offsetType(BlockBehaviour.OffsetType.XZ).ignitedByLava().pushReaction(PushReaction.DESTROY).sound(SoundType.GRASS).noCollission().instabreak()));
-	public static final RegistryObject<Block> ZAMITES = REGISTER.register("zamites", () -> new AncientPlantBlock(Properties.of().mapColor(MapColor.WOOD).dynamicShape().pushReaction(PushReaction.DESTROY).offsetType(OffsetType.XZ).strength(1).ignitedByLava()));
+	public static final RegistryObject<Block> ZAMITES = REGISTER.register("zamites", () -> new AncientPlantBlock(Properties.of().mapColor(MapColor.WOOD).dynamicShape().pushReaction(PushReaction.DESTROY).offsetType(OffsetType.XZ).strength(1).ignitedByLava().sound(SoundType.WOOD)));
 	
 	public static final RegistryObject<Block> METASEQUOIA_PLANKS = REGISTER.register("metasequoia_planks", () -> new Block(Block.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).ignitedByLava().strength(2.0F, 3.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> METASEQUOIA_LOG = REGISTER.register("metasequoia_log", () -> createLog());
@@ -848,7 +848,7 @@ public class PFBlocks {
 		return 15;
 	})));
 	
-	public static final RegistryObject<Block> SALT = REGISTER.register("salt", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).requiresCorrectToolForDrops().strength(1.5F, 6).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> SALT = REGISTER.register("salt", () -> new Block(Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).requiresCorrectToolForDrops().strength(1.5F, 6).sound(SoundType.DRIPSTONE_BLOCK)));
 
 	public static final RegistryObject<Block> LARGE_AMMONITE_FOSSIL = REGISTER.register("large_ammonite_fossil", () -> new AmmoniteLargeShellBlock(Properties.of().strength(1.5F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 	public static final RegistryObject<Block> MEDIUM_AMMONITE_FOSSIL = REGISTER.register("medium_ammonite_fossil", () -> new AmmoniteMediumShellBlock(Properties.of().strength(1.5F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));

@@ -28,7 +28,6 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -73,7 +72,6 @@ import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.*;
 import superlord.prehistoricfauna.common.events.GeologicalHammerEvents;
 import superlord.prehistoricfauna.common.network.KeyInputMessage;
 import superlord.prehistoricfauna.common.recipes.PaleontologyTableRecipeS2C;
-import superlord.prehistoricfauna.common.util.QuarkFlagRecipeCondition;
 import superlord.prehistoricfauna.common.util.RegistryHelper;
 import superlord.prehistoricfauna.config.PFConfigHolder;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
@@ -136,6 +134,7 @@ public class PrehistoricFauna {
 		PFPotDecorations.REGISTER.register(bus);
 		PFParticles.REGISTRY.register(bus);
 		PFBiomeModifiers.BIOME_MODIFIER_SERIALIZERS.register(bus);
+		PFBannerPatterns.REGISTER.register(bus);
 		PFStructurePieceType.REGISTRY.register(bus);
 		PFStructureType.REGISTRY.register(bus);
 		final DeferredRegister<Codec<? extends BiomeModifier>> biomeModifiers = DeferredRegister.create(ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, PrehistoricFauna.MOD_ID);
@@ -143,7 +142,6 @@ public class PrehistoricFauna {
 		biomeModifiers.register("pf_entity_spawns", PFMobSpawnsModifier::makeCodec);
 		modLoadingContext.registerConfig(ModConfig.Type.CLIENT, PFConfigHolder.CLIENT_SPEC);
 		modLoadingContext.registerConfig(ModConfig.Type.COMMON, PFConfigHolder.SERVER_SPEC);
-		CraftingHelper.register(new QuarkFlagRecipeCondition.Serializer());
 
 		bus.addListener(this::gatherData);
 

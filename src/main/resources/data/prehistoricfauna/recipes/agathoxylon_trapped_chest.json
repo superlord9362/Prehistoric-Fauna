@@ -1,20 +1,71 @@
 {
-	"type": "minecraft:crafting_shapeless",
-	"ingredients": [
+	"type": "forge:conditional",
+	"recipes": [
 		{
-			"item": "prehistoricfauna:agathoxylon_chest"
+			"conditions": [
+				{
+					"type": "forge:and",
+					"values": [
+						{
+							"type": "forge:mod_loaded",
+							"modid": "woodworks"
+						},
+						{
+							"type": "woodworks:config",
+							"value": "wooden_chests"
+						}
+					]
+				}
+			],
+			"recipe":  {
+				"type": "minecraft:crafting_shapeless",
+				"category": "redstone",
+				"group": "wooden_trapped_chest",
+				"ingredients": [
+					{
+						"item": "prehistoricfauna:agathoxylon_chest"
+					},
+					{
+						"item": "minecraft:tripwire_hook"
+					}
+				],
+				"result": {
+					"item": "prehistoricfauna:agathoxylon_trapped_chest"
+				}
+			}
 		},
 		{
-			"item": "minecraft:tripwire_hook"
-		}
-	],
-	"result": {
-		"item": "prehistoricfauna:agathoxylon_trapped_chest"
-	},
-	"conditions": [
-		{
-			"type": "prehistoricfauna:quark_flag",
-			"flag": "variant_chests"
+			"conditions": [
+				{
+					"type": "forge:and",
+					"values": [
+						{
+							"type": "forge:mod_loaded",
+							"modid": "quark"
+						},
+						{
+							"type": "quark:flag",
+							"flag": "variant_chests"
+						}
+					]
+				}
+			],
+			"recipe":  {
+				"type": "minecraft:crafting_shapeless",
+				"category": "redstone",
+				"group": "wooden_trapped_chest",
+				"ingredients": [
+					{
+						"item": "prehistoricfauna:agathoxylon_chest"
+					},
+					{
+						"item": "minecraft:tripwire_hook"
+					}
+				],
+				"result": {
+					"item": "prehistoricfauna:agathoxylon_trapped_chest"
+				}
+			}
 		}
 	]
 }

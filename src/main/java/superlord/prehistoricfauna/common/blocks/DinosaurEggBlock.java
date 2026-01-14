@@ -95,7 +95,7 @@ public class DinosaurEggBlock extends Block {
 		if (this.canDestroyEgg(p_154851_, p_154854_)) {
 			if (!p_154851_.isClientSide && p_154851_.random.nextInt(p_154855_) == 0 && p_154852_.is(this)) {
 				this.decreaseEggs(p_154851_, p_154853_, p_154852_);
-				if (dinosaurEntity instanceof DinosaurEntity dinosaur) {
+				if (dinosaurEntity instanceof DinosaurEntity) {
 					for (Entity parentEntity : p_154851_.getEntities(dinosaurEntity, new AABB(p_154853_.getX() - 4, p_154853_.getY() - 4, p_154853_.getZ() - 4, p_154853_.getX() + 4, p_154853_.getY() + 4, p_154853_.getZ() + 4))) {
 						if (parentEntity instanceof DinosaurEntity parentDinosaur) {
 							Entity parent = this.entityTypeSupplier.get().create(p_154851_);

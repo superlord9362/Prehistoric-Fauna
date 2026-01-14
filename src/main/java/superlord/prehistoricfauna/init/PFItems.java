@@ -1,6 +1,8 @@
 package superlord.prehistoricfauna.init;
 
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BannerPatternTags;
 import net.minecraft.tags.TagKey;
@@ -1255,7 +1257,8 @@ public class PFItems {
 	public static final RegistryObject<Item> CALCIUM_SUPPLEMENT = FOOD_REGISTER.register("calcium_supplement", () -> new CalciumSupplementItem(new Item.Properties().stacksTo(1)));
 
 	private static TagKey<BannerPattern> registerPattern(String name) {
-		return BannerPatternTags.create(name);
+	      return TagKey.create(Registries.BANNER_PATTERN, new ResourceLocation(PrehistoricFauna.MOD_ID, "pattern_item/" + name));
+
 	}
 
 }

@@ -1,26 +1,83 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		"# #",
-		"#W#",
-		"# #"
-	],
-	"key": {
-		"#": {
-			"item": "minecraft:stick"
-		},
-		"W": {
-			"item": "prehistoricfauna:agathoxylon_planks"
-		}
-	},
-	"result": {
-		"item": "prehistoricfauna:agathoxylon_ladder",
-		"count": 4
-	},
-	"conditions": [
+	"type": "forge:conditional",
+	"recipes": [
 		{
- 	     "type": "prehistoricfauna:quark_flag",
-			"flag": "variant_ladders"
+			"conditions": [
+				{
+					"type": "forge:and",
+					"values": [
+						{
+							"type": "forge:mod_loaded",
+							"modid": "woodworks"
+						},
+						{
+							"type": "woodworks:config",
+							"value": "wooden_ladders"
+						}
+					]
+				}
+			],
+			"recipe":  {
+				"type": "minecraft:crafting_shaped",
+				"category": "misc",
+				"group": "wooden_ladder",
+				"pattern": [
+					"S S",
+					"SXS",
+					"S S"
+				],
+				"key": {
+					"S": {
+						"tag": "forge:rods/wooden"
+				    },
+				    "X": {
+						"item": "prehistoricfauna:agathoxylon_planks"
+				    }
+				},
+				"result": {
+					"item": "prehistoricfauna:agathoxylon_ladder",
+					"count": 4
+				}
+			}
+		},
+		{
+			"conditions": [
+				{
+					"type": "forge:and",
+					"values": [
+						{
+							"type": "forge:mod_loaded",
+							"modid": "quark"
+						},
+						{
+							"type": "quark:flag",
+							"flag": "variant_bookshelves"
+						}
+					]
+				}
+			],
+			"recipe":  {
+				"type": "minecraft:crafting_shaped",
+				"category": "misc",
+				"group": "wooden_ladder",
+				"pattern": [
+					"S S",
+					"SXS",
+					"S S"
+				],
+				"key": {
+					"S": {
+						"tag": "forge:rods/wooden"
+					},
+					"X": {
+						"item": "prehistoricfauna:agathoxylon_planks"
+					}
+				},
+				"result": {
+					"item": "prehistoricfauna:agathoxylon_ladder",
+					"count": 4
+				}
+			}
 		}
 	]
 }
